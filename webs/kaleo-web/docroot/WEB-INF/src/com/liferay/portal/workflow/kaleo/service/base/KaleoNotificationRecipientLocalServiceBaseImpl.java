@@ -113,8 +113,7 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 		throws SystemException {
 		kaleoNotificationRecipient.setNew(true);
 
-		return kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient,
-			false);
+		return kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient);
 	}
 
 	/**
@@ -292,25 +291,7 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	public KaleoNotificationRecipient updateKaleoNotificationRecipient(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {
-		return updateKaleoNotificationRecipient(kaleoNotificationRecipient, true);
-	}
-
-	/**
-	 * Updates the kaleo notification recipient in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoNotificationRecipient the kaleo notification recipient
-	 * @param merge whether to merge the kaleo notification recipient with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo notification recipient that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoNotificationRecipient updateKaleoNotificationRecipient(
-		KaleoNotificationRecipient kaleoNotificationRecipient, boolean merge)
-		throws SystemException {
-		kaleoNotificationRecipient.setNew(false);
-
-		return kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient,
-			merge);
+		return kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient);
 	}
 
 	/**

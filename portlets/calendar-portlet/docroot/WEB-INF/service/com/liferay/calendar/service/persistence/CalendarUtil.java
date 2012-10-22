@@ -95,19 +95,18 @@ public class CalendarUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Calendar update(Calendar calendar, boolean merge)
-		throws SystemException {
-		return getPersistence().update(calendar, merge);
+	public static Calendar update(Calendar calendar) throws SystemException {
+		return getPersistence().update(calendar);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Calendar update(Calendar calendar, boolean merge,
+	public static Calendar update(Calendar calendar,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(calendar, merge, serviceContext);
+		return getPersistence().update(calendar, serviceContext);
 	}
 
 	/**
@@ -154,9 +153,9 @@ public class CalendarUtil {
 	}
 
 	public static com.liferay.calendar.model.Calendar updateImpl(
-		com.liferay.calendar.model.Calendar calendar, boolean merge)
+		com.liferay.calendar.model.Calendar calendar)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(calendar, merge);
+		return getPersistence().updateImpl(calendar);
 	}
 
 	/**

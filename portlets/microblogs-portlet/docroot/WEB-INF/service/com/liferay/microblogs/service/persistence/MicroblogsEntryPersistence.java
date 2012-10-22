@@ -76,8 +76,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.microblogs.model.MicroblogsEntry updateImpl(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
-		boolean merge)
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -95,19 +95,19 @@ public class ProjectsEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static ProjectsEntry update(ProjectsEntry projectsEntry,
-		boolean merge) throws SystemException {
-		return getPersistence().update(projectsEntry, merge);
+	public static ProjectsEntry update(ProjectsEntry projectsEntry)
+		throws SystemException {
+		return getPersistence().update(projectsEntry);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static ProjectsEntry update(ProjectsEntry projectsEntry,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(projectsEntry, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(projectsEntry, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class ProjectsEntryUtil {
 	}
 
 	public static com.liferay.so.model.ProjectsEntry updateImpl(
-		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
+		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(projectsEntry, merge);
+		return getPersistence().updateImpl(projectsEntry);
 	}
 
 	/**

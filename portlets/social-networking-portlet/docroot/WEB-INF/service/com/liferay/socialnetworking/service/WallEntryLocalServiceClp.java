@@ -98,52 +98,46 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 				"com.liferay.socialnetworking.model.WallEntry"
 			};
 
-		_methodName15 = "updateWallEntry";
+		_methodName15 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.socialnetworking.model.WallEntry", "boolean"
-			};
+		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName16 = "setBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes16 = new String[] { "java.lang.String" };
 
-		_methodName17 = "setBeanIdentifier";
+		_methodName18 = "addWallEntry";
 
-		_methodParameterTypes17 = new String[] { "java.lang.String" };
-
-		_methodName19 = "addWallEntry";
-
-		_methodParameterTypes19 = new String[] {
+		_methodParameterTypes18 = new String[] {
 				"long", "long", "java.lang.String",
 				"com.liferay.portal.theme.ThemeDisplay"
 			};
 
-		_methodName20 = "deleteWallEntries";
+		_methodName19 = "deleteWallEntries";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes19 = new String[] { "long" };
 
-		_methodName21 = "getWallEntries";
+		_methodName20 = "getWallEntries";
 
-		_methodParameterTypes21 = new String[] { "long", "int", "int" };
+		_methodParameterTypes20 = new String[] { "long", "int", "int" };
 
-		_methodName22 = "getWallEntriesCount";
+		_methodName21 = "getWallEntriesCount";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName23 = "getWallToWallEntries";
+		_methodName22 = "getWallToWallEntries";
 
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes22 = new String[] {
 				"long", "long", "long", "long", "int", "int"
 			};
 
-		_methodName24 = "getWallToWallEntriesCount";
+		_methodName23 = "getWallToWallEntriesCount";
 
-		_methodParameterTypes24 = new String[] { "long", "long", "long", "long" };
+		_methodParameterTypes23 = new String[] { "long", "long", "long", "long" };
 
-		_methodName25 = "updateWallEntry";
+		_methodName24 = "updateWallEntry";
 
-		_methodParameterTypes25 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes24 = new String[] { "long", "java.lang.String" };
 	}
 
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
@@ -596,41 +590,12 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		return (com.liferay.socialnetworking.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
-		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15,
-					new Object[] { ClpSerializer.translateInput(wallEntry), merge });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.socialnetworking.model.WallEntry)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -649,8 +614,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName17,
-				_methodParameterTypes17,
+			_invokableLocalService.invokeMethod(_methodName16,
+				_methodParameterTypes16,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -680,8 +645,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
 					new Object[] {
 						groupId,
 						
@@ -719,8 +684,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20, new Object[] { groupId });
+			_invokableLocalService.invokeMethod(_methodName19,
+				_methodParameterTypes19, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -749,8 +714,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { groupId, start, end });
 		}
 		catch (Throwable t) {
@@ -777,8 +742,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -805,8 +770,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] {
 						groupId1,
 						
@@ -846,8 +811,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { groupId1, groupId2, userId1, userId2 });
 		}
 		catch (Throwable t) {
@@ -876,8 +841,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						wallEntryId,
 						
@@ -942,8 +907,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
-	private String _methodName17;
-	private String[] _methodParameterTypes17;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
@@ -956,6 +921,4 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

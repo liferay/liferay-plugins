@@ -80,7 +80,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Status addStatus(Status status) throws SystemException {
 		status.setNew(true);
 
-		return statusPersistence.update(status, false);
+		return statusPersistence.update(status);
 	}
 
 	/**
@@ -249,23 +249,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Status updateStatus(Status status) throws SystemException {
-		return updateStatus(status, true);
-	}
-
-	/**
-	 * Updates the status in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param status the status
-	 * @param merge whether to merge the status with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the status that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Status updateStatus(Status status, boolean merge)
-		throws SystemException {
-		status.setNew(false);
-
-		return statusPersistence.update(status, merge);
+		return statusPersistence.update(status);
 	}
 
 	/**

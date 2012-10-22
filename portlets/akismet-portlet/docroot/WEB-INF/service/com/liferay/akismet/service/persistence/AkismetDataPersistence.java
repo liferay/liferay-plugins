@@ -73,7 +73,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.akismet.model.AkismetData updateImpl(
-		com.liferay.akismet.model.AkismetData akismetData, boolean merge)
+		com.liferay.akismet.model.AkismetData akismetData)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

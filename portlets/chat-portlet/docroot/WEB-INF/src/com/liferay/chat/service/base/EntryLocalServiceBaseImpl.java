@@ -80,7 +80,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Entry addEntry(Entry entry) throws SystemException {
 		entry.setNew(true);
 
-		return entryPersistence.update(entry, false);
+		return entryPersistence.update(entry);
 	}
 
 	/**
@@ -247,23 +247,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Entry updateEntry(Entry entry) throws SystemException {
-		return updateEntry(entry, true);
-	}
-
-	/**
-	 * Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param entry the entry
-	 * @param merge whether to merge the entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the entry that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Entry updateEntry(Entry entry, boolean merge)
-		throws SystemException {
-		entry.setNew(false);
-
-		return entryPersistence.update(entry, merge);
+		return entryPersistence.update(entry);
 	}
 
 	/**

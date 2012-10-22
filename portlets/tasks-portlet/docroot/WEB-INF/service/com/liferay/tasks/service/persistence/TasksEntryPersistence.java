@@ -73,7 +73,7 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 			com.liferay.tasks.NoSuchTasksEntryException;
 
 	public com.liferay.tasks.model.TasksEntry updateImpl(
-		com.liferay.tasks.model.TasksEntry tasksEntry, boolean merge)
+		com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

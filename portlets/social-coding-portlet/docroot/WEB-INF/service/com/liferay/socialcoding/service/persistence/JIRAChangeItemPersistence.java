@@ -76,8 +76,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	public com.liferay.socialcoding.model.JIRAChangeItem updateImpl(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
-		boolean merge)
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

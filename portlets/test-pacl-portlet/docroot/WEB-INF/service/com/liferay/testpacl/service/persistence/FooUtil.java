@@ -94,18 +94,18 @@ public class FooUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Foo update(Foo foo, boolean merge) throws SystemException {
-		return getPersistence().update(foo, merge);
+	public static Foo update(Foo foo) throws SystemException {
+		return getPersistence().update(foo);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Foo update(Foo foo, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(foo, merge, serviceContext);
+	public static Foo update(Foo foo, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(foo, serviceContext);
 	}
 
 	/**
@@ -152,9 +152,9 @@ public class FooUtil {
 	}
 
 	public static com.liferay.testpacl.model.Foo updateImpl(
-		com.liferay.testpacl.model.Foo foo, boolean merge)
+		com.liferay.testpacl.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(foo, merge);
+		return getPersistence().updateImpl(foo);
 	}
 
 	/**

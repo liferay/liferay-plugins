@@ -94,19 +94,18 @@ public class TypeUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Type update(Type type, boolean merge)
-		throws SystemException {
-		return getPersistence().update(type, merge);
+	public static Type update(Type type) throws SystemException {
+		return getPersistence().update(type);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Type update(Type type, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(type, merge, serviceContext);
+	public static Type update(Type type, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(type, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class TypeUtil {
 	}
 
 	public static com.liferay.ams.model.Type updateImpl(
-		com.liferay.ams.model.Type type, boolean merge)
+		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(type, merge);
+		return getPersistence().updateImpl(type);
 	}
 
 	/**

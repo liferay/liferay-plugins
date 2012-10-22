@@ -95,19 +95,19 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static JIRAAction update(JIRAAction jiraAction, boolean merge)
+	public static JIRAAction update(JIRAAction jiraAction)
 		throws SystemException {
-		return getPersistence().update(jiraAction, merge);
+		return getPersistence().update(jiraAction);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static JIRAAction update(JIRAAction jiraAction, boolean merge,
+	public static JIRAAction update(JIRAAction jiraAction,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(jiraAction, merge, serviceContext);
+		return getPersistence().update(jiraAction, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class JIRAActionUtil {
 	}
 
 	public static com.liferay.socialcoding.model.JIRAAction updateImpl(
-		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
+		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(jiraAction, merge);
+		return getPersistence().updateImpl(jiraAction);
 	}
 
 	/**

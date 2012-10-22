@@ -78,7 +78,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 		throws SystemException {
 		userThread.setNew(true);
 
-		return userThreadPersistence.update(userThread, false);
+		return userThreadPersistence.update(userThread);
 	}
 
 	/**
@@ -251,23 +251,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public UserThread updateUserThread(UserThread userThread)
 		throws SystemException {
-		return updateUserThread(userThread, true);
-	}
-
-	/**
-	 * Updates the user thread in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param userThread the user thread
-	 * @param merge whether to merge the user thread with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the user thread that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public UserThread updateUserThread(UserThread userThread, boolean merge)
-		throws SystemException {
-		userThread.setNew(false);
-
-		return userThreadPersistence.update(userThread, merge);
+		return userThreadPersistence.update(userThread);
 	}
 
 	/**

@@ -95,19 +95,19 @@ public class KBArticleUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static KBArticle update(KBArticle kbArticle, boolean merge)
+	public static KBArticle update(KBArticle kbArticle)
 		throws SystemException {
-		return getPersistence().update(kbArticle, merge);
+		return getPersistence().update(kbArticle);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static KBArticle update(KBArticle kbArticle, boolean merge,
+	public static KBArticle update(KBArticle kbArticle,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(kbArticle, merge, serviceContext);
+		return getPersistence().update(kbArticle, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class KBArticleUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle updateImpl(
-		com.liferay.knowledgebase.model.KBArticle kbArticle, boolean merge)
+		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kbArticle, merge);
+		return getPersistence().updateImpl(kbArticle);
 	}
 
 	/**

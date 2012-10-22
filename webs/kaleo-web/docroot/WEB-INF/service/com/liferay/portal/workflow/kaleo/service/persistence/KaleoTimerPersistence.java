@@ -75,8 +75,7 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 			com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

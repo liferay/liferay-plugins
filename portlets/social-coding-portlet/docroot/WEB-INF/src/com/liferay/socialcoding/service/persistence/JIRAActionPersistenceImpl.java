@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -301,7 +300,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, jiraAction);
+			if (jiraAction.isCachedModel()) {
+				jiraAction = (JIRAAction)session.get(JIRAActionImpl.class,
+						jiraAction.getPrimaryKeyObj());
+			}
+
+			session.delete(jiraAction);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -317,7 +321,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	@Override
 	public JIRAAction updateImpl(
-		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
+		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws SystemException {
 		jiraAction = toUnwrappedModel(jiraAction);
 
@@ -330,9 +334,14 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, jiraAction, merge);
+			if (jiraAction.isNew()) {
+				session.save(jiraAction);
 
-			jiraAction.setNew(false);
+				jiraAction.setNew(false);
+			}
+			else {
+				session.merge(jiraAction);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

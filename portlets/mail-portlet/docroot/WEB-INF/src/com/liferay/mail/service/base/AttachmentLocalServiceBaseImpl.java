@@ -84,7 +84,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 		throws SystemException {
 		attachment.setNew(true);
 
-		return attachmentPersistence.update(attachment, false);
+		return attachmentPersistence.update(attachment);
 	}
 
 	/**
@@ -257,23 +257,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public Attachment updateAttachment(Attachment attachment)
 		throws SystemException {
-		return updateAttachment(attachment, true);
-	}
-
-	/**
-	 * Updates the attachment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param attachment the attachment
-	 * @param merge whether to merge the attachment with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the attachment that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Attachment updateAttachment(Attachment attachment, boolean merge)
-		throws SystemException {
-		attachment.setNew(false);
-
-		return attachmentPersistence.update(attachment, merge);
+		return attachmentPersistence.update(attachment);
 	}
 
 	/**

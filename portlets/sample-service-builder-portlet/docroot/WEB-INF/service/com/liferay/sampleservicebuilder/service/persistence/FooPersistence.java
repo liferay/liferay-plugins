@@ -73,7 +73,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	public com.liferay.sampleservicebuilder.model.Foo updateImpl(
-		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
+		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

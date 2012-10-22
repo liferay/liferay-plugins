@@ -95,22 +95,22 @@ public class KaleoTaskAssignmentInstanceUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
 	public static KaleoTaskAssignmentInstance update(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance, boolean merge)
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws SystemException {
-		return getPersistence().update(kaleoTaskAssignmentInstance, merge);
+		return getPersistence().update(kaleoTaskAssignmentInstance);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static KaleoTaskAssignmentInstance update(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance, boolean merge,
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
 		ServiceContext serviceContext) throws SystemException {
 		return getPersistence()
-				   .update(kaleoTaskAssignmentInstance, merge, serviceContext);
+				   .update(kaleoTaskAssignmentInstance, serviceContext);
 	}
 
 	/**
@@ -160,10 +160,9 @@ public class KaleoTaskAssignmentInstanceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoTaskAssignmentInstance, merge);
+		return getPersistence().updateImpl(kaleoTaskAssignmentInstance);
 	}
 
 	/**

@@ -81,7 +81,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Gadget addGadget(Gadget gadget) throws SystemException {
 		gadget.setNew(true);
 
-		return gadgetPersistence.update(gadget, false);
+		return gadgetPersistence.update(gadget);
 	}
 
 	/**
@@ -252,23 +252,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Gadget updateGadget(Gadget gadget) throws SystemException {
-		return updateGadget(gadget, true);
-	}
-
-	/**
-	 * Updates the gadget in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param gadget the gadget
-	 * @param merge whether to merge the gadget with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the gadget that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Gadget updateGadget(Gadget gadget, boolean merge)
-		throws SystemException {
-		gadget.setNew(false);
-
-		return gadgetPersistence.update(gadget, merge);
+		return gadgetPersistence.update(gadget);
 	}
 
 	/**

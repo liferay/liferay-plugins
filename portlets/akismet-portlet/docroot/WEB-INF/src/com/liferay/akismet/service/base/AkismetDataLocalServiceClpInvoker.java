@@ -98,35 +98,29 @@ public class AkismetDataLocalServiceClpInvoker {
 				"com.liferay.akismet.model.AkismetData"
 			};
 
-		_methodName15 = "updateAkismetData";
+		_methodName31 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.akismet.model.AkismetData", "boolean"
-			};
+		_methodParameterTypes31 = new String[] {  };
 
-		_methodName32 = "getBeanIdentifier";
+		_methodName32 = "setBeanIdentifier";
 
-		_methodParameterTypes32 = new String[] {  };
+		_methodParameterTypes32 = new String[] { "java.lang.String" };
 
-		_methodName33 = "setBeanIdentifier";
+		_methodName37 = "deleteAkismetData";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "java.util.Date" };
 
-		_methodName38 = "deleteAkismetData";
+		_methodName38 = "deleteMBMessageAkismetData";
 
-		_methodParameterTypes38 = new String[] { "java.util.Date" };
+		_methodParameterTypes38 = new String[] { "long" };
 
-		_methodName39 = "deleteMBMessageAkismetData";
+		_methodName39 = "fetchMBMessageAkismetData";
 
 		_methodParameterTypes39 = new String[] { "long" };
 
-		_methodName40 = "fetchMBMessageAkismetData";
+		_methodName40 = "updateAkismetData";
 
-		_methodParameterTypes40 = new String[] { "long" };
-
-		_methodName41 = "updateAkismetData";
-
-		_methodParameterTypes41 = new String[] {
+		_methodParameterTypes40 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String"
@@ -216,45 +210,39 @@ public class AkismetDataLocalServiceClpInvoker {
 			return AkismetDataLocalServiceUtil.updateAkismetData((com.liferay.akismet.model.AkismetData)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return AkismetDataLocalServiceUtil.updateAkismetData((com.liferay.akismet.model.AkismetData)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName31.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+			return AkismetDataLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
-			return AkismetDataLocalServiceUtil.getBeanIdentifier();
+			AkismetDataLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
-			AkismetDataLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+			AkismetDataLocalServiceUtil.deleteAkismetData((java.util.Date)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName38.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
-			AkismetDataLocalServiceUtil.deleteAkismetData((java.util.Date)arguments[0]);
+			AkismetDataLocalServiceUtil.deleteMBMessageAkismetData(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
-			AkismetDataLocalServiceUtil.deleteMBMessageAkismetData(((Long)arguments[0]).longValue());
-
-			return null;
+			return AkismetDataLocalServiceUtil.fetchMBMessageAkismetData(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName40.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
-			return AkismetDataLocalServiceUtil.fetchMBMessageAkismetData(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			return AkismetDataLocalServiceUtil.updateAkismetData(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -294,18 +282,16 @@ public class AkismetDataLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 	private String _methodName38;
 	private String[] _methodParameterTypes38;
 	private String _methodName39;
 	private String[] _methodParameterTypes39;
 	private String _methodName40;
 	private String[] _methodParameterTypes40;
-	private String _methodName41;
-	private String[] _methodParameterTypes41;
 }

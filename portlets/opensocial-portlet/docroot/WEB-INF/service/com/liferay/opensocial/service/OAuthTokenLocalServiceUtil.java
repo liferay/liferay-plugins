@@ -236,20 +236,6 @@ public class OAuthTokenLocalServiceUtil {
 	}
 
 	/**
-	* Updates the o auth token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthToken the o auth token
-	* @param merge whether to merge the o auth token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the o auth token that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.OAuthToken updateOAuthToken(
-		com.liferay.opensocial.model.OAuthToken oAuthToken, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateOAuthToken(oAuthToken, merge);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

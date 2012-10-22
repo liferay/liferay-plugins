@@ -76,7 +76,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.OAuthConsumer updateImpl(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer, boolean merge)
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -73,7 +73,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.KBArticle updateImpl(
-		com.liferay.knowledgebase.model.KBArticle kbArticle, boolean merge)
+		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

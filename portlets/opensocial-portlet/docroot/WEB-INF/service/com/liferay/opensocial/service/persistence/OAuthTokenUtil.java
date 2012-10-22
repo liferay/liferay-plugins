@@ -95,19 +95,19 @@ public class OAuthTokenUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static OAuthToken update(OAuthToken oAuthToken, boolean merge)
+	public static OAuthToken update(OAuthToken oAuthToken)
 		throws SystemException {
-		return getPersistence().update(oAuthToken, merge);
+		return getPersistence().update(oAuthToken);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static OAuthToken update(OAuthToken oAuthToken, boolean merge,
+	public static OAuthToken update(OAuthToken oAuthToken,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(oAuthToken, merge, serviceContext);
+		return getPersistence().update(oAuthToken, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class OAuthTokenUtil {
 	}
 
 	public static com.liferay.opensocial.model.OAuthToken updateImpl(
-		com.liferay.opensocial.model.OAuthToken oAuthToken, boolean merge)
+		com.liferay.opensocial.model.OAuthToken oAuthToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(oAuthToken, merge);
+		return getPersistence().updateImpl(oAuthToken);
 	}
 
 	/**

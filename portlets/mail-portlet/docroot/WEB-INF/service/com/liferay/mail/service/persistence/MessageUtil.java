@@ -95,19 +95,18 @@ public class MessageUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Message update(Message message, boolean merge)
-		throws SystemException {
-		return getPersistence().update(message, merge);
+	public static Message update(Message message) throws SystemException {
+		return getPersistence().update(message);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Message update(Message message, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(message, merge, serviceContext);
+	public static Message update(Message message, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(message, serviceContext);
 	}
 
 	/**
@@ -154,9 +153,9 @@ public class MessageUtil {
 	}
 
 	public static com.liferay.mail.model.Message updateImpl(
-		com.liferay.mail.model.Message message, boolean merge)
+		com.liferay.mail.model.Message message)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(message, merge);
+		return getPersistence().updateImpl(message);
 	}
 
 	/**

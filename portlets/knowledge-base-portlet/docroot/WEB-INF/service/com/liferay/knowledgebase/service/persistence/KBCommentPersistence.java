@@ -73,7 +73,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.KBComment updateImpl(
-		com.liferay.knowledgebase.model.KBComment kbComment, boolean merge)
+		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

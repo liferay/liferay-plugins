@@ -95,19 +95,19 @@ public class SVNRevisionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static SVNRevision update(SVNRevision svnRevision, boolean merge)
+	public static SVNRevision update(SVNRevision svnRevision)
 		throws SystemException {
-		return getPersistence().update(svnRevision, merge);
+		return getPersistence().update(svnRevision);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static SVNRevision update(SVNRevision svnRevision, boolean merge,
+	public static SVNRevision update(SVNRevision svnRevision,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(svnRevision, merge, serviceContext);
+		return getPersistence().update(svnRevision, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class SVNRevisionUtil {
 	}
 
 	public static com.liferay.socialcoding.model.SVNRevision updateImpl(
-		com.liferay.socialcoding.model.SVNRevision svnRevision, boolean merge)
+		com.liferay.socialcoding.model.SVNRevision svnRevision)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(svnRevision, merge);
+		return getPersistence().updateImpl(svnRevision);
 	}
 
 	/**

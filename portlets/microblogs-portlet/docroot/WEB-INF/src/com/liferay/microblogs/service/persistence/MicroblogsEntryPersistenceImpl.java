@@ -44,7 +44,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -355,7 +354,12 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, microblogsEntry);
+			if (microblogsEntry.isCachedModel()) {
+				microblogsEntry = (MicroblogsEntry)session.get(MicroblogsEntryImpl.class,
+						microblogsEntry.getPrimaryKeyObj());
+			}
+
+			session.delete(microblogsEntry);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -371,8 +375,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	@Override
 	public MicroblogsEntry updateImpl(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
-		boolean merge) throws SystemException {
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
+		throws SystemException {
 		microblogsEntry = toUnwrappedModel(microblogsEntry);
 
 		boolean isNew = microblogsEntry.isNew();
@@ -384,9 +388,14 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, microblogsEntry, merge);
+			if (microblogsEntry.isNew()) {
+				session.save(microblogsEntry);
 
-			microblogsEntry.setNew(false);
+				microblogsEntry.setNew(false);
+			}
+			else {
+				session.merge(microblogsEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

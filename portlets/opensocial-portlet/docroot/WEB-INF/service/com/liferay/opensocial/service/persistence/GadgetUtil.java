@@ -94,19 +94,18 @@ public class GadgetUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Gadget update(Gadget gadget, boolean merge)
-		throws SystemException {
-		return getPersistence().update(gadget, merge);
+	public static Gadget update(Gadget gadget) throws SystemException {
+		return getPersistence().update(gadget);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Gadget update(Gadget gadget, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(gadget, merge, serviceContext);
+	public static Gadget update(Gadget gadget, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(gadget, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class GadgetUtil {
 	}
 
 	public static com.liferay.opensocial.model.Gadget updateImpl(
-		com.liferay.opensocial.model.Gadget gadget, boolean merge)
+		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(gadget, merge);
+		return getPersistence().updateImpl(gadget);
 	}
 
 	/**

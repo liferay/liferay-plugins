@@ -236,20 +236,6 @@ public class DefinitionLocalServiceUtil {
 	}
 
 	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @param merge whether to merge the definition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the definition that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.ams.model.Definition updateDefinition(
-		com.liferay.ams.model.Definition definition, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateDefinition(definition, merge);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

@@ -95,22 +95,21 @@ public class KaleoTimerInstanceTokenUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
 	public static KaleoTimerInstanceToken update(
-		KaleoTimerInstanceToken kaleoTimerInstanceToken, boolean merge)
+		KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws SystemException {
-		return getPersistence().update(kaleoTimerInstanceToken, merge);
+		return getPersistence().update(kaleoTimerInstanceToken);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static KaleoTimerInstanceToken update(
-		KaleoTimerInstanceToken kaleoTimerInstanceToken, boolean merge,
+		KaleoTimerInstanceToken kaleoTimerInstanceToken,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence()
-				   .update(kaleoTimerInstanceToken, merge, serviceContext);
+		return getPersistence().update(kaleoTimerInstanceToken, serviceContext);
 	}
 
 	/**
@@ -160,10 +159,9 @@ public class KaleoTimerInstanceTokenUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoTimerInstanceToken, merge);
+		return getPersistence().updateImpl(kaleoTimerInstanceToken);
 	}
 
 	/**

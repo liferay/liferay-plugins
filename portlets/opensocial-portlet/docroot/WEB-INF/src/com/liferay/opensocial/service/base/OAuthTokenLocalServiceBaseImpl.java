@@ -83,7 +83,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 		throws SystemException {
 		oAuthToken.setNew(true);
 
-		return oAuthTokenPersistence.update(oAuthToken, false);
+		return oAuthTokenPersistence.update(oAuthToken);
 	}
 
 	/**
@@ -256,23 +256,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public OAuthToken updateOAuthToken(OAuthToken oAuthToken)
 		throws SystemException {
-		return updateOAuthToken(oAuthToken, true);
-	}
-
-	/**
-	 * Updates the o auth token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param oAuthToken the o auth token
-	 * @param merge whether to merge the o auth token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the o auth token that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public OAuthToken updateOAuthToken(OAuthToken oAuthToken, boolean merge)
-		throws SystemException {
-		oAuthToken.setNew(false);
-
-		return oAuthTokenPersistence.update(oAuthToken, merge);
+		return oAuthTokenPersistence.update(oAuthToken);
 	}
 
 	/**

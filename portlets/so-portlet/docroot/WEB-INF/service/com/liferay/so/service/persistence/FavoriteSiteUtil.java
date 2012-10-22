@@ -95,19 +95,19 @@ public class FavoriteSiteUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static FavoriteSite update(FavoriteSite favoriteSite, boolean merge)
+	public static FavoriteSite update(FavoriteSite favoriteSite)
 		throws SystemException {
-		return getPersistence().update(favoriteSite, merge);
+		return getPersistence().update(favoriteSite);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static FavoriteSite update(FavoriteSite favoriteSite, boolean merge,
+	public static FavoriteSite update(FavoriteSite favoriteSite,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(favoriteSite, merge, serviceContext);
+		return getPersistence().update(favoriteSite, serviceContext);
 	}
 
 	/**
@@ -155,9 +155,9 @@ public class FavoriteSiteUtil {
 	}
 
 	public static com.liferay.so.model.FavoriteSite updateImpl(
-		com.liferay.so.model.FavoriteSite favoriteSite, boolean merge)
+		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(favoriteSite, merge);
+		return getPersistence().updateImpl(favoriteSite);
 	}
 
 	/**

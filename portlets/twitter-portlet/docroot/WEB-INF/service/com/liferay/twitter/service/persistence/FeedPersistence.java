@@ -73,7 +73,7 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 			com.liferay.twitter.NoSuchFeedException;
 
 	public com.liferay.twitter.model.Feed updateImpl(
-		com.liferay.twitter.model.Feed feed, boolean merge)
+		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

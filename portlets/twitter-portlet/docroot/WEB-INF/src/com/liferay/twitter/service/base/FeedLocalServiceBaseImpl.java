@@ -76,7 +76,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Feed addFeed(Feed feed) throws SystemException {
 		feed.setNew(true);
 
-		return feedPersistence.update(feed, false);
+		return feedPersistence.update(feed);
 	}
 
 	/**
@@ -242,22 +242,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Feed updateFeed(Feed feed) throws SystemException {
-		return updateFeed(feed, true);
-	}
-
-	/**
-	 * Updates the feed in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param feed the feed
-	 * @param merge whether to merge the feed with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the feed that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Feed updateFeed(Feed feed, boolean merge) throws SystemException {
-		feed.setNew(false);
-
-		return feedPersistence.update(feed, merge);
+		return feedPersistence.update(feed);
 	}
 
 	/**

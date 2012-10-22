@@ -92,19 +92,13 @@ public class AssetLocalServiceClpInvoker {
 
 		_methodParameterTypes14 = new String[] { "com.liferay.ams.model.Asset" };
 
-		_methodName15 = "updateAsset";
+		_methodName43 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.ams.model.Asset", "boolean"
-			};
+		_methodParameterTypes43 = new String[] {  };
 
-		_methodName44 = "getBeanIdentifier";
+		_methodName44 = "setBeanIdentifier";
 
-		_methodParameterTypes44 = new String[] {  };
-
-		_methodName45 = "setBeanIdentifier";
-
-		_methodParameterTypes45 = new String[] { "java.lang.String" };
+		_methodParameterTypes44 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -190,19 +184,13 @@ public class AssetLocalServiceClpInvoker {
 			return AssetLocalServiceUtil.updateAsset((com.liferay.ams.model.Asset)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return AssetLocalServiceUtil.updateAsset((com.liferay.ams.model.Asset)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+			return AssetLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-			return AssetLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			AssetLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -241,10 +229,8 @@ public class AssetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
 }

@@ -98,36 +98,29 @@ public class MeetupsRegistrationLocalServiceClpInvoker {
 				"com.liferay.socialnetworking.model.MeetupsRegistration"
 			};
 
-		_methodName15 = "updateMeetupsRegistration";
+		_methodName41 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.socialnetworking.model.MeetupsRegistration",
-				"boolean"
-			};
+		_methodParameterTypes41 = new String[] {  };
 
-		_methodName42 = "getBeanIdentifier";
+		_methodName42 = "setBeanIdentifier";
 
-		_methodParameterTypes42 = new String[] {  };
+		_methodParameterTypes42 = new String[] { "java.lang.String" };
 
-		_methodName43 = "setBeanIdentifier";
+		_methodName47 = "getMeetupsRegistration";
 
-		_methodParameterTypes43 = new String[] { "java.lang.String" };
+		_methodParameterTypes47 = new String[] { "long", "long" };
 
-		_methodName48 = "getMeetupsRegistration";
+		_methodName48 = "getMeetupsRegistrations";
 
-		_methodParameterTypes48 = new String[] { "long", "long" };
+		_methodParameterTypes48 = new String[] { "long", "int", "int", "int" };
 
-		_methodName49 = "getMeetupsRegistrations";
+		_methodName49 = "getMeetupsRegistrationsCount";
 
-		_methodParameterTypes49 = new String[] { "long", "int", "int", "int" };
+		_methodParameterTypes49 = new String[] { "long", "int" };
 
-		_methodName50 = "getMeetupsRegistrationsCount";
+		_methodName50 = "updateMeetupsRegistration";
 
-		_methodParameterTypes50 = new String[] { "long", "int" };
-
-		_methodName51 = "updateMeetupsRegistration";
-
-		_methodParameterTypes51 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"long", "long", "int", "java.lang.String"
 			};
 	}
@@ -215,46 +208,40 @@ public class MeetupsRegistrationLocalServiceClpInvoker {
 			return MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration((com.liferay.socialnetworking.model.MeetupsRegistration)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration((com.liferay.socialnetworking.model.MeetupsRegistration)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			return MeetupsRegistrationLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName42.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			return MeetupsRegistrationLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			MeetupsRegistrationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			return MeetupsRegistrationLocalServiceUtil.getMeetupsRegistration(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrations(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -294,18 +281,16 @@ public class MeetupsRegistrationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
 	private String _methodName42;
 	private String[] _methodParameterTypes42;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
-	private String _methodName51;
-	private String[] _methodParameterTypes51;
 }

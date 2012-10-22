@@ -78,7 +78,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 		throws SystemException {
 		akismetData.setNew(true);
 
-		return akismetDataPersistence.update(akismetData, false);
+		return akismetDataPersistence.update(akismetData);
 	}
 
 	/**
@@ -251,23 +251,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public AkismetData updateAkismetData(AkismetData akismetData)
 		throws SystemException {
-		return updateAkismetData(akismetData, true);
-	}
-
-	/**
-	 * Updates the akismet data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param akismetData the akismet data
-	 * @param merge whether to merge the akismet data with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the akismet data that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public AkismetData updateAkismetData(AkismetData akismetData, boolean merge)
-		throws SystemException {
-		akismetData.setNew(false);
-
-		return akismetDataPersistence.update(akismetData, merge);
+		return akismetDataPersistence.update(akismetData);
 	}
 
 	/**

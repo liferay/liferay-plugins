@@ -95,19 +95,18 @@ public class CheckoutUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Checkout update(Checkout checkout, boolean merge)
-		throws SystemException {
-		return getPersistence().update(checkout, merge);
+	public static Checkout update(Checkout checkout) throws SystemException {
+		return getPersistence().update(checkout);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Checkout update(Checkout checkout, boolean merge,
+	public static Checkout update(Checkout checkout,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(checkout, merge, serviceContext);
+		return getPersistence().update(checkout, serviceContext);
 	}
 
 	/**
@@ -154,9 +153,9 @@ public class CheckoutUtil {
 	}
 
 	public static com.liferay.ams.model.Checkout updateImpl(
-		com.liferay.ams.model.Checkout checkout, boolean merge)
+		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(checkout, merge);
+		return getPersistence().updateImpl(checkout);
 	}
 
 	/**

@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.RolePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -323,7 +322,12 @@ public class KaleoNotificationRecipientPersistenceImpl
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, kaleoNotificationRecipient);
+			if (kaleoNotificationRecipient.isCachedModel()) {
+				kaleoNotificationRecipient = (KaleoNotificationRecipient)session.get(KaleoNotificationRecipientImpl.class,
+						kaleoNotificationRecipient.getPrimaryKeyObj());
+			}
+
+			session.delete(kaleoNotificationRecipient);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -339,8 +343,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 	@Override
 	public KaleoNotificationRecipient updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient,
-		boolean merge) throws SystemException {
+		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
+		throws SystemException {
 		kaleoNotificationRecipient = toUnwrappedModel(kaleoNotificationRecipient);
 
 		boolean isNew = kaleoNotificationRecipient.isNew();
@@ -352,9 +356,14 @@ public class KaleoNotificationRecipientPersistenceImpl
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, kaleoNotificationRecipient, merge);
+			if (kaleoNotificationRecipient.isNew()) {
+				session.save(kaleoNotificationRecipient);
 
-			kaleoNotificationRecipient.setNew(false);
+				kaleoNotificationRecipient.setNew(false);
+			}
+			else {
+				session.merge(kaleoNotificationRecipient);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

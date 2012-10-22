@@ -99,58 +99,52 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 				"com.liferay.opensocial.model.OAuthToken"
 			};
 
-		_methodName15 = "updateOAuthToken";
+		_methodName15 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.opensocial.model.OAuthToken", "boolean"
-			};
+		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName16 = "setBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes16 = new String[] { "java.lang.String" };
 
-		_methodName17 = "setBeanIdentifier";
+		_methodName18 = "addOAuthToken";
 
-		_methodParameterTypes17 = new String[] { "java.lang.String" };
-
-		_methodName19 = "addOAuthToken";
-
-		_methodParameterTypes19 = new String[] {
+		_methodParameterTypes18 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "long"
 			};
 
-		_methodName20 = "deleteOAuthToken";
+		_methodName19 = "deleteOAuthToken";
 
-		_methodParameterTypes20 = new String[] {
+		_methodParameterTypes19 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "long",
 				"java.lang.String"
 			};
 
-		_methodName21 = "deleteOAuthTokens";
+		_methodName20 = "deleteOAuthTokens";
 
-		_methodParameterTypes21 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"java.lang.String", "java.lang.String"
 			};
 
-		_methodName22 = "fetchOAuthToken";
+		_methodName21 = "fetchOAuthToken";
+
+		_methodParameterTypes21 = new String[] {
+				"long", "java.lang.String", "java.lang.String", "long",
+				"java.lang.String"
+			};
+
+		_methodName22 = "getOAuthToken";
 
 		_methodParameterTypes22 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "long",
 				"java.lang.String"
 			};
 
-		_methodName23 = "getOAuthToken";
+		_methodName23 = "getOAuthTokens";
 
 		_methodParameterTypes23 = new String[] {
-				"long", "java.lang.String", "java.lang.String", "long",
-				"java.lang.String"
-			};
-
-		_methodName24 = "getOAuthTokens";
-
-		_methodParameterTypes24 = new String[] {
 				"java.lang.String", "java.lang.String"
 			};
 	}
@@ -605,41 +599,12 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.opensocial.model.OAuthToken updateOAuthToken(
-		com.liferay.opensocial.model.OAuthToken oAuthToken, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15,
-					new Object[] { ClpSerializer.translateInput(oAuthToken), merge });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -658,8 +623,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName17,
-				_methodParameterTypes17,
+			_invokableLocalService.invokeMethod(_methodName16,
+				_methodParameterTypes16,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -691,8 +656,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
 					new Object[] {
 						userId,
 						
@@ -741,8 +706,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
+			_invokableLocalService.invokeMethod(_methodName19,
+				_methodParameterTypes19,
 				new Object[] {
 					userId,
 					
@@ -780,8 +745,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		java.lang.String serviceName)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21,
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20,
 				new Object[] {
 					ClpSerializer.translateInput(gadgetKey),
 					
@@ -812,8 +777,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] {
 						userId,
 						
@@ -853,8 +818,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] {
 						userId,
 						
@@ -896,8 +861,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						ClpSerializer.translateInput(gadgetKey),
 						
@@ -958,8 +923,8 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
-	private String _methodName17;
-	private String[] _methodParameterTypes17;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
@@ -970,6 +935,4 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
 }

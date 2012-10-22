@@ -43,7 +43,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -291,7 +290,12 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, folder);
+			if (folder.isCachedModel()) {
+				folder = (Folder)session.get(FolderImpl.class,
+						folder.getPrimaryKeyObj());
+			}
+
+			session.delete(folder);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -306,7 +310,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	}
 
 	@Override
-	public Folder updateImpl(com.liferay.mail.model.Folder folder, boolean merge)
+	public Folder updateImpl(com.liferay.mail.model.Folder folder)
 		throws SystemException {
 		folder = toUnwrappedModel(folder);
 
@@ -319,9 +323,14 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, folder, merge);
+			if (folder.isNew()) {
+				session.save(folder);
 
-			folder.setNew(false);
+				folder.setNew(false);
+			}
+			else {
+				session.merge(folder);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

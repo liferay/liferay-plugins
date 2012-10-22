@@ -214,18 +214,6 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Updates the app in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param app the app
-	* @param merge whether to merge the app with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the app that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.marketplace.model.App updateApp(
-		com.liferay.marketplace.model.App app, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

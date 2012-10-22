@@ -110,7 +110,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 		throws SystemException {
 		kbArticle.setNew(true);
 
-		return kbArticlePersistence.update(kbArticle, false);
+		return kbArticlePersistence.update(kbArticle);
 	}
 
 	/**
@@ -297,23 +297,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public KBArticle updateKBArticle(KBArticle kbArticle)
 		throws SystemException {
-		return updateKBArticle(kbArticle, true);
-	}
-
-	/**
-	 * Updates the k b article in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbArticle the k b article
-	 * @param merge whether to merge the k b article with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the k b article that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KBArticle updateKBArticle(KBArticle kbArticle, boolean merge)
-		throws SystemException {
-		kbArticle.setNew(false);
-
-		return kbArticlePersistence.update(kbArticle, merge);
+		return kbArticlePersistence.update(kbArticle);
 	}
 
 	/**

@@ -84,7 +84,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 		throws SystemException {
 		definition.setNew(true);
 
-		return definitionPersistence.update(definition, false);
+		return definitionPersistence.update(definition);
 	}
 
 	/**
@@ -257,23 +257,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public Definition updateDefinition(Definition definition)
 		throws SystemException {
-		return updateDefinition(definition, true);
-	}
-
-	/**
-	 * Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param definition the definition
-	 * @param merge whether to merge the definition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the definition that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Definition updateDefinition(Definition definition, boolean merge)
-		throws SystemException {
-		definition.setNew(false);
-
-		return definitionPersistence.update(definition, merge);
+		return definitionPersistence.update(definition);
 	}
 
 	/**

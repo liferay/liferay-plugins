@@ -46,7 +46,6 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -329,7 +328,12 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, gadget);
+			if (gadget.isCachedModel()) {
+				gadget = (Gadget)session.get(GadgetImpl.class,
+						gadget.getPrimaryKeyObj());
+			}
+
+			session.delete(gadget);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -344,8 +348,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	}
 
 	@Override
-	public Gadget updateImpl(com.liferay.opensocial.model.Gadget gadget,
-		boolean merge) throws SystemException {
+	public Gadget updateImpl(com.liferay.opensocial.model.Gadget gadget)
+		throws SystemException {
 		gadget = toUnwrappedModel(gadget);
 
 		boolean isNew = gadget.isNew();
@@ -363,9 +367,14 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, gadget, merge);
+			if (gadget.isNew()) {
+				session.save(gadget);
 
-			gadget.setNew(false);
+				gadget.setNew(false);
+			}
+			else {
+				session.merge(gadget);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

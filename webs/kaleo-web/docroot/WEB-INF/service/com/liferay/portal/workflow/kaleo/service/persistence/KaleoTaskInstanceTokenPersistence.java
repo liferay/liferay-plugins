@@ -75,8 +75,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

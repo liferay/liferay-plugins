@@ -44,7 +44,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -323,7 +322,11 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, app);
+			if (app.isCachedModel()) {
+				app = (App)session.get(AppImpl.class, app.getPrimaryKeyObj());
+			}
+
+			session.delete(app);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -338,7 +341,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	}
 
 	@Override
-	public App updateImpl(com.liferay.marketplace.model.App app, boolean merge)
+	public App updateImpl(com.liferay.marketplace.model.App app)
 		throws SystemException {
 		app = toUnwrappedModel(app);
 
@@ -357,9 +360,14 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, app, merge);
+			if (app.isNew()) {
+				session.save(app);
 
-			app.setNew(false);
+				app.setNew(false);
+			}
+			else {
+				session.merge(app);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

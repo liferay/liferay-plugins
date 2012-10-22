@@ -94,19 +94,18 @@ public class EntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Entry update(Entry entry, boolean merge)
-		throws SystemException {
-		return getPersistence().update(entry, merge);
+	public static Entry update(Entry entry) throws SystemException {
+		return getPersistence().update(entry);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Entry update(Entry entry, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(entry, merge, serviceContext);
+	public static Entry update(Entry entry, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(entry, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class EntryUtil {
 	}
 
 	public static com.liferay.chat.model.Entry updateImpl(
-		com.liferay.chat.model.Entry entry, boolean merge)
+		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(entry, merge);
+		return getPersistence().updateImpl(entry);
 	}
 
 	/**

@@ -95,19 +95,19 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static MicroblogsEntry update(MicroblogsEntry microblogsEntry,
-		boolean merge) throws SystemException {
-		return getPersistence().update(microblogsEntry, merge);
+	public static MicroblogsEntry update(MicroblogsEntry microblogsEntry)
+		throws SystemException {
+		return getPersistence().update(microblogsEntry);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static MicroblogsEntry update(MicroblogsEntry microblogsEntry,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(microblogsEntry, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(microblogsEntry, serviceContext);
 	}
 
 	/**
@@ -157,10 +157,9 @@ public class MicroblogsEntryUtil {
 	}
 
 	public static com.liferay.microblogs.model.MicroblogsEntry updateImpl(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
-		boolean merge)
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(microblogsEntry, merge);
+		return getPersistence().updateImpl(microblogsEntry);
 	}
 
 	/**

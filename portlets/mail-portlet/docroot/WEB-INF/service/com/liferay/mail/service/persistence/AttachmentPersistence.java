@@ -73,7 +73,7 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.mail.model.Attachment updateImpl(
-		com.liferay.mail.model.Attachment attachment, boolean merge)
+		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

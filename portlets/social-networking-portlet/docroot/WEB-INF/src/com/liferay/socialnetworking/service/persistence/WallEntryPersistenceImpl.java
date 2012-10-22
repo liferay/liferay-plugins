@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -299,7 +298,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, wallEntry);
+			if (wallEntry.isCachedModel()) {
+				wallEntry = (WallEntry)session.get(WallEntryImpl.class,
+						wallEntry.getPrimaryKeyObj());
+			}
+
+			session.delete(wallEntry);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -315,7 +319,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 
 	@Override
 	public WallEntry updateImpl(
-		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
+		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws SystemException {
 		wallEntry = toUnwrappedModel(wallEntry);
 
@@ -328,9 +332,14 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, wallEntry, merge);
+			if (wallEntry.isNew()) {
+				session.save(wallEntry);
 
-			wallEntry.setNew(false);
+				wallEntry.setNew(false);
+			}
+			else {
+				session.merge(wallEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

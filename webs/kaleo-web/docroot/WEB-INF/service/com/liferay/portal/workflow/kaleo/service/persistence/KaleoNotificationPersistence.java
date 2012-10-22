@@ -75,8 +75,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

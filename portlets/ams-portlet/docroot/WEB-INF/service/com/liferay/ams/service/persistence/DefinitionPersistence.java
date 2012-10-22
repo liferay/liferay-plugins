@@ -73,7 +73,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.ams.model.Definition updateImpl(
-		com.liferay.ams.model.Definition definition, boolean merge)
+		com.liferay.ams.model.Definition definition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -91,7 +91,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		throws SystemException {
 		svnRevision.setNew(true);
 
-		return svnRevisionPersistence.update(svnRevision, false);
+		return svnRevisionPersistence.update(svnRevision);
 	}
 
 	/**
@@ -264,23 +264,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public SVNRevision updateSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
-		return updateSVNRevision(svnRevision, true);
-	}
-
-	/**
-	 * Updates the s v n revision in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param svnRevision the s v n revision
-	 * @param merge whether to merge the s v n revision with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the s v n revision that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public SVNRevision updateSVNRevision(SVNRevision svnRevision, boolean merge)
-		throws SystemException {
-		svnRevision.setNew(false);
-
-		return svnRevisionPersistence.update(svnRevision, merge);
+		return svnRevisionPersistence.update(svnRevision);
 	}
 
 	/**

@@ -98,77 +98,70 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 				"com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"
 			};
 
-		_methodName15 = "updateKaleoTimerInstanceToken";
+		_methodName95 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken",
-				"boolean"
-			};
+		_methodParameterTypes95 = new String[] {  };
 
-		_methodName96 = "getBeanIdentifier";
+		_methodName96 = "setBeanIdentifier";
 
-		_methodParameterTypes96 = new String[] {  };
+		_methodParameterTypes96 = new String[] { "java.lang.String" };
 
-		_methodName97 = "setBeanIdentifier";
+		_methodName101 = "addKaleoTimerInstanceToken";
 
-		_methodParameterTypes97 = new String[] { "java.lang.String" };
-
-		_methodName102 = "addKaleoTimerInstanceToken";
-
-		_methodParameterTypes102 = new String[] {
+		_methodParameterTypes101 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.util.Map",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName103 = "addKaleoTimerInstanceTokens";
+		_methodName102 = "addKaleoTimerInstanceTokens";
 
-		_methodParameterTypes103 = new String[] {
+		_methodParameterTypes102 = new String[] {
 				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
 				"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken",
 				"java.util.Collection", "java.util.Map",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName104 = "completeKaleoTimerInstanceToken";
+		_methodName103 = "completeKaleoTimerInstanceToken";
+
+		_methodParameterTypes103 = new String[] {
+				"long", "com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName104 = "completeKaleoTimerInstanceTokens";
 
 		_methodParameterTypes104 = new String[] {
-				"long", "com.liferay.portal.service.ServiceContext"
+				"java.util.List", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName105 = "completeKaleoTimerInstanceTokens";
 
 		_methodParameterTypes105 = new String[] {
-				"java.util.List", "com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName106 = "completeKaleoTimerInstanceTokens";
-
-		_methodParameterTypes106 = new String[] {
 				"long", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName107 = "deleteKaleoTimerInstanceToken";
+		_methodName106 = "deleteKaleoTimerInstanceToken";
 
-		_methodParameterTypes107 = new String[] { "long", "long" };
+		_methodParameterTypes106 = new String[] { "long", "long" };
 
-		_methodName108 = "deleteKaleoTimerInstanceTokens";
+		_methodName107 = "deleteKaleoTimerInstanceTokens";
 
-		_methodParameterTypes108 = new String[] { "long" };
+		_methodParameterTypes107 = new String[] { "long" };
 
-		_methodName109 = "getKaleoTimerInstanceToken";
+		_methodName108 = "getKaleoTimerInstanceToken";
 
-		_methodParameterTypes109 = new String[] { "long", "long" };
+		_methodParameterTypes108 = new String[] { "long", "long" };
 
-		_methodName110 = "getKaleoTimerInstanceTokens";
+		_methodName109 = "getKaleoTimerInstanceTokens";
 
-		_methodParameterTypes110 = new String[] {
+		_methodParameterTypes109 = new String[] {
 				"long", "boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName111 = "getKaleoTimerInstanceTokensCount";
+		_methodName110 = "getKaleoTimerInstanceTokensCount";
 
-		_methodParameterTypes111 = new String[] {
+		_methodParameterTypes110 = new String[] {
 				"long", "boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -257,26 +250,20 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 			return KaleoTimerInstanceTokenLocalServiceUtil.updateKaleoTimerInstanceToken((com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return KaleoTimerInstanceTokenLocalServiceUtil.updateKaleoTimerInstanceToken((com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName95.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
+			return KaleoTimerInstanceTokenLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName96.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes96, parameterTypes)) {
-			return KaleoTimerInstanceTokenLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName97.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes97, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName102.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes102, parameterTypes)) {
+		if (_methodName101.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
 			return KaleoTimerInstanceTokenLocalServiceUtil.addKaleoTimerInstanceToken(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -285,8 +272,8 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName103.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes103, parameterTypes)) {
+		if (_methodName102.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes102, parameterTypes)) {
 			return KaleoTimerInstanceTokenLocalServiceUtil.addKaleoTimerInstanceTokens((com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken)arguments[0],
 				(com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)arguments[1],
 				(java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTimer>)arguments[2],
@@ -294,15 +281,23 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[4]);
 		}
 
-		if (_methodName104.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes104, parameterTypes)) {
+		if (_methodName103.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes103, parameterTypes)) {
 			return KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceToken(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
+		if (_methodName104.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes104, parameterTypes)) {
+			KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens((java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken>)arguments[0],
+				(com.liferay.portal.service.ServiceContext)arguments[1]);
+
+			return null;
+		}
+
 		if (_methodName105.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes105, parameterTypes)) {
-			KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens((java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken>)arguments[0],
+			KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 
 			return null;
@@ -310,43 +305,35 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 
 		if (_methodName106.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes106, parameterTypes)) {
-			KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName107.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.deleteKaleoTimerInstanceToken(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName108.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
+		if (_methodName107.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.deleteKaleoTimerInstanceTokens(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName109.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
+		if (_methodName108.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
 			return KaleoTimerInstanceTokenLocalServiceUtil.getKaleoTimerInstanceToken(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName110.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
+		if (_methodName109.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			return KaleoTimerInstanceTokenLocalServiceUtil.getKaleoTimerInstanceTokens(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName111.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
+		if (_methodName110.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
 			return KaleoTimerInstanceTokenLocalServiceUtil.getKaleoTimerInstanceTokensCount(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue(),
@@ -386,12 +373,12 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName95;
+	private String[] _methodParameterTypes95;
 	private String _methodName96;
 	private String[] _methodParameterTypes96;
-	private String _methodName97;
-	private String[] _methodParameterTypes97;
+	private String _methodName101;
+	private String[] _methodParameterTypes101;
 	private String _methodName102;
 	private String[] _methodParameterTypes102;
 	private String _methodName103;
@@ -410,6 +397,4 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 	private String[] _methodParameterTypes109;
 	private String _methodName110;
 	private String[] _methodParameterTypes110;
-	private String _methodName111;
-	private String[] _methodParameterTypes111;
 }

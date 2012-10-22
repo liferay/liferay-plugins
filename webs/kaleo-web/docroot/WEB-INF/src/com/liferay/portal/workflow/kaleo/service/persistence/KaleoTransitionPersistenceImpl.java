@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
@@ -366,7 +365,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, kaleoTransition);
+			if (kaleoTransition.isCachedModel()) {
+				kaleoTransition = (KaleoTransition)session.get(KaleoTransitionImpl.class,
+						kaleoTransition.getPrimaryKeyObj());
+			}
+
+			session.delete(kaleoTransition);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -382,8 +386,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	@Override
 	public KaleoTransition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition,
-		boolean merge) throws SystemException {
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
+		throws SystemException {
 		kaleoTransition = toUnwrappedModel(kaleoTransition);
 
 		boolean isNew = kaleoTransition.isNew();
@@ -395,9 +399,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, kaleoTransition, merge);
+			if (kaleoTransition.isNew()) {
+				session.save(kaleoTransition);
 
-			kaleoTransition.setNew(false);
+				kaleoTransition.setNew(false);
+			}
+			else {
+				session.merge(kaleoTransition);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

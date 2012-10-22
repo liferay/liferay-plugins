@@ -76,8 +76,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.calendar.model.CalendarBooking updateImpl(
-		com.liferay.calendar.model.CalendarBooking calendarBooking,
-		boolean merge)
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

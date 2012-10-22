@@ -74,7 +74,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 			com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	public com.liferay.socialcoding.model.JIRAAction updateImpl(
-		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
+		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

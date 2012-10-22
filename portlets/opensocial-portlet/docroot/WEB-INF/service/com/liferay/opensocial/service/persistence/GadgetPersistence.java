@@ -73,7 +73,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.Gadget updateImpl(
-		com.liferay.opensocial.model.Gadget gadget, boolean merge)
+		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

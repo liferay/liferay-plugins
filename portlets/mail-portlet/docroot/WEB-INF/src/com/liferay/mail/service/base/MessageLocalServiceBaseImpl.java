@@ -82,7 +82,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Message addMessage(Message message) throws SystemException {
 		message.setNew(true);
 
-		return messagePersistence.update(message, false);
+		return messagePersistence.update(message);
 	}
 
 	/**
@@ -253,23 +253,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Message updateMessage(Message message) throws SystemException {
-		return updateMessage(message, true);
-	}
-
-	/**
-	 * Updates the message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param message the message
-	 * @param merge whether to merge the message with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the message that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Message updateMessage(Message message, boolean merge)
-		throws SystemException {
-		message.setNew(false);
-
-		return messagePersistence.update(message, merge);
+		return messagePersistence.update(message);
 	}
 
 	/**

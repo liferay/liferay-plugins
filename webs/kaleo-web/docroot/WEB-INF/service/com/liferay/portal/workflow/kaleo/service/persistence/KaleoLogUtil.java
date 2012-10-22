@@ -94,19 +94,18 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static KaleoLog update(KaleoLog kaleoLog, boolean merge)
-		throws SystemException {
-		return getPersistence().update(kaleoLog, merge);
+	public static KaleoLog update(KaleoLog kaleoLog) throws SystemException {
+		return getPersistence().update(kaleoLog);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static KaleoLog update(KaleoLog kaleoLog, boolean merge,
+	public static KaleoLog update(KaleoLog kaleoLog,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(kaleoLog, merge, serviceContext);
+		return getPersistence().update(kaleoLog, serviceContext);
 	}
 
 	/**
@@ -156,9 +155,9 @@ public class KaleoLogUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog, boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoLog, merge);
+		return getPersistence().updateImpl(kaleoLog);
 	}
 
 	/**

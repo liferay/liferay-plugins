@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchLogException;
@@ -376,7 +375,12 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, kaleoLog);
+			if (kaleoLog.isCachedModel()) {
+				kaleoLog = (KaleoLog)session.get(KaleoLogImpl.class,
+						kaleoLog.getPrimaryKeyObj());
+			}
+
+			session.delete(kaleoLog);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -392,7 +396,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 	@Override
 	public KaleoLog updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog, boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws SystemException {
 		kaleoLog = toUnwrappedModel(kaleoLog);
 
@@ -405,9 +409,14 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, kaleoLog, merge);
+			if (kaleoLog.isNew()) {
+				session.save(kaleoLog);
 
-			kaleoLog.setNew(false);
+				kaleoLog.setNew(false);
+			}
+			else {
+				session.merge(kaleoLog);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

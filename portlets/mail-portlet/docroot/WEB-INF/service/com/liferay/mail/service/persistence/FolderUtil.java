@@ -94,19 +94,18 @@ public class FolderUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Folder update(Folder folder, boolean merge)
-		throws SystemException {
-		return getPersistence().update(folder, merge);
+	public static Folder update(Folder folder) throws SystemException {
+		return getPersistence().update(folder);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Folder update(Folder folder, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(folder, merge, serviceContext);
+	public static Folder update(Folder folder, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(folder, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class FolderUtil {
 	}
 
 	public static com.liferay.mail.model.Folder updateImpl(
-		com.liferay.mail.model.Folder folder, boolean merge)
+		com.liferay.mail.model.Folder folder)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(folder, merge);
+		return getPersistence().updateImpl(folder);
 	}
 
 	/**

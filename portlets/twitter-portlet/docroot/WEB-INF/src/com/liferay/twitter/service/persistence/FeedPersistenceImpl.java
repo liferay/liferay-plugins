@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -291,7 +290,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, feed);
+			if (feed.isCachedModel()) {
+				feed = (Feed)session.get(FeedImpl.class, feed.getPrimaryKeyObj());
+			}
+
+			session.delete(feed);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -306,7 +309,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	@Override
-	public Feed updateImpl(com.liferay.twitter.model.Feed feed, boolean merge)
+	public Feed updateImpl(com.liferay.twitter.model.Feed feed)
 		throws SystemException {
 		feed = toUnwrappedModel(feed);
 
@@ -319,9 +322,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, feed, merge);
+			if (feed.isNew()) {
+				session.save(feed);
 
-			feed.setNew(false);
+				feed.setNew(false);
+			}
+			else {
+				session.merge(feed);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

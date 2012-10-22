@@ -95,19 +95,19 @@ public class UserThreadUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static UserThread update(UserThread userThread, boolean merge)
+	public static UserThread update(UserThread userThread)
 		throws SystemException {
-		return getPersistence().update(userThread, merge);
+		return getPersistence().update(userThread);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static UserThread update(UserThread userThread, boolean merge,
+	public static UserThread update(UserThread userThread,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(userThread, merge, serviceContext);
+		return getPersistence().update(userThread, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class UserThreadUtil {
 	}
 
 	public static com.liferay.privatemessaging.model.UserThread updateImpl(
-		com.liferay.privatemessaging.model.UserThread userThread, boolean merge)
+		com.liferay.privatemessaging.model.UserThread userThread)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(userThread, merge);
+		return getPersistence().updateImpl(userThread);
 	}
 
 	/**

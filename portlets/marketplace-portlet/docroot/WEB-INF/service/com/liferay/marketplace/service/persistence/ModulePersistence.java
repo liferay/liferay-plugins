@@ -73,7 +73,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.marketplace.model.Module updateImpl(
-		com.liferay.marketplace.model.Module module, boolean merge)
+		com.liferay.marketplace.model.Module module)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

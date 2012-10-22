@@ -75,7 +75,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 			com.liferay.portal.workflow.kaleo.NoSuchLogException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog, boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

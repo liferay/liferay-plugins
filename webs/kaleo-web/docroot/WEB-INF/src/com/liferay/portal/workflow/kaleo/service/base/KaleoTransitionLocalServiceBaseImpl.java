@@ -109,7 +109,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 		throws SystemException {
 		kaleoTransition.setNew(true);
 
-		return kaleoTransitionPersistence.update(kaleoTransition, false);
+		return kaleoTransitionPersistence.update(kaleoTransition);
 	}
 
 	/**
@@ -282,24 +282,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoTransition updateKaleoTransition(
 		KaleoTransition kaleoTransition) throws SystemException {
-		return updateKaleoTransition(kaleoTransition, true);
-	}
-
-	/**
-	 * Updates the kaleo transition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTransition the kaleo transition
-	 * @param merge whether to merge the kaleo transition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo transition that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoTransition updateKaleoTransition(
-		KaleoTransition kaleoTransition, boolean merge)
-		throws SystemException {
-		kaleoTransition.setNew(false);
-
-		return kaleoTransitionPersistence.update(kaleoTransition, merge);
+		return kaleoTransitionPersistence.update(kaleoTransition);
 	}
 
 	/**

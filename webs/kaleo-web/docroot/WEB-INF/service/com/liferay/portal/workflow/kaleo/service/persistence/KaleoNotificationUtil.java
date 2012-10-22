@@ -94,21 +94,20 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static KaleoNotification update(
-		KaleoNotification kaleoNotification, boolean merge)
+	public static KaleoNotification update(KaleoNotification kaleoNotification)
 		throws SystemException {
-		return getPersistence().update(kaleoNotification, merge);
+		return getPersistence().update(kaleoNotification);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static KaleoNotification update(
-		KaleoNotification kaleoNotification, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(kaleoNotification, merge, serviceContext);
+		KaleoNotification kaleoNotification, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(kaleoNotification, serviceContext);
 	}
 
 	/**
@@ -158,10 +157,9 @@ public class KaleoNotificationUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoNotification, merge);
+		return getPersistence().updateImpl(kaleoNotification);
 	}
 
 	/**

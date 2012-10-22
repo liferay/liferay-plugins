@@ -76,8 +76,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 			com.liferay.wsrp.NoSuchConsumerPortletException;
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet updateImpl(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
-		boolean merge)
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -73,7 +73,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Entry updateImpl(
-		com.liferay.chat.model.Entry entry, boolean merge)
+		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

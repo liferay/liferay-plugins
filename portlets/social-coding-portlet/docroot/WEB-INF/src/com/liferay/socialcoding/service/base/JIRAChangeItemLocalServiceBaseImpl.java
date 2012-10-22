@@ -91,7 +91,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		throws SystemException {
 		jiraChangeItem.setNew(true);
 
-		return jiraChangeItemPersistence.update(jiraChangeItem, false);
+		return jiraChangeItemPersistence.update(jiraChangeItem);
 	}
 
 	/**
@@ -264,23 +264,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
-		return updateJIRAChangeItem(jiraChangeItem, true);
-	}
-
-	/**
-	 * Updates the j i r a change item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeItem the j i r a change item
-	 * @param merge whether to merge the j i r a change item with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the j i r a change item that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem,
-		boolean merge) throws SystemException {
-		jiraChangeItem.setNew(false);
-
-		return jiraChangeItemPersistence.update(jiraChangeItem, merge);
+		return jiraChangeItemPersistence.update(jiraChangeItem);
 	}
 
 	/**

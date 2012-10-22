@@ -84,7 +84,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 		throws SystemException {
 		projectsEntry.setNew(true);
 
-		return projectsEntryPersistence.update(projectsEntry, false);
+		return projectsEntryPersistence.update(projectsEntry);
 	}
 
 	/**
@@ -257,23 +257,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public ProjectsEntry updateProjectsEntry(ProjectsEntry projectsEntry)
 		throws SystemException {
-		return updateProjectsEntry(projectsEntry, true);
-	}
-
-	/**
-	 * Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param projectsEntry the projects entry
-	 * @param merge whether to merge the projects entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the projects entry that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public ProjectsEntry updateProjectsEntry(ProjectsEntry projectsEntry,
-		boolean merge) throws SystemException {
-		projectsEntry.setNew(false);
-
-		return projectsEntryPersistence.update(projectsEntry, merge);
+		return projectsEntryPersistence.update(projectsEntry);
 	}
 
 	/**

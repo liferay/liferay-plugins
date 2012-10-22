@@ -108,7 +108,7 @@ public abstract class KaleoTaskLocalServiceBaseImpl extends BaseLocalServiceImpl
 		throws SystemException {
 		kaleoTask.setNew(true);
 
-		return kaleoTaskPersistence.update(kaleoTask, false);
+		return kaleoTaskPersistence.update(kaleoTask);
 	}
 
 	/**
@@ -280,23 +280,7 @@ public abstract class KaleoTaskLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoTask updateKaleoTask(KaleoTask kaleoTask)
 		throws SystemException {
-		return updateKaleoTask(kaleoTask, true);
-	}
-
-	/**
-	 * Updates the kaleo task in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTask the kaleo task
-	 * @param merge whether to merge the kaleo task with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo task that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoTask updateKaleoTask(KaleoTask kaleoTask, boolean merge)
-		throws SystemException {
-		kaleoTask.setNew(false);
-
-		return kaleoTaskPersistence.update(kaleoTask, merge);
+		return kaleoTaskPersistence.update(kaleoTask);
 	}
 
 	/**

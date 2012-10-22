@@ -110,8 +110,7 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 		throws SystemException {
 		kaleoTaskAssignmentInstance.setNew(true);
 
-		return kaleoTaskAssignmentInstancePersistence.update(kaleoTaskAssignmentInstance,
-			false);
+		return kaleoTaskAssignmentInstancePersistence.update(kaleoTaskAssignmentInstance);
 	}
 
 	/**
@@ -289,26 +288,7 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	public KaleoTaskAssignmentInstance updateKaleoTaskAssignmentInstance(
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws SystemException {
-		return updateKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstance,
-			true);
-	}
-
-	/**
-	 * Updates the kaleo task assignment instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskAssignmentInstance the kaleo task assignment instance
-	 * @param merge whether to merge the kaleo task assignment instance with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo task assignment instance that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoTaskAssignmentInstance updateKaleoTaskAssignmentInstance(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance, boolean merge)
-		throws SystemException {
-		kaleoTaskAssignmentInstance.setNew(false);
-
-		return kaleoTaskAssignmentInstancePersistence.update(kaleoTaskAssignmentInstance,
-			merge);
+		return kaleoTaskAssignmentInstancePersistence.update(kaleoTaskAssignmentInstance);
 	}
 
 	/**

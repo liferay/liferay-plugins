@@ -73,7 +73,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.mail.model.Folder updateImpl(
-		com.liferay.mail.model.Folder folder, boolean merge)
+		com.liferay.mail.model.Folder folder)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -80,7 +80,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 		throws SystemException {
 		tasksEntry.setNew(true);
 
-		return tasksEntryPersistence.update(tasksEntry, false);
+		return tasksEntryPersistence.update(tasksEntry);
 	}
 
 	/**
@@ -254,23 +254,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public TasksEntry updateTasksEntry(TasksEntry tasksEntry)
 		throws SystemException {
-		return updateTasksEntry(tasksEntry, true);
-	}
-
-	/**
-	 * Updates the tasks entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param tasksEntry the tasks entry
-	 * @param merge whether to merge the tasks entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the tasks entry that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public TasksEntry updateTasksEntry(TasksEntry tasksEntry, boolean merge)
-		throws SystemException {
-		tasksEntry.setNew(false);
-
-		return tasksEntryPersistence.update(tasksEntry, merge);
+		return tasksEntryPersistence.update(tasksEntry);
 	}
 
 	/**

@@ -73,7 +73,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.chat.model.Status updateImpl(
-		com.liferay.chat.model.Status status, boolean merge)
+		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

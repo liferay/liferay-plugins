@@ -98,111 +98,105 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 				"com.liferay.socialcoding.model.JIRAIssue"
 			};
 
-		_methodName15 = "updateJIRAIssue";
+		_methodName15 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.socialcoding.model.JIRAIssue", "boolean"
+		_methodParameterTypes15 = new String[] {  };
+
+		_methodName16 = "setBeanIdentifier";
+
+		_methodParameterTypes16 = new String[] { "java.lang.String" };
+
+		_methodName18 = "getAssigneeJIRAIssues";
+
+		_methodParameterTypes18 = new String[] {
+				"java.util.Date", "long", "java.lang.String", "int", "int"
 			};
-
-		_methodName16 = "getBeanIdentifier";
-
-		_methodParameterTypes16 = new String[] {  };
-
-		_methodName17 = "setBeanIdentifier";
-
-		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
 		_methodName19 = "getAssigneeJIRAIssues";
 
 		_methodParameterTypes19 = new String[] {
-				"java.util.Date", "long", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "int", "int"
 			};
 
 		_methodName20 = "getAssigneeJIRAIssues";
 
 		_methodParameterTypes20 = new String[] {
-				"long", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "java.lang.String", "int", "int"
 			};
 
-		_methodName21 = "getAssigneeJIRAIssues";
+		_methodName21 = "getAssigneeJIRAIssuesCount";
 
 		_methodParameterTypes21 = new String[] {
-				"long", "java.lang.String", "java.lang.String", "int", "int"
+				"java.util.Date", "long", "java.lang.String"
 			};
 
 		_methodName22 = "getAssigneeJIRAIssuesCount";
 
-		_methodParameterTypes22 = new String[] {
-				"java.util.Date", "long", "java.lang.String"
-			};
+		_methodParameterTypes22 = new String[] { "long", "java.lang.String" };
 
 		_methodName23 = "getAssigneeJIRAIssuesCount";
 
-		_methodParameterTypes23 = new String[] { "long", "java.lang.String" };
-
-		_methodName24 = "getAssigneeJIRAIssuesCount";
-
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes23 = new String[] {
 				"long", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName25 = "getFirstAssigneeJIRAIssue";
+		_methodName24 = "getFirstAssigneeJIRAIssue";
+
+		_methodParameterTypes24 = new String[] { "long", "java.lang.String" };
+
+		_methodName25 = "getFirstReporterJIRAIssue";
 
 		_methodParameterTypes25 = new String[] { "long", "java.lang.String" };
 
-		_methodName26 = "getFirstReporterJIRAIssue";
+		_methodName26 = "getJIRAIssue";
 
-		_methodParameterTypes26 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes26 = new String[] { "java.lang.String" };
 
-		_methodName27 = "getJIRAIssue";
+		_methodName27 = "getLastAssigneeJIRAIssue";
 
-		_methodParameterTypes27 = new String[] { "java.lang.String" };
+		_methodParameterTypes27 = new String[] { "long", "java.lang.String" };
 
-		_methodName28 = "getLastAssigneeJIRAIssue";
+		_methodName28 = "getLastreporterJIRAIssue";
 
 		_methodParameterTypes28 = new String[] { "long", "java.lang.String" };
 
-		_methodName29 = "getLastreporterJIRAIssue";
+		_methodName29 = "getReporterJIRAIssues";
 
-		_methodParameterTypes29 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes29 = new String[] {
+				"java.util.Date", "long", "java.lang.String", "int", "int"
+			};
 
 		_methodName30 = "getReporterJIRAIssues";
 
 		_methodParameterTypes30 = new String[] {
-				"java.util.Date", "long", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "int", "int"
 			};
 
 		_methodName31 = "getReporterJIRAIssues";
 
 		_methodParameterTypes31 = new String[] {
-				"long", "java.lang.String", "int", "int"
+				"long", "java.lang.String", "java.lang.String", "int", "int"
 			};
 
-		_methodName32 = "getReporterJIRAIssues";
+		_methodName32 = "getReporterJIRAIssuesCount";
 
 		_methodParameterTypes32 = new String[] {
-				"long", "java.lang.String", "java.lang.String", "int", "int"
+				"java.util.Date", "long", "java.lang.String"
 			};
 
 		_methodName33 = "getReporterJIRAIssuesCount";
 
-		_methodParameterTypes33 = new String[] {
-				"java.util.Date", "long", "java.lang.String"
-			};
+		_methodParameterTypes33 = new String[] { "long", "java.lang.String" };
 
 		_methodName34 = "getReporterJIRAIssuesCount";
 
-		_methodParameterTypes34 = new String[] { "long", "java.lang.String" };
-
-		_methodName35 = "getReporterJIRAIssuesCount";
-
-		_methodParameterTypes35 = new String[] {
+		_methodParameterTypes34 = new String[] {
 				"long", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName36 = "updateJIRAIssues";
+		_methodName35 = "updateJIRAIssues";
 
-		_methodParameterTypes36 = new String[] { "long" };
+		_methodParameterTypes35 = new String[] { "long" };
 	}
 
 	public com.liferay.socialcoding.model.JIRAIssue addJIRAIssue(
@@ -655,41 +649,12 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		return (com.liferay.socialcoding.model.JIRAIssue)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.socialcoding.model.JIRAIssue updateJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15,
-					new Object[] { ClpSerializer.translateInput(jiraIssue), merge });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.socialcoding.model.JIRAIssue)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -708,8 +673,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName17,
-				_methodParameterTypes17,
+			_invokableLocalService.invokeMethod(_methodName16,
+				_methodParameterTypes16,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -738,8 +703,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
 					new Object[] {
 						ClpSerializer.translateInput(modifiedDate),
 						
@@ -777,8 +742,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] {
 						projectId,
 						
@@ -815,8 +780,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] {
 						projectId,
 						
@@ -854,8 +819,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] {
 						ClpSerializer.translateInput(modifiedDate),
 						
@@ -889,8 +854,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] {
 						projectId,
 						
@@ -922,8 +887,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						projectId,
 						
@@ -958,8 +923,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						projectId,
 						
@@ -996,8 +961,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						projectId,
 						
@@ -1034,8 +999,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { ClpSerializer.translateInput(key) });
 		}
 		catch (Throwable t) {
@@ -1068,8 +1033,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] {
 						projectId,
 						
@@ -1106,8 +1071,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] {
 						projectId,
 						
@@ -1144,8 +1109,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
 						ClpSerializer.translateInput(modifiedDate),
 						
@@ -1183,8 +1148,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] {
 						projectId,
 						
@@ -1221,8 +1186,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32,
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
 					new Object[] {
 						projectId,
 						
@@ -1260,8 +1225,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName33,
-					_methodParameterTypes33,
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32,
 					new Object[] {
 						ClpSerializer.translateInput(modifiedDate),
 						
@@ -1295,8 +1260,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName34,
-					_methodParameterTypes34,
+			returnObj = _invokableLocalService.invokeMethod(_methodName33,
+					_methodParameterTypes33,
 					new Object[] {
 						projectId,
 						
@@ -1328,8 +1293,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName35,
-					_methodParameterTypes35,
+			returnObj = _invokableLocalService.invokeMethod(_methodName34,
+					_methodParameterTypes34,
 					new Object[] {
 						projectId,
 						
@@ -1361,8 +1326,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName36,
-				_methodParameterTypes36, new Object[] { projectId });
+			_invokableLocalService.invokeMethod(_methodName35,
+				_methodParameterTypes35, new Object[] { projectId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1420,8 +1385,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
-	private String _methodName17;
-	private String[] _methodParameterTypes17;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
@@ -1456,6 +1421,4 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	private String[] _methodParameterTypes34;
 	private String _methodName35;
 	private String[] _methodParameterTypes35;
-	private String _methodName36;
-	private String[] _methodParameterTypes36;
 }

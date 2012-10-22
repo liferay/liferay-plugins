@@ -73,7 +73,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 			com.liferay.wsrp.NoSuchProducerException;
 
 	public com.liferay.wsrp.model.WSRPProducer updateImpl(
-		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
+		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

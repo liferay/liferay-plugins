@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -267,7 +266,12 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, svnRepository);
+			if (svnRepository.isCachedModel()) {
+				svnRepository = (SVNRepository)session.get(SVNRepositoryImpl.class,
+						svnRepository.getPrimaryKeyObj());
+			}
+
+			session.delete(svnRepository);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -283,8 +287,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 	@Override
 	public SVNRepository updateImpl(
-		com.liferay.socialcoding.model.SVNRepository svnRepository,
-		boolean merge) throws SystemException {
+		com.liferay.socialcoding.model.SVNRepository svnRepository)
+		throws SystemException {
 		svnRepository = toUnwrappedModel(svnRepository);
 
 		boolean isNew = svnRepository.isNew();
@@ -296,9 +300,14 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, svnRepository, merge);
+			if (svnRepository.isNew()) {
+				session.save(svnRepository);
 
-			svnRepository.setNew(false);
+				svnRepository.setNew(false);
+			}
+			else {
+				session.merge(svnRepository);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

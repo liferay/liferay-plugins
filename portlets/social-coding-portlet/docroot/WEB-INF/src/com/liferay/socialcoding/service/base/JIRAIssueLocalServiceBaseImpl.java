@@ -90,7 +90,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 		throws SystemException {
 		jiraIssue.setNew(true);
 
-		return jiraIssuePersistence.update(jiraIssue, false);
+		return jiraIssuePersistence.update(jiraIssue);
 	}
 
 	/**
@@ -262,23 +262,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
-		return updateJIRAIssue(jiraIssue, true);
-	}
-
-	/**
-	 * Updates the j i r a issue in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraIssue the j i r a issue
-	 * @param merge whether to merge the j i r a issue with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the j i r a issue that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue, boolean merge)
-		throws SystemException {
-		jiraIssue.setNew(false);
-
-		return jiraIssuePersistence.update(jiraIssue, merge);
+		return jiraIssuePersistence.update(jiraIssue);
 	}
 
 	/**

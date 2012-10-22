@@ -76,8 +76,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	public com.liferay.socialcoding.model.JIRAChangeGroup updateImpl(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup,
-		boolean merge)
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -94,18 +94,18 @@ public class BarUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Bar update(Bar bar, boolean merge) throws SystemException {
-		return getPersistence().update(bar, merge);
+	public static Bar update(Bar bar) throws SystemException {
+		return getPersistence().update(bar);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Bar update(Bar bar, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(bar, merge, serviceContext);
+	public static Bar update(Bar bar, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(bar, serviceContext);
 	}
 
 	/**
@@ -152,9 +152,9 @@ public class BarUtil {
 	}
 
 	public static com.liferay.testtransaction.model.Bar updateImpl(
-		com.liferay.testtransaction.model.Bar bar, boolean merge)
+		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(bar, merge);
+		return getPersistence().updateImpl(bar);
 	}
 
 	/**

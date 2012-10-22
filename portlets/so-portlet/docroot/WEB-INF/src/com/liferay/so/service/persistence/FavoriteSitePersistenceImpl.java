@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.CompanyPersistence;
 import com.liferay.portal.service.persistence.GroupPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
@@ -282,7 +281,12 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, favoriteSite);
+			if (favoriteSite.isCachedModel()) {
+				favoriteSite = (FavoriteSite)session.get(FavoriteSiteImpl.class,
+						favoriteSite.getPrimaryKeyObj());
+			}
+
+			session.delete(favoriteSite);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -298,7 +302,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 	@Override
 	public FavoriteSite updateImpl(
-		com.liferay.so.model.FavoriteSite favoriteSite, boolean merge)
+		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws SystemException {
 		favoriteSite = toUnwrappedModel(favoriteSite);
 
@@ -311,9 +315,14 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, favoriteSite, merge);
+			if (favoriteSite.isNew()) {
+				session.save(favoriteSite);
 
-			favoriteSite.setNew(false);
+				favoriteSite.setNew(false);
+			}
+			else {
+				session.merge(favoriteSite);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

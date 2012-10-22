@@ -94,19 +94,19 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static KaleoCondition update(KaleoCondition kaleoCondition,
-		boolean merge) throws SystemException {
-		return getPersistence().update(kaleoCondition, merge);
+	public static KaleoCondition update(KaleoCondition kaleoCondition)
+		throws SystemException {
+		return getPersistence().update(kaleoCondition);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static KaleoCondition update(KaleoCondition kaleoCondition,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(kaleoCondition, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(kaleoCondition, serviceContext);
 	}
 
 	/**
@@ -156,10 +156,9 @@ public class KaleoConditionUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoCondition, merge);
+		return getPersistence().updateImpl(kaleoCondition);
 	}
 
 	/**

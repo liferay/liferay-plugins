@@ -98,31 +98,25 @@ public class SVNRepositoryLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.SVNRepository"
 			};
 
-		_methodName15 = "updateSVNRepository";
+		_methodName57 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.socialcoding.model.SVNRepository", "boolean"
-			};
+		_methodParameterTypes57 = new String[] {  };
 
-		_methodName58 = "getBeanIdentifier";
+		_methodName58 = "setBeanIdentifier";
 
-		_methodParameterTypes58 = new String[] {  };
+		_methodParameterTypes58 = new String[] { "java.lang.String" };
 
-		_methodName59 = "setBeanIdentifier";
+		_methodName63 = "getSVNRepository";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
+		_methodParameterTypes63 = new String[] { "long" };
 
 		_methodName64 = "getSVNRepository";
 
-		_methodParameterTypes64 = new String[] { "long" };
+		_methodParameterTypes64 = new String[] { "java.lang.String" };
 
-		_methodName65 = "getSVNRepository";
+		_methodName65 = "updateSVNRepository";
 
 		_methodParameterTypes65 = new String[] { "java.lang.String" };
-
-		_methodName66 = "updateSVNRepository";
-
-		_methodParameterTypes66 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -208,36 +202,30 @@ public class SVNRepositoryLocalServiceClpInvoker {
 			return SVNRepositoryLocalServiceUtil.updateSVNRepository((com.liferay.socialcoding.model.SVNRepository)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return SVNRepositoryLocalServiceUtil.updateSVNRepository((com.liferay.socialcoding.model.SVNRepository)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+			return SVNRepositoryLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return SVNRepositoryLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			SVNRepositoryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+			return SVNRepositoryLocalServiceUtil.getSVNRepository(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
-			return SVNRepositoryLocalServiceUtil.getSVNRepository(((Long)arguments[0]).longValue());
+			return SVNRepositoryLocalServiceUtil.getSVNRepository((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName65.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
-			return SVNRepositoryLocalServiceUtil.getSVNRepository((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			SVNRepositoryLocalServiceUtil.updateSVNRepository((java.lang.String)arguments[0]);
 
 			return null;
@@ -276,16 +264,14 @@ public class SVNRepositoryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
 	private String _methodName58;
 	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
+	private String _methodName63;
+	private String[] _methodParameterTypes63;
 	private String _methodName64;
 	private String[] _methodParameterTypes64;
 	private String _methodName65;
 	private String[] _methodParameterTypes65;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
 }

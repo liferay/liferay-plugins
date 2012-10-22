@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchConditionException;
@@ -310,7 +309,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, kaleoCondition);
+			if (kaleoCondition.isCachedModel()) {
+				kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
+						kaleoCondition.getPrimaryKeyObj());
+			}
+
+			session.delete(kaleoCondition);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -326,8 +330,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 	@Override
 	public KaleoCondition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition,
-		boolean merge) throws SystemException {
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
+		throws SystemException {
 		kaleoCondition = toUnwrappedModel(kaleoCondition);
 
 		boolean isNew = kaleoCondition.isNew();
@@ -339,9 +343,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, kaleoCondition, merge);
+			if (kaleoCondition.isNew()) {
+				session.save(kaleoCondition);
 
-			kaleoCondition.setNew(false);
+				kaleoCondition.setNew(false);
+			}
+			else {
+				session.merge(kaleoCondition);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

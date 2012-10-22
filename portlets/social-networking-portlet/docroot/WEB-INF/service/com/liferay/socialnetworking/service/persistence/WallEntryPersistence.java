@@ -74,7 +74,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 			com.liferay.socialnetworking.NoSuchWallEntryException;
 
 	public com.liferay.socialnetworking.model.WallEntry updateImpl(
-		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
+		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

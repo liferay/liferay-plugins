@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -306,7 +305,12 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, wsrpConsumer);
+			if (wsrpConsumer.isCachedModel()) {
+				wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
+						wsrpConsumer.getPrimaryKeyObj());
+			}
+
+			session.delete(wsrpConsumer);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -322,7 +326,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 
 	@Override
 	public WSRPConsumer updateImpl(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
+		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
 		throws SystemException {
 		wsrpConsumer = toUnwrappedModel(wsrpConsumer);
 
@@ -341,9 +345,14 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, wsrpConsumer, merge);
+			if (wsrpConsumer.isNew()) {
+				session.save(wsrpConsumer);
 
-			wsrpConsumer.setNew(false);
+				wsrpConsumer.setNew(false);
+			}
+			else {
+				session.merge(wsrpConsumer);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

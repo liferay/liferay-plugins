@@ -73,7 +73,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 			com.liferay.wsrp.NoSuchConsumerException;
 
 	public com.liferay.wsrp.model.WSRPConsumer updateImpl(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
+		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -73,7 +73,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.OAuthToken updateImpl(
-		com.liferay.opensocial.model.OAuthToken oAuthToken, boolean merge)
+		com.liferay.opensocial.model.OAuthToken oAuthToken)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

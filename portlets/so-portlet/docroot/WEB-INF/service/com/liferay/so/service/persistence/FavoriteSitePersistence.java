@@ -73,7 +73,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 			com.liferay.so.NoSuchFavoriteSiteException;
 
 	public com.liferay.so.model.FavoriteSite updateImpl(
-		com.liferay.so.model.FavoriteSite favoriteSite, boolean merge)
+		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

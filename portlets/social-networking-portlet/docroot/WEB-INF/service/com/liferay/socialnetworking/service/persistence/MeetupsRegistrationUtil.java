@@ -95,22 +95,20 @@ public class MeetupsRegistrationUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
 	public static MeetupsRegistration update(
-		MeetupsRegistration meetupsRegistration, boolean merge)
-		throws SystemException {
-		return getPersistence().update(meetupsRegistration, merge);
+		MeetupsRegistration meetupsRegistration) throws SystemException {
+		return getPersistence().update(meetupsRegistration);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static MeetupsRegistration update(
-		MeetupsRegistration meetupsRegistration, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence()
-				   .update(meetupsRegistration, merge, serviceContext);
+		MeetupsRegistration meetupsRegistration, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(meetupsRegistration, serviceContext);
 	}
 
 	/**
@@ -160,10 +158,9 @@ public class MeetupsRegistrationUtil {
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration updateImpl(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
-		boolean merge)
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(meetupsRegistration, merge);
+		return getPersistence().updateImpl(meetupsRegistration);
 	}
 
 	/**

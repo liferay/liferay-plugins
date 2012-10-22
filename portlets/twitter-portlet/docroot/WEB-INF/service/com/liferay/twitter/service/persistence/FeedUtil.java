@@ -94,19 +94,18 @@ public class FeedUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Feed update(Feed feed, boolean merge)
-		throws SystemException {
-		return getPersistence().update(feed, merge);
+	public static Feed update(Feed feed) throws SystemException {
+		return getPersistence().update(feed);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Feed update(Feed feed, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(feed, merge, serviceContext);
+	public static Feed update(Feed feed, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(feed, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class FeedUtil {
 	}
 
 	public static com.liferay.twitter.model.Feed updateImpl(
-		com.liferay.twitter.model.Feed feed, boolean merge)
+		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(feed, merge);
+		return getPersistence().updateImpl(feed);
 	}
 
 	/**

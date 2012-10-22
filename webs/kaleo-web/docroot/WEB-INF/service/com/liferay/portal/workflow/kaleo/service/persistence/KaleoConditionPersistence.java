@@ -75,8 +75,7 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

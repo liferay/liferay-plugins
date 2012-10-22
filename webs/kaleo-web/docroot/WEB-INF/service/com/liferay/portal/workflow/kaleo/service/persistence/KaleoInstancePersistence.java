@@ -75,8 +75,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

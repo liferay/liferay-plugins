@@ -73,7 +73,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.mail.model.Message updateImpl(
-		com.liferay.mail.model.Message message, boolean merge)
+		com.liferay.mail.model.Message message)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

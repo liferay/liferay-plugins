@@ -79,7 +79,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Bar addBar(Bar bar) throws SystemException {
 		bar.setNew(true);
 
-		return barPersistence.update(bar, false);
+		return barPersistence.update(bar);
 	}
 
 	/**
@@ -245,22 +245,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Bar updateBar(Bar bar) throws SystemException {
-		return updateBar(bar, true);
-	}
-
-	/**
-	 * Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param bar the bar
-	 * @param merge whether to merge the bar with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the bar that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Bar updateBar(Bar bar, boolean merge) throws SystemException {
-		bar.setNew(false);
-
-		return barPersistence.update(bar, merge);
+		return barPersistence.update(bar);
 	}
 
 	/**

@@ -98,46 +98,40 @@ public class AttachmentLocalServiceClpInvoker {
 				"com.liferay.mail.model.Attachment"
 			};
 
-		_methodName15 = "updateAttachment";
+		_methodName43 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.mail.model.Attachment", "boolean"
-			};
+		_methodParameterTypes43 = new String[] {  };
 
-		_methodName44 = "getBeanIdentifier";
+		_methodName44 = "setBeanIdentifier";
 
-		_methodParameterTypes44 = new String[] {  };
+		_methodParameterTypes44 = new String[] { "java.lang.String" };
 
-		_methodName45 = "setBeanIdentifier";
+		_methodName49 = "addAttachment";
 
-		_methodParameterTypes45 = new String[] { "java.lang.String" };
-
-		_methodName50 = "addAttachment";
-
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes49 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "long",
 				"java.io.File"
 			};
 
-		_methodName51 = "deleteAttachment";
+		_methodName50 = "deleteAttachment";
 
-		_methodParameterTypes51 = new String[] { "long" };
+		_methodParameterTypes50 = new String[] { "long" };
 
-		_methodName52 = "deleteAttachments";
+		_methodName51 = "deleteAttachments";
 
-		_methodParameterTypes52 = new String[] { "long", "long" };
+		_methodParameterTypes51 = new String[] { "long", "long" };
 
-		_methodName53 = "getAttachments";
+		_methodName52 = "getAttachments";
+
+		_methodParameterTypes52 = new String[] { "long" };
+
+		_methodName53 = "getFile";
 
 		_methodParameterTypes53 = new String[] { "long" };
 
-		_methodName54 = "getFile";
+		_methodName54 = "getInputStream";
 
 		_methodParameterTypes54 = new String[] { "long" };
-
-		_methodName55 = "getInputStream";
-
-		_methodParameterTypes55 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -223,57 +217,51 @@ public class AttachmentLocalServiceClpInvoker {
 			return AttachmentLocalServiceUtil.updateAttachment((com.liferay.mail.model.Attachment)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return AttachmentLocalServiceUtil.updateAttachment((com.liferay.mail.model.Attachment)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+			return AttachmentLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-			return AttachmentLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			AttachmentLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return AttachmentLocalServiceUtil.addAttachment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				((Long)arguments[4]).longValue(), (java.io.File)arguments[5]);
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return AttachmentLocalServiceUtil.deleteAttachment(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			AttachmentLocalServiceUtil.deleteAttachments(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return AttachmentLocalServiceUtil.getAttachments(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return AttachmentLocalServiceUtil.getAttachments(((Long)arguments[0]).longValue());
+			return AttachmentLocalServiceUtil.getFile(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return AttachmentLocalServiceUtil.getFile(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AttachmentLocalServiceUtil.getInputStream(((Long)arguments[0]).longValue());
 		}
 
@@ -310,12 +298,12 @@ public class AttachmentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
@@ -326,6 +314,4 @@ public class AttachmentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
 }

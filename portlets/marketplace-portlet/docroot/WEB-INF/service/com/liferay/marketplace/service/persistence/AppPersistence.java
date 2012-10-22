@@ -73,7 +73,7 @@ public interface AppPersistence extends BasePersistence<App> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.marketplace.model.App updateImpl(
-		com.liferay.marketplace.model.App app, boolean merge)
+		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

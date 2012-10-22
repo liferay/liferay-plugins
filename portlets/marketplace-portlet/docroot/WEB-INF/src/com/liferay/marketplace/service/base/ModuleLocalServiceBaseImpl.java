@@ -79,7 +79,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Module addModule(Module module) throws SystemException {
 		module.setNew(true);
 
-		return modulePersistence.update(module, false);
+		return modulePersistence.update(module);
 	}
 
 	/**
@@ -248,23 +248,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Module updateModule(Module module) throws SystemException {
-		return updateModule(module, true);
-	}
-
-	/**
-	 * Updates the module in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param module the module
-	 * @param merge whether to merge the module with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the module that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Module updateModule(Module module, boolean merge)
-		throws SystemException {
-		module.setNew(false);
-
-		return modulePersistence.update(module, merge);
+		return modulePersistence.update(module);
 	}
 
 	/**

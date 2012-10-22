@@ -75,8 +75,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -82,7 +82,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Checkout addCheckout(Checkout checkout) throws SystemException {
 		checkout.setNew(true);
 
-		return checkoutPersistence.update(checkout, false);
+		return checkoutPersistence.update(checkout);
 	}
 
 	/**
@@ -251,23 +251,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Checkout updateCheckout(Checkout checkout) throws SystemException {
-		return updateCheckout(checkout, true);
-	}
-
-	/**
-	 * Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param checkout the checkout
-	 * @param merge whether to merge the checkout with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the checkout that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Checkout updateCheckout(Checkout checkout, boolean merge)
-		throws SystemException {
-		checkout.setNew(false);
-
-		return checkoutPersistence.update(checkout, merge);
+		return checkoutPersistence.update(checkout);
 	}
 
 	/**

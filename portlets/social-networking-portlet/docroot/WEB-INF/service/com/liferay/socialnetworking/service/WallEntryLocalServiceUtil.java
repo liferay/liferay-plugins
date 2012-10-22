@@ -236,20 +236,6 @@ public class WallEntryLocalServiceUtil {
 	}
 
 	/**
-	* Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param wallEntry the wall entry
-	* @param merge whether to merge the wall entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the wall entry that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialnetworking.model.WallEntry updateWallEntry(
-		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateWallEntry(wallEntry, merge);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

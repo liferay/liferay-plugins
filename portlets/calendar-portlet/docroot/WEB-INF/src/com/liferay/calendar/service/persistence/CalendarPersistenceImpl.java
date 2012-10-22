@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -376,7 +375,12 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, calendar);
+			if (calendar.isCachedModel()) {
+				calendar = (Calendar)session.get(CalendarImpl.class,
+						calendar.getPrimaryKeyObj());
+			}
+
+			session.delete(calendar);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -391,8 +395,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	}
 
 	@Override
-	public Calendar updateImpl(com.liferay.calendar.model.Calendar calendar,
-		boolean merge) throws SystemException {
+	public Calendar updateImpl(com.liferay.calendar.model.Calendar calendar)
+		throws SystemException {
 		calendar = toUnwrappedModel(calendar);
 
 		boolean isNew = calendar.isNew();
@@ -410,9 +414,14 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, calendar, merge);
+			if (calendar.isNew()) {
+				session.save(calendar);
 
-			calendar.setNew(false);
+				calendar.setNew(false);
+			}
+			else {
+				session.merge(calendar);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

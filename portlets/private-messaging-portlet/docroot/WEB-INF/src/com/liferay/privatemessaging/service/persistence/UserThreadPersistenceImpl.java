@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -355,7 +354,12 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, userThread);
+			if (userThread.isCachedModel()) {
+				userThread = (UserThread)session.get(UserThreadImpl.class,
+						userThread.getPrimaryKeyObj());
+			}
+
+			session.delete(userThread);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -371,7 +375,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 	@Override
 	public UserThread updateImpl(
-		com.liferay.privatemessaging.model.UserThread userThread, boolean merge)
+		com.liferay.privatemessaging.model.UserThread userThread)
 		throws SystemException {
 		userThread = toUnwrappedModel(userThread);
 
@@ -384,9 +388,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, userThread, merge);
+			if (userThread.isNew()) {
+				session.save(userThread);
 
-			userThread.setNew(false);
+				userThread.setNew(false);
+			}
+			else {
+				session.merge(userThread);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

@@ -95,19 +95,19 @@ public class JIRAIssueUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static JIRAIssue update(JIRAIssue jiraIssue, boolean merge)
+	public static JIRAIssue update(JIRAIssue jiraIssue)
 		throws SystemException {
-		return getPersistence().update(jiraIssue, merge);
+		return getPersistence().update(jiraIssue);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static JIRAIssue update(JIRAIssue jiraIssue, boolean merge,
+	public static JIRAIssue update(JIRAIssue jiraIssue,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(jiraIssue, merge, serviceContext);
+		return getPersistence().update(jiraIssue, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class JIRAIssueUtil {
 	}
 
 	public static com.liferay.socialcoding.model.JIRAIssue updateImpl(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue, boolean merge)
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(jiraIssue, merge);
+		return getPersistence().updateImpl(jiraIssue);
 	}
 
 	/**

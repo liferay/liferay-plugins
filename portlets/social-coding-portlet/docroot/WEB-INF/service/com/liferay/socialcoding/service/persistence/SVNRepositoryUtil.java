@@ -95,19 +95,19 @@ public class SVNRepositoryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static SVNRepository update(SVNRepository svnRepository,
-		boolean merge) throws SystemException {
-		return getPersistence().update(svnRepository, merge);
+	public static SVNRepository update(SVNRepository svnRepository)
+		throws SystemException {
+		return getPersistence().update(svnRepository);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static SVNRepository update(SVNRepository svnRepository,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(svnRepository, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(svnRepository, serviceContext);
 	}
 
 	/**
@@ -157,10 +157,9 @@ public class SVNRepositoryUtil {
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository updateImpl(
-		com.liferay.socialcoding.model.SVNRepository svnRepository,
-		boolean merge)
+		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(svnRepository, merge);
+		return getPersistence().updateImpl(svnRepository);
 	}
 
 	/**

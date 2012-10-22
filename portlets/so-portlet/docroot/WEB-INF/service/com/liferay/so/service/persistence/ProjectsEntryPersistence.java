@@ -73,7 +73,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 			com.liferay.so.NoSuchProjectsEntryException;
 
 	public com.liferay.so.model.ProjectsEntry updateImpl(
-		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
+		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

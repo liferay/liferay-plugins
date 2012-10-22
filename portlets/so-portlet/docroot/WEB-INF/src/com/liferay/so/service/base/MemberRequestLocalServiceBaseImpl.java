@@ -93,7 +93,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		throws SystemException {
 		memberRequest.setNew(true);
 
-		return memberRequestPersistence.update(memberRequest, false);
+		return memberRequestPersistence.update(memberRequest);
 	}
 
 	/**
@@ -266,23 +266,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public MemberRequest updateMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
-		return updateMemberRequest(memberRequest, true);
-	}
-
-	/**
-	 * Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param memberRequest the member request
-	 * @param merge whether to merge the member request with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the member request that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public MemberRequest updateMemberRequest(MemberRequest memberRequest,
-		boolean merge) throws SystemException {
-		memberRequest.setNew(false);
-
-		return memberRequestPersistence.update(memberRequest, merge);
+		return memberRequestPersistence.update(memberRequest);
 	}
 
 	/**

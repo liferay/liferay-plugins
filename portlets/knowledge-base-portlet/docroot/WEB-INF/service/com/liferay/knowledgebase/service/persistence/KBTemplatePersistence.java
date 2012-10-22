@@ -74,7 +74,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.KBTemplate updateImpl(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate, boolean merge)
+		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

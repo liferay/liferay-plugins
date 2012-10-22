@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -475,7 +474,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, jiraIssue);
+			if (jiraIssue.isCachedModel()) {
+				jiraIssue = (JIRAIssue)session.get(JIRAIssueImpl.class,
+						jiraIssue.getPrimaryKeyObj());
+			}
+
+			session.delete(jiraIssue);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -491,7 +495,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 	@Override
 	public JIRAIssue updateImpl(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue, boolean merge)
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws SystemException {
 		jiraIssue = toUnwrappedModel(jiraIssue);
 
@@ -504,9 +508,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, jiraIssue, merge);
+			if (jiraIssue.isNew()) {
+				session.save(jiraIssue);
 
-			jiraIssue.setNew(false);
+				jiraIssue.setNew(false);
+			}
+			else {
+				session.merge(jiraIssue);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

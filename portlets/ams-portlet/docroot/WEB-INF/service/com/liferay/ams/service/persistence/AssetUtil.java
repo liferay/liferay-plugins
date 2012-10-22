@@ -94,19 +94,18 @@ public class AssetUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Asset update(Asset asset, boolean merge)
-		throws SystemException {
-		return getPersistence().update(asset, merge);
+	public static Asset update(Asset asset) throws SystemException {
+		return getPersistence().update(asset);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Asset update(Asset asset, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(asset, merge, serviceContext);
+	public static Asset update(Asset asset, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(asset, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class AssetUtil {
 	}
 
 	public static com.liferay.ams.model.Asset updateImpl(
-		com.liferay.ams.model.Asset asset, boolean merge)
+		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(asset, merge);
+		return getPersistence().updateImpl(asset);
 	}
 
 	/**

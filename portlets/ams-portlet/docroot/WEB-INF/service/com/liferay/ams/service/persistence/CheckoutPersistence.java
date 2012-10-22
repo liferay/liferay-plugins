@@ -73,7 +73,7 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.ams.model.Checkout updateImpl(
-		com.liferay.ams.model.Checkout checkout, boolean merge)
+		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

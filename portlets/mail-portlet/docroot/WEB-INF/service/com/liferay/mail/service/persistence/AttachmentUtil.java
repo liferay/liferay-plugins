@@ -95,19 +95,19 @@ public class AttachmentUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Attachment update(Attachment attachment, boolean merge)
+	public static Attachment update(Attachment attachment)
 		throws SystemException {
-		return getPersistence().update(attachment, merge);
+		return getPersistence().update(attachment);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Attachment update(Attachment attachment, boolean merge,
+	public static Attachment update(Attachment attachment,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(attachment, merge, serviceContext);
+		return getPersistence().update(attachment, serviceContext);
 	}
 
 	/**
@@ -154,9 +154,9 @@ public class AttachmentUtil {
 	}
 
 	public static com.liferay.mail.model.Attachment updateImpl(
-		com.liferay.mail.model.Attachment attachment, boolean merge)
+		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(attachment, merge);
+		return getPersistence().updateImpl(attachment);
 	}
 
 	/**

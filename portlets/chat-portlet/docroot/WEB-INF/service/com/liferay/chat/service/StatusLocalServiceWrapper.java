@@ -225,20 +225,6 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	}
 
 	/**
-	* Updates the status in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param status the status
-	* @param merge whether to merge the status with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the status that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.chat.model.Status updateStatus(
-		com.liferay.chat.model.Status status, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _statusLocalService.updateStatus(status, merge);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

@@ -82,7 +82,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
 		wsrpConsumerPortlet.setNew(true);
 
-		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, false);
+		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet);
 	}
 
 	/**
@@ -258,24 +258,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
-		return updateWSRPConsumerPortlet(wsrpConsumerPortlet, true);
-	}
-
-	/**
-	 * Updates the w s r p consumer portlet in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpConsumerPortlet the w s r p consumer portlet
-	 * @param merge whether to merge the w s r p consumer portlet with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the w s r p consumer portlet that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
-		WSRPConsumerPortlet wsrpConsumerPortlet, boolean merge)
-		throws SystemException {
-		wsrpConsumerPortlet.setNew(false);
-
-		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, merge);
+		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet);
 	}
 
 	/**

@@ -94,19 +94,18 @@ public class StatusUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Status update(Status status, boolean merge)
-		throws SystemException {
-		return getPersistence().update(status, merge);
+	public static Status update(Status status) throws SystemException {
+		return getPersistence().update(status);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Status update(Status status, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(status, merge, serviceContext);
+	public static Status update(Status status, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(status, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class StatusUtil {
 	}
 
 	public static com.liferay.chat.model.Status updateImpl(
-		com.liferay.chat.model.Status status, boolean merge)
+		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(status, merge);
+		return getPersistence().updateImpl(status);
 	}
 
 	/**

@@ -82,7 +82,7 @@ public abstract class WallEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		throws SystemException {
 		wallEntry.setNew(true);
 
-		return wallEntryPersistence.update(wallEntry, false);
+		return wallEntryPersistence.update(wallEntry);
 	}
 
 	/**
@@ -254,23 +254,7 @@ public abstract class WallEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public WallEntry updateWallEntry(WallEntry wallEntry)
 		throws SystemException {
-		return updateWallEntry(wallEntry, true);
-	}
-
-	/**
-	 * Updates the wall entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param wallEntry the wall entry
-	 * @param merge whether to merge the wall entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the wall entry that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public WallEntry updateWallEntry(WallEntry wallEntry, boolean merge)
-		throws SystemException {
-		wallEntry.setNew(false);
-
-		return wallEntryPersistence.update(wallEntry, merge);
+		return wallEntryPersistence.update(wallEntry);
 	}
 
 	/**

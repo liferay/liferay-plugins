@@ -95,19 +95,19 @@ public class DefinitionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Definition update(Definition definition, boolean merge)
+	public static Definition update(Definition definition)
 		throws SystemException {
-		return getPersistence().update(definition, merge);
+		return getPersistence().update(definition);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Definition update(Definition definition, boolean merge,
+	public static Definition update(Definition definition,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(definition, merge, serviceContext);
+		return getPersistence().update(definition, serviceContext);
 	}
 
 	/**
@@ -154,9 +154,9 @@ public class DefinitionUtil {
 	}
 
 	public static com.liferay.ams.model.Definition updateImpl(
-		com.liferay.ams.model.Definition definition, boolean merge)
+		com.liferay.ams.model.Definition definition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(definition, merge);
+		return getPersistence().updateImpl(definition);
 	}
 
 	/**

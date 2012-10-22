@@ -95,19 +95,19 @@ public class WallEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static WallEntry update(WallEntry wallEntry, boolean merge)
+	public static WallEntry update(WallEntry wallEntry)
 		throws SystemException {
-		return getPersistence().update(wallEntry, merge);
+		return getPersistence().update(wallEntry);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static WallEntry update(WallEntry wallEntry, boolean merge,
+	public static WallEntry update(WallEntry wallEntry,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(wallEntry, merge, serviceContext);
+		return getPersistence().update(wallEntry, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class WallEntryUtil {
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry updateImpl(
-		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
+		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(wallEntry, merge);
+		return getPersistence().updateImpl(wallEntry);
 	}
 
 	/**

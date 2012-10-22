@@ -225,20 +225,6 @@ public class BarLocalServiceWrapper implements BarLocalService,
 	}
 
 	/**
-	* Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param bar the bar
-	* @param merge whether to merge the bar with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the bar that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.testtransaction.model.Bar updateBar(
-		com.liferay.testtransaction.model.Bar bar, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _barLocalService.updateBar(bar, merge);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

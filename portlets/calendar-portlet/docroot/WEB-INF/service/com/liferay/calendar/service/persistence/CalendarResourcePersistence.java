@@ -76,8 +76,7 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.calendar.model.CalendarResource updateImpl(
-		com.liferay.calendar.model.CalendarResource calendarResource,
-		boolean merge)
+		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

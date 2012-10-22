@@ -73,7 +73,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 			com.liferay.so.NoSuchMemberRequestException;
 
 	public com.liferay.so.model.MemberRequest updateImpl(
-		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
+		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

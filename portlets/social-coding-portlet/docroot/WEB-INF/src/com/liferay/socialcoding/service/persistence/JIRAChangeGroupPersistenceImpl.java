@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -291,7 +290,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, jiraChangeGroup);
+			if (jiraChangeGroup.isCachedModel()) {
+				jiraChangeGroup = (JIRAChangeGroup)session.get(JIRAChangeGroupImpl.class,
+						jiraChangeGroup.getPrimaryKeyObj());
+			}
+
+			session.delete(jiraChangeGroup);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -307,8 +311,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 	@Override
 	public JIRAChangeGroup updateImpl(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup,
-		boolean merge) throws SystemException {
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
+		throws SystemException {
 		jiraChangeGroup = toUnwrappedModel(jiraChangeGroup);
 
 		boolean isNew = jiraChangeGroup.isNew();
@@ -320,9 +324,14 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, jiraChangeGroup, merge);
+			if (jiraChangeGroup.isNew()) {
+				session.save(jiraChangeGroup);
 
-			jiraChangeGroup.setNew(false);
+				jiraChangeGroup.setNew(false);
+			}
+			else {
+				session.merge(jiraChangeGroup);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

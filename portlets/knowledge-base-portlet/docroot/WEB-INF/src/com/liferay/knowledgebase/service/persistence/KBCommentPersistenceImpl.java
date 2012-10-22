@@ -44,7 +44,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -400,7 +399,12 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, kbComment);
+			if (kbComment.isCachedModel()) {
+				kbComment = (KBComment)session.get(KBCommentImpl.class,
+						kbComment.getPrimaryKeyObj());
+			}
+
+			session.delete(kbComment);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -416,7 +420,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 	@Override
 	public KBComment updateImpl(
-		com.liferay.knowledgebase.model.KBComment kbComment, boolean merge)
+		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws SystemException {
 		kbComment = toUnwrappedModel(kbComment);
 
@@ -435,9 +439,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, kbComment, merge);
+			if (kbComment.isNew()) {
+				session.save(kbComment);
 
-			kbComment.setNew(false);
+				kbComment.setNew(false);
+			}
+			else {
+				session.merge(kbComment);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

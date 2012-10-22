@@ -75,8 +75,7 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

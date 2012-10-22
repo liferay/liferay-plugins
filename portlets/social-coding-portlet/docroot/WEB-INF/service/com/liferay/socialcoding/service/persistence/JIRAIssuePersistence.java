@@ -73,7 +73,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 			com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	public com.liferay.socialcoding.model.JIRAIssue updateImpl(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue, boolean merge)
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -95,19 +95,19 @@ public class OAuthConsumerUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static OAuthConsumer update(OAuthConsumer oAuthConsumer,
-		boolean merge) throws SystemException {
-		return getPersistence().update(oAuthConsumer, merge);
+	public static OAuthConsumer update(OAuthConsumer oAuthConsumer)
+		throws SystemException {
+		return getPersistence().update(oAuthConsumer);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static OAuthConsumer update(OAuthConsumer oAuthConsumer,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(oAuthConsumer, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(oAuthConsumer, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class OAuthConsumerUtil {
 	}
 
 	public static com.liferay.opensocial.model.OAuthConsumer updateImpl(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer, boolean merge)
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(oAuthConsumer, merge);
+		return getPersistence().updateImpl(oAuthConsumer);
 	}
 
 	/**

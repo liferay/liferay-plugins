@@ -230,20 +230,6 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 	}
 
 	/**
-	* Updates the favorite site in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param favoriteSite the favorite site
-	* @param merge whether to merge the favorite site with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the favorite site that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.so.model.FavoriteSite updateFavoriteSite(
-		com.liferay.so.model.FavoriteSite favoriteSite, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _favoriteSiteLocalService.updateFavoriteSite(favoriteSite, merge);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

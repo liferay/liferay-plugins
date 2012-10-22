@@ -82,7 +82,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 		throws SystemException {
 		wsrpConsumer.setNew(true);
 
-		return wsrpConsumerPersistence.update(wsrpConsumer, false);
+		return wsrpConsumerPersistence.update(wsrpConsumer);
 	}
 
 	/**
@@ -256,23 +256,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public WSRPConsumer updateWSRPConsumer(WSRPConsumer wsrpConsumer)
 		throws SystemException {
-		return updateWSRPConsumer(wsrpConsumer, true);
-	}
-
-	/**
-	 * Updates the w s r p consumer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpConsumer the w s r p consumer
-	 * @param merge whether to merge the w s r p consumer with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the w s r p consumer that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public WSRPConsumer updateWSRPConsumer(WSRPConsumer wsrpConsumer,
-		boolean merge) throws SystemException {
-		wsrpConsumer.setNew(false);
-
-		return wsrpConsumerPersistence.update(wsrpConsumer, merge);
+		return wsrpConsumerPersistence.update(wsrpConsumer);
 	}
 
 	/**

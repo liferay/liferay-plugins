@@ -95,19 +95,19 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static KBTemplate update(KBTemplate kbTemplate, boolean merge)
+	public static KBTemplate update(KBTemplate kbTemplate)
 		throws SystemException {
-		return getPersistence().update(kbTemplate, merge);
+		return getPersistence().update(kbTemplate);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static KBTemplate update(KBTemplate kbTemplate, boolean merge,
+	public static KBTemplate update(KBTemplate kbTemplate,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(kbTemplate, merge, serviceContext);
+		return getPersistence().update(kbTemplate, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class KBTemplateUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBTemplate updateImpl(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate, boolean merge)
+		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kbTemplate, merge);
+		return getPersistence().updateImpl(kbTemplate);
 	}
 
 	/**

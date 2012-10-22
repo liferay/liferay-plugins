@@ -95,19 +95,19 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static MemberRequest update(MemberRequest memberRequest,
-		boolean merge) throws SystemException {
-		return getPersistence().update(memberRequest, merge);
+	public static MemberRequest update(MemberRequest memberRequest)
+		throws SystemException {
+		return getPersistence().update(memberRequest);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static MemberRequest update(MemberRequest memberRequest,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(memberRequest, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(memberRequest, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class MemberRequestUtil {
 	}
 
 	public static com.liferay.so.model.MemberRequest updateImpl(
-		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
+		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(memberRequest, merge);
+		return getPersistence().updateImpl(memberRequest);
 	}
 
 	/**

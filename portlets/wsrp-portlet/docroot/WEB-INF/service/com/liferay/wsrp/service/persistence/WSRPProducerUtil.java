@@ -95,19 +95,19 @@ public class WSRPProducerUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static WSRPProducer update(WSRPProducer wsrpProducer, boolean merge)
+	public static WSRPProducer update(WSRPProducer wsrpProducer)
 		throws SystemException {
-		return getPersistence().update(wsrpProducer, merge);
+		return getPersistence().update(wsrpProducer);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static WSRPProducer update(WSRPProducer wsrpProducer, boolean merge,
+	public static WSRPProducer update(WSRPProducer wsrpProducer,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(wsrpProducer, merge, serviceContext);
+		return getPersistence().update(wsrpProducer, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class WSRPProducerUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer updateImpl(
-		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
+		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(wsrpProducer, merge);
+		return getPersistence().updateImpl(wsrpProducer);
 	}
 
 	/**

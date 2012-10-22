@@ -76,7 +76,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 			com.liferay.privatemessaging.NoSuchUserThreadException;
 
 	public com.liferay.privatemessaging.model.UserThread updateImpl(
-		com.liferay.privatemessaging.model.UserThread userThread, boolean merge)
+		com.liferay.privatemessaging.model.UserThread userThread)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

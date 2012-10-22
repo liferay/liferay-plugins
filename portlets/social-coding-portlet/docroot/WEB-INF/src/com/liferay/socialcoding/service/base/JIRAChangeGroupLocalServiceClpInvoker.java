@@ -98,23 +98,17 @@ public class JIRAChangeGroupLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.JIRAChangeGroup"
 			};
 
-		_methodName15 = "updateJIRAChangeGroup";
+		_methodName57 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.socialcoding.model.JIRAChangeGroup", "boolean"
-			};
+		_methodParameterTypes57 = new String[] {  };
 
-		_methodName58 = "getBeanIdentifier";
+		_methodName58 = "setBeanIdentifier";
 
-		_methodParameterTypes58 = new String[] {  };
+		_methodParameterTypes58 = new String[] { "java.lang.String" };
 
-		_methodName59 = "setBeanIdentifier";
+		_methodName63 = "getJIRAChangeGroup";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
-
-		_methodName64 = "getJIRAChangeGroup";
-
-		_methodParameterTypes64 = new String[] { "long" };
+		_methodParameterTypes63 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -200,26 +194,20 @@ public class JIRAChangeGroupLocalServiceClpInvoker {
 			return JIRAChangeGroupLocalServiceUtil.updateJIRAChangeGroup((com.liferay.socialcoding.model.JIRAChangeGroup)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return JIRAChangeGroupLocalServiceUtil.updateJIRAChangeGroup((com.liferay.socialcoding.model.JIRAChangeGroup)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+			return JIRAChangeGroupLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return JIRAChangeGroupLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			JIRAChangeGroupLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return JIRAChangeGroupLocalServiceUtil.getJIRAChangeGroup(((Long)arguments[0]).longValue());
 		}
 
@@ -256,12 +244,10 @@ public class JIRAChangeGroupLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
 	private String _methodName58;
 	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
-	private String _methodName64;
-	private String[] _methodParameterTypes64;
+	private String _methodName63;
+	private String[] _methodParameterTypes63;
 }

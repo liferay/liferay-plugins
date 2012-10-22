@@ -91,7 +91,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 		throws SystemException {
 		svnRepository.setNew(true);
 
-		return svnRepositoryPersistence.update(svnRepository, false);
+		return svnRepositoryPersistence.update(svnRepository);
 	}
 
 	/**
@@ -264,23 +264,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public SVNRepository updateSVNRepository(SVNRepository svnRepository)
 		throws SystemException {
-		return updateSVNRepository(svnRepository, true);
-	}
-
-	/**
-	 * Updates the s v n repository in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param svnRepository the s v n repository
-	 * @param merge whether to merge the s v n repository with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the s v n repository that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public SVNRepository updateSVNRepository(SVNRepository svnRepository,
-		boolean merge) throws SystemException {
-		svnRepository.setNew(false);
-
-		return svnRepositoryPersistence.update(svnRepository, merge);
+		return svnRepositoryPersistence.update(svnRepository);
 	}
 
 	/**

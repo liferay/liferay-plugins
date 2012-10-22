@@ -224,20 +224,6 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	}
 
 	/**
-	* Updates the feed in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param feed the feed
-	* @param merge whether to merge the feed with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the feed that was updated
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.twitter.model.Feed updateFeed(
-		com.liferay.twitter.model.Feed feed, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _feedLocalService.updateFeed(feed, merge);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

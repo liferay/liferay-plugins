@@ -86,7 +86,7 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Calendar addCalendar(Calendar calendar) throws SystemException {
 		calendar.setNew(true);
 
-		return calendarPersistence.update(calendar, false);
+		return calendarPersistence.update(calendar);
 	}
 
 	/**
@@ -271,23 +271,7 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Calendar updateCalendar(Calendar calendar) throws SystemException {
-		return updateCalendar(calendar, true);
-	}
-
-	/**
-	 * Updates the calendar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendar the calendar
-	 * @param merge whether to merge the calendar with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the calendar that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Calendar updateCalendar(Calendar calendar, boolean merge)
-		throws SystemException {
-		calendar.setNew(false);
-
-		return calendarPersistence.update(calendar, merge);
+		return calendarPersistence.update(calendar);
 	}
 
 	/**

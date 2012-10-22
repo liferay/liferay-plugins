@@ -95,19 +95,19 @@ public class TasksEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static TasksEntry update(TasksEntry tasksEntry, boolean merge)
+	public static TasksEntry update(TasksEntry tasksEntry)
 		throws SystemException {
-		return getPersistence().update(tasksEntry, merge);
+		return getPersistence().update(tasksEntry);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static TasksEntry update(TasksEntry tasksEntry, boolean merge,
+	public static TasksEntry update(TasksEntry tasksEntry,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(tasksEntry, merge, serviceContext);
+		return getPersistence().update(tasksEntry, serviceContext);
 	}
 
 	/**
@@ -155,9 +155,9 @@ public class TasksEntryUtil {
 	}
 
 	public static com.liferay.tasks.model.TasksEntry updateImpl(
-		com.liferay.tasks.model.TasksEntry tasksEntry, boolean merge)
+		com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(tasksEntry, merge);
+		return getPersistence().updateImpl(tasksEntry);
 	}
 
 	/**

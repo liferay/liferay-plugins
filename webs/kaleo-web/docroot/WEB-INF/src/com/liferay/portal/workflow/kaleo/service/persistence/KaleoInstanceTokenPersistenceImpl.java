@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException;
@@ -364,7 +363,12 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, kaleoInstanceToken);
+			if (kaleoInstanceToken.isCachedModel()) {
+				kaleoInstanceToken = (KaleoInstanceToken)session.get(KaleoInstanceTokenImpl.class,
+						kaleoInstanceToken.getPrimaryKeyObj());
+			}
+
+			session.delete(kaleoInstanceToken);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -380,8 +384,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 	@Override
 	public KaleoInstanceToken updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
-		boolean merge) throws SystemException {
+		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken)
+		throws SystemException {
 		kaleoInstanceToken = toUnwrappedModel(kaleoInstanceToken);
 
 		boolean isNew = kaleoInstanceToken.isNew();
@@ -393,9 +397,14 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, kaleoInstanceToken, merge);
+			if (kaleoInstanceToken.isNew()) {
+				session.save(kaleoInstanceToken);
 
-			kaleoInstanceToken.setNew(false);
+				kaleoInstanceToken.setNew(false);
+			}
+			else {
+				session.merge(kaleoInstanceToken);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

@@ -75,8 +75,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

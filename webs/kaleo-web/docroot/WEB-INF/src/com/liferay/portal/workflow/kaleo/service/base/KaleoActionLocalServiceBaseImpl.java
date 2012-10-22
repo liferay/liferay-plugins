@@ -109,7 +109,7 @@ public abstract class KaleoActionLocalServiceBaseImpl
 		throws SystemException {
 		kaleoAction.setNew(true);
 
-		return kaleoActionPersistence.update(kaleoAction, false);
+		return kaleoActionPersistence.update(kaleoAction);
 	}
 
 	/**
@@ -282,23 +282,7 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoAction updateKaleoAction(KaleoAction kaleoAction)
 		throws SystemException {
-		return updateKaleoAction(kaleoAction, true);
-	}
-
-	/**
-	 * Updates the kaleo action in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoAction the kaleo action
-	 * @param merge whether to merge the kaleo action with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo action that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoAction updateKaleoAction(KaleoAction kaleoAction, boolean merge)
-		throws SystemException {
-		kaleoAction.setNew(false);
-
-		return kaleoActionPersistence.update(kaleoAction, merge);
+		return kaleoActionPersistence.update(kaleoAction);
 	}
 
 	/**

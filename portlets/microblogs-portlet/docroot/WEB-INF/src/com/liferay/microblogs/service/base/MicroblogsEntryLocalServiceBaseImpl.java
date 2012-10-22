@@ -80,7 +80,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 		throws SystemException {
 		microblogsEntry.setNew(true);
 
-		return microblogsEntryPersistence.update(microblogsEntry, false);
+		return microblogsEntryPersistence.update(microblogsEntry);
 	}
 
 	/**
@@ -255,24 +255,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public MicroblogsEntry updateMicroblogsEntry(
 		MicroblogsEntry microblogsEntry) throws SystemException {
-		return updateMicroblogsEntry(microblogsEntry, true);
-	}
-
-	/**
-	 * Updates the microblogs entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param microblogsEntry the microblogs entry
-	 * @param merge whether to merge the microblogs entry with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the microblogs entry that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public MicroblogsEntry updateMicroblogsEntry(
-		MicroblogsEntry microblogsEntry, boolean merge)
-		throws SystemException {
-		microblogsEntry.setNew(false);
-
-		return microblogsEntryPersistence.update(microblogsEntry, merge);
+		return microblogsEntryPersistence.update(microblogsEntry);
 	}
 
 	/**

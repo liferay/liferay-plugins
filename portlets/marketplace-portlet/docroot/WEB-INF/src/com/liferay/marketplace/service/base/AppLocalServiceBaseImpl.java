@@ -79,7 +79,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public App addApp(App app) throws SystemException {
 		app.setNew(true);
 
-		return appPersistence.update(app, false);
+		return appPersistence.update(app);
 	}
 
 	/**
@@ -245,22 +245,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public App updateApp(App app) throws SystemException {
-		return updateApp(app, true);
-	}
-
-	/**
-	 * Updates the app in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param app the app
-	 * @param merge whether to merge the app with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the app that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public App updateApp(App app, boolean merge) throws SystemException {
-		app.setNew(false);
-
-		return appPersistence.update(app, merge);
+		return appPersistence.update(app);
 	}
 
 	/**

@@ -75,8 +75,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 			com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

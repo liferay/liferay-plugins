@@ -88,7 +88,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 		CalendarResource calendarResource) throws SystemException {
 		calendarResource.setNew(true);
 
-		return calendarResourcePersistence.update(calendarResource, false);
+		return calendarResourcePersistence.update(calendarResource);
 	}
 
 	/**
@@ -277,24 +277,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public CalendarResource updateCalendarResource(
 		CalendarResource calendarResource) throws SystemException {
-		return updateCalendarResource(calendarResource, true);
-	}
-
-	/**
-	 * Updates the calendar resource in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendarResource the calendar resource
-	 * @param merge whether to merge the calendar resource with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the calendar resource that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public CalendarResource updateCalendarResource(
-		CalendarResource calendarResource, boolean merge)
-		throws SystemException {
-		calendarResource.setNew(false);
-
-		return calendarResourcePersistence.update(calendarResource, merge);
+		return calendarResourcePersistence.update(calendarResource);
 	}
 
 	/**

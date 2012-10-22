@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -281,7 +280,12 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, meetupsEntry);
+			if (meetupsEntry.isCachedModel()) {
+				meetupsEntry = (MeetupsEntry)session.get(MeetupsEntryImpl.class,
+						meetupsEntry.getPrimaryKeyObj());
+			}
+
+			session.delete(meetupsEntry);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -297,8 +301,8 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 
 	@Override
 	public MeetupsEntry updateImpl(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry,
-		boolean merge) throws SystemException {
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
+		throws SystemException {
 		meetupsEntry = toUnwrappedModel(meetupsEntry);
 
 		boolean isNew = meetupsEntry.isNew();
@@ -310,9 +314,14 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, meetupsEntry, merge);
+			if (meetupsEntry.isNew()) {
+				session.save(meetupsEntry);
 
-			meetupsEntry.setNew(false);
+				meetupsEntry.setNew(false);
+			}
+			else {
+				session.merge(meetupsEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

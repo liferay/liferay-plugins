@@ -95,19 +95,19 @@ public class AkismetDataUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static AkismetData update(AkismetData akismetData, boolean merge)
+	public static AkismetData update(AkismetData akismetData)
 		throws SystemException {
-		return getPersistence().update(akismetData, merge);
+		return getPersistence().update(akismetData);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static AkismetData update(AkismetData akismetData, boolean merge,
+	public static AkismetData update(AkismetData akismetData,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(akismetData, merge, serviceContext);
+		return getPersistence().update(akismetData, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class AkismetDataUtil {
 	}
 
 	public static com.liferay.akismet.model.AkismetData updateImpl(
-		com.liferay.akismet.model.AkismetData akismetData, boolean merge)
+		com.liferay.akismet.model.AkismetData akismetData)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(akismetData, merge);
+		return getPersistence().updateImpl(akismetData);
 	}
 
 	/**

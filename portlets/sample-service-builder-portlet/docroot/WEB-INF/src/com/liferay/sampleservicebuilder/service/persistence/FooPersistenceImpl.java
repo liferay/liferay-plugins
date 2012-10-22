@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -326,7 +325,11 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, foo);
+			if (foo.isCachedModel()) {
+				foo = (Foo)session.get(FooImpl.class, foo.getPrimaryKeyObj());
+			}
+
+			session.delete(foo);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -341,8 +344,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	@Override
-	public Foo updateImpl(com.liferay.sampleservicebuilder.model.Foo foo,
-		boolean merge) throws SystemException {
+	public Foo updateImpl(com.liferay.sampleservicebuilder.model.Foo foo)
+		throws SystemException {
 		foo = toUnwrappedModel(foo);
 
 		boolean isNew = foo.isNew();
@@ -360,9 +363,14 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, foo, merge);
+			if (foo.isNew()) {
+				session.save(foo);
 
-			foo.setNew(false);
+				foo.setNew(false);
+			}
+			else {
+				session.merge(foo);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

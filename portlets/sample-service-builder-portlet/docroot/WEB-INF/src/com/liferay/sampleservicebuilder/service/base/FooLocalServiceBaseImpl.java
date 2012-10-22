@@ -84,7 +84,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Foo addFoo(Foo foo) throws SystemException {
 		foo.setNew(true);
 
-		return fooPersistence.update(foo, false);
+		return fooPersistence.update(foo);
 	}
 
 	/**
@@ -264,22 +264,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Foo updateFoo(Foo foo) throws SystemException {
-		return updateFoo(foo, true);
-	}
-
-	/**
-	 * Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param foo the foo
-	 * @param merge whether to merge the foo with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the foo that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Foo updateFoo(Foo foo, boolean merge) throws SystemException {
-		foo.setNew(false);
-
-		return fooPersistence.update(foo, merge);
+		return fooPersistence.update(foo);
 	}
 
 	/**

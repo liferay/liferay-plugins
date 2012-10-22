@@ -95,22 +95,20 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
 	public static WSRPConsumerPortlet update(
-		WSRPConsumerPortlet wsrpConsumerPortlet, boolean merge)
-		throws SystemException {
-		return getPersistence().update(wsrpConsumerPortlet, merge);
+		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
+		return getPersistence().update(wsrpConsumerPortlet);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static WSRPConsumerPortlet update(
-		WSRPConsumerPortlet wsrpConsumerPortlet, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence()
-				   .update(wsrpConsumerPortlet, merge, serviceContext);
+		WSRPConsumerPortlet wsrpConsumerPortlet, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(wsrpConsumerPortlet, serviceContext);
 	}
 
 	/**
@@ -160,10 +158,9 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet updateImpl(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet,
-		boolean merge)
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(wsrpConsumerPortlet, merge);
+		return getPersistence().updateImpl(wsrpConsumerPortlet);
 	}
 
 	/**

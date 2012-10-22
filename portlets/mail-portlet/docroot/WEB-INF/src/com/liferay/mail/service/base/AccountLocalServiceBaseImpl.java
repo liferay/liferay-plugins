@@ -82,7 +82,7 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public Account addAccount(Account account) throws SystemException {
 		account.setNew(true);
 
-		return accountPersistence.update(account, false);
+		return accountPersistence.update(account);
 	}
 
 	/**
@@ -253,23 +253,7 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Account updateAccount(Account account) throws SystemException {
-		return updateAccount(account, true);
-	}
-
-	/**
-	 * Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param account the account
-	 * @param merge whether to merge the account with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the account that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public Account updateAccount(Account account, boolean merge)
-		throws SystemException {
-		account.setNew(false);
-
-		return accountPersistence.update(account, merge);
+		return accountPersistence.update(account);
 	}
 
 	/**

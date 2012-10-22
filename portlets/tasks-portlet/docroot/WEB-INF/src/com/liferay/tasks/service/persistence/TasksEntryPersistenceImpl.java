@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
-import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -379,7 +378,12 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.delete(session, tasksEntry);
+			if (tasksEntry.isCachedModel()) {
+				tasksEntry = (TasksEntry)session.get(TasksEntryImpl.class,
+						tasksEntry.getPrimaryKeyObj());
+			}
+
+			session.delete(tasksEntry);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -394,8 +398,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	@Override
-	public TasksEntry updateImpl(
-		com.liferay.tasks.model.TasksEntry tasksEntry, boolean merge)
+	public TasksEntry updateImpl(com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws SystemException {
 		tasksEntry = toUnwrappedModel(tasksEntry);
 
@@ -408,9 +411,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			BatchSessionUtil.update(session, tasksEntry, merge);
+			if (tasksEntry.isNew()) {
+				session.save(tasksEntry);
 
-			tasksEntry.setNew(false);
+				tasksEntry.setNew(false);
+			}
+			else {
+				session.merge(tasksEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);

@@ -76,8 +76,7 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 			com.liferay.socialcoding.NoSuchSVNRepositoryException;
 
 	public com.liferay.socialcoding.model.SVNRepository updateImpl(
-		com.liferay.socialcoding.model.SVNRepository svnRepository,
-		boolean merge)
+		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

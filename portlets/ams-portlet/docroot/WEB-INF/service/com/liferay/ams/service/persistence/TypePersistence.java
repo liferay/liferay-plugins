@@ -72,7 +72,7 @@ public interface TypePersistence extends BasePersistence<Type> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.ams.model.Type updateImpl(
-		com.liferay.ams.model.Type type, boolean merge)
+		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

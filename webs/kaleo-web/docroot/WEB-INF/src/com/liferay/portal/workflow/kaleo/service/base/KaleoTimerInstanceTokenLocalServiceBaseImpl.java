@@ -110,8 +110,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 		throws SystemException {
 		kaleoTimerInstanceToken.setNew(true);
 
-		return kaleoTimerInstanceTokenPersistence.update(kaleoTimerInstanceToken,
-			false);
+		return kaleoTimerInstanceTokenPersistence.update(kaleoTimerInstanceToken);
 	}
 
 	/**
@@ -287,25 +286,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	public KaleoTimerInstanceToken updateKaleoTimerInstanceToken(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws SystemException {
-		return updateKaleoTimerInstanceToken(kaleoTimerInstanceToken, true);
-	}
-
-	/**
-	 * Updates the kaleo timer instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTimerInstanceToken the kaleo timer instance token
-	 * @param merge whether to merge the kaleo timer instance token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo timer instance token that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoTimerInstanceToken updateKaleoTimerInstanceToken(
-		KaleoTimerInstanceToken kaleoTimerInstanceToken, boolean merge)
-		throws SystemException {
-		kaleoTimerInstanceToken.setNew(false);
-
-		return kaleoTimerInstanceTokenPersistence.update(kaleoTimerInstanceToken,
-			merge);
+		return kaleoTimerInstanceTokenPersistence.update(kaleoTimerInstanceToken);
 	}
 
 	/**

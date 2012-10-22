@@ -98,57 +98,51 @@ public class FavoriteSiteLocalServiceClpInvoker {
 				"com.liferay.so.model.FavoriteSite"
 			};
 
-		_methodName15 = "updateFavoriteSite";
+		_methodName55 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.so.model.FavoriteSite", "boolean"
-			};
+		_methodParameterTypes55 = new String[] {  };
 
-		_methodName56 = "getBeanIdentifier";
+		_methodName56 = "setBeanIdentifier";
 
-		_methodParameterTypes56 = new String[] {  };
+		_methodParameterTypes56 = new String[] { "java.lang.String" };
 
-		_methodName57 = "setBeanIdentifier";
+		_methodName61 = "addFavoriteSite";
 
-		_methodParameterTypes57 = new String[] { "java.lang.String" };
+		_methodParameterTypes61 = new String[] { "long", "long" };
 
-		_methodName62 = "addFavoriteSite";
+		_methodName62 = "deleteFavoriteSite";
 
-		_methodParameterTypes62 = new String[] { "long", "long" };
+		_methodParameterTypes62 = new String[] { "long" };
 
-		_methodName63 = "deleteFavoriteSite";
+		_methodName63 = "deleteFavoriteSites";
 
-		_methodParameterTypes63 = new String[] { "long" };
+		_methodParameterTypes63 = new String[] { "long", "long" };
 
-		_methodName64 = "deleteFavoriteSites";
+		_methodName64 = "getFavoriteSites";
 
-		_methodParameterTypes64 = new String[] { "long", "long" };
+		_methodParameterTypes64 = new String[] { "long", "int", "int" };
 
 		_methodName65 = "getFavoriteSites";
 
-		_methodParameterTypes65 = new String[] { "long", "int", "int" };
-
-		_methodName66 = "getFavoriteSites";
-
-		_methodParameterTypes66 = new String[] {
+		_methodParameterTypes65 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 
+		_methodName66 = "getFavoriteSitesCount";
+
+		_methodParameterTypes66 = new String[] { "long" };
+
 		_methodName67 = "getFavoriteSitesCount";
 
-		_methodParameterTypes67 = new String[] { "long" };
+		_methodParameterTypes67 = new String[] { "long", "java.lang.String" };
 
-		_methodName68 = "getFavoriteSitesCount";
+		_methodName68 = "isFavoriteSite";
 
-		_methodParameterTypes68 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes68 = new String[] { "long" };
 
 		_methodName69 = "isFavoriteSite";
 
-		_methodParameterTypes69 = new String[] { "long" };
-
-		_methodName70 = "isFavoriteSite";
-
-		_methodParameterTypes70 = new String[] { "long", "long" };
+		_methodParameterTypes69 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -234,76 +228,70 @@ public class FavoriteSiteLocalServiceClpInvoker {
 			return FavoriteSiteLocalServiceUtil.updateFavoriteSite((com.liferay.so.model.FavoriteSite)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return FavoriteSiteLocalServiceUtil.updateFavoriteSite((com.liferay.so.model.FavoriteSite)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+			return FavoriteSiteLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return FavoriteSiteLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			FavoriteSiteLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.addFavoriteSite(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.deleteFavoriteSite(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			FavoriteSiteLocalServiceUtil.deleteFavoriteSites(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSites(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSites(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSitesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSitesCount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.isFavoriteSite(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.isFavoriteSite(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
@@ -341,12 +329,12 @@ public class FavoriteSiteLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
 	private String _methodName56;
 	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
+	private String _methodName61;
+	private String[] _methodParameterTypes61;
 	private String _methodName62;
 	private String[] _methodParameterTypes62;
 	private String _methodName63;
@@ -363,6 +351,4 @@ public class FavoriteSiteLocalServiceClpInvoker {
 	private String[] _methodParameterTypes68;
 	private String _methodName69;
 	private String[] _methodParameterTypes69;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
 }

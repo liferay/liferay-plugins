@@ -109,7 +109,7 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 		throws SystemException {
 		kaleoCondition.setNew(true);
 
-		return kaleoConditionPersistence.update(kaleoCondition, false);
+		return kaleoConditionPersistence.update(kaleoCondition);
 	}
 
 	/**
@@ -282,23 +282,7 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoCondition updateKaleoCondition(KaleoCondition kaleoCondition)
 		throws SystemException {
-		return updateKaleoCondition(kaleoCondition, true);
-	}
-
-	/**
-	 * Updates the kaleo condition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoCondition the kaleo condition
-	 * @param merge whether to merge the kaleo condition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo condition that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoCondition updateKaleoCondition(KaleoCondition kaleoCondition,
-		boolean merge) throws SystemException {
-		kaleoCondition.setNew(false);
-
-		return kaleoConditionPersistence.update(kaleoCondition, merge);
+		return kaleoConditionPersistence.update(kaleoCondition);
 	}
 
 	/**

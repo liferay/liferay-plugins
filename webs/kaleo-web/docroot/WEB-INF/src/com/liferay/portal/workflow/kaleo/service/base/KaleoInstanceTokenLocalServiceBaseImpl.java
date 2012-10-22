@@ -109,7 +109,7 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 		KaleoInstanceToken kaleoInstanceToken) throws SystemException {
 		kaleoInstanceToken.setNew(true);
 
-		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
+		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken);
 	}
 
 	/**
@@ -283,24 +283,7 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoInstanceToken updateKaleoInstanceToken(
 		KaleoInstanceToken kaleoInstanceToken) throws SystemException {
-		return updateKaleoInstanceToken(kaleoInstanceToken, true);
-	}
-
-	/**
-	 * Updates the kaleo instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoInstanceToken the kaleo instance token
-	 * @param merge whether to merge the kaleo instance token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the kaleo instance token that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoInstanceToken updateKaleoInstanceToken(
-		KaleoInstanceToken kaleoInstanceToken, boolean merge)
-		throws SystemException {
-		kaleoInstanceToken.setNew(false);
-
-		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken, merge);
+		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken);
 	}
 
 	/**

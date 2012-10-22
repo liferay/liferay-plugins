@@ -95,19 +95,19 @@ public class KBCommentUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static KBComment update(KBComment kbComment, boolean merge)
+	public static KBComment update(KBComment kbComment)
 		throws SystemException {
-		return getPersistence().update(kbComment, merge);
+		return getPersistence().update(kbComment);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static KBComment update(KBComment kbComment, boolean merge,
+	public static KBComment update(KBComment kbComment,
 		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(kbComment, merge, serviceContext);
+		return getPersistence().update(kbComment, serviceContext);
 	}
 
 	/**
@@ -157,9 +157,9 @@ public class KBCommentUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.KBComment updateImpl(
-		com.liferay.knowledgebase.model.KBComment kbComment, boolean merge)
+		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kbComment, merge);
+		return getPersistence().updateImpl(kbComment);
 	}
 
 	/**

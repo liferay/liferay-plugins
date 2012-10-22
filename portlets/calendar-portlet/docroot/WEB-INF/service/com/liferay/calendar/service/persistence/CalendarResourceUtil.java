@@ -95,19 +95,19 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static CalendarResource update(CalendarResource calendarResource,
-		boolean merge) throws SystemException {
-		return getPersistence().update(calendarResource, merge);
+	public static CalendarResource update(CalendarResource calendarResource)
+		throws SystemException {
+		return getPersistence().update(calendarResource);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static CalendarResource update(CalendarResource calendarResource,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(calendarResource, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(calendarResource, serviceContext);
 	}
 
 	/**
@@ -157,10 +157,9 @@ public class CalendarResourceUtil {
 	}
 
 	public static com.liferay.calendar.model.CalendarResource updateImpl(
-		com.liferay.calendar.model.CalendarResource calendarResource,
-		boolean merge)
+		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(calendarResource, merge);
+		return getPersistence().updateImpl(calendarResource);
 	}
 
 	/**

@@ -95,19 +95,19 @@ public class CalendarBookingUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static CalendarBooking update(CalendarBooking calendarBooking,
-		boolean merge) throws SystemException {
-		return getPersistence().update(calendarBooking, merge);
+	public static CalendarBooking update(CalendarBooking calendarBooking)
+		throws SystemException {
+		return getPersistence().update(calendarBooking);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static CalendarBooking update(CalendarBooking calendarBooking,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(calendarBooking, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(calendarBooking, serviceContext);
 	}
 
 	/**
@@ -157,10 +157,9 @@ public class CalendarBookingUtil {
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking updateImpl(
-		com.liferay.calendar.model.CalendarBooking calendarBooking,
-		boolean merge)
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(calendarBooking, merge);
+		return getPersistence().updateImpl(calendarBooking);
 	}
 
 	/**

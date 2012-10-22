@@ -73,7 +73,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 			com.liferay.testtransaction.NoSuchBarException;
 
 	public com.liferay.testtransaction.model.Bar updateImpl(
-		com.liferay.testtransaction.model.Bar bar, boolean merge)
+		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

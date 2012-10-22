@@ -94,19 +94,18 @@ public class ModuleUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Module update(Module module, boolean merge)
-		throws SystemException {
-		return getPersistence().update(module, merge);
+	public static Module update(Module module) throws SystemException {
+		return getPersistence().update(module);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Module update(Module module, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(module, merge, serviceContext);
+	public static Module update(Module module, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(module, serviceContext);
 	}
 
 	/**
@@ -153,9 +152,9 @@ public class ModuleUtil {
 	}
 
 	public static com.liferay.marketplace.model.Module updateImpl(
-		com.liferay.marketplace.model.Module module, boolean merge)
+		com.liferay.marketplace.model.Module module)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(module, merge);
+		return getPersistence().updateImpl(module);
 	}
 
 	/**

@@ -83,7 +83,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		meetupsRegistration.setNew(true);
 
-		return meetupsRegistrationPersistence.update(meetupsRegistration, false);
+		return meetupsRegistrationPersistence.update(meetupsRegistration);
 	}
 
 	/**
@@ -257,24 +257,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public MeetupsRegistration updateMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
-		return updateMeetupsRegistration(meetupsRegistration, true);
-	}
-
-	/**
-	 * Updates the meetups registration in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetupsRegistration the meetups registration
-	 * @param merge whether to merge the meetups registration with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the meetups registration that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public MeetupsRegistration updateMeetupsRegistration(
-		MeetupsRegistration meetupsRegistration, boolean merge)
-		throws SystemException {
-		meetupsRegistration.setNew(false);
-
-		return meetupsRegistrationPersistence.update(meetupsRegistration, merge);
+		return meetupsRegistrationPersistence.update(meetupsRegistration);
 	}
 
 	/**

@@ -91,7 +91,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 		throws SystemException {
 		jiraChangeGroup.setNew(true);
 
-		return jiraChangeGroupPersistence.update(jiraChangeGroup, false);
+		return jiraChangeGroupPersistence.update(jiraChangeGroup);
 	}
 
 	/**
@@ -264,24 +264,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	@Indexable(type = IndexableType.REINDEX)
 	public JIRAChangeGroup updateJIRAChangeGroup(
 		JIRAChangeGroup jiraChangeGroup) throws SystemException {
-		return updateJIRAChangeGroup(jiraChangeGroup, true);
-	}
-
-	/**
-	 * Updates the j i r a change group in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeGroup the j i r a change group
-	 * @param merge whether to merge the j i r a change group with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	 * @return the j i r a change group that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	public JIRAChangeGroup updateJIRAChangeGroup(
-		JIRAChangeGroup jiraChangeGroup, boolean merge)
-		throws SystemException {
-		jiraChangeGroup.setNew(false);
-
-		return jiraChangeGroupPersistence.update(jiraChangeGroup, merge);
+		return jiraChangeGroupPersistence.update(jiraChangeGroup);
 	}
 
 	/**

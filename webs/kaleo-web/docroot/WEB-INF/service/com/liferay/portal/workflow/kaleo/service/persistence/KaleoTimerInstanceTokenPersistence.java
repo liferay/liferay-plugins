@@ -75,8 +75,7 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 			com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

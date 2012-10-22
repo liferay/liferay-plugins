@@ -75,8 +75,7 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance,
-		boolean merge)
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

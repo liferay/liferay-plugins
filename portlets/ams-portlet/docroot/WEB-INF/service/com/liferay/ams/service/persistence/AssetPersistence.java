@@ -72,7 +72,7 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.ams.model.Asset updateImpl(
-		com.liferay.ams.model.Asset asset, boolean merge)
+		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

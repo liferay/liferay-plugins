@@ -92,31 +92,25 @@ public class FeedLocalServiceClpInvoker {
 
 		_methodParameterTypes14 = new String[] { "com.liferay.twitter.model.Feed" };
 
-		_methodName15 = "updateFeed";
+		_methodName31 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.twitter.model.Feed", "boolean"
-			};
+		_methodParameterTypes31 = new String[] {  };
 
-		_methodName32 = "getBeanIdentifier";
+		_methodName32 = "setBeanIdentifier";
 
-		_methodParameterTypes32 = new String[] {  };
+		_methodParameterTypes32 = new String[] { "java.lang.String" };
 
-		_methodName33 = "setBeanIdentifier";
+		_methodName37 = "updateFeed";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "long" };
 
-		_methodName38 = "updateFeed";
+		_methodName38 = "updateFeeds";
 
-		_methodParameterTypes38 = new String[] { "long" };
+		_methodParameterTypes38 = new String[] {  };
 
 		_methodName39 = "updateFeeds";
 
-		_methodParameterTypes39 = new String[] {  };
-
-		_methodName40 = "updateFeeds";
-
-		_methodParameterTypes40 = new String[] { "long" };
+		_methodParameterTypes39 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -202,40 +196,34 @@ public class FeedLocalServiceClpInvoker {
 			return FeedLocalServiceUtil.updateFeed((com.liferay.twitter.model.Feed)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return FeedLocalServiceUtil.updateFeed((com.liferay.twitter.model.Feed)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName31.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+			return FeedLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
-			return FeedLocalServiceUtil.getBeanIdentifier();
+			FeedLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
-			FeedLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+			FeedLocalServiceUtil.updateFeed(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName38.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
-			FeedLocalServiceUtil.updateFeed(((Long)arguments[0]).longValue());
+			FeedLocalServiceUtil.updateFeeds();
 
 			return null;
 		}
 
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
-			FeedLocalServiceUtil.updateFeeds();
-
-			return null;
-		}
-
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			FeedLocalServiceUtil.updateFeeds(((Long)arguments[0]).longValue());
 
 			return null;
@@ -274,16 +262,14 @@ public class FeedLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 	private String _methodName38;
 	private String[] _methodParameterTypes38;
 	private String _methodName39;
 	private String[] _methodParameterTypes39;
-	private String _methodName40;
-	private String[] _methodParameterTypes40;
 }

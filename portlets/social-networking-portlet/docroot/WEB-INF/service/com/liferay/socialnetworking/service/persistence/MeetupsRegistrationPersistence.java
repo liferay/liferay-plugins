@@ -76,8 +76,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	public com.liferay.socialnetworking.model.MeetupsRegistration updateImpl(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration,
-		boolean merge)
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

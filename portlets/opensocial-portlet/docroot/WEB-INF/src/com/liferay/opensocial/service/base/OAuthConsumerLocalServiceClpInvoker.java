@@ -98,68 +98,62 @@ public class OAuthConsumerLocalServiceClpInvoker {
 				"com.liferay.opensocial.model.OAuthConsumer"
 			};
 
-		_methodName15 = "updateOAuthConsumer";
+		_methodName41 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {
-				"com.liferay.opensocial.model.OAuthConsumer", "boolean"
-			};
+		_methodParameterTypes41 = new String[] {  };
 
-		_methodName42 = "getBeanIdentifier";
+		_methodName42 = "setBeanIdentifier";
 
-		_methodParameterTypes42 = new String[] {  };
+		_methodParameterTypes42 = new String[] { "java.lang.String" };
 
-		_methodName43 = "setBeanIdentifier";
+		_methodName47 = "addOAuthConsumer";
 
-		_methodParameterTypes43 = new String[] { "java.lang.String" };
-
-		_methodName48 = "addOAuthConsumer";
-
-		_methodParameterTypes48 = new String[] {
+		_methodParameterTypes47 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String"
 			};
 
+		_methodName48 = "deleteOAuthConsumer";
+
+		_methodParameterTypes48 = new String[] { "long" };
+
 		_methodName49 = "deleteOAuthConsumer";
 
-		_methodParameterTypes49 = new String[] { "long" };
-
-		_methodName50 = "deleteOAuthConsumer";
-
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes49 = new String[] {
 				"com.liferay.opensocial.model.OAuthConsumer"
 			};
 
-		_methodName51 = "deleteOAuthConsumers";
+		_methodName50 = "deleteOAuthConsumers";
 
-		_methodParameterTypes51 = new String[] { "java.lang.String" };
+		_methodParameterTypes50 = new String[] { "java.lang.String" };
 
-		_methodName52 = "fetchOAuthConsumer";
+		_methodName51 = "fetchOAuthConsumer";
+
+		_methodParameterTypes51 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName52 = "getOAuthConsumer";
 
 		_methodParameterTypes52 = new String[] {
 				"java.lang.String", "java.lang.String"
 			};
 
-		_methodName53 = "getOAuthConsumer";
+		_methodName53 = "getOAuthConsumers";
 
-		_methodParameterTypes53 = new String[] {
-				"java.lang.String", "java.lang.String"
-			};
+		_methodParameterTypes53 = new String[] { "java.lang.String" };
 
 		_methodName54 = "getOAuthConsumers";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
+		_methodParameterTypes54 = new String[] { "java.lang.String", "int", "int" };
 
-		_methodName55 = "getOAuthConsumers";
+		_methodName55 = "getOAuthConsumersCount";
 
-		_methodParameterTypes55 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes55 = new String[] { "java.lang.String" };
 
-		_methodName56 = "getOAuthConsumersCount";
+		_methodName56 = "updateOAuthConsumer";
 
-		_methodParameterTypes56 = new String[] { "java.lang.String" };
-
-		_methodName57 = "updateOAuthConsumer";
-
-		_methodParameterTypes57 = new String[] {
+		_methodParameterTypes56 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String"
 			};
@@ -248,80 +242,74 @@ public class OAuthConsumerLocalServiceClpInvoker {
 			return OAuthConsumerLocalServiceUtil.updateOAuthConsumer((com.liferay.opensocial.model.OAuthConsumer)arguments[0]);
 		}
 
-		if (_methodName15.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return OAuthConsumerLocalServiceUtil.updateOAuthConsumer((com.liferay.opensocial.model.OAuthConsumer)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			return OAuthConsumerLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName42.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			return OAuthConsumerLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			OAuthConsumerLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			return OAuthConsumerLocalServiceUtil.addOAuthConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
 				(java.lang.String)arguments[5]);
 		}
 
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			return OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			return OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(((Long)arguments[0]).longValue());
+			return OAuthConsumerLocalServiceUtil.deleteOAuthConsumer((com.liferay.opensocial.model.OAuthConsumer)arguments[0]);
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			return OAuthConsumerLocalServiceUtil.deleteOAuthConsumer((com.liferay.opensocial.model.OAuthConsumer)arguments[0]);
-		}
-
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			OAuthConsumerLocalServiceUtil.deleteOAuthConsumers((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return OAuthConsumerLocalServiceUtil.fetchOAuthConsumer((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1]);
+		}
+
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			return OAuthConsumerLocalServiceUtil.fetchOAuthConsumer((java.lang.String)arguments[0],
+			return OAuthConsumerLocalServiceUtil.getOAuthConsumer((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return OAuthConsumerLocalServiceUtil.getOAuthConsumer((java.lang.String)arguments[0],
-				(java.lang.String)arguments[1]);
+			return OAuthConsumerLocalServiceUtil.getOAuthConsumers((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return OAuthConsumerLocalServiceUtil.getOAuthConsumers((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return OAuthConsumerLocalServiceUtil.getOAuthConsumers((java.lang.String)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return OAuthConsumerLocalServiceUtil.getOAuthConsumersCount((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return OAuthConsumerLocalServiceUtil.updateOAuthConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -361,12 +349,12 @@ public class OAuthConsumerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName15;
-	private String[] _methodParameterTypes15;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
 	private String _methodName42;
 	private String[] _methodParameterTypes42;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
 	private String _methodName49;
@@ -385,6 +373,4 @@ public class OAuthConsumerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes55;
 	private String _methodName56;
 	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
 }

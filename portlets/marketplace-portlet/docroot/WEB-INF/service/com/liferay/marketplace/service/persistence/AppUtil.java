@@ -94,18 +94,18 @@ public class AppUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static App update(App app, boolean merge) throws SystemException {
-		return getPersistence().update(app, merge);
+	public static App update(App app) throws SystemException {
+		return getPersistence().update(app);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static App update(App app, boolean merge,
-		ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(app, merge, serviceContext);
+	public static App update(App app, ServiceContext serviceContext)
+		throws SystemException {
+		return getPersistence().update(app, serviceContext);
 	}
 
 	/**
@@ -152,9 +152,9 @@ public class AppUtil {
 	}
 
 	public static com.liferay.marketplace.model.App updateImpl(
-		com.liferay.marketplace.model.App app, boolean merge)
+		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(app, merge);
+		return getPersistence().updateImpl(app);
 	}
 
 	/**

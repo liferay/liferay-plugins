@@ -95,19 +95,19 @@ public class JIRAChangeItemUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static JIRAChangeItem update(JIRAChangeItem jiraChangeItem,
-		boolean merge) throws SystemException {
-		return getPersistence().update(jiraChangeItem, merge);
+	public static JIRAChangeItem update(JIRAChangeItem jiraChangeItem)
+		throws SystemException {
+		return getPersistence().update(jiraChangeItem);
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static JIRAChangeItem update(JIRAChangeItem jiraChangeItem,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(jiraChangeItem, merge, serviceContext);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(jiraChangeItem, serviceContext);
 	}
 
 	/**
@@ -157,10 +157,9 @@ public class JIRAChangeItemUtil {
 	}
 
 	public static com.liferay.socialcoding.model.JIRAChangeItem updateImpl(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
-		boolean merge)
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(jiraChangeItem, merge);
+		return getPersistence().updateImpl(jiraChangeItem);
 	}
 
 	/**
