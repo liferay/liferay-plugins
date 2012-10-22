@@ -273,8 +273,7 @@ public class FileSystemImporter extends BaseImporter {
 			JSONObject portletJSONObject = columnJSONArray.getJSONObject(i);
 
 			if (portletJSONObject == null) {
-				String articleId = getJournalArticleId(
-					columnJSONArray.getString(i));
+				String articleId = getId(columnJSONArray.getString(i));
 
 				portletJSONObject = getDefaultPortletJSONObject(articleId);
 			}
@@ -322,7 +321,7 @@ public class FileSystemImporter extends BaseImporter {
 			if (rootPortletId.equals(PortletKeys.JOURNAL_CONTENT) &&
 				key.equals("articleId")) {
 
-				value = getJournalArticleId(value);
+				value = getId(value);
 			}
 
 			portletSetup.setValue(key, value);
@@ -381,7 +380,7 @@ public class FileSystemImporter extends BaseImporter {
 			String fileName, InputStream inputStream)
 		throws Exception {
 
-		String journalArticleId = getJournalArticleId(fileName);
+		String journalArticleId = getId(fileName);
 
 		String title = FileUtil.stripExtension(fileName);
 
@@ -413,6 +412,8 @@ public class FileSystemImporter extends BaseImporter {
 			String parentStructureId, String fileName, InputStream inputStream)
 		throws Exception {
 
+		String journalStructureId = getId(fileName);
+
 		String name = FileUtil.stripExtension(fileName);
 
 		Map<Locale, String> nameMap = getNameMap(name);
@@ -423,7 +424,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		JournalStructure journalStructure =
 			JournalStructureLocalServiceUtil.addStructure(
-				userId, groupId, StringPool.BLANK, true, parentStructureId,
+				userId, groupId, journalStructureId, false, parentStructureId,
 				nameMap, null, xsd, serviceContext);
 
 		addJournalTemplates(
@@ -441,6 +442,8 @@ public class FileSystemImporter extends BaseImporter {
 			String journalStructureId, String fileName, InputStream inputStream)
 		throws Exception {
 
+		String journalTemplateId = getId(fileName);
+
 		String name = FileUtil.stripExtension(fileName);
 
 		Map<Locale, String> nameMap = getNameMap(name);
@@ -451,7 +454,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		JournalTemplate journalTemplate =
 			JournalTemplateLocalServiceUtil.addTemplate(
-				userId, groupId, StringPool.BLANK, true, journalStructureId,
+				userId, groupId, journalTemplateId, false, journalStructureId,
 				nameMap, null, xsl, true, JournalTemplateConstants.LANG_TYPE_VM,
 				false, false, StringPool.BLANK, null, serviceContext);
 
@@ -504,7 +507,7 @@ public class FileSystemImporter extends BaseImporter {
 		return new BufferedInputStream(new FileInputStream(file));
 	}
 
-	protected String getJournalArticleId(String fileName) {
+	protected String getId(String fileName) {
 		String journalArticleId = FileUtil.stripExtension(fileName);
 
 		journalArticleId = journalArticleId.toUpperCase();
