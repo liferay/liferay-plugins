@@ -273,9 +273,11 @@ public class FileSystemImporter extends BaseImporter {
 			JSONObject portletJSONObject = columnJSONArray.getJSONObject(i);
 
 			if (portletJSONObject == null) {
-				String articleId = getId(columnJSONArray.getString(i));
+				String journalArticleId = getJournalId(
+					columnJSONArray.getString(i));
 
-				portletJSONObject = getDefaultPortletJSONObject(articleId);
+				portletJSONObject = getDefaultPortletJSONObject(
+					journalArticleId);
 			}
 
 			addLayoutColumnPortlet(layout, columnId, portletJSONObject);
@@ -321,7 +323,7 @@ public class FileSystemImporter extends BaseImporter {
 			if (rootPortletId.equals(PortletKeys.JOURNAL_CONTENT) &&
 				key.equals("articleId")) {
 
-				value = getId(value);
+				value = getJournalId(value);
 			}
 
 			portletSetup.setValue(key, value);
@@ -380,7 +382,7 @@ public class FileSystemImporter extends BaseImporter {
 			String fileName, InputStream inputStream)
 		throws Exception {
 
-		String journalArticleId = getId(fileName);
+		String journalArticleId = getJournalId(fileName);
 
 		String title = FileUtil.stripExtension(fileName);
 
@@ -412,7 +414,7 @@ public class FileSystemImporter extends BaseImporter {
 			String parentStructureId, String fileName, InputStream inputStream)
 		throws Exception {
 
-		String journalStructureId = getId(fileName);
+		String journalStructureId = getJournalId(fileName);
 
 		String name = FileUtil.stripExtension(fileName);
 
@@ -442,7 +444,7 @@ public class FileSystemImporter extends BaseImporter {
 			String journalStructureId, String fileName, InputStream inputStream)
 		throws Exception {
 
-		String journalTemplateId = getId(fileName);
+		String journalTemplateId = getJournalId(fileName);
 
 		String name = FileUtil.stripExtension(fileName);
 
@@ -479,7 +481,7 @@ public class FileSystemImporter extends BaseImporter {
 		setupSitemap("sitemap.json");
 	}
 
-	protected JSONObject getDefaultPortletJSONObject(String articleId) {
+	protected JSONObject getDefaultPortletJSONObject(String journalArticleId) {
 		JSONObject portletJSONObject = JSONFactoryUtil.createJSONObject();
 
 		portletJSONObject.put("portletId", PortletKeys.JOURNAL_CONTENT);
@@ -487,7 +489,7 @@ public class FileSystemImporter extends BaseImporter {
 		JSONObject portletPreferencesJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
-		portletPreferencesJSONObject.put("articleId", articleId);
+		portletPreferencesJSONObject.put("articleId", journalArticleId);
 		portletPreferencesJSONObject.put("groupId", groupId);
 		portletPreferencesJSONObject.put("portletSetupShowBorders", false);
 
@@ -507,13 +509,12 @@ public class FileSystemImporter extends BaseImporter {
 		return new BufferedInputStream(new FileInputStream(file));
 	}
 
-	protected String getId(String fileName) {
-		String journalArticleId = FileUtil.stripExtension(fileName);
+	protected String getJournalId(String fileName) {
+		String id = FileUtil.stripExtension(fileName);
 
-		journalArticleId = journalArticleId.toUpperCase();
+		id = id.toUpperCase();
 
-		return StringUtil.replace(
-			journalArticleId, StringPool.SPACE, StringPool.DASH);
+		return StringUtil.replace(id, StringPool.SPACE, StringPool.DASH);
 	}
 
 	protected String[] getJSONArrayAsStringArray(
