@@ -37,6 +37,19 @@
 		<constructor-arg value="com.liferay.portal.security.pacl.PACLAdvice" />
 		<constructor-arg>
 			<map>
+				<entry key="nextMethodInterceptor" value-ref="accessControlAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="accessControlAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.security.ac.AccessControlAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="accessControlAdvisor">
+					<bean class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+						<constructor-arg value="com.liferay.portal.security.ac.AccessControlAdvisorImpl" />
+					</bean>
+				</entry>
 				<entry key="nextMethodInterceptor" value-ref="serviceMonitorAdvice" />
 			</map>
 		</constructor-arg>
