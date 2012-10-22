@@ -174,9 +174,8 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				newMessage.put("targetClassName", targetClassName);
 				newMessage.put("targetClassPK", importer.getTargetClassPK());
 
-				newMessage.setPayload(servletContextName);
-
 				if (message.getResponseId() != null) {
+					newMessage.setPayload(servletContextName);
 					newMessage.setResponseId(message.getResponseId());
 				}
 
@@ -219,7 +218,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 			if (propertiesString != null) {
 				propertiesString = propertiesString.replace(
-					"%SERVLET_CONTEXT_PATH%", servletContext.getRealPath("/"));
+					"${context.path}", servletContext.getRealPath("/"));
 
 				properties = PropertiesUtil.load(propertiesString);
 			}
