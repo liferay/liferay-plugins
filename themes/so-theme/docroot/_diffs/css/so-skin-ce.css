@@ -1545,6 +1545,21 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
+.ie7 {
+	.portlet-document-library, .portlet-document-library-display {
+		.document-entries-paginator {
+			a {
+				line-height: 0;
+				margin: -5px 2px;
+			}
+
+			.aui-paginator-page-link {
+				line-height: 18px;
+			}
+		}
+	}
+}
+
 /* Events Display Portlet */
 
 .events-display-portlet {
