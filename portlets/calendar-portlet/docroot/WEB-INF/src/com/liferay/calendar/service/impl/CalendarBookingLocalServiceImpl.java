@@ -133,7 +133,7 @@ public class CalendarBookingLocalServiceImpl
 
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
-		calendarBookingPersistence.update(calendarBooking, false);
+		calendarBookingPersistence.update(calendarBooking);
 
 		addChildCalendarBookings(
 			calendarBooking, childCalendarIds, serviceContext);
@@ -241,7 +241,7 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setRecurrence(
 			RecurrenceSerializer.serialize(recurrenceObj));
 
-		calendarBookingPersistence.update(calendarBooking, false);
+		calendarBookingPersistence.update(calendarBooking);
 	}
 
 	public void deleteCalendarBookings(long calendarId)
@@ -438,7 +438,7 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setSecondReminder(secondReminder);
 		calendarBooking.setSecondReminderType(secondReminderType);
 
-		calendarBookingPersistence.update(calendarBooking, false);
+		calendarBookingPersistence.update(calendarBooking);
 
 		addChildCalendarBookings(
 			calendarBooking, childCalendarIds, serviceContext);
@@ -533,7 +533,7 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setStatusByUserName(user.getFullName());
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
-		calendarBookingPersistence.update(calendarBooking, false);
+		calendarBookingPersistence.update(calendarBooking);
 
 		return calendarBooking;
 	}

@@ -64,7 +64,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 		setRecipient(kaleoNotificationRecipient, recipient, serviceContext);
 
 		kaleoNotificationRecipientPersistence.update(
-			kaleoNotificationRecipient, false);
+			kaleoNotificationRecipient);
 
 		return kaleoNotificationRecipient;
 	}

@@ -82,7 +82,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		app.setRemoteAppId(remoteAppId);
 		app.setVersion(version);
 
-		appPersistence.update(app, false);
+		appPersistence.update(app);
 
 		// File
 
@@ -311,7 +311,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		app.setModifiedDate(new Date());
 		app.setVersion(version);
 
-		appPersistence.update(app, false);
+		appPersistence.update(app);
 
 		// File
 

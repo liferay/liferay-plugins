@@ -80,7 +80,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		kbTemplate.setTitle(title);
 		kbTemplate.setContent(content);
 
-		kbTemplatePersistence.update(kbTemplate, false);
+		kbTemplatePersistence.update(kbTemplate);
 
 		// Resources
 
@@ -207,7 +207,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		kbTemplate.setTitle(title);
 		kbTemplate.setContent(content);
 
-		kbTemplatePersistence.update(kbTemplate, false);
+		kbTemplatePersistence.update(kbTemplate);
 
 		// Resources
 

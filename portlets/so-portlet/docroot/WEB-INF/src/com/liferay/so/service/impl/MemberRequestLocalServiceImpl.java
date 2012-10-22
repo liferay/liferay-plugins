@@ -84,7 +84,7 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setInvitedTeamId(invitedTeamId);
 		memberRequest.setStatus(InviteMembersConstants.STATUS_PENDING);
 
-		memberRequestPersistence.update(memberRequest, false);
+		memberRequestPersistence.update(memberRequest);
 
 		// Email
 
@@ -202,7 +202,7 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setModifiedDate(new Date());
 		memberRequest.setStatus(status);
 
-		memberRequestPersistence.update(memberRequest, false);
+		memberRequestPersistence.update(memberRequest);
 
 		if (status == InviteMembersConstants.STATUS_ACCEPTED) {
 			userLocalService.addGroupUsers(
@@ -236,7 +236,7 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setModifiedDate(new Date());
 		memberRequest.setReceiverUserId(receiverUserId);
 
-		memberRequestPersistence.update(memberRequest, false);
+		memberRequestPersistence.update(memberRequest);
 
 		return memberRequest;
 	}

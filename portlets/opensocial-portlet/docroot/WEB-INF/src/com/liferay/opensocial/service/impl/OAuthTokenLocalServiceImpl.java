@@ -56,7 +56,7 @@ public class OAuthTokenLocalServiceImpl extends OAuthTokenLocalServiceBaseImpl {
 		oAuthToken.setSessionHandle(sessionHandle);
 		oAuthToken.setExpiration(expiration);
 
-		oAuthTokenPersistence.update(oAuthToken, false);
+		oAuthTokenPersistence.update(oAuthToken);
 
 		return oAuthToken;
 	}

@@ -66,7 +66,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		wallEntry.setModifiedDate(now);
 		wallEntry.setComments(comments);
 
-		wallEntryPersistence.update(wallEntry, false);
+		wallEntryPersistence.update(wallEntry);
 
 		// Email
 
@@ -173,7 +173,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		wallEntry.setModifiedDate(new Date());
 		wallEntry.setComments(comments);
 
-		wallEntryPersistence.update(wallEntry, false);
+		wallEntryPersistence.update(wallEntry);
 
 		return wallEntry;
 	}

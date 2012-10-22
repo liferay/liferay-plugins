@@ -95,7 +95,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		gadget.setUrl(url);
 		gadget.setPortletCategoryNames(portletCategoryNames);
 
-		gadgetPersistence.update(gadget, false);
+		gadgetPersistence.update(gadget);
 
 		gadgetLocalService.initGadget(
 			gadget.getUuid(), companyId, gadgetId, gadget.getName(),
@@ -243,7 +243,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadget.setPortletCategoryNames(portletCategoryNames);
 
-		gadgetPersistence.update(gadget, false);
+		gadgetPersistence.update(gadget);
 
 		gadgetLocalService.initGadget(
 			gadget.getUuid(), gadget.getCompanyId(), gadgetId, gadget.getName(),

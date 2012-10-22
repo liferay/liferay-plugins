@@ -36,7 +36,7 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 		module.setAppId(appId);
 		module.setContextName(contextName);
 
-		modulePersistence.update(module, false);
+		modulePersistence.update(module);
 
 		return module;
 	}

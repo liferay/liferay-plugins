@@ -55,7 +55,7 @@ public class OAuthConsumerLocalServiceImpl
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(keyType);
 
-		oAuthConsumerPersistence.update(oAuthConsumer, false);
+		oAuthConsumerPersistence.update(oAuthConsumer);
 
 		return oAuthConsumer;
 	}
@@ -141,7 +141,7 @@ public class OAuthConsumerLocalServiceImpl
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(keyType);
 
-		oAuthConsumerPersistence.update(oAuthConsumer, false);
+		oAuthConsumerPersistence.update(oAuthConsumer);
 
 		return oAuthConsumer;
 	}

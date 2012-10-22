@@ -66,7 +66,7 @@ public class AkismetDataLocalServiceImpl
 		akismetData.setUserIP(userIP);
 		akismetData.setUserURL(userURL);
 
-		akismetDataPersistence.update(akismetData, false);
+		akismetDataPersistence.update(akismetData);
 
 		return akismetData;
 	}

@@ -53,7 +53,7 @@ public class FavoriteSiteLocalServiceImpl
 		favoriteSite.setCompanyId(user.getCompanyId());
 		favoriteSite.setUserId(userId);
 
-		favoriteSitePersistence.update(favoriteSite, false);
+		favoriteSitePersistence.update(favoriteSite);
 
 		return favoriteSite;
 	}

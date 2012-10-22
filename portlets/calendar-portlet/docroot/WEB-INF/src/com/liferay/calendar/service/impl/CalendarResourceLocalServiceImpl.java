@@ -118,7 +118,7 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setType(type);
 		calendarResource.setActive(active);
 
-		calendarResourcePersistence.update(calendarResource, false);
+		calendarResourcePersistence.update(calendarResource);
 
 		// Resources
 
@@ -275,7 +275,7 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setType(type);
 		calendarResource.setActive(active);
 
-		calendarResourcePersistence.update(calendarResource, false);
+		calendarResourcePersistence.update(calendarResource);
 
 		// Resources
 

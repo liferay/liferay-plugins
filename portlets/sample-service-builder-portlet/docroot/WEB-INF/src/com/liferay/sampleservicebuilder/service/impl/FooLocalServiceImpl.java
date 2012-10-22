@@ -62,7 +62,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		foo.setField5(field5);
 		foo.setExpandoBridgeAttributes(serviceContext);
 
-		fooPersistence.update(foo, false);
+		fooPersistence.update(foo);
 
 		// Asset
 
@@ -143,7 +143,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		foo.setField5(field5);
 		foo.setExpandoBridgeAttributes(serviceContext);
 
-		fooPersistence.update(foo, false);
+		fooPersistence.update(foo);
 
 		updateAsset(
 			user.getUserId(), foo, serviceContext.getAssetCategoryIds(),

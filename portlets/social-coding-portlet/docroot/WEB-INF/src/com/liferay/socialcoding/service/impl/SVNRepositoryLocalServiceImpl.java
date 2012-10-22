@@ -63,7 +63,7 @@ public class SVNRepositoryLocalServiceImpl
 
 			svnRepository.setUrl(url);
 
-			svnRepositoryPersistence.update(svnRepository, false);
+			svnRepositoryPersistence.update(svnRepository);
 		}
 
 		org.tmatesoft.svn.core.io.SVNRepository repository = null;
@@ -107,7 +107,7 @@ public class SVNRepositoryLocalServiceImpl
 
 				svnRepository.setRevisionNumber(lastSvnLogEntry.getRevision());
 
-				svnRepositoryPersistence.update(svnRepository, false);
+				svnRepositoryPersistence.update(svnRepository);
 			}
 		}
 		catch (SVNException svne) {

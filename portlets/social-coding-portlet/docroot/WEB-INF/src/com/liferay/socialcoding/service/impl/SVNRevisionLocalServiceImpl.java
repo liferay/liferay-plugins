@@ -52,7 +52,7 @@ public class SVNRevisionLocalServiceImpl
 		svnRevision.setRevisionNumber(revisionNumber);
 		svnRevision.setComments(comments);
 
-		svnRevisionPersistence.update(svnRevision, false);
+		svnRevisionPersistence.update(svnRevision);
 
 		// Social
 

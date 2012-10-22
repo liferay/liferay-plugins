@@ -74,7 +74,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
-		calendarPersistence.update(calendar, false);
+		calendarPersistence.update(calendar);
 
 		// Resources
 
@@ -192,7 +192,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendar.setDefaultCalendar(defaultCalendar);
 
-		calendarPersistence.update(calendar, false);
+		calendarPersistence.update(calendar);
 
 		updateDefaultCalendar(calendar);
 	}
@@ -219,7 +219,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
-		calendarPersistence.update(calendar, false);
+		calendarPersistence.update(calendar);
 
 		// Resources
 

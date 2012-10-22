@@ -147,7 +147,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		userThread.setRead(read);
 		userThread.setDeleted(deleted);
 
-		userThreadPersistence.update(userThread, false);
+		userThreadPersistence.update(userThread);
 	}
 
 	public void deleteUser(long userId)
@@ -171,7 +171,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		userThread.setDeleted(true);
 
-		userThreadPersistence.update(userThread, false);
+		userThreadPersistence.update(userThread);
 	}
 
 	public List<UserThread> getMBThreadUserThreads(long mbThreadId)
@@ -227,7 +227,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		userThread.setRead(true);
 
-		userThreadPersistence.update(userThread, false);
+		userThreadPersistence.update(userThread);
 	}
 
 	public void markUserThreadAsUnread(long userId, long mbThreadId)
@@ -238,7 +238,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		userThread.setRead(false);
 
-		userThreadPersistence.update(userThread, false);
+		userThreadPersistence.update(userThread);
 	}
 
 	public void updateUserName(User user) throws SystemException {
@@ -251,7 +251,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			if (!userName.equals(userThread.getUserName())) {
 				userThread.setUserName(userName);
 
-				userThreadPersistence.update(userThread, false);
+				userThreadPersistence.update(userThread);
 			}
 		}
 	}
@@ -319,7 +319,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 					userThread.setDeleted(false);
 				}
 
-				userThreadPersistence.update(userThread, false);
+				userThreadPersistence.update(userThread);
 			}
 		}
 

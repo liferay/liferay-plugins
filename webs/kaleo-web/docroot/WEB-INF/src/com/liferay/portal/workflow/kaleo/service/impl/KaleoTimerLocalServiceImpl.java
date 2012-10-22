@@ -75,7 +75,7 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 				recurrenceDelayDuration.getDurationScale().getValue());
 		}
 
-		kaleoTimerPersistence.update(kaleoTimer, false);
+		kaleoTimerPersistence.update(kaleoTimer);
 
 		// Kaleo actions
 

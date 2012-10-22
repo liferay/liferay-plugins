@@ -80,7 +80,7 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setUrl(url);
 		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies));
 
-		wsrpConsumerPersistence.update(wsrpConsumer, false);
+		wsrpConsumerPersistence.update(wsrpConsumer);
 
 		return wsrpConsumer;
 	}
@@ -166,7 +166,7 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setRegistrationContext(registrationContext);
 		wsrpConsumer.setRegistrationProperties(registrationProperties);
 
-		wsrpConsumerPersistence.update(wsrpConsumer, false);
+		wsrpConsumerPersistence.update(wsrpConsumer);
 
 		return wsrpConsumer;
 	}
@@ -266,7 +266,7 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setUrl(url);
 		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies));
 
-		wsrpConsumerPersistence.update(wsrpConsumer, false);
+		wsrpConsumerPersistence.update(wsrpConsumer);
 
 		return wsrpConsumer;
 	}

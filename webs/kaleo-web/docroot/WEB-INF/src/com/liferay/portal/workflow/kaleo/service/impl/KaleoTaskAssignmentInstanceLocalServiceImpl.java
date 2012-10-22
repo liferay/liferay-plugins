@@ -91,7 +91,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		kaleoTaskAssignmentInstance.setCompleted(false);
 
 		kaleoTaskAssignmentInstancePersistence.update(
-			kaleoTaskAssignmentInstance, false);
+			kaleoTaskAssignmentInstance);
 
 		return kaleoTaskAssignmentInstance;
 	}
@@ -163,7 +163,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		kaleoTaskAssignmentInstance.setCompletionDate(new Date());
 
 		kaleoTaskAssignmentInstancePersistence.update(
-			kaleoTaskAssignmentInstance, false);
+			kaleoTaskAssignmentInstance);
 
 		return kaleoTaskAssignmentInstance;
 	}

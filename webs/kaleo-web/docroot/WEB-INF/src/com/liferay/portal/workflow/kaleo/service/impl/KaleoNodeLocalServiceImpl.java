@@ -75,7 +75,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		kaleoNode.setInitial(initial);
 		kaleoNode.setTerminal(terminal);
 
-		kaleoNodePersistence.update(kaleoNode, false);
+		kaleoNodePersistence.update(kaleoNode);
 
 		// Kaleo actions
 

@@ -62,7 +62,7 @@ public class KaleoActionLocalServiceImpl
 			action.getScriptRequiredContexts());
 		kaleoAction.setPriority(action.getPriority());
 
-		kaleoActionPersistence.update(kaleoAction, false);
+		kaleoActionPersistence.update(kaleoAction);
 
 		return kaleoAction;
 	}

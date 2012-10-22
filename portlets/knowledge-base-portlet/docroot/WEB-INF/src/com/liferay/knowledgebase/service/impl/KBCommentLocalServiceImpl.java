@@ -72,7 +72,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setContent(content);
 		kbComment.setHelpful(helpful);
 
-		kbCommentPersistence.update(kbComment, false);
+		kbCommentPersistence.update(kbComment);
 
 		// Social
 
@@ -172,7 +172,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		kbComment.setContent(content);
 		kbComment.setHelpful(helpful);
 
-		kbCommentPersistence.update(kbComment, false);
+		kbCommentPersistence.update(kbComment);
 
 		// Social
 

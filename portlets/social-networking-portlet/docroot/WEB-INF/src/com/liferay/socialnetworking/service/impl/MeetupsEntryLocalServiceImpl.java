@@ -77,7 +77,7 @@ public class MeetupsEntryLocalServiceImpl
 			meetupsEntry.setThumbnailId(counterLocalService.increment());
 		}
 
-		meetupsEntryPersistence.update(meetupsEntry, false);
+		meetupsEntryPersistence.update(meetupsEntry);
 
 		if ((thumbnail != null) && (thumbnail.length > 0)) {
 			ImageLocalServiceUtil.updateImage(
@@ -153,7 +153,7 @@ public class MeetupsEntryLocalServiceImpl
 			meetupsEntry.setThumbnailId(counterLocalService.increment());
 		}
 
-		meetupsEntryPersistence.update(meetupsEntry, false);
+		meetupsEntryPersistence.update(meetupsEntry);
 
 		if ((thumbnail != null) && (thumbnail.length > 0)) {
 			ImageLocalServiceUtil.updateImage(

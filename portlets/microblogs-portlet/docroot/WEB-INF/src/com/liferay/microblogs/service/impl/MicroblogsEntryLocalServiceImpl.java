@@ -80,7 +80,7 @@ public class MicroblogsEntryLocalServiceImpl
 		microblogsEntry.setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
 		microblogsEntry.setSocialRelationType(socialRelationType);
 
-		microblogsEntryPersistence.update(microblogsEntry, false);
+		microblogsEntryPersistence.update(microblogsEntry);
 
 		// Resources
 
@@ -273,7 +273,7 @@ public class MicroblogsEntryLocalServiceImpl
 		microblogsEntry.setContent(content);
 		microblogsEntry.setSocialRelationType(socialRelationType);
 
-		microblogsEntryPersistence.update(microblogsEntry, false);
+		microblogsEntryPersistence.update(microblogsEntry);
 
 		// Asset
 

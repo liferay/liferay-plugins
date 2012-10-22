@@ -69,7 +69,7 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducer.setVersion(version);
 		wsrpProducer.setPortletIds(portletIds);
 
-		wsrpProducerPersistence.update(wsrpProducer, false);
+		wsrpProducerPersistence.update(wsrpProducer);
 
 		return wsrpProducer;
 	}
@@ -154,7 +154,7 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducer.setVersion(version);
 		wsrpProducer.setPortletIds(portletIds);
 
-		wsrpProducerPersistence.update(wsrpProducer, false);
+		wsrpProducerPersistence.update(wsrpProducer);
 
 		// Group
 

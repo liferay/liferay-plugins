@@ -154,7 +154,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			importedGadget.setPortletCategoryNames(
 				gadget.getPortletCategoryNames());
 
-			GadgetLocalServiceUtil.updateGadget(importedGadget, false);
+			GadgetLocalServiceUtil.updateGadget(importedGadget);
 		}
 		catch (NoSuchGadgetException nsge) {
 			ServiceContext serviceContext =

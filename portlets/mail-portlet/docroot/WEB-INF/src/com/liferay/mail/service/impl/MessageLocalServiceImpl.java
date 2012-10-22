@@ -77,7 +77,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
 
-		messagePersistence.update(message, false);
+		messagePersistence.update(message);
 
 		// Indexer
 
@@ -270,7 +270,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setFlags(flags);
 		message.setSize(getSize(messageId, body));
 
-		messagePersistence.update(message, false);
+		messagePersistence.update(message);
 
 		return message;
 	}
@@ -291,7 +291,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			message.setFlags(StringUtil.remove(flags, flagString));
 		}
 
-		return messagePersistence.update(message, false);
+		return messagePersistence.update(message);
 	}
 
 	public Message updateMessage(
@@ -318,7 +318,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
 
-		messagePersistence.update(message, false);
+		messagePersistence.update(message);
 
 		// Indexer
 

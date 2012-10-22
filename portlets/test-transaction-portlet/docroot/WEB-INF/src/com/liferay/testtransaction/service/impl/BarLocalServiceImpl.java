@@ -120,7 +120,7 @@ public class BarLocalServiceImpl extends BarLocalServiceBaseImpl {
 
 		bar.setText(text);
 
-		barPersistence.update(bar, false);
+		barPersistence.update(bar);
 
 		return bar;
 	}

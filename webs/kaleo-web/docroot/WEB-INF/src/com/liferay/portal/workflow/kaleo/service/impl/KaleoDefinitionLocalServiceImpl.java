@@ -49,7 +49,7 @@ public class KaleoDefinitionLocalServiceImpl
 			previousKaleoDefinition.setModifiedDate(new Date());
 			previousKaleoDefinition.setActive(false);
 
-			kaleoDefinitionPersistence.update(previousKaleoDefinition, false);
+			kaleoDefinitionPersistence.update(previousKaleoDefinition);
 		}
 		catch (NoSuchDefinitionException nsde) {
 		}
@@ -58,7 +58,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setModifiedDate(new Date());
 		kaleoDefinition.setActive(true);
 
-		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+		kaleoDefinitionPersistence.update(kaleoDefinition);
 	}
 
 	public void activateKaleoDefinition(
@@ -71,7 +71,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setModifiedDate(new Date());
 		kaleoDefinition.setActive(true);
 
-		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+		kaleoDefinitionPersistence.update(kaleoDefinition);
 	}
 
 	public void activateKaleoDefinition(
@@ -85,7 +85,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setModifiedDate(new Date());
 		kaleoDefinition.setActive(true);
 
-		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+		kaleoDefinitionPersistence.update(kaleoDefinition);
 	}
 
 	public KaleoDefinition addKaleoDefinition(
@@ -114,7 +114,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setVersion(version);
 		kaleoDefinition.setActive(false);
 
-		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+		kaleoDefinitionPersistence.update(kaleoDefinition);
 
 		return kaleoDefinition;
 	}
@@ -130,7 +130,7 @@ public class KaleoDefinitionLocalServiceImpl
 		kaleoDefinition.setModifiedDate(new Date());
 		kaleoDefinition.setActive(false);
 
-		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+		kaleoDefinitionPersistence.update(kaleoDefinition);
 	}
 
 	public void deleteCompanyKaleoDefinitions(long companyId)
@@ -326,7 +326,7 @@ public class KaleoDefinitionLocalServiceImpl
 
 		kaleoDefinition.setTitle(title);
 
-		kaleoDefinitionPersistence.update(kaleoDefinition, false);
+		kaleoDefinitionPersistence.update(kaleoDefinition);
 
 		return kaleoDefinition;
 	}
