@@ -30,7 +30,7 @@ import java.util.Map;
 import org.jabsorb.JSONSerializer;
 
 /**
- * @author Janghyun Kim
+ * @author Jang Kim
  */
 public class UpgradeWorkflowContext extends UpgradeProcess {
 

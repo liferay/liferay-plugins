@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_1_0.UpgradeWorkflowContext;
 
 /**
- * @author Janghyun Kim
+ * @author Jang Kim
  */
 public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 
