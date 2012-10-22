@@ -286,7 +286,7 @@ if (comment) {
 			);
 
 			contentTextarea.on(
-				'input',
+				['keydown', 'input'],
 				function(contentTextarea) {
 					updateHighlightDivSize(contentTextarea);
 
