@@ -66,7 +66,7 @@ portletURL.setParameter("tabs1", tabs1);
 						<strong><%= i + 1 %>.</strong>
 					</td>
 					<td valign="top">
-						<a id="q<%= i + 1%>">
+						<a id="q<%= i + 1 %>">
 
 						<a href="#a<%= i + 1 %>"><u><%= WCUtil.translate(entry.getQuestion()) %></u></a>
 
@@ -94,7 +94,7 @@ portletURL.setParameter("tabs1", tabs1);
 						<strong><%= i + 1 %>.</strong>
 					</td>
 					<td valign="top">
-						<a id="a<%= i + 1%>">
+						<a id="a<%= i + 1 %>">
 
 						<strong><%= WCUtil.translate(entry.getQuestion()) %></strong>&nbsp;&nbsp;<a href="#q<%= i + 1 %>">&laquo;</a>
 
@@ -181,7 +181,7 @@ portletURL.setParameter("tabs1", tabs1);
 						<strong><%= i + 1 %>.</strong>
 					</td>
 					<td valign="top">
-						<a id="q<%= i + 1%>">
+						<a id="q<%= i + 1 %>">
 
 						<a href="#a<%= i + 1 %>"><u><%= WCUtil.translate(entry.getQuestion()) %></u></a>
 
@@ -209,7 +209,7 @@ portletURL.setParameter("tabs1", tabs1);
 						<strong><%= i + 1 %>.</strong>
 					</td>
 					<td valign="top">
-						<a id="a<%= i + 1%>">
+						<a id="a<%= i + 1 %>">
 
 						<strong><%= WCUtil.translate(entry.getQuestion()) %></strong>&nbsp;&nbsp;<a href="#q<%= i + 1 %>">&laquo;</a>
 

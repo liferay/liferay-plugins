@@ -120,8 +120,8 @@ public class MySubscriptionsUtil {
 		}
 
 		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.
-				getAssetRendererFactoryByClassName(className);
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				className);
 
 		return assetRendererFactory.getAssetRenderer(classPK);
 	}

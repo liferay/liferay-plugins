@@ -30,24 +30,6 @@ import org.apache.axis.message.MessageElement;
  */
 public class ExtensionHelperUtil {
 
-	public static void initialize() {
-		try {
-			if (Validator.isNotNull(PortletPropsValues.EXTENSION_HELPER_IMPL)) {
-				_extensionHelper = (ExtensionHelper)InstanceFactory.newInstance(
-					PortletPropsValues.EXTENSION_HELPER_IMPL);
-			}
-		}
-		catch (Exception e) {
-			if (_log.isInfoEnabled()) {
-				_log.info("Unable to initialize ExtensionHelper", e);
-			}
-		}
-
-		if (_extensionHelper == null) {
-			_extensionHelper = new AttributeExtensionHelper();
-		}
-	}
-
 	public static void addMessageElement(
 		List<MessageElement> messageElements, String name, String value) {
 
@@ -70,6 +52,24 @@ public class ExtensionHelperUtil {
 
 	public static String getNameAttribute(MessageElement messageElement) {
 		return _extensionHelper.getNameAttribute(messageElement);
+	}
+
+	public static void initialize() {
+		try {
+			if (Validator.isNotNull(PortletPropsValues.EXTENSION_HELPER_IMPL)) {
+				_extensionHelper = (ExtensionHelper)InstanceFactory.newInstance(
+					PortletPropsValues.EXTENSION_HELPER_IMPL);
+			}
+		}
+		catch (Exception e) {
+			if (_log.isInfoEnabled()) {
+				_log.info("Unable to initialize ExtensionHelper", e);
+			}
+		}
+
+		if (_extensionHelper == null) {
+			_extensionHelper = new AttributeExtensionHelper();
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ExtensionHelperUtil.class);
