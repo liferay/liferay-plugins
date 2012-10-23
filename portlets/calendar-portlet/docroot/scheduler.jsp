@@ -89,17 +89,25 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			activeView: window.<portlet:namespace /><%= activeView %>View,
 			boundingBox: '#<portlet:namespace />scheduler',
 			date: new Date(<%= date %>),
-			eventClass: Liferay.SchedulerEvent,
 			eventRecorder: eventRecorder,
-			events: A.Object.values(Liferay.CalendarUtil.availableCalendars),
 			filterCalendarBookings: <%= filterCalendarBookings %>,
 			firstDayOfWeek: <%= weekStartsOn %>,
+			items: A.Object.values(Liferay.CalendarUtil.availableCalendars),
 			portletNamespace: '<portlet:namespace />',
 			render: true,
+			strings: {
+				agenda: '<liferay-ui:message key="agenda" />',
+				day: '<liferay-ui:message key="day" />',
+				month: '<liferay-ui:message key="month" />',
+				today: '<liferay-ui:message key="today" />',
+				week: '<liferay-ui:message key="week" />',
+				year: '<liferay-ui:message key="year" />'
+			},
 			views: [
 				window.<portlet:namespace />dayView,
 				window.<portlet:namespace />weekView,
-				window.<portlet:namespace />monthView
+				window.<portlet:namespace />monthView,
+				window.<portlet:namespace />agendaView
 			]
 		}
 	);
