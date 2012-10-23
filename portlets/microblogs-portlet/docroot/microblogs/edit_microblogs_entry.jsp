@@ -288,7 +288,7 @@ if (comment) {
 			var contextCountEvent = 'input';
 
 			if (A.UA.ie >= 9) {
-				contextCountEvent = ['keydown', 'input'];
+				contextCountEvent = ['input', 'keydown'];
 			}
 
 			contentTextarea.on(
