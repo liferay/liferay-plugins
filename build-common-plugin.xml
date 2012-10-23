@@ -551,13 +551,13 @@
 					<then>
 						<ant dir="${project.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
 
-						<for param="import-shared-file-name">
+						<for param="import.shared.full.path">
 							<path>
 								<fileset dir="${project.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
 							</path>
 							<sequential>
 								<copy
-									file="@{import-shared-file-name}"
+									file="@{import.shared.full.path}"
 									tofile="docroot/WEB-INF/lib/@{import.shared.current}.jar"
 								/>
 							</sequential>
