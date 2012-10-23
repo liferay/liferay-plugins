@@ -146,7 +146,13 @@
 					if (simpleMenu) {
 						var calendarList = simpleMenu.get('host');
 
-						calendarList.activeItem.set('color', event.newVal);
+						calendarList.activeItem.set(
+							'color',
+							event.newVal,
+							{
+								silent: true
+							}
+						);
 
 						simpleMenu.set('visible', false);
 					}

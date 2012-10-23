@@ -77,7 +77,7 @@
 				</tr>
 			</tpl>
 
-			<tr class="aui-helper-hidden" id="<portlet:namespace />eventRecorderUsers">
+			<tr <tpl if="!values.editing">class="aui-helper-hidden"</tpl> id="<portlet:namespace />eventRecorderUsers">
 				<td>
 					<liferay-ui:message key="users" />:
 				</td>

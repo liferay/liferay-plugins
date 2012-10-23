@@ -11,10 +11,6 @@
 
 	var STR_SPACE = ' ';
 
-	var toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	};
-
 	AUI.add(
 		'liferay-calendar-simple-menu',
 		function(A) {
@@ -250,6 +246,9 @@
 							setter: '_setCalendars',
 							validator: isArray,
 							value: []
+						},
+
+						scheduler: {
 						},
 
 						simpleMenu: {
@@ -527,6 +526,8 @@
 						_setCalendars: function(val) {
 							var instance = this;
 
+							var scheduler = instance.get('scheduler');
+
 							AArray.each(
 								val,
 								function(item, index, collection) {
@@ -535,6 +536,7 @@
 									}
 
 									val[index].addTarget(instance);
+									val[index].set('scheduler', scheduler);
 								}
 							);
 
@@ -826,6 +828,10 @@
 	AUI.add(
 		'liferay-calendar-date-picker-util',
 		function(A) {
+			var Lang = A.Lang;
+
+			var toInt = Lang.toInt;
+
 			Liferay.DatePickerUtil = {
 				linkToSchedulerEvent: function(datePickerContainer, schedulerEvent, dateAttr) {
 					var instance = this;
@@ -842,7 +848,7 @@
 
 							var setters = [date.setMonth, date.setDate, date.setFullYear, date.setHours, date.setMinutes, date.setHours];
 
-							var value = toNumber(currentTarget.val());
+							var value = toInt(currentTarget.val());
 
 							if ((selectedSetter === 3) && (date.getHours() > 12)) {
 								value += 12;
