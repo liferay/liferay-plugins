@@ -153,16 +153,13 @@ to = sb.toString() + to;
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM(),
-						upload: true
+						id: form.getDOM()
 					},
-					on: {
-						complete: function(event, id, xhr) {
-							var responseText = xhr.responseText;
+					after: {
+						success: function(event, id, obj) {
+							var responseData = this.get('responseData');
 
-							var data = A.JSON.parse(responseText);
-
-							if (data.success) {
+							if (responseData.success) {
 								submitForm(document.<portlet:namespace />fm);
 							}
 							else {
