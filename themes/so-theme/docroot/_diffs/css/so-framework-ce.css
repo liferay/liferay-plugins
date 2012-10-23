@@ -90,7 +90,7 @@ a:focus .opens-new-window-accessible {
 	position: absolute;
 	top: 0;
 	width: 200px;
-	z-index: 1;
+	z-index: 3;
 
 	.user-profile-detail .profile-image {
 		line-height: 0;

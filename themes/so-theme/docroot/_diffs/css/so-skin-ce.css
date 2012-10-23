@@ -158,6 +158,25 @@ a:hover {
 	}
 }
 
+.ie7 #content {
+	td {
+		&.portlet-column {
+			border-left: 1px solid $gray-dark;
+
+		}
+
+		&.portlet-column-only {
+			&, .portlet-column-content {
+				border-width: 0 0 0 1px;
+			}
+
+			.portlet-boundary {
+				border-width: 0;
+			}
+		}
+	}
+}
+
 /* ---------- Navigation ---------- */
 
 #navigation {
@@ -983,6 +1002,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 		.aui-search-bar {
 			float: right;
+			zoom: 1;
 		}
 	}
 
@@ -1516,6 +1536,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 			}
 		}
 	}
+}
+
+.ie7 .context-pane .context-pane-content {
+	border-left: 1px solid $gray-dark;
 }
 
 .portlet-document-library, .portlet-document-library-display {
