@@ -47,6 +47,18 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 String userPrefsKey = ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace(), themeDisplay);
 
 JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), userPrefsKey, themeDisplay.getPlid());
+
+String language = locale.getLanguage();
+
+if (language.equals(Locale.CHINESE.getLanguage())) {
+	StringBundler sb = new StringBundler(3);
+
+	sb.append(language);
+	sb.append(StringPool.DASH);
+	sb.append(locale.getCountry());
+
+	language = sb.toString();
+}
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -56,10 +68,10 @@ JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDispla
 		{
 			appId: '<%= gadget.getUrl() %>',
 			checksum: '<%= gadgetSpec.getChecksum() %>',
-			country: '<%= themeDisplay.getLocale().getCountry() %>',
+			country: '<%= locale.getCountry() %>',
 			debug: <%= PortletPropsValues.SHINDIG_JS_DEBUG %>,
 			height: <%= modulePrefs.getHeight() %>,
-			language: '<%= themeDisplay.getLocale().getLanguage() %>',
+			language: '<%= language %>',
 			moduleId: '<%= moduleId %>',
 			nocache: <%= PortletPropsValues.SHINDIG_NO_CACHE %>,
 			portletId: '<%= portletDisplay.getId() %>',
