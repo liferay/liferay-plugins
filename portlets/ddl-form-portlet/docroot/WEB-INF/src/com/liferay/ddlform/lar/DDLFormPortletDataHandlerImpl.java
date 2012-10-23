@@ -131,8 +131,7 @@ public class DDLFormPortletDataHandlerImpl extends BasePortletDataHandler {
 			portletPreferences.getValue("formDDMTemplateId", null));
 
 		long formDDMTemplateId = MapUtil.getLong(
-			templateIds, importedFormDDMTemplateId,
-			importedFormDDMTemplateId);
+			templateIds, importedFormDDMTemplateId, importedFormDDMTemplateId);
 
 		portletPreferences.setValue(
 			"formDDMTemplateId", String.valueOf(formDDMTemplateId));
