@@ -58,9 +58,9 @@ try {
 									<%
 									DDMStructure ddmStructure = recordSet.getDDMStructure();
 
-									if (detailDDMTemplateId > 0) {
+									if (formDDMTemplateId > 0) {
 										try {
-											ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(detailDDMTemplateId);
+											ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(formDDMTemplateId);
 
 											ddmStructure.setXsd(ddmTemplate.getScript());
 										}

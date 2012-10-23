@@ -81,7 +81,7 @@ if (Validator.isNotNull(portletResource)) {
 
 long recordSetId = GetterUtil.getLong(preferences.getValue("recordSetId", null));
 
-long detailDDMTemplateId = GetterUtil.getLong(preferences.getValue("detailDDMTemplateId", null));
+long formDDMTemplateId = GetterUtil.getLong(preferences.getValue("formDDMTemplateId", null));
 
 boolean multipleSubmissions = GetterUtil.getBoolean(preferences.getValue("multipleSubmissions", null));
 

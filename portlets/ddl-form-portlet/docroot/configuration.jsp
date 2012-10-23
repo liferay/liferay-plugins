@@ -52,19 +52,19 @@ catch (NoSuchRecordSetException nsrse) {
 
 	<c:if test="<%= recordSet != null %>">
 		<aui:fieldset label="templates">
-			<aui:select helpMessage="select-the-detail-template-used-to-add-records-to-the-list" label="detail-template" name="detailTemplateId" onChange='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "detailDDMTemplateId.value = this.value;" %>'>
+			<aui:select helpMessage="select-the-form-template-used-to-add-records-to-the-list" label="form-template" name="formTemplateId" onChange='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "formDDMTemplateId.value = this.value;" %>'>
 				<aui:option label="default" value="<%= 0 %>" />
 
 				<%
 				long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
 				long classPK = recordSet.getDDMStructureId();
 
-				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(classNameId, classPK, DDMTemplateConstants.TEMPLATE_TYPE_DETAIL, DDMTemplateConstants.TEMPLATE_MODE_CREATE);
+				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(classNameId, classPK, DDMTemplateConstants.TEMPLATE_TYPE_FORM, DDMTemplateConstants.TEMPLATE_MODE_CREATE);
 
 				for (DDMTemplate ddmTemplate : ddmTemplates) {
 					boolean selected = false;
 
-					if (detailDDMTemplateId == ddmTemplate.getTemplateId()) {
+					if (formDDMTemplateId == ddmTemplate.getTemplateId()) {
 						selected = true;
 					}
 				%>
@@ -174,7 +174,7 @@ catch (NoSuchRecordSetException nsrse) {
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value='<%= portletURL.toString() + StringPool.AMPERSAND + renderResponse.getNamespace() + "cur" + cur %>' />
 	<aui:input name="preferences--recordSetId--" type="hidden" value="<%= recordSetId %>" />
-	<aui:input name="preferences--detailDDMTemplateId--" type="hidden" value="<%= detailDDMTemplateId %>" />
+	<aui:input name="preferences--formDDMTemplateId--" type="hidden" value="<%= formDDMTemplateId %>" />
 	<aui:input name="preferences--multipleSubmissions--" type="hidden" value="<%= multipleSubmissions %>" />
 
 	<aui:fieldset cssClass="aui-helper-hidden">
@@ -196,7 +196,7 @@ catch (NoSuchRecordSetException nsrse) {
 			var A = AUI();
 
 			document.<portlet:namespace />fm.<portlet:namespace />recordSetId.value = recordSetId;
-			document.<portlet:namespace />fm.<portlet:namespace />detailDDMTemplateId.value = "";
+			document.<portlet:namespace />fm.<portlet:namespace />formDDMTemplateId.value = "";
 
 			A.one('.displaying-record-set-id-holder').show();
 			A.one('.displaying-help-message-holder').hide();
