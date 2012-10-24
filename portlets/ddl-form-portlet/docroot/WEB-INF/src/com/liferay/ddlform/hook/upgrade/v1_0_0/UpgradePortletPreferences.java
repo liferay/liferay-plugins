@@ -27,6 +27,10 @@ import javax.portlet.PortletPreferences;
  */
 public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 
+	public UpgradePortletPreferences() {
+		_preferencesMap.put("detailDDMTemplateId", "formDDMTemplateId");
+	}
+
 	@Override
 	protected String[] getPortletIds() {
 		return new String[] {"1_WAR_ddlformportlet_INSTANCE_%"};
@@ -44,25 +48,21 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 
 		Map<String, String[]> preferencesMap = preferences.getMap();
 
-		for (String oldPreferenceName : _oldPreferenceNamesMap.keySet()) {
-			String[] values = preferencesMap.get(oldPreferenceName);
+		for (String name : _preferencesMap.keySet()) {
+			String[] values = preferencesMap.get(name);
 
-			if (values != null) {
-				preferences.reset(oldPreferenceName);
-
-				preferences.setValues(
-					_oldPreferenceNamesMap.get(oldPreferenceName), values);
+			if (values == null) {
+				continue;
 			}
+
+			preferences.reset(name);
+
+			preferences.setValues(_preferencesMap.get(name), values);
 		}
 
 		return PortletPreferencesFactoryUtil.toXML(preferences);
 	}
 
-	private static Map<String, String> _oldPreferenceNamesMap =
-		new HashMap<String, String>();
-
-	static {
-		_oldPreferenceNamesMap.put("detailDDMTemplateId", "formDDMTemplateId");
-	}
+	private Map<String, String> _preferencesMap = new HashMap<String, String>();
 
 }
