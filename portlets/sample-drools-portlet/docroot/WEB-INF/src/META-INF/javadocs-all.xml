@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>ConfigurationActionImpl</name>
+		<type>com.liferay.sampledrools.action.ConfigurationActionImpl</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>processAction</name>
+			<param>
+				<name>portletConfig</name>
+				<type>javax.portlet.PortletConfig</type>
+			</param>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>updatePreferences</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+			</param>
+			<param>
+				<name>preferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+</javadocs>
