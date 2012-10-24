@@ -28,30 +28,23 @@ if (!themeDisplay.isSignedIn()) {
 
 ServletContext servletContext = getServletContext();
 
-String[] importers = {"file system", "lar", "resource"};
+String[] importers = {"custom", "lar", "resource"};
 
 for (String importer : importers) {
-	FinderCacheUtil.clearCache();
-
-	String resourcesPath = servletContext.getRealPath("/WEB-INF/classes/resources-importer");
-
-	FileUtil.deltree(resourcesPath);
-
-	long companyId = CompanyThreadLocal.getCompanyId();
-
-	Group group = GroupLocalServiceUtil.fetchGroup(companyId, "Test Resources Importer Portlet");
+	Group group = GroupLocalServiceUtil.fetchGroup(themeDisplay.getCompanyId(), "Test Resources Importer Portlet");
 
 	if (group != null) {
 		GroupLocalServiceUtil.deleteGroup(group);
 	}
 
-	String importerPath = servletContext.getRealPath("WEB-INF/classes/test/" + importer);
+	String resourcesPath = servletContext.getRealPath("/WEB-INF/classes/resources-importer");
 
-	File resourcesDir = new File(resourcesPath);
+	FileUtil.deltree(resourcesPath);
+	FileUtil.mkdirs(resourcesPath);
 
-	resourcesDir.mkdir();
+	if (importer.equals("lar") || importer.equals("resource")) {
+		String importerPath = servletContext.getRealPath("WEB-INF/classes/test/" + importer);
 
-	if (!importer.equals("file system")) {
 		FileUtil.copyDirectory(importerPath, resourcesPath);
 	}
 
@@ -62,56 +55,101 @@ for (String importer : importers) {
 
 	message.setResponseDestinationName("liferay/resources_importer");
 
-	Object object = MessageBusUtil.sendSynchronousMessage(DestinationNames.HOT_DEPLOY, message);
+	Map<String, Object> responseMap = (Map<String, Object>)MessageBusUtil.sendSynchronousMessage(DestinationNames.HOT_DEPLOY, message);
 
-	long groupId = GetterUtil.getLong(object);
+	long groupId = GetterUtil.getLong(responseMap.get("groupId"));
 %>
 
-	<h3><%= importer %></h3>
+	<h3>
+
+		<c:choose>
+			<c:when test='<%= importer.equals("custom") %>'>
+				Custom Resource Directory
+			</c:when>
+			<c:when test='<%= importer.equals("lar") %>'>
+				Default LAR File
+			</c:when>
+			<c:when test='<%= importer.equals("resource") %>'>
+				Default Resource Directory
+			</c:when>
+		</c:choose>
+	</h3>
 
 	<p>
-		group=<%= (GroupLocalServiceUtil.fetchGroup(groupId) != null) ? "PASSED" : "FAILED" %><br />
-		groupId=<%= groupId %>
+		GroupLocalServiceUtil#fetchGroup=<%= _assertTrue(GroupLocalServiceUtil.fetchGroup(groupId) != null) %><br />
+
+		<%
+		if (groupId == 0) {
+			continue;
+		}
+
+		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(groupId, false);
+		%>
+
+		LayoutSet#getPageCount=<%= _assertEquals(5, layoutSet.getPageCount()) %>
+	</p>
+
+	<p>
+
+		<%
+		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "company_logo");
+
+		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(DLFileEntry.class.getName(), dlFileEntry.getFileEntryId());
+		%>
+
+		AssetTagLocalServiceUtil#getTagNames=<%= _assertTrue(ArrayUtil.contains(assetTagNames, "logo")) %>
+	</p>
+
+	<p>
+		DLFileEntryLocalServiceUtil#getFileEntriesCount=<%= _assertEquals(1, DLFileEntryLocalServiceUtil.getFileEntriesCount(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)) %><br />
+	</p>
+
+	<p>
+
+		<%
+		JournalArticle journalArticle = JournalArticleLocalServiceUtil.getArticle(groupId, "CHILD-WEB-CONTENT-1");
+		%>
+
+		JournalArticle#isTemplateDriven=<%= _assertTrue(journalArticle.isTemplateDriven()) %><br />
+
+		JournalArticleLocalService#getArticlesCount=<%= _assertEquals(5, JournalArticleLocalServiceUtil.getArticlesCount(groupId)) %><br />
+
+		<%
+		JournalStructure journalStructure = JournalStructureLocalServiceUtil.getStructure(groupId, "CHILD-STRUCTURE-1");
+
+		String parentStructureId = journalStructure.getParentStructureId();
+		%>
+
+		JournalStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE", parentStructureId) %><br />
+
+		JournalStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(3, JournalStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
+
+		<%
+		JournalTemplate journalTemplate = JournalTemplateLocalServiceUtil.getTemplate(groupId, "CHILD-TEMPLATE-1");
+
+		String journalStructureId = journalTemplate.getStructureId();
+		%>
+
+		JournalTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1", journalStructureId) %><br />
+
+		JournalTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(2, JournalTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
 	</p>
 
 <%
-	if (groupId == 0) {
-		continue;
+}
+%>
+
+<%!
+private static String _assertEquals(Object expected, Object actual) {
+	return _assertTrue(Validator.equals(expected, actual));
+}
+
+private static String _assertTrue(boolean value) {
+	if (value) {
+		return "PASSED";
 	}
-
-	DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "company_logo");
-
-	String[] dlFileEntryTags = AssetTagLocalServiceUtil.getTagNames(DLFileEntry.class.getName(), dlFileEntry.getFileEntryId());
-
-	JournalArticle journalArticle = JournalArticleLocalServiceUtil.getArticle(groupId, "CHILD-WEB-CONTENT-1");
-
-	JournalStructure journalStructure = JournalStructureLocalServiceUtil.getStructure(groupId, "CHILD-STRUCTURE-1");
-
-	String parentStructureId = journalStructure.getParentStructureId();
-
-	JournalTemplate journalTemplate = JournalTemplateLocalServiceUtil.getTemplate(groupId, "CHILD-TEMPLATE-1");
-
-	String journalStructureId = journalTemplate.getStructureId();
-
-	LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(groupId, false);
-%>
-
-	<p>
-		dlFileEntryLocalService#getFileEntriesCount=<%= (DLFileEntryLocalServiceUtil.getFileEntriesCount(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) == 1) ? "PASSED" : "FAILED" %><br />
-		assetTagLocalService#getTagNames=<%= ArrayUtil.contains(dlFileEntryTags, "logo") ? "PASSED" : "FAILED" %><br />
-
-		journalArticleLocalService#getArticlesCount=<%= (JournalArticleLocalServiceUtil.getArticlesCount(groupId) == 5) ? "PASSED" : "FAILED" %><br />
-		journalArticle#isTemplateDriven=<%= journalArticle.isTemplateDriven() ? "PASSED" : "FAILED" %><br />
-
-		journalStructureLocalService#getStructuresCount=<%= (JournalStructureLocalServiceUtil.getStructuresCount(groupId) == 3) ? "PASSED" : "FAILED" %><br />
-		journalStructure#getParentStructureId=<%= parentStructureId.equals("PARENT-STRUCTURE") ? "PASSED" : "FAILED" %><br />
-
-		journalTemplateLocalService#getTemplatesCount=<%= (JournalTemplateLocalServiceUtil.getTemplatesCount(groupId) == 2) ? "PASSED" : "FAILED" %><br />
-		journalTemplate#getStructureId=<%= journalStructureId.equals("CHILD-STRUCTURE-1") ? "PASSED" : "FAILED" %><br />
-
-		layoutSet#getPageCount=<%= (layoutSet.getPageCount() == 5) ? "PASSED" : "FAILED" %>
-	</p>
-
-<%
+	else {
+		return "FAILED";
+	}
 }
 %>
