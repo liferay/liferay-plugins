@@ -86,7 +86,7 @@ public class RoleListener extends BaseModelListener<Role> {
 				Group userGroup = user.getGroup();
 
 				if (SocialOfficeServiceUtil.isSocialOfficeGroup(
-						group.getGroupId())) {
+						userGroup.getGroupId())) {
 
 					continue;
 				}
@@ -153,7 +153,7 @@ public class RoleListener extends BaseModelListener<Role> {
 				Group userGroup = user.getGroup();
 
 				if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
-						group.getGroupId())) {
+						userGroup.getGroupId())) {
 
 					continue;
 				}
