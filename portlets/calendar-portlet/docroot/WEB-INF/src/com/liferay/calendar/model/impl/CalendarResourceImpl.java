@@ -41,7 +41,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 	public Calendar getDefaultCalendar() throws SystemException {
 		List<Calendar> calendars =
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
-					getGroupId(), getCalendarResourceId(), true);
+				getGroupId(), getCalendarResourceId(), true);
 
 		return calendars.get(0);
 	}
