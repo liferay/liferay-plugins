@@ -250,13 +250,13 @@ public class CalendarPortlet extends MVCPortlet {
 		if (calendarBookingId <= 0) {
 			CalendarBooking calendarBooking =
 				CalendarBookingServiceUtil.addCalendarBooking(
-						calendarId, childCalendarIds, CalendarBookingConstants
-							.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-						titleMap, descriptionMap, location,
-						startDateJCalendar.getTimeInMillis(),
-						endDateJCalendar.getTimeInMillis(), allDay, recurrence,
-						reminders[0], remindersType[0], reminders[1],
-						remindersType[1], serviceContext);
+					calendarId, childCalendarIds,
+					CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+					titleMap, descriptionMap, location,
+					startDateJCalendar.getTimeInMillis(),
+					endDateJCalendar.getTimeInMillis(), allDay, recurrence,
+					reminders[0], remindersType[0], reminders[1],
+					remindersType[1], serviceContext);
 
 			calendarBookingId = calendarBooking.getCalendarBookingId();
 		}
