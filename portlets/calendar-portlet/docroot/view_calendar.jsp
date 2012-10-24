@@ -308,7 +308,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 		<portlet:namespace />refreshVisibleCalendarRenderingRules();
 
 		<portlet:namespace />scheduler.after(
-			['*:load', '*:add', '*:change', '*:remove', '*:reset'],
+			['*:add', '*:change', '*:load', '*:remove', '*:reset'],
 			A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100)
 		);
 
