@@ -562,6 +562,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		'*:load',
 		function(event) {
 			scheduler.addEvents(window.<portlet:namespace />placeholderSchedulerEvent);
+
 			scheduler.syncEventsUI();
 		}
 	);
