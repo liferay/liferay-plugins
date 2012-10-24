@@ -1407,6 +1407,15 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	border-bottom-width: 1px;
 }
 
+.ie7 .contacts-portlet .contacts-list {
+	border-right: 1px solid $gray-dark;
+	margin-left: -1px;
+
+	.contacts-list-content {
+		border-right-width: 0;
+	}
+}
+
 /* Documents and Images Library */
 
 .portlet-document-library {
@@ -2051,6 +2060,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.messages-content {
 		min-height: 400px;
 	}
+}
+
+.ie7 .private-messaging-portlet {
+	margin-left: 0;
 }
 
 /* Recent Bloggers  */
