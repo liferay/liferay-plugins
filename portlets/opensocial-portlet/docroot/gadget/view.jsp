@@ -50,6 +50,8 @@ JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDispla
 
 String language = locale.getLanguage();
 
+// See http://docs.opensocial.org/display/OSREF/Gadgets+XML+Reference
+
 if (language.equals(Locale.CHINESE.getLanguage())) {
 	StringBundler sb = new StringBundler(3);
 
