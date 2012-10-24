@@ -166,7 +166,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				calendarsChange: function(event) {
 					syncCalendarsMap();
 
-					window.<portlet:namespace />scheduler.load();
+					<portlet:namespace />scheduler.load();
 
 					var calendarIds = A.Array.invoke(event.newVal, 'get', 'calendarId');
 
@@ -265,9 +265,8 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			var miniCalendarStartDate = DateMath.subtract(DateMath.toMidnight(window.<portlet:namespace />miniCalendar.get('date')), DateMath.WEEK, 1);
 
 			var miniCalendarEndDate = DateMath.add(DateMath.add(miniCalendarStartDate, DateMath.MONTH, 1), DateMath.WEEK, 1);
-			miniCalendarEndDate.setHours(23,59,59,999);
 
-			// TODO
+			miniCalendarEndDate.setHours(23,59,59,999);
 
 			Liferay.CalendarUtil.getCalendarRenderingRules(
 				A.Object.keys(Liferay.CalendarUtil.visibleCalendars),
@@ -308,7 +307,10 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 		<portlet:namespace />refreshVisibleCalendarRenderingRules();
 
-		<portlet:namespace />scheduler.after([ '*:load', '*:add', '*:change', '*:remove', '*:reset' ], A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100));
+		<portlet:namespace />scheduler.after(
+			['*:load', '*:add', '*:change', '*:remove', '*:reset'],
+			A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100)
+		);
 
 		<portlet:namespace />scheduler.after(
 			'dateChange',

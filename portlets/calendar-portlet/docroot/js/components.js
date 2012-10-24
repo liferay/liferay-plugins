@@ -531,12 +531,17 @@
 							AArray.each(
 								val,
 								function(item, index, collection) {
+									var calendar = item;
+
 									if (!A.instanceOf(item, Liferay.SchedulerCalendar)) {
-										val[index] = new Liferay.SchedulerCalendar(item);
+										calendar = new Liferay.SchedulerCalendar(item);
+
+										val[index] = calendar;
 									}
 
-									val[index].addTarget(instance);
-									val[index].set('scheduler', scheduler);
+									calendar.addTarget(instance);
+
+									calendar.set('scheduler', scheduler);
 								}
 							);
 
