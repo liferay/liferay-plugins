@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
@@ -40,7 +41,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -175,7 +178,13 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				newMessage.put("targetClassPK", importer.getTargetClassPK());
 
 				if (message.getResponseId() != null) {
-					newMessage.setPayload(importer.getTargetClassPK());
+					Map<String, Object> responseMap =
+						new HashMap<String, Object>();
+
+					responseMap.put("groupId", importer.getTargetClassPK());
+
+					newMessage.setPayload(responseMap);
+
 					newMessage.setResponseId(message.getResponseId());
 				}
 
@@ -217,8 +226,14 @@ public class HotDeployMessageListener extends BaseMessageListener {
 					"/WEB-INF/liferay-plugin-package.properties"));
 
 			if (propertiesString != null) {
+				String contextPath = servletContext.getRealPath(
+					StringPool.SLASH);
+
+				contextPath = StringUtil.replace(
+					contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
+
 				propertiesString = propertiesString.replace(
-					"${context.path}", servletContext.getRealPath("/"));
+					"${context.path}", contextPath);
 
 				properties = PropertiesUtil.load(propertiesString);
 			}
