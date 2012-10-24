@@ -40,7 +40,7 @@ long endDate = ParamUtil.getLong(request, "endDate", defaultEndDateJCalendar.get
 
 java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(endDate, userTimeZone);
 
-boolean allDay = ParamUtil.getBoolean(request, "allDay");
+boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
 
 if (!allDay) {
 	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(startDateJCalendar, 30);
@@ -118,7 +118,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
 		</div>
 
-		<aui:input name="allDay" />
+		<aui:input checked="<%= allDay %>" name="allDay" />
 
 		<aui:field-wrapper cssClass="calendar-portlet-recurrence-container" inlineField="<%= true %>" label="">
 			<aui:input checked="<%= recurring %>" name="repeat" type="checkbox" />

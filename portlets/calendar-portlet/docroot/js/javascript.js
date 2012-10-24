@@ -480,11 +480,13 @@ AUI.add(
 			setEventAttrs: function(schedulerEvent, data) {
 				var instance = this;
 
+				var scheduler = schedulerEvent.get('scheduler');
+
 				var newCalendarId = data.calendarId;
 
 				var oldCalendarId = schedulerEvent.get('calendarId');
 
-				if (schedulerEvent.get('scheduler')) {
+				if (scheduler) {
 					var oldCalendar = instance.availableCalendars[oldCalendarId];
 					var newCalendar = instance.availableCalendars[newCalendarId];
 
@@ -509,6 +511,8 @@ AUI.add(
 							silent: true
 						}
 					);
+
+					scheduler.syncEventsUI();
 				}
 			},
 
@@ -1195,6 +1199,8 @@ AUI.add(
 					_afterSchedulerEventChange: function(event) {
 						var instance = this;
 
+						var changed = event.changed;
+
 						var persistentAttrMap = {
 							calendarId: 1,
 							color: 1,
@@ -1206,7 +1212,7 @@ AUI.add(
 						var persist = true;
 
 						A.each(
-							event.changed,
+							changed,
 							function(item, index, collection) {
 								persist = AObject.owns(persistentAttrMap, index);
 							}
@@ -1247,17 +1253,16 @@ AUI.add(
 													null,
 													{
 														silent: true
-													}
-												);
-
-												var offset = 0;
-
-												var newVal = event.newVal;
-												var prevVal = event.prevVal;
-
-												if (isDate(newVal) && isDate(prevVal)) {
-													offset = newVal.getTime() - prevVal.getTime();
 												}
+											);
+
+											var offset = 0;
+											var newVal = changed.startDate.newVal;
+											var prevVal = changed.startDate.prevVal;
+
+											if (isDate(newVal) && isDate(prevVal)) {
+												offset = newVal.getTime() - prevVal.getTime();
+											}
 
 												var calendarStartDate = calendarBooking.startDate + offset;
 
