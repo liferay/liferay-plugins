@@ -175,7 +175,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				newMessage.put("targetClassPK", importer.getTargetClassPK());
 
 				if (message.getResponseId() != null) {
-					newMessage.setPayload(servletContextName);
+					newMessage.setPayload(importer.getTargetClassPK());
 					newMessage.setResponseId(message.getResponseId());
 				}
 
