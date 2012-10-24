@@ -85,7 +85,7 @@
 					<label class="calendar-portlet-invitees"></label>
 				</td>
 			</tr>
-			<tr class="aui-helper-hidden" id="<portlet:namespace />eventRecorderResources">
+			<tr <tpl if="!values.editing">class="aui-helper-hidden"</tpl> id="<portlet:namespace />eventRecorderResources">
 				<td>
 					<liferay-ui:message key="resources" />:
 				</td>

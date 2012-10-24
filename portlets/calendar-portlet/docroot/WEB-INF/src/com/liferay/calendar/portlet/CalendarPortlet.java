@@ -248,14 +248,17 @@ public class CalendarPortlet extends MVCPortlet {
 			CalendarBooking.class.getName(), actionRequest);
 
 		if (calendarBookingId <= 0) {
-			CalendarBookingServiceUtil.addCalendarBooking(
-				calendarId, childCalendarIds,
-				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-				titleMap, descriptionMap, location,
-				startDateJCalendar.getTimeInMillis(),
-				endDateJCalendar.getTimeInMillis(), allDay, recurrence,
-				reminders[0], remindersType[0], reminders[1], remindersType[1],
-				serviceContext);
+			CalendarBooking calendarBooking =
+				CalendarBookingServiceUtil.addCalendarBooking(
+						calendarId, childCalendarIds, CalendarBookingConstants
+							.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+						titleMap, descriptionMap, location,
+						startDateJCalendar.getTimeInMillis(),
+						endDateJCalendar.getTimeInMillis(), allDay, recurrence,
+						reminders[0], remindersType[0], reminders[1],
+						remindersType[1], serviceContext);
+
+			calendarBookingId = calendarBooking.getCalendarBookingId();
 		}
 		else {
 			boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
@@ -297,7 +300,14 @@ public class CalendarPortlet extends MVCPortlet {
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
 		redirect = HttpUtil.setParameter(
+			redirect, actionResponse.getNamespace() + "calendarBookingId",
+			calendarBookingId);
+		redirect = HttpUtil.setParameter(
 			redirect, actionResponse.getNamespace() + "calendarId", calendarId);
+		redirect = HttpUtil.removeParameter(
+			redirect, actionResponse.getNamespace() + "allDay");
+		redirect = HttpUtil.removeParameter(
+			redirect, actionResponse.getNamespace() + "repeat");
 
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
