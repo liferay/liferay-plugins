@@ -1282,6 +1282,17 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	p {
 		word-wrap: break-word;
 	}
+
+	.lfr-top {
+		.aui-button {
+			display: inline-block;
+			margin-top: 10px;
+		}
+
+		.lfr-search-container {
+			margin-right: 10px;
+		}
+	}
 }
 
 .portlet-column-content-only {
@@ -1289,6 +1300,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		max-width: 550px;
 		padding: 10px;
 	}
+}
+
+.ie7 .portlet-calendar {
+	margin-left: -1px;
 }
 
 /*  Contacts Portlet  */
