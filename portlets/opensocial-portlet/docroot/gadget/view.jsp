@@ -47,20 +47,6 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 String userPrefsKey = ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace(), themeDisplay);
 
 JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), userPrefsKey, themeDisplay.getPlid());
-
-String language = locale.getLanguage();
-
-// See http://docs.opensocial.org/display/OSREF/Gadgets+XML+Reference
-
-if (language.equals(Locale.CHINESE.getLanguage())) {
-	StringBundler sb = new StringBundler(3);
-
-	sb.append(language);
-	sb.append(StringPool.DASH);
-	sb.append(locale.getCountry());
-
-	language = sb.toString();
-}
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -73,7 +59,7 @@ if (language.equals(Locale.CHINESE.getLanguage())) {
 			country: '<%= locale.getCountry() %>',
 			debug: <%= PortletPropsValues.SHINDIG_JS_DEBUG %>,
 			height: <%= modulePrefs.getHeight() %>,
-			language: '<%= language %>',
+			language: '<%= _getLanguage(locale) %>',
 			moduleId: '<%= moduleId %>',
 			nocache: <%= PortletPropsValues.SHINDIG_NO_CACHE %>,
 			portletId: '<%= portletDisplay.getId() %>',
@@ -94,3 +80,17 @@ if (language.equals(Locale.CHINESE.getLanguage())) {
 		}
 	).render('#<portlet:namespace />gadget');
 </aui:script>
+
+<%!
+private String _getLanguage(Locale locale) {
+	String language = locale.getLanguage();
+
+	// See http://docs.opensocial.org/display/OSREF/Gadgets+XML+Reference
+
+	if (language.equals(Locale.CHINESE.getLanguage())) {
+		language = language + StringPool.DASH + locale.getCountry();
+	}
+
+	return language;
+}
+%>
