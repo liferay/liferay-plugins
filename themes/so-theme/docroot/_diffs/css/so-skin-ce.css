@@ -1915,13 +1915,17 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 .portlet-message-boards, .portlet-wiki {
 	border-left: 1px solid $gray-dark;
 
+	.top-links-container .top-link{
+		vertical-align: middle;
+	}
+
 	.portlet-msg-success {
 		border-width: 0 0 1px;
 		margin: -10px -10px 10px;
 	}
 
 	.portlet-borderless-container .portlet-body {
-		padding: 10px;
+		margin: 10px;
 	}
 
 	.page-search {
