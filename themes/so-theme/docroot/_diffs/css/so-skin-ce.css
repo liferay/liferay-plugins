@@ -281,6 +281,10 @@ a:hover {
 
 	#navigation {
 		clear: both;
+
+		ul li {
+			margin-top: -2px;
+		}
 	}
 
 	hr {
