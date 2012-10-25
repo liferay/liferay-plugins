@@ -270,6 +270,46 @@ a:hover {
 	padding: 0;
 }
 
+.ie7 #so-sidebar {
+	.profile-image {
+		float: left;
+	}
+
+	.profile-name {
+		margin: 15px 0;
+	}
+
+	#navigation {
+		clear: both;
+	}
+
+	hr {
+		color: #FFF;
+	}
+
+	.portlet-msg-info {
+		overflow: hidden;
+		position: relative;
+
+		.hide-notice {
+			position: absolute;
+			right: 7px;
+		}
+	}
+
+	.site-list li {
+		overflow: hidden;
+
+		span {
+			padding: 0;
+
+			a {
+				margin: 0;
+			}
+		}
+	}
+}
+
 /* User Detail Structure */
 
 .so-user-detail {
