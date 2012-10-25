@@ -1130,6 +1130,14 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
+.ie7 .portlet-blogs .search-form {
+	float: right;
+
+	.aui-button {
+		padding-left: 3px;
+	}
+}
+
 /* Blogs Aggregator */
 
 .portlet-blogs-aggregator {
