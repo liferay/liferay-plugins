@@ -141,9 +141,9 @@ a:hover {
 		}
 
 		.portlet-column:before {
+			border-right: 1px solid $gray-dark;
 			bottom: 0;
 			content: "";
-			border-right: 1px solid $gray-dark;
 			position: absolute;
 			top: 0;
 		}
@@ -155,25 +155,6 @@ a:hover {
 
 	#columns-1 .portlet-column-only .portlet-column-content {
 		border-bottom-width: 0;
-	}
-}
-
-.ie7 #content {
-	td {
-		&.portlet-column {
-			border-left: 1px solid $gray-dark;
-
-		}
-
-		&.portlet-column-only {
-			&, .portlet-column-content {
-				border-width: 0 0 0 1px;
-			}
-
-			.portlet-boundary {
-				border-width: 0;
-			}
-		}
 	}
 }
 
@@ -268,50 +249,6 @@ a:hover {
 	font-size: 12px;
 	margin: 1em 0;
 	padding: 0;
-}
-
-.ie7 #so-sidebar {
-	.profile-image {
-		float: left;
-	}
-
-	.profile-name {
-		margin: 15px 0;
-	}
-
-	#navigation {
-		clear: both;
-
-		ul li {
-			margin-top: -2px;
-		}
-	}
-
-	hr {
-		color: #FFF;
-	}
-
-	.portlet-msg-info {
-		overflow: hidden;
-		position: relative;
-
-		.hide-notice {
-			position: absolute;
-			right: 7px;
-		}
-	}
-
-	.site-list li {
-		overflow: hidden;
-
-		span {
-			padding: 0;
-
-			a {
-				margin: 0;
-			}
-		}
-	}
 }
 
 /* User Detail Structure */
@@ -412,7 +349,6 @@ a:hover {
 		}
 
 		ul.site-list li {
-			@include border-radius(0);
 			background-position: 5px 3px;
 			padding-right: 16px;
 			position: relative;
@@ -848,25 +784,11 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	margin-top: 0;
 }
 
-.ie6 .portlet-msg-success, .ie6 .portlet-msg-error {
-	height: 1px;
-}
-
 /* ---------- Panel ---------- */
 
 .aui-panel-hd-text {
 	font-size: 12px;
 	font-weight: bold;
-}
-
-/* ---------- Ratings ---------- */
-
-.ie6 .taglib-ratings.stars {
-	width: 100%;
-}
-
-.ie6 .taglib-ratings .aui-rating {
-	width: 110px;
 }
 
 /* ---------- Search Iterator ---------- */
@@ -907,17 +829,13 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	text-decoration: none;
 }
 
-.ie7 .taglib-ratings div div {
-	overflow: hidden;
-}
-
 /* ---------- Portlet ---------- */
 
 /* Dockbar */
 
 .dockbar {
-	background-image: url(../images/custom/so_dockbar_bg.png);
 	background-color: #EAEAEA;
+	background-image: url(../images/custom/so_dockbar_bg.png);
 	background-position: bottom left;
 	border-bottom-color: #CDCDCD;
 
@@ -937,8 +855,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	padding: 8px 20px 3px;
 	text-align: center;
 	text-shadow: -1px -1px #333;
-	@include background-image(linear-gradient(top, #803600, #C26E00));
-	@include box-shadow(1px 2px 6px -2px #000 inset);
 }
 
 /*  Activities Portlet  */
@@ -1019,12 +935,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.activity-data {
 		margin-left: 110px;
 	}
-}
-
-/* Asset Publisher */
-
-.ie6 .portlet-asset-publisher .asset-metadata {
-	display: none;
 }
 
 /* Blogs */
@@ -1176,14 +1086,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 	&.portlet-configuration .portlet-body {
 		overflow-x: visible;
-	}
-}
-
-.ie7 .portlet-blogs .search-form {
-	float: right;
-
-	.aui-button {
-		padding-left: 3px;
 	}
 }
 
@@ -1344,15 +1246,9 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
-.portlet-column-content-only {
-	.portlet-calendar .aui-column-content {
-		max-width: 550px;
-		padding: 10px;
-	}
-}
-
-.ie7 .portlet-calendar {
-	margin-left: -1px;
+.portlet-column-content-only .portlet-calendar .aui-column-content {
+	max-width: 550px;
+	padding: 10px;
 }
 
 /*  Contacts Portlet  */
@@ -1467,21 +1363,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 .portlet-column-only .contacts-portlet .contacts-profile {
 	border-bottom-width: 1px;
-}
-
-.ie7 .contacts-portlet {
-	.contacts-profile {
-		margin-bottom: 0;
-	}
-
-	.contacts-list {
-		border-right: 1px solid $gray-dark;
-		margin-left: -1px;
-
-		.contacts-list-content {
-			border-right-width: 0;
-		}
-	}
 }
 
 /* Documents and Images Library */
@@ -1615,10 +1496,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
-.ie7 .context-pane .context-pane-content {
-	border-left: 1px solid $gray-dark;
-}
-
 .portlet-document-library, .portlet-document-library-display {
 	.folder {
 		margin-top: 0;
@@ -1643,33 +1520,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.document-display-style.display-icon {
 		margin: 0 0 5px 5px;
 		width: 195px;
-	}
-}
-
-.ie7 {
-	.portlet-document-library, .portlet-document-library-display {
-		margin-right: 1px;
-
-		.navigation-pane-content {
-			border-right-width: 0;
-			margin-right: -1px;
-		}
-
-		.search-button-container {
-			margin-top: 0;
-			width: 192px;
-		}
-
-		.document-entries-paginator {
-			a {
-				line-height: 0;
-				margin: -5px 2px;
-			}
-
-			.aui-paginator-page-link {
-				line-height: 18px;
-			}
-		}
 	}
 }
 
@@ -2146,10 +1996,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
-.ie7 .private-messaging-portlet {
-	margin-left: 0;
-}
-
 /* Recent Bloggers  */
 
 .portlet-recent-bloggers {
@@ -2382,20 +2228,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
-.ie .tasks-portlet {
-	zoom: 1;
-}
-
-.ie7 .tasks-portlet .control-wrapper {
-	overflow: hidden;
-	position: relative;
-
-	.filter-tasks {
-		position: absolute;
-		right: 7px;
-	}
-}
-
 /* Wiki */
 
 .portlet-wiki {
@@ -2441,6 +2273,168 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
+/* ---------- Internet Explorer ---------- */
+
+.ie7 {
+	#content td {
+		&.portlet-column {
+			border-left: 1px solid $gray-dark;
+		}
+
+		&.portlet-column-only {
+			&, .portlet-column-content {
+				border-width: 0 0 0 1px;
+			}
+
+			.portlet-boundary {
+				border-width: 0;
+			}
+		}
+	}
+
+	#so-sidebar {
+		.profile-image {
+			float: left;
+		}
+
+		.profile-name {
+			margin: 15px 0;
+		}
+
+		#navigation {
+			clear: both;
+
+			ul li {
+				margin-top: -2px;
+			}
+		}
+
+		hr {
+			color: #FFF;
+		}
+
+		.portlet-msg-info {
+			overflow: hidden;
+			position: relative;
+
+			.hide-notice {
+				position: absolute;
+				right: 7px;
+			}
+		}
+
+		.site-list li {
+			overflow: hidden;
+
+			span {
+				padding: 0;
+
+				a {
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	.contacts-portlet {
+		.contacts-profile {
+			margin-bottom: 0;
+		}
+
+		.contacts-list {
+			border-right: 1px solid $gray-dark;
+			margin-left: -1px;
+
+			.contacts-list-content {
+				border-right-width: 0;
+			}
+		}
+	}
+
+	.context-pane .context-pane-content {
+		border-left: 1px solid $gray-dark;
+	}
+
+	.portlet-blogs .search-form {
+		float: right;
+
+		.aui-button {
+			padding-left: 3px;
+		}
+	}
+
+	.portlet-calendar {
+		margin-left: -1px;
+	}
+
+	.portlet-document-library, .portlet-document-library-display {
+		margin-right: 1px;
+
+		.navigation-pane-content {
+			border-right-width: 0;
+			margin-right: -1px;
+		}
+
+		.search-button-container {
+			margin-top: 0;
+			width: 192px;
+		}
+
+		.document-entries-paginator {
+			a {
+				line-height: 0;
+				margin: -5px 2px;
+			}
+
+			.aui-paginator-page-link {
+				line-height: 18px;
+			}
+		}
+	}
+
+	.private-messaging-portlet {
+		margin-left: 0;
+	}
+
+	.taglib-ratings div div {
+		overflow: hidden;
+	}
+
+	.tasks-portlet .control-wrapper {
+		overflow: hidden;
+		position: relative;
+
+		.filter-tasks {
+			position: absolute;
+			right: 7px;
+		}
+	}
+}
+
+.ie6 {
+	.portlet-asset-publisher .asset-metadata {
+		display: none;
+	}
+
+	.portlet-msg-success, .portlet-msg-error {
+		height: 1px;
+	}
+
+	.taglib-ratings {
+		&.stars {
+			width: 100%;
+		}
+
+		.aui-rating {
+			width: 110px;
+		}
+	}
+}
+
+.ie .tasks-portlet {
+	zoom: 1;
+}
+
 /* ---------- Fluid Layout ---------- */
 
 body.so-layout-fluid, body.so-layout-fluid-ad {
@@ -2471,7 +2465,6 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 		}
 	}
 }
-
 
 /* ---------- Extras ---------- */
 
@@ -2513,6 +2506,11 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
 }
 
+.page-customization-bar {
+	@include background-image(linear-gradient(top, #803600, #C26E00));
+	@include box-shadow(1px 2px 6px -2px #000 inset);
+}
+
 .microblogs-portlet .microblogs-button-input-disabled .microblogs-button-input, .microblogs-portlet .microblogs-button-input-disabled:hover .microblogs-button-input, .microblogs-portlet .microblogs-button-input-disabled:active .microblogs-button-input {
 	@include box-shadow(0 1px 0 #DE7777 inset, 0 -1px 0 #B00000 inset);
 }
@@ -2521,7 +2519,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	@include border-radius(4px);
 }
 
-.aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-tab-content, .aui-textboxlistentry-holder .aui-field-input-text, .aui-toolbar-item, .aui-toolbar .aui-toolbar-item, .microblogs-portlet .autocomplete input[type=text], .portlet-blogs .portlet-msg-success, .portlet-document-library .portlet-msg, .portlet-document-library .portlet-msg-alert, .portlet-document-library .portlet-msg-error, .portlet-document-library .portlet-msg-info, .portlet-document-library .portlet-msg-success, .portlet-message-boards .portlet-msg-success, .private-messaging-portlet .controls, .private-messaging-portlet .portlet-msg-info, .private-messaging-portlet .portlet-msg-success, .portlet-wiki .portlet-msg-success {
+#so-sidebar .so-portlet-sites ul.site-list li, .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-tab-content, .aui-textboxlistentry-holder .aui-field-input-text, .aui-toolbar-item, .aui-toolbar .aui-toolbar-item, .microblogs-portlet .autocomplete input[type=text], .portlet-blogs .portlet-msg-success, .portlet-document-library .portlet-msg, .portlet-document-library .portlet-msg-alert, .portlet-document-library .portlet-msg-error, .portlet-document-library .portlet-msg-info, .portlet-document-library .portlet-msg-success, .portlet-message-boards .portlet-msg-success, .private-messaging-portlet .controls, .private-messaging-portlet .portlet-msg-info, .private-messaging-portlet .portlet-msg-success, .portlet-wiki .portlet-msg-success {
 	@include border-radius(0);
 }
 
