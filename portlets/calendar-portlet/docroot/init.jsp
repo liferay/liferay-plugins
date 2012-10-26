@@ -64,9 +64,12 @@ page import="com.liferay.portal.kernel.json.JSONArray" %><%@
 page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
+page import="com.liferay.portal.kernel.util.FastDateFormatConstants" %><%@
+page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.OrderByComparator" %><%@
@@ -87,7 +90,10 @@ page import="com.liferay.portal.util.SessionClicks" %><%@
 page import="com.liferay.portal.util.comparator.UserScreenNameComparator" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
+<%@ page import="java.text.Format" %>
+
 <%@ page import="java.util.ArrayList" %><%@
+page import="java.util.Date" %><%@
 page import="java.util.Iterator" %><%@
 page import="java.util.List" %><%@
 page import="java.util.TimeZone" %>
@@ -138,4 +144,7 @@ TimeZone userTimeZone = TimeZone.getTimeZone(timeZoneId);
 TimeZone utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);
 
 java.util.Calendar now = CalendarFactoryUtil.getCalendar(userTimeZone);
+
+Format dateFormatLongDate = FastDateFormatFactoryUtil.getDate(FastDateFormatConstants.LONG, locale, timeZone);
+Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale);
 %>

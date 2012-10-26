@@ -19,41 +19,94 @@
 
 <%
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-Calendar calendar = CalendarServiceUtil.getCalendar(calendarBooking.getCalendarId());
+Calendar calendar = calendarBooking.getCalendar();
+
+List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
 
 Date startDate = JCalendarUtil.getJCalendar(calendarBooking.getStartDate(), user.getTimeZone()).getTime();
 Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.getTimeZone()).getTime();
 %>
 
-<liferay-ui:custom-attributes-available className="<%= CalendarBooking.class.getName() %>">
-	<liferay-ui:custom-attribute-list
-		className="<%= CalendarBooking.class.getName() %>"
-		classPK="<%= (calendarBooking != null) ? calendarBooking.getCalendarBookingId() : 0 %>"
-		editable="<%= false %>"
-		label="<%= true %>"
-	/>
-</liferay-ui:custom-attributes-available>
-
 <div>
-	<p><span class="aui-field-label-inline-label"><liferay-ui:message key="calendar" /></span>: <%=  HtmlUtil.escape(calendar.getName(locale)) %></p>
 	<c:if test="<%= Validator.isNotNull(calendarBooking.getDescription(locale)) %>">
-		<p class="calendar-booking-description"><%=  HtmlUtil.escape(calendarBooking.getDescription(locale)) %></p>
-	</c:if>
-	<c:if test="<%=  Validator.isNotNull(calendarBooking.getLocation()) %>">
 		<p>
-			<span class="aui-field-label-inline-label"><liferay-ui:message key="location" /></span>: <%= HtmlUtil.escape(calendarBooking.getLocation()) %>
+			<%= HtmlUtil.escape(calendarBooking.getDescription(locale)) %>
 		</p>
 	</c:if>
 	<p>
 		<liferay-ui:icon
-			image="../common/date"
+			image="../common/user_icon"
+			message="owner"
 		/>
-		<span class="aui-field-label-inline-label"><liferay-ui:message key="start-date" /></span>: <%= dateFormatLongDate.format(startDate) %>
-	</p>
-	<p>
+
+		<strong><%= HtmlUtil.escape(calendar.getName(locale)) %></strong>
+
+		<c:if test="<%= (childCalendarBookings.size() > 0) %>">
+			<br />
+
+			<liferay-ui:icon
+				image="../common/organization_icon"
+				message="resources"
+			/>
+
+			<liferay-ui:message key="resources" />:
+
+			<%
+			List<String> calendarResourcesNames = new ArrayList<String>();
+
+			for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+				CalendarResource calendarResource = childCalendarBooking.getCalendarResource();
+
+				calendarResourcesNames.add(calendarResource.getName(locale));
+			}
+			%>
+
+			<%= StringUtil.merge(calendarResourcesNames, ", ") %>
+		</c:if>
+
+		<c:if test="<%= calendarBooking.isRecurring() %>">
+			<br />
+			<br />
+
+			<liferay-ui:icon
+				image="../common/site_template"
+				message="recurring"
+			/>
+
+			<liferay-ui:message key="recurring" />
+		</c:if>
+
+		<br />
+		<br />
+
 		<liferay-ui:icon
-			image="../common/date"
+			image="../common/revision"
+			message="start-date"
 		/>
-		<span class="aui-field-label-inline-label"><liferay-ui:message key="end-date" /></span>: <%= dateFormatLongDate.format(endDate) %>
+
+		<liferay-ui:message key="start-date" />: <%= dateFormatLongDate.format(startDate) + ", " + dateFormatTime.format(startDate) %>
+
+		<br />
+
+		<liferay-ui:icon
+			image="../common/revision"
+			message="end-date"
+		/>
+
+		<liferay-ui:message key="end-date" />: <%= dateFormatLongDate.format(endDate) + ", " + dateFormatTime.format(endDate) %>
+
+		<c:if test="<%= Validator.isNotNull(calendarBooking.getLocation()) %>">
+			<br />
+			<br />
+
+			<liferay-ui:icon
+				image="../common/view_locations"
+				message="location"
+			/>
+
+			<liferay-ui:message key="location" />: <a href="https://maps.google.com.br/maps?q=<%= HtmlUtil.escapeHREF(calendarBooking.getLocation()) %>" target="_blank"><%= HtmlUtil.escape(calendarBooking.getLocation()) %></a>
+		</c:if>
 	</p>
 </div>
+
+<br />
