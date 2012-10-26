@@ -323,10 +323,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 					snippet = getSnippet(
 						solrDocument, queryConfig, queryTerms,
 						queryResponse.getHighlighting(), Field.TITLE);
-
-					if (Validator.isNull(snippet)) {
-						continue;
-					}
 				}
 			}
 
