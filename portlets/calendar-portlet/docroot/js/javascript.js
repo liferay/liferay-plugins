@@ -219,7 +219,6 @@ AUI.add(
 				var instance = this;
 
 				var scheduler = schedulerEvent.get('scheduler');
-
 				var eventRecorder = scheduler.get('eventRecorder');
 
 				eventRecorder.hideOverlay();
@@ -1253,16 +1252,16 @@ AUI.add(
 													null,
 													{
 														silent: true
+													}
+												);
+
+												var offset = 0;
+												var newVal = changed.startDate.newVal;
+												var prevVal = changed.startDate.prevVal;
+
+												if (isDate(newVal) && isDate(prevVal)) {
+													offset = newVal.getTime() - prevVal.getTime();
 												}
-											);
-
-											var offset = 0;
-											var newVal = changed.startDate.newVal;
-											var prevVal = changed.startDate.prevVal;
-
-											if (isDate(newVal) && isDate(prevVal)) {
-												offset = newVal.getTime() - prevVal.getTime();
-											}
 
 												var calendarStartDate = calendarBooking.startDate + offset;
 
@@ -1660,8 +1659,16 @@ AUI.add(
 							}
 						);
 
+						contentNode = A.one(contentNode);
+
+						var messageNode = contentNode.one('.calendar-portlet-invitees');
+
 						if (values.length > 0) {
-							A.one(contentNode).show().one('.calendar-portlet-invitees').html(values.join(STR_COMMA_SPACE));
+							contentNode.show();
+							messageNode.html(values.join(STR_COMMA_SPACE));
+						}
+						else {
+							messageNode.html('&mdash;');
 						}
 					},
 
