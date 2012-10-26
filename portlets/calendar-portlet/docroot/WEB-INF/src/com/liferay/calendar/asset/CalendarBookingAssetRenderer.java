@@ -1,8 +1,21 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.calendar.asset;
 
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
-import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
 import com.liferay.calendar.util.PortletKeys;
@@ -11,10 +24,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.BaseAssetRenderer;
 
 import java.util.Locale;
@@ -24,7 +35,10 @@ import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-
+/**
+ * @author Fabio Pezzutto
+ * @author Eduardo Lundgren
+ */
 public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 
 	public CalendarBookingAssetRenderer(CalendarBooking calendarBooking) {
@@ -43,6 +57,11 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 		return _calendarBooking.getGroupId();
 	}
 
+	@Override
+	public String getIconPath(ThemeDisplay themeDisplay) {
+		return themeDisplay.getPathThemeImages() + "/common/date.png";
+	}
+
 	public String getSummary(Locale locale) {
 		return _calendarBooking.getDescription(locale);
 	}
@@ -57,53 +76,16 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL editPortletURL = liferayPortletResponse.createRenderURL(
-			PortletKeys.CALENDAR);
+		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
+			getControlPanelPlid(liferayPortletRequest), PortletKeys.CALENDAR,
+			PortletRequest.RENDER_PHASE);
 
-		editPortletURL.setParameter("mvcPath", "/edit_calendar_booking.jsp");
-		editPortletURL.setParameter(
+		portletURL.setParameter("mvcPath", "/edit_calendar_booking.jsp");
+		portletURL.setParameter(
 			"calendarBookingId", String.valueOf(
 				_calendarBooking.getCalendarBookingId()));
 
-		return editPortletURL;
-	}
-
-	@Override
-	public String getURLViewInContext(
-			LiferayPortletRequest liferayPortletRequest,
-			LiferayPortletResponse liferayPortletResponse,
-		String noSuchEntryRedirect) {
-
-		PortletURL viewPortletURL;
-
-		long plid = LayoutConstants.DEFAULT_PLID;
-
-		try {
-			plid = PortalUtil.getPlidFromPortletId(
-				_calendarBooking.getGroupId(), PortletKeys.CALENDAR);
-		}
-		catch(Exception e) {
-		}
-
-		if (plid != LayoutConstants.DEFAULT_PLID) {
-			viewPortletURL = liferayPortletResponse.createLiferayPortletURL(
-				plid, PortletKeys.CALENDAR, PortletRequest.RENDER_PHASE);
-		}
-		else {
-			viewPortletURL = liferayPortletResponse.createRenderURL(
-				PortletKeys.CALENDAR);
-		}
-
-		String redirect = PortalUtil.getCurrentCompleteURL(
-			liferayPortletRequest.getHttpServletRequest());
-
-		viewPortletURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
-		viewPortletURL.setParameter(
-			"calendarBookingId",
-			String.valueOf(_calendarBooking.getCalendarBookingId()));
-		viewPortletURL.setParameter("redirect", redirect);
-
-		return viewPortletURL.toString();
+		return portletURL;
 	}
 
 	public long getUserId() {
@@ -120,12 +102,10 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 
 	@Override
 	public boolean hasEditPermission(PermissionChecker permissionChecker) {
-
 		Calendar calendar = null;
 
 		try {
-			calendar = CalendarLocalServiceUtil.getCalendar(
-				_calendarBooking.getCalendarId());
+			calendar = _calendarBooking.getCalendar();
 		}
 		catch (Exception e) {
 			_log.error(e);
@@ -137,19 +117,17 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 
 	@Override
 	public boolean hasViewPermission(PermissionChecker permissionChecker) {
-
 		Calendar calendar = null;
 
 		try {
-			calendar = CalendarLocalServiceUtil.getCalendar(
-				_calendarBooking.getCalendarId());
+			calendar = _calendarBooking.getCalendar();
 		}
 		catch (Exception e) {
 			_log.error(e);
 		}
 
 		return CalendarPermission.contains(
-			permissionChecker, calendar, ActionKeys.VIEW_BOOKING_DETAILS);
+			permissionChecker, calendar, ActionKeys.VIEW);
 	}
 
 	@Override
@@ -175,14 +153,9 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 		}
 	}
 
-	@Override
-	protected String getIconPath(ThemeDisplay themeDisplay) {
-		return themeDisplay.getPathThemeImages() + "/common/calendar.png";
-	}
-
-	private CalendarBooking _calendarBooking;
-
 	private static Log _log = LogFactoryUtil.getLog(
 		CalendarBookingAssetRenderer.class);
+
+	private CalendarBooking _calendarBooking;
 
 }

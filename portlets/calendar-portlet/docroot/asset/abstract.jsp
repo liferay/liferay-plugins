@@ -14,22 +14,69 @@
  */
 --%>
 
-
 <%@ include file="/init.jsp" %>
 
 <%
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-Calendar calendar = CalendarLocalServiceUtil.getCalendar(calendarBooking.getCalendarId());
+Calendar calendar = calendarBooking.getCalendar();
+
+List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
 
 Date startDate = JCalendarUtil.getJCalendar(calendarBooking.getStartDate(), user.getTimeZone()).getTime();
+Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.getTimeZone()).getTime();
 %>
 
 <div>
 	<p>
-		<%=  HtmlUtil.escape(calendarBooking.getTitle(locale)) %> (<strong><%=  HtmlUtil.escape(calendar.getName(locale)) %></strong>)
-	</p>
-	<br />
-	<p>
-		<liferay-ui:message key="start-date" />: <%= dateFormatLongDate.format(startDate) %>
+		<liferay-ui:icon
+			image="../common/user_icon"
+			message=""
+		/>
+
+		<strong><%= HtmlUtil.escape(calendar.getName(locale)) %></strong>
+
+		<c:if test="<%= (childCalendarBookings.size() > 0) %>">
+			<br />
+
+			<liferay-ui:icon
+				image="../common/organization_icon"
+				message="resources"
+			/>
+
+			<liferay-ui:message key="resources" />:
+
+			<%
+			List<String> calendarResourcesNames = new ArrayList<String>();
+
+			for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+				CalendarResource calendarResource = childCalendarBooking.getCalendarResource();
+
+				calendarResourcesNames.add(calendarResource.getName(locale));
+			}
+			%>
+
+			<%= StringUtil.merge(calendarResourcesNames, ", ") %>
+		</c:if>
+
+		<br />
+		<br />
+
+		<liferay-ui:icon
+			image="../common/revision"
+			message="start-date"
+		/>
+
+		<liferay-ui:message key="start-date" />: <%= dateFormatLongDate.format(startDate) + ", " + dateFormatTime.format(startDate) %>
+
+		<br />
+
+		<liferay-ui:icon
+			image="../common/revision"
+			message="end-date"
+		/>
+
+		<liferay-ui:message key="end-date" />: <%= dateFormatLongDate.format(endDate) + ", " + dateFormatTime.format(endDate) %>
 	</p>
 </div>
+
+<br />
