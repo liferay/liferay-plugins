@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.1</jsp-version>
+	<short-name>liferay-portlet</short-name>
+	<uri>http://liferay.com/tld/portlet</uri>
+
+	<!--
+	liferay-portlet:actionURL is similar to portlet:actionURL except it has the
+	additional attributes plid, portletName, anchor, and encrypt.
+
+	Set varImpl to set the PortletURL object. This gives you an object reference
+	to the underlying URL implementation.
+
+	Set plid to the plid of another layout. This allows you to post the URL to
+	another layout.
+
+	Set portletName to the name of a portlet other than the current portlet.
+	This allows you to post the URL to another portlet.
+
+	Set anchor to false if you do not want the page to refresh and anchor to the
+	current portlet.
+
+	Set encrypt to true if you want to encrypt all the parameter values.
+
+	Set doAsUserId to process this URL as if it is accessed by the specified
+	user.
+
+	Set portletConfiguration to true if you want to pass the parameters needed
+	when you are accessing a portlet that is wrapped by the Portlet
+	Configuration portlet.
+	-->
+
+	<tag>
+		<name>actionURL</name>
+		<tag-class>com.liferay.taglib.portlet.ActionURLTag</tag-class>
+		<tei-class>com.liferay.taglib.portlet.ActionURLTei</tei-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>allowEmptyParam</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>anchor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>copyCurrentRenderParameters</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>doAsGroupId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>doAsUserId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>encrypt</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>escapeXml</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>plid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletConfiguration</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletMode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>refererPlid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>secure</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>varImpl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>windowState</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>icon-back</name>
+		<tag-class>com.liferay.taglib.portletext.IconBackTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-close</name>
+		<tag-class>com.liferay.taglib.portletext.IconCloseTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-configuration</name>
+		<tag-class>com.liferay.taglib.portletext.IconConfigurationTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-edit</name>
+		<tag-class>com.liferay.taglib.portletext.IconEditTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-edit-defaults</name>
+		<tag-class>com.liferay.taglib.portletext.IconEditDefaultsTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-edit-guest</name>
+		<tag-class>com.liferay.taglib.portletext.IconEditGuestTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-export-import</name>
+		<tag-class>com.liferay.taglib.portletext.IconExportImportTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-help</name>
+		<tag-class>com.liferay.taglib.portletext.IconHelpTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-maximize</name>
+		<tag-class>com.liferay.taglib.portletext.IconMaximizeTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-minimize</name>
+		<tag-class>com.liferay.taglib.portletext.IconMinimizeTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-options</name>
+		<tag-class>com.liferay.taglib.portletext.IconOptionsTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-portlet</name>
+		<tag-class>com.liferay.taglib.portletext.IconPortletTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>portlet</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>icon-portlet-css</name>
+		<tag-class>com.liferay.taglib.portletext.IconPortletCssTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-print</name>
+		<tag-class>com.liferay.taglib.portletext.IconPrintTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>icon-refresh</name>
+		<tag-class>com.liferay.taglib.portletext.IconRefreshTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>param</name>
+		<tag-class>com.liferay.taglib.util.ParamTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>preview</name>
+		<tag-class>com.liferay.taglib.portletext.PreviewTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>portletName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>queryString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showBorders</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<!--
+	liferay-portlet:renderURL is similar to portlet:renderURL except it has the
+	additional attributes plid, portletName, anchor, and encrypt.
+
+	Set varImpl to set the PortletURL object. This gives you an object reference
+	to the underlying URL implementation.
+
+	Set plid to the plid of another layout. This allows you to post the URL to
+	another layout.
+
+	Set portletName to the name of a portlet other than the current portlet.
+	This allows you to post the URL to another portlet.
+
+	Set anchor to false if you do not want the page to refresh and anchor to the
+	current portlet.
+
+	Set encrypt to true if you want to encrypt all the parameter values.
+
+	Set doAsUserId to process this URL as if it is accessed by the specified
+	user.
+
+	Set portletConfiguration to true if you want to pass the parameters needed
+	when you are accessing a portlet that is wrapped by the Portlet
+	Configuration portlet.
+	-->
+
+	<tag>
+		<name>renderURL</name>
+		<tag-class>com.liferay.taglib.portlet.RenderURLTag</tag-class>
+		<tei-class>com.liferay.taglib.portlet.RenderURLTei</tei-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>allowEmptyParam</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>anchor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>copyCurrentRenderParameters</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>doAsGroupId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>doAsUserId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>encrypt</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>escapeXml</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>plid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletConfiguration</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletMode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>refererPlid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>secure</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>varImpl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>windowState</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>renderURLParams</name>
+		<tag-class>com.liferay.taglib.portlet.RenderURLParamsTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>varImpl</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<!--
+	liferay-portlet:resourceURL is similar to portlet:resourceURL except it has
+	the additional attributes plid, portletName, anchor, and encrypt.
+
+	Set varImpl to set the PortletURL object. This gives you an object reference
+	to the underlying URL implementation.
+
+	Set plid to the plid of another layout. This allows you to post the URL to
+	another layout.
+
+	Set portletName to the name of a portlet other than the current portlet.
+	This allows you to post the URL to another portlet.
+
+	Set anchor to false if you do not want the page to refresh and anchor to the
+	current portlet.
+
+	Set encrypt to true if you want to encrypt all the parameter values.
+
+	Set doAsUserId to process this URL as if it is accessed by the specified
+	user.
+
+	Set portletConfiguration to true if you want to pass the parameters needed
+	when you are accessing a portlet that is wrapped by the Portlet
+	Configuration portlet.
+	-->
+
+	<tag>
+		<name>resourceURL</name>
+		<tag-class>com.liferay.taglib.portlet.ResourceURLTag</tag-class>
+		<tei-class>com.liferay.taglib.portlet.ResourceURLTei</tei-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>anchor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>copyCurrentRenderParameters</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>doAsGroupId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>doAsUserId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>encrypt</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>escapeXml</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>plid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletConfiguration</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletMode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>refererPlid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>secure</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>varImpl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>windowState</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>runtime</name>
+		<tag-class>com.liferay.taglib.portletext.RuntimeTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>defaultPreferences</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>portletName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>queryString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>
