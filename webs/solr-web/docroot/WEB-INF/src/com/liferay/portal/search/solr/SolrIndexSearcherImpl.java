@@ -312,6 +312,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				document.add(field);
 			}
 
+			documents.add(document);
+
 			String snippet = StringPool.BLANK;
 
 			if (queryConfig.isHighlightEnabled()) {
@@ -328,9 +330,11 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 						continue;
 					}
 				}
-			}
 
-			documents.add(document);
+				if (Validator.isNotNull(snippet)) {
+					snippets.add(snippet);
+				}
+			}
 
 			if (queryConfig.isScoreEnabled()) {
 				float score = GetterUtil.getFloat(
@@ -345,8 +349,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			else {
 				scores.add(maxScore);
 			}
-
-			snippets.add(snippet);
 
 			subsetTotal++;
 		}
