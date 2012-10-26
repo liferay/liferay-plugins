@@ -166,6 +166,13 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				<aui:input classPK="<%= calendarBookingId %>" name="tags" type="assetTags" />
 			</liferay-ui:panel>
 
+			<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" id="calendarBookingAssetLinksPanel" persistState="<%= true %>" title="related-assets">
+				<liferay-ui:input-asset-links
+					className="<%= CalendarBooking.class.getName() %>"
+					classPK="<%= calendarBookingId %>"
+				/>
+			</liferay-ui:panel>
+
 			<liferay-ui:panel collapsible="<%= true %>" defaultState="open" extended="<%= false %>" id="calendarBookingInvitationPanel" persistState="<%= true %>" title="invitations">
 				<c:if test="<%= invitable %>">
 					<aui:input inputCssClass="calendar-portlet-invite-resources-input" label="" name="inviteResource" placeholder="add-people-groups-rooms" type="text" />
