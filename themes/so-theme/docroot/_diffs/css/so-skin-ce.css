@@ -907,6 +907,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	text-decoration: none;
 }
 
+.ie7 .taglib-ratings div div {
+	overflow: hidden;
+}
+
 /* ---------- Portlet ---------- */
 
 /* Dockbar */
