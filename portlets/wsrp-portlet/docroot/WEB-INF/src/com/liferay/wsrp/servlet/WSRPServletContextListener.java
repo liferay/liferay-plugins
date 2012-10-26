@@ -14,11 +14,13 @@
 
 package com.liferay.wsrp.servlet;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.messaging.MessageListener;
+import com.liferay.portal.kernel.messaging.SerialDestination;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
+import com.liferay.wsrp.messaging.HotDeployMessageListener;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
-import com.liferay.wsrp.util.ExtensionHelperUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -39,22 +41,29 @@ public class WSRPServletContextListener
 
 	@Override
 	protected void doPortalDestroy() throws Exception {
+		_destination.unregister(_hotDeployMessageListener);
+
+		MessageBusUtil.removeDestination(DestinationNames.HOT_DEPLOY);
+
 		WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
 	}
 
 	@Override
 	protected void doPortalInit() {
-		ExtensionHelperUtil.initialize();
+		_destination = new SerialDestination();
 
-		try {
-			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
-		}
-		catch (Exception e) {
-			_log.error("Unable to initialize WSRP consumer portlets", e);
-		}
+		_destination.setName(DestinationNames.HOT_DEPLOY);
+
+		_destination.afterPropertiesSet();
+
+		MessageBusUtil.addDestination(_destination);
+
+		_hotDeployMessageListener = new HotDeployMessageListener();
+
+		_destination.register(_hotDeployMessageListener);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		WSRPServletContextListener.class);
+	private SerialDestination _destination;
+	private MessageListener _hotDeployMessageListener;
 
 }
