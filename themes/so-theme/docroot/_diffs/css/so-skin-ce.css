@@ -2382,6 +2382,16 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	zoom: 1;
 }
 
+.ie7 .tasks-portlet .control-wrapper {
+	overflow: hidden;
+	position: relative;
+
+	.filter-tasks {
+		position: absolute;
+		right: 7px;
+	}
+}
+
 /* Wiki */
 
 .portlet-wiki {
