@@ -1809,8 +1809,9 @@ public class ConsumerPortlet extends GenericPortlet {
 
 			PortletResponseUtil.write(resourceResponse, content);
 		}
-
-		PortletResponseUtil.write(resourceResponse, bytes);
+		else {
+			PortletResponseUtil.write(resourceResponse, bytes);
+		}
 	}
 
 	protected String rewriteURL(
