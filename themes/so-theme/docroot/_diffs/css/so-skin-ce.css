@@ -350,6 +350,7 @@ a:hover {
 		display: none;
 		position: absolute;
 		right: 10px;
+		white-space: nowrap;
 
 		.aui-icon-edit {
 			background-image: url(../images/common/edit.png);
@@ -1436,18 +1437,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		float: none;
 	}
 
-	.social-relations {
-		margin-left: 1px;
-	}
-
-	.lfr-app-column-view {
-		.contacts-profile .lfr-contact-grid-item {
-			padding-top: 10px;
-		}
-
-		.social-relations {
-			margin-left: 0;
-		}
+	.lfr-app-column-view .contacts-profile .lfr-contact-grid-item {
+		padding-top: 10px;
 	}
 
 	.projects {
@@ -1474,12 +1465,18 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	border-bottom-width: 1px;
 }
 
-.ie7 .contacts-portlet .contacts-list {
-	border-right: 1px solid $gray-dark;
-	margin-left: -1px;
+.ie7 .contacts-portlet {
+	.contacts-profile {
+		margin-bottom: 0;
+	}
 
-	.contacts-list-content {
-		border-right-width: 0;
+	.contacts-list {
+		border-right: 1px solid $gray-dark;
+		margin-left: -1px;
+
+		.contacts-list-content {
+			border-right-width: 0;
+		}
 	}
 }
 
