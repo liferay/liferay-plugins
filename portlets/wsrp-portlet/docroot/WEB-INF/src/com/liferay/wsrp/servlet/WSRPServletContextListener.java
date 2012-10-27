@@ -17,7 +17,6 @@ package com.liferay.wsrp.servlet;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.SerialDestination;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.wsrp.messaging.HotDeployMessageListener;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
@@ -41,29 +40,20 @@ public class WSRPServletContextListener
 
 	@Override
 	protected void doPortalDestroy() throws Exception {
-		_destination.unregister(_hotDeployMessageListener);
-
-		MessageBusUtil.removeDestination(DestinationNames.HOT_DEPLOY);
+		MessageBusUtil.unregisterMessageListener(
+			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
 
 		WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
 	}
 
 	@Override
 	protected void doPortalInit() {
-		_destination = new SerialDestination();
-
-		_destination.setName(DestinationNames.HOT_DEPLOY);
-
-		_destination.afterPropertiesSet();
-
-		MessageBusUtil.addDestination(_destination);
-
 		_hotDeployMessageListener = new HotDeployMessageListener();
 
-		_destination.register(_hotDeployMessageListener);
+		MessageBusUtil.registerMessageListener(
+			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
 	}
 
-	private SerialDestination _destination;
 	private MessageListener _hotDeployMessageListener;
 
 }
