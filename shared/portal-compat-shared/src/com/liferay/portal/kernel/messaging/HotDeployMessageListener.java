@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 /**
@@ -51,9 +49,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 	protected void onUndeploy() throws Exception {
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		HotDeployMessageListener.class);
 
 	private String _servletContextName;
 
