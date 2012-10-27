@@ -108,7 +108,7 @@ public class ServiceHandler implements InvocationHandler {
 		sb.append(_version);
 		sb.append(".bind.WSRP_");
 		sb.append(_version);
-		sb.append(StringPool.UNDERLINE) ;
+		sb.append(StringPool.UNDERLINE);
 		sb.append(serviceName);
 		sb.append("_Binding_SOAPStub");
 
