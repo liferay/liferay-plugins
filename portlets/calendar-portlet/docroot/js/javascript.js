@@ -492,10 +492,10 @@ AUI.add(
 
 					if (oldCalendar !== newCalendar) {
 						oldCalendar.remove(schedulerEvent);
+					}
 
-						if (newCalendar) {
-							newCalendar.addEvent(schedulerEvent);
-						}
+					if (newCalendar) {
+						newCalendar.add(schedulerEvent);
 					}
 
 					schedulerEvent.setAttrs(
