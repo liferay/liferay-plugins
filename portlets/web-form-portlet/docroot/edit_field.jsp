@@ -123,7 +123,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 		<c:choose>
 			<c:when test="<%= !fieldsEditingDisabled %>">
 				<div class="validation">
-					<liferay-ui:error key='<%= "invalidValidationDefinition" + index %>' message="please-enter-both-the-validation-code-and-the-error-message" />
+					<liferay-ui:error key='<%= "validationDefinitionInvalid" + index %>' message="please-enter-both-the-validation-code-and-the-error-message" />
 
 					<aui:a cssClass="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</aui:a>
 

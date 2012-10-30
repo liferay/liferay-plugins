@@ -119,7 +119,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 					Validator.isNotNull(fieldValidationErrorMessage)) {
 
 					SessionErrors.add(
-						actionRequest, "invalidValidationDefinition" + i);
+						actionRequest, "validationDefinitionInvalid" + i);
 				}
 
 				updateModifiedLocales(
