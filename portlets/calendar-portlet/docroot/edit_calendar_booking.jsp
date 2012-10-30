@@ -246,7 +246,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	</aui:button-row>
 </aui:form>
 
-<aui:script>
+<aui:script use="aui-base">
 	function <portlet:namespace />filterCalendarBookings(calendarBooking) {
 		return <%= calendarBookingId %> !== calendarBooking.calendarBookingId;
 	}
@@ -255,8 +255,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		window,
 		'<portlet:namespace />updateCalendarBooking',
 		function() {
-			var A = AUI();
-
 			<c:if test="<%= invitable %>">
 				var calendarId = A.one('#<portlet:namespace />calendarId').val();
 				var childCalendarIds = A.Object.keys(Liferay.CalendarUtil.availableCalendars);
@@ -327,7 +325,41 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
 
-	Liferay.Util.toggleBoxes('<portlet:namespace />allDayCheckbox', '<portlet:namespace />endDateContainer', true);
+	var allDayCheckbox = A.one('#<portlet:namespace />allDayCheckbox');
+
+	var <portlet:namespace />toggleDateTimeContainers = function(toggle) {
+		var endDateContainer = A.one('#<portlet:namespace />endDateContainer');
+		var inputTime = '.lfr-input-time';
+		var startDateContainer = A.one('#<portlet:namespace />startDateContainer');
+
+		if (toggle) {
+			if (toggle == 'show') {
+				startDateContainer.one(inputTime).show();
+				endDateContainer.one(inputTime).show();
+			}
+			else {
+				startDateContainer.one(inputTime).hide();
+				endDateContainer.one(inputTime).hide();
+			}
+		}
+		else {
+			var checked = allDayCheckbox.get('checked');
+
+			if (checked) {
+				<portlet:namespace />toggleDateTimeContainers('hide');
+			}
+			else {
+				<portlet:namespace />toggleDateTimeContainers('show');
+				endDateContainer.show();
+			}
+		}
+	}
+
+	allDayCheckbox.on('click', function () {
+		<portlet:namespace />toggleDateTimeContainers();
+	});
+
+	<portlet:namespace />toggleDateTimeContainers();
 
 	<c:if test="<%= calendarBooking == null %>">
 		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = '<%= HtmlUtil.escapeJS(title) %>';
