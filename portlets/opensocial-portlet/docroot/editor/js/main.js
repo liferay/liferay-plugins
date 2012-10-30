@@ -1,6 +1,6 @@
 AUI.add(
 	'opensocial-editor',
-	function (A) {
+	function(A) {
 		var Lang = A.Lang;
 
 		var ABSOLUTE = 'absolute';
@@ -425,7 +425,7 @@ AUI.add(
 								var folderNode = lastSelected.get(PARENT_NODE);
 
 								folderNode.select();
-							}							
+							}
 						}
 						else if (node && !node.isSelected()) {
 							var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
