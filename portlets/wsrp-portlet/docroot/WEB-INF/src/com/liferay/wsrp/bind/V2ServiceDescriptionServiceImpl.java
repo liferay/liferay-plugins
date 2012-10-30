@@ -143,6 +143,7 @@ public class V2ServiceDescriptionServiceImpl
 
 		PortletDescription portletDescription = new PortletDescription();
 
+		portletDescription.setGroupID("liferay");
 		portletDescription.setPortletHandle(portletId);
 		portletDescription.setMarkupTypes(getMarkupTypes(portlet));
 
