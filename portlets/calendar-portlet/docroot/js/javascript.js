@@ -197,6 +197,7 @@ AUI.add(
 				var instance = this;
 
 				var scheduler = schedulerEvent.get('scheduler');
+
 				var eventRecorder = scheduler.get('eventRecorder');
 
 				eventRecorder.hideOverlay();
@@ -1046,7 +1047,7 @@ AUI.add(
 					var firstDayOfWeek = scheduler.get('firstDayOfWeek');
 					var filterCalendarBookings = scheduler.get('filterCalendarBookings');
 
-					CalendarUtil.message(Liferay.Language.get('loading') + '...');
+					CalendarUtil.message(Liferay.Language.get('loading'));
 
 					var endDate = DateMath.add(DateMath.getFirstDayOfWeek(DateMath.findMonthEnd(date), firstDayOfWeek), DateMath.DAY, 7);
 					var startDate = DateMath.subtract(DateMath.getFirstDayOfWeek(DateMath.findMonthStart(date), firstDayOfWeek), DateMath.DAY, 7);
@@ -1256,8 +1257,11 @@ AUI.add(
 												);
 
 												var offset = 0;
-												var newVal = changed.startDate.newVal;
-												var prevVal = changed.startDate.prevVal;
+
+												var changedStartDate = changed.startDate;
+
+												var newVal = changedStartDate.newVal;
+												var prevVal = changedStartDate.prevVal;
 
 												if (isDate(newVal) && isDate(prevVal)) {
 													offset = newVal.getTime() - prevVal.getTime();
@@ -1663,13 +1667,15 @@ AUI.add(
 
 						var messageNode = contentNode.one('.calendar-portlet-invitees');
 
+						var messageHTML = '&mdash;';
+
 						if (values.length > 0) {
 							contentNode.show();
-							messageNode.html(values.join(STR_COMMA_SPACE));
+
+							messageHTML = values.join(STR_COMMA_SPACE);
 						}
-						else {
-							messageNode.html('&mdash;');
-						}
+
+						messageNode.html(messageHTML);
 					},
 
 					_syncToolbarButtons: function(overlayVisible) {
