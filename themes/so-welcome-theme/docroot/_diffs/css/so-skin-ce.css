@@ -46,6 +46,10 @@ input[type=password], input[type=text], textarea, .aui-field-select select, .aui
 	}
 }
 
+.aui-form-validator-error {
+	text-indent: 18px;
+}
+
 button, input[type=button], input[type=submit], input[type=reset], #sign-in, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content {
 	background: #E9E8E8;
 	border: 1px solid $gray;
@@ -93,10 +97,6 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	border-color: transparent;
 }
 
-.aui-form-validator-error-container .aui-field-element {
-	padding-right: 30px;
-}
-
 .aui-toolbar {
 	.aui-toolbar-item {
 		border-width: 1px 0 1px 1px;
@@ -127,8 +127,8 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 .aui-form-validator-stack-error {
 	background: transparent url(../images/messages/error.png) no-repeat;
 	height: 16px;
+	left: 4px;
 	position: absolute;
-	right: 4px;
 	top: 6px;
 	width: 16px;
 	z-index: 1;
@@ -136,11 +136,13 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 
 .aui-form-validator-error-container .aui-field-element {
 	padding-right: 0;
+	z-index: 1;
 }
 
 .aui-form-validator-message {
 	background-color: rgba(51, 51, 51, .8);
-	right: 0;
+	left: -4px;
+	top: 23px;
 	width: 200px;
 }
 
@@ -237,11 +239,26 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	}
 }
 
-/* ---------- Extras ---------- */
+/* ---------- Internet Explorer ---------- */
 
-.ie #loginPage .login-holder .portlet {
-	border: 1px solid $gray;
+.ie {
+	#loginPage {
+		.login-holder .portlet {
+			border: 1px solid $gray;
+		}
+
+		.portlet .aui-form-validator-error {
+			width: 210px;
+		}
+	}
+
+	.aui-form-validator-error {
+		padding-left: 20px;
+		text-indent: 0;
+	}
 }
+
+/* ---------- Extras ---------- */
 
 input[type=password], input[type=text], textarea, .aui-field-select select {
 	@include border-radius(5px);

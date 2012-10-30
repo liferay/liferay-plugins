@@ -540,6 +540,10 @@ input[type=password], input[type=text], textarea, .aui-field-select select, .aui
 	background-image: none;
 }
 
+.aui-form-validator-error {
+	text-indent: 18px;
+}
+
 button, input[type=button], input[type=submit], input[type=reset], #toggleFluid, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .lfr-actions.lfr-extended, .invite-members, .portlet-blogs .lfr-meta-actions, .portlet-blogs .lfr-meta-actions a, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover {
 	background: #E9E8E8;
 	border: 1px solid $gray;
@@ -591,10 +595,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	border-color: transparent;
 }
 
-.aui-form-validator-error-container .aui-field-element {
-	padding-right: 30px;
-}
-
 .aui-toolbar {
 	.aui-toolbar-item {
 		border-width: 1px 0 1px 1px;
@@ -625,8 +625,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 .aui-form-validator-stack-error {
 	background: transparent url(../images/messages/error.png) no-repeat;
 	height: 16px;
+	left: 4px;
 	position: absolute;
-	right: 4px;
 	top: 6px;
 	width: 16px;
 	z-index: 1;
@@ -638,7 +638,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 .aui-form-validator-message {
 	background-color: rgba(51, 51, 51, .8);
-	right: 0;
+	left: -4px;
+	top: 23px;
 	width: 200px;
 }
 
@@ -2458,8 +2459,15 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
-.ie .tasks-portlet {
-	zoom: 1;
+.ie {
+	.tasks-portlet {
+		zoom: 1;
+	}
+
+	.aui-form-validator-error {
+		padding-left: 20px;
+		text-indent: 0;
+	}
 }
 
 /* ---------- Fluid Layout ---------- */
