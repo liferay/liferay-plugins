@@ -459,9 +459,11 @@
 
 							var calendar = instance.getCalendarByNode(currentTarget);
 
-							instance._setCalendarColor(calendar, calendar.get('color'));
-
 							currentTarget.addClass(CSS_CALENDAR_LIST_ITEM_HOVER);
+
+							if (!calendar.get('visible')) {
+								instance._setCalendarColor(calendar, calendar.get('color'));
+							}
 						},
 
 						_onHoverOut: function(event) {
