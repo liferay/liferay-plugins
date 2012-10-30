@@ -67,21 +67,8 @@ public class UpgradeGroup extends UpgradeProcess {
 				continue;
 			}
 
-			Layout layout = LayoutLocalServiceUtil.fetchFirstLayout(
-					group.getGroupId(), privateLayout,
-					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-			PortletPreferences portletPreferences = null;
-
-			if (layout.getLayoutType() instanceof LayoutTypePortlet) {
-				try {
-					portletPreferences =
-						PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-							layout, _OLD_WELCOME_PORTLET_ID);
-				}
-				catch (Exception e) {
-				}
-			}
+			PortletPreferences portletPreferences = getPortletPreferences(
+				group.getGroupId(), privateLayout);
 
 			LayoutLocalServiceUtil.deleteLayouts(
 				group.getGroupId(), privateLayout, new ServiceContext());
@@ -96,41 +83,62 @@ public class UpgradeGroup extends UpgradeProcess {
 			PortalClassInvoker.invoke(
 				true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
 
-			layout = LayoutLocalServiceUtil.fetchFirstLayout(
-				group.getGroupId(), privateLayout,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-			if (portletPreferences != null) {
-				try {
-					PortletPreferences newPortletPreferences =
-						PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-							layout, _NEW_WELCOME_PORTLET_ID);
-
-					newPortletPreferences.setValue(
-						_NEW_WELCOME_PORTLET_ID,
-						portletPreferences.getValue(
-							"message", StringPool.BLANK));
-				}
-				catch (Exception e) {
-				}
-			}
+			updatePortletPreferences(
+				group.getGroupId(), privateLayout, portletPreferences);
 
 			SocialOfficeUtil.enableSocialOffice(group);
 		}
 	}
 
-	private static final String _OLD_WELCOME_PORTLET_ID =
-		"1_WAR_wysiwygportlet";
+	protected PortletPreferences getPortletPreferences(
+			long groupId, boolean privateLayout)
+		throws Exception {
+
+		Layout layout = LayoutLocalServiceUtil.fetchFirstLayout(
+			groupId, privateLayout, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+
+		if (layout.getLayoutType() instanceof LayoutTypePortlet) {
+			try {
+				return PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+					layout, _OLD_WELCOME_PORTLET_ID);
+			}
+			catch (Exception e) {
+			}
+		}
+
+		return null;
+	}
+
+	protected void updatePortletPreferences(
+			long groupId, boolean privateLayout,
+			PortletPreferences portletPreferences)
+		throws Exception {
+
+		if (portletPreferences == null) {
+			return;
+		}
+
+		Layout layout = LayoutLocalServiceUtil.fetchFirstLayout(
+			groupId, privateLayout, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+
+		PortletPreferences newPortletPreferences =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, _NEW_WELCOME_PORTLET_ID);
+
+		newPortletPreferences.setValue(
+			_NEW_WELCOME_PORTLET_ID,
+			portletPreferences.getValue("message", StringPool.BLANK));
+	}
 
 	private static final String _NEW_WELCOME_PORTLET_ID =
 		"1_WAR_wysiwygportlet_INSTANCE_abcd";
 
-	private static final String _CLASS_NAME =
-		"com.liferay.portlet.sites.util.SitesUtil";
+	private static final String _OLD_WELCOME_PORTLET_ID =
+		"1_WAR_wysiwygportlet";
 
 	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
 		new MethodKey(
-			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
-			LayoutSet.class);
+			"com.liferay.portlet.sites.util.SitesUtil",
+			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 
 }
