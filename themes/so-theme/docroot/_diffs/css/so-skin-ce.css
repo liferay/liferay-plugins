@@ -1371,8 +1371,12 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	border-left: 1px solid $gray-dark;
 
 	.lfr-app-column-view {
-		.results-row.alt td {
+		.results-row td {
 			background: transparent;
+		}
+
+		.results-row.selected td {
+			background: #00A2EA;
 		}
 
 		.results-row.hover td {
