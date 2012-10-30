@@ -2337,6 +2337,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 					margin: 0;
 				}
 			}
+			
+			.name {
+				max-width: 115px;
+			}
 		}
 	}
 
