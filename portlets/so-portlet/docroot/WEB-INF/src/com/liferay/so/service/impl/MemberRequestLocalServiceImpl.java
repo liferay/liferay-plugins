@@ -67,6 +67,15 @@ public class MemberRequestLocalServiceImpl
 
 		Date now = new Date();
 
+		try {
+			User receiverUser = userLocalService.getUserByEmailAddress(
+				serviceContext.getCompanyId(), receiverEmailAddress);
+			
+			receiverUserId = receiverUser.getUserId();
+		}
+		catch(Exception e) {
+		}
+
 		long memberRequestId = counterLocalService.increment();
 
 		MemberRequest memberRequest = memberRequestPersistence.create(
@@ -97,7 +106,9 @@ public class MemberRequestLocalServiceImpl
 
 		// Notifications
 
-		sendNotificationEvent(memberRequest);
+		if (receiverUserId > 0) {
+			sendNotificationEvent(memberRequest);
+		}
 
 		return memberRequest;
 	}
@@ -236,7 +247,11 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setModifiedDate(new Date());
 		memberRequest.setReceiverUserId(receiverUserId);
 
-		memberRequestPersistence.update(memberRequest);
+		memberRequest = memberRequestPersistence.update(memberRequest);
+
+		if (receiverUserId > 0) {
+			sendNotificationEvent(memberRequest);
+		}
 
 		return memberRequest;
 	}
@@ -300,6 +315,24 @@ public class MemberRequestLocalServiceImpl
 				user.getFullName()
 			});
 
+		String redirectURL = (String)serviceContext.getAttribute(
+			"redirectURL");
+
+		if (Validator.isNull(redirectURL)) {
+			redirectURL = serviceContext.getCurrentURL();
+		}
+
+		String loginURL = (String)serviceContext.getAttribute("loginURL");
+
+		if (Validator.isNull(loginURL)) {
+			loginURL = serviceContext.getPortalURL();
+		}
+
+		loginURL = HttpUtil.addParameter(loginURL, "redirect", redirectURL);
+
+		redirectURL = HttpUtil.addParameter(
+			redirectURL, "key", memberRequest.getKey());
+
 		String createAccountURL = (String)serviceContext.getAttribute(
 			"createAccountURL");
 
@@ -308,16 +341,7 @@ public class MemberRequestLocalServiceImpl
 		}
 
 		createAccountURL = HttpUtil.addParameter(
-			createAccountURL, "key", memberRequest.getKey());
-
-		String loginURL = (String)serviceContext.getAttribute("loginURL");
-
-		if (Validator.isNull(loginURL)) {
-			loginURL = serviceContext.getPortalURL();
-		}
-
-		loginURL = HttpUtil.addParameter(
-			loginURL, "key", memberRequest.getKey());
+			createAccountURL, "redirect", redirectURL);
 
 		body = StringUtil.replace(
 			body,
