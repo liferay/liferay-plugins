@@ -61,8 +61,10 @@
 					</td>
 					<td>
 						<select id="<portlet:namespace />eventRecorderCalendar" name="calendarId">
-							<tpl for="availableCalendars">
-								<option value="{[values.get('calendarId')]}">{[Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName'))]}</option>
+							<tpl for="calendarIds">
+								<tpl for="parent.availableCalendars[values]">
+									<option value="{[values.get('calendarId')]}">{[Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName'))]}</option>
+								</tpl>
 							</tpl>
 						</select>
 					</td>

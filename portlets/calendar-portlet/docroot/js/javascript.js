@@ -1462,7 +1462,9 @@ AUI.add(
 							schedulerEvent = instance;
 						}
 
-						var calendar = CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
+						var availableCalendars = CalendarUtil.availableCalendars;
+
+						var calendar = availableCalendars[schedulerEvent.get('calendarId')];
 
 						var permissions = calendar.get('permissions');
 
@@ -1472,7 +1474,8 @@ AUI.add(
 								allDay: schedulerEvent.get('allDay'),
 								calendar: calendar,
 								editing: editing,
-								availableCalendars: instance._availableCalendarsToArray(),
+								calendarIds: AObject.keys(availableCalendars),
+								availableCalendars: availableCalendars,
 								permissions: permissions,
 								status: CalendarUtil.getStatusLabel(schedulerEvent.get('status'))
 							}
@@ -1490,12 +1493,6 @@ AUI.add(
 					},
 
 					isMasterBooking: Lang.emptyFnFalse,
-
-					_availableCalendarsToArray: function () {
-						return AObject.map(Liferay.CalendarUtil.availableCalendars, function(item, index, collection) {
-							return item;
-						});
-					},
 
 					_handleEventAcceptResponse: function(event) {
 						var instance = this;
