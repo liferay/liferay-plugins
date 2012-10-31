@@ -26,26 +26,26 @@ if (!themeDisplay.isSignedIn()) {
 	return;
 }
 
-ServletContext servletContext = getServletContext();
+Group group = null;
 
 String[] importers = {"custom", "lar", "resource"};
 
 for (String importer : importers) {
-	if (_group == null) {
-		_group = GroupLocalServiceUtil.fetchGroup(themeDisplay.getCompanyId(), "Test Resources Importer Portlet");
+	if (group == null) {
+		group = GroupLocalServiceUtil.fetchGroup(themeDisplay.getCompanyId(), "Test Resources Importer Portlet");
 	}
 
-	if (_group != null) {
-		GroupLocalServiceUtil.deleteGroup(_group);
+	if (group != null) {
+		GroupLocalServiceUtil.deleteGroup(group);
 	}
 
-	String resourcesPath = servletContext.getRealPath("/WEB-INF/classes/resources-importer");
+	String resourcesPath = application.getRealPath("/WEB-INF/classes/resources-importer");
 
 	FileUtil.deltree(resourcesPath);
 	FileUtil.mkdirs(resourcesPath);
 
 	if (importer.equals("lar") || importer.equals("resource")) {
-		String importerPath = servletContext.getRealPath("WEB-INF/classes/test/" + importer);
+		String importerPath = application.getRealPath("WEB-INF/classes/test/" + importer);
 
 		FileUtil.copyDirectory(importerPath, resourcesPath);
 	}
@@ -83,11 +83,12 @@ for (String importer : importers) {
 	</h3>
 
 	<p>
+
 		<%
-		_group = GroupLocalServiceUtil.fetchGroup(groupId);
+		group = GroupLocalServiceUtil.fetchGroup(groupId);
 		%>
 
-		GroupLocalServiceUtil#fetchGroup=<%= _assertTrue(_group != null) %><br />
+		GroupLocalServiceUtil#fetchGroup=<%= _assertTrue(group != null) %><br />
 
 		<%
 		if (groupId == 0) {
@@ -163,6 +164,4 @@ private static String _assertTrue(boolean value) {
 		return "FAILED";
 	}
 }
-
-private Group _group;
 %>
