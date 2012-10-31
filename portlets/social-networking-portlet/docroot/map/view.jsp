@@ -79,7 +79,13 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 		<script src="http://www.google.com/jsapi?key=<%= PortletProps.get("map.google.maps.api.key") %>" type="text/javascript"></script>
 
 		<aui:script>
-			google.load("maps", "2.x", {"language" : "ja_JP"});
+			google.load(
+				"maps",
+				"2.x",
+				{
+					language: '<%= themeDisplay.getLanguageId() %>'
+				}
+			);
 
 			function <portlet:namespace />initMap() {
 				if (GBrowserIsCompatible()) {
@@ -147,7 +153,9 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 
 						var marker<%= i %> = new GMarker(
 							new GLatLng(<%= latitude %>, <%= longitude %>),
-							{title: '<%= HtmlUtil.escapeJS(mapUser.getFullName()) %>'}
+							{
+								title: '<%= HtmlUtil.escapeJS(mapUser.getFullName()) %>'
+							}
 						);
 
 						GEvent.addListener(
