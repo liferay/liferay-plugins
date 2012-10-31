@@ -540,10 +540,6 @@ input[type=password], input[type=text], textarea, .aui-field-select select, .aui
 	background-image: none;
 }
 
-.aui-form-validator-error {
-	text-indent: 18px;
-}
-
 button, input[type=button], input[type=submit], input[type=reset], #toggleFluid, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .lfr-actions.lfr-extended, .invite-members, .portlet-blogs .lfr-meta-actions, .portlet-blogs .lfr-meta-actions a, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover {
 	background: #E9E8E8;
 	border: 1px solid $gray;
@@ -620,6 +616,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.aui-panel-bd {
 		padding: 10px;
 	}
+}
+
+.aui-form-validator-error {
+	text-indent: 18px;
 }
 
 .aui-form-validator-stack-error {
@@ -2460,13 +2460,13 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 }
 
 .ie {
-	.tasks-portlet {
-		zoom: 1;
-	}
-
 	.aui-form-validator-error {
 		padding-left: 20px;
 		text-indent: 0;
+	}
+
+	.tasks-portlet {
+		zoom: 1;
 	}
 }
 
