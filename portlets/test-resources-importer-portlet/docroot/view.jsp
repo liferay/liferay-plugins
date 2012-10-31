@@ -31,10 +31,12 @@ ServletContext servletContext = getServletContext();
 String[] importers = {"custom", "lar", "resource"};
 
 for (String importer : importers) {
-	Group group = GroupLocalServiceUtil.fetchGroup(themeDisplay.getCompanyId(), "Test Resources Importer Portlet");
+	if (_group == null) {
+		_group = GroupLocalServiceUtil.fetchGroup(themeDisplay.getCompanyId(), "Test Resources Importer Portlet");
+	}
 
-	if (group != null) {
-		GroupLocalServiceUtil.deleteGroup(group);
+	if (_group != null) {
+		GroupLocalServiceUtil.deleteGroup(_group);
 	}
 
 	String resourcesPath = servletContext.getRealPath("/WEB-INF/classes/resources-importer");
@@ -67,7 +69,6 @@ for (String importer : importers) {
 %>
 
 	<h3>
-
 		<c:choose>
 			<c:when test='<%= importer.equals("custom") %>'>
 				Custom Resource Directory
@@ -82,7 +83,11 @@ for (String importer : importers) {
 	</h3>
 
 	<p>
-		GroupLocalServiceUtil#fetchGroup=<%= _assertTrue(GroupLocalServiceUtil.fetchGroup(groupId) != null) %><br />
+		<%
+		_group = GroupLocalServiceUtil.fetchGroup(groupId);
+		%>
+
+		GroupLocalServiceUtil#fetchGroup=<%= _assertTrue(_group != null) %><br />
 
 		<%
 		if (groupId == 0) {
@@ -158,4 +163,6 @@ private static String _assertTrue(boolean value) {
 		return "FAILED";
 	}
 }
+
+private Group _group;
 %>
