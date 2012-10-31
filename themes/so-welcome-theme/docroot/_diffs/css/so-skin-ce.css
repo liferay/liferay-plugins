@@ -46,10 +46,6 @@ input[type=password], input[type=text], textarea, .aui-field-select select, .aui
 	}
 }
 
-.aui-form-validator-error {
-	text-indent: 18px;
-}
-
 button, input[type=button], input[type=submit], input[type=reset], #sign-in, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content {
 	background: #E9E8E8;
 	border: 1px solid $gray;
@@ -122,6 +118,10 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	.aui-panel-bd {
 		padding: 10px;
 	}
+}
+
+.aui-form-validator-error {
+	text-indent: 18px;
 }
 
 .aui-form-validator-stack-error {
