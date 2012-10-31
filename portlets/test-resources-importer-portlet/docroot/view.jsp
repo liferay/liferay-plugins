@@ -55,9 +55,15 @@ for (String importer : importers) {
 
 	message.setResponseDestinationName("liferay/resources_importer");
 
-	Map<String, Object> responseMap = (Map<String, Object>)MessageBusUtil.sendSynchronousMessage(DestinationNames.HOT_DEPLOY, message);
+	long groupId = 0;
 
-	long groupId = GetterUtil.getLong(responseMap.get("groupId"));
+	try {
+		Map<String, Object> responseMap = (Map<String, Object>)MessageBusUtil.sendSynchronousMessage(DestinationNames.HOT_DEPLOY, message);
+
+		groupId = GetterUtil.getLong(responseMap.get("groupId"));
+	}
+	catch (Exception e) {
+	}
 %>
 
 	<h3>
