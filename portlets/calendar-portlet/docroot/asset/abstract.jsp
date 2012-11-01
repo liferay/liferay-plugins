@@ -16,16 +16,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-Calendar calendar = calendarBooking.getCalendar();
-
-List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
-
-Date startDate = JCalendarUtil.getJCalendar(calendarBooking.getStartDate(), user.getTimeZone()).getTime();
-Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.getTimeZone()).getTime();
-%>
-
 <div>
 	<p>
 		<liferay-ui:icon
@@ -33,9 +23,19 @@ Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.get
 			message=""
 		/>
 
+		<%
+		CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
+
+		Calendar calendar = calendarBooking.getCalendar();
+		%>
+
 		<strong><%= HtmlUtil.escape(calendar.getName(locale)) %></strong>
 
-		<c:if test="<%= (childCalendarBookings.size() > 0) %>">
+		<%
+		List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
+		%>
+
+		<c:if test="<%= !childCalendarBookings.isEmpty() %>">
 			<br />
 
 			<liferay-ui:icon
@@ -66,7 +66,11 @@ Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.get
 			message="start-date"
 		/>
 
-		<liferay-ui:message key="start-date" />: <%= dateFormatLongDate.format(startDate) + ", " + dateFormatTime.format(startDate) %>
+		<%
+		java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(calendarBooking.getStartDate(), user.getTimeZone());
+		%>
+
+		<liferay-ui:message key="start-date" />: <%= dateFormatLongDate.format(startDateJCalendar.getTime()) + ", " + dateFormatTime.format(startDateJCalendar.getTime()) %>
 
 		<br />
 
@@ -75,7 +79,11 @@ Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.get
 			message="end-date"
 		/>
 
-		<liferay-ui:message key="end-date" />: <%= dateFormatLongDate.format(endDate) + ", " + dateFormatTime.format(endDate) %>
+		<%
+		java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.getTimeZone());
+		%>
+
+		<liferay-ui:message key="end-date" />: <%= dateFormatLongDate.format(endDateJCalendar.getTime()) + ", " + dateFormatTime.format(endDateJCalendar.getTime()) %>
 	</p>
 </div>
 

@@ -17,31 +17,35 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
-Calendar calendar = calendarBooking.getCalendar();
-
-List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
-
-Date startDate = JCalendarUtil.getJCalendar(calendarBooking.getStartDate(), user.getTimeZone()).getTime();
-Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.getTimeZone()).getTime();
-%>
-
 <div>
+
+	<%
+	CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
+	%>
+
 	<c:if test="<%= Validator.isNotNull(calendarBooking.getDescription(locale)) %>">
 		<p>
 			<%= HtmlUtil.escape(calendarBooking.getDescription(locale)) %>
 		</p>
 	</c:if>
+
 	<p>
 		<liferay-ui:icon
 			image="../common/user_icon"
 			message="owner"
 		/>
 
+		<%
+		Calendar calendar = calendarBooking.getCalendar();
+		%>
+
 		<strong><%= HtmlUtil.escape(calendar.getName(locale)) %></strong>
 
-		<c:if test="<%= (childCalendarBookings.size() > 0) %>">
+		<%
+		List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
+		%>
+
+		<c:if test="<%= !childCalendarBookings.isEmpty() %>">
 			<br />
 
 			<liferay-ui:icon
@@ -65,8 +69,7 @@ Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.get
 		</c:if>
 
 		<c:if test="<%= calendarBooking.isRecurring() %>">
-			<br />
-			<br />
+			<br /><br />
 
 			<liferay-ui:icon
 				image="../common/site_template"
@@ -76,15 +79,18 @@ Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.get
 			<liferay-ui:message key="recurring" />
 		</c:if>
 
-		<br />
-		<br />
+		<br /><br />
 
 		<liferay-ui:icon
 			image="../common/revision"
 			message="start-date"
 		/>
 
-		<liferay-ui:message key="start-date" />: <%= dateFormatLongDate.format(startDate) + ", " + dateFormatTime.format(startDate) %>
+		<%
+		java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(calendarBooking.getStartDate(), user.getTimeZone());
+		%>
+
+		<liferay-ui:message key="start-date" />: <%= dateFormatLongDate.format(startDateJCalendar.getTime()) + ", " + dateFormatTime.format(startDateJCalendar.getTime()) %>
 
 		<br />
 
@@ -93,11 +99,14 @@ Date endDate = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.get
 			message="end-date"
 		/>
 
-		<liferay-ui:message key="end-date" />: <%= dateFormatLongDate.format(endDate) + ", " + dateFormatTime.format(endDate) %>
+		<%
+		java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(calendarBooking.getEndDate(), user.getTimeZone());
+		%>
+
+		<liferay-ui:message key="end-date" />: <%= dateFormatLongDate.format(endDateJCalendar.getTime()) + ", " + dateFormatTime.format(endDateJCalendar.getTime()) %>
 
 		<c:if test="<%= Validator.isNotNull(calendarBooking.getLocation()) %>">
-			<br />
-			<br />
+			<br /><br />
 
 			<liferay-ui:icon
 				image="../common/view_locations"

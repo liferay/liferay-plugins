@@ -19,7 +19,9 @@
 <%
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
 
-long date = ParamUtil.getLong(request, "date", now.getTimeInMillis());
+java.util.Calendar nowJCalendar = CalendarFactoryUtil.getCalendar(userTimeZone);
+
+long date = ParamUtil.getLong(request, "date", nowJCalendar.getTimeInMillis());
 
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
@@ -28,11 +30,11 @@ long calendarBookingId = BeanParamUtil.getLong(calendarBooking, request, "calend
 long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
 String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
 
-long startDate = ParamUtil.getLong(request, "startDate", now.getTimeInMillis());
+long startDate = ParamUtil.getLong(request, "startDate", nowJCalendar.getTimeInMillis());
 
 java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(startDate, userTimeZone);
 
-java.util.Calendar defaultEndDateJCalendar = (java.util.Calendar)now.clone();
+java.util.Calendar defaultEndDateJCalendar = (java.util.Calendar)nowJCalendar.clone();
 
 defaultEndDateJCalendar.add(java.util.Calendar.HOUR, 1);
 

@@ -110,8 +110,8 @@ public class CalendarBookingAssetRendererFactory
 		CalendarBooking calendarBooking =
 			CalendarBookingLocalServiceUtil.getCalendarBooking(classPK);
 
-		if (actionId.equals(ActionKeys.UPDATE) ||
-			actionId.equals(ActionKeys.DELETE)) {
+		if (actionId.equals(ActionKeys.DELETE) ||
+			actionId.equals(ActionKeys.UPDATE)) {
 
 			actionId = ActionKeys.MANAGE_BOOKINGS;
 		}

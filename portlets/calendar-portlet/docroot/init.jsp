@@ -143,8 +143,6 @@ if (usePortalTimeZone) {
 TimeZone userTimeZone = TimeZone.getTimeZone(timeZoneId);
 TimeZone utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);
 
-java.util.Calendar now = CalendarFactoryUtil.getCalendar(userTimeZone);
-
 Format dateFormatLongDate = FastDateFormatFactoryUtil.getDate(FastDateFormatConstants.LONG, locale, timeZone);
 Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale);
 %>
