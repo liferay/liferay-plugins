@@ -147,19 +147,17 @@ public class CalendarBookingLocalServiceImpl
 		addChildCalendarBookings(
 			calendarBooking, childCalendarIds, serviceContext);
 
-		// Workflow
-
-		calendarBookingApprovalWorkflow.startWorkflow(
-			userId, calendarBookingId, serviceContext);
-
 		// Asset
-
-		calendarBooking = fetchCalendarBooking(calendarBookingId);
 
 		updateAsset(
 			userId, calendarBooking, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames(),
 			serviceContext.getAssetLinkEntryIds());
+
+		// Workflow
+
+		calendarBookingApprovalWorkflow.startWorkflow(
+			userId, calendarBookingId, serviceContext);
 
 		return calendarBooking;
 	}
@@ -511,20 +509,18 @@ public class CalendarBookingLocalServiceImpl
 		addChildCalendarBookings(
 			calendarBooking, childCalendarIds, serviceContext);
 
-		// Workflow
-
-		calendarBookingApprovalWorkflow.invokeTransition(
-			userId, calendarBookingId,
-			CalendarBookingWorkflowConstants.toLabel(status), serviceContext);
-
 		// Asset
-
-		calendarBooking = fetchCalendarBooking(calendarBookingId);
 
 		updateAsset(
 			userId, calendarBooking, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames(),
 			serviceContext.getAssetLinkEntryIds());
+
+		// Workflow
+
+		calendarBookingApprovalWorkflow.invokeTransition(
+			userId, calendarBookingId,
+			CalendarBookingWorkflowConstants.toLabel(status), serviceContext);
 
 		return calendarBooking;
 	}

@@ -82,8 +82,8 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 
 		portletURL.setParameter("mvcPath", "/edit_calendar_booking.jsp");
 		portletURL.setParameter(
-			"calendarBookingId", String.valueOf(
-				_calendarBooking.getCalendarBookingId()));
+			"calendarBookingId",
+			String.valueOf(_calendarBooking.getCalendarBookingId()));
 
 		return portletURL;
 	}

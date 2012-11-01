@@ -173,7 +173,7 @@ AUI.add(
 						resultFormatter: function(query, results) {
 							return AArray.map(
 								results,
-								function (result) {
+								function(result) {
 									var calendar = result.raw;
 									var name = calendar.name;
 									var calendarResourceName = calendar.calendarResourceName;
@@ -734,7 +734,7 @@ AUI.add(
 				}
 			},
 
-			_doRead: function () {
+			_doRead: function() {
 				var instance = this;
 
 				var args = arguments;
