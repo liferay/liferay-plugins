@@ -17,12 +17,18 @@ package com.liferay.localization.util;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
+import com.liferay.portlet.expando.DuplicateColumnNameException;
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.util.portlet.PortletProps;
 
 import java.util.Locale;
@@ -38,6 +44,7 @@ public class InstanceUtil implements PortletPropsKeys {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
+			localizeDefaultUser(companyId);
 			localizeRoleNames(companyId);
 		}
 		catch (Exception e) {
@@ -46,6 +53,37 @@ public class InstanceUtil implements PortletPropsKeys {
 		finally {
 			PortletPreferencesThreadLocal.setStrict(true);
 		}
+	}
+
+	public static void localizeDefaultUser(long companyId) throws Exception {
+		User user = UserLocalServiceUtil.getDefaultUser(companyId);
+
+		ExpandoBridge expandoBridge = user.getExpandoBridge();
+
+		String attributeName =
+			"localizationUpdated_" + PortletPropsValues.COMPANY_DEFAULT_LOCALE;
+
+		boolean localizationUpdated = GetterUtil.getBoolean(
+			expandoBridge.getAttribute(attributeName, false));
+
+		if (localizationUpdated) {
+			return;
+		}
+
+		try {
+			expandoBridge.addAttribute(
+				attributeName, ExpandoColumnConstants.BOOLEAN, Boolean.FALSE,
+				false);
+		}
+		catch (DuplicateColumnNameException dcne) {
+		}
+
+		expandoBridge.setAttribute(attributeName, Boolean.TRUE, false);
+
+		user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
+		user.setTimeZoneId(PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
+
+		UserLocalServiceUtil.updateUser(user);
 	}
 
 	public static void localizeRoleNames(long companyId) throws Exception {
