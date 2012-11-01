@@ -329,7 +329,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 						kaleoNotification.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoNotification);
+			if (kaleoNotification != null) {
+				session.delete(kaleoNotification);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -338,7 +340,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			closeSession(session);
 		}
 
-		clearCache(kaleoNotification);
+		if (kaleoNotification != null) {
+			clearCache(kaleoNotification);
+		}
 
 		return kaleoNotification;
 	}

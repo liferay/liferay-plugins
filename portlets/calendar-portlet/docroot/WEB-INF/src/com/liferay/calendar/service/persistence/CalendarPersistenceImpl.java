@@ -380,7 +380,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 						calendar.getPrimaryKeyObj());
 			}
 
-			session.delete(calendar);
+			if (calendar != null) {
+				session.delete(calendar);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -389,7 +391,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 			closeSession(session);
 		}
 
-		clearCache(calendar);
+		if (calendar != null) {
+			clearCache(calendar);
+		}
 
 		return calendar;
 	}

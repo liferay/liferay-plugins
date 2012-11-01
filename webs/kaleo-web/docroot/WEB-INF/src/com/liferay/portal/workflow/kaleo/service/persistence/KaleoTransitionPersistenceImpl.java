@@ -370,7 +370,9 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 						kaleoTransition.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoTransition);
+			if (kaleoTransition != null) {
+				session.delete(kaleoTransition);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -379,7 +381,9 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			closeSession(session);
 		}
 
-		clearCache(kaleoTransition);
+		if (kaleoTransition != null) {
+			clearCache(kaleoTransition);
+		}
 
 		return kaleoTransition;
 	}

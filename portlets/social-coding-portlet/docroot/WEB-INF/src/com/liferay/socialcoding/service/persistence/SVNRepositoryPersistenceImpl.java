@@ -271,7 +271,9 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 						svnRepository.getPrimaryKeyObj());
 			}
 
-			session.delete(svnRepository);
+			if (svnRepository != null) {
+				session.delete(svnRepository);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -280,7 +282,9 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			closeSession(session);
 		}
 
-		clearCache(svnRepository);
+		if (svnRepository != null) {
+			clearCache(svnRepository);
+		}
 
 		return svnRepository;
 	}

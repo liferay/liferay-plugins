@@ -359,7 +359,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 						microblogsEntry.getPrimaryKeyObj());
 			}
 
-			session.delete(microblogsEntry);
+			if (microblogsEntry != null) {
+				session.delete(microblogsEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -368,7 +370,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			closeSession(session);
 		}
 
-		clearCache(microblogsEntry);
+		if (microblogsEntry != null) {
+			clearCache(microblogsEntry);
+		}
 
 		return microblogsEntry;
 	}

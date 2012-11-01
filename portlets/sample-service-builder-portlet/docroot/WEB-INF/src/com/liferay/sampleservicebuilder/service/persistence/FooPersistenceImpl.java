@@ -329,7 +329,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				foo = (Foo)session.get(FooImpl.class, foo.getPrimaryKeyObj());
 			}
 
-			session.delete(foo);
+			if (foo != null) {
+				session.delete(foo);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -338,7 +340,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			closeSession(session);
 		}
 
-		clearCache(foo);
+		if (foo != null) {
+			clearCache(foo);
+		}
 
 		return foo;
 	}

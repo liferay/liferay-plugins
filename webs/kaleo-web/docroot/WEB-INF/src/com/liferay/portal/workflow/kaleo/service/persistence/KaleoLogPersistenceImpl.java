@@ -380,7 +380,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 						kaleoLog.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoLog);
+			if (kaleoLog != null) {
+				session.delete(kaleoLog);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -389,7 +391,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			closeSession(session);
 		}
 
-		clearCache(kaleoLog);
+		if (kaleoLog != null) {
+			clearCache(kaleoLog);
+		}
 
 		return kaleoLog;
 	}

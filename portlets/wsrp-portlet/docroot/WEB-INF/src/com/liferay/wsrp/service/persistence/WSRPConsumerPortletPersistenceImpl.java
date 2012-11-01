@@ -353,7 +353,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 						wsrpConsumerPortlet.getPrimaryKeyObj());
 			}
 
-			session.delete(wsrpConsumerPortlet);
+			if (wsrpConsumerPortlet != null) {
+				session.delete(wsrpConsumerPortlet);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -362,7 +364,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			closeSession(session);
 		}
 
-		clearCache(wsrpConsumerPortlet);
+		if (wsrpConsumerPortlet != null) {
+			clearCache(wsrpConsumerPortlet);
+		}
 
 		return wsrpConsumerPortlet;
 	}

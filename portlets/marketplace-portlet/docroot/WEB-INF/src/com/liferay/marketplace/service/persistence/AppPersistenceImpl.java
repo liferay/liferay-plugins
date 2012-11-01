@@ -326,7 +326,9 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 				app = (App)session.get(AppImpl.class, app.getPrimaryKeyObj());
 			}
 
-			session.delete(app);
+			if (app != null) {
+				session.delete(app);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -335,7 +337,9 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			closeSession(session);
 		}
 
-		clearCache(app);
+		if (app != null) {
+			clearCache(app);
+		}
 
 		return app;
 	}

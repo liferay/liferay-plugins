@@ -387,7 +387,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 						kaleoDefinition.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoDefinition);
+			if (kaleoDefinition != null) {
+				session.delete(kaleoDefinition);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -396,7 +398,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			closeSession(session);
 		}
 
-		clearCache(kaleoDefinition);
+		if (kaleoDefinition != null) {
+			clearCache(kaleoDefinition);
+		}
 
 		return kaleoDefinition;
 	}

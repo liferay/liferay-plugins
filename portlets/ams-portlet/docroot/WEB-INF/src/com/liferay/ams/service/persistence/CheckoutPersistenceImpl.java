@@ -243,7 +243,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 						checkout.getPrimaryKeyObj());
 			}
 
-			session.delete(checkout);
+			if (checkout != null) {
+				session.delete(checkout);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -252,7 +254,9 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			closeSession(session);
 		}
 
-		clearCache(checkout);
+		if (checkout != null) {
+			clearCache(checkout);
+		}
 
 		return checkout;
 	}

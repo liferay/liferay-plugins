@@ -338,7 +338,9 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 						wsrpProducer.getPrimaryKeyObj());
 			}
 
-			session.delete(wsrpProducer);
+			if (wsrpProducer != null) {
+				session.delete(wsrpProducer);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -347,7 +349,9 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			closeSession(session);
 		}
 
-		clearCache(wsrpProducer);
+		if (wsrpProducer != null) {
+			clearCache(wsrpProducer);
+		}
 
 		return wsrpProducer;
 	}

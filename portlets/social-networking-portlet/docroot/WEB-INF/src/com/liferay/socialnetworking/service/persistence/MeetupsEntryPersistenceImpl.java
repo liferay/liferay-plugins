@@ -285,7 +285,9 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 						meetupsEntry.getPrimaryKeyObj());
 			}
 
-			session.delete(meetupsEntry);
+			if (meetupsEntry != null) {
+				session.delete(meetupsEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -294,7 +296,9 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			closeSession(session);
 		}
 
-		clearCache(meetupsEntry);
+		if (meetupsEntry != null) {
+			clearCache(meetupsEntry);
+		}
 
 		return meetupsEntry;
 	}

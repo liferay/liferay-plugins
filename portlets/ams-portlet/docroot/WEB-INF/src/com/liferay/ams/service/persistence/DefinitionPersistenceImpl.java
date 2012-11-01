@@ -244,7 +244,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 						definition.getPrimaryKeyObj());
 			}
 
-			session.delete(definition);
+			if (definition != null) {
+				session.delete(definition);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -253,7 +255,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			closeSession(session);
 		}
 
-		clearCache(definition);
+		if (definition != null) {
+			clearCache(definition);
+		}
 
 		return definition;
 	}

@@ -301,7 +301,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 						oAuthConsumer.getPrimaryKeyObj());
 			}
 
-			session.delete(oAuthConsumer);
+			if (oAuthConsumer != null) {
+				session.delete(oAuthConsumer);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -310,7 +312,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			closeSession(session);
 		}
 
-		clearCache(oAuthConsumer);
+		if (oAuthConsumer != null) {
+			clearCache(oAuthConsumer);
+		}
 
 		return oAuthConsumer;
 	}

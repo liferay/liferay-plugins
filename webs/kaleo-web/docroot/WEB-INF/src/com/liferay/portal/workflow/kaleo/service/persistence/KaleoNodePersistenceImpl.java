@@ -308,7 +308,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 						kaleoNode.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoNode);
+			if (kaleoNode != null) {
+				session.delete(kaleoNode);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -317,7 +319,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			closeSession(session);
 		}
 
-		clearCache(kaleoNode);
+		if (kaleoNode != null) {
+			clearCache(kaleoNode);
+		}
 
 		return kaleoNode;
 	}

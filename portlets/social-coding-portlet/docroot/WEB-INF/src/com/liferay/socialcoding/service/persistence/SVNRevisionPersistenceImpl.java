@@ -308,7 +308,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 						svnRevision.getPrimaryKeyObj());
 			}
 
-			session.delete(svnRevision);
+			if (svnRevision != null) {
+				session.delete(svnRevision);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -317,7 +319,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			closeSession(session);
 		}
 
-		clearCache(svnRevision);
+		if (svnRevision != null) {
+			clearCache(svnRevision);
+		}
 
 		return svnRevision;
 	}

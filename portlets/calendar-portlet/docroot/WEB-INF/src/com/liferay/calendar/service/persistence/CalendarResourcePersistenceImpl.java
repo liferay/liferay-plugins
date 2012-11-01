@@ -515,7 +515,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 						calendarResource.getPrimaryKeyObj());
 			}
 
-			session.delete(calendarResource);
+			if (calendarResource != null) {
+				session.delete(calendarResource);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -524,7 +526,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			closeSession(session);
 		}
 
-		clearCache(calendarResource);
+		if (calendarResource != null) {
+			clearCache(calendarResource);
+		}
 
 		return calendarResource;
 	}

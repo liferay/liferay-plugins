@@ -333,7 +333,9 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 						gadget.getPrimaryKeyObj());
 			}
 
-			session.delete(gadget);
+			if (gadget != null) {
+				session.delete(gadget);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -342,7 +344,9 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			closeSession(session);
 		}
 
-		clearCache(gadget);
+		if (gadget != null) {
+			clearCache(gadget);
+		}
 
 		return gadget;
 	}

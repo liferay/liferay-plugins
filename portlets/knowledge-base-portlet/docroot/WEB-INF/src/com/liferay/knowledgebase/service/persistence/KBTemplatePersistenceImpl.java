@@ -340,7 +340,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						kbTemplate.getPrimaryKeyObj());
 			}
 
-			session.delete(kbTemplate);
+			if (kbTemplate != null) {
+				session.delete(kbTemplate);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -349,7 +351,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			closeSession(session);
 		}
 
-		clearCache(kbTemplate);
+		if (kbTemplate != null) {
+			clearCache(kbTemplate);
+		}
 
 		return kbTemplate;
 	}

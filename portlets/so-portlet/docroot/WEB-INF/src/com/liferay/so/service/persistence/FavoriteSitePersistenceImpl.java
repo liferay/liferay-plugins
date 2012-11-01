@@ -286,7 +286,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 						favoriteSite.getPrimaryKeyObj());
 			}
 
-			session.delete(favoriteSite);
+			if (favoriteSite != null) {
+				session.delete(favoriteSite);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -295,7 +297,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			closeSession(session);
 		}
 
-		clearCache(favoriteSite);
+		if (favoriteSite != null) {
+			clearCache(favoriteSite);
+		}
 
 		return favoriteSite;
 	}

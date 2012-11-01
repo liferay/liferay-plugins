@@ -239,7 +239,9 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 				type = (Type)session.get(TypeImpl.class, type.getPrimaryKeyObj());
 			}
 
-			session.delete(type);
+			if (type != null) {
+				session.delete(type);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -248,7 +250,9 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			closeSession(session);
 		}
 
-		clearCache(type);
+		if (type != null) {
+			clearCache(type);
+		}
 
 		return type;
 	}

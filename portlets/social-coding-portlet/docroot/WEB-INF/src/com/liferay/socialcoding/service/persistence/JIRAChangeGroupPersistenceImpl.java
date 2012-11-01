@@ -295,7 +295,9 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 						jiraChangeGroup.getPrimaryKeyObj());
 			}
 
-			session.delete(jiraChangeGroup);
+			if (jiraChangeGroup != null) {
+				session.delete(jiraChangeGroup);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -304,7 +306,9 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			closeSession(session);
 		}
 
-		clearCache(jiraChangeGroup);
+		if (jiraChangeGroup != null) {
+			clearCache(jiraChangeGroup);
+		}
 
 		return jiraChangeGroup;
 	}

@@ -336,7 +336,9 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 						module.getPrimaryKeyObj());
 			}
 
-			session.delete(module);
+			if (module != null) {
+				session.delete(module);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -345,7 +347,9 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			closeSession(session);
 		}
 
-		clearCache(module);
+		if (module != null) {
+			clearCache(module);
+		}
 
 		return module;
 	}

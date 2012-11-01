@@ -353,7 +353,9 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 						kaleoTaskAssignmentInstance.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoTaskAssignmentInstance);
+			if (kaleoTaskAssignmentInstance != null) {
+				session.delete(kaleoTaskAssignmentInstance);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -362,7 +364,9 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			closeSession(session);
 		}
 
-		clearCache(kaleoTaskAssignmentInstance);
+		if (kaleoTaskAssignmentInstance != null) {
+			clearCache(kaleoTaskAssignmentInstance);
+		}
 
 		return kaleoTaskAssignmentInstance;
 	}

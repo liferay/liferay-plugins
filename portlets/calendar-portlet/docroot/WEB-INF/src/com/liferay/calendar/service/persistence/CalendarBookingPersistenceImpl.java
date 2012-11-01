@@ -488,7 +488,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 						calendarBooking.getPrimaryKeyObj());
 			}
 
-			session.delete(calendarBooking);
+			if (calendarBooking != null) {
+				session.delete(calendarBooking);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -497,7 +499,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			closeSession(session);
 		}
 
-		clearCache(calendarBooking);
+		if (calendarBooking != null) {
+			clearCache(calendarBooking);
+		}
 
 		return calendarBooking;
 	}

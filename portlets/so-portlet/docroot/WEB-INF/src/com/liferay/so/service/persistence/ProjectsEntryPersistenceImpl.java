@@ -269,7 +269,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 						projectsEntry.getPrimaryKeyObj());
 			}
 
-			session.delete(projectsEntry);
+			if (projectsEntry != null) {
+				session.delete(projectsEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -278,7 +280,9 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			closeSession(session);
 		}
 
-		clearCache(projectsEntry);
+		if (projectsEntry != null) {
+			clearCache(projectsEntry);
+		}
 
 		return projectsEntry;
 	}

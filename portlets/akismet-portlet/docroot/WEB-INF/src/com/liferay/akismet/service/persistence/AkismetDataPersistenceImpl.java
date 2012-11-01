@@ -286,7 +286,9 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 						akismetData.getPrimaryKeyObj());
 			}
 
-			session.delete(akismetData);
+			if (akismetData != null) {
+				session.delete(akismetData);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -295,7 +297,9 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			closeSession(session);
 		}
 
-		clearCache(akismetData);
+		if (akismetData != null) {
+			clearCache(akismetData);
+		}
 
 		return akismetData;
 	}

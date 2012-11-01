@@ -305,7 +305,9 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 						jiraAction.getPrimaryKeyObj());
 			}
 
-			session.delete(jiraAction);
+			if (jiraAction != null) {
+				session.delete(jiraAction);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -314,7 +316,9 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			closeSession(session);
 		}
 
-		clearCache(jiraAction);
+		if (jiraAction != null) {
+			clearCache(jiraAction);
+		}
 
 		return jiraAction;
 	}

@@ -306,7 +306,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 						kaleoTask.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoTask);
+			if (kaleoTask != null) {
+				session.delete(kaleoTask);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -315,7 +317,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			closeSession(session);
 		}
 
-		clearCache(kaleoTask);
+		if (kaleoTask != null) {
+			clearCache(kaleoTask);
+		}
 
 		return kaleoTask;
 	}

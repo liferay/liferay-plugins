@@ -303,7 +303,9 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 						wallEntry.getPrimaryKeyObj());
 			}
 
-			session.delete(wallEntry);
+			if (wallEntry != null) {
+				session.delete(wallEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -312,7 +314,9 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			closeSession(session);
 		}
 
-		clearCache(wallEntry);
+		if (wallEntry != null) {
+			clearCache(wallEntry);
+		}
 
 		return wallEntry;
 	}

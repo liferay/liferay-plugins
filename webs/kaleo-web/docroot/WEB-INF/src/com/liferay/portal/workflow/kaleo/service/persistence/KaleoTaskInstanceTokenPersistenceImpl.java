@@ -353,7 +353,9 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 						kaleoTaskInstanceToken.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoTaskInstanceToken);
+			if (kaleoTaskInstanceToken != null) {
+				session.delete(kaleoTaskInstanceToken);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -362,7 +364,9 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			closeSession(session);
 		}
 
-		clearCache(kaleoTaskInstanceToken);
+		if (kaleoTaskInstanceToken != null) {
+			clearCache(kaleoTaskInstanceToken);
+		}
 
 		return kaleoTaskInstanceToken;
 	}

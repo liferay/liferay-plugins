@@ -404,7 +404,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 						kbComment.getPrimaryKeyObj());
 			}
 
-			session.delete(kbComment);
+			if (kbComment != null) {
+				session.delete(kbComment);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -413,7 +415,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			closeSession(session);
 		}
 
-		clearCache(kbComment);
+		if (kbComment != null) {
+			clearCache(kbComment);
+		}
 
 		return kbComment;
 	}

@@ -347,7 +347,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 						memberRequest.getPrimaryKeyObj());
 			}
 
-			session.delete(memberRequest);
+			if (memberRequest != null) {
+				session.delete(memberRequest);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -356,7 +358,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			closeSession(session);
 		}
 
-		clearCache(memberRequest);
+		if (memberRequest != null) {
+			clearCache(memberRequest);
+		}
 
 		return memberRequest;
 	}

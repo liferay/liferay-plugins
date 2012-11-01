@@ -383,7 +383,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 						tasksEntry.getPrimaryKeyObj());
 			}
 
-			session.delete(tasksEntry);
+			if (tasksEntry != null) {
+				session.delete(tasksEntry);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -392,7 +394,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			closeSession(session);
 		}
 
-		clearCache(tasksEntry);
+		if (tasksEntry != null) {
+			clearCache(tasksEntry);
+		}
 
 		return tasksEntry;
 	}

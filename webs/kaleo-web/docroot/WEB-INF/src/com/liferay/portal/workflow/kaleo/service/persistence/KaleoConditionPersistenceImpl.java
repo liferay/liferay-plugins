@@ -314,7 +314,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 						kaleoCondition.getPrimaryKeyObj());
 			}
 
-			session.delete(kaleoCondition);
+			if (kaleoCondition != null) {
+				session.delete(kaleoCondition);
+			}
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -323,7 +325,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			closeSession(session);
 		}
 
-		clearCache(kaleoCondition);
+		if (kaleoCondition != null) {
+			clearCache(kaleoCondition);
+		}
 
 		return kaleoCondition;
 	}
