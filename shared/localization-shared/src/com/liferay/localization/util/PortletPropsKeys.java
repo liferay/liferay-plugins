@@ -19,6 +19,12 @@ package com.liferay.localization.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String COMPANY_DEFAULT_LOCALE =
+		"company.default.locale";
+
+	public static final String COMPANY_DEFAULT_TIME_ZONE =
+		"company.default.time.zone";
+
 	public static final String LANGUAGE_IDS = "language.ids";
 
 	public static final String ROLE_ADMINISTRATOR_DESCRIPTION =

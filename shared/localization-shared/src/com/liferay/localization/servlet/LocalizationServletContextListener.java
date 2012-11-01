@@ -63,7 +63,7 @@ public class LocalizationServletContextListener
 		long[] companyIds = PortalUtil.getCompanyIds();
 
 		for (long companyId : companyIds) {
-			InstanceUtil.localizeRoleNames(companyId);
+			InstanceUtil.initInstance(companyId);
 		}
 	}
 

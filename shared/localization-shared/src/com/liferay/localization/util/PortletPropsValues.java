@@ -21,6 +21,12 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String COMPANY_DEFAULT_LOCALE = PortletProps.get(
+		PortletPropsKeys.COMPANY_DEFAULT_LOCALE);
+
+	public static final String COMPANY_DEFAULT_TIME_ZONE = PortletProps.get(
+		PortletPropsKeys.COMPANY_DEFAULT_TIME_ZONE);
+
 	public static final String[] LANGUAGE_IDS = PortletProps.getArray(
 		PortletPropsKeys.LANGUAGE_IDS);
 
