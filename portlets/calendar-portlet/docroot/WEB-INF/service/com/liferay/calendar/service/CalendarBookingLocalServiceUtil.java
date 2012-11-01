@@ -416,6 +416,17 @@ public class CalendarBookingLocalServiceUtil {
 			location, startDate, endDate, statuses, andOperator);
 	}
 
+	public static void updateAsset(long userId,
+		com.liferay.calendar.model.CalendarBooking calendarBooking,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames,
+		long[] assetLinkEntryIds)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.updateAsset(userId, calendarBooking, assetCategoryIds,
+			assetTagNames, assetLinkEntryIds);
+	}
+
 	public static com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
 		long[] childCalendarIds,
