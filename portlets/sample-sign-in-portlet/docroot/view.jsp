@@ -63,7 +63,9 @@
 
 		<%
 		MethodKey methodKey = new MethodKey("com.liferay.portlet.login.util.LoginUtil", "getLogin", HttpServletRequest.class, String.class, Company.class);
+
 		String login = GetterUtil.getString((String)PortalClassInvoker.invoke(false, methodKey, request, "login", company));
+
 		boolean rememberMe = ParamUtil.getBoolean(request, "rememberMe");
 		%>
 
