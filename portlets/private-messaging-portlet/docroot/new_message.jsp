@@ -159,7 +159,7 @@ to = sb.toString() + to;
 								submitForm(document.<portlet:namespace />fm);
 							}
 							else {
-								<portlet:namespace />showMessage('<span class="portlet-msg-error">' + data.message + '</span>');
+								<portlet:namespace />showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
 
 								loadingMask.hide();
 							}
