@@ -116,7 +116,7 @@ request.setAttribute("view_user.jsp-user", user2);
 								cssClass='<%= showBlockIcon ? "block" : "block aui-helper-hidden" %>'
 								image="../social/block"
 								label="<%= true %>"
-								message="block"
+								message="blocked"
 							/>
 						</c:when>
 						<c:otherwise>
