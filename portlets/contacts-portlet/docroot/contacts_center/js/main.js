@@ -116,7 +116,7 @@ AUI.add(
 				'</div>' +
 				'<div class="lfr-contact-info">' +
 					'<div class="lfr-contact-name">' +
-						'<a>{lastName} {firstName}</a>' +
+						'<a>{lastName}, {firstName}</a>' +
 					'</div>' +
 					'<div class="lfr-contact-extra">' +
 						'{emailAddress}' +
