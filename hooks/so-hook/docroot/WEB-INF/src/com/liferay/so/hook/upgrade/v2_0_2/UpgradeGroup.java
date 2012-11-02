@@ -19,6 +19,7 @@ package com.liferay.so.hook.upgrade.v2_0_2;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
@@ -138,7 +139,8 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
 		new MethodKey(
-			"com.liferay.portlet.sites.util.SitesUtil",
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.sites.util.SitesUtil"),
 			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 
 }

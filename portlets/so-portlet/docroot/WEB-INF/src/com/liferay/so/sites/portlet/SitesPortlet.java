@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MethodKey;
@@ -598,16 +599,17 @@ public class SitesPortlet extends MVCPortlet {
 			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
-	private static final String _CLASS_NAME =
-		"com.liferay.portlet.sites.util.SitesUtil";
+	private static final Class<?> _CLASS =
+		ClassResolverUtil.resolveByPortalClassLoader(
+			"com.liferay.portlet.sites.util.SitesUtil");
 
 	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
 		new MethodKey(
-			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
+			_CLASS, "mergeLayoutSetProtypeLayouts", Group.class,
 			LayoutSet.class);
 	private static MethodKey _updateLayoutSetPrototypesMethodKey =
 		new MethodKey(
-			_CLASS_NAME, "updateLayoutSetPrototypesLinks", Group.class,
+			_CLASS, "updateLayoutSetPrototypesLinks", Group.class,
 			long.class, long.class, boolean.class, boolean.class);
 
 }

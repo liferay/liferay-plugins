@@ -19,6 +19,7 @@ package com.liferay.so.messaging;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
 import com.liferay.portal.service.PortletLocalServiceUtil;
@@ -61,7 +62,9 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	}
 
 	private MethodKey _registerMethodKey = new MethodKey(
-		"com.liferay.contacts.util.ContactsExtensionsUtil", "register",
+		ClassResolverUtil.resolveByPortletClassLoader(
+			"com.liferay.contacts.util.ContactsExtensionsUtil",
+			"contacts-portlet"), "register",
 		String.class, String.class);
 
 }

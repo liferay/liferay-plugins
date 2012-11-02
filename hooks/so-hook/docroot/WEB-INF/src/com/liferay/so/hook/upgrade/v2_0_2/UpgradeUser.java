@@ -19,6 +19,7 @@ package com.liferay.so.hook.upgrade.v2_0_2;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.model.Group;
@@ -124,12 +125,10 @@ public class UpgradeUser extends UpgradeProcess {
 		SocialOfficeUtil.enableSocialOffice(group);
 	}
 
-	private static final String _CLASS_NAME =
-		"com.liferay.portlet.sites.util.SitesUtil";
-
 	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
 		new MethodKey(
-			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
-				LayoutSet.class);
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.sites.util.SitesUtil"),
+			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 
 }

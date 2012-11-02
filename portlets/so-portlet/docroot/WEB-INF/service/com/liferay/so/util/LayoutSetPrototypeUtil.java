@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
@@ -151,7 +152,8 @@ public class LayoutSetPrototypeUtil {
 
 	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
 		new MethodKey(
-			"com.liferay.portlet.sites.util.SitesUtil",
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.sites.util.SitesUtil"),
 			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 
 }
