@@ -554,6 +554,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
+.aui-button-input-checkbox {
+	padding: 0;
+}
+
 .lfr-label {
 	color: #999;
 	font-size: 11px;
@@ -2342,6 +2346,11 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 				max-width: 115px;
 			}
 		}
+	}
+
+	.aui-button-input-checkbox {
+		height: 13px;
+		width: 13px;
 	}
 
 	.contacts-portlet {
