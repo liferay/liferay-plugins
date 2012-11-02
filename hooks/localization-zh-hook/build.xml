@@ -6,7 +6,7 @@
 
 	<property name="import.shared" value="localization-shared" />
 
-	<target name="compile">
+	<target name="update-from-portal">
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
 			<fileset
 				dir="${app.server.portal.dir}"
@@ -37,7 +37,5 @@
 				includes="html/portlet/users_admin/user/search_columns.jspf"
 			/>
 		</copy>
-
-		<antcall target="build-common-plugin.compile" />
 	</target>
 </project>
