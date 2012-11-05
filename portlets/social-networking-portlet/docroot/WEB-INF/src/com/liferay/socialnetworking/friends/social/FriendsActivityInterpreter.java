@@ -57,7 +57,6 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-		sb.append("/friends");
 
 		String link = sb.toString();
 
