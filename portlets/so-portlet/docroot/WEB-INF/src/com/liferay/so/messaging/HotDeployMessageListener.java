@@ -64,7 +64,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	private MethodKey _registerMethodKey = new MethodKey(
 		ClassResolverUtil.resolveByPortletClassLoader(
 			"com.liferay.contacts.util.ContactsExtensionsUtil",
-			"contacts-portlet"), "register",
-		String.class, String.class);
+			"contacts-portlet"),
+		"register", String.class, String.class);
 
 }

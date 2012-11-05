@@ -599,17 +599,19 @@ public class SitesPortlet extends MVCPortlet {
 			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
-	private static final Class<?> _CLASS =
-		ClassResolverUtil.resolveByPortalClassLoader(
-			"com.liferay.portlet.sites.util.SitesUtil");
+	private static final String _CLASS_NAME =
+		"com.liferay.portlet.sites.util.SitesUtil";
 
 	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
 		new MethodKey(
-			_CLASS, "mergeLayoutSetProtypeLayouts", Group.class,
-			LayoutSet.class);
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.sites.util.SitesUtil"),
+			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 	private static MethodKey _updateLayoutSetPrototypesMethodKey =
 		new MethodKey(
-			_CLASS, "updateLayoutSetPrototypesLinks", Group.class,
-			long.class, long.class, boolean.class, boolean.class);
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.sites.util.SitesUtil"),
+			"updateLayoutSetPrototypesLinks", Group.class, long.class,
+			long.class, boolean.class, boolean.class);
 
 }

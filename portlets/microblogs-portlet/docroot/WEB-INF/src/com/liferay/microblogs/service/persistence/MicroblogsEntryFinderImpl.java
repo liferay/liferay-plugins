@@ -73,8 +73,8 @@ public class MicroblogsEntryFinderImpl
 		try {
 			MethodKey methodKey = new MethodKey(
 				ClassResolverUtil.resolveByPortalClassLoader(
-					"com.liferay.util.dao.orm.CustomSQL") , "get",
-				String.class);
+					"com.liferay.util.dao.orm.CustomSQL"),
+				"get", String.class);
 
 			_joinBySocialRelationSQL = (String)PortalClassInvoker.invoke(
 				true, methodKey,

@@ -74,6 +74,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	private MethodKey _registerMethodKey = new MethodKey(
 		ClassResolverUtil.resolveByPortletClassLoader(
 			"com.liferay.chat.util.ChatExtensionsUtil", "chat-portlet"),
-		"register", String.class,String.class);
+		"register", String.class, String.class);
 
 }

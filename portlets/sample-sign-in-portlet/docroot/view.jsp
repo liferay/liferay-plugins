@@ -29,7 +29,6 @@
 <%@ page import="com.liferay.portal.UserLockoutException" %>
 <%@ page import="com.liferay.portal.UserPasswordException" %>
 <%@ page import="com.liferay.portal.UserScreenNameException" %>
-<%@ page import="com.liferay.portal.model.Company" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ClassResolverUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
