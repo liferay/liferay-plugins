@@ -17,11 +17,14 @@ package com.liferay.localization.util;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -31,6 +34,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.util.portlet.PortletProps;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -165,9 +169,9 @@ public class InstanceUtil implements PortletPropsKeys {
 	}
 
 	private static void _localizeUsers(long companyId) throws Exception {
-		User user = UserLocalServiceUtil.getDefaultUser(companyId);
+		Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
-		ExpandoBridge expandoBridge = user.getExpandoBridge();
+		ExpandoBridge expandoBridge = company.getExpandoBridge();
 
 		String attributeName =
 			"localizationUpdated_" + PortletPropsValues.COMPANY_DEFAULT_LOCALE;
@@ -189,10 +193,27 @@ public class InstanceUtil implements PortletPropsKeys {
 
 		expandoBridge.setAttribute(attributeName, Boolean.TRUE, false);
 
-		user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
-		user.setTimeZoneId(PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
+		CompanyLocalServiceUtil.updateCompany(company);
 
-		UserLocalServiceUtil.updateUser(user);
+		int count = UserLocalServiceUtil.getCompanyUsersCount(companyId);
+
+		int pages = count / Indexer.DEFAULT_INTERVAL;
+
+		for (int i = 0; i <= pages; i++) {
+			int start = (i * Indexer.DEFAULT_INTERVAL);
+			int end = start + Indexer.DEFAULT_INTERVAL;
+
+			List<User> users = UserLocalServiceUtil.getCompanyUsers(
+				companyId, start, end);
+
+			for (User user : users) {
+				user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
+				user.setTimeZoneId(
+					PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
+
+				UserLocalServiceUtil.updateUser(user);
+			}
+		}
 	}
 
 	private static void _putMap(
