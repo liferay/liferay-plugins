@@ -452,6 +452,10 @@ html body {
 
 /* ---------- Buddy service extensions ---------- */
 
+.chat-bar .panel-content .name {
+	float: left;
+}
+
 .chat-bar .online-users .buddy-services {
 	display: none;
 	float: right;
