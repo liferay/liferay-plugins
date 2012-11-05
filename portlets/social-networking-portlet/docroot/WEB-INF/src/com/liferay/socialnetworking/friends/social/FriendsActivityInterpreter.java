@@ -15,6 +15,7 @@
 package com.liferay.socialnetworking.friends.social;
 
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -51,7 +52,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Link
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
@@ -65,7 +66,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		String title = StringPool.BLANK;
 
 		if (activityType == FriendsActivityKeys.ADD_FRIEND) {
-			sb = new StringBuilder();
+			sb = new StringBundler(8);
 
 			sb.append("<a href=\"");
 			sb.append(themeDisplay.getPortalURL());
@@ -78,7 +79,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 			String creatorUserNameURL = sb.toString();
 
-			sb = new StringBuilder();
+			sb = new StringBundler(8);
 
 			sb.append("<a href=\"");
 			sb.append(themeDisplay.getPortalURL());
