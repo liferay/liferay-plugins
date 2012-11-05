@@ -44,8 +44,8 @@ public class InstanceUtil implements PortletPropsKeys {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
-			localizeDefaultUser(companyId);
-			localizeRoleNames(companyId);
+			_localizeRoleNames(companyId);
+			_localizeUsers(companyId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -55,38 +55,7 @@ public class InstanceUtil implements PortletPropsKeys {
 		}
 	}
 
-	public static void localizeDefaultUser(long companyId) throws Exception {
-		User user = UserLocalServiceUtil.getDefaultUser(companyId);
-
-		ExpandoBridge expandoBridge = user.getExpandoBridge();
-
-		String attributeName =
-			"localizationUpdated_" + PortletPropsValues.COMPANY_DEFAULT_LOCALE;
-
-		boolean localizationUpdated = GetterUtil.getBoolean(
-			expandoBridge.getAttribute(attributeName, false));
-
-		if (localizationUpdated) {
-			return;
-		}
-
-		try {
-			expandoBridge.addAttribute(
-				attributeName, ExpandoColumnConstants.BOOLEAN, Boolean.FALSE,
-				false);
-		}
-		catch (DuplicateColumnNameException dcne) {
-		}
-
-		expandoBridge.setAttribute(attributeName, Boolean.TRUE, false);
-
-		user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
-		user.setTimeZoneId(PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
-
-		UserLocalServiceUtil.updateUser(user);
-	}
-
-	public static void localizeRoleNames(long companyId) throws Exception {
+	private static void _localizeRoleNames(long companyId) throws Exception {
 		for (String languageId : PortletPropsValues.LANGUAGE_IDS) {
 			_localizeRoleNames(companyId, languageId);
 		}
@@ -193,6 +162,37 @@ public class InstanceUtil implements PortletPropsKeys {
 				role.getRoleId(), name, titleMap, descriptionMap,
 				RoleConstants.TYPE_SITE_LABEL);
 		}
+	}
+
+	private static void _localizeUsers(long companyId) throws Exception {
+		User user = UserLocalServiceUtil.getDefaultUser(companyId);
+
+		ExpandoBridge expandoBridge = user.getExpandoBridge();
+
+		String attributeName =
+			"localizationUpdated_" + PortletPropsValues.COMPANY_DEFAULT_LOCALE;
+
+		boolean localizationUpdated = GetterUtil.getBoolean(
+			expandoBridge.getAttribute(attributeName, false));
+
+		if (localizationUpdated) {
+			return;
+		}
+
+		try {
+			expandoBridge.addAttribute(
+				attributeName, ExpandoColumnConstants.BOOLEAN, Boolean.FALSE,
+				false);
+		}
+		catch (DuplicateColumnNameException dcne) {
+		}
+
+		expandoBridge.setAttribute(attributeName, Boolean.TRUE, false);
+
+		user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
+		user.setTimeZoneId(PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
+
+		UserLocalServiceUtil.updateUser(user);
 	}
 
 	private static void _putMap(
