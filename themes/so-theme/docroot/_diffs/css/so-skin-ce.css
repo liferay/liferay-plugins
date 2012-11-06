@@ -1388,15 +1388,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 	}
 
-	.lfr-header-row {
-		background: #EEE;
-		min-height: 33px;
-	}
-
-	.lfr-header-row, .document-info {
-		border-bottom: 1px solid $gray-dark;
-	}
-
 	.document-library-breadcrumb {
 		border-top: 1px solid #AAA;
 	}
@@ -1425,10 +1416,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		margin-top: 0.2em;
 	}
 
-	.aui-column-content-first, .aui-column-content-last, .document-library-breadcrumb, .search-button-container .aui-column:before, .search-button-container .aui-column-content, .search-button-container .aui-column-content-center {
-		padding: 0;
-	}
-
 	.search-button-container .aui-field-input-text {
 		padding: 5px 4px;
 	}
@@ -1441,11 +1428,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		width: 30%;
 	}
 
-	.lfr-header-row-content .parent-folder-title, .portlet-document-library-display .lfr-header-row-content .parent-folder-title {
-		color: $button-text-color;
-		text-shadow: none;
-	}
-
 	.asset-details:before {
 		border-right: 1px solid $gray-dark;
 		bottom: 0;
@@ -1454,28 +1436,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		top: 0;
 	}
 
-	.context-pane .context-pane-content, .portlet-document-library-display .context-pane .context-pane-content {
-		border-left-width: 0;
-		margin-right: -1px;
-	}
-
-	.header-title {
-		display: none;
-	}
-
 	.edit-permissions .header-title {
 		display: block;
-	}
-
-	.taglib-header {
-		position: relative;
-	}
-
-	.header-back-to {
-		position: absolute;
-		right: 0;
-		top: 0;
-		z-index: 1;
 	}
 
 	.aui-fieldset-content, .lfr-dynamic-uploader {
@@ -1504,13 +1466,61 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
+.portlet-document-library-display {
+	.top-links-container {
+		margin: 0;
+	}
+
+	.asset-column-details-content {
+		border-width: 0;
+	}
+}
+
 .portlet-document-library, .portlet-document-library-display {
 	.folder {
 		margin-top: 0;
 	}
 
+	.header-title {
+		display: none;
+	}
+
+	.taglib-header {
+		position: relative;
+	}
+
+	.header-back-to {
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+	}
+
 	.document-info {
 		background-color: #EEE;
+	}
+
+	.aui-column-content-first, .aui-column-content-last, .document-library-breadcrumb, .search-button-container .aui-column:before, .search-button-container .aui-column-content, .search-button-container .aui-column-content-center {
+		padding: 0;
+	}
+
+	.lfr-header-row {
+		background: #EEE;
+		min-height: 33px;
+	}
+
+	.lfr-header-row, .document-info {
+		border-bottom: 1px solid $gray-dark;
+	}
+
+	.lfr-header-row-content .parent-folder-title {
+		color: $button-text-color;
+		text-shadow: none;
+	}
+
+	.context-pane .context-pane-content {
+		border-left-width: 0;
+		margin-right: -1px;
 	}
 
 	.taglib-ratings.stars .aui-rating-content, .taglib-ratings.stars .liferay-rating-score {
@@ -2341,7 +2351,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 					margin: 0;
 				}
 			}
-			
+
 			.name {
 				max-width: 115px;
 			}
