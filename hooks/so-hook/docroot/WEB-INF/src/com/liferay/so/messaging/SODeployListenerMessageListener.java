@@ -18,10 +18,13 @@
 package com.liferay.so.messaging;
 
 import com.liferay.deploylistener.messaging.BaseDeployListenerMessageListener;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.GroupActionableDynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Company;
@@ -30,7 +33,6 @@ import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -127,27 +129,26 @@ public class SODeployListenerMessageListener
 		}
 	}
 
-	protected void updateGroups(long companyId) throws Exception {
-		int count = GroupLocalServiceUtil.getCompanyGroupsCount(companyId);
+	protected void updateGroups(long companyId)
+		throws PortalException, SystemException {
 
-		int pages = count / Indexer.DEFAULT_INTERVAL;
+		ActionableDynamicQuery actionableDynamicQuery =
+			new GroupActionableDynamicQuery() {
 
-		for (int i = 0; i <= pages; i++) {
-			int start = (i * Indexer.DEFAULT_INTERVAL);
-			int end = start + Indexer.DEFAULT_INTERVAL;
+			@Override
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
 
-			List<Group> groups = GroupLocalServiceUtil.getCompanyGroups(
-				companyId, start, end);
+				Group group = (Group)object;
 
-			for (Group group : groups) {
 				if (!group.isRegularSite()) {
-					continue;
+					return;
 				}
 
 				if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
 						group.getGroupId())) {
 
-					continue;
+					return;
 				}
 
 				if (group.hasPrivateLayouts()) {
@@ -158,11 +159,16 @@ public class SODeployListenerMessageListener
 					updateLayoutSetPrototype(group.getGroupId(), false);
 				}
 			}
-		}
+
+		};
+
+		actionableDynamicQuery.setCompanyId(companyId);
+
+		actionableDynamicQuery.performActions();
 	}
 
 	protected void updateLayoutSetPrototype(long groupId, boolean privateLayout)
-		throws Exception {
+		throws PortalException, SystemException {
 
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 			groupId, privateLayout);

@@ -18,14 +18,14 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.MessageLocalServiceUtil;
+import com.liferay.mail.service.persistence.MessageActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Projection;
-import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.ProjectionList;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
@@ -38,14 +38,14 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.portlet.PortletURL;
@@ -65,14 +65,6 @@ public class MessageIndexer extends BaseIndexer {
 
 	public String getPortletId() {
 		return PORTLET_ID;
-	}
-
-	protected void addReindexCriteria(
-		DynamicQuery dynamicQuery, long companyId) {
-
-		Property property = PropertyFactoryUtil.forName("companyId");
-
-		dynamicQuery.add(property.eq(companyId));
 	}
 
 	@Override
@@ -195,79 +187,45 @@ public class MessageIndexer extends BaseIndexer {
 		return PORTLET_ID;
 	}
 
-	protected void reindexMessages(long companyId) throws Exception {
-		Class<?> clazz = getClass();
+	protected void reindexMessages(long companyId)
+		throws PortalException, SystemException {
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, clazz.getClassLoader());
+		final Collection<Document> documents = new ArrayList<Document>();
 
-		Projection minMessageIdProjection = ProjectionFactoryUtil.min(
-			"messageId");
-		Projection maxMessageIdProjection = ProjectionFactoryUtil.max(
-			"messageId");
+		ActionableDynamicQuery actionableDynamicQuery =
+			new MessageActionableDynamicQuery() {
 
-		ProjectionList projectionList = ProjectionFactoryUtil.projectionList();
+			@Override
+			protected void addCriteria(DynamicQuery dynamicQuery) {
+				Property displayDateProperty = PropertyFactoryUtil.forName(
+					"displayDate");
 
-		projectionList.add(minMessageIdProjection);
-		projectionList.add(maxMessageIdProjection);
+				dynamicQuery.add(displayDateProperty.lt(new Date()));
 
-		dynamicQuery.setProjection(projectionList);
+				Property statusProperty = PropertyFactoryUtil.forName("status");
 
-		addReindexCriteria(dynamicQuery, companyId);
+				Integer[] statuses = {
+					WorkflowConstants.STATUS_APPROVED,
+					WorkflowConstants.STATUS_IN_TRASH
+				};
 
-		List<Object[]> results = MessageLocalServiceUtil.dynamicQuery(
-			dynamicQuery);
+				dynamicQuery.add(statusProperty.in(statuses));
+			}
 
-		Object[] minAndMaxMessageIds = results.get(0);
+			@Override
+			protected void performAction(Object object) throws PortalException {
+				Message message = (Message)object;
 
-		if ((minAndMaxMessageIds[0] == null) ||
-			(minAndMaxMessageIds[1] == null)) {
+				Document document = getDocument(message);
 
-			return;
-		}
+				documents.add(document);
+			}
 
-		long minMessageId = (Long)minAndMaxMessageIds[0];
-		long maxMessageId = (Long)minAndMaxMessageIds[1];
+		};
 
-		long startMessageId = minMessageId;
-		long endMessageId = startMessageId + DEFAULT_INTERVAL;
+		actionableDynamicQuery.setCompanyId(companyId);
 
-		while (startMessageId <= maxMessageId) {
-			reindexMessages(companyId, startMessageId, endMessageId);
-
-			startMessageId = endMessageId;
-			endMessageId += DEFAULT_INTERVAL;
-		}
-	}
-
-	protected void reindexMessages(
-			long companyId, long startMessageId, long endMessageId)
-		throws Exception {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, PortalClassLoaderUtil.getClassLoader());
-
-		Property property = PropertyFactoryUtil.forName("messageId");
-
-		dynamicQuery.add(property.ge(startMessageId));
-		dynamicQuery.add(property.lt(endMessageId));
-
-		addReindexCriteria(dynamicQuery, companyId);
-
-		List<Message> messages = MessageLocalServiceUtil.dynamicQuery(
-			dynamicQuery);
-
-		if (messages.isEmpty()) {
-			return;
-		}
-
-		Collection<Document> documents = new ArrayList<Document>();
-
-		for (Message message : messages) {
-			Document document = getDocument(message);
-
-			documents.add(document);
-		}
+		actionableDynamicQuery.performActions();
 
 		SearchEngineUtil.updateDocuments(
 			getSearchEngineId(), companyId, documents);
