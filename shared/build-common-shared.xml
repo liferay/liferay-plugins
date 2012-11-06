@@ -21,23 +21,28 @@
 			</then>
 		</if>
 
-		<mkdir dir="classes" />
+		<if>
+			<available file="src" />
+			<then>
+				<mkdir dir="classes" />
 
-		<copy todir="classes">
-			<fileset dir="src" excludes="**/*.java" />
-		</copy>
+				<copy todir="classes">
+					<fileset dir="src" excludes="**/*.java" />
+				</copy>
 
-		<path id="plugin-lib.classpath">
-			<pathelement location="classes" />
-			<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
-		</path>
+				<path id="plugin-lib.classpath">
+					<pathelement location="classes" />
+					<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
+				</path>
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
-			<param name="javac.destdir" value="classes" />
-			<param name="javac.srcdir" value="src" />
-			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-		</antcall>
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="plugin.classpath" />
+					<param name="javac.destdir" value="classes" />
+					<param name="javac.srcdir" value="src" />
+					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+				</antcall>
+			</then>
+		</if>
 	</target>
 
 	<target name="jar" depends="compile">
