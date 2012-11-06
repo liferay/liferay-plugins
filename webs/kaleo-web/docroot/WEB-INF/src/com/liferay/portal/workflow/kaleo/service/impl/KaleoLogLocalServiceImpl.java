@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.service.impl;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Junction;
+import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -404,10 +405,13 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		for (Integer logType : logTypes) {
 			String logTypeString = KaleoLogUtil.convert(logType);
 
-			if (Validator.isNotNull(logTypeString)) {
-				junction.add(
-					PropertyFactoryUtil.forName("type").eq(logTypeString));
+			if (Validator.isNull(logTypeString)) {
+				continue;
 			}
+
+			Property property = PropertyFactoryUtil.forName("type");
+
+			junction.add(property.eq(logTypeString));
 		}
 
 		dynamicQuery.add(junction);
@@ -419,8 +423,9 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoLog.class, getClassLoader());
 
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoInstanceId").eq(kaleoInstanceId));
+		Property property = PropertyFactoryUtil.forName("kaleoInstanceId");
+
+		dynamicQuery.add(property.eq(kaleoInstanceId));
 
 		addLogTypesJunction(dynamicQuery, logTypes);
 
@@ -433,9 +438,10 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoLog.class, getClassLoader());
 
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoTaskInstanceTokenId").eq(
-				kaleoTaskId));
+		Property property = PropertyFactoryUtil.forName(
+			"kaleoTaskInstanceTokenId");
+
+		dynamicQuery.add(property.eq(kaleoTaskId));
 
 		addLogTypesJunction(dynamicQuery, logTypes);
 
