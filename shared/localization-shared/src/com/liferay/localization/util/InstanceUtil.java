@@ -15,9 +15,14 @@
 package com.liferay.localization.util;
 
 import com.liferay.portal.kernel.configuration.Filter;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.model.Company;
@@ -27,6 +32,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.persistence.UserActionableDynamicQuery;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
@@ -34,7 +40,7 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.util.portlet.PortletProps;
 
-import java.util.List;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
@@ -195,25 +201,35 @@ public class InstanceUtil implements PortletPropsKeys {
 
 		CompanyLocalServiceUtil.updateCompany(company);
 
-		int count = UserLocalServiceUtil.getCompanyUsersCount(companyId);
+		ActionableDynamicQuery actionableDynamicQuery =
+			new UserActionableDynamicQuery() {
 
-		int pages = count / Indexer.DEFAULT_INTERVAL;
+			@Override
+			protected void addCriteria(DynamicQuery dynamicQuery) {
+				Property property = PropertyFactoryUtil.forName("createDate");
 
-		for (int i = 0; i <= pages; i++) {
-			int start = (i * Indexer.DEFAULT_INTERVAL);
-			int end = start + Indexer.DEFAULT_INTERVAL;
+				dynamicQuery.add(property.eqProperty("modifiedDate"));
+			}
 
-			List<User> users = UserLocalServiceUtil.getCompanyUsers(
-				companyId, start, end);
+			@Override
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
 
-			for (User user : users) {
+				User user = (User)object;
+
+				user.setModifiedDate(new Date());
 				user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
 				user.setTimeZoneId(
 					PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
 
 				UserLocalServiceUtil.updateUser(user);
 			}
-		}
+
+		};
+
+		actionableDynamicQuery.setCompanyId(companyId);
+
+		actionableDynamicQuery.performActions();
 	}
 
 	private static void _putMap(
