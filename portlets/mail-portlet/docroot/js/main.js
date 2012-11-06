@@ -152,10 +152,10 @@ AUI.add(
 						dataType: 'json',
 						method: 'POST',
 						on: {
-							failure: function (event, id, obj) {
+							failure: function(event, id, obj) {
 								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
-							success: function (event, id, obj) {
+							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
 
 								instance.setStatus(responseData.status, responseData.message);
@@ -326,10 +326,10 @@ AUI.add(
 						dataType: 'json',
 						method: 'POST',
 						on: {
-							failure: function (event, id, obj) {
+							failure: function(event, id, obj) {
 								instance.setStatus('error', Liferay.Language.get('unable-to-connect-with-mail-server'));
 							},
-							success: function (event, id, obj) {
+							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
 
 								instance.setStatus(responseData.status, responseData.message);
