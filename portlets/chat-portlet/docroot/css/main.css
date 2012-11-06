@@ -1,3 +1,5 @@
+@import "compass";
+
 html body {
 	height: auto;
 	padding-bottom: 24px;
@@ -15,17 +17,10 @@ html body {
 	position: fixed;
 	right: 15px;
 	z-index: 1000;
-}
 
-.ie6 .chat-bar {
-	position: absolute;
-}
-
-.ie6 .lfr-shim {
-	bottom: 0;
-	border: 0;
-	position: absolute;
-	z-index: 100;
+	.trigger-name, .status-message {
+		text-shadow: 1px 1px #fff;
+	}
 }
 
 .chat-sound {
@@ -36,86 +31,81 @@ html body {
 	float: left;
 }
 
-.chat-tabs-container {
-}
-
-.chat-bar .trigger-name, .chat-bar .status-message {
-	text-shadow: 1px 1px #fff;
-}
-
 /* ---------- Bottom Dock Tabs ---------- */
 
-.chat-bar div ul, .chat-bar div ul li {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	position: relative;
-}
+.chat-bar {
+	div ul, div ul li {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		position: relative;
+	}
 
-.chat-bar .chat-tabs li {
-	float: right;
-}
+	.chat-tabs li {
+		float: right;
+	}
 
-.chat-bar div ul li .panel-trigger {
-	cursor: pointer;
-	float: left;
-	border-left: 1px solid #b5b5b5;
-	border-right: 1px solid #e0e0e0;
-	color: #111;
-	font: bold 11px/24px Tahoma, Geneva, sans-serif;
-	text-decoration: none;
-	padding: 0 6px;
-}
+	div ul li {
+		.panel-trigger {
+			border-left: 1px solid #b5b5b5;
+			border-right: 1px solid #e0e0e0;
+			color: #111;
+			cursor: pointer;
+			float: left;
+			font: bold 11px/24px Tahoma, Geneva, sans-serif;
+			padding: 0 6px;
+			text-decoration: none;
 
-.chat-bar div ul li .panel-trigger:hover {
-	background: #fff;
-}
+			&:hover {
+				background: #fff;
+			}
+		}
 
-.chat-bar div ul li.selected .panel-trigger {
-	background: #fff;
-	border: 0 1px 1px solid #262626;
-	border-radius: 0 4px;
-	-moz-border-radius: 0 4px;
-	-o-border-radius: 0 4px;
-	-webkit-border-radius: 0 4px;
-	line-height: 27px;
-	height: 25px;
-	position: relative;
-	z-index: 30;
-	margin: -2px 0 -1px;
+		&.selected .panel-trigger {
+			background: #fff;
+			border: 0 1px 1px solid #262626;
+			line-height: 27px;
+			height: 25px;
+			position: relative;
+			z-index: 30;
+			margin: -2px 0 -1px;
+		}
+	}
 }
 
 /* ---------- Unread Messages ---------- */
 
-.chat-bar div ul li .panel-trigger .unread {
-	background: url(../images/unread-messages.png);
-	color: #fff;
-	font: bold 10px/16px Arial, Helvetica, sans-serif;
-	height: 16px;
-	position: absolute;
-	right: -4px;
-	text-align: center;
-	top: -6px;
-	width: 16px;
-	z-index: 30;
-}
+.chat-bar div ul li {
+	.panel-trigger .unread {
+		background: url(../images/unread-messages.png);
+		color: #fff;
+		font: bold 10px/16px Arial, Helvetica, sans-serif;
+		height: 16px;
+		position: absolute;
+		right: -4px;
+		text-align: center;
+		top: -6px;
+		width: 16px;
+		z-index: 30;
+	}
 
-.chat-bar div ul li.selected .panel-trigger .unread {
-	right: -5px;
-	top: -4px;
+	&.selected .panel-trigger .unread {
+		right: -5px;
+		top: -4px;
+	}
 }
 
 /* ---------- Typing status ---------- */
 
 .typing-status {
-	float: left;
-	width: 16px;
-	height: 16px;
 	background: url(../images/typing.png) no-repeat 0 0;
 	display: none;
+	float: left;
+	height: 16px;
+	left: 4px;
 	position: absolute;
 	top: 5px;
-	left: 4px;
+	width: 16px;
 }
 
 .selected .typing-status {
@@ -132,134 +122,120 @@ html body {
 
 /* ---------- Bottom Dock Popups ---------- */
 
-.chat-bar .chat-panel {
-	bottom: 24px;
-	display: none;
-	position: absolute;
-	right: 0;
-	z-index: 20;
-}
+.chat-bar {
+	.chat-panel {
+		bottom: 24px;
+		display: none;
+		position: absolute;
+		right: 0;
+		z-index: 20;
+	}
 
-.chat-bar .selected .chat-panel {
-	display: block;
+	.selected .chat-panel {
+		display: block;
+	}
 }
 
 /* ---------- Online Users ---------- */
 
-.buddy-list .search-buddies .aui-field-content {
-	padding: 2px;
-}
+.buddy-list {
+	.search-buddies .aui-field-content {
+		padding: 2px;
+	}
 
-.buddy-list .search-buddies-field {
-	background-image: url(@theme_image_path@/common/search.png);
-	background-repeat: no-repeat;
-	background-position: 5px 50%;
-	padding-left: 25px;
-	width: 100%;
-}
+	.search-buddies-field {
+		background: url(@theme_image_path@/common/search.png) no-repeat 5px 50%;
+		padding-left: 25px;
+		width: 100%;
+	}
 
-.buddy-list .search-buddies-field {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
+	.panel-content {
+		list-style-type: none;
+		margin: 0;
+		max-height: 400px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		padding: 2px 0;
 
-.ie6 .buddy-list .search-buddies-field, .ie7 .buddy-list .search-buddies-field {
-	width: 88%;
-}
+		.online-users li {
+			float: left;
+			margin: 0;
+			padding: 2px;
+			height: 24px;
+			list-style-type: none;
+			cursor: pointer;
+			border: 1px solid #fff;
+			width: 212px;
+		}
 
-.buddy-list .panel-content {
-	list-style-type: none;
-	margin: 0;
-	max-height: 400px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	padding: 2px 0;
-}
+		li.idle {
+			height: 14px;
+		}
 
-.buddy-list .panel-content .online-users li {
-	float: left;
-	margin: 0 2px;
-	padding: 2px;
-	height: 24px;
-	list-style-type: none;
-	cursor: pointer;
-	border: 1px solid #fff;
-	width: 212px;
-}
+		li:hover {
+			background: #f3f3f3;
+			border-color: #ddd;
+		}
 
-.buddy-list .panel-content .online-users li {
-	margin: 0;
-}
+		div {
+			font: 12px/24px Arial, Helvetica, sans-serif;
+			overflow-x: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
 
-.ie .buddy-list .panel-content .online-users li {
-	width: 202px;
-}
+		.idle div {
+			line-height: 14px;
+		}
 
-.buddy-list .panel-content li.idle {
-	height: 14px;
-}
+		img {
+			background: #333;
+			display: block;
+			float: left;
+			height: 24px;
+			margin: 0 6px 0 0;
+			width: 24px;
+		}
 
-.buddy-list .panel-content li:hover {
-	background: #f3f3f3;
-	border-color: #ddd;
-}
-
-.buddy-list .panel-content div {
-	font: 12px/24px Arial, Helvetica, sans-serif;
-	overflow-x: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.buddy-list .panel-content .idle div {
-	line-height: 14px;
-}
-
-.buddy-list .panel-content img {
-	background: #333;
-	display: block;
-	float: left;
-	height: 24px;
-	margin: 0 6px 0 0;
-	width: 24px;
-}
-
-.buddy-list .panel-content .idle img {
-	display: none;
+		.idle img {
+			display: none;
+		}
+	}
 }
 
 /* ---------- Popup Window ---------- */
 
-.chat-portlet .chat-settings .settings {
-	float: none;
+.chat-portlet .chat-settings {
+	.settings {
+		float: none;
+	}
+
+	li {
+		border-bottom: 1px solid #999;
+		clear: both;
+		float: none;
+		padding: 10px;
+		position: static;
+	}
 }
 
-.chat-portlet .chat-settings li {
-	border-bottom: 1px solid #999;
-	clear: both;
-	float: none;
-	padding: 10px;
-	position: static;
-}
+.chat-settings {
+	label {
+		font-weight: bold;
+	}
 
-.chat-settings label {
-	font-weight: bold;
-}
+	input {
+		vertical-align: middle;
+	}
 
-.chat-settings input {
-	vertical-align: middle;
-}
+	.ctrl-holder {
+		padding: 10px;
+	}
 
-.chat-settings .ctrl-holder {
-	padding: 10px;
-}
-
-.chat-settings.saved .panel-trigger .trigger-name {
-	background: url(@theme_image_path@/messages/success.png) no-repeat 0 0;
-	padding-left: 20px;
-	padding-bottom: 2px;
-	padding-top: 2px;
+	&.saved .panel-trigger .trigger-name {
+		background: url(@theme_image_path@/messages/success.png) no-repeat 0 0;
+		padding: 2px 0 2px 20px;
+	}
 }
 
 .chat-status .status-message {
@@ -268,10 +244,6 @@ html body {
 }
 
 .panel-window {
-	border-radius: 4px 4px 0 4px;
-	-moz-border-radius: 4px 4px 0 4px;
-	-o-border-radius: 4px 4px 0 4px;
-	-webkit-border-radius: 4px 4px 0 4px;
 	background: #fff;
 	border: 1px solid #262626;
 	font: 11px Tahoma, Geneva, sans-serif;
@@ -300,40 +272,42 @@ html body {
 	text-indent: 60px;
 }
 
-.buddy-list .panel-title, .chat-settings .panel-title {
-	text-indent: 6px;
+.buddy-list, .chat-settings {
+	.panel-title {
+		text-indent: 6px;
+	}
+
+	.panel-button.minimize {
+		right: 4px;
+	}
 }
 
 .panel-button {
 	cursor: pointer;
 	height: 12px;
 	width: 12px;
-}
 
-.panel-button.close {
-	background: url(../images/chat-close_button.png) left bottom;
-	position: absolute;
-	right: 4px;
-	top: 6px;
-}
+	&.close {
+		background: url(../images/chat-close_button.png) left bottom;
+		position: absolute;
+		right: 4px;
+		top: 6px;
 
-.panel-button.close:hover {
-	background-position: left top;
-}
+		&:hover {
+			background-position: left top;
+		}
+	}
 
-.panel-button.minimize {
-	background: url(../images/chat-minimize_button.png) left bottom;
-	position: absolute;
-	right: 20px;
-	top: 6px;
-}
+	&.minimize {
+		background: url(../images/chat-minimize_button.png) left bottom;
+		position: absolute;
+		right: 20px;
+		top: 6px;
 
-.buddy-list .panel-button.minimize, .chat-settings .panel-button.minimize {
-	right: 4px;
-}
-
-.panel-button.minimize:hover {
-	background-position: left top;
+		&:hover {
+			background-position: left top;
+		}
+	}
 }
 
 .panel-profile {
@@ -349,82 +323,76 @@ html body {
 	height: 192px;
 	overflow-y: scroll;
 	padding: 2px;
-}
 
-.ie .panel-output {
-	position: relative;
-}
+	.blurb {
+		margin: 0;
+		position: relative;
+	}
 
-.ie6 .panel-window, .ie7 .panel-window {
-	min-width: auto;
-	width: 226px;
-}
+	.name {
+		background: #828F95;
+		color: #fff;
+		display: block;
+		line-height: 11px;
+		padding: 2px 50px 3px 4px;
+	}
 
-.panel-output .blurb {
-	margin: 0;
-	position: relative;
-}
+	.date {
+		color: #eee;
+		font-size: 10px;
+		font-style: normal;
+		margin-top: -2em;
+		position: absolute;
+		right: 8px;
+		top: 50%;
+	}
 
-.panel-output .name {
-	background: #828F95;
-	color: #fff;
-	display: block;
-	line-height: 11px;
-	padding: 2px 50px 3px 4px;
-}
+	.incoming {
+		.name {
+			background: #D3DADD;
+			color: #555;
+		}
 
-.panel-output .incoming .name {
-	background: #D3DADD;
-	color: #555;
-}
+		.date {
+			color: #555;
+		}
+	}
 
-.panel-output .date {
-	color: #eee;
-	font-size: 10px;
-	font-style: normal;
-	margin-top: -2em;
-	position: absolute;
-	right: 8px;
-	top: 50%;
-}
-
-.panel-output .incoming .date {
-	color: #555;
-}
-
-.panel-output .text {
-	display: block;
-	line-height: 14px;
-	padding: 4px 8px 8px;
-}
-
-.panel-input {
-	border-top: 1px solid #369;
-	position: relative;
-	height: 19px;
-}
-
-.panel-input textarea {
-	background: none;
-	border: 0;
-	bottom: 0;
-	display: block;
-	float: left;
-	height: 14px;
-	overflow: hidden;
-	padding: 2px;
-	position: absolute;
-	width: 222px;
+	.text {
+		display: block;
+		line-height: 14px;
+		padding: 4px 8px 8px;
+	}
 }
 
 .panel-input textarea, .chat-height-monitor {
 	font: 11px/14px Tahoma, Geneva, sans-serif;
 }
 
-.panel-input textarea.focus, .ie6 .panel-input textarea.focus {
-	background: #fff;
-	border-width: 0;
+.panel-input {
+	border-top: 1px solid #369;
+	position: relative;
+	height: 19px;
+
+	textarea {
+		background: none;
+		border: 0;
+		bottom: 0;
+		display: block;
+		float: left;
+		height: 14px;
+		overflow: hidden;
+		padding: 2px;
+		position: absolute;
+		width: 222px;
+
+		&.focus {
+			background: #fff;
+			border-width: 0;
+		}
+	}
 }
+
 
 .chat-height-monitor {
 	left: -10000em;
@@ -432,9 +400,6 @@ html body {
 	position: absolute;
 	top: -10000em;
 	white-space: pre-wrap;
-	white-space: -moz-pre-wrap;
-	white-space: -pre-wrap;
-	white-space: -o-pre-wrap;
 }
 
 .show-notifications-setting {
@@ -445,37 +410,100 @@ html body {
 	display: block;
 }
 
-.ie .chat-height-monitor {
-	word-wrap: break-word;
-	zoom: 1;
-}
+/* ---------- Buddy service extensions (Social Office) ---------- */
 
-/* ---------- Buddy service extensions ---------- */
+.chat-bar {
+	.online-users .buddy-services {
+		display: none;
+		float: right;
+		margin-top: 4px;
+	}
 
-.chat-bar .panel-content .name {
-	float: left;
-}
+	.panel-content {
+		li:hover .buddy-services {
+			display: block;
+		}
 
-.chat-bar .online-users .buddy-services {
-	display: none;
-	float: right;
-	margin-top: 4px;
-}
+		.name {
+			float: left;
+		}
+	}
 
-.chat-bar .panel-content li:hover .buddy-services {
-	display: block;
-}
-
-.chat-bar .buddy-services div {
-	background: transparent no-repeat;
-	float: left;
-	height: 16px;
-	margin-right: 3px;
-	width: 16px;
+	.buddy-services div {
+		background: transparent no-repeat;
+		float: left;
+		height: 16px;
+		margin-right: 3px;
+		width: 16px;
+	}
 }
 
 /* ---------- Message waiting indicator (only background-color is used) ---------- */
 
 .message-waiting {
 	background-color: #a5d6ef;
+}
+
+/* ---------- Internet Explorer ---------- */
+
+.ie6 {
+	.chat-bar {
+		position: absolute;
+	}
+
+	.lfr-shim {
+		bottom: 0;
+		border: 0;
+		position: absolute;
+		z-index: 100;
+	}
+
+	.panel-input textarea.focus {
+		background: #fff;
+		border-width: 0;
+	}
+}
+
+.ie6, .ie7 {
+	.buddy-list .search-buddies-field {
+		width: 88%;
+	}
+
+	.panel-window {
+		min-width: auto;
+		width: 226px;
+	}
+}
+
+.ie {
+	.buddy-list .panel-content .online-users li {
+		width: 202px;
+	}
+
+	.panel-output {
+		position: relative;
+	}
+
+	.chat-height-monitor {
+		word-wrap: break-word;
+		zoom: 1;
+	}
+}
+
+/* ---------- Extras ---------- */
+
+
+
+.chat-bar div ul li.selected .panel-trigger {
+	@include border-radius(0 4px);
+}
+
+.panel-window {
+	@include border-radius(4px 4px 0 4px);
+}
+
+.buddy-list .search-buddies-field {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
