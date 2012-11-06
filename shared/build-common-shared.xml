@@ -12,6 +12,15 @@
 	</target>
 
 	<target name="compile">
+		<if>
+			<not>
+				<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
+			</not>
+			<then>
+				<ant dir="${project.dir}/shared/portal-compat-shared" target="compile" inheritAll="false" />
+			</then>
+		</if>
+
 		<mkdir dir="classes" />
 
 		<copy todir="classes">
@@ -20,6 +29,7 @@
 
 		<path id="plugin-lib.classpath">
 			<pathelement location="classes" />
+			<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
 		</path>
 
 		<antcall target="compile-java">
