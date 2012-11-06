@@ -226,7 +226,7 @@ public class CompatServletContextListener
 			"create", sharepointRequestClass);
 
 		try {
-			method.invoke(null, null);
+			method.invoke(null, (Object[])null);
 		}
 		catch (Exception e) {
 
