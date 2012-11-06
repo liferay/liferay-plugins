@@ -38,7 +38,7 @@ public class PathElementMessageListener extends BaseMessageListener {
 		singleDestinationMessageSender.setMessageSender(
 			MessageBusUtil.getMessageSender());
 
-		_singleDestinationMessageSender = singleDestinationMessageSender ;
+		_singleDestinationMessageSender = singleDestinationMessageSender;
 	}
 
 	public void setGraphWalker(GraphWalker graphWalker) {
