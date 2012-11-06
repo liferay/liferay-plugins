@@ -86,7 +86,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 			sb.append(FileUtil.getShortFileName(fileName));
 			sb.append(" (");
-			sb.append(TextFormatter.formatKB(kb, locale));
+			sb.append(TextFormatter.formatStorageSize(kb, locale));
 			sb.append("k)");
 			sb.append("<br />");
 		}
