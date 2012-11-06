@@ -40,14 +40,16 @@ public class LoginPostAction extends Action {
 		try {
 			String memberRequestKey = ParamUtil.getString(request, "key");
 
-			if (Validator.isNotNull(memberRequestKey)) {
-				User user = PortalUtil.getUser(request);
-
-				MemberRequestLocalServiceUtil.updateMemberRequest(
-					memberRequestKey, user.getUserId());
+			if (Validator.isNull(memberRequestKey)) {
+				return;
 			}
+
+			User user = PortalUtil.getUser(request);
+
+			MemberRequestLocalServiceUtil.updateMemberRequest(
+				memberRequestKey, user.getUserId());
 		}
-		catch(Exception e) {
+		catch (Exception e) {
 			throw new ActionException(e);
 		}
 	}

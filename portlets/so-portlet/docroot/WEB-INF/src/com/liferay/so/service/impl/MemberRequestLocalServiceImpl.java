@@ -18,6 +18,7 @@
 package com.liferay.so.service.impl;
 
 import com.liferay.mail.service.MailServiceUtil;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -65,16 +66,16 @@ public class MemberRequestLocalServiceImpl
 
 		User user = userLocalService.getUserById(userId);
 
-		Date now = new Date();
-
 		try {
 			User receiverUser = userLocalService.getUserByEmailAddress(
 				serviceContext.getCompanyId(), receiverEmailAddress);
 
 			receiverUserId = receiverUser.getUserId();
 		}
-		catch(Exception e) {
+		catch (NoSuchUserException nsue) {
 		}
+
+		Date now = new Date();
 
 		long memberRequestId = counterLocalService.increment();
 
@@ -247,7 +248,7 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setModifiedDate(new Date());
 		memberRequest.setReceiverUserId(receiverUserId);
 
-		memberRequest = memberRequestPersistence.update(memberRequest);
+		memberRequestPersistence.update(memberRequest);
 
 		if (receiverUserId > 0) {
 			sendNotificationEvent(memberRequest);
@@ -321,6 +322,16 @@ public class MemberRequestLocalServiceImpl
 			redirectURL = serviceContext.getCurrentURL();
 		}
 
+		String createAccountURL = (String)serviceContext.getAttribute(
+			"createAccountURL");
+
+		if (Validator.isNull(createAccountURL)) {
+			createAccountURL = serviceContext.getPortalURL();
+		}
+
+		createAccountURL = HttpUtil.addParameter(
+			createAccountURL, "redirect", redirectURL);
+
 		String loginURL = (String)serviceContext.getAttribute("loginURL");
 
 		if (Validator.isNull(loginURL)) {
@@ -331,16 +342,6 @@ public class MemberRequestLocalServiceImpl
 
 		redirectURL = HttpUtil.addParameter(
 			redirectURL, "key", memberRequest.getKey());
-
-		String createAccountURL = (String)serviceContext.getAttribute(
-			"createAccountURL");
-
-		if (Validator.isNull(createAccountURL)) {
-			createAccountURL = serviceContext.getPortalURL();
-		}
-
-		createAccountURL = HttpUtil.addParameter(
-			createAccountURL, "redirect", redirectURL);
 
 		body = StringUtil.replace(
 			body,
