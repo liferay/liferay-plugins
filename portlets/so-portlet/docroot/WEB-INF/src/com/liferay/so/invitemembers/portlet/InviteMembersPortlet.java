@@ -123,39 +123,33 @@ public class InviteMembersPortlet extends MVCPortlet {
 			HttpServletRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		// Check if current group and layout is visible by guest
-
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(themeDisplay.getDefaultUser());
 
-		boolean guestViewableGroup = LayoutPermissionUtil.contains(
-			permissionChecker, themeDisplay.getLayout(),
-			themeDisplay.getControlPanelCategory(), true, ActionKeys.VIEW);
+		if (LayoutPermissionUtil.contains(
+				permissionChecker, themeDisplay.getLayout(),
+				themeDisplay.getControlPanelCategory(), true,
+				ActionKeys.VIEW) &&
+			LayoutPermissionUtil.contains(
+				permissionChecker, themeDisplay.getLayout(), false,
+				ActionKeys.VIEW)) {
 
-		boolean guestViewableLayout = LayoutPermissionUtil.contains(
-			permissionChecker, themeDisplay.getLayout(), false,
-			ActionKeys.VIEW);
-
-		if (guestViewableGroup && guestViewableLayout) {
 			return PortalUtil.getCreateAccountURL(request, themeDisplay);
 		}
-		else {
-			Group group = GroupLocalServiceUtil.getGroup(
-				themeDisplay.getCompanyId(), GroupConstants.GUEST);
 
-			PortletURL createAccountURL = PortletURLFactoryUtil.create(
-				request, com.liferay.portal.util.PortletKeys.LOGIN,
-				group.getDefaultPublicPlid(), PortletRequest.RENDER_PHASE);
+		Group group = GroupLocalServiceUtil.getGroup(
+			themeDisplay.getCompanyId(), GroupConstants.GUEST);
 
-			createAccountURL.setWindowState(WindowState.MAXIMIZED);
-			createAccountURL.setPortletMode(PortletMode.VIEW);
+		PortletURL createAccountURL = PortletURLFactoryUtil.create(
+			request, com.liferay.portal.util.PortletKeys.LOGIN,
+			group.getDefaultPublicPlid(), PortletRequest.RENDER_PHASE);
 
-			createAccountURL.setParameter("saveLastPath", "0");
-			createAccountURL.setParameter(
-				"struts_action", "/login/create_account");
+		createAccountURL.setParameter("saveLastPath", "0");
+		createAccountURL.setParameter("struts_action", "/login/create_account");
+		createAccountURL.setPortletMode(PortletMode.VIEW);
+		createAccountURL.setWindowState(WindowState.MAXIMIZED);
 
-			return createAccountURL.toString();
-		}
+		return createAccountURL.toString();
 	}
 
 	protected long[] getLongArray(PortletRequest portletRequest, String name) {
