@@ -17,15 +17,14 @@ package com.liferay.knowledgebase.admin.util;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
+import com.liferay.knowledgebase.service.persistence.KBArticleActionableDynamicQuery;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Projection;
-import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.ProjectionList;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
@@ -38,7 +37,6 @@ import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -108,18 +106,6 @@ public class AdminIndexer extends BaseIndexer {
 		hits.setQueryTerms(queryTerms);
 
 		return hits;
-	}
-
-	protected void addReindexCriteria(
-		DynamicQuery dynamicQuery, long companyId) {
-
-		Property companyIdProperty = PropertyFactoryUtil.forName("companyId");
-
-		dynamicQuery.add(companyIdProperty.eq(companyId));
-
-		Property statusProperty = PropertyFactoryUtil.forName("status");
-
-		dynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 	}
 
 	@Override
@@ -222,78 +208,33 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void reindexKBArticles(long companyId) throws Exception {
-		Class<?> clazz = getClass();
+		final Collection<Document> documents = new ArrayList<Document>();
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KBArticle.class, clazz.getClassLoader());
+		ActionableDynamicQuery actionableDynamicQuery =
+			new KBArticleActionableDynamicQuery() {
 
-		Projection minKBArticleIdProjection = ProjectionFactoryUtil.min(
-			"kbArticleId");
-		Projection maxKBArticleIdProjection = ProjectionFactoryUtil.max(
-			"kbArticleId");
+			@Override
+			protected void addCriteria(DynamicQuery dynamicQuery) {
+				Property property = PropertyFactoryUtil.forName("status");
 
-		ProjectionList projectionList = ProjectionFactoryUtil.projectionList();
+				dynamicQuery.add(
+					property.eq(WorkflowConstants.STATUS_APPROVED));
+			}
 
-		projectionList.add(minKBArticleIdProjection);
-		projectionList.add(maxKBArticleIdProjection);
+			@Override
+			protected void performAction(Object object) throws PortalException {
+				KBArticle kbArticle = (KBArticle)object;
 
-		dynamicQuery.setProjection(projectionList);
+				Document document = getDocument(kbArticle);
 
-		addReindexCriteria(dynamicQuery, companyId);
+				documents.add(document);
+			}
 
-		List<Object[]> results = KBArticleLocalServiceUtil.dynamicQuery(
-			dynamicQuery);
+		};
 
-		Object[] minAndMaxKBArticleIds = results.get(0);
+		actionableDynamicQuery.setCompanyId(companyId);
 
-		if ((minAndMaxKBArticleIds[0] == null) ||
-			(minAndMaxKBArticleIds[1] == null)) {
-
-			return;
-		}
-
-		long minKBArticleId = (Long)minAndMaxKBArticleIds[0];
-		long maxKBArticleId = (Long)minAndMaxKBArticleIds[1];
-
-		long startKBArticleId = minKBArticleId;
-		long endKBArticleId = startKBArticleId + DEFAULT_INTERVAL;
-
-		while (startKBArticleId <= maxKBArticleId) {
-			reindexKBArticles(companyId, startKBArticleId, endKBArticleId);
-
-			startKBArticleId = endKBArticleId;
-			endKBArticleId += DEFAULT_INTERVAL;
-		}
-	}
-
-	protected void reindexKBArticles(
-			long companyId, long startKBArticleId, long endKBArticleId)
-		throws Exception {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KBArticle.class, PortalClassLoaderUtil.getClassLoader());
-
-		Property property = PropertyFactoryUtil.forName("kbArticleId");
-
-		dynamicQuery.add(property.ge(startKBArticleId));
-		dynamicQuery.add(property.lt(endKBArticleId));
-
-		addReindexCriteria(dynamicQuery, companyId);
-
-		List<KBArticle> kbArticles = KBArticleLocalServiceUtil.dynamicQuery(
-			dynamicQuery);
-
-		if (kbArticles.isEmpty()) {
-			return;
-		}
-
-		Collection<Document> documents = new ArrayList<Document>();
-
-		for (KBArticle kbArticle : kbArticles) {
-			Document document = getDocument(kbArticle);
-
-			documents.add(document);
-		}
+		actionableDynamicQuery.performActions();
 
 		SearchEngineUtil.updateDocuments(
 			getSearchEngineId(), companyId, documents);
