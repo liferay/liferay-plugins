@@ -208,12 +208,12 @@ public class EmailNotificationSender implements NotificationSender {
 			}
 		}
 		else {
-			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				executionContext.getKaleoTaskInstanceToken();
+			KaleoInstanceToken kaleoInstanceToken =
+				executionContext.getKaleoInstanceToken();
 
 			List<UserGroupRole> userGroupRoles =
 				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-					kaleoTaskInstanceToken.getGroupId(), roleId);
+					kaleoInstanceToken.getGroupId(), roleId);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				User user = userGroupRole.getUser();
