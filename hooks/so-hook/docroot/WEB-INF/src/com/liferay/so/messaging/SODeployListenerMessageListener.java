@@ -84,7 +84,7 @@ public class SODeployListenerMessageListener
 		if (layoutSetPrototype != null) {
 			try {
 				LayoutSetPrototypeLocalServiceUtil.deleteLayoutSetPrototype(
-					layoutSetPrototype.getLayoutSetPrototypeId());
+					layoutSetPrototype);
 			}
 			catch (Exception e) {
 				_log.error(e, e);
@@ -98,7 +98,7 @@ public class SODeployListenerMessageListener
 		if (layoutSetPrototype != null) {
 			try {
 				LayoutSetPrototypeLocalServiceUtil.deleteLayoutSetPrototype(
-					layoutSetPrototype.getLayoutSetPrototypeId());
+					layoutSetPrototype);
 			}
 			catch (Exception e) {
 				_log.error(e, e);
@@ -112,7 +112,7 @@ public class SODeployListenerMessageListener
 		if (layoutSetPrototype != null) {
 			try {
 				LayoutSetPrototypeLocalServiceUtil.deleteLayoutSetPrototype(
-					layoutSetPrototype.getLayoutSetPrototypeId());
+					layoutSetPrototype);
 			}
 			catch (Exception e) {
 				_log.error(e, e);
