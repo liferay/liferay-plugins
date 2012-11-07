@@ -68,6 +68,7 @@ public class SODeployListenerMessageListener
 		updateGroups(companyId);
 
 		deleteSocialOfficeUserRole(companyId);
+
 		deleteSocialOfficeLayoutSetPrototypes(companyId);
 
 		InstanceUtil.setInitialized(companyId, false);
