@@ -198,3 +198,5 @@ catch (NoSuchRoleException nsre) {
 		</c:choose>
 	</c:otherwise>
 </c:choose>
+
+<liferay-util:include page="/html/portlet/dockbar/license_warning.jsp" />
