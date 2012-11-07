@@ -62,11 +62,8 @@ public class LayoutSetPrototypeUtil {
 				continue;
 			}
 
-			LayoutSetPrototype layoutSetPrototype =
-				LayoutSetPrototypeLocalServiceUtil.fetchLayoutSetPrototype(
-					expandoValue.getClassPK());
-
-			return layoutSetPrototype;
+			return LayoutSetPrototypeLocalServiceUtil.fetchLayoutSetPrototype(
+				expandoValue.getClassPK());
 		}
 
 		return null;
