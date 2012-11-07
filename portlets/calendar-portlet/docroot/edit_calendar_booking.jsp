@@ -17,7 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
 
 java.util.Calendar now = CalendarFactoryUtil.getCalendar(userTimeZone);
@@ -119,11 +118,11 @@ String allDayClassActive = (allDay) ? "allday-class-active" : "";
 	<aui:fieldset>
 		<aui:input name="title" />
 
-		<div id="<portlet:namespace />startDateContainer" class="<%= allDayClassActive %>">
+		<div class="<%= allDayClassActive %>" id="<portlet:namespace />startDateContainer">
 			<aui:input name="startDate" value="<%= startDateJCalendar %>" />
 		</div>
 
-		<div id="<portlet:namespace />endDateContainer" class="<%= allDayClassActive %>">
+		<div class="<%= allDayClassActive %>" id="<portlet:namespace />endDateContainer">
 			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
 		</div>
 
@@ -675,6 +674,4 @@ String allDayClassActive = (allDay) ? "allday-class-active" : "";
 
 		scheduler.syncEventsUI();
 	});
-
-	scheduler.syncEventsUI();
 </aui:script>
