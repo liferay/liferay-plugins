@@ -19,7 +19,6 @@ package com.liferay.so.messaging;
 
 import com.liferay.deploylistener.messaging.BaseDeployListenerMessageListener;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.GroupActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -36,6 +35,11 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.persistence.GroupActionableDynamicQuery;
+import com.liferay.portlet.expando.model.ExpandoColumn;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
+import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.InstanceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
@@ -63,8 +67,8 @@ public class SODeployListenerMessageListener
 	protected void cleanUpSocialOffice(long companyId) throws Exception {
 		updateGroups(companyId);
 
-		deleteSocialOfficeLayoutSetPrototypes(companyId);
 		deleteSocialOfficeUserRole(companyId);
+		deleteSocialOfficeLayoutSetPrototypes(companyId);
 
 		InstanceUtil.setInitialized(companyId, false);
 	}
@@ -79,7 +83,7 @@ public class SODeployListenerMessageListener
 		if (layoutSetPrototype != null) {
 			try {
 				LayoutSetPrototypeLocalServiceUtil.deleteLayoutSetPrototype(
-					layoutSetPrototype);
+					layoutSetPrototype.getLayoutSetPrototypeId());
 			}
 			catch (Exception e) {
 				_log.error(e, e);
@@ -93,7 +97,7 @@ public class SODeployListenerMessageListener
 		if (layoutSetPrototype != null) {
 			try {
 				LayoutSetPrototypeLocalServiceUtil.deleteLayoutSetPrototype(
-					layoutSetPrototype);
+					layoutSetPrototype.getLayoutSetPrototypeId());
 			}
 			catch (Exception e) {
 				_log.error(e, e);
@@ -107,11 +111,25 @@ public class SODeployListenerMessageListener
 		if (layoutSetPrototype != null) {
 			try {
 				LayoutSetPrototypeLocalServiceUtil.deleteLayoutSetPrototype(
-					layoutSetPrototype);
+					layoutSetPrototype.getLayoutSetPrototypeId());
 			}
 			catch (Exception e) {
 				_log.error(e, e);
 			}
+		}
+
+		try {
+			ExpandoColumn expandoColumn =
+				ExpandoColumnLocalServiceUtil.getColumn(
+					companyId, LayoutSetPrototype.class.getName(),
+					ExpandoTableConstants.DEFAULT_TABLE_NAME,
+					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
+
+			ExpandoValueLocalServiceUtil.deleteColumnValues(
+				expandoColumn.getColumnId());
+		}
+		catch (Exception e) {
+			_log.error(e, e);
 		}
 	}
 
