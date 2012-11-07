@@ -22,6 +22,7 @@ long date = ParamUtil.getLong(request, "date", System.currentTimeMillis());
 String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
 String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
+boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence");
 %>
 
 <div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
@@ -92,6 +93,7 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 			filterCalendarBookings: <%= filterCalendarBookings %>,
 			firstDayOfWeek: <%= weekStartsOn %>,
 			items: A.Object.values(Liferay.CalendarUtil.availableCalendars),
+			preventPersistence: <%= preventPersistence %>,
 			portletNamespace: '<portlet:namespace />',
 			render: true,
 			strings: {
