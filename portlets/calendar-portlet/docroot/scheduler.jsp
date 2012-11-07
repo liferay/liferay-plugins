@@ -50,7 +50,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		{
 			height: 700,
 			isoTime: <%= isoTimeFormat %>,
-			readOnly: <%= readOnly %>
+			readOnly: <%= readOnly %>,
+			strings: {
+				allDay: '<liferay-ui:message key="all-day" />'
+			}
 		}
 	);
 
@@ -66,6 +69,16 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		{
 			height: 700,
 			readOnly: <%= readOnly %>
+		}
+	);
+
+	window.<portlet:namespace />agendaView = new A.SchedulerAgendaView(
+		{
+			height: 700,
+			readOnly: <%= readOnly %>,
+			strings: {
+				noEvents: '<liferay-ui:message key="no-events" />'
+			}
 		}
 	);
 

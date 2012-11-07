@@ -1038,23 +1038,51 @@ AUI.add(
 			A.SchedulerEvents,
 			[Liferay.SchedulerModelSync],
 			{
+				getLoadEndDate: function(activeView) {
+					var instance = this;
+
+					var date = activeView.getNextDate();
+
+					var viewName = activeView.get('name');
+
+					if (viewName === 'agenda') {
+						date = DateMath.add(date, DateMath.MONTH, 1);
+					}
+					else if (viewName === 'month') {
+						date = DateMath.add(date, DateMath.WEEK, 1);
+					}
+
+					return CalendarUtil.toUTCTimeZone(date);
+				},
+
+				getLoadStartDate: function(activeView) {
+					var instance = this;
+
+					var scheduler = activeView.get('scheduler');
+
+					var date = scheduler.get('viewDate');
+
+					var viewName = activeView.get('name');
+
+					if (viewName === 'month') {
+						date = DateMath.subtract(date, DateMath.WEEK, 1);
+					}
+
+					return CalendarUtil.toUTCTimeZone(date);
+				},
+
 				_doRead: function(options, callback) {
 					var instance = this;
 
 					var scheduler = instance.get('scheduler');
-
-					var date = scheduler.get('date');
-					var firstDayOfWeek = scheduler.get('firstDayOfWeek');
+					var activeView = scheduler.get('activeView');
 					var filterCalendarBookings = scheduler.get('filterCalendarBookings');
 
 					CalendarUtil.message(Liferay.Language.get('loading'));
 
-					var endDate = DateMath.add(DateMath.getFirstDayOfWeek(DateMath.findMonthEnd(date), firstDayOfWeek), DateMath.DAY, 7);
-					var startDate = DateMath.subtract(DateMath.getFirstDayOfWeek(DateMath.findMonthStart(date), firstDayOfWeek), DateMath.DAY, 7);
-
 					CalendarUtil.getEvents(
-						startDate,
-						endDate,
+						instance.getLoadStartDate(activeView),
+						instance.getLoadEndDate(activeView),
 						[CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING],
 						function(calendarBookings) {
 							if (filterCalendarBookings) {
@@ -1072,15 +1100,6 @@ AUI.add(
 		var Scheduler = A.Component.create(
 			{
 				ATTRS: {
-					currentMonth: {
-						setter: toInt,
-						valueFn: function(val) {
-							var instance = this;
-
-							return instance.get('date').getMonth();
-						}
-					},
-
 					filterCalendarBookings: {
 						validator: isFunction
 					},
@@ -1095,8 +1114,6 @@ AUI.add(
 				EXTENDS: A.Scheduler,
 
 				NAME: 'scheduler-base',
-
-				UI_ATTRS: ['currentMonth'],
 
 				prototype: {
 					calendarModel: Liferay.SchedulerCalendar,
@@ -1186,14 +1203,18 @@ AUI.add(
 						return events.sync.apply(events, arguments);
 					},
 
+					_afterActiveViewChange: function(event) {
+						var instance = this;
+
+						Scheduler.superclass._afterActiveViewChange.apply(this, arguments);
+
+						instance.load();
+					},
+
 					_afterDateChange: function(event) {
 						var instance = this;
 
-						var currentMonth = event.newVal.getMonth();
-
-						if (currentMonth !== instance.get('currentMonth')) {
-							instance.set('currentMonth', currentMonth);
-						}
+						instance.load();
 					},
 
 					_afterSchedulerEventChange: function(event) {
@@ -1374,12 +1395,6 @@ AUI.add(
 						var instance = this;
 
 						CalendarUtil.addEvent(event.newSchedulerEvent);
-					},
-
-					_uiSetCurrentMonth: function(val) {
-						var instance = this;
-
-						instance.load();
 					}
 				}
 			}

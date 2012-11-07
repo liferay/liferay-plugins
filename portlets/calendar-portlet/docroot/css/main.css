@@ -416,3 +416,13 @@
 		}
 	}
 }
+
+.aui-scheduler-view-agenda-info-container {
+	.aui-scheduler-view-agenda-info {
+		line-height: 1.2;
+	
+		.aui-scheduler-view-agenda-info-biggie {
+			line-height: 30px;
+		}
+	}
+}

@@ -589,14 +589,14 @@ public class CalendarBookingFinderImpl
 
 		StringBundler sb = new StringBundler(7);
 
-		sb.append("((startDate <= ? OR ? = -1) AND ");
-		sb.append("(endDate >= ? OR ? = -1) AND ");
-		sb.append("(recurrence IS NULL) ");
+		sb.append("(((startDate >= ? OR ? = -1) AND ");
+		sb.append("(endDate <= ? OR ? = -1) AND ");
+		sb.append("(recurrence IS NULL OR recurrence = '')) ");
 
 		if (recurring) {
 			sb.append(" OR (");
 			sb.append("(endDate <= ? OR ? = -1) AND ");
-			sb.append("(recurrence IS NOT NULL))");
+			sb.append("(recurrence IS NOT NULL AND recurrence != ''))");
 		}
 
 		sb.append(")");

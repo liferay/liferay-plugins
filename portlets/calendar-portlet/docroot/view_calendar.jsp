@@ -321,6 +321,8 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			}
 		);
 	});
+
+	<portlet:namespace />scheduler.load();
 </aui:script>
 
 <%!
