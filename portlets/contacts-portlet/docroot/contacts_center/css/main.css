@@ -146,6 +146,7 @@ $toolbar-bg: #DCE3EA;
 
 		.portlet-msg-success {
 			@include border-radius(0);
+
 			border-width: 0 0 1px;
 			margin: 0;
 		}
@@ -580,6 +581,7 @@ $toolbar-bg: #DCE3EA;
 
 	.profile-actions {
 		@include border-radius(4px);
+
 		background: #EEE;
 		border: 1px solid #C7D0DA;
 		margin: 20px 65px;

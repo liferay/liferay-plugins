@@ -21,6 +21,7 @@
 
 .so-portlet-dockbar-notifications .menu-button .notification-count {
 	@include border-radius(4px);
+
 	background-color: #2C2F34;
 	color: #FFF;
 	display: block;
