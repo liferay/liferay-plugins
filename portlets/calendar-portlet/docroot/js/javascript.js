@@ -1481,10 +1481,10 @@ AUI.add(
 							SchedulerEventRecorder.superclass.getTemplateData.apply(this, arguments),
 							{
 								allDay: schedulerEvent.get('allDay'),
-								calendar: calendar,
-								editing: editing,
-								calendarIds: AObject.keys(availableCalendars),
 								availableCalendars: availableCalendars,
+								calendar: calendar,
+								calendarIds: AObject.keys(availableCalendars),
+								editing: editing,
 								permissions: permissions,
 								status: CalendarUtil.getStatusLabel(schedulerEvent.get('status'))
 							}
@@ -1595,7 +1595,6 @@ AUI.add(
 
 						var calendarId = defaultUserCalendar.get('calendarId');
 						var color = defaultUserCalendar.get('color');
-
 
 						var eventInstance = instance;
 

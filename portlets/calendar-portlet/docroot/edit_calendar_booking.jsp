@@ -93,8 +93,6 @@ else if (calendar != null) {
 }
 
 List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, null, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new CalendarNameComparator(true), ActionKeys.MANAGE_BOOKINGS);
-
-String allDayClassActive = (allDay) ? "allday-class-active" : "";
 %>
 
 <liferay-portlet:actionURL name="updateCalendarBooking" var="updateCalendarBookingURL">
@@ -118,11 +116,11 @@ String allDayClassActive = (allDay) ? "allday-class-active" : "";
 	<aui:fieldset>
 		<aui:input name="title" />
 
-		<div class="<%= allDayClassActive %>" id="<portlet:namespace />startDateContainer">
+		<div class='<%= allDay ? "allday-class-active" : "" %>' id="<portlet:namespace />startDateContainer">
 			<aui:input name="startDate" value="<%= startDateJCalendar %>" />
 		</div>
 
-		<div class="<%= allDayClassActive %>" id="<portlet:namespace />endDateContainer">
+		<div class='<%= allDay ? "allday-class-active" : "" %>' id="<portlet:namespace />endDateContainer">
 			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
 		</div>
 
@@ -566,12 +564,11 @@ String allDayClassActive = (allDay) ? "allday-class-active" : "";
 					event.stopPropagation();
 				}
 			},
+			preventDateChange: true,
 			scheduler: scheduler,
 			startDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= startDate %>))
 		}
 	);
-
-	window.<portlet:namespace />placeholderSchedulerEvent.set('preventDateChange', true);
 
 	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />endDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'endDate');
 	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />startDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'startDate');
@@ -642,36 +639,29 @@ String allDayClassActive = (allDay) ? "allday-class-active" : "";
 		}
 	);
 
-
 	var allDayCheckbox = A.one('#<portlet:namespace />allDayCheckbox');
-	var endDateContainer = A.one('#<portlet:namespace />endDateContainer');
-	var startDateContainer = A.one('#<portlet:namespace />startDateContainer');
 
-	var <portlet:namespace />toggleDateTimeContainers = function(toggle) {
+	allDayCheckbox.after(
+		'click',
+		function () {
+			var endDateContainer = A.one('#<portlet:namespace />endDateContainer');
+			var startDateContainer = A.one('#<portlet:namespace />startDateContainer');
 
-		if (toggle == 'show') {
-			endDateContainer.removeClass('allday-class-active');
-			startDateContainer.removeClass('allday-class-active');
+			var checked = allDayCheckbox.get('checked');
+
+			if (checked) {
+				window.<portlet:namespace />placeholderSchedulerEvent.set('allDay', true);
+			}
+			else {
+				window.<portlet:namespace />placeholderSchedulerEvent.set('allDay', false);
+
+				endDateContainer.show();
+			}
+
+			endDateContainer.toggleClass('allday-class-active', checked);
+			startDateContainer.toggleClass('allday-class-active', checked);
+
+			scheduler.syncEventsUI();
 		}
-		else {
-			endDateContainer.addClass('allday-class-active');
-			startDateContainer.addClass('allday-class-active');
-		}
-	}
-
-	allDayCheckbox.after('click', function () {
-		var checked = allDayCheckbox.get('checked');
-
-		if (checked) {
-			<portlet:namespace />toggleDateTimeContainers('hide');
-			window.<portlet:namespace />placeholderSchedulerEvent.set('allDay', true);
-		}
-		else {
-			<portlet:namespace />toggleDateTimeContainers('show');
-			window.<portlet:namespace />placeholderSchedulerEvent.set('allDay', false);
-			endDateContainer.show();
-		}
-
-		scheduler.syncEventsUI();
-	});
+	);
 </aui:script>
