@@ -32,6 +32,7 @@ import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -177,6 +178,14 @@ public class SODeployListenerMessageListener
 				if (group.hasPublicLayouts()) {
 					updateLayoutSetPrototype(group.getGroupId(), false);
 				}
+
+				UnicodeProperties typeSettingsProperties =
+					group.getTypeSettingsProperties();
+
+				typeSettingsProperties.remove("customJspServletContextName");
+
+				GroupLocalServiceUtil.updateGroup(
+					group.getGroupId(), typeSettingsProperties.toString());
 			}
 
 		};
