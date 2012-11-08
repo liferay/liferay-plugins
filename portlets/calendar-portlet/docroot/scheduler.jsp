@@ -93,8 +93,8 @@ boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence")
 			filterCalendarBookings: <%= filterCalendarBookings %>,
 			firstDayOfWeek: <%= weekStartsOn %>,
 			items: A.Object.values(Liferay.CalendarUtil.availableCalendars),
-			preventPersistence: <%= preventPersistence %>,
 			portletNamespace: '<portlet:namespace />',
+			preventPersistence: <%= preventPersistence %>,
 			render: true,
 			strings: {
 				agenda: '<liferay-ui:message key="agenda" />',
