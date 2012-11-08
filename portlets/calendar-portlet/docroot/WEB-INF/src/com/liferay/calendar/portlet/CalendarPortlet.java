@@ -305,13 +305,13 @@ public class CalendarPortlet extends MVCPortlet {
 		redirect = HttpUtil.setParameter(
 			redirect, actionResponse.getNamespace() + "calendarId", calendarId);
 		redirect = HttpUtil.removeParameter(
-			redirect, actionResponse.getNamespace() + "allDay");
-		redirect = HttpUtil.removeParameter(
-			redirect, actionResponse.getNamespace() + "repeat");
-		redirect = HttpUtil.removeParameter(
 			redirect, actionResponse.getNamespace() + "startDate");
 		redirect = HttpUtil.removeParameter(
 			redirect, actionResponse.getNamespace() + "endDate");
+		redirect = HttpUtil.removeParameter(
+			redirect, actionResponse.getNamespace() + "allDay");
+		redirect = HttpUtil.removeParameter(
+			redirect, actionResponse.getNamespace() + "repeat");
 
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
