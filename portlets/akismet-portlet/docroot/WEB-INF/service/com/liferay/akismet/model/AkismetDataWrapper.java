@@ -337,7 +337,7 @@ public class AkismetDataWrapper implements AkismetData,
 		return new AkismetDataWrapper((AkismetData)_akismetData.clone());
 	}
 
-	public int compareTo(AkismetData akismetData) {
+	public int compareTo(com.liferay.akismet.model.AkismetData akismetData) {
 		return _akismetData.compareTo(akismetData);
 	}
 
@@ -346,11 +346,11 @@ public class AkismetDataWrapper implements AkismetData,
 		return _akismetData.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<AkismetData> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.akismet.model.AkismetData> toCacheModel() {
 		return _akismetData.toCacheModel();
 	}
 
-	public AkismetData toEscapedModel() {
+	public com.liferay.akismet.model.AkismetData toEscapedModel() {
 		return new AkismetDataWrapper(_akismetData.toEscapedModel());
 	}
 
