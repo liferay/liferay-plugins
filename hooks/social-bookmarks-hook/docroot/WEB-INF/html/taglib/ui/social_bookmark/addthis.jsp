@@ -16,11 +16,10 @@
 
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
- 
 <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=xa-50994fd636c849d6">
-<img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/>
+	<img alt="Bookmark and Share" height="16" src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" style="border:0" width="125" />
 </a>
- 
+
 <liferay-util:html-bottom outputKey="addthis">
-	<script type="text/javascript" src="<%= HttpUtil.getProtocol(request) %>://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50994fd636c849d6"></script>
+	<script src="<%= HttpUtil.getProtocol(request) %>://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50994fd636c849d6" type="text/javascript"></script>
 </liferay-util:html-bottom>
