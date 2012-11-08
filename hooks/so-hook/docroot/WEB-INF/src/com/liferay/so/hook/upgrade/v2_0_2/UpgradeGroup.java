@@ -127,7 +127,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				layout, _NEW_WELCOME_PORTLET_ID);
 
 		newPortletPreferences.setValue(
-			_NEW_WELCOME_PORTLET_ID,
+			"message",
 			portletPreferences.getValue("message", StringPool.BLANK));
 
 		newPortletPreferences.store();
