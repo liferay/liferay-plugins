@@ -1,5 +1,21 @@
 @import "compass/css3";
 
+.calendar-portlet {
+	.allday-class-active .lfr-input-time {
+		display: none;
+	}
+
+	.aui-scheduler-view-agenda-info-container {
+		.aui-scheduler-view-agenda-info {
+			line-height: 1.2;
+
+			.aui-scheduler-view-agenda-info-biggie {
+				line-height: 30px;
+			}
+		}
+	}
+}
+
 .calendar-portlet-availability {
 	margin: 0 30px;
 }
@@ -413,20 +429,6 @@
 
 		&.yui3-calendar-day-selected {
 			@include background-image(linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(179, 215, 255) 0%));
-		}
-	}
-}
-
-.allday-class-active .lfr-input-time {
-	display: none;
-}
-
-.aui-scheduler-view-agenda-info-container {
-	.aui-scheduler-view-agenda-info {
-		line-height: 1.2;
-	
-		.aui-scheduler-view-agenda-info-biggie {
-			line-height: 30px;
 		}
 	}
 }
