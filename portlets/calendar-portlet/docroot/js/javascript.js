@@ -1059,10 +1059,9 @@ AUI.add(
 					var instance = this;
 
 					var scheduler = activeView.get('scheduler');
+					var viewName = activeView.get('name');
 
 					var date = scheduler.get('viewDate');
-
-					var viewName = activeView.get('name');
 
 					if (viewName === 'month') {
 						date = DateMath.subtract(date, DateMath.WEEK, 1);
