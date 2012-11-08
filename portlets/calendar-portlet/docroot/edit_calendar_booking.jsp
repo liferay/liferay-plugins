@@ -19,9 +19,9 @@
 <%
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
 
-java.util.Calendar now = CalendarFactoryUtil.getCalendar(userTimeZone);
+java.util.Calendar nowJCalendar = CalendarFactoryUtil.getCalendar(userTimeZone);
 
-long date = ParamUtil.getLong(request, "date", now.getTimeInMillis());
+long date = ParamUtil.getLong(request, "date", nowJCalendar.getTimeInMillis());
 
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
@@ -30,11 +30,11 @@ long calendarBookingId = BeanParamUtil.getLong(calendarBooking, request, "calend
 long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
 String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
 
-long startDate = BeanParamUtil.getLong(calendarBooking, request, "startDate", now.getTimeInMillis());
+long startDate = BeanParamUtil.getLong(calendarBooking, request, "startDate", nowJCalendar.getTimeInMillis());
 
 java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(startDate, userTimeZone);
 
-java.util.Calendar defaultEndDateJCalendar = (java.util.Calendar)now.clone();
+java.util.Calendar defaultEndDateJCalendar = (java.util.Calendar)nowJCalendar.clone();
 
 defaultEndDateJCalendar.add(java.util.Calendar.HOUR, 1);
 
@@ -116,11 +116,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<aui:fieldset>
 		<aui:input name="title" />
 
-		<div class='<%= allDay ? "allday-class-active" : "" %>' id="<portlet:namespace />startDateContainer">
+		<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />startDateContainer">
 			<aui:input name="startDate" value="<%= startDateJCalendar %>" />
 		</div>
 
-		<div class='<%= allDay ? "allday-class-active" : "" %>' id="<portlet:namespace />endDateContainer">
+		<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />endDateContainer">
 			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
 		</div>
 
