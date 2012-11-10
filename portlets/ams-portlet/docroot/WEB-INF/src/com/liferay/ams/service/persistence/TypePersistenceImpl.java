@@ -235,7 +235,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		try {
 			session = openSession();
 
-			if (type.isCachedModel()) {
+			if (!session.contains(type)) {
 				type = (Type)session.get(TypeImpl.class, type.getPrimaryKeyObj());
 			}
 

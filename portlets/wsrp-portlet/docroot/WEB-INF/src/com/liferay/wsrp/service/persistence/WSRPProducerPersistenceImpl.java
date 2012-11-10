@@ -333,7 +333,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		try {
 			session = openSession();
 
-			if (wsrpProducer.isCachedModel()) {
+			if (!session.contains(wsrpProducer)) {
 				wsrpProducer = (WSRPProducer)session.get(WSRPProducerImpl.class,
 						wsrpProducer.getPrimaryKeyObj());
 			}

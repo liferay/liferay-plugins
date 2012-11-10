@@ -290,7 +290,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		try {
 			session = openSession();
 
-			if (folder.isCachedModel()) {
+			if (!session.contains(folder)) {
 				folder = (Folder)session.get(FolderImpl.class,
 						folder.getPrimaryKeyObj());
 			}

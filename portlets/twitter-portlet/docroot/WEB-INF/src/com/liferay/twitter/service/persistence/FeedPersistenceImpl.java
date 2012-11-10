@@ -290,7 +290,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		try {
 			session = openSession();
 
-			if (feed.isCachedModel()) {
+			if (!session.contains(feed)) {
 				feed = (Feed)session.get(FeedImpl.class, feed.getPrimaryKeyObj());
 			}
 

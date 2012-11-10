@@ -261,7 +261,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		try {
 			session = openSession();
 
-			if (attachment.isCachedModel()) {
+			if (!session.contains(attachment)) {
 				attachment = (Attachment)session.get(AttachmentImpl.class,
 						attachment.getPrimaryKeyObj());
 			}

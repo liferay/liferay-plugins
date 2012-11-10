@@ -237,7 +237,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		try {
 			session = openSession();
 
-			if (foo.isCachedModel()) {
+			if (!session.contains(foo)) {
 				foo = (Foo)session.get(FooImpl.class, foo.getPrimaryKeyObj());
 			}
 

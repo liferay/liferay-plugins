@@ -305,7 +305,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		try {
 			session = openSession();
 
-			if (wsrpConsumer.isCachedModel()) {
+			if (!session.contains(wsrpConsumer)) {
 				wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
 						wsrpConsumer.getPrimaryKeyObj());
 			}

@@ -303,7 +303,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		try {
 			session = openSession();
 
-			if (svnRevision.isCachedModel()) {
+			if (!session.contains(svnRevision)) {
 				svnRevision = (SVNRevision)session.get(SVNRevisionImpl.class,
 						svnRevision.getPrimaryKeyObj());
 			}

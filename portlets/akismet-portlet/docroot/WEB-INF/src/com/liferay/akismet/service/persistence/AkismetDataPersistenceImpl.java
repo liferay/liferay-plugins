@@ -281,7 +281,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		try {
 			session = openSession();
 
-			if (akismetData.isCachedModel()) {
+			if (!session.contains(akismetData)) {
 				akismetData = (AkismetData)session.get(AkismetDataImpl.class,
 						akismetData.getPrimaryKeyObj());
 			}

@@ -306,7 +306,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		try {
 			session = openSession();
 
-			if (message.isCachedModel()) {
+			if (!session.contains(message)) {
 				message = (Message)session.get(MessageImpl.class,
 						message.getPrimaryKeyObj());
 			}

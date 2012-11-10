@@ -238,7 +238,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		try {
 			session = openSession();
 
-			if (checkout.isCachedModel()) {
+			if (!session.contains(checkout)) {
 				checkout = (Checkout)session.get(CheckoutImpl.class,
 						checkout.getPrimaryKeyObj());
 			}

@@ -354,7 +354,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		try {
 			session = openSession();
 
-			if (userThread.isCachedModel()) {
+			if (!session.contains(userThread)) {
 				userThread = (UserThread)session.get(UserThreadImpl.class,
 						userThread.getPrimaryKeyObj());
 			}

@@ -322,7 +322,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		try {
 			session = openSession();
 
-			if (app.isCachedModel()) {
+			if (!session.contains(app)) {
 				app = (App)session.get(AppImpl.class, app.getPrimaryKeyObj());
 			}
 

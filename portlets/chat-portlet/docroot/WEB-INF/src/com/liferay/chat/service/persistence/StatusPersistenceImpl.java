@@ -318,7 +318,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		try {
 			session = openSession();
 
-			if (status.isCachedModel()) {
+			if (!session.contains(status)) {
 				status = (Status)session.get(StatusImpl.class,
 						status.getPrimaryKeyObj());
 			}

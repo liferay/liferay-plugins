@@ -324,7 +324,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		try {
 			session = openSession();
 
-			if (kaleoNotification.isCachedModel()) {
+			if (!session.contains(kaleoNotification)) {
 				kaleoNotification = (KaleoNotification)session.get(KaleoNotificationImpl.class,
 						kaleoNotification.getPrimaryKeyObj());
 			}

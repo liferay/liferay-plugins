@@ -266,7 +266,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		try {
 			session = openSession();
 
-			if (jiraChangeItem.isCachedModel()) {
+			if (!session.contains(jiraChangeItem)) {
 				jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
 						jiraChangeItem.getPrimaryKeyObj());
 			}

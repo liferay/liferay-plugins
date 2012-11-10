@@ -510,7 +510,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		try {
 			session = openSession();
 
-			if (calendarResource.isCachedModel()) {
+			if (!session.contains(calendarResource)) {
 				calendarResource = (CalendarResource)session.get(CalendarResourceImpl.class,
 						calendarResource.getPrimaryKeyObj());
 			}

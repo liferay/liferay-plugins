@@ -281,7 +281,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		try {
 			session = openSession();
 
-			if (favoriteSite.isCachedModel()) {
+			if (!session.contains(favoriteSite)) {
 				favoriteSite = (FavoriteSite)session.get(FavoriteSiteImpl.class,
 						favoriteSite.getPrimaryKeyObj());
 			}

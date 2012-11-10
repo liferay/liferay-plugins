@@ -335,7 +335,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		try {
 			session = openSession();
 
-			if (kbTemplate.isCachedModel()) {
+			if (!session.contains(kbTemplate)) {
 				kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
 						kbTemplate.getPrimaryKeyObj());
 			}

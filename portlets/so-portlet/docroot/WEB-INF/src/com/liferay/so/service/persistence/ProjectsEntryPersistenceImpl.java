@@ -264,7 +264,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		try {
 			session = openSession();
 
-			if (projectsEntry.isCachedModel()) {
+			if (!session.contains(projectsEntry)) {
 				projectsEntry = (ProjectsEntry)session.get(ProjectsEntryImpl.class,
 						projectsEntry.getPrimaryKeyObj());
 			}

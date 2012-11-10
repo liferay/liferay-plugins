@@ -378,7 +378,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			if (tasksEntry.isCachedModel()) {
+			if (!session.contains(tasksEntry)) {
 				tasksEntry = (TasksEntry)session.get(TasksEntryImpl.class,
 						tasksEntry.getPrimaryKeyObj());
 			}

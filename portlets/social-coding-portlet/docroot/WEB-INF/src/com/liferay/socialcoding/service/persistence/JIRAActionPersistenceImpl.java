@@ -300,7 +300,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		try {
 			session = openSession();
 
-			if (jiraAction.isCachedModel()) {
+			if (!session.contains(jiraAction)) {
 				jiraAction = (JIRAAction)session.get(JIRAActionImpl.class,
 						jiraAction.getPrimaryKeyObj());
 			}

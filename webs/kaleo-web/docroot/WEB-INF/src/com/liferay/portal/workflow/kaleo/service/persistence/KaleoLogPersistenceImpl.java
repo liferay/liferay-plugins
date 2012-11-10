@@ -375,7 +375,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		try {
 			session = openSession();
 
-			if (kaleoLog.isCachedModel()) {
+			if (!session.contains(kaleoLog)) {
 				kaleoLog = (KaleoLog)session.get(KaleoLogImpl.class,
 						kaleoLog.getPrimaryKeyObj());
 			}

@@ -474,7 +474,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			if (jiraIssue.isCachedModel()) {
+			if (!session.contains(jiraIssue)) {
 				jiraIssue = (JIRAIssue)session.get(JIRAIssueImpl.class,
 						jiraIssue.getPrimaryKeyObj());
 			}

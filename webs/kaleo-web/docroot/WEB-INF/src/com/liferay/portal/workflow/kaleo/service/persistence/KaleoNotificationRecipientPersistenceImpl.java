@@ -322,7 +322,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		try {
 			session = openSession();
 
-			if (kaleoNotificationRecipient.isCachedModel()) {
+			if (!session.contains(kaleoNotificationRecipient)) {
 				kaleoNotificationRecipient = (KaleoNotificationRecipient)session.get(KaleoNotificationRecipientImpl.class,
 						kaleoNotificationRecipient.getPrimaryKeyObj());
 			}

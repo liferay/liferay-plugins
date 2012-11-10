@@ -266,7 +266,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		try {
 			session = openSession();
 
-			if (svnRepository.isCachedModel()) {
+			if (!session.contains(svnRepository)) {
 				svnRepository = (SVNRepository)session.get(SVNRepositoryImpl.class,
 						svnRepository.getPrimaryKeyObj());
 			}

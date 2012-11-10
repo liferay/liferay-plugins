@@ -342,7 +342,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		try {
 			session = openSession();
 
-			if (memberRequest.isCachedModel()) {
+			if (!session.contains(memberRequest)) {
 				memberRequest = (MemberRequest)session.get(MemberRequestImpl.class,
 						memberRequest.getPrimaryKeyObj());
 			}

@@ -301,7 +301,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		try {
 			session = openSession();
 
-			if (kaleoTask.isCachedModel()) {
+			if (!session.contains(kaleoTask)) {
 				kaleoTask = (KaleoTask)session.get(KaleoTaskImpl.class,
 						kaleoTask.getPrimaryKeyObj());
 			}

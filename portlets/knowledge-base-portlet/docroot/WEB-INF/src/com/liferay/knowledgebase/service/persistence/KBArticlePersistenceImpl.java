@@ -893,7 +893,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			if (kbArticle.isCachedModel()) {
+			if (!session.contains(kbArticle)) {
 				kbArticle = (KBArticle)session.get(KBArticleImpl.class,
 						kbArticle.getPrimaryKeyObj());
 			}

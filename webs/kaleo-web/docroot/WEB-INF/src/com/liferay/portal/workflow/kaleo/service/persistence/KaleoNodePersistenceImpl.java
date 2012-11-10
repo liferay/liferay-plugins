@@ -303,7 +303,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		try {
 			session = openSession();
 
-			if (kaleoNode.isCachedModel()) {
+			if (!session.contains(kaleoNode)) {
 				kaleoNode = (KaleoNode)session.get(KaleoNodeImpl.class,
 						kaleoNode.getPrimaryKeyObj());
 			}

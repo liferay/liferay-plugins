@@ -288,7 +288,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			if (entry.isCachedModel()) {
+			if (!session.contains(entry)) {
 				entry = (Entry)session.get(EntryImpl.class,
 						entry.getPrimaryKeyObj());
 			}

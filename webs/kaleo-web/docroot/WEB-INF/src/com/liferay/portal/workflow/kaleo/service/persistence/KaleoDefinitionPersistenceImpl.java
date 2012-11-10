@@ -382,7 +382,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		try {
 			session = openSession();
 
-			if (kaleoDefinition.isCachedModel()) {
+			if (!session.contains(kaleoDefinition)) {
 				kaleoDefinition = (KaleoDefinition)session.get(KaleoDefinitionImpl.class,
 						kaleoDefinition.getPrimaryKeyObj());
 			}

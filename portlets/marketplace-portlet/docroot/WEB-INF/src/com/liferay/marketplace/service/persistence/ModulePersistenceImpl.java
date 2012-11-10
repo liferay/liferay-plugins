@@ -331,7 +331,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		try {
 			session = openSession();
 
-			if (module.isCachedModel()) {
+			if (!session.contains(module)) {
 				module = (Module)session.get(ModuleImpl.class,
 						module.getPrimaryKeyObj());
 			}

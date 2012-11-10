@@ -280,7 +280,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		try {
 			session = openSession();
 
-			if (meetupsEntry.isCachedModel()) {
+			if (!session.contains(meetupsEntry)) {
 				meetupsEntry = (MeetupsEntry)session.get(MeetupsEntryImpl.class,
 						meetupsEntry.getPrimaryKeyObj());
 			}

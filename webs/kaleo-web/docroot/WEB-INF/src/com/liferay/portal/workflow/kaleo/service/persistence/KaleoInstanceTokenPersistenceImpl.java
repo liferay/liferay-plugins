@@ -363,7 +363,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		try {
 			session = openSession();
 
-			if (kaleoInstanceToken.isCachedModel()) {
+			if (!session.contains(kaleoInstanceToken)) {
 				kaleoInstanceToken = (KaleoInstanceToken)session.get(KaleoInstanceTokenImpl.class,
 						kaleoInstanceToken.getPrimaryKeyObj());
 			}

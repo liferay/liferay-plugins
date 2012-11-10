@@ -309,7 +309,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		try {
 			session = openSession();
 
-			if (kaleoCondition.isCachedModel()) {
+			if (!session.contains(kaleoCondition)) {
 				kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
 						kaleoCondition.getPrimaryKeyObj());
 			}

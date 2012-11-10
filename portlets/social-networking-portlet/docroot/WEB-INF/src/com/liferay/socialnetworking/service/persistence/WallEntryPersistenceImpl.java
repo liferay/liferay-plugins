@@ -298,7 +298,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		try {
 			session = openSession();
 
-			if (wallEntry.isCachedModel()) {
+			if (!session.contains(wallEntry)) {
 				wallEntry = (WallEntry)session.get(WallEntryImpl.class,
 						wallEntry.getPrimaryKeyObj());
 			}

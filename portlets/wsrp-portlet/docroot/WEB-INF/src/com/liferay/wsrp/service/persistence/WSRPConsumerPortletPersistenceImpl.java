@@ -348,7 +348,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		try {
 			session = openSession();
 
-			if (wsrpConsumerPortlet.isCachedModel()) {
+			if (!session.contains(wsrpConsumerPortlet)) {
 				wsrpConsumerPortlet = (WSRPConsumerPortlet)session.get(WSRPConsumerPortletImpl.class,
 						wsrpConsumerPortlet.getPrimaryKeyObj());
 			}

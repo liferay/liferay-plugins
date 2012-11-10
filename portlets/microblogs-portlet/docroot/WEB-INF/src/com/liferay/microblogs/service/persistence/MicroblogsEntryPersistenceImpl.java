@@ -354,7 +354,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		try {
 			session = openSession();
 
-			if (microblogsEntry.isCachedModel()) {
+			if (!session.contains(microblogsEntry)) {
 				microblogsEntry = (MicroblogsEntry)session.get(MicroblogsEntryImpl.class,
 						microblogsEntry.getPrimaryKeyObj());
 			}

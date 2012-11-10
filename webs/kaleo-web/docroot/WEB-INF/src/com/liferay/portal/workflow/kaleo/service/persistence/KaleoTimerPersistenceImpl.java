@@ -292,7 +292,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		try {
 			session = openSession();
 
-			if (kaleoTimer.isCachedModel()) {
+			if (!session.contains(kaleoTimer)) {
 				kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
 						kaleoTimer.getPrimaryKeyObj());
 			}

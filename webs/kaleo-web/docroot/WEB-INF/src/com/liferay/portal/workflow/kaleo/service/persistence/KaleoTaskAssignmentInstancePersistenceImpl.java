@@ -348,7 +348,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		try {
 			session = openSession();
 
-			if (kaleoTaskAssignmentInstance.isCachedModel()) {
+			if (!session.contains(kaleoTaskAssignmentInstance)) {
 				kaleoTaskAssignmentInstance = (KaleoTaskAssignmentInstance)session.get(KaleoTaskAssignmentInstanceImpl.class,
 						kaleoTaskAssignmentInstance.getPrimaryKeyObj());
 			}

@@ -310,7 +310,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		try {
 			session = openSession();
 
-			if (kaleoAction.isCachedModel()) {
+			if (!session.contains(kaleoAction)) {
 				kaleoAction = (KaleoAction)session.get(KaleoActionImpl.class,
 						kaleoAction.getPrimaryKeyObj());
 			}

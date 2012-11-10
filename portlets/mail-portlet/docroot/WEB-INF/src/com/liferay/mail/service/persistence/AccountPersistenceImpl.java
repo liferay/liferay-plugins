@@ -282,7 +282,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		try {
 			session = openSession();
 
-			if (account.isCachedModel()) {
+			if (!session.contains(account)) {
 				account = (Account)session.get(AccountImpl.class,
 						account.getPrimaryKeyObj());
 			}

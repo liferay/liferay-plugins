@@ -483,7 +483,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		try {
 			session = openSession();
 
-			if (calendarBooking.isCachedModel()) {
+			if (!session.contains(calendarBooking)) {
 				calendarBooking = (CalendarBooking)session.get(CalendarBookingImpl.class,
 						calendarBooking.getPrimaryKeyObj());
 			}

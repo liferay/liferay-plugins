@@ -319,7 +319,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		try {
 			session = openSession();
 
-			if (meetupsRegistration.isCachedModel()) {
+			if (!session.contains(meetupsRegistration)) {
 				meetupsRegistration = (MeetupsRegistration)session.get(MeetupsRegistrationImpl.class,
 						meetupsRegistration.getPrimaryKeyObj());
 			}

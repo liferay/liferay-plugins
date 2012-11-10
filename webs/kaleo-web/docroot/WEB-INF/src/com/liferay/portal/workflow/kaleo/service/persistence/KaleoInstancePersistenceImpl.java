@@ -341,7 +341,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		try {
 			session = openSession();
 
-			if (kaleoInstance.isCachedModel()) {
+			if (!session.contains(kaleoInstance)) {
 				kaleoInstance = (KaleoInstance)session.get(KaleoInstanceImpl.class,
 						kaleoInstance.getPrimaryKeyObj());
 			}

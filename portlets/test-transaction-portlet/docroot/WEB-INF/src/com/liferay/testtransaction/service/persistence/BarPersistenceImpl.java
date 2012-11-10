@@ -257,7 +257,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		try {
 			session = openSession();
 
-			if (bar.isCachedModel()) {
+			if (!session.contains(bar)) {
 				bar = (Bar)session.get(BarImpl.class, bar.getPrimaryKeyObj());
 			}
 

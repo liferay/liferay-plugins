@@ -365,7 +365,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		try {
 			session = openSession();
 
-			if (kaleoTransition.isCachedModel()) {
+			if (!session.contains(kaleoTransition)) {
 				kaleoTransition = (KaleoTransition)session.get(KaleoTransitionImpl.class,
 						kaleoTransition.getPrimaryKeyObj());
 			}

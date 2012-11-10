@@ -328,7 +328,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			if (gadget.isCachedModel()) {
+			if (!session.contains(gadget)) {
 				gadget = (Gadget)session.get(GadgetImpl.class,
 						gadget.getPrimaryKeyObj());
 			}

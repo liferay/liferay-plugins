@@ -344,7 +344,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		try {
 			session = openSession();
 
-			if (kaleoTaskAssignment.isCachedModel()) {
+			if (!session.contains(kaleoTaskAssignment)) {
 				kaleoTaskAssignment = (KaleoTaskAssignment)session.get(KaleoTaskAssignmentImpl.class,
 						kaleoTaskAssignment.getPrimaryKeyObj());
 			}

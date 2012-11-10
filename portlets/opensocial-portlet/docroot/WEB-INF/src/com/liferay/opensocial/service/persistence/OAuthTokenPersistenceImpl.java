@@ -310,7 +310,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		try {
 			session = openSession();
 
-			if (oAuthToken.isCachedModel()) {
+			if (!session.contains(oAuthToken)) {
 				oAuthToken = (OAuthToken)session.get(OAuthTokenImpl.class,
 						oAuthToken.getPrimaryKeyObj());
 			}

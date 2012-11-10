@@ -296,7 +296,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		try {
 			session = openSession();
 
-			if (oAuthConsumer.isCachedModel()) {
+			if (!session.contains(oAuthConsumer)) {
 				oAuthConsumer = (OAuthConsumer)session.get(OAuthConsumerImpl.class,
 						oAuthConsumer.getPrimaryKeyObj());
 			}

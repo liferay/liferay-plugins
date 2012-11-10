@@ -375,7 +375,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		try {
 			session = openSession();
 
-			if (calendar.isCachedModel()) {
+			if (!session.contains(calendar)) {
 				calendar = (Calendar)session.get(CalendarImpl.class,
 						calendar.getPrimaryKeyObj());
 			}

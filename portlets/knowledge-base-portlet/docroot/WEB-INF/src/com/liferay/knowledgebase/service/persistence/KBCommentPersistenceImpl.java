@@ -399,7 +399,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		try {
 			session = openSession();
 
-			if (kbComment.isCachedModel()) {
+			if (!session.contains(kbComment)) {
 				kbComment = (KBComment)session.get(KBCommentImpl.class,
 						kbComment.getPrimaryKeyObj());
 			}
