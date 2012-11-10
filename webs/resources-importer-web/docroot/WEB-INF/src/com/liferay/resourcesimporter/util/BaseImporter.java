@@ -53,12 +53,12 @@ import javax.servlet.ServletContext;
 public abstract class BaseImporter implements Importer {
 
 	public void afterPropertiesSet() throws Exception {
-		settings = new Properties();
+		settingsProperties = new Properties();
 
 		try {
 			InputStream inputStream = null;
 
-			Class clazz = getClass();
+			Class<?> clazz = getClass();
 
 			if (clazz.isAssignableFrom(FileSystemImporter.class)) {
 				inputStream = new FileInputStream(
@@ -70,9 +70,9 @@ public abstract class BaseImporter implements Importer {
 			}
 
 			if (inputStream != null) {
-				String propertiesString = StringUtil.read(inputStream);
+				String settingsString = StringUtil.read(inputStream);
 
-				PropertiesUtil.load(settings, propertiesString);
+				PropertiesUtil.load(settingsProperties, settingsString);
 			}
 		}
 		catch (IOException e) {
@@ -164,8 +164,8 @@ public abstract class BaseImporter implements Importer {
 		return groupId;
 	}
 
-	public Properties getSettings() {
-		return settings;
+	public Properties getSettingsProperties() {
+		return settingsProperties;
 	}
 
 	public long getTargetClassPK() {
@@ -236,7 +236,7 @@ public abstract class BaseImporter implements Importer {
 	protected String resourcesDir;
 	protected ServletContext servletContext;
 	protected String servletContextName;
-	protected Properties settings;
+	protected Properties settingsProperties;
 	protected String targetClassName;
 	protected long targetClassPK;
 	protected String targetValue;

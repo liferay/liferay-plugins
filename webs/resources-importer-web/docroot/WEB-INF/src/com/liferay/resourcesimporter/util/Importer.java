@@ -28,7 +28,7 @@ public interface Importer {
 
 	public long getGroupId();
 
-	public Properties getSettings();
+	public Properties getSettingsProperties();
 
 	public long getTargetClassPK();
 

@@ -74,9 +74,10 @@ public class HotDeployMessageListener extends BaseMessageListener {
 			return;
 		}
 
-		Properties pluginProperties = getPluginProperties(servletContext);
+		Properties pluginPackageProperties = getPluginPackageProperties(
+			servletContext);
 
-		String targetClassName = pluginProperties.getProperty(
+		String targetClassName = pluginPackageProperties.getProperty(
 			"resources-importer-target-class-name",
 			LayoutSetPrototype.class.getName());
 
@@ -113,7 +114,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 					importer.setResourcesDir(_RESOURCES_DIR);
 				}
 				else {
-					String resourcesDir = pluginProperties.getProperty(
+					String resourcesDir = pluginPackageProperties.getProperty(
 						"resources-importer-external-dir");
 
 					if (Validator.isNotNull(resourcesDir)) {
@@ -132,7 +133,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				importer.setServletContextName(servletContextName);
 				importer.setTargetClassName(targetClassName);
 
-				String targetValue = pluginProperties.getProperty(
+				String targetValue = pluginPackageProperties.getProperty(
 					"resources-importer-target-value");
 
 				if (Validator.isNull(targetValue)) {
@@ -144,10 +145,11 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 				importer.afterPropertiesSet();
 
-				Properties settings = importer.getSettings();
+				Properties settingsProperties =
+					importer.getSettingsProperties();
 
 				boolean overrideResources = GetterUtil.getBoolean(
-					settings.getProperty("override-resources"));
+					settingsProperties.getProperty("override-resources"));
 
 				if (!overrideResources && importer.isExisting()) {
 					if (_log.isInfoEnabled()) {
@@ -223,7 +225,9 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		return new LARImporter();
 	}
 
-	protected Properties getPluginProperties(ServletContext servletContext) {
+	protected Properties getPluginPackageProperties(
+		ServletContext servletContext) {
+
 		Properties properties = new Properties();
 
 		try {
