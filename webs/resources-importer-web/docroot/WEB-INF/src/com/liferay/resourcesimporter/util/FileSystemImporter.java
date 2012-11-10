@@ -43,6 +43,8 @@ import com.liferay.portal.service.ThemeLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.asset.model.AssetTag;
+import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.journal.model.JournalArticle;
@@ -661,6 +663,13 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void setupAssets(String fileName) throws Exception {
+		List<AssetTag> assetTags = AssetTagLocalServiceUtil.getGroupTags(
+			groupId);
+
+		for (AssetTag assetTag : assetTags) {
+			AssetTagLocalServiceUtil.deleteAssetTag(assetTag);
+		}
+
 		RepositoryLocalServiceUtil.deleteRepositories(groupId);
 
 		JournalArticleLocalServiceUtil.deleteArticles(groupId);
