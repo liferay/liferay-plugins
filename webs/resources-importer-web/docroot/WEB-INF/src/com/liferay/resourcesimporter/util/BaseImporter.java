@@ -15,8 +15,12 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -30,10 +34,15 @@ import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletContext;
 
@@ -44,6 +53,32 @@ import javax.servlet.ServletContext;
 public abstract class BaseImporter implements Importer {
 
 	public void afterPropertiesSet() throws Exception {
+		settings = new Properties();
+
+		try {
+			InputStream inputStream = null;
+
+			Class clazz = getClass();
+
+			if (clazz.isAssignableFrom(FileSystemImporter.class)) {
+				inputStream = new FileInputStream(
+					resourcesDir.concat("settings.properties"));
+			}
+			else {
+				inputStream = servletContext.getResourceAsStream(
+					resourcesDir.concat("settings.properties"));
+			}
+
+			if (inputStream != null) {
+				String propertiesString = StringUtil.read(inputStream);
+
+				PropertiesUtil.load(settings, propertiesString);
+			}
+		}
+		catch (IOException e) {
+			_log.error(e, e);
+		}
+
 		User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
 		userId = user.getUserId();
@@ -109,9 +144,10 @@ public abstract class BaseImporter implements Importer {
 				else {
 					group = GroupLocalServiceUtil.addGroup(
 						userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
-						StringPool.BLANK, 0, targetValue, StringPool.BLANK,
-						GroupConstants.TYPE_SITE_OPEN, null, true, true,
-						new ServiceContext());
+						StringPool.BLANK, 0,
+						GroupConstants.DEFAULT_LIVE_GROUP_ID, targetValue,
+						StringPool.BLANK, GroupConstants.TYPE_SITE_OPEN, null,
+						true, true, new ServiceContext());
 				}
 			}
 
@@ -126,6 +162,10 @@ public abstract class BaseImporter implements Importer {
 
 	public long getGroupId() {
 		return groupId;
+	}
+
+	public Properties getSettings() {
+		return settings;
 	}
 
 	public long getTargetClassPK() {
@@ -196,9 +236,12 @@ public abstract class BaseImporter implements Importer {
 	protected String resourcesDir;
 	protected ServletContext servletContext;
 	protected String servletContextName;
+	protected Properties settings;
 	protected String targetClassName;
 	protected long targetClassPK;
 	protected String targetValue;
 	protected long userId;
+
+	private static Log _log = LogFactoryUtil.getLog(BaseImporter.class);
 
 }
