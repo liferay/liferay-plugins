@@ -396,7 +396,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		if (assetJSONObject != null) {
 			String abstractSummary = assetJSONObject.getString(
-				"abstract_summary");
+				"abstractSummary");
 
 			descriptionMap = getMap(abstractSummary);
 		}
@@ -409,12 +409,12 @@ public class FileSystemImporter extends BaseImporter {
 		String smallImageURL = StringPool.BLANK;
 
 		if (assetJSONObject != null) {
-			String smallImageName = assetJSONObject.getString("small_image");
+			String smallImageFileName = assetJSONObject.getString("smallImage");
 
-			if (Validator.isNotNull(smallImageName)) {
+			if (Validator.isNotNull(smallImageFileName)) {
 				smallImage = true;
 
-				FileEntry fileEntry = _fileEntries.get(smallImageName);
+				FileEntry fileEntry = _fileEntries.get(smallImageFileName);
 
 				if (fileEntry != null) {
 					smallImageURL = DLUtil.getPreviewURL(
