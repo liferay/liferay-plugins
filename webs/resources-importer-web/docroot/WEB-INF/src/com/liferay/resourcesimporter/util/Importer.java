@@ -14,8 +14,6 @@
 
 package com.liferay.resourcesimporter.util;
 
-import java.util.Properties;
-
 import javax.servlet.ServletContext;
 
 /**
@@ -27,8 +25,6 @@ public interface Importer {
 	public void afterPropertiesSet() throws Exception;
 
 	public long getGroupId();
-
-	public Properties getSettingsProperties();
 
 	public long getTargetClassPK();
 

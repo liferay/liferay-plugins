@@ -105,8 +105,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 						urlConnection.getInputStream());
 
 					importer = larImporter;
-
-					importer.setResourcesDir(_RESOURCES_DIR);
 				}
 				else if ((resourcePaths != null) && !resourcePaths.isEmpty()) {
 					importer = getResourceImporter();
@@ -145,13 +143,11 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 				importer.afterPropertiesSet();
 
-				Properties settingsProperties =
-					importer.getSettingsProperties();
+				boolean developerModeEnabled = GetterUtil.getBoolean(
+					pluginPackageProperties.getProperty(
+						"resources-importer-developer-mode-enabled"));
 
-				boolean overrideResources = GetterUtil.getBoolean(
-					settingsProperties.getProperty("override-resources"));
-
-				if (!overrideResources && importer.isExisting()) {
+				if (!developerModeEnabled && importer.isExisting()) {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							"Group or layout set prototype already exists " +
