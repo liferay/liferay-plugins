@@ -18,18 +18,13 @@ import com.liferay.ddlform.DuplicateSubmissionException;
 import com.liferay.ddlform.util.DDLFormUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
-import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
-import com.liferay.portlet.dynamicdatalists.service.DDLRecordServiceUtil;
-import com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil;
-import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
-import com.liferay.portlet.dynamicdatamapping.storage.Fields;
-import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
+import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
@@ -44,37 +39,29 @@ public class DDLFormPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		long recordSetId = ParamUtil.getLong(actionRequest, "recordSetId");
+		long recordSetId = ParamUtil.getLong(
+			uploadPortletRequest, "recordSetId");
 
-		validate(recordSetId, actionRequest);
-
-		DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(
-			recordSetId);
-
-		DDMStructure ddmStructure = recordSet.getDDMStructure();
+		validate(recordSetId, uploadPortletRequest);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DDLRecord.class.getName(), actionRequest);
+			DDLRecord.class.getName(), uploadPortletRequest);
 
-		Fields fields = DDMUtil.getFields(
-			ddmStructure.getStructureId(), serviceContext);
-
-		DDLRecordServiceUtil.addRecord(
-			themeDisplay.getScopeGroupId(), recordSetId, 0, fields,
-			serviceContext);
+		DDLUtil.updateRecord(0, recordSetId, false, serviceContext);
 	}
 
-	protected void validate(long recordSetId, ActionRequest actionRequest)
+	protected void validate(
+			long recordSetId, UploadPortletRequest uploadPortletRequest)
 		throws PortalException, SystemException {
 
 		boolean multipleSubmissions = ParamUtil.getBoolean(
-			actionRequest, "multipleSubmissions");
+			uploadPortletRequest, "multipleSubmissions");
 
 		if (!multipleSubmissions &&
-			DDLFormUtil.hasSubmitted(actionRequest, recordSetId)) {
+			DDLFormUtil.hasSubmitted(uploadPortletRequest, recordSetId)) {
 
 			throw new DuplicateSubmissionException();
 		}
