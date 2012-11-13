@@ -388,23 +388,53 @@ public class FileSystemImporter extends BaseImporter {
 
 		String title = FileUtil.stripExtension(fileName);
 
-		Map<Locale, String> titleMap = getNameMap(title);
+		Map<Locale, String> titleMap = getMap(title);
+
+		JSONObject assetJSONObject = _assetJSONObjectMap.get(fileName);
+
+		Map<Locale, String> descriptionMap = null;
+
+		if (assetJSONObject != null) {
+			String abstractSummary = assetJSONObject.getString(
+				"abstract_summary");
+
+			descriptionMap = getMap(abstractSummary);
+		}
 
 		String content = StringUtil.read(inputStream);
 
 		content = processJournalArticleContent(content);
+
+		boolean smallImage = false;
+		String smallImageURL = StringPool.BLANK;
+
+		if (assetJSONObject != null) {
+			String smallImageName = assetJSONObject.getString("small_image");
+
+			if (Validator.isNotNull(smallImageName)) {
+				smallImage = true;
+
+				FileEntry fileEntry = _fileEntries.get(smallImageName);
+
+				if (fileEntry != null) {
+					smallImageURL = DLUtil.getPreviewURL(
+						fileEntry, fileEntry.getFileVersion(), null,
+						StringPool.BLANK);
+				}
+			}
+		}
 
 		setServiceContext(fileName);
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
 				userId, groupId, 0, 0, 0, journalArticleId, false,
-				JournalArticleConstants.VERSION_DEFAULT, titleMap, null,
-				content, "general", journalStructureId, journalTemplateId,
-				StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0, 0,
-				0, 0, 0, true, true, false, StringPool.BLANK, null,
-				new HashMap<String, byte[]>(), StringPool.BLANK,
-				serviceContext);
+				JournalArticleConstants.VERSION_DEFAULT, titleMap,
+				descriptionMap, content, "general", journalStructureId,
+				journalTemplateId, StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0,
+				0, 0, true, 0, 0, 0, 0, 0, true, true, smallImage,
+				smallImageURL, null, new HashMap<String, byte[]>(),
+				StringPool.BLANK, serviceContext);
 
 		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
@@ -420,7 +450,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = FileUtil.stripExtension(fileName);
 
-		Map<Locale, String> nameMap = getNameMap(name);
+		Map<Locale, String> nameMap = getMap(name);
 
 		String xsd = StringUtil.read(inputStream);
 
@@ -450,7 +480,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = FileUtil.stripExtension(fileName);
 
-		Map<Locale, String> nameMap = getNameMap(name);
+		Map<Locale, String> nameMap = getMap(name);
 
 		String xsl = StringUtil.read(inputStream);
 
@@ -559,14 +589,14 @@ public class FileSystemImporter extends BaseImporter {
 		return JSONFactoryUtil.createJSONObject(json);
 	}
 
-	protected Map<Locale, String> getNameMap(String name) {
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+	protected Map<Locale, String> getMap(String value) {
+		Map<Locale, String> map = new HashMap<Locale, String>();
 
 		Locale locale = LocaleUtil.getDefault();
 
-		nameMap.put(locale, name);
+		map.put(locale, value);
 
-		return nameMap;
+		return map;
 	}
 
 	protected File[] listFiles(File dir) {
@@ -640,7 +670,14 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void setServiceContext(String name) {
-		String[] assetTagNames = _assetTagNames.get(name);
+		JSONObject assetJSONObject = _assetJSONObjectMap.get(name);
+
+		if (assetJSONObject == null) {
+			return;
+		}
+
+		String[] assetTagNames = getJSONArrayAsStringArray(
+			assetJSONObject, "tags");
 
 		serviceContext.setAssetTagNames(assetTagNames);
 	}
@@ -655,10 +692,7 @@ public class FileSystemImporter extends BaseImporter {
 
 			String name = assetJSONObject.getString("name");
 
-			String[] assetTagNames = getJSONArrayAsStringArray(
-				assetJSONObject, "tags");
-
-			_assetTagNames.put(name, assetTagNames);
+			_assetJSONObjectMap.put(name, assetJSONObject);
 		}
 	}
 
@@ -792,8 +826,8 @@ public class FileSystemImporter extends BaseImporter {
 	private static final String _JOURNAL_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
 
-	private Map<String, String[]> _assetTagNames =
-		new HashMap<String, String[]>();
+	private Map<String, JSONObject> _assetJSONObjectMap =
+		new HashMap<String, JSONObject>();
 	private String _defaultLayoutTemplateId;
 	private Map<String, FileEntry> _fileEntries =
 		new HashMap<String, FileEntry>();
