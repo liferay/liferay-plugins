@@ -1476,12 +1476,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(kbArticle.getCompanyId());
 		subscriptionSender.setContextAttribute(
+			"[$ARTICLE_CONTENT$]", kbArticleContent, false);
+		subscriptionSender.setContextAttribute(
 			"[$ARTICLE_CONTENT_DIFF$]", kbArticleDiffs.get("content"), false);
 		subscriptionSender.setContextAttribute(
+			"[$ARTICLE_TITLE$]", kbArticle.getTitle(), false);
+		subscriptionSender.setContextAttribute(
 			"[$ARTICLE_TITLE_DIFF$]", kbArticleDiffs.get("title"), false);
-		subscriptionSender.setContextAttributes(
-			"[$ARTICLE_CONTENT$]", kbArticleContent, "[$ARTICLE_TITLE$]",
-			kbArticle.getTitle());
 		subscriptionSender.setContextUserPrefix("ARTICLE");
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
