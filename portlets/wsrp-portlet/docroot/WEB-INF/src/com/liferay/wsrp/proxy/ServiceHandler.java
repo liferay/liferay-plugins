@@ -53,8 +53,9 @@ import org.apache.ws.security.message.token.UsernameToken;
 public class ServiceHandler implements InvocationHandler {
 
 	public ServiceHandler(
-			String forwardCookies, String forwardHeaders, String userToken,
-			boolean v2) {
+		String forwardCookies, String forwardHeaders, String userToken,
+		boolean v2) {
+
 		_engineConfiguration = getEngineConfiguration(
 			forwardCookies, forwardHeaders, userToken);
 
