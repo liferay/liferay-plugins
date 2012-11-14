@@ -83,7 +83,6 @@ for (String importer : importers) {
 	</h3>
 
 	<p>
-
 		<%
 		group = GroupLocalServiceUtil.fetchGroup(groupId);
 		%>
@@ -94,15 +93,22 @@ for (String importer : importers) {
 		if (groupId == 0) {
 			continue;
 		}
-
-		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(groupId, false);
 		%>
 
-		LayoutSet#getPageCount=<%= _assertEquals(5, layoutSet.getPageCount()) %>
+		LayoutLocalServiceUtil#getLayoutsCount=<%= _assertEquals(5, LayoutLocalServiceUtil.getLayoutsCount(group, false)) %><br />
+
+		<%
+		Layout importedLayout = LayoutLocalServiceUtil.getLayout(groupId, false, 1);
+
+		UnicodeProperties layoutTypeSettingsProperties = importedLayout.getTypeSettingsProperties();
+
+		String nestedColumnIds = layoutTypeSettingsProperties.get(LayoutTypePortletConstants.NESTED_COLUMN_IDS);
+		%>
+
+		NestedColumnIds#contains=<%= _assertTrue((nestedColumnIds != null) && nestedColumnIds.contains("column-1") && nestedColumnIds.contains("column-2")) %>
 	</p>
 
 	<p>
-
 		<%
 		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "company_logo");
 
@@ -117,7 +123,6 @@ for (String importer : importers) {
 	</p>
 
 	<p>
-
 		<%
 		JournalArticle journalArticle = JournalArticleLocalServiceUtil.getArticle(groupId, "CHILD-WEB-CONTENT-1");
 		%>
