@@ -60,7 +60,8 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer addWSRPConsumer(
 			long companyId, String adminPortletId, String name, String url,
-			String forwardCookies, ServiceContext serviceContext)
+			String forwardCookies, String forwardHeaders,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
@@ -78,7 +79,8 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(now);
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies));
+		wsrpConsumer.setWsdl(
+			getWSDL(wsrpConsumer, forwardCookies, forwardHeaders));
 
 		wsrpConsumerPersistence.update(wsrpConsumer);
 
@@ -251,7 +253,7 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer updateWSRPConsumer(
 			long wsrpConsumerId, String adminPortletId, String name, String url,
-			String forwardCookies)
+			String forwardCookies, String forwardHeaders)
 		throws PortalException, SystemException {
 
 		validate(name);
@@ -264,22 +266,26 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(new Date());
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies));
+		wsrpConsumer.setWsdl(
+			getWSDL(wsrpConsumer, forwardCookies, forwardHeaders));
 
 		wsrpConsumerPersistence.update(wsrpConsumer);
 
 		return wsrpConsumer;
 	}
 
-	protected String getWSDL(WSRPConsumer wsrpConsumer, String forwardCookies)
+	protected String getWSDL(
+			WSRPConsumer wsrpConsumer, String forwardCookies,
+			String forwardHeaders)
 		throws PortalException {
 
 		try {
 
-			// Must set forward cookies first so that WSRPConsumerManagerFactory
-			// has access to them
+			// Must set forward cookies and headers first so that
+			// WSRPConsumerManagerFactory has access to them
 
 			wsrpConsumer.setForwardCookies(forwardCookies);
+			wsrpConsumer.setForwardHeaders(forwardHeaders);
 
 			WSRPConsumerManager wsrpConsumerManager =
 				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);

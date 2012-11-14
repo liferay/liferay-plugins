@@ -459,6 +459,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		wsrpConsumerImpl.setRegistrationContextString(wsrpConsumer.getRegistrationContextString());
 		wsrpConsumerImpl.setRegistrationPropertiesString(wsrpConsumer.getRegistrationPropertiesString());
 		wsrpConsumerImpl.setForwardCookies(wsrpConsumer.getForwardCookies());
+		wsrpConsumerImpl.setForwardHeaders(wsrpConsumer.getForwardHeaders());
 
 		return wsrpConsumerImpl;
 	}

@@ -26,6 +26,7 @@ import com.liferay.util.axis.SimpleHTTPSender;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +53,13 @@ public class WSRPHTTPSender extends HTTPSender {
 		_currentRequest.set(request);
 	}
 
-	public WSRPHTTPSender(String forwardCookies) {
+	public WSRPHTTPSender(String forwardCookies, String forwardHeaders) {
 		if (Validator.isNotNull(forwardCookies)) {
 			_forwardCookies = StringUtil.split(forwardCookies.toLowerCase());
+		}
+
+		if (Validator.isNotNull(forwardHeaders)) {
+			_forwardHeaders = StringUtil.split(forwardHeaders);
 		}
 	}
 
@@ -65,6 +70,22 @@ public class WSRPHTTPSender extends HTTPSender {
 		if (request == null) {
 			super.invoke(messageContext);
 
+			return;
+		}
+
+		addForwardCookies(messageContext, request);
+
+		addForwardHeaders(messageContext, request);
+
+		super.invoke(messageContext);
+
+		registerCurrentCookie(messageContext);
+	}
+
+	protected void addForwardCookies(
+		MessageContext messageContext, HttpServletRequest request) {
+
+		if (_forwardCookies.length == 0) {
 			return;
 		}
 
@@ -105,13 +126,34 @@ public class WSRPHTTPSender extends HTTPSender {
 		cookiesObject = cookiesCollection.toArray(new String[0]);
 
 		messageContext.setProperty(HTTPConstants.HEADER_COOKIE, cookiesObject);
-
-		super.invoke(messageContext);
-
-		_registerCurrentCookie(messageContext);
 	}
 
-	private void _registerCurrentCookie(MessageContext messageContext) {
+	public void addForwardHeaders(
+		MessageContext messageContext, HttpServletRequest request) {
+
+		if (_forwardHeaders.length == 0) {
+			return;
+		}
+
+		Hashtable requestHeaders = (Hashtable)messageContext.getProperty(
+			HTTPConstants.REQUEST_HEADERS);
+
+		if (requestHeaders == null) {
+			requestHeaders = new Hashtable();
+
+			messageContext.setProperty(
+				HTTPConstants.REQUEST_HEADERS, requestHeaders);
+		}
+
+		for (String headerName : _forwardHeaders) {
+			String header = request.getHeader(headerName);
+			if (header != null) {
+				requestHeaders.put(headerName, header);
+			}
+		}
+	}
+
+	protected void registerCurrentCookie(MessageContext messageContext) {
 		String cookie = StringPool.BLANK;
 
 		try {
@@ -135,5 +177,6 @@ public class WSRPHTTPSender extends HTTPSender {
 			SimpleHTTPSender.class + "._currentRequest", null);
 
 	private String[] _forwardCookies = new String[0];
+	private String[] _forwardHeaders = new String[0];
 
 }
