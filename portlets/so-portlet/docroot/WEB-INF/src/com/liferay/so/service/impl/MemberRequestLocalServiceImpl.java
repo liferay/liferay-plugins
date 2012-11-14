@@ -257,6 +257,47 @@ public class MemberRequestLocalServiceImpl
 		return memberRequest;
 	}
 
+	protected String getCreateAccountURL(
+		MemberRequest memberRequest, ServiceContext serviceContext) {
+
+		String redirectURL = (String)serviceContext.getAttribute("redirectURL");
+
+		if (Validator.isNull(redirectURL)) {
+			redirectURL = serviceContext.getCurrentURL();
+		}
+
+		String createAccountURL = (String)serviceContext.getAttribute(
+			"createAccountURL");
+
+		if (Validator.isNull(createAccountURL)) {
+			createAccountURL = serviceContext.getPortalURL();
+		}
+
+		redirectURL = HttpUtil.addParameter(
+			redirectURL, "key", memberRequest.getKey());
+
+		createAccountURL = HttpUtil.addParameter(
+			createAccountURL, "redirect", redirectURL);
+
+		return createAccountURL;
+	}
+
+	protected String getLoginURL(ServiceContext serviceContext) {
+		String redirectURL = (String)serviceContext.getAttribute("redirectURL");
+
+		if (Validator.isNull(redirectURL)) {
+			redirectURL = serviceContext.getCurrentURL();
+		}
+
+		String loginURL = (String)serviceContext.getAttribute("loginURL");
+
+		if (Validator.isNull(loginURL)) {
+			loginURL = serviceContext.getPortalURL();
+		}
+
+		return HttpUtil.addParameter(loginURL, "redirect", redirectURL);
+	}
+
 	protected void sendEmail(
 			String emailAddress, MemberRequest memberRequest,
 			ServiceContext serviceContext)
@@ -316,33 +357,6 @@ public class MemberRequestLocalServiceImpl
 				user.getFullName()
 			});
 
-		String redirectURL = (String)serviceContext.getAttribute("redirectURL");
-
-		if (Validator.isNull(redirectURL)) {
-			redirectURL = serviceContext.getCurrentURL();
-		}
-
-		String loginURL = (String)serviceContext.getAttribute("loginURL");
-
-		if (Validator.isNull(loginURL)) {
-			loginURL = serviceContext.getPortalURL();
-		}
-
-		loginURL = HttpUtil.addParameter(loginURL, "redirect", redirectURL);
-
-		String createAccountURL = (String)serviceContext.getAttribute(
-			"createAccountURL");
-
-		if (Validator.isNull(createAccountURL)) {
-			createAccountURL = serviceContext.getPortalURL();
-		}
-
-		redirectURL = HttpUtil.addParameter(
-			redirectURL, "key", memberRequest.getKey());
-
-		createAccountURL = HttpUtil.addParameter(
-			createAccountURL, "redirect", redirectURL);
-
 		body = StringUtil.replace(
 			body,
 			new String[] {
@@ -352,9 +366,10 @@ public class MemberRequestLocalServiceImpl
 				"[$MEMBER_REQUEST_USER$]"
 			},
 			new String[] {
-				fromAddress, fromName, createAccountURL,
-				group.getDescriptiveName(serviceContext.getLocale()), loginURL,
-				user.getFullName()
+				fromAddress, fromName,
+				getCreateAccountURL(memberRequest, serviceContext),
+				group.getDescriptiveName(serviceContext.getLocale()),
+				getLoginURL(serviceContext), user.getFullName()
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
