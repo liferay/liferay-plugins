@@ -221,6 +221,21 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	 */
 	public void setForwardCookies(String forwardCookies);
 
+	/**
+	 * Returns the forward headers of this w s r p consumer.
+	 *
+	 * @return the forward headers of this w s r p consumer
+	 */
+	@AutoEscape
+	public String getForwardHeaders();
+
+	/**
+	 * Sets the forward headers of this w s r p consumer.
+	 *
+	 * @param forwardHeaders the forward headers of this w s r p consumer
+	 */
+	public void setForwardHeaders(String forwardHeaders);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

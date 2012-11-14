@@ -59,6 +59,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 		attributes.put("registrationPropertiesString",
 			getRegistrationPropertiesString());
 		attributes.put("forwardCookies", getForwardCookies());
+		attributes.put("forwardHeaders", getForwardHeaders());
 
 		return attributes;
 	}
@@ -130,6 +131,12 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 
 		if (forwardCookies != null) {
 			setForwardCookies(forwardCookies);
+		}
+
+		String forwardHeaders = (String)attributes.get("forwardHeaders");
+
+		if (forwardHeaders != null) {
+			setForwardHeaders(forwardHeaders);
 		}
 	}
 
@@ -349,6 +356,24 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	*/
 	public void setForwardCookies(java.lang.String forwardCookies) {
 		_wsrpConsumer.setForwardCookies(forwardCookies);
+	}
+
+	/**
+	* Returns the forward headers of this w s r p consumer.
+	*
+	* @return the forward headers of this w s r p consumer
+	*/
+	public java.lang.String getForwardHeaders() {
+		return _wsrpConsumer.getForwardHeaders();
+	}
+
+	/**
+	* Sets the forward headers of this w s r p consumer.
+	*
+	* @param forwardHeaders the forward headers of this w s r p consumer
+	*/
+	public void setForwardHeaders(java.lang.String forwardHeaders) {
+		_wsrpConsumer.setForwardHeaders(forwardHeaders);
 	}
 
 	public boolean isNew() {

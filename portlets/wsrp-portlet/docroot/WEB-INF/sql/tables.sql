@@ -9,7 +9,8 @@ create table WSRP_WSRPConsumer (
 	wsdl TEXT null,
 	registrationContextString TEXT null,
 	registrationPropertiesString STRING null,
-	forwardCookies VARCHAR(75) null
+	forwardCookies VARCHAR(255) null,
+	forwardHeaders VARCHAR(255) null
 );
 
 create table WSRP_WSRPConsumerPortlet (

@@ -264,12 +264,13 @@ public class WSRPConsumerLocalServiceUtil {
 	public static com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
 		long companyId, java.lang.String adminPortletId, java.lang.String name,
 		java.lang.String url, java.lang.String forwardCookies,
+		java.lang.String forwardHeaders,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addWSRPConsumer(companyId, adminPortletId, name, url,
-			forwardCookies, serviceContext);
+			forwardCookies, forwardHeaders, serviceContext);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
@@ -316,12 +317,12 @@ public class WSRPConsumerLocalServiceUtil {
 	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url,
-		java.lang.String forwardCookies)
+		java.lang.String forwardCookies, java.lang.String forwardHeaders)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateWSRPConsumer(wsrpConsumerId, adminPortletId, name,
-			url, forwardCookies);
+			url, forwardCookies, forwardHeaders);
 	}
 
 	public static void clearService() {
