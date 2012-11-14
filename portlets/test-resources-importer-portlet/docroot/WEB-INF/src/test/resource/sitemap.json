@@ -45,23 +45,35 @@
 					},
 					"Web Content with Image.html",
 					{
-						"portletId": "56",
+						"portletId": "118",
 						"portletPreferences": {
-							"articleId": "Child Web Content 1.xml",
-							"groupId": "${groupId}",
-							"portletSetupShowBorders": "true",
-							"portletSetupTitle_en_US": "Web Content Display with Child Structure 1",
-							"portletSetupUseCustomTitle": "true"
-						}
-					},
-					{
-						"portletId": "56",
-						"portletPreferences": {
-							"articleId": "Child Web Content 2.xml",
-							"groupId": "${groupId}",
-							"portletSetupShowBorders": "true",
-							"portletSetupTitle_en_US": "Web Content Display with Child Structure 2",
-							"portletSetupUseCustomTitle": "true"
+							"columns": [
+								[
+									{
+										"portletId": "56",
+										"portletPreferences": {
+											"articleId": "Child Web Content 1.xml",
+											"groupId": "${groupId}",
+											"portletSetupShowBorders": "true",
+											"portletSetupTitle_en_US": "Web Content Display with Child Structure 1",
+											"portletSetupUseCustomTitle": "true"
+										}
+									}
+								],
+								[
+									{
+										"portletId": "56",
+										"portletPreferences": {
+											"articleId": "Child Web Content 2.xml",
+											"groupId": "${groupId}",
+											"portletSetupShowBorders": "true",
+											"portletSetupTitle_en_US": "Web Content Display with Child Structure 2",
+											"portletSetupUseCustomTitle": "true"
+										}
+									}
+								]
+							],
+							"layoutTemplateId": "2_columns_i"
 						}
 					}
 				]

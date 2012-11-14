@@ -32,6 +32,7 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTypePortlet;
+import com.liferay.portal.model.LayoutTypePortletConstants;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.Theme;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -252,7 +253,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		JSONArray columnsJSONArray = layoutJSONObject.getJSONArray("columns");
 
-		addLayoutColumns(layout, columnsJSONArray);
+		addLayoutColumns(
+			layout, LayoutTypePortletConstants.COLUMN_PREFIX, columnsJSONArray);
 
 		LayoutLocalServiceUtil.updateLayout(
 			groupId, layout.isPrivateLayout(), layout.getLayoutId(),
@@ -332,9 +334,24 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		portletSetup.store();
+
+		if (rootPortletId.equals(PortletKeys.NESTED_PORTLETS)) {
+			JSONArray columnsJSONArray =
+				portletPreferencesJSONObject.getJSONArray("columns");
+
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(StringPool.UNDERLINE);
+			sb.append(portletId);
+			sb.append(StringPool.DOUBLE_UNDERLINE);
+			sb.append(LayoutTypePortletConstants.COLUMN_PREFIX);
+
+			addLayoutColumns(layout, sb.toString(), columnsJSONArray);
+		}
 	}
 
-	protected void addLayoutColumns(Layout layout, JSONArray columnsJSONArray)
+	protected void addLayoutColumns(
+			Layout layout, String columnPrefix, JSONArray columnsJSONArray)
 		throws Exception {
 
 		if (columnsJSONArray == null) {
@@ -344,7 +361,7 @@ public class FileSystemImporter extends BaseImporter {
 		for (int i = 0; i < columnsJSONArray.length(); i++) {
 			JSONArray columnJSONArray = columnsJSONArray.getJSONArray(i);
 
-			addLayoutColumn(layout, "column-" + (i + 1), columnJSONArray);
+			addLayoutColumn(layout, columnPrefix + (i + 1), columnJSONArray);
 		}
 	}
 
