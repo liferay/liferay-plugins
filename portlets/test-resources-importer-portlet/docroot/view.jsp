@@ -83,6 +83,7 @@ for (String importer : importers) {
 	</h3>
 
 	<p>
+
 		<%
 		group = GroupLocalServiceUtil.fetchGroup(groupId);
 		%>
@@ -123,6 +124,7 @@ for (String importer : importers) {
 	</p>
 
 	<p>
+
 		<%
 		JournalArticle journalArticle = JournalArticleLocalServiceUtil.getArticle(groupId, "CHILD-WEB-CONTENT-1");
 		%>
