@@ -117,7 +117,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 
 		_methodParameterTypes19 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -153,7 +153,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 
 		_methodParameterTypes26 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String"
+				"java.lang.String", "java.lang.String", "java.lang.String"
 			};
 	}
 
@@ -695,6 +695,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
 		java.lang.String adminPortletId, java.lang.String name,
 		java.lang.String url, java.lang.String forwardCookies,
+		java.lang.String forwardHeaders,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -713,6 +714,8 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 					ClpSerializer.translateInput(url),
 						
 					ClpSerializer.translateInput(forwardCookies),
+						
+					ClpSerializer.translateInput(forwardHeaders),
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -934,7 +937,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url,
-		java.lang.String forwardCookies)
+		java.lang.String forwardCookies, java.lang.String forwardHeaders)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -951,7 +954,9 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 						
 					ClpSerializer.translateInput(url),
 						
-					ClpSerializer.translateInput(forwardCookies)
+					ClpSerializer.translateInput(forwardCookies),
+						
+					ClpSerializer.translateInput(forwardHeaders)
 					});
 		}
 		catch (Throwable t) {

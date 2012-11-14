@@ -116,7 +116,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 
 		_methodParameterTypes50 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -162,7 +162,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 
 		_methodParameterTypes59 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String"
+				"java.lang.String", "java.lang.String", "java.lang.String"
 			};
 	}
 
@@ -272,7 +272,8 @@ public class WSRPConsumerLocalServiceClpInvoker {
 			return WSRPConsumerLocalServiceUtil.addWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(java.lang.String)arguments[5],
+				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
 		if (_methodName51.equals(name) &&
@@ -328,7 +329,8 @@ public class WSRPConsumerLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.updateWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4]);
+				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
+				(java.lang.String)arguments[5]);
 		}
 
 		throw new UnsupportedOperationException();
