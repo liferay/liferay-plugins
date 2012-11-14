@@ -25,8 +25,6 @@ import com.liferay.testtransaction.service.BarLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,20 +121,6 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	public Bar toEscapedModel() {
 		return (Bar)ProxyUtil.newProxyInstance(Bar.class.getClassLoader(),
 			new Class[] { Bar.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Bar toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Bar)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Bar)this;
-		}
 	}
 
 	@Override

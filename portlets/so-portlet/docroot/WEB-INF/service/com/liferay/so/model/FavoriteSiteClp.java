@@ -26,8 +26,6 @@ import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -163,20 +161,6 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	public FavoriteSite toEscapedModel() {
 		return (FavoriteSite)ProxyUtil.newProxyInstance(FavoriteSite.class.getClassLoader(),
 			new Class[] { FavoriteSite.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public FavoriteSite toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (FavoriteSite)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (FavoriteSite)this;
-		}
 	}
 
 	@Override

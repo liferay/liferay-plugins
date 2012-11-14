@@ -32,8 +32,6 @@ import com.liferay.socialcoding.model.JIRAChangeGroupModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -243,22 +241,6 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	@Override
-	public JIRAChangeGroup toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (JIRAChangeGroup)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (JIRAChangeGroup)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		JIRAChangeGroupImpl jiraChangeGroupImpl = new JIRAChangeGroupImpl();
 
@@ -417,5 +399,4 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	private boolean _setOriginalJiraIssueId;
 	private long _columnBitmask;
 	private JIRAChangeGroup _escapedModel;
-	private JIRAChangeGroup _unescapedModel;
 }

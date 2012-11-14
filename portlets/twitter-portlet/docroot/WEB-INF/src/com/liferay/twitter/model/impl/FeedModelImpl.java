@@ -33,8 +33,6 @@ import com.liferay.twitter.model.FeedModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -354,22 +352,6 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	@Override
-	public Feed toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Feed)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Feed)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		FeedImpl feedImpl = new FeedImpl();
 
@@ -596,5 +578,4 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private long _lastStatusId;
 	private long _columnBitmask;
 	private Feed _escapedModel;
-	private Feed _unescapedModel;
 }

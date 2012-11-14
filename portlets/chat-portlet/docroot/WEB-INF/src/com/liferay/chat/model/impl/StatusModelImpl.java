@@ -33,8 +33,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -343,22 +341,6 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	@Override
-	public Status toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Status)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Status)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		StatusImpl statusImpl = new StatusImpl();
 
@@ -563,5 +545,4 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	private boolean _playSound;
 	private long _columnBitmask;
 	private Status _escapedModel;
-	private Status _unescapedModel;
 }

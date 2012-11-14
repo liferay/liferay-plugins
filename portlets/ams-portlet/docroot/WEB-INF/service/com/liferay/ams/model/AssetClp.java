@@ -26,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -257,20 +255,6 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	public Asset toEscapedModel() {
 		return (Asset)ProxyUtil.newProxyInstance(Asset.class.getClassLoader(),
 			new Class[] { Asset.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Asset toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Asset)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Asset)this;
-		}
 	}
 
 	@Override

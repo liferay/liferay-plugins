@@ -31,8 +31,6 @@ import com.liferay.testtransaction.model.BarModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -193,22 +191,6 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	@Override
-	public Bar toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Bar)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Bar)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		BarImpl barImpl = new BarImpl();
 
@@ -329,5 +311,4 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	private String _originalText;
 	private long _columnBitmask;
 	private Bar _escapedModel;
-	private Bar _unescapedModel;
 }

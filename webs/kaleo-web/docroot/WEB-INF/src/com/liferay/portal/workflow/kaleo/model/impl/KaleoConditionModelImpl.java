@@ -32,8 +32,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -410,22 +408,6 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	@Override
-	public KaleoCondition toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (KaleoCondition)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (KaleoCondition)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		KaleoConditionImpl kaleoConditionImpl = new KaleoConditionImpl();
 
@@ -705,5 +687,4 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	private String _scriptRequiredContexts;
 	private long _columnBitmask;
 	private KaleoCondition _escapedModel;
-	private KaleoCondition _unescapedModel;
 }

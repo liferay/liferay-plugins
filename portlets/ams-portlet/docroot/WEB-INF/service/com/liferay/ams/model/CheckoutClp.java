@@ -26,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -253,20 +251,6 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 	public Checkout toEscapedModel() {
 		return (Checkout)ProxyUtil.newProxyInstance(Checkout.class.getClassLoader(),
 			new Class[] { Checkout.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Checkout toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Checkout)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Checkout)this;
-		}
 	}
 
 	@Override

@@ -31,8 +31,6 @@ import com.liferay.wsrp.model.WSRPProducerModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -348,22 +346,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	@Override
-	public WSRPProducer toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (WSRPProducer)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (WSRPProducer)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		WSRPProducerImpl wsrpProducerImpl = new WSRPProducerImpl();
 
@@ -600,5 +582,4 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private String _portletIds;
 	private long _columnBitmask;
 	private WSRPProducer _escapedModel;
-	private WSRPProducer _unescapedModel;
 }

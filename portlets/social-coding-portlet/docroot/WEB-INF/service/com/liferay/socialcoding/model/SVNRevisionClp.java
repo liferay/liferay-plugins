@@ -25,8 +25,6 @@ import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -197,20 +195,6 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 	public SVNRevision toEscapedModel() {
 		return (SVNRevision)ProxyUtil.newProxyInstance(SVNRevision.class.getClassLoader(),
 			new Class[] { SVNRevision.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public SVNRevision toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (SVNRevision)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (SVNRevision)this;
-		}
 	}
 
 	@Override

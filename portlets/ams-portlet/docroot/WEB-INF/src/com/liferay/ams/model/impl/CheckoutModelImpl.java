@@ -33,8 +33,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -314,22 +312,6 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	}
 
 	@Override
-	public Checkout toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Checkout)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Checkout)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		CheckoutImpl checkoutImpl = new CheckoutImpl();
 
@@ -563,5 +545,4 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	private Date _expectedCheckInDate;
 	private Date _actualCheckInDate;
 	private Checkout _escapedModel;
-	private Checkout _unescapedModel;
 }

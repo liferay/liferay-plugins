@@ -33,8 +33,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -357,22 +355,6 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	@Override
-	public Folder toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Folder)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Folder)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		FolderImpl folderImpl = new FolderImpl();
 
@@ -606,5 +588,4 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	private int _remoteMessageCount;
 	private long _columnBitmask;
 	private Folder _escapedModel;
-	private Folder _unescapedModel;
 }

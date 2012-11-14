@@ -27,8 +27,6 @@ import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -271,20 +269,6 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	public ProjectsEntry toEscapedModel() {
 		return (ProjectsEntry)ProxyUtil.newProxyInstance(ProjectsEntry.class.getClassLoader(),
 			new Class[] { ProjectsEntry.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public ProjectsEntry toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (ProjectsEntry)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (ProjectsEntry)this;
-		}
 	}
 
 	@Override

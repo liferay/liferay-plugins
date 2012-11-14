@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -370,20 +368,6 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	public KaleoTimer toEscapedModel() {
 		return (KaleoTimer)ProxyUtil.newProxyInstance(KaleoTimer.class.getClassLoader(),
 			new Class[] { KaleoTimer.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoTimer toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoTimer)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoTimer)this;
-		}
 	}
 
 	@Override

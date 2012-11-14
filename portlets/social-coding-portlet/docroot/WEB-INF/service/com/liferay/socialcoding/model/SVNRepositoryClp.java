@@ -25,8 +25,6 @@ import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -148,20 +146,6 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	public SVNRepository toEscapedModel() {
 		return (SVNRepository)ProxyUtil.newProxyInstance(SVNRepository.class.getClassLoader(),
 			new Class[] { SVNRepository.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public SVNRepository toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (SVNRepository)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (SVNRepository)this;
-		}
 	}
 
 	@Override

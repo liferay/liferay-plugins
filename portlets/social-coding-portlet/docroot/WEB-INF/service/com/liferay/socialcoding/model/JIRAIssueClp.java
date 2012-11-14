@@ -26,8 +26,6 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -260,20 +258,6 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	public JIRAIssue toEscapedModel() {
 		return (JIRAIssue)ProxyUtil.newProxyInstance(JIRAIssue.class.getClassLoader(),
 			new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public JIRAIssue toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (JIRAIssue)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (JIRAIssue)this;
-		}
 	}
 
 	@Override

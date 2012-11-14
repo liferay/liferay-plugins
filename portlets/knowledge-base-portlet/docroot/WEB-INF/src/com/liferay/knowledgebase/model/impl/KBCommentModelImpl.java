@@ -37,8 +37,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -531,22 +529,6 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	@Override
-	public KBComment toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (KBComment)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (KBComment)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		KBCommentImpl kbCommentImpl = new KBCommentImpl();
 
@@ -829,5 +811,4 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private boolean _helpful;
 	private long _columnBitmask;
 	private KBComment _escapedModel;
-	private KBComment _unescapedModel;
 }

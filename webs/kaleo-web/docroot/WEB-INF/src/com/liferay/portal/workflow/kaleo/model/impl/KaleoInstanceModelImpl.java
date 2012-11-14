@@ -32,8 +32,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -515,22 +513,6 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	}
 
 	@Override
-	public KaleoInstance toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (KaleoInstance)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (KaleoInstance)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		KaleoInstanceImpl kaleoInstanceImpl = new KaleoInstanceImpl();
 
@@ -869,5 +851,4 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	private String _workflowContext;
 	private long _columnBitmask;
 	private KaleoInstance _escapedModel;
-	private KaleoInstance _unescapedModel;
 }

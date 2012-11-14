@@ -27,8 +27,6 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -263,20 +261,6 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	public UserThread toEscapedModel() {
 		return (UserThread)ProxyUtil.newProxyInstance(UserThread.class.getClassLoader(),
 			new Class[] { UserThread.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public UserThread toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (UserThread)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (UserThread)this;
-		}
 	}
 
 	@Override

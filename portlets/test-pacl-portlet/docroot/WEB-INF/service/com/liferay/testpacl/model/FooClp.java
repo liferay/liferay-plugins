@@ -25,8 +25,6 @@ import com.liferay.testpacl.service.FooLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -108,20 +106,6 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	public Foo toEscapedModel() {
 		return (Foo)ProxyUtil.newProxyInstance(Foo.class.getClassLoader(),
 			new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Foo toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Foo)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Foo)this;
-		}
 	}
 
 	@Override

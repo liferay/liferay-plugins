@@ -29,8 +29,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -308,20 +306,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	public KBComment toEscapedModel() {
 		return (KBComment)ProxyUtil.newProxyInstance(KBComment.class.getClassLoader(),
 			new Class[] { KBComment.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KBComment toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KBComment)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KBComment)this;
-		}
 	}
 
 	@Override

@@ -34,8 +34,6 @@ import com.liferay.socialnetworking.model.MeetupsEntryModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -425,22 +423,6 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	}
 
 	@Override
-	public MeetupsEntry toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (MeetupsEntry)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (MeetupsEntry)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		MeetupsEntryImpl meetupsEntryImpl = new MeetupsEntryImpl();
 
@@ -735,5 +717,4 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	private long _thumbnailId;
 	private long _columnBitmask;
 	private MeetupsEntry _escapedModel;
-	private MeetupsEntry _unescapedModel;
 }

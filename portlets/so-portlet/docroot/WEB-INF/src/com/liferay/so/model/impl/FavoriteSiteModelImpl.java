@@ -32,8 +32,6 @@ import com.liferay.so.model.FavoriteSiteModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -243,22 +241,6 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	}
 
 	@Override
-	public FavoriteSite toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (FavoriteSite)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (FavoriteSite)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		FavoriteSiteImpl favoriteSiteImpl = new FavoriteSiteImpl();
 
@@ -407,5 +389,4 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	private boolean _setOriginalUserId;
 	private long _columnBitmask;
 	private FavoriteSite _escapedModel;
-	private FavoriteSite _unescapedModel;
 }

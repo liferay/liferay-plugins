@@ -34,8 +34,6 @@ import com.liferay.socialnetworking.model.WallEntryModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -324,22 +322,6 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	@Override
-	public WallEntry toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (WallEntry)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (WallEntry)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		WallEntryImpl wallEntryImpl = new WallEntryImpl();
 
@@ -554,5 +536,4 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	private String _comments;
 	private long _columnBitmask;
 	private WallEntry _escapedModel;
-	private WallEntry _unescapedModel;
 }

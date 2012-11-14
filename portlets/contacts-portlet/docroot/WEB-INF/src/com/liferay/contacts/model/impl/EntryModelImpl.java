@@ -33,8 +33,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -362,22 +360,6 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	@Override
-	public Entry toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Entry)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Entry)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		EntryImpl entryImpl = new EntryImpl();
 
@@ -618,5 +600,4 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	private String _comments;
 	private long _columnBitmask;
 	private Entry _escapedModel;
-	private Entry _unescapedModel;
 }

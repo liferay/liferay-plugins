@@ -36,8 +36,6 @@ import com.liferay.tasks.model.TasksEntrySoap;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -539,22 +537,6 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	@Override
-	public TasksEntry toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (TasksEntry)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (TasksEntry)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		TasksEntryImpl tasksEntryImpl = new TasksEntryImpl();
 
@@ -875,5 +857,4 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private int _status;
 	private long _columnBitmask;
 	private TasksEntry _escapedModel;
-	private TasksEntry _unescapedModel;
 }

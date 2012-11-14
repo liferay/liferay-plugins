@@ -35,8 +35,6 @@ import com.liferay.sampleservicebuilder.model.FooSoap;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -507,22 +505,6 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	@Override
-	public Foo toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Foo)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Foo)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		FooImpl fooImpl = new FooImpl();
 
@@ -811,5 +793,4 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private String _field5;
 	private long _columnBitmask;
 	private Foo _escapedModel;
-	private Foo _unescapedModel;
 }

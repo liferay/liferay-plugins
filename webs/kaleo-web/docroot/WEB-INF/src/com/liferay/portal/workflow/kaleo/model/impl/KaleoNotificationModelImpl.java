@@ -32,8 +32,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -536,22 +534,6 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	@Override
-	public KaleoNotification toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (KaleoNotification)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (KaleoNotification)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		KaleoNotificationImpl kaleoNotificationImpl = new KaleoNotificationImpl();
 
@@ -916,5 +898,4 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	private String _notificationTypes;
 	private long _columnBitmask;
 	private KaleoNotification _escapedModel;
-	private KaleoNotification _unescapedModel;
 }

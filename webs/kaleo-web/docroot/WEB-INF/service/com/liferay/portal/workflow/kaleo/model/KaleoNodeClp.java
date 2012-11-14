@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -337,20 +335,6 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 	public KaleoNode toEscapedModel() {
 		return (KaleoNode)ProxyUtil.newProxyInstance(KaleoNode.class.getClassLoader(),
 			new Class[] { KaleoNode.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoNode toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoNode)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoNode)this;
-		}
 	}
 
 	@Override

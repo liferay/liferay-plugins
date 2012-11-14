@@ -25,8 +25,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -138,20 +136,6 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	public Type toEscapedModel() {
 		return (Type)ProxyUtil.newProxyInstance(Type.class.getClassLoader(),
 			new Class[] { Type.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Type toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Type)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Type)this;
-		}
 	}
 
 	@Override

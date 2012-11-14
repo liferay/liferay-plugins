@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServ
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -416,20 +414,6 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 		return (KaleoTaskInstanceToken)ProxyUtil.newProxyInstance(KaleoTaskInstanceToken.class.getClassLoader(),
 			new Class[] { KaleoTaskInstanceToken.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoTaskInstanceToken toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoTaskInstanceToken)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoTaskInstanceToken)this;
-		}
 	}
 
 	@Override

@@ -32,8 +32,6 @@ import com.liferay.socialcoding.model.JIRAIssueModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -427,22 +425,6 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	@Override
-	public JIRAIssue toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (JIRAIssue)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (JIRAIssue)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
@@ -726,5 +708,4 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	private String _originalStatus;
 	private long _columnBitmask;
 	private JIRAIssue _escapedModel;
-	private JIRAIssue _unescapedModel;
 }

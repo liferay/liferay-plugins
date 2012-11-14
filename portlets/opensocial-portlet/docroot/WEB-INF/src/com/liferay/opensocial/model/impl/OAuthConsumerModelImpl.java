@@ -31,8 +31,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -338,22 +336,6 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	@Override
-	public OAuthConsumer toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (OAuthConsumer)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (OAuthConsumer)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		OAuthConsumerImpl oAuthConsumerImpl = new OAuthConsumerImpl();
 
@@ -587,5 +569,4 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private String _keyType;
 	private long _columnBitmask;
 	private OAuthConsumer _escapedModel;
-	private OAuthConsumer _unescapedModel;
 }

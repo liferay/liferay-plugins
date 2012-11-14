@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalServiceUt
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -360,20 +358,6 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		return (KaleoNotification)ProxyUtil.newProxyInstance(KaleoNotification.class.getClassLoader(),
 			new Class[] { KaleoNotification.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoNotification toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoNotification)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoNotification)this;
-		}
 	}
 
 	@Override

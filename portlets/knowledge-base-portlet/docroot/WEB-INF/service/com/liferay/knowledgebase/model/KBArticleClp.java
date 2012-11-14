@@ -28,8 +28,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -599,20 +597,6 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	public KBArticle toEscapedModel() {
 		return (KBArticle)ProxyUtil.newProxyInstance(KBArticle.class.getClassLoader(),
 			new Class[] { KBArticle.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KBArticle toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KBArticle)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KBArticle)this;
-		}
 	}
 
 	@Override

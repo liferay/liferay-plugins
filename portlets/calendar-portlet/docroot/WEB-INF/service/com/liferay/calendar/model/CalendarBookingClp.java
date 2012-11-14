@@ -32,8 +32,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -832,20 +830,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		return (CalendarBooking)ProxyUtil.newProxyInstance(CalendarBooking.class.getClassLoader(),
 			new Class[] { CalendarBooking.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public CalendarBooking toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (CalendarBooking)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (CalendarBooking)this;
-		}
 	}
 
 	@Override

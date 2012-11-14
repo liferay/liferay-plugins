@@ -31,8 +31,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -192,22 +190,6 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	}
 
 	@Override
-	public Type toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Type)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Type)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		TypeImpl typeImpl = new TypeImpl();
 
@@ -331,5 +313,4 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	private long _groupId;
 	private String _name;
 	private Type _escapedModel;
-	private Type _unescapedModel;
 }

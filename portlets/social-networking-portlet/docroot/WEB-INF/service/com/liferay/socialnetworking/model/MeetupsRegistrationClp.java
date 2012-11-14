@@ -27,8 +27,6 @@ import com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -243,20 +241,6 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		return (MeetupsRegistration)ProxyUtil.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
 			new Class[] { MeetupsRegistration.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public MeetupsRegistration toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (MeetupsRegistration)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (MeetupsRegistration)this;
-		}
 	}
 
 	@Override

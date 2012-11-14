@@ -25,8 +25,6 @@ import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -201,20 +199,6 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		return (JIRAChangeItem)ProxyUtil.newProxyInstance(JIRAChangeItem.class.getClassLoader(),
 			new Class[] { JIRAChangeItem.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public JIRAChangeItem toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (JIRAChangeItem)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (JIRAChangeItem)this;
-		}
 	}
 
 	@Override

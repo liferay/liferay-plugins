@@ -31,8 +31,6 @@ import com.liferay.wsrp.model.WSRPConsumerModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -387,22 +385,6 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	@Override
-	public WSRPConsumer toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (WSRPConsumer)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (WSRPConsumer)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		WSRPConsumerImpl wsrpConsumerImpl = new WSRPConsumerImpl();
 
@@ -673,5 +655,4 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private String _forwardCookies;
 	private long _columnBitmask;
 	private WSRPConsumer _escapedModel;
-	private WSRPConsumer _unescapedModel;
 }

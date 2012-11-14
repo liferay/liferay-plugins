@@ -26,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -314,20 +312,6 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	public OAuthToken toEscapedModel() {
 		return (OAuthToken)ProxyUtil.newProxyInstance(OAuthToken.class.getClassLoader(),
 			new Class[] { OAuthToken.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public OAuthToken toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (OAuthToken)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (OAuthToken)this;
-		}
 	}
 
 	@Override

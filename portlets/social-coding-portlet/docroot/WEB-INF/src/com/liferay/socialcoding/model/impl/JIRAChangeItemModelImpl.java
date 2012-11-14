@@ -31,8 +31,6 @@ import com.liferay.socialcoding.model.JIRAChangeItemModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -294,22 +292,6 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	@Override
-	public JIRAChangeItem toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (JIRAChangeItem)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (JIRAChangeItem)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
 
@@ -511,5 +493,4 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	private String _newString;
 	private long _columnBitmask;
 	private JIRAChangeItem _escapedModel;
-	private JIRAChangeItem _unescapedModel;
 }

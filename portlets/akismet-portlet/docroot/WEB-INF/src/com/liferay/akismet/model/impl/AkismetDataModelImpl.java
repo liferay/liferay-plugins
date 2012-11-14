@@ -31,8 +31,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -343,22 +341,6 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	}
 
 	@Override
-	public AkismetData toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (AkismetData)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (AkismetData)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		AkismetDataImpl akismetDataImpl = new AkismetDataImpl();
 
@@ -596,5 +578,4 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	private String _userURL;
 	private long _columnBitmask;
 	private AkismetData _escapedModel;
-	private AkismetData _unescapedModel;
 }

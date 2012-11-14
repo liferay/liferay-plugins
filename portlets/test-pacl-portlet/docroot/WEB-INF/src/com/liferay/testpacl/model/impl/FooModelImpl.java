@@ -30,8 +30,6 @@ import com.liferay.testpacl.model.FooModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -152,22 +150,6 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	@Override
-	public Foo toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Foo)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Foo)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		FooImpl fooImpl = new FooImpl();
 
@@ -266,5 +248,4 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private static Class<?>[] _escapedModelInterfaces = new Class[] { Foo.class };
 	private long _fooId;
 	private Foo _escapedModel;
-	private Foo _unescapedModel;
 }

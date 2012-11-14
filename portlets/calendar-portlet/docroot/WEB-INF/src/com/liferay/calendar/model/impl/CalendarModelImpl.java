@@ -39,8 +39,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -712,22 +710,6 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	}
 
 	@Override
-	public Calendar toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Calendar)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Calendar)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		CalendarImpl calendarImpl = new CalendarImpl();
 
@@ -1035,5 +1017,4 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	private boolean _setOriginalDefaultCalendar;
 	private long _columnBitmask;
 	private Calendar _escapedModel;
-	private Calendar _unescapedModel;
 }

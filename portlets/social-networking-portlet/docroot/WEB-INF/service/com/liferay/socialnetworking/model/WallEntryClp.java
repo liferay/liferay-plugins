@@ -27,8 +27,6 @@ import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -224,20 +222,6 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 	public WallEntry toEscapedModel() {
 		return (WallEntry)ProxyUtil.newProxyInstance(WallEntry.class.getClassLoader(),
 			new Class[] { WallEntry.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public WallEntry toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (WallEntry)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (WallEntry)this;
-		}
 	}
 
 	@Override

@@ -27,8 +27,6 @@ import com.liferay.so.service.MemberRequestLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -295,20 +293,6 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	public MemberRequest toEscapedModel() {
 		return (MemberRequest)ProxyUtil.newProxyInstance(MemberRequest.class.getClassLoader(),
 			new Class[] { MemberRequest.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public MemberRequest toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (MemberRequest)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (MemberRequest)this;
-		}
 	}
 
 	@Override

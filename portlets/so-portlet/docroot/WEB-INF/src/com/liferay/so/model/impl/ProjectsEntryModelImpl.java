@@ -34,8 +34,6 @@ import com.liferay.so.model.ProjectsEntryModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -369,22 +367,6 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	}
 
 	@Override
-	public ProjectsEntry toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (ProjectsEntry)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (ProjectsEntry)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		ProjectsEntryImpl projectsEntryImpl = new ProjectsEntryImpl();
 
@@ -647,5 +629,4 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	private String _data;
 	private long _columnBitmask;
 	private ProjectsEntry _escapedModel;
-	private ProjectsEntry _unescapedModel;
 }

@@ -31,8 +31,6 @@ import com.liferay.socialcoding.model.SVNRepositoryModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -210,22 +208,6 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	}
 
 	@Override
-	public SVNRepository toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (SVNRepository)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (SVNRepository)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		SVNRepositoryImpl svnRepositoryImpl = new SVNRepositoryImpl();
 
@@ -358,5 +340,4 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	private long _revisionNumber;
 	private long _columnBitmask;
 	private SVNRepository _escapedModel;
-	private SVNRepository _unescapedModel;
 }

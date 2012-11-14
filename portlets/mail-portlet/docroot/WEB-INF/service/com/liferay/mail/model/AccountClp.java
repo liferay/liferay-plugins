@@ -26,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -521,20 +519,6 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 	public Account toEscapedModel() {
 		return (Account)ProxyUtil.newProxyInstance(Account.class.getClassLoader(),
 			new Class[] { Account.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Account toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Account)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Account)this;
-		}
 	}
 
 	@Override

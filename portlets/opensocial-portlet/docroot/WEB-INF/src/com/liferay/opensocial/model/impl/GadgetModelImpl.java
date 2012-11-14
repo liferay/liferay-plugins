@@ -33,8 +33,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -390,22 +388,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	@Override
-	public Gadget toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Gadget)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Gadget)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		GadgetImpl gadgetImpl = new GadgetImpl();
 
@@ -628,5 +610,4 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _portletCategoryNames;
 	private long _columnBitmask;
 	private Gadget _escapedModel;
-	private Gadget _unescapedModel;
 }

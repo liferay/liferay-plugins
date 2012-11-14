@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -286,20 +284,6 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		return (KaleoCondition)ProxyUtil.newProxyInstance(KaleoCondition.class.getClassLoader(),
 			new Class[] { KaleoCondition.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoCondition toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoCondition)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoCondition)this;
-		}
 	}
 
 	@Override

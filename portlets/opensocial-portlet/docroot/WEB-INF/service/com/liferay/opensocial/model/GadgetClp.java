@@ -25,8 +25,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -215,20 +213,6 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	public Gadget toEscapedModel() {
 		return (Gadget)ProxyUtil.newProxyInstance(Gadget.class.getClassLoader(),
 			new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Gadget toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Gadget)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Gadget)this;
-		}
 	}
 
 	@Override

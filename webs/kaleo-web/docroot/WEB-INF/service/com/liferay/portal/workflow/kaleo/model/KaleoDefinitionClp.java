@@ -30,8 +30,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -427,20 +425,6 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return (KaleoDefinition)ProxyUtil.newProxyInstance(KaleoDefinition.class.getClassLoader(),
 			new Class[] { KaleoDefinition.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoDefinition toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoDefinition)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoDefinition)this;
-		}
 	}
 
 	@Override

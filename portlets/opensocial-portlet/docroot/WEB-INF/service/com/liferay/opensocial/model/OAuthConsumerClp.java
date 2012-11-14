@@ -25,8 +25,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -239,20 +237,6 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	public OAuthConsumer toEscapedModel() {
 		return (OAuthConsumer)ProxyUtil.newProxyInstance(OAuthConsumer.class.getClassLoader(),
 			new Class[] { OAuthConsumer.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public OAuthConsumer toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (OAuthConsumer)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (OAuthConsumer)this;
-		}
 	}
 
 	@Override

@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLoca
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -368,20 +366,6 @@ public class KaleoTaskAssignmentInstanceClp extends BaseModelImpl<KaleoTaskAssig
 		return (KaleoTaskAssignmentInstance)ProxyUtil.newProxyInstance(KaleoTaskAssignmentInstance.class.getClassLoader(),
 			new Class[] { KaleoTaskAssignmentInstance.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoTaskAssignmentInstance toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoTaskAssignmentInstance)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoTaskAssignmentInstance)this;
-		}
 	}
 
 	@Override

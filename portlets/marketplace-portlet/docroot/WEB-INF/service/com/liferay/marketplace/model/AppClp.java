@@ -26,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -258,20 +256,6 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	public App toEscapedModel() {
 		return (App)ProxyUtil.newProxyInstance(App.class.getClassLoader(),
 			new Class[] { App.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public App toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (App)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (App)this;
-		}
 	}
 
 	@Override

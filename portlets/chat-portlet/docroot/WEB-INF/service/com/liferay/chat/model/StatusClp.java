@@ -26,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -234,20 +232,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	public Status toEscapedModel() {
 		return (Status)ProxyUtil.newProxyInstance(Status.class.getClassLoader(),
 			new Class[] { Status.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Status toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Status)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Status)this;
-		}
 	}
 
 	@Override

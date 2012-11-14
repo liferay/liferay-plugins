@@ -26,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -238,20 +236,6 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 	public Attachment toEscapedModel() {
 		return (Attachment)ProxyUtil.newProxyInstance(Attachment.class.getClassLoader(),
 			new Class[] { Attachment.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Attachment toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Attachment)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Attachment)this;
-		}
 	}
 
 	@Override

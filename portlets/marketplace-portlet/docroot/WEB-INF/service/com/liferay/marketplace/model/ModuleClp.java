@@ -25,8 +25,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -153,20 +151,6 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	public Module toEscapedModel() {
 		return (Module)ProxyUtil.newProxyInstance(Module.class.getClassLoader(),
 			new Class[] { Module.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Module toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Module)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Module)this;
-		}
 	}
 
 	@Override

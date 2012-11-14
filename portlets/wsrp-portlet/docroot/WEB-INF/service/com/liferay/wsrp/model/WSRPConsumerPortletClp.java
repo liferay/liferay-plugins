@@ -25,8 +25,6 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -218,20 +216,6 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		return (WSRPConsumerPortlet)ProxyUtil.newProxyInstance(WSRPConsumerPortlet.class.getClassLoader(),
 			new Class[] { WSRPConsumerPortlet.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public WSRPConsumerPortlet toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (WSRPConsumerPortlet)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (WSRPConsumerPortlet)this;
-		}
 	}
 
 	@Override

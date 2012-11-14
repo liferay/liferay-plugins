@@ -33,8 +33,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -321,22 +319,6 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	}
 
 	@Override
-	public Attachment toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Attachment)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Attachment)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		AttachmentImpl attachmentImpl = new AttachmentImpl();
 
@@ -541,5 +523,4 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	private long _size;
 	private long _columnBitmask;
 	private Attachment _escapedModel;
-	private Attachment _unescapedModel;
 }

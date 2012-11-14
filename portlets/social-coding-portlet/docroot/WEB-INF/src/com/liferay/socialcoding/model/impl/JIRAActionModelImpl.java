@@ -32,8 +32,6 @@ import com.liferay.socialcoding.model.JIRAActionModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -333,22 +331,6 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	@Override
-	public JIRAAction toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (JIRAAction)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (JIRAAction)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		JIRAActionImpl jiraActionImpl = new JIRAActionImpl();
 
@@ -575,5 +557,4 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	private String _jiraGroupName;
 	private long _columnBitmask;
 	private JIRAAction _escapedModel;
-	private JIRAAction _unescapedModel;
 }

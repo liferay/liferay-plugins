@@ -31,8 +31,6 @@ import com.liferay.wsrp.model.WSRPConsumerPortletModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -339,22 +337,6 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	@Override
-	public WSRPConsumerPortlet toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (WSRPConsumerPortlet)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (WSRPConsumerPortlet)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		WSRPConsumerPortletImpl wsrpConsumerPortletImpl = new WSRPConsumerPortletImpl();
 
@@ -578,5 +560,4 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	private String _originalPortletHandle;
 	private long _columnBitmask;
 	private WSRPConsumerPortlet _escapedModel;
-	private WSRPConsumerPortlet _unescapedModel;
 }

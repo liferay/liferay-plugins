@@ -26,8 +26,6 @@ import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -158,20 +156,6 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		return (JIRAChangeGroup)ProxyUtil.newProxyInstance(JIRAChangeGroup.class.getClassLoader(),
 			new Class[] { JIRAChangeGroup.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public JIRAChangeGroup toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (JIRAChangeGroup)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (JIRAChangeGroup)this;
-		}
 	}
 
 	@Override

@@ -32,8 +32,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -441,22 +439,6 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	}
 
 	@Override
-	public KaleoNode toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (KaleoNode)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (KaleoNode)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		KaleoNodeImpl kaleoNodeImpl = new KaleoNodeImpl();
 
@@ -755,5 +737,4 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	private boolean _terminal;
 	private long _columnBitmask;
 	private KaleoNode _escapedModel;
-	private KaleoNode _unescapedModel;
 }

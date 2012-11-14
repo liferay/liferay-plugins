@@ -34,8 +34,6 @@ import com.liferay.privatemessaging.model.UserThreadModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -385,22 +383,6 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	@Override
-	public UserThread toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (UserThread)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (UserThread)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		UserThreadImpl userThreadImpl = new UserThreadImpl();
 
@@ -642,5 +624,4 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private boolean _setOriginalDeleted;
 	private long _columnBitmask;
 	private UserThread _escapedModel;
-	private UserThread _unescapedModel;
 }

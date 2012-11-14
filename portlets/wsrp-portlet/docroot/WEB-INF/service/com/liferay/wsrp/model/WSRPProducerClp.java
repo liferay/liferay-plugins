@@ -25,8 +25,6 @@ import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -234,20 +232,6 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	public WSRPProducer toEscapedModel() {
 		return (WSRPProducer)ProxyUtil.newProxyInstance(WSRPProducer.class.getClassLoader(),
 			new Class[] { WSRPProducer.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public WSRPProducer toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (WSRPProducer)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (WSRPProducer)this;
-		}
 	}
 
 	@Override

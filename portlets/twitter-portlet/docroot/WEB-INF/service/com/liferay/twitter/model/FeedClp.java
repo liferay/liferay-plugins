@@ -26,8 +26,6 @@ import com.liferay.twitter.service.FeedLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -247,20 +245,6 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	public Feed toEscapedModel() {
 		return (Feed)ProxyUtil.newProxyInstance(Feed.class.getClassLoader(),
 			new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public Feed toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (Feed)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (Feed)this;
-		}
 	}
 
 	@Override

@@ -34,8 +34,6 @@ import com.liferay.so.model.MemberRequestModel;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -421,22 +419,6 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	@Override
-	public MemberRequest toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (MemberRequest)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (MemberRequest)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		MemberRequestImpl memberRequestImpl = new MemberRequestImpl();
 
@@ -702,5 +684,4 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	private boolean _setOriginalStatus;
 	private long _columnBitmask;
 	private MemberRequest _escapedModel;
-	private MemberRequest _unescapedModel;
 }

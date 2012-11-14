@@ -25,8 +25,6 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalSer
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -437,20 +435,6 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		return (KaleoTimerInstanceToken)ProxyUtil.newProxyInstance(KaleoTimerInstanceToken.class.getClassLoader(),
 			new Class[] { KaleoTimerInstanceToken.class },
 			new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public KaleoTimerInstanceToken toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (KaleoTimerInstanceToken)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (KaleoTimerInstanceToken)this;
-		}
 	}
 
 	@Override

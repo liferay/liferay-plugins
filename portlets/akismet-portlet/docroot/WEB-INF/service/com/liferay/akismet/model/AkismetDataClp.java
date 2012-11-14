@@ -25,8 +25,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -230,20 +228,6 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 	public AkismetData toEscapedModel() {
 		return (AkismetData)ProxyUtil.newProxyInstance(AkismetData.class.getClassLoader(),
 			new Class[] { AkismetData.class }, new AutoEscapeBeanHandler(this));
-	}
-
-	@Override
-	public AkismetData toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			return (AkismetData)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			return (AkismetData)this;
-		}
 	}
 
 	@Override

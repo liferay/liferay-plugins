@@ -34,8 +34,6 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.InvocationHandler;
-
 import java.sql.Types;
 
 import java.util.Date;
@@ -548,22 +546,6 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	@Override
-	public Message toUnescapedModel() {
-		if (ProxyUtil.isProxyClass(getClass())) {
-			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
-
-			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
-
-			_unescapedModel = (Message)autoEscapeBeanHandler.getBean();
-		}
-		else {
-			_unescapedModel = (Message)this;
-		}
-
-		return _unescapedModel;
-	}
-
-	@Override
 	public Object clone() {
 		MessageImpl messageImpl = new MessageImpl();
 
@@ -941,5 +923,4 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	private boolean _setOriginalRemoteMessageId;
 	private long _columnBitmask;
 	private Message _escapedModel;
-	private Message _unescapedModel;
 }
