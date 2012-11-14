@@ -128,7 +128,7 @@ public class WSRPHTTPSender extends HTTPSender {
 		messageContext.setProperty(HTTPConstants.HEADER_COOKIE, cookiesObject);
 	}
 
-	public void addForwardHeaders(
+	protected void addForwardHeaders(
 		MessageContext messageContext, HttpServletRequest request) {
 
 		if (_forwardHeaders.length == 0) {
@@ -147,6 +147,7 @@ public class WSRPHTTPSender extends HTTPSender {
 
 		for (String headerName : _forwardHeaders) {
 			String header = request.getHeader(headerName);
+
 			if (header != null) {
 				requestHeaders.put(headerName, header);
 			}
