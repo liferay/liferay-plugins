@@ -17,6 +17,7 @@ package com.liferay.socialnetworking.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -26,7 +27,7 @@ import com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -239,9 +240,23 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 
 	@Override
 	public MeetupsRegistration toEscapedModel() {
-		return (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
+		return (MeetupsRegistration)ProxyUtil.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
 			new Class[] { MeetupsRegistration.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public MeetupsRegistration toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (MeetupsRegistration)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (MeetupsRegistration)this;
+		}
 	}
 
 	@Override

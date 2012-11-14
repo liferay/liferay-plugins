@@ -31,6 +31,8 @@ import com.liferay.socialcoding.model.SVNRevisionModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -268,13 +270,28 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 
 	@Override
 	public SVNRevision toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (SVNRevision)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (SVNRevision)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public SVNRevision toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (SVNRevision)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (SVNRevision)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -455,7 +472,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	}
 
 	private static ClassLoader _classLoader = SVNRevision.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			SVNRevision.class
 		};
 	private long _svnRevisionId;
@@ -468,5 +485,6 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	private long _revisionNumber;
 	private String _comments;
 	private long _columnBitmask;
-	private SVNRevision _escapedModelProxy;
+	private SVNRevision _escapedModel;
+	private SVNRevision _unescapedModel;
 }

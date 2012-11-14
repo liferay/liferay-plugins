@@ -331,6 +331,10 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toEscapedModel());
 	}
 
+	public com.liferay.wsrp.model.WSRPConsumerPortlet toUnescapedModel() {
+		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _wsrpConsumerPortlet.toString();

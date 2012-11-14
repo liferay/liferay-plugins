@@ -16,6 +16,7 @@ package com.liferay.so.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,7 +26,7 @@ import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -160,8 +161,22 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	@Override
 	public FavoriteSite toEscapedModel() {
-		return (FavoriteSite)Proxy.newProxyInstance(FavoriteSite.class.getClassLoader(),
+		return (FavoriteSite)ProxyUtil.newProxyInstance(FavoriteSite.class.getClassLoader(),
 			new Class[] { FavoriteSite.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public FavoriteSite toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (FavoriteSite)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (FavoriteSite)this;
+		}
 	}
 
 	@Override

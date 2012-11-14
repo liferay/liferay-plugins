@@ -307,6 +307,8 @@ public interface OAuthTokenModel extends AuditedModel, BaseModel<OAuthToken> {
 
 	public OAuthToken toEscapedModel();
 
+	public OAuthToken toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

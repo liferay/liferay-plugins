@@ -276,6 +276,8 @@ public interface MicroblogsEntryModel extends AuditedModel,
 
 	public MicroblogsEntry toEscapedModel();
 
+	public MicroblogsEntry toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

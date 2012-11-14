@@ -398,6 +398,10 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return new CheckoutWrapper(_checkout.toEscapedModel());
 	}
 
+	public com.liferay.ams.model.Checkout toUnescapedModel() {
+		return new CheckoutWrapper(_checkout.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _checkout.toString();

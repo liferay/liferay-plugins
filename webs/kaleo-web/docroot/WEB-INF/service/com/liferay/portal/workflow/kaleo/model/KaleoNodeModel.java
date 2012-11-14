@@ -319,6 +319,8 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode>, GroupedModel {
 
 	public KaleoNode toEscapedModel();
 
+	public KaleoNode toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

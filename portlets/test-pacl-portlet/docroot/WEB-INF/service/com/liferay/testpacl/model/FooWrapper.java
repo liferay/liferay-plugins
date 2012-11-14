@@ -152,6 +152,10 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return new FooWrapper(_foo.toEscapedModel());
 	}
 
+	public com.liferay.testpacl.model.Foo toUnescapedModel() {
+		return new FooWrapper(_foo.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _foo.toString();

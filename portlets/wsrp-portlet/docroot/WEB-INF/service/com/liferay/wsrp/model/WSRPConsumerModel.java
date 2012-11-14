@@ -249,6 +249,8 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 
 	public WSRPConsumer toEscapedModel();
 
+	public WSRPConsumer toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

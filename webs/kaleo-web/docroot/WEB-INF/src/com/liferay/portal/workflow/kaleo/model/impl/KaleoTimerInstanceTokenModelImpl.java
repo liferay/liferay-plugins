@@ -32,6 +32,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -572,13 +574,28 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public KaleoTimerInstanceToken toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoTimerInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoTimerInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public KaleoTimerInstanceToken toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (KaleoTimerInstanceToken)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (KaleoTimerInstanceToken)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -924,7 +941,7 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	private static ClassLoader _classLoader = KaleoTimerInstanceToken.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoTimerInstanceToken.class
 		};
 	private long _kaleoTimerInstanceTokenId;
@@ -960,5 +977,6 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	private Date _completionDate;
 	private String _workflowContext;
 	private long _columnBitmask;
-	private KaleoTimerInstanceToken _escapedModelProxy;
+	private KaleoTimerInstanceToken _escapedModel;
+	private KaleoTimerInstanceToken _unescapedModel;
 }

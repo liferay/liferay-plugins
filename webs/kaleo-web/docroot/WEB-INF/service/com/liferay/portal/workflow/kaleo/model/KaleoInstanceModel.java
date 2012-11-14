@@ -340,6 +340,8 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance>,
 
 	public KaleoInstance toEscapedModel();
 
+	public KaleoInstance toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

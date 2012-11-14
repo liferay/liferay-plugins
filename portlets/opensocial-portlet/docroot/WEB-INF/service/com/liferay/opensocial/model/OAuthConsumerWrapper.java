@@ -355,6 +355,10 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		return new OAuthConsumerWrapper(_oAuthConsumer.toEscapedModel());
 	}
 
+	public com.liferay.opensocial.model.OAuthConsumer toUnescapedModel() {
+		return new OAuthConsumerWrapper(_oAuthConsumer.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _oAuthConsumer.toString();

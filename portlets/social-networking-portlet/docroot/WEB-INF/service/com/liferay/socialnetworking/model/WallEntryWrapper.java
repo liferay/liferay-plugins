@@ -348,6 +348,10 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		return new WallEntryWrapper(_wallEntry.toEscapedModel());
 	}
 
+	public com.liferay.socialnetworking.model.WallEntry toUnescapedModel() {
+		return new WallEntryWrapper(_wallEntry.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _wallEntry.toString();

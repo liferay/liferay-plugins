@@ -187,6 +187,8 @@ public interface EntryModel extends BaseModel<Entry> {
 
 	public Entry toEscapedModel();
 
+	public Entry toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

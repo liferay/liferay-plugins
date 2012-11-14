@@ -33,6 +33,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -303,13 +305,28 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 
 	@Override
 	public Checkout toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Checkout)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Checkout)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public Checkout toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (Checkout)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (Checkout)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -531,7 +548,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	}
 
 	private static ClassLoader _classLoader = Checkout.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			Checkout.class
 		};
 	private long _checkoutId;
@@ -545,5 +562,6 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	private Date _checkOutDate;
 	private Date _expectedCheckInDate;
 	private Date _actualCheckInDate;
-	private Checkout _escapedModelProxy;
+	private Checkout _escapedModel;
+	private Checkout _unescapedModel;
 }

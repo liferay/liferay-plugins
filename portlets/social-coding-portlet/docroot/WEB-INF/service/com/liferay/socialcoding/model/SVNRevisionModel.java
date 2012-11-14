@@ -173,6 +173,8 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 
 	public SVNRevision toEscapedModel();
 
+	public SVNRevision toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

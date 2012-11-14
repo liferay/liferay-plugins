@@ -561,6 +561,10 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 		return new KaleoTransitionWrapper(_kaleoTransition.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toUnescapedModel() {
+		return new KaleoTransitionWrapper(_kaleoTransition.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoTransition.toString();

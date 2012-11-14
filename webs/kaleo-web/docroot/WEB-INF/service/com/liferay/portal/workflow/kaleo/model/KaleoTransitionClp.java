@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,7 +25,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalServiceUtil
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -355,9 +356,23 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public KaleoTransition toEscapedModel() {
-		return (KaleoTransition)Proxy.newProxyInstance(KaleoTransition.class.getClassLoader(),
+		return (KaleoTransition)ProxyUtil.newProxyInstance(KaleoTransition.class.getClassLoader(),
 			new Class[] { KaleoTransition.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public KaleoTransition toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (KaleoTransition)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (KaleoTransition)this;
+		}
 	}
 
 	@Override

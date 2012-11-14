@@ -31,6 +31,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -327,13 +329,28 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 
 	@Override
 	public OAuthConsumer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (OAuthConsumer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (OAuthConsumer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public OAuthConsumer toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (OAuthConsumer)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (OAuthConsumer)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -554,7 +571,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	private static ClassLoader _classLoader = OAuthConsumer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			OAuthConsumer.class
 		};
 	private long _oAuthConsumerId;
@@ -569,5 +586,6 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private String _consumerSecret;
 	private String _keyType;
 	private long _columnBitmask;
-	private OAuthConsumer _escapedModelProxy;
+	private OAuthConsumer _escapedModel;
+	private OAuthConsumer _unescapedModel;
 }

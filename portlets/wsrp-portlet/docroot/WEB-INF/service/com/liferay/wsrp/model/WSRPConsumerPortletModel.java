@@ -202,6 +202,8 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 
 	public WSRPConsumerPortlet toEscapedModel();
 
+	public WSRPConsumerPortlet toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

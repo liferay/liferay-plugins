@@ -247,6 +247,8 @@ public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 
 	public Feed toEscapedModel();
 
+	public Feed toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

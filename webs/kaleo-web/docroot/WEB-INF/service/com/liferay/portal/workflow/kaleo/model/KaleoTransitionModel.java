@@ -341,6 +341,8 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 
 	public KaleoTransition toEscapedModel();
 
+	public KaleoTransition toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

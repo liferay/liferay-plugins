@@ -418,6 +418,8 @@ public interface KaleoTimerInstanceTokenModel extends BaseModel<KaleoTimerInstan
 
 	public KaleoTimerInstanceToken toEscapedModel();
 
+	public KaleoTimerInstanceToken toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

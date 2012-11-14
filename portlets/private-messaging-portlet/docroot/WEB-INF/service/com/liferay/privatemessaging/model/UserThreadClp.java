@@ -17,6 +17,7 @@ package com.liferay.privatemessaging.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -26,7 +27,7 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -260,8 +261,22 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	@Override
 	public UserThread toEscapedModel() {
-		return (UserThread)Proxy.newProxyInstance(UserThread.class.getClassLoader(),
+		return (UserThread)ProxyUtil.newProxyInstance(UserThread.class.getClassLoader(),
 			new Class[] { UserThread.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public UserThread toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (UserThread)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (UserThread)this;
+		}
 	}
 
 	@Override

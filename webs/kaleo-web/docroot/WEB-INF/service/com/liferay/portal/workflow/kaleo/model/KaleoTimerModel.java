@@ -355,6 +355,8 @@ public interface KaleoTimerModel extends BaseModel<KaleoTimer>, GroupedModel {
 
 	public KaleoTimer toEscapedModel();
 
+	public KaleoTimer toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,7 +25,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -561,8 +562,22 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 
 	@Override
 	public KaleoLog toEscapedModel() {
-		return (KaleoLog)Proxy.newProxyInstance(KaleoLog.class.getClassLoader(),
+		return (KaleoLog)ProxyUtil.newProxyInstance(KaleoLog.class.getClassLoader(),
 			new Class[] { KaleoLog.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public KaleoLog toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (KaleoLog)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (KaleoLog)this;
+		}
 	}
 
 	@Override

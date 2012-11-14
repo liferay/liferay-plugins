@@ -18,6 +18,7 @@ import com.liferay.mail.service.FolderLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,7 +26,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -251,8 +252,22 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 
 	@Override
 	public Folder toEscapedModel() {
-		return (Folder)Proxy.newProxyInstance(Folder.class.getClassLoader(),
+		return (Folder)ProxyUtil.newProxyInstance(Folder.class.getClassLoader(),
 			new Class[] { Folder.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public Folder toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (Folder)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (Folder)this;
+		}
 	}
 
 	@Override

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -31,7 +32,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -597,9 +598,23 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 
 	@Override
 	public CalendarResource toEscapedModel() {
-		return (CalendarResource)Proxy.newProxyInstance(CalendarResource.class.getClassLoader(),
+		return (CalendarResource)ProxyUtil.newProxyInstance(CalendarResource.class.getClassLoader(),
 			new Class[] { CalendarResource.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public CalendarResource toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (CalendarResource)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (CalendarResource)this;
+		}
 	}
 
 	@Override

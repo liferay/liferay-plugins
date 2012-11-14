@@ -31,6 +31,8 @@ import com.liferay.wsrp.model.WSRPProducerModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -337,13 +339,28 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public WSRPProducer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WSRPProducer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (WSRPProducer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public WSRPProducer toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (WSRPProducer)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (WSRPProducer)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -564,7 +581,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	private static ClassLoader _classLoader = WSRPProducer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			WSRPProducer.class
 		};
 	private String _uuid;
@@ -582,5 +599,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private String _version;
 	private String _portletIds;
 	private long _columnBitmask;
-	private WSRPProducer _escapedModelProxy;
+	private WSRPProducer _escapedModel;
+	private WSRPProducer _unescapedModel;
 }

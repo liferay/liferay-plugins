@@ -32,6 +32,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -520,13 +522,28 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 	@Override
 	public KaleoTaskAssignment toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoTaskAssignment)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoTaskAssignment)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public KaleoTaskAssignment toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (KaleoTaskAssignment)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (KaleoTaskAssignment)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -853,7 +870,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	private static ClassLoader _classLoader = KaleoTaskAssignment.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoTaskAssignment.class
 		};
 	private long _kaleoTaskAssignmentId;
@@ -883,5 +900,6 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	private String _assigneeScriptLanguage;
 	private String _assigneeScriptRequiredContexts;
 	private long _columnBitmask;
-	private KaleoTaskAssignment _escapedModelProxy;
+	private KaleoTaskAssignment _escapedModel;
+	private KaleoTaskAssignment _unescapedModel;
 }

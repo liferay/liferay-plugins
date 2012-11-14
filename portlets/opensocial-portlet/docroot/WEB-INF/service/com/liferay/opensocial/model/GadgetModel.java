@@ -203,6 +203,8 @@ public interface GadgetModel extends BaseModel<Gadget> {
 
 	public Gadget toEscapedModel();
 
+	public Gadget toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

@@ -470,6 +470,10 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		return new KBCommentWrapper(_kbComment.toEscapedModel());
 	}
 
+	public com.liferay.knowledgebase.model.KBComment toUnescapedModel() {
+		return new KBCommentWrapper(_kbComment.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kbComment.toString();

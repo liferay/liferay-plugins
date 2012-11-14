@@ -128,6 +128,8 @@ public interface TypeModel extends BaseModel<Type> {
 
 	public Type toEscapedModel();
 
+	public Type toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

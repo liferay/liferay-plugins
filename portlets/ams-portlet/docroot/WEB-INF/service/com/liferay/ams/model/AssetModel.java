@@ -253,6 +253,8 @@ public interface AssetModel extends AuditedModel, BaseModel<Asset> {
 
 	public Asset toEscapedModel();
 
+	public Asset toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

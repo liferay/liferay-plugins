@@ -33,6 +33,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -351,13 +353,28 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	@Override
 	public Entry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Entry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Entry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public Entry toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (Entry)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (Entry)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -584,9 +601,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	private static ClassLoader _classLoader = Entry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Entry.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Entry.class };
 	private long _entryId;
 	private long _groupId;
 	private long _companyId;
@@ -602,5 +617,6 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	private String _originalEmailAddress;
 	private String _comments;
 	private long _columnBitmask;
-	private Entry _escapedModelProxy;
+	private Entry _escapedModel;
+	private Entry _unescapedModel;
 }

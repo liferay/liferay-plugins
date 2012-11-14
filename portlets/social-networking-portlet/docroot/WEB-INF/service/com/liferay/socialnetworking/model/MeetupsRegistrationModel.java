@@ -233,6 +233,8 @@ public interface MeetupsRegistrationModel extends AuditedModel,
 
 	public MeetupsRegistration toEscapedModel();
 
+	public MeetupsRegistration toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

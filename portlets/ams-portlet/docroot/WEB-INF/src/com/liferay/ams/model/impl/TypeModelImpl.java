@@ -31,6 +31,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -181,13 +183,28 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 
 	@Override
 	public Type toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Type)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Type)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public Type toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (Type)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (Type)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -309,11 +326,10 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	}
 
 	private static ClassLoader _classLoader = Type.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Type.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Type.class };
 	private long _typeId;
 	private long _groupId;
 	private String _name;
-	private Type _escapedModelProxy;
+	private Type _escapedModel;
+	private Type _unescapedModel;
 }

@@ -452,6 +452,10 @@ public class KaleoConditionWrapper implements KaleoCondition,
 		return new KaleoConditionWrapper(_kaleoCondition.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition toUnescapedModel() {
+		return new KaleoConditionWrapper(_kaleoCondition.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoCondition.toString();

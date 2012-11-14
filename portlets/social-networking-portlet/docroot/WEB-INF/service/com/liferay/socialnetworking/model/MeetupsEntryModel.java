@@ -303,6 +303,8 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 
 	public MeetupsEntry toEscapedModel();
 
+	public MeetupsEntry toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

@@ -18,6 +18,7 @@ import com.liferay.marketplace.service.AppLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,7 +26,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -255,8 +256,22 @@ public class AppClp extends BaseModelImpl<App> implements App {
 
 	@Override
 	public App toEscapedModel() {
-		return (App)Proxy.newProxyInstance(App.class.getClassLoader(),
+		return (App)ProxyUtil.newProxyInstance(App.class.getClassLoader(),
 			new Class[] { App.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public App toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (App)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (App)this;
+		}
 	}
 
 	@Override

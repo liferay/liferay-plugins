@@ -379,6 +379,8 @@ public interface MessageModel extends AuditedModel, BaseModel<Message> {
 
 	public Message toEscapedModel();
 
+	public Message toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

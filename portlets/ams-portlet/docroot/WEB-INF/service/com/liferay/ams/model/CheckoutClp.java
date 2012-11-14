@@ -18,6 +18,7 @@ import com.liferay.ams.service.CheckoutLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,7 +26,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -250,8 +251,22 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 
 	@Override
 	public Checkout toEscapedModel() {
-		return (Checkout)Proxy.newProxyInstance(Checkout.class.getClassLoader(),
+		return (Checkout)ProxyUtil.newProxyInstance(Checkout.class.getClassLoader(),
 			new Class[] { Checkout.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public Checkout toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (Checkout)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (Checkout)this;
+		}
 	}
 
 	@Override

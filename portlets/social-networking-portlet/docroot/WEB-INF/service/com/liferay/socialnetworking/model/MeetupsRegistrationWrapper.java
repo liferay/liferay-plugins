@@ -376,6 +376,10 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 		return new MeetupsRegistrationWrapper(_meetupsRegistration.toEscapedModel());
 	}
 
+	public com.liferay.socialnetworking.model.MeetupsRegistration toUnescapedModel() {
+		return new MeetupsRegistrationWrapper(_meetupsRegistration.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _meetupsRegistration.toString();

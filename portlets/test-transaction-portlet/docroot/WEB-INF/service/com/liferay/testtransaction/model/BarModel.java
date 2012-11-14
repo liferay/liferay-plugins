@@ -114,6 +114,8 @@ public interface BarModel extends BaseModel<Bar> {
 
 	public Bar toEscapedModel();
 
+	public Bar toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

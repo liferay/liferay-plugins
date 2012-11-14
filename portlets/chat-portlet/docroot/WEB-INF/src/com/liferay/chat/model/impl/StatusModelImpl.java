@@ -33,6 +33,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -332,13 +334,28 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	@Override
 	public Status toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Status)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Status)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public Status toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (Status)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (Status)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -528,9 +545,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	private static ClassLoader _classLoader = Status.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Status.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Status.class };
 	private long _statusId;
 	private long _userId;
 	private String _userUuid;
@@ -547,5 +562,6 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	private String _message;
 	private boolean _playSound;
 	private long _columnBitmask;
-	private Status _escapedModelProxy;
+	private Status _escapedModel;
+	private Status _unescapedModel;
 }

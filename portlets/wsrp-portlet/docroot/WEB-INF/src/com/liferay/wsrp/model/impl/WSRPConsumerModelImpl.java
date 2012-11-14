@@ -31,6 +31,8 @@ import com.liferay.wsrp.model.WSRPConsumerModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -376,13 +378,28 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public WSRPConsumer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WSRPConsumer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (WSRPConsumer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public WSRPConsumer toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (WSRPConsumer)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (WSRPConsumer)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -637,7 +654,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	private static ClassLoader _classLoader = WSRPConsumer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			WSRPConsumer.class
 		};
 	private String _uuid;
@@ -655,5 +672,6 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private String _registrationPropertiesString;
 	private String _forwardCookies;
 	private long _columnBitmask;
-	private WSRPConsumer _escapedModelProxy;
+	private WSRPConsumer _escapedModel;
+	private WSRPConsumer _unescapedModel;
 }

@@ -293,6 +293,8 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 
 	public KBComment toEscapedModel();
 
+	public KBComment toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

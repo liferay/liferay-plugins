@@ -498,6 +498,10 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		return new OAuthTokenWrapper(_oAuthToken.toEscapedModel());
 	}
 
+	public com.liferay.opensocial.model.OAuthToken toUnescapedModel() {
+		return new OAuthTokenWrapper(_oAuthToken.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _oAuthToken.toString();

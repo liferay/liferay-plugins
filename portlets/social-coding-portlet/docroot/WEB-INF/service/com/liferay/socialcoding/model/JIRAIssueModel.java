@@ -248,6 +248,8 @@ public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 
 	public JIRAIssue toEscapedModel();
 
+	public JIRAIssue toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

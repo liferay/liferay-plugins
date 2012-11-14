@@ -34,6 +34,8 @@ import com.liferay.socialnetworking.model.WallEntryModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -313,13 +315,28 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public WallEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WallEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (WallEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public WallEntry toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (WallEntry)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (WallEntry)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -519,7 +536,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	private static ClassLoader _classLoader = WallEntry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			WallEntry.class
 		};
 	private long _wallEntryId;
@@ -536,5 +553,6 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	private Date _modifiedDate;
 	private String _comments;
 	private long _columnBitmask;
-	private WallEntry _escapedModelProxy;
+	private WallEntry _escapedModel;
+	private WallEntry _unescapedModel;
 }

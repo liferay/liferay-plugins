@@ -448,6 +448,10 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 		return new MicroblogsEntryWrapper(_microblogsEntry.toEscapedModel());
 	}
 
+	public com.liferay.microblogs.model.MicroblogsEntry toUnescapedModel() {
+		return new MicroblogsEntryWrapper(_microblogsEntry.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _microblogsEntry.toString();

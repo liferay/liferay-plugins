@@ -279,6 +279,10 @@ public class SVNRevisionWrapper implements SVNRevision,
 		return new SVNRevisionWrapper(_svnRevision.toEscapedModel());
 	}
 
+	public com.liferay.socialcoding.model.SVNRevision toUnescapedModel() {
+		return new SVNRevisionWrapper(_svnRevision.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _svnRevision.toString();

@@ -217,6 +217,8 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 
 	public WSRPProducer toEscapedModel();
 
+	public WSRPProducer toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

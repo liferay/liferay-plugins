@@ -233,6 +233,8 @@ public interface AppModel extends AuditedModel, BaseModel<App> {
 
 	public App toEscapedModel();
 
+	public App toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

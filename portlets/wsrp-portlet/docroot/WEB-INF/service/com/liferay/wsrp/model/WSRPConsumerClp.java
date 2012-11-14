@@ -16,6 +16,7 @@ package com.liferay.wsrp.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,7 +25,7 @@ import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -280,8 +281,22 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public WSRPConsumer toEscapedModel() {
-		return (WSRPConsumer)Proxy.newProxyInstance(WSRPConsumer.class.getClassLoader(),
+		return (WSRPConsumer)ProxyUtil.newProxyInstance(WSRPConsumer.class.getClassLoader(),
 			new Class[] { WSRPConsumer.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public WSRPConsumer toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (WSRPConsumer)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (WSRPConsumer)this;
+		}
 	}
 
 	@Override

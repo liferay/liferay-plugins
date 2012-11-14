@@ -339,6 +339,8 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken>,
 
 	public KaleoInstanceToken toEscapedModel();
 
+	public KaleoInstanceToken toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,7 +25,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServ
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -412,9 +413,23 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 
 	@Override
 	public KaleoTaskInstanceToken toEscapedModel() {
-		return (KaleoTaskInstanceToken)Proxy.newProxyInstance(KaleoTaskInstanceToken.class.getClassLoader(),
+		return (KaleoTaskInstanceToken)ProxyUtil.newProxyInstance(KaleoTaskInstanceToken.class.getClassLoader(),
 			new Class[] { KaleoTaskInstanceToken.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public KaleoTaskInstanceToken toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (KaleoTaskInstanceToken)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (KaleoTaskInstanceToken)this;
+		}
 	}
 
 	@Override

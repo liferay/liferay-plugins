@@ -34,6 +34,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -537,13 +539,28 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	@Override
 	public Message toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Message)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Message)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public Message toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (Message)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (Message)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -893,7 +910,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	private static ClassLoader _classLoader = Message.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			Message.class
 		};
 	private long _messageId;
@@ -923,5 +940,6 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	private long _originalRemoteMessageId;
 	private boolean _setOriginalRemoteMessageId;
 	private long _columnBitmask;
-	private Message _escapedModelProxy;
+	private Message _escapedModel;
+	private Message _unescapedModel;
 }

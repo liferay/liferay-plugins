@@ -538,6 +538,10 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		return new TasksEntryWrapper(_tasksEntry.toEscapedModel());
 	}
 
+	public com.liferay.tasks.model.TasksEntry toUnescapedModel() {
+		return new TasksEntryWrapper(_tasksEntry.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _tasksEntry.toString();

@@ -17,6 +17,7 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,7 +26,7 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -257,8 +258,22 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 
 	@Override
 	public JIRAIssue toEscapedModel() {
-		return (JIRAIssue)Proxy.newProxyInstance(JIRAIssue.class.getClassLoader(),
+		return (JIRAIssue)ProxyUtil.newProxyInstance(JIRAIssue.class.getClassLoader(),
 			new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public JIRAIssue toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (JIRAIssue)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (JIRAIssue)this;
+		}
 	}
 
 	@Override

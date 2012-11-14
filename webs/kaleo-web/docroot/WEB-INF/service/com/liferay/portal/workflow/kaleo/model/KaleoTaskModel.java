@@ -261,6 +261,8 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask>, GroupedModel {
 
 	public KaleoTask toEscapedModel();
 
+	public KaleoTask toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

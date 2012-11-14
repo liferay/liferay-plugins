@@ -219,6 +219,8 @@ public interface AkismetDataModel extends BaseModel<AkismetData> {
 
 	public AkismetData toEscapedModel();
 
+	public AkismetData toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

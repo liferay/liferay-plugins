@@ -34,6 +34,8 @@ import com.liferay.socialnetworking.model.MeetupsRegistrationModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -343,13 +345,28 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public MeetupsRegistration toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (MeetupsRegistration)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (MeetupsRegistration)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public MeetupsRegistration toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (MeetupsRegistration)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (MeetupsRegistration)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -563,7 +580,7 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	private static ClassLoader _classLoader = MeetupsRegistration.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			MeetupsRegistration.class
 		};
 	private long _meetupsRegistrationId;
@@ -583,5 +600,6 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	private boolean _setOriginalStatus;
 	private String _comments;
 	private long _columnBitmask;
-	private MeetupsRegistration _escapedModelProxy;
+	private MeetupsRegistration _escapedModel;
+	private MeetupsRegistration _unescapedModel;
 }

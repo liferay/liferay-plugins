@@ -602,6 +602,10 @@ public class KaleoActionWrapper implements KaleoAction,
 		return new KaleoActionWrapper(_kaleoAction.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction toUnescapedModel() {
+		return new KaleoActionWrapper(_kaleoAction.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoAction.toString();

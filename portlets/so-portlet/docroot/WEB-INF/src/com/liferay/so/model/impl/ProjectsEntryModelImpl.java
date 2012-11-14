@@ -34,6 +34,8 @@ import com.liferay.so.model.ProjectsEntryModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -358,13 +360,28 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 	@Override
 	public ProjectsEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (ProjectsEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (ProjectsEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public ProjectsEntry toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (ProjectsEntry)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (ProjectsEntry)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -611,7 +628,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	}
 
 	private static ClassLoader _classLoader = ProjectsEntry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			ProjectsEntry.class
 		};
 	private long _projectsEntryId;
@@ -629,5 +646,6 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	private Date _endDate;
 	private String _data;
 	private long _columnBitmask;
-	private ProjectsEntry _escapedModelProxy;
+	private ProjectsEntry _escapedModel;
+	private ProjectsEntry _unescapedModel;
 }

@@ -40,6 +40,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -1081,13 +1083,28 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public CalendarBooking toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (CalendarBooking)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (CalendarBooking)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public CalendarBooking toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (CalendarBooking)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (CalendarBooking)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -1537,7 +1554,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	private static ClassLoader _classLoader = CalendarBooking.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			CalendarBooking.class
 		};
 	private String _uuid;
@@ -1588,5 +1605,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private long _columnBitmask;
-	private CalendarBooking _escapedModelProxy;
+	private CalendarBooking _escapedModel;
+	private CalendarBooking _unescapedModel;
 }

@@ -542,6 +542,8 @@ public interface KaleoLogModel extends BaseModel<KaleoLog>, GroupedModel {
 
 	public KaleoLog toEscapedModel();
 
+	public KaleoLog toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

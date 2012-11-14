@@ -218,6 +218,8 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 
 	public OAuthConsumer toEscapedModel();
 
+	public OAuthConsumer toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

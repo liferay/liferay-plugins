@@ -248,6 +248,8 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>, GroupedModel {
 
 	public KBTemplate toEscapedModel();
 
+	public KBTemplate toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

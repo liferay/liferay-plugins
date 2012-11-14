@@ -33,6 +33,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.HashMap;
@@ -310,13 +312,28 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public Attachment toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Attachment)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Attachment)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public Attachment toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (Attachment)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (Attachment)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -507,7 +524,7 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	}
 
 	private static ClassLoader _classLoader = Attachment.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			Attachment.class
 		};
 	private long _attachmentId;
@@ -523,5 +540,6 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	private String _fileName;
 	private long _size;
 	private long _columnBitmask;
-	private Attachment _escapedModelProxy;
+	private Attachment _escapedModel;
+	private Attachment _unescapedModel;
 }

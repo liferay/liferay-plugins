@@ -227,6 +227,10 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		return new ModuleWrapper(_module.toEscapedModel());
 	}
 
+	public com.liferay.marketplace.model.Module toUnescapedModel() {
+		return new ModuleWrapper(_module.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _module.toString();

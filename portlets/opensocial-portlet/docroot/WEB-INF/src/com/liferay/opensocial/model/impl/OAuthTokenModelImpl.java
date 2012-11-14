@@ -33,6 +33,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -462,13 +464,28 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public OAuthToken toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (OAuthToken)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (OAuthToken)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public OAuthToken toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (OAuthToken)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (OAuthToken)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -758,7 +775,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	private static ClassLoader _classLoader = OAuthToken.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			OAuthToken.class
 		};
 	private long _oAuthTokenId;
@@ -784,5 +801,6 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	private String _sessionHandle;
 	private long _expiration;
 	private long _columnBitmask;
-	private OAuthToken _escapedModelProxy;
+	private OAuthToken _escapedModel;
+	private OAuthToken _unescapedModel;
 }

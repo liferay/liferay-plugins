@@ -399,6 +399,10 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 		return new FolderWrapper(_folder.toEscapedModel());
 	}
 
+	public com.liferay.mail.model.Folder toUnescapedModel() {
+		return new FolderWrapper(_folder.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _folder.toString();

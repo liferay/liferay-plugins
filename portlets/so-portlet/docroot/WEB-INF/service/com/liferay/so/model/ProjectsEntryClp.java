@@ -17,6 +17,7 @@ package com.liferay.so.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -26,7 +27,7 @@ import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -268,8 +269,22 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 
 	@Override
 	public ProjectsEntry toEscapedModel() {
-		return (ProjectsEntry)Proxy.newProxyInstance(ProjectsEntry.class.getClassLoader(),
+		return (ProjectsEntry)ProxyUtil.newProxyInstance(ProjectsEntry.class.getClassLoader(),
 			new Class[] { ProjectsEntry.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public ProjectsEntry toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (ProjectsEntry)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (ProjectsEntry)this;
+		}
 	}
 
 	@Override

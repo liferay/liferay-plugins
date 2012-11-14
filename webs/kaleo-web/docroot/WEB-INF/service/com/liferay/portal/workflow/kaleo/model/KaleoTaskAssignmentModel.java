@@ -351,6 +351,8 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 
 	public KaleoTaskAssignment toEscapedModel();
 
+	public KaleoTaskAssignment toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

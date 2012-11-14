@@ -16,6 +16,7 @@ package com.liferay.testtransaction.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,7 +25,7 @@ import com.liferay.testtransaction.service.BarLocalServiceUtil;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Proxy;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -120,8 +121,22 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 
 	@Override
 	public Bar toEscapedModel() {
-		return (Bar)Proxy.newProxyInstance(Bar.class.getClassLoader(),
+		return (Bar)ProxyUtil.newProxyInstance(Bar.class.getClassLoader(),
 			new Class[] { Bar.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public Bar toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			return (Bar)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			return (Bar)this;
+		}
 	}
 
 	@Override

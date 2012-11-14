@@ -821,6 +821,10 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return new CalendarResourceWrapper(_calendarResource.toEscapedModel());
 	}
 
+	public com.liferay.calendar.model.CalendarResource toUnescapedModel() {
+		return new CalendarResourceWrapper(_calendarResource.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _calendarResource.toString();

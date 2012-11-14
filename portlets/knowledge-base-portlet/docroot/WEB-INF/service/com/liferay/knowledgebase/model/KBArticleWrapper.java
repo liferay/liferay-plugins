@@ -879,6 +879,10 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return new KBArticleWrapper(_kbArticle.toEscapedModel());
 	}
 
+	public com.liferay.knowledgebase.model.KBArticle toUnescapedModel() {
+		return new KBArticleWrapper(_kbArticle.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kbArticle.toString();

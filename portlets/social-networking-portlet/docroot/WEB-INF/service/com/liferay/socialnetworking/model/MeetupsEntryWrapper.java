@@ -500,6 +500,10 @@ public class MeetupsEntryWrapper implements MeetupsEntry,
 		return new MeetupsEntryWrapper(_meetupsEntry.toEscapedModel());
 	}
 
+	public com.liferay.socialnetworking.model.MeetupsEntry toUnescapedModel() {
+		return new MeetupsEntryWrapper(_meetupsEntry.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _meetupsEntry.toString();

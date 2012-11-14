@@ -32,6 +32,8 @@ import com.liferay.socialcoding.model.JIRAActionModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -322,13 +324,28 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public JIRAAction toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (JIRAAction)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (JIRAAction)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public JIRAAction toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (JIRAAction)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (JIRAAction)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -541,7 +558,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	private static ClassLoader _classLoader = JIRAAction.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			JIRAAction.class
 		};
 	private long _jiraActionId;
@@ -557,5 +574,6 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	private String _body;
 	private String _jiraGroupName;
 	private long _columnBitmask;
-	private JIRAAction _escapedModelProxy;
+	private JIRAAction _escapedModel;
+	private JIRAAction _unescapedModel;
 }

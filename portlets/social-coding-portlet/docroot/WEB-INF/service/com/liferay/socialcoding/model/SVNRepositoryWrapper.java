@@ -204,6 +204,10 @@ public class SVNRepositoryWrapper implements SVNRepository,
 		return new SVNRepositoryWrapper(_svnRepository.toEscapedModel());
 	}
 
+	public com.liferay.socialcoding.model.SVNRepository toUnescapedModel() {
+		return new SVNRepositoryWrapper(_svnRepository.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _svnRepository.toString();

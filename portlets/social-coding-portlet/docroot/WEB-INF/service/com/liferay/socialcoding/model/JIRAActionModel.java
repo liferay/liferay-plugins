@@ -203,6 +203,8 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 
 	public JIRAAction toEscapedModel();
 
+	public JIRAAction toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

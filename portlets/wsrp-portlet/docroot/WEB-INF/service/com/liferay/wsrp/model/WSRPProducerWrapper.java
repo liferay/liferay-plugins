@@ -354,6 +354,10 @@ public class WSRPProducerWrapper implements WSRPProducer,
 		return new WSRPProducerWrapper(_wsrpProducer.toEscapedModel());
 	}
 
+	public com.liferay.wsrp.model.WSRPProducer toUnescapedModel() {
+		return new WSRPProducerWrapper(_wsrpProducer.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _wsrpProducer.toString();

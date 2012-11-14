@@ -562,6 +562,10 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 		return new KaleoInstanceWrapper(_kaleoInstance.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance toUnescapedModel() {
+		return new KaleoInstanceWrapper(_kaleoInstance.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoInstance.toString();

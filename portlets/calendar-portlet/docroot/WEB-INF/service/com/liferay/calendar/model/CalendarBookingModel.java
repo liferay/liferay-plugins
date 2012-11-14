@@ -745,6 +745,8 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 
 	public CalendarBooking toEscapedModel();
 
+	public CalendarBooking toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

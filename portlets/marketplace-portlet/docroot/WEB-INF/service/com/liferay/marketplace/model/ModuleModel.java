@@ -143,6 +143,8 @@ public interface ModuleModel extends BaseModel<Module> {
 
 	public Module toEscapedModel();
 
+	public Module toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

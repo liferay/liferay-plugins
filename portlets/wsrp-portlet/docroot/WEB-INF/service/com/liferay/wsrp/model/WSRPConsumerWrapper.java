@@ -410,6 +410,10 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 		return new WSRPConsumerWrapper(_wsrpConsumer.toEscapedModel());
 	}
 
+	public com.liferay.wsrp.model.WSRPConsumer toUnescapedModel() {
+		return new WSRPConsumerWrapper(_wsrpConsumer.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _wsrpConsumer.toString();

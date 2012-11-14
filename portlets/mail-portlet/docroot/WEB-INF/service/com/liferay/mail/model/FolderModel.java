@@ -247,6 +247,8 @@ public interface FolderModel extends AuditedModel, BaseModel<Folder> {
 
 	public Folder toEscapedModel();
 
+	public Folder toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

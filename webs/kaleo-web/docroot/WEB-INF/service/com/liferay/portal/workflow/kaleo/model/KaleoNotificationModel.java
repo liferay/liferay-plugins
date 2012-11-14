@@ -352,6 +352,8 @@ public interface KaleoNotificationModel extends BaseModel<KaleoNotification>,
 
 	public KaleoNotification toEscapedModel();
 
+	public KaleoNotification toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

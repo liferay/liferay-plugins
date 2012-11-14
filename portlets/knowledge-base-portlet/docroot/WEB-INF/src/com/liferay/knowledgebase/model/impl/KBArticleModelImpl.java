@@ -37,6 +37,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -894,13 +896,28 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public KBArticle toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KBArticle)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KBArticle)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public KBArticle toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (KBArticle)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (KBArticle)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -1310,7 +1327,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	private static ClassLoader _classLoader = KBArticle.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KBArticle.class
 		};
 	private String _uuid;
@@ -1358,5 +1375,6 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private long _columnBitmask;
-	private KBArticle _escapedModelProxy;
+	private KBArticle _escapedModel;
+	private KBArticle _unescapedModel;
 }

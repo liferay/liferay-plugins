@@ -581,6 +581,10 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		return new KaleoTaskAssignmentWrapper(_kaleoTaskAssignment.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toUnescapedModel() {
+		return new KaleoTaskAssignmentWrapper(_kaleoTaskAssignment.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoTaskAssignment.toString();

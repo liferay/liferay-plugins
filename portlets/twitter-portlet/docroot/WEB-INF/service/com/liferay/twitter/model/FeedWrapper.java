@@ -393,6 +393,10 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return new FeedWrapper(_feed.toEscapedModel());
 	}
 
+	public com.liferay.twitter.model.Feed toUnescapedModel() {
+		return new FeedWrapper(_feed.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _feed.toString();

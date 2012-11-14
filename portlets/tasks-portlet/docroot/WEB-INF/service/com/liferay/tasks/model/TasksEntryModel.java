@@ -332,6 +332,8 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 
 	public TasksEntry toEscapedModel();
 
+	public TasksEntry toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

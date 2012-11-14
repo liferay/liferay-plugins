@@ -229,6 +229,8 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 
 	public Attachment toEscapedModel();
 
+	public Attachment toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

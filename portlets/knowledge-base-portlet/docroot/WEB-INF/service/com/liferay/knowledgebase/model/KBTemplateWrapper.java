@@ -398,6 +398,10 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 		return new KBTemplateWrapper(_kbTemplate.toEscapedModel());
 	}
 
+	public com.liferay.knowledgebase.model.KBTemplate toUnescapedModel() {
+		return new KBTemplateWrapper(_kbTemplate.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kbTemplate.toString();

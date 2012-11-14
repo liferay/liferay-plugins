@@ -177,6 +177,10 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return new BarWrapper(_bar.toEscapedModel());
 	}
 
+	public com.liferay.testtransaction.model.Bar toUnescapedModel() {
+		return new BarWrapper(_bar.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _bar.toString();

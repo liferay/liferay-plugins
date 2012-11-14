@@ -32,6 +32,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Date;
@@ -490,13 +492,28 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	@Override
 	public KaleoTimer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoTimer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoTimer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public KaleoTimer toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (KaleoTimer)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (KaleoTimer)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -809,7 +826,7 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	private static ClassLoader _classLoader = KaleoTimer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoTimer.class
 		};
 	private long _kaleoTimerId;
@@ -836,5 +853,6 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
 	private long _columnBitmask;
-	private KaleoTimer _escapedModelProxy;
+	private KaleoTimer _escapedModel;
+	private KaleoTimer _unescapedModel;
 }

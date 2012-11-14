@@ -36,6 +36,8 @@ import com.liferay.tasks.model.TasksEntrySoap;
 
 import java.io.Serializable;
 
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -528,13 +530,28 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public TasksEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (TasksEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (TasksEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	@Override
+	public TasksEntry toUnescapedModel() {
+		if (ProxyUtil.isProxyClass(getClass())) {
+			InvocationHandler invocationHandler = ProxyUtil.getInvocationHandler(this);
+
+			AutoEscapeBeanHandler autoEscapeBeanHandler = (AutoEscapeBeanHandler)invocationHandler;
+
+			_unescapedModel = (TasksEntry)autoEscapeBeanHandler.getBean();
+		}
+		else {
+			_unescapedModel = (TasksEntry)this;
+		}
+
+		return _unescapedModel;
 	}
 
 	@Override
@@ -828,7 +845,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	private static ClassLoader _classLoader = TasksEntry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			TasksEntry.class
 		};
 	private long _tasksEntryId;
@@ -857,5 +874,6 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private Date _finishDate;
 	private int _status;
 	private long _columnBitmask;
-	private TasksEntry _escapedModelProxy;
+	private TasksEntry _escapedModel;
+	private TasksEntry _unescapedModel;
 }

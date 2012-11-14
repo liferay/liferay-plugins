@@ -487,6 +487,8 @@ public interface CalendarModel extends BaseModel<Calendar>, GroupedModel {
 
 	public Calendar toEscapedModel();
 
+	public Calendar toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();
