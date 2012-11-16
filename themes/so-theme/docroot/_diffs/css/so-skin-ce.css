@@ -380,7 +380,7 @@ a:hover {
 			margin-bottom: 1em;
 
 			.empty, .more, .name, .name a {
-				padding: 3px 3px 3px 25px;
+				padding: 3px 7px 3px 25px;
 			}
 		}
 
@@ -1529,6 +1529,29 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
+.rtl .portlet-document-library {
+	.aui-column-last {
+		margin-right: 0;
+
+		.toolbar .aui-toolbar-content {
+			direction: ltr;
+		}
+
+		.search-button-container .aui-column {
+			padding: 2px 0 0 3px;
+			width: auto;
+		}
+
+		.context-pane-content {
+			margin-right: 0;
+		}
+	}
+
+	.aui-column-content-first {
+		border-right: 0 solid transparent;
+	}
+}
+
 /* Events Display Portlet */
 
 .events-display-portlet {
@@ -2454,6 +2477,27 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 	.tasks-portlet {
 		zoom: 1;
+	}
+}
+
+.ie.rtl {
+	#navigation {
+		margin-right: 1px;
+	}
+
+	#content .portlet-layout {
+		.portlet-column-first:before {
+			border-right-width: 0;
+		}
+
+		.portlet-column-only:after {
+			border-right: 1px solid $gray-dark;
+			bottom: 0;
+			content: "";
+			position: absolute;
+			right: -1px;
+			top: 0;
+		}
 	}
 }
 
