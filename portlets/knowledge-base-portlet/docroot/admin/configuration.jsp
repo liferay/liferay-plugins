@@ -119,12 +119,6 @@ else if (tabs2.equals("article-updated-email")) {
 							<liferay-ui:message key="category.kb" />
 						</dd>
 						<dt>
-							[$COMMUNITY_NAME$]
-						</dt>
-						<dd>
-							<liferay-ui:message key="the-site-name-associated-with-the-article" />
-						</dd>
-						<dt>
 							[$COMPANY_ID$]
 						</dt>
 						<dd>
@@ -141,6 +135,12 @@ else if (tabs2.equals("article-updated-email")) {
 						</dt>
 						<dd>
 							<liferay-ui:message key="the-company-name-associated-with-the-article" />
+						</dd>
+						<dt>
+							[$SITE_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-site-name-associated-with-the-article" />
 						</dd>
 					</dl>
 				</div>
@@ -231,12 +231,6 @@ else if (tabs2.equals("article-updated-email")) {
 							<liferay-ui:message key="category.kb" />
 						</dd>
 						<dt>
-							[$COMMUNITY_NAME$]
-						</dt>
-						<dd>
-							<liferay-ui:message key="the-site-name-associated-with-the-article" />
-						</dd>
-						<dt>
 							[$COMPANY_ID$]
 						</dt>
 						<dd>
@@ -271,6 +265,12 @@ else if (tabs2.equals("article-updated-email")) {
 						</dt>
 						<dd>
 							<%= PortalUtil.getPortalURL(themeDisplay) %>
+						</dd>
+						<dt>
+							[$SITE_NAME$]
+						</dt>
+						<dd>
+							<liferay-ui:message key="the-site-name-associated-with-the-article" />
 						</dd>
 						<dt>
 							[$TO_ADDRESS$]
