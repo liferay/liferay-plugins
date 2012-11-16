@@ -2,23 +2,22 @@
 
 .so-portlet-activities {
 	.activity-item {
-		margin-bottom: .5em;
-		min-height: 38px;
+		min-height: 45px;
 	}
 
 	.user-portrait {
 		float: left;
-		height: 38px;
+		height: 45px;
 		position: relative;
-		width: 38px;
+		width: 45px;
 
 		.avatar {
 			display: block;
-			height: 30px;
+			height: 45px;
 			overflow: hidden;
 
 			img {
-				max-width: 30px;
+				max-width: 45px;
 			}
 		}
 
@@ -30,7 +29,7 @@
 	}
 
 	.activity-data {
-		margin-left: 45px;
+		margin-left: 55px;
 	}
 
 	.activity-body a {
@@ -41,15 +40,5 @@
 			border-right-width: 0;
 			padding-right: 0;
 		}
-	}
-}
-
-.ie .so-portlet-activities {
-	.activity-item {
-		height: 38px;
-	}
-
-	.user-portrait .avatar img {
-		width: 30px;
 	}
 }
