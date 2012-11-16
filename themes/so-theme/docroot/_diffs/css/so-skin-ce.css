@@ -892,19 +892,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		left: -4px;
 	}
 
-	.user-portrait, .user-portrait .avatar {
-		height: 45px;
-		width: 45px;
-	}
-
-	.user-portrait .avatar img {
-		max-width: 45px;
-	}
-
-	.activity-data {
-		padding-left: 10px;
-	}
-
 	a.group {
 		color: $red;
 	}
