@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
@@ -37,14 +37,12 @@ import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
 
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.portlet.PortletPreferences;
 
 /**
  * @author Jonathan Lee
- * @author Josef Sustacek 
+ * @author Josef Sustacek
  */
 public class UpgradeGroup extends UpgradeProcess {
 
@@ -69,13 +67,21 @@ public class UpgradeGroup extends UpgradeProcess {
 				continue;
 			}
 
-			// store old portlets' preferences of /home layout
-			Layout oldHomeLayout = LayoutLocalServiceUtil.fetchFirstLayout(
-					group.getGroupId(), privateLayout, 
+			Layout layout = LayoutLocalServiceUtil.fetchFirstLayout(
+					group.getGroupId(), privateLayout,
 					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
-			Map<String, PortletPreferences> oldPortletsPrefs = 
-					_getPrefsOfAllPortlets(oldHomeLayout);
+			PortletPreferences portletPreferences = null;
+
+			if (layout.getLayoutType() instanceof LayoutTypePortlet) {
+				try {
+					portletPreferences =
+						PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+							layout, _OLD_WELCOME_PORTLET_ID);
+				}
+				catch (Exception e) {
+				}
+			}
 
 			LayoutLocalServiceUtil.deleteLayouts(
 				group.getGroupId(), privateLayout, new ServiceContext());
@@ -90,92 +96,34 @@ public class UpgradeGroup extends UpgradeProcess {
 			PortalClassInvoker.invoke(
 				true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
 
-			// merge preferences of old Welcome portlet into new /home layout 
-			// of the site and its Welcome portlet 
-			Layout newHomeLayout = LayoutLocalServiceUtil.fetchFirstLayout(
-					group.getGroupId(), privateLayout, 
-					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+			layout = LayoutLocalServiceUtil.fetchFirstLayout(
+				group.getGroupId(), privateLayout,
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
-			if(oldPortletsPrefs.containsKey(_OLD_WELCOME_PORTLET_ID)) {
+			if (portletPreferences != null) {
+				try {
+					PortletPreferences newPortletPreferences =
+						PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+							layout, _NEW_WELCOME_PORTLET_ID);
 
-				_copyPortletSetup(newHomeLayout,
+					newPortletPreferences.setValue(
 						_NEW_WELCOME_PORTLET_ID,
-						oldPortletsPrefs.get(_OLD_WELCOME_PORTLET_ID),
-						new String[] {"message"});
+						portletPreferences.getValue(
+							"message", StringPool.BLANK));
+				}
+				catch (Exception e) {
+				}
 			}
 
 			SocialOfficeUtil.enableSocialOffice(group);
 		}
 	}
 
-	private Map<String, PortletPreferences> _getPrefsOfAllPortlets(
-													Layout layout) 
-														throws Exception {
+	private static final String _OLD_WELCOME_PORTLET_ID =
+		"1_WAR_wysiwygportlet";
 
-		Map<String, PortletPreferences> portletsSetups = 
-						new HashMap<String, PortletPreferences>(16);
-
-        List<String> portletIds = _getPortletIds(layout);
-
-		for(String portletId: portletIds) {
-			PortletPreferences portletSetup =
-					PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-							layout, portletId);
-
-			portletsSetups.put(portletId, portletSetup);
-		}
-
-		return portletsSetups;
-	}
-
-	private List<String> _getPortletIds(Layout layout) {
-
-		if(layout.getLayoutType() instanceof LayoutTypePortlet) {
-			LayoutTypePortlet layoutTypePortlet = 
-						((LayoutTypePortlet)layout.getLayoutType());
-
-			List<String> portletIds = layoutTypePortlet.getPortletIds();
-
-			return portletIds;
-
-		} else {
-
-			throw new IllegalArgumentException(String.format(
-					"Given layout (plid= %s) is not a portlet layout, " +
-					"no portlets could be fetched for given layout",
-					layout.getPlid()));
-		}
-	}
-
-	private static void _copyPortletSetup(Layout layout, String portletId, 
-											PortletPreferences oldPortletSetup, 
-											String[] keysToCopy)
-									throws Exception {
-
-		PortletPreferences newPortletSetup =
-				PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-						layout, portletId);
-
-
-		for (String key : keysToCopy) {
-
-			String oldValue = oldPortletSetup.getValue(key, "");
-
-			if (Validator.isNotNull(oldValue)) {
-
-				newPortletSetup.setValue(
-						key, oldValue);
-			}
-		}
-
-		newPortletSetup.store();
-	}
-
-	private static final String _OLD_WELCOME_PORTLET_ID = 
-										"1_WAR_wysiwygportlet";
-
-	private static final String _NEW_WELCOME_PORTLET_ID = 
-										"1_WAR_wysiwygportlet_INSTANCE_abcd";
+	private static final String _NEW_WELCOME_PORTLET_ID =
+		"1_WAR_wysiwygportlet_INSTANCE_abcd";
 
 	private static final String _CLASS_NAME =
 		"com.liferay.portlet.sites.util.SitesUtil";
