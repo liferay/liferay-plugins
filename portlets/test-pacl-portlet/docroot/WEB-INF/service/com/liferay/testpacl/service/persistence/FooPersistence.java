@@ -98,6 +98,121 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns all the foos where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @return the matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.testpacl.model.Foo> findByField2(
+		boolean field2)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the foos where field2 = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param field2 the field2
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
+	* @return the range of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.testpacl.model.Foo> findByField2(
+		boolean field2, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the foos where field2 = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param field2 the field2
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.testpacl.model.Foo> findByField2(
+		boolean field2, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first foo in the ordered set where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching foo
+	* @throws com.liferay.testpacl.NoSuchFooException if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testpacl.model.Foo findByField2_First(boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testpacl.NoSuchFooException;
+
+	/**
+	* Returns the first foo in the ordered set where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching foo, or <code>null</code> if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testpacl.model.Foo fetchByField2_First(boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last foo in the ordered set where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching foo
+	* @throws com.liferay.testpacl.NoSuchFooException if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testpacl.model.Foo findByField2_Last(boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testpacl.NoSuchFooException;
+
+	/**
+	* Returns the last foo in the ordered set where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching foo, or <code>null</code> if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testpacl.model.Foo fetchByField2_Last(boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the foos before and after the current foo in the ordered set where field2 = &#63;.
+	*
+	* @param fooId the primary key of the current foo
+	* @param field2 the field2
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next foo
+	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testpacl.model.Foo[] findByField2_PrevAndNext(
+		long fooId, boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testpacl.NoSuchFooException;
+
+	/**
 	* Returns all the foos.
 	*
 	* @return the foos
@@ -140,11 +255,30 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the foos where field2 = &#63; from the database.
+	*
+	* @param field2 the field2
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByField2(boolean field2)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Removes all the foos from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of foos where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @return the number of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByField2(boolean field2)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

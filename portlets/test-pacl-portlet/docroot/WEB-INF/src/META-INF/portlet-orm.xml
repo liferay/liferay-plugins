@@ -10,9 +10,27 @@
 	<mapped-superclass class="com.liferay.testpacl.model.impl.FooModelImpl">
 		<attributes>
 			<id name="fooId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="field1" />
+			<basic name="field2" />
+			<basic name="field3" />
+			<basic name="field4">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="field5" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.testpacl.model.impl.FooImpl" name="Foo">
