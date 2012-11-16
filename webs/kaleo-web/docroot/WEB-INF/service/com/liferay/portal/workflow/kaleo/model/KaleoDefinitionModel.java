@@ -403,6 +403,8 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
 
 	public KaleoDefinition toEscapedModel();
 
+	public KaleoDefinition toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

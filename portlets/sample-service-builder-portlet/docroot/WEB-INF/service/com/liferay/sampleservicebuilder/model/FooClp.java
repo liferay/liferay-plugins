@@ -16,6 +16,7 @@ package com.liferay.sampleservicebuilder.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,8 +25,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -299,8 +298,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	@Override
 	public Foo toEscapedModel() {
-		return (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
+		return (Foo)ProxyUtil.newProxyInstance(Foo.class.getClassLoader(),
 			new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public Foo toUnescapedModel() {
+		return this;
 	}
 
 	@Override

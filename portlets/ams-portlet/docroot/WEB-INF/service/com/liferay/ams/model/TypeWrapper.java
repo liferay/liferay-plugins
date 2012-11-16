@@ -202,6 +202,10 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 		return new TypeWrapper(_type.toEscapedModel());
 	}
 
+	public com.liferay.ams.model.Type toUnescapedModel() {
+		return new TypeWrapper(_type.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _type.toString();

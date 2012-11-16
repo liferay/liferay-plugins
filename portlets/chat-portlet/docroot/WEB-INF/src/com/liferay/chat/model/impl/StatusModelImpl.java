@@ -332,13 +332,16 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	@Override
 	public Status toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Status)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Status)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Status toUnescapedModel() {
+		return (Status)this;
 	}
 
 	@Override
@@ -528,9 +531,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	private static ClassLoader _classLoader = Status.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Status.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Status.class };
 	private long _statusId;
 	private long _userId;
 	private String _userUuid;
@@ -547,5 +548,5 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	private String _message;
 	private boolean _playSound;
 	private long _columnBitmask;
-	private Status _escapedModelProxy;
+	private Status _escapedModel;
 }

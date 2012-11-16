@@ -507,13 +507,16 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public KBComment toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KBComment)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KBComment)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public KBComment toUnescapedModel() {
+		return (KBComment)this;
 	}
 
 	@Override
@@ -766,7 +769,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	private static ClassLoader _classLoader = KBComment.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KBComment.class
 		};
 	private String _uuid;
@@ -792,5 +795,5 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private String _content;
 	private boolean _helpful;
 	private long _columnBitmask;
-	private KBComment _escapedModelProxy;
+	private KBComment _escapedModel;
 }

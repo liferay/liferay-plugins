@@ -473,6 +473,10 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return new DefinitionWrapper(_definition.toEscapedModel());
 	}
 
+	public com.liferay.ams.model.Definition toUnescapedModel() {
+		return new DefinitionWrapper(_definition.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _definition.toString();

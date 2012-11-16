@@ -350,6 +350,8 @@ public interface KaleoActionModel extends BaseModel<KaleoAction>, GroupedModel {
 
 	public KaleoAction toEscapedModel();
 
+	public KaleoAction toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

@@ -245,6 +245,8 @@ public interface CheckoutModel extends AuditedModel, BaseModel<Checkout> {
 
 	public Checkout toEscapedModel();
 
+	public Checkout toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

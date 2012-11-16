@@ -562,6 +562,10 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 		return new KaleoInstanceTokenWrapper(_kaleoInstanceToken.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken toUnescapedModel() {
+		return new KaleoInstanceTokenWrapper(_kaleoInstanceToken.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoInstanceToken.toString();

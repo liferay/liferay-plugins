@@ -17,6 +17,7 @@ package com.liferay.so.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -292,8 +291,12 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public MemberRequest toEscapedModel() {
-		return (MemberRequest)Proxy.newProxyInstance(MemberRequest.class.getClassLoader(),
+		return (MemberRequest)ProxyUtil.newProxyInstance(MemberRequest.class.getClassLoader(),
 			new Class[] { MemberRequest.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public MemberRequest toUnescapedModel() {
+		return this;
 	}
 
 	@Override

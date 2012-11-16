@@ -259,6 +259,8 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 
 	public UserThread toEscapedModel();
 
+	public UserThread toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

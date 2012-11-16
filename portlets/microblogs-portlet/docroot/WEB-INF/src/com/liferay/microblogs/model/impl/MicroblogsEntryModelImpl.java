@@ -478,13 +478,16 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public MicroblogsEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (MicroblogsEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (MicroblogsEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public MicroblogsEntry toUnescapedModel() {
+		return (MicroblogsEntry)this;
 	}
 
 	@Override
@@ -724,7 +727,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	private static ClassLoader _classLoader = MicroblogsEntry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			MicroblogsEntry.class
 		};
 	private long _microblogsEntryId;
@@ -751,5 +754,5 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	private boolean _setOriginalReceiverMicroblogsEntryId;
 	private int _socialRelationType;
 	private long _columnBitmask;
-	private MicroblogsEntry _escapedModelProxy;
+	private MicroblogsEntry _escapedModel;
 }

@@ -329,6 +329,10 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		return new GadgetWrapper(_gadget.toEscapedModel());
 	}
 
+	public com.liferay.opensocial.model.Gadget toUnescapedModel() {
+		return new GadgetWrapper(_gadget.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _gadget.toString();

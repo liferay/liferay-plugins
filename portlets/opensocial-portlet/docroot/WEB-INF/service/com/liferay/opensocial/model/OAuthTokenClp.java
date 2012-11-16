@@ -18,14 +18,13 @@ import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -311,8 +310,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public OAuthToken toEscapedModel() {
-		return (OAuthToken)Proxy.newProxyInstance(OAuthToken.class.getClassLoader(),
+		return (OAuthToken)ProxyUtil.newProxyInstance(OAuthToken.class.getClassLoader(),
 			new Class[] { OAuthToken.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public OAuthToken toUnescapedModel() {
+		return this;
 	}
 
 	@Override

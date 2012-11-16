@@ -332,13 +332,16 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 
 	@Override
 	public AkismetData toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (AkismetData)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (AkismetData)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public AkismetData toUnescapedModel() {
+		return (AkismetData)this;
 	}
 
 	@Override
@@ -562,7 +565,7 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	}
 
 	private static ClassLoader _classLoader = AkismetData.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			AkismetData.class
 		};
 	private long _akismetDataId;
@@ -578,5 +581,5 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	private String _userIP;
 	private String _userURL;
 	private long _columnBitmask;
-	private AkismetData _escapedModelProxy;
+	private AkismetData _escapedModel;
 }

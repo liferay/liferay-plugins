@@ -156,6 +156,8 @@ public interface FavoriteSiteModel extends BaseModel<FavoriteSite> {
 
 	public FavoriteSite toEscapedModel();
 
+	public FavoriteSite toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

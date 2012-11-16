@@ -188,6 +188,8 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 
 	public JIRAChangeItem toEscapedModel();
 
+	public JIRAChangeItem toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

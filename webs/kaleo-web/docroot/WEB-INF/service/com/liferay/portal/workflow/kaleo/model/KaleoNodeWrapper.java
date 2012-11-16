@@ -517,6 +517,10 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 		return new KaleoNodeWrapper(_kaleoNode.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode toUnescapedModel() {
+		return new KaleoNodeWrapper(_kaleoNode.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoNode.toString();

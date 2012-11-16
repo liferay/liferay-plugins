@@ -263,6 +263,8 @@ public interface ProjectsEntryModel extends AuditedModel,
 
 	public ProjectsEntry toEscapedModel();
 
+	public ProjectsEntry toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

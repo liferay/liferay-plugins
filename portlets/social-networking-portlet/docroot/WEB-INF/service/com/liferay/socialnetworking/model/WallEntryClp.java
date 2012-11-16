@@ -17,6 +17,7 @@ package com.liferay.socialnetworking.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -221,8 +220,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 
 	@Override
 	public WallEntry toEscapedModel() {
-		return (WallEntry)Proxy.newProxyInstance(WallEntry.class.getClassLoader(),
+		return (WallEntry)ProxyUtil.newProxyInstance(WallEntry.class.getClassLoader(),
 			new Class[] { WallEntry.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public WallEntry toUnescapedModel() {
+		return this;
 	}
 
 	@Override

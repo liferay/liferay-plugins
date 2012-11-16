@@ -16,6 +16,7 @@ package com.liferay.wsrp.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -23,8 +24,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -214,9 +213,13 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	@Override
 	public WSRPConsumerPortlet toEscapedModel() {
-		return (WSRPConsumerPortlet)Proxy.newProxyInstance(WSRPConsumerPortlet.class.getClassLoader(),
+		return (WSRPConsumerPortlet)ProxyUtil.newProxyInstance(WSRPConsumerPortlet.class.getClassLoader(),
 			new Class[] { WSRPConsumerPortlet.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	public WSRPConsumerPortlet toUnescapedModel() {
+		return this;
 	}
 
 	@Override

@@ -469,6 +469,10 @@ public class MemberRequestWrapper implements MemberRequest,
 		return new MemberRequestWrapper(_memberRequest.toEscapedModel());
 	}
 
+	public com.liferay.so.model.MemberRequest toUnescapedModel() {
+		return new MemberRequestWrapper(_memberRequest.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _memberRequest.toString();

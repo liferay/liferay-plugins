@@ -128,6 +128,8 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 
 	public SVNRepository toEscapedModel();
 
+	public SVNRepository toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

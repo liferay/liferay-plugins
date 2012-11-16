@@ -843,6 +843,10 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 		return new AccountWrapper(_account.toEscapedModel());
 	}
 
+	public com.liferay.mail.model.Account toUnescapedModel() {
+		return new AccountWrapper(_account.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _account.toString();

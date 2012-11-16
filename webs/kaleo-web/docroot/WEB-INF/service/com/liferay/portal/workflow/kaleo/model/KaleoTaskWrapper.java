@@ -424,6 +424,10 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 		return new KaleoTaskWrapper(_kaleoTask.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask toUnescapedModel() {
+		return new KaleoTaskWrapper(_kaleoTask.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoTask.toString();

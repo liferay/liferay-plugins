@@ -16,6 +16,7 @@ package com.liferay.twitter.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,8 +25,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -244,8 +243,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	@Override
 	public Feed toEscapedModel() {
-		return (Feed)Proxy.newProxyInstance(Feed.class.getClassLoader(),
+		return (Feed)ProxyUtil.newProxyInstance(Feed.class.getClassLoader(),
 			new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public Feed toUnescapedModel() {
+		return this;
 	}
 
 	@Override

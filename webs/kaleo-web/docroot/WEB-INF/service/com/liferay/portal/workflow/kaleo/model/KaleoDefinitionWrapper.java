@@ -623,6 +623,10 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		return new KaleoDefinitionWrapper(_kaleoDefinition.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toUnescapedModel() {
+		return new KaleoDefinitionWrapper(_kaleoDefinition.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoDefinition.toString();

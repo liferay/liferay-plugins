@@ -292,6 +292,10 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 		return new EntryWrapper(_entry.toEscapedModel());
 	}
 
+	public com.liferay.chat.model.Entry toUnescapedModel() {
+		return new EntryWrapper(_entry.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _entry.toString();

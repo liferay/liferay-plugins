@@ -731,6 +731,10 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		return new CalendarWrapper(_calendar.toEscapedModel());
 	}
 
+	public com.liferay.calendar.model.Calendar toUnescapedModel() {
+		return new CalendarWrapper(_calendar.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _calendar.toString();

@@ -17,6 +17,7 @@ package com.liferay.socialnetworking.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -239,9 +238,13 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 
 	@Override
 	public MeetupsRegistration toEscapedModel() {
-		return (MeetupsRegistration)Proxy.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
+		return (MeetupsRegistration)ProxyUtil.newProxyInstance(MeetupsRegistration.class.getClassLoader(),
 			new Class[] { MeetupsRegistration.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	public MeetupsRegistration toUnescapedModel() {
+		return this;
 	}
 
 	@Override

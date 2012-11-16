@@ -583,6 +583,10 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 		return new KaleoTimerWrapper(_kaleoTimer.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer toUnescapedModel() {
+		return new KaleoTimerWrapper(_kaleoTimer.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoTimer.toString();

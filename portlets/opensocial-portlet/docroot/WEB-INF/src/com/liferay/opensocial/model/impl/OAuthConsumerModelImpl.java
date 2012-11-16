@@ -327,13 +327,16 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 
 	@Override
 	public OAuthConsumer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (OAuthConsumer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (OAuthConsumer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public OAuthConsumer toUnescapedModel() {
+		return (OAuthConsumer)this;
 	}
 
 	@Override
@@ -554,7 +557,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	private static ClassLoader _classLoader = OAuthConsumer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			OAuthConsumer.class
 		};
 	private long _oAuthConsumerId;
@@ -569,5 +572,5 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private String _consumerSecret;
 	private String _keyType;
 	private long _columnBitmask;
-	private OAuthConsumer _escapedModelProxy;
+	private OAuthConsumer _escapedModel;
 }

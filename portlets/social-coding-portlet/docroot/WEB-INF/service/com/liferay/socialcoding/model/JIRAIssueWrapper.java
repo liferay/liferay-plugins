@@ -403,6 +403,10 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 		return new JIRAIssueWrapper(_jiraIssue.toEscapedModel());
 	}
 
+	public com.liferay.socialcoding.model.JIRAIssue toUnescapedModel() {
+		return new JIRAIssueWrapper(_jiraIssue.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _jiraIssue.toString();

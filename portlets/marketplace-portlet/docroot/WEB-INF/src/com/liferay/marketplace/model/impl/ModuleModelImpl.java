@@ -240,13 +240,16 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public Module toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Module)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Module)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Module toUnescapedModel() {
+		return (Module)this;
 	}
 
 	@Override
@@ -396,9 +399,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	}
 
 	private static ClassLoader _classLoader = Module.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Module.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Module.class };
 	private String _uuid;
 	private String _originalUuid;
 	private long _moduleId;
@@ -408,5 +409,5 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	private String _contextName;
 	private String _originalContextName;
 	private long _columnBitmask;
-	private Module _escapedModelProxy;
+	private Module _escapedModel;
 }

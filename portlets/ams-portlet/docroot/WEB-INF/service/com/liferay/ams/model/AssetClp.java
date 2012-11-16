@@ -18,14 +18,13 @@ import com.liferay.ams.service.AssetLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -254,8 +253,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 
 	@Override
 	public Asset toEscapedModel() {
-		return (Asset)Proxy.newProxyInstance(Asset.class.getClassLoader(),
+		return (Asset)ProxyUtil.newProxyInstance(Asset.class.getClassLoader(),
 			new Class[] { Asset.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public Asset toUnescapedModel() {
+		return this;
 	}
 
 	@Override

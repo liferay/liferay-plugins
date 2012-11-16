@@ -262,6 +262,8 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 
 	public KaleoCondition toEscapedModel();
 
+	public KaleoCondition toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

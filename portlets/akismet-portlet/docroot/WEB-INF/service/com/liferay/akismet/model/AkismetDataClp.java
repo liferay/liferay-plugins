@@ -18,13 +18,12 @@ import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -227,8 +226,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 
 	@Override
 	public AkismetData toEscapedModel() {
-		return (AkismetData)Proxy.newProxyInstance(AkismetData.class.getClassLoader(),
+		return (AkismetData)ProxyUtil.newProxyInstance(AkismetData.class.getClassLoader(),
 			new Class[] { AkismetData.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public AkismetData toUnescapedModel() {
+		return this;
 	}
 
 	@Override

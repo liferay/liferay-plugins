@@ -410,13 +410,16 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public MemberRequest toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (MemberRequest)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (MemberRequest)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public MemberRequest toUnescapedModel() {
+		return (MemberRequest)this;
 	}
 
 	@Override
@@ -659,7 +662,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	private static ClassLoader _classLoader = MemberRequest.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			MemberRequest.class
 		};
 	private long _memberRequestId;
@@ -684,5 +687,5 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
 	private long _columnBitmask;
-	private MemberRequest _escapedModelProxy;
+	private MemberRequest _escapedModel;
 }

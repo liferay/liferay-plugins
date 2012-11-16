@@ -377,13 +377,16 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public KaleoCondition toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoCondition)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoCondition)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public KaleoCondition toUnescapedModel() {
+		return (KaleoCondition)this;
 	}
 
 	@Override
@@ -626,7 +629,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	private static ClassLoader _classLoader = KaleoCondition.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoCondition.class
 		};
 	private long _kaleoConditionId;
@@ -648,5 +651,5 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	private String _script;
 	private String _scriptLanguage;
 	private long _columnBitmask;
-	private KaleoCondition _escapedModelProxy;
+	private KaleoCondition _escapedModel;
 }

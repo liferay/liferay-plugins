@@ -1133,6 +1133,10 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return new CalendarBookingWrapper(_calendarBooking.toEscapedModel());
 	}
 
+	public com.liferay.calendar.model.CalendarBooking toUnescapedModel() {
+		return new CalendarBookingWrapper(_calendarBooking.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _calendarBooking.toString();

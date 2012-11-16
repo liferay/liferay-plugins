@@ -218,6 +218,8 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 
 	public WallEntry toEscapedModel();
 
+	public WallEntry toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

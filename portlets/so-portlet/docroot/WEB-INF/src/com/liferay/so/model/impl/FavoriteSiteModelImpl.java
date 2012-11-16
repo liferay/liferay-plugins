@@ -232,13 +232,16 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 
 	@Override
 	public FavoriteSite toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (FavoriteSite)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (FavoriteSite)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public FavoriteSite toUnescapedModel() {
+		return (FavoriteSite)this;
 	}
 
 	@Override
@@ -376,7 +379,7 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	}
 
 	private static ClassLoader _classLoader = FavoriteSite.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			FavoriteSite.class
 		};
 	private long _favoriteSiteId;
@@ -389,5 +392,5 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
 	private long _columnBitmask;
-	private FavoriteSite _escapedModelProxy;
+	private FavoriteSite _escapedModel;
 }

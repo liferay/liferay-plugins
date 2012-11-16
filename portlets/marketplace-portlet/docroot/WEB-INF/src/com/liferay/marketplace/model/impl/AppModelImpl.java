@@ -398,13 +398,16 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public App toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (App)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (App)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public App toUnescapedModel() {
+		return (App)this;
 	}
 
 	@Override
@@ -621,9 +624,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	private static ClassLoader _classLoader = App.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			App.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { App.class };
 	private String _uuid;
 	private String _originalUuid;
 	private long _appId;
@@ -640,5 +641,5 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	private boolean _setOriginalRemoteAppId;
 	private String _version;
 	private long _columnBitmask;
-	private App _escapedModelProxy;
+	private App _escapedModel;
 }

@@ -407,6 +407,10 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 		return new AssetWrapper(_asset.toEscapedModel());
 	}
 
+	public com.liferay.ams.model.Asset toUnescapedModel() {
+		return new AssetWrapper(_asset.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _asset.toString();

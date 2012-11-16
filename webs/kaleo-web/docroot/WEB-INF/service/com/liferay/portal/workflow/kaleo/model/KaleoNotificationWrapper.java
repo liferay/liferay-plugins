@@ -575,6 +575,10 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 		return new KaleoNotificationWrapper(_kaleoNotification.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification toUnescapedModel() {
+		return new KaleoNotificationWrapper(_kaleoNotification.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoNotification.toString();

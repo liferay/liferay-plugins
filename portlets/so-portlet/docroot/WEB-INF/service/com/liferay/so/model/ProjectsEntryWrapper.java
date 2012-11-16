@@ -424,6 +424,10 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 		return new ProjectsEntryWrapper(_projectsEntry.toEscapedModel());
 	}
 
+	public com.liferay.so.model.ProjectsEntry toUnescapedModel() {
+		return new ProjectsEntryWrapper(_projectsEntry.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _projectsEntry.toString();

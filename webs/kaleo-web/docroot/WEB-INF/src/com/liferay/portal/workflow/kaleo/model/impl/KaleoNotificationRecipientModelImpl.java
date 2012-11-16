@@ -412,13 +412,16 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	@Override
 	public KaleoNotificationRecipient toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoNotificationRecipient)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoNotificationRecipient)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public KaleoNotificationRecipient toUnescapedModel() {
+		return (KaleoNotificationRecipient)this;
 	}
 
 	@Override
@@ -681,7 +684,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	private static ClassLoader _classLoader = KaleoNotificationRecipient.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoNotificationRecipient.class
 		};
 	private long _kaleoNotificationRecipientId;
@@ -705,5 +708,5 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	private int _recipientRoleType;
 	private String _address;
 	private long _columnBitmask;
-	private KaleoNotificationRecipient _escapedModelProxy;
+	private KaleoNotificationRecipient _escapedModel;
 }

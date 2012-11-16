@@ -248,6 +248,10 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		return new FavoriteSiteWrapper(_favoriteSite.toEscapedModel());
 	}
 
+	public com.liferay.so.model.FavoriteSite toUnescapedModel() {
+		return new FavoriteSiteWrapper(_favoriteSite.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _favoriteSite.toString();

@@ -17,6 +17,7 @@ package com.liferay.tasks.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -25,8 +26,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -346,8 +345,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public TasksEntry toEscapedModel() {
-		return (TasksEntry)Proxy.newProxyInstance(TasksEntry.class.getClassLoader(),
+		return (TasksEntry)ProxyUtil.newProxyInstance(TasksEntry.class.getClassLoader(),
 			new Class[] { TasksEntry.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public TasksEntry toUnescapedModel() {
+		return this;
 	}
 
 	@Override

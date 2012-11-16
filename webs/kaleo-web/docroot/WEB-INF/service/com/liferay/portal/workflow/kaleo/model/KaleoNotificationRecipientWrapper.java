@@ -480,6 +480,10 @@ public class KaleoNotificationRecipientWrapper
 		return new KaleoNotificationRecipientWrapper(_kaleoNotificationRecipient.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toUnescapedModel() {
+		return new KaleoNotificationRecipientWrapper(_kaleoNotificationRecipient.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoNotificationRecipient.toString();

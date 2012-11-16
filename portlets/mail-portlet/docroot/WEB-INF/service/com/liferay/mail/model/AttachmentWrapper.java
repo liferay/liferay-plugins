@@ -372,6 +372,10 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		return new AttachmentWrapper(_attachment.toEscapedModel());
 	}
 
+	public com.liferay.mail.model.Attachment toUnescapedModel() {
+		return new AttachmentWrapper(_attachment.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _attachment.toString();

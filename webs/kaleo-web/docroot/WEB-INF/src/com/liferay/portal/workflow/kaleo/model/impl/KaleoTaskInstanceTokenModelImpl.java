@@ -537,13 +537,16 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 	@Override
 	public KaleoTaskInstanceToken toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoTaskInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoTaskInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public KaleoTaskInstanceToken toUnescapedModel() {
+		return (KaleoTaskInstanceToken)this;
 	}
 
 	@Override
@@ -883,7 +886,7 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	private static ClassLoader _classLoader = KaleoTaskInstanceToken.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoTaskInstanceToken.class
 		};
 	private long _kaleoTaskInstanceTokenId;
@@ -916,5 +919,5 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	private Date _dueDate;
 	private String _workflowContext;
 	private long _columnBitmask;
-	private KaleoTaskInstanceToken _escapedModelProxy;
+	private KaleoTaskInstanceToken _escapedModel;
 }

@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.BaseModel;
@@ -26,8 +27,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -587,8 +586,12 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public KBArticle toEscapedModel() {
-		return (KBArticle)Proxy.newProxyInstance(KBArticle.class.getClassLoader(),
+		return (KBArticle)ProxyUtil.newProxyInstance(KBArticle.class.getClassLoader(),
 			new Class[] { KBArticle.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public KBArticle toUnescapedModel() {
+		return this;
 	}
 
 	@Override

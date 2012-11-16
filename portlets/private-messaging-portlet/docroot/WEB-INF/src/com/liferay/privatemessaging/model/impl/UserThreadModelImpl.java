@@ -374,13 +374,16 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public UserThread toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (UserThread)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (UserThread)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public UserThread toUnescapedModel() {
+		return (UserThread)this;
 	}
 
 	@Override
@@ -601,7 +604,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	private static ClassLoader _classLoader = UserThread.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			UserThread.class
 		};
 	private long _userThreadId;
@@ -624,5 +627,5 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private boolean _originalDeleted;
 	private boolean _setOriginalDeleted;
 	private long _columnBitmask;
-	private UserThread _escapedModelProxy;
+	private UserThread _escapedModel;
 }

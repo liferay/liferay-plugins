@@ -18,14 +18,13 @@ import com.liferay.chat.service.EntryLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -182,8 +181,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	@Override
 	public Entry toEscapedModel() {
-		return (Entry)Proxy.newProxyInstance(Entry.class.getClassLoader(),
+		return (Entry)ProxyUtil.newProxyInstance(Entry.class.getClassLoader(),
 			new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public Entry toUnescapedModel() {
+		return this;
 	}
 
 	@Override

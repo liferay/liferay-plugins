@@ -289,6 +289,8 @@ public interface DefinitionModel extends BaseModel<Definition>, GroupedModel {
 
 	public Definition toEscapedModel();
 
+	public Definition toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

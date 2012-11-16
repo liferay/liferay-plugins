@@ -542,6 +542,8 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 
 	public KBArticle toEscapedModel();
 
+	public KBArticle toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

@@ -379,13 +379,16 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public Gadget toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Gadget)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Gadget)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Gadget toUnescapedModel() {
+		return (Gadget)this;
 	}
 
 	@Override
@@ -596,9 +599,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	private static ClassLoader _classLoader = Gadget.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Gadget.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Gadget.class };
 	private String _uuid;
 	private String _originalUuid;
 	private long _gadgetId;
@@ -612,5 +613,5 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _originalUrl;
 	private String _portletCategoryNames;
 	private long _columnBitmask;
-	private Gadget _escapedModelProxy;
+	private Gadget _escapedModel;
 }

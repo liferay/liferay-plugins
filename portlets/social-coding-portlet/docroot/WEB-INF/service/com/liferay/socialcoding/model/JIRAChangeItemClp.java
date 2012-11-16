@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -23,8 +24,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -197,9 +196,13 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	@Override
 	public JIRAChangeItem toEscapedModel() {
-		return (JIRAChangeItem)Proxy.newProxyInstance(JIRAChangeItem.class.getClassLoader(),
+		return (JIRAChangeItem)ProxyUtil.newProxyInstance(JIRAChangeItem.class.getClassLoader(),
 			new Class[] { JIRAChangeItem.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	public JIRAChangeItem toUnescapedModel() {
+		return this;
 	}
 
 	@Override

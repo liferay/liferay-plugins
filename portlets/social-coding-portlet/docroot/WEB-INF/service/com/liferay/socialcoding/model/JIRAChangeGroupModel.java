@@ -144,6 +144,8 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 
 	public JIRAChangeGroup toEscapedModel();
 
+	public JIRAChangeGroup toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

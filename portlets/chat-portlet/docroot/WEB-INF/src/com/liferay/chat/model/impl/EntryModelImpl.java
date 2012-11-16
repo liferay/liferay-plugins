@@ -287,13 +287,16 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	@Override
 	public Entry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Entry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Entry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Entry toUnescapedModel() {
+		return (Entry)this;
 	}
 
 	@Override
@@ -460,9 +463,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	private static ClassLoader _classLoader = Entry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Entry.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Entry.class };
 	private long _entryId;
 	private long _createDate;
 	private long _originalCreateDate;
@@ -478,5 +479,5 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	private String _content;
 	private String _originalContent;
 	private long _columnBitmask;
-	private Entry _escapedModelProxy;
+	private Entry _escapedModel;
 }

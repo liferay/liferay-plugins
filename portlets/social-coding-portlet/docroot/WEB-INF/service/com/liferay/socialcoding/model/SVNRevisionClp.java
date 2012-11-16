@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -23,8 +24,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -194,8 +193,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	@Override
 	public SVNRevision toEscapedModel() {
-		return (SVNRevision)Proxy.newProxyInstance(SVNRevision.class.getClassLoader(),
+		return (SVNRevision)ProxyUtil.newProxyInstance(SVNRevision.class.getClassLoader(),
 			new Class[] { SVNRevision.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public SVNRevision toUnescapedModel() {
+		return this;
 	}
 
 	@Override

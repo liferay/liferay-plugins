@@ -919,6 +919,10 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		return new KaleoLogWrapper(_kaleoLog.toEscapedModel());
 	}
 
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog toUnescapedModel() {
+		return new KaleoLogWrapper(_kaleoLog.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _kaleoLog.toString();

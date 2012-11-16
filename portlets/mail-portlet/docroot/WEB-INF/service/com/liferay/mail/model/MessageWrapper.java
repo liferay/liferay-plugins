@@ -623,6 +623,10 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		return new MessageWrapper(_message.toEscapedModel());
 	}
 
+	public com.liferay.mail.model.Message toUnescapedModel() {
+		return new MessageWrapper(_message.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _message.toString();

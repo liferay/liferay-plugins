@@ -315,13 +315,16 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public WSRPConsumerPortlet toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WSRPConsumerPortlet)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (WSRPConsumerPortlet)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public WSRPConsumerPortlet toUnescapedModel() {
+		return (WSRPConsumerPortlet)this;
 	}
 
 	@Override
@@ -525,7 +528,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	private static ClassLoader _classLoader = WSRPConsumerPortlet.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			WSRPConsumerPortlet.class
 		};
 	private String _uuid;
@@ -541,5 +544,5 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	private String _portletHandle;
 	private String _originalPortletHandle;
 	private long _columnBitmask;
-	private WSRPConsumerPortlet _escapedModelProxy;
+	private WSRPConsumerPortlet _escapedModel;
 }

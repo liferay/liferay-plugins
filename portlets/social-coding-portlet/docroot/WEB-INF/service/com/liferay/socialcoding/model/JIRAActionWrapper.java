@@ -328,6 +328,10 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 		return new JIRAActionWrapper(_jiraAction.toEscapedModel());
 	}
 
+	public com.liferay.socialcoding.model.JIRAAction toUnescapedModel() {
+		return new JIRAActionWrapper(_jiraAction.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _jiraAction.toString();

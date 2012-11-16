@@ -230,6 +230,10 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 		return new JIRAChangeGroupWrapper(_jiraChangeGroup.toEscapedModel());
 	}
 
+	public com.liferay.socialcoding.model.JIRAChangeGroup toUnescapedModel() {
+		return new JIRAChangeGroupWrapper(_jiraChangeGroup.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _jiraChangeGroup.toString();

@@ -543,6 +543,8 @@ public interface CalendarResourceModel extends AttachedModel,
 
 	public CalendarResource toEscapedModel();
 
+	public CalendarResource toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

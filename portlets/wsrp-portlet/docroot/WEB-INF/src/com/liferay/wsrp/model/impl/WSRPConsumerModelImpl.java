@@ -397,13 +397,16 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public WSRPConsumer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WSRPConsumer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (WSRPConsumer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public WSRPConsumer toUnescapedModel() {
+		return (WSRPConsumer)this;
 	}
 
 	@Override
@@ -673,7 +676,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	private static ClassLoader _classLoader = WSRPConsumer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			WSRPConsumer.class
 		};
 	private String _uuid;
@@ -692,5 +695,5 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private String _forwardCookies;
 	private String _forwardHeaders;
 	private long _columnBitmask;
-	private WSRPConsumer _escapedModelProxy;
+	private WSRPConsumer _escapedModel;
 }

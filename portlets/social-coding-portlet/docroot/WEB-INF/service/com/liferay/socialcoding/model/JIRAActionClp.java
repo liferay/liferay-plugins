@@ -17,6 +17,7 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
@@ -24,8 +25,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -213,8 +212,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public JIRAAction toEscapedModel() {
-		return (JIRAAction)Proxy.newProxyInstance(JIRAAction.class.getClassLoader(),
+		return (JIRAAction)ProxyUtil.newProxyInstance(JIRAAction.class.getClassLoader(),
 			new Class[] { JIRAAction.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public JIRAAction toUnescapedModel() {
+		return this;
 	}
 
 	@Override

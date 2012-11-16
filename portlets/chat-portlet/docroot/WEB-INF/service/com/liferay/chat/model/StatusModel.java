@@ -236,6 +236,8 @@ public interface StatusModel extends BaseModel<Status> {
 
 	public Status toEscapedModel();
 
+	public Status toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

@@ -417,6 +417,10 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 		return new UserThreadWrapper(_userThread.toEscapedModel());
 	}
 
+	public com.liferay.privatemessaging.model.UserThread toUnescapedModel() {
+		return new UserThreadWrapper(_userThread.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _userThread.toString();

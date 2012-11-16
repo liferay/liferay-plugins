@@ -354,6 +354,10 @@ public class AkismetDataWrapper implements AkismetData,
 		return new AkismetDataWrapper(_akismetData.toEscapedModel());
 	}
 
+	public com.liferay.akismet.model.AkismetData toUnescapedModel() {
+		return new AkismetDataWrapper(_akismetData.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _akismetData.toString();

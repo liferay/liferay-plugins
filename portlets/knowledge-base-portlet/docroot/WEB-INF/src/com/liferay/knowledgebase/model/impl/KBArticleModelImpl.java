@@ -886,13 +886,16 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public KBArticle toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KBArticle)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KBArticle)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public KBArticle toUnescapedModel() {
+		return (KBArticle)this;
 	}
 
 	@Override
@@ -1302,7 +1305,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	private static ClassLoader _classLoader = KBArticle.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KBArticle.class
 		};
 	private String _uuid;
@@ -1350,5 +1353,5 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private long _columnBitmask;
-	private KBArticle _escapedModelProxy;
+	private KBArticle _escapedModel;
 }

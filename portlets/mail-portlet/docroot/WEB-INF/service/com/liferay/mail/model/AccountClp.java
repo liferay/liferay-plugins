@@ -18,14 +18,13 @@ import com.liferay.mail.service.AccountLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -518,8 +517,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	@Override
 	public Account toEscapedModel() {
-		return (Account)Proxy.newProxyInstance(Account.class.getClassLoader(),
+		return (Account)ProxyUtil.newProxyInstance(Account.class.getClassLoader(),
 			new Class[] { Account.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public Account toUnescapedModel() {
+		return this;
 	}
 
 	@Override

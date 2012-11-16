@@ -311,13 +311,16 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 
 	@Override
 	public Asset toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Asset)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Asset)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Asset toUnescapedModel() {
+		return (Asset)this;
 	}
 
 	@Override
@@ -531,9 +534,7 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	}
 
 	private static ClassLoader _classLoader = Asset.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Asset.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Asset.class };
 	private long _assetId;
 	private long _companyId;
 	private long _userId;
@@ -545,5 +546,5 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	private String _serialNumber;
 	private Date _inactiveDate;
 	private boolean _active;
-	private Asset _escapedModelProxy;
+	private Asset _escapedModel;
 }

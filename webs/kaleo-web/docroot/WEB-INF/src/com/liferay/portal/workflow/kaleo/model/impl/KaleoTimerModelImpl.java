@@ -490,13 +490,16 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	@Override
 	public KaleoTimer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoTimer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoTimer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public KaleoTimer toUnescapedModel() {
+		return (KaleoTimer)this;
 	}
 
 	@Override
@@ -809,7 +812,7 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	private static ClassLoader _classLoader = KaleoTimer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoTimer.class
 		};
 	private long _kaleoTimerId;
@@ -836,5 +839,5 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
 	private long _columnBitmask;
-	private KaleoTimer _escapedModelProxy;
+	private KaleoTimer _escapedModel;
 }

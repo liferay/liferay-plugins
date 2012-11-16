@@ -337,13 +337,16 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public WSRPProducer toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WSRPProducer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (WSRPProducer)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public WSRPProducer toUnescapedModel() {
+		return (WSRPProducer)this;
 	}
 
 	@Override
@@ -564,7 +567,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	private static ClassLoader _classLoader = WSRPProducer.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			WSRPProducer.class
 		};
 	private String _uuid;
@@ -582,5 +585,5 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private String _version;
 	private String _portletIds;
 	private long _columnBitmask;
-	private WSRPProducer _escapedModelProxy;
+	private WSRPProducer _escapedModel;
 }

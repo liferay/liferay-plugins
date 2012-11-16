@@ -182,13 +182,16 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	@Override
 	public Bar toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Bar)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Bar)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Bar toUnescapedModel() {
+		return (Bar)this;
 	}
 
 	@Override
@@ -306,12 +309,10 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	private static ClassLoader _classLoader = Bar.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Bar.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Bar.class };
 	private long _barId;
 	private String _text;
 	private String _originalText;
 	private long _columnBitmask;
-	private Bar _escapedModelProxy;
+	private Bar _escapedModel;
 }

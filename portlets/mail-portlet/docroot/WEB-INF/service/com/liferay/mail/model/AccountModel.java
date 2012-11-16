@@ -513,6 +513,8 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 
 	public Account toEscapedModel();
 
+	public Account toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

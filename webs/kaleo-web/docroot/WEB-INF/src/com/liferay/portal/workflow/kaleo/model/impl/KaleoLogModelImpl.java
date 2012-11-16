@@ -794,13 +794,16 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public KaleoLog toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KaleoLog)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (KaleoLog)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public KaleoLog toUnescapedModel() {
+		return (KaleoLog)this;
 	}
 
 	@Override
@@ -1296,7 +1299,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	private static ClassLoader _classLoader = KaleoLog.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoLog.class
 		};
 	private long _kaleoLogId;
@@ -1345,5 +1348,5 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	private long _duration;
 	private String _workflowContext;
 	private long _columnBitmask;
-	private KaleoLog _escapedModelProxy;
+	private KaleoLog _escapedModel;
 }

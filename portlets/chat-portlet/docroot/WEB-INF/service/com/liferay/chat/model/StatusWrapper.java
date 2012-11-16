@@ -374,6 +374,10 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 		return new StatusWrapper(_status.toEscapedModel());
 	}
 
+	public com.liferay.chat.model.Status toUnescapedModel() {
+		return new StatusWrapper(_status.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _status.toString();

@@ -304,6 +304,10 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		return new JIRAChangeItemWrapper(_jiraChangeItem.toEscapedModel());
 	}
 
+	public com.liferay.socialcoding.model.JIRAChangeItem toUnescapedModel() {
+		return new JIRAChangeItemWrapper(_jiraChangeItem.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _jiraChangeItem.toString();

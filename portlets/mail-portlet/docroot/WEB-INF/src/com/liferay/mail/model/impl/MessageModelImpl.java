@@ -537,13 +537,16 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	@Override
 	public Message toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Message)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Message)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Message toUnescapedModel() {
+		return (Message)this;
 	}
 
 	@Override
@@ -893,7 +896,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	private static ClassLoader _classLoader = Message.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			Message.class
 		};
 	private long _messageId;
@@ -923,5 +926,5 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	private long _originalRemoteMessageId;
 	private boolean _setOriginalRemoteMessageId;
 	private long _columnBitmask;
-	private Message _escapedModelProxy;
+	private Message _escapedModel;
 }

@@ -232,13 +232,16 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 
 	@Override
 	public JIRAChangeGroup toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (JIRAChangeGroup)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (JIRAChangeGroup)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public JIRAChangeGroup toUnescapedModel() {
+		return (JIRAChangeGroup)this;
 	}
 
 	@Override
@@ -388,7 +391,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	private static ClassLoader _classLoader = JIRAChangeGroup.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			JIRAChangeGroup.class
 		};
 	private long _jiraChangeGroupId;
@@ -399,5 +402,5 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	private long _originalJiraIssueId;
 	private boolean _setOriginalJiraIssueId;
 	private long _columnBitmask;
-	private JIRAChangeGroup _escapedModelProxy;
+	private JIRAChangeGroup _escapedModel;
 }

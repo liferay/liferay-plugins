@@ -346,13 +346,16 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 
 	@Override
 	public Folder toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Folder)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (Folder)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public Folder toUnescapedModel() {
+		return (Folder)this;
 	}
 
 	@Override
@@ -572,9 +575,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	private static ClassLoader _classLoader = Folder.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
-			Folder.class
-		};
+	private static Class<?>[] _escapedModelInterfaces = new Class[] { Folder.class };
 	private long _folderId;
 	private long _companyId;
 	private long _userId;
@@ -590,5 +591,5 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	private String _displayName;
 	private int _remoteMessageCount;
 	private long _columnBitmask;
-	private Folder _escapedModelProxy;
+	private Folder _escapedModel;
 }

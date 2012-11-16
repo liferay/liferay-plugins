@@ -373,6 +373,10 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		return new AppWrapper(_app.toEscapedModel());
 	}
 
+	public com.liferay.marketplace.model.App toUnescapedModel() {
+		return new AppWrapper(_app.toUnescapedModel());
+	}
+
 	@Override
 	public java.lang.String toString() {
 		return _app.toString();

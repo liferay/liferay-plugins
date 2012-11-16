@@ -98,6 +98,8 @@ public interface FooModel extends BaseModel<Foo> {
 
 	public Foo toEscapedModel();
 
+	public Foo toUnescapedModel();
+
 	public String toString();
 
 	public String toXmlString();

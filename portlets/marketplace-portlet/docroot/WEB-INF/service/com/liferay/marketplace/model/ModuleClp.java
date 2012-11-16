@@ -18,13 +18,12 @@ import com.liferay.marketplace.service.ModuleLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
-
-import java.lang.reflect.Proxy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -150,8 +149,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 	@Override
 	public Module toEscapedModel() {
-		return (Module)Proxy.newProxyInstance(Module.class.getClassLoader(),
+		return (Module)ProxyUtil.newProxyInstance(Module.class.getClassLoader(),
 			new Class[] { Module.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	public Module toUnescapedModel() {
+		return this;
 	}
 
 	@Override

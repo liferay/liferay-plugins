@@ -313,13 +313,16 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public WallEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WallEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (WallEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public WallEntry toUnescapedModel() {
+		return (WallEntry)this;
 	}
 
 	@Override
@@ -519,7 +522,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	private static ClassLoader _classLoader = WallEntry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			WallEntry.class
 		};
 	private long _wallEntryId;
@@ -536,5 +539,5 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	private Date _modifiedDate;
 	private String _comments;
 	private long _columnBitmask;
-	private WallEntry _escapedModelProxy;
+	private WallEntry _escapedModel;
 }

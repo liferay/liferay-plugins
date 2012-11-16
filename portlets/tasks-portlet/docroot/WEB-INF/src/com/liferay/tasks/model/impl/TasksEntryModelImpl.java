@@ -528,13 +528,16 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public TasksEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (TasksEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
+		if (_escapedModel == null) {
+			_escapedModel = (TasksEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
 		}
 
-		return _escapedModelProxy;
+		return _escapedModel;
+	}
+
+	public TasksEntry toUnescapedModel() {
+		return (TasksEntry)this;
 	}
 
 	@Override
@@ -828,7 +831,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	private static ClassLoader _classLoader = TasksEntry.class.getClassLoader();
-	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {
+	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			TasksEntry.class
 		};
 	private long _tasksEntryId;
@@ -857,5 +860,5 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private Date _finishDate;
 	private int _status;
 	private long _columnBitmask;
-	private TasksEntry _escapedModelProxy;
+	private TasksEntry _escapedModel;
 }
