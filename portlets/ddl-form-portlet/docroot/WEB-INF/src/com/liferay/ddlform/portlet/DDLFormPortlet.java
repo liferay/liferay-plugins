@@ -18,6 +18,7 @@ import com.liferay.ddlform.DuplicateSubmissionException;
 import com.liferay.ddlform.util.DDLFormUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -45,12 +46,23 @@ public class DDLFormPortlet extends MVCPortlet {
 		long recordSetId = ParamUtil.getLong(
 			uploadPortletRequest, "recordSetId");
 
-		validate(recordSetId, uploadPortletRequest);
+		try {
+			validate(recordSetId, uploadPortletRequest);
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DDLRecord.class.getName(), uploadPortletRequest);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				DDLRecord.class.getName(), uploadPortletRequest);
 
-		DDLUtil.updateRecord(0, recordSetId, false, serviceContext);
+			DDLUtil.updateRecord(0, recordSetId, false, serviceContext);
+
+			String redirect = PortalUtil.escapeRedirect(
+				ParamUtil.getString(uploadPortletRequest, "redirect"));
+
+			actionResponse.sendRedirect(redirect);
+		}
+		catch (Exception e) {
+			SessionErrors.add(actionRequest, e.getClass());
+		}
+
 	}
 
 	protected void validate(
