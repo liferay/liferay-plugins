@@ -17,7 +17,7 @@ package com.liferay.compat.hook.repository.cmis;
 import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portal.NoSuchRepositoryEntryException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.repository.Repository;
+import com.liferay.portal.kernel.repository.BaseRepository;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.RepositoryEntry;
 import com.liferay.portal.service.ServiceContext;
@@ -35,12 +35,12 @@ import java.lang.reflect.Method;
 public class CompatCMISRepositoryInvocationHandler
 	implements InvocationHandler {
 
-	public CompatCMISRepositoryInvocationHandler(Repository repository) {
-		_repository = repository;
+	public CompatCMISRepositoryInvocationHandler(BaseRepository baseRepository) {
+		_baseRepository = baseRepository;
 	}
 
-	public Repository getRepository() {
-		return _repository;
+	public BaseRepository getBaseRepository() {
+		return _baseRepository;
 	}
 
 	public Object invoke(Object proxy, Method method, Object[] arguments)
@@ -62,7 +62,7 @@ public class CompatCMISRepositoryInvocationHandler
 					(Long)arguments[0], (ServiceContext)arguments[1]);
 			}
 
-			return method.invoke(_repository, arguments);
+			return method.invoke(_baseRepository, arguments);
 		}
 		catch (InvocationTargetException ite) {
 			throw ite.getTargetException();
@@ -120,6 +120,6 @@ public class CompatCMISRepositoryInvocationHandler
 		RepositoryEntryUtil.update(repositoryEntry, false);
 	}
 
-	private Repository _repository;
+	private BaseRepository _baseRepository;
 
 }
