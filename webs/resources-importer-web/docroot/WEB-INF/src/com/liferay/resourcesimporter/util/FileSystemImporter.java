@@ -449,9 +449,9 @@ public class FileSystemImporter extends BaseImporter {
 				JournalArticleConstants.VERSION_DEFAULT, titleMap,
 				descriptionMap, content, "general", journalStructureId,
 				journalTemplateId, StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0,
-				0, 0, true, 0, 0, 0, 0, 0, true, true, false, StringPool.BLANK,
-				null, new HashMap<String, byte[]>(), StringPool.BLANK,
-				serviceContext);
+				0, 0, true, 0, 0, 0, 0, 0, true, true, smallImage,
+				smallImageURL, null, new HashMap<String, byte[]>(),
+				StringPool.BLANK, serviceContext);
 
 		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
