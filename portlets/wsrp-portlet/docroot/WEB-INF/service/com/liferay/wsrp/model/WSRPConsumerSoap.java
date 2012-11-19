@@ -42,6 +42,7 @@ public class WSRPConsumerSoap implements Serializable {
 		soapModel.setRegistrationPropertiesString(model.getRegistrationPropertiesString());
 		soapModel.setForwardCookies(model.getForwardCookies());
 		soapModel.setForwardHeaders(model.getForwardHeaders());
+		soapModel.setMarkupCharacterSets(model.getMarkupCharacterSets());
 
 		return soapModel;
 	}
@@ -191,6 +192,14 @@ public class WSRPConsumerSoap implements Serializable {
 		_forwardHeaders = forwardHeaders;
 	}
 
+	public String getMarkupCharacterSets() {
+		return _markupCharacterSets;
+	}
+
+	public void setMarkupCharacterSets(String markupCharacterSets) {
+		_markupCharacterSets = markupCharacterSets;
+	}
+
 	private String _uuid;
 	private long _wsrpConsumerId;
 	private long _companyId;
@@ -203,4 +212,5 @@ public class WSRPConsumerSoap implements Serializable {
 	private String _registrationPropertiesString;
 	private String _forwardCookies;
 	private String _forwardHeaders;
+	private String _markupCharacterSets;
 }

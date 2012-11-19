@@ -60,6 +60,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 			getRegistrationPropertiesString());
 		attributes.put("forwardCookies", getForwardCookies());
 		attributes.put("forwardHeaders", getForwardHeaders());
+		attributes.put("markupCharacterSets", getMarkupCharacterSets());
 
 		return attributes;
 	}
@@ -137,6 +138,13 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 
 		if (forwardHeaders != null) {
 			setForwardHeaders(forwardHeaders);
+		}
+
+		String markupCharacterSets = (String)attributes.get(
+				"markupCharacterSets");
+
+		if (markupCharacterSets != null) {
+			setMarkupCharacterSets(markupCharacterSets);
 		}
 	}
 
@@ -374,6 +382,24 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	*/
 	public void setForwardHeaders(java.lang.String forwardHeaders) {
 		_wsrpConsumer.setForwardHeaders(forwardHeaders);
+	}
+
+	/**
+	* Returns the markup character sets of this w s r p consumer.
+	*
+	* @return the markup character sets of this w s r p consumer
+	*/
+	public java.lang.String getMarkupCharacterSets() {
+		return _wsrpConsumer.getMarkupCharacterSets();
+	}
+
+	/**
+	* Sets the markup character sets of this w s r p consumer.
+	*
+	* @param markupCharacterSets the markup character sets of this w s r p consumer
+	*/
+	public void setMarkupCharacterSets(java.lang.String markupCharacterSets) {
+		_wsrpConsumer.setMarkupCharacterSets(markupCharacterSets);
 	}
 
 	public boolean isNew() {

@@ -27,6 +27,7 @@
 			<basic name="registrationPropertiesString" />
 			<basic name="forwardCookies" />
 			<basic name="forwardHeaders" />
+			<basic name="markupCharacterSets" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

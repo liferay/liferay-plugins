@@ -35,7 +35,7 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -61,6 +61,8 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 		sb.append(forwardCookies);
 		sb.append(", forwardHeaders=");
 		sb.append(forwardHeaders);
+		sb.append(", markupCharacterSets=");
+		sb.append(markupCharacterSets);
 		sb.append("}");
 
 		return sb.toString();
@@ -142,6 +144,13 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 			wsrpConsumerImpl.setForwardHeaders(forwardHeaders);
 		}
 
+		if (markupCharacterSets == null) {
+			wsrpConsumerImpl.setMarkupCharacterSets(StringPool.BLANK);
+		}
+		else {
+			wsrpConsumerImpl.setMarkupCharacterSets(markupCharacterSets);
+		}
+
 		wsrpConsumerImpl.resetOriginalValues();
 
 		return wsrpConsumerImpl;
@@ -159,4 +168,5 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 	public String registrationPropertiesString;
 	public String forwardCookies;
 	public String forwardHeaders;
+	public String markupCharacterSets;
 }
