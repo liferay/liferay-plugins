@@ -63,7 +63,7 @@ public class CompatDLFileEntryLocalServiceImpl
 		ExpandoBridge expandoBridge = dlFileEntry.getExpandoBridge();
 
 		boolean manualCheckInRequired = GetterUtil.getBoolean(
-			expandoBridge.getAttribute(DLUtil.MANUAL_CHECK_IN_REQUIRED));
+			expandoBridge.getAttribute(DLUtil.MANUAL_CHECK_IN_REQUIRED, false));
 
 		if (!webDAVCheckIn && manualCheckInRequired) {
 			expandoBridge.setAttribute(

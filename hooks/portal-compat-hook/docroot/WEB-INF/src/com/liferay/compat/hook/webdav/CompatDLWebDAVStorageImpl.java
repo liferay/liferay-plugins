@@ -324,7 +324,8 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 			ExpandoBridge expandoBridge = dlFileEntry.getExpandoBridge();
 
 			return GetterUtil.getBoolean(
-				expandoBridge.getAttribute(DLUtil.MANUAL_CHECK_IN_REQUIRED));
+				expandoBridge.getAttribute(
+					DLUtil.MANUAL_CHECK_IN_REQUIRED, false));
 		}
 		else {
 			try {
@@ -337,7 +338,7 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
 				return GetterUtil.getBoolean(
 					expandoBridge.getAttribute(
-						DLUtil.MANUAL_CHECK_IN_REQUIRED));
+						DLUtil.MANUAL_CHECK_IN_REQUIRED, false));
 			}
 			catch (Exception e) {
 				if (_log.isInfoEnabled()) {

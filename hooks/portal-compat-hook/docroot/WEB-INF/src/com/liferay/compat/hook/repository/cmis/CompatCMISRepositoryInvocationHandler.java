@@ -84,7 +84,7 @@ public class CompatCMISRepositoryInvocationHandler
 		ExpandoBridge expandoBridge = repositoryEntry.getExpandoBridge();
 
 		boolean manualCheckInRequired = GetterUtil.getBoolean(
-			expandoBridge.getAttribute(DLUtil.MANUAL_CHECK_IN_REQUIRED));
+			expandoBridge.getAttribute(DLUtil.MANUAL_CHECK_IN_REQUIRED, false));
 
 		if (!manualCheckInRequired) {
 			return;
