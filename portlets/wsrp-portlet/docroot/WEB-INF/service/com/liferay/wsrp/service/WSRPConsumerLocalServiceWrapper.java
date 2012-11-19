@@ -259,13 +259,13 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
 		java.lang.String adminPortletId, java.lang.String name,
 		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String forwardHeaders,
+		java.lang.String forwardHeaders, java.lang.String markupCharacterSets,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.addWSRPConsumer(companyId,
 			adminPortletId, name, url, forwardCookies, forwardHeaders,
-			serviceContext);
+			markupCharacterSets, serviceContext);
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
@@ -311,11 +311,13 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url,
-		java.lang.String forwardCookies, java.lang.String forwardHeaders)
+		java.lang.String forwardCookies, java.lang.String forwardHeaders,
+		java.lang.String markupCharacterSets)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.updateWSRPConsumer(wsrpConsumerId,
-			adminPortletId, name, url, forwardCookies, forwardHeaders);
+			adminPortletId, name, url, forwardCookies, forwardHeaders,
+			markupCharacterSets);
 	}
 
 	/**

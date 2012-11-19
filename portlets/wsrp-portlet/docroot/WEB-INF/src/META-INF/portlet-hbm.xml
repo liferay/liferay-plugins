@@ -21,6 +21,7 @@
 		<property name="registrationPropertiesString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="forwardCookies" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="forwardHeaders" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="markupCharacterSets" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl" table="WSRP_WSRPConsumerPortlet">
 		<cache usage="read-write" />

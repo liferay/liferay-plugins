@@ -79,6 +79,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 			getRegistrationPropertiesString());
 		attributes.put("forwardCookies", getForwardCookies());
 		attributes.put("forwardHeaders", getForwardHeaders());
+		attributes.put("markupCharacterSets", getMarkupCharacterSets());
 
 		return attributes;
 	}
@@ -157,6 +158,13 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 
 		if (forwardHeaders != null) {
 			setForwardHeaders(forwardHeaders);
+		}
+
+		String markupCharacterSets = (String)attributes.get(
+				"markupCharacterSets");
+
+		if (markupCharacterSets != null) {
+			setMarkupCharacterSets(markupCharacterSets);
 		}
 	}
 
@@ -257,6 +265,14 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		_forwardHeaders = forwardHeaders;
 	}
 
+	public String getMarkupCharacterSets() {
+		return _markupCharacterSets;
+	}
+
+	public void setMarkupCharacterSets(String markupCharacterSets) {
+		_markupCharacterSets = markupCharacterSets;
+	}
+
 	public void setRegistrationContext(
 		oasis.names.tc.wsrp.v2.types.RegistrationContext registrationContext) {
 		throw new UnsupportedOperationException();
@@ -314,6 +330,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		clone.setRegistrationPropertiesString(getRegistrationPropertiesString());
 		clone.setForwardCookies(getForwardCookies());
 		clone.setForwardHeaders(getForwardHeaders());
+		clone.setMarkupCharacterSets(getMarkupCharacterSets());
 
 		return clone;
 	}
@@ -362,7 +379,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -388,13 +405,15 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		sb.append(getForwardCookies());
 		sb.append(", forwardHeaders=");
 		sb.append(getForwardHeaders());
+		sb.append(", markupCharacterSets=");
+		sb.append(getMarkupCharacterSets());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumer");
@@ -448,6 +467,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 			"<column><column-name>forwardHeaders</column-name><column-value><![CDATA[");
 		sb.append(getForwardHeaders());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>markupCharacterSets</column-name><column-value><![CDATA[");
+		sb.append(getMarkupCharacterSets());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -466,5 +489,6 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	private String _registrationPropertiesString;
 	private String _forwardCookies;
 	private String _forwardHeaders;
+	private String _markupCharacterSets;
 	private BaseModel<?> _wsrpConsumerRemoteModel;
 }

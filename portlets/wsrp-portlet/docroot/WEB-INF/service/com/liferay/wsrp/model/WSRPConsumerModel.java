@@ -236,6 +236,21 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	 */
 	public void setForwardHeaders(String forwardHeaders);
 
+	/**
+	 * Returns the markup character sets of this w s r p consumer.
+	 *
+	 * @return the markup character sets of this w s r p consumer
+	 */
+	@AutoEscape
+	public String getMarkupCharacterSets();
+
+	/**
+	 * Sets the markup character sets of this w s r p consumer.
+	 *
+	 * @param markupCharacterSets the markup character sets of this w s r p consumer
+	 */
+	public void setMarkupCharacterSets(String markupCharacterSets);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);
