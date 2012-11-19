@@ -24,6 +24,7 @@
 		<column name="registrationPropertiesString" type="String" />
 		<column name="forwardCookies" type="String" />
 		<column name="forwardHeaders" type="String" />
+		<column name="markupCharacterSets" type="String" />
 
 		<!-- Order -->
 
