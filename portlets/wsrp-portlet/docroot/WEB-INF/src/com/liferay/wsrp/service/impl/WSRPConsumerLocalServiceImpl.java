@@ -61,7 +61,7 @@ public class WSRPConsumerLocalServiceImpl
 	public WSRPConsumer addWSRPConsumer(
 			long companyId, String adminPortletId, String name, String url,
 			String forwardCookies, String forwardHeaders,
-			ServiceContext serviceContext)
+			String markupCharacterSets, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
@@ -81,6 +81,7 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setUrl(url);
 		wsrpConsumer.setWsdl(
 			getWSDL(wsrpConsumer, forwardCookies, forwardHeaders));
+		wsrpConsumer.setMarkupCharacterSets(markupCharacterSets);
 
 		wsrpConsumerPersistence.update(wsrpConsumer);
 
@@ -253,7 +254,8 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer updateWSRPConsumer(
 			long wsrpConsumerId, String adminPortletId, String name, String url,
-			String forwardCookies, String forwardHeaders)
+			String forwardCookies, String forwardHeaders,
+			String markupCharacterSets)
 		throws PortalException, SystemException {
 
 		validate(name);
@@ -268,6 +270,7 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setUrl(url);
 		wsrpConsumer.setWsdl(
 			getWSDL(wsrpConsumer, forwardCookies, forwardHeaders));
+		wsrpConsumer.setMarkupCharacterSets(markupCharacterSets);
 
 		wsrpConsumerPersistence.update(wsrpConsumer);
 
