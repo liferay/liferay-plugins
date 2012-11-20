@@ -21,15 +21,24 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
+import com.liferay.portlet.dynamicdatamapping.StorageFieldRequiredException;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 /**
  * @author Marcellus Tavares
@@ -46,23 +55,47 @@ public class DDLFormPortlet extends MVCPortlet {
 		long recordSetId = ParamUtil.getLong(
 			uploadPortletRequest, "recordSetId");
 
-		try {
-			validate(recordSetId, uploadPortletRequest);
+		validate(recordSetId, uploadPortletRequest);
 
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				DDLRecord.class.getName(), uploadPortletRequest);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			DDLRecord.class.getName(), uploadPortletRequest);
 
-			DDLUtil.updateRecord(0, recordSetId, false, serviceContext);
+		DDLUtil.updateRecord(0, recordSetId, false, serviceContext);
 
-			String redirect = PortalUtil.escapeRedirect(
-				ParamUtil.getString(uploadPortletRequest, "redirect"));
+		String redirect = PortalUtil.escapeRedirect(
+			ParamUtil.getString(uploadPortletRequest, "redirect"));
 
+		if (Validator.isNotNull(redirect)) {
 			actionResponse.sendRedirect(redirect);
 		}
-		catch (Exception e) {
-			SessionErrors.add(actionRequest, e.getClass());
+	}
+
+	@Override
+	protected void doDispatch(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		if (SessionErrors.contains(
+				renderRequest, PrincipalException.class.getName())) {
+
+			include("/error.jsp", renderRequest, renderResponse);
+		}
+		else {
+			super.doDispatch(renderRequest, renderResponse);
+		}
+	}
+
+	@Override
+	protected boolean isSessionErrorException(Throwable cause) {
+		if (cause instanceof DuplicateSubmissionException ||
+			cause instanceof FileSizeException ||
+			cause instanceof PrincipalException ||
+			cause instanceof StorageFieldRequiredException) {
+
+			return true;
 		}
 
+		return false;
 	}
 
 	protected void validate(
