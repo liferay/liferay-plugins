@@ -21,6 +21,8 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/chat-portlet-service.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-mapper.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/sample-service-builder-portlet-service.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

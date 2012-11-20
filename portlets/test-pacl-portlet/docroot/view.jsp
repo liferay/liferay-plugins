@@ -1281,6 +1281,18 @@
 </p>
 
 <p>
+	ObjectMapper=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				new ObjectMapper();
+			}
+
+		};
+		%>
+
 	TestPACLUtil.class#TEST_FIELD=
 
 		<%
