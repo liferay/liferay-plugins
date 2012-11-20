@@ -16,8 +16,8 @@ package com.liferay.compat.hook.repository.cmis;
 
 import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portal.NoSuchRepositoryEntryException;
+import com.liferay.portal.kernel.bean.ClassLoaderBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.repository.BaseRepository;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.RepositoryEntry;
 import com.liferay.portal.service.ServiceContext;
@@ -25,7 +25,6 @@ import com.liferay.portal.service.persistence.RepositoryEntryUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.lang.Object;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -33,16 +32,15 @@ import java.lang.reflect.Method;
  * @author Brian Wing Shun Chan
  */
 public class CompatCMISRepositoryInvocationHandler
-	implements InvocationHandler {
+	extends ClassLoaderBeanHandler {
 
-	public CompatCMISRepositoryInvocationHandler(BaseRepository baseRepository) {
-		_baseRepository = baseRepository;
+	public CompatCMISRepositoryInvocationHandler(
+		Object bean, ClassLoader classLoader) {
+
+		super(bean, classLoader);
 	}
 
-	public BaseRepository getBaseRepository() {
-		return _baseRepository;
-	}
-
+	@Override
 	public Object invoke(Object proxy, Method method, Object[] arguments)
 		throws Throwable {
 
@@ -62,7 +60,7 @@ public class CompatCMISRepositoryInvocationHandler
 					(Long)arguments[0], (ServiceContext)arguments[1]);
 			}
 
-			return method.invoke(_baseRepository, arguments);
+			return method.invoke(super.getBean(), arguments);
 		}
 		catch (InvocationTargetException ite) {
 			throw ite.getTargetException();
@@ -119,7 +117,5 @@ public class CompatCMISRepositoryInvocationHandler
 
 		RepositoryEntryUtil.update(repositoryEntry, false);
 	}
-
-	private BaseRepository _baseRepository;
 
 }

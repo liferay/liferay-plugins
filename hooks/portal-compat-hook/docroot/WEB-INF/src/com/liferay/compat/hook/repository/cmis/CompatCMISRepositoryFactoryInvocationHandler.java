@@ -17,6 +17,7 @@ package com.liferay.compat.hook.repository.cmis;
 import com.liferay.portal.kernel.repository.BaseRepository;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.repository.proxy.BaseRepositoryProxyBean;
 
 import java.lang.Object;
 import java.lang.reflect.InvocationHandler;
@@ -51,10 +52,14 @@ public class CompatCMISRepositoryFactoryInvocationHandler
 				ClassLoader classLoader =
 					PortalClassLoaderUtil.getClassLoader();
 
-				value = ProxyUtil.newProxyInstance(
-					classLoader, new Class<?>[] {BaseRepository.class},
-					new CompatCMISRepositoryInvocationHandler(
-						(BaseRepository)value));
+				BaseRepository baseRepository =
+					(BaseRepository)ProxyUtil.newProxyInstance(
+						classLoader, new Class<?>[] {BaseRepository.class},
+						new CompatCMISRepositoryInvocationHandler(
+							value, classLoader));
+
+				value = new BaseRepositoryProxyBean(
+					baseRepository, classLoader);
 			}
 
 			return value;
