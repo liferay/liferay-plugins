@@ -166,8 +166,7 @@ public class WebFormPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			SessionErrors.add(
-				actionRequest, "validation-script-error",
-				e.getMessage().trim());
+				actionRequest, "validationScriptError", e.getMessage().trim());
 
 			return;
 		}
