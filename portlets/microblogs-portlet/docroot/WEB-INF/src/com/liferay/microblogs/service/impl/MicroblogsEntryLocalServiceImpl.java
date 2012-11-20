@@ -329,9 +329,7 @@ public class MicroblogsEntryLocalServiceImpl
 			return;
 		}
 
-		if ((type == MicroblogsEntryConstants.TYPE_REPLY) ||
-			(type == MicroblogsEntryConstants.TYPE_REPOST)) {
-
+		if (type == MicroblogsEntryConstants.TYPE_REPOST) {
 			throw new UnsupportedMicroblogsEntryException();
 		}
 	}
