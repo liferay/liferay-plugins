@@ -133,7 +133,7 @@ int defaultDuration = GetterUtil.getInteger(preferences.getValue("defaultDuratio
 String defaultView = preferences.getValue("defaultView", "week");
 boolean isoTimeFormat = GetterUtil.getBoolean(preferences.getValue("isoTimeFormat", null));
 String timeZoneId = preferences.getValue("timeZoneId", user.getTimeZoneId());
-boolean usePortalTimeZone = GetterUtil.getBoolean(preferences.getValue("usePortalTimeZone", null));
+boolean usePortalTimeZone = GetterUtil.getBoolean(preferences.getValue("usePortalTimeZone", Boolean.TRUE.toString()));
 int weekStartsOn = GetterUtil.getInteger(preferences.getValue("weekStartsOn", null), 0);
 
 if (usePortalTimeZone) {
