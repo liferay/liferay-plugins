@@ -100,6 +100,8 @@ page import="java.util.Map" %>
 <%@ page import="javax.naming.Context" %><%@
 page import="javax.naming.InitialContext" %>
 
+<%@ page import="org.codehaus.jackson.map.ObjectMapper" %>
+
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
