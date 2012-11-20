@@ -26,7 +26,7 @@ String primKey = portletDisplay.getResourcePK();
 		<c:when test="<%= permissionChecker.hasPermission(scopeGroupId, name, primKey, ActionKeys.CONFIGURATION) %>">
 			<span class="portlet-msg-error"><liferay-ui:message key="an-error-occurred-while-executing-the-validation.-please-review-the-following-errors" /></span>
 
-			<pre><%= SessionErrors.get(renderRequest, "validation-script-error") %></pre>
+			<pre><%= SessionErrors.get(renderRequest, "validationScriptError") %></pre>
 		</c:when>
 		<c:otherwise>
 			<span class="portlet-msg-error"><liferay-ui:message key="an-error-occurred-while-executing-the-validation.-please-contact-an-administrator" /></span>
