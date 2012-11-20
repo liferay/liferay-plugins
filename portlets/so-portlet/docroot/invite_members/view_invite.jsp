@@ -20,7 +20,7 @@
 <%@ include file="/init.jsp" %>
 
 <c:choose>
-	<c:when test='<%= SessionMessages.contains(renderRequest, "request_processed") %>'>
+	<c:when test='<%= SessionMessages.contains(renderRequest, "requestProcessed") %>'>
 		<div class="portlet-msg-success">
 			<liferay-ui:message key="your-request-processed-successfully" />
 		</div>

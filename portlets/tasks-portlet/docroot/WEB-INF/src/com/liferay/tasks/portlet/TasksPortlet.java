@@ -98,7 +98,7 @@ public class TasksPortlet extends MVCPortlet {
 		}
 
 		if (SessionErrors.isEmpty(actionRequest)) {
-			SessionMessages.add(actionRequest, "request_processed");
+			SessionMessages.add(actionRequest, "requestProcessed");
 		}
 
 		String actionName = ParamUtil.getString(
