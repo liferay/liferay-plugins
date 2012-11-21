@@ -38,7 +38,8 @@ public class CompatUpdatePasswordAction extends BaseStrutsAction {
 		NoRedirectServletResponse noRedirectServletResponse =
 			new NoRedirectServletResponse(response);
 
-		String forward = originalStrutsAction.execute(request, response);
+		String forward = originalStrutsAction.execute(
+			request, noRedirectServletResponse);
 
 		String location = noRedirectServletResponse.getRedirectLocation();
 
