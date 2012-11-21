@@ -6,6 +6,7 @@ $fixed-width: 980px;
 $gray: #CECECE;
 $gray-dark: #C7D0DA;
 $gray-light: #F4F4F4;
+$gray-medium: #EEE;
 $navigation-width: 200px;
 $red: #8F0920;
 
@@ -428,7 +429,7 @@ a:hover {
 	}
 
 	.aui-button-holder {
-		background: #EEE;
+		background: $gray-medium;
 		border-top: 1px solid #BFBFBF;
 		margin: 1em 0;
 		padding: 0.5em;
@@ -466,7 +467,7 @@ a:hover {
 
 	a {
 		background: $blue-link;
-		color: #EEE;
+		color: $gray-medium;
 		display: inline-block;
 		margin: 4px;
 		padding: 3px 6px;
@@ -548,7 +549,7 @@ button, input[type=button], input[type=submit], input[type=reset], #toggleFluid,
 
 input[type=button], input[type=reset], input[type=submit], .aui-button button, .aui-state-hover, .contacts-portlet .social-relations a, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended, .portlet-blogs .lfr-meta-actions a, .thread-controls a:hover, .tasks-dialog .control a.taglib-icon, .top-links-navigation a:hover {
 	&:hover {
-		background: #EEE;
+		background: $gray-medium;
 		border-color: #AAA;
 		color: #5A5A5A;
 	}
@@ -997,7 +998,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.lfr-discussion-form-reply {
-		background-color: #EEE;
+		background-color: $gray-medium;
 	}
 
 	.lfr-discussion-details-content, .lfr-discussion-form-reply {
@@ -1205,7 +1206,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		clear: both;
 
 		.hour, .half-hour {
-			border-bottom: 1px dotted #EEE;
+			border-bottom: 1px dotted $gray-medium;
 		}
 
 		.half-hour {
@@ -1217,7 +1218,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 
 		.event-box {
-			background: #EEE;
+			background: $gray-medium;
 			border: 1px solid #CCC;
 		}
 	}
@@ -1306,7 +1307,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 			}
 
 			&:hover {
-				background: #EEE;
+				background: $gray-medium;
 			}
 		}
 	}
@@ -1485,7 +1486,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.document-info {
-		background-color: #EEE;
+		background-color: $gray-medium;
 	}
 
 	.aui-column-content-first, .aui-column-content-last, .document-library-breadcrumb, .search-button-container .aui-column:before, .search-button-container .aui-column-content, .search-button-container .aui-column-content-center {
@@ -1493,7 +1494,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.lfr-header-row {
-		background: #EEE;
+		background: $gray-medium;
 		min-height: 33px;
 	}
 
@@ -1567,11 +1568,11 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 
 		.results-row td, .results-row.alt td {
-			border-bottom: 1px solid #EEE;
+			border-bottom: 1px solid $gray-medium;
 		}
 
 		.results-row.hover td {
-			background: #EEE;
+			background: $gray-medium;
 		}
 	}
 }
@@ -1757,7 +1758,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.edit-controls, .thread-controls {
-		background: #EEE;
+		background: $gray-medium;
 		border: 1px solid $gray;
 		padding: 4px 5px;
 
@@ -2145,7 +2146,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.results-row:hover td, .results-row.alt:hover td {
-		background: #EEE;
+		background: $gray-medium;
 	}
 
 	.user-notification-event-content {
@@ -2165,7 +2166,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 }
 
 .top-links .top-links-navigation {
-	background: #EEE;
+	background: $gray-medium;
 	padding: 4px 8px;
 	width: auto;
 
@@ -2220,14 +2221,14 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	padding: 3px 0 3px 20px;
 
 	&:hover {
-		background-color: #EEE;
+		background-color: $gray-medium;
 		text-decoration: none;
 	}
 }
 
 .tasks-dialog {
 	.comment-wrapper {
-		border: 1px solid #EEE;
+		border: 1px solid $gray-medium;
 
 		.comment-body {
 			background: #FFF;
@@ -2235,7 +2236,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 
 		.comment-info {
-			background: #EEE;
+			background: $gray-medium;
 			padding: 5px;
 		}
 
@@ -2478,25 +2479,25 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.tasks-portlet {
 		zoom: 1;
 	}
-}
 
-.ie.rtl {
-	#navigation {
-		margin-right: 1px;
-	}
-
-	#content .portlet-layout {
-		.portlet-column-first:before {
-			border-right-width: 0;
+	&.rtl {
+		#navigation {
+			margin-right: 1px;
 		}
 
-		.portlet-column-only:after {
-			border-right: 1px solid $gray-dark;
-			bottom: 0;
-			content: "";
-			position: absolute;
-			right: -1px;
-			top: 0;
+		#content .portlet-layout {
+			.portlet-column-first:before {
+				border-right-width: 0;
+			}
+
+			.portlet-column-only:after {
+				border-right: 1px solid $gray-dark;
+				bottom: 0;
+				content: "";
+				position: absolute;
+				right: -1px;
+				top: 0;
+			}
 		}
 	}
 }
