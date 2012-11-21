@@ -227,6 +227,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 									<liferay-util:param name="activeView" value="<%= activeView %>" />
 									<liferay-util:param name="date" value="<%= String.valueOf(date) %>" />
 									<liferay-util:param name="filterCalendarBookings" value='<%= "window." + renderResponse.getNamespace() + "filterCalendarBookings" %>' />
+									<liferay-util:param name="hideMonthView" value="<%= Boolean.TRUE.toString() %>" />
+									<liferay-util:param name="hideAgendaView" value="<%= Boolean.TRUE.toString() %>" />
 									<liferay-util:param name="preventPersistence" value="<%= Boolean.TRUE.toString() %>" />
 									<liferay-util:param name="readOnly" value="<%= Boolean.TRUE.toString() %>" />
 								</liferay-util:include>
