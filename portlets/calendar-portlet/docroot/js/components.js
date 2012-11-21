@@ -883,6 +883,7 @@
 					var datePicker = Liferay.component(Liferay.CalendarUtil.PORTLET_NAMESPACE + fieldName + 'datePicker');
 
 					if (datePicker) {
+						datePicker.calendar.deselectDates();
 						datePicker.calendar.selectDates(date);
 
 						datePicker.syncUI();
