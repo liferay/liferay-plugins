@@ -66,7 +66,7 @@ public class FavoriteSiteLocalServiceImpl
 	}
 
 	public void deleteFavoriteSites(long userId, long groupId)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		favoriteSitePersistence.removeByG_U(groupId, userId);
 	}

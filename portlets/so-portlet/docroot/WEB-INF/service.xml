@@ -23,7 +23,7 @@
 		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
-		<finder name="G_U" return-type="Collection" unique="true">
+		<finder name="G_U" return-type="FavoriteSite" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="userId" />
 		</finder>
