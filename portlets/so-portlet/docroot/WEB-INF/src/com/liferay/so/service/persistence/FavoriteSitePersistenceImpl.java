@@ -98,18 +98,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_U = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_G_U = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, FavoriteSiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_U",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
-			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, FavoriteSiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_U",
+			FINDER_CLASS_NAME_ENTITY, "fetchByG_U",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			FavoriteSiteModelImpl.GROUPID_COLUMN_BITMASK |
 			FavoriteSiteModelImpl.USERID_COLUMN_BITMASK);
@@ -135,6 +126,12 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	public void cacheResult(FavoriteSite favoriteSite) {
 		EntityCacheUtil.putResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
+			new Object[] {
+				Long.valueOf(favoriteSite.getGroupId()),
+				Long.valueOf(favoriteSite.getUserId())
+			}, favoriteSite);
 
 		favoriteSite.resetOriginalValues();
 	}
@@ -191,6 +188,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(favoriteSite);
 	}
 
 	@Override
@@ -201,7 +200,17 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		for (FavoriteSite favoriteSite : favoriteSites) {
 			EntityCacheUtil.removeResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 				FavoriteSiteImpl.class, favoriteSite.getPrimaryKey());
+
+			clearUniqueFindersCache(favoriteSite);
 		}
+	}
+
+	protected void clearUniqueFindersCache(FavoriteSite favoriteSite) {
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_U,
+			new Object[] {
+				Long.valueOf(favoriteSite.getGroupId()),
+				Long.valueOf(favoriteSite.getUserId())
+			});
 	}
 
 	/**
@@ -348,31 +357,37 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 			}
+		}
 
+		EntityCacheUtil.putResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
+			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite);
+
+		if (isNew) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
+				new Object[] {
+					Long.valueOf(favoriteSite.getGroupId()),
+					Long.valueOf(favoriteSite.getUserId())
+				}, favoriteSite);
+		}
+		else {
 			if ((favoriteSiteModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U.getColumnBitmask()) != 0) {
+					FINDER_PATH_FETCH_BY_G_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(favoriteSiteModelImpl.getOriginalGroupId()),
 						Long.valueOf(favoriteSiteModelImpl.getOriginalUserId())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U,
-					args);
 
-				args = new Object[] {
-						Long.valueOf(favoriteSiteModelImpl.getGroupId()),
-						Long.valueOf(favoriteSiteModelImpl.getUserId())
-					};
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_U, args);
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U,
-					args);
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
+					new Object[] {
+						Long.valueOf(favoriteSite.getGroupId()),
+						Long.valueOf(favoriteSite.getUserId())
+					}, favoriteSite);
 			}
 		}
-
-		EntityCacheUtil.putResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
-			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite);
 
 		return favoriteSite;
 	}
@@ -868,107 +883,91 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Returns all the favorite sites where groupId = &#63; and userId = &#63;.
+	 * Returns the favorite site where groupId = &#63; and userId = &#63; or throws a {@link com.liferay.so.NoSuchFavoriteSiteException} if it could not be found.
 	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
-	 * @return the matching favorite sites
+	 * @return the matching favorite site
+	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FavoriteSite> findByG_U(long groupId, long userId)
+	public FavoriteSite findByG_U(long groupId, long userId)
+		throws NoSuchFavoriteSiteException, SystemException {
+		FavoriteSite favoriteSite = fetchByG_U(groupId, userId);
+
+		if (favoriteSite == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchFavoriteSiteException(msg.toString());
+		}
+
+		return favoriteSite;
+	}
+
+	/**
+	 * Returns the favorite site where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @return the matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FavoriteSite fetchByG_U(long groupId, long userId)
 		throws SystemException {
-		return findByG_U(groupId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return fetchByG_U(groupId, userId, true);
 	}
 
 	/**
-	 * Returns a range of all the favorite sites where groupId = &#63; and userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Returns the favorite site where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
-	 * @param start the lower bound of the range of favorite sites
-	 * @param end the upper bound of the range of favorite sites (not inclusive)
-	 * @return the range of matching favorite sites
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching favorite site, or <code>null</code> if a matching favorite site could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FavoriteSite> findByG_U(long groupId, long userId, int start,
-		int end) throws SystemException {
-		return findByG_U(groupId, userId, start, end, null);
-	}
+	public FavoriteSite fetchByG_U(long groupId, long userId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, userId };
 
-	/**
-	 * Returns an ordered range of all the favorite sites where groupId = &#63; and userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID
-	 * @param userId the user ID
-	 * @param start the lower bound of the range of favorite sites
-	 * @param end the upper bound of the range of favorite sites (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching favorite sites
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<FavoriteSite> findByG_U(long groupId, long userId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
+		Object result = null;
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U;
-			finderArgs = new Object[] { groupId, userId };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_U;
-			finderArgs = new Object[] {
-					groupId, userId,
-					
-					start, end, orderByComparator
-				};
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_U,
+					finderArgs, this);
 		}
 
-		List<FavoriteSite> list = (List<FavoriteSite>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		if (result instanceof FavoriteSite) {
+			FavoriteSite favoriteSite = (FavoriteSite)result;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (FavoriteSite favoriteSite : list) {
-				if ((groupId != favoriteSite.getGroupId()) ||
-						(userId != favoriteSite.getUserId())) {
-					list = null;
-
-					break;
-				}
+			if ((groupId != favoriteSite.getGroupId()) ||
+					(userId != favoriteSite.getUserId())) {
+				result = null;
 			}
 		}
 
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_SELECT_FAVORITESITE_WHERE);
 
 			query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
 			query.append(_FINDER_COLUMN_G_U_USERID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
 
 			String sql = query.toString();
 
@@ -985,287 +984,49 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 				qPos.add(userId);
 
-				list = (List<FavoriteSite>)QueryUtil.list(q, getDialect(),
-						start, end);
+				List<FavoriteSite> list = q.list();
+
+				result = list;
+
+				FavoriteSite favoriteSite = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
+						finderArgs, list);
+				}
+				else {
+					favoriteSite = list.get(0);
+
+					cacheResult(favoriteSite);
+
+					if ((favoriteSite.getGroupId() != groupId) ||
+							(favoriteSite.getUserId() != userId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
+							finderArgs, favoriteSite);
+					}
+				}
+
+				return favoriteSite;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_U,
+						finderArgs);
 				}
 
 				closeSession(session);
 			}
 		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group ID
-	 * @param userId the user ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FavoriteSite findByG_U_First(long groupId, long userId,
-		OrderByComparator orderByComparator)
-		throws NoSuchFavoriteSiteException, SystemException {
-		FavoriteSite favoriteSite = fetchByG_U_First(groupId, userId,
-				orderByComparator);
-
-		if (favoriteSite != null) {
-			return favoriteSite;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("groupId=");
-		msg.append(groupId);
-
-		msg.append(", userId=");
-		msg.append(userId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchFavoriteSiteException(msg.toString());
-	}
-
-	/**
-	 * Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group ID
-	 * @param userId the user ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching favorite site, or <code>null</code> if a matching favorite site could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FavoriteSite fetchByG_U_First(long groupId, long userId,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<FavoriteSite> list = findByG_U(groupId, userId, 0, 1,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group ID
-	 * @param userId the user ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FavoriteSite findByG_U_Last(long groupId, long userId,
-		OrderByComparator orderByComparator)
-		throws NoSuchFavoriteSiteException, SystemException {
-		FavoriteSite favoriteSite = fetchByG_U_Last(groupId, userId,
-				orderByComparator);
-
-		if (favoriteSite != null) {
-			return favoriteSite;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("groupId=");
-		msg.append(groupId);
-
-		msg.append(", userId=");
-		msg.append(userId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchFavoriteSiteException(msg.toString());
-	}
-
-	/**
-	 * Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group ID
-	 * @param userId the user ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching favorite site, or <code>null</code> if a matching favorite site could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FavoriteSite fetchByG_U_Last(long groupId, long userId,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByG_U(groupId, userId);
-
-		List<FavoriteSite> list = findByG_U(groupId, userId, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the favorite sites before and after the current favorite site in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * @param favoriteSiteId the primary key of the current favorite site
-	 * @param groupId the group ID
-	 * @param userId the user ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FavoriteSite[] findByG_U_PrevAndNext(long favoriteSiteId,
-		long groupId, long userId, OrderByComparator orderByComparator)
-		throws NoSuchFavoriteSiteException, SystemException {
-		FavoriteSite favoriteSite = findByPrimaryKey(favoriteSiteId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			FavoriteSite[] array = new FavoriteSiteImpl[3];
-
-			array[0] = getByG_U_PrevAndNext(session, favoriteSite, groupId,
-					userId, orderByComparator, true);
-
-			array[1] = favoriteSite;
-
-			array[2] = getByG_U_PrevAndNext(session, favoriteSite, groupId,
-					userId, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected FavoriteSite getByG_U_PrevAndNext(Session session,
-		FavoriteSite favoriteSite, long groupId, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
 		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_FAVORITESITE_WHERE);
-
-		query.append(_FINDER_COLUMN_G_U_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_G_U_USERID_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
+			if (result instanceof List<?>) {
+				return null;
 			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
+			else {
+				return (FavoriteSite)result;
 			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(groupId);
-
-		qPos.add(userId);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(favoriteSite);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<FavoriteSite> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
 		}
 	}
 
@@ -1397,17 +1158,18 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Removes all the favorite sites where groupId = &#63; and userId = &#63; from the database.
+	 * Removes the favorite site where groupId = &#63; and userId = &#63; from the database.
 	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
+	 * @return the favorite site that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByG_U(long groupId, long userId)
-		throws SystemException {
-		for (FavoriteSite favoriteSite : findByG_U(groupId, userId)) {
-			remove(favoriteSite);
-		}
+	public FavoriteSite removeByG_U(long groupId, long userId)
+		throws NoSuchFavoriteSiteException, SystemException {
+		FavoriteSite favoriteSite = findByG_U(groupId, userId);
+
+		return remove(favoriteSite);
 	}
 
 	/**
