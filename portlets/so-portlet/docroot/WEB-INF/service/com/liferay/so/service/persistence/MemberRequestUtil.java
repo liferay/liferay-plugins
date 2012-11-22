@@ -111,86 +111,6 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Caches the member request in the entity cache if it is enabled.
-	*
-	* @param memberRequest the member request
-	*/
-	public static void cacheResult(
-		com.liferay.so.model.MemberRequest memberRequest) {
-		getPersistence().cacheResult(memberRequest);
-	}
-
-	/**
-	* Caches the member requests in the entity cache if it is enabled.
-	*
-	* @param memberRequests the member requests
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.so.model.MemberRequest> memberRequests) {
-		getPersistence().cacheResult(memberRequests);
-	}
-
-	/**
-	* Creates a new member request with the primary key. Does not add the member request to the database.
-	*
-	* @param memberRequestId the primary key for the new member request
-	* @return the new member request
-	*/
-	public static com.liferay.so.model.MemberRequest create(
-		long memberRequestId) {
-		return getPersistence().create(memberRequestId);
-	}
-
-	/**
-	* Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param memberRequestId the primary key of the member request
-	* @return the member request that was removed
-	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.so.model.MemberRequest remove(
-		long memberRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchMemberRequestException {
-		return getPersistence().remove(memberRequestId);
-	}
-
-	public static com.liferay.so.model.MemberRequest updateImpl(
-		com.liferay.so.model.MemberRequest memberRequest)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(memberRequest);
-	}
-
-	/**
-	* Returns the member request with the primary key or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
-	*
-	* @param memberRequestId the primary key of the member request
-	* @return the member request
-	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.so.model.MemberRequest findByPrimaryKey(
-		long memberRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchMemberRequestException {
-		return getPersistence().findByPrimaryKey(memberRequestId);
-	}
-
-	/**
-	* Returns the member request with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param memberRequestId the primary key of the member request
-	* @return the member request, or <code>null</code> if a member request with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.so.model.MemberRequest fetchByPrimaryKey(
-		long memberRequestId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(memberRequestId);
-	}
-
-	/**
 	* Returns the member request where key = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
 	*
 	* @param key the key
@@ -230,6 +150,32 @@ public class MemberRequestUtil {
 		java.lang.String key, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByKey(key, retrieveFromCache);
+	}
+
+	/**
+	* Removes the member request where key = &#63; from the database.
+	*
+	* @param key the key
+	* @return the member request that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.MemberRequest removeByKey(
+		java.lang.String key)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.NoSuchMemberRequestException {
+		return getPersistence().removeByKey(key);
+	}
+
+	/**
+	* Returns the number of member requests where key = &#63;.
+	*
+	* @param key the key
+	* @return the number of matching member requests
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKey(java.lang.String key)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKey(key);
 	}
 
 	/**
@@ -374,6 +320,29 @@ public class MemberRequestUtil {
 		return getPersistence()
 				   .findByReceiverUserId_PrevAndNext(memberRequestId,
 			receiverUserId, orderByComparator);
+	}
+
+	/**
+	* Removes all the member requests where receiverUserId = &#63; from the database.
+	*
+	* @param receiverUserId the receiver user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByReceiverUserId(long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByReceiverUserId(receiverUserId);
+	}
+
+	/**
+	* Returns the number of member requests where receiverUserId = &#63;.
+	*
+	* @param receiverUserId the receiver user ID
+	* @return the number of matching member requests
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByReceiverUserId(long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByReceiverUserId(receiverUserId);
 	}
 
 	/**
@@ -528,6 +497,31 @@ public class MemberRequestUtil {
 	}
 
 	/**
+	* Removes all the member requests where receiverUserId = &#63; and status = &#63; from the database.
+	*
+	* @param receiverUserId the receiver user ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByR_S(long receiverUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByR_S(receiverUserId, status);
+	}
+
+	/**
+	* Returns the number of member requests where receiverUserId = &#63; and status = &#63;.
+	*
+	* @param receiverUserId the receiver user ID
+	* @param status the status
+	* @return the number of matching member requests
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_S(long receiverUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByR_S(receiverUserId, status);
+	}
+
+	/**
 	* Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
 	*
 	* @param groupId the group ID
@@ -575,6 +569,116 @@ public class MemberRequestUtil {
 		return getPersistence()
 				   .fetchByG_R_S(groupId, receiverUserId, status,
 			retrieveFromCache);
+	}
+
+	/**
+	* Removes the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param receiverUserId the receiver user ID
+	* @param status the status
+	* @return the member request that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.MemberRequest removeByG_R_S(
+		long groupId, long receiverUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.NoSuchMemberRequestException {
+		return getPersistence().removeByG_R_S(groupId, receiverUserId, status);
+	}
+
+	/**
+	* Returns the number of member requests where groupId = &#63; and receiverUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param receiverUserId the receiver user ID
+	* @param status the status
+	* @return the number of matching member requests
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_R_S(long groupId, long receiverUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_R_S(groupId, receiverUserId, status);
+	}
+
+	/**
+	* Caches the member request in the entity cache if it is enabled.
+	*
+	* @param memberRequest the member request
+	*/
+	public static void cacheResult(
+		com.liferay.so.model.MemberRequest memberRequest) {
+		getPersistence().cacheResult(memberRequest);
+	}
+
+	/**
+	* Caches the member requests in the entity cache if it is enabled.
+	*
+	* @param memberRequests the member requests
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.so.model.MemberRequest> memberRequests) {
+		getPersistence().cacheResult(memberRequests);
+	}
+
+	/**
+	* Creates a new member request with the primary key. Does not add the member request to the database.
+	*
+	* @param memberRequestId the primary key for the new member request
+	* @return the new member request
+	*/
+	public static com.liferay.so.model.MemberRequest create(
+		long memberRequestId) {
+		return getPersistence().create(memberRequestId);
+	}
+
+	/**
+	* Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequestId the primary key of the member request
+	* @return the member request that was removed
+	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.MemberRequest remove(
+		long memberRequestId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.NoSuchMemberRequestException {
+		return getPersistence().remove(memberRequestId);
+	}
+
+	public static com.liferay.so.model.MemberRequest updateImpl(
+		com.liferay.so.model.MemberRequest memberRequest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(memberRequest);
+	}
+
+	/**
+	* Returns the member request with the primary key or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
+	*
+	* @param memberRequestId the primary key of the member request
+	* @return the member request
+	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.MemberRequest findByPrimaryKey(
+		long memberRequestId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.NoSuchMemberRequestException {
+		return getPersistence().findByPrimaryKey(memberRequestId);
+	}
+
+	/**
+	* Returns the member request with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param memberRequestId the primary key of the member request
+	* @return the member request, or <code>null</code> if a member request with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.MemberRequest fetchByPrimaryKey(
+		long memberRequestId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(memberRequestId);
 	}
 
 	/**
@@ -627,59 +731,6 @@ public class MemberRequestUtil {
 	}
 
 	/**
-	* Removes the member request where key = &#63; from the database.
-	*
-	* @param key the key
-	* @return the member request that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.so.model.MemberRequest removeByKey(
-		java.lang.String key)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchMemberRequestException {
-		return getPersistence().removeByKey(key);
-	}
-
-	/**
-	* Removes all the member requests where receiverUserId = &#63; from the database.
-	*
-	* @param receiverUserId the receiver user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByReceiverUserId(long receiverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByReceiverUserId(receiverUserId);
-	}
-
-	/**
-	* Removes all the member requests where receiverUserId = &#63; and status = &#63; from the database.
-	*
-	* @param receiverUserId the receiver user ID
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByR_S(long receiverUserId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByR_S(receiverUserId, status);
-	}
-
-	/**
-	* Removes the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param receiverUserId the receiver user ID
-	* @param status the status
-	* @return the member request that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.so.model.MemberRequest removeByG_R_S(
-		long groupId, long receiverUserId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchMemberRequestException {
-		return getPersistence().removeByG_R_S(groupId, receiverUserId, status);
-	}
-
-	/**
 	* Removes all the member requests from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -687,57 +738,6 @@ public class MemberRequestUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of member requests where key = &#63;.
-	*
-	* @param key the key
-	* @return the number of matching member requests
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKey(java.lang.String key)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKey(key);
-	}
-
-	/**
-	* Returns the number of member requests where receiverUserId = &#63;.
-	*
-	* @param receiverUserId the receiver user ID
-	* @return the number of matching member requests
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByReceiverUserId(long receiverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByReceiverUserId(receiverUserId);
-	}
-
-	/**
-	* Returns the number of member requests where receiverUserId = &#63; and status = &#63;.
-	*
-	* @param receiverUserId the receiver user ID
-	* @param status the status
-	* @return the number of matching member requests
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByR_S(long receiverUserId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByR_S(receiverUserId, status);
-	}
-
-	/**
-	* Returns the number of member requests where groupId = &#63; and receiverUserId = &#63; and status = &#63;.
-	*
-	* @param groupId the group ID
-	* @param receiverUserId the receiver user ID
-	* @param status the status
-	* @return the number of matching member requests
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByG_R_S(long groupId, long receiverUserId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByG_R_S(groupId, receiverUserId, status);
 	}
 
 	/**

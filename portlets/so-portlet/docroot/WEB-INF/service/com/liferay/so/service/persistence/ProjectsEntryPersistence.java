@@ -38,69 +38,6 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	 */
 
 	/**
-	* Caches the projects entry in the entity cache if it is enabled.
-	*
-	* @param projectsEntry the projects entry
-	*/
-	public void cacheResult(com.liferay.so.model.ProjectsEntry projectsEntry);
-
-	/**
-	* Caches the projects entries in the entity cache if it is enabled.
-	*
-	* @param projectsEntries the projects entries
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.so.model.ProjectsEntry> projectsEntries);
-
-	/**
-	* Creates a new projects entry with the primary key. Does not add the projects entry to the database.
-	*
-	* @param projectsEntryId the primary key for the new projects entry
-	* @return the new projects entry
-	*/
-	public com.liferay.so.model.ProjectsEntry create(long projectsEntryId);
-
-	/**
-	* Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param projectsEntryId the primary key of the projects entry
-	* @return the projects entry that was removed
-	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.so.model.ProjectsEntry remove(long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException;
-
-	public com.liferay.so.model.ProjectsEntry updateImpl(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the projects entry with the primary key or throws a {@link com.liferay.so.NoSuchProjectsEntryException} if it could not be found.
-	*
-	* @param projectsEntryId the primary key of the projects entry
-	* @return the projects entry
-	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.so.model.ProjectsEntry findByPrimaryKey(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException;
-
-	/**
-	* Returns the projects entry with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param projectsEntryId the primary key of the projects entry
-	* @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the projects entries where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -215,6 +152,88 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 			com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
+	* Removes all the projects entries where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of projects entries where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching projects entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the projects entry in the entity cache if it is enabled.
+	*
+	* @param projectsEntry the projects entry
+	*/
+	public void cacheResult(com.liferay.so.model.ProjectsEntry projectsEntry);
+
+	/**
+	* Caches the projects entries in the entity cache if it is enabled.
+	*
+	* @param projectsEntries the projects entries
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.so.model.ProjectsEntry> projectsEntries);
+
+	/**
+	* Creates a new projects entry with the primary key. Does not add the projects entry to the database.
+	*
+	* @param projectsEntryId the primary key for the new projects entry
+	* @return the new projects entry
+	*/
+	public com.liferay.so.model.ProjectsEntry create(long projectsEntryId);
+
+	/**
+	* Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry that was removed
+	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.so.model.ProjectsEntry remove(long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.NoSuchProjectsEntryException;
+
+	public com.liferay.so.model.ProjectsEntry updateImpl(
+		com.liferay.so.model.ProjectsEntry projectsEntry)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the projects entry with the primary key or throws a {@link com.liferay.so.NoSuchProjectsEntryException} if it could not be found.
+	*
+	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry
+	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.so.model.ProjectsEntry findByPrimaryKey(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.NoSuchProjectsEntryException;
+
+	/**
+	* Returns the projects entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the projects entries.
 	*
 	* @return the projects entries
@@ -258,30 +277,11 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the projects entries where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the projects entries from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of projects entries where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching projects entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
