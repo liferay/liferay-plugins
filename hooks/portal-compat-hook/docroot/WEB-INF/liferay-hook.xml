@@ -24,4 +24,8 @@
 		<before-filter>SSO Open SSO Filter</before-filter>
 		<url-pattern>/api/secure/webdav/*</url-pattern>
 	</servlet-filter-mapping>
+	<struts-action>
+		<struts-action-path>/portal/update_password</struts-action-path>
+		<struts-action-impl>com.liferay.compat.hook.action.CompatUpdatePasswordAction</struts-action-impl>
+	</struts-action>
 </hook>
