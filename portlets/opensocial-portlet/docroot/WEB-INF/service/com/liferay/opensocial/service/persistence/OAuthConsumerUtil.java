@@ -111,86 +111,6 @@ public class OAuthConsumerUtil {
 	}
 
 	/**
-	* Caches the o auth consumer in the entity cache if it is enabled.
-	*
-	* @param oAuthConsumer the o auth consumer
-	*/
-	public static void cacheResult(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
-		getPersistence().cacheResult(oAuthConsumer);
-	}
-
-	/**
-	* Caches the o auth consumers in the entity cache if it is enabled.
-	*
-	* @param oAuthConsumers the o auth consumers
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.opensocial.model.OAuthConsumer> oAuthConsumers) {
-		getPersistence().cacheResult(oAuthConsumers);
-	}
-
-	/**
-	* Creates a new o auth consumer with the primary key. Does not add the o auth consumer to the database.
-	*
-	* @param oAuthConsumerId the primary key for the new o auth consumer
-	* @return the new o auth consumer
-	*/
-	public static com.liferay.opensocial.model.OAuthConsumer create(
-		long oAuthConsumerId) {
-		return getPersistence().create(oAuthConsumerId);
-	}
-
-	/**
-	* Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthConsumerId the primary key of the o auth consumer
-	* @return the o auth consumer that was removed
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.OAuthConsumer remove(
-		long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(oAuthConsumerId);
-	}
-
-	public static com.liferay.opensocial.model.OAuthConsumer updateImpl(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(oAuthConsumer);
-	}
-
-	/**
-	* Returns the o auth consumer with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
-	*
-	* @param oAuthConsumerId the primary key of the o auth consumer
-	* @return the o auth consumer
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.OAuthConsumer findByPrimaryKey(
-		long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(oAuthConsumerId);
-	}
-
-	/**
-	* Returns the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param oAuthConsumerId the primary key of the o auth consumer
-	* @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.OAuthConsumer fetchByPrimaryKey(
-		long oAuthConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(oAuthConsumerId);
-	}
-
-	/**
 	* Returns all the o auth consumers where gadgetKey = &#63;.
 	*
 	* @param gadgetKey the gadget key
@@ -333,6 +253,29 @@ public class OAuthConsumerUtil {
 	}
 
 	/**
+	* Removes all the o auth consumers where gadgetKey = &#63; from the database.
+	*
+	* @param gadgetKey the gadget key
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByGadgetKey(java.lang.String gadgetKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByGadgetKey(gadgetKey);
+	}
+
+	/**
+	* Returns the number of o auth consumers where gadgetKey = &#63;.
+	*
+	* @param gadgetKey the gadget key
+	* @return the number of matching o auth consumers
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByGadgetKey(java.lang.String gadgetKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByGadgetKey(gadgetKey);
+	}
+
+	/**
 	* Returns the o auth consumer where gadgetKey = &#63; and serviceName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
 	*
 	* @param gadgetKey the gadget key
@@ -377,6 +320,115 @@ public class OAuthConsumerUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByG_S(gadgetKey, serviceName, retrieveFromCache);
+	}
+
+	/**
+	* Removes the o auth consumer where gadgetKey = &#63; and serviceName = &#63; from the database.
+	*
+	* @param gadgetKey the gadget key
+	* @param serviceName the service name
+	* @return the o auth consumer that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.opensocial.model.OAuthConsumer removeByG_S(
+		java.lang.String gadgetKey, java.lang.String serviceName)
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByG_S(gadgetKey, serviceName);
+	}
+
+	/**
+	* Returns the number of o auth consumers where gadgetKey = &#63; and serviceName = &#63;.
+	*
+	* @param gadgetKey the gadget key
+	* @param serviceName the service name
+	* @return the number of matching o auth consumers
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_S(java.lang.String gadgetKey,
+		java.lang.String serviceName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_S(gadgetKey, serviceName);
+	}
+
+	/**
+	* Caches the o auth consumer in the entity cache if it is enabled.
+	*
+	* @param oAuthConsumer the o auth consumer
+	*/
+	public static void cacheResult(
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
+		getPersistence().cacheResult(oAuthConsumer);
+	}
+
+	/**
+	* Caches the o auth consumers in the entity cache if it is enabled.
+	*
+	* @param oAuthConsumers the o auth consumers
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.opensocial.model.OAuthConsumer> oAuthConsumers) {
+		getPersistence().cacheResult(oAuthConsumers);
+	}
+
+	/**
+	* Creates a new o auth consumer with the primary key. Does not add the o auth consumer to the database.
+	*
+	* @param oAuthConsumerId the primary key for the new o auth consumer
+	* @return the new o auth consumer
+	*/
+	public static com.liferay.opensocial.model.OAuthConsumer create(
+		long oAuthConsumerId) {
+		return getPersistence().create(oAuthConsumerId);
+	}
+
+	/**
+	* Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthConsumerId the primary key of the o auth consumer
+	* @return the o auth consumer that was removed
+	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.opensocial.model.OAuthConsumer remove(
+		long oAuthConsumerId)
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(oAuthConsumerId);
+	}
+
+	public static com.liferay.opensocial.model.OAuthConsumer updateImpl(
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(oAuthConsumer);
+	}
+
+	/**
+	* Returns the o auth consumer with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
+	*
+	* @param oAuthConsumerId the primary key of the o auth consumer
+	* @return the o auth consumer
+	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.opensocial.model.OAuthConsumer findByPrimaryKey(
+		long oAuthConsumerId)
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(oAuthConsumerId);
+	}
+
+	/**
+	* Returns the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param oAuthConsumerId the primary key of the o auth consumer
+	* @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.opensocial.model.OAuthConsumer fetchByPrimaryKey(
+		long oAuthConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(oAuthConsumerId);
 	}
 
 	/**
@@ -429,32 +481,6 @@ public class OAuthConsumerUtil {
 	}
 
 	/**
-	* Removes all the o auth consumers where gadgetKey = &#63; from the database.
-	*
-	* @param gadgetKey the gadget key
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByGadgetKey(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByGadgetKey(gadgetKey);
-	}
-
-	/**
-	* Removes the o auth consumer where gadgetKey = &#63; and serviceName = &#63; from the database.
-	*
-	* @param gadgetKey the gadget key
-	* @param serviceName the service name
-	* @return the o auth consumer that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.OAuthConsumer removeByG_S(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByG_S(gadgetKey, serviceName);
-	}
-
-	/**
 	* Removes all the o auth consumers from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -462,32 +488,6 @@ public class OAuthConsumerUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of o auth consumers where gadgetKey = &#63;.
-	*
-	* @param gadgetKey the gadget key
-	* @return the number of matching o auth consumers
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByGadgetKey(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByGadgetKey(gadgetKey);
-	}
-
-	/**
-	* Returns the number of o auth consumers where gadgetKey = &#63; and serviceName = &#63;.
-	*
-	* @param gadgetKey the gadget key
-	* @param serviceName the service name
-	* @return the number of matching o auth consumers
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByG_S(java.lang.String gadgetKey,
-		java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByG_S(gadgetKey, serviceName);
 	}
 
 	/**

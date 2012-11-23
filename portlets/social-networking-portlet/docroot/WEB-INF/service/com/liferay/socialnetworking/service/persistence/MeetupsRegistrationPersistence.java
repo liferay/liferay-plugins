@@ -38,72 +38,6 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	 */
 
 	/**
-	* Caches the meetups registration in the entity cache if it is enabled.
-	*
-	* @param meetupsRegistration the meetups registration
-	*/
-	public void cacheResult(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration);
-
-	/**
-	* Caches the meetups registrations in the entity cache if it is enabled.
-	*
-	* @param meetupsRegistrations the meetups registrations
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> meetupsRegistrations);
-
-	/**
-	* Creates a new meetups registration with the primary key. Does not add the meetups registration to the database.
-	*
-	* @param meetupsRegistrationId the primary key for the new meetups registration
-	* @return the new meetups registration
-	*/
-	public com.liferay.socialnetworking.model.MeetupsRegistration create(
-		long meetupsRegistrationId);
-
-	/**
-	* Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param meetupsRegistrationId the primary key of the meetups registration
-	* @return the meetups registration that was removed
-	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialnetworking.model.MeetupsRegistration remove(
-		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
-
-	public com.liferay.socialnetworking.model.MeetupsRegistration updateImpl(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the meetups registration with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsRegistrationException} if it could not be found.
-	*
-	* @param meetupsRegistrationId the primary key of the meetups registration
-	* @return the meetups registration
-	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialnetworking.model.MeetupsRegistration findByPrimaryKey(
-		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
-
-	/**
-	* Returns the meetups registration with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param meetupsRegistrationId the primary key of the meetups registration
-	* @return the meetups registration, or <code>null</code> if a meetups registration with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByPrimaryKey(
-		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the meetups registrations where meetupsEntryId = &#63;.
 	*
 	* @param meetupsEntryId the meetups entry ID
@@ -223,6 +157,25 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
+	* Removes all the meetups registrations where meetupsEntryId = &#63; from the database.
+	*
+	* @param meetupsEntryId the meetups entry ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByMeetupsEntryId(long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of meetups registrations where meetupsEntryId = &#63;.
+	*
+	* @param meetupsEntryId the meetups entry ID
+	* @return the number of matching meetups registrations
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByMeetupsEntryId(long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the meetups registration where userId = &#63; and meetupsEntryId = &#63; or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsRegistrationException} if it could not be found.
 	*
 	* @param userId the user ID
@@ -259,6 +212,30 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*/
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByU_ME(
 		long userId, long meetupsEntryId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the meetups registration where userId = &#63; and meetupsEntryId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param meetupsEntryId the meetups entry ID
+	* @return the meetups registration that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.socialnetworking.model.MeetupsRegistration removeByU_ME(
+		long userId, long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
+
+	/**
+	* Returns the number of meetups registrations where userId = &#63; and meetupsEntryId = &#63;.
+	*
+	* @param userId the user ID
+	* @param meetupsEntryId the meetups entry ID
+	* @return the number of matching meetups registrations
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByU_ME(long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -389,6 +366,93 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 
 	/**
+	* Removes all the meetups registrations where meetupsEntryId = &#63; and status = &#63; from the database.
+	*
+	* @param meetupsEntryId the meetups entry ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByME_S(long meetupsEntryId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of meetups registrations where meetupsEntryId = &#63; and status = &#63;.
+	*
+	* @param meetupsEntryId the meetups entry ID
+	* @param status the status
+	* @return the number of matching meetups registrations
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByME_S(long meetupsEntryId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the meetups registration in the entity cache if it is enabled.
+	*
+	* @param meetupsRegistration the meetups registration
+	*/
+	public void cacheResult(
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration);
+
+	/**
+	* Caches the meetups registrations in the entity cache if it is enabled.
+	*
+	* @param meetupsRegistrations the meetups registrations
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> meetupsRegistrations);
+
+	/**
+	* Creates a new meetups registration with the primary key. Does not add the meetups registration to the database.
+	*
+	* @param meetupsRegistrationId the primary key for the new meetups registration
+	* @return the new meetups registration
+	*/
+	public com.liferay.socialnetworking.model.MeetupsRegistration create(
+		long meetupsRegistrationId);
+
+	/**
+	* Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsRegistrationId the primary key of the meetups registration
+	* @return the meetups registration that was removed
+	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.socialnetworking.model.MeetupsRegistration remove(
+		long meetupsRegistrationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
+
+	public com.liferay.socialnetworking.model.MeetupsRegistration updateImpl(
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the meetups registration with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsRegistrationException} if it could not be found.
+	*
+	* @param meetupsRegistrationId the primary key of the meetups registration
+	* @return the meetups registration
+	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.socialnetworking.model.MeetupsRegistration findByPrimaryKey(
+		long meetupsRegistrationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
+
+	/**
+	* Returns the meetups registration with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param meetupsRegistrationId the primary key of the meetups registration
+	* @return the meetups registration, or <code>null</code> if a meetups registration with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByPrimaryKey(
+		long meetupsRegistrationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the meetups registrations.
 	*
 	* @return the meetups registrations
@@ -432,75 +496,11 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the meetups registrations where meetupsEntryId = &#63; from the database.
-	*
-	* @param meetupsEntryId the meetups entry ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByMeetupsEntryId(long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the meetups registration where userId = &#63; and meetupsEntryId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @param meetupsEntryId the meetups entry ID
-	* @return the meetups registration that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.socialnetworking.model.MeetupsRegistration removeByU_ME(
-		long userId, long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
-
-	/**
-	* Removes all the meetups registrations where meetupsEntryId = &#63; and status = &#63; from the database.
-	*
-	* @param meetupsEntryId the meetups entry ID
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByME_S(long meetupsEntryId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the meetups registrations from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of meetups registrations where meetupsEntryId = &#63;.
-	*
-	* @param meetupsEntryId the meetups entry ID
-	* @return the number of matching meetups registrations
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByMeetupsEntryId(long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of meetups registrations where userId = &#63; and meetupsEntryId = &#63;.
-	*
-	* @param userId the user ID
-	* @param meetupsEntryId the meetups entry ID
-	* @return the number of matching meetups registrations
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByU_ME(long userId, long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of meetups registrations where meetupsEntryId = &#63; and status = &#63;.
-	*
-	* @param meetupsEntryId the meetups entry ID
-	* @param status the status
-	* @return the number of matching meetups registrations
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByME_S(long meetupsEntryId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

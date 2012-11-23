@@ -38,72 +38,6 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	 */
 
 	/**
-	* Caches the w s r p consumer portlet in the entity cache if it is enabled.
-	*
-	* @param wsrpConsumerPortlet the w s r p consumer portlet
-	*/
-	public void cacheResult(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet);
-
-	/**
-	* Caches the w s r p consumer portlets in the entity cache if it is enabled.
-	*
-	* @param wsrpConsumerPortlets the w s r p consumer portlets
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> wsrpConsumerPortlets);
-
-	/**
-	* Creates a new w s r p consumer portlet with the primary key. Does not add the w s r p consumer portlet to the database.
-	*
-	* @param wsrpConsumerPortletId the primary key for the new w s r p consumer portlet
-	* @return the new w s r p consumer portlet
-	*/
-	public com.liferay.wsrp.model.WSRPConsumerPortlet create(
-		long wsrpConsumerPortletId);
-
-	/**
-	* Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
-	* @return the w s r p consumer portlet that was removed
-	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.wsrp.model.WSRPConsumerPortlet remove(
-		long wsrpConsumerPortletId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException;
-
-	public com.liferay.wsrp.model.WSRPConsumerPortlet updateImpl(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the w s r p consumer portlet with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
-	*
-	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
-	* @return the w s r p consumer portlet
-	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.wsrp.model.WSRPConsumerPortlet findByPrimaryKey(
-		long wsrpConsumerPortletId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException;
-
-	/**
-	* Returns the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
-	* @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPrimaryKey(
-		long wsrpConsumerPortletId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the w s r p consumer portlets where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -221,6 +155,25 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException;
+
+	/**
+	* Removes all the w s r p consumer portlets where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of w s r p consumer portlets where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching w s r p consumer portlets
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the w s r p consumer portlets where uuid = &#63; and companyId = &#63;.
@@ -350,6 +303,27 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 			com.liferay.wsrp.NoSuchConsumerPortletException;
 
 	/**
+	* Removes all the w s r p consumer portlets where uuid = &#63; and companyId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of w s r p consumer portlets where uuid = &#63; and companyId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @return the number of matching w s r p consumer portlets
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the w s r p consumer portlets where wsrpConsumerId = &#63;.
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
@@ -469,6 +443,25 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 			com.liferay.wsrp.NoSuchConsumerPortletException;
 
 	/**
+	* Removes all the w s r p consumer portlets where wsrpConsumerId = &#63; from the database.
+	*
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByWsrpConsumerId(long wsrpConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of w s r p consumer portlets where wsrpConsumerId = &#63;.
+	*
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @return the number of matching w s r p consumer portlets
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByWsrpConsumerId(long wsrpConsumerId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
@@ -506,6 +499,96 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByW_P(
 		long wsrpConsumerId, java.lang.String portletHandle,
 		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; from the database.
+	*
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param portletHandle the portlet handle
+	* @return the w s r p consumer portlet that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.wsrp.model.WSRPConsumerPortlet removeByW_P(
+		long wsrpConsumerId, java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException;
+
+	/**
+	* Returns the number of w s r p consumer portlets where wsrpConsumerId = &#63; and portletHandle = &#63;.
+	*
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param portletHandle the portlet handle
+	* @return the number of matching w s r p consumer portlets
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByW_P(long wsrpConsumerId, java.lang.String portletHandle)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the w s r p consumer portlet in the entity cache if it is enabled.
+	*
+	* @param wsrpConsumerPortlet the w s r p consumer portlet
+	*/
+	public void cacheResult(
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet);
+
+	/**
+	* Caches the w s r p consumer portlets in the entity cache if it is enabled.
+	*
+	* @param wsrpConsumerPortlets the w s r p consumer portlets
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> wsrpConsumerPortlets);
+
+	/**
+	* Creates a new w s r p consumer portlet with the primary key. Does not add the w s r p consumer portlet to the database.
+	*
+	* @param wsrpConsumerPortletId the primary key for the new w s r p consumer portlet
+	* @return the new w s r p consumer portlet
+	*/
+	public com.liferay.wsrp.model.WSRPConsumerPortlet create(
+		long wsrpConsumerPortletId);
+
+	/**
+	* Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
+	* @return the w s r p consumer portlet that was removed
+	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.wsrp.model.WSRPConsumerPortlet remove(
+		long wsrpConsumerPortletId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException;
+
+	public com.liferay.wsrp.model.WSRPConsumerPortlet updateImpl(
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the w s r p consumer portlet with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
+	*
+	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
+	* @return the w s r p consumer portlet
+	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.wsrp.model.WSRPConsumerPortlet findByPrimaryKey(
+		long wsrpConsumerPortletId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.wsrp.NoSuchConsumerPortletException;
+
+	/**
+	* Returns the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
+	* @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPrimaryKey(
+		long wsrpConsumerPortletId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -552,94 +635,11 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the w s r p consumer portlets where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the w s r p consumer portlets where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the w s r p consumer portlets where wsrpConsumerId = &#63; from the database.
-	*
-	* @param wsrpConsumerId the wsrp consumer ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByWsrpConsumerId(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; from the database.
-	*
-	* @param wsrpConsumerId the wsrp consumer ID
-	* @param portletHandle the portlet handle
-	* @return the w s r p consumer portlet that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.wsrp.model.WSRPConsumerPortlet removeByW_P(
-		long wsrpConsumerId, java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException;
-
-	/**
 	* Removes all the w s r p consumer portlets from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of w s r p consumer portlets where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of w s r p consumer portlets where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of w s r p consumer portlets where wsrpConsumerId = &#63;.
-	*
-	* @param wsrpConsumerId the wsrp consumer ID
-	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByWsrpConsumerId(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of w s r p consumer portlets where wsrpConsumerId = &#63; and portletHandle = &#63;.
-	*
-	* @param wsrpConsumerId the wsrp consumer ID
-	* @param portletHandle the portlet handle
-	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByW_P(long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

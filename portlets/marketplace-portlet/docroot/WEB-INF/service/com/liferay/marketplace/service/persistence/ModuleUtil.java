@@ -109,83 +109,6 @@ public class ModuleUtil {
 	}
 
 	/**
-	* Caches the module in the entity cache if it is enabled.
-	*
-	* @param module the module
-	*/
-	public static void cacheResult(com.liferay.marketplace.model.Module module) {
-		getPersistence().cacheResult(module);
-	}
-
-	/**
-	* Caches the modules in the entity cache if it is enabled.
-	*
-	* @param modules the modules
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.marketplace.model.Module> modules) {
-		getPersistence().cacheResult(modules);
-	}
-
-	/**
-	* Creates a new module with the primary key. Does not add the module to the database.
-	*
-	* @param moduleId the primary key for the new module
-	* @return the new module
-	*/
-	public static com.liferay.marketplace.model.Module create(long moduleId) {
-		return getPersistence().create(moduleId);
-	}
-
-	/**
-	* Removes the module with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param moduleId the primary key of the module
-	* @return the module that was removed
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.marketplace.model.Module remove(long moduleId)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(moduleId);
-	}
-
-	public static com.liferay.marketplace.model.Module updateImpl(
-		com.liferay.marketplace.model.Module module)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(module);
-	}
-
-	/**
-	* Returns the module with the primary key or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
-	*
-	* @param moduleId the primary key of the module
-	* @return the module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.marketplace.model.Module findByPrimaryKey(
-		long moduleId)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(moduleId);
-	}
-
-	/**
-	* Returns the module with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param moduleId the primary key of the module
-	* @return the module, or <code>null</code> if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.marketplace.model.Module fetchByPrimaryKey(
-		long moduleId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(moduleId);
-	}
-
-	/**
 	* Returns all the modules where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -322,6 +245,29 @@ public class ModuleUtil {
 	}
 
 	/**
+	* Removes all the modules where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUuid(uuid);
+	}
+
+	/**
+	* Returns the number of modules where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching modules
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUuid(uuid);
+	}
+
+	/**
 	* Returns all the modules where appId = &#63;.
 	*
 	* @param appId the app ID
@@ -454,6 +400,29 @@ public class ModuleUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findByAppId_PrevAndNext(moduleId, appId, orderByComparator);
+	}
+
+	/**
+	* Removes all the modules where appId = &#63; from the database.
+	*
+	* @param appId the app ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByAppId(long appId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByAppId(appId);
+	}
+
+	/**
+	* Returns the number of modules where appId = &#63;.
+	*
+	* @param appId the app ID
+	* @return the number of matching modules
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByAppId(long appId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByAppId(appId);
 	}
 
 	/**
@@ -599,6 +568,29 @@ public class ModuleUtil {
 	}
 
 	/**
+	* Removes all the modules where contextName = &#63; from the database.
+	*
+	* @param contextName the context name
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByContextName(java.lang.String contextName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByContextName(contextName);
+	}
+
+	/**
+	* Returns the number of modules where contextName = &#63;.
+	*
+	* @param contextName the context name
+	* @return the number of matching modules
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByContextName(java.lang.String contextName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByContextName(contextName);
+	}
+
+	/**
 	* Returns the module where appId = &#63; and contextName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
 	*
 	* @param appId the app ID
@@ -641,6 +633,111 @@ public class ModuleUtil {
 		java.lang.String contextName, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByA_C(appId, contextName, retrieveFromCache);
+	}
+
+	/**
+	* Removes the module where appId = &#63; and contextName = &#63; from the database.
+	*
+	* @param appId the app ID
+	* @param contextName the context name
+	* @return the module that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.marketplace.model.Module removeByA_C(long appId,
+		java.lang.String contextName)
+		throws com.liferay.marketplace.NoSuchModuleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByA_C(appId, contextName);
+	}
+
+	/**
+	* Returns the number of modules where appId = &#63; and contextName = &#63;.
+	*
+	* @param appId the app ID
+	* @param contextName the context name
+	* @return the number of matching modules
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByA_C(long appId, java.lang.String contextName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByA_C(appId, contextName);
+	}
+
+	/**
+	* Caches the module in the entity cache if it is enabled.
+	*
+	* @param module the module
+	*/
+	public static void cacheResult(com.liferay.marketplace.model.Module module) {
+		getPersistence().cacheResult(module);
+	}
+
+	/**
+	* Caches the modules in the entity cache if it is enabled.
+	*
+	* @param modules the modules
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.marketplace.model.Module> modules) {
+		getPersistence().cacheResult(modules);
+	}
+
+	/**
+	* Creates a new module with the primary key. Does not add the module to the database.
+	*
+	* @param moduleId the primary key for the new module
+	* @return the new module
+	*/
+	public static com.liferay.marketplace.model.Module create(long moduleId) {
+		return getPersistence().create(moduleId);
+	}
+
+	/**
+	* Removes the module with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param moduleId the primary key of the module
+	* @return the module that was removed
+	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.marketplace.model.Module remove(long moduleId)
+		throws com.liferay.marketplace.NoSuchModuleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(moduleId);
+	}
+
+	public static com.liferay.marketplace.model.Module updateImpl(
+		com.liferay.marketplace.model.Module module)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(module);
+	}
+
+	/**
+	* Returns the module with the primary key or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	*
+	* @param moduleId the primary key of the module
+	* @return the module
+	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.marketplace.model.Module findByPrimaryKey(
+		long moduleId)
+		throws com.liferay.marketplace.NoSuchModuleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(moduleId);
+	}
+
+	/**
+	* Returns the module with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param moduleId the primary key of the module
+	* @return the module, or <code>null</code> if a module with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.marketplace.model.Module fetchByPrimaryKey(
+		long moduleId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(moduleId);
 	}
 
 	/**
@@ -693,54 +790,6 @@ public class ModuleUtil {
 	}
 
 	/**
-	* Removes all the modules where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUuid(uuid);
-	}
-
-	/**
-	* Removes all the modules where appId = &#63; from the database.
-	*
-	* @param appId the app ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByAppId(long appId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByAppId(appId);
-	}
-
-	/**
-	* Removes all the modules where contextName = &#63; from the database.
-	*
-	* @param contextName the context name
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByContextName(java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByContextName(contextName);
-	}
-
-	/**
-	* Removes the module where appId = &#63; and contextName = &#63; from the database.
-	*
-	* @param appId the app ID
-	* @param contextName the context name
-	* @return the module that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.marketplace.model.Module removeByA_C(long appId,
-		java.lang.String contextName)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByA_C(appId, contextName);
-	}
-
-	/**
 	* Removes all the modules from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -748,55 +797,6 @@ public class ModuleUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of modules where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUuid(uuid);
-	}
-
-	/**
-	* Returns the number of modules where appId = &#63;.
-	*
-	* @param appId the app ID
-	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByAppId(long appId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByAppId(appId);
-	}
-
-	/**
-	* Returns the number of modules where contextName = &#63;.
-	*
-	* @param contextName the context name
-	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByContextName(java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByContextName(contextName);
-	}
-
-	/**
-	* Returns the number of modules where appId = &#63; and contextName = &#63;.
-	*
-	* @param appId the app ID
-	* @param contextName the context name
-	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByA_C(long appId, java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByA_C(appId, contextName);
 	}
 
 	/**

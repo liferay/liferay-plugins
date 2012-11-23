@@ -111,86 +111,6 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Caches the wall entry in the entity cache if it is enabled.
-	*
-	* @param wallEntry the wall entry
-	*/
-	public static void cacheResult(
-		com.liferay.socialnetworking.model.WallEntry wallEntry) {
-		getPersistence().cacheResult(wallEntry);
-	}
-
-	/**
-	* Caches the wall entries in the entity cache if it is enabled.
-	*
-	* @param wallEntries the wall entries
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.socialnetworking.model.WallEntry> wallEntries) {
-		getPersistence().cacheResult(wallEntries);
-	}
-
-	/**
-	* Creates a new wall entry with the primary key. Does not add the wall entry to the database.
-	*
-	* @param wallEntryId the primary key for the new wall entry
-	* @return the new wall entry
-	*/
-	public static com.liferay.socialnetworking.model.WallEntry create(
-		long wallEntryId) {
-		return getPersistence().create(wallEntryId);
-	}
-
-	/**
-	* Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param wallEntryId the primary key of the wall entry
-	* @return the wall entry that was removed
-	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialnetworking.model.WallEntry remove(
-		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
-		return getPersistence().remove(wallEntryId);
-	}
-
-	public static com.liferay.socialnetworking.model.WallEntry updateImpl(
-		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(wallEntry);
-	}
-
-	/**
-	* Returns the wall entry with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchWallEntryException} if it could not be found.
-	*
-	* @param wallEntryId the primary key of the wall entry
-	* @return the wall entry
-	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialnetworking.model.WallEntry findByPrimaryKey(
-		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
-		return getPersistence().findByPrimaryKey(wallEntryId);
-	}
-
-	/**
-	* Returns the wall entry with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param wallEntryId the primary key of the wall entry
-	* @return the wall entry, or <code>null</code> if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialnetworking.model.WallEntry fetchByPrimaryKey(
-		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(wallEntryId);
-	}
-
-	/**
 	* Returns all the wall entries where groupId = &#63;.
 	*
 	* @param groupId the group ID
@@ -329,6 +249,29 @@ public class WallEntryUtil {
 	}
 
 	/**
+	* Removes all the wall entries where groupId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByGroupId(groupId);
+	}
+
+	/**
+	* Returns the number of wall entries where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @return the number of matching wall entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByGroupId(groupId);
+	}
+
+	/**
 	* Returns all the wall entries where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -463,6 +406,29 @@ public class WallEntryUtil {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(wallEntryId, userId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the wall entries where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of wall entries where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching wall entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
 	}
 
 	/**
@@ -616,6 +582,111 @@ public class WallEntryUtil {
 	}
 
 	/**
+	* Removes all the wall entries where groupId = &#63; and userId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_U(long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_U(groupId, userId);
+	}
+
+	/**
+	* Returns the number of wall entries where groupId = &#63; and userId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @return the number of matching wall entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_U(long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_U(groupId, userId);
+	}
+
+	/**
+	* Caches the wall entry in the entity cache if it is enabled.
+	*
+	* @param wallEntry the wall entry
+	*/
+	public static void cacheResult(
+		com.liferay.socialnetworking.model.WallEntry wallEntry) {
+		getPersistence().cacheResult(wallEntry);
+	}
+
+	/**
+	* Caches the wall entries in the entity cache if it is enabled.
+	*
+	* @param wallEntries the wall entries
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.socialnetworking.model.WallEntry> wallEntries) {
+		getPersistence().cacheResult(wallEntries);
+	}
+
+	/**
+	* Creates a new wall entry with the primary key. Does not add the wall entry to the database.
+	*
+	* @param wallEntryId the primary key for the new wall entry
+	* @return the new wall entry
+	*/
+	public static com.liferay.socialnetworking.model.WallEntry create(
+		long wallEntryId) {
+		return getPersistence().create(wallEntryId);
+	}
+
+	/**
+	* Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry that was removed
+	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialnetworking.model.WallEntry remove(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchWallEntryException {
+		return getPersistence().remove(wallEntryId);
+	}
+
+	public static com.liferay.socialnetworking.model.WallEntry updateImpl(
+		com.liferay.socialnetworking.model.WallEntry wallEntry)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(wallEntry);
+	}
+
+	/**
+	* Returns the wall entry with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchWallEntryException} if it could not be found.
+	*
+	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry
+	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialnetworking.model.WallEntry findByPrimaryKey(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchWallEntryException {
+		return getPersistence().findByPrimaryKey(wallEntryId);
+	}
+
+	/**
+	* Returns the wall entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry, or <code>null</code> if a wall entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialnetworking.model.WallEntry fetchByPrimaryKey(
+		long wallEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(wallEntryId);
+	}
+
+	/**
 	* Returns all the wall entries.
 	*
 	* @return the wall entries
@@ -665,40 +736,6 @@ public class WallEntryUtil {
 	}
 
 	/**
-	* Removes all the wall entries where groupId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByGroupId(groupId);
-	}
-
-	/**
-	* Removes all the wall entries where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
-	}
-
-	/**
-	* Removes all the wall entries where groupId = &#63; and userId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByG_U(groupId, userId);
-	}
-
-	/**
 	* Removes all the wall entries from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -706,43 +743,6 @@ public class WallEntryUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of wall entries where groupId = &#63;.
-	*
-	* @param groupId the group ID
-	* @return the number of matching wall entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByGroupId(groupId);
-	}
-
-	/**
-	* Returns the number of wall entries where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching wall entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUserId(userId);
-	}
-
-	/**
-	* Returns the number of wall entries where groupId = &#63; and userId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param userId the user ID
-	* @return the number of matching wall entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByG_U(groupId, userId);
 	}
 
 	/**

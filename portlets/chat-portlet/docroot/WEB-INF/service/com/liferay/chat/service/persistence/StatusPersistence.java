@@ -38,67 +38,6 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	 */
 
 	/**
-	* Caches the status in the entity cache if it is enabled.
-	*
-	* @param status the status
-	*/
-	public void cacheResult(com.liferay.chat.model.Status status);
-
-	/**
-	* Caches the statuses in the entity cache if it is enabled.
-	*
-	* @param statuses the statuses
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.chat.model.Status> statuses);
-
-	/**
-	* Creates a new status with the primary key. Does not add the status to the database.
-	*
-	* @param statusId the primary key for the new status
-	* @return the new status
-	*/
-	public com.liferay.chat.model.Status create(long statusId);
-
-	/**
-	* Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param statusId the primary key of the status
-	* @return the status that was removed
-	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.chat.model.Status remove(long statusId)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.chat.model.Status updateImpl(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the status with the primary key or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
-	*
-	* @param statusId the primary key of the status
-	* @return the status
-	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.chat.model.Status findByPrimaryKey(long statusId)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the status with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param statusId the primary key of the status
-	* @return the status, or <code>null</code> if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.chat.model.Status fetchByPrimaryKey(long statusId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns the status where userId = &#63; or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
 	*
 	* @param userId the user ID
@@ -130,6 +69,27 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public com.liferay.chat.model.Status fetchByUserId(long userId,
 		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the status where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @return the status that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status removeByUserId(long userId)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of statuses where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching statuses
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -252,6 +212,25 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the statuses where modifiedDate = &#63; from the database.
+	*
+	* @param modifiedDate the modified date
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByModifiedDate(long modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of statuses where modifiedDate = &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @return the number of matching statuses
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByModifiedDate(long modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the statuses where online = &#63;.
 	*
 	* @param online the online
@@ -365,6 +344,25 @@ public interface StatusPersistence extends BasePersistence<Status> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the statuses where online = &#63; from the database.
+	*
+	* @param online the online
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByOnline(boolean online)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of statuses where online = &#63;.
+	*
+	* @param online the online
+	* @return the number of matching statuses
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByOnline(boolean online)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the statuses where modifiedDate = &#63; and online = &#63;.
@@ -494,6 +492,88 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the statuses where modifiedDate = &#63; and online = &#63; from the database.
+	*
+	* @param modifiedDate the modified date
+	* @param online the online
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByM_O(long modifiedDate, boolean online)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of statuses where modifiedDate = &#63; and online = &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @param online the online
+	* @return the number of matching statuses
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByM_O(long modifiedDate, boolean online)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the status in the entity cache if it is enabled.
+	*
+	* @param status the status
+	*/
+	public void cacheResult(com.liferay.chat.model.Status status);
+
+	/**
+	* Caches the statuses in the entity cache if it is enabled.
+	*
+	* @param statuses the statuses
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.chat.model.Status> statuses);
+
+	/**
+	* Creates a new status with the primary key. Does not add the status to the database.
+	*
+	* @param statusId the primary key for the new status
+	* @return the new status
+	*/
+	public com.liferay.chat.model.Status create(long statusId);
+
+	/**
+	* Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param statusId the primary key of the status
+	* @return the status that was removed
+	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status remove(long statusId)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.chat.model.Status updateImpl(
+		com.liferay.chat.model.Status status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the status with the primary key or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
+	*
+	* @param statusId the primary key of the status
+	* @return the status
+	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status findByPrimaryKey(long statusId)
+		throws com.liferay.chat.NoSuchStatusException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the status with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param statusId the primary key of the status
+	* @return the status, or <code>null</code> if a status with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status fetchByPrimaryKey(long statusId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the statuses.
 	*
 	* @return the statuses
@@ -536,91 +616,11 @@ public interface StatusPersistence extends BasePersistence<Status> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the status where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @return the status that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.chat.model.Status removeByUserId(long userId)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the statuses where modifiedDate = &#63; from the database.
-	*
-	* @param modifiedDate the modified date
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByModifiedDate(long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the statuses where online = &#63; from the database.
-	*
-	* @param online the online
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByOnline(boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the statuses where modifiedDate = &#63; and online = &#63; from the database.
-	*
-	* @param modifiedDate the modified date
-	* @param online the online
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByM_O(long modifiedDate, boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the statuses from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of statuses where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of statuses where modifiedDate = &#63;.
-	*
-	* @param modifiedDate the modified date
-	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByModifiedDate(long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of statuses where online = &#63;.
-	*
-	* @param online the online
-	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByOnline(boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of statuses where modifiedDate = &#63; and online = &#63;.
-	*
-	* @param modifiedDate the modified date
-	* @param online the online
-	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByM_O(long modifiedDate, boolean online)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -111,86 +111,6 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
-	* Caches the microblogs entry in the entity cache if it is enabled.
-	*
-	* @param microblogsEntry the microblogs entry
-	*/
-	public static void cacheResult(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry) {
-		getPersistence().cacheResult(microblogsEntry);
-	}
-
-	/**
-	* Caches the microblogs entries in the entity cache if it is enabled.
-	*
-	* @param microblogsEntries the microblogs entries
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.microblogs.model.MicroblogsEntry> microblogsEntries) {
-		getPersistence().cacheResult(microblogsEntries);
-	}
-
-	/**
-	* Creates a new microblogs entry with the primary key. Does not add the microblogs entry to the database.
-	*
-	* @param microblogsEntryId the primary key for the new microblogs entry
-	* @return the new microblogs entry
-	*/
-	public static com.liferay.microblogs.model.MicroblogsEntry create(
-		long microblogsEntryId) {
-		return getPersistence().create(microblogsEntryId);
-	}
-
-	/**
-	* Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param microblogsEntryId the primary key of the microblogs entry
-	* @return the microblogs entry that was removed
-	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.microblogs.model.MicroblogsEntry remove(
-		long microblogsEntryId)
-		throws com.liferay.microblogs.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(microblogsEntryId);
-	}
-
-	public static com.liferay.microblogs.model.MicroblogsEntry updateImpl(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(microblogsEntry);
-	}
-
-	/**
-	* Returns the microblogs entry with the primary key or throws a {@link com.liferay.microblogs.NoSuchEntryException} if it could not be found.
-	*
-	* @param microblogsEntryId the primary key of the microblogs entry
-	* @return the microblogs entry
-	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.microblogs.model.MicroblogsEntry findByPrimaryKey(
-		long microblogsEntryId)
-		throws com.liferay.microblogs.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(microblogsEntryId);
-	}
-
-	/**
-	* Returns the microblogs entry with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param microblogsEntryId the primary key of the microblogs entry
-	* @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.microblogs.model.MicroblogsEntry fetchByPrimaryKey(
-		long microblogsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(microblogsEntryId);
-	}
-
-	/**
 	* Returns all the microblogs entries where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -408,6 +328,41 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Removes all the microblogs entries where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCompanyId(companyId);
+	}
+
+	/**
+	* Returns the number of microblogs entries where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching microblogs entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCompanyId(companyId);
+	}
+
+	/**
+	* Returns the number of microblogs entries that the user has permission to view where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByCompanyId(companyId);
+	}
+
+	/**
 	* Returns all the microblogs entries where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -615,6 +570,41 @@ public class MicroblogsEntryUtil {
 		return getPersistence()
 				   .filterFindByUserId_PrevAndNext(microblogsEntryId, userId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the microblogs entries where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of microblogs entries where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching microblogs entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
+	* Returns the number of microblogs entries that the user has permission to view where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByUserId(userId);
 	}
 
 	/**
@@ -839,6 +829,44 @@ public class MicroblogsEntryUtil {
 		return getPersistence()
 				   .filterFindByU_T_PrevAndNext(microblogsEntryId, userId,
 			type, orderByComparator);
+	}
+
+	/**
+	* Removes all the microblogs entries where userId = &#63; and type = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU_T(long userId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU_T(userId, type);
+	}
+
+	/**
+	* Returns the number of microblogs entries where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @return the number of matching microblogs entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_T(long userId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_T(userId, type);
+	}
+
+	/**
+	* Returns the number of microblogs entries that the user has permission to view where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByU_T(long userId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByU_T(userId, type);
 	}
 
 	/**
@@ -1069,6 +1097,44 @@ public class MicroblogsEntryUtil {
 		return getPersistence()
 				   .filterFindByT_R_PrevAndNext(microblogsEntryId, type,
 			receiverUserId, orderByComparator);
+	}
+
+	/**
+	* Removes all the microblogs entries where type = &#63; and receiverUserId = &#63; from the database.
+	*
+	* @param type the type
+	* @param receiverUserId the receiver user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByT_R(int type, long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByT_R(type, receiverUserId);
+	}
+
+	/**
+	* Returns the number of microblogs entries where type = &#63; and receiverUserId = &#63;.
+	*
+	* @param type the type
+	* @param receiverUserId the receiver user ID
+	* @return the number of matching microblogs entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByT_R(int type, long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByT_R(type, receiverUserId);
+	}
+
+	/**
+	* Returns the number of microblogs entries that the user has permission to view where type = &#63; and receiverUserId = &#63;.
+	*
+	* @param type the type
+	* @param receiverUserId the receiver user ID
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByT_R(int type, long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByT_R(type, receiverUserId);
 	}
 
 	/**
@@ -1310,6 +1376,126 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Removes all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63; from the database.
+	*
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByT_RMEI(int type, long receiverMicroblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByT_RMEI(type, receiverMicroblogsEntryId);
+	}
+
+	/**
+	* Returns the number of microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	*
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	* @return the number of matching microblogs entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByT_RMEI(int type, long receiverMicroblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByT_RMEI(type, receiverMicroblogsEntryId);
+	}
+
+	/**
+	* Returns the number of microblogs entries that the user has permission to view where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	*
+	* @param type the type
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByT_RMEI(int type,
+		long receiverMicroblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByT_RMEI(type, receiverMicroblogsEntryId);
+	}
+
+	/**
+	* Caches the microblogs entry in the entity cache if it is enabled.
+	*
+	* @param microblogsEntry the microblogs entry
+	*/
+	public static void cacheResult(
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry) {
+		getPersistence().cacheResult(microblogsEntry);
+	}
+
+	/**
+	* Caches the microblogs entries in the entity cache if it is enabled.
+	*
+	* @param microblogsEntries the microblogs entries
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.microblogs.model.MicroblogsEntry> microblogsEntries) {
+		getPersistence().cacheResult(microblogsEntries);
+	}
+
+	/**
+	* Creates a new microblogs entry with the primary key. Does not add the microblogs entry to the database.
+	*
+	* @param microblogsEntryId the primary key for the new microblogs entry
+	* @return the new microblogs entry
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry create(
+		long microblogsEntryId) {
+		return getPersistence().create(microblogsEntryId);
+	}
+
+	/**
+	* Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param microblogsEntryId the primary key of the microblogs entry
+	* @return the microblogs entry that was removed
+	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry remove(
+		long microblogsEntryId)
+		throws com.liferay.microblogs.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(microblogsEntryId);
+	}
+
+	public static com.liferay.microblogs.model.MicroblogsEntry updateImpl(
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(microblogsEntry);
+	}
+
+	/**
+	* Returns the microblogs entry with the primary key or throws a {@link com.liferay.microblogs.NoSuchEntryException} if it could not be found.
+	*
+	* @param microblogsEntryId the primary key of the microblogs entry
+	* @return the microblogs entry
+	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry findByPrimaryKey(
+		long microblogsEntryId)
+		throws com.liferay.microblogs.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(microblogsEntryId);
+	}
+
+	/**
+	* Returns the microblogs entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param microblogsEntryId the primary key of the microblogs entry
+	* @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry fetchByPrimaryKey(
+		long microblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(microblogsEntryId);
+	}
+
+	/**
 	* Returns all the microblogs entries.
 	*
 	* @return the microblogs entries
@@ -1359,64 +1545,6 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
-	* Removes all the microblogs entries where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCompanyId(companyId);
-	}
-
-	/**
-	* Removes all the microblogs entries where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
-	}
-
-	/**
-	* Removes all the microblogs entries where userId = &#63; and type = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @param type the type
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByU_T(long userId, int type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByU_T(userId, type);
-	}
-
-	/**
-	* Removes all the microblogs entries where type = &#63; and receiverUserId = &#63; from the database.
-	*
-	* @param type the type
-	* @param receiverUserId the receiver user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByT_R(int type, long receiverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByT_R(type, receiverUserId);
-	}
-
-	/**
-	* Removes all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63; from the database.
-	*
-	* @param type the type
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByT_RMEI(int type, long receiverMicroblogsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByT_RMEI(type, receiverMicroblogsEntryId);
-	}
-
-	/**
 	* Removes all the microblogs entries from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -1424,134 +1552,6 @@ public class MicroblogsEntryUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of microblogs entries where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching microblogs entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCompanyId(companyId);
-	}
-
-	/**
-	* Returns the number of microblogs entries that the user has permission to view where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching microblogs entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByCompanyId(companyId);
-	}
-
-	/**
-	* Returns the number of microblogs entries where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching microblogs entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUserId(userId);
-	}
-
-	/**
-	* Returns the number of microblogs entries that the user has permission to view where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching microblogs entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByUserId(userId);
-	}
-
-	/**
-	* Returns the number of microblogs entries where userId = &#63; and type = &#63;.
-	*
-	* @param userId the user ID
-	* @param type the type
-	* @return the number of matching microblogs entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByU_T(long userId, int type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByU_T(userId, type);
-	}
-
-	/**
-	* Returns the number of microblogs entries that the user has permission to view where userId = &#63; and type = &#63;.
-	*
-	* @param userId the user ID
-	* @param type the type
-	* @return the number of matching microblogs entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByU_T(long userId, int type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByU_T(userId, type);
-	}
-
-	/**
-	* Returns the number of microblogs entries where type = &#63; and receiverUserId = &#63;.
-	*
-	* @param type the type
-	* @param receiverUserId the receiver user ID
-	* @return the number of matching microblogs entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByT_R(int type, long receiverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByT_R(type, receiverUserId);
-	}
-
-	/**
-	* Returns the number of microblogs entries that the user has permission to view where type = &#63; and receiverUserId = &#63;.
-	*
-	* @param type the type
-	* @param receiverUserId the receiver user ID
-	* @return the number of matching microblogs entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByT_R(int type, long receiverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByT_R(type, receiverUserId);
-	}
-
-	/**
-	* Returns the number of microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
-	*
-	* @param type the type
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
-	* @return the number of matching microblogs entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByT_RMEI(int type, long receiverMicroblogsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByT_RMEI(type, receiverMicroblogsEntryId);
-	}
-
-	/**
-	* Returns the number of microblogs entries that the user has permission to view where type = &#63; and receiverMicroblogsEntryId = &#63;.
-	*
-	* @param type the type
-	* @param receiverMicroblogsEntryId the receiver microblogs entry ID
-	* @return the number of matching microblogs entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByT_RMEI(int type,
-		long receiverMicroblogsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .filterCountByT_RMEI(type, receiverMicroblogsEntryId);
 	}
 
 	/**

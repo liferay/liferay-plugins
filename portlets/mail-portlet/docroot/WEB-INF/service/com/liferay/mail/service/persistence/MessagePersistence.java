@@ -38,67 +38,6 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	 */
 
 	/**
-	* Caches the message in the entity cache if it is enabled.
-	*
-	* @param message the message
-	*/
-	public void cacheResult(com.liferay.mail.model.Message message);
-
-	/**
-	* Caches the messages in the entity cache if it is enabled.
-	*
-	* @param messages the messages
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.mail.model.Message> messages);
-
-	/**
-	* Creates a new message with the primary key. Does not add the message to the database.
-	*
-	* @param messageId the primary key for the new message
-	* @return the new message
-	*/
-	public com.liferay.mail.model.Message create(long messageId);
-
-	/**
-	* Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param messageId the primary key of the message
-	* @return the message that was removed
-	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.mail.model.Message remove(long messageId)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.mail.model.Message updateImpl(
-		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the message with the primary key or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
-	*
-	* @param messageId the primary key of the message
-	* @return the message
-	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.mail.model.Message findByPrimaryKey(long messageId)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the message with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param messageId the primary key of the message
-	* @return the message, or <code>null</code> if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.mail.model.Message fetchByPrimaryKey(long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the messages where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -217,6 +156,25 @@ public interface MessagePersistence extends BasePersistence<Message> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the messages where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of messages where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching messages
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the messages where folderId = &#63;.
 	*
 	* @param folderId the folder ID
@@ -332,6 +290,25 @@ public interface MessagePersistence extends BasePersistence<Message> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the messages where folderId = &#63; from the database.
+	*
+	* @param folderId the folder ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByFolderId(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of messages where folderId = &#63;.
+	*
+	* @param folderId the folder ID
+	* @return the number of matching messages
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByFolderId(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the message where folderId = &#63; and remoteMessageId = &#63; or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
 	*
 	* @param folderId the folder ID
@@ -368,6 +345,91 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public com.liferay.mail.model.Message fetchByF_R(long folderId,
 		long remoteMessageId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the message where folderId = &#63; and remoteMessageId = &#63; from the database.
+	*
+	* @param folderId the folder ID
+	* @param remoteMessageId the remote message ID
+	* @return the message that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.mail.model.Message removeByF_R(long folderId,
+		long remoteMessageId)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of messages where folderId = &#63; and remoteMessageId = &#63;.
+	*
+	* @param folderId the folder ID
+	* @param remoteMessageId the remote message ID
+	* @return the number of matching messages
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByF_R(long folderId, long remoteMessageId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the message in the entity cache if it is enabled.
+	*
+	* @param message the message
+	*/
+	public void cacheResult(com.liferay.mail.model.Message message);
+
+	/**
+	* Caches the messages in the entity cache if it is enabled.
+	*
+	* @param messages the messages
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.mail.model.Message> messages);
+
+	/**
+	* Creates a new message with the primary key. Does not add the message to the database.
+	*
+	* @param messageId the primary key for the new message
+	* @return the new message
+	*/
+	public com.liferay.mail.model.Message create(long messageId);
+
+	/**
+	* Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param messageId the primary key of the message
+	* @return the message that was removed
+	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.mail.model.Message remove(long messageId)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Message updateImpl(
+		com.liferay.mail.model.Message message)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the message with the primary key or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
+	*
+	* @param messageId the primary key of the message
+	* @return the message
+	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.mail.model.Message findByPrimaryKey(long messageId)
+		throws com.liferay.mail.NoSuchMessageException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the message with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param messageId the primary key of the message
+	* @return the message, or <code>null</code> if a message with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.mail.model.Message fetchByPrimaryKey(long messageId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -413,73 +475,11 @@ public interface MessagePersistence extends BasePersistence<Message> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the messages where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the messages where folderId = &#63; from the database.
-	*
-	* @param folderId the folder ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByFolderId(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the message where folderId = &#63; and remoteMessageId = &#63; from the database.
-	*
-	* @param folderId the folder ID
-	* @param remoteMessageId the remote message ID
-	* @return the message that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.mail.model.Message removeByF_R(long folderId,
-		long remoteMessageId)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the messages from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of messages where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching messages
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of messages where folderId = &#63;.
-	*
-	* @param folderId the folder ID
-	* @return the number of matching messages
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByFolderId(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of messages where folderId = &#63; and remoteMessageId = &#63;.
-	*
-	* @param folderId the folder ID
-	* @param remoteMessageId the remote message ID
-	* @return the number of matching messages
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByF_R(long folderId, long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

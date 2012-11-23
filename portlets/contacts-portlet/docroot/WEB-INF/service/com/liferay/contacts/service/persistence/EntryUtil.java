@@ -109,83 +109,6 @@ public class EntryUtil {
 	}
 
 	/**
-	* Caches the entry in the entity cache if it is enabled.
-	*
-	* @param entry the entry
-	*/
-	public static void cacheResult(com.liferay.contacts.model.Entry entry) {
-		getPersistence().cacheResult(entry);
-	}
-
-	/**
-	* Caches the entries in the entity cache if it is enabled.
-	*
-	* @param entries the entries
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.contacts.model.Entry> entries) {
-		getPersistence().cacheResult(entries);
-	}
-
-	/**
-	* Creates a new entry with the primary key. Does not add the entry to the database.
-	*
-	* @param entryId the primary key for the new entry
-	* @return the new entry
-	*/
-	public static com.liferay.contacts.model.Entry create(long entryId) {
-		return getPersistence().create(entryId);
-	}
-
-	/**
-	* Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry that was removed
-	* @throws com.liferay.contacts.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.contacts.model.Entry remove(long entryId)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(entryId);
-	}
-
-	public static com.liferay.contacts.model.Entry updateImpl(
-		com.liferay.contacts.model.Entry entry)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(entry);
-	}
-
-	/**
-	* Returns the entry with the primary key or throws a {@link com.liferay.contacts.NoSuchEntryException} if it could not be found.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry
-	* @throws com.liferay.contacts.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.contacts.model.Entry findByPrimaryKey(
-		long entryId)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(entryId);
-	}
-
-	/**
-	* Returns the entry with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry, or <code>null</code> if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.contacts.model.Entry fetchByPrimaryKey(
-		long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(entryId);
-	}
-
-	/**
 	* Returns all the entries where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -322,6 +245,29 @@ public class EntryUtil {
 	}
 
 	/**
+	* Removes all the entries where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of entries where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
 	* Returns the entry where userId = &#63; and emailAddress = &#63; or throws a {@link com.liferay.contacts.NoSuchEntryException} if it could not be found.
 	*
 	* @param userId the user ID
@@ -365,6 +311,111 @@ public class EntryUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByU_EA(userId, emailAddress, retrieveFromCache);
+	}
+
+	/**
+	* Removes the entry where userId = &#63; and emailAddress = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param emailAddress the email address
+	* @return the entry that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.contacts.model.Entry removeByU_EA(long userId,
+		java.lang.String emailAddress)
+		throws com.liferay.contacts.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByU_EA(userId, emailAddress);
+	}
+
+	/**
+	* Returns the number of entries where userId = &#63; and emailAddress = &#63;.
+	*
+	* @param userId the user ID
+	* @param emailAddress the email address
+	* @return the number of matching entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_EA(long userId, java.lang.String emailAddress)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_EA(userId, emailAddress);
+	}
+
+	/**
+	* Caches the entry in the entity cache if it is enabled.
+	*
+	* @param entry the entry
+	*/
+	public static void cacheResult(com.liferay.contacts.model.Entry entry) {
+		getPersistence().cacheResult(entry);
+	}
+
+	/**
+	* Caches the entries in the entity cache if it is enabled.
+	*
+	* @param entries the entries
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.contacts.model.Entry> entries) {
+		getPersistence().cacheResult(entries);
+	}
+
+	/**
+	* Creates a new entry with the primary key. Does not add the entry to the database.
+	*
+	* @param entryId the primary key for the new entry
+	* @return the new entry
+	*/
+	public static com.liferay.contacts.model.Entry create(long entryId) {
+		return getPersistence().create(entryId);
+	}
+
+	/**
+	* Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param entryId the primary key of the entry
+	* @return the entry that was removed
+	* @throws com.liferay.contacts.NoSuchEntryException if a entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.contacts.model.Entry remove(long entryId)
+		throws com.liferay.contacts.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(entryId);
+	}
+
+	public static com.liferay.contacts.model.Entry updateImpl(
+		com.liferay.contacts.model.Entry entry)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(entry);
+	}
+
+	/**
+	* Returns the entry with the primary key or throws a {@link com.liferay.contacts.NoSuchEntryException} if it could not be found.
+	*
+	* @param entryId the primary key of the entry
+	* @return the entry
+	* @throws com.liferay.contacts.NoSuchEntryException if a entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.contacts.model.Entry findByPrimaryKey(
+		long entryId)
+		throws com.liferay.contacts.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(entryId);
+	}
+
+	/**
+	* Returns the entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param entryId the primary key of the entry
+	* @return the entry, or <code>null</code> if a entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.contacts.model.Entry fetchByPrimaryKey(
+		long entryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(entryId);
 	}
 
 	/**
@@ -417,32 +468,6 @@ public class EntryUtil {
 	}
 
 	/**
-	* Removes all the entries where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
-	}
-
-	/**
-	* Removes the entry where userId = &#63; and emailAddress = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @param emailAddress the email address
-	* @return the entry that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.contacts.model.Entry removeByU_EA(long userId,
-		java.lang.String emailAddress)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByU_EA(userId, emailAddress);
-	}
-
-	/**
 	* Removes all the entries from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -450,31 +475,6 @@ public class EntryUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of entries where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUserId(userId);
-	}
-
-	/**
-	* Returns the number of entries where userId = &#63; and emailAddress = &#63;.
-	*
-	* @param userId the user ID
-	* @param emailAddress the email address
-	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByU_EA(long userId, java.lang.String emailAddress)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByU_EA(userId, emailAddress);
 	}
 
 	/**

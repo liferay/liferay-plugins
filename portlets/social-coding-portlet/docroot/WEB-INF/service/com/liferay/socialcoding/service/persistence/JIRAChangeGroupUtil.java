@@ -111,86 +111,6 @@ public class JIRAChangeGroupUtil {
 	}
 
 	/**
-	* Caches the j i r a change group in the entity cache if it is enabled.
-	*
-	* @param jiraChangeGroup the j i r a change group
-	*/
-	public static void cacheResult(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup) {
-		getPersistence().cacheResult(jiraChangeGroup);
-	}
-
-	/**
-	* Caches the j i r a change groups in the entity cache if it is enabled.
-	*
-	* @param jiraChangeGroups the j i r a change groups
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> jiraChangeGroups) {
-		getPersistence().cacheResult(jiraChangeGroups);
-	}
-
-	/**
-	* Creates a new j i r a change group with the primary key. Does not add the j i r a change group to the database.
-	*
-	* @param jiraChangeGroupId the primary key for the new j i r a change group
-	* @return the new j i r a change group
-	*/
-	public static com.liferay.socialcoding.model.JIRAChangeGroup create(
-		long jiraChangeGroupId) {
-		return getPersistence().create(jiraChangeGroupId);
-	}
-
-	/**
-	* Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param jiraChangeGroupId the primary key of the j i r a change group
-	* @return the j i r a change group that was removed
-	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialcoding.model.JIRAChangeGroup remove(
-		long jiraChangeGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
-		return getPersistence().remove(jiraChangeGroupId);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAChangeGroup updateImpl(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(jiraChangeGroup);
-	}
-
-	/**
-	* Returns the j i r a change group with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAChangeGroupException} if it could not be found.
-	*
-	* @param jiraChangeGroupId the primary key of the j i r a change group
-	* @return the j i r a change group
-	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialcoding.model.JIRAChangeGroup findByPrimaryKey(
-		long jiraChangeGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
-		return getPersistence().findByPrimaryKey(jiraChangeGroupId);
-	}
-
-	/**
-	* Returns the j i r a change group with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param jiraChangeGroupId the primary key of the j i r a change group
-	* @return the j i r a change group, or <code>null</code> if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialcoding.model.JIRAChangeGroup fetchByPrimaryKey(
-		long jiraChangeGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(jiraChangeGroupId);
-	}
-
-	/**
 	* Returns all the j i r a change groups where jiraUserId = &#63;.
 	*
 	* @param jiraUserId the jira user ID
@@ -330,6 +250,29 @@ public class JIRAChangeGroupUtil {
 		return getPersistence()
 				   .findByJiraUserId_PrevAndNext(jiraChangeGroupId, jiraUserId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the j i r a change groups where jiraUserId = &#63; from the database.
+	*
+	* @param jiraUserId the jira user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByJiraUserId(java.lang.String jiraUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByJiraUserId(jiraUserId);
+	}
+
+	/**
+	* Returns the number of j i r a change groups where jiraUserId = &#63;.
+	*
+	* @param jiraUserId the jira user ID
+	* @return the number of matching j i r a change groups
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByJiraUserId(java.lang.String jiraUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByJiraUserId(jiraUserId);
 	}
 
 	/**
@@ -475,6 +418,109 @@ public class JIRAChangeGroupUtil {
 	}
 
 	/**
+	* Removes all the j i r a change groups where jiraIssueId = &#63; from the database.
+	*
+	* @param jiraIssueId the jira issue ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByJiraIssueId(long jiraIssueId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByJiraIssueId(jiraIssueId);
+	}
+
+	/**
+	* Returns the number of j i r a change groups where jiraIssueId = &#63;.
+	*
+	* @param jiraIssueId the jira issue ID
+	* @return the number of matching j i r a change groups
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByJiraIssueId(long jiraIssueId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByJiraIssueId(jiraIssueId);
+	}
+
+	/**
+	* Caches the j i r a change group in the entity cache if it is enabled.
+	*
+	* @param jiraChangeGroup the j i r a change group
+	*/
+	public static void cacheResult(
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup) {
+		getPersistence().cacheResult(jiraChangeGroup);
+	}
+
+	/**
+	* Caches the j i r a change groups in the entity cache if it is enabled.
+	*
+	* @param jiraChangeGroups the j i r a change groups
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> jiraChangeGroups) {
+		getPersistence().cacheResult(jiraChangeGroups);
+	}
+
+	/**
+	* Creates a new j i r a change group with the primary key. Does not add the j i r a change group to the database.
+	*
+	* @param jiraChangeGroupId the primary key for the new j i r a change group
+	* @return the new j i r a change group
+	*/
+	public static com.liferay.socialcoding.model.JIRAChangeGroup create(
+		long jiraChangeGroupId) {
+		return getPersistence().create(jiraChangeGroupId);
+	}
+
+	/**
+	* Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param jiraChangeGroupId the primary key of the j i r a change group
+	* @return the j i r a change group that was removed
+	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAChangeGroup remove(
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
+		return getPersistence().remove(jiraChangeGroupId);
+	}
+
+	public static com.liferay.socialcoding.model.JIRAChangeGroup updateImpl(
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(jiraChangeGroup);
+	}
+
+	/**
+	* Returns the j i r a change group with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAChangeGroupException} if it could not be found.
+	*
+	* @param jiraChangeGroupId the primary key of the j i r a change group
+	* @return the j i r a change group
+	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAChangeGroup findByPrimaryKey(
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialcoding.NoSuchJIRAChangeGroupException {
+		return getPersistence().findByPrimaryKey(jiraChangeGroupId);
+	}
+
+	/**
+	* Returns the j i r a change group with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param jiraChangeGroupId the primary key of the j i r a change group
+	* @return the j i r a change group, or <code>null</code> if a j i r a change group with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAChangeGroup fetchByPrimaryKey(
+		long jiraChangeGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(jiraChangeGroupId);
+	}
+
+	/**
 	* Returns all the j i r a change groups.
 	*
 	* @return the j i r a change groups
@@ -524,28 +570,6 @@ public class JIRAChangeGroupUtil {
 	}
 
 	/**
-	* Removes all the j i r a change groups where jiraUserId = &#63; from the database.
-	*
-	* @param jiraUserId the jira user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByJiraUserId(java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByJiraUserId(jiraUserId);
-	}
-
-	/**
-	* Removes all the j i r a change groups where jiraIssueId = &#63; from the database.
-	*
-	* @param jiraIssueId the jira issue ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByJiraIssueId(long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByJiraIssueId(jiraIssueId);
-	}
-
-	/**
 	* Removes all the j i r a change groups from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -553,30 +577,6 @@ public class JIRAChangeGroupUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of j i r a change groups where jiraUserId = &#63;.
-	*
-	* @param jiraUserId the jira user ID
-	* @return the number of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByJiraUserId(java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByJiraUserId(jiraUserId);
-	}
-
-	/**
-	* Returns the number of j i r a change groups where jiraIssueId = &#63;.
-	*
-	* @param jiraIssueId the jira issue ID
-	* @return the number of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByJiraIssueId(long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByJiraIssueId(jiraIssueId);
 	}
 
 	/**

@@ -38,67 +38,6 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	 */
 
 	/**
-	* Caches the bar in the entity cache if it is enabled.
-	*
-	* @param bar the bar
-	*/
-	public void cacheResult(com.liferay.testtransaction.model.Bar bar);
-
-	/**
-	* Caches the bars in the entity cache if it is enabled.
-	*
-	* @param bars the bars
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.testtransaction.model.Bar> bars);
-
-	/**
-	* Creates a new bar with the primary key. Does not add the bar to the database.
-	*
-	* @param barId the primary key for the new bar
-	* @return the new bar
-	*/
-	public com.liferay.testtransaction.model.Bar create(long barId);
-
-	/**
-	* Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar that was removed
-	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.testtransaction.model.Bar remove(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException;
-
-	public com.liferay.testtransaction.model.Bar updateImpl(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar
-	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.testtransaction.model.Bar findByPrimaryKey(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException;
-
-	/**
-	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.testtransaction.model.Bar fetchByPrimaryKey(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the bars where text = &#63;.
 	*
 	* @param text the text
@@ -218,6 +157,86 @@ public interface BarPersistence extends BasePersistence<Bar> {
 			com.liferay.testtransaction.NoSuchBarException;
 
 	/**
+	* Removes all the bars where text = &#63; from the database.
+	*
+	* @param text the text
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByText(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of bars where text = &#63;.
+	*
+	* @param text the text
+	* @return the number of matching bars
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByText(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the bar in the entity cache if it is enabled.
+	*
+	* @param bar the bar
+	*/
+	public void cacheResult(com.liferay.testtransaction.model.Bar bar);
+
+	/**
+	* Caches the bars in the entity cache if it is enabled.
+	*
+	* @param bars the bars
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.testtransaction.model.Bar> bars);
+
+	/**
+	* Creates a new bar with the primary key. Does not add the bar to the database.
+	*
+	* @param barId the primary key for the new bar
+	* @return the new bar
+	*/
+	public com.liferay.testtransaction.model.Bar create(long barId);
+
+	/**
+	* Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar that was removed
+	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testtransaction.model.Bar remove(long barId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testtransaction.NoSuchBarException;
+
+	public com.liferay.testtransaction.model.Bar updateImpl(
+		com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar
+	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testtransaction.model.Bar findByPrimaryKey(long barId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testtransaction.NoSuchBarException;
+
+	/**
+	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.testtransaction.model.Bar fetchByPrimaryKey(long barId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the bars.
 	*
 	* @return the bars
@@ -261,30 +280,11 @@ public interface BarPersistence extends BasePersistence<Bar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the bars where text = &#63; from the database.
-	*
-	* @param text the text
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByText(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the bars from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of bars where text = &#63;.
-	*
-	* @param text the text
-	* @return the number of matching bars
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByText(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

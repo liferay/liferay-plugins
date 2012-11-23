@@ -38,67 +38,6 @@ public interface AppPersistence extends BasePersistence<App> {
 	 */
 
 	/**
-	* Caches the app in the entity cache if it is enabled.
-	*
-	* @param app the app
-	*/
-	public void cacheResult(com.liferay.marketplace.model.App app);
-
-	/**
-	* Caches the apps in the entity cache if it is enabled.
-	*
-	* @param apps the apps
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.marketplace.model.App> apps);
-
-	/**
-	* Creates a new app with the primary key. Does not add the app to the database.
-	*
-	* @param appId the primary key for the new app
-	* @return the new app
-	*/
-	public com.liferay.marketplace.model.App create(long appId);
-
-	/**
-	* Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param appId the primary key of the app
-	* @return the app that was removed
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.marketplace.model.App remove(long appId)
-		throws com.liferay.marketplace.NoSuchAppException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.marketplace.model.App updateImpl(
-		com.liferay.marketplace.model.App app)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the app with the primary key or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
-	*
-	* @param appId the primary key of the app
-	* @return the app
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.marketplace.model.App findByPrimaryKey(long appId)
-		throws com.liferay.marketplace.NoSuchAppException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the app with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param appId the primary key of the app
-	* @return the app, or <code>null</code> if a app with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.marketplace.model.App fetchByPrimaryKey(long appId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the apps where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -216,6 +155,25 @@ public interface AppPersistence extends BasePersistence<App> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the apps where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of apps where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching apps
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the apps where uuid = &#63; and companyId = &#63;.
@@ -345,6 +303,27 @@ public interface AppPersistence extends BasePersistence<App> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the apps where uuid = &#63; and companyId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of apps where uuid = &#63; and companyId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @return the number of matching apps
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the apps where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -464,6 +443,25 @@ public interface AppPersistence extends BasePersistence<App> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the apps where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of apps where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching apps
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the app where remoteAppId = &#63; or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
 	*
 	* @param remoteAppId the remote app ID
@@ -496,6 +494,89 @@ public interface AppPersistence extends BasePersistence<App> {
 	*/
 	public com.liferay.marketplace.model.App fetchByRemoteAppId(
 		long remoteAppId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the app where remoteAppId = &#63; from the database.
+	*
+	* @param remoteAppId the remote app ID
+	* @return the app that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.marketplace.model.App removeByRemoteAppId(
+		long remoteAppId)
+		throws com.liferay.marketplace.NoSuchAppException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of apps where remoteAppId = &#63;.
+	*
+	* @param remoteAppId the remote app ID
+	* @return the number of matching apps
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByRemoteAppId(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the app in the entity cache if it is enabled.
+	*
+	* @param app the app
+	*/
+	public void cacheResult(com.liferay.marketplace.model.App app);
+
+	/**
+	* Caches the apps in the entity cache if it is enabled.
+	*
+	* @param apps the apps
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.marketplace.model.App> apps);
+
+	/**
+	* Creates a new app with the primary key. Does not add the app to the database.
+	*
+	* @param appId the primary key for the new app
+	* @return the new app
+	*/
+	public com.liferay.marketplace.model.App create(long appId);
+
+	/**
+	* Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param appId the primary key of the app
+	* @return the app that was removed
+	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.marketplace.model.App remove(long appId)
+		throws com.liferay.marketplace.NoSuchAppException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.marketplace.model.App updateImpl(
+		com.liferay.marketplace.model.App app)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the app with the primary key or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
+	*
+	* @param appId the primary key of the app
+	* @return the app
+	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.marketplace.model.App findByPrimaryKey(long appId)
+		throws com.liferay.marketplace.NoSuchAppException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the app with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param appId the primary key of the app
+	* @return the app, or <code>null</code> if a app with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.marketplace.model.App fetchByPrimaryKey(long appId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -542,92 +623,11 @@ public interface AppPersistence extends BasePersistence<App> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the apps where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the apps where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the apps where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the app where remoteAppId = &#63; from the database.
-	*
-	* @param remoteAppId the remote app ID
-	* @return the app that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.marketplace.model.App removeByRemoteAppId(
-		long remoteAppId)
-		throws com.liferay.marketplace.NoSuchAppException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the apps from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of apps where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching apps
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of apps where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching apps
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of apps where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching apps
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of apps where remoteAppId = &#63;.
-	*
-	* @param remoteAppId the remote app ID
-	* @return the number of matching apps
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByRemoteAppId(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

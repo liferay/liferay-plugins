@@ -38,69 +38,6 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	 */
 
 	/**
-	* Caches the k b article in the entity cache if it is enabled.
-	*
-	* @param kbArticle the k b article
-	*/
-	public void cacheResult(com.liferay.knowledgebase.model.KBArticle kbArticle);
-
-	/**
-	* Caches the k b articles in the entity cache if it is enabled.
-	*
-	* @param kbArticles the k b articles
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.knowledgebase.model.KBArticle> kbArticles);
-
-	/**
-	* Creates a new k b article with the primary key. Does not add the k b article to the database.
-	*
-	* @param kbArticleId the primary key for the new k b article
-	* @return the new k b article
-	*/
-	public com.liferay.knowledgebase.model.KBArticle create(long kbArticleId);
-
-	/**
-	* Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kbArticleId the primary key of the k b article
-	* @return the k b article that was removed
-	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle remove(long kbArticleId)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.knowledgebase.model.KBArticle updateImpl(
-		com.liferay.knowledgebase.model.KBArticle kbArticle)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the k b article with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
-	*
-	* @param kbArticleId the primary key of the k b article
-	* @return the k b article
-	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle findByPrimaryKey(
-		long kbArticleId)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the k b article with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kbArticleId the primary key of the k b article
-	* @return the k b article, or <code>null</code> if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle fetchByPrimaryKey(
-		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the k b articles where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -220,6 +157,25 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the k b article where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
 	*
 	* @param uuid the uuid
@@ -256,6 +212,30 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public com.liferay.knowledgebase.model.KBArticle fetchByUUID_G(
 		java.lang.String uuid, long groupId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the k b article where uuid = &#63; and groupId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the k b article that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle removeByUUID_G(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where uuid = &#63; and groupId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -386,6 +366,27 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where uuid = &#63; and companyId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where uuid = &#63; and companyId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where resourcePrimKey = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key
@@ -503,6 +504,25 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByResourcePrimKey(long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByResourcePrimKey(long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63;.
@@ -699,6 +719,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByR_G(long resourcePrimKey, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_G(long resourcePrimKey, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByR_G(long resourcePrimKey, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the k b article where resourcePrimKey = &#63; and version = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
 	*
 	* @param resourcePrimKey the resource prim key
@@ -735,6 +787,30 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public com.liferay.knowledgebase.model.KBArticle fetchByR_V(
 		long resourcePrimKey, int version, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the k b article where resourcePrimKey = &#63; and version = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param version the version
+	* @return the k b article that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle removeByR_V(
+		long resourcePrimKey, int version)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and version = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param version the version
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_V(long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -919,6 +995,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; and latest = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByR_L(long resourcePrimKey, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_L(long resourcePrimKey, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = any &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_L(long[] resourcePrimKeies, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where resourcePrimKey = &#63; and main = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key
@@ -1100,6 +1208,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; and main = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByR_M(long resourcePrimKey, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and main = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_M(long resourcePrimKey, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = any &#63; and main = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_M(long[] resourcePrimKeies, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where resourcePrimKey = &#63; and status = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key
@@ -1278,6 +1418,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByR_S(
 		long[] resourcePrimKeies, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; and status = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByR_S(long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_S(long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = any &#63; and status = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_S(long[] resourcePrimKeies, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -1475,6 +1647,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where groupId = &#63; and latest = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_L(long groupId, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_L(long groupId, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param latest the latest
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_L(long groupId, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where groupId = &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
@@ -1667,6 +1871,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where groupId = &#63; and main = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_M(long groupId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_M(long groupId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param main the main
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_M(long groupId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b articles where groupId = &#63; and status = &#63;.
@@ -1863,6 +2099,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where groupId = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_S(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_S(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_S(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where companyId = &#63; and latest = &#63;.
 	*
 	* @param companyId the company ID
@@ -1988,6 +2256,27 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where companyId = &#63; and latest = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByC_L(long companyId, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where companyId = &#63; and latest = &#63;.
+	*
+	* @param companyId the company ID
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_L(long companyId, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b articles where companyId = &#63; and main = &#63;.
@@ -2117,6 +2406,27 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where companyId = &#63; and main = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByC_M(long companyId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where companyId = &#63; and main = &#63;.
+	*
+	* @param companyId the company ID
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_M(long companyId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where companyId = &#63; and status = &#63;.
 	*
 	* @param companyId the company ID
@@ -2242,6 +2552,27 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where companyId = &#63; and status = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByC_S(long companyId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where companyId = &#63; and status = &#63;.
+	*
+	* @param companyId the company ID
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_S(long companyId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
@@ -2422,6 +2753,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_L(
 		long[] parentResourcePrimKeies, boolean latest, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where parentResourcePrimKey = &#63; and latest = &#63; from the database.
+	*
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByP_L(long parentResourcePrimKey, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByP_L(long parentResourcePrimKey, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
+	*
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByP_L(long[] parentResourcePrimKeies, boolean latest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -2606,6 +2969,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where parentResourcePrimKey = &#63; and main = &#63; from the database.
+	*
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByP_M(long parentResourcePrimKey, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where parentResourcePrimKey = &#63; and main = &#63;.
+	*
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByP_M(long parentResourcePrimKey, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	*
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByP_M(long[] parentResourcePrimKeies, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where parentResourcePrimKey = &#63; and status = &#63;.
 	*
 	* @param parentResourcePrimKey the parent resource prim key
@@ -2784,6 +3179,38 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByP_S(
 		long[] parentResourcePrimKeies, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where parentResourcePrimKey = &#63; and status = &#63; from the database.
+	*
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByP_S(long parentResourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where parentResourcePrimKey = &#63; and status = &#63;.
+	*
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByP_S(long parentResourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	*
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByP_S(long[] parentResourcePrimKeies, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -3105,6 +3532,68 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByR_G_L(long resourcePrimKey, long groupId, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_G_L(long resourcePrimKey, long groupId, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param groupId the group ID
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_G_L(long[] resourcePrimKeies, long groupId,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param latest the latest
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByR_G_L(long resourcePrimKey, long groupId,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param groupId the group ID
+	* @param latest the latest
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByR_G_L(long[] resourcePrimKeies, long groupId,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key
@@ -3423,6 +3912,67 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByR_G_M(long resourcePrimKey, long groupId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_G_M(long resourcePrimKey, long groupId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param groupId the group ID
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_G_M(long[] resourcePrimKeies, long groupId, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param main the main
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByR_G_M(long resourcePrimKey, long groupId,
+		boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param groupId the group ID
+	* @param main the main
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByR_G_M(long[] resourcePrimKeies, long groupId,
+		boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key
@@ -3737,6 +4287,65 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		long[] resourcePrimKeies, long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByR_G_S(long resourcePrimKey, long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_G_S(long resourcePrimKey, long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByR_G_S(long[] resourcePrimKeies, long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByR_G_S(long resourcePrimKey, long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies
+	* @param groupId the group ID
+	* @param status the status
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByR_G_S(long[] resourcePrimKeies, long groupId,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
@@ -4063,6 +4672,70 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_P_L(long groupId, long parentResourcePrimKey,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_L(long groupId, long parentResourcePrimKey,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_L(long groupId, long[] parentResourcePrimKeies,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param latest the latest
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_L(long groupId, long parentResourcePrimKey,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param latest the latest
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_L(long groupId, long[] parentResourcePrimKeies,
+		boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
@@ -4385,6 +5058,70 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_M(long groupId, long[] parentResourcePrimKeies,
+		boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param main the main
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param main the main
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_M(long groupId, long[] parentResourcePrimKeies,
+		boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
@@ -4703,6 +5440,65 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_P_S(long groupId, long parentResourcePrimKey,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_S(long groupId, long parentResourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param status the status
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_S(long groupId, long[] parentResourcePrimKeies,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param status the status
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_S(long groupId, long parentResourcePrimKey,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKeies the parent resource prim keies
+	* @param status the status
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_S(long groupId, long[] parentResourcePrimKeies,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
@@ -5054,6 +5850,75 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		long groupId, long parentResourcePrimKey,
 		java.lang.String[] sectionses, boolean latest, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sections the sections
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_P_S_L(long groupId, long parentResourcePrimKey,
+		java.lang.String sections, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sections the sections
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_S_L(long groupId, long parentResourcePrimKey,
+		java.lang.String sections, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_S_L(long groupId, long parentResourcePrimKey,
+		java.lang.String[] sectionses, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sections the sections
+	* @param latest the latest
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_S_L(long groupId, long parentResourcePrimKey,
+		java.lang.String sections, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_S_L(long groupId, long parentResourcePrimKey,
+		java.lang.String[] sectionses, boolean latest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -5409,6 +6274,75 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sections the sections
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_P_S_M(long groupId, long parentResourcePrimKey,
+		java.lang.String sections, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sections the sections
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_S_M(long groupId, long parentResourcePrimKey,
+		java.lang.String sections, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sectionses the sectionses
+	* @param main the main
+	* @return the number of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_P_S_M(long groupId, long parentResourcePrimKey,
+		java.lang.String[] sectionses, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sections the sections
+	* @param main the main
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_S_M(long groupId, long parentResourcePrimKey,
+		java.lang.String sections, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param parentResourcePrimKey the parent resource prim key
+	* @param sectionses the sectionses
+	* @param main the main
+	* @return the number of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_P_S_M(long groupId, long parentResourcePrimKey,
+		java.lang.String[] sectionses, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
@@ -5759,327 +6693,6 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles.
-	*
-	* @return the k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the k b articles.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the k b article where uuid = &#63; and groupId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the k b article that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle removeByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByResourcePrimKey(long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByR_G(long resourcePrimKey, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the k b article where resourcePrimKey = &#63; and version = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param version the version
-	* @return the k b article that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle removeByR_V(
-		long resourcePrimKey, int version)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; and latest = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByR_L(long resourcePrimKey, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; and main = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByR_M(long resourcePrimKey, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; and status = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByR_S(long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and latest = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_L(long groupId, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and main = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_M(long groupId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and status = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_S(long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where companyId = &#63; and latest = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByC_L(long companyId, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where companyId = &#63; and main = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByC_M(long companyId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where companyId = &#63; and status = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByC_S(long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where parentResourcePrimKey = &#63; and latest = &#63; from the database.
-	*
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByP_L(long parentResourcePrimKey, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where parentResourcePrimKey = &#63; and main = &#63; from the database.
-	*
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByP_M(long parentResourcePrimKey, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where parentResourcePrimKey = &#63; and status = &#63; from the database.
-	*
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByP_S(long parentResourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByR_G_L(long resourcePrimKey, long groupId, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByR_G_M(long resourcePrimKey, long groupId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63; from the database.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByR_G_S(long resourcePrimKey, long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_P_L(long groupId, long parentResourcePrimKey,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_P_M(long groupId, long parentResourcePrimKey,
-		boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_P_S(long groupId, long parentResourcePrimKey,
-		int status) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63; from the database.
 	*
 	* @param groupId the group ID
@@ -6090,733 +6703,6 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public void removeByG_P_S_S(long groupId, long parentResourcePrimKey,
 		java.lang.String sections, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles from the database.
-	*
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where uuid = &#63; and groupId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByResourcePrimKey(long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_G(long resourcePrimKey, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByR_G(long resourcePrimKey, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and version = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param version the version
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_V(long resourcePrimKey, int version)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and latest = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_L(long resourcePrimKey, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = any &#63; and latest = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_L(long[] resourcePrimKeies, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and main = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_M(long resourcePrimKey, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = any &#63; and main = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_M(long[] resourcePrimKeies, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and status = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_S(long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = any &#63; and status = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_S(long[] resourcePrimKeies, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_L(long groupId, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param latest the latest
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_L(long groupId, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_M(long groupId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param main the main
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_M(long groupId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and status = &#63;.
-	*
-	* @param groupId the group ID
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_S(long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and status = &#63;.
-	*
-	* @param groupId the group ID
-	* @param status the status
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_S(long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where companyId = &#63; and latest = &#63;.
-	*
-	* @param companyId the company ID
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_L(long companyId, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where companyId = &#63; and main = &#63;.
-	*
-	* @param companyId the company ID
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_M(long companyId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where companyId = &#63; and status = &#63;.
-	*
-	* @param companyId the company ID
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_S(long companyId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where parentResourcePrimKey = &#63; and latest = &#63;.
-	*
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByP_L(long parentResourcePrimKey, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
-	*
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByP_L(long[] parentResourcePrimKeies, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where parentResourcePrimKey = &#63; and main = &#63;.
-	*
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByP_M(long parentResourcePrimKey, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
-	*
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByP_M(long[] parentResourcePrimKeies, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where parentResourcePrimKey = &#63; and status = &#63;.
-	*
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByP_S(long parentResourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
-	*
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByP_S(long[] parentResourcePrimKeies, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_G_L(long resourcePrimKey, long groupId, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param groupId the group ID
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_G_L(long[] resourcePrimKeies, long groupId,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param latest the latest
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByR_G_L(long resourcePrimKey, long groupId,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param groupId the group ID
-	* @param latest the latest
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByR_G_L(long[] resourcePrimKeies, long groupId,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_G_M(long resourcePrimKey, long groupId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param groupId the group ID
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_G_M(long[] resourcePrimKeies, long groupId, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param main the main
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByR_G_M(long resourcePrimKey, long groupId,
-		boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param groupId the group ID
-	* @param main the main
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByR_G_M(long[] resourcePrimKeies, long groupId,
-		boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_G_S(long resourcePrimKey, long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param groupId the group ID
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByR_G_S(long[] resourcePrimKeies, long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
-	*
-	* @param resourcePrimKey the resource prim key
-	* @param groupId the group ID
-	* @param status the status
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByR_G_S(long resourcePrimKey, long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
-	*
-	* @param resourcePrimKeies the resource prim keies
-	* @param groupId the group ID
-	* @param status the status
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByR_G_S(long[] resourcePrimKeies, long groupId,
-		int status) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_L(long groupId, long parentResourcePrimKey,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_L(long groupId, long[] parentResourcePrimKeies,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param latest the latest
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_L(long groupId, long parentResourcePrimKey,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param latest the latest
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_L(long groupId, long[] parentResourcePrimKeies,
-		boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_M(long groupId, long parentResourcePrimKey,
-		boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_M(long groupId, long[] parentResourcePrimKeies,
-		boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param main the main
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_M(long groupId, long parentResourcePrimKey,
-		boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param main the main
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_M(long groupId, long[] parentResourcePrimKeies,
-		boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_S(long groupId, long parentResourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param status the status
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_S(long groupId, long[] parentResourcePrimKeies,
-		int status) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param status the status
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_S(long groupId, long parentResourcePrimKey,
-		int status) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKeies the parent resource prim keies
-	* @param status the status
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_S(long groupId, long[] parentResourcePrimKeies,
-		int status) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param main the main
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @return the number of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -6873,6 +6759,120 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public int filterCountByG_P_S_S(long groupId, long parentResourcePrimKey,
 		java.lang.String[] sectionses, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the k b article in the entity cache if it is enabled.
+	*
+	* @param kbArticle the k b article
+	*/
+	public void cacheResult(com.liferay.knowledgebase.model.KBArticle kbArticle);
+
+	/**
+	* Caches the k b articles in the entity cache if it is enabled.
+	*
+	* @param kbArticles the k b articles
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.knowledgebase.model.KBArticle> kbArticles);
+
+	/**
+	* Creates a new k b article with the primary key. Does not add the k b article to the database.
+	*
+	* @param kbArticleId the primary key for the new k b article
+	* @return the new k b article
+	*/
+	public com.liferay.knowledgebase.model.KBArticle create(long kbArticleId);
+
+	/**
+	* Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kbArticleId the primary key of the k b article
+	* @return the k b article that was removed
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle remove(long kbArticleId)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.knowledgebase.model.KBArticle updateImpl(
+		com.liferay.knowledgebase.model.KBArticle kbArticle)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b article with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	*
+	* @param kbArticleId the primary key of the k b article
+	* @return the k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle findByPrimaryKey(
+		long kbArticleId)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b article with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kbArticleId the primary key of the k b article
+	* @return the k b article, or <code>null</code> if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle fetchByPrimaryKey(
+		long kbArticleId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the k b articles.
+	*
+	* @return the k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findAll(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findAll(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -82,6 +82,15 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
@@ -100,520 +109,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
-			new String[] { String.class.getName(), Long.class.getName() },
-			KBTemplateModelImpl.UUID_COLUMN_BITMASK |
-			KBTemplateModelImpl.GROUPID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-			new String[] {
-				String.class.getName(), Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C =
-		new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-			new String[] { String.class.getName(), Long.class.getName() },
-			KBTemplateModelImpl.UUID_COLUMN_BITMASK |
-			KBTemplateModelImpl.COMPANYID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_C = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_GROUPID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID =
-		new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-			new String[] { Long.class.getName() },
-			KBTemplateModelImpl.GROUPID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-
-	/**
-	 * Caches the k b template in the entity cache if it is enabled.
-	 *
-	 * @param kbTemplate the k b template
-	 */
-	public void cacheResult(KBTemplate kbTemplate) {
-		EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate);
-
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
-			}, kbTemplate);
-
-		kbTemplate.resetOriginalValues();
-	}
-
-	/**
-	 * Caches the k b templates in the entity cache if it is enabled.
-	 *
-	 * @param kbTemplates the k b templates
-	 */
-	public void cacheResult(List<KBTemplate> kbTemplates) {
-		for (KBTemplate kbTemplate : kbTemplates) {
-			if (EntityCacheUtil.getResult(
-						KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-						KBTemplateImpl.class, kbTemplate.getPrimaryKey()) == null) {
-				cacheResult(kbTemplate);
-			}
-			else {
-				kbTemplate.resetOriginalValues();
-			}
-		}
-	}
-
-	/**
-	 * Clears the cache for all k b templates.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(KBTemplateImpl.class.getName());
-		}
-
-		EntityCacheUtil.clearCache(KBTemplateImpl.class.getName());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-	}
-
-	/**
-	 * Clears the cache for the k b template.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache(KBTemplate kbTemplate) {
-		EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateImpl.class, kbTemplate.getPrimaryKey());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		clearUniqueFindersCache(kbTemplate);
-	}
-
-	@Override
-	public void clearCache(List<KBTemplate> kbTemplates) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		for (KBTemplate kbTemplate : kbTemplates) {
-			EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-				KBTemplateImpl.class, kbTemplate.getPrimaryKey());
-
-			clearUniqueFindersCache(kbTemplate);
-		}
-	}
-
-	protected void clearUniqueFindersCache(KBTemplate kbTemplate) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
-			});
-	}
-
-	/**
-	 * Creates a new k b template with the primary key. Does not add the k b template to the database.
-	 *
-	 * @param kbTemplateId the primary key for the new k b template
-	 * @return the new k b template
-	 */
-	public KBTemplate create(long kbTemplateId) {
-		KBTemplate kbTemplate = new KBTemplateImpl();
-
-		kbTemplate.setNew(true);
-		kbTemplate.setPrimaryKey(kbTemplateId);
-
-		String uuid = PortalUUIDUtil.generate();
-
-		kbTemplate.setUuid(uuid);
-
-		return kbTemplate;
-	}
-
-	/**
-	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbTemplateId the primary key of the k b template
-	 * @return the k b template that was removed
-	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBTemplate remove(long kbTemplateId)
-		throws NoSuchTemplateException, SystemException {
-		return remove(Long.valueOf(kbTemplateId));
-	}
-
-	/**
-	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param primaryKey the primary key of the k b template
-	 * @return the k b template that was removed
-	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KBTemplate remove(Serializable primaryKey)
-		throws NoSuchTemplateException, SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			KBTemplate kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
-					primaryKey);
-
-			if (kbTemplate == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
-				}
-
-				throw new NoSuchTemplateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
-			}
-
-			return remove(kbTemplate);
-		}
-		catch (NoSuchTemplateException nsee) {
-			throw nsee;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	@Override
-	protected KBTemplate removeImpl(KBTemplate kbTemplate)
-		throws SystemException {
-		kbTemplate = toUnwrappedModel(kbTemplate);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (!session.contains(kbTemplate)) {
-				kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
-						kbTemplate.getPrimaryKeyObj());
-			}
-
-			if (kbTemplate != null) {
-				session.delete(kbTemplate);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		if (kbTemplate != null) {
-			clearCache(kbTemplate);
-		}
-
-		return kbTemplate;
-	}
-
-	@Override
-	public KBTemplate updateImpl(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
-		throws SystemException {
-		kbTemplate = toUnwrappedModel(kbTemplate);
-
-		boolean isNew = kbTemplate.isNew();
-
-		KBTemplateModelImpl kbTemplateModelImpl = (KBTemplateModelImpl)kbTemplate;
-
-		if (Validator.isNull(kbTemplate.getUuid())) {
-			String uuid = PortalUUIDUtil.generate();
-
-			kbTemplate.setUuid(uuid);
-		}
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (kbTemplate.isNew()) {
-				session.save(kbTemplate);
-
-				kbTemplate.setNew(false);
-			}
-			else {
-				session.merge(kbTemplate);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-
-		if (isNew || !KBTemplateModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-		}
-
-		else {
-			if ((kbTemplateModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kbTemplateModelImpl.getOriginalUuid()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
-					args);
-
-				args = new Object[] { kbTemplateModelImpl.getUuid() };
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
-					args);
-			}
-
-			if ((kbTemplateModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kbTemplateModelImpl.getOriginalUuid(),
-						Long.valueOf(kbTemplateModelImpl.getOriginalCompanyId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
-					args);
-
-				args = new Object[] {
-						kbTemplateModelImpl.getUuid(),
-						Long.valueOf(kbTemplateModelImpl.getCompanyId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
-					args);
-			}
-
-			if ((kbTemplateModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(kbTemplateModelImpl.getOriginalGroupId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
-					args);
-
-				args = new Object[] {
-						Long.valueOf(kbTemplateModelImpl.getGroupId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
-					args);
-			}
-		}
-
-		EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate);
-
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] {
-					kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
-				}, kbTemplate);
-		}
-		else {
-			if ((kbTemplateModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kbTemplateModelImpl.getOriginalUuid(),
-						Long.valueOf(kbTemplateModelImpl.getOriginalGroupId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-					new Object[] {
-						kbTemplate.getUuid(),
-						Long.valueOf(kbTemplate.getGroupId())
-					}, kbTemplate);
-			}
-		}
-
-		return kbTemplate;
-	}
-
-	protected KBTemplate toUnwrappedModel(KBTemplate kbTemplate) {
-		if (kbTemplate instanceof KBTemplateImpl) {
-			return kbTemplate;
-		}
-
-		KBTemplateImpl kbTemplateImpl = new KBTemplateImpl();
-
-		kbTemplateImpl.setNew(kbTemplate.isNew());
-		kbTemplateImpl.setPrimaryKey(kbTemplate.getPrimaryKey());
-
-		kbTemplateImpl.setUuid(kbTemplate.getUuid());
-		kbTemplateImpl.setKbTemplateId(kbTemplate.getKbTemplateId());
-		kbTemplateImpl.setGroupId(kbTemplate.getGroupId());
-		kbTemplateImpl.setCompanyId(kbTemplate.getCompanyId());
-		kbTemplateImpl.setUserId(kbTemplate.getUserId());
-		kbTemplateImpl.setUserName(kbTemplate.getUserName());
-		kbTemplateImpl.setCreateDate(kbTemplate.getCreateDate());
-		kbTemplateImpl.setModifiedDate(kbTemplate.getModifiedDate());
-		kbTemplateImpl.setTitle(kbTemplate.getTitle());
-		kbTemplateImpl.setContent(kbTemplate.getContent());
-
-		return kbTemplateImpl;
-	}
-
-	/**
-	 * Returns the k b template with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the k b template
-	 * @return the k b template
-	 * @throws com.liferay.portal.NoSuchModelException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KBTemplate findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the k b template with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
-	 *
-	 * @param kbTemplateId the primary key of the k b template
-	 * @return the k b template
-	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBTemplate findByPrimaryKey(long kbTemplateId)
-		throws NoSuchTemplateException, SystemException {
-		KBTemplate kbTemplate = fetchByPrimaryKey(kbTemplateId);
-
-		if (kbTemplate == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbTemplateId);
-			}
-
-			throw new NoSuchTemplateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kbTemplateId);
-		}
-
-		return kbTemplate;
-	}
-
-	/**
-	 * Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the k b template
-	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KBTemplate fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kbTemplateId the primary key of the k b template
-	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBTemplate fetchByPrimaryKey(long kbTemplateId)
-		throws SystemException {
-		KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-				KBTemplateImpl.class, kbTemplateId);
-
-		if (kbTemplate == _nullKBTemplate) {
-			return null;
-		}
-
-		if (kbTemplate == null) {
-			Session session = null;
-
-			boolean hasException = false;
-
-			try {
-				session = openSession();
-
-				kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
-						Long.valueOf(kbTemplateId));
-			}
-			catch (Exception e) {
-				hasException = true;
-
-				throw processException(e);
-			}
-			finally {
-				if (kbTemplate != null) {
-					cacheResult(kbTemplate);
-				}
-				else if (!hasException) {
-					EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-						KBTemplateImpl.class, kbTemplateId, _nullKBTemplate);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return kbTemplate;
-	}
 
 	/**
 	 * Returns all the k b templates where uuid = &#63;.
@@ -1018,6 +513,97 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	/**
+	 * Removes all the k b templates where uuid = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByUuid(String uuid) throws SystemException {
+		for (KBTemplate kbTemplate : findByUuid(uuid)) {
+			remove(kbTemplate);
+		}
+	}
+
+	/**
+	 * Returns the number of k b templates where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the number of matching k b templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByUuid(String uuid) throws SystemException {
+		Object[] finderArgs = new Object[] { uuid };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_UUID_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbTemplate.uuid IS NULL";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbTemplate.uuid = ?";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?)";
+	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+			new String[] { String.class.getName(), Long.class.getName() },
+			KBTemplateModelImpl.UUID_COLUMN_BITMASK |
+			KBTemplateModelImpl.GROUPID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
+			new String[] { String.class.getName(), Long.class.getName() });
+
+	/**
 	 * Returns the k b template where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
 	 *
 	 * @param uuid the uuid
@@ -1179,6 +765,117 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			}
 		}
 	}
+
+	/**
+	 * Removes the k b template where uuid = &#63; and groupId = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 * @param groupId the group ID
+	 * @return the k b template that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBTemplate removeByUUID_G(String uuid, long groupId)
+		throws NoSuchTemplateException, SystemException {
+		KBTemplate kbTemplate = findByUUID_G(uuid, groupId);
+
+		return remove(kbTemplate);
+	}
+
+	/**
+	 * Returns the number of k b templates where uuid = &#63; and groupId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param groupId the group ID
+	 * @return the number of matching k b templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByUUID_G(String uuid, long groupId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { uuid, groupId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_G_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_G_UUID_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_UUID_G_GROUPID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				qPos.add(groupId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "kbTemplate.uuid IS NULL AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "kbTemplate.uuid = ? AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?) AND ";
+	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "kbTemplate.groupId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C =
+		new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+			new String[] { String.class.getName(), Long.class.getName() },
+			KBTemplateModelImpl.UUID_COLUMN_BITMASK |
+			KBTemplateModelImpl.COMPANYID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_C = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+			new String[] { String.class.getName(), Long.class.getName() });
 
 	/**
 	 * Returns all the k b templates where uuid = &#63; and companyId = &#63;.
@@ -1614,6 +1311,115 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			return null;
 		}
 	}
+
+	/**
+	 * Removes all the k b templates where uuid = &#63; and companyId = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByUuid_C(String uuid, long companyId)
+		throws SystemException {
+		for (KBTemplate kbTemplate : findByUuid_C(uuid, companyId)) {
+			remove(kbTemplate);
+		}
+	}
+
+	/**
+	 * Returns the number of k b templates where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @return the number of matching k b templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByUuid_C(String uuid, long companyId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { uuid, companyId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_C,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_C_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_C_UUID_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				qPos.add(companyId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_C,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "kbTemplate.uuid IS NULL AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "kbTemplate.uuid = ? AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?) AND ";
+	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "kbTemplate.companyId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_GROUPID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID =
+		new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+			new String[] { Long.class.getName() },
+			KBTemplateModelImpl.GROUPID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+			new String[] { Long.class.getName() });
 
 	/**
 	 * Returns all the k b templates where groupId = &#63;.
@@ -2307,6 +2113,577 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	/**
+	 * Removes all the k b templates where groupId = &#63; from the database.
+	 *
+	 * @param groupId the group ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByGroupId(long groupId) throws SystemException {
+		for (KBTemplate kbTemplate : findByGroupId(groupId)) {
+			remove(kbTemplate);
+		}
+	}
+
+	/**
+	 * Returns the number of k b templates where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @return the number of matching k b templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByGroupId(long groupId) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
+
+			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of k b templates that the user has permission to view where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @return the number of matching k b templates that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByGroupId(long groupId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByGroupId(groupId);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_KBTEMPLATE_WHERE);
+
+		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				KBTemplate.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "kbTemplate.groupId = ?";
+
+	/**
+	 * Caches the k b template in the entity cache if it is enabled.
+	 *
+	 * @param kbTemplate the k b template
+	 */
+	public void cacheResult(KBTemplate kbTemplate) {
+		EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+			new Object[] {
+				kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
+			}, kbTemplate);
+
+		kbTemplate.resetOriginalValues();
+	}
+
+	/**
+	 * Caches the k b templates in the entity cache if it is enabled.
+	 *
+	 * @param kbTemplates the k b templates
+	 */
+	public void cacheResult(List<KBTemplate> kbTemplates) {
+		for (KBTemplate kbTemplate : kbTemplates) {
+			if (EntityCacheUtil.getResult(
+						KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+						KBTemplateImpl.class, kbTemplate.getPrimaryKey()) == null) {
+				cacheResult(kbTemplate);
+			}
+			else {
+				kbTemplate.resetOriginalValues();
+			}
+		}
+	}
+
+	/**
+	 * Clears the cache for all k b templates.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache() {
+		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
+			CacheRegistryUtil.clear(KBTemplateImpl.class.getName());
+		}
+
+		EntityCacheUtil.clearCache(KBTemplateImpl.class.getName());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+	}
+
+	/**
+	 * Clears the cache for the k b template.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache(KBTemplate kbTemplate) {
+		EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateImpl.class, kbTemplate.getPrimaryKey());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(kbTemplate);
+	}
+
+	@Override
+	public void clearCache(List<KBTemplate> kbTemplates) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KBTemplate kbTemplate : kbTemplates) {
+			EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+				KBTemplateImpl.class, kbTemplate.getPrimaryKey());
+
+			clearUniqueFindersCache(kbTemplate);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KBTemplate kbTemplate) {
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+			new Object[] {
+				kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
+			});
+	}
+
+	/**
+	 * Creates a new k b template with the primary key. Does not add the k b template to the database.
+	 *
+	 * @param kbTemplateId the primary key for the new k b template
+	 * @return the new k b template
+	 */
+	public KBTemplate create(long kbTemplateId) {
+		KBTemplate kbTemplate = new KBTemplateImpl();
+
+		kbTemplate.setNew(true);
+		kbTemplate.setPrimaryKey(kbTemplateId);
+
+		String uuid = PortalUUIDUtil.generate();
+
+		kbTemplate.setUuid(uuid);
+
+		return kbTemplate;
+	}
+
+	/**
+	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kbTemplateId the primary key of the k b template
+	 * @return the k b template that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBTemplate remove(long kbTemplateId)
+		throws NoSuchTemplateException, SystemException {
+		return remove(Long.valueOf(kbTemplateId));
+	}
+
+	/**
+	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the k b template
+	 * @return the k b template that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBTemplate remove(Serializable primaryKey)
+		throws NoSuchTemplateException, SystemException {
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KBTemplate kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
+					primaryKey);
+
+			if (kbTemplate == null) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				}
+
+				throw new NoSuchTemplateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					primaryKey);
+			}
+
+			return remove(kbTemplate);
+		}
+		catch (NoSuchTemplateException nsee) {
+			throw nsee;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
+	protected KBTemplate removeImpl(KBTemplate kbTemplate)
+		throws SystemException {
+		kbTemplate = toUnwrappedModel(kbTemplate);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (!session.contains(kbTemplate)) {
+				kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
+						kbTemplate.getPrimaryKeyObj());
+			}
+
+			if (kbTemplate != null) {
+				session.delete(kbTemplate);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		if (kbTemplate != null) {
+			clearCache(kbTemplate);
+		}
+
+		return kbTemplate;
+	}
+
+	@Override
+	public KBTemplate updateImpl(
+		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
+		throws SystemException {
+		kbTemplate = toUnwrappedModel(kbTemplate);
+
+		boolean isNew = kbTemplate.isNew();
+
+		KBTemplateModelImpl kbTemplateModelImpl = (KBTemplateModelImpl)kbTemplate;
+
+		if (Validator.isNull(kbTemplate.getUuid())) {
+			String uuid = PortalUUIDUtil.generate();
+
+			kbTemplate.setUuid(uuid);
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (kbTemplate.isNew()) {
+				session.save(kbTemplate);
+
+				kbTemplate.setNew(false);
+			}
+			else {
+				session.merge(kbTemplate);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew || !KBTemplateModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
+		else {
+			if ((kbTemplateModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						kbTemplateModelImpl.getOriginalUuid()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
+
+				args = new Object[] { kbTemplateModelImpl.getUuid() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+					args);
+			}
+
+			if ((kbTemplateModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						kbTemplateModelImpl.getOriginalUuid(),
+						Long.valueOf(kbTemplateModelImpl.getOriginalCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+					args);
+
+				args = new Object[] {
+						kbTemplateModelImpl.getUuid(),
+						Long.valueOf(kbTemplateModelImpl.getCompanyId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+					args);
+			}
+
+			if ((kbTemplateModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kbTemplateModelImpl.getOriginalGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(kbTemplateModelImpl.getGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+					args);
+			}
+		}
+
+		EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate);
+
+		if (isNew) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+				new Object[] {
+					kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
+				}, kbTemplate);
+		}
+		else {
+			if ((kbTemplateModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						kbTemplateModelImpl.getOriginalUuid(),
+						Long.valueOf(kbTemplateModelImpl.getOriginalGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+					new Object[] {
+						kbTemplate.getUuid(),
+						Long.valueOf(kbTemplate.getGroupId())
+					}, kbTemplate);
+			}
+		}
+
+		return kbTemplate;
+	}
+
+	protected KBTemplate toUnwrappedModel(KBTemplate kbTemplate) {
+		if (kbTemplate instanceof KBTemplateImpl) {
+			return kbTemplate;
+		}
+
+		KBTemplateImpl kbTemplateImpl = new KBTemplateImpl();
+
+		kbTemplateImpl.setNew(kbTemplate.isNew());
+		kbTemplateImpl.setPrimaryKey(kbTemplate.getPrimaryKey());
+
+		kbTemplateImpl.setUuid(kbTemplate.getUuid());
+		kbTemplateImpl.setKbTemplateId(kbTemplate.getKbTemplateId());
+		kbTemplateImpl.setGroupId(kbTemplate.getGroupId());
+		kbTemplateImpl.setCompanyId(kbTemplate.getCompanyId());
+		kbTemplateImpl.setUserId(kbTemplate.getUserId());
+		kbTemplateImpl.setUserName(kbTemplate.getUserName());
+		kbTemplateImpl.setCreateDate(kbTemplate.getCreateDate());
+		kbTemplateImpl.setModifiedDate(kbTemplate.getModifiedDate());
+		kbTemplateImpl.setTitle(kbTemplate.getTitle());
+		kbTemplateImpl.setContent(kbTemplate.getContent());
+
+		return kbTemplateImpl;
+	}
+
+	/**
+	 * Returns the k b template with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the k b template
+	 * @return the k b template
+	 * @throws com.liferay.portal.NoSuchModelException if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBTemplate findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the k b template with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
+	 *
+	 * @param kbTemplateId the primary key of the k b template
+	 * @return the k b template
+	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBTemplate findByPrimaryKey(long kbTemplateId)
+		throws NoSuchTemplateException, SystemException {
+		KBTemplate kbTemplate = fetchByPrimaryKey(kbTemplateId);
+
+		if (kbTemplate == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbTemplateId);
+			}
+
+			throw new NoSuchTemplateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				kbTemplateId);
+		}
+
+		return kbTemplate;
+	}
+
+	/**
+	 * Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the k b template
+	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBTemplate fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kbTemplateId the primary key of the k b template
+	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBTemplate fetchByPrimaryKey(long kbTemplateId)
+		throws SystemException {
+		KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+				KBTemplateImpl.class, kbTemplateId);
+
+		if (kbTemplate == _nullKBTemplate) {
+			return null;
+		}
+
+		if (kbTemplate == null) {
+			Session session = null;
+
+			boolean hasException = false;
+
+			try {
+				session = openSession();
+
+				kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
+						Long.valueOf(kbTemplateId));
+			}
+			catch (Exception e) {
+				hasException = true;
+
+				throw processException(e);
+			}
+			finally {
+				if (kbTemplate != null) {
+					cacheResult(kbTemplate);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+						KBTemplateImpl.class, kbTemplateId, _nullKBTemplate);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return kbTemplate;
+	}
+
+	/**
 	 * Returns all the k b templates.
 	 *
 	 * @return the k b templates
@@ -2422,59 +2799,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	/**
-	 * Removes all the k b templates where uuid = &#63; from the database.
-	 *
-	 * @param uuid the uuid
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByUuid(String uuid) throws SystemException {
-		for (KBTemplate kbTemplate : findByUuid(uuid)) {
-			remove(kbTemplate);
-		}
-	}
-
-	/**
-	 * Removes the k b template where uuid = &#63; and groupId = &#63; from the database.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the k b template that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBTemplate removeByUUID_G(String uuid, long groupId)
-		throws NoSuchTemplateException, SystemException {
-		KBTemplate kbTemplate = findByUUID_G(uuid, groupId);
-
-		return remove(kbTemplate);
-	}
-
-	/**
-	 * Removes all the k b templates where uuid = &#63; and companyId = &#63; from the database.
-	 *
-	 * @param uuid the uuid
-	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByUuid_C(String uuid, long companyId)
-		throws SystemException {
-		for (KBTemplate kbTemplate : findByUuid_C(uuid, companyId)) {
-			remove(kbTemplate);
-		}
-	}
-
-	/**
-	 * Removes all the k b templates where groupId = &#63; from the database.
-	 *
-	 * @param groupId the group ID
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByGroupId(long groupId) throws SystemException {
-		for (KBTemplate kbTemplate : findByGroupId(groupId)) {
-			remove(kbTemplate);
-		}
-	}
-
-	/**
 	 * Removes all the k b templates from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -2482,314 +2806,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	public void removeAll() throws SystemException {
 		for (KBTemplate kbTemplate : findAll()) {
 			remove(kbTemplate);
-		}
-	}
-
-	/**
-	 * Returns the number of k b templates where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByUuid(String uuid) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
-
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_UUID_2);
-				}
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of k b templates where uuid = &#63; and groupId = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByUUID_G(String uuid, long groupId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, groupId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
-
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_G_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_G_UUID_2);
-				}
-			}
-
-			query.append(_FINDER_COLUMN_UUID_G_GROUPID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				qPos.add(groupId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of k b templates where uuid = &#63; and companyId = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param companyId the company ID
-	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByUuid_C(String uuid, long companyId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, companyId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_C,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
-
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_C_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_C_UUID_2);
-				}
-			}
-
-			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				qPos.add(companyId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_C,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of k b templates where groupId = &#63;.
-	 *
-	 * @param groupId the group ID
-	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByGroupId(long groupId) throws SystemException {
-		Object[] finderArgs = new Object[] { groupId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_KBTEMPLATE_WHERE);
-
-			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of k b templates that the user has permission to view where groupId = &#63;.
-	 *
-	 * @param groupId the group ID
-	 * @return the number of matching k b templates that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int filterCountByGroupId(long groupId) throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByGroupId(groupId);
-		}
-
-		StringBundler query = new StringBundler(2);
-
-		query.append(_FILTER_SQL_COUNT_KBTEMPLATE_WHERE);
-
-		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				KBTemplate.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(groupId);
-
-			Long count = (Long)q.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
 		}
 	}
 
@@ -2878,18 +2894,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	private static final String _SQL_SELECT_KBTEMPLATE_WHERE = "SELECT kbTemplate FROM KBTemplate kbTemplate WHERE ";
 	private static final String _SQL_COUNT_KBTEMPLATE = "SELECT COUNT(kbTemplate) FROM KBTemplate kbTemplate";
 	private static final String _SQL_COUNT_KBTEMPLATE_WHERE = "SELECT COUNT(kbTemplate) FROM KBTemplate kbTemplate WHERE ";
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbTemplate.uuid IS NULL";
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbTemplate.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?)";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "kbTemplate.uuid IS NULL AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "kbTemplate.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?) AND ";
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "kbTemplate.groupId = ?";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "kbTemplate.uuid IS NULL AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "kbTemplate.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?) AND ";
-	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "kbTemplate.companyId = ?";
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "kbTemplate.groupId = ?";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "kbTemplate.kbTemplateId";
 	private static final String _FILTER_SQL_SELECT_KBTEMPLATE_WHERE = "SELECT DISTINCT {kbTemplate.*} FROM KBTemplate kbTemplate WHERE ";
 	private static final String _FILTER_SQL_SELECT_KBTEMPLATE_NO_INLINE_DISTINCT_WHERE_1 =

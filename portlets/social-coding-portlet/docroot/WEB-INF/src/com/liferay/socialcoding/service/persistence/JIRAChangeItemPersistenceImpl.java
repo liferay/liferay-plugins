@@ -75,6 +75,17 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED,
+			JIRAChangeItemImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED,
+			JIRAChangeItemImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_JIRACHANGEGROUPID =
 		new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED,
@@ -97,385 +108,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"countByJiraChangeGroupId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED,
-			JIRAChangeItemImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED,
-			JIRAChangeItemImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-
-	/**
-	 * Caches the j i r a change item in the entity cache if it is enabled.
-	 *
-	 * @param jiraChangeItem the j i r a change item
-	 */
-	public void cacheResult(JIRAChangeItem jiraChangeItem) {
-		EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey(),
-			jiraChangeItem);
-
-		jiraChangeItem.resetOriginalValues();
-	}
-
-	/**
-	 * Caches the j i r a change items in the entity cache if it is enabled.
-	 *
-	 * @param jiraChangeItems the j i r a change items
-	 */
-	public void cacheResult(List<JIRAChangeItem> jiraChangeItems) {
-		for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
-			if (EntityCacheUtil.getResult(
-						JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-						JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey()) == null) {
-				cacheResult(jiraChangeItem);
-			}
-			else {
-				jiraChangeItem.resetOriginalValues();
-			}
-		}
-	}
-
-	/**
-	 * Clears the cache for all j i r a change items.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(JIRAChangeItemImpl.class.getName());
-		}
-
-		EntityCacheUtil.clearCache(JIRAChangeItemImpl.class.getName());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-	}
-
-	/**
-	 * Clears the cache for the j i r a change item.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache(JIRAChangeItem jiraChangeItem) {
-		EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-	}
-
-	@Override
-	public void clearCache(List<JIRAChangeItem> jiraChangeItems) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
-			EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-				JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
-		}
-	}
-
-	/**
-	 * Creates a new j i r a change item with the primary key. Does not add the j i r a change item to the database.
-	 *
-	 * @param jiraChangeItemId the primary key for the new j i r a change item
-	 * @return the new j i r a change item
-	 */
-	public JIRAChangeItem create(long jiraChangeItemId) {
-		JIRAChangeItem jiraChangeItem = new JIRAChangeItemImpl();
-
-		jiraChangeItem.setNew(true);
-		jiraChangeItem.setPrimaryKey(jiraChangeItemId);
-
-		return jiraChangeItem;
-	}
-
-	/**
-	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeItemId the primary key of the j i r a change item
-	 * @return the j i r a change item that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAChangeItem remove(long jiraChangeItemId)
-		throws NoSuchJIRAChangeItemException, SystemException {
-		return remove(Long.valueOf(jiraChangeItemId));
-	}
-
-	/**
-	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param primaryKey the primary key of the j i r a change item
-	 * @return the j i r a change item that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAChangeItem remove(Serializable primaryKey)
-		throws NoSuchJIRAChangeItemException, SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			JIRAChangeItem jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
-					primaryKey);
-
-			if (jiraChangeItem == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
-				}
-
-				throw new NoSuchJIRAChangeItemException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
-			}
-
-			return remove(jiraChangeItem);
-		}
-		catch (NoSuchJIRAChangeItemException nsee) {
-			throw nsee;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	@Override
-	protected JIRAChangeItem removeImpl(JIRAChangeItem jiraChangeItem)
-		throws SystemException {
-		jiraChangeItem = toUnwrappedModel(jiraChangeItem);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (!session.contains(jiraChangeItem)) {
-				jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
-						jiraChangeItem.getPrimaryKeyObj());
-			}
-
-			if (jiraChangeItem != null) {
-				session.delete(jiraChangeItem);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		if (jiraChangeItem != null) {
-			clearCache(jiraChangeItem);
-		}
-
-		return jiraChangeItem;
-	}
-
-	@Override
-	public JIRAChangeItem updateImpl(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws SystemException {
-		jiraChangeItem = toUnwrappedModel(jiraChangeItem);
-
-		boolean isNew = jiraChangeItem.isNew();
-
-		JIRAChangeItemModelImpl jiraChangeItemModelImpl = (JIRAChangeItemModelImpl)jiraChangeItem;
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (jiraChangeItem.isNew()) {
-				session.save(jiraChangeItem);
-
-				jiraChangeItem.setNew(false);
-			}
-			else {
-				session.merge(jiraChangeItem);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-
-		if (isNew || !JIRAChangeItemModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-		}
-
-		else {
-			if ((jiraChangeItemModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(jiraChangeItemModelImpl.getOriginalJiraChangeGroupId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID,
-					args);
-
-				args = new Object[] {
-						Long.valueOf(jiraChangeItemModelImpl.getJiraChangeGroupId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID,
-					args);
-			}
-		}
-
-		EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey(),
-			jiraChangeItem);
-
-		return jiraChangeItem;
-	}
-
-	protected JIRAChangeItem toUnwrappedModel(JIRAChangeItem jiraChangeItem) {
-		if (jiraChangeItem instanceof JIRAChangeItemImpl) {
-			return jiraChangeItem;
-		}
-
-		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
-
-		jiraChangeItemImpl.setNew(jiraChangeItem.isNew());
-		jiraChangeItemImpl.setPrimaryKey(jiraChangeItem.getPrimaryKey());
-
-		jiraChangeItemImpl.setJiraChangeItemId(jiraChangeItem.getJiraChangeItemId());
-		jiraChangeItemImpl.setJiraChangeGroupId(jiraChangeItem.getJiraChangeGroupId());
-		jiraChangeItemImpl.setField(jiraChangeItem.getField());
-		jiraChangeItemImpl.setOldValue(jiraChangeItem.getOldValue());
-		jiraChangeItemImpl.setOldString(jiraChangeItem.getOldString());
-		jiraChangeItemImpl.setNewValue(jiraChangeItem.getNewValue());
-		jiraChangeItemImpl.setNewString(jiraChangeItem.getNewString());
-
-		return jiraChangeItemImpl;
-	}
-
-	/**
-	 * Returns the j i r a change item with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the j i r a change item
-	 * @return the j i r a change item
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAChangeItem findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the j i r a change item with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAChangeItemException} if it could not be found.
-	 *
-	 * @param jiraChangeItemId the primary key of the j i r a change item
-	 * @return the j i r a change item
-	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAChangeItem findByPrimaryKey(long jiraChangeItemId)
-		throws NoSuchJIRAChangeItemException, SystemException {
-		JIRAChangeItem jiraChangeItem = fetchByPrimaryKey(jiraChangeItemId);
-
-		if (jiraChangeItem == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraChangeItemId);
-			}
-
-			throw new NoSuchJIRAChangeItemException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				jiraChangeItemId);
-		}
-
-		return jiraChangeItem;
-	}
-
-	/**
-	 * Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the j i r a change item
-	 * @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAChangeItem fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param jiraChangeItemId the primary key of the j i r a change item
-	 * @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAChangeItem fetchByPrimaryKey(long jiraChangeItemId)
-		throws SystemException {
-		JIRAChangeItem jiraChangeItem = (JIRAChangeItem)EntityCacheUtil.getResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-				JIRAChangeItemImpl.class, jiraChangeItemId);
-
-		if (jiraChangeItem == _nullJIRAChangeItem) {
-			return null;
-		}
-
-		if (jiraChangeItem == null) {
-			Session session = null;
-
-			boolean hasException = false;
-
-			try {
-				session = openSession();
-
-				jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
-						Long.valueOf(jiraChangeItemId));
-			}
-			catch (Exception e) {
-				hasException = true;
-
-				throw processException(e);
-			}
-			finally {
-				if (jiraChangeItem != null) {
-					cacheResult(jiraChangeItem);
-				}
-				else if (!hasException) {
-					EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-						JIRAChangeItemImpl.class, jiraChangeItemId,
-						_nullJIRAChangeItem);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return jiraChangeItem;
-	}
 
 	/**
 	 * Returns all the j i r a change items where jiraChangeGroupId = &#63;.
@@ -861,6 +493,445 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	}
 
 	/**
+	 * Removes all the j i r a change items where jiraChangeGroupId = &#63; from the database.
+	 *
+	 * @param jiraChangeGroupId the jira change group ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByJiraChangeGroupId(long jiraChangeGroupId)
+		throws SystemException {
+		for (JIRAChangeItem jiraChangeItem : findByJiraChangeGroupId(
+				jiraChangeGroupId)) {
+			remove(jiraChangeItem);
+		}
+	}
+
+	/**
+	 * Returns the number of j i r a change items where jiraChangeGroupId = &#63;.
+	 *
+	 * @param jiraChangeGroupId the jira change group ID
+	 * @return the number of matching j i r a change items
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByJiraChangeGroupId(long jiraChangeGroupId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { jiraChangeGroupId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_JIRACHANGEITEM_WHERE);
+
+			query.append(_FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(jiraChangeGroupId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2 =
+		"jiraChangeItem.jiraChangeGroupId = ?";
+
+	/**
+	 * Caches the j i r a change item in the entity cache if it is enabled.
+	 *
+	 * @param jiraChangeItem the j i r a change item
+	 */
+	public void cacheResult(JIRAChangeItem jiraChangeItem) {
+		EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey(),
+			jiraChangeItem);
+
+		jiraChangeItem.resetOriginalValues();
+	}
+
+	/**
+	 * Caches the j i r a change items in the entity cache if it is enabled.
+	 *
+	 * @param jiraChangeItems the j i r a change items
+	 */
+	public void cacheResult(List<JIRAChangeItem> jiraChangeItems) {
+		for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
+			if (EntityCacheUtil.getResult(
+						JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+						JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey()) == null) {
+				cacheResult(jiraChangeItem);
+			}
+			else {
+				jiraChangeItem.resetOriginalValues();
+			}
+		}
+	}
+
+	/**
+	 * Clears the cache for all j i r a change items.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache() {
+		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
+			CacheRegistryUtil.clear(JIRAChangeItemImpl.class.getName());
+		}
+
+		EntityCacheUtil.clearCache(JIRAChangeItemImpl.class.getName());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+	}
+
+	/**
+	 * Clears the cache for the j i r a change item.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache(JIRAChangeItem jiraChangeItem) {
+		EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+	}
+
+	@Override
+	public void clearCache(List<JIRAChangeItem> jiraChangeItems) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
+			EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
+		}
+	}
+
+	/**
+	 * Creates a new j i r a change item with the primary key. Does not add the j i r a change item to the database.
+	 *
+	 * @param jiraChangeItemId the primary key for the new j i r a change item
+	 * @return the new j i r a change item
+	 */
+	public JIRAChangeItem create(long jiraChangeItemId) {
+		JIRAChangeItem jiraChangeItem = new JIRAChangeItemImpl();
+
+		jiraChangeItem.setNew(true);
+		jiraChangeItem.setPrimaryKey(jiraChangeItemId);
+
+		return jiraChangeItem;
+	}
+
+	/**
+	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param jiraChangeItemId the primary key of the j i r a change item
+	 * @return the j i r a change item that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeItem remove(long jiraChangeItemId)
+		throws NoSuchJIRAChangeItemException, SystemException {
+		return remove(Long.valueOf(jiraChangeItemId));
+	}
+
+	/**
+	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the j i r a change item
+	 * @return the j i r a change item that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public JIRAChangeItem remove(Serializable primaryKey)
+		throws NoSuchJIRAChangeItemException, SystemException {
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			JIRAChangeItem jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
+					primaryKey);
+
+			if (jiraChangeItem == null) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				}
+
+				throw new NoSuchJIRAChangeItemException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					primaryKey);
+			}
+
+			return remove(jiraChangeItem);
+		}
+		catch (NoSuchJIRAChangeItemException nsee) {
+			throw nsee;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
+	protected JIRAChangeItem removeImpl(JIRAChangeItem jiraChangeItem)
+		throws SystemException {
+		jiraChangeItem = toUnwrappedModel(jiraChangeItem);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (!session.contains(jiraChangeItem)) {
+				jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
+						jiraChangeItem.getPrimaryKeyObj());
+			}
+
+			if (jiraChangeItem != null) {
+				session.delete(jiraChangeItem);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		if (jiraChangeItem != null) {
+			clearCache(jiraChangeItem);
+		}
+
+		return jiraChangeItem;
+	}
+
+	@Override
+	public JIRAChangeItem updateImpl(
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
+		throws SystemException {
+		jiraChangeItem = toUnwrappedModel(jiraChangeItem);
+
+		boolean isNew = jiraChangeItem.isNew();
+
+		JIRAChangeItemModelImpl jiraChangeItemModelImpl = (JIRAChangeItemModelImpl)jiraChangeItem;
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (jiraChangeItem.isNew()) {
+				session.save(jiraChangeItem);
+
+				jiraChangeItem.setNew(false);
+			}
+			else {
+				session.merge(jiraChangeItem);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew || !JIRAChangeItemModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
+		else {
+			if ((jiraChangeItemModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(jiraChangeItemModelImpl.getOriginalJiraChangeGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(jiraChangeItemModelImpl.getJiraChangeGroupId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID,
+					args);
+			}
+		}
+
+		EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey(),
+			jiraChangeItem);
+
+		return jiraChangeItem;
+	}
+
+	protected JIRAChangeItem toUnwrappedModel(JIRAChangeItem jiraChangeItem) {
+		if (jiraChangeItem instanceof JIRAChangeItemImpl) {
+			return jiraChangeItem;
+		}
+
+		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
+
+		jiraChangeItemImpl.setNew(jiraChangeItem.isNew());
+		jiraChangeItemImpl.setPrimaryKey(jiraChangeItem.getPrimaryKey());
+
+		jiraChangeItemImpl.setJiraChangeItemId(jiraChangeItem.getJiraChangeItemId());
+		jiraChangeItemImpl.setJiraChangeGroupId(jiraChangeItem.getJiraChangeGroupId());
+		jiraChangeItemImpl.setField(jiraChangeItem.getField());
+		jiraChangeItemImpl.setOldValue(jiraChangeItem.getOldValue());
+		jiraChangeItemImpl.setOldString(jiraChangeItem.getOldString());
+		jiraChangeItemImpl.setNewValue(jiraChangeItem.getNewValue());
+		jiraChangeItemImpl.setNewString(jiraChangeItem.getNewString());
+
+		return jiraChangeItemImpl;
+	}
+
+	/**
+	 * Returns the j i r a change item with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the j i r a change item
+	 * @return the j i r a change item
+	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public JIRAChangeItem findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the j i r a change item with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAChangeItemException} if it could not be found.
+	 *
+	 * @param jiraChangeItemId the primary key of the j i r a change item
+	 * @return the j i r a change item
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeItem findByPrimaryKey(long jiraChangeItemId)
+		throws NoSuchJIRAChangeItemException, SystemException {
+		JIRAChangeItem jiraChangeItem = fetchByPrimaryKey(jiraChangeItemId);
+
+		if (jiraChangeItem == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraChangeItemId);
+			}
+
+			throw new NoSuchJIRAChangeItemException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				jiraChangeItemId);
+		}
+
+		return jiraChangeItem;
+	}
+
+	/**
+	 * Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the j i r a change item
+	 * @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public JIRAChangeItem fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param jiraChangeItemId the primary key of the j i r a change item
+	 * @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeItem fetchByPrimaryKey(long jiraChangeItemId)
+		throws SystemException {
+		JIRAChangeItem jiraChangeItem = (JIRAChangeItem)EntityCacheUtil.getResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAChangeItemImpl.class, jiraChangeItemId);
+
+		if (jiraChangeItem == _nullJIRAChangeItem) {
+			return null;
+		}
+
+		if (jiraChangeItem == null) {
+			Session session = null;
+
+			boolean hasException = false;
+
+			try {
+				session = openSession();
+
+				jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
+						Long.valueOf(jiraChangeItemId));
+			}
+			catch (Exception e) {
+				hasException = true;
+
+				throw processException(e);
+			}
+			finally {
+				if (jiraChangeItem != null) {
+					cacheResult(jiraChangeItem);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+						JIRAChangeItemImpl.class, jiraChangeItemId,
+						_nullJIRAChangeItem);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return jiraChangeItem;
+	}
+
+	/**
 	 * Returns all the j i r a change items.
 	 *
 	 * @return the j i r a change items
@@ -976,20 +1047,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	}
 
 	/**
-	 * Removes all the j i r a change items where jiraChangeGroupId = &#63; from the database.
-	 *
-	 * @param jiraChangeGroupId the jira change group ID
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByJiraChangeGroupId(long jiraChangeGroupId)
-		throws SystemException {
-		for (JIRAChangeItem jiraChangeItem : findByJiraChangeGroupId(
-				jiraChangeGroupId)) {
-			remove(jiraChangeItem);
-		}
-	}
-
-	/**
 	 * Removes all the j i r a change items from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -998,60 +1055,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		for (JIRAChangeItem jiraChangeItem : findAll()) {
 			remove(jiraChangeItem);
 		}
-	}
-
-	/**
-	 * Returns the number of j i r a change items where jiraChangeGroupId = &#63;.
-	 *
-	 * @param jiraChangeGroupId the jira change group ID
-	 * @return the number of matching j i r a change items
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByJiraChangeGroupId(long jiraChangeGroupId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { jiraChangeGroupId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_JIRACHANGEITEM_WHERE);
-
-			query.append(_FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(jiraChangeGroupId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
 	}
 
 	/**
@@ -1141,8 +1144,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	private static final String _SQL_SELECT_JIRACHANGEITEM_WHERE = "SELECT jiraChangeItem FROM JIRAChangeItem jiraChangeItem WHERE ";
 	private static final String _SQL_COUNT_JIRACHANGEITEM = "SELECT COUNT(jiraChangeItem) FROM JIRAChangeItem jiraChangeItem";
 	private static final String _SQL_COUNT_JIRACHANGEITEM_WHERE = "SELECT COUNT(jiraChangeItem) FROM JIRAChangeItem jiraChangeItem WHERE ";
-	private static final String _FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2 =
-		"jiraChangeItem.jiraChangeGroupId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "jiraChangeItem.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No JIRAChangeItem exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JIRAChangeItem exists with the key {";

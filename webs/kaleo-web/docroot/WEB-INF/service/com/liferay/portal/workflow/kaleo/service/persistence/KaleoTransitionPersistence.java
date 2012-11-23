@@ -37,72 +37,6 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	 */
 
 	/**
-	* Caches the kaleo transition in the entity cache if it is enabled.
-	*
-	* @param kaleoTransition the kaleo transition
-	*/
-	public void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition);
-
-	/**
-	* Caches the kaleo transitions in the entity cache if it is enabled.
-	*
-	* @param kaleoTransitions the kaleo transitions
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> kaleoTransitions);
-
-	/**
-	* Creates a new kaleo transition with the primary key. Does not add the kaleo transition to the database.
-	*
-	* @param kaleoTransitionId the primary key for the new kaleo transition
-	* @return the new kaleo transition
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition create(
-		long kaleoTransitionId);
-
-	/**
-	* Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTransitionId the primary key of the kaleo transition
-	* @return the kaleo transition that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition remove(
-		long kaleoTransitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the kaleo transition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTransitionException} if it could not be found.
-	*
-	* @param kaleoTransitionId the primary key of the kaleo transition
-	* @return the kaleo transition
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition findByPrimaryKey(
-		long kaleoTransitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
-
-	/**
-	* Returns the kaleo transition with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoTransitionId the primary key of the kaleo transition
-	* @return the kaleo transition, or <code>null</code> if a kaleo transition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByPrimaryKey(
-		long kaleoTransitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the kaleo transitions where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -220,6 +154,25 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
+
+	/**
+	* Removes all the kaleo transitions where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo transitions where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo transitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the kaleo transitions where kaleoDefinitionId = &#63;.
@@ -341,6 +294,25 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
+	* Removes all the kaleo transitions where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo transitions where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo transitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo transitions where kaleoNodeId = &#63;.
 	*
 	* @param kaleoNodeId the kaleo node ID
@@ -460,6 +432,25 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
+	* Removes all the kaleo transitions where kaleoNodeId = &#63; from the database.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo transitions where kaleoNodeId = &#63;.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @return the number of matching kaleo transitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the kaleo transition where kaleoNodeId = &#63; and name = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTransitionException} if it could not be found.
 	*
 	* @param kaleoNodeId the kaleo node ID
@@ -499,6 +490,30 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes the kaleo transition where kaleoNodeId = &#63; and name = &#63; from the database.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @param name the name
+	* @return the kaleo transition that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_N(
+		long kaleoNodeId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
+
+	/**
+	* Returns the number of kaleo transitions where kaleoNodeId = &#63; and name = &#63;.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @param name the name
+	* @return the number of matching kaleo transitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKNI_N(long kaleoNodeId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the kaleo transition where kaleoNodeId = &#63; and defaultTransition = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTransitionException} if it could not be found.
 	*
 	* @param kaleoNodeId the kaleo node ID
@@ -535,6 +550,96 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKNI_DT(
 		long kaleoNodeId, boolean defaultTransition, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the kaleo transition where kaleoNodeId = &#63; and defaultTransition = &#63; from the database.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @param defaultTransition the default transition
+	* @return the kaleo transition that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_DT(
+		long kaleoNodeId, boolean defaultTransition)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
+
+	/**
+	* Returns the number of kaleo transitions where kaleoNodeId = &#63; and defaultTransition = &#63;.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @param defaultTransition the default transition
+	* @return the number of matching kaleo transitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKNI_DT(long kaleoNodeId, boolean defaultTransition)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the kaleo transition in the entity cache if it is enabled.
+	*
+	* @param kaleoTransition the kaleo transition
+	*/
+	public void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition);
+
+	/**
+	* Caches the kaleo transitions in the entity cache if it is enabled.
+	*
+	* @param kaleoTransitions the kaleo transitions
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> kaleoTransitions);
+
+	/**
+	* Creates a new kaleo transition with the primary key. Does not add the kaleo transition to the database.
+	*
+	* @param kaleoTransitionId the primary key for the new kaleo transition
+	* @return the new kaleo transition
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition create(
+		long kaleoTransitionId);
+
+	/**
+	* Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTransitionId the primary key of the kaleo transition
+	* @return the kaleo transition that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition remove(
+		long kaleoTransitionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo transition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTransitionException} if it could not be found.
+	*
+	* @param kaleoTransitionId the primary key of the kaleo transition
+	* @return the kaleo transition
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition findByPrimaryKey(
+		long kaleoTransitionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
+
+	/**
+	* Returns the kaleo transition with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoTransitionId the primary key of the kaleo transition
+	* @return the kaleo transition, or <code>null</code> if a kaleo transition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByPrimaryKey(
+		long kaleoTransitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -581,116 +686,11 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the kaleo transitions where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo transitions where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo transitions where kaleoNodeId = &#63; from the database.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoNodeId(long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the kaleo transition where kaleoNodeId = &#63; and name = &#63; from the database.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @param name the name
-	* @return the kaleo transition that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_N(
-		long kaleoNodeId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
-
-	/**
-	* Removes the kaleo transition where kaleoNodeId = &#63; and defaultTransition = &#63; from the database.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @param defaultTransition the default transition
-	* @return the kaleo transition that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_DT(
-		long kaleoNodeId, boolean defaultTransition)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
-
-	/**
 	* Removes all the kaleo transitions from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo transitions where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo transitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo transitions where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo transitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo transitions where kaleoNodeId = &#63;.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @return the number of matching kaleo transitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoNodeId(long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo transitions where kaleoNodeId = &#63; and name = &#63;.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @param name the name
-	* @return the number of matching kaleo transitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKNI_N(long kaleoNodeId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo transitions where kaleoNodeId = &#63; and defaultTransition = &#63;.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @param defaultTransition the default transition
-	* @return the number of matching kaleo transitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKNI_DT(long kaleoNodeId, boolean defaultTransition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

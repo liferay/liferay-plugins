@@ -37,72 +37,6 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 	 */
 
 	/**
-	* Caches the kaleo task assignment instance in the entity cache if it is enabled.
-	*
-	* @param kaleoTaskAssignmentInstance the kaleo task assignment instance
-	*/
-	public void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance);
-
-	/**
-	* Caches the kaleo task assignment instances in the entity cache if it is enabled.
-	*
-	* @param kaleoTaskAssignmentInstances the kaleo task assignment instances
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances);
-
-	/**
-	* Creates a new kaleo task assignment instance with the primary key. Does not add the kaleo task assignment instance to the database.
-	*
-	* @param kaleoTaskAssignmentInstanceId the primary key for the new kaleo task assignment instance
-	* @return the new kaleo task assignment instance
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance create(
-		long kaleoTaskAssignmentInstanceId);
-
-	/**
-	* Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
-	* @return the kaleo task assignment instance that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance remove(
-		long kaleoTaskAssignmentInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the kaleo task assignment instance with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException} if it could not be found.
-	*
-	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
-	* @return the kaleo task assignment instance
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance findByPrimaryKey(
-		long kaleoTaskAssignmentInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
-
-	/**
-	* Returns the kaleo task assignment instance with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
-	* @return the kaleo task assignment instance, or <code>null</code> if a kaleo task assignment instance with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance fetchByPrimaryKey(
-		long kaleoTaskAssignmentInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the kaleo task assignment instances where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -220,6 +154,25 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
+
+	/**
+	* Removes all the kaleo task assignment instances where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo task assignment instances where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo task assignment instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the kaleo task assignment instances where kaleoDefinitionId = &#63;.
@@ -341,6 +294,25 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
 
 	/**
+	* Removes all the kaleo task assignment instances where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo task assignment instances where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo task assignment instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo task assignment instances where kaleoInstanceId = &#63;.
 	*
 	* @param kaleoInstanceId the kaleo instance ID
@@ -458,6 +430,25 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
+
+	/**
+	* Removes all the kaleo task assignment instances where kaleoInstanceId = &#63; from the database.
+	*
+	* @param kaleoInstanceId the kaleo instance ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo task assignment instances where kaleoInstanceId = &#63;.
+	*
+	* @param kaleoInstanceId the kaleo instance ID
+	* @return the number of matching kaleo task assignment instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the kaleo task assignment instances where kaleoTaskInstanceTokenId = &#63;.
@@ -579,6 +570,91 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
 
 	/**
+	* Removes all the kaleo task assignment instances where kaleoTaskInstanceTokenId = &#63; from the database.
+	*
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeBykaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo task assignment instances where kaleoTaskInstanceTokenId = &#63;.
+	*
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	* @return the number of matching kaleo task assignment instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countBykaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the kaleo task assignment instance in the entity cache if it is enabled.
+	*
+	* @param kaleoTaskAssignmentInstance the kaleo task assignment instance
+	*/
+	public void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance);
+
+	/**
+	* Caches the kaleo task assignment instances in the entity cache if it is enabled.
+	*
+	* @param kaleoTaskAssignmentInstances the kaleo task assignment instances
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances);
+
+	/**
+	* Creates a new kaleo task assignment instance with the primary key. Does not add the kaleo task assignment instance to the database.
+	*
+	* @param kaleoTaskAssignmentInstanceId the primary key for the new kaleo task assignment instance
+	* @return the new kaleo task assignment instance
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance create(
+		long kaleoTaskAssignmentInstanceId);
+
+	/**
+	* Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
+	* @return the kaleo task assignment instance that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance remove(
+		long kaleoTaskAssignmentInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo task assignment instance with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException} if it could not be found.
+	*
+	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
+	* @return the kaleo task assignment instance
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance findByPrimaryKey(
+		long kaleoTaskAssignmentInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException;
+
+	/**
+	* Returns the kaleo task assignment instance with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
+	* @return the kaleo task assignment instance, or <code>null</code> if a kaleo task assignment instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance fetchByPrimaryKey(
+		long kaleoTaskAssignmentInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo task assignment instances.
 	*
 	* @return the kaleo task assignment instances
@@ -622,87 +698,11 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the kaleo task assignment instances where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo task assignment instances where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo task assignment instances where kaleoInstanceId = &#63; from the database.
-	*
-	* @param kaleoInstanceId the kaleo instance ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoInstanceId(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo task assignment instances where kaleoTaskInstanceTokenId = &#63; from the database.
-	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeBykaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the kaleo task assignment instances from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo task assignment instances where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo task assignment instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo task assignment instances where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo task assignment instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo task assignment instances where kaleoInstanceId = &#63;.
-	*
-	* @param kaleoInstanceId the kaleo instance ID
-	* @return the number of matching kaleo task assignment instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoInstanceId(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo task assignment instances where kaleoTaskInstanceTokenId = &#63;.
-	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
-	* @return the number of matching kaleo task assignment instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countBykaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

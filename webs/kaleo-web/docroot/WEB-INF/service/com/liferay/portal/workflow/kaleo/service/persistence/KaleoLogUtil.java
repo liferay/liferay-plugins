@@ -109,86 +109,6 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	* Caches the kaleo log in the entity cache if it is enabled.
-	*
-	* @param kaleoLog the kaleo log
-	*/
-	public static void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog) {
-		getPersistence().cacheResult(kaleoLog);
-	}
-
-	/**
-	* Caches the kaleo logs in the entity cache if it is enabled.
-	*
-	* @param kaleoLogs the kaleo logs
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> kaleoLogs) {
-		getPersistence().cacheResult(kaleoLogs);
-	}
-
-	/**
-	* Creates a new kaleo log with the primary key. Does not add the kaleo log to the database.
-	*
-	* @param kaleoLogId the primary key for the new kaleo log
-	* @return the new kaleo log
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog create(
-		long kaleoLogId) {
-		return getPersistence().create(kaleoLogId);
-	}
-
-	/**
-	* Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoLogId the primary key of the kaleo log
-	* @return the kaleo log that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog remove(
-		long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchLogException {
-		return getPersistence().remove(kaleoLogId);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoLog);
-	}
-
-	/**
-	* Returns the kaleo log with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchLogException} if it could not be found.
-	*
-	* @param kaleoLogId the primary key of the kaleo log
-	* @return the kaleo log
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByPrimaryKey(
-		long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchLogException {
-		return getPersistence().findByPrimaryKey(kaleoLogId);
-	}
-
-	/**
-	* Returns the kaleo log with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoLogId the primary key of the kaleo log
-	* @return the kaleo log, or <code>null</code> if a kaleo log with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByPrimaryKey(
-		long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(kaleoLogId);
-	}
-
-	/**
 	* Returns all the kaleo logs where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -328,6 +248,29 @@ public class KaleoLogUtil {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoLogId, companyId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo logs where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCompanyId(companyId);
+	}
+
+	/**
+	* Returns the number of kaleo logs where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo logs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCompanyId(companyId);
 	}
 
 	/**
@@ -479,6 +422,29 @@ public class KaleoLogUtil {
 	}
 
 	/**
+	* Removes all the kaleo logs where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
+	* Returns the number of kaleo logs where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo logs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
 	* Returns all the kaleo logs where kaleoInstanceId = &#63;.
 	*
 	* @param kaleoInstanceId the kaleo instance ID
@@ -624,6 +590,29 @@ public class KaleoLogUtil {
 		return getPersistence()
 				   .findByKaleoInstanceId_PrevAndNext(kaleoLogId,
 			kaleoInstanceId, orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo logs where kaleoInstanceId = &#63; from the database.
+	*
+	* @param kaleoInstanceId the kaleo instance ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKaleoInstanceId(kaleoInstanceId);
+	}
+
+	/**
+	* Returns the number of kaleo logs where kaleoInstanceId = &#63;.
+	*
+	* @param kaleoInstanceId the kaleo instance ID
+	* @return the number of matching kaleo logs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoInstanceId(kaleoInstanceId);
 	}
 
 	/**
@@ -774,6 +763,33 @@ public class KaleoLogUtil {
 		return getPersistence()
 				   .findByKaleoTaskInstanceTokenId_PrevAndNext(kaleoLogId,
 			kaleoTaskInstanceTokenId, orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo logs where kaleoTaskInstanceTokenId = &#63; from the database.
+	*
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKaleoTaskInstanceTokenId(
+		long kaleoTaskInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
+	}
+
+	/**
+	* Returns the number of kaleo logs where kaleoTaskInstanceTokenId = &#63;.
+	*
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	* @return the number of matching kaleo logs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKaleoTaskInstanceTokenId(
+		long kaleoTaskInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 	}
 
 	/**
@@ -930,6 +946,33 @@ public class KaleoLogUtil {
 		return getPersistence()
 				   .findByKITI_T_PrevAndNext(kaleoLogId, kaleoInstanceTokenId,
 			type, orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63; from the database.
+	*
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKITI_T(long kaleoInstanceTokenId,
+		java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKITI_T(kaleoInstanceTokenId, type);
+	}
+
+	/**
+	* Returns the number of kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
+	*
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
+	* @return the number of matching kaleo logs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKITI_T(long kaleoInstanceTokenId,
+		java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKITI_T(kaleoInstanceTokenId, type);
 	}
 
 	/**
@@ -1117,6 +1160,122 @@ public class KaleoLogUtil {
 	}
 
 	/**
+	* Removes all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63; from the database.
+	*
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKCN_KCPK_KITI_T(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		long kaleoInstanceTokenId, java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type);
+	}
+
+	/**
+	* Returns the number of kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
+	*
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param kaleoInstanceTokenId the kaleo instance token ID
+	* @param type the type
+	* @return the number of matching kaleo logs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKCN_KCPK_KITI_T(java.lang.String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, java.lang.String type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
+			kaleoInstanceTokenId, type);
+	}
+
+	/**
+	* Caches the kaleo log in the entity cache if it is enabled.
+	*
+	* @param kaleoLog the kaleo log
+	*/
+	public static void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog) {
+		getPersistence().cacheResult(kaleoLog);
+	}
+
+	/**
+	* Caches the kaleo logs in the entity cache if it is enabled.
+	*
+	* @param kaleoLogs the kaleo logs
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> kaleoLogs) {
+		getPersistence().cacheResult(kaleoLogs);
+	}
+
+	/**
+	* Creates a new kaleo log with the primary key. Does not add the kaleo log to the database.
+	*
+	* @param kaleoLogId the primary key for the new kaleo log
+	* @return the new kaleo log
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog create(
+		long kaleoLogId) {
+		return getPersistence().create(kaleoLogId);
+	}
+
+	/**
+	* Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoLogId the primary key of the kaleo log
+	* @return the kaleo log that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog remove(
+		long kaleoLogId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchLogException {
+		return getPersistence().remove(kaleoLogId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(kaleoLog);
+	}
+
+	/**
+	* Returns the kaleo log with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchLogException} if it could not be found.
+	*
+	* @param kaleoLogId the primary key of the kaleo log
+	* @return the kaleo log
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog findByPrimaryKey(
+		long kaleoLogId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchLogException {
+		return getPersistence().findByPrimaryKey(kaleoLogId);
+	}
+
+	/**
+	* Returns the kaleo log with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoLogId the primary key of the kaleo log
+	* @return the kaleo log, or <code>null</code> if a kaleo log with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByPrimaryKey(
+		long kaleoLogId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(kaleoLogId);
+	}
+
+	/**
 	* Returns all the kaleo logs.
 	*
 	* @return the kaleo logs
@@ -1166,83 +1325,6 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	* Removes all the kaleo logs where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCompanyId(companyId);
-	}
-
-	/**
-	* Removes all the kaleo logs where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Removes all the kaleo logs where kaleoInstanceId = &#63; from the database.
-	*
-	* @param kaleoInstanceId the kaleo instance ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKaleoInstanceId(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKaleoInstanceId(kaleoInstanceId);
-	}
-
-	/**
-	* Removes all the kaleo logs where kaleoTaskInstanceTokenId = &#63; from the database.
-	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKaleoTaskInstanceTokenId(
-		long kaleoTaskInstanceTokenId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence()
-			.removeByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-	}
-
-	/**
-	* Removes all the kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63; from the database.
-	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
-	* @param type the type
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKITI_T(long kaleoInstanceTokenId,
-		java.lang.String type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKITI_T(kaleoInstanceTokenId, type);
-	}
-
-	/**
-	* Removes all the kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63; from the database.
-	*
-	* @param kaleoClassName the kaleo class name
-	* @param kaleoClassPK the kaleo class p k
-	* @param kaleoInstanceTokenId the kaleo instance token ID
-	* @param type the type
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKCN_KCPK_KITI_T(
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		long kaleoInstanceTokenId, java.lang.String type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence()
-			.removeByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
-			kaleoInstanceTokenId, type);
-	}
-
-	/**
 	* Removes all the kaleo logs from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -1250,88 +1332,6 @@ public class KaleoLogUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of kaleo logs where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo logs
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCompanyId(companyId);
-	}
-
-	/**
-	* Returns the number of kaleo logs where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo logs
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Returns the number of kaleo logs where kaleoInstanceId = &#63;.
-	*
-	* @param kaleoInstanceId the kaleo instance ID
-	* @return the number of matching kaleo logs
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKaleoInstanceId(long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKaleoInstanceId(kaleoInstanceId);
-	}
-
-	/**
-	* Returns the number of kaleo logs where kaleoTaskInstanceTokenId = &#63;.
-	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID
-	* @return the number of matching kaleo logs
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKaleoTaskInstanceTokenId(
-		long kaleoTaskInstanceTokenId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-	}
-
-	/**
-	* Returns the number of kaleo logs where kaleoInstanceTokenId = &#63; and type = &#63;.
-	*
-	* @param kaleoInstanceTokenId the kaleo instance token ID
-	* @param type the type
-	* @return the number of matching kaleo logs
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKITI_T(long kaleoInstanceTokenId,
-		java.lang.String type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKITI_T(kaleoInstanceTokenId, type);
-	}
-
-	/**
-	* Returns the number of kaleo logs where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
-	*
-	* @param kaleoClassName the kaleo class name
-	* @param kaleoClassPK the kaleo class p k
-	* @param kaleoInstanceTokenId the kaleo instance token ID
-	* @param type the type
-	* @return the number of matching kaleo logs
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKCN_KCPK_KITI_T(java.lang.String kaleoClassName,
-		long kaleoClassPK, long kaleoInstanceTokenId, java.lang.String type)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
-			kaleoInstanceTokenId, type);
 	}
 
 	/**

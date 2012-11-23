@@ -111,86 +111,6 @@ public class MeetupsEntryUtil {
 	}
 
 	/**
-	* Caches the meetups entry in the entity cache if it is enabled.
-	*
-	* @param meetupsEntry the meetups entry
-	*/
-	public static void cacheResult(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
-		getPersistence().cacheResult(meetupsEntry);
-	}
-
-	/**
-	* Caches the meetups entries in the entity cache if it is enabled.
-	*
-	* @param meetupsEntries the meetups entries
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> meetupsEntries) {
-		getPersistence().cacheResult(meetupsEntries);
-	}
-
-	/**
-	* Creates a new meetups entry with the primary key. Does not add the meetups entry to the database.
-	*
-	* @param meetupsEntryId the primary key for the new meetups entry
-	* @return the new meetups entry
-	*/
-	public static com.liferay.socialnetworking.model.MeetupsEntry create(
-		long meetupsEntryId) {
-		return getPersistence().create(meetupsEntryId);
-	}
-
-	/**
-	* Removes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param meetupsEntryId the primary key of the meetups entry
-	* @return the meetups entry that was removed
-	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialnetworking.model.MeetupsEntry remove(
-		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
-		return getPersistence().remove(meetupsEntryId);
-	}
-
-	public static com.liferay.socialnetworking.model.MeetupsEntry updateImpl(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(meetupsEntry);
-	}
-
-	/**
-	* Returns the meetups entry with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsEntryException} if it could not be found.
-	*
-	* @param meetupsEntryId the primary key of the meetups entry
-	* @return the meetups entry
-	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialnetworking.model.MeetupsEntry findByPrimaryKey(
-		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
-		return getPersistence().findByPrimaryKey(meetupsEntryId);
-	}
-
-	/**
-	* Returns the meetups entry with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param meetupsEntryId the primary key of the meetups entry
-	* @return the meetups entry, or <code>null</code> if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByPrimaryKey(
-		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(meetupsEntryId);
-	}
-
-	/**
 	* Returns all the meetups entries where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -333,6 +253,29 @@ public class MeetupsEntryUtil {
 	}
 
 	/**
+	* Removes all the meetups entries where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCompanyId(companyId);
+	}
+
+	/**
+	* Returns the number of meetups entries where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching meetups entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCompanyId(companyId);
+	}
+
+	/**
 	* Returns all the meetups entries where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -470,6 +413,109 @@ public class MeetupsEntryUtil {
 	}
 
 	/**
+	* Removes all the meetups entries where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of meetups entries where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching meetups entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
+	* Caches the meetups entry in the entity cache if it is enabled.
+	*
+	* @param meetupsEntry the meetups entry
+	*/
+	public static void cacheResult(
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
+		getPersistence().cacheResult(meetupsEntry);
+	}
+
+	/**
+	* Caches the meetups entries in the entity cache if it is enabled.
+	*
+	* @param meetupsEntries the meetups entries
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> meetupsEntries) {
+		getPersistence().cacheResult(meetupsEntries);
+	}
+
+	/**
+	* Creates a new meetups entry with the primary key. Does not add the meetups entry to the database.
+	*
+	* @param meetupsEntryId the primary key for the new meetups entry
+	* @return the new meetups entry
+	*/
+	public static com.liferay.socialnetworking.model.MeetupsEntry create(
+		long meetupsEntryId) {
+		return getPersistence().create(meetupsEntryId);
+	}
+
+	/**
+	* Removes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param meetupsEntryId the primary key of the meetups entry
+	* @return the meetups entry that was removed
+	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialnetworking.model.MeetupsEntry remove(
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		return getPersistence().remove(meetupsEntryId);
+	}
+
+	public static com.liferay.socialnetworking.model.MeetupsEntry updateImpl(
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(meetupsEntry);
+	}
+
+	/**
+	* Returns the meetups entry with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsEntryException} if it could not be found.
+	*
+	* @param meetupsEntryId the primary key of the meetups entry
+	* @return the meetups entry
+	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialnetworking.model.MeetupsEntry findByPrimaryKey(
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		return getPersistence().findByPrimaryKey(meetupsEntryId);
+	}
+
+	/**
+	* Returns the meetups entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param meetupsEntryId the primary key of the meetups entry
+	* @return the meetups entry, or <code>null</code> if a meetups entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByPrimaryKey(
+		long meetupsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(meetupsEntryId);
+	}
+
+	/**
 	* Returns all the meetups entries.
 	*
 	* @return the meetups entries
@@ -519,28 +565,6 @@ public class MeetupsEntryUtil {
 	}
 
 	/**
-	* Removes all the meetups entries where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCompanyId(companyId);
-	}
-
-	/**
-	* Removes all the meetups entries where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
-	}
-
-	/**
 	* Removes all the meetups entries from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -548,30 +572,6 @@ public class MeetupsEntryUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of meetups entries where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching meetups entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCompanyId(companyId);
-	}
-
-	/**
-	* Returns the number of meetups entries where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching meetups entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUserId(userId);
 	}
 
 	/**

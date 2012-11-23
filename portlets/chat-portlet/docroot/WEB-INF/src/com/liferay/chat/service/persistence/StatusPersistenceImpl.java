@@ -75,6 +75,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByUserId",
@@ -84,6 +93,210 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns the status where userId = &#63; or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @return the matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status findByUserId(long userId)
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByUserId(userId);
+
+		if (status == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchStatusException(msg.toString());
+		}
+
+		return status;
+	}
+
+	/**
+	 * Returns the status where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @return the matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByUserId(long userId) throws SystemException {
+		return fetchByUserId(userId, true);
+	}
+
+	/**
+	 * Returns the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByUserId(long userId, boolean retrieveFromCache)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { userId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
+					finderArgs, this);
+		}
+
+		if (result instanceof Status) {
+			Status status = (Status)result;
+
+			if ((userId != status.getUserId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				List<Status> list = q.list();
+
+				result = list;
+
+				Status status = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+						finderArgs, list);
+				}
+				else {
+					status = list.get(0);
+
+					cacheResult(status);
+
+					if ((status.getUserId() != userId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+							finderArgs, status);
+					}
+				}
+
+				return status;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
+						finderArgs);
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (Status)result;
+			}
+		}
+	}
+
+	/**
+	 * Removes the status where userId = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @return the status that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status removeByUserId(long userId)
+		throws NoSuchStatusException, SystemException {
+		Status status = findByUserId(userId);
+
+		return remove(status);
+	}
+
+	/**
+	 * Returns the number of statuses where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByUserId(long userId) throws SystemException {
+		Object[] finderArgs = new Object[] { userId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "status.userId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MODIFIEDDATE =
 		new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
@@ -104,6 +317,451 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByModifiedDate",
 			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns all the statuses where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @return the matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByModifiedDate(long modifiedDate)
+		throws SystemException {
+		return findByModifiedDate(modifiedDate, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the statuses where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @return the range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByModifiedDate(long modifiedDate, int start, int end)
+		throws SystemException {
+		return findByModifiedDate(modifiedDate, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the statuses where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByModifiedDate(long modifiedDate, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE;
+			finderArgs = new Object[] { modifiedDate };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MODIFIEDDATE;
+			finderArgs = new Object[] {
+					modifiedDate,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Status status : list) {
+				if ((modifiedDate != status.getModifiedDate())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status findByModifiedDate_First(long modifiedDate,
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByModifiedDate_First(modifiedDate,
+				orderByComparator);
+
+		if (status != null) {
+			return status;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStatusException(msg.toString());
+	}
+
+	/**
+	 * Returns the first status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByModifiedDate_First(long modifiedDate,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Status> list = findByModifiedDate(modifiedDate, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status findByModifiedDate_Last(long modifiedDate,
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByModifiedDate_Last(modifiedDate, orderByComparator);
+
+		if (status != null) {
+			return status;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStatusException(msg.toString());
+	}
+
+	/**
+	 * Returns the last status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByModifiedDate_Last(long modifiedDate,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByModifiedDate(modifiedDate);
+
+		List<Status> list = findByModifiedDate(modifiedDate, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * @param statusId the primary key of the current status
+	 * @param modifiedDate the modified date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next status
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status[] findByModifiedDate_PrevAndNext(long statusId,
+		long modifiedDate, OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = findByPrimaryKey(statusId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Status[] array = new StatusImpl[3];
+
+			array[0] = getByModifiedDate_PrevAndNext(session, status,
+					modifiedDate, orderByComparator, true);
+
+			array[1] = status;
+
+			array[2] = getByModifiedDate_PrevAndNext(session, status,
+					modifiedDate, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Status getByModifiedDate_PrevAndNext(Session session,
+		Status status, long modifiedDate, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STATUS_WHERE);
+
+		query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(modifiedDate);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(status);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Status> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the statuses where modifiedDate = &#63; from the database.
+	 *
+	 * @param modifiedDate the modified date
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByModifiedDate(long modifiedDate)
+		throws SystemException {
+		for (Status status : findByModifiedDate(modifiedDate)) {
+			remove(status);
+		}
+	}
+
+	/**
+	 * Returns the number of statuses where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByModifiedDate(long modifiedDate) throws SystemException {
+		Object[] finderArgs = new Object[] { modifiedDate };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2 = "status.modifiedDate = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_ONLINE = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByOnline",
@@ -123,6 +781,441 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByOnline",
 			new String[] { Boolean.class.getName() });
+
+	/**
+	 * Returns all the statuses where online = &#63;.
+	 *
+	 * @param online the online
+	 * @return the matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByOnline(boolean online) throws SystemException {
+		return findByOnline(online, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the statuses where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param online the online
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @return the range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByOnline(boolean online, int start, int end)
+		throws SystemException {
+		return findByOnline(online, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the statuses where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param online the online
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByOnline(boolean online, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE;
+			finderArgs = new Object[] { online };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ONLINE;
+			finderArgs = new Object[] { online, start, end, orderByComparator };
+		}
+
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Status status : list) {
+				if ((online != status.getOnline())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(online);
+
+				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first status in the ordered set where online = &#63;.
+	 *
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status findByOnline_First(boolean online,
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByOnline_First(online, orderByComparator);
+
+		if (status != null) {
+			return status;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("online=");
+		msg.append(online);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStatusException(msg.toString());
+	}
+
+	/**
+	 * Returns the first status in the ordered set where online = &#63;.
+	 *
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByOnline_First(boolean online,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Status> list = findByOnline(online, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last status in the ordered set where online = &#63;.
+	 *
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status findByOnline_Last(boolean online,
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByOnline_Last(online, orderByComparator);
+
+		if (status != null) {
+			return status;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("online=");
+		msg.append(online);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStatusException(msg.toString());
+	}
+
+	/**
+	 * Returns the last status in the ordered set where online = &#63;.
+	 *
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByOnline_Last(boolean online,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByOnline(online);
+
+		List<Status> list = findByOnline(online, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the statuses before and after the current status in the ordered set where online = &#63;.
+	 *
+	 * @param statusId the primary key of the current status
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next status
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status[] findByOnline_PrevAndNext(long statusId, boolean online,
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = findByPrimaryKey(statusId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Status[] array = new StatusImpl[3];
+
+			array[0] = getByOnline_PrevAndNext(session, status, online,
+					orderByComparator, true);
+
+			array[1] = status;
+
+			array[2] = getByOnline_PrevAndNext(session, status, online,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Status getByOnline_PrevAndNext(Session session, Status status,
+		boolean online, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STATUS_WHERE);
+
+		query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(online);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(status);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Status> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the statuses where online = &#63; from the database.
+	 *
+	 * @param online the online
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByOnline(boolean online) throws SystemException {
+		for (Status status : findByOnline(online)) {
+			remove(status);
+		}
+	}
+
+	/**
+	 * Returns the number of statuses where online = &#63;.
+	 *
+	 * @param online the online
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByOnline(boolean online) throws SystemException {
+		Object[] finderArgs = new Object[] { online };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ONLINE,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(online);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ONLINE,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_ONLINE_ONLINE_2 = "status.online = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByM_O",
@@ -142,15 +1235,481 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByM_O",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+
+	/**
+	 * Returns all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @return the matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByM_O(long modifiedDate, boolean online)
+		throws SystemException {
+		return findByM_O(modifiedDate, online, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @return the range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
+		int end) throws SystemException {
+		return findByM_O(modifiedDate, online, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O;
+			finderArgs = new Object[] { modifiedDate, online };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_M_O;
+			finderArgs = new Object[] {
+					modifiedDate, online,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Status status : list) {
+				if ((modifiedDate != status.getModifiedDate()) ||
+						(online != status.getOnline())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				qPos.add(online);
+
+				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status findByM_O_First(long modifiedDate, boolean online,
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByM_O_First(modifiedDate, online, orderByComparator);
+
+		if (status != null) {
+			return status;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", online=");
+		msg.append(online);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStatusException(msg.toString());
+	}
+
+	/**
+	 * Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByM_O_First(long modifiedDate, boolean online,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Status> list = findByM_O(modifiedDate, online, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status findByM_O_Last(long modifiedDate, boolean online,
+		OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByM_O_Last(modifiedDate, online, orderByComparator);
+
+		if (status != null) {
+			return status;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", online=");
+		msg.append(online);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchStatusException(msg.toString());
+	}
+
+	/**
+	 * Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByM_O_Last(long modifiedDate, boolean online,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByM_O(modifiedDate, online);
+
+		List<Status> list = findByM_O(modifiedDate, online, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param statusId the primary key of the current status
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next status
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status[] findByM_O_PrevAndNext(long statusId, long modifiedDate,
+		boolean online, OrderByComparator orderByComparator)
+		throws NoSuchStatusException, SystemException {
+		Status status = findByPrimaryKey(statusId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Status[] array = new StatusImpl[3];
+
+			array[0] = getByM_O_PrevAndNext(session, status, modifiedDate,
+					online, orderByComparator, true);
+
+			array[1] = status;
+
+			array[2] = getByM_O_PrevAndNext(session, status, modifiedDate,
+					online, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Status getByM_O_PrevAndNext(Session session, Status status,
+		long modifiedDate, boolean online, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_STATUS_WHERE);
+
+		query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+		query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(modifiedDate);
+
+		qPos.add(online);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(status);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Status> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the statuses where modifiedDate = &#63; and online = &#63; from the database.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByM_O(long modifiedDate, boolean online)
+		throws SystemException {
+		for (Status status : findByM_O(modifiedDate, online)) {
+			remove(status);
+		}
+	}
+
+	/**
+	 * Returns the number of statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByM_O(long modifiedDate, boolean online)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { modifiedDate, online };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_M_O,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(modifiedDate);
+
+				qPos.add(online);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_M_O, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_M_O_MODIFIEDDATE_2 = "status.modifiedDate = ? AND ";
+	private static final String _FINDER_COLUMN_M_O_ONLINE_2 = "status.online = ?";
 
 	/**
 	 * Caches the status in the entity cache if it is enabled.
@@ -585,1285 +2144,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	/**
-	 * Returns the status where userId = &#63; or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
-	 *
-	 * @param userId the user ID
-	 * @return the matching status
-	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status findByUserId(long userId)
-		throws NoSuchStatusException, SystemException {
-		Status status = fetchByUserId(userId);
-
-		if (status == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchStatusException(msg.toString());
-		}
-
-		return status;
-	}
-
-	/**
-	 * Returns the status where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @return the matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByUserId(long userId) throws SystemException {
-		return fetchByUserId(userId, true);
-	}
-
-	/**
-	 * Returns the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByUserId(long userId, boolean retrieveFromCache)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { userId };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs, this);
-		}
-
-		if (result instanceof Status) {
-			Status status = (Status)result;
-
-			if ((userId != status.getUserId())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_SELECT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_USERID_USERID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				List<Status> list = q.list();
-
-				result = list;
-
-				Status status = null;
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-						finderArgs, list);
-				}
-				else {
-					status = list.get(0);
-
-					cacheResult(status);
-
-					if ((status.getUserId() != userId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-							finderArgs, status);
-					}
-				}
-
-				return status;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-						finderArgs);
-				}
-
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List<?>) {
-				return null;
-			}
-			else {
-				return (Status)result;
-			}
-		}
-	}
-
-	/**
-	 * Returns all the statuses where modifiedDate = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @return the matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByModifiedDate(long modifiedDate)
-		throws SystemException {
-		return findByModifiedDate(modifiedDate, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the statuses where modifiedDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param modifiedDate the modified date
-	 * @param start the lower bound of the range of statuses
-	 * @param end the upper bound of the range of statuses (not inclusive)
-	 * @return the range of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByModifiedDate(long modifiedDate, int start, int end)
-		throws SystemException {
-		return findByModifiedDate(modifiedDate, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the statuses where modifiedDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param modifiedDate the modified date
-	 * @param start the lower bound of the range of statuses
-	 * @param end the upper bound of the range of statuses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByModifiedDate(long modifiedDate, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE;
-			finderArgs = new Object[] { modifiedDate };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MODIFIEDDATE;
-			finderArgs = new Object[] {
-					modifiedDate,
-					
-					start, end, orderByComparator
-				};
-		}
-
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Status status : list) {
-				if ((modifiedDate != status.getModifiedDate())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(modifiedDate);
-
-				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first status in the ordered set where modifiedDate = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching status
-	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status findByModifiedDate_First(long modifiedDate,
-		OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = fetchByModifiedDate_First(modifiedDate,
-				orderByComparator);
-
-		if (status != null) {
-			return status;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("modifiedDate=");
-		msg.append(modifiedDate);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchStatusException(msg.toString());
-	}
-
-	/**
-	 * Returns the first status in the ordered set where modifiedDate = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByModifiedDate_First(long modifiedDate,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Status> list = findByModifiedDate(modifiedDate, 0, 1,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last status in the ordered set where modifiedDate = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching status
-	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status findByModifiedDate_Last(long modifiedDate,
-		OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = fetchByModifiedDate_Last(modifiedDate, orderByComparator);
-
-		if (status != null) {
-			return status;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("modifiedDate=");
-		msg.append(modifiedDate);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchStatusException(msg.toString());
-	}
-
-	/**
-	 * Returns the last status in the ordered set where modifiedDate = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByModifiedDate_Last(long modifiedDate,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByModifiedDate(modifiedDate);
-
-		List<Status> list = findByModifiedDate(modifiedDate, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63;.
-	 *
-	 * @param statusId the primary key of the current status
-	 * @param modifiedDate the modified date
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next status
-	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status[] findByModifiedDate_PrevAndNext(long statusId,
-		long modifiedDate, OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = findByPrimaryKey(statusId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Status[] array = new StatusImpl[3];
-
-			array[0] = getByModifiedDate_PrevAndNext(session, status,
-					modifiedDate, orderByComparator, true);
-
-			array[1] = status;
-
-			array[2] = getByModifiedDate_PrevAndNext(session, status,
-					modifiedDate, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Status getByModifiedDate_PrevAndNext(Session session,
-		Status status, long modifiedDate, OrderByComparator orderByComparator,
-		boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_STATUS_WHERE);
-
-		query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(modifiedDate);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(status);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Status> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns all the statuses where online = &#63;.
-	 *
-	 * @param online the online
-	 * @return the matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByOnline(boolean online) throws SystemException {
-		return findByOnline(online, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the statuses where online = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param online the online
-	 * @param start the lower bound of the range of statuses
-	 * @param end the upper bound of the range of statuses (not inclusive)
-	 * @return the range of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByOnline(boolean online, int start, int end)
-		throws SystemException {
-		return findByOnline(online, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the statuses where online = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param online the online
-	 * @param start the lower bound of the range of statuses
-	 * @param end the upper bound of the range of statuses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByOnline(boolean online, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE;
-			finderArgs = new Object[] { online };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ONLINE;
-			finderArgs = new Object[] { online, start, end, orderByComparator };
-		}
-
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Status status : list) {
-				if ((online != status.getOnline())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(online);
-
-				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first status in the ordered set where online = &#63;.
-	 *
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching status
-	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status findByOnline_First(boolean online,
-		OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = fetchByOnline_First(online, orderByComparator);
-
-		if (status != null) {
-			return status;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("online=");
-		msg.append(online);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchStatusException(msg.toString());
-	}
-
-	/**
-	 * Returns the first status in the ordered set where online = &#63;.
-	 *
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByOnline_First(boolean online,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Status> list = findByOnline(online, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last status in the ordered set where online = &#63;.
-	 *
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching status
-	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status findByOnline_Last(boolean online,
-		OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = fetchByOnline_Last(online, orderByComparator);
-
-		if (status != null) {
-			return status;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("online=");
-		msg.append(online);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchStatusException(msg.toString());
-	}
-
-	/**
-	 * Returns the last status in the ordered set where online = &#63;.
-	 *
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByOnline_Last(boolean online,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByOnline(online);
-
-		List<Status> list = findByOnline(online, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the statuses before and after the current status in the ordered set where online = &#63;.
-	 *
-	 * @param statusId the primary key of the current status
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next status
-	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status[] findByOnline_PrevAndNext(long statusId, boolean online,
-		OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = findByPrimaryKey(statusId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Status[] array = new StatusImpl[3];
-
-			array[0] = getByOnline_PrevAndNext(session, status, online,
-					orderByComparator, true);
-
-			array[1] = status;
-
-			array[2] = getByOnline_PrevAndNext(session, status, online,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Status getByOnline_PrevAndNext(Session session, Status status,
-		boolean online, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_STATUS_WHERE);
-
-		query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(online);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(status);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Status> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns all the statuses where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @return the matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByM_O(long modifiedDate, boolean online)
-		throws SystemException {
-		return findByM_O(modifiedDate, online, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the statuses where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @param start the lower bound of the range of statuses
-	 * @param end the upper bound of the range of statuses (not inclusive)
-	 * @return the range of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
-		int end) throws SystemException {
-		return findByM_O(modifiedDate, online, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the statuses where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @param start the lower bound of the range of statuses
-	 * @param end the upper bound of the range of statuses (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O;
-			finderArgs = new Object[] { modifiedDate, online };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_M_O;
-			finderArgs = new Object[] {
-					modifiedDate, online,
-					
-					start, end, orderByComparator
-				};
-		}
-
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Status status : list) {
-				if ((modifiedDate != status.getModifiedDate()) ||
-						(online != status.getOnline())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
-
-			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(modifiedDate);
-
-				qPos.add(online);
-
-				list = (List<Status>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching status
-	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status findByM_O_First(long modifiedDate, boolean online,
-		OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = fetchByM_O_First(modifiedDate, online, orderByComparator);
-
-		if (status != null) {
-			return status;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("modifiedDate=");
-		msg.append(modifiedDate);
-
-		msg.append(", online=");
-		msg.append(online);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchStatusException(msg.toString());
-	}
-
-	/**
-	 * Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByM_O_First(long modifiedDate, boolean online,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Status> list = findByM_O(modifiedDate, online, 0, 1,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching status
-	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status findByM_O_Last(long modifiedDate, boolean online,
-		OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = fetchByM_O_Last(modifiedDate, online, orderByComparator);
-
-		if (status != null) {
-			return status;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("modifiedDate=");
-		msg.append(modifiedDate);
-
-		msg.append(", online=");
-		msg.append(online);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchStatusException(msg.toString());
-	}
-
-	/**
-	 * Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching status, or <code>null</code> if a matching status could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByM_O_Last(long modifiedDate, boolean online,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByM_O(modifiedDate, online);
-
-		List<Status> list = findByM_O(modifiedDate, online, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * @param statusId the primary key of the current status
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next status
-	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status[] findByM_O_PrevAndNext(long statusId, long modifiedDate,
-		boolean online, OrderByComparator orderByComparator)
-		throws NoSuchStatusException, SystemException {
-		Status status = findByPrimaryKey(statusId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Status[] array = new StatusImpl[3];
-
-			array[0] = getByM_O_PrevAndNext(session, status, modifiedDate,
-					online, orderByComparator, true);
-
-			array[1] = status;
-
-			array[2] = getByM_O_PrevAndNext(session, status, modifiedDate,
-					online, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Status getByM_O_PrevAndNext(Session session, Status status,
-		long modifiedDate, boolean online, OrderByComparator orderByComparator,
-		boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_STATUS_WHERE);
-
-		query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
-
-		query.append(_FINDER_COLUMN_M_O_ONLINE_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(modifiedDate);
-
-		qPos.add(online);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(status);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Status> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
 	 * Returns all the statuses.
 	 *
 	 * @return the statuses
@@ -1978,59 +2258,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	/**
-	 * Removes the status where userId = &#63; from the database.
-	 *
-	 * @param userId the user ID
-	 * @return the status that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status removeByUserId(long userId)
-		throws NoSuchStatusException, SystemException {
-		Status status = findByUserId(userId);
-
-		return remove(status);
-	}
-
-	/**
-	 * Removes all the statuses where modifiedDate = &#63; from the database.
-	 *
-	 * @param modifiedDate the modified date
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByModifiedDate(long modifiedDate)
-		throws SystemException {
-		for (Status status : findByModifiedDate(modifiedDate)) {
-			remove(status);
-		}
-	}
-
-	/**
-	 * Removes all the statuses where online = &#63; from the database.
-	 *
-	 * @param online the online
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByOnline(boolean online) throws SystemException {
-		for (Status status : findByOnline(online)) {
-			remove(status);
-		}
-	}
-
-	/**
-	 * Removes all the statuses where modifiedDate = &#63; and online = &#63; from the database.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByM_O(long modifiedDate, boolean online)
-		throws SystemException {
-		for (Status status : findByM_O(modifiedDate, online)) {
-			remove(status);
-		}
-	}
-
-	/**
 	 * Removes all the statuses from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -2039,224 +2266,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		for (Status status : findAll()) {
 			remove(status);
 		}
-	}
-
-	/**
-	 * Returns the number of statuses where userId = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @return the number of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByUserId(long userId) throws SystemException {
-		Object[] finderArgs = new Object[] { userId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_USERID_USERID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of statuses where modifiedDate = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @return the number of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByModifiedDate(long modifiedDate) throws SystemException {
-		Object[] finderArgs = new Object[] { modifiedDate };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(modifiedDate);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of statuses where online = &#63;.
-	 *
-	 * @param online the online
-	 * @return the number of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByOnline(boolean online) throws SystemException {
-		Object[] finderArgs = new Object[] { online };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ONLINE,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(online);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ONLINE,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of statuses where modifiedDate = &#63; and online = &#63;.
-	 *
-	 * @param modifiedDate the modified date
-	 * @param online the online
-	 * @return the number of matching statuses
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByM_O(long modifiedDate, boolean online)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { modifiedDate, online };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_M_O,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_STATUS_WHERE);
-
-			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
-
-			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(modifiedDate);
-
-				qPos.add(online);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_M_O, finderArgs,
-					count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
 	}
 
 	/**
@@ -2338,11 +2347,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	private static final String _SQL_SELECT_STATUS_WHERE = "SELECT status FROM Status status WHERE ";
 	private static final String _SQL_COUNT_STATUS = "SELECT COUNT(status) FROM Status status";
 	private static final String _SQL_COUNT_STATUS_WHERE = "SELECT COUNT(status) FROM Status status WHERE ";
-	private static final String _FINDER_COLUMN_USERID_USERID_2 = "status.userId = ?";
-	private static final String _FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2 = "status.modifiedDate = ?";
-	private static final String _FINDER_COLUMN_ONLINE_ONLINE_2 = "status.online = ?";
-	private static final String _FINDER_COLUMN_M_O_MODIFIEDDATE_2 = "status.modifiedDate = ? AND ";
-	private static final String _FINDER_COLUMN_M_O_ONLINE_2 = "status.online = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "status.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Status exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Status exists with the key {";

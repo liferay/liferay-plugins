@@ -110,83 +110,6 @@ public class AccountUtil {
 	}
 
 	/**
-	* Caches the account in the entity cache if it is enabled.
-	*
-	* @param account the account
-	*/
-	public static void cacheResult(com.liferay.mail.model.Account account) {
-		getPersistence().cacheResult(account);
-	}
-
-	/**
-	* Caches the accounts in the entity cache if it is enabled.
-	*
-	* @param accounts the accounts
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.mail.model.Account> accounts) {
-		getPersistence().cacheResult(accounts);
-	}
-
-	/**
-	* Creates a new account with the primary key. Does not add the account to the database.
-	*
-	* @param accountId the primary key for the new account
-	* @return the new account
-	*/
-	public static com.liferay.mail.model.Account create(long accountId) {
-		return getPersistence().create(accountId);
-	}
-
-	/**
-	* Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param accountId the primary key of the account
-	* @return the account that was removed
-	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Account remove(long accountId)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(accountId);
-	}
-
-	public static com.liferay.mail.model.Account updateImpl(
-		com.liferay.mail.model.Account account)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(account);
-	}
-
-	/**
-	* Returns the account with the primary key or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
-	*
-	* @param accountId the primary key of the account
-	* @return the account
-	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Account findByPrimaryKey(
-		long accountId)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(accountId);
-	}
-
-	/**
-	* Returns the account with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param accountId the primary key of the account
-	* @return the account, or <code>null</code> if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Account fetchByPrimaryKey(
-		long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(accountId);
-	}
-
-	/**
 	* Returns all the accounts where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -324,6 +247,29 @@ public class AccountUtil {
 	}
 
 	/**
+	* Removes all the accounts where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of accounts where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching accounts
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
 	* Returns the account where userId = &#63; and address = &#63; or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
 	*
 	* @param userId the user ID
@@ -366,6 +312,111 @@ public class AccountUtil {
 		java.lang.String address, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByU_A(userId, address, retrieveFromCache);
+	}
+
+	/**
+	* Removes the account where userId = &#63; and address = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param address the address
+	* @return the account that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Account removeByU_A(long userId,
+		java.lang.String address)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByU_A(userId, address);
+	}
+
+	/**
+	* Returns the number of accounts where userId = &#63; and address = &#63;.
+	*
+	* @param userId the user ID
+	* @param address the address
+	* @return the number of matching accounts
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_A(long userId, java.lang.String address)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_A(userId, address);
+	}
+
+	/**
+	* Caches the account in the entity cache if it is enabled.
+	*
+	* @param account the account
+	*/
+	public static void cacheResult(com.liferay.mail.model.Account account) {
+		getPersistence().cacheResult(account);
+	}
+
+	/**
+	* Caches the accounts in the entity cache if it is enabled.
+	*
+	* @param accounts the accounts
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.mail.model.Account> accounts) {
+		getPersistence().cacheResult(accounts);
+	}
+
+	/**
+	* Creates a new account with the primary key. Does not add the account to the database.
+	*
+	* @param accountId the primary key for the new account
+	* @return the new account
+	*/
+	public static com.liferay.mail.model.Account create(long accountId) {
+		return getPersistence().create(accountId);
+	}
+
+	/**
+	* Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param accountId the primary key of the account
+	* @return the account that was removed
+	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Account remove(long accountId)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(accountId);
+	}
+
+	public static com.liferay.mail.model.Account updateImpl(
+		com.liferay.mail.model.Account account)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(account);
+	}
+
+	/**
+	* Returns the account with the primary key or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
+	*
+	* @param accountId the primary key of the account
+	* @return the account
+	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Account findByPrimaryKey(
+		long accountId)
+		throws com.liferay.mail.NoSuchAccountException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(accountId);
+	}
+
+	/**
+	* Returns the account with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param accountId the primary key of the account
+	* @return the account, or <code>null</code> if a account with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Account fetchByPrimaryKey(
+		long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(accountId);
 	}
 
 	/**
@@ -418,32 +469,6 @@ public class AccountUtil {
 	}
 
 	/**
-	* Removes all the accounts where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
-	}
-
-	/**
-	* Removes the account where userId = &#63; and address = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @param address the address
-	* @return the account that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Account removeByU_A(long userId,
-		java.lang.String address)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByU_A(userId, address);
-	}
-
-	/**
 	* Removes all the accounts from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -451,31 +476,6 @@ public class AccountUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of accounts where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching accounts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUserId(userId);
-	}
-
-	/**
-	* Returns the number of accounts where userId = &#63; and address = &#63;.
-	*
-	* @param userId the user ID
-	* @param address the address
-	* @return the number of matching accounts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByU_A(long userId, java.lang.String address)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByU_A(userId, address);
 	}
 
 	/**

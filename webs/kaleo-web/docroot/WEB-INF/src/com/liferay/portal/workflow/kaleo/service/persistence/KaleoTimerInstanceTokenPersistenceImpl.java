@@ -74,6 +74,17 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTimerInstanceTokenImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
+			KaleoTimerInstanceTokenImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KALEOINSTANCEID =
 		new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
@@ -96,6 +107,471 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"countByKaleoInstanceId", new String[] { Long.class.getName() });
+
+	/**
+	 * Returns all the kaleo timer instance tokens where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @return the matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKaleoInstanceId(
+		long kaleoInstanceId) throws SystemException {
+		return findByKaleoInstanceId(kaleoInstanceId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the kaleo timer instance tokens where kaleoInstanceId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param start the lower bound of the range of kaleo timer instance tokens
+	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
+	 * @return the range of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKaleoInstanceId(
+		long kaleoInstanceId, int start, int end) throws SystemException {
+		return findByKaleoInstanceId(kaleoInstanceId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param start the lower bound of the range of kaleo timer instance tokens
+	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKaleoInstanceId(
+		long kaleoInstanceId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOINSTANCEID;
+			finderArgs = new Object[] { kaleoInstanceId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KALEOINSTANCEID;
+			finderArgs = new Object[] {
+					kaleoInstanceId,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
+				if ((kaleoInstanceId != kaleoTimerInstanceToken.getKaleoInstanceId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceId);
+
+				list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
+						getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken findByKaleoInstanceId_First(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_First(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKaleoInstanceId_First(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
+				0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken findByKaleoInstanceId_Last(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_Last(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKaleoInstanceId_Last(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByKaleoInstanceId(kaleoInstanceId);
+
+		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken[] findByKaleoInstanceId_PrevAndNext(
+		long kaleoTimerInstanceTokenId, long kaleoInstanceId,
+		OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KaleoTimerInstanceToken[] array = new KaleoTimerInstanceTokenImpl[3];
+
+			array[0] = getByKaleoInstanceId_PrevAndNext(session,
+					kaleoTimerInstanceToken, kaleoInstanceId,
+					orderByComparator, true);
+
+			array[1] = kaleoTimerInstanceToken;
+
+			array[2] = getByKaleoInstanceId_PrevAndNext(session,
+					kaleoTimerInstanceToken, kaleoInstanceId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected KaleoTimerInstanceToken getByKaleoInstanceId_PrevAndNext(
+		Session session, KaleoTimerInstanceToken kaleoTimerInstanceToken,
+		long kaleoInstanceId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+		query.append(_FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(kaleoInstanceId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimerInstanceToken);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoTimerInstanceToken> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the kaleo timer instance tokens where kaleoInstanceId = &#63; from the database.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByKaleoInstanceId(long kaleoInstanceId)
+		throws SystemException {
+		for (KaleoTimerInstanceToken kaleoTimerInstanceToken : findByKaleoInstanceId(
+				kaleoInstanceId)) {
+			remove(kaleoTimerInstanceToken);
+		}
+	}
+
+	/**
+	 * Returns the number of kaleo timer instance tokens where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @return the number of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByKaleoInstanceId(long kaleoInstanceId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { kaleoInstanceId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2 =
+		"kaleoTimerInstanceToken.kaleoInstanceId = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_KITI_KTI = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
 			KaleoTimerInstanceTokenImpl.class, FINDER_CLASS_NAME_ENTITY,
@@ -107,6 +583,237 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKITI_KTI",
 			new String[] { Long.class.getName(), Long.class.getName() });
+
+	/**
+	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException} if it could not be found.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param kaleoTimerId the kaleo timer ID
+	 * @return the matching kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken findByKITI_KTI(long kaleoInstanceTokenId,
+		long kaleoTimerId)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_KTI(kaleoInstanceTokenId,
+				kaleoTimerId);
+
+		if (kaleoTimerInstanceToken == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("kaleoInstanceTokenId=");
+			msg.append(kaleoInstanceTokenId);
+
+			msg.append(", kaleoTimerId=");
+			msg.append(kaleoTimerId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchTimerInstanceTokenException(msg.toString());
+		}
+
+		return kaleoTimerInstanceToken;
+	}
+
+	/**
+	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param kaleoTimerId the kaleo timer ID
+	 * @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_KTI(long kaleoInstanceTokenId,
+		long kaleoTimerId) throws SystemException {
+		return fetchByKITI_KTI(kaleoInstanceTokenId, kaleoTimerId, true);
+	}
+
+	/**
+	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param kaleoTimerId the kaleo timer ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_KTI(long kaleoInstanceTokenId,
+		long kaleoTimerId, boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { kaleoInstanceTokenId, kaleoTimerId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KITI_KTI,
+					finderArgs, this);
+		}
+
+		if (result instanceof KaleoTimerInstanceToken) {
+			KaleoTimerInstanceToken kaleoTimerInstanceToken = (KaleoTimerInstanceToken)result;
+
+			if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
+					(kaleoTimerId != kaleoTimerInstanceToken.getKaleoTimerId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KITI_KTI_KALEOINSTANCETOKENID_2);
+
+			query.append(_FINDER_COLUMN_KITI_KTI_KALEOTIMERID_2);
+
+			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceTokenId);
+
+				qPos.add(kaleoTimerId);
+
+				List<KaleoTimerInstanceToken> list = q.list();
+
+				result = list;
+
+				KaleoTimerInstanceToken kaleoTimerInstanceToken = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KITI_KTI,
+						finderArgs, list);
+				}
+				else {
+					kaleoTimerInstanceToken = list.get(0);
+
+					cacheResult(kaleoTimerInstanceToken);
+
+					if ((kaleoTimerInstanceToken.getKaleoInstanceTokenId() != kaleoInstanceTokenId) ||
+							(kaleoTimerInstanceToken.getKaleoTimerId() != kaleoTimerId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KITI_KTI,
+							finderArgs, kaleoTimerInstanceToken);
+					}
+				}
+
+				return kaleoTimerInstanceToken;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI,
+						finderArgs);
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (KaleoTimerInstanceToken)result;
+			}
+		}
+	}
+
+	/**
+	 * Removes the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; from the database.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param kaleoTimerId the kaleo timer ID
+	 * @return the kaleo timer instance token that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken removeByKITI_KTI(long kaleoInstanceTokenId,
+		long kaleoTimerId)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByKITI_KTI(kaleoInstanceTokenId,
+				kaleoTimerId);
+
+		return remove(kaleoTimerInstanceToken);
+	}
+
+	/**
+	 * Returns the number of kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param kaleoTimerId the kaleo timer ID
+	 * @return the number of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByKITI_KTI(long kaleoInstanceTokenId, long kaleoTimerId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { kaleoInstanceTokenId, kaleoTimerId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_KTI,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KITI_KTI_KALEOINSTANCETOKENID_2);
+
+			query.append(_FINDER_COLUMN_KITI_KTI_KALEOTIMERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceTokenId);
+
+				qPos.add(kaleoTimerId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KITI_KTI,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_KITI_KTI_KALEOINSTANCETOKENID_2 = "kaleoTimerInstanceToken.kaleoInstanceTokenId = ? AND ";
+	private static final String _FINDER_COLUMN_KITI_KTI_KALEOTIMERID_2 = "kaleoTimerInstanceToken.kaleoTimerId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KITI_C = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
 			KaleoTimerInstanceTokenImpl.class,
@@ -129,6 +836,503 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKITI_C",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
+
+	/**
+	 * Returns all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @return the matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKITI_C(
+		long kaleoInstanceTokenId, boolean completed) throws SystemException {
+		return findByKITI_C(kaleoInstanceTokenId, completed, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param start the lower bound of the range of kaleo timer instance tokens
+	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
+	 * @return the range of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKITI_C(
+		long kaleoInstanceTokenId, boolean completed, int start, int end)
+		throws SystemException {
+		return findByKITI_C(kaleoInstanceTokenId, completed, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param start the lower bound of the range of kaleo timer instance tokens
+	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKITI_C(
+		long kaleoInstanceTokenId, boolean completed, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KITI_C;
+			finderArgs = new Object[] { kaleoInstanceTokenId, completed };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KITI_C;
+			finderArgs = new Object[] {
+					kaleoInstanceTokenId, completed,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
+				if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
+						(completed != kaleoTimerInstanceToken.getCompleted())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2);
+
+			query.append(_FINDER_COLUMN_KITI_C_COMPLETED_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceTokenId);
+
+				qPos.add(completed);
+
+				list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
+						getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken findByKITI_C_First(
+		long kaleoInstanceTokenId, boolean completed,
+		OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_First(kaleoInstanceTokenId,
+				completed, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_First(
+		long kaleoInstanceTokenId, boolean completed,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
+				completed, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken findByKITI_C_Last(
+		long kaleoInstanceTokenId, boolean completed,
+		OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_Last(kaleoInstanceTokenId,
+				completed, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_Last(
+		long kaleoInstanceTokenId, boolean completed,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByKITI_C(kaleoInstanceTokenId, completed);
+
+		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
+				completed, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken[] findByKITI_C_PrevAndNext(
+		long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
+		boolean completed, OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KaleoTimerInstanceToken[] array = new KaleoTimerInstanceTokenImpl[3];
+
+			array[0] = getByKITI_C_PrevAndNext(session,
+					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
+					orderByComparator, true);
+
+			array[1] = kaleoTimerInstanceToken;
+
+			array[2] = getByKITI_C_PrevAndNext(session,
+					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected KaleoTimerInstanceToken getByKITI_C_PrevAndNext(Session session,
+		KaleoTimerInstanceToken kaleoTimerInstanceToken,
+		long kaleoInstanceTokenId, boolean completed,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+		query.append(_FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2);
+
+		query.append(_FINDER_COLUMN_KITI_C_COMPLETED_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(kaleoInstanceTokenId);
+
+		qPos.add(completed);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimerInstanceToken);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoTimerInstanceToken> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; from the database.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByKITI_C(long kaleoInstanceTokenId, boolean completed)
+		throws SystemException {
+		for (KaleoTimerInstanceToken kaleoTimerInstanceToken : findByKITI_C(
+				kaleoInstanceTokenId, completed)) {
+			remove(kaleoTimerInstanceToken);
+		}
+	}
+
+	/**
+	 * Returns the number of kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @return the number of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByKITI_C(long kaleoInstanceTokenId, boolean completed)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { kaleoInstanceTokenId, completed };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_C,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2);
+
+			query.append(_FINDER_COLUMN_KITI_C_COMPLETED_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceTokenId);
+
+				qPos.add(completed);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KITI_C,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2 = "kaleoTimerInstanceToken.kaleoInstanceTokenId = ? AND ";
+	private static final String _FINDER_COLUMN_KITI_C_COMPLETED_2 = "kaleoTimerInstanceToken.completed = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KITI_C_B = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
 			KaleoTimerInstanceTokenImpl.class,
@@ -159,17 +1363,538 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 				Long.class.getName(), Boolean.class.getName(),
 				Boolean.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			KaleoTimerInstanceTokenImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED,
-			KaleoTimerInstanceTokenImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerInstanceTokenModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+
+	/**
+	 * Returns all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @return the matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKITI_C_B(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking)
+		throws SystemException {
+		return findByKITI_C_B(kaleoInstanceTokenId, completed, blocking,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param start the lower bound of the range of kaleo timer instance tokens
+	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
+	 * @return the range of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKITI_C_B(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		int start, int end) throws SystemException {
+		return findByKITI_C_B(kaleoInstanceTokenId, completed, blocking, start,
+			end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param start the lower bound of the range of kaleo timer instance tokens
+	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<KaleoTimerInstanceToken> findByKITI_C_B(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KITI_C_B;
+			finderArgs = new Object[] { kaleoInstanceTokenId, completed, blocking };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KITI_C_B;
+			finderArgs = new Object[] {
+					kaleoInstanceTokenId, completed, blocking,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
+				if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
+						(completed != kaleoTimerInstanceToken.getCompleted()) ||
+						(blocking != kaleoTimerInstanceToken.getBlocking())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2);
+
+			query.append(_FINDER_COLUMN_KITI_C_B_COMPLETED_2);
+
+			query.append(_FINDER_COLUMN_KITI_C_B_BLOCKING_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceTokenId);
+
+				qPos.add(completed);
+
+				qPos.add(blocking);
+
+				list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
+						getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken findByKITI_C_B_First(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_First(kaleoInstanceTokenId,
+				completed, blocking, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(", blocking=");
+		msg.append(blocking);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_B_First(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
+				completed, blocking, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken findByKITI_C_B_Last(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_Last(kaleoInstanceTokenId,
+				completed, blocking, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(", blocking=");
+		msg.append(blocking);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_B_Last(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByKITI_C_B(kaleoInstanceTokenId, completed, blocking);
+
+		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
+				completed, blocking, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next kaleo timer instance token
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken[] findByKITI_C_B_PrevAndNext(
+		long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
+		boolean completed, boolean blocking, OrderByComparator orderByComparator)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KaleoTimerInstanceToken[] array = new KaleoTimerInstanceTokenImpl[3];
+
+			array[0] = getByKITI_C_B_PrevAndNext(session,
+					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
+					blocking, orderByComparator, true);
+
+			array[1] = kaleoTimerInstanceToken;
+
+			array[2] = getByKITI_C_B_PrevAndNext(session,
+					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
+					blocking, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected KaleoTimerInstanceToken getByKITI_C_B_PrevAndNext(
+		Session session, KaleoTimerInstanceToken kaleoTimerInstanceToken,
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+		query.append(_FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2);
+
+		query.append(_FINDER_COLUMN_KITI_C_B_COMPLETED_2);
+
+		query.append(_FINDER_COLUMN_KITI_C_B_BLOCKING_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(kaleoInstanceTokenId);
+
+		qPos.add(completed);
+
+		qPos.add(blocking);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimerInstanceToken);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<KaleoTimerInstanceToken> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63; from the database.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByKITI_C_B(long kaleoInstanceTokenId, boolean completed,
+		boolean blocking) throws SystemException {
+		for (KaleoTimerInstanceToken kaleoTimerInstanceToken : findByKITI_C_B(
+				kaleoInstanceTokenId, completed, blocking)) {
+			remove(kaleoTimerInstanceToken);
+		}
+	}
+
+	/**
+	 * Returns the number of kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @return the number of matching kaleo timer instance tokens
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByKITI_C_B(long kaleoInstanceTokenId, boolean completed,
+		boolean blocking) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				kaleoInstanceTokenId, completed, blocking
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_C_B,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
+
+			query.append(_FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2);
+
+			query.append(_FINDER_COLUMN_KITI_C_B_COMPLETED_2);
+
+			query.append(_FINDER_COLUMN_KITI_C_B_BLOCKING_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(kaleoInstanceTokenId);
+
+				qPos.add(completed);
+
+				qPos.add(blocking);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KITI_C_B,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2 = "kaleoTimerInstanceToken.kaleoInstanceTokenId = ? AND ";
+	private static final String _FINDER_COLUMN_KITI_C_B_COMPLETED_2 = "kaleoTimerInstanceToken.completed = ? AND ";
+	private static final String _FINDER_COLUMN_KITI_C_B_BLOCKING_2 = "kaleoTimerInstanceToken.blocking = ?";
 
 	/**
 	 * Caches the kaleo timer instance token in the entity cache if it is enabled.
@@ -654,1418 +2379,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	}
 
 	/**
-	 * Returns all the kaleo timer instance tokens where kaleoInstanceId = &#63;.
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @return the matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKaleoInstanceId(
-		long kaleoInstanceId) throws SystemException {
-		return findByKaleoInstanceId(kaleoInstanceId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the kaleo timer instance tokens where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @param start the lower bound of the range of kaleo timer instance tokens
-	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
-	 * @return the range of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKaleoInstanceId(
-		long kaleoInstanceId, int start, int end) throws SystemException {
-		return findByKaleoInstanceId(kaleoInstanceId, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @param start the lower bound of the range of kaleo timer instance tokens
-	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKaleoInstanceId(
-		long kaleoInstanceId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOINSTANCEID;
-			finderArgs = new Object[] { kaleoInstanceId };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KALEOINSTANCEID;
-			finderArgs = new Object[] {
-					kaleoInstanceId,
-					
-					start, end, orderByComparator
-				};
-		}
-
-		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
-				if ((kaleoInstanceId != kaleoTimerInstanceToken.getKaleoInstanceId())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceId);
-
-				list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
-						getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken findByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_First(kaleoInstanceId,
-				orderByComparator);
-
-		if (kaleoTimerInstanceToken != null) {
-			return kaleoTimerInstanceToken;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("kaleoInstanceId=");
-		msg.append(kaleoInstanceId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchTimerInstanceTokenException(msg.toString());
-	}
-
-	/**
-	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKaleoInstanceId_First(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
-		throws SystemException {
-		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
-				0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken findByKaleoInstanceId_Last(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_Last(kaleoInstanceId,
-				orderByComparator);
-
-		if (kaleoTimerInstanceToken != null) {
-			return kaleoTimerInstanceToken;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("kaleoInstanceId=");
-		msg.append(kaleoInstanceId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchTimerInstanceTokenException(msg.toString());
-	}
-
-	/**
-	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKaleoInstanceId_Last(
-		long kaleoInstanceId, OrderByComparator orderByComparator)
-		throws SystemException {
-		int count = countByKaleoInstanceId(kaleoInstanceId);
-
-		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
-				count - 1, count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken[] findByKaleoInstanceId_PrevAndNext(
-		long kaleoTimerInstanceTokenId, long kaleoInstanceId,
-		OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			KaleoTimerInstanceToken[] array = new KaleoTimerInstanceTokenImpl[3];
-
-			array[0] = getByKaleoInstanceId_PrevAndNext(session,
-					kaleoTimerInstanceToken, kaleoInstanceId,
-					orderByComparator, true);
-
-			array[1] = kaleoTimerInstanceToken;
-
-			array[2] = getByKaleoInstanceId_PrevAndNext(session,
-					kaleoTimerInstanceToken, kaleoInstanceId,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected KaleoTimerInstanceToken getByKaleoInstanceId_PrevAndNext(
-		Session session, KaleoTimerInstanceToken kaleoTimerInstanceToken,
-		long kaleoInstanceId, OrderByComparator orderByComparator,
-		boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-		query.append(_FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(kaleoInstanceId);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimerInstanceToken);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<KaleoTimerInstanceToken> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException} if it could not be found.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param kaleoTimerId the kaleo timer ID
-	 * @return the matching kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken findByKITI_KTI(long kaleoInstanceTokenId,
-		long kaleoTimerId)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_KTI(kaleoInstanceTokenId,
-				kaleoTimerId);
-
-		if (kaleoTimerInstanceToken == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", kaleoTimerId=");
-			msg.append(kaleoTimerId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchTimerInstanceTokenException(msg.toString());
-		}
-
-		return kaleoTimerInstanceToken;
-	}
-
-	/**
-	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param kaleoTimerId the kaleo timer ID
-	 * @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKITI_KTI(long kaleoInstanceTokenId,
-		long kaleoTimerId) throws SystemException {
-		return fetchByKITI_KTI(kaleoInstanceTokenId, kaleoTimerId, true);
-	}
-
-	/**
-	 * Returns the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param kaleoTimerId the kaleo timer ID
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKITI_KTI(long kaleoInstanceTokenId,
-		long kaleoTimerId, boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoInstanceTokenId, kaleoTimerId };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KITI_KTI,
-					finderArgs, this);
-		}
-
-		if (result instanceof KaleoTimerInstanceToken) {
-			KaleoTimerInstanceToken kaleoTimerInstanceToken = (KaleoTimerInstanceToken)result;
-
-			if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
-					(kaleoTimerId != kaleoTimerInstanceToken.getKaleoTimerId())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_KTI_KALEOINSTANCETOKENID_2);
-
-			query.append(_FINDER_COLUMN_KITI_KTI_KALEOTIMERID_2);
-
-			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceTokenId);
-
-				qPos.add(kaleoTimerId);
-
-				List<KaleoTimerInstanceToken> list = q.list();
-
-				result = list;
-
-				KaleoTimerInstanceToken kaleoTimerInstanceToken = null;
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KITI_KTI,
-						finderArgs, list);
-				}
-				else {
-					kaleoTimerInstanceToken = list.get(0);
-
-					cacheResult(kaleoTimerInstanceToken);
-
-					if ((kaleoTimerInstanceToken.getKaleoInstanceTokenId() != kaleoInstanceTokenId) ||
-							(kaleoTimerInstanceToken.getKaleoTimerId() != kaleoTimerId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KITI_KTI,
-							finderArgs, kaleoTimerInstanceToken);
-					}
-				}
-
-				return kaleoTimerInstanceToken;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI,
-						finderArgs);
-				}
-
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List<?>) {
-				return null;
-			}
-			else {
-				return (KaleoTimerInstanceToken)result;
-			}
-		}
-	}
-
-	/**
-	 * Returns all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @return the matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKITI_C(
-		long kaleoInstanceTokenId, boolean completed) throws SystemException {
-		return findByKITI_C(kaleoInstanceTokenId, completed, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param start the lower bound of the range of kaleo timer instance tokens
-	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
-	 * @return the range of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKITI_C(
-		long kaleoInstanceTokenId, boolean completed, int start, int end)
-		throws SystemException {
-		return findByKITI_C(kaleoInstanceTokenId, completed, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param start the lower bound of the range of kaleo timer instance tokens
-	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKITI_C(
-		long kaleoInstanceTokenId, boolean completed, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KITI_C;
-			finderArgs = new Object[] { kaleoInstanceTokenId, completed };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KITI_C;
-			finderArgs = new Object[] {
-					kaleoInstanceTokenId, completed,
-					
-					start, end, orderByComparator
-				};
-		}
-
-		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
-				if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
-						(completed != kaleoTimerInstanceToken.getCompleted())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
-
-			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2);
-
-			query.append(_FINDER_COLUMN_KITI_C_COMPLETED_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceTokenId);
-
-				qPos.add(completed);
-
-				list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
-						getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken findByKITI_C_First(
-		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_First(kaleoInstanceTokenId,
-				completed, orderByComparator);
-
-		if (kaleoTimerInstanceToken != null) {
-			return kaleoTimerInstanceToken;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("kaleoInstanceTokenId=");
-		msg.append(kaleoInstanceTokenId);
-
-		msg.append(", completed=");
-		msg.append(completed);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchTimerInstanceTokenException(msg.toString());
-	}
-
-	/**
-	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKITI_C_First(
-		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
-				completed, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken findByKITI_C_Last(
-		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_Last(kaleoInstanceTokenId,
-				completed, orderByComparator);
-
-		if (kaleoTimerInstanceToken != null) {
-			return kaleoTimerInstanceToken;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("kaleoInstanceTokenId=");
-		msg.append(kaleoInstanceTokenId);
-
-		msg.append(", completed=");
-		msg.append(completed);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchTimerInstanceTokenException(msg.toString());
-	}
-
-	/**
-	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKITI_C_Last(
-		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByKITI_C(kaleoInstanceTokenId, completed);
-
-		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
-				completed, count - 1, count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken[] findByKITI_C_PrevAndNext(
-		long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
-		boolean completed, OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			KaleoTimerInstanceToken[] array = new KaleoTimerInstanceTokenImpl[3];
-
-			array[0] = getByKITI_C_PrevAndNext(session,
-					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
-					orderByComparator, true);
-
-			array[1] = kaleoTimerInstanceToken;
-
-			array[2] = getByKITI_C_PrevAndNext(session,
-					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected KaleoTimerInstanceToken getByKITI_C_PrevAndNext(Session session,
-		KaleoTimerInstanceToken kaleoTimerInstanceToken,
-		long kaleoInstanceTokenId, boolean completed,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-		query.append(_FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2);
-
-		query.append(_FINDER_COLUMN_KITI_C_COMPLETED_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(kaleoInstanceTokenId);
-
-		qPos.add(completed);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimerInstanceToken);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<KaleoTimerInstanceToken> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @return the matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKITI_C_B(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking)
-		throws SystemException {
-		return findByKITI_C_B(kaleoInstanceTokenId, completed, blocking,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @param start the lower bound of the range of kaleo timer instance tokens
-	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
-	 * @return the range of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKITI_C_B(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		int start, int end) throws SystemException {
-		return findByKITI_C_B(kaleoInstanceTokenId, completed, blocking, start,
-			end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @param start the lower bound of the range of kaleo timer instance tokens
-	 * @param end the upper bound of the range of kaleo timer instance tokens (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<KaleoTimerInstanceToken> findByKITI_C_B(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KITI_C_B;
-			finderArgs = new Object[] { kaleoInstanceTokenId, completed, blocking };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_KITI_C_B;
-			finderArgs = new Object[] {
-					kaleoInstanceTokenId, completed, blocking,
-					
-					start, end, orderByComparator
-				};
-		}
-
-		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
-				if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
-						(completed != kaleoTimerInstanceToken.getCompleted()) ||
-						(blocking != kaleoTimerInstanceToken.getBlocking())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2);
-
-			query.append(_FINDER_COLUMN_KITI_C_B_COMPLETED_2);
-
-			query.append(_FINDER_COLUMN_KITI_C_B_BLOCKING_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceTokenId);
-
-				qPos.add(completed);
-
-				qPos.add(blocking);
-
-				list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
-						getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken findByKITI_C_B_First(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_First(kaleoInstanceTokenId,
-				completed, blocking, orderByComparator);
-
-		if (kaleoTimerInstanceToken != null) {
-			return kaleoTimerInstanceToken;
-		}
-
-		StringBundler msg = new StringBundler(8);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("kaleoInstanceTokenId=");
-		msg.append(kaleoInstanceTokenId);
-
-		msg.append(", completed=");
-		msg.append(completed);
-
-		msg.append(", blocking=");
-		msg.append(blocking);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchTimerInstanceTokenException(msg.toString());
-	}
-
-	/**
-	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKITI_C_B_First(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
-				completed, blocking, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken findByKITI_C_B_Last(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_Last(kaleoInstanceTokenId,
-				completed, blocking, orderByComparator);
-
-		if (kaleoTimerInstanceToken != null) {
-			return kaleoTimerInstanceToken;
-		}
-
-		StringBundler msg = new StringBundler(8);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("kaleoInstanceTokenId=");
-		msg.append(kaleoInstanceTokenId);
-
-		msg.append(", completed=");
-		msg.append(completed);
-
-		msg.append(", blocking=");
-		msg.append(blocking);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchTimerInstanceTokenException(msg.toString());
-	}
-
-	/**
-	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByKITI_C_B_Last(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByKITI_C_B(kaleoInstanceTokenId, completed, blocking);
-
-		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
-				completed, blocking, count - 1, count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next kaleo timer instance token
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken[] findByKITI_C_B_PrevAndNext(
-		long kaleoTimerInstanceTokenId, long kaleoInstanceTokenId,
-		boolean completed, boolean blocking, OrderByComparator orderByComparator)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByPrimaryKey(kaleoTimerInstanceTokenId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			KaleoTimerInstanceToken[] array = new KaleoTimerInstanceTokenImpl[3];
-
-			array[0] = getByKITI_C_B_PrevAndNext(session,
-					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
-					blocking, orderByComparator, true);
-
-			array[1] = kaleoTimerInstanceToken;
-
-			array[2] = getByKITI_C_B_PrevAndNext(session,
-					kaleoTimerInstanceToken, kaleoInstanceTokenId, completed,
-					blocking, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected KaleoTimerInstanceToken getByKITI_C_B_PrevAndNext(
-		Session session, KaleoTimerInstanceToken kaleoTimerInstanceToken,
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-		query.append(_FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2);
-
-		query.append(_FINDER_COLUMN_KITI_C_B_COMPLETED_2);
-
-		query.append(_FINDER_COLUMN_KITI_C_B_BLOCKING_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(KaleoTimerInstanceTokenModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(kaleoInstanceTokenId);
-
-		qPos.add(completed);
-
-		qPos.add(blocking);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimerInstanceToken);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<KaleoTimerInstanceToken> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
 	 * Returns all the kaleo timer instance tokens.
 	 *
 	 * @return the kaleo timer instance tokens
@@ -2181,68 +2494,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	}
 
 	/**
-	 * Removes all the kaleo timer instance tokens where kaleoInstanceId = &#63; from the database.
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByKaleoInstanceId(long kaleoInstanceId)
-		throws SystemException {
-		for (KaleoTimerInstanceToken kaleoTimerInstanceToken : findByKaleoInstanceId(
-				kaleoInstanceId)) {
-			remove(kaleoTimerInstanceToken);
-		}
-	}
-
-	/**
-	 * Removes the kaleo timer instance token where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63; from the database.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param kaleoTimerId the kaleo timer ID
-	 * @return the kaleo timer instance token that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken removeByKITI_KTI(long kaleoInstanceTokenId,
-		long kaleoTimerId)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByKITI_KTI(kaleoInstanceTokenId,
-				kaleoTimerId);
-
-		return remove(kaleoTimerInstanceToken);
-	}
-
-	/**
-	 * Removes all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; from the database.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByKITI_C(long kaleoInstanceTokenId, boolean completed)
-		throws SystemException {
-		for (KaleoTimerInstanceToken kaleoTimerInstanceToken : findByKITI_C(
-				kaleoInstanceTokenId, completed)) {
-			remove(kaleoTimerInstanceToken);
-		}
-	}
-
-	/**
-	 * Removes all the kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63; from the database.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByKITI_C_B(long kaleoInstanceTokenId, boolean completed,
-		boolean blocking) throws SystemException {
-		for (KaleoTimerInstanceToken kaleoTimerInstanceToken : findByKITI_C_B(
-				kaleoInstanceTokenId, completed, blocking)) {
-			remove(kaleoTimerInstanceToken);
-		}
-	}
-
-	/**
 	 * Removes all the kaleo timer instance tokens from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -2251,244 +2502,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		for (KaleoTimerInstanceToken kaleoTimerInstanceToken : findAll()) {
 			remove(kaleoTimerInstanceToken);
 		}
-	}
-
-	/**
-	 * Returns the number of kaleo timer instance tokens where kaleoInstanceId = &#63;.
-	 *
-	 * @param kaleoInstanceId the kaleo instance ID
-	 * @return the number of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByKaleoInstanceId(long kaleoInstanceId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoInstanceId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and kaleoTimerId = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param kaleoTimerId the kaleo timer ID
-	 * @return the number of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByKITI_KTI(long kaleoInstanceTokenId, long kaleoTimerId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoInstanceTokenId, kaleoTimerId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_KTI,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_KTI_KALEOINSTANCETOKENID_2);
-
-			query.append(_FINDER_COLUMN_KITI_KTI_KALEOTIMERID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceTokenId);
-
-				qPos.add(kaleoTimerId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KITI_KTI,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @return the number of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByKITI_C(long kaleoInstanceTokenId, boolean completed)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoInstanceTokenId, completed };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_C,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2);
-
-			query.append(_FINDER_COLUMN_KITI_C_COMPLETED_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceTokenId);
-
-				qPos.add(completed);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KITI_C,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of kaleo timer instance tokens where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token ID
-	 * @param completed the completed
-	 * @param blocking the blocking
-	 * @return the number of matching kaleo timer instance tokens
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByKITI_C_B(long kaleoInstanceTokenId, boolean completed,
-		boolean blocking) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				kaleoInstanceTokenId, completed, blocking
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KITI_C_B,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE);
-
-			query.append(_FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2);
-
-			query.append(_FINDER_COLUMN_KITI_C_B_COMPLETED_2);
-
-			query.append(_FINDER_COLUMN_KITI_C_B_BLOCKING_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(kaleoInstanceTokenId);
-
-				qPos.add(completed);
-
-				qPos.add(blocking);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KITI_C_B,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
 	}
 
 	/**
@@ -2598,15 +2611,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	private static final String _SQL_SELECT_KALEOTIMERINSTANCETOKEN_WHERE = "SELECT kaleoTimerInstanceToken FROM KaleoTimerInstanceToken kaleoTimerInstanceToken WHERE ";
 	private static final String _SQL_COUNT_KALEOTIMERINSTANCETOKEN = "SELECT COUNT(kaleoTimerInstanceToken) FROM KaleoTimerInstanceToken kaleoTimerInstanceToken";
 	private static final String _SQL_COUNT_KALEOTIMERINSTANCETOKEN_WHERE = "SELECT COUNT(kaleoTimerInstanceToken) FROM KaleoTimerInstanceToken kaleoTimerInstanceToken WHERE ";
-	private static final String _FINDER_COLUMN_KALEOINSTANCEID_KALEOINSTANCEID_2 =
-		"kaleoTimerInstanceToken.kaleoInstanceId = ?";
-	private static final String _FINDER_COLUMN_KITI_KTI_KALEOINSTANCETOKENID_2 = "kaleoTimerInstanceToken.kaleoInstanceTokenId = ? AND ";
-	private static final String _FINDER_COLUMN_KITI_KTI_KALEOTIMERID_2 = "kaleoTimerInstanceToken.kaleoTimerId = ?";
-	private static final String _FINDER_COLUMN_KITI_C_KALEOINSTANCETOKENID_2 = "kaleoTimerInstanceToken.kaleoInstanceTokenId = ? AND ";
-	private static final String _FINDER_COLUMN_KITI_C_COMPLETED_2 = "kaleoTimerInstanceToken.completed = ?";
-	private static final String _FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2 = "kaleoTimerInstanceToken.kaleoInstanceTokenId = ? AND ";
-	private static final String _FINDER_COLUMN_KITI_C_B_COMPLETED_2 = "kaleoTimerInstanceToken.completed = ? AND ";
-	private static final String _FINDER_COLUMN_KITI_C_B_BLOCKING_2 = "kaleoTimerInstanceToken.blocking = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoTimerInstanceToken.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoTimerInstanceToken exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTimerInstanceToken exists with the key {";

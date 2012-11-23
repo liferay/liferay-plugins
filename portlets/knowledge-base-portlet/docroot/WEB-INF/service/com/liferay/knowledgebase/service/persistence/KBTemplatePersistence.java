@@ -38,70 +38,6 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	 */
 
 	/**
-	* Caches the k b template in the entity cache if it is enabled.
-	*
-	* @param kbTemplate the k b template
-	*/
-	public void cacheResult(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate);
-
-	/**
-	* Caches the k b templates in the entity cache if it is enabled.
-	*
-	* @param kbTemplates the k b templates
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.knowledgebase.model.KBTemplate> kbTemplates);
-
-	/**
-	* Creates a new k b template with the primary key. Does not add the k b template to the database.
-	*
-	* @param kbTemplateId the primary key for the new k b template
-	* @return the new k b template
-	*/
-	public com.liferay.knowledgebase.model.KBTemplate create(long kbTemplateId);
-
-	/**
-	* Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kbTemplateId the primary key of the k b template
-	* @return the k b template that was removed
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBTemplate remove(long kbTemplateId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.knowledgebase.model.KBTemplate updateImpl(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the k b template with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
-	*
-	* @param kbTemplateId the primary key of the k b template
-	* @return the k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBTemplate findByPrimaryKey(
-		long kbTemplateId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kbTemplateId the primary key of the k b template
-	* @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBTemplate fetchByPrimaryKey(
-		long kbTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the k b templates where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -221,6 +157,25 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b templates where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b templates where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching k b templates
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the k b template where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
 	*
 	* @param uuid the uuid
@@ -257,6 +212,30 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public com.liferay.knowledgebase.model.KBTemplate fetchByUUID_G(
 		java.lang.String uuid, long groupId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the k b template where uuid = &#63; and groupId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the k b template that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBTemplate removeByUUID_G(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.knowledgebase.NoSuchTemplateException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b templates where uuid = &#63; and groupId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the number of matching k b templates
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -385,6 +364,27 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b templates where uuid = &#63; and companyId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b templates where uuid = &#63; and companyId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @return the number of matching k b templates
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b templates where groupId = &#63;.
@@ -569,6 +569,99 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the k b templates where groupId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b templates where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @return the number of matching k b templates
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of k b templates that the user has permission to view where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @return the number of matching k b templates that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the k b template in the entity cache if it is enabled.
+	*
+	* @param kbTemplate the k b template
+	*/
+	public void cacheResult(
+		com.liferay.knowledgebase.model.KBTemplate kbTemplate);
+
+	/**
+	* Caches the k b templates in the entity cache if it is enabled.
+	*
+	* @param kbTemplates the k b templates
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.knowledgebase.model.KBTemplate> kbTemplates);
+
+	/**
+	* Creates a new k b template with the primary key. Does not add the k b template to the database.
+	*
+	* @param kbTemplateId the primary key for the new k b template
+	* @return the new k b template
+	*/
+	public com.liferay.knowledgebase.model.KBTemplate create(long kbTemplateId);
+
+	/**
+	* Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kbTemplateId the primary key of the k b template
+	* @return the k b template that was removed
+	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBTemplate remove(long kbTemplateId)
+		throws com.liferay.knowledgebase.NoSuchTemplateException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.knowledgebase.model.KBTemplate updateImpl(
+		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b template with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
+	*
+	* @param kbTemplateId the primary key of the k b template
+	* @return the k b template
+	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBTemplate findByPrimaryKey(
+		long kbTemplateId)
+		throws com.liferay.knowledgebase.NoSuchTemplateException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kbTemplateId the primary key of the k b template
+	* @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBTemplate fetchByPrimaryKey(
+		long kbTemplateId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the k b templates.
 	*
 	* @return the k b templates
@@ -612,104 +705,11 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the k b templates where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the k b template where uuid = &#63; and groupId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the k b template that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBTemplate removeByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b templates where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b templates where groupId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the k b templates from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b templates where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching k b templates
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b templates where uuid = &#63; and groupId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the number of matching k b templates
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b templates where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching k b templates
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b templates where groupId = &#63;.
-	*
-	* @param groupId the group ID
-	* @return the number of matching k b templates
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b templates that the user has permission to view where groupId = &#63;.
-	*
-	* @param groupId the group ID
-	* @return the number of matching k b templates that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByGroupId(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

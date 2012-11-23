@@ -111,86 +111,6 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	* Caches the kaleo notification in the entity cache if it is enabled.
-	*
-	* @param kaleoNotification the kaleo notification
-	*/
-	public static void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification) {
-		getPersistence().cacheResult(kaleoNotification);
-	}
-
-	/**
-	* Caches the kaleo notifications in the entity cache if it is enabled.
-	*
-	* @param kaleoNotifications the kaleo notifications
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> kaleoNotifications) {
-		getPersistence().cacheResult(kaleoNotifications);
-	}
-
-	/**
-	* Creates a new kaleo notification with the primary key. Does not add the kaleo notification to the database.
-	*
-	* @param kaleoNotificationId the primary key for the new kaleo notification
-	* @return the new kaleo notification
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification create(
-		long kaleoNotificationId) {
-		return getPersistence().create(kaleoNotificationId);
-	}
-
-	/**
-	* Removes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoNotificationId the primary key of the kaleo notification
-	* @return the kaleo notification that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification remove(
-		long kaleoNotificationId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
-		return getPersistence().remove(kaleoNotificationId);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoNotification);
-	}
-
-	/**
-	* Returns the kaleo notification with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchNotificationException} if it could not be found.
-	*
-	* @param kaleoNotificationId the primary key of the kaleo notification
-	* @return the kaleo notification
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification findByPrimaryKey(
-		long kaleoNotificationId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
-		return getPersistence().findByPrimaryKey(kaleoNotificationId);
-	}
-
-	/**
-	* Returns the kaleo notification with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoNotificationId the primary key of the kaleo notification
-	* @return the kaleo notification, or <code>null</code> if a kaleo notification with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification fetchByPrimaryKey(
-		long kaleoNotificationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(kaleoNotificationId);
-	}
-
-	/**
 	* Returns all the kaleo notifications where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -330,6 +250,29 @@ public class KaleoNotificationUtil {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoNotificationId, companyId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo notifications where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCompanyId(companyId);
+	}
+
+	/**
+	* Returns the number of kaleo notifications where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo notifications
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCompanyId(companyId);
 	}
 
 	/**
@@ -478,6 +421,29 @@ public class KaleoNotificationUtil {
 		return getPersistence()
 				   .findByKaleoDefinitionId_PrevAndNext(kaleoNotificationId,
 			kaleoDefinitionId, orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo notifications where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
+	* Returns the number of kaleo notifications where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo notifications
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
@@ -656,6 +622,118 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
+	* Removes all the kaleo notifications where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63; from the database.
+	*
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param executionType the execution type
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKCN_KCPK_ET(java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String executionType)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByKCN_KCPK_ET(kaleoClassName, kaleoClassPK, executionType);
+	}
+
+	/**
+	* Returns the number of kaleo notifications where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
+	*
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param executionType the execution type
+	* @return the number of matching kaleo notifications
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKCN_KCPK_ET(java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String executionType)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByKCN_KCPK_ET(kaleoClassName, kaleoClassPK,
+			executionType);
+	}
+
+	/**
+	* Caches the kaleo notification in the entity cache if it is enabled.
+	*
+	* @param kaleoNotification the kaleo notification
+	*/
+	public static void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification) {
+		getPersistence().cacheResult(kaleoNotification);
+	}
+
+	/**
+	* Caches the kaleo notifications in the entity cache if it is enabled.
+	*
+	* @param kaleoNotifications the kaleo notifications
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> kaleoNotifications) {
+		getPersistence().cacheResult(kaleoNotifications);
+	}
+
+	/**
+	* Creates a new kaleo notification with the primary key. Does not add the kaleo notification to the database.
+	*
+	* @param kaleoNotificationId the primary key for the new kaleo notification
+	* @return the new kaleo notification
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification create(
+		long kaleoNotificationId) {
+		return getPersistence().create(kaleoNotificationId);
+	}
+
+	/**
+	* Removes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNotificationId the primary key of the kaleo notification
+	* @return the kaleo notification that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification remove(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
+		return getPersistence().remove(kaleoNotificationId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(kaleoNotification);
+	}
+
+	/**
+	* Returns the kaleo notification with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchNotificationException} if it could not be found.
+	*
+	* @param kaleoNotificationId the primary key of the kaleo notification
+	* @return the kaleo notification
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification findByPrimaryKey(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationException {
+		return getPersistence().findByPrimaryKey(kaleoNotificationId);
+	}
+
+	/**
+	* Returns the kaleo notification with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoNotificationId the primary key of the kaleo notification
+	* @return the kaleo notification, or <code>null</code> if a kaleo notification with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification fetchByPrimaryKey(
+		long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(kaleoNotificationId);
+	}
+
+	/**
 	* Returns all the kaleo notifications.
 	*
 	* @return the kaleo notifications
@@ -705,43 +783,6 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	* Removes all the kaleo notifications where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCompanyId(companyId);
-	}
-
-	/**
-	* Removes all the kaleo notifications where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Removes all the kaleo notifications where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63; from the database.
-	*
-	* @param kaleoClassName the kaleo class name
-	* @param kaleoClassPK the kaleo class p k
-	* @param executionType the execution type
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKCN_KCPK_ET(java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String executionType)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence()
-			.removeByKCN_KCPK_ET(kaleoClassName, kaleoClassPK, executionType);
-	}
-
-	/**
 	* Removes all the kaleo notifications from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -749,47 +790,6 @@ public class KaleoNotificationUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of kaleo notifications where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo notifications
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCompanyId(companyId);
-	}
-
-	/**
-	* Returns the number of kaleo notifications where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo notifications
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Returns the number of kaleo notifications where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
-	*
-	* @param kaleoClassName the kaleo class name
-	* @param kaleoClassPK the kaleo class p k
-	* @param executionType the execution type
-	* @return the number of matching kaleo notifications
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKCN_KCPK_ET(java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String executionType)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByKCN_KCPK_ET(kaleoClassName, kaleoClassPK,
-			executionType);
 	}
 
 	/**

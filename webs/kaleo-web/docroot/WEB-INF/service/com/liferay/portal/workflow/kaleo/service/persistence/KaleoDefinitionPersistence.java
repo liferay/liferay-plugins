@@ -37,72 +37,6 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	 */
 
 	/**
-	* Caches the kaleo definition in the entity cache if it is enabled.
-	*
-	* @param kaleoDefinition the kaleo definition
-	*/
-	public void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition);
-
-	/**
-	* Caches the kaleo definitions in the entity cache if it is enabled.
-	*
-	* @param kaleoDefinitions the kaleo definitions
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> kaleoDefinitions);
-
-	/**
-	* Creates a new kaleo definition with the primary key. Does not add the kaleo definition to the database.
-	*
-	* @param kaleoDefinitionId the primary key for the new kaleo definition
-	* @return the new kaleo definition
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition create(
-		long kaleoDefinitionId);
-
-	/**
-	* Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoDefinitionId the primary key of the kaleo definition
-	* @return the kaleo definition that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition remove(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the kaleo definition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchDefinitionException} if it could not be found.
-	*
-	* @param kaleoDefinitionId the primary key of the kaleo definition
-	* @return the kaleo definition
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByPrimaryKey(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
-
-	/**
-	* Returns the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoDefinitionId the primary key of the kaleo definition
-	* @return the kaleo definition, or <code>null</code> if a kaleo definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByPrimaryKey(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the kaleo definitions where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -220,6 +154,25 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	/**
+	* Removes all the kaleo definitions where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo definitions where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo definitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the kaleo definitions where companyId = &#63; and name = &#63;.
@@ -349,6 +302,27 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
+	* Removes all the kaleo definitions where companyId = &#63; and name = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByC_N(long companyId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo definitions where companyId = &#63; and name = &#63;.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @return the number of matching kaleo definitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_N(long companyId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo definitions where companyId = &#63; and active = &#63;.
 	*
 	* @param companyId the company ID
@@ -476,6 +450,27 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
+	* Removes all the kaleo definitions where companyId = &#63; and active = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param active the active
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByC_A(long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo definitions where companyId = &#63; and active = &#63;.
+	*
+	* @param companyId the company ID
+	* @param active the active
+	* @return the number of matching kaleo definitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_A(long companyId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchDefinitionException} if it could not be found.
 	*
 	* @param companyId the company ID
@@ -516,6 +511,32 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByC_N_V(
 		long companyId, java.lang.String name, int version,
 		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @param version the version
+	* @return the kaleo definition that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition removeByC_N_V(
+		long companyId, java.lang.String name, int version)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	/**
+	* Returns the number of kaleo definitions where companyId = &#63; and name = &#63; and version = &#63;.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @param version the version
+	* @return the number of matching kaleo definitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_N_V(long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -656,6 +677,97 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 
 	/**
+	* Removes all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByC_N_A(long companyId, java.lang.String name,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
+	* @return the number of matching kaleo definitions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_N_A(long companyId, java.lang.String name,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the kaleo definition in the entity cache if it is enabled.
+	*
+	* @param kaleoDefinition the kaleo definition
+	*/
+	public void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition);
+
+	/**
+	* Caches the kaleo definitions in the entity cache if it is enabled.
+	*
+	* @param kaleoDefinitions the kaleo definitions
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> kaleoDefinitions);
+
+	/**
+	* Creates a new kaleo definition with the primary key. Does not add the kaleo definition to the database.
+	*
+	* @param kaleoDefinitionId the primary key for the new kaleo definition
+	* @return the new kaleo definition
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition create(
+		long kaleoDefinitionId);
+
+	/**
+	* Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDefinitionId the primary key of the kaleo definition
+	* @return the kaleo definition that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition remove(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo definition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchDefinitionException} if it could not be found.
+	*
+	* @param kaleoDefinitionId the primary key of the kaleo definition
+	* @return the kaleo definition
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition findByPrimaryKey(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+
+	/**
+	* Returns the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoDefinitionId the primary key of the kaleo definition
+	* @return the kaleo definition, or <code>null</code> if a kaleo definition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByPrimaryKey(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo definitions.
 	*
 	* @return the kaleo definitions
@@ -699,123 +811,11 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the kaleo definitions where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo definitions where companyId = &#63; and name = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param name the name
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByC_N(long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo definitions where companyId = &#63; and active = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param active the active
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByC_A(long companyId, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the kaleo definition where companyId = &#63; and name = &#63; and version = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param name the name
-	* @param version the version
-	* @return the kaleo definition that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition removeByC_N_V(
-		long companyId, java.lang.String name, int version)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
-
-	/**
-	* Removes all the kaleo definitions where companyId = &#63; and name = &#63; and active = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param name the name
-	* @param active the active
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByC_N_A(long companyId, java.lang.String name,
-		boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the kaleo definitions from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo definitions where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo definitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo definitions where companyId = &#63; and name = &#63;.
-	*
-	* @param companyId the company ID
-	* @param name the name
-	* @return the number of matching kaleo definitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_N(long companyId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo definitions where companyId = &#63; and active = &#63;.
-	*
-	* @param companyId the company ID
-	* @param active the active
-	* @return the number of matching kaleo definitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_A(long companyId, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo definitions where companyId = &#63; and name = &#63; and version = &#63;.
-	*
-	* @param companyId the company ID
-	* @param name the name
-	* @param version the version
-	* @return the number of matching kaleo definitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_N_V(long companyId, java.lang.String name, int version)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo definitions where companyId = &#63; and name = &#63; and active = &#63;.
-	*
-	* @param companyId the company ID
-	* @param name the name
-	* @param active the active
-	* @return the number of matching kaleo definitions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_N_A(long companyId, java.lang.String name,
-		boolean active)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

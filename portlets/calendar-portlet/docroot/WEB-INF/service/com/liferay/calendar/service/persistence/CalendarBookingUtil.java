@@ -111,86 +111,6 @@ public class CalendarBookingUtil {
 	}
 
 	/**
-	* Caches the calendar booking in the entity cache if it is enabled.
-	*
-	* @param calendarBooking the calendar booking
-	*/
-	public static void cacheResult(
-		com.liferay.calendar.model.CalendarBooking calendarBooking) {
-		getPersistence().cacheResult(calendarBooking);
-	}
-
-	/**
-	* Caches the calendar bookings in the entity cache if it is enabled.
-	*
-	* @param calendarBookings the calendar bookings
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.calendar.model.CalendarBooking> calendarBookings) {
-		getPersistence().cacheResult(calendarBookings);
-	}
-
-	/**
-	* Creates a new calendar booking with the primary key. Does not add the calendar booking to the database.
-	*
-	* @param calendarBookingId the primary key for the new calendar booking
-	* @return the new calendar booking
-	*/
-	public static com.liferay.calendar.model.CalendarBooking create(
-		long calendarBookingId) {
-		return getPersistence().create(calendarBookingId);
-	}
-
-	/**
-	* Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarBookingId the primary key of the calendar booking
-	* @return the calendar booking that was removed
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking remove(
-		long calendarBookingId)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(calendarBookingId);
-	}
-
-	public static com.liferay.calendar.model.CalendarBooking updateImpl(
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(calendarBooking);
-	}
-
-	/**
-	* Returns the calendar booking with the primary key or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
-	*
-	* @param calendarBookingId the primary key of the calendar booking
-	* @return the calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByPrimaryKey(
-		long calendarBookingId)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(calendarBookingId);
-	}
-
-	/**
-	* Returns the calendar booking with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param calendarBookingId the primary key of the calendar booking
-	* @return the calendar booking, or <code>null</code> if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking fetchByPrimaryKey(
-		long calendarBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(calendarBookingId);
-	}
-
-	/**
 	* Returns all the calendar bookings where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -328,6 +248,29 @@ public class CalendarBookingUtil {
 	}
 
 	/**
+	* Removes all the calendar bookings where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUuid(uuid);
+	}
+
+	/**
+	* Returns the number of calendar bookings where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUuid(uuid);
+	}
+
+	/**
 	* Returns the calendar booking where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
 	*
 	* @param uuid the uuid
@@ -370,6 +313,34 @@ public class CalendarBookingUtil {
 		java.lang.String uuid, long groupId, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the calendar booking where uuid = &#63; and groupId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the calendar booking that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking removeByUUID_G(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByUUID_G(uuid, groupId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where uuid = &#63; and groupId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUUID_G(java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -523,6 +494,31 @@ public class CalendarBookingUtil {
 	}
 
 	/**
+	* Removes all the calendar bookings where uuid = &#63; and companyId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUuid_C(uuid, companyId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where uuid = &#63; and companyId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUuid_C(uuid, companyId);
+	}
+
+	/**
 	* Returns all the calendar bookings where calendarId = &#63;.
 	*
 	* @param calendarId the calendar ID
@@ -662,6 +658,29 @@ public class CalendarBookingUtil {
 		return getPersistence()
 				   .findByCalendarId_PrevAndNext(calendarBookingId, calendarId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the calendar bookings where calendarId = &#63; from the database.
+	*
+	* @param calendarId the calendar ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCalendarId(long calendarId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCalendarId(calendarId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarId = &#63;.
+	*
+	* @param calendarId the calendar ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCalendarId(long calendarId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCalendarId(calendarId);
 	}
 
 	/**
@@ -810,6 +829,29 @@ public class CalendarBookingUtil {
 		return getPersistence()
 				   .findByCalendarResourceId_PrevAndNext(calendarBookingId,
 			calendarResourceId, orderByComparator);
+	}
+
+	/**
+	* Removes all the calendar bookings where calendarResourceId = &#63; from the database.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCalendarResourceId(long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCalendarResourceId(calendarResourceId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarResourceId = &#63;.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCalendarResourceId(long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCalendarResourceId(calendarResourceId);
 	}
 
 	/**
@@ -963,6 +1005,32 @@ public class CalendarBookingUtil {
 	}
 
 	/**
+	* Removes all the calendar bookings where parentCalendarBookingId = &#63; from the database.
+	*
+	* @param parentCalendarBookingId the parent calendar booking ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByParentCalendarBookingId(
+		long parentCalendarBookingId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByParentCalendarBookingId(parentCalendarBookingId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where parentCalendarBookingId = &#63;.
+	*
+	* @param parentCalendarBookingId the parent calendar booking ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByParentCalendarBookingId(
+		long parentCalendarBookingId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByParentCalendarBookingId(parentCalendarBookingId);
+	}
+
+	/**
 	* Returns the calendar booking where calendarId = &#63; and parentCalendarBookingId = &#63; or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
 	*
 	* @param calendarId the calendar ID
@@ -1007,6 +1075,34 @@ public class CalendarBookingUtil {
 		return getPersistence()
 				   .fetchByC_P(calendarId, parentCalendarBookingId,
 			retrieveFromCache);
+	}
+
+	/**
+	* Removes the calendar booking where calendarId = &#63; and parentCalendarBookingId = &#63; from the database.
+	*
+	* @param calendarId the calendar ID
+	* @param parentCalendarBookingId the parent calendar booking ID
+	* @return the calendar booking that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking removeByC_P(
+		long calendarId, long parentCalendarBookingId)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByC_P(calendarId, parentCalendarBookingId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarId = &#63; and parentCalendarBookingId = &#63;.
+	*
+	* @param calendarId the calendar ID
+	* @param parentCalendarBookingId the parent calendar booking ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_P(long calendarId, long parentCalendarBookingId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_P(calendarId, parentCalendarBookingId);
 	}
 
 	/**
@@ -1164,6 +1260,31 @@ public class CalendarBookingUtil {
 	}
 
 	/**
+	* Removes all the calendar bookings where calendarResourceId = &#63; and status = &#63; from the database.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByC_S(long calendarResourceId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByC_S(calendarResourceId, status);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarResourceId = &#63; and status = &#63;.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @param status the status
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_S(long calendarResourceId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_S(calendarResourceId, status);
+	}
+
+	/**
 	* Returns all the calendar bookings where parentCalendarBookingId = &#63; and status = &#63;.
 	*
 	* @param parentCalendarBookingId the parent calendar booking ID
@@ -1317,6 +1438,31 @@ public class CalendarBookingUtil {
 		return getPersistence()
 				   .findByP_S_PrevAndNext(calendarBookingId,
 			parentCalendarBookingId, status, orderByComparator);
+	}
+
+	/**
+	* Removes all the calendar bookings where parentCalendarBookingId = &#63; and status = &#63; from the database.
+	*
+	* @param parentCalendarBookingId the parent calendar booking ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByP_S(long parentCalendarBookingId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByP_S(parentCalendarBookingId, status);
+	}
+
+	/**
+	* Returns the number of calendar bookings where parentCalendarBookingId = &#63; and status = &#63;.
+	*
+	* @param parentCalendarBookingId the parent calendar booking ID
+	* @param status the status
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByP_S(long parentCalendarBookingId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByP_S(parentCalendarBookingId, status);
 	}
 
 	/**
@@ -1484,6 +1630,114 @@ public class CalendarBookingUtil {
 	}
 
 	/**
+	* Removes all the calendar bookings where calendarId = &#63; and startDate = &#63; and endDate = &#63; from the database.
+	*
+	* @param calendarId the calendar ID
+	* @param startDate the start date
+	* @param endDate the end date
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByC_S_E(long calendarId, long startDate,
+		long endDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByC_S_E(calendarId, startDate, endDate);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarId = &#63; and startDate = &#63; and endDate = &#63;.
+	*
+	* @param calendarId the calendar ID
+	* @param startDate the start date
+	* @param endDate the end date
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_S_E(long calendarId, long startDate, long endDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_S_E(calendarId, startDate, endDate);
+	}
+
+	/**
+	* Caches the calendar booking in the entity cache if it is enabled.
+	*
+	* @param calendarBooking the calendar booking
+	*/
+	public static void cacheResult(
+		com.liferay.calendar.model.CalendarBooking calendarBooking) {
+		getPersistence().cacheResult(calendarBooking);
+	}
+
+	/**
+	* Caches the calendar bookings in the entity cache if it is enabled.
+	*
+	* @param calendarBookings the calendar bookings
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.calendar.model.CalendarBooking> calendarBookings) {
+		getPersistence().cacheResult(calendarBookings);
+	}
+
+	/**
+	* Creates a new calendar booking with the primary key. Does not add the calendar booking to the database.
+	*
+	* @param calendarBookingId the primary key for the new calendar booking
+	* @return the new calendar booking
+	*/
+	public static com.liferay.calendar.model.CalendarBooking create(
+		long calendarBookingId) {
+		return getPersistence().create(calendarBookingId);
+	}
+
+	/**
+	* Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarBookingId the primary key of the calendar booking
+	* @return the calendar booking that was removed
+	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking remove(
+		long calendarBookingId)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(calendarBookingId);
+	}
+
+	public static com.liferay.calendar.model.CalendarBooking updateImpl(
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(calendarBooking);
+	}
+
+	/**
+	* Returns the calendar booking with the primary key or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
+	*
+	* @param calendarBookingId the primary key of the calendar booking
+	* @return the calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking findByPrimaryKey(
+		long calendarBookingId)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(calendarBookingId);
+	}
+
+	/**
+	* Returns the calendar booking with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param calendarBookingId the primary key of the calendar booking
+	* @return the calendar booking, or <code>null</code> if a calendar booking with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking fetchByPrimaryKey(
+		long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(calendarBookingId);
+	}
+
+	/**
 	* Returns all the calendar bookings.
 	*
 	* @return the calendar bookings
@@ -1533,131 +1787,6 @@ public class CalendarBookingUtil {
 	}
 
 	/**
-	* Removes all the calendar bookings where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUuid(uuid);
-	}
-
-	/**
-	* Removes the calendar booking where uuid = &#63; and groupId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the calendar booking that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking removeByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByUUID_G(uuid, groupId);
-	}
-
-	/**
-	* Removes all the calendar bookings where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUuid_C(uuid, companyId);
-	}
-
-	/**
-	* Removes all the calendar bookings where calendarId = &#63; from the database.
-	*
-	* @param calendarId the calendar ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCalendarId(long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCalendarId(calendarId);
-	}
-
-	/**
-	* Removes all the calendar bookings where calendarResourceId = &#63; from the database.
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCalendarResourceId(long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCalendarResourceId(calendarResourceId);
-	}
-
-	/**
-	* Removes all the calendar bookings where parentCalendarBookingId = &#63; from the database.
-	*
-	* @param parentCalendarBookingId the parent calendar booking ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByParentCalendarBookingId(
-		long parentCalendarBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByParentCalendarBookingId(parentCalendarBookingId);
-	}
-
-	/**
-	* Removes the calendar booking where calendarId = &#63; and parentCalendarBookingId = &#63; from the database.
-	*
-	* @param calendarId the calendar ID
-	* @param parentCalendarBookingId the parent calendar booking ID
-	* @return the calendar booking that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking removeByC_P(
-		long calendarId, long parentCalendarBookingId)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByC_P(calendarId, parentCalendarBookingId);
-	}
-
-	/**
-	* Removes all the calendar bookings where calendarResourceId = &#63; and status = &#63; from the database.
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByC_S(long calendarResourceId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByC_S(calendarResourceId, status);
-	}
-
-	/**
-	* Removes all the calendar bookings where parentCalendarBookingId = &#63; and status = &#63; from the database.
-	*
-	* @param parentCalendarBookingId the parent calendar booking ID
-	* @param status the status
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByP_S(long parentCalendarBookingId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByP_S(parentCalendarBookingId, status);
-	}
-
-	/**
-	* Removes all the calendar bookings where calendarId = &#63; and startDate = &#63; and endDate = &#63; from the database.
-	*
-	* @param calendarId the calendar ID
-	* @param startDate the start date
-	* @param endDate the end date
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByC_S_E(long calendarId, long startDate,
-		long endDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByC_S_E(calendarId, startDate, endDate);
-	}
-
-	/**
 	* Removes all the calendar bookings from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -1665,135 +1794,6 @@ public class CalendarBookingUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of calendar bookings where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUuid(uuid);
-	}
-
-	/**
-	* Returns the number of calendar bookings where uuid = &#63; and groupId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUUID_G(uuid, groupId);
-	}
-
-	/**
-	* Returns the number of calendar bookings where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUuid_C(uuid, companyId);
-	}
-
-	/**
-	* Returns the number of calendar bookings where calendarId = &#63;.
-	*
-	* @param calendarId the calendar ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCalendarId(long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCalendarId(calendarId);
-	}
-
-	/**
-	* Returns the number of calendar bookings where calendarResourceId = &#63;.
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCalendarResourceId(long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCalendarResourceId(calendarResourceId);
-	}
-
-	/**
-	* Returns the number of calendar bookings where parentCalendarBookingId = &#63;.
-	*
-	* @param parentCalendarBookingId the parent calendar booking ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByParentCalendarBookingId(
-		long parentCalendarBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByParentCalendarBookingId(parentCalendarBookingId);
-	}
-
-	/**
-	* Returns the number of calendar bookings where calendarId = &#63; and parentCalendarBookingId = &#63;.
-	*
-	* @param calendarId the calendar ID
-	* @param parentCalendarBookingId the parent calendar booking ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByC_P(long calendarId, long parentCalendarBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_P(calendarId, parentCalendarBookingId);
-	}
-
-	/**
-	* Returns the number of calendar bookings where calendarResourceId = &#63; and status = &#63;.
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @param status the status
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByC_S(long calendarResourceId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_S(calendarResourceId, status);
-	}
-
-	/**
-	* Returns the number of calendar bookings where parentCalendarBookingId = &#63; and status = &#63;.
-	*
-	* @param parentCalendarBookingId the parent calendar booking ID
-	* @param status the status
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByP_S(long parentCalendarBookingId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByP_S(parentCalendarBookingId, status);
-	}
-
-	/**
-	* Returns the number of calendar bookings where calendarId = &#63; and startDate = &#63; and endDate = &#63;.
-	*
-	* @param calendarId the calendar ID
-	* @param startDate the start date
-	* @param endDate the end date
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByC_S_E(long calendarId, long startDate, long endDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_S_E(calendarId, startDate, endDate);
 	}
 
 	/**

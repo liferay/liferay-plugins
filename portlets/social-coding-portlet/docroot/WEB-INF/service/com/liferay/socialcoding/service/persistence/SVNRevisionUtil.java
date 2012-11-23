@@ -111,86 +111,6 @@ public class SVNRevisionUtil {
 	}
 
 	/**
-	* Caches the s v n revision in the entity cache if it is enabled.
-	*
-	* @param svnRevision the s v n revision
-	*/
-	public static void cacheResult(
-		com.liferay.socialcoding.model.SVNRevision svnRevision) {
-		getPersistence().cacheResult(svnRevision);
-	}
-
-	/**
-	* Caches the s v n revisions in the entity cache if it is enabled.
-	*
-	* @param svnRevisions the s v n revisions
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.socialcoding.model.SVNRevision> svnRevisions) {
-		getPersistence().cacheResult(svnRevisions);
-	}
-
-	/**
-	* Creates a new s v n revision with the primary key. Does not add the s v n revision to the database.
-	*
-	* @param svnRevisionId the primary key for the new s v n revision
-	* @return the new s v n revision
-	*/
-	public static com.liferay.socialcoding.model.SVNRevision create(
-		long svnRevisionId) {
-		return getPersistence().create(svnRevisionId);
-	}
-
-	/**
-	* Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param svnRevisionId the primary key of the s v n revision
-	* @return the s v n revision that was removed
-	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialcoding.model.SVNRevision remove(
-		long svnRevisionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRevisionException {
-		return getPersistence().remove(svnRevisionId);
-	}
-
-	public static com.liferay.socialcoding.model.SVNRevision updateImpl(
-		com.liferay.socialcoding.model.SVNRevision svnRevision)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(svnRevision);
-	}
-
-	/**
-	* Returns the s v n revision with the primary key or throws a {@link com.liferay.socialcoding.NoSuchSVNRevisionException} if it could not be found.
-	*
-	* @param svnRevisionId the primary key of the s v n revision
-	* @return the s v n revision
-	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialcoding.model.SVNRevision findByPrimaryKey(
-		long svnRevisionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRevisionException {
-		return getPersistence().findByPrimaryKey(svnRevisionId);
-	}
-
-	/**
-	* Returns the s v n revision with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param svnRevisionId the primary key of the s v n revision
-	* @return the s v n revision, or <code>null</code> if a s v n revision with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.socialcoding.model.SVNRevision fetchByPrimaryKey(
-		long svnRevisionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(svnRevisionId);
-	}
-
-	/**
 	* Returns all the s v n revisions where svnUserId = &#63;.
 	*
 	* @param svnUserId the svn user ID
@@ -330,6 +250,29 @@ public class SVNRevisionUtil {
 		return getPersistence()
 				   .findBySVNUserId_PrevAndNext(svnRevisionId, svnUserId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the s v n revisions where svnUserId = &#63; from the database.
+	*
+	* @param svnUserId the svn user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeBySVNUserId(java.lang.String svnUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeBySVNUserId(svnUserId);
+	}
+
+	/**
+	* Returns the number of s v n revisions where svnUserId = &#63;.
+	*
+	* @param svnUserId the svn user ID
+	* @return the number of matching s v n revisions
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countBySVNUserId(java.lang.String svnUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countBySVNUserId(svnUserId);
 	}
 
 	/**
@@ -478,6 +421,29 @@ public class SVNRevisionUtil {
 		return getPersistence()
 				   .findBySVNRepositoryId_PrevAndNext(svnRevisionId,
 			svnRepositoryId, orderByComparator);
+	}
+
+	/**
+	* Removes all the s v n revisions where svnRepositoryId = &#63; from the database.
+	*
+	* @param svnRepositoryId the svn repository ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeBySVNRepositoryId(long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeBySVNRepositoryId(svnRepositoryId);
+	}
+
+	/**
+	* Returns the number of s v n revisions where svnRepositoryId = &#63;.
+	*
+	* @param svnRepositoryId the svn repository ID
+	* @return the number of matching s v n revisions
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countBySVNRepositoryId(long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countBySVNRepositoryId(svnRepositoryId);
 	}
 
 	/**
@@ -637,6 +603,113 @@ public class SVNRevisionUtil {
 	}
 
 	/**
+	* Removes all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63; from the database.
+	*
+	* @param svnUserId the svn user ID
+	* @param svnRepositoryId the svn repository ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeBySVNU_SVNR(java.lang.String svnUserId,
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeBySVNU_SVNR(svnUserId, svnRepositoryId);
+	}
+
+	/**
+	* Returns the number of s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63;.
+	*
+	* @param svnUserId the svn user ID
+	* @param svnRepositoryId the svn repository ID
+	* @return the number of matching s v n revisions
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countBySVNU_SVNR(java.lang.String svnUserId,
+		long svnRepositoryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countBySVNU_SVNR(svnUserId, svnRepositoryId);
+	}
+
+	/**
+	* Caches the s v n revision in the entity cache if it is enabled.
+	*
+	* @param svnRevision the s v n revision
+	*/
+	public static void cacheResult(
+		com.liferay.socialcoding.model.SVNRevision svnRevision) {
+		getPersistence().cacheResult(svnRevision);
+	}
+
+	/**
+	* Caches the s v n revisions in the entity cache if it is enabled.
+	*
+	* @param svnRevisions the s v n revisions
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.socialcoding.model.SVNRevision> svnRevisions) {
+		getPersistence().cacheResult(svnRevisions);
+	}
+
+	/**
+	* Creates a new s v n revision with the primary key. Does not add the s v n revision to the database.
+	*
+	* @param svnRevisionId the primary key for the new s v n revision
+	* @return the new s v n revision
+	*/
+	public static com.liferay.socialcoding.model.SVNRevision create(
+		long svnRevisionId) {
+		return getPersistence().create(svnRevisionId);
+	}
+
+	/**
+	* Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param svnRevisionId the primary key of the s v n revision
+	* @return the s v n revision that was removed
+	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.SVNRevision remove(
+		long svnRevisionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialcoding.NoSuchSVNRevisionException {
+		return getPersistence().remove(svnRevisionId);
+	}
+
+	public static com.liferay.socialcoding.model.SVNRevision updateImpl(
+		com.liferay.socialcoding.model.SVNRevision svnRevision)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(svnRevision);
+	}
+
+	/**
+	* Returns the s v n revision with the primary key or throws a {@link com.liferay.socialcoding.NoSuchSVNRevisionException} if it could not be found.
+	*
+	* @param svnRevisionId the primary key of the s v n revision
+	* @return the s v n revision
+	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.SVNRevision findByPrimaryKey(
+		long svnRevisionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.socialcoding.NoSuchSVNRevisionException {
+		return getPersistence().findByPrimaryKey(svnRevisionId);
+	}
+
+	/**
+	* Returns the s v n revision with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param svnRevisionId the primary key of the s v n revision
+	* @return the s v n revision, or <code>null</code> if a s v n revision with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.SVNRevision fetchByPrimaryKey(
+		long svnRevisionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(svnRevisionId);
+	}
+
+	/**
 	* Returns all the s v n revisions.
 	*
 	* @return the s v n revisions
@@ -686,41 +759,6 @@ public class SVNRevisionUtil {
 	}
 
 	/**
-	* Removes all the s v n revisions where svnUserId = &#63; from the database.
-	*
-	* @param svnUserId the svn user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeBySVNUserId(java.lang.String svnUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeBySVNUserId(svnUserId);
-	}
-
-	/**
-	* Removes all the s v n revisions where svnRepositoryId = &#63; from the database.
-	*
-	* @param svnRepositoryId the svn repository ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeBySVNRepositoryId(long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeBySVNRepositoryId(svnRepositoryId);
-	}
-
-	/**
-	* Removes all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63; from the database.
-	*
-	* @param svnUserId the svn user ID
-	* @param svnRepositoryId the svn repository ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeBySVNU_SVNR(java.lang.String svnUserId,
-		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeBySVNU_SVNR(svnUserId, svnRepositoryId);
-	}
-
-	/**
 	* Removes all the s v n revisions from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -728,44 +766,6 @@ public class SVNRevisionUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of s v n revisions where svnUserId = &#63;.
-	*
-	* @param svnUserId the svn user ID
-	* @return the number of matching s v n revisions
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countBySVNUserId(java.lang.String svnUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countBySVNUserId(svnUserId);
-	}
-
-	/**
-	* Returns the number of s v n revisions where svnRepositoryId = &#63;.
-	*
-	* @param svnRepositoryId the svn repository ID
-	* @return the number of matching s v n revisions
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countBySVNRepositoryId(long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countBySVNRepositoryId(svnRepositoryId);
-	}
-
-	/**
-	* Returns the number of s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63;.
-	*
-	* @param svnUserId the svn user ID
-	* @param svnRepositoryId the svn repository ID
-	* @return the number of matching s v n revisions
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countBySVNU_SVNR(java.lang.String svnUserId,
-		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countBySVNU_SVNR(svnUserId, svnRepositoryId);
 	}
 
 	/**

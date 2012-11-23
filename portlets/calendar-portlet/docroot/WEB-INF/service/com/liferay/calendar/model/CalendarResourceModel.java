@@ -21,6 +21,7 @@ import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -45,7 +46,7 @@ import java.util.Map;
  * @generated
  */
 public interface CalendarResourceModel extends AttachedModel,
-	BaseModel<CalendarResource>, GroupedModel {
+	BaseModel<CalendarResource>, GroupedModel, StagedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

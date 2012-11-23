@@ -76,6 +76,15 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
+			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_ACCOUNTID =
 		new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
@@ -96,6 +105,451 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByAccountId",
 			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns all the folders where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @return the matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Folder> findByAccountId(long accountId)
+		throws SystemException {
+		return findByAccountId(accountId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Returns a range of all the folders where accountId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accountId the account ID
+	 * @param start the lower bound of the range of folders
+	 * @param end the upper bound of the range of folders (not inclusive)
+	 * @return the range of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Folder> findByAccountId(long accountId, int start, int end)
+		throws SystemException {
+		return findByAccountId(accountId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the folders where accountId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accountId the account ID
+	 * @param start the lower bound of the range of folders
+	 * @param end the upper bound of the range of folders (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Folder> findByAccountId(long accountId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID;
+			finderArgs = new Object[] { accountId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ACCOUNTID;
+			finderArgs = new Object[] { accountId, start, end, orderByComparator };
+		}
+
+		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Folder folder : list) {
+				if ((accountId != folder.getAccountId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(FolderModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				list = (List<Folder>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first folder in the ordered set where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder findByAccountId_First(long accountId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = fetchByAccountId_First(accountId, orderByComparator);
+
+		if (folder != null) {
+			return folder;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("accountId=");
+		msg.append(accountId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFolderException(msg.toString());
+	}
+
+	/**
+	 * Returns the first folder in the ordered set where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder fetchByAccountId_First(long accountId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Folder> list = findByAccountId(accountId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last folder in the ordered set where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder findByAccountId_Last(long accountId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = fetchByAccountId_Last(accountId, orderByComparator);
+
+		if (folder != null) {
+			return folder;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("accountId=");
+		msg.append(accountId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFolderException(msg.toString());
+	}
+
+	/**
+	 * Returns the last folder in the ordered set where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder fetchByAccountId_Last(long accountId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByAccountId(accountId);
+
+		List<Folder> list = findByAccountId(accountId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the folders before and after the current folder in the ordered set where accountId = &#63;.
+	 *
+	 * @param folderId the primary key of the current folder
+	 * @param accountId the account ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder[] findByAccountId_PrevAndNext(long folderId, long accountId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = findByPrimaryKey(folderId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Folder[] array = new FolderImpl[3];
+
+			array[0] = getByAccountId_PrevAndNext(session, folder, accountId,
+					orderByComparator, true);
+
+			array[1] = folder;
+
+			array[2] = getByAccountId_PrevAndNext(session, folder, accountId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Folder getByAccountId_PrevAndNext(Session session, Folder folder,
+		long accountId, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FOLDER_WHERE);
+
+		query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(FolderModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(accountId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(folder);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Folder> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the folders where accountId = &#63; from the database.
+	 *
+	 * @param accountId the account ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByAccountId(long accountId) throws SystemException {
+		for (Folder folder : findByAccountId(accountId)) {
+			remove(folder);
+		}
+	}
+
+	/**
+	 * Returns the number of folders where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @return the number of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByAccountId(long accountId) throws SystemException {
+		Object[] finderArgs = new Object[] { accountId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2 = "folder.accountId = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_A_F = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByA_F",
@@ -106,15 +560,260 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_F",
 			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, FolderImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+
+	/**
+	 * Returns the folder where accountId = &#63; and fullName = &#63; or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
+	 *
+	 * @param accountId the account ID
+	 * @param fullName the full name
+	 * @return the matching folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder findByA_F(long accountId, String fullName)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = fetchByA_F(accountId, fullName);
+
+		if (folder == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("accountId=");
+			msg.append(accountId);
+
+			msg.append(", fullName=");
+			msg.append(fullName);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchFolderException(msg.toString());
+		}
+
+		return folder;
+	}
+
+	/**
+	 * Returns the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param accountId the account ID
+	 * @param fullName the full name
+	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder fetchByA_F(long accountId, String fullName)
+		throws SystemException {
+		return fetchByA_F(accountId, fullName, true);
+	}
+
+	/**
+	 * Returns the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param accountId the account ID
+	 * @param fullName the full name
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder fetchByA_F(long accountId, String fullName,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { accountId, fullName };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_F,
+					finderArgs, this);
+		}
+
+		if (result instanceof Folder) {
+			Folder folder = (Folder)result;
+
+			if ((accountId != folder.getAccountId()) ||
+					!Validator.equals(fullName, folder.getFullName())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
+
+			if (fullName == null) {
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
+			}
+			else {
+				if (fullName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
+				}
+			}
+
+			query.append(FolderModelImpl.ORDER_BY_JPQL);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				if (fullName != null) {
+					qPos.add(fullName);
+				}
+
+				List<Folder> list = q.list();
+
+				result = list;
+
+				Folder folder = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
+						finderArgs, list);
+				}
+				else {
+					folder = list.get(0);
+
+					cacheResult(folder);
+
+					if ((folder.getAccountId() != accountId) ||
+							(folder.getFullName() == null) ||
+							!folder.getFullName().equals(fullName)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
+							finderArgs, folder);
+					}
+				}
+
+				return folder;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
+						finderArgs);
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (Folder)result;
+			}
+		}
+	}
+
+	/**
+	 * Removes the folder where accountId = &#63; and fullName = &#63; from the database.
+	 *
+	 * @param accountId the account ID
+	 * @param fullName the full name
+	 * @return the folder that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder removeByA_F(long accountId, String fullName)
+		throws NoSuchFolderException, SystemException {
+		Folder folder = findByA_F(accountId, fullName);
+
+		return remove(folder);
+	}
+
+	/**
+	 * Returns the number of folders where accountId = &#63; and fullName = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @param fullName the full name
+	 * @return the number of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByA_F(long accountId, String fullName)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { accountId, fullName };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_F,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
+
+			if (fullName == null) {
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
+			}
+			else {
+				if (fullName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(accountId);
+
+				if (fullName != null) {
+					qPos.add(fullName);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_F, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_A_F_ACCOUNTID_2 = "folder.accountId = ? AND ";
+	private static final String _FINDER_COLUMN_A_F_FULLNAME_1 = "folder.fullName IS NULL";
+	private static final String _FINDER_COLUMN_A_F_FULLNAME_2 = "folder.fullName = ?";
+	private static final String _FINDER_COLUMN_A_F_FULLNAME_3 = "(folder.fullName IS NULL OR folder.fullName = ?)";
 
 	/**
 	 * Caches the folder in the entity cache if it is enabled.
@@ -529,547 +1228,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	}
 
 	/**
-	 * Returns all the folders where accountId = &#63;.
-	 *
-	 * @param accountId the account ID
-	 * @return the matching folders
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Folder> findByAccountId(long accountId)
-		throws SystemException {
-		return findByAccountId(accountId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
-	}
-
-	/**
-	 * Returns a range of all the folders where accountId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param accountId the account ID
-	 * @param start the lower bound of the range of folders
-	 * @param end the upper bound of the range of folders (not inclusive)
-	 * @return the range of matching folders
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Folder> findByAccountId(long accountId, int start, int end)
-		throws SystemException {
-		return findByAccountId(accountId, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the folders where accountId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param accountId the account ID
-	 * @param start the lower bound of the range of folders
-	 * @param end the upper bound of the range of folders (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching folders
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Folder> findByAccountId(long accountId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID;
-			finderArgs = new Object[] { accountId };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ACCOUNTID;
-			finderArgs = new Object[] { accountId, start, end, orderByComparator };
-		}
-
-		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Folder folder : list) {
-				if ((accountId != folder.getAccountId())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_FOLDER_WHERE);
-
-			query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(FolderModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(accountId);
-
-				list = (List<Folder>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first folder in the ordered set where accountId = &#63;.
-	 *
-	 * @param accountId the account ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching folder
-	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder findByAccountId_First(long accountId,
-		OrderByComparator orderByComparator)
-		throws NoSuchFolderException, SystemException {
-		Folder folder = fetchByAccountId_First(accountId, orderByComparator);
-
-		if (folder != null) {
-			return folder;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("accountId=");
-		msg.append(accountId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchFolderException(msg.toString());
-	}
-
-	/**
-	 * Returns the first folder in the ordered set where accountId = &#63;.
-	 *
-	 * @param accountId the account ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching folder, or <code>null</code> if a matching folder could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder fetchByAccountId_First(long accountId,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Folder> list = findByAccountId(accountId, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last folder in the ordered set where accountId = &#63;.
-	 *
-	 * @param accountId the account ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching folder
-	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder findByAccountId_Last(long accountId,
-		OrderByComparator orderByComparator)
-		throws NoSuchFolderException, SystemException {
-		Folder folder = fetchByAccountId_Last(accountId, orderByComparator);
-
-		if (folder != null) {
-			return folder;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("accountId=");
-		msg.append(accountId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchFolderException(msg.toString());
-	}
-
-	/**
-	 * Returns the last folder in the ordered set where accountId = &#63;.
-	 *
-	 * @param accountId the account ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching folder, or <code>null</code> if a matching folder could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder fetchByAccountId_Last(long accountId,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByAccountId(accountId);
-
-		List<Folder> list = findByAccountId(accountId, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the folders before and after the current folder in the ordered set where accountId = &#63;.
-	 *
-	 * @param folderId the primary key of the current folder
-	 * @param accountId the account ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next folder
-	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder[] findByAccountId_PrevAndNext(long folderId, long accountId,
-		OrderByComparator orderByComparator)
-		throws NoSuchFolderException, SystemException {
-		Folder folder = findByPrimaryKey(folderId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Folder[] array = new FolderImpl[3];
-
-			array[0] = getByAccountId_PrevAndNext(session, folder, accountId,
-					orderByComparator, true);
-
-			array[1] = folder;
-
-			array[2] = getByAccountId_PrevAndNext(session, folder, accountId,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Folder getByAccountId_PrevAndNext(Session session, Folder folder,
-		long accountId, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_FOLDER_WHERE);
-
-		query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(FolderModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(accountId);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(folder);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Folder> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns the folder where accountId = &#63; and fullName = &#63; or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
-	 *
-	 * @param accountId the account ID
-	 * @param fullName the full name
-	 * @return the matching folder
-	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder findByA_F(long accountId, String fullName)
-		throws NoSuchFolderException, SystemException {
-		Folder folder = fetchByA_F(accountId, fullName);
-
-		if (folder == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("accountId=");
-			msg.append(accountId);
-
-			msg.append(", fullName=");
-			msg.append(fullName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchFolderException(msg.toString());
-		}
-
-		return folder;
-	}
-
-	/**
-	 * Returns the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param accountId the account ID
-	 * @param fullName the full name
-	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder fetchByA_F(long accountId, String fullName)
-		throws SystemException {
-		return fetchByA_F(accountId, fullName, true);
-	}
-
-	/**
-	 * Returns the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param accountId the account ID
-	 * @param fullName the full name
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder fetchByA_F(long accountId, String fullName,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { accountId, fullName };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_F,
-					finderArgs, this);
-		}
-
-		if (result instanceof Folder) {
-			Folder folder = (Folder)result;
-
-			if ((accountId != folder.getAccountId()) ||
-					!Validator.equals(fullName, folder.getFullName())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_SELECT_FOLDER_WHERE);
-
-			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
-
-			if (fullName == null) {
-				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
-			}
-			else {
-				if (fullName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
-				}
-			}
-
-			query.append(FolderModelImpl.ORDER_BY_JPQL);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(accountId);
-
-				if (fullName != null) {
-					qPos.add(fullName);
-				}
-
-				List<Folder> list = q.list();
-
-				result = list;
-
-				Folder folder = null;
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
-						finderArgs, list);
-				}
-				else {
-					folder = list.get(0);
-
-					cacheResult(folder);
-
-					if ((folder.getAccountId() != accountId) ||
-							(folder.getFullName() == null) ||
-							!folder.getFullName().equals(fullName)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
-							finderArgs, folder);
-					}
-				}
-
-				return folder;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
-						finderArgs);
-				}
-
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List<?>) {
-				return null;
-			}
-			else {
-				return (Folder)result;
-			}
-		}
-	}
-
-	/**
 	 * Returns all the folders.
 	 *
 	 * @return the folders
@@ -1184,33 +1342,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	}
 
 	/**
-	 * Removes all the folders where accountId = &#63; from the database.
-	 *
-	 * @param accountId the account ID
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByAccountId(long accountId) throws SystemException {
-		for (Folder folder : findByAccountId(accountId)) {
-			remove(folder);
-		}
-	}
-
-	/**
-	 * Removes the folder where accountId = &#63; and fullName = &#63; from the database.
-	 *
-	 * @param accountId the account ID
-	 * @param fullName the full name
-	 * @return the folder that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder removeByA_F(long accountId, String fullName)
-		throws NoSuchFolderException, SystemException {
-		Folder folder = findByA_F(accountId, fullName);
-
-		return remove(folder);
-	}
-
-	/**
 	 * Removes all the folders from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -1219,130 +1350,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		for (Folder folder : findAll()) {
 			remove(folder);
 		}
-	}
-
-	/**
-	 * Returns the number of folders where accountId = &#63;.
-	 *
-	 * @param accountId the account ID
-	 * @return the number of matching folders
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByAccountId(long accountId) throws SystemException {
-		Object[] finderArgs = new Object[] { accountId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_FOLDER_WHERE);
-
-			query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(accountId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of folders where accountId = &#63; and fullName = &#63;.
-	 *
-	 * @param accountId the account ID
-	 * @param fullName the full name
-	 * @return the number of matching folders
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByA_F(long accountId, String fullName)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { accountId, fullName };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_F,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_FOLDER_WHERE);
-
-			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
-
-			if (fullName == null) {
-				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
-			}
-			else {
-				if (fullName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
-				}
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(accountId);
-
-				if (fullName != null) {
-					qPos.add(fullName);
-				}
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_F, finderArgs,
-					count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
 	}
 
 	/**
@@ -1428,11 +1435,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	private static final String _SQL_SELECT_FOLDER_WHERE = "SELECT folder FROM Folder folder WHERE ";
 	private static final String _SQL_COUNT_FOLDER = "SELECT COUNT(folder) FROM Folder folder";
 	private static final String _SQL_COUNT_FOLDER_WHERE = "SELECT COUNT(folder) FROM Folder folder WHERE ";
-	private static final String _FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2 = "folder.accountId = ?";
-	private static final String _FINDER_COLUMN_A_F_ACCOUNTID_2 = "folder.accountId = ? AND ";
-	private static final String _FINDER_COLUMN_A_F_FULLNAME_1 = "folder.fullName IS NULL";
-	private static final String _FINDER_COLUMN_A_F_FULLNAME_2 = "folder.fullName = ?";
-	private static final String _FINDER_COLUMN_A_F_FULLNAME_3 = "(folder.fullName IS NULL OR folder.fullName = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "folder.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Folder exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Folder exists with the key {";

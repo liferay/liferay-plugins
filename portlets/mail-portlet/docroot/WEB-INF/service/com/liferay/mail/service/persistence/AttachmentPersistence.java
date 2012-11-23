@@ -38,68 +38,6 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	 */
 
 	/**
-	* Caches the attachment in the entity cache if it is enabled.
-	*
-	* @param attachment the attachment
-	*/
-	public void cacheResult(com.liferay.mail.model.Attachment attachment);
-
-	/**
-	* Caches the attachments in the entity cache if it is enabled.
-	*
-	* @param attachments the attachments
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.mail.model.Attachment> attachments);
-
-	/**
-	* Creates a new attachment with the primary key. Does not add the attachment to the database.
-	*
-	* @param attachmentId the primary key for the new attachment
-	* @return the new attachment
-	*/
-	public com.liferay.mail.model.Attachment create(long attachmentId);
-
-	/**
-	* Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param attachmentId the primary key of the attachment
-	* @return the attachment that was removed
-	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.mail.model.Attachment remove(long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.mail.model.Attachment updateImpl(
-		com.liferay.mail.model.Attachment attachment)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the attachment with the primary key or throws a {@link com.liferay.mail.NoSuchAttachmentException} if it could not be found.
-	*
-	* @param attachmentId the primary key of the attachment
-	* @return the attachment
-	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.mail.model.Attachment findByPrimaryKey(long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the attachment with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param attachmentId the primary key of the attachment
-	* @return the attachment, or <code>null</code> if a attachment with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.mail.model.Attachment fetchByPrimaryKey(
-		long attachmentId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the attachments where messageId = &#63;.
 	*
 	* @param messageId the message ID
@@ -219,6 +157,87 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the attachments where messageId = &#63; from the database.
+	*
+	* @param messageId the message ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByMessageId(long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of attachments where messageId = &#63;.
+	*
+	* @param messageId the message ID
+	* @return the number of matching attachments
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByMessageId(long messageId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the attachment in the entity cache if it is enabled.
+	*
+	* @param attachment the attachment
+	*/
+	public void cacheResult(com.liferay.mail.model.Attachment attachment);
+
+	/**
+	* Caches the attachments in the entity cache if it is enabled.
+	*
+	* @param attachments the attachments
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.mail.model.Attachment> attachments);
+
+	/**
+	* Creates a new attachment with the primary key. Does not add the attachment to the database.
+	*
+	* @param attachmentId the primary key for the new attachment
+	* @return the new attachment
+	*/
+	public com.liferay.mail.model.Attachment create(long attachmentId);
+
+	/**
+	* Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param attachmentId the primary key of the attachment
+	* @return the attachment that was removed
+	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.mail.model.Attachment remove(long attachmentId)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.mail.model.Attachment updateImpl(
+		com.liferay.mail.model.Attachment attachment)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the attachment with the primary key or throws a {@link com.liferay.mail.NoSuchAttachmentException} if it could not be found.
+	*
+	* @param attachmentId the primary key of the attachment
+	* @return the attachment
+	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.mail.model.Attachment findByPrimaryKey(long attachmentId)
+		throws com.liferay.mail.NoSuchAttachmentException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the attachment with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param attachmentId the primary key of the attachment
+	* @return the attachment, or <code>null</code> if a attachment with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.mail.model.Attachment fetchByPrimaryKey(
+		long attachmentId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the attachments.
 	*
 	* @return the attachments
@@ -262,30 +281,11 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the attachments where messageId = &#63; from the database.
-	*
-	* @param messageId the message ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByMessageId(long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the attachments from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of attachments where messageId = &#63;.
-	*
-	* @param messageId the message ID
-	* @return the number of matching attachments
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByMessageId(long messageId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

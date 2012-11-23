@@ -77,6 +77,15 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
+			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
+			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
+			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
@@ -95,6 +104,478 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
+
+	/**
+	 * Returns all the modules where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByUuid(String uuid) throws SystemException {
+		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the modules where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of modules
+	 * @param end the upper bound of the range of modules (not inclusive)
+	 * @return the range of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByUuid(String uuid, int start, int end)
+		throws SystemException {
+		return findByUuid(uuid, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the modules where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of modules
+	 * @param end the upper bound of the range of modules (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByUuid(String uuid, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
+			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+		}
+
+		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!Validator.equals(uuid, module.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_MODULE_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_UUID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				list = (List<Module>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first module in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module findByUuid_First(String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByUuid_First(uuid, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first module in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByUuid_First(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Module> list = findByUuid(uuid, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last module in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module findByUuid_Last(String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByUuid_Last(uuid, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last module in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByUuid_Last(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByUuid(uuid);
+
+		List<Module> list = findByUuid(uuid, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the modules before and after the current module in the ordered set where uuid = &#63;.
+	 *
+	 * @param moduleId the primary key of the current module
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module[] findByUuid_PrevAndNext(long moduleId, String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = findByPrimaryKey(moduleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Module[] array = new ModuleImpl[3];
+
+			array[0] = getByUuid_PrevAndNext(session, module, uuid,
+					orderByComparator, true);
+
+			array[1] = module;
+
+			array[2] = getByUuid_PrevAndNext(session, module, uuid,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Module getByUuid_PrevAndNext(Session session, Module module,
+		String uuid, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MODULE_WHERE);
+
+		if (uuid == null) {
+			query.append(_FINDER_COLUMN_UUID_UUID_1);
+		}
+		else {
+			if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (uuid != null) {
+			qPos.add(uuid);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(module);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Module> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the modules where uuid = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByUuid(String uuid) throws SystemException {
+		for (Module module : findByUuid(uuid)) {
+			remove(module);
+		}
+	}
+
+	/**
+	 * Returns the number of modules where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the number of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByUuid(String uuid) throws SystemException {
+		Object[] finderArgs = new Object[] { uuid };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_MODULE_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_UUID_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_UUID_UUID_1 = "module.uuid IS NULL";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 = "module.uuid = ?";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(module.uuid IS NULL OR module.uuid = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_APPID = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByAppId",
@@ -113,6 +594,441 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByAppId",
 			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns all the modules where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @return the matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByAppId(long appId) throws SystemException {
+		return findByAppId(appId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the modules where appId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param appId the app ID
+	 * @param start the lower bound of the range of modules
+	 * @param end the upper bound of the range of modules (not inclusive)
+	 * @return the range of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByAppId(long appId, int start, int end)
+		throws SystemException {
+		return findByAppId(appId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the modules where appId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param appId the app ID
+	 * @param start the lower bound of the range of modules
+	 * @param end the upper bound of the range of modules (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByAppId(long appId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_APPID;
+			finderArgs = new Object[] { appId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_APPID;
+			finderArgs = new Object[] { appId, start, end, orderByComparator };
+		}
+
+		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if ((appId != module.getAppId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_MODULE_WHERE);
+
+			query.append(_FINDER_COLUMN_APPID_APPID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(appId);
+
+				list = (List<Module>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first module in the ordered set where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module findByAppId_First(long appId,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByAppId_First(appId, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("appId=");
+		msg.append(appId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first module in the ordered set where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByAppId_First(long appId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Module> list = findByAppId(appId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last module in the ordered set where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module findByAppId_Last(long appId,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByAppId_Last(appId, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("appId=");
+		msg.append(appId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last module in the ordered set where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByAppId_Last(long appId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByAppId(appId);
+
+		List<Module> list = findByAppId(appId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the modules before and after the current module in the ordered set where appId = &#63;.
+	 *
+	 * @param moduleId the primary key of the current module
+	 * @param appId the app ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module[] findByAppId_PrevAndNext(long moduleId, long appId,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = findByPrimaryKey(moduleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Module[] array = new ModuleImpl[3];
+
+			array[0] = getByAppId_PrevAndNext(session, module, appId,
+					orderByComparator, true);
+
+			array[1] = module;
+
+			array[2] = getByAppId_PrevAndNext(session, module, appId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Module getByAppId_PrevAndNext(Session session, Module module,
+		long appId, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MODULE_WHERE);
+
+		query.append(_FINDER_COLUMN_APPID_APPID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(appId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(module);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Module> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the modules where appId = &#63; from the database.
+	 *
+	 * @param appId the app ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByAppId(long appId) throws SystemException {
+		for (Module module : findByAppId(appId)) {
+			remove(module);
+		}
+	}
+
+	/**
+	 * Returns the number of modules where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @return the number of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByAppId(long appId) throws SystemException {
+		Object[] finderArgs = new Object[] { appId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_APPID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_MODULE_WHERE);
+
+			query.append(_FINDER_COLUMN_APPID_APPID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(appId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_APPID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_APPID_APPID_2 = "module.appId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CONTEXTNAME =
 		new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
@@ -133,6 +1049,484 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByContextName",
 			new String[] { String.class.getName() });
+
+	/**
+	 * Returns all the modules where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @return the matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByContextName(String contextName)
+		throws SystemException {
+		return findByContextName(contextName, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the modules where contextName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param contextName the context name
+	 * @param start the lower bound of the range of modules
+	 * @param end the upper bound of the range of modules (not inclusive)
+	 * @return the range of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByContextName(String contextName, int start, int end)
+		throws SystemException {
+		return findByContextName(contextName, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the modules where contextName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param contextName the context name
+	 * @param start the lower bound of the range of modules
+	 * @param end the upper bound of the range of modules (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Module> findByContextName(String contextName, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CONTEXTNAME;
+			finderArgs = new Object[] { contextName };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CONTEXTNAME;
+			finderArgs = new Object[] { contextName, start, end, orderByComparator };
+		}
+
+		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!Validator.equals(contextName, module.getContextName())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_MODULE_WHERE);
+
+			if (contextName == null) {
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
+			}
+			else {
+				if (contextName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (contextName != null) {
+					qPos.add(contextName);
+				}
+
+				list = (List<Module>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first module in the ordered set where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module findByContextName_First(String contextName,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByContextName_First(contextName, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("contextName=");
+		msg.append(contextName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first module in the ordered set where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByContextName_First(String contextName,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Module> list = findByContextName(contextName, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last module in the ordered set where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module findByContextName_Last(String contextName,
+		OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByContextName_Last(contextName, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("contextName=");
+		msg.append(contextName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last module in the ordered set where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByContextName_Last(String contextName,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByContextName(contextName);
+
+		List<Module> list = findByContextName(contextName, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the modules before and after the current module in the ordered set where contextName = &#63;.
+	 *
+	 * @param moduleId the primary key of the current module
+	 * @param contextName the context name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module[] findByContextName_PrevAndNext(long moduleId,
+		String contextName, OrderByComparator orderByComparator)
+		throws NoSuchModuleException, SystemException {
+		Module module = findByPrimaryKey(moduleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Module[] array = new ModuleImpl[3];
+
+			array[0] = getByContextName_PrevAndNext(session, module,
+					contextName, orderByComparator, true);
+
+			array[1] = module;
+
+			array[2] = getByContextName_PrevAndNext(session, module,
+					contextName, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Module getByContextName_PrevAndNext(Session session,
+		Module module, String contextName, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MODULE_WHERE);
+
+		if (contextName == null) {
+			query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
+		}
+		else {
+			if (contextName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (contextName != null) {
+			qPos.add(contextName);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(module);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Module> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the modules where contextName = &#63; from the database.
+	 *
+	 * @param contextName the context name
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByContextName(String contextName)
+		throws SystemException {
+		for (Module module : findByContextName(contextName)) {
+			remove(module);
+		}
+	}
+
+	/**
+	 * Returns the number of modules where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @return the number of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByContextName(String contextName) throws SystemException {
+		Object[] finderArgs = new Object[] { contextName };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_CONTEXTNAME,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_MODULE_WHERE);
+
+			if (contextName == null) {
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
+			}
+			else {
+				if (contextName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (contextName != null) {
+					qPos.add(contextName);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CONTEXTNAME,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1 = "module.contextName IS NULL";
+	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2 = "module.contextName = ?";
+	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = ?)";
 	public static final FinderPath FINDER_PATH_FETCH_BY_A_C = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByA_C",
@@ -143,15 +1537,258 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_C",
 			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-			ModuleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+
+	/**
+	 * Returns the module where appId = &#63; and contextName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	 *
+	 * @param appId the app ID
+	 * @param contextName the context name
+	 * @return the matching module
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module findByA_C(long appId, String contextName)
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByA_C(appId, contextName);
+
+		if (module == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("appId=");
+			msg.append(appId);
+
+			msg.append(", contextName=");
+			msg.append(contextName);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchModuleException(msg.toString());
+		}
+
+		return module;
+	}
+
+	/**
+	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param appId the app ID
+	 * @param contextName the context name
+	 * @return the matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByA_C(long appId, String contextName)
+		throws SystemException {
+		return fetchByA_C(appId, contextName, true);
+	}
+
+	/**
+	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param appId the app ID
+	 * @param contextName the context name
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByA_C(long appId, String contextName,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { appId, contextName };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_C,
+					finderArgs, this);
+		}
+
+		if (result instanceof Module) {
+			Module module = (Module)result;
+
+			if ((appId != module.getAppId()) ||
+					!Validator.equals(contextName, module.getContextName())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_MODULE_WHERE);
+
+			query.append(_FINDER_COLUMN_A_C_APPID_2);
+
+			if (contextName == null) {
+				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_1);
+			}
+			else {
+				if (contextName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(appId);
+
+				if (contextName != null) {
+					qPos.add(contextName);
+				}
+
+				List<Module> list = q.list();
+
+				result = list;
+
+				Module module = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_C,
+						finderArgs, list);
+				}
+				else {
+					module = list.get(0);
+
+					cacheResult(module);
+
+					if ((module.getAppId() != appId) ||
+							(module.getContextName() == null) ||
+							!module.getContextName().equals(contextName)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_C,
+							finderArgs, module);
+					}
+				}
+
+				return module;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_C,
+						finderArgs);
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (Module)result;
+			}
+		}
+	}
+
+	/**
+	 * Removes the module where appId = &#63; and contextName = &#63; from the database.
+	 *
+	 * @param appId the app ID
+	 * @param contextName the context name
+	 * @return the module that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module removeByA_C(long appId, String contextName)
+		throws NoSuchModuleException, SystemException {
+		Module module = findByA_C(appId, contextName);
+
+		return remove(module);
+	}
+
+	/**
+	 * Returns the number of modules where appId = &#63; and contextName = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param contextName the context name
+	 * @return the number of matching modules
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByA_C(long appId, String contextName)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { appId, contextName };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_C,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_MODULE_WHERE);
+
+			query.append(_FINDER_COLUMN_A_C_APPID_2);
+
+			if (contextName == null) {
+				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_1);
+			}
+			else {
+				if (contextName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(appId);
+
+				if (contextName != null) {
+					qPos.add(contextName);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_C, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_A_C_APPID_2 = "module.appId = ? AND ";
+	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_1 = "module.contextName IS NULL";
+	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_2 = "module.contextName = ?";
+	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = ?)";
 
 	/**
 	 * Caches the module in the entity cache if it is enabled.
@@ -602,1322 +2239,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	}
 
 	/**
-	 * Returns all the modules where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @return the matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByUuid(String uuid) throws SystemException {
-		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the modules where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param uuid the uuid
-	 * @param start the lower bound of the range of modules
-	 * @param end the upper bound of the range of modules (not inclusive)
-	 * @return the range of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByUuid(String uuid, int start, int end)
-		throws SystemException {
-		return findByUuid(uuid, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the modules where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param uuid the uuid
-	 * @param start the lower bound of the range of modules
-	 * @param end the upper bound of the range of modules (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
-			finderArgs = new Object[] { uuid };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
-			finderArgs = new Object[] { uuid, start, end, orderByComparator };
-		}
-
-		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Module module : list) {
-				if (!Validator.equals(uuid, module.getUuid())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_MODULE_WHERE);
-
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_UUID_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				list = (List<Module>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first module in the ordered set where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module findByUuid_First(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = fetchByUuid_First(uuid, orderByComparator);
-
-		if (module != null) {
-			return module;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("uuid=");
-		msg.append(uuid);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchModuleException(msg.toString());
-	}
-
-	/**
-	 * Returns the first module in the ordered set where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Module> list = findByUuid(uuid, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last module in the ordered set where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = fetchByUuid_Last(uuid, orderByComparator);
-
-		if (module != null) {
-			return module;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("uuid=");
-		msg.append(uuid);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchModuleException(msg.toString());
-	}
-
-	/**
-	 * Returns the last module in the ordered set where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByUuid(uuid);
-
-		List<Module> list = findByUuid(uuid, count - 1, count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the modules before and after the current module in the ordered set where uuid = &#63;.
-	 *
-	 * @param moduleId the primary key of the current module
-	 * @param uuid the uuid
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module[] findByUuid_PrevAndNext(long moduleId, String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = findByPrimaryKey(moduleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Module[] array = new ModuleImpl[3];
-
-			array[0] = getByUuid_PrevAndNext(session, module, uuid,
-					orderByComparator, true);
-
-			array[1] = module;
-
-			array[2] = getByUuid_PrevAndNext(session, module, uuid,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Module getByUuid_PrevAndNext(Session session, Module module,
-		String uuid, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_MODULE_WHERE);
-
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_UUID_2);
-			}
-		}
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		if (uuid != null) {
-			qPos.add(uuid);
-		}
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(module);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Module> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns all the modules where appId = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @return the matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByAppId(long appId) throws SystemException {
-		return findByAppId(appId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the modules where appId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param appId the app ID
-	 * @param start the lower bound of the range of modules
-	 * @param end the upper bound of the range of modules (not inclusive)
-	 * @return the range of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByAppId(long appId, int start, int end)
-		throws SystemException {
-		return findByAppId(appId, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the modules where appId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param appId the app ID
-	 * @param start the lower bound of the range of modules
-	 * @param end the upper bound of the range of modules (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByAppId(long appId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_APPID;
-			finderArgs = new Object[] { appId };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_APPID;
-			finderArgs = new Object[] { appId, start, end, orderByComparator };
-		}
-
-		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Module module : list) {
-				if ((appId != module.getAppId())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_MODULE_WHERE);
-
-			query.append(_FINDER_COLUMN_APPID_APPID_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(appId);
-
-				list = (List<Module>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first module in the ordered set where appId = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module findByAppId_First(long appId,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = fetchByAppId_First(appId, orderByComparator);
-
-		if (module != null) {
-			return module;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("appId=");
-		msg.append(appId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchModuleException(msg.toString());
-	}
-
-	/**
-	 * Returns the first module in the ordered set where appId = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByAppId_First(long appId,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Module> list = findByAppId(appId, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last module in the ordered set where appId = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module findByAppId_Last(long appId,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = fetchByAppId_Last(appId, orderByComparator);
-
-		if (module != null) {
-			return module;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("appId=");
-		msg.append(appId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchModuleException(msg.toString());
-	}
-
-	/**
-	 * Returns the last module in the ordered set where appId = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByAppId_Last(long appId,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByAppId(appId);
-
-		List<Module> list = findByAppId(appId, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the modules before and after the current module in the ordered set where appId = &#63;.
-	 *
-	 * @param moduleId the primary key of the current module
-	 * @param appId the app ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module[] findByAppId_PrevAndNext(long moduleId, long appId,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = findByPrimaryKey(moduleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Module[] array = new ModuleImpl[3];
-
-			array[0] = getByAppId_PrevAndNext(session, module, appId,
-					orderByComparator, true);
-
-			array[1] = module;
-
-			array[2] = getByAppId_PrevAndNext(session, module, appId,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Module getByAppId_PrevAndNext(Session session, Module module,
-		long appId, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_MODULE_WHERE);
-
-		query.append(_FINDER_COLUMN_APPID_APPID_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(appId);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(module);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Module> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns all the modules where contextName = &#63;.
-	 *
-	 * @param contextName the context name
-	 * @return the matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByContextName(String contextName)
-		throws SystemException {
-		return findByContextName(contextName, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the modules where contextName = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param contextName the context name
-	 * @param start the lower bound of the range of modules
-	 * @param end the upper bound of the range of modules (not inclusive)
-	 * @return the range of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByContextName(String contextName, int start, int end)
-		throws SystemException {
-		return findByContextName(contextName, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the modules where contextName = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param contextName the context name
-	 * @param start the lower bound of the range of modules
-	 * @param end the upper bound of the range of modules (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Module> findByContextName(String contextName, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CONTEXTNAME;
-			finderArgs = new Object[] { contextName };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CONTEXTNAME;
-			finderArgs = new Object[] { contextName, start, end, orderByComparator };
-		}
-
-		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Module module : list) {
-				if (!Validator.equals(contextName, module.getContextName())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(2);
-			}
-
-			query.append(_SQL_SELECT_MODULE_WHERE);
-
-			if (contextName == null) {
-				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
-			}
-			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
-				}
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (contextName != null) {
-					qPos.add(contextName);
-				}
-
-				list = (List<Module>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first module in the ordered set where contextName = &#63;.
-	 *
-	 * @param contextName the context name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module findByContextName_First(String contextName,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = fetchByContextName_First(contextName, orderByComparator);
-
-		if (module != null) {
-			return module;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("contextName=");
-		msg.append(contextName);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchModuleException(msg.toString());
-	}
-
-	/**
-	 * Returns the first module in the ordered set where contextName = &#63;.
-	 *
-	 * @param contextName the context name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByContextName_First(String contextName,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Module> list = findByContextName(contextName, 0, 1,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last module in the ordered set where contextName = &#63;.
-	 *
-	 * @param contextName the context name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module findByContextName_Last(String contextName,
-		OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = fetchByContextName_Last(contextName, orderByComparator);
-
-		if (module != null) {
-			return module;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("contextName=");
-		msg.append(contextName);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchModuleException(msg.toString());
-	}
-
-	/**
-	 * Returns the last module in the ordered set where contextName = &#63;.
-	 *
-	 * @param contextName the context name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByContextName_Last(String contextName,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByContextName(contextName);
-
-		List<Module> list = findByContextName(contextName, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the modules before and after the current module in the ordered set where contextName = &#63;.
-	 *
-	 * @param moduleId the primary key of the current module
-	 * @param contextName the context name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module[] findByContextName_PrevAndNext(long moduleId,
-		String contextName, OrderByComparator orderByComparator)
-		throws NoSuchModuleException, SystemException {
-		Module module = findByPrimaryKey(moduleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Module[] array = new ModuleImpl[3];
-
-			array[0] = getByContextName_PrevAndNext(session, module,
-					contextName, orderByComparator, true);
-
-			array[1] = module;
-
-			array[2] = getByContextName_PrevAndNext(session, module,
-					contextName, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Module getByContextName_PrevAndNext(Session session,
-		Module module, String contextName, OrderByComparator orderByComparator,
-		boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_MODULE_WHERE);
-
-		if (contextName == null) {
-			query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
-		}
-		else {
-			if (contextName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
-			}
-		}
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		if (contextName != null) {
-			qPos.add(contextName);
-		}
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(module);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Module> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Returns the module where appId = &#63; and contextName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
-	 *
-	 * @param appId the app ID
-	 * @param contextName the context name
-	 * @return the matching module
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module findByA_C(long appId, String contextName)
-		throws NoSuchModuleException, SystemException {
-		Module module = fetchByA_C(appId, contextName);
-
-		if (module == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("appId=");
-			msg.append(appId);
-
-			msg.append(", contextName=");
-			msg.append(contextName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-
-		return module;
-	}
-
-	/**
-	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param appId the app ID
-	 * @param contextName the context name
-	 * @return the matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByA_C(long appId, String contextName)
-		throws SystemException {
-		return fetchByA_C(appId, contextName, true);
-	}
-
-	/**
-	 * Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param appId the app ID
-	 * @param contextName the context name
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching module, or <code>null</code> if a matching module could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByA_C(long appId, String contextName,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { appId, contextName };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_C,
-					finderArgs, this);
-		}
-
-		if (result instanceof Module) {
-			Module module = (Module)result;
-
-			if ((appId != module.getAppId()) ||
-					!Validator.equals(contextName, module.getContextName())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_SELECT_MODULE_WHERE);
-
-			query.append(_FINDER_COLUMN_A_C_APPID_2);
-
-			if (contextName == null) {
-				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_1);
-			}
-			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
-				}
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(appId);
-
-				if (contextName != null) {
-					qPos.add(contextName);
-				}
-
-				List<Module> list = q.list();
-
-				result = list;
-
-				Module module = null;
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_C,
-						finderArgs, list);
-				}
-				else {
-					module = list.get(0);
-
-					cacheResult(module);
-
-					if ((module.getAppId() != appId) ||
-							(module.getContextName() == null) ||
-							!module.getContextName().equals(contextName)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_C,
-							finderArgs, module);
-					}
-				}
-
-				return module;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_C,
-						finderArgs);
-				}
-
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List<?>) {
-				return null;
-			}
-			else {
-				return (Module)result;
-			}
-		}
-	}
-
-	/**
 	 * Returns all the modules.
 	 *
 	 * @return the modules
@@ -2032,58 +2353,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	}
 
 	/**
-	 * Removes all the modules where uuid = &#63; from the database.
-	 *
-	 * @param uuid the uuid
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByUuid(String uuid) throws SystemException {
-		for (Module module : findByUuid(uuid)) {
-			remove(module);
-		}
-	}
-
-	/**
-	 * Removes all the modules where appId = &#63; from the database.
-	 *
-	 * @param appId the app ID
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByAppId(long appId) throws SystemException {
-		for (Module module : findByAppId(appId)) {
-			remove(module);
-		}
-	}
-
-	/**
-	 * Removes all the modules where contextName = &#63; from the database.
-	 *
-	 * @param contextName the context name
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByContextName(String contextName)
-		throws SystemException {
-		for (Module module : findByContextName(contextName)) {
-			remove(module);
-		}
-	}
-
-	/**
-	 * Removes the module where appId = &#63; and contextName = &#63; from the database.
-	 *
-	 * @param appId the app ID
-	 * @param contextName the context name
-	 * @return the module that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module removeByA_C(long appId, String contextName)
-		throws NoSuchModuleException, SystemException {
-		Module module = findByA_C(appId, contextName);
-
-		return remove(module);
-	}
-
-	/**
 	 * Removes all the modules from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -2092,260 +2361,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		for (Module module : findAll()) {
 			remove(module);
 		}
-	}
-
-	/**
-	 * Returns the number of modules where uuid = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @return the number of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByUuid(String uuid) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_MODULE_WHERE);
-
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_UUID_2);
-				}
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of modules where appId = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @return the number of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByAppId(long appId) throws SystemException {
-		Object[] finderArgs = new Object[] { appId };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_APPID,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_MODULE_WHERE);
-
-			query.append(_FINDER_COLUMN_APPID_APPID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(appId);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_APPID,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of modules where contextName = &#63;.
-	 *
-	 * @param contextName the context name
-	 * @return the number of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByContextName(String contextName) throws SystemException {
-		Object[] finderArgs = new Object[] { contextName };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_CONTEXTNAME,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_MODULE_WHERE);
-
-			if (contextName == null) {
-				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
-			}
-			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
-				}
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (contextName != null) {
-					qPos.add(contextName);
-				}
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CONTEXTNAME,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of modules where appId = &#63; and contextName = &#63;.
-	 *
-	 * @param appId the app ID
-	 * @param contextName the context name
-	 * @return the number of matching modules
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByA_C(long appId, String contextName)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { appId, contextName };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_C,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_MODULE_WHERE);
-
-			query.append(_FINDER_COLUMN_A_C_APPID_2);
-
-			if (contextName == null) {
-				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_1);
-			}
-			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
-				}
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(appId);
-
-				if (contextName != null) {
-					qPos.add(contextName);
-				}
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_C, finderArgs,
-					count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
 	}
 
 	/**
@@ -2427,17 +2442,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	private static final String _SQL_SELECT_MODULE_WHERE = "SELECT module FROM Module module WHERE ";
 	private static final String _SQL_COUNT_MODULE = "SELECT COUNT(module) FROM Module module";
 	private static final String _SQL_COUNT_MODULE_WHERE = "SELECT COUNT(module) FROM Module module WHERE ";
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "module.uuid IS NULL";
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "module.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(module.uuid IS NULL OR module.uuid = ?)";
-	private static final String _FINDER_COLUMN_APPID_APPID_2 = "module.appId = ?";
-	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1 = "module.contextName IS NULL";
-	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2 = "module.contextName = ?";
-	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = ?)";
-	private static final String _FINDER_COLUMN_A_C_APPID_2 = "module.appId = ? AND ";
-	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_1 = "module.contextName IS NULL";
-	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_2 = "module.contextName = ?";
-	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "module.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Module exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Module exists with the key {";

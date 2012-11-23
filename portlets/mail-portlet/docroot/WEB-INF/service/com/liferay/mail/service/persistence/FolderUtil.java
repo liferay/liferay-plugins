@@ -109,81 +109,6 @@ public class FolderUtil {
 	}
 
 	/**
-	* Caches the folder in the entity cache if it is enabled.
-	*
-	* @param folder the folder
-	*/
-	public static void cacheResult(com.liferay.mail.model.Folder folder) {
-		getPersistence().cacheResult(folder);
-	}
-
-	/**
-	* Caches the folders in the entity cache if it is enabled.
-	*
-	* @param folders the folders
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.mail.model.Folder> folders) {
-		getPersistence().cacheResult(folders);
-	}
-
-	/**
-	* Creates a new folder with the primary key. Does not add the folder to the database.
-	*
-	* @param folderId the primary key for the new folder
-	* @return the new folder
-	*/
-	public static com.liferay.mail.model.Folder create(long folderId) {
-		return getPersistence().create(folderId);
-	}
-
-	/**
-	* Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param folderId the primary key of the folder
-	* @return the folder that was removed
-	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Folder remove(long folderId)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(folderId);
-	}
-
-	public static com.liferay.mail.model.Folder updateImpl(
-		com.liferay.mail.model.Folder folder)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(folder);
-	}
-
-	/**
-	* Returns the folder with the primary key or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
-	*
-	* @param folderId the primary key of the folder
-	* @return the folder
-	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Folder findByPrimaryKey(long folderId)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(folderId);
-	}
-
-	/**
-	* Returns the folder with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param folderId the primary key of the folder
-	* @return the folder, or <code>null</code> if a folder with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Folder fetchByPrimaryKey(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(folderId);
-	}
-
-	/**
 	* Returns all the folders where accountId = &#63;.
 	*
 	* @param accountId the account ID
@@ -326,6 +251,29 @@ public class FolderUtil {
 	}
 
 	/**
+	* Removes all the folders where accountId = &#63; from the database.
+	*
+	* @param accountId the account ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByAccountId(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByAccountId(accountId);
+	}
+
+	/**
+	* Returns the number of folders where accountId = &#63;.
+	*
+	* @param accountId the account ID
+	* @return the number of matching folders
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByAccountId(long accountId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByAccountId(accountId);
+	}
+
+	/**
 	* Returns the folder where accountId = &#63; and fullName = &#63; or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
 	*
 	* @param accountId the account ID
@@ -369,6 +317,109 @@ public class FolderUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByA_F(accountId, fullName, retrieveFromCache);
+	}
+
+	/**
+	* Removes the folder where accountId = &#63; and fullName = &#63; from the database.
+	*
+	* @param accountId the account ID
+	* @param fullName the full name
+	* @return the folder that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Folder removeByA_F(long accountId,
+		java.lang.String fullName)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByA_F(accountId, fullName);
+	}
+
+	/**
+	* Returns the number of folders where accountId = &#63; and fullName = &#63;.
+	*
+	* @param accountId the account ID
+	* @param fullName the full name
+	* @return the number of matching folders
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByA_F(long accountId, java.lang.String fullName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByA_F(accountId, fullName);
+	}
+
+	/**
+	* Caches the folder in the entity cache if it is enabled.
+	*
+	* @param folder the folder
+	*/
+	public static void cacheResult(com.liferay.mail.model.Folder folder) {
+		getPersistence().cacheResult(folder);
+	}
+
+	/**
+	* Caches the folders in the entity cache if it is enabled.
+	*
+	* @param folders the folders
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.mail.model.Folder> folders) {
+		getPersistence().cacheResult(folders);
+	}
+
+	/**
+	* Creates a new folder with the primary key. Does not add the folder to the database.
+	*
+	* @param folderId the primary key for the new folder
+	* @return the new folder
+	*/
+	public static com.liferay.mail.model.Folder create(long folderId) {
+		return getPersistence().create(folderId);
+	}
+
+	/**
+	* Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param folderId the primary key of the folder
+	* @return the folder that was removed
+	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Folder remove(long folderId)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(folderId);
+	}
+
+	public static com.liferay.mail.model.Folder updateImpl(
+		com.liferay.mail.model.Folder folder)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(folder);
+	}
+
+	/**
+	* Returns the folder with the primary key or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
+	*
+	* @param folderId the primary key of the folder
+	* @return the folder
+	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Folder findByPrimaryKey(long folderId)
+		throws com.liferay.mail.NoSuchFolderException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(folderId);
+	}
+
+	/**
+	* Returns the folder with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param folderId the primary key of the folder
+	* @return the folder, or <code>null</code> if a folder with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Folder fetchByPrimaryKey(long folderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(folderId);
 	}
 
 	/**
@@ -421,32 +472,6 @@ public class FolderUtil {
 	}
 
 	/**
-	* Removes all the folders where accountId = &#63; from the database.
-	*
-	* @param accountId the account ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByAccountId(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByAccountId(accountId);
-	}
-
-	/**
-	* Removes the folder where accountId = &#63; and fullName = &#63; from the database.
-	*
-	* @param accountId the account ID
-	* @param fullName the full name
-	* @return the folder that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.mail.model.Folder removeByA_F(long accountId,
-		java.lang.String fullName)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByA_F(accountId, fullName);
-	}
-
-	/**
 	* Removes all the folders from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -454,31 +479,6 @@ public class FolderUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of folders where accountId = &#63;.
-	*
-	* @param accountId the account ID
-	* @return the number of matching folders
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByAccountId(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByAccountId(accountId);
-	}
-
-	/**
-	* Returns the number of folders where accountId = &#63; and fullName = &#63;.
-	*
-	* @param accountId the account ID
-	* @param fullName the full name
-	* @return the number of matching folders
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByA_F(long accountId, java.lang.String fullName)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByA_F(accountId, fullName);
 	}
 
 	/**

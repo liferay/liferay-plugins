@@ -38,68 +38,6 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 */
 
 	/**
-	* Caches the calendar in the entity cache if it is enabled.
-	*
-	* @param calendar the calendar
-	*/
-	public void cacheResult(com.liferay.calendar.model.Calendar calendar);
-
-	/**
-	* Caches the calendars in the entity cache if it is enabled.
-	*
-	* @param calendars the calendars
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.calendar.model.Calendar> calendars);
-
-	/**
-	* Creates a new calendar with the primary key. Does not add the calendar to the database.
-	*
-	* @param calendarId the primary key for the new calendar
-	* @return the new calendar
-	*/
-	public com.liferay.calendar.model.Calendar create(long calendarId);
-
-	/**
-	* Removes the calendar with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarId the primary key of the calendar
-	* @return the calendar that was removed
-	* @throws com.liferay.calendar.NoSuchCalendarException if a calendar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.calendar.model.Calendar remove(long calendarId)
-		throws com.liferay.calendar.NoSuchCalendarException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.calendar.model.Calendar updateImpl(
-		com.liferay.calendar.model.Calendar calendar)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the calendar with the primary key or throws a {@link com.liferay.calendar.NoSuchCalendarException} if it could not be found.
-	*
-	* @param calendarId the primary key of the calendar
-	* @return the calendar
-	* @throws com.liferay.calendar.NoSuchCalendarException if a calendar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.calendar.model.Calendar findByPrimaryKey(long calendarId)
-		throws com.liferay.calendar.NoSuchCalendarException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the calendar with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param calendarId the primary key of the calendar
-	* @return the calendar, or <code>null</code> if a calendar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.calendar.model.Calendar fetchByPrimaryKey(
-		long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the calendars where resourceBlockId = &#63;.
 	*
 	* @param resourceBlockId the resource block ID
@@ -217,6 +155,25 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.calendar.NoSuchCalendarException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the calendars where resourceBlockId = &#63; from the database.
+	*
+	* @param resourceBlockId the resource block ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByResourceBlockId(long resourceBlockId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars where resourceBlockId = &#63;.
+	*
+	* @param resourceBlockId the resource block ID
+	* @return the number of matching calendars
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByResourceBlockId(long resourceBlockId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the calendars where uuid = &#63;.
@@ -338,6 +295,25 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the calendars where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching calendars
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the calendar where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchCalendarException} if it could not be found.
 	*
 	* @param uuid the uuid
@@ -374,6 +350,30 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	*/
 	public com.liferay.calendar.model.Calendar fetchByUUID_G(
 		java.lang.String uuid, long groupId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the calendar where uuid = &#63; and groupId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the calendar that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.Calendar removeByUUID_G(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.calendar.NoSuchCalendarException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars where uuid = &#63; and groupId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the number of matching calendars
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -502,6 +502,27 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.calendar.NoSuchCalendarException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the calendars where uuid = &#63; and companyId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars where uuid = &#63; and companyId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @return the number of matching calendars
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the calendars where groupId = &#63; and calendarResourceId = &#63;.
@@ -696,6 +717,38 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.calendar.NoSuchCalendarException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the calendars where groupId = &#63; and calendarResourceId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param calendarResourceId the calendar resource ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_C(long groupId, long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars where groupId = &#63; and calendarResourceId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param calendarResourceId the calendar resource ID
+	* @return the number of matching calendars
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_C(long groupId, long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars that the user has permission to view where groupId = &#63; and calendarResourceId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param calendarResourceId the calendar resource ID
+	* @return the number of matching calendars that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_C(long groupId, long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the calendars where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
@@ -910,6 +963,106 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the calendars where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param calendarResourceId the calendar resource ID
+	* @param defaultCalendar the default calendar
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_C_D(long groupId, long calendarResourceId,
+		boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
+	*
+	* @param groupId the group ID
+	* @param calendarResourceId the calendar resource ID
+	* @param defaultCalendar the default calendar
+	* @return the number of matching calendars
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByG_C_D(long groupId, long calendarResourceId,
+		boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendars that the user has permission to view where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
+	*
+	* @param groupId the group ID
+	* @param calendarResourceId the calendar resource ID
+	* @param defaultCalendar the default calendar
+	* @return the number of matching calendars that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByG_C_D(long groupId, long calendarResourceId,
+		boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the calendar in the entity cache if it is enabled.
+	*
+	* @param calendar the calendar
+	*/
+	public void cacheResult(com.liferay.calendar.model.Calendar calendar);
+
+	/**
+	* Caches the calendars in the entity cache if it is enabled.
+	*
+	* @param calendars the calendars
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.calendar.model.Calendar> calendars);
+
+	/**
+	* Creates a new calendar with the primary key. Does not add the calendar to the database.
+	*
+	* @param calendarId the primary key for the new calendar
+	* @return the new calendar
+	*/
+	public com.liferay.calendar.model.Calendar create(long calendarId);
+
+	/**
+	* Removes the calendar with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarId the primary key of the calendar
+	* @return the calendar that was removed
+	* @throws com.liferay.calendar.NoSuchCalendarException if a calendar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.Calendar remove(long calendarId)
+		throws com.liferay.calendar.NoSuchCalendarException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.calendar.model.Calendar updateImpl(
+		com.liferay.calendar.model.Calendar calendar)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the calendar with the primary key or throws a {@link com.liferay.calendar.NoSuchCalendarException} if it could not be found.
+	*
+	* @param calendarId the primary key of the calendar
+	* @return the calendar
+	* @throws com.liferay.calendar.NoSuchCalendarException if a calendar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.Calendar findByPrimaryKey(long calendarId)
+		throws com.liferay.calendar.NoSuchCalendarException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the calendar with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param calendarId the primary key of the calendar
+	* @return the calendar, or <code>null</code> if a calendar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.Calendar fetchByPrimaryKey(
+		long calendarId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the calendars.
 	*
 	* @return the calendars
@@ -953,164 +1106,11 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the calendars where resourceBlockId = &#63; from the database.
-	*
-	* @param resourceBlockId the resource block ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByResourceBlockId(long resourceBlockId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the calendars where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the calendar where uuid = &#63; and groupId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the calendar that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.calendar.model.Calendar removeByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.calendar.NoSuchCalendarException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the calendars where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the calendars where groupId = &#63; and calendarResourceId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param calendarResourceId the calendar resource ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_C(long groupId, long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the calendars where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param calendarResourceId the calendar resource ID
-	* @param defaultCalendar the default calendar
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_C_D(long groupId, long calendarResourceId,
-		boolean defaultCalendar)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the calendars from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars where resourceBlockId = &#63;.
-	*
-	* @param resourceBlockId the resource block ID
-	* @return the number of matching calendars
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByResourceBlockId(long resourceBlockId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching calendars
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars where uuid = &#63; and groupId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the number of matching calendars
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching calendars
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars where groupId = &#63; and calendarResourceId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param calendarResourceId the calendar resource ID
-	* @return the number of matching calendars
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_C(long groupId, long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars that the user has permission to view where groupId = &#63; and calendarResourceId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param calendarResourceId the calendar resource ID
-	* @return the number of matching calendars that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_C(long groupId, long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
-	*
-	* @param groupId the group ID
-	* @param calendarResourceId the calendar resource ID
-	* @param defaultCalendar the default calendar
-	* @return the number of matching calendars
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_C_D(long groupId, long calendarResourceId,
-		boolean defaultCalendar)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendars that the user has permission to view where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
-	*
-	* @param groupId the group ID
-	* @param calendarResourceId the calendar resource ID
-	* @param defaultCalendar the default calendar
-	* @return the number of matching calendars that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public int filterCountByG_C_D(long groupId, long calendarResourceId,
-		boolean defaultCalendar)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

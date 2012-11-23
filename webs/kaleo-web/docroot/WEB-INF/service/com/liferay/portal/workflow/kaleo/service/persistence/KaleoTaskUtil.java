@@ -110,86 +110,6 @@ public class KaleoTaskUtil {
 	}
 
 	/**
-	* Caches the kaleo task in the entity cache if it is enabled.
-	*
-	* @param kaleoTask the kaleo task
-	*/
-	public static void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
-		getPersistence().cacheResult(kaleoTask);
-	}
-
-	/**
-	* Caches the kaleo tasks in the entity cache if it is enabled.
-	*
-	* @param kaleoTasks the kaleo tasks
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> kaleoTasks) {
-		getPersistence().cacheResult(kaleoTasks);
-	}
-
-	/**
-	* Creates a new kaleo task with the primary key. Does not add the kaleo task to the database.
-	*
-	* @param kaleoTaskId the primary key for the new kaleo task
-	* @return the new kaleo task
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTask create(
-		long kaleoTaskId) {
-		return getPersistence().create(kaleoTaskId);
-	}
-
-	/**
-	* Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTaskId the primary key of the kaleo task
-	* @return the kaleo task that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTask remove(
-		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
-		return getPersistence().remove(kaleoTaskId);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTask updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoTask);
-	}
-
-	/**
-	* Returns the kaleo task with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
-	*
-	* @param kaleoTaskId the primary key of the kaleo task
-	* @return the kaleo task
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTask findByPrimaryKey(
-		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
-		return getPersistence().findByPrimaryKey(kaleoTaskId);
-	}
-
-	/**
-	* Returns the kaleo task with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoTaskId the primary key of the kaleo task
-	* @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByPrimaryKey(
-		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(kaleoTaskId);
-	}
-
-	/**
 	* Returns all the kaleo tasks where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -329,6 +249,29 @@ public class KaleoTaskUtil {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoTaskId, companyId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo tasks where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCompanyId(companyId);
+	}
+
+	/**
+	* Returns the number of kaleo tasks where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo tasks
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCompanyId(companyId);
 	}
 
 	/**
@@ -480,6 +423,29 @@ public class KaleoTaskUtil {
 	}
 
 	/**
+	* Removes all the kaleo tasks where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
+	* Returns the number of kaleo tasks where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo tasks
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
 	* Returns the kaleo task where kaleoNodeId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
 	*
 	* @param kaleoNodeId the kaleo node ID
@@ -520,6 +486,112 @@ public class KaleoTaskUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByKaleoNodeId(kaleoNodeId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the kaleo task where kaleoNodeId = &#63; from the database.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @return the kaleo task that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask removeByKaleoNodeId(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
+		return getPersistence().removeByKaleoNodeId(kaleoNodeId);
+	}
+
+	/**
+	* Returns the number of kaleo tasks where kaleoNodeId = &#63;.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @return the number of matching kaleo tasks
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoNodeId(kaleoNodeId);
+	}
+
+	/**
+	* Caches the kaleo task in the entity cache if it is enabled.
+	*
+	* @param kaleoTask the kaleo task
+	*/
+	public static void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask) {
+		getPersistence().cacheResult(kaleoTask);
+	}
+
+	/**
+	* Caches the kaleo tasks in the entity cache if it is enabled.
+	*
+	* @param kaleoTasks the kaleo tasks
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> kaleoTasks) {
+		getPersistence().cacheResult(kaleoTasks);
+	}
+
+	/**
+	* Creates a new kaleo task with the primary key. Does not add the kaleo task to the database.
+	*
+	* @param kaleoTaskId the primary key for the new kaleo task
+	* @return the new kaleo task
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask create(
+		long kaleoTaskId) {
+		return getPersistence().create(kaleoTaskId);
+	}
+
+	/**
+	* Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTaskId the primary key of the kaleo task
+	* @return the kaleo task that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask remove(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
+		return getPersistence().remove(kaleoTaskId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(kaleoTask);
+	}
+
+	/**
+	* Returns the kaleo task with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
+	*
+	* @param kaleoTaskId the primary key of the kaleo task
+	* @return the kaleo task
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask findByPrimaryKey(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
+		return getPersistence().findByPrimaryKey(kaleoTaskId);
+	}
+
+	/**
+	* Returns the kaleo task with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoTaskId the primary key of the kaleo task
+	* @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByPrimaryKey(
+		long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(kaleoTaskId);
 	}
 
 	/**
@@ -572,42 +644,6 @@ public class KaleoTaskUtil {
 	}
 
 	/**
-	* Removes all the kaleo tasks where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCompanyId(companyId);
-	}
-
-	/**
-	* Removes all the kaleo tasks where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Removes the kaleo task where kaleoNodeId = &#63; from the database.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @return the kaleo task that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoTask removeByKaleoNodeId(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
-		return getPersistence().removeByKaleoNodeId(kaleoNodeId);
-	}
-
-	/**
 	* Removes all the kaleo tasks from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -615,42 +651,6 @@ public class KaleoTaskUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of kaleo tasks where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCompanyId(companyId);
-	}
-
-	/**
-	* Returns the number of kaleo tasks where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Returns the number of kaleo tasks where kaleoNodeId = &#63;.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @return the number of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKaleoNodeId(long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKaleoNodeId(kaleoNodeId);
 	}
 
 	/**

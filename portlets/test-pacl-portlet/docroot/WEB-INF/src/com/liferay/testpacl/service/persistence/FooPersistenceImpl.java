@@ -77,6 +77,15 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_FIELD2 = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByField2",
@@ -96,373 +105,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			FooModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByField2",
 			new String[] { Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
-			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
-			FooModelImpl.FINDER_CACHE_ENABLED, FooImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FooModelImpl.ENTITY_CACHE_ENABLED,
-			FooModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-
-	/**
-	 * Caches the foo in the entity cache if it is enabled.
-	 *
-	 * @param foo the foo
-	 */
-	public void cacheResult(Foo foo) {
-		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-			FooImpl.class, foo.getPrimaryKey(), foo);
-
-		foo.resetOriginalValues();
-	}
-
-	/**
-	 * Caches the foos in the entity cache if it is enabled.
-	 *
-	 * @param foos the foos
-	 */
-	public void cacheResult(List<Foo> foos) {
-		for (Foo foo : foos) {
-			if (EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-						FooImpl.class, foo.getPrimaryKey()) == null) {
-				cacheResult(foo);
-			}
-			else {
-				foo.resetOriginalValues();
-			}
-		}
-	}
-
-	/**
-	 * Clears the cache for all foos.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(FooImpl.class.getName());
-		}
-
-		EntityCacheUtil.clearCache(FooImpl.class.getName());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-	}
-
-	/**
-	 * Clears the cache for the foo.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache(Foo foo) {
-		EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-			FooImpl.class, foo.getPrimaryKey());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-	}
-
-	@Override
-	public void clearCache(List<Foo> foos) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		for (Foo foo : foos) {
-			EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-				FooImpl.class, foo.getPrimaryKey());
-		}
-	}
-
-	/**
-	 * Creates a new foo with the primary key. Does not add the foo to the database.
-	 *
-	 * @param fooId the primary key for the new foo
-	 * @return the new foo
-	 */
-	public Foo create(long fooId) {
-		Foo foo = new FooImpl();
-
-		foo.setNew(true);
-		foo.setPrimaryKey(fooId);
-
-		return foo;
-	}
-
-	/**
-	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param fooId the primary key of the foo
-	 * @return the foo that was removed
-	 * @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
-		return remove(Long.valueOf(fooId));
-	}
-
-	/**
-	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param primaryKey the primary key of the foo
-	 * @return the foo that was removed
-	 * @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Foo remove(Serializable primaryKey)
-		throws NoSuchFooException, SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Foo foo = (Foo)session.get(FooImpl.class, primaryKey);
-
-			if (foo == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
-				}
-
-				throw new NoSuchFooException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
-			}
-
-			return remove(foo);
-		}
-		catch (NoSuchFooException nsee) {
-			throw nsee;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	@Override
-	protected Foo removeImpl(Foo foo) throws SystemException {
-		foo = toUnwrappedModel(foo);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (!session.contains(foo)) {
-				foo = (Foo)session.get(FooImpl.class, foo.getPrimaryKeyObj());
-			}
-
-			if (foo != null) {
-				session.delete(foo);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		if (foo != null) {
-			clearCache(foo);
-		}
-
-		return foo;
-	}
-
-	@Override
-	public Foo updateImpl(com.liferay.testpacl.model.Foo foo)
-		throws SystemException {
-		foo = toUnwrappedModel(foo);
-
-		boolean isNew = foo.isNew();
-
-		FooModelImpl fooModelImpl = (FooModelImpl)foo;
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (foo.isNew()) {
-				session.save(foo);
-
-				foo.setNew(false);
-			}
-			else {
-				session.merge(foo);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-
-		if (isNew || !FooModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-		}
-
-		else {
-			if ((fooModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Boolean.valueOf(fooModelImpl.getOriginalField2())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,
-					args);
-
-				args = new Object[] { Boolean.valueOf(fooModelImpl.getField2()) };
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,
-					args);
-			}
-		}
-
-		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-			FooImpl.class, foo.getPrimaryKey(), foo);
-
-		return foo;
-	}
-
-	protected Foo toUnwrappedModel(Foo foo) {
-		if (foo instanceof FooImpl) {
-			return foo;
-		}
-
-		FooImpl fooImpl = new FooImpl();
-
-		fooImpl.setNew(foo.isNew());
-		fooImpl.setPrimaryKey(foo.getPrimaryKey());
-
-		fooImpl.setFooId(foo.getFooId());
-		fooImpl.setGroupId(foo.getGroupId());
-		fooImpl.setCompanyId(foo.getCompanyId());
-		fooImpl.setUserId(foo.getUserId());
-		fooImpl.setUserName(foo.getUserName());
-		fooImpl.setCreateDate(foo.getCreateDate());
-		fooImpl.setModifiedDate(foo.getModifiedDate());
-		fooImpl.setField1(foo.getField1());
-		fooImpl.setField2(foo.isField2());
-		fooImpl.setField3(foo.getField3());
-		fooImpl.setField4(foo.getField4());
-		fooImpl.setField5(foo.getField5());
-
-		return fooImpl;
-	}
-
-	/**
-	 * Returns the foo with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the foo
-	 * @return the foo
-	 * @throws com.liferay.portal.NoSuchModelException if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Foo findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the foo with the primary key or throws a {@link com.liferay.testpacl.NoSuchFooException} if it could not be found.
-	 *
-	 * @param fooId the primary key of the foo
-	 * @return the foo
-	 * @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Foo findByPrimaryKey(long fooId)
-		throws NoSuchFooException, SystemException {
-		Foo foo = fetchByPrimaryKey(fooId);
-
-		if (foo == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + fooId);
-			}
-
-			throw new NoSuchFooException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				fooId);
-		}
-
-		return foo;
-	}
-
-	/**
-	 * Returns the foo with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the foo
-	 * @return the foo, or <code>null</code> if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Foo fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the foo with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param fooId the primary key of the foo
-	 * @return the foo, or <code>null</code> if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Foo fetchByPrimaryKey(long fooId) throws SystemException {
-		Foo foo = (Foo)EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-				FooImpl.class, fooId);
-
-		if (foo == _nullFoo) {
-			return null;
-		}
-
-		if (foo == null) {
-			Session session = null;
-
-			boolean hasException = false;
-
-			try {
-				session = openSession();
-
-				foo = (Foo)session.get(FooImpl.class, Long.valueOf(fooId));
-			}
-			catch (Exception e) {
-				hasException = true;
-
-				throw processException(e);
-			}
-			finally {
-				if (foo != null) {
-					cacheResult(foo);
-				}
-				else if (!hasException) {
-					EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
-						FooImpl.class, fooId, _nullFoo);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return foo;
-	}
 
 	/**
 	 * Returns all the foos where field2 = &#63;.
@@ -841,6 +483,431 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	/**
+	 * Removes all the foos where field2 = &#63; from the database.
+	 *
+	 * @param field2 the field2
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByField2(boolean field2) throws SystemException {
+		for (Foo foo : findByField2(field2)) {
+			remove(foo);
+		}
+	}
+
+	/**
+	 * Returns the number of foos where field2 = &#63;.
+	 *
+	 * @param field2 the field2
+	 * @return the number of matching foos
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByField2(boolean field2) throws SystemException {
+		Object[] finderArgs = new Object[] { field2 };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_FIELD2,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FOO_WHERE);
+
+			query.append(_FINDER_COLUMN_FIELD2_FIELD2_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(field2);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_FIELD2,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_FIELD2_FIELD2_2 = "foo.field2 = ?";
+
+	/**
+	 * Caches the foo in the entity cache if it is enabled.
+	 *
+	 * @param foo the foo
+	 */
+	public void cacheResult(Foo foo) {
+		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooImpl.class, foo.getPrimaryKey(), foo);
+
+		foo.resetOriginalValues();
+	}
+
+	/**
+	 * Caches the foos in the entity cache if it is enabled.
+	 *
+	 * @param foos the foos
+	 */
+	public void cacheResult(List<Foo> foos) {
+		for (Foo foo : foos) {
+			if (EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+						FooImpl.class, foo.getPrimaryKey()) == null) {
+				cacheResult(foo);
+			}
+			else {
+				foo.resetOriginalValues();
+			}
+		}
+	}
+
+	/**
+	 * Clears the cache for all foos.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache() {
+		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
+			CacheRegistryUtil.clear(FooImpl.class.getName());
+		}
+
+		EntityCacheUtil.clearCache(FooImpl.class.getName());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+	}
+
+	/**
+	 * Clears the cache for the foo.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache(Foo foo) {
+		EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooImpl.class, foo.getPrimaryKey());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+	}
+
+	@Override
+	public void clearCache(List<Foo> foos) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Foo foo : foos) {
+			EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+				FooImpl.class, foo.getPrimaryKey());
+		}
+	}
+
+	/**
+	 * Creates a new foo with the primary key. Does not add the foo to the database.
+	 *
+	 * @param fooId the primary key for the new foo
+	 * @return the new foo
+	 */
+	public Foo create(long fooId) {
+		Foo foo = new FooImpl();
+
+		foo.setNew(true);
+		foo.setPrimaryKey(fooId);
+
+		return foo;
+	}
+
+	/**
+	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param fooId the primary key of the foo
+	 * @return the foo that was removed
+	 * @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
+		return remove(Long.valueOf(fooId));
+	}
+
+	/**
+	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the foo
+	 * @return the foo that was removed
+	 * @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Foo remove(Serializable primaryKey)
+		throws NoSuchFooException, SystemException {
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Foo foo = (Foo)session.get(FooImpl.class, primaryKey);
+
+			if (foo == null) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				}
+
+				throw new NoSuchFooException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					primaryKey);
+			}
+
+			return remove(foo);
+		}
+		catch (NoSuchFooException nsee) {
+			throw nsee;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
+	protected Foo removeImpl(Foo foo) throws SystemException {
+		foo = toUnwrappedModel(foo);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (!session.contains(foo)) {
+				foo = (Foo)session.get(FooImpl.class, foo.getPrimaryKeyObj());
+			}
+
+			if (foo != null) {
+				session.delete(foo);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		if (foo != null) {
+			clearCache(foo);
+		}
+
+		return foo;
+	}
+
+	@Override
+	public Foo updateImpl(com.liferay.testpacl.model.Foo foo)
+		throws SystemException {
+		foo = toUnwrappedModel(foo);
+
+		boolean isNew = foo.isNew();
+
+		FooModelImpl fooModelImpl = (FooModelImpl)foo;
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (foo.isNew()) {
+				session.save(foo);
+
+				foo.setNew(false);
+			}
+			else {
+				session.merge(foo);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew || !FooModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
+		else {
+			if ((fooModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Boolean.valueOf(fooModelImpl.getOriginalField2())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,
+					args);
+
+				args = new Object[] { Boolean.valueOf(fooModelImpl.getField2()) };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,
+					args);
+			}
+		}
+
+		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+			FooImpl.class, foo.getPrimaryKey(), foo);
+
+		return foo;
+	}
+
+	protected Foo toUnwrappedModel(Foo foo) {
+		if (foo instanceof FooImpl) {
+			return foo;
+		}
+
+		FooImpl fooImpl = new FooImpl();
+
+		fooImpl.setNew(foo.isNew());
+		fooImpl.setPrimaryKey(foo.getPrimaryKey());
+
+		fooImpl.setFooId(foo.getFooId());
+		fooImpl.setGroupId(foo.getGroupId());
+		fooImpl.setCompanyId(foo.getCompanyId());
+		fooImpl.setUserId(foo.getUserId());
+		fooImpl.setUserName(foo.getUserName());
+		fooImpl.setCreateDate(foo.getCreateDate());
+		fooImpl.setModifiedDate(foo.getModifiedDate());
+		fooImpl.setField1(foo.getField1());
+		fooImpl.setField2(foo.isField2());
+		fooImpl.setField3(foo.getField3());
+		fooImpl.setField4(foo.getField4());
+		fooImpl.setField5(foo.getField5());
+
+		return fooImpl;
+	}
+
+	/**
+	 * Returns the foo with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the foo
+	 * @return the foo
+	 * @throws com.liferay.portal.NoSuchModelException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Foo findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the foo with the primary key or throws a {@link com.liferay.testpacl.NoSuchFooException} if it could not be found.
+	 *
+	 * @param fooId the primary key of the foo
+	 * @return the foo
+	 * @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Foo findByPrimaryKey(long fooId)
+		throws NoSuchFooException, SystemException {
+		Foo foo = fetchByPrimaryKey(fooId);
+
+		if (foo == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + fooId);
+			}
+
+			throw new NoSuchFooException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				fooId);
+		}
+
+		return foo;
+	}
+
+	/**
+	 * Returns the foo with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the foo
+	 * @return the foo, or <code>null</code> if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Foo fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the foo with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param fooId the primary key of the foo
+	 * @return the foo, or <code>null</code> if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Foo fetchByPrimaryKey(long fooId) throws SystemException {
+		Foo foo = (Foo)EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+				FooImpl.class, fooId);
+
+		if (foo == _nullFoo) {
+			return null;
+		}
+
+		if (foo == null) {
+			Session session = null;
+
+			boolean hasException = false;
+
+			try {
+				session = openSession();
+
+				foo = (Foo)session.get(FooImpl.class, Long.valueOf(fooId));
+			}
+			catch (Exception e) {
+				hasException = true;
+
+				throw processException(e);
+			}
+			finally {
+				if (foo != null) {
+					cacheResult(foo);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+						FooImpl.class, fooId, _nullFoo);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return foo;
+	}
+
+	/**
 	 * Returns all the foos.
 	 *
 	 * @return the foos
@@ -954,18 +1021,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	/**
-	 * Removes all the foos where field2 = &#63; from the database.
-	 *
-	 * @param field2 the field2
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByField2(boolean field2) throws SystemException {
-		for (Foo foo : findByField2(field2)) {
-			remove(foo);
-		}
-	}
-
-	/**
 	 * Removes all the foos from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -974,59 +1029,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		for (Foo foo : findAll()) {
 			remove(foo);
 		}
-	}
-
-	/**
-	 * Returns the number of foos where field2 = &#63;.
-	 *
-	 * @param field2 the field2
-	 * @return the number of matching foos
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByField2(boolean field2) throws SystemException {
-		Object[] finderArgs = new Object[] { field2 };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_FIELD2,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_FOO_WHERE);
-
-			query.append(_FINDER_COLUMN_FIELD2_FIELD2_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(field2);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_FIELD2,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
 	}
 
 	/**
@@ -1110,7 +1112,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	private static final String _SQL_SELECT_FOO_WHERE = "SELECT foo FROM Foo foo WHERE ";
 	private static final String _SQL_COUNT_FOO = "SELECT COUNT(foo) FROM Foo foo";
 	private static final String _SQL_COUNT_FOO_WHERE = "SELECT COUNT(foo) FROM Foo foo WHERE ";
-	private static final String _FINDER_COLUMN_FIELD2_FIELD2_2 = "foo.field2 = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "foo.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Foo exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Foo exists with the key {";

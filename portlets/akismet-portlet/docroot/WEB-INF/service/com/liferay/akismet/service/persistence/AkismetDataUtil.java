@@ -111,86 +111,6 @@ public class AkismetDataUtil {
 	}
 
 	/**
-	* Caches the akismet data in the entity cache if it is enabled.
-	*
-	* @param akismetData the akismet data
-	*/
-	public static void cacheResult(
-		com.liferay.akismet.model.AkismetData akismetData) {
-		getPersistence().cacheResult(akismetData);
-	}
-
-	/**
-	* Caches the akismet datas in the entity cache if it is enabled.
-	*
-	* @param akismetDatas the akismet datas
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.akismet.model.AkismetData> akismetDatas) {
-		getPersistence().cacheResult(akismetDatas);
-	}
-
-	/**
-	* Creates a new akismet data with the primary key. Does not add the akismet data to the database.
-	*
-	* @param akismetDataId the primary key for the new akismet data
-	* @return the new akismet data
-	*/
-	public static com.liferay.akismet.model.AkismetData create(
-		long akismetDataId) {
-		return getPersistence().create(akismetDataId);
-	}
-
-	/**
-	* Removes the akismet data with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param akismetDataId the primary key of the akismet data
-	* @return the akismet data that was removed
-	* @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.akismet.model.AkismetData remove(
-		long akismetDataId)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(akismetDataId);
-	}
-
-	public static com.liferay.akismet.model.AkismetData updateImpl(
-		com.liferay.akismet.model.AkismetData akismetData)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(akismetData);
-	}
-
-	/**
-	* Returns the akismet data with the primary key or throws a {@link com.liferay.akismet.NoSuchDataException} if it could not be found.
-	*
-	* @param akismetDataId the primary key of the akismet data
-	* @return the akismet data
-	* @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.akismet.model.AkismetData findByPrimaryKey(
-		long akismetDataId)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(akismetDataId);
-	}
-
-	/**
-	* Returns the akismet data with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param akismetDataId the primary key of the akismet data
-	* @return the akismet data, or <code>null</code> if a akismet data with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.akismet.model.AkismetData fetchByPrimaryKey(
-		long akismetDataId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(akismetDataId);
-	}
-
-	/**
 	* Returns all the akismet datas where modifiedDate &lt; &#63;.
 	*
 	* @param modifiedDate the modified date
@@ -334,6 +254,29 @@ public class AkismetDataUtil {
 	}
 
 	/**
+	* Removes all the akismet datas where modifiedDate &lt; &#63; from the database.
+	*
+	* @param modifiedDate the modified date
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByLtModifiedDate(java.util.Date modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByLtModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Returns the number of akismet datas where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @return the number of matching akismet datas
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByLtModifiedDate(java.util.Date modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByLtModifiedDate(modifiedDate);
+	}
+
+	/**
 	* Returns the akismet data where mbMessageId = &#63; or throws a {@link com.liferay.akismet.NoSuchDataException} if it could not be found.
 	*
 	* @param mbMessageId the mb message ID
@@ -374,6 +317,112 @@ public class AkismetDataUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByMBMessageId(mbMessageId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the akismet data where mbMessageId = &#63; from the database.
+	*
+	* @param mbMessageId the mb message ID
+	* @return the akismet data that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.akismet.model.AkismetData removeByMBMessageId(
+		long mbMessageId)
+		throws com.liferay.akismet.NoSuchDataException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByMBMessageId(mbMessageId);
+	}
+
+	/**
+	* Returns the number of akismet datas where mbMessageId = &#63;.
+	*
+	* @param mbMessageId the mb message ID
+	* @return the number of matching akismet datas
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByMBMessageId(long mbMessageId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByMBMessageId(mbMessageId);
+	}
+
+	/**
+	* Caches the akismet data in the entity cache if it is enabled.
+	*
+	* @param akismetData the akismet data
+	*/
+	public static void cacheResult(
+		com.liferay.akismet.model.AkismetData akismetData) {
+		getPersistence().cacheResult(akismetData);
+	}
+
+	/**
+	* Caches the akismet datas in the entity cache if it is enabled.
+	*
+	* @param akismetDatas the akismet datas
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.akismet.model.AkismetData> akismetDatas) {
+		getPersistence().cacheResult(akismetDatas);
+	}
+
+	/**
+	* Creates a new akismet data with the primary key. Does not add the akismet data to the database.
+	*
+	* @param akismetDataId the primary key for the new akismet data
+	* @return the new akismet data
+	*/
+	public static com.liferay.akismet.model.AkismetData create(
+		long akismetDataId) {
+		return getPersistence().create(akismetDataId);
+	}
+
+	/**
+	* Removes the akismet data with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param akismetDataId the primary key of the akismet data
+	* @return the akismet data that was removed
+	* @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.akismet.model.AkismetData remove(
+		long akismetDataId)
+		throws com.liferay.akismet.NoSuchDataException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(akismetDataId);
+	}
+
+	public static com.liferay.akismet.model.AkismetData updateImpl(
+		com.liferay.akismet.model.AkismetData akismetData)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(akismetData);
+	}
+
+	/**
+	* Returns the akismet data with the primary key or throws a {@link com.liferay.akismet.NoSuchDataException} if it could not be found.
+	*
+	* @param akismetDataId the primary key of the akismet data
+	* @return the akismet data
+	* @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.akismet.model.AkismetData findByPrimaryKey(
+		long akismetDataId)
+		throws com.liferay.akismet.NoSuchDataException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(akismetDataId);
+	}
+
+	/**
+	* Returns the akismet data with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param akismetDataId the primary key of the akismet data
+	* @return the akismet data, or <code>null</code> if a akismet data with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.akismet.model.AkismetData fetchByPrimaryKey(
+		long akismetDataId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(akismetDataId);
 	}
 
 	/**
@@ -426,31 +475,6 @@ public class AkismetDataUtil {
 	}
 
 	/**
-	* Removes all the akismet datas where modifiedDate &lt; &#63; from the database.
-	*
-	* @param modifiedDate the modified date
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByLtModifiedDate(java.util.Date modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByLtModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Removes the akismet data where mbMessageId = &#63; from the database.
-	*
-	* @param mbMessageId the mb message ID
-	* @return the akismet data that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.akismet.model.AkismetData removeByMBMessageId(
-		long mbMessageId)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByMBMessageId(mbMessageId);
-	}
-
-	/**
 	* Removes all the akismet datas from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -458,30 +482,6 @@ public class AkismetDataUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of akismet datas where modifiedDate &lt; &#63;.
-	*
-	* @param modifiedDate the modified date
-	* @return the number of matching akismet datas
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByLtModifiedDate(java.util.Date modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByLtModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the number of akismet datas where mbMessageId = &#63;.
-	*
-	* @param mbMessageId the mb message ID
-	* @return the number of matching akismet datas
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByMBMessageId(long mbMessageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByMBMessageId(mbMessageId);
 	}
 
 	/**

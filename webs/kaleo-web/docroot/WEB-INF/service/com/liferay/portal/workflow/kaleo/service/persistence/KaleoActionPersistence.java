@@ -37,72 +37,6 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	 */
 
 	/**
-	* Caches the kaleo action in the entity cache if it is enabled.
-	*
-	* @param kaleoAction the kaleo action
-	*/
-	public void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction);
-
-	/**
-	* Caches the kaleo actions in the entity cache if it is enabled.
-	*
-	* @param kaleoActions the kaleo actions
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> kaleoActions);
-
-	/**
-	* Creates a new kaleo action with the primary key. Does not add the kaleo action to the database.
-	*
-	* @param kaleoActionId the primary key for the new kaleo action
-	* @return the new kaleo action
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction create(
-		long kaleoActionId);
-
-	/**
-	* Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoActionId the primary key of the kaleo action
-	* @return the kaleo action that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction remove(
-		long kaleoActionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchActionException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the kaleo action with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchActionException} if it could not be found.
-	*
-	* @param kaleoActionId the primary key of the kaleo action
-	* @return the kaleo action
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByPrimaryKey(
-		long kaleoActionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchActionException;
-
-	/**
-	* Returns the kaleo action with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoActionId the primary key of the kaleo action
-	* @return the kaleo action, or <code>null</code> if a kaleo action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByPrimaryKey(
-		long kaleoActionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the kaleo actions where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -222,6 +156,25 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
+	* Removes all the kaleo actions where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo actions where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo actions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo actions where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
@@ -339,6 +292,25 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
+
+	/**
+	* Removes all the kaleo actions where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo actions where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo actions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -484,6 +456,97 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 			com.liferay.portal.workflow.kaleo.NoSuchActionException;
 
 	/**
+	* Removes all the kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63; from the database.
+	*
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param executionType the execution type
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKCN_KCPK_ET(java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String executionType)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
+	*
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param executionType the execution type
+	* @return the number of matching kaleo actions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKCN_KCPK_ET(java.lang.String kaleoClassName,
+		long kaleoClassPK, java.lang.String executionType)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the kaleo action in the entity cache if it is enabled.
+	*
+	* @param kaleoAction the kaleo action
+	*/
+	public void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction);
+
+	/**
+	* Caches the kaleo actions in the entity cache if it is enabled.
+	*
+	* @param kaleoActions the kaleo actions
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> kaleoActions);
+
+	/**
+	* Creates a new kaleo action with the primary key. Does not add the kaleo action to the database.
+	*
+	* @param kaleoActionId the primary key for the new kaleo action
+	* @return the new kaleo action
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction create(
+		long kaleoActionId);
+
+	/**
+	* Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoActionId the primary key of the kaleo action
+	* @return the kaleo action that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction remove(
+		long kaleoActionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchActionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo action with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchActionException} if it could not be found.
+	*
+	* @param kaleoActionId the primary key of the kaleo action
+	* @return the kaleo action
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction findByPrimaryKey(
+		long kaleoActionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchActionException;
+
+	/**
+	* Returns the kaleo action with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoActionId the primary key of the kaleo action
+	* @return the kaleo action, or <code>null</code> if a kaleo action with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByPrimaryKey(
+		long kaleoActionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo actions.
 	*
 	* @return the kaleo actions
@@ -527,74 +590,11 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the kaleo actions where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo actions where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63; from the database.
-	*
-	* @param kaleoClassName the kaleo class name
-	* @param kaleoClassPK the kaleo class p k
-	* @param executionType the execution type
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKCN_KCPK_ET(java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String executionType)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the kaleo actions from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo actions where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo actions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo actions where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo actions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo actions where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
-	*
-	* @param kaleoClassName the kaleo class name
-	* @param kaleoClassPK the kaleo class p k
-	* @param executionType the execution type
-	* @return the number of matching kaleo actions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKCN_KCPK_ET(java.lang.String kaleoClassName,
-		long kaleoClassPK, java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

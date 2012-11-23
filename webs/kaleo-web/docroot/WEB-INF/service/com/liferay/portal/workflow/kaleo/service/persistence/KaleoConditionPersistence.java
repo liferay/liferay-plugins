@@ -37,72 +37,6 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 	 */
 
 	/**
-	* Caches the kaleo condition in the entity cache if it is enabled.
-	*
-	* @param kaleoCondition the kaleo condition
-	*/
-	public void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition);
-
-	/**
-	* Caches the kaleo conditions in the entity cache if it is enabled.
-	*
-	* @param kaleoConditions the kaleo conditions
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> kaleoConditions);
-
-	/**
-	* Creates a new kaleo condition with the primary key. Does not add the kaleo condition to the database.
-	*
-	* @param kaleoConditionId the primary key for the new kaleo condition
-	* @return the new kaleo condition
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition create(
-		long kaleoConditionId);
-
-	/**
-	* Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoConditionId the primary key of the kaleo condition
-	* @return the kaleo condition that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition remove(
-		long kaleoConditionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the kaleo condition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
-	*
-	* @param kaleoConditionId the primary key of the kaleo condition
-	* @return the kaleo condition
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition findByPrimaryKey(
-		long kaleoConditionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
-
-	/**
-	* Returns the kaleo condition with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoConditionId the primary key of the kaleo condition
-	* @return the kaleo condition, or <code>null</code> if a kaleo condition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByPrimaryKey(
-		long kaleoConditionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the kaleo conditions where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -220,6 +154,25 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
+
+	/**
+	* Removes all the kaleo conditions where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo conditions where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo conditions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the kaleo conditions where kaleoDefinitionId = &#63;.
@@ -341,6 +294,25 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 
 	/**
+	* Removes all the kaleo conditions where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo conditions where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo conditions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the kaleo condition where kaleoNodeId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
 	*
 	* @param kaleoNodeId the kaleo node ID
@@ -374,6 +346,94 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoNodeId(
 		long kaleoNodeId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the kaleo condition where kaleoNodeId = &#63; from the database.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @return the kaleo condition that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition removeByKaleoNodeId(
+		long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
+
+	/**
+	* Returns the number of kaleo conditions where kaleoNodeId = &#63;.
+	*
+	* @param kaleoNodeId the kaleo node ID
+	* @return the number of matching kaleo conditions
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoNodeId(long kaleoNodeId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the kaleo condition in the entity cache if it is enabled.
+	*
+	* @param kaleoCondition the kaleo condition
+	*/
+	public void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition);
+
+	/**
+	* Caches the kaleo conditions in the entity cache if it is enabled.
+	*
+	* @param kaleoConditions the kaleo conditions
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoCondition> kaleoConditions);
+
+	/**
+	* Creates a new kaleo condition with the primary key. Does not add the kaleo condition to the database.
+	*
+	* @param kaleoConditionId the primary key for the new kaleo condition
+	* @return the new kaleo condition
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition create(
+		long kaleoConditionId);
+
+	/**
+	* Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoConditionId the primary key of the kaleo condition
+	* @return the kaleo condition that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition remove(
+		long kaleoConditionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo condition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
+	*
+	* @param kaleoConditionId the primary key of the kaleo condition
+	* @return the kaleo condition
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition findByPrimaryKey(
+		long kaleoConditionId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
+
+	/**
+	* Returns the kaleo condition with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoConditionId the primary key of the kaleo condition
+	* @return the kaleo condition, or <code>null</code> if a kaleo condition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByPrimaryKey(
+		long kaleoConditionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -420,71 +480,11 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the kaleo conditions where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo conditions where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the kaleo condition where kaleoNodeId = &#63; from the database.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @return the kaleo condition that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition removeByKaleoNodeId(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
-
-	/**
 	* Removes all the kaleo conditions from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo conditions where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo conditions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo conditions where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo conditions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo conditions where kaleoNodeId = &#63;.
-	*
-	* @param kaleoNodeId the kaleo node ID
-	* @return the number of matching kaleo conditions
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoNodeId(long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

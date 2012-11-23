@@ -110,86 +110,6 @@ public class KaleoInstanceUtil {
 	}
 
 	/**
-	* Caches the kaleo instance in the entity cache if it is enabled.
-	*
-	* @param kaleoInstance the kaleo instance
-	*/
-	public static void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance) {
-		getPersistence().cacheResult(kaleoInstance);
-	}
-
-	/**
-	* Caches the kaleo instances in the entity cache if it is enabled.
-	*
-	* @param kaleoInstances the kaleo instances
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> kaleoInstances) {
-		getPersistence().cacheResult(kaleoInstances);
-	}
-
-	/**
-	* Creates a new kaleo instance with the primary key. Does not add the kaleo instance to the database.
-	*
-	* @param kaleoInstanceId the primary key for the new kaleo instance
-	* @return the new kaleo instance
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance create(
-		long kaleoInstanceId) {
-		return getPersistence().create(kaleoInstanceId);
-	}
-
-	/**
-	* Removes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoInstanceId the primary key of the kaleo instance
-	* @return the kaleo instance that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance remove(
-		long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchInstanceException {
-		return getPersistence().remove(kaleoInstanceId);
-	}
-
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(kaleoInstance);
-	}
-
-	/**
-	* Returns the kaleo instance with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchInstanceException} if it could not be found.
-	*
-	* @param kaleoInstanceId the primary key of the kaleo instance
-	* @return the kaleo instance
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance findByPrimaryKey(
-		long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchInstanceException {
-		return getPersistence().findByPrimaryKey(kaleoInstanceId);
-	}
-
-	/**
-	* Returns the kaleo instance with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoInstanceId the primary key of the kaleo instance
-	* @return the kaleo instance, or <code>null</code> if a kaleo instance with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByPrimaryKey(
-		long kaleoInstanceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(kaleoInstanceId);
-	}
-
-	/**
 	* Returns all the kaleo instances where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -329,6 +249,29 @@ public class KaleoInstanceUtil {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(kaleoInstanceId, companyId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo instances where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCompanyId(companyId);
+	}
+
+	/**
+	* Returns the number of kaleo instances where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCompanyId(companyId);
 	}
 
 	/**
@@ -477,6 +420,29 @@ public class KaleoInstanceUtil {
 		return getPersistence()
 				   .findByKaleoDefinitionId_PrevAndNext(kaleoInstanceId,
 			kaleoDefinitionId, orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo instances where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
+	}
+
+	/**
+	* Returns the number of kaleo instances where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
@@ -633,6 +599,31 @@ public class KaleoInstanceUtil {
 		return getPersistence()
 				   .findByKDI_C_PrevAndNext(kaleoInstanceId, kaleoDefinitionId,
 			completed, orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo instances where kaleoDefinitionId = &#63; and completed = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param completed the completed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByKDI_C(long kaleoDefinitionId, boolean completed)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByKDI_C(kaleoDefinitionId, completed);
+	}
+
+	/**
+	* Returns the number of kaleo instances where kaleoDefinitionId = &#63; and completed = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param completed the completed
+	* @return the number of matching kaleo instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByKDI_C(long kaleoDefinitionId, boolean completed)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByKDI_C(kaleoDefinitionId, completed);
 	}
 
 	/**
@@ -823,6 +814,123 @@ public class KaleoInstanceUtil {
 	}
 
 	/**
+	* Removes all the kaleo instances where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @param kaleoDefinitionName the kaleo definition name
+	* @param kaleoDefinitionVersion the kaleo definition version
+	* @param completionDate the completion date
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByC_KDN_KDV_CD(long companyId,
+		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
+		java.util.Date completionDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByC_KDN_KDV_CD(companyId, kaleoDefinitionName,
+			kaleoDefinitionVersion, completionDate);
+	}
+
+	/**
+	* Returns the number of kaleo instances where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
+	*
+	* @param companyId the company ID
+	* @param kaleoDefinitionName the kaleo definition name
+	* @param kaleoDefinitionVersion the kaleo definition version
+	* @param completionDate the completion date
+	* @return the number of matching kaleo instances
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_KDN_KDV_CD(long companyId,
+		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
+		java.util.Date completionDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByC_KDN_KDV_CD(companyId, kaleoDefinitionName,
+			kaleoDefinitionVersion, completionDate);
+	}
+
+	/**
+	* Caches the kaleo instance in the entity cache if it is enabled.
+	*
+	* @param kaleoInstance the kaleo instance
+	*/
+	public static void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance) {
+		getPersistence().cacheResult(kaleoInstance);
+	}
+
+	/**
+	* Caches the kaleo instances in the entity cache if it is enabled.
+	*
+	* @param kaleoInstances the kaleo instances
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> kaleoInstances) {
+		getPersistence().cacheResult(kaleoInstances);
+	}
+
+	/**
+	* Creates a new kaleo instance with the primary key. Does not add the kaleo instance to the database.
+	*
+	* @param kaleoInstanceId the primary key for the new kaleo instance
+	* @return the new kaleo instance
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance create(
+		long kaleoInstanceId) {
+		return getPersistence().create(kaleoInstanceId);
+	}
+
+	/**
+	* Removes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstanceId the primary key of the kaleo instance
+	* @return the kaleo instance that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance remove(
+		long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchInstanceException {
+		return getPersistence().remove(kaleoInstanceId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(kaleoInstance);
+	}
+
+	/**
+	* Returns the kaleo instance with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchInstanceException} if it could not be found.
+	*
+	* @param kaleoInstanceId the primary key of the kaleo instance
+	* @return the kaleo instance
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance findByPrimaryKey(
+		long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchInstanceException {
+		return getPersistence().findByPrimaryKey(kaleoInstanceId);
+	}
+
+	/**
+	* Returns the kaleo instance with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoInstanceId the primary key of the kaleo instance
+	* @return the kaleo instance, or <code>null</code> if a kaleo instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByPrimaryKey(
+		long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(kaleoInstanceId);
+	}
+
+	/**
 	* Returns all the kaleo instances.
 	*
 	* @return the kaleo instances
@@ -872,58 +980,6 @@ public class KaleoInstanceUtil {
 	}
 
 	/**
-	* Removes all the kaleo instances where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCompanyId(companyId);
-	}
-
-	/**
-	* Removes all the kaleo instances where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Removes all the kaleo instances where kaleoDefinitionId = &#63; and completed = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @param completed the completed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByKDI_C(long kaleoDefinitionId, boolean completed)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByKDI_C(kaleoDefinitionId, completed);
-	}
-
-	/**
-	* Removes all the kaleo instances where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param kaleoDefinitionName the kaleo definition name
-	* @param kaleoDefinitionVersion the kaleo definition version
-	* @param completionDate the completion date
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByC_KDN_KDV_CD(long companyId,
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
-		java.util.Date completionDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence()
-			.removeByC_KDN_KDV_CD(companyId, kaleoDefinitionName,
-			kaleoDefinitionVersion, completionDate);
-	}
-
-	/**
 	* Removes all the kaleo instances from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -931,62 +987,6 @@ public class KaleoInstanceUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of kaleo instances where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCompanyId(companyId);
-	}
-
-	/**
-	* Returns the number of kaleo instances where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKaleoDefinitionId(kaleoDefinitionId);
-	}
-
-	/**
-	* Returns the number of kaleo instances where kaleoDefinitionId = &#63; and completed = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @param completed the completed
-	* @return the number of matching kaleo instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByKDI_C(long kaleoDefinitionId, boolean completed)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKDI_C(kaleoDefinitionId, completed);
-	}
-
-	/**
-	* Returns the number of kaleo instances where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
-	*
-	* @param companyId the company ID
-	* @param kaleoDefinitionName the kaleo definition name
-	* @param kaleoDefinitionVersion the kaleo definition version
-	* @param completionDate the completion date
-	* @return the number of matching kaleo instances
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByC_KDN_KDV_CD(long companyId,
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
-		java.util.Date completionDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByC_KDN_KDV_CD(companyId, kaleoDefinitionName,
-			kaleoDefinitionVersion, completionDate);
 	}
 
 	/**

@@ -37,72 +37,6 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	 */
 
 	/**
-	* Caches the kaleo notification recipient in the entity cache if it is enabled.
-	*
-	* @param kaleoNotificationRecipient the kaleo notification recipient
-	*/
-	public void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient);
-
-	/**
-	* Caches the kaleo notification recipients in the entity cache if it is enabled.
-	*
-	* @param kaleoNotificationRecipients the kaleo notification recipients
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> kaleoNotificationRecipients);
-
-	/**
-	* Creates a new kaleo notification recipient with the primary key. Does not add the kaleo notification recipient to the database.
-	*
-	* @param kaleoNotificationRecipientId the primary key for the new kaleo notification recipient
-	* @return the new kaleo notification recipient
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient create(
-		long kaleoNotificationRecipientId);
-
-	/**
-	* Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
-	* @return the kaleo notification recipient that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient remove(
-		long kaleoNotificationRecipientId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the kaleo notification recipient with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException} if it could not be found.
-	*
-	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
-	* @return the kaleo notification recipient
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByPrimaryKey(
-		long kaleoNotificationRecipientId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
-
-	/**
-	* Returns the kaleo notification recipient with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
-	* @return the kaleo notification recipient, or <code>null</code> if a kaleo notification recipient with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByPrimaryKey(
-		long kaleoNotificationRecipientId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the kaleo notification recipients where companyId = &#63;.
 	*
 	* @param companyId the company ID
@@ -220,6 +154,25 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	/**
+	* Removes all the kaleo notification recipients where companyId = &#63; from the database.
+	*
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo notification recipients where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching kaleo notification recipients
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the kaleo notification recipients where kaleoDefinitionId = &#63;.
@@ -341,6 +294,25 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
+	* Removes all the kaleo notification recipients where kaleoDefinitionId = &#63; from the database.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo notification recipients where kaleoDefinitionId = &#63;.
+	*
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @return the number of matching kaleo notification recipients
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoDefinitionId(long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo notification recipients where kaleoNotificationId = &#63;.
 	*
 	* @param kaleoNotificationId the kaleo notification ID
@@ -460,6 +432,91 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
 
 	/**
+	* Removes all the kaleo notification recipients where kaleoNotificationId = &#63; from the database.
+	*
+	* @param kaleoNotificationId the kaleo notification ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKaleoNotificationId(long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of kaleo notification recipients where kaleoNotificationId = &#63;.
+	*
+	* @param kaleoNotificationId the kaleo notification ID
+	* @return the number of matching kaleo notification recipients
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKaleoNotificationId(long kaleoNotificationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the kaleo notification recipient in the entity cache if it is enabled.
+	*
+	* @param kaleoNotificationRecipient the kaleo notification recipient
+	*/
+	public void cacheResult(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient);
+
+	/**
+	* Caches the kaleo notification recipients in the entity cache if it is enabled.
+	*
+	* @param kaleoNotificationRecipients the kaleo notification recipients
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> kaleoNotificationRecipients);
+
+	/**
+	* Creates a new kaleo notification recipient with the primary key. Does not add the kaleo notification recipient to the database.
+	*
+	* @param kaleoNotificationRecipientId the primary key for the new kaleo notification recipient
+	* @return the new kaleo notification recipient
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient create(
+		long kaleoNotificationRecipientId);
+
+	/**
+	* Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
+	* @return the kaleo notification recipient that was removed
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient remove(
+		long kaleoNotificationRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo notification recipient with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException} if it could not be found.
+	*
+	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
+	* @return the kaleo notification recipient
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient findByPrimaryKey(
+		long kaleoNotificationRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException;
+
+	/**
+	* Returns the kaleo notification recipient with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
+	* @return the kaleo notification recipient, or <code>null</code> if a kaleo notification recipient with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByPrimaryKey(
+		long kaleoNotificationRecipientId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the kaleo notification recipients.
 	*
 	* @return the kaleo notification recipients
@@ -503,68 +560,11 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the kaleo notification recipients where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo notification recipients where kaleoDefinitionId = &#63; from the database.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the kaleo notification recipients where kaleoNotificationId = &#63; from the database.
-	*
-	* @param kaleoNotificationId the kaleo notification ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByKaleoNotificationId(long kaleoNotificationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the kaleo notification recipients from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo notification recipients where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching kaleo notification recipients
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo notification recipients where kaleoDefinitionId = &#63;.
-	*
-	* @param kaleoDefinitionId the kaleo definition ID
-	* @return the number of matching kaleo notification recipients
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of kaleo notification recipients where kaleoNotificationId = &#63;.
-	*
-	* @param kaleoNotificationId the kaleo notification ID
-	* @return the number of matching kaleo notification recipients
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByKaleoNotificationId(long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

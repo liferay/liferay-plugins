@@ -109,81 +109,6 @@ public class FooUtil {
 	}
 
 	/**
-	* Caches the foo in the entity cache if it is enabled.
-	*
-	* @param foo the foo
-	*/
-	public static void cacheResult(com.liferay.testpacl.model.Foo foo) {
-		getPersistence().cacheResult(foo);
-	}
-
-	/**
-	* Caches the foos in the entity cache if it is enabled.
-	*
-	* @param foos the foos
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.testpacl.model.Foo> foos) {
-		getPersistence().cacheResult(foos);
-	}
-
-	/**
-	* Creates a new foo with the primary key. Does not add the foo to the database.
-	*
-	* @param fooId the primary key for the new foo
-	* @return the new foo
-	*/
-	public static com.liferay.testpacl.model.Foo create(long fooId) {
-		return getPersistence().create(fooId);
-	}
-
-	/**
-	* Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo that was removed
-	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testpacl.model.Foo remove(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testpacl.NoSuchFooException {
-		return getPersistence().remove(fooId);
-	}
-
-	public static com.liferay.testpacl.model.Foo updateImpl(
-		com.liferay.testpacl.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(foo);
-	}
-
-	/**
-	* Returns the foo with the primary key or throws a {@link com.liferay.testpacl.NoSuchFooException} if it could not be found.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo
-	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testpacl.model.Foo findByPrimaryKey(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testpacl.NoSuchFooException {
-		return getPersistence().findByPrimaryKey(fooId);
-	}
-
-	/**
-	* Returns the foo with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo, or <code>null</code> if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testpacl.model.Foo fetchByPrimaryKey(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(fooId);
-	}
-
-	/**
 	* Returns all the foos where field2 = &#63;.
 	*
 	* @param field2 the field2
@@ -321,6 +246,104 @@ public class FooUtil {
 	}
 
 	/**
+	* Removes all the foos where field2 = &#63; from the database.
+	*
+	* @param field2 the field2
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByField2(boolean field2)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByField2(field2);
+	}
+
+	/**
+	* Returns the number of foos where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @return the number of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByField2(boolean field2)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByField2(field2);
+	}
+
+	/**
+	* Caches the foo in the entity cache if it is enabled.
+	*
+	* @param foo the foo
+	*/
+	public static void cacheResult(com.liferay.testpacl.model.Foo foo) {
+		getPersistence().cacheResult(foo);
+	}
+
+	/**
+	* Caches the foos in the entity cache if it is enabled.
+	*
+	* @param foos the foos
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.testpacl.model.Foo> foos) {
+		getPersistence().cacheResult(foos);
+	}
+
+	/**
+	* Creates a new foo with the primary key. Does not add the foo to the database.
+	*
+	* @param fooId the primary key for the new foo
+	* @return the new foo
+	*/
+	public static com.liferay.testpacl.model.Foo create(long fooId) {
+		return getPersistence().create(fooId);
+	}
+
+	/**
+	* Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo that was removed
+	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.testpacl.model.Foo remove(long fooId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testpacl.NoSuchFooException {
+		return getPersistence().remove(fooId);
+	}
+
+	public static com.liferay.testpacl.model.Foo updateImpl(
+		com.liferay.testpacl.model.Foo foo)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(foo);
+	}
+
+	/**
+	* Returns the foo with the primary key or throws a {@link com.liferay.testpacl.NoSuchFooException} if it could not be found.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo
+	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.testpacl.model.Foo findByPrimaryKey(long fooId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testpacl.NoSuchFooException {
+		return getPersistence().findByPrimaryKey(fooId);
+	}
+
+	/**
+	* Returns the foo with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo, or <code>null</code> if a foo with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.testpacl.model.Foo fetchByPrimaryKey(long fooId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(fooId);
+	}
+
+	/**
 	* Returns all the foos.
 	*
 	* @return the foos
@@ -370,17 +393,6 @@ public class FooUtil {
 	}
 
 	/**
-	* Removes all the foos where field2 = &#63; from the database.
-	*
-	* @param field2 the field2
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByField2(boolean field2)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByField2(field2);
-	}
-
-	/**
 	* Removes all the foos from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -388,18 +400,6 @@ public class FooUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of foos where field2 = &#63;.
-	*
-	* @param field2 the field2
-	* @return the number of matching foos
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByField2(boolean field2)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByField2(field2);
 	}
 
 	/**

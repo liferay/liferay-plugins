@@ -109,82 +109,6 @@ public class BarUtil {
 	}
 
 	/**
-	* Caches the bar in the entity cache if it is enabled.
-	*
-	* @param bar the bar
-	*/
-	public static void cacheResult(com.liferay.testtransaction.model.Bar bar) {
-		getPersistence().cacheResult(bar);
-	}
-
-	/**
-	* Caches the bars in the entity cache if it is enabled.
-	*
-	* @param bars the bars
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.testtransaction.model.Bar> bars) {
-		getPersistence().cacheResult(bars);
-	}
-
-	/**
-	* Creates a new bar with the primary key. Does not add the bar to the database.
-	*
-	* @param barId the primary key for the new bar
-	* @return the new bar
-	*/
-	public static com.liferay.testtransaction.model.Bar create(long barId) {
-		return getPersistence().create(barId);
-	}
-
-	/**
-	* Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar that was removed
-	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testtransaction.model.Bar remove(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException {
-		return getPersistence().remove(barId);
-	}
-
-	public static com.liferay.testtransaction.model.Bar updateImpl(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(bar);
-	}
-
-	/**
-	* Returns the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar
-	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testtransaction.model.Bar findByPrimaryKey(
-		long barId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException {
-		return getPersistence().findByPrimaryKey(barId);
-	}
-
-	/**
-	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testtransaction.model.Bar fetchByPrimaryKey(
-		long barId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(barId);
-	}
-
-	/**
 	* Returns all the bars where text = &#63;.
 	*
 	* @param text the text
@@ -321,6 +245,105 @@ public class BarUtil {
 	}
 
 	/**
+	* Removes all the bars where text = &#63; from the database.
+	*
+	* @param text the text
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByText(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByText(text);
+	}
+
+	/**
+	* Returns the number of bars where text = &#63;.
+	*
+	* @param text the text
+	* @return the number of matching bars
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByText(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByText(text);
+	}
+
+	/**
+	* Caches the bar in the entity cache if it is enabled.
+	*
+	* @param bar the bar
+	*/
+	public static void cacheResult(com.liferay.testtransaction.model.Bar bar) {
+		getPersistence().cacheResult(bar);
+	}
+
+	/**
+	* Caches the bars in the entity cache if it is enabled.
+	*
+	* @param bars the bars
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.testtransaction.model.Bar> bars) {
+		getPersistence().cacheResult(bars);
+	}
+
+	/**
+	* Creates a new bar with the primary key. Does not add the bar to the database.
+	*
+	* @param barId the primary key for the new bar
+	* @return the new bar
+	*/
+	public static com.liferay.testtransaction.model.Bar create(long barId) {
+		return getPersistence().create(barId);
+	}
+
+	/**
+	* Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar that was removed
+	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.testtransaction.model.Bar remove(long barId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testtransaction.NoSuchBarException {
+		return getPersistence().remove(barId);
+	}
+
+	public static com.liferay.testtransaction.model.Bar updateImpl(
+		com.liferay.testtransaction.model.Bar bar)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(bar);
+	}
+
+	/**
+	* Returns the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar
+	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.testtransaction.model.Bar findByPrimaryKey(
+		long barId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.testtransaction.NoSuchBarException {
+		return getPersistence().findByPrimaryKey(barId);
+	}
+
+	/**
+	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.testtransaction.model.Bar fetchByPrimaryKey(
+		long barId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(barId);
+	}
+
+	/**
 	* Returns all the bars.
 	*
 	* @return the bars
@@ -370,17 +393,6 @@ public class BarUtil {
 	}
 
 	/**
-	* Removes all the bars where text = &#63; from the database.
-	*
-	* @param text the text
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByText(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByText(text);
-	}
-
-	/**
 	* Removes all the bars from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -388,18 +400,6 @@ public class BarUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of bars where text = &#63;.
-	*
-	* @param text the text
-	* @return the number of matching bars
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByText(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByText(text);
 	}
 
 	/**

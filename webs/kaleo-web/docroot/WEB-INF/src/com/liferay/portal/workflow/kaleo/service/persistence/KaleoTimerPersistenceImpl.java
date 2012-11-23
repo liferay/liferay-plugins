@@ -75,6 +75,15 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KCN_KCPK = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByKCN_KCPK",
@@ -95,446 +104,6 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKCN_KCPK",
 			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING =
-		new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByKCN_KCPK_Blocking",
-			new String[] {
-				String.class.getName(), Long.class.getName(),
-				Boolean.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING =
-		new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByKCN_KCPK_Blocking",
-			new String[] {
-				String.class.getName(), Long.class.getName(),
-				Boolean.class.getName()
-			},
-			KaleoTimerModelImpl.KALEOCLASSNAME_COLUMN_BITMASK |
-			KaleoTimerModelImpl.KALEOCLASSPK_COLUMN_BITMASK |
-			KaleoTimerModelImpl.BLOCKING_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"countByKCN_KCPK_Blocking",
-			new String[] {
-				String.class.getName(), Long.class.getName(),
-				Boolean.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-
-	/**
-	 * Caches the kaleo timer in the entity cache if it is enabled.
-	 *
-	 * @param kaleoTimer the kaleo timer
-	 */
-	public void cacheResult(KaleoTimer kaleoTimer) {
-		EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), kaleoTimer);
-
-		kaleoTimer.resetOriginalValues();
-	}
-
-	/**
-	 * Caches the kaleo timers in the entity cache if it is enabled.
-	 *
-	 * @param kaleoTimers the kaleo timers
-	 */
-	public void cacheResult(List<KaleoTimer> kaleoTimers) {
-		for (KaleoTimer kaleoTimer : kaleoTimers) {
-			if (EntityCacheUtil.getResult(
-						KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTimerImpl.class, kaleoTimer.getPrimaryKey()) == null) {
-				cacheResult(kaleoTimer);
-			}
-			else {
-				kaleoTimer.resetOriginalValues();
-			}
-		}
-	}
-
-	/**
-	 * Clears the cache for all kaleo timers.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(KaleoTimerImpl.class.getName());
-		}
-
-		EntityCacheUtil.clearCache(KaleoTimerImpl.class.getName());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-	}
-
-	/**
-	 * Clears the cache for the kaleo timer.
-	 *
-	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
-	 * </p>
-	 */
-	@Override
-	public void clearCache(KaleoTimer kaleoTimer) {
-		EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-	}
-
-	@Override
-	public void clearCache(List<KaleoTimer> kaleoTimers) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		for (KaleoTimer kaleoTimer : kaleoTimers) {
-			EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
-		}
-	}
-
-	/**
-	 * Creates a new kaleo timer with the primary key. Does not add the kaleo timer to the database.
-	 *
-	 * @param kaleoTimerId the primary key for the new kaleo timer
-	 * @return the new kaleo timer
-	 */
-	public KaleoTimer create(long kaleoTimerId) {
-		KaleoTimer kaleoTimer = new KaleoTimerImpl();
-
-		kaleoTimer.setNew(true);
-		kaleoTimer.setPrimaryKey(kaleoTimerId);
-
-		return kaleoTimer;
-	}
-
-	/**
-	 * Removes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTimerId the primary key of the kaleo timer
-	 * @return the kaleo timer that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimer remove(long kaleoTimerId)
-		throws NoSuchTimerException, SystemException {
-		return remove(Long.valueOf(kaleoTimerId));
-	}
-
-	/**
-	 * Removes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param primaryKey the primary key of the kaleo timer
-	 * @return the kaleo timer that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTimer remove(Serializable primaryKey)
-		throws NoSuchTimerException, SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			KaleoTimer kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
-					primaryKey);
-
-			if (kaleoTimer == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
-				}
-
-				throw new NoSuchTimerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
-			}
-
-			return remove(kaleoTimer);
-		}
-		catch (NoSuchTimerException nsee) {
-			throw nsee;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	@Override
-	protected KaleoTimer removeImpl(KaleoTimer kaleoTimer)
-		throws SystemException {
-		kaleoTimer = toUnwrappedModel(kaleoTimer);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (!session.contains(kaleoTimer)) {
-				kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
-						kaleoTimer.getPrimaryKeyObj());
-			}
-
-			if (kaleoTimer != null) {
-				session.delete(kaleoTimer);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		if (kaleoTimer != null) {
-			clearCache(kaleoTimer);
-		}
-
-		return kaleoTimer;
-	}
-
-	@Override
-	public KaleoTimer updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer)
-		throws SystemException {
-		kaleoTimer = toUnwrappedModel(kaleoTimer);
-
-		boolean isNew = kaleoTimer.isNew();
-
-		KaleoTimerModelImpl kaleoTimerModelImpl = (KaleoTimerModelImpl)kaleoTimer;
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (kaleoTimer.isNew()) {
-				session.save(kaleoTimer);
-
-				kaleoTimer.setNew(false);
-			}
-			else {
-				session.merge(kaleoTimer);
-			}
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-
-		if (isNew || !KaleoTimerModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-		}
-
-		else {
-			if ((kaleoTimerModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kaleoTimerModelImpl.getOriginalKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getOriginalKaleoClassPK())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK,
-					args);
-
-				args = new Object[] {
-						kaleoTimerModelImpl.getKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK,
-					args);
-			}
-
-			if ((kaleoTimerModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kaleoTimerModelImpl.getOriginalKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getOriginalKaleoClassPK()),
-						Boolean.valueOf(kaleoTimerModelImpl.getOriginalBlocking())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING,
-					args);
-
-				args = new Object[] {
-						kaleoTimerModelImpl.getKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK()),
-						Boolean.valueOf(kaleoTimerModelImpl.getBlocking())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING,
-					args);
-			}
-		}
-
-		EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), kaleoTimer);
-
-		return kaleoTimer;
-	}
-
-	protected KaleoTimer toUnwrappedModel(KaleoTimer kaleoTimer) {
-		if (kaleoTimer instanceof KaleoTimerImpl) {
-			return kaleoTimer;
-		}
-
-		KaleoTimerImpl kaleoTimerImpl = new KaleoTimerImpl();
-
-		kaleoTimerImpl.setNew(kaleoTimer.isNew());
-		kaleoTimerImpl.setPrimaryKey(kaleoTimer.getPrimaryKey());
-
-		kaleoTimerImpl.setKaleoTimerId(kaleoTimer.getKaleoTimerId());
-		kaleoTimerImpl.setGroupId(kaleoTimer.getGroupId());
-		kaleoTimerImpl.setCompanyId(kaleoTimer.getCompanyId());
-		kaleoTimerImpl.setUserId(kaleoTimer.getUserId());
-		kaleoTimerImpl.setUserName(kaleoTimer.getUserName());
-		kaleoTimerImpl.setCreateDate(kaleoTimer.getCreateDate());
-		kaleoTimerImpl.setModifiedDate(kaleoTimer.getModifiedDate());
-		kaleoTimerImpl.setKaleoClassName(kaleoTimer.getKaleoClassName());
-		kaleoTimerImpl.setKaleoClassPK(kaleoTimer.getKaleoClassPK());
-		kaleoTimerImpl.setKaleoDefinitionId(kaleoTimer.getKaleoDefinitionId());
-		kaleoTimerImpl.setName(kaleoTimer.getName());
-		kaleoTimerImpl.setBlocking(kaleoTimer.isBlocking());
-		kaleoTimerImpl.setDescription(kaleoTimer.getDescription());
-		kaleoTimerImpl.setDuration(kaleoTimer.getDuration());
-		kaleoTimerImpl.setScale(kaleoTimer.getScale());
-		kaleoTimerImpl.setRecurrenceDuration(kaleoTimer.getRecurrenceDuration());
-		kaleoTimerImpl.setRecurrenceScale(kaleoTimer.getRecurrenceScale());
-
-		return kaleoTimerImpl;
-	}
-
-	/**
-	 * Returns the kaleo timer with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the kaleo timer
-	 * @return the kaleo timer
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTimer findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo timer with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTimerException} if it could not be found.
-	 *
-	 * @param kaleoTimerId the primary key of the kaleo timer
-	 * @return the kaleo timer
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimer findByPrimaryKey(long kaleoTimerId)
-		throws NoSuchTimerException, SystemException {
-		KaleoTimer kaleoTimer = fetchByPrimaryKey(kaleoTimerId);
-
-		if (kaleoTimer == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoTimerId);
-			}
-
-			throw new NoSuchTimerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoTimerId);
-		}
-
-		return kaleoTimer;
-	}
-
-	/**
-	 * Returns the kaleo timer with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the kaleo timer
-	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTimer fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo timer with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoTimerId the primary key of the kaleo timer
-	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimer fetchByPrimaryKey(long kaleoTimerId)
-		throws SystemException {
-		KaleoTimer kaleoTimer = (KaleoTimer)EntityCacheUtil.getResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTimerImpl.class, kaleoTimerId);
-
-		if (kaleoTimer == _nullKaleoTimer) {
-			return null;
-		}
-
-		if (kaleoTimer == null) {
-			Session session = null;
-
-			boolean hasException = false;
-
-			try {
-				session = openSession();
-
-				kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
-						Long.valueOf(kaleoTimerId));
-			}
-			catch (Exception e) {
-				hasException = true;
-
-				throw processException(e);
-			}
-			finally {
-				if (kaleoTimer != null) {
-					cacheResult(kaleoTimer);
-				}
-				else if (!hasException) {
-					EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTimerImpl.class, kaleoTimerId, _nullKaleoTimer);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return kaleoTimer;
-	}
 
 	/**
 	 * Returns all the kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -974,6 +543,127 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 			return null;
 		}
 	}
+
+	/**
+	 * Removes all the kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63; from the database.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
+		throws SystemException {
+		for (KaleoTimer kaleoTimer : findByKCN_KCPK(kaleoClassName, kaleoClassPK)) {
+			remove(kaleoTimer);
+		}
+	}
+
+	/**
+	 * Returns the number of kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @return the number of matching kaleo timers
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { kaleoClassName, kaleoClassPK };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KCN_KCPK,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_KALEOTIMER_WHERE);
+
+			if (kaleoClassName == null) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
+			}
+			else {
+				if (kaleoClassName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (kaleoClassName != null) {
+					qPos.add(kaleoClassName);
+				}
+
+				qPos.add(kaleoClassPK);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KCN_KCPK,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1 = "kaleoTimer.kaleoClassName IS NULL AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2 = "kaleoTimer.kaleoClassName = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3 = "(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2 = "kaleoTimer.kaleoClassPK = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING =
+		new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByKCN_KCPK_Blocking",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
+				Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING =
+		new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, KaleoTimerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByKCN_KCPK_Blocking",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
+				Boolean.class.getName()
+			},
+			KaleoTimerModelImpl.KALEOCLASSNAME_COLUMN_BITMASK |
+			KaleoTimerModelImpl.KALEOCLASSPK_COLUMN_BITMASK |
+			KaleoTimerModelImpl.BLOCKING_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING = new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByKCN_KCPK_Blocking",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
+				Boolean.class.getName()
+			});
 
 	/**
 	 * Returns all the kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
@@ -1443,6 +1133,509 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	}
 
 	/**
+	 * Removes all the kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63; from the database.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param blocking the blocking
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByKCN_KCPK_Blocking(String kaleoClassName,
+		long kaleoClassPK, boolean blocking) throws SystemException {
+		for (KaleoTimer kaleoTimer : findByKCN_KCPK_Blocking(kaleoClassName,
+				kaleoClassPK, blocking)) {
+			remove(kaleoTimer);
+		}
+	}
+
+	/**
+	 * Returns the number of kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param blocking the blocking
+	 * @return the number of matching kaleo timers
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByKCN_KCPK_Blocking(String kaleoClassName,
+		long kaleoClassPK, boolean blocking) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				kaleoClassName, kaleoClassPK, blocking
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_KALEOTIMER_WHERE);
+
+			if (kaleoClassName == null) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_1);
+			}
+			else {
+				if (kaleoClassName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2);
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_BLOCKING_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (kaleoClassName != null) {
+					qPos.add(kaleoClassName);
+				}
+
+				qPos.add(kaleoClassPK);
+
+				qPos.add(blocking);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_1 =
+		"kaleoTimer.kaleoClassName IS NULL AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2 =
+		"kaleoTimer.kaleoClassName = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3 =
+		"(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2 = "kaleoTimer.kaleoClassPK = ? AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_BLOCKING_2 = "kaleoTimer.blocking = ?";
+
+	/**
+	 * Caches the kaleo timer in the entity cache if it is enabled.
+	 *
+	 * @param kaleoTimer the kaleo timer
+	 */
+	public void cacheResult(KaleoTimer kaleoTimer) {
+		EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), kaleoTimer);
+
+		kaleoTimer.resetOriginalValues();
+	}
+
+	/**
+	 * Caches the kaleo timers in the entity cache if it is enabled.
+	 *
+	 * @param kaleoTimers the kaleo timers
+	 */
+	public void cacheResult(List<KaleoTimer> kaleoTimers) {
+		for (KaleoTimer kaleoTimer : kaleoTimers) {
+			if (EntityCacheUtil.getResult(
+						KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoTimerImpl.class, kaleoTimer.getPrimaryKey()) == null) {
+				cacheResult(kaleoTimer);
+			}
+			else {
+				kaleoTimer.resetOriginalValues();
+			}
+		}
+	}
+
+	/**
+	 * Clears the cache for all kaleo timers.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache() {
+		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
+			CacheRegistryUtil.clear(KaleoTimerImpl.class.getName());
+		}
+
+		EntityCacheUtil.clearCache(KaleoTimerImpl.class.getName());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+	}
+
+	/**
+	 * Clears the cache for the kaleo timer.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	@Override
+	public void clearCache(KaleoTimer kaleoTimer) {
+		EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+	}
+
+	@Override
+	public void clearCache(List<KaleoTimer> kaleoTimers) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTimer kaleoTimer : kaleoTimers) {
+			EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
+		}
+	}
+
+	/**
+	 * Creates a new kaleo timer with the primary key. Does not add the kaleo timer to the database.
+	 *
+	 * @param kaleoTimerId the primary key for the new kaleo timer
+	 * @return the new kaleo timer
+	 */
+	public KaleoTimer create(long kaleoTimerId) {
+		KaleoTimer kaleoTimer = new KaleoTimerImpl();
+
+		kaleoTimer.setNew(true);
+		kaleoTimer.setPrimaryKey(kaleoTimerId);
+
+		return kaleoTimer;
+	}
+
+	/**
+	 * Removes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoTimerId the primary key of the kaleo timer
+	 * @return the kaleo timer that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer remove(long kaleoTimerId)
+		throws NoSuchTimerException, SystemException {
+		return remove(Long.valueOf(kaleoTimerId));
+	}
+
+	/**
+	 * Removes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo timer
+	 * @return the kaleo timer that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoTimer remove(Serializable primaryKey)
+		throws NoSuchTimerException, SystemException {
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			KaleoTimer kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
+					primaryKey);
+
+			if (kaleoTimer == null) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				}
+
+				throw new NoSuchTimerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					primaryKey);
+			}
+
+			return remove(kaleoTimer);
+		}
+		catch (NoSuchTimerException nsee) {
+			throw nsee;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
+	protected KaleoTimer removeImpl(KaleoTimer kaleoTimer)
+		throws SystemException {
+		kaleoTimer = toUnwrappedModel(kaleoTimer);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (!session.contains(kaleoTimer)) {
+				kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
+						kaleoTimer.getPrimaryKeyObj());
+			}
+
+			if (kaleoTimer != null) {
+				session.delete(kaleoTimer);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		if (kaleoTimer != null) {
+			clearCache(kaleoTimer);
+		}
+
+		return kaleoTimer;
+	}
+
+	@Override
+	public KaleoTimer updateImpl(
+		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer)
+		throws SystemException {
+		kaleoTimer = toUnwrappedModel(kaleoTimer);
+
+		boolean isNew = kaleoTimer.isNew();
+
+		KaleoTimerModelImpl kaleoTimerModelImpl = (KaleoTimerModelImpl)kaleoTimer;
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			if (kaleoTimer.isNew()) {
+				session.save(kaleoTimer);
+
+				kaleoTimer.setNew(false);
+			}
+			else {
+				session.merge(kaleoTimer);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew || !KaleoTimerModelImpl.COLUMN_BITMASK_ENABLED) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
+		else {
+			if ((kaleoTimerModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						kaleoTimerModelImpl.getOriginalKaleoClassName(),
+						Long.valueOf(kaleoTimerModelImpl.getOriginalKaleoClassPK())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK,
+					args);
+
+				args = new Object[] {
+						kaleoTimerModelImpl.getKaleoClassName(),
+						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK,
+					args);
+			}
+
+			if ((kaleoTimerModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						kaleoTimerModelImpl.getOriginalKaleoClassName(),
+						Long.valueOf(kaleoTimerModelImpl.getOriginalKaleoClassPK()),
+						Boolean.valueOf(kaleoTimerModelImpl.getOriginalBlocking())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING,
+					args);
+
+				args = new Object[] {
+						kaleoTimerModelImpl.getKaleoClassName(),
+						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK()),
+						Boolean.valueOf(kaleoTimerModelImpl.getBlocking())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING,
+					args);
+			}
+		}
+
+		EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), kaleoTimer);
+
+		return kaleoTimer;
+	}
+
+	protected KaleoTimer toUnwrappedModel(KaleoTimer kaleoTimer) {
+		if (kaleoTimer instanceof KaleoTimerImpl) {
+			return kaleoTimer;
+		}
+
+		KaleoTimerImpl kaleoTimerImpl = new KaleoTimerImpl();
+
+		kaleoTimerImpl.setNew(kaleoTimer.isNew());
+		kaleoTimerImpl.setPrimaryKey(kaleoTimer.getPrimaryKey());
+
+		kaleoTimerImpl.setKaleoTimerId(kaleoTimer.getKaleoTimerId());
+		kaleoTimerImpl.setGroupId(kaleoTimer.getGroupId());
+		kaleoTimerImpl.setCompanyId(kaleoTimer.getCompanyId());
+		kaleoTimerImpl.setUserId(kaleoTimer.getUserId());
+		kaleoTimerImpl.setUserName(kaleoTimer.getUserName());
+		kaleoTimerImpl.setCreateDate(kaleoTimer.getCreateDate());
+		kaleoTimerImpl.setModifiedDate(kaleoTimer.getModifiedDate());
+		kaleoTimerImpl.setKaleoClassName(kaleoTimer.getKaleoClassName());
+		kaleoTimerImpl.setKaleoClassPK(kaleoTimer.getKaleoClassPK());
+		kaleoTimerImpl.setKaleoDefinitionId(kaleoTimer.getKaleoDefinitionId());
+		kaleoTimerImpl.setName(kaleoTimer.getName());
+		kaleoTimerImpl.setBlocking(kaleoTimer.isBlocking());
+		kaleoTimerImpl.setDescription(kaleoTimer.getDescription());
+		kaleoTimerImpl.setDuration(kaleoTimer.getDuration());
+		kaleoTimerImpl.setScale(kaleoTimer.getScale());
+		kaleoTimerImpl.setRecurrenceDuration(kaleoTimer.getRecurrenceDuration());
+		kaleoTimerImpl.setRecurrenceScale(kaleoTimer.getRecurrenceScale());
+
+		return kaleoTimerImpl;
+	}
+
+	/**
+	 * Returns the kaleo timer with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo timer
+	 * @return the kaleo timer
+	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoTimer findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the kaleo timer with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTimerException} if it could not be found.
+	 *
+	 * @param kaleoTimerId the primary key of the kaleo timer
+	 * @return the kaleo timer
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer findByPrimaryKey(long kaleoTimerId)
+		throws NoSuchTimerException, SystemException {
+		KaleoTimer kaleoTimer = fetchByPrimaryKey(kaleoTimerId);
+
+		if (kaleoTimer == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoTimerId);
+			}
+
+			throw new NoSuchTimerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				kaleoTimerId);
+		}
+
+		return kaleoTimer;
+	}
+
+	/**
+	 * Returns the kaleo timer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo timer
+	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoTimer fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Returns the kaleo timer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoTimerId the primary key of the kaleo timer
+	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer fetchByPrimaryKey(long kaleoTimerId)
+		throws SystemException {
+		KaleoTimer kaleoTimer = (KaleoTimer)EntityCacheUtil.getResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTimerImpl.class, kaleoTimerId);
+
+		if (kaleoTimer == _nullKaleoTimer) {
+			return null;
+		}
+
+		if (kaleoTimer == null) {
+			Session session = null;
+
+			boolean hasException = false;
+
+			try {
+				session = openSession();
+
+				kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
+						Long.valueOf(kaleoTimerId));
+			}
+			catch (Exception e) {
+				hasException = true;
+
+				throw processException(e);
+			}
+			finally {
+				if (kaleoTimer != null) {
+					cacheResult(kaleoTimer);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+						KaleoTimerImpl.class, kaleoTimerId, _nullKaleoTimer);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return kaleoTimer;
+	}
+
+	/**
 	 * Returns all the kaleo timers.
 	 *
 	 * @return the kaleo timers
@@ -1558,36 +1751,6 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	}
 
 	/**
-	 * Removes all the kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63; from the database.
-	 *
-	 * @param kaleoClassName the kaleo class name
-	 * @param kaleoClassPK the kaleo class p k
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
-		throws SystemException {
-		for (KaleoTimer kaleoTimer : findByKCN_KCPK(kaleoClassName, kaleoClassPK)) {
-			remove(kaleoTimer);
-		}
-	}
-
-	/**
-	 * Removes all the kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63; from the database.
-	 *
-	 * @param kaleoClassName the kaleo class name
-	 * @param kaleoClassPK the kaleo class p k
-	 * @param blocking the blocking
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByKCN_KCPK_Blocking(String kaleoClassName,
-		long kaleoClassPK, boolean blocking) throws SystemException {
-		for (KaleoTimer kaleoTimer : findByKCN_KCPK_Blocking(kaleoClassName,
-				kaleoClassPK, blocking)) {
-			remove(kaleoTimer);
-		}
-	}
-
-	/**
 	 * Removes all the kaleo timers from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -1596,155 +1759,6 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		for (KaleoTimer kaleoTimer : findAll()) {
 			remove(kaleoTimer);
 		}
-	}
-
-	/**
-	 * Returns the number of kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63;.
-	 *
-	 * @param kaleoClassName the kaleo class name
-	 * @param kaleoClassPK the kaleo class p k
-	 * @return the number of matching kaleo timers
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoClassName, kaleoClassPK };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KCN_KCPK,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_KALEOTIMER_WHERE);
-
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
-			}
-			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
-				}
-			}
-
-			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (kaleoClassName != null) {
-					qPos.add(kaleoClassName);
-				}
-
-				qPos.add(kaleoClassPK);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KCN_KCPK,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of kaleo timers where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
-	 *
-	 * @param kaleoClassName the kaleo class name
-	 * @param kaleoClassPK the kaleo class p k
-	 * @param blocking the blocking
-	 * @return the number of matching kaleo timers
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByKCN_KCPK_Blocking(String kaleoClassName,
-		long kaleoClassPK, boolean blocking) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				kaleoClassName, kaleoClassPK, blocking
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_COUNT_KALEOTIMER_WHERE);
-
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_1);
-			}
-			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
-				}
-			}
-
-			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2);
-
-			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_BLOCKING_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (kaleoClassName != null) {
-					qPos.add(kaleoClassName);
-				}
-
-				qPos.add(kaleoClassPK);
-
-				qPos.add(blocking);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
 	}
 
 	/**
@@ -1854,18 +1868,6 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	private static final String _SQL_SELECT_KALEOTIMER_WHERE = "SELECT kaleoTimer FROM KaleoTimer kaleoTimer WHERE ";
 	private static final String _SQL_COUNT_KALEOTIMER = "SELECT COUNT(kaleoTimer) FROM KaleoTimer kaleoTimer";
 	private static final String _SQL_COUNT_KALEOTIMER_WHERE = "SELECT COUNT(kaleoTimer) FROM KaleoTimer kaleoTimer WHERE ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1 = "kaleoTimer.kaleoClassName IS NULL AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2 = "kaleoTimer.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3 = "(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = ?) AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2 = "kaleoTimer.kaleoClassPK = ?";
-	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_1 =
-		"kaleoTimer.kaleoClassName IS NULL AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2 =
-		"kaleoTimer.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3 =
-		"(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = ?) AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2 = "kaleoTimer.kaleoClassPK = ? AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_BLOCKING_2 = "kaleoTimer.blocking = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoTimer.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoTimer exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoTimer exists with the key {";

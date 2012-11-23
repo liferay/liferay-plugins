@@ -111,86 +111,6 @@ public class UserThreadUtil {
 	}
 
 	/**
-	* Caches the user thread in the entity cache if it is enabled.
-	*
-	* @param userThread the user thread
-	*/
-	public static void cacheResult(
-		com.liferay.privatemessaging.model.UserThread userThread) {
-		getPersistence().cacheResult(userThread);
-	}
-
-	/**
-	* Caches the user threads in the entity cache if it is enabled.
-	*
-	* @param userThreads the user threads
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.privatemessaging.model.UserThread> userThreads) {
-		getPersistence().cacheResult(userThreads);
-	}
-
-	/**
-	* Creates a new user thread with the primary key. Does not add the user thread to the database.
-	*
-	* @param userThreadId the primary key for the new user thread
-	* @return the new user thread
-	*/
-	public static com.liferay.privatemessaging.model.UserThread create(
-		long userThreadId) {
-		return getPersistence().create(userThreadId);
-	}
-
-	/**
-	* Removes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param userThreadId the primary key of the user thread
-	* @return the user thread that was removed
-	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.privatemessaging.model.UserThread remove(
-		long userThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
-		return getPersistence().remove(userThreadId);
-	}
-
-	public static com.liferay.privatemessaging.model.UserThread updateImpl(
-		com.liferay.privatemessaging.model.UserThread userThread)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(userThread);
-	}
-
-	/**
-	* Returns the user thread with the primary key or throws a {@link com.liferay.privatemessaging.NoSuchUserThreadException} if it could not be found.
-	*
-	* @param userThreadId the primary key of the user thread
-	* @return the user thread
-	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.privatemessaging.model.UserThread findByPrimaryKey(
-		long userThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
-		return getPersistence().findByPrimaryKey(userThreadId);
-	}
-
-	/**
-	* Returns the user thread with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param userThreadId the primary key of the user thread
-	* @return the user thread, or <code>null</code> if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.privatemessaging.model.UserThread fetchByPrimaryKey(
-		long userThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(userThreadId);
-	}
-
-	/**
 	* Returns all the user threads where mbThreadId = &#63;.
 	*
 	* @param mbThreadId the mb thread ID
@@ -333,6 +253,29 @@ public class UserThreadUtil {
 	}
 
 	/**
+	* Removes all the user threads where mbThreadId = &#63; from the database.
+	*
+	* @param mbThreadId the mb thread ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByMBThreadId(long mbThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByMBThreadId(mbThreadId);
+	}
+
+	/**
+	* Returns the number of user threads where mbThreadId = &#63;.
+	*
+	* @param mbThreadId the mb thread ID
+	* @return the number of matching user threads
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByMBThreadId(long mbThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByMBThreadId(mbThreadId);
+	}
+
+	/**
 	* Returns all the user threads where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -470,6 +413,29 @@ public class UserThreadUtil {
 	}
 
 	/**
+	* Removes all the user threads where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of user threads where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching user threads
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
 	* Returns the user thread where userId = &#63; and mbThreadId = &#63; or throws a {@link com.liferay.privatemessaging.NoSuchUserThreadException} if it could not be found.
 	*
 	* @param userId the user ID
@@ -512,6 +478,34 @@ public class UserThreadUtil {
 		long userId, long mbThreadId, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByU_M(userId, mbThreadId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the user thread where userId = &#63; and mbThreadId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param mbThreadId the mb thread ID
+	* @return the user thread that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.privatemessaging.model.UserThread removeByU_M(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.privatemessaging.NoSuchUserThreadException {
+		return getPersistence().removeByU_M(userId, mbThreadId);
+	}
+
+	/**
+	* Returns the number of user threads where userId = &#63; and mbThreadId = &#63;.
+	*
+	* @param userId the user ID
+	* @param mbThreadId the mb thread ID
+	* @return the number of matching user threads
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_M(long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_M(userId, mbThreadId);
 	}
 
 	/**
@@ -662,6 +656,31 @@ public class UserThreadUtil {
 		return getPersistence()
 				   .findByU_D_PrevAndNext(userThreadId, userId, deleted,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the user threads where userId = &#63; and deleted = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param deleted the deleted
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU_D(long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU_D(userId, deleted);
+	}
+
+	/**
+	* Returns the number of user threads where userId = &#63; and deleted = &#63;.
+	*
+	* @param userId the user ID
+	* @param deleted the deleted
+	* @return the number of matching user threads
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_D(long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_D(userId, deleted);
 	}
 
 	/**
@@ -824,6 +843,113 @@ public class UserThreadUtil {
 	}
 
 	/**
+	* Removes all the user threads where userId = &#63; and read = &#63; and deleted = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param read the read
+	* @param deleted the deleted
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU_R_D(long userId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU_R_D(userId, read, deleted);
+	}
+
+	/**
+	* Returns the number of user threads where userId = &#63; and read = &#63; and deleted = &#63;.
+	*
+	* @param userId the user ID
+	* @param read the read
+	* @param deleted the deleted
+	* @return the number of matching user threads
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_R_D(long userId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_R_D(userId, read, deleted);
+	}
+
+	/**
+	* Caches the user thread in the entity cache if it is enabled.
+	*
+	* @param userThread the user thread
+	*/
+	public static void cacheResult(
+		com.liferay.privatemessaging.model.UserThread userThread) {
+		getPersistence().cacheResult(userThread);
+	}
+
+	/**
+	* Caches the user threads in the entity cache if it is enabled.
+	*
+	* @param userThreads the user threads
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.privatemessaging.model.UserThread> userThreads) {
+		getPersistence().cacheResult(userThreads);
+	}
+
+	/**
+	* Creates a new user thread with the primary key. Does not add the user thread to the database.
+	*
+	* @param userThreadId the primary key for the new user thread
+	* @return the new user thread
+	*/
+	public static com.liferay.privatemessaging.model.UserThread create(
+		long userThreadId) {
+		return getPersistence().create(userThreadId);
+	}
+
+	/**
+	* Removes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param userThreadId the primary key of the user thread
+	* @return the user thread that was removed
+	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.privatemessaging.model.UserThread remove(
+		long userThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.privatemessaging.NoSuchUserThreadException {
+		return getPersistence().remove(userThreadId);
+	}
+
+	public static com.liferay.privatemessaging.model.UserThread updateImpl(
+		com.liferay.privatemessaging.model.UserThread userThread)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(userThread);
+	}
+
+	/**
+	* Returns the user thread with the primary key or throws a {@link com.liferay.privatemessaging.NoSuchUserThreadException} if it could not be found.
+	*
+	* @param userThreadId the primary key of the user thread
+	* @return the user thread
+	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.privatemessaging.model.UserThread findByPrimaryKey(
+		long userThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.privatemessaging.NoSuchUserThreadException {
+		return getPersistence().findByPrimaryKey(userThreadId);
+	}
+
+	/**
+	* Returns the user thread with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param userThreadId the primary key of the user thread
+	* @return the user thread, or <code>null</code> if a user thread with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.privatemessaging.model.UserThread fetchByPrimaryKey(
+		long userThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(userThreadId);
+	}
+
+	/**
 	* Returns all the user threads.
 	*
 	* @return the user threads
@@ -873,68 +999,6 @@ public class UserThreadUtil {
 	}
 
 	/**
-	* Removes all the user threads where mbThreadId = &#63; from the database.
-	*
-	* @param mbThreadId the mb thread ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByMBThreadId(long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByMBThreadId(mbThreadId);
-	}
-
-	/**
-	* Removes all the user threads where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
-	}
-
-	/**
-	* Removes the user thread where userId = &#63; and mbThreadId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @param mbThreadId the mb thread ID
-	* @return the user thread that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.privatemessaging.model.UserThread removeByU_M(
-		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
-		return getPersistence().removeByU_M(userId, mbThreadId);
-	}
-
-	/**
-	* Removes all the user threads where userId = &#63; and deleted = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @param deleted the deleted
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByU_D(long userId, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByU_D(userId, deleted);
-	}
-
-	/**
-	* Removes all the user threads where userId = &#63; and read = &#63; and deleted = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @param read the read
-	* @param deleted the deleted
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByU_R_D(long userId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByU_R_D(userId, read, deleted);
-	}
-
-	/**
 	* Removes all the user threads from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -942,70 +1006,6 @@ public class UserThreadUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of user threads where mbThreadId = &#63;.
-	*
-	* @param mbThreadId the mb thread ID
-	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByMBThreadId(long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByMBThreadId(mbThreadId);
-	}
-
-	/**
-	* Returns the number of user threads where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUserId(userId);
-	}
-
-	/**
-	* Returns the number of user threads where userId = &#63; and mbThreadId = &#63;.
-	*
-	* @param userId the user ID
-	* @param mbThreadId the mb thread ID
-	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByU_M(long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByU_M(userId, mbThreadId);
-	}
-
-	/**
-	* Returns the number of user threads where userId = &#63; and deleted = &#63;.
-	*
-	* @param userId the user ID
-	* @param deleted the deleted
-	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByU_D(long userId, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByU_D(userId, deleted);
-	}
-
-	/**
-	* Returns the number of user threads where userId = &#63; and read = &#63; and deleted = &#63;.
-	*
-	* @param userId the user ID
-	* @param read the read
-	* @param deleted the deleted
-	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByU_R_D(long userId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByU_R_D(userId, read, deleted);
 	}
 
 	/**

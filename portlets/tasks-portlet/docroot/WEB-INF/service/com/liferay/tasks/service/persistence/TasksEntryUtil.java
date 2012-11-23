@@ -111,84 +111,6 @@ public class TasksEntryUtil {
 	}
 
 	/**
-	* Caches the tasks entry in the entity cache if it is enabled.
-	*
-	* @param tasksEntry the tasks entry
-	*/
-	public static void cacheResult(
-		com.liferay.tasks.model.TasksEntry tasksEntry) {
-		getPersistence().cacheResult(tasksEntry);
-	}
-
-	/**
-	* Caches the tasks entries in the entity cache if it is enabled.
-	*
-	* @param tasksEntries the tasks entries
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.tasks.model.TasksEntry> tasksEntries) {
-		getPersistence().cacheResult(tasksEntries);
-	}
-
-	/**
-	* Creates a new tasks entry with the primary key. Does not add the tasks entry to the database.
-	*
-	* @param tasksEntryId the primary key for the new tasks entry
-	* @return the new tasks entry
-	*/
-	public static com.liferay.tasks.model.TasksEntry create(long tasksEntryId) {
-		return getPersistence().create(tasksEntryId);
-	}
-
-	/**
-	* Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param tasksEntryId the primary key of the tasks entry
-	* @return the tasks entry that was removed
-	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.tasks.model.TasksEntry remove(long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.tasks.NoSuchTasksEntryException {
-		return getPersistence().remove(tasksEntryId);
-	}
-
-	public static com.liferay.tasks.model.TasksEntry updateImpl(
-		com.liferay.tasks.model.TasksEntry tasksEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(tasksEntry);
-	}
-
-	/**
-	* Returns the tasks entry with the primary key or throws a {@link com.liferay.tasks.NoSuchTasksEntryException} if it could not be found.
-	*
-	* @param tasksEntryId the primary key of the tasks entry
-	* @return the tasks entry
-	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.tasks.model.TasksEntry findByPrimaryKey(
-		long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.tasks.NoSuchTasksEntryException {
-		return getPersistence().findByPrimaryKey(tasksEntryId);
-	}
-
-	/**
-	* Returns the tasks entry with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param tasksEntryId the primary key of the tasks entry
-	* @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.tasks.model.TasksEntry fetchByPrimaryKey(
-		long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(tasksEntryId);
-	}
-
-	/**
 	* Returns all the tasks entries where groupId = &#63;.
 	*
 	* @param groupId the group ID
@@ -401,6 +323,41 @@ public class TasksEntryUtil {
 	}
 
 	/**
+	* Removes all the tasks entries where groupId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByGroupId(groupId);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByGroupId(groupId);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63;.
+	*
+	* @param groupId the group ID
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByGroupId(groupId);
+	}
+
+	/**
 	* Returns all the tasks entries where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -535,6 +492,29 @@ public class TasksEntryUtil {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(tasksEntryId, userId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the tasks entries where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of tasks entries where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
 	}
 
 	/**
@@ -682,6 +662,29 @@ public class TasksEntryUtil {
 	}
 
 	/**
+	* Removes all the tasks entries where assigneeUserId = &#63; from the database.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByAssigneeUserId(long assigneeUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByAssigneeUserId(assigneeUserId);
+	}
+
+	/**
+	* Returns the number of tasks entries where assigneeUserId = &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByAssigneeUserId(long assigneeUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByAssigneeUserId(assigneeUserId);
+	}
+
+	/**
 	* Returns all the tasks entries where resolverUserId = &#63;.
 	*
 	* @param resolverUserId the resolver user ID
@@ -823,6 +826,29 @@ public class TasksEntryUtil {
 		return getPersistence()
 				   .findByResolverUserId_PrevAndNext(tasksEntryId,
 			resolverUserId, orderByComparator);
+	}
+
+	/**
+	* Removes all the tasks entries where resolverUserId = &#63; from the database.
+	*
+	* @param resolverUserId the resolver user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByResolverUserId(long resolverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByResolverUserId(resolverUserId);
+	}
+
+	/**
+	* Returns the number of tasks entries where resolverUserId = &#63;.
+	*
+	* @param resolverUserId the resolver user ID
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByResolverUserId(long resolverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByResolverUserId(resolverUserId);
 	}
 
 	/**
@@ -1052,6 +1078,44 @@ public class TasksEntryUtil {
 		return getPersistence()
 				   .filterFindByG_U_PrevAndNext(tasksEntryId, groupId, userId,
 			orderByComparator);
+	}
+
+	/**
+	* Removes all the tasks entries where groupId = &#63; and userId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_U(long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_U(groupId, userId);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63; and userId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_U(long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_U(groupId, userId);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_U(long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_U(groupId, userId);
 	}
 
 	/**
@@ -1286,6 +1350,44 @@ public class TasksEntryUtil {
 	}
 
 	/**
+	* Removes all the tasks entries where groupId = &#63; and assigneeUserId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_A(long groupId, long assigneeUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_A(groupId, assigneeUserId);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63; and assigneeUserId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_A(long groupId, long assigneeUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_A(groupId, assigneeUserId);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_A(long groupId, long assigneeUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_A(groupId, assigneeUserId);
+	}
+
+	/**
 	* Returns all the tasks entries where groupId = &#63; and resolverUserId = &#63;.
 	*
 	* @param groupId the group ID
@@ -1517,6 +1619,122 @@ public class TasksEntryUtil {
 	}
 
 	/**
+	* Removes all the tasks entries where groupId = &#63; and resolverUserId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param resolverUserId the resolver user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_R(long groupId, long resolverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_R(groupId, resolverUserId);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63; and resolverUserId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param resolverUserId the resolver user ID
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_R(long groupId, long resolverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_R(groupId, resolverUserId);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and resolverUserId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param resolverUserId the resolver user ID
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_R(long groupId, long resolverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_R(groupId, resolverUserId);
+	}
+
+	/**
+	* Caches the tasks entry in the entity cache if it is enabled.
+	*
+	* @param tasksEntry the tasks entry
+	*/
+	public static void cacheResult(
+		com.liferay.tasks.model.TasksEntry tasksEntry) {
+		getPersistence().cacheResult(tasksEntry);
+	}
+
+	/**
+	* Caches the tasks entries in the entity cache if it is enabled.
+	*
+	* @param tasksEntries the tasks entries
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.tasks.model.TasksEntry> tasksEntries) {
+		getPersistence().cacheResult(tasksEntries);
+	}
+
+	/**
+	* Creates a new tasks entry with the primary key. Does not add the tasks entry to the database.
+	*
+	* @param tasksEntryId the primary key for the new tasks entry
+	* @return the new tasks entry
+	*/
+	public static com.liferay.tasks.model.TasksEntry create(long tasksEntryId) {
+		return getPersistence().create(tasksEntryId);
+	}
+
+	/**
+	* Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param tasksEntryId the primary key of the tasks entry
+	* @return the tasks entry that was removed
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry remove(long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence().remove(tasksEntryId);
+	}
+
+	public static com.liferay.tasks.model.TasksEntry updateImpl(
+		com.liferay.tasks.model.TasksEntry tasksEntry)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(tasksEntry);
+	}
+
+	/**
+	* Returns the tasks entry with the primary key or throws a {@link com.liferay.tasks.NoSuchTasksEntryException} if it could not be found.
+	*
+	* @param tasksEntryId the primary key of the tasks entry
+	* @return the tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByPrimaryKey(
+		long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence().findByPrimaryKey(tasksEntryId);
+	}
+
+	/**
+	* Returns the tasks entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param tasksEntryId the primary key of the tasks entry
+	* @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByPrimaryKey(
+		long tasksEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(tasksEntryId);
+	}
+
+	/**
 	* Returns all the tasks entries.
 	*
 	* @return the tasks entries
@@ -1566,86 +1784,6 @@ public class TasksEntryUtil {
 	}
 
 	/**
-	* Removes all the tasks entries where groupId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByGroupId(groupId);
-	}
-
-	/**
-	* Removes all the tasks entries where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
-	}
-
-	/**
-	* Removes all the tasks entries where assigneeUserId = &#63; from the database.
-	*
-	* @param assigneeUserId the assignee user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByAssigneeUserId(long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByAssigneeUserId(assigneeUserId);
-	}
-
-	/**
-	* Removes all the tasks entries where resolverUserId = &#63; from the database.
-	*
-	* @param resolverUserId the resolver user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByResolverUserId(long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByResolverUserId(resolverUserId);
-	}
-
-	/**
-	* Removes all the tasks entries where groupId = &#63; and userId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByG_U(groupId, userId);
-	}
-
-	/**
-	* Removes all the tasks entries where groupId = &#63; and assigneeUserId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param assigneeUserId the assignee user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByG_A(long groupId, long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByG_A(groupId, assigneeUserId);
-	}
-
-	/**
-	* Removes all the tasks entries where groupId = &#63; and resolverUserId = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param resolverUserId the resolver user ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByG_R(long groupId, long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByG_R(groupId, resolverUserId);
-	}
-
-	/**
 	* Removes all the tasks entries from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -1653,144 +1791,6 @@ public class TasksEntryUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of tasks entries where groupId = &#63;.
-	*
-	* @param groupId the group ID
-	* @return the number of matching tasks entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByGroupId(groupId);
-	}
-
-	/**
-	* Returns the number of tasks entries that the user has permission to view where groupId = &#63;.
-	*
-	* @param groupId the group ID
-	* @return the number of matching tasks entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByGroupId(groupId);
-	}
-
-	/**
-	* Returns the number of tasks entries where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching tasks entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUserId(userId);
-	}
-
-	/**
-	* Returns the number of tasks entries where assigneeUserId = &#63;.
-	*
-	* @param assigneeUserId the assignee user ID
-	* @return the number of matching tasks entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByAssigneeUserId(long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByAssigneeUserId(assigneeUserId);
-	}
-
-	/**
-	* Returns the number of tasks entries where resolverUserId = &#63;.
-	*
-	* @param resolverUserId the resolver user ID
-	* @return the number of matching tasks entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByResolverUserId(long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByResolverUserId(resolverUserId);
-	}
-
-	/**
-	* Returns the number of tasks entries where groupId = &#63; and userId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param userId the user ID
-	* @return the number of matching tasks entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByG_U(groupId, userId);
-	}
-
-	/**
-	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param userId the user ID
-	* @return the number of matching tasks entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByG_U(groupId, userId);
-	}
-
-	/**
-	* Returns the number of tasks entries where groupId = &#63; and assigneeUserId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param assigneeUserId the assignee user ID
-	* @return the number of matching tasks entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByG_A(long groupId, long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByG_A(groupId, assigneeUserId);
-	}
-
-	/**
-	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param assigneeUserId the assignee user ID
-	* @return the number of matching tasks entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByG_A(long groupId, long assigneeUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByG_A(groupId, assigneeUserId);
-	}
-
-	/**
-	* Returns the number of tasks entries where groupId = &#63; and resolverUserId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param resolverUserId the resolver user ID
-	* @return the number of matching tasks entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByG_R(long groupId, long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByG_R(groupId, resolverUserId);
-	}
-
-	/**
-	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and resolverUserId = &#63;.
-	*
-	* @param groupId the group ID
-	* @param resolverUserId the resolver user ID
-	* @return the number of matching tasks entries that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int filterCountByG_R(long groupId, long resolverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().filterCountByG_R(groupId, resolverUserId);
 	}
 
 	/**

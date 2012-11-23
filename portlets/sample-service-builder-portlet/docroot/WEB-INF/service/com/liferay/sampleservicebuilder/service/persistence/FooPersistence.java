@@ -38,68 +38,6 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	 */
 
 	/**
-	* Caches the foo in the entity cache if it is enabled.
-	*
-	* @param foo the foo
-	*/
-	public void cacheResult(com.liferay.sampleservicebuilder.model.Foo foo);
-
-	/**
-	* Caches the foos in the entity cache if it is enabled.
-	*
-	* @param foos the foos
-	*/
-	public void cacheResult(
-		java.util.List<com.liferay.sampleservicebuilder.model.Foo> foos);
-
-	/**
-	* Creates a new foo with the primary key. Does not add the foo to the database.
-	*
-	* @param fooId the primary key for the new foo
-	* @return the new foo
-	*/
-	public com.liferay.sampleservicebuilder.model.Foo create(long fooId);
-
-	/**
-	* Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo that was removed
-	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.sampleservicebuilder.model.Foo remove(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sampleservicebuilder.NoSuchFooException;
-
-	public com.liferay.sampleservicebuilder.model.Foo updateImpl(
-		com.liferay.sampleservicebuilder.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the foo with the primary key or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo
-	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.sampleservicebuilder.model.Foo findByPrimaryKey(
-		long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sampleservicebuilder.NoSuchFooException;
-
-	/**
-	* Returns the foo with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo, or <code>null</code> if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.sampleservicebuilder.model.Foo fetchByPrimaryKey(
-		long fooId) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the foos where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -219,6 +157,25 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
+	* Removes all the foos where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of foos where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the foo where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
 	*
 	* @param uuid the uuid
@@ -255,6 +212,30 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.sampleservicebuilder.model.Foo fetchByUUID_G(
 		java.lang.String uuid, long groupId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the foo where uuid = &#63; and groupId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the foo that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo removeByUUID_G(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.sampleservicebuilder.NoSuchFooException;
+
+	/**
+	* Returns the number of foos where uuid = &#63; and groupId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the number of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -385,6 +366,27 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
+	* Removes all the foos where uuid = &#63; and companyId = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of foos where uuid = &#63; and companyId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @return the number of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid_C(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the foos where field2 = &#63;.
 	*
 	* @param field2 the field2
@@ -504,6 +506,87 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
+	* Removes all the foos where field2 = &#63; from the database.
+	*
+	* @param field2 the field2
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByField2(boolean field2)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of foos where field2 = &#63;.
+	*
+	* @param field2 the field2
+	* @return the number of matching foos
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByField2(boolean field2)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Caches the foo in the entity cache if it is enabled.
+	*
+	* @param foo the foo
+	*/
+	public void cacheResult(com.liferay.sampleservicebuilder.model.Foo foo);
+
+	/**
+	* Caches the foos in the entity cache if it is enabled.
+	*
+	* @param foos the foos
+	*/
+	public void cacheResult(
+		java.util.List<com.liferay.sampleservicebuilder.model.Foo> foos);
+
+	/**
+	* Creates a new foo with the primary key. Does not add the foo to the database.
+	*
+	* @param fooId the primary key for the new foo
+	* @return the new foo
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo create(long fooId);
+
+	/**
+	* Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo that was removed
+	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo remove(long fooId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.sampleservicebuilder.NoSuchFooException;
+
+	public com.liferay.sampleservicebuilder.model.Foo updateImpl(
+		com.liferay.sampleservicebuilder.model.Foo foo)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the foo with the primary key or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo
+	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo findByPrimaryKey(
+		long fooId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.sampleservicebuilder.NoSuchFooException;
+
+	/**
+	* Returns the foo with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo, or <code>null</code> if a foo with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo fetchByPrimaryKey(
+		long fooId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the foos.
 	*
 	* @return the foos
@@ -547,94 +630,11 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the foos where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the foo where uuid = &#63; and groupId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the foo that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.sampleservicebuilder.model.Foo removeByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sampleservicebuilder.NoSuchFooException;
-
-	/**
-	* Removes all the foos where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the foos where field2 = &#63; from the database.
-	*
-	* @param field2 the field2
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByField2(boolean field2)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the foos from the database.
 	*
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of foos where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching foos
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of foos where uuid = &#63; and groupId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the number of matching foos
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of foos where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching foos
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of foos where field2 = &#63;.
-	*
-	* @param field2 the field2
-	* @return the number of matching foos
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByField2(boolean field2)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
