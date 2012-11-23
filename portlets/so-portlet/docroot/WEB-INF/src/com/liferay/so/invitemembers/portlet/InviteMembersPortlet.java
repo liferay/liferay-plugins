@@ -46,6 +46,7 @@ import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.WindowState;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -121,7 +122,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 	protected String getCreateAccountURL(
 			HttpServletRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
-		
+
 		// Check if current group and layout is visible by guest
 
 		PermissionChecker permissionChecker =
@@ -130,11 +131,11 @@ public class InviteMembersPortlet extends MVCPortlet {
 		boolean guestViewableGroup = LayoutPermissionUtil.contains(
 			permissionChecker, themeDisplay.getLayout(),
 			themeDisplay.getControlPanelCategory(), true, ActionKeys.VIEW);
-		
+
 		boolean guestViewableLayout = LayoutPermissionUtil.contains(
-			permissionChecker, themeDisplay.getLayout(),
-			false, ActionKeys.VIEW);
-		
+			permissionChecker, themeDisplay.getLayout(), false,
+			ActionKeys.VIEW);
+
 		if (guestViewableGroup && guestViewableLayout) {
 			return PortalUtil.getCreateAccountURL(request, themeDisplay);
 		}
