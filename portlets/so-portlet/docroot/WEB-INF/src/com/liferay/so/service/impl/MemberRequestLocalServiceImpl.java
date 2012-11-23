@@ -70,7 +70,7 @@ public class MemberRequestLocalServiceImpl
 		try {
 			User receiverUser = userLocalService.getUserByEmailAddress(
 				serviceContext.getCompanyId(), receiverEmailAddress);
-			
+
 			receiverUserId = receiverUser.getUserId();
 		}
 		catch(Exception e) {
@@ -315,8 +315,7 @@ public class MemberRequestLocalServiceImpl
 				user.getFullName()
 			});
 
-		String redirectURL = (String)serviceContext.getAttribute(
-			"redirectURL");
+		String redirectURL = (String)serviceContext.getAttribute("redirectURL");
 
 		if (Validator.isNull(redirectURL)) {
 			redirectURL = serviceContext.getCurrentURL();
