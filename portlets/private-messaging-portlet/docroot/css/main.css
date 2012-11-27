@@ -50,6 +50,14 @@
 		}
 	}
 
+	.message-attachments {
+		clear: both;
+
+		li {
+			list-style: none;
+		}
+	}
+
 	.message-to input, .message-subject input {
 		width: 300px;
 	}

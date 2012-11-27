@@ -1,3 +1,6 @@
+<%@ page import="com.liferay.portal.kernel.repository.model.FileEntry" %>
+<%@ page import="com.liferay.portal.kernel.util.MimeTypesUtil" %>
+<%@ page import="com.liferay.portlet.documentlibrary.util.DLUtil" %>
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
@@ -194,21 +197,19 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 						<hr />
 
 						<%
-						String[] attachmentsFiles = mbMessage.getAttachmentsFiles();
+						List<FileEntry> attachmentsFileEntries = mbMessage.getAttachmentsFileEntries();
 
-						for (int j = 0; j < attachmentsFiles.length; j++) {
-							String fileName = FileUtil.getShortFileName(attachmentsFiles[j]);
-
-							if (StringUtil.endsWith(fileName, ".gif") || StringUtil.endsWith(fileName, ".jpg") || StringUtil.endsWith(fileName, ".png")) {
+						for (FileEntry fileEntry : attachmentsFileEntries) {
+							if (MimeTypesUtil.isWebImage(fileEntry.getMimeType())) {
 						%>
 
 								<liferay-portlet:actionURL name="getMessageAttachment" var="imageURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
-									<portlet:param name="attachment" value="<%= fileName %>" />
+									<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
 								</liferay-portlet:actionURL>
 
 								<div class="image-thumbnail">
-									<a href="<%= imageURL %>" title="<%= fileName %>">
+									<a href="<%= imageURL %>" title="<%= fileEntry.getTitle() %>">
 										<img alt="<liferay-ui:message key="attachment" />" src="<%= imageURL %>" />
 									</a>
 								</div>
@@ -217,32 +218,51 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 							}
 						}
 						%>
-
-						<table class="lfr-table">
-						<tr>
-							<td class="lfr-top">
-								<strong><liferay-ui:message key="attachments" />:</strong>
-							</td>
-							<td>
-
-								<%
-								for (int j = 0; j < attachmentsFiles.length; j++) {
-									String fileName = FileUtil.getShortFileName(attachmentsFiles[j]);
-									long fileSize = DLStoreUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, attachmentsFiles[j]);
-								%>
-
-									<a href="<liferay-portlet:actionURL name="getMessageAttachment" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" /><portlet:param name="attachment" value="<%= fileName %>" /></liferay-portlet:actionURL>"><%= fileName %></a> (<%= TextFormatter.formatKB(fileSize, locale) %>k)<%= (j < (attachmentsFiles.length - 1)) ? ", " : "" %>
-
-								<%
-								}
-								%>
-
-							</td>
-						</tr>
-						</table>
 					</c:if>
 				</div>
-			</div>
+
+				<c:if test="<%= mbMessage.isAttachments() %>">
+					<div class="message-attachments">
+						<h3><liferay-ui:message key="attachments" />:</h3>
+						<ul>
+
+							<%
+							List<FileEntry> attachmentsFileEntries = mbMessage.getAttachmentsFileEntries();
+
+							for (FileEntry fileEntry : attachmentsFileEntries) {
+							%>
+
+								<liferay-portlet:actionURL name="getMessageAttachment" var="attachmentURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
+									<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
+								</liferay-portlet:actionURL>
+
+								<li class="message-attachment">
+
+									<%
+									StringBundler sb = new StringBundler(4);
+
+									sb.append(fileEntry.getTitle());
+									sb.append(StringPool.OPEN_PARENTHESIS);
+									sb.append(TextFormatter.formatStorageSize(fileEntry.getSize(), locale));
+									sb.append(StringPool.CLOSE_PARENTHESIS);
+									%>
+
+									<liferay-ui:icon
+										image='<%= "../file_system/small/" + DLUtil.getFileIcon(fileEntry.getExtension()) %>'
+										label="<%= true %>"
+										message="<%= sb.toString() %>"
+										url="<%= attachmentURL %>"
+									/>
+								</li>
+
+							<%
+							}
+							%>
+
+						</ul>
+					</div>
+				</c:if>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 
