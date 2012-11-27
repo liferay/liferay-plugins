@@ -604,8 +604,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 		if (Validator.isNull(name)) {
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Name attribute null for message element: " +
-					messageElement.toString());
+					"Message element " + messageElement.toString() +
+						" has a null name");
 			}
 
 			return;
