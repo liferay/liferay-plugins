@@ -216,12 +216,9 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "forwardCookies");
 		String forwardHeaders = ParamUtil.getString(
 			actionRequest, "forwardHeaders");
-		String markupCharacterSets = ParamUtil.getString(
-			actionRequest, "markupCharacterSets");
-
-		markupCharacterSets =
+		String markupCharacterSets =
 			MarkupCharacterSetsUtil.getSupportedMarkupCharacterSets(
-				markupCharacterSets);
+				ParamUtil.getString(actionRequest, "markupCharacterSets"));
 
 		if (wsrpConsumerId <= 0) {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
