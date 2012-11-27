@@ -61,6 +61,7 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.servlet.ServiceHolder;
 import com.liferay.wsrp.util.ConsumerRequestExtensionsHelper;
 import com.liferay.wsrp.util.ExtensionHelperUtil;
+import com.liferay.wsrp.util.MarkupCharacterSetsUtil;
 import com.liferay.wsrp.util.PortletPropsValues;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
@@ -1116,8 +1117,14 @@ public class ConsumerPortlet extends GenericPortlet {
 		String[] markupCharacterSets = null;
 
 		if (Validator.isNotNull(wsrpConsumer.getMarkupCharacterSets())) {
-			markupCharacterSets = StringUtil.split(
-				wsrpConsumer.getMarkupCharacterSets());
+			String markupCharacterSetsString =
+				wsrpConsumer.getMarkupCharacterSets();
+
+			markupCharacterSetsString =
+				MarkupCharacterSetsUtil.getSupportedMarkupCharacterSets(
+					markupCharacterSetsString);
+
+			markupCharacterSets = StringUtil.split(markupCharacterSetsString);
 		}
 		else {
 			markupCharacterSets = _CHAR_SETS;
