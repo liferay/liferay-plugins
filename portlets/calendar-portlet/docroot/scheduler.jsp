@@ -40,47 +40,47 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(userTimeZone) %>;
 
 	<c:if test="<%= !hideDayView %>">
-	window.<portlet:namespace />dayView = new A.SchedulerDayView(
-		{
-			height: 700,
-			isoTime: <%= isoTimeFormat %>,
-			readOnly: <%= readOnly %>,
-			strings: {
-				allDay: '<liferay-ui:message key="all-day" />'
+		window.<portlet:namespace />dayView = new A.SchedulerDayView(
+			{
+				height: 700,
+				isoTime: <%= isoTimeFormat %>,
+				readOnly: <%= readOnly %>,
+				strings: {
+					allDay: '<liferay-ui:message key="all-day" />'
+				}
 			}
-		}
-	);
+		);
 	</c:if>
 
 	<c:if test="<%= !hideWeekView %>">
-	window.<portlet:namespace />weekView = new A.SchedulerWeekView(
-		{
-			height: 700,
-			isoTime: <%= isoTimeFormat %>,
-			readOnly: <%= readOnly %>
-		}
-	);
+		window.<portlet:namespace />weekView = new A.SchedulerWeekView(
+			{
+				height: 700,
+				isoTime: <%= isoTimeFormat %>,
+				readOnly: <%= readOnly %>
+			}
+		);
 	</c:if>
 
 	<c:if test="<%= !hideMonthView %>">
-	window.<portlet:namespace />monthView = new A.SchedulerMonthView(
-		{
-			height: 700,
-			readOnly: <%= readOnly %>
-		}
-	);
+		window.<portlet:namespace />monthView = new A.SchedulerMonthView(
+			{
+				height: 700,
+				readOnly: <%= readOnly %>
+			}
+		);
 	</c:if>
 
 	<c:if test="<%= !hideAgendaView %>">
-	window.<portlet:namespace />agendaView = new A.SchedulerAgendaView(
-		{
-			height: 700,
-			readOnly: <%= readOnly %>,
-			strings: {
-				noEvents: '<liferay-ui:message key="no-events" />'
+		window.<portlet:namespace />agendaView = new A.SchedulerAgendaView(
+			{
+				height: 700,
+				readOnly: <%= readOnly %>,
+				strings: {
+					noEvents: '<liferay-ui:message key="no-events" />'
+				}
 			}
-		}
-	);
+		);
 	</c:if>
 
 	<c:if test="<%= !readOnly && (userDefaultCalendar != null) %>">
