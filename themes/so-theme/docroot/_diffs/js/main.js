@@ -8,7 +8,7 @@ AUI().ready(
 		if (toggleFluid) {
 			toggleFluid.on(
 				'click',
-				function (event) {
+				function(event) {
 					if (!body.hasClass('so-layout-fluid-ad')) {
 						body.toggleClass('so-layout-fluid');
 
@@ -30,7 +30,7 @@ AUI().ready(
 		if (memberButton) {
 			memberButton.on(
 				'click',
-				function (event) {
+				function(event) {
 					event.preventDefault();
 
 					A.io.request(
