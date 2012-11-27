@@ -128,8 +128,8 @@ public class KaleoInstanceLocalServiceImpl
 
 		// Kaleo instance tokens
 
-		kaleoInstanceTokenLocalService.
-			deleteKaleoDefinitionKaleoInstanceTokens(companyId);
+		kaleoInstanceTokenLocalService.deleteKaleoDefinitionKaleoInstanceTokens(
+			companyId);
 
 		// Kaleo logs
 
@@ -150,8 +150,8 @@ public class KaleoInstanceLocalServiceImpl
 
 		// Kaleo instance tokens
 
-		kaleoInstanceTokenLocalService.
-			deleteKaleoDefinitionKaleoInstanceTokens(kaleoDefinitionId);
+		kaleoInstanceTokenLocalService.deleteKaleoDefinitionKaleoInstanceTokens(
+			kaleoDefinitionId);
 
 		// Kaleo logs
 
