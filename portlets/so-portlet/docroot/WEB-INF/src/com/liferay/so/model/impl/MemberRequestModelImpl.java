@@ -95,6 +95,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public static long KEY_COLUMN_BITMASK = 2L;
 	public static long RECEIVERUSERID_COLUMN_BITMASK = 4L;
 	public static long STATUS_COLUMN_BITMASK = 8L;
+	public static long CREATEDATE_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.so.model.MemberRequest"));
 

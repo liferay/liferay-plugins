@@ -90,6 +90,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 				"value.object.column.bitmask.enabled.com.liferay.testpacl.model.Foo"),
 			true);
 	public static long FIELD2_COLUMN_BITMASK = 1L;
+	public static long FIELD1_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.testpacl.model.Foo"));
 

@@ -99,6 +99,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	public static long KALEODEFINITIONID_COLUMN_BITMASK = 8L;
 	public static long KALEODEFINITIONNAME_COLUMN_BITMASK = 16L;
 	public static long KALEODEFINITIONVERSION_COLUMN_BITMASK = 32L;
+	public static long KALEOINSTANCEID_COLUMN_BITMASK = 64L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoInstance"));
 

@@ -124,6 +124,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public static long STARTDATE_COLUMN_BITMASK = 64L;
 	public static long STATUS_COLUMN_BITMASK = 128L;
 	public static long UUID_COLUMN_BITMASK = 256L;
+	public static long TITLE_COLUMN_BITMASK = 512L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.

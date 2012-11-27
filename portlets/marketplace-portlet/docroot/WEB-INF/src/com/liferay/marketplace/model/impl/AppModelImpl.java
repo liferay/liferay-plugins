@@ -77,6 +77,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		};
 	public static final String TABLE_SQL_CREATE = "create table Marketplace_App (uuid_ VARCHAR(75) null,appId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,remoteAppId LONG,version VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Marketplace_App";
+	public static final String ORDER_BY_JPQL = " ORDER BY app.appId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Marketplace_App.appId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -92,6 +94,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public static long COMPANYID_COLUMN_BITMASK = 1L;
 	public static long REMOTEAPPID_COLUMN_BITMASK = 2L;
 	public static long UUID_COLUMN_BITMASK = 4L;
+	public static long APPID_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.

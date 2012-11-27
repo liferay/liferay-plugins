@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
@@ -92,8 +93,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			new String[] {
 				Long.class.getName(),
 				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEDATE =
 		new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
@@ -123,7 +124,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries where createDate = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -141,7 +142,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries where createDate = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -153,11 +154,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public List<Entry> findByCreateDate(long createDate, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CREATEDATE;
 			finderArgs = new Object[] { createDate };
 		}
@@ -198,8 +201,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			else {
+			else
+			 if (pagination) {
 				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -216,21 +219,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(createDate);
 
-				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+				if (!pagination) {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
+				}
+				else {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -450,7 +461,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 		}
-
 		else {
 			query.append(EntryModelImpl.ORDER_BY_JPQL);
 		}
@@ -491,7 +501,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByCreateDate(long createDate) throws SystemException {
-		for (Entry entry : findByCreateDate(createDate)) {
+		for (Entry entry : findByCreateDate(createDate, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
 			remove(entry);
 		}
 	}
@@ -504,10 +515,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countByCreateDate(long createDate) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CREATEDATE;
+
 		Object[] finderArgs = new Object[] { createDate };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_CREATEDATE,
-				finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -530,18 +543,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				qPos.add(createDate);
 
 				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CREATEDATE,
-					finderArgs, count);
-
 				closeSession(session);
 			}
 		}
@@ -557,15 +567,16 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			new String[] {
 				Long.class.getName(),
 				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FROMUSERID =
 		new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByFromUserId",
 			new String[] { Long.class.getName() },
-			EntryModelImpl.FROMUSERID_COLUMN_BITMASK);
+			EntryModelImpl.FROMUSERID_COLUMN_BITMASK |
+			EntryModelImpl.CREATEDATE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_FROMUSERID = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByFromUserId",
@@ -588,7 +599,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries where fromUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param fromUserId the from user ID
@@ -606,7 +617,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries where fromUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param fromUserId the from user ID
@@ -618,11 +629,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public List<Entry> findByFromUserId(long fromUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FROMUSERID;
 			finderArgs = new Object[] { fromUserId };
 		}
@@ -663,8 +676,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			else {
+			else
+			 if (pagination) {
 				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -681,21 +694,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(fromUserId);
 
-				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+				if (!pagination) {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
+				}
+				else {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -915,7 +936,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 		}
-
 		else {
 			query.append(EntryModelImpl.ORDER_BY_JPQL);
 		}
@@ -956,7 +976,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByFromUserId(long fromUserId) throws SystemException {
-		for (Entry entry : findByFromUserId(fromUserId)) {
+		for (Entry entry : findByFromUserId(fromUserId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
 			remove(entry);
 		}
 	}
@@ -969,10 +990,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countByFromUserId(long fromUserId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_FROMUSERID;
+
 		Object[] finderArgs = new Object[] { fromUserId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_FROMUSERID,
-				finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -995,18 +1018,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				qPos.add(fromUserId);
 
 				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_FROMUSERID,
-					finderArgs, count);
-
 				closeSession(session);
 			}
 		}
@@ -1021,15 +1041,16 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			new String[] {
 				Long.class.getName(),
 				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TOUSERID =
 		new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByToUserId",
 			new String[] { Long.class.getName() },
-			EntryModelImpl.TOUSERID_COLUMN_BITMASK);
+			EntryModelImpl.TOUSERID_COLUMN_BITMASK |
+			EntryModelImpl.CREATEDATE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_TOUSERID = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByToUserId",
@@ -1051,7 +1072,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries where toUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param toUserId the to user ID
@@ -1069,7 +1090,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries where toUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param toUserId the to user ID
@@ -1081,11 +1102,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public List<Entry> findByToUserId(long toUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TOUSERID;
 			finderArgs = new Object[] { toUserId };
 		}
@@ -1126,8 +1149,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			else {
+			else
+			 if (pagination) {
 				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1144,21 +1167,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(toUserId);
 
-				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+				if (!pagination) {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
+				}
+				else {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -1378,7 +1409,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 		}
-
 		else {
 			query.append(EntryModelImpl.ORDER_BY_JPQL);
 		}
@@ -1419,7 +1449,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByToUserId(long toUserId) throws SystemException {
-		for (Entry entry : findByToUserId(toUserId)) {
+		for (Entry entry : findByToUserId(toUserId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
 			remove(entry);
 		}
 	}
@@ -1432,10 +1463,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countByToUserId(long toUserId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_TOUSERID;
+
 		Object[] finderArgs = new Object[] { toUserId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TOUSERID,
-				finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -1458,18 +1491,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				qPos.add(toUserId);
 
 				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TOUSERID,
-					finderArgs, count);
-
 				closeSession(session);
 			}
 		}
@@ -1484,8 +1514,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
@@ -1516,7 +1546,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries where createDate = &#63; and fromUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -1535,7 +1565,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -1548,11 +1578,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public List<Entry> findByC_F(long createDate, long fromUserId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F;
 			finderArgs = new Object[] { createDate, fromUserId };
 		}
@@ -1600,8 +1632,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			else {
+			else
+			 if (pagination) {
 				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1620,21 +1652,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(fromUserId);
 
-				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+				if (!pagination) {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
+				}
+				else {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -1869,7 +1909,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 		}
-
 		else {
 			query.append(EntryModelImpl.ORDER_BY_JPQL);
 		}
@@ -1914,7 +1953,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByC_F(long createDate, long fromUserId)
 		throws SystemException {
-		for (Entry entry : findByC_F(createDate, fromUserId)) {
+		for (Entry entry : findByC_F(createDate, fromUserId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
 			remove(entry);
 		}
 	}
@@ -1929,10 +1969,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public int countByC_F(long createDate, long fromUserId)
 		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_F;
+
 		Object[] finderArgs = new Object[] { createDate, fromUserId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_F,
-				finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -1959,18 +2001,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				qPos.add(fromUserId);
 
 				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_F, finderArgs,
-					count);
-
 				closeSession(session);
 			}
 		}
@@ -1986,8 +2025,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_T = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
@@ -2018,7 +2057,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries where createDate = &#63; and toUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -2037,7 +2076,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries where createDate = &#63; and toUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -2050,11 +2089,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public List<Entry> findByC_T(long createDate, long toUserId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_T;
 			finderArgs = new Object[] { createDate, toUserId };
 		}
@@ -2102,8 +2143,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			else {
+			else
+			 if (pagination) {
 				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2122,21 +2163,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(toUserId);
 
-				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+				if (!pagination) {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
+				}
+				else {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -2371,7 +2420,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 		}
-
 		else {
 			query.append(EntryModelImpl.ORDER_BY_JPQL);
 		}
@@ -2416,7 +2464,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByC_T(long createDate, long toUserId)
 		throws SystemException {
-		for (Entry entry : findByC_T(createDate, toUserId)) {
+		for (Entry entry : findByC_T(createDate, toUserId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
 			remove(entry);
 		}
 	}
@@ -2431,10 +2480,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public int countByC_T(long createDate, long toUserId)
 		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_T;
+
 		Object[] finderArgs = new Object[] { createDate, toUserId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_T,
-				finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -2461,18 +2512,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				qPos.add(toUserId);
 
 				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_T, finderArgs,
-					count);
-
 				closeSession(session);
 			}
 		}
@@ -2488,8 +2536,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			new String[] {
 				Long.class.getName(), Long.class.getName(), Long.class.getName(),
 				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F_T = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
@@ -2526,7 +2574,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -2546,7 +2594,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param createDate the create date
@@ -2561,11 +2609,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByC_F_T(long createDate, long fromUserId,
 		long toUserId, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F_T;
 			finderArgs = new Object[] { createDate, fromUserId, toUserId };
 		}
@@ -2616,8 +2666,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			else {
+			else
+			 if (pagination) {
 				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2638,21 +2688,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(toUserId);
 
-				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+				if (!pagination) {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
+				}
+				else {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -2904,7 +2962,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 		}
-
 		else {
 			query.append(EntryModelImpl.ORDER_BY_JPQL);
 		}
@@ -2952,7 +3009,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByC_F_T(long createDate, long fromUserId, long toUserId)
 		throws SystemException {
-		for (Entry entry : findByC_F_T(createDate, fromUserId, toUserId)) {
+		for (Entry entry : findByC_F_T(createDate, fromUserId, toUserId,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(entry);
 		}
 	}
@@ -2968,10 +3026,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public int countByC_F_T(long createDate, long fromUserId, long toUserId)
 		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_F_T;
+
 		Object[] finderArgs = new Object[] { createDate, fromUserId, toUserId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_F_T,
-				finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(4);
@@ -3002,18 +3062,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				qPos.add(toUserId);
 
 				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_F_T,
-					finderArgs, count);
-
 				closeSession(session);
 			}
 		}
@@ -3031,8 +3088,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				Long.class.getName(), Long.class.getName(),
 				String.class.getName(),
 				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T_C = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
@@ -3043,7 +3100,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			},
 			EntryModelImpl.FROMUSERID_COLUMN_BITMASK |
 			EntryModelImpl.TOUSERID_COLUMN_BITMASK |
-			EntryModelImpl.CONTENT_COLUMN_BITMASK);
+			EntryModelImpl.CONTENT_COLUMN_BITMASK |
+			EntryModelImpl.CREATEDATE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_F_T_C = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByF_T_C",
@@ -3071,7 +3129,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param fromUserId the from user ID
@@ -3091,7 +3149,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param fromUserId the from user ID
@@ -3106,11 +3164,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByF_T_C(long fromUserId, long toUserId,
 		String content, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T_C;
 			finderArgs = new Object[] { fromUserId, toUserId, content };
 		}
@@ -3171,8 +3231,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			else {
+			else
+			 if (pagination) {
 				query.append(EntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3195,21 +3255,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					qPos.add(content);
 				}
 
-				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+				if (!pagination) {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
+				}
+				else {
+					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
+							end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -3471,7 +3539,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 			}
 		}
-
 		else {
 			query.append(EntryModelImpl.ORDER_BY_JPQL);
 		}
@@ -3521,7 +3588,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByF_T_C(long fromUserId, long toUserId, String content)
 		throws SystemException {
-		for (Entry entry : findByF_T_C(fromUserId, toUserId, content)) {
+		for (Entry entry : findByF_T_C(fromUserId, toUserId, content,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(entry);
 		}
 	}
@@ -3537,10 +3605,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public int countByF_T_C(long fromUserId, long toUserId, String content)
 		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_F_T_C;
+
 		Object[] finderArgs = new Object[] { fromUserId, toUserId, content };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_F_T_C,
-				finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(4);
@@ -3583,18 +3653,15 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				}
 
 				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_T_C,
-					finderArgs, count);
-
 				closeSession(session);
 			}
 		}
@@ -4061,28 +4128,27 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		if (entry == null) {
 			Session session = null;
 
-			boolean hasException = false;
-
 			try {
 				session = openSession();
 
 				entry = (Entry)session.get(EntryImpl.class,
 						Long.valueOf(entryId));
+
+				if (entry != null) {
+					cacheResult(entry);
+				}
+				else {
+					EntityCacheUtil.putResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
+						EntryImpl.class, entryId, _nullEntry);
+				}
 			}
 			catch (Exception e) {
-				hasException = true;
+				EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
+					EntryImpl.class, entryId);
 
 				throw processException(e);
 			}
 			finally {
-				if (entry != null) {
-					cacheResult(entry);
-				}
-				else if (!hasException) {
-					EntityCacheUtil.putResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
-						EntryImpl.class, entryId, _nullEntry);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -4104,7 +4170,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns a range of all the entries.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of entries
@@ -4120,7 +4186,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 * Returns an ordered range of all the entries.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of entries
@@ -4131,11 +4197,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public List<Entry> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
 		FinderPath finderPath = null;
-		Object[] finderArgs = new Object[] { start, end, orderByComparator };
+		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
+			pagination = false;
 			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
@@ -4163,7 +4231,11 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				sql = query.toString();
 			}
 			else {
-				sql = _SQL_SELECT_ENTRY.concat(EntryModelImpl.ORDER_BY_JPQL);
+				sql = _SQL_SELECT_ENTRY;
+
+				if (pagination) {
+					sql = sql.concat(EntryModelImpl.ORDER_BY_JPQL);
+				}
 			}
 
 			Session session = null;
@@ -4173,30 +4245,29 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				Query q = session.createQuery(sql);
 
-				if (orderByComparator == null) {
+				if (!pagination) {
 					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
 							end, false);
 
 					Collections.sort(list);
+
+					list = new UnmodifiableList<Entry>(list);
 				}
 				else {
 					list = (List<Entry>)QueryUtil.list(q, getDialect(), start,
 							end);
 				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
 				closeSession(session);
 			}
 		}
@@ -4234,18 +4305,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				Query q = session.createQuery(_SQL_COUNT_ENTRY);
 
 				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY);
 
+				throw processException(e);
+			}
+			finally {
 				closeSession(session);
 			}
 		}
@@ -4281,6 +4351,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void destroy() {
 		EntityCacheUtil.removeCache(EntryImpl.class.getName());
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 

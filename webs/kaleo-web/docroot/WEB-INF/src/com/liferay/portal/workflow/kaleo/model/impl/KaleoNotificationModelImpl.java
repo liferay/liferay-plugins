@@ -99,6 +99,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	public static long KALEOCLASSNAME_COLUMN_BITMASK = 4L;
 	public static long KALEOCLASSPK_COLUMN_BITMASK = 8L;
 	public static long KALEODEFINITIONID_COLUMN_BITMASK = 16L;
+	public static long KALEONOTIFICATIONID_COLUMN_BITMASK = 32L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoNotification"));
 

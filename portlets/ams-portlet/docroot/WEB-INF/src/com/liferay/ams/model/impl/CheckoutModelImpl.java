@@ -74,6 +74,8 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		};
 	public static final String TABLE_SQL_CREATE = "create table AMS_Checkout (checkoutId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,assetId LONG,checkOutDate DATE null,expectedCheckInDate DATE null,actualCheckInDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Checkout";
+	public static final String ORDER_BY_JPQL = " ORDER BY checkout.checkoutId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY AMS_Checkout.checkoutId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

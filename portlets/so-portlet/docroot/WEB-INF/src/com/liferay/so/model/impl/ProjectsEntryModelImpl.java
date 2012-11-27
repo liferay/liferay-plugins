@@ -91,6 +91,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 				"value.object.column.bitmask.enabled.com.liferay.so.model.ProjectsEntry"),
 			true);
 	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long ENDDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.so.model.ProjectsEntry"));
 

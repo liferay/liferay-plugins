@@ -102,6 +102,9 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	public static long GROUPID_COLUMN_BITMASK = 2L;
 	public static long RESOLVERUSERID_COLUMN_BITMASK = 4L;
 	public static long USERID_COLUMN_BITMASK = 8L;
+	public static long PRIORITY_COLUMN_BITMASK = 16L;
+	public static long DUEDATE_COLUMN_BITMASK = 32L;
+	public static long CREATEDATE_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.

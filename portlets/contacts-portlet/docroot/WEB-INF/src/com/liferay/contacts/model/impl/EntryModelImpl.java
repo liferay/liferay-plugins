@@ -89,6 +89,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			true);
 	public static long EMAILADDRESS_COLUMN_BITMASK = 1L;
 	public static long USERID_COLUMN_BITMASK = 2L;
+	public static long FULLNAME_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.contacts.model.Entry"));
 

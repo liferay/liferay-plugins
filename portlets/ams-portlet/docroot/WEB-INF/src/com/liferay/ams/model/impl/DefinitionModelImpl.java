@@ -77,6 +77,8 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		};
 	public static final String TABLE_SQL_CREATE = "create table AMS_Definition (definitionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,typeId LONG,manufacturer VARCHAR(75) null,model VARCHAR(75) null,orderDate DATE null,quantity INTEGER,price DOUBLE)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Definition";
+	public static final String ORDER_BY_JPQL = " ORDER BY definition.definitionId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY AMS_Definition.definitionId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

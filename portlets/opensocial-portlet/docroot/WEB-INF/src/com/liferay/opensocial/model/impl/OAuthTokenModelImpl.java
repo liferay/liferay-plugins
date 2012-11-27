@@ -78,6 +78,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		};
 	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetKey VARCHAR(75) null,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthToken";
+	public static final String ORDER_BY_JPQL = " ORDER BY oAuthToken.oAuthTokenId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_OAuthToken.oAuthTokenId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -95,6 +97,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	public static long SERVICENAME_COLUMN_BITMASK = 4L;
 	public static long TOKENNAME_COLUMN_BITMASK = 8L;
 	public static long USERID_COLUMN_BITMASK = 16L;
+	public static long OAUTHTOKENID_COLUMN_BITMASK = 32L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.opensocial.model.OAuthToken"));
 

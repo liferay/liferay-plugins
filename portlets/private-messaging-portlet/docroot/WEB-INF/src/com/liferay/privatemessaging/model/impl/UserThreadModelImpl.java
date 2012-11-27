@@ -93,6 +93,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	public static long MBTHREADID_COLUMN_BITMASK = 2L;
 	public static long READ_COLUMN_BITMASK = 4L;
 	public static long USERID_COLUMN_BITMASK = 8L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.privatemessaging.model.UserThread"));
 

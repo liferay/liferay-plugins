@@ -88,6 +88,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	public static long JIRAISSUEID_COLUMN_BITMASK = 1L;
 	public static long JIRAUSERID_COLUMN_BITMASK = 2L;
 	public static long TYPE_COLUMN_BITMASK = 4L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.JIRAAction"));
 

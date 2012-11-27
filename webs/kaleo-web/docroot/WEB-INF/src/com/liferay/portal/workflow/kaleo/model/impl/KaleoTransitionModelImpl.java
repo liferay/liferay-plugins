@@ -98,6 +98,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	public static long KALEODEFINITIONID_COLUMN_BITMASK = 4L;
 	public static long KALEONODEID_COLUMN_BITMASK = 8L;
 	public static long NAME_COLUMN_BITMASK = 16L;
+	public static long KALEOTRANSITIONID_COLUMN_BITMASK = 32L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTransition"));
 

@@ -66,6 +66,8 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 		};
 	public static final String TABLE_SQL_CREATE = "create table SO_FavoriteSite (favoriteSiteId LONG not null primary key,groupId LONG,companyId LONG,userId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table SO_FavoriteSite";
+	public static final String ORDER_BY_JPQL = " ORDER BY favoriteSite.favoriteSiteId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY SO_FavoriteSite.favoriteSiteId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -80,6 +82,7 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 			true);
 	public static long GROUPID_COLUMN_BITMASK = 1L;
 	public static long USERID_COLUMN_BITMASK = 2L;
+	public static long FAVORITESITEID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.so.model.FavoriteSite"));
 

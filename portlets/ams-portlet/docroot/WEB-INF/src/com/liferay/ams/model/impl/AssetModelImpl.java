@@ -73,6 +73,8 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 		};
 	public static final String TABLE_SQL_CREATE = "create table AMS_Asset (assetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,definitionId LONG,serialNumber VARCHAR(75) null,inactiveDate DATE null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Asset";
+	public static final String ORDER_BY_JPQL = " ORDER BY asset.assetId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY AMS_Asset.assetId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

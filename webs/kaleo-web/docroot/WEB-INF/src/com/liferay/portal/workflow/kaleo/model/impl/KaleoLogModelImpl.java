@@ -115,6 +115,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	public static long KALEOINSTANCETOKENID_COLUMN_BITMASK = 32L;
 	public static long KALEOTASKINSTANCETOKENID_COLUMN_BITMASK = 64L;
 	public static long TYPE_COLUMN_BITMASK = 128L;
+	public static long KALEOLOGID_COLUMN_BITMASK = 256L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoLog"));
 

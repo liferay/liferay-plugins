@@ -84,6 +84,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 			true);
 	public static long SVNREPOSITORYID_COLUMN_BITMASK = 1L;
 	public static long SVNUSERID_COLUMN_BITMASK = 2L;
+	public static long REVISIONNUMBER_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.SVNRevision"));
 

@@ -119,6 +119,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	public static long STATUS_COLUMN_BITMASK = 128L;
 	public static long UUID_COLUMN_BITMASK = 256L;
 	public static long VERSION_COLUMN_BITMASK = 512L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 1024L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.

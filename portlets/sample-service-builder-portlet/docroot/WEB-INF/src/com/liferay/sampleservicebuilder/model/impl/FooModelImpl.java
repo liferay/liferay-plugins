@@ -99,6 +99,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public static long FIELD2_COLUMN_BITMASK = 2L;
 	public static long GROUPID_COLUMN_BITMASK = 4L;
 	public static long UUID_COLUMN_BITMASK = 8L;
+	public static long FIELD1_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
