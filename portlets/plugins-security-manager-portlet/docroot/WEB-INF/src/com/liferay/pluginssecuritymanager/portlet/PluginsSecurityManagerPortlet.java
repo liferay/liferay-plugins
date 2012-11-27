@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.pluginsecuritymanager.portlet;
+package com.liferay.pluginssecuritymanager.portlet;
 
-import com.liferay.pluginsecuritymanager.util.PluginSecurityManagerUtil;
-import com.liferay.pluginsecuritymanager.util.PortletPropsKeys;
+import com.liferay.pluginssecuritymanager.util.PluginsSecurityManagerUtil;
+import com.liferay.pluginssecuritymanager.util.PortletPropsKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -28,25 +28,25 @@ import javax.portlet.PortletPreferences;
  * @author Shinn Lok
  * @author Brian Wing Shun Chan
  */
-public class PluginSecurityManagerPortlet extends MVCPortlet {
+public class PluginsSecurityManagerPortlet extends MVCPortlet {
 
 	public void updateConfiguration(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		boolean pluginSecurityManagerAllowed = ParamUtil.getBoolean(
-			actionRequest, "pluginSecurityManagerAllowed");
+		boolean pluginsSecurityManagerAllowed = ParamUtil.getBoolean(
+			actionRequest, "pluginsSecurityManagerAllowed");
 
 		PortletPreferences preferences =
-			PluginSecurityManagerUtil.getPreferences();
+			PluginsSecurityManagerUtil.getPreferences();
 
 		preferences.setValue(
-			PortletPropsKeys.PLUGIN_SECURITY_MANAGER_ALLOWED,
-			String.valueOf(pluginSecurityManagerAllowed));
+			PortletPropsKeys.PLUGINS_SECURITY_MANAGER_ALLOWED,
+			String.valueOf(pluginsSecurityManagerAllowed));
 
 		preferences.store();
 
-		PluginSecurityManagerUtil.togglePACL();
+		PluginsSecurityManagerUtil.togglePACL();
 
 		String redirect = PortalUtil.escapeRedirect(
 			ParamUtil.getString(actionRequest, "redirect"));

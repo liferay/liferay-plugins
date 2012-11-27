@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.pluginsecuritymanager.util;
+package com.liferay.pluginssecuritymanager.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -37,7 +37,7 @@ import javax.portlet.PortletPreferences;
  * @author Shinn Lok
  * @author Brian Wing Shun Chan
  */
-public class PluginSecurityManagerUtil {
+public class PluginsSecurityManagerUtil {
 
 	public static List<JSONObject> getPACLPoliciesJSONObjects()
 		throws Exception {
@@ -76,7 +76,7 @@ public class PluginSecurityManagerUtil {
 		return PortletPreferencesLocalServiceUtil.getPreferences(
 			CompanyConstants.SYSTEM, CompanyConstants.SYSTEM,
 			PortletKeys.PREFS_OWNER_TYPE_COMPANY, PortletKeys.PREFS_PLID_SHARED,
-			PortletKeys.PLUGIN_SECURITY_MANAGER);
+			PortletKeys.PLUGINS_SECURITY_MANAGER);
 	}
 
 	public static boolean isAllowed() throws SystemException {
@@ -84,7 +84,7 @@ public class PluginSecurityManagerUtil {
 
 		return GetterUtil.getBoolean(
 			preferences.getValue(
-				PortletPropsKeys.PLUGIN_SECURITY_MANAGER_ALLOWED,
+				PortletPropsKeys.PLUGINS_SECURITY_MANAGER_ALLOWED,
 				String.valueOf(Boolean.TRUE)));
 	}
 

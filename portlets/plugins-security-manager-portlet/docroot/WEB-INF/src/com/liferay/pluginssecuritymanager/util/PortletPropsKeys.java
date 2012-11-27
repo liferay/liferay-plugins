@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.pluginsecuritymanager.util;
+package com.liferay.pluginssecuritymanager.util;
 
 /**
  * @author Shinn Lok
  */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+public interface PortletPropsKeys {
 
-	public static final String PLUGIN_SECURITY_MANAGER =
-		"1_WAR_pluginsecuritymanagerportlet";
+	public static final String PLUGINS_SECURITY_MANAGER_ALLOWED =
+		"plugins.security.manager.allowed";
 
 }
