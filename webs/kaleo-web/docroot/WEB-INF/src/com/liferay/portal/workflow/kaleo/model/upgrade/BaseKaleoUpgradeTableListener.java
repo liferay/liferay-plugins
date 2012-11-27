@@ -79,7 +79,7 @@ public class BaseKaleoUpgradeTableListener extends BaseUpgradeTableListener {
 	protected boolean isFixAutoUpgrade(
 		ServiceComponent previousServiceComponent) {
 
-		if (previousServiceComponent.getBuildNumber() >= 5) {
+		if (previousServiceComponent.getBuildNumber() >= 4) {
 			return false;
 		}
 
