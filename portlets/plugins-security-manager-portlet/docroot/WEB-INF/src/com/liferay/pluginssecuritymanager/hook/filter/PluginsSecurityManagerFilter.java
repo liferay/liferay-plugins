@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.pluginsecuritymanager.hook.filter;
+package com.liferay.pluginssecuritymanager.hook.filter;
 
-import com.liferay.pluginsecuritymanager.util.PluginSecurityManagerUtil;
+import com.liferay.pluginssecuritymanager.util.PluginsSecurityManagerUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.BaseFilter;
@@ -27,14 +27,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author Shinn Lok
  * @author Brian Wing Shun Chan
  */
-public class PluginSecurityManagerFilter
+public class PluginsSecurityManagerFilter
 	extends BaseFilter implements TryFilter {
 
 	public Object doFilterTry(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		PluginSecurityManagerUtil.togglePACL();
+		PluginsSecurityManagerUtil.togglePACL();
 
 		return null;
 	}

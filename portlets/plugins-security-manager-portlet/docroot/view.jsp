@@ -18,11 +18,11 @@
 
 <div class="portlet-msg-alert">
 	<c:choose>
-		<c:when test="<%= PluginSecurityManagerUtil.isPACLActive() %>">
-			<liferay-ui:message key="the-plugin-security-manager-is-active-because-one-or-more-of-the-following-plugins-requests-security-management" />
+		<c:when test="<%= PluginsSecurityManagerUtil.isPACLActive() %>">
+			<liferay-ui:message key="the-plugins-security-manager-is-active-because-one-or-more-of-the-following-plugins-requests-security-management" />
 		</c:when>
 		<c:otherwise>
-			<liferay-ui:message key="the-plugin-security-manager-is-not-active-because-there-are-no-plugins-that-request-security-management" />
+			<liferay-ui:message key="the-plugins-security-manager-is-not-active-because-there-are-no-plugins-that-request-security-management" />
 		</c:otherwise>
 	</c:choose>
 </div>
@@ -33,7 +33,7 @@
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 	<aui:fieldset>
-		<aui:input helpMessage="allow-the-plugin-security-manager-help" label="allow-the-plugin-security-manager" name="pluginSecurityManagerAllowed" type="checkbox" value="<%= PluginSecurityManagerUtil.isAllowed() %>" />
+		<aui:input helpMessage="enable-the-plugins-security-manager-help" label="enable-the-plugins-security-manager" name="pluginsSecurityManagerAllowed" type="checkbox" value="<%= PluginsSecurityManagerUtil.isAllowed() %>" />
 
 		<aui:button-row>
 			<aui:button type="submit" />
@@ -51,7 +51,7 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 List<ResultRow> resultRows = searchContainer.getResultRows();
 
-List<JSONObject> paclPoliciesJSONObjects = PluginSecurityManagerUtil.getPACLPoliciesJSONObjects();
+List<JSONObject> paclPoliciesJSONObjects = PluginsSecurityManagerUtil.getPACLPoliciesJSONObjects();
 
 int total = paclPoliciesJSONObjects.size();
 

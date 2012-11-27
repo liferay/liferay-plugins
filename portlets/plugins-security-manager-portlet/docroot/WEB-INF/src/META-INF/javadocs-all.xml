@@ -2,8 +2,8 @@
 
 <javadocs>
 	<javadoc>
-		<name>PluginSecurityManagerFilter</name>
-		<type>com.liferay.pluginsecuritymanager.hook.filter.PluginSecurityManagerFilter</type>
+		<name>PluginsSecurityManagerFilter</name>
+		<type>com.liferay.pluginssecuritymanager.hook.filter.PluginsSecurityManagerFilter</type>
 		<author><![CDATA[Shinn Lok]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
@@ -29,8 +29,8 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>PluginSecurityManagerPortlet</name>
-		<type>com.liferay.pluginsecuritymanager.portlet.PluginSecurityManagerPortlet</type>
+		<name>PluginsSecurityManagerPortlet</name>
+		<type>com.liferay.pluginssecuritymanager.portlet.PluginsSecurityManagerPortlet</type>
 		<author><![CDATA[Shinn Lok]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
@@ -50,8 +50,8 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>PluginSecurityManagerUtil</name>
-		<type>com.liferay.pluginsecuritymanager.util.PluginSecurityManagerUtil</type>
+		<name>PluginsSecurityManagerUtil</name>
+		<type>com.liferay.pluginssecuritymanager.util.PluginsSecurityManagerUtil</type>
 		<author><![CDATA[Shinn Lok]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
@@ -142,18 +142,18 @@
 	</javadoc>
 	<javadoc>
 		<name>PortletKeys</name>
-		<type>com.liferay.pluginsecuritymanager.util.PortletKeys</type>
+		<type>com.liferay.pluginssecuritymanager.util.PortletKeys</type>
 		<author><![CDATA[Shinn Lok]]></author>
 		<field>
-			<name>PLUGIN_SECURITY_MANAGER</name>
+			<name>PLUGINS_SECURITY_MANAGER</name>
 		</field>
 	</javadoc>
 	<javadoc>
 		<name>PortletPropsKeys</name>
-		<type>com.liferay.pluginsecuritymanager.util.PortletPropsKeys</type>
+		<type>com.liferay.pluginssecuritymanager.util.PortletPropsKeys</type>
 		<author><![CDATA[Shinn Lok]]></author>
 		<field>
-			<name>PLUGIN_SECURITY_MANAGER_ALLOWED</name>
+			<name>PLUGINS_SECURITY_MANAGER_ALLOWED</name>
 		</field>
 	</javadoc>
 </javadocs>
