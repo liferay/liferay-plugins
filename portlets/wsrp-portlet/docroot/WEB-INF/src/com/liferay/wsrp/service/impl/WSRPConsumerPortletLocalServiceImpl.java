@@ -602,6 +602,12 @@ public class WSRPConsumerPortletLocalServiceImpl
 		String value = messageElement.getValue();
 
 		if (Validator.isNull(name)) {
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Name attribute null for message element: " +
+					messageElement.toString());
+			}
+
 			return;
 		}
 
