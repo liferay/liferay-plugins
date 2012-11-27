@@ -70,7 +70,7 @@ AUI.add(
 								return 'ALL';
 							}
 						}
-					}, 
+					},
 					moduleId: {
 						valueFn: function() {
 							return Gadget._id++;

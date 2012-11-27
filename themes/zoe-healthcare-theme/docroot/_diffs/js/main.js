@@ -5,7 +5,7 @@ AUI().ready(
 	loaded.
 	*/
 
-	function (A) {
+	function(A) {
 		A.all('#keywords').attr('title', 'Press Enter to Search');
 	}
 );

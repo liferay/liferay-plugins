@@ -1,4 +1,4 @@
-DiggPortletWidget = function () {
+DiggPortletWidget = function() {
 	var instance = this;
 
 	instance.callbackName = '';
@@ -14,7 +14,7 @@ DiggPortletWidget = function () {
 };
 
 DiggPortletWidget.prototype = {
-	callback: function (response) {
+	callback: function(response) {
 		var instance = this;
 
 		if (instance.nodes.view) {
@@ -26,7 +26,7 @@ DiggPortletWidget.prototype = {
 			}
 		}
 	},
-	createDiggs: function (results) {
+	createDiggs: function(results) {
 		var instance = this,
 			i = -1,
 			resultsLength = results.length,
@@ -74,7 +74,7 @@ DiggPortletWidget.prototype = {
 
 		return html.join('');
 	},
-	createHowLongAgo: function (since) {
+	createHowLongAgo: function(since) {
 		var ms = (new Date()) - (new Date(since));
 
 		var sec = Math.floor(ms / 1000);
@@ -101,19 +101,19 @@ DiggPortletWidget.prototype = {
 
 		return 'about ' + ret + ' ' + ((week & (ret = week)) ? 'week' : (day & (ret = day)) ? 'day' : (hr & (ret = hr)) ? 'hour' : (min && (ret = min)) ? 'minute' : (sec && (ret = sec)) ? 'second' : '') + ((ret > 1) ? 's' : '') + ' ago';
 	},
-	createInterval: function () {
+	createInterval: function() {
 		var instance = this;
 
 		window.clearInterval(instance.intervalTask);
 
 		instance.intervalTask = window.setInterval(
-			function () {
+			function() {
 				instance.createScript.apply(instance);
 			},
 			instance.intervalTime
 		);
 	},
-	createParams: function () {
+	createParams: function() {
 		var instance = this,
 			query = instance.query,
 			queryArray = [],
@@ -128,7 +128,7 @@ DiggPortletWidget.prototype = {
 
 		return queryArray.join('&')
 	},
-	createScript: function () {
+	createScript: function() {
 		var instance = this;
 
 		instance.nodes.head = instance.nodes.head || document.getElementsByTagName('head')[0];
@@ -143,12 +143,12 @@ DiggPortletWidget.prototype = {
 
 		instance.nodes.head.appendChild(instance.nodes.script);
 	},
-	createScriptURL: function () {
+	createScriptURL: function() {
 		var instance = this;
 
 		return ['http://widgets.digg.com/widgets/stories?endPoint=/1.0/endpoint&', instance.createParams(), '&type=javascript&size=a&callback=', instance.callbackName, '.callback', '#', (new Date()).getTime()].join('');
 	},
-	render: function (options) {
+	render: function(options) {
 		var instance = this;
 
 		if (options) {
