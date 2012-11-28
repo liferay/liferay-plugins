@@ -588,9 +588,9 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_TEXT_TEXT_1 = "bar.text_ IS NULL";
-	private static final String _FINDER_COLUMN_TEXT_TEXT_2 = "bar.text_ = ?";
-	private static final String _FINDER_COLUMN_TEXT_TEXT_3 = "(bar.text_ IS NULL OR bar.text_ = ?)";
+	private static final String _FINDER_COLUMN_TEXT_TEXT_1 = "bar.text IS NULL";
+	private static final String _FINDER_COLUMN_TEXT_TEXT_2 = "bar.text = ?";
+	private static final String _FINDER_COLUMN_TEXT_TEXT_3 = "(bar.text IS NULL OR bar.text = ?)";
 
 	/**
 	 * Caches the bar in the entity cache if it is enabled.

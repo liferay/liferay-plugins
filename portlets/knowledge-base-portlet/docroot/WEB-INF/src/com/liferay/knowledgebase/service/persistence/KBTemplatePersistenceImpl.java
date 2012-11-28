@@ -599,9 +599,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbTemplate.uuid_ IS NULL";
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbTemplate.uuid_ = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbTemplate.uuid_ IS NULL OR kbTemplate.uuid_ = ?)";
+	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbTemplate.uuid IS NULL";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbTemplate.uuid = ?";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?)";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
@@ -852,9 +852,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "kbTemplate.uuid_ IS NULL AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "kbTemplate.uuid_ = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbTemplate.uuid_ IS NULL OR kbTemplate.uuid_ = ?) AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "kbTemplate.uuid IS NULL AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "kbTemplate.uuid = ? AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?) AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "kbTemplate.groupId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,
@@ -1406,9 +1406,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "kbTemplate.uuid_ IS NULL AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "kbTemplate.uuid_ = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(kbTemplate.uuid_ IS NULL OR kbTemplate.uuid_ = ?) AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "kbTemplate.uuid IS NULL AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "kbTemplate.uuid = ? AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(kbTemplate.uuid IS NULL OR kbTemplate.uuid = ?) AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "kbTemplate.companyId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_GROUPID = new FinderPath(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateModelImpl.FINDER_CACHE_ENABLED, KBTemplateImpl.class,

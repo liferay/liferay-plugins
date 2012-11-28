@@ -1242,7 +1242,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_ONLINE_ONLINE_2 = "status.online_ = ?";
+	private static final String _FINDER_COLUMN_ONLINE_ONLINE_2 = "status.online = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_M_O = new FinderPath(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusModelImpl.FINDER_CACHE_ENABLED, StatusImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByM_O",
@@ -1753,7 +1753,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	private static final String _FINDER_COLUMN_M_O_MODIFIEDDATE_2 = "status.modifiedDate = ? AND ";
-	private static final String _FINDER_COLUMN_M_O_ONLINE_2 = "status.online_ = ?";
+	private static final String _FINDER_COLUMN_M_O_ONLINE_2 = "status.online = ?";
 
 	/**
 	 * Caches the status in the entity cache if it is enabled.

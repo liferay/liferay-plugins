@@ -9,7 +9,7 @@
 		<id name="appId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -23,7 +23,7 @@
 		<id name="moduleId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="appId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="contextName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>

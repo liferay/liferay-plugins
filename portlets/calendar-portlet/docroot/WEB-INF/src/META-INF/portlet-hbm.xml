@@ -10,7 +10,7 @@
 		<id name="calendarId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -29,7 +29,7 @@
 		<id name="calendarBookingId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -60,7 +60,7 @@
 		<id name="calendarResourceId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -71,10 +71,10 @@
 		<property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="classUuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="code_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="type_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="active_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
 	</class>
 </hibernate-mapping>

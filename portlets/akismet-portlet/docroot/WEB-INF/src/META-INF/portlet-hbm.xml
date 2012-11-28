@@ -10,7 +10,7 @@
 		</id>
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="mbMessageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="type_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
 		<property name="permalink" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="referrer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="userAgent" type="com.liferay.portal.dao.orm.hibernate.StringType" />

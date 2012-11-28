@@ -10,7 +10,7 @@
 		<id name="gadgetId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid_" access="com.liferay.portal.dao.orm.hibernate.EscapedPropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
@@ -20,7 +20,7 @@
 	</class>
 	<class name="com.liferay.opensocial.model.impl.OAuthConsumerImpl" table="OpenSocial_OAuthConsumer">
 		<cache usage="read-write" />
-		<id name="oAuthConsumerId" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="long">
+		<id name="oAuthConsumerId" type="long" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -34,7 +34,7 @@
 	</class>
 	<class name="com.liferay.opensocial.model.impl.OAuthTokenImpl" table="OpenSocial_OAuthToken">
 		<cache usage="read-write" />
-		<id name="oAuthTokenId" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="long">
+		<id name="oAuthTokenId" type="long" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

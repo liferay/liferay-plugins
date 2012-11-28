@@ -591,9 +591,9 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "module.uuid_ IS NULL";
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "module.uuid_ = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(module.uuid_ IS NULL OR module.uuid_ = ?)";
+	private static final String _FINDER_COLUMN_UUID_UUID_1 = "module.uuid IS NULL";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 = "module.uuid = ?";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(module.uuid IS NULL OR module.uuid = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_APPID = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByAppId",

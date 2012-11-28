@@ -600,9 +600,9 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraAction.author IS NULL";
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraAction.author = ?";
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraAction.author IS NULL OR jiraAction.author = ?)";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraAction.jiraUserId IS NULL";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraAction.jiraUserId = ?";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraAction.jiraUserId IS NULL OR jiraAction.jiraUserId = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_JIRAISSUEID =
 		new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, JIRAActionImpl.class,
@@ -1081,7 +1081,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2 = "jiraAction.issueid = ?";
+	private static final String _FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2 = "jiraAction.jiraIssueId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_TYPE = new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, JIRAActionImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByType",
@@ -1589,9 +1589,9 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_TYPE_TYPE_1 = "jiraAction.actiontype IS NULL";
-	private static final String _FINDER_COLUMN_TYPE_TYPE_2 = "jiraAction.actiontype = ?";
-	private static final String _FINDER_COLUMN_TYPE_TYPE_3 = "(jiraAction.actiontype IS NULL OR jiraAction.actiontype = ?)";
+	private static final String _FINDER_COLUMN_TYPE_TYPE_1 = "jiraAction.type IS NULL";
+	private static final String _FINDER_COLUMN_TYPE_TYPE_2 = "jiraAction.type = ?";
+	private static final String _FINDER_COLUMN_TYPE_TYPE_3 = "(jiraAction.type IS NULL OR jiraAction.type = ?)";
 
 	/**
 	 * Caches the j i r a action in the entity cache if it is enabled.
