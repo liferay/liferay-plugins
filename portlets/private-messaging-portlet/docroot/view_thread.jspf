@@ -1,6 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.repository.model.FileEntry" %>
-<%@ page import="com.liferay.portal.kernel.util.MimeTypesUtil" %>
-<%@ page import="com.liferay.portlet.documentlibrary.util.DLUtil" %>
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
@@ -218,12 +215,14 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 							}
 						}
 						%>
+
 					</c:if>
 				</div>
 
 				<c:if test="<%= mbMessage.isAttachments() %>">
 					<div class="message-attachments">
 						<h3><liferay-ui:message key="attachments" />:</h3>
+
 						<ul>
 
 							<%
