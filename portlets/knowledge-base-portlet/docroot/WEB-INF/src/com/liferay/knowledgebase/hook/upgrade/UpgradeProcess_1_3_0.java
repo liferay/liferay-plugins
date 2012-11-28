@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.hook.upgrade;
 
-import com.liferay.knowledgebase.hook.upgrade.v1_3_0.UpgradeAttachments;
+import com.liferay.knowledgebase.hook.upgrade.v1_3_0.UpgradeKBAttachments;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
@@ -29,7 +29,7 @@ public class UpgradeProcess_1_3_0 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeAttachments.class);
+		upgrade(UpgradeKBAttachments.class);
 	}
 
 }

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.v6_2_0.BaseUpgradeAttachments;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
@@ -32,41 +33,24 @@ import java.sql.Timestamp;
 /**
  * @author Sergio González
  */
-public class UpgradeAttachments extends BaseUpgradeAttachments {
+public class UpgradeKBAttachments extends BaseUpgradeAttachments {
 
-	protected void deleteEmptyFolders() throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
-
-			ps = con.prepareStatement("select companyId from Company");
-
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				long companyId = rs.getLong("companyId");
-
-				try {
-					DLStoreUtil.deleteDirectory(
-						companyId, CompanyConstants.SYSTEM,
-						"knowledgebase/kbarticles");
-				}
-				catch (NoSuchDirectoryException nsde) {
-				}
+	protected void deleteEmptyDirectories() throws Exception {
+		for (long companyId : PortalInstances.getCompanyIds()) {
+			try {
+				DLStoreUtil.deleteDirectory(
+					companyId, CompanyConstants.SYSTEM,
+					"knowledgebase/kbarticles");
 			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
+			catch (NoSuchDirectoryException nsde) {
+			}
 		}
 	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		updateAttachments();
-		deleteEmptyFolders();
+		deleteEmptyDirectories();
 	}
 
 	@Override
