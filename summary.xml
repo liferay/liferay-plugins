@@ -1,5 +1,31 @@
 <plugins-summary>
 	<plugin>
+		<artifact-id><![CDATA[antisamy-hook]]></artifact-id>
+		<name><![CDATA[AntiSamy]]></name>
+		<type><![CDATA[hook]]></type>
+		<tags><![CDATA[antisamy, html, sanitize, sanitizer]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[Sanitizers act as a filtering element that "sanitize" web content (usually HTML or JavaScript code) so that it does not contain inappropriate content like malicious JavaScript code or inappropriate words.<br /><br />This app utilizes the OWASP AntiSamy functionality to provide default sanitization of user-supplied input (such as blog posts, forum posts, and other user-generated content). The OWASP AntiSamy project is an API for ensuring user-supplied HTML/CSS is in compliance within an application's rules. It is an API that helps you make sure that clients don't supply malicious cargo code in the HTML that they supply for their profile, comments, etc., that get persisted on the server. The term "malicious code" in regards to web applications usually mean "JavaScript." Cascading Stylesheets are only considered malicious when they invoke the JavaScript engine. However, there are many situations where "normal" HTML and CSS can be used in a malicious manner.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[Security]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[hooks/antisamy-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[hooks/antisamy-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[default-web-content-hook]]></artifact-id>
 		<name><![CDATA[Default Web Content]]></name>
 		<type><![CDATA[hook]]></type>
@@ -19,6 +45,30 @@
 			<icon><![CDATA[hooks/default-web-content-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[deploy-listener-hook]]></artifact-id>
+		<name><![CDATA[Power Deploy]]></name>
+		<type><![CDATA[hook]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[false]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -464,9 +514,9 @@
 		<artifact-id><![CDATA[akismet-portlet]]></artifact-id>
 		<name><![CDATA[Akismet]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
+		<tags><![CDATA[akismet, forums, message boards, sanitize, spam]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
+		<long-description><![CDATA[This app integrates Liferay with Akismet. Akismet is a web-based service which automatically detects and eliminates spam from your Liferay message boards, blogs, and wikis. To use this app, obtain an API key from akismet.com and configure it via Control Panel. Once this app is installed and enabled, each forum post, or comment on content such as blogs and wikis will be passed through Akismet. If the post is detected as spam, it will be rejected with a helpful error message.<br /><br />Internet access is required for this app.<br /><br />This app will appear in your Control Panel once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -477,6 +527,7 @@
 			<category><![CDATA[Utility]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[portlets/akismet-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
@@ -569,7 +620,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[6.2.0]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[false]]></bundle>
+			<bundle><![CDATA[true]]></bundle>
 			<category><![CDATA[Communication]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -1076,12 +1127,12 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[plugin-security-manager-portlet]]></artifact-id>
-		<name><![CDATA[Plugin Security Manager]]></name>
+		<artifact-id><![CDATA[plugins-security-manager-portlet]]></artifact-id>
+		<name><![CDATA[Plugins Security Manager]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
+		<tags><![CDATA[management, pacl, plugin, protection, security]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
+		<long-description><![CDATA[The main function of the Plugins Security Manager is to protect the portal and host system from malicious code. The Plugins Security Manager checks an apps's API access attempt against the security manager properties specified in a plugin's liferay-plugin-package.properties file. If an app tries to access a portal resource without having the property "security-manager-enabled" in the liferay-plugin-package.properties file, the Plugins Security Manager prevents this access. This app allows you to disable the Plugins Security Manager so that it does not enforce these security checks.<br /><br />This app will appear in your Control Panel once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -1092,6 +1143,7 @@
 			<category><![CDATA[Utility]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[portlets/plugins-security-manager-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
@@ -1201,6 +1253,30 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[sample]]></tags>
 		<short-description><![CDATA[This plugin shows how to use DAO in Liferay.]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[sample-drools-portlet]]></artifact-id>
+		<name><![CDATA[Sample Drools]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[sample]]></tags>
+		<short-description><![CDATA[This plugin shows how to use Drools in Liferay.]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
@@ -1763,7 +1839,7 @@
 			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[chat-portlet, contacts-portlet, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-hook, so-portlet, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet]]></dependent-apps>
+			<dependent-apps><![CDATA[chat-portlet, contacts-portlet, deploy-listener-hook, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-hook, so-portlet, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet]]></dependent-apps>
 			<icon><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
@@ -2294,6 +2370,30 @@
 	<plugin>
 		<artifact-id><![CDATA[test-pacl-portlet]]></artifact-id>
 		<name><![CDATA[Test Portal Access Control List]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[test]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[test-resources-importer-portlet]]></artifact-id>
+		<name><![CDATA[Test Resources Importer]]></name>
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[test]]></tags>
 		<short-description><![CDATA[]]></short-description>
@@ -2879,7 +2979,7 @@
 		<type><![CDATA[theme]]></type>
 		<tags><![CDATA[contact form, corporate, featured item, footer contact blurb, footer navigation, healthcare, medical, search, theme, webform portlet]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Zoe Healthcare is a preset theme catering to the medical industry. Our theme includes features and templates that can produce custom layouts to outline medical services, chart out available health care plans, and schedule appointments using our form portlet. We utilize a customizable �advanced footer� that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.]]></long-description>
+		<long-description><![CDATA[Zoe Healthcare is a preset theme catering to the medical industry. Our theme includes features and templates that can produce custom layouts to outline medical services, chart out available health care plans, and schedule appointments using our form portlet. We utilize a customizable advanced footer that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -2938,7 +3038,7 @@
 		<type><![CDATA[theme]]></type>
 		<tags><![CDATA[advanced footer, corporate, custom layout, featured item, footer blurb, search, site template, theme]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This theme provides a clean and professional feel. It allows you to showcase your clients, services, and products using �featured content� on the homepage as well as a special image carousel built for this theme. It features a 1-3-1 Column layout only available for the Zoe Tech theme. We utilize a customizable �advanced footer� that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.]]></long-description>
+		<long-description><![CDATA[This theme provides a clean and professional feel. It allows you to showcase your clients, services, and products using featured content on the homepage as well as a special image carousel built for this theme. It features a 1-3-1 Column layout only available for the Zoe Tech theme. We utilize a customizable �advanced footer� that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
