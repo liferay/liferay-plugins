@@ -99,6 +99,56 @@
 							var pluginsData = [
 								
 		{
+			'Artifact ID': 'antisamy-hook',
+			'Name': 'AntiSamy',
+			'Type': 'hook',
+			'Category': 'Security',
+			'Tags': 'antisamy, html, sanitize, sanitizer',
+
+			'Short Description':
+				'',
+
+			'Long Description':
+				'Sanitizers act as a filtering element that "sanitize" web content (usually HTML or JavaScript code) so that it does not contain inappropriate content like malicious JavaScript code or inappropriate words.<br /><br />This app utilizes the OWASP AntiSamy functionality to provide default sanitization of user-supplied input (such as blog posts, forum posts, and other user-generated content). The OWASP AntiSamy project is an API for ensuring user-supplied HTML/CSS is in compliance within an application\'s rules. It is an API that helps you make sure that clients don\'t supply malicious cargo code in the HTML that they supply for their profile, comments, etc., that get persisted on the server. The term "malicious code" in regards to web applications usually mean "JavaScript." Cascading Stylesheets are only considered malicious when they invoke the JavaScript engine. However, there are many situations where "normal" HTML and CSS can be used in a malicious manner.<br /><br />This layout will appear in your Page Layouts once installed.',
+
+			'Change Log': '',
+			'Page URL': 'http://www.liferay.com',
+			'Demo URL': '',
+			'Support URL': '',
+			'Author': 'Liferay, Inc.',
+			'Licenses': 'LGPL',
+			'Liferay Versions': '6.1.1',
+
+			
+		'Bundle':
+			'No',
+
+		'Compatibility': '',
+
+		'Dependent Apps': '',
+
+		'Icon': '<img height="50" src="hooks/antisamy-hook/docroot/WEB-INF/releng/icons/90x90.png">',
+
+		'Labs':
+			'Yes',
+
+		'Marketplace':
+			'Yes',
+
+		'Public':
+			'Yes',
+
+		'Screenshots': '<nobr><a target="_blank" href="hooks/antisamy-hook/docroot/WEB-INF/releng/screenshots/1.jpg"><img height="50" src="hooks/antisamy-hook/docroot/WEB-INF/releng/screenshots/1.jpg"></a></nobr>',
+
+		'Supported':
+			'No'
+	
+		}
+
+		
+			,
+		
+		{
 			'Artifact ID': 'default-web-content-hook',
 			'Name': 'Default Web Content',
 			'Type': 'hook',
@@ -134,6 +184,56 @@
 
 		'Marketplace':
 			'Yes',
+
+		'Public':
+			'Yes',
+
+		'Screenshots': '<nobr></nobr>',
+
+		'Supported':
+			'No'
+	
+		}
+
+		
+			,
+		
+		{
+			'Artifact ID': 'deploy-listener-hook',
+			'Name': 'Power Deploy',
+			'Type': 'hook',
+			'Category': '',
+			'Tags': '',
+
+			'Short Description':
+				'',
+
+			'Long Description':
+				'',
+
+			'Change Log': '',
+			'Page URL': 'http://www.liferay.com',
+			'Demo URL': '',
+			'Support URL': '',
+			'Author': 'Liferay, Inc.',
+			'Licenses': 'LGPL',
+			'Liferay Versions': '6.1.1,6.1.20',
+
+			
+		'Bundle':
+			'No',
+
+		'Compatibility': '',
+
+		'Dependent Apps': '',
+
+		'Icon': '',
+
+		'Labs':
+			'No',
+
+		'Marketplace':
+			'No',
 
 		'Public':
 			'Yes',
@@ -367,7 +467,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -1053,13 +1153,13 @@
 			'Name': 'Akismet',
 			'Type': 'portlet',
 			'Category': 'Utility',
-			'Tags': '',
+			'Tags': 'akismet, forums, message boards, sanitize, spam',
 
 			'Short Description':
 				'',
 
 			'Long Description':
-				'',
+				'This app integrates Liferay with Akismet. Akismet is a web-based service which automatically detects and eliminates spam from your Liferay message boards, blogs, and wikis. To use this app, obtain an API key from akismet.com and configure it via Control Panel. Once this app is installed and enabled, each forum post, or comment on content such as blogs and wikis will be passed through Akismet. If the post is detected as spam, it will be rejected with a helpful error message.<br /><br />Internet access is required for this app.<br /><br />This app will appear in your Control Panel once installed.',
 
 			'Change Log': '',
 			'Page URL': 'http://www.liferay.com',
@@ -1077,7 +1177,7 @@
 
 		'Dependent Apps': '',
 
-		'Icon': '',
+		'Icon': '<img height="50" src="portlets/akismet-portlet/docroot/WEB-INF/releng/icons/90x90.png">',
 
 		'Labs':
 			'Yes',
@@ -2249,17 +2349,17 @@
 			,
 		
 		{
-			'Artifact ID': 'plugin-security-manager-portlet',
-			'Name': 'Plugin Security Manager',
+			'Artifact ID': 'plugins-security-manager-portlet',
+			'Name': 'Plugins Security Manager',
 			'Type': 'portlet',
 			'Category': 'Utility',
-			'Tags': '',
+			'Tags': 'management, pacl, plugin, protection, security',
 
 			'Short Description':
 				'',
 
 			'Long Description':
-				'',
+				'The main function of the Plugins Security Manager is to protect the portal and host system from malicious code. The Plugins Security Manager checks an apps\'s API access attempt against the security manager properties specified in a plugin\'s liferay-plugin-package.properties file. If an app tries to access a portal resource without having the property "security-manager-enabled" in the liferay-plugin-package.properties file, the Plugins Security Manager prevents this access. This app allows you to disable the Plugins Security Manager so that it does not enforce these security checks.<br /><br />This app will appear in your Control Panel once installed.',
 
 			'Change Log': '',
 			'Page URL': 'http://www.liferay.com',
@@ -2277,7 +2377,7 @@
 
 		'Dependent Apps': '',
 
-		'Icon': '',
+		'Icon': '<img height="50" src="portlets/plugins-security-manager-portlet/docroot/WEB-INF/releng/icons/90x90.png">',
 
 		'Labs':
 			'Yes',
@@ -2517,7 +2617,57 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
+
+			
+		'Bundle':
+			'No',
+
+		'Compatibility': '',
+
+		'Dependent Apps': '',
+
+		'Icon': '',
+
+		'Labs':
+			'Yes',
+
+		'Marketplace':
+			'No',
+
+		'Public':
+			'Yes',
+
+		'Screenshots': '<nobr></nobr>',
+
+		'Supported':
+			'No'
+	
+		}
+
+		
+			,
+		
+		{
+			'Artifact ID': 'sample-drools-portlet',
+			'Name': 'Sample Drools',
+			'Type': 'portlet',
+			'Category': '',
+			'Tags': 'sample',
+
+			'Short Description':
+				'This plugin shows how to use Drools in Liferay.',
+
+			'Long Description':
+				'',
+
+			'Change Log': '',
+			'Page URL': 'http://www.liferay.com',
+			'Demo URL': '',
+			'Support URL': '',
+			'Author': 'Liferay, Inc.',
+			'Licenses': 'LGPL',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2567,7 +2717,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2617,7 +2767,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2667,7 +2817,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2717,7 +2867,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2767,7 +2917,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2817,7 +2967,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2867,7 +3017,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2917,7 +3067,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -2967,7 +3117,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3017,7 +3167,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3067,7 +3217,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3117,7 +3267,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3167,7 +3317,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3217,7 +3367,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3267,7 +3417,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3317,7 +3467,7 @@
 			'Support URL': '',
 			'Author': 'SpringSource, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3367,7 +3517,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3417,7 +3567,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3467,7 +3617,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3517,7 +3667,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3567,7 +3717,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3617,7 +3767,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -3675,7 +3825,7 @@
 
 		'Compatibility': '',
 
-		'Dependent Apps': 'chat-portlet, contacts-portlet, events-display-portlet, microblogs-portlet, portal-compat-hook, private-messaging-portlet, resources-importer-web, so-hook, so-portlet, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet',
+		'Dependent Apps': 'chat-portlet, contacts-portlet, deploy-listener-hook, events-display-portlet, microblogs-portlet, portal-compat-hook, private-messaging-portlet, resources-importer-web, so-hook, so-portlet, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet',
 
 		'Icon': '<img height="50" src="portlets/so-portlet/docroot/WEB-INF/releng/icons/90x90.png">',
 
@@ -4749,6 +4899,56 @@
 			,
 		
 		{
+			'Artifact ID': 'test-resources-importer-portlet',
+			'Name': 'Test Resources Importer',
+			'Type': 'portlet',
+			'Category': '',
+			'Tags': 'test',
+
+			'Short Description':
+				'',
+
+			'Long Description':
+				'',
+
+			'Change Log': '',
+			'Page URL': 'http://www.liferay.com',
+			'Demo URL': '',
+			'Support URL': '',
+			'Author': 'Liferay, Inc.',
+			'Licenses': 'LGPL',
+			'Liferay Versions': '6.1.1',
+
+			
+		'Bundle':
+			'No',
+
+		'Compatibility': '',
+
+		'Dependent Apps': '',
+
+		'Icon': '',
+
+		'Labs':
+			'Yes',
+
+		'Marketplace':
+			'No',
+
+		'Public':
+			'Yes',
+
+		'Screenshots': '<nobr></nobr>',
+
+		'Supported':
+			'No'
+	
+		}
+
+		
+			,
+		
+		{
 			'Artifact ID': 'test-transaction-portlet',
 			'Name': 'Test Transaction',
 			'Type': 'portlet',
@@ -5367,7 +5567,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -5417,7 +5617,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -5467,7 +5667,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -5517,7 +5717,7 @@
 			'Support URL': '',
 			'Author': 'Liferay, Inc.',
 			'Licenses': 'LGPL',
-			'Liferay Versions': '6.1.1',
+			'Liferay Versions': '6.1.1,6.1.20',
 
 			
 		'Bundle':
@@ -5859,7 +6059,7 @@
 				'',
 
 			'Long Description':
-				'Zoe Healthcare is a preset theme catering to the medical industry. Our theme includes features and templates that can produce custom layouts to outline medical services, chart out available health care plans, and schedule appointments using our form portlet. We utilize a customizable �advanced footer� that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.',
+				'Zoe Healthcare is a preset theme catering to the medical industry. Our theme includes features and templates that can produce custom layouts to outline medical services, chart out available health care plans, and schedule appointments using our form portlet. We utilize a customizable advanced footer that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.',
 
 			'Change Log': '',
 			'Page URL': 'http://www.liferay.com',
@@ -5959,7 +6159,7 @@
 				'',
 
 			'Long Description':
-				'This theme provides a clean and professional feel. It allows you to showcase your clients, services, and products using �featured content� on the homepage as well as a special image carousel built for this theme. It features a 1-3-1 Column layout only available for the Zoe Tech theme. We utilize a customizable �advanced footer� that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.',
+				'This theme provides a clean and professional feel. It allows you to showcase your clients, services, and products using featured content on the homepage as well as a special image carousel built for this theme. It features a 1-3-1 Column layout only available for the Zoe Tech theme. We utilize a customizable �advanced footer� that includes: a text blurb, footer navigation, footer links, and social networking links. In the advanced footer you are able to replace any section with web content using a uniquely generated article ID.<br /><br />This layout will appear in your Page Settings, under Available Themes once installed.',
 
 			'Change Log': '',
 			'Page URL': 'http://www.liferay.com',
