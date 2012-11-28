@@ -35,7 +35,7 @@ if (kbArticle != null) {
 
 			<div>
 				<liferay-portlet:resourceURL id="attachment" var="clipURL">
-					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+					<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
 				</liferay-portlet:resourceURL>
 
 				<liferay-ui:icon
