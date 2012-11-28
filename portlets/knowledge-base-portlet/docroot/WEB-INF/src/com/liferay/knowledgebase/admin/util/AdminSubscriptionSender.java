@@ -74,7 +74,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		List<FileEntry> attachmentsFileEntries =
 			_kbArticle.getAttachmentsFileEntries();
 
-		if (attachmentsFileEntries.size() <= 0) {
+		if (attachmentsFileEntries.isEmpty()) {
 			return StringPool.BLANK;
 		}
 

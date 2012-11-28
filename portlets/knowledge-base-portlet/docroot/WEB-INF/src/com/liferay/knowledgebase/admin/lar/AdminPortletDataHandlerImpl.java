@@ -440,11 +440,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		portletDataContext.importClassedModel(
 			kbArticle, importedKBArticle, _NAMESPACE);
 
-		long importId = CounterLocalServiceUtil.increment();
-
 		importKBArticleAttachments(
-			portletDataContext, importId, dirNames, kbArticleElement,
-			importedKBArticle);
+			portletDataContext, CounterLocalServiceUtil.increment(), dirNames,
+			kbArticleElement, importedKBArticle);
 	}
 
 	protected void importKBArticleAttachments(

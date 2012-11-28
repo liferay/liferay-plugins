@@ -900,9 +900,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long classTypeId = 0;
 
 		assetEntryLocalService.updateEntry(
-			userId, kbArticle.getGroupId(), KBArticle.class.getName(),
+			userId, kbArticle.getGroupId(), kbArticle.getCreateDate(),
+			kbArticle.getModifiedDate(), KBArticle.class.getName(),
 			kbArticle.getClassPK(), kbArticle.getUuid(), classTypeId,
-			assetCategoryIds, assetTagNames, false, null, null, null, null,
+			assetCategoryIds, assetTagNames, false, null, null, null,
 			ContentTypes.TEXT_HTML, kbArticle.getTitle(),
 			kbArticle.getDescription(), null, null, null, 0, 0, null, false);
 	}
@@ -1093,14 +1094,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		long groupId = serviceContext.getScopeGroupId();
-
 		String[] fileNames = DLStoreUtil.getFileNames(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		if (fileNames.length > 0) {
 			PortletFileRepositoryUtil.deletePortletFileEntries(
-				groupId, kbArticle.getAttachmentsFolderId());
+				serviceContext.getScopeGroupId(),
+				kbArticle.getAttachmentsFolderId());
 		}
 
 		for (String fileName : fileNames) {
@@ -1114,7 +1114,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				String shortFileName = FileUtil.getShortFileName(fileName);
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
-					groupId, userId, PortletKeys.KNOWLEDGE_BASE_ARTICLE,
+					serviceContext.getScopeGroupId(), userId,
+					PortletKeys.KNOWLEDGE_BASE_ARTICLE,
 					kbArticle.getAttachmentsFolderId(), inputStream,
 					shortFileName);
 			}
