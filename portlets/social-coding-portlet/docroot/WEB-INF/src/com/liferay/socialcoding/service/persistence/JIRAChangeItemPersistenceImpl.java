@@ -577,7 +577,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	}
 
 	private static final String _FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2 =
-		"jiraChangeItem.jiraChangeGroupId = ?";
+		"jiraChangeItem.groupid = ?";
 
 	/**
 	 * Caches the j i r a change item in the entity cache if it is enabled.

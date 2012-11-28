@@ -2338,7 +2338,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	private static final String _FINDER_COLUMN_U_R_D_USERID_2 = "userThread.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_R_D_READ_2 = "userThread.read = ? AND ";
+	private static final String _FINDER_COLUMN_U_R_D_READ_2 = "userThread.read_ = ? AND ";
 	private static final String _FINDER_COLUMN_U_R_D_DELETED_2 = "userThread.deleted = ?";
 
 	/**

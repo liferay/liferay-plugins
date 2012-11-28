@@ -1644,7 +1644,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	private static final String _FINDER_COLUMN_C_A_COMPANYID_2 = "kaleoDefinition.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_A_ACTIVE_2 = "kaleoDefinition.active = ?";
+	private static final String _FINDER_COLUMN_C_A_ACTIVE_2 = "kaleoDefinition.active_ = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_N_V = new FinderPath(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionModelImpl.FINDER_CACHE_ENABLED,
 			KaleoDefinitionImpl.class, FINDER_CLASS_NAME_ENTITY,
@@ -2528,7 +2528,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	private static final String _FINDER_COLUMN_C_N_A_NAME_1 = "kaleoDefinition.name IS NULL AND ";
 	private static final String _FINDER_COLUMN_C_N_A_NAME_2 = "kaleoDefinition.name = ? AND ";
 	private static final String _FINDER_COLUMN_C_N_A_NAME_3 = "(kaleoDefinition.name IS NULL OR kaleoDefinition.name = ?) AND ";
-	private static final String _FINDER_COLUMN_C_N_A_ACTIVE_2 = "kaleoDefinition.active = ?";
+	private static final String _FINDER_COLUMN_C_N_A_ACTIVE_2 = "kaleoDefinition.active_ = ?";
 
 	/**
 	 * Caches the kaleo definition in the entity cache if it is enabled.

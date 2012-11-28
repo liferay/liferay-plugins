@@ -606,9 +606,9 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraChangeGroup.jiraUserId IS NULL";
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraChangeGroup.jiraUserId = ?";
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraChangeGroup.jiraUserId IS NULL OR jiraChangeGroup.jiraUserId = ?)";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraChangeGroup.author IS NULL";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraChangeGroup.author = ?";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraChangeGroup.author IS NULL OR jiraChangeGroup.author = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_JIRAISSUEID =
 		new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,
@@ -1090,7 +1090,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2 = "jiraChangeGroup.jiraIssueId = ?";
+	private static final String _FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2 = "jiraChangeGroup.issueid = ?";
 
 	/**
 	 * Caches the j i r a change group in the entity cache if it is enabled.

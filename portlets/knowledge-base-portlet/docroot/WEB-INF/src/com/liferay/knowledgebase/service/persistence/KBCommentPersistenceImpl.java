@@ -596,9 +596,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbComment.uuid IS NULL";
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbComment.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbComment.uuid IS NULL OR kbComment.uuid = ?)";
+	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbComment.uuid_ IS NULL";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbComment.uuid_ = ?";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbComment.uuid_ IS NULL OR kbComment.uuid_ = ?)";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
 			KBCommentModelImpl.FINDER_CACHE_ENABLED, KBCommentImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
@@ -849,9 +849,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "kbComment.uuid IS NULL AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "kbComment.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbComment.uuid IS NULL OR kbComment.uuid = ?) AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "kbComment.uuid_ IS NULL AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "kbComment.uuid_ = ? AND ";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbComment.uuid_ IS NULL OR kbComment.uuid_ = ?) AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "kbComment.groupId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
 			KBCommentModelImpl.FINDER_CACHE_ENABLED, KBCommentImpl.class,
@@ -1402,9 +1402,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "kbComment.uuid IS NULL AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "kbComment.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(kbComment.uuid IS NULL OR kbComment.uuid = ?) AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "kbComment.uuid_ IS NULL AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "kbComment.uuid_ = ? AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(kbComment.uuid_ IS NULL OR kbComment.uuid_ = ?) AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "kbComment.companyId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_GROUPID = new FinderPath(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
 			KBCommentModelImpl.FINDER_CACHE_ENABLED, KBCommentImpl.class,

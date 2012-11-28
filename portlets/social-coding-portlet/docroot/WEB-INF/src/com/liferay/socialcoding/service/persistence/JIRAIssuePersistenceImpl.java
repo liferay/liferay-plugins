@@ -565,7 +565,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_PROJECTID_PROJECTID_2 = "jiraIssue.projectId = ?";
+	private static final String _FINDER_COLUMN_PROJECTID_PROJECTID_2 = "jiraIssue.project = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_KEY = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByKey",
@@ -802,9 +802,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_KEY_KEY_1 = "jiraIssue.key IS NULL";
-	private static final String _FINDER_COLUMN_KEY_KEY_2 = "jiraIssue.key = ?";
-	private static final String _FINDER_COLUMN_KEY_KEY_3 = "(jiraIssue.key IS NULL OR jiraIssue.key = ?)";
+	private static final String _FINDER_COLUMN_KEY_KEY_1 = "jiraIssue.pkey IS NULL";
+	private static final String _FINDER_COLUMN_KEY_KEY_2 = "jiraIssue.pkey = ?";
+	private static final String _FINDER_COLUMN_KEY_KEY_3 = "(jiraIssue.pkey IS NULL OR jiraIssue.pkey = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_REPORTERJIRAUSERID =
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
@@ -1330,11 +1330,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	private static final String _FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1 =
-		"jiraIssue.reporterJiraUserId IS NULL";
+		"jiraIssue.reporter IS NULL";
 	private static final String _FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2 =
-		"jiraIssue.reporterJiraUserId = ?";
+		"jiraIssue.reporter = ?";
 	private static final String _FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3 =
-		"(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?)";
+		"(jiraIssue.reporter IS NULL OR jiraIssue.reporter = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_ASSIGNEEJIRAUSERID =
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
@@ -1860,11 +1860,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	}
 
 	private static final String _FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1 =
-		"jiraIssue.assigneeJiraUserId IS NULL";
+		"jiraIssue.assignee IS NULL";
 	private static final String _FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2 =
-		"jiraIssue.assigneeJiraUserId = ?";
+		"jiraIssue.assignee = ?";
 	private static final String _FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3 =
-		"(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?)";
+		"(jiraIssue.assignee IS NULL OR jiraIssue.assignee = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByMD_P",
@@ -2384,9 +2384,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_MD_P_MODIFIEDDATE_1 = "jiraIssue.modifiedDate > NULL AND ";
-	private static final String _FINDER_COLUMN_MD_P_MODIFIEDDATE_2 = "jiraIssue.modifiedDate > ? AND ";
-	private static final String _FINDER_COLUMN_MD_P_PROJECTID_2 = "jiraIssue.projectId = ?";
+	private static final String _FINDER_COLUMN_MD_P_MODIFIEDDATE_1 = "jiraIssue.updated > NULL AND ";
+	private static final String _FINDER_COLUMN_MD_P_MODIFIEDDATE_2 = "jiraIssue.updated > ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_PROJECTID_2 = "jiraIssue.project = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByP_RJUI",
@@ -2942,10 +2942,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_P_RJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
-	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1 = "jiraIssue.reporterJiraUserId IS NULL";
-	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2 = "jiraIssue.reporterJiraUserId = ?";
-	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3 = "(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_P_RJUI_PROJECTID_2 = "jiraIssue.project = ? AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1 = "jiraIssue.reporter IS NULL";
+	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2 = "jiraIssue.reporter = ?";
+	private static final String _FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3 = "(jiraIssue.reporter IS NULL OR jiraIssue.reporter = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByP_AJUI",
@@ -3501,10 +3501,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_P_AJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
-	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assigneeJiraUserId IS NULL";
-	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assigneeJiraUserId = ?";
-	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_P_AJUI_PROJECTID_2 = "jiraIssue.project = ? AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assignee IS NULL";
+	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assignee = ?";
+	private static final String _FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assignee IS NULL OR jiraIssue.assignee = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P_RJUI =
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
@@ -4106,12 +4106,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1 = "jiraIssue.modifiedDate > NULL AND ";
-	private static final String _FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2 = "jiraIssue.modifiedDate > ? AND ";
-	private static final String _FINDER_COLUMN_MD_P_RJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
-	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1 = "jiraIssue.reporterJiraUserId IS NULL";
-	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2 = "jiraIssue.reporterJiraUserId = ?";
-	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3 = "(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1 = "jiraIssue.updated > NULL AND ";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2 = "jiraIssue.updated > ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_PROJECTID_2 = "jiraIssue.project = ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1 = "jiraIssue.reporter IS NULL";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2 = "jiraIssue.reporter = ?";
+	private static final String _FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3 = "(jiraIssue.reporter IS NULL OR jiraIssue.reporter = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P_AJUI =
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
@@ -4713,12 +4713,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1 = "jiraIssue.modifiedDate > NULL AND ";
-	private static final String _FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2 = "jiraIssue.modifiedDate > ? AND ";
-	private static final String _FINDER_COLUMN_MD_P_AJUI_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
-	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assigneeJiraUserId IS NULL";
-	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assigneeJiraUserId = ?";
-	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?)";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1 = "jiraIssue.updated > NULL AND ";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2 = "jiraIssue.updated > ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_PROJECTID_2 = "jiraIssue.project = ? AND ";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assignee IS NULL";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assignee = ?";
+	private static final String _FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assignee IS NULL OR jiraIssue.assignee = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_RJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByP_RJUI_S",
@@ -5351,13 +5351,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_P_RJUI_S_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
-	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1 = "jiraIssue.reporterJiraUserId IS NULL AND ";
-	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2 = "jiraIssue.reporterJiraUserId = ? AND ";
-	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3 = "(jiraIssue.reporterJiraUserId IS NULL OR jiraIssue.reporterJiraUserId = ?) AND ";
-	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_1 = "jiraIssue.status IS NULL";
-	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_2 = "jiraIssue.status = ?";
-	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_3 = "(jiraIssue.status IS NULL OR jiraIssue.status = ?)";
+	private static final String _FINDER_COLUMN_P_RJUI_S_PROJECTID_2 = "jiraIssue.project = ? AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1 = "jiraIssue.reporter IS NULL AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2 = "jiraIssue.reporter = ? AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3 = "(jiraIssue.reporter IS NULL OR jiraIssue.reporter = ?) AND ";
+	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_1 = "jiraIssue.issuestatus IS NULL";
+	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_2 = "jiraIssue.issuestatus = ?";
+	private static final String _FINDER_COLUMN_P_RJUI_S_STATUS_3 = "(jiraIssue.issuestatus IS NULL OR jiraIssue.issuestatus = ?)";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_AJUI_S = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByP_AJUI_S",
@@ -5990,13 +5990,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_P_AJUI_S_PROJECTID_2 = "jiraIssue.projectId = ? AND ";
-	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assigneeJiraUserId IS NULL AND ";
-	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assigneeJiraUserId = ? AND ";
-	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assigneeJiraUserId IS NULL OR jiraIssue.assigneeJiraUserId = ?) AND ";
-	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_1 = "jiraIssue.status IS NULL";
-	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_2 = "jiraIssue.status = ?";
-	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_3 = "(jiraIssue.status IS NULL OR jiraIssue.status = ?)";
+	private static final String _FINDER_COLUMN_P_AJUI_S_PROJECTID_2 = "jiraIssue.project = ? AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1 = "jiraIssue.assignee IS NULL AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2 = "jiraIssue.assignee = ? AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3 = "(jiraIssue.assignee IS NULL OR jiraIssue.assignee = ?) AND ";
+	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_1 = "jiraIssue.issuestatus IS NULL";
+	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_2 = "jiraIssue.issuestatus = ?";
+	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_3 = "(jiraIssue.issuestatus IS NULL OR jiraIssue.issuestatus = ?)";
 
 	/**
 	 * Caches the j i r a issue in the entity cache if it is enabled.
