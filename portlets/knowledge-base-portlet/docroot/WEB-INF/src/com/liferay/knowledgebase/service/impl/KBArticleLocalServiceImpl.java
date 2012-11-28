@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
@@ -68,12 +69,12 @@ import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.Ticket;
 import com.liferay.portal.model.User;
+import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
-import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
@@ -194,7 +195,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		addKBArticleAttachments(kbArticle, dirName, serviceContext);
+		addKBArticleAttachments(userId, kbArticle, dirName, serviceContext);
 
 		// Workflow
 
@@ -773,22 +774,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		KBArticle kbArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-		for (String fileName : kbArticle.getAttachmentsFileNames()) {
-			String shortFileName = FileUtil.getShortFileName(fileName);
+		List<FileEntry> attachmentsFileEntries =
+			kbArticle.getAttachmentsFileEntries();
 
-			InputStream inputStream = null;
-
-			try {
-				inputStream = DLStoreUtil.getFileAsStream(
-					kbArticle.getCompanyId(), CompanyConstants.SYSTEM,
-					fileName);
-
-				addAttachment(
-					dirName, shortFileName, inputStream, serviceContext);
-			}
-			finally {
-				StreamUtil.cleanUp(inputStream);
-			}
+		for (FileEntry fileEntry : attachmentsFileEntries) {
+			addAttachment(
+				dirName, fileEntry.getTitle(), fileEntry.getContentStream(),
+				serviceContext);
 		}
 
 		return dirName;
@@ -886,7 +878,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// Attachments
 
 		updateKBArticleAttachments(
-			kbArticle, oldVersion, dirName, serviceContext);
+			userId, kbArticle, oldVersion, dirName, serviceContext);
 
 		// Workflow
 
@@ -1045,7 +1037,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String dirName =
 			KBArticleConstants.DIR_NAME_PREFIX + kbArticle.getKbArticleId();
 
-		addKBArticleAttachments(kbArticle, dirName, serviceContext);
+		addKBArticleAttachments(userId, kbArticle, dirName, serviceContext);
 
 		deleteKBArticleAttachments(kbArticle, kbArticle.getKbArticleId());
 
@@ -1080,7 +1072,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected void addKBArticleAttachments(
-			KBArticle kbArticle, String dirName, ServiceContext serviceContext)
+			long userId, KBArticle kbArticle, String dirName,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		try {
@@ -1100,37 +1093,30 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
+		long groupId = serviceContext.getScopeGroupId();
+
 		String[] fileNames = DLStoreUtil.getFileNames(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
+		if (fileNames.length > 0) {
+			PortletFileRepositoryUtil.deletePortletFileEntries(
+				groupId, kbArticle.getAttachmentsFolderId());
+		}
+
 		for (String fileName : fileNames) {
 			InputStream inputStream = null;
-
-			String attachmentsDirName = kbArticle.getAttachmentsDirName();
-
-			String fullFileName = attachmentsDirName.concat(
-				StringPool.SLASH).concat(FileUtil.getShortFileName(fileName));
 
 			try {
 				inputStream = DLStoreUtil.getFileAsStream(
 					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 					fileName);
 
-				if (!DLStoreUtil.hasDirectory(
-						serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
-						dirName)) {
+				String shortFileName = FileUtil.getShortFileName(fileName);
 
-					DLStoreUtil.addDirectory(
-						serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
-						dirName);
-				}
-
-				DLStoreUtil.addFile(
-					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
-					fullFileName, inputStream);
-			}
-			catch (DuplicateFileException dfe) {
-				_log.error("File already exists for " + dfe.getMessage());
+				PortletFileRepositoryUtil.addPortletFileEntry(
+					groupId, userId, PortletKeys.KNOWLEDGE_BASE_ARTICLE,
+					kbArticle.getAttachmentsFolderId(), inputStream,
+					shortFileName);
 			}
 			finally {
 				StreamUtil.cleanUp(inputStream);
@@ -1511,7 +1497,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected void updateKBArticleAttachments(
-			KBArticle kbArticle, int oldVersion, String dirName,
+			long userId, KBArticle kbArticle, int oldVersion, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -1521,16 +1507,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 					kbArticle.getResourcePrimKey();
 
 			if (Validator.isNull(dirName)) {
-				addKBArticleAttachments(kbArticle, oldDirName, serviceContext);
+				addKBArticleAttachments(
+					userId, kbArticle, oldDirName, serviceContext);
 			}
 			else {
-				addKBArticleAttachments(kbArticle, dirName, serviceContext);
+				addKBArticleAttachments(
+					userId, kbArticle, dirName, serviceContext);
 			}
 		}
 		else if (Validator.isNotNull(dirName)) {
 			deleteKBArticleAttachments(kbArticle, kbArticle.getClassPK());
 
-			addKBArticleAttachments(kbArticle, dirName, serviceContext);
+			addKBArticleAttachments(userId, kbArticle, dirName, serviceContext);
 		}
 	}
 
