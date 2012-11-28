@@ -165,7 +165,7 @@ public class KaleoServiceComponentLocalServiceImpl
 
 		ServiceComponent serviceComponent = serviceComponents.get(0);
 
-		if (serviceComponent.getBuildNumber() >= 5) {
+		if (serviceComponent.getBuildNumber() >= 4) {
 			return false;
 		}
 
