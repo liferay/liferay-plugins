@@ -116,7 +116,7 @@ if (DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, di
 </aui:form>
 
 <liferay-util:buffer var="html">
-	<liferay-util:include page="/admin/attachments.jsp" servletContext="<%= application %>" />
+	<liferay-util:include page="/admin/temp_attachments.jsp" servletContext="<%= application %>" />
 </liferay-util:buffer>
 
 <aui:script>
