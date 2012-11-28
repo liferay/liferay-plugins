@@ -21,31 +21,28 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 long resourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "resourcePrimKey");
 
-String dirName = ParamUtil.getString(request, "dirName");
+List<FileEntry> attachmentsFileEntries = new ArrayList<FileEntry>();
 
-String[] fileNames = new String[0];
-
-if (Validator.isNotNull(dirName) && DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, dirName)) {
-	fileNames = DLStoreUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+if (kbArticle != null) {
+	attachmentsFileEntries = kbArticle.getAttachmentsFileEntries();
 }
 %>
 
 <div class="kb-attachments">
 
 	<%
-	for (String fileName : fileNames) {
+	for (FileEntry fileEntry : attachmentsFileEntries) {
 	%>
 
 		<div>
 			<liferay-portlet:resourceURL id="attachment" var="clipURL">
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-				<portlet:param name="fileName" value="<%= fileName %>" />
 			</liferay-portlet:resourceURL>
 
 			<liferay-ui:icon
 				image="clip"
 				label="<%= true %>"
-				message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLStoreUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
+				message='<%= fileEntry.getTitle() + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)" %>'
 				method="get"
 				url="<%= clipURL %>"
 			/>
@@ -71,6 +68,6 @@ if (Validator.isNotNull(dirName) && DLStoreUtil.hasDirectory(company.getCompanyI
 	%>
 
 	<div class="kb-edit-link">
-		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key='<%= (fileNames.length != 0) ? "attachments" : "add-attachments" %>' /> &raquo;</aui:a>
+		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key='<%= (!attachmentsFileEntries.isEmpty()) ? "attachments" : "add-attachments" %>' /> &raquo;</aui:a>
 	</div>
 </div>

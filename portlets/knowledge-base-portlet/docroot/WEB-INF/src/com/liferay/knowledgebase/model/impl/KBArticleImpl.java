@@ -14,14 +14,20 @@
 
 package com.liferay.knowledgebase.model.impl;
 
+import com.liferay.knowledgebase.article.util.KBArticleAttachmentsUtil;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
+
+import java.util.List;
 
 /**
  * @author Peter Shin
@@ -34,6 +40,14 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 
 	public String getAttachmentsDirName() {
 		return KBArticleConstants.DIR_NAME_PREFIX + getClassPK();
+	}
+
+	public List<FileEntry> getAttachmentsFileEntries()
+		throws PortalException, SystemException {
+
+		return PortletFileRepositoryUtil.getPortletFileEntries(
+			getGroupId(), getAttachmentsFolderId(),
+			WorkflowConstants.STATUS_APPROVED);
 	}
 
 	public String[] getAttachmentsFileNames()
@@ -49,6 +63,19 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 		}
 
 		return new String[0];
+	}
+
+	public long getAttachmentsFolderId()
+		throws PortalException, SystemException {
+
+		if (_attachmentsFolderId > 0) {
+			return _attachmentsFolderId;
+		}
+
+		_attachmentsFolderId = KBArticleAttachmentsUtil.getFolderId(
+			getGroupId(), getUserId(), getResourcePrimKey());
+
+		return _attachmentsFolderId;
 	}
 
 	public long getClassPK() {
@@ -83,5 +110,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImpl.class);
+
+	private long _attachmentsFolderId;
 
 }
