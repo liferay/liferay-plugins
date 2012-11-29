@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.v6_2_0.BaseUpgradeAttachments;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
@@ -36,7 +35,7 @@ import java.sql.Timestamp;
 public class UpgradeKBAttachments extends BaseUpgradeAttachments {
 
 	protected void deleteEmptyDirectories() throws Exception {
-		for (long companyId : PortalInstances.getCompanyIds()) {
+		for (long companyId : PortalUtil.getCompanyIds()) {
 			try {
 				DLStoreUtil.deleteDirectory(
 					companyId, CompanyConstants.SYSTEM,
