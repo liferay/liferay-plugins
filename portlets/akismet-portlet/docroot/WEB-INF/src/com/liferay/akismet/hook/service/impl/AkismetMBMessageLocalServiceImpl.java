@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -62,7 +63,7 @@ public class AkismetMBMessageLocalServiceImpl
 			String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean enabled = isDiscussionsEnabled(userId);
+		boolean enabled = isDiscussionsEnabled(userId, serviceContext);
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
@@ -99,7 +100,8 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean enabled = isMessageBoardsEnabled(userId, groupId);
+		boolean enabled = isMessageBoardsEnabled(
+			userId, groupId, serviceContext);
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
@@ -136,7 +138,8 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean enabled = isMessageBoardsEnabled(userId, groupId);
+		boolean enabled = isMessageBoardsEnabled(
+			userId, groupId, serviceContext);
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
@@ -197,7 +200,7 @@ public class AkismetMBMessageLocalServiceImpl
 			String subject, String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean enabled = isDiscussionsEnabled(userId);
+		boolean enabled = isDiscussionsEnabled(userId, serviceContext);
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
@@ -234,7 +237,8 @@ public class AkismetMBMessageLocalServiceImpl
 
 		MBMessage message = super.getMBMessage(messageId);
 
-		boolean enabled = isMessageBoardsEnabled(userId, message.getGroupId());
+		boolean enabled = isMessageBoardsEnabled(
+			userId, message.getGroupId(), serviceContext);
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
@@ -292,8 +296,35 @@ public class AkismetMBMessageLocalServiceImpl
 		return sb.toString();
 	}
 
-	protected boolean isDiscussionsEnabled(long userId)
+	protected boolean hasRequiredInfo(ServiceContext serviceContext) {
+		Map<String, String> headers = serviceContext.getHeaders();
+
+		if (headers == null) {
+			return false;
+		}
+
+		String userAgent = headers.get(HttpHeaders.USER_AGENT);
+
+		if (Validator.isNull(userAgent)) {
+			return false;
+		}
+
+		String userIP = serviceContext.getRemoteAddr();
+
+		if (Validator.isNull(userIP)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	protected boolean isDiscussionsEnabled(
+			long userId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		if (!hasRequiredInfo(serviceContext)) {
+			return false;
+		}
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
@@ -305,8 +336,13 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 	}
 
-	protected boolean isMessageBoardsEnabled(long userId, long groupId)
+	protected boolean isMessageBoardsEnabled(
+			long userId, long groupId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		if (!hasRequiredInfo(serviceContext)) {
+			return false;
+		}
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
@@ -353,6 +389,10 @@ public class AkismetMBMessageLocalServiceImpl
 	protected AkismetData updateAkismetData(
 			MBMessage message, ServiceContext serviceContext)
 		throws SystemException {
+
+		if (!hasRequiredInfo(serviceContext)) {
+			return null;
+		}
 
 		String permalink = getPermalink(message, serviceContext);
 
