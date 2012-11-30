@@ -29,9 +29,7 @@ public class UpgradeRatingsStats extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (hasTable("KB_Article")) {
-			updateRatingsStats();
-		}
+		updateRatingsStats();
 	}
 
 	protected long getClassNameId(String className) throws Exception {
@@ -68,8 +66,7 @@ public class UpgradeRatingsStats extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			long classNameId = getClassNameId(
-				"com.liferay.knowledgebase.model.Article");
+			long classNameId = getClassNameId(_ARTICLE_CLASS_NAME);
 
 			ps = con.prepareStatement(
 				"select statsId, totalScore, averageScore from RatingsStats " +
@@ -98,5 +95,8 @@ public class UpgradeRatingsStats extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
+
+	private static final String _ARTICLE_CLASS_NAME =
+		"com.liferay.knowledgebase.model.Article";
 
 }
