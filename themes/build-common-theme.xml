@@ -134,6 +134,24 @@
 				</then>
 			</elseif>
 			<elseif>
+				<equals arg1="${theme.parent}" arg2="control_panel" />
+				<then>
+					<copy todir="docroot" overwrite="true" preservelastmodified="true">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/control_panel"
+							excludes="_diffs/**,templates/**"
+						/>
+					</copy>
+
+					<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/control_panel/templates"
+							includes="*.${theme.type}"
+						/>
+					</copy>
+				</then>
+			</elseif>
+			<elseif>
 				<isset property="theme.parent" />
 				<then>
 					<ant dir="${theme.parent}" target="compile" inheritAll="false" />
