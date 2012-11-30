@@ -15,12 +15,14 @@
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBTemplateTable;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTable;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
-
-import java.sql.Types;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * @author Peter Shin
@@ -29,49 +31,116 @@ public class UpgradeKBTemplate extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (hasTable("KB_Template")) {
-			renameTable();
-		}
+		renameAndUpdateTable(
+			StringUtil.replaceFirst(
+				KBTemplateTable.TABLE_NAME, "KB", "KB_"),
+			KBTemplateTable.TABLE_NAME, KBTemplateTable.TABLE_COLUMNS,
+			KBTemplateTable.TABLE_SQL_CREATE,
+			KBTemplateTable.TABLE_SQL_DROP);
 	}
 
-	protected void renameTable() throws Exception {
-		runSQL(KBTemplateTable.TABLE_SQL_DROP);
+	protected void renameAndUpdateTable(
+			String oldTableName, String newTableName, Object[][] tableColumns,
+			String tableSqlCreate, String tableSqlDrop)
+		throws Exception {
 
-		runSQL("alter table KB_Template add kbTemplateId LONG");
-		runSQL("update KB_Template set kbTemplateId = templateId");
+		if (tableHasData(newTableName)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Not renaming " + oldTableName + " to " + newTableName +
+						" because " + newTableName + " has data");
+			}
 
-		if (!tableHasColumn("KB_Template", "engineType")) {
-			runSQL("alter table KB_Template add engineType INTEGER");
-			runSQL("update KB_Template set engineType = 0");
+			return;
 		}
 
-		if (!tableHasColumn("KB_Template", "cacheable")) {
-			runSQL("alter table KB_Template add cacheable BOOLEAN");
-			runSQL("update KB_Template set cacheable = TRUE");
+		if (!tableHasData(oldTableName)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Not renaming " + oldTableName + " to " + newTableName +
+						" because " + oldTableName + " has no data");
+			}
+
+			return;
 		}
 
-		Object[][] columns = {
-			{"templateId", new Integer(Types.BIGINT)},
-			{"description", Types.VARCHAR}
-		};
+		updateSchema(oldTableName, newTableName, tableSqlDrop);
 
-		columns = ArrayUtil.append(columns, KBTemplateTable.TABLE_COLUMNS);
+		renameTable(oldTableName, tableColumns, tableSqlCreate);
+	}
+
+	protected void renameTable(
+			String oldTableName, Object[][] tableColumns, String tableSqlCreate)
+		throws Exception {
 
 		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
-			"KB_Template", columns);
+			oldTableName, tableColumns);
 
-		String createSQL = KBTemplateTable.TABLE_SQL_CREATE;
-
-		createSQL =
-			createSQL.substring(0, createSQL.length() - 1) +
-				",templateId VARCHAR(75) null, description VARCHAR(75) null)";
-
-		upgradeTable.setCreateSQL(createSQL);
+		upgradeTable.setCreateSQL(tableSqlCreate);
 
 		upgradeTable.updateTable();
-
-		runSQL("alter table KBTemplate drop column templateId");
-		runSQL("alter table KBTemplate drop column description");
 	}
+
+	protected void updateColumn(
+			String tableName, String columnName, String dataType, String data)
+		throws Exception {
+
+		if (tableHasColumn(tableName, columnName)) {
+			return;
+		}
+
+		String dataTypeUpperCase = dataType.toUpperCase();
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("alter table ");
+		sb.append(tableName);
+		sb.append(" add ");
+		sb.append(columnName);
+		sb.append(StringPool.SPACE);
+		sb.append(dataTypeUpperCase);
+
+		String sql = sb.toString();
+
+		if (dataTypeUpperCase.equals("DATE") || dataType.equals("STRING")) {
+			sql = sql.concat(" null");
+		}
+
+		runSQL(sql);
+
+		sb.setIndex(0);
+
+		sb.append("update ");
+		sb.append(tableName);
+		sb.append(" set ");
+		sb.append(columnName);
+		sb.append(" = ");
+		sb.append(data);
+
+		runSQL(sb.toString());
+	}
+
+	protected void updateSchema(
+			String oldTableName, String newTableName, String tableSqlDrop)
+		throws Exception {
+
+		if (hasTable(newTableName)) {
+			runSQL(tableSqlDrop);
+		}
+
+		updateColumn(oldTableName, "kbTemplateId", "LONG", "templateId");
+		updateColumn(oldTableName, "engineType", "INTEGER", "0");
+		updateColumn(oldTableName, "cacheable", "BOOLEAN", "TRUE");
+
+		if (tableHasColumn(oldTableName, "templateId")) {
+			runSQL("alter table " + oldTableName + " drop column templateId");
+		}
+
+		if (tableHasColumn(oldTableName, "description")) {
+			runSQL("alter table " + oldTableName + " drop column description");
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(UpgradeKBTemplate.class);
 
 }
