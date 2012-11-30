@@ -15,12 +15,14 @@
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBCommentTable;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTable;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
-
-import java.sql.Types;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * @author Peter Shin
@@ -29,35 +31,110 @@ public class UpgradeKBComment extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (hasTable("KB_Comment")) {
-			renameTable();
+		renameAndUpdateTable(
+			StringUtil.replaceFirst(
+				KBCommentTable.TABLE_NAME, "KB", "KB_"),
+			KBCommentTable.TABLE_NAME, KBCommentTable.TABLE_COLUMNS,
+			KBCommentTable.TABLE_SQL_CREATE,
+			KBCommentTable.TABLE_SQL_DROP);
+	}
+
+	protected void renameAndUpdateTable(
+			String oldTableName, String newTableName, Object[][] tableColumns,
+			String tableSqlCreate, String tableSqlDrop)
+		throws Exception {
+
+		if (tableHasData(newTableName)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Not renaming " + oldTableName + " to " + newTableName +
+						" because " + newTableName + " has data");
+			}
+
+			return;
+		}
+
+		if (!tableHasData(oldTableName)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Not renaming " + oldTableName + " to " + newTableName +
+						" because " + oldTableName + " has no data");
+			}
+
+			return;
+		}
+
+		updateSchema(oldTableName, newTableName, tableSqlDrop);
+
+		renameTable(oldTableName, tableColumns, tableSqlCreate);
+	}
+
+	protected void renameTable(
+			String oldTableName, Object[][] tableColumns, String tableSqlCreate)
+		throws Exception {
+
+		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
+			oldTableName, tableColumns);
+
+		upgradeTable.setCreateSQL(tableSqlCreate);
+
+		upgradeTable.updateTable();
+	}
+
+	protected void updateColumn(
+			String tableName, String columnName, String dataType, String data)
+		throws Exception {
+
+		if (tableHasColumn(tableName, columnName)) {
+			return;
+		}
+
+		String dataTypeUpperCase = dataType.toUpperCase();
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("alter table ");
+		sb.append(tableName);
+		sb.append(" add ");
+		sb.append(columnName);
+		sb.append(StringPool.SPACE);
+		sb.append(dataTypeUpperCase);
+
+		String sql = sb.toString();
+
+		if (dataTypeUpperCase.equals("DATE") || dataType.equals("STRING")) {
+			sql = sql.concat(" null");
+		}
+
+		runSQL(sql);
+
+		sb.setIndex(0);
+
+		sb.append("update ");
+		sb.append(tableName);
+		sb.append(" set ");
+		sb.append(columnName);
+		sb.append(" = ");
+		sb.append(data);
+
+		runSQL(sb.toString());
+	}
+
+	protected void updateSchema(
+			String oldTableName, String newTableName, String tableSqlDrop)
+		throws Exception {
+
+		if (hasTable(newTableName)) {
+			runSQL(tableSqlDrop);
+		}
+
+		updateColumn(oldTableName, "kbCommentId", "LONG", "commentId");
+
+		if (tableHasColumn(oldTableName, "commentId")) {
+			runSQL("alter table " + oldTableName + " drop column commentId");
 		}
 	}
 
-	protected void renameTable() throws Exception {
-		runSQL(KBCommentTable.TABLE_SQL_DROP);
-
-		runSQL("alter table KB_Comment add kbCommentId LONG");
-		runSQL("update KB_Comment set kbCommentId = commentId");
-
-		Object[][] columns = {{"commentId", new Integer(Types.BIGINT)}};
-
-		columns = ArrayUtil.append(columns, KBCommentTable.TABLE_COLUMNS);
-
-		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
-			"KB_Comment", columns);
-
-		String createSQL = KBCommentTable.TABLE_SQL_CREATE;
-
-		createSQL =
-			createSQL.substring(0, createSQL.length() - 1) +
-				",commentId VARCHAR(75) null)";
-
-		upgradeTable.setCreateSQL(createSQL);
-
-		upgradeTable.updateTable();
-
-		runSQL("alter table KBComment drop column commentId");
-	}
+	private static Log _log = LogFactoryUtil.getLog(UpgradeKBComment.class);
 
 }

@@ -19,15 +19,17 @@ import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleLatestUpgrade
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleMainUpgradeColumnImpl;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleRootResourcePrimKeyUpgradeColumnImpl;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleTable;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.util.TempUpgradeColumnImpl;
 import com.liferay.portal.kernel.upgrade.util.UpgradeColumn;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTable;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PortalUtil;
-
-import java.sql.Types;
 
 /**
  * @author Peter Shin
@@ -36,90 +38,129 @@ public class UpgradeKBArticle extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (hasTable("KB_Article")) {
-			renameTable();
-
-			updateTable();
-		}
+		renameAndUpdateTable(
+			StringUtil.replaceFirst(
+				KBArticleTable.TABLE_NAME, "KB", "KB_"),
+			KBArticleTable.TABLE_NAME, KBArticleTable.TABLE_COLUMNS,
+			KBArticleTable.TABLE_SQL_CREATE,
+			KBArticleTable.TABLE_SQL_DROP);
 	}
 
-	protected void renameTable() throws Exception {
-		runSQL(KBArticleTable.TABLE_SQL_DROP);
+	protected void renameAndUpdateTable(
+			String oldTableName, String newTableName, Object[][] tableColumns,
+			String tableSqlCreate, String tableSqlDrop)
+		throws Exception {
 
-		runSQL("alter table KB_Article add kbArticleId LONG");
-		runSQL("update KB_Article set kbArticleId = articleId");
+		if (tableHasData(newTableName)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Not renaming " + oldTableName + " to " + newTableName +
+						" because " + newTableName + " has data");
+			}
 
-		if (!tableHasColumn("KB_Article", "rootResourcePrimKey")) {
-			runSQL("alter table KB_Article add rootResourcePrimKey LONG");
-			runSQL("update KB_Article set rootResourcePrimKey = 0");
+			return;
 		}
 
-		if (!tableHasColumn("KB_Article", "kbTemplateId")) {
-			runSQL("alter table KB_Article add kbTemplateId LONG");
-			runSQL("update KB_Article set kbTemplateId = 0");
+		if (!tableHasData(oldTableName)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Not renaming " + oldTableName + " to " + newTableName +
+						" because " + oldTableName + " has no data");
+			}
+
+			return;
 		}
 
-		if (!tableHasColumn("KB_Article", "sections")) {
-			runSQL("alter table KB_Article add sections STRING null");
-			runSQL("update KB_Article set sections = '_general_'");
-		}
+		updateSchema(oldTableName, newTableName, tableSqlDrop);
 
-		if (!tableHasColumn("KB_Article", "viewCount")) {
-			runSQL("alter table KB_Article add viewCount INTEGER");
-			runSQL("update KB_Article set viewCount = 0");
-		}
+		renameTable(oldTableName, tableColumns, tableSqlCreate);
 
-		if (!tableHasColumn("KB_Article", "latest")) {
-			runSQL("alter table KB_Article add latest BOOLEAN");
-			runSQL("update KB_Article set latest = FALSE");
-		}
+		updateTable(newTableName, tableColumns, tableSqlCreate);
 
-		if (!tableHasColumn("KB_Article", "main")) {
-			runSQL("alter table KB_Article add main BOOLEAN");
-			runSQL("update KB_Article set main = FALSE");
-		}
+		KBArticleAttachmentsUtil.deleteAttachmentsDirectory(
+			PortalUtil.getDefaultCompanyId());
+	}
 
-		if (!tableHasColumn("KB_Article", "status")) {
-			runSQL("alter table KB_Article add status INTEGER");
-			runSQL("update KB_Article set status = 0");
-		}
-
-		if (!tableHasColumn("KB_Article", "statusByUserId")) {
-			runSQL("alter table KB_Article add statusByUserId LONG");
-			runSQL("update KB_Article set statusByUserId = userId");
-		}
-
-		if (!tableHasColumn("KB_Article", "statusByUserName")) {
-			runSQL("alter table KB_Article add statusByUserName STRING null");
-			runSQL("update KB_Article set statusByUserName = userName");
-		}
-
-		if (!tableHasColumn("KB_Article", "statusDate")) {
-			runSQL("alter table KB_Article add statusDate DATE null");
-			runSQL("update KB_Article set statusDate = modifiedDate");
-		}
-
-		Object[][] columns = {{"articleId", new Integer(Types.BIGINT)}};
-
-		columns = ArrayUtil.append(columns, KBArticleTable.TABLE_COLUMNS);
+	protected void renameTable(
+			String oldTableName, Object[][] tableColumns, String tableSqlCreate)
+		throws Exception {
 
 		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
-			"KB_Article", columns);
+			oldTableName, tableColumns);
 
-		String createSQL = KBArticleTable.TABLE_SQL_CREATE;
-
-		createSQL =
-			createSQL.substring(0, createSQL.length() - 1) +
-				",articleId VARCHAR(75) null)";
-
-		upgradeTable.setCreateSQL(createSQL);
+		upgradeTable.setCreateSQL(tableSqlCreate);
 
 		upgradeTable.updateTable();
-
-		runSQL("alter table KBArticle drop column articleId");
 	}
 
-	protected void updateTable() throws Exception {
+	protected void updateColumn(
+			String tableName, String columnName, String dataType, String data)
+		throws Exception {
+
+		if (tableHasColumn(tableName, columnName)) {
+			return;
+		}
+
+		String dataTypeUpperCase = dataType.toUpperCase();
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("alter table ");
+		sb.append(tableName);
+		sb.append(" add ");
+		sb.append(columnName);
+		sb.append(StringPool.SPACE);
+		sb.append(dataTypeUpperCase);
+
+		String sql = sb.toString();
+
+		if (dataTypeUpperCase.equals("DATE") || dataType.equals("STRING")) {
+			sql = sql.concat(" null");
+		}
+
+		runSQL(sql);
+
+		sb.setIndex(0);
+
+		sb.append("update ");
+		sb.append(tableName);
+		sb.append(" set ");
+		sb.append(columnName);
+		sb.append(" = ");
+		sb.append(data);
+
+		runSQL(sb.toString());
+	}
+
+	protected void updateSchema(
+			String oldTableName, String newTableName, String tableSqlDrop)
+		throws Exception {
+
+		if (hasTable(newTableName)) {
+			runSQL(tableSqlDrop);
+		}
+
+		updateColumn(oldTableName, "kbArticleId", "LONG", "articleId");
+		updateColumn(oldTableName, "rootResourcePrimKey", "LONG", "0");
+		updateColumn(oldTableName, "kbTemplateId", "LONG", "0");
+		updateColumn(oldTableName, "sections", "STRING", "'_general_'");
+		updateColumn(oldTableName, "viewCount", "INTEGER", "0");
+		updateColumn(oldTableName, "latest", "BOOLEAN", "FALSE");
+		updateColumn(oldTableName, "main", "BOOLEAN", "FALSE");
+		updateColumn(oldTableName, "status", "INTEGER", "0");
+		updateColumn(oldTableName, "statusByUserId", "LONG", "userId");
+		updateColumn(oldTableName, "statusByUserName", "STRING", "userName");
+		updateColumn(oldTableName, "statusDate", "DATE", "modifiedDate");
+
+		if (tableHasColumn(oldTableName, "articleId")) {
+			runSQL("alter table " + oldTableName + " drop column articleId");
+		}
+	}
+
+	protected void updateTable(
+			String newTableName, Object[][] tableColumns, String tableSqlCreate)
+		throws Exception {
+
 		UpgradeColumn kbArticleIdColumn = new TempUpgradeColumnImpl(
 			"kbArticleId");
 
@@ -140,16 +181,15 @@ public class UpgradeKBArticle extends UpgradeProcess {
 				kbArticleIdColumn, resourcePrimKeyColumn);
 
 		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
-			KBArticleTable.TABLE_NAME, KBArticleTable.TABLE_COLUMNS,
-			kbArticleIdColumn, resourcePrimKeyColumn, rootResourcePrimKeyColumn,
-			latestColumn, mainColumn);
+			newTableName, tableColumns, kbArticleIdColumn,
+			resourcePrimKeyColumn, rootResourcePrimKeyColumn, latestColumn,
+			mainColumn);
 
-		upgradeTable.setCreateSQL(KBArticleTable.TABLE_SQL_CREATE);
+		upgradeTable.setCreateSQL(tableSqlCreate);
 
 		upgradeTable.updateTable();
-
-		KBArticleAttachmentsUtil.deleteAttachmentsDirectory(
-			PortalUtil.getDefaultCompanyId());
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(UpgradeKBArticle.class);
 
 }
