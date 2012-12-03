@@ -119,6 +119,60 @@
 				id: 'settings'
 			},
 			{
+				caption: '<liferay-ui:message key="permissions" />',
+				fn: function(event) {
+					var instance = this;
+
+					var calendarList = instance.get('host');
+					var activeCalendar = calendarList.activeItem;
+
+					<liferay-security:permissionsURL
+						modelResource="<%= Calendar.class.getName() %>"
+						modelResourceDescription="{modelResourceDescription}"
+						resourceGroupId="0"
+						resourcePrimKey="{resourcePrimKey}"
+						var="permissionsURL"
+					/>
+
+					window.location.href = A.Lang.sub(
+						decodeURIComponent('<%= permissionsURL %>'),
+						{
+							resourceGroupId: activeCalendar.get('groupId'),
+							resourcePrimKey: activeCalendar.get('calendarId'),
+							modelResourceDescription: activeCalendar.get('name')
+						}
+					);
+				},
+				id: 'permissions'
+			},
+			{
+				caption: '<liferay-ui:message key="delete" />',
+				fn: function(event) {
+					var instance = this;
+
+					var calendarList = instance.get('host');
+					var activeCalendar = calendarList.activeItem;
+
+					<portlet:actionURL name="deleteCalendar" var="deleteURL">
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="calendarId" value="{calendarId}" />
+					<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
+					</portlet:actionURL>
+
+					if (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />')) {
+						window.location.href = A.Lang.sub(
+							decodeURIComponent('<%= deleteURL %>'),
+							{
+								calendarId: activeCalendar.get('calendarId'),
+								calendarResourceId: activeCalendar.get('calendarResourceId')
+							}
+						);
+					}
+				},
+				id: 'delete'
+			},
+			{
 				caption: '-'
 			},
 			{
