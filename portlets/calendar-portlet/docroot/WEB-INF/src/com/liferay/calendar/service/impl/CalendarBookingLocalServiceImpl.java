@@ -437,8 +437,7 @@ public class CalendarBookingLocalServiceImpl
 			StringUtil.shorten(calendarBooking.getDescription(), 500));
 
 		AssetEntry assetEntry = assetEntryLocalService.updateEntry(
-			userId, assetGroupId, calendarBooking.getCreateDate(),
-			calendarBooking.getModifiedDate(), CalendarBooking.class.getName(),
+			userId, assetGroupId, CalendarBooking.class.getName(),
 			calendarBooking.getCalendarBookingId(), calendarBooking.getUuid(),
 			0, assetCategoryIds, assetTagNames, visible, null, null, null,
 			ContentTypes.TEXT_HTML, calendarBooking.getTitle(),
