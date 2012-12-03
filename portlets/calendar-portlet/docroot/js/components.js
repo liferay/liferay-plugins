@@ -261,6 +261,11 @@
 							value: {
 								emptyMessage: Liferay.Language.get('no-calendars-selected')
 							}
+						},
+
+						checkPermissionsActions: {
+							validator: isArray,
+							value: ['delete', 'permissions', 'settings']
 						}
 					},
 
@@ -438,10 +443,18 @@
 
 								var simpleMenu = instance.simpleMenu;
 
+								var hiddenItems = AArray.partition(
+									instance.get('checkPermissionsActions'),
+									function(item) {
+										return !instance.activeItem.get('permissions').UPDATE
+									}
+								);
+
 								simpleMenu.setAttrs(
 									{
 										'align.node': target,
-										visible: ((simpleMenu.get('align.node') !== target) || !simpleMenu.get('visible'))
+										visible: ((simpleMenu.get('align.node') !== target) || !simpleMenu.get('visible')),
+										hiddenItems: hiddenItems.matches
 									}
 								);
 							}
