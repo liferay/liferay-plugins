@@ -14,9 +14,9 @@
 
 package com.liferay.marketplace.store.portlet;
 
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.BaseControlPanelEntry;
 
 /**
@@ -24,23 +24,12 @@ import com.liferay.portlet.BaseControlPanelEntry;
  */
 public class StoreControlPanelEntry extends BaseControlPanelEntry {
 
-	public boolean isVisible(
-			PermissionChecker permissionChecker, Portlet portlet)
-		throws Exception {
-
-		if (permissionChecker.isOmniadmin()) {
-			return true;
-		}
-
-		return false;
-	}
-
 	@Override
-	public boolean isVisible(
-			Portlet portlet, String category, ThemeDisplay themeDisplay)
+	public boolean hasAccessPermission(
+			PermissionChecker permissionChecker, Group group, Portlet portlet)
 		throws Exception {
 
-		return isVisible(themeDisplay.getPermissionChecker(), portlet);
+		return permissionChecker.isOmniadmin();
 	}
 
 }
