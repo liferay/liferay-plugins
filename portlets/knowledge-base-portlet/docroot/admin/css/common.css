@@ -53,7 +53,7 @@
 }
 
 .knowledge-base-portlet .top-links-container {
-	margin: 0 0 15px 0;
+	margin: 0;
 }
 
 /* ---------- Portlet ---------- */
@@ -232,7 +232,7 @@
 
 .knowledge-base-portlet .kb-entity-header {
 	border-bottom: 1px solid #CCC;
-	margin-bottom: 5px;
+	margin: 5px 0 5px 0;
 	padding: 0 5px 3px;
 }
 

@@ -112,6 +112,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		/>
 	</liferay-ui:search-container-row>
 
+	<%@ include file="display_tools.jspf" %>
+
 	<aui:button-row cssClass="float-container">
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-portlet:renderURL var="addKBArticleURL">
@@ -132,59 +134,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			<aui:button href="<%= permissionsURL %>" value="permissions" />
 		</c:if>
-
-		<div class="kb-display-tools">
-			<table class="lfr-table">
-			<tr>
-				<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
-					<td>
-						<liferay-portlet:resourceURL id="groupKBArticlesRSS" var="groupKBArticlesRSSURL">
-							<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
-							<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
-							<portlet:param name="rssFormat" value="<%= rssFormat %>" />
-						</liferay-portlet:resourceURL>
-
-						<liferay-ui:icon
-							image="rss"
-							label="<%= true %>"
-							method="get"
-							target="_blank"
-							url="<%= groupKBArticlesRSSURL %>"
-						/>
-					</td>
-				</c:if>
-
-				<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
-					<td>
-						<c:choose>
-							<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), scopeGroupId) %>">
-								<liferay-portlet:actionURL name="unsubscribeGroupKBArticles" var="unsubscribeGroupKBArticlesURL">
-									<portlet:param name="redirect" value="<%= redirect %>" />
-								</liferay-portlet:actionURL>
-
-								<liferay-ui:icon
-									image="unsubscribe"
-									label="<%= true %>"
-									url="<%= unsubscribeGroupKBArticlesURL %>"
-								/>
-							</c:when>
-							<c:otherwise>
-								<liferay-portlet:actionURL name="subscribeGroupKBArticles" var="subscribeGroupKBArticlesURL">
-									<portlet:param name="redirect" value="<%= redirect %>" />
-								</liferay-portlet:actionURL>
-
-								<liferay-ui:icon
-									image="subscribe"
-									label="<%= true %>"
-									url="<%= subscribeGroupKBArticlesURL %>"
-								/>
-							</c:otherwise>
-						</c:choose>
-					</td>
-				</c:if>
-			</tr>
-			</table>
-		</div>
 	</aui:button-row>
 
 	<liferay-ui:search-iterator />
