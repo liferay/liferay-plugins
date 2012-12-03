@@ -15,7 +15,6 @@
 package com.liferay.so.service.persistence;
 
 import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -38,9 +37,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.CompanyPersistence;
-import com.liferay.portal.service.persistence.GroupPersistence;
-import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.so.NoSuchFavoriteSiteException;
@@ -1393,18 +1389,6 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = FavoriteSitePersistence.class)
-	protected FavoriteSitePersistence favoriteSitePersistence;
-	@BeanReference(type = MemberRequestPersistence.class)
-	protected MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(type = ProjectsEntryPersistence.class)
-	protected ProjectsEntryPersistence projectsEntryPersistence;
-	@BeanReference(type = CompanyPersistence.class)
-	protected CompanyPersistence companyPersistence;
-	@BeanReference(type = GroupPersistence.class)
-	protected GroupPersistence groupPersistence;
-	@BeanReference(type = UserPersistence.class)
-	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FAVORITESITE = "SELECT favoriteSite FROM FavoriteSite favoriteSite";
 	private static final String _SQL_SELECT_FAVORITESITE_WHERE = "SELECT favoriteSite FROM FavoriteSite favoriteSite WHERE ";
 	private static final String _SQL_COUNT_FAVORITESITE = "SELECT COUNT(favoriteSite) FROM FavoriteSite favoriteSite";

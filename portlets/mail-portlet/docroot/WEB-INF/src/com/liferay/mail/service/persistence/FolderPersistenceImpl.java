@@ -20,7 +20,6 @@ import com.liferay.mail.model.impl.FolderImpl;
 import com.liferay.mail.model.impl.FolderModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -44,7 +43,6 @@ import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -1433,16 +1431,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = AccountPersistence.class)
-	protected AccountPersistence accountPersistence;
-	@BeanReference(type = AttachmentPersistence.class)
-	protected AttachmentPersistence attachmentPersistence;
-	@BeanReference(type = FolderPersistence.class)
-	protected FolderPersistence folderPersistence;
-	@BeanReference(type = MessagePersistence.class)
-	protected MessagePersistence messagePersistence;
-	@BeanReference(type = UserPersistence.class)
-	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FOLDER = "SELECT folder FROM Folder folder";
 	private static final String _SQL_SELECT_FOLDER_WHERE = "SELECT folder FROM Folder folder WHERE ";
 	private static final String _SQL_COUNT_FOLDER = "SELECT COUNT(folder) FROM Folder folder";

@@ -20,7 +20,6 @@ import com.liferay.ams.model.impl.CheckoutImpl;
 import com.liferay.ams.model.impl.CheckoutModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -41,7 +40,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -623,16 +621,6 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = AssetPersistence.class)
-	protected AssetPersistence assetPersistence;
-	@BeanReference(type = CheckoutPersistence.class)
-	protected CheckoutPersistence checkoutPersistence;
-	@BeanReference(type = DefinitionPersistence.class)
-	protected DefinitionPersistence definitionPersistence;
-	@BeanReference(type = TypePersistence.class)
-	protected TypePersistence typePersistence;
-	@BeanReference(type = UserPersistence.class)
-	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_CHECKOUT = "SELECT checkout FROM Checkout checkout";
 	private static final String _SQL_COUNT_CHECKOUT = "SELECT COUNT(checkout) FROM Checkout checkout";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "checkout.";

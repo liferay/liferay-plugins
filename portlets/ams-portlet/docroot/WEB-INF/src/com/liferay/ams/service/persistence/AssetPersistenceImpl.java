@@ -20,7 +20,6 @@ import com.liferay.ams.model.impl.AssetImpl;
 import com.liferay.ams.model.impl.AssetModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -41,7 +40,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -620,16 +618,6 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = AssetPersistence.class)
-	protected AssetPersistence assetPersistence;
-	@BeanReference(type = CheckoutPersistence.class)
-	protected CheckoutPersistence checkoutPersistence;
-	@BeanReference(type = DefinitionPersistence.class)
-	protected DefinitionPersistence definitionPersistence;
-	@BeanReference(type = TypePersistence.class)
-	protected TypePersistence typePersistence;
-	@BeanReference(type = UserPersistence.class)
-	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_ASSET = "SELECT asset FROM Asset asset";
 	private static final String _SQL_COUNT_ASSET = "SELECT COUNT(asset) FROM Asset asset";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "asset.";

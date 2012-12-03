@@ -20,7 +20,6 @@ import com.liferay.ams.model.impl.TypeImpl;
 import com.liferay.ams.model.impl.TypeModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -41,7 +40,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
-import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -610,16 +608,6 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = AssetPersistence.class)
-	protected AssetPersistence assetPersistence;
-	@BeanReference(type = CheckoutPersistence.class)
-	protected CheckoutPersistence checkoutPersistence;
-	@BeanReference(type = DefinitionPersistence.class)
-	protected DefinitionPersistence definitionPersistence;
-	@BeanReference(type = TypePersistence.class)
-	protected TypePersistence typePersistence;
-	@BeanReference(type = UserPersistence.class)
-	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_TYPE = "SELECT type FROM Type type";
 	private static final String _SQL_COUNT_TYPE = "SELECT COUNT(type) FROM Type type";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "type.";
