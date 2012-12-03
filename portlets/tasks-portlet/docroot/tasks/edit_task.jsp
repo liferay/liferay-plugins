@@ -69,7 +69,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 					<aui:option label="<%= HtmlUtil.escape(user.getFullName()) %>" selected="<%= (assigneeUserId == user.getUserId()) %>" value="<%= user.getUserId() %>" />
 
 					<c:if test="<%= (tasksEntry != null) && (assigneeUserId > 0) && (assigneeUserId != user.getUserId()) %>">
-						<aui:option label="<%= PortalUtil.getUserName(assigneeUserId, tasksEntry.getAssigneeFullName()) %>" selected="<%= true %>" value="<%= assigneeUserId %>" />
+						<aui:option label="<%= PortalUtil.getUserName(assigneeUserId, tasksEntry.getAssigneeFullName()) %>" selected="<%= true %>" />
 					</c:if>
 
 					<optgroup label="<liferay-ui:message key="members" />">
