@@ -14,6 +14,8 @@
  */
 --%>
 
+<%@ include file="/display/init.jsp" %>
+
 <div class="kb-display-tools">
 	<c:if test="<%= enableRSS %>">
 		<liferay-portlet:resourceURL id="groupKBArticlesRSS" varImpl="groupKBArticlesRSSURL" />

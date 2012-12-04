@@ -112,7 +112,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		/>
 	</liferay-ui:search-container-row>
 
-	<%@ include file="display_tools.jspf" %>
+	<liferay-util:include page="/display/display_tools.jsp" servletContext="<%= application %>" />
 
 	<aui:button-row cssClass="float-container">
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
