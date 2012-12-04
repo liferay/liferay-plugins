@@ -25,6 +25,7 @@ import java.util.Enumeration;
 import java.util.Map;
 
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletRequest;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +58,18 @@ public class PortalUtil extends com.liferay.portal.util.PortalUtil {
 				actionResponse.setRenderParameter(param, values);
 			}
 		}
+	}
+
+	public static UploadPortletRequest getUploadPortletRequest(
+		PortletRequest portletRequest) {
+
+		UploadPortletRequest uploadPortletRequest =
+			getPortal().getUploadPortletRequest(portletRequest);
+
+		portletRequest.setAttribute(
+			"uploadPortletRequestCopy", uploadPortletRequest);
+
+		return uploadPortletRequest;
 	}
 
 	public static String getUserName(BaseModel<?> baseModel) {

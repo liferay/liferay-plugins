@@ -14,6 +14,8 @@
 
 package com.liferay.ddlform.portlet;
 
+import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.compat.util.MVCPortlet;
 import com.liferay.ddlform.DuplicateSubmissionException;
 import com.liferay.ddlform.util.DDLFormUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -25,12 +27,10 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
 import com.liferay.portlet.dynamicdatamapping.StorageFieldRequiredException;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
