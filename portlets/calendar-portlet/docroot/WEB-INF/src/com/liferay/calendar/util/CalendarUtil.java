@@ -255,9 +255,19 @@ public class CalendarUtil {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put(
+			ActionKeys.DELETE,
+			CalendarPermission.contains(
+				permissionChecker, calendar, ActionKeys.DELETE));
+
+		jsonObject.put(
 			ActionKeys.MANAGE_BOOKINGS,
 			CalendarPermission.contains(
 				permissionChecker, calendar, ActionKeys.MANAGE_BOOKINGS));
+
+		jsonObject.put(
+			ActionKeys.PERMISSIONS,
+			CalendarPermission.contains(
+				permissionChecker, calendar, ActionKeys.PERMISSIONS));
 
 		jsonObject.put(
 			ActionKeys.UPDATE,

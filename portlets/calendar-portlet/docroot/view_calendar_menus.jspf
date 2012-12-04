@@ -187,11 +187,25 @@
 
 				var calendar = calendarList.activeItem
 
-				if (event.newVal) {
+				if (calendar && event.newVal) {
+					var permissions = calendar.get('permissions');
+
 					var hiddenItems = [];
 
 					if (calendarList !== window.<portlet:namespace />otherCalendarList) {
 						hiddenItems.push('hide');
+					}
+
+					if (permissions.DELETE === false) {
+						hiddenItems.push('delete');
+					}
+
+					if (permissions.PERMISSIONS === false) {
+						hiddenItems.push('permissions');
+					}
+
+					if (permissions.UPDATE === false) {
+						hiddenItems.push('settings');
 					}
 
 					instance.set('hiddenItems', hiddenItems);
