@@ -42,8 +42,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			StringUtil.replaceFirst(
 				KBArticleTable.TABLE_NAME, "KB", "KB_"),
 			KBArticleTable.TABLE_NAME, KBArticleTable.TABLE_COLUMNS,
-			KBArticleTable.TABLE_SQL_CREATE,
-			KBArticleTable.TABLE_SQL_DROP);
+			KBArticleTable.TABLE_SQL_CREATE, KBArticleTable.TABLE_SQL_DROP);
 	}
 
 	protected void renameAndUpdateTable(

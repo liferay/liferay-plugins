@@ -35,8 +35,7 @@ public class UpgradeKBTemplate extends UpgradeProcess {
 			StringUtil.replaceFirst(
 				KBTemplateTable.TABLE_NAME, "KB", "KB_"),
 			KBTemplateTable.TABLE_NAME, KBTemplateTable.TABLE_COLUMNS,
-			KBTemplateTable.TABLE_SQL_CREATE,
-			KBTemplateTable.TABLE_SQL_DROP);
+			KBTemplateTable.TABLE_SQL_CREATE, KBTemplateTable.TABLE_SQL_DROP);
 	}
 
 	protected void renameAndUpdateTable(
