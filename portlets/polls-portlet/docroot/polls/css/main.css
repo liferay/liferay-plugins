@@ -1,0 +1,17 @@
+.polls-portlet {
+	.choice, .add-choice{
+		clear: both;
+		display: block;
+	}
+
+	.choice {
+		label {
+			float: left;
+			margin: 0.5em 0.5em 0 0;
+		}
+
+		.aui-field {
+			float: left;
+		}
+	}
+}

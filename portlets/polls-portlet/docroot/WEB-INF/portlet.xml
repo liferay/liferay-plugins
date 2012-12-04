@@ -36,6 +36,10 @@
 		<display-name>Polls Display</display-name>
 		<portlet-class>com.liferay.polls.PollsPortlet</portlet-class>
 		<init-param>
+			<name>config-template</name>
+			<value>/polls_display/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-template</name>
 			<value>/polls_display/view.jsp</value>
 		</init-param>
