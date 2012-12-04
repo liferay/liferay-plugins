@@ -705,12 +705,12 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		String portletName = portletDisplay.getPortletName();
+		String portletId = portletDisplay.getId();
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		if (filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) &&
-			!portletName.equals(PortletKeys.MEMBERS)) {
+			!portletId.equals(PortletKeys.MEMBERS)) {
 
 			List<BaseModel<?>> contacts =
 				EntryLocalServiceUtil.searchUsersAndContacts(
@@ -742,7 +742,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		}
 		else if (filterBy.equals(
 					ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS) &&
-				 !portletName.equals(PortletKeys.MEMBERS)) {
+				 !portletId.equals(PortletKeys.MEMBERS)) {
 
 			List<Entry> entries = EntryLocalServiceUtil.search(
 				themeDisplay.getUserId(), keywords, start, end);
@@ -778,7 +778,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					});
 			}
 
-			if (portletName.equals(PortletKeys.MEMBERS)) {
+			if (portletId.equals(PortletKeys.MEMBERS)) {
 				params.put("usersGroups", group.getGroupId());
 			}
 			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
@@ -995,7 +995,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			SocialRequestInterpreterLocalServiceUtil.interpret(
 				socialRequest, themeDisplay);
 
-		notificationEventJSONObject.put("portletId", "1_WAR_contactsportlet");
+		notificationEventJSONObject.put(
+			"portletId", PortletKeys.CONTACTS_CENTER);
 		notificationEventJSONObject.put(
 			"requestId", socialRequest.getRequestId());
 		notificationEventJSONObject.put(

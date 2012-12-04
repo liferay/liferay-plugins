@@ -129,7 +129,9 @@ boolean showRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "sh
 
 boolean showOnlySiteMembers = false;
 
-if (portletName.equals(PortletKeys.MEMBERS)) {
+String portletId = portletDisplay.getId();
+
+if (portletId.equals(PortletKeys.MEMBERS)) {
 	showOnlySiteMembers = true;
 }
 

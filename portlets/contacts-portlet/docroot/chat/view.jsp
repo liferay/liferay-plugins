@@ -20,10 +20,10 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), "1_WAR_contactsportlet");
+Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), PortletKeys.CONTACTS_CENTER);
 %>
 
-<liferay-portlet:renderURL portletName="1_WAR_contactsportlet" varImpl="profileURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+<liferay-portlet:renderURL portletName="<%= PortletKeys.CONTACTS_CENTER %>" varImpl="profileURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 	<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 	<portlet:param name="backURL" value="<%= PortalUtil.getCurrentURL(request) %>" />
 </liferay-portlet:renderURL>
