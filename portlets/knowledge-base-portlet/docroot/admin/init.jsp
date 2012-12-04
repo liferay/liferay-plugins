@@ -47,7 +47,8 @@ boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.ge
 boolean enableKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBTemplateKBComments", null));
 boolean showKBTemplateKBComments = GetterUtil.getBoolean(preferences.getValue("showKBTemplateKBComments", null));
 
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", null));
-String rssDisplayStyle = preferences.getValue("rssDisplayStyle", StringPool.BLANK);
-String rssFormat = preferences.getValue("rssFormat", StringPool.BLANK);
+boolean enableRSS = !PortalUtil.isRSSFeedsEnabled() ? false : GetterUtil.getBoolean(preferences.getValue("enableRss", null), true);
+int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+String rssFeedType = preferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
 %>

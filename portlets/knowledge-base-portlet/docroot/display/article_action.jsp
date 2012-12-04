@@ -57,19 +57,16 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= PortalUtil.isRSSFeedsEnabled() && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
-		<liferay-portlet:resourceURL id="kbArticleRSS" var="kbArticleRSSURL">
+	<c:if test="<%= enableRSS && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
+		<liferay-portlet:resourceURL id="kbArticleRSS" varImpl="kbArticleRSSURL">
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-			<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
-			<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
-			<portlet:param name="rssFormat" value="<%= rssFormat %>" />
 		</liferay-portlet:resourceURL>
 
-		<liferay-ui:icon
-			image="rss"
-			method="get"
-			target="_blank"
-			url="<%= kbArticleRSSURL %>"
+		<liferay-ui:rss
+			delta="<%= rssDelta %>"
+			displayStyle="<%= rssDisplayStyle %>"
+			feedType="<%= rssFeedType %>"
+			resourceURL="<%= kbArticleRSSURL %>"
 		/>
 	</c:if>
 

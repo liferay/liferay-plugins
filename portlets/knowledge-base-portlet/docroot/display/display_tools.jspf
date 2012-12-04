@@ -15,19 +15,14 @@
 --%>
 
 <div class="kb-display-tools">
-	<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
-		<liferay-portlet:resourceURL id="groupKBArticlesRSS" var="groupKBArticlesRSSURL">
-			<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
-			<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
-			<portlet:param name="rssFormat" value="<%= rssFormat %>" />
-		</liferay-portlet:resourceURL>
+	<c:if test="<%= enableRSS %>">
+		<liferay-portlet:resourceURL id="groupKBArticlesRSS" varImpl="groupKBArticlesRSSURL" />
 
-		<liferay-ui:icon
-			image="rss"
-			label="<%= true %>"
-			method="get"
-			target="_blank"
-			url="<%= groupKBArticlesRSSURL %>"
+		<liferay-ui:rss
+			delta="<%= rssDelta %>"
+			displayStyle="<%= rssDisplayStyle %>"
+			feedType="<%= rssFeedType %>"
+			resourceURL="<%= groupKBArticlesRSSURL %>"
 		/>
 	</c:if>
 

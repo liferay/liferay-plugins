@@ -109,37 +109,12 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 				</c:choose>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
-				<aui:select label="maximum-items-to-display" name="preferences--rssDelta--">
-					<aui:option label="1" selected="<%= rssDelta == 1 %>" />
-					<aui:option label="2" selected="<%= rssDelta == 2 %>" />
-					<aui:option label="3" selected="<%= rssDelta == 3 %>" />
-					<aui:option label="4" selected="<%= rssDelta == 4 %>" />
-					<aui:option label="5" selected="<%= rssDelta == 5 %>" />
-					<aui:option label="10" selected="<%= rssDelta == 10 %>" />
-					<aui:option label="15" selected="<%= rssDelta == 15 %>" />
-					<aui:option label="20" selected="<%= rssDelta == 20 %>" />
-					<aui:option label="25" selected="<%= rssDelta == 25 %>" />
-					<aui:option label="30" selected="<%= rssDelta == 30 %>" />
-					<aui:option label="40" selected="<%= rssDelta == 40 %>" />
-					<aui:option label="50" selected="<%= rssDelta == 50 %>" />
-					<aui:option label="60" selected="<%= rssDelta == 60 %>" />
-					<aui:option label="70" selected="<%= rssDelta == 70 %>" />
-					<aui:option label="80" selected="<%= rssDelta == 80 %>" />
-					<aui:option label="90" selected="<%= rssDelta == 90 %>" />
-					<aui:option label="100" selected="<%= rssDelta == 100 %>" />
-				</aui:select>
-
-				<aui:select label="display-style" name="preferences--rssDisplayStyle--">
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
-				</aui:select>
-
-				<aui:select label="format" name="preferences--rssFormat--">
-					<aui:option label="RSS 1.0" selected='<%= rssFormat.equals("rss10") %>' value="rss10" />
-					<aui:option label="RSS 2.0" selected='<%= rssFormat.equals("rss20") %>' value="rss20" />
-					<aui:option label="Atom 1.0" selected='<%= rssFormat.equals("atom10") %>' value="atom10" />
-				</aui:select>
+				<liferay-ui:rss-settings
+					delta="<%= rssDelta %>"
+					displayStyle="<%= rssDisplayStyle %>"
+					enabled="<%= enableRSS %>"
+					feedType="<%= rssFeedType %>"
+				/>
 			</c:when>
 		</c:choose>
 
