@@ -4,71 +4,85 @@
 <project name="@portlet.name@-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
-	<property name="project.dir" value="." />
-
-	<property file="${project.dir}/build.${user.name}.properties" />
-	<property file="${project.dir}/build.properties" />
-
-	<property name="base.sources.dir" value="docroot/WEB-INF/src" />
-	<property name="java.sources.dir" value="${base.sources.dir}" />
-	<property name="scala.sources.dir" value="${base.sources.dir}" />
-
-	<property name="build.dir" value="docroot/WEB-INF/classes"/>
-
 	<target name="compile">
-		<antcall target="scalac" />
-
 		<antcall target="build-common-plugin.compile" />
-	</target>
-		
-	<target name="fsc" depends="init-scala">
-		<mkdir dir="${build.dir}" />
 
-		<fsc classpathref="scala.build.classpath" destdir="${build.dir}" srcdir="${base.sources.dir}" deprecation="true">
-			<include name="**/*.scala" />
+		<antcall target="scalac" />
+	</target>
+
+	<target name="fsc" depends="init-scala">
+		<mkdir dir="docroot/WEB-INF/classes" />
+
+		<fsc
+			classpathref="scala.classpath"
+			deprecation="true"
+			destdir="docroot/WEB-INF/classes"
+			srcdir="docroot/WEB-INF/src"
+		>
 			<include name="**/*.java" />
+			<include name="**/*.scala" />
 		</fsc>
 	</target>
 
 	<target name="fsc-reset" depends="init-scala">
-		<mkdir dir="${build.dir}" />
-	
-		<fsc classpathref="scala.build.classpath" destdir="${build.dir}" srcdir="${base.sources.dir}" deprecation="true" reset="true">
-			<include name="**/*.scala" />
+		<mkdir dir="docroot/WEB-INF/classes" />
+
+		<fsc
+			classpathref="scala.classpath"
+			deprecation="true"
+			destdir="docroot/WEB-INF/classes"
+			reset="true"
+			srcdir="docroot/WEB-INF/src"
+		>
 			<include name="**/*.java" />
+			<include name="**/*.scala" />
 		</fsc>
 	</target>
 
 	<target name="fsc-shutdown" depends="init-scala">
-		<mkdir dir="${build.dir}" />
+		<mkdir dir="docroot/WEB-INF/classes" />
 
-		<fsc classpathref="scala.build.classpath" destdir="${build.dir}" srcdir="${base.sources.dir}" deprecation="true" shutdown="true">
-			<include name="**/*.scala" />
+		<fsc
+			classpathref="scala.classpath"
+			deprecation="true"
+			destdir="docroot/WEB-INF/classes"
+			shutdown="true"
+			srcdir="docroot/WEB-INF/src"
+		>
 			<include name="**/*.java" />
+			<include name="**/*.scala" />
 		</fsc>
 	</target>
 
 	<target name="init-scala">
-		<property name="scala-compiler.jar" value="${project.dir}/lib/scala-compiler.jar"/>
-
-		<path id="scala.build.classpath">
-			<path refid="portal.classpath" />				
-		</path>
-
 		<taskdef resource="scala/tools/ant/antlib.xml">
 			<classpath>
-				<pathelement location="${scala-compiler.jar}" />
 				<path refid="portal.classpath" />
+				<pathelement location="${project.dir}/lib/scala-compiler.jar" />
 			</classpath>
 		</taskdef>
 	</target>
 
 	<target name="scalac" depends="init-scala">
-		<mkdir dir="${build.dir}" />
+		<mkdir dir="docroot/WEB-INF/classes" />
 
-		<scalac classpathref="scala.build.classpath" destdir="${build.dir}" srcdir="${base.sources.dir}" deprecation="true">
-			<include name="**/*.scala"/>
+		<path id="plugin-lib.classpath">
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+		</path>
+
+		<path id="scala.classpath">
+			<path refid="plugin.classpath" />
+		</path>
+
+		<scalac
+			classpathref="scala.classpath"
+			deprecation="true"
+			destdir="docroot/WEB-INF/classes"
+			srcdir="docroot/WEB-INF/src"
+		>
 			<include name="**/*.java" />
+			<include name="**/*.scala" />
 		</scalac>
 	</target>
 </project>
