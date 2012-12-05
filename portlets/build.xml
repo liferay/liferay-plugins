@@ -168,10 +168,6 @@ speed-filters-enabled=false
 							tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}ScalaPortlet.scala"
 						/>
 
-						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
-
-portal-dependency-jars=scala-library.jar</echo>
-
 						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
 							<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
 							<replacevalue><![CDATA[<portlet-class>@portlet.java.package.name@.@portlet.java.class.name@Portlet</portlet-class>]]></replacevalue>
