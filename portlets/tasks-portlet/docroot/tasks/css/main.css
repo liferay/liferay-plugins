@@ -1,12 +1,12 @@
+@import "compass";
+
 /* ---------- All Tasks Toggle ---------- */
 
 .tasks-portlet {
 	.taglib-search-iterator-page-iterator-bottom {
 		padding: 0;
-	}
-	
-	.taglib-search-iterator-page-iterator-bottom {
-		.search-results, .delta-selector {
+
+		.delta-selector, .search-results {
 			display: none;
 		}
 
@@ -32,11 +32,9 @@
 	/* ---------- Controls ---------- */
 
 	.control-wrapper {
-		-moz-border-radius: 4px;
-		-webkit-border-radius: 4px;
 		border: 1px solid #C8C9CA;
-		border-radius: 4px;
-		margin: .5em 0;
+		@include border-radius(4px);
+		margin: 0.5em 0;
 		padding: 6px;
 
 		a {
@@ -62,11 +60,9 @@
 	/* ---------- Filter ---------- */
 
 	.filter-wrapper {
-		-moz-border-radius: 4px;
-		-webkit-border-radius: 4px;
 		background: #DFF4FF;
 		border: 1px solid #A7CEDF;
-		border-radius: 4px;
+		@include border-radius(4px);
 		margin: 0 0 1em;
 		position: relative;
 
@@ -146,20 +142,22 @@
 		height: 100%;
 	}
 
-	.progress-wrapper, .progress-wrapper div {
-		height: 15px;
-		width: 100px;
+	.progress-wrapper {
+		&, div {
+			height: 15px;
+			width: 100px;
+		}
+
+		.new-progress {
+			width: 0%;
+			z-index: 9;
+		}
 	}
 
 	.due-date, .progress-indicator, .progress-selector, .progress-wrapper .new-progress {
 		left: 0;
 		position: absolute;
 		top: 0;
-	}
-
-	.progress-wrapper .new-progress {
-		width: 0%;
-		z-index: 9;
 	}
 
 	.due-date {
@@ -205,7 +203,7 @@
 		.col-2 {
 			width: 105px;
 		}
-		
+
 		.col-3 {
 			width: 16px;
 		}
@@ -237,10 +235,6 @@
 	}
 }
 
-.ie6 .tasks-portlet .tags {
-	width: 250px;
-}
-
 /* ---------- Dialog ---------- */
 
 .tasks-dialog {
@@ -250,7 +244,7 @@
 		font-weight: bold;
 		vertical-align: top;
 	}
-	
+
 	.input-task-description {
 		min-width: 350px;
 	}
@@ -262,8 +256,8 @@
 		.task-data {
 			border-right: 1px solid #777;
 			display: inline;
-			margin-right: .5em;
-			padding: 1px .5em 1px 20px;
+			margin-right: 0.5em;
+			padding: 1px 0.5em 1px 20px;
 		}
 
 		.reporter {
@@ -276,7 +270,7 @@
 
 		.modified-date {
 			background: url(@theme_image_path@/common/calendar.png) no-repeat 0 50%;
-			border-right: none;
+			border-right-width: 0;
 		}
 	}
 
@@ -311,13 +305,13 @@
 		background: #EEE;
 		border-top: 1px solid #BFBFBF;
 		margin: 1em 0;
-		padding: .5em;
+		padding: 0.5em;
 	}
 
 	.task-action-spacer {
 		border-left: 1px solid #BFBFBF;
-		margin-left: .5em;
-		padding-left: .5em;
+		margin-left: 0.5em;
+		padding-left: 0.5em;
 	}
 
 	.task-action-right {
@@ -328,7 +322,7 @@
 
 	.comment-form {
 		height: 50px;
-		margin-bottom: .5em;
+		margin-bottom: 0.5em;
 		width: 400px;
 	}
 
@@ -346,7 +340,7 @@
 		color: #777;
 
 		span {
-			margin-right: .5em;
+			margin-right: 0.5em;
 		}
 	}
 }
@@ -380,4 +374,8 @@
 			background: url(@theme_image_path@/common/date.png) no-repeat 0 50%;
 		}
 	}
+}
+
+.ie6 .tasks-portlet .tags {
+	width: 250px;
 }

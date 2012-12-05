@@ -171,7 +171,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 										lastNameAnchor = curLastNameAnchor;
 										%>
 
-										<div class="lastNameAnchor">
+										<div class="last-name-anchor">
 											<a><liferay-ui:message key="<%= lastNameAnchor %>" /></a>
 										</div>
 									</c:if>
@@ -232,7 +232,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 										lastNameAnchor = curLastNameAnchor;
 										%>
 
-										<div class="lastNameAnchor">
+										<div class="last-name-anchor">
 											<a><liferay-ui:message key="<%= lastNameAnchor %>" /></a>
 										</div>
 									</c:if>

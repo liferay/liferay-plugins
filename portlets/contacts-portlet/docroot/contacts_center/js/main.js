@@ -760,7 +760,7 @@ AUI.add(
 										var name;
 
 										if (result.portalUser) {
-										 	name = result.lastName;
+											name = result.lastName;
 										}
 										else {
 											name = result.fullName;
@@ -786,7 +786,7 @@ AUI.add(
 													checked: ((Array.indexOf(selectedUsersIds, result.userId) != -1) ? 'checked="true"' : ''),
 													disabled: (themeDisplay.getUserId() == result.userId) ? 'disabled="true"' : '',
 													emailAddress: (result.emailAddress ? result.emailAddress : ''),
-													lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
+													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 													firstName: (result.firstName ? result.firstName : ''),
 													fullName: (result.fullName ? result.fullName : ''),
 													lastName: (result.lastName ? result.lastName + ',' : ''),
@@ -802,7 +802,7 @@ AUI.add(
 												{
 													entryId: result.entryId,
 													emailAddress: (result.emailAddress ? result.emailAddress : ''),
-													lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
+													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 													fullName: (result.fullName ? result.fullName : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
 													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')

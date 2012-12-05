@@ -1,3 +1,5 @@
+@import "compass";
+
 .so-portlet-sites {
 	ul.site-list {
 		background: #E8EFF4;
@@ -43,41 +45,39 @@
 			.name {
 				font-weight: bold;
 			}
-		}
 
-		li:hover {
-			background-color: #FFF;
-			border: 1px solid #C8C9CA;
-		}
+			&:hover {
+				background-color: #FFF;
+				border: 1px solid #C8C9CA;
+			}
 
-		li.empty {
-			background-image: url(@theme_image_path@/messages/alert.png);
-			padding-left: 25px;
-		}
+			&.empty {
+				background-image: url(@theme_image_path@/messages/alert.png);
+				padding-left: 25px;
 
-		li.empty:hover {
-			background-color: transparent;
-			border: 1px solid #E8EFF4;
-		}
+				&:hover {
+					background-color: transparent;
+					border: 1px solid #E8EFF4;
+				}
+			}
 
-		li.more {
-			background-image: url(@theme_image_path@/common/view.png);
+			&.more {
+				background-image: url(@theme_image_path@/common/view.png);
 
-			a {
-				color: #8F0920;
-				font-weight: bold;
+				a {
+					color: #8F0920;
+					font-weight: bold;
+				}
+			}
+
+			&.social-office-enabled {
+				background-image: url(@portal_ctx@/html/icons/social_office.png);
 			}
 		}
 
-		li.social-office-enabled {
-			background-image: url(@portal_ctx@/html/icons/social_office.png);
+		&, li:hover {
+			@include border-radius(4px);
 		}
-	}
-
-	ul.site-list,
-	ul.site-list li:hover {
-		-moz-border-radius: 4px;
-		border-radius: 4px;
 	}
 
 	.site-list-container {
@@ -94,7 +94,7 @@
 
 	.search {
 		float: right;
-		margin-bottom:10px;
+		margin-bottom: 10px;
 
 		.search-input {
 			vertical-align: top;
@@ -107,8 +107,7 @@
 	}
 }
 
-.so-portlet-sites-dialog,
-.so-sites-directory {
+.so-portlet-sites-dialog, .so-sites-directory {
 	ul.directory-list {
 		border: 1px solid #CCC;
 		clear: both;
@@ -167,18 +166,18 @@
 				font-size: 11px;
 				padding-right: 75px;
 			}
-		}
 
-		li.alt {
-			background-color: #F0F5F7;
-		}
+			&.alt {
+				background-color: #F0F5F7;
+			}
 
-		li.empty {
-			background-image: url(@theme_image_path@/messages/alert.png);
-		}
+			&.empty {
+				background-image: url(@theme_image_path@/messages/alert.png);
+			}
 
-		li.social-office-enabled {
-			background-image: url(@portal_ctx@/html/icons/social_office.png);
+			&.social-office-enabled {
+				background-image: url(@portal_ctx@/html/icons/social_office.png);
+			}
 		}
 	}
 
@@ -197,7 +196,7 @@
 	.page-indicator {
 		display: block;
 		font-weight: bold;
-		padding: .5em;
+		padding: 0.5em;
 	}
 
 	.search {
@@ -248,7 +247,7 @@
 
 	.template-details {
 		background: none;
-		border: 0;
+		border-width: 0;
 		padding: 0;
 
 		ul.pages {
@@ -281,7 +280,7 @@
 			margin: 0;
 		}
 
-		.aui-field-label, .aui-field-select, .aui-field-content {
+		 .aui-field-content, .aui-field-label, .aui-field-select {
 			display: inline;
 		}
 
