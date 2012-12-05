@@ -903,9 +903,60 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(Account account) {
+		if (account.isNew()) {
+			Object[] args = new Object[] {
+					Long.valueOf(account.getUserId()),
+					
+					account.getAddress()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_A, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A, args, account);
+		}
+		else {
+			AccountModelImpl accountModelImpl = (AccountModelImpl)account;
+
+			if ((accountModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(account.getUserId()),
+						
+						account.getAddress()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_A, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A, args,
+					account);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(Account account) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
-			new Object[] { Long.valueOf(account.getUserId()), account.getAddress() });
+		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
+
+		Object[] args = new Object[] {
+				Long.valueOf(account.getUserId()),
+				
+				account.getAddress()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
+
+		if ((accountModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(accountModelImpl.getOriginalUserId()),
+					
+					accountModelImpl.getOriginalAddress()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
+		}
 	}
 
 	/**
@@ -1066,35 +1117,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		EntityCacheUtil.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountImpl.class, account.getPrimaryKey(), account);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
-				new Object[] {
-					Long.valueOf(account.getUserId()),
-					
-				account.getAddress()
-				}, account);
-		}
-		else {
-			if ((accountModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(accountModelImpl.getOriginalUserId()),
-						
-						accountModelImpl.getOriginalAddress()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
-					new Object[] {
-						Long.valueOf(account.getUserId()),
-						
-					account.getAddress()
-					}, account);
-			}
-		}
+		clearUniqueFindersCache(account);
+		cacheUniqueFindersCache(account);
 
 		return account;
 	}

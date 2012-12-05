@@ -871,12 +871,57 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		}
 	}
 
+	protected void cacheUniqueFindersCache(FavoriteSite favoriteSite) {
+		if (favoriteSite.isNew()) {
+			Object[] args = new Object[] {
+					Long.valueOf(favoriteSite.getGroupId()),
+					Long.valueOf(favoriteSite.getUserId())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U, args,
+				favoriteSite);
+		}
+		else {
+			FavoriteSiteModelImpl favoriteSiteModelImpl = (FavoriteSiteModelImpl)favoriteSite;
+
+			if ((favoriteSiteModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_G_U.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(favoriteSite.getGroupId()),
+						Long.valueOf(favoriteSite.getUserId())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U, args,
+					favoriteSite);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(FavoriteSite favoriteSite) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_U,
-			new Object[] {
+		FavoriteSiteModelImpl favoriteSiteModelImpl = (FavoriteSiteModelImpl)favoriteSite;
+
+		Object[] args = new Object[] {
 				Long.valueOf(favoriteSite.getGroupId()),
 				Long.valueOf(favoriteSite.getUserId())
-			});
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_U, args);
+
+		if ((favoriteSiteModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_G_U.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(favoriteSiteModelImpl.getOriginalGroupId()),
+					Long.valueOf(favoriteSiteModelImpl.getOriginalUserId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_U, args);
+		}
 	}
 
 	/**
@@ -1042,32 +1087,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		EntityCacheUtil.putResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
-				new Object[] {
-					Long.valueOf(favoriteSite.getGroupId()),
-					Long.valueOf(favoriteSite.getUserId())
-				}, favoriteSite);
-		}
-		else {
-			if ((favoriteSiteModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_G_U.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(favoriteSiteModelImpl.getOriginalGroupId()),
-						Long.valueOf(favoriteSiteModelImpl.getOriginalUserId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_U, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
-					new Object[] {
-						Long.valueOf(favoriteSite.getGroupId()),
-						Long.valueOf(favoriteSite.getUserId())
-					}, favoriteSite);
-			}
-		}
+		clearUniqueFindersCache(favoriteSite);
+		cacheUniqueFindersCache(favoriteSite);
 
 		return favoriteSite;
 	}

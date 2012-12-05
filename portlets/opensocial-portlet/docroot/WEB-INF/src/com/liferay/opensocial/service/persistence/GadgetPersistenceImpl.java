@@ -3113,9 +3113,59 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(Gadget gadget) {
+		if (gadget.isNew()) {
+			Object[] args = new Object[] {
+					Long.valueOf(gadget.getCompanyId()),
+					
+					gadget.getUrl()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_U, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U, args, gadget);
+		}
+		else {
+			GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadget;
+
+			if ((gadgetModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C_U.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(gadget.getCompanyId()),
+						
+						gadget.getUrl()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_U, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U, args, gadget);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(Gadget gadget) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
-			new Object[] { Long.valueOf(gadget.getCompanyId()), gadget.getUrl() });
+		GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadget;
+
+		Object[] args = new Object[] {
+				Long.valueOf(gadget.getCompanyId()),
+				
+				gadget.getUrl()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
+
+		if ((gadgetModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_C_U.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(gadgetModelImpl.getOriginalCompanyId()),
+					
+					gadgetModelImpl.getOriginalUrl()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
+		}
 	}
 
 	/**
@@ -3324,35 +3374,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		EntityCacheUtil.putResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetImpl.class, gadget.getPrimaryKey(), gadget);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
-				new Object[] {
-					Long.valueOf(gadget.getCompanyId()),
-					
-				gadget.getUrl()
-				}, gadget);
-		}
-		else {
-			if ((gadgetModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_C_U.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(gadgetModelImpl.getOriginalCompanyId()),
-						
-						gadgetModelImpl.getOriginalUrl()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
-					new Object[] {
-						Long.valueOf(gadget.getCompanyId()),
-						
-					gadget.getUrl()
-					}, gadget);
-			}
-		}
+		clearUniqueFindersCache(gadget);
+		cacheUniqueFindersCache(gadget);
 
 		return gadget;
 	}

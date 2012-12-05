@@ -1356,12 +1356,56 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(Message message) {
+		if (message.isNew()) {
+			Object[] args = new Object[] {
+					Long.valueOf(message.getFolderId()),
+					Long.valueOf(message.getRemoteMessageId())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_R, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R, args, message);
+		}
+		else {
+			MessageModelImpl messageModelImpl = (MessageModelImpl)message;
+
+			if ((messageModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_F_R.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(message.getFolderId()),
+						Long.valueOf(message.getRemoteMessageId())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_R, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R, args,
+					message);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(Message message) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
-			new Object[] {
+		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
+
+		Object[] args = new Object[] {
 				Long.valueOf(message.getFolderId()),
 				Long.valueOf(message.getRemoteMessageId())
-			});
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_R, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R, args);
+
+		if ((messageModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_F_R.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(messageModelImpl.getOriginalFolderId()),
+					Long.valueOf(messageModelImpl.getOriginalRemoteMessageId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_R, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R, args);
+		}
 	}
 
 	/**
@@ -1543,32 +1587,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey(), message);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
-				new Object[] {
-					Long.valueOf(message.getFolderId()),
-					Long.valueOf(message.getRemoteMessageId())
-				}, message);
-		}
-		else {
-			if ((messageModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_F_R.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(messageModelImpl.getOriginalFolderId()),
-						Long.valueOf(messageModelImpl.getOriginalRemoteMessageId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_R, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
-					new Object[] {
-						Long.valueOf(message.getFolderId()),
-						Long.valueOf(message.getRemoteMessageId())
-					}, message);
-			}
-		}
+		clearUniqueFindersCache(message);
+		cacheUniqueFindersCache(message);
 
 		return message;
 	}

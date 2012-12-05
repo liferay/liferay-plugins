@@ -411,9 +411,45 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		}
 	}
 
+	protected void cacheUniqueFindersCache(SVNRepository svnRepository) {
+		if (svnRepository.isNew()) {
+			Object[] args = new Object[] { svnRepository.getUrl() };
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_URL, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL, args,
+				svnRepository);
+		}
+		else {
+			SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
+
+			if ((svnRepositoryModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { svnRepository.getUrl() };
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_URL, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL, args,
+					svnRepository);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(SVNRepository svnRepository) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
-			new Object[] { svnRepository.getUrl() });
+		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
+
+		Object[] args = new Object[] { svnRepository.getUrl() };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_URL, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL, args);
+
+		if ((svnRepositoryModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
+			args = new Object[] { svnRepositoryModelImpl.getOriginalUrl() };
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_URL, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL, args);
+		}
 	}
 
 	/**
@@ -526,8 +562,6 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 		boolean isNew = svnRepository.isNew();
 
-		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
-
 		Session session = null;
 
 		try {
@@ -559,25 +593,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey(),
 			svnRepository);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,
-				new Object[] { svnRepository.getUrl() }, svnRepository);
-		}
-		else {
-			if ((svnRepositoryModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						svnRepositoryModelImpl.getOriginalUrl()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_URL, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,
-					new Object[] { svnRepository.getUrl() }, svnRepository);
-			}
-		}
+		clearUniqueFindersCache(svnRepository);
+		cacheUniqueFindersCache(svnRepository);
 
 		return svnRepository;
 	}

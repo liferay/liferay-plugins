@@ -983,13 +983,61 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		}
 	}
 
+	protected void cacheUniqueFindersCache(OAuthConsumer oAuthConsumer) {
+		if (oAuthConsumer.isNew()) {
+			Object[] args = new Object[] {
+					oAuthConsumer.getGadgetKey(),
+					
+					oAuthConsumer.getServiceName()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S, args,
+				oAuthConsumer);
+		}
+		else {
+			OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
+
+			if ((oAuthConsumerModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_G_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						oAuthConsumer.getGadgetKey(),
+						
+						oAuthConsumer.getServiceName()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S, args,
+					oAuthConsumer);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(OAuthConsumer oAuthConsumer) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
-			new Object[] {
+		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
+
+		Object[] args = new Object[] {
 				oAuthConsumer.getGadgetKey(),
 				
-			oAuthConsumer.getServiceName()
-			});
+				oAuthConsumer.getServiceName()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S, args);
+
+		if ((oAuthConsumerModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_G_S.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					oAuthConsumerModelImpl.getOriginalGadgetKey(),
+					
+					oAuthConsumerModelImpl.getOriginalServiceName()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S, args);
+		}
 	}
 
 	/**
@@ -1156,35 +1204,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey(),
 			oAuthConsumer);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S,
-				new Object[] {
-					oAuthConsumer.getGadgetKey(),
-					
-				oAuthConsumer.getServiceName()
-				}, oAuthConsumer);
-		}
-		else {
-			if ((oAuthConsumerModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_G_S.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						oAuthConsumerModelImpl.getOriginalGadgetKey(),
-						
-						oAuthConsumerModelImpl.getOriginalServiceName()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S,
-					new Object[] {
-						oAuthConsumer.getGadgetKey(),
-						
-					oAuthConsumer.getServiceName()
-					}, oAuthConsumer);
-			}
-		}
+		clearUniqueFindersCache(oAuthConsumer);
+		cacheUniqueFindersCache(oAuthConsumer);
 
 		return oAuthConsumer;
 	}

@@ -1685,16 +1685,91 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
-	protected void clearUniqueFindersCache(MemberRequest memberRequest) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
-			new Object[] { memberRequest.getKey() });
+	protected void cacheUniqueFindersCache(MemberRequest memberRequest) {
+		if (memberRequest.isNew()) {
+			Object[] args = new Object[] { memberRequest.getKey() };
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
-			new Object[] {
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KEY, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY, args,
+				memberRequest);
+
+			args = new Object[] {
+					Long.valueOf(memberRequest.getGroupId()),
+					Long.valueOf(memberRequest.getReceiverUserId()),
+					Integer.valueOf(memberRequest.getStatus())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_R_S, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S, args,
+				memberRequest);
+		}
+		else {
+			MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequest;
+
+			if ((memberRequestModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { memberRequest.getKey() };
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KEY, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY, args,
+					memberRequest);
+			}
+
+			if ((memberRequestModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_G_R_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(memberRequest.getGroupId()),
+						Long.valueOf(memberRequest.getReceiverUserId()),
+						Integer.valueOf(memberRequest.getStatus())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_R_S, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S, args,
+					memberRequest);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(MemberRequest memberRequest) {
+		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequest;
+
+		Object[] args = new Object[] { memberRequest.getKey() };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
+
+		if ((memberRequestModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
+			args = new Object[] { memberRequestModelImpl.getOriginalKey() };
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
+		}
+
+		args = new Object[] {
 				Long.valueOf(memberRequest.getGroupId()),
 				Long.valueOf(memberRequest.getReceiverUserId()),
 				Integer.valueOf(memberRequest.getStatus())
-			});
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R_S, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S, args);
+
+		if ((memberRequestModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_G_R_S.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(memberRequestModelImpl.getOriginalGroupId()),
+					Long.valueOf(memberRequestModelImpl.getOriginalReceiverUserId()),
+					Integer.valueOf(memberRequestModelImpl.getOriginalStatus())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R_S, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S, args);
+		}
 	}
 
 	/**
@@ -1884,52 +1959,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			MemberRequestImpl.class, memberRequest.getPrimaryKey(),
 			memberRequest);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
-				new Object[] { memberRequest.getKey() }, memberRequest);
-
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S,
-				new Object[] {
-					Long.valueOf(memberRequest.getGroupId()),
-					Long.valueOf(memberRequest.getReceiverUserId()),
-					Integer.valueOf(memberRequest.getStatus())
-				}, memberRequest);
-		}
-		else {
-			if ((memberRequestModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						memberRequestModelImpl.getOriginalKey()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
-					new Object[] { memberRequest.getKey() }, memberRequest);
-			}
-
-			if ((memberRequestModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_G_R_S.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(memberRequestModelImpl.getOriginalGroupId()),
-						Long.valueOf(memberRequestModelImpl.getOriginalReceiverUserId()),
-						Integer.valueOf(memberRequestModelImpl.getOriginalStatus())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R_S, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S,
-					new Object[] {
-						Long.valueOf(memberRequest.getGroupId()),
-						Long.valueOf(memberRequest.getReceiverUserId()),
-						Integer.valueOf(memberRequest.getStatus())
-					}, memberRequest);
-			}
-		}
+		clearUniqueFindersCache(memberRequest);
+		cacheUniqueFindersCache(memberRequest);
 
 		return memberRequest;
 	}

@@ -1947,9 +1947,52 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(Foo foo) {
+		if (foo.isNew()) {
+			Object[] args = new Object[] {
+					foo.getUuid(), Long.valueOf(foo.getGroupId())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args, foo);
+		}
+		else {
+			FooModelImpl fooModelImpl = (FooModelImpl)foo;
+
+			if ((fooModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						foo.getUuid(), Long.valueOf(foo.getGroupId())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args, foo);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(Foo foo) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) });
+		FooModelImpl fooModelImpl = (FooModelImpl)foo;
+
+		Object[] args = new Object[] {
+				foo.getUuid(), Long.valueOf(foo.getGroupId())
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+
+		if ((fooModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					fooModelImpl.getOriginalUuid(),
+					Long.valueOf(fooModelImpl.getOriginalGroupId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+		}
 	}
 
 	/**
@@ -2154,28 +2197,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooImpl.class, foo.getPrimaryKey(), foo);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) },
-				foo);
-		}
-		else {
-			if ((fooModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						fooModelImpl.getOriginalUuid(),
-						Long.valueOf(fooModelImpl.getOriginalGroupId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-					new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) },
-					foo);
-			}
-		}
+		clearUniqueFindersCache(foo);
+		cacheUniqueFindersCache(foo);
 
 		return foo;
 	}

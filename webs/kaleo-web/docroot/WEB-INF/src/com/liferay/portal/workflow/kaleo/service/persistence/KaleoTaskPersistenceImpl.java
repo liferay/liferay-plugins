@@ -1343,9 +1343,51 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(KaleoTask kaleoTask) {
+		if (kaleoTask.isNew()) {
+			Object[] args = new Object[] {
+					Long.valueOf(kaleoTask.getKaleoNodeId())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEONODEID, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID, args,
+				kaleoTask);
+		}
+		else {
+			KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
+
+			if ((kaleoTaskModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_KALEONODEID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(kaleoTask.getKaleoNodeId())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEONODEID,
+					args, Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
+					args, kaleoTask);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(KaleoTask kaleoTask) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) });
+		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
+
+		Object[] args = new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID, args);
+
+		if ((kaleoTaskModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_KALEONODEID.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(kaleoTaskModelImpl.getOriginalKaleoNodeId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID, args);
+		}
 	}
 
 	/**
@@ -1534,29 +1576,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		EntityCacheUtil.putResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskImpl.class, kaleoTask.getPrimaryKey(), kaleoTask);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-				new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) },
-				kaleoTask);
-		}
-		else {
-			if ((kaleoTaskModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_KALEONODEID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(kaleoTaskModelImpl.getOriginalKaleoNodeId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID,
-					args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-					args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-					new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) },
-					kaleoTask);
-			}
-		}
+		clearUniqueFindersCache(kaleoTask);
+		cacheUniqueFindersCache(kaleoTask);
 
 		return kaleoTask;
 	}

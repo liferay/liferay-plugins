@@ -875,9 +875,51 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(AkismetData akismetData) {
+		if (akismetData.isNew()) {
+			Object[] args = new Object[] {
+					Long.valueOf(akismetData.getMbMessageId())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args,
+				akismetData);
+		}
+		else {
+			AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
+
+			if ((akismetDataModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_MBMESSAGEID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(akismetData.getMbMessageId())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MBMESSAGEID,
+					args, Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
+					args, akismetData);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(AkismetData akismetData) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
-			new Object[] { Long.valueOf(akismetData.getMbMessageId()) });
+		AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
+
+		Object[] args = new Object[] { Long.valueOf(akismetData.getMbMessageId()) };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args);
+
+		if ((akismetDataModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_MBMESSAGEID.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(akismetDataModelImpl.getOriginalMbMessageId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args);
+		}
 	}
 
 	/**
@@ -990,8 +1032,6 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		boolean isNew = akismetData.isNew();
 
-		AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
-
 		Session session = null;
 
 		try {
@@ -1022,29 +1062,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
-				new Object[] { Long.valueOf(akismetData.getMbMessageId()) },
-				akismetData);
-		}
-		else {
-			if ((akismetDataModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_MBMESSAGEID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(akismetDataModelImpl.getOriginalMbMessageId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBMESSAGEID,
-					args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
-					args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
-					new Object[] { Long.valueOf(akismetData.getMbMessageId()) },
-					akismetData);
-			}
-		}
+		clearUniqueFindersCache(akismetData);
+		cacheUniqueFindersCache(akismetData);
 
 		return akismetData;
 	}

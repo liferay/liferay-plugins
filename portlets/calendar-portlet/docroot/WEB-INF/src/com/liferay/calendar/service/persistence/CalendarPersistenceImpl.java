@@ -3714,10 +3714,54 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(Calendar calendar) {
+		if (calendar.isNew()) {
+			Object[] args = new Object[] {
+					calendar.getUuid(), Long.valueOf(calendar.getGroupId())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+				calendar);
+		}
+		else {
+			CalendarModelImpl calendarModelImpl = (CalendarModelImpl)calendar;
+
+			if ((calendarModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						calendar.getUuid(), Long.valueOf(calendar.getGroupId())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+					calendar);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(Calendar calendar) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { calendar.getUuid(), Long.valueOf(
-					calendar.getGroupId()) });
+		CalendarModelImpl calendarModelImpl = (CalendarModelImpl)calendar;
+
+		Object[] args = new Object[] {
+				calendar.getUuid(), Long.valueOf(calendar.getGroupId())
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+
+		if ((calendarModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					calendarModelImpl.getOriginalUuid(),
+					Long.valueOf(calendarModelImpl.getOriginalGroupId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+		}
 	}
 
 	/**
@@ -3973,30 +4017,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		EntityCacheUtil.putResult(CalendarModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarImpl.class, calendar.getPrimaryKey(), calendar);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] {
-					calendar.getUuid(), Long.valueOf(calendar.getGroupId())
-				}, calendar);
-		}
-		else {
-			if ((calendarModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						calendarModelImpl.getOriginalUuid(),
-						Long.valueOf(calendarModelImpl.getOriginalGroupId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-					new Object[] {
-						calendar.getUuid(), Long.valueOf(calendar.getGroupId())
-					}, calendar);
-			}
-		}
+		clearUniqueFindersCache(calendar);
+		cacheUniqueFindersCache(calendar);
 
 		return calendar;
 	}

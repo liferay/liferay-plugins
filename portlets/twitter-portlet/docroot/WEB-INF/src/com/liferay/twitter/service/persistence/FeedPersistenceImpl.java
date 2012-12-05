@@ -675,19 +675,100 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(Feed feed) {
+		if (feed.isNew()) {
+			Object[] args = new Object[] {
+					Long.valueOf(feed.getCompanyId()),
+					Long.valueOf(feed.getTwitterUserId())
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TWUI, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI, args, feed);
+
+			args = new Object[] {
+					Long.valueOf(feed.getCompanyId()),
+					
+					feed.getTwitterScreenName()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TSN, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN, args, feed);
+		}
+		else {
+			FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
+
+			if ((feedModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C_TWUI.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(feed.getCompanyId()),
+						Long.valueOf(feed.getTwitterUserId())
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TWUI, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI, args,
+					feed);
+			}
+
+			if ((feedModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C_TSN.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(feed.getCompanyId()),
+						
+						feed.getTwitterScreenName()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TSN, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN, args, feed);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(Feed feed) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
-			new Object[] {
+		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
+
+		Object[] args = new Object[] {
 				Long.valueOf(feed.getCompanyId()),
 				Long.valueOf(feed.getTwitterUserId())
-			});
+			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
-			new Object[] {
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TWUI, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI, args);
+
+		if ((feedModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_C_TWUI.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
+					Long.valueOf(feedModelImpl.getOriginalTwitterUserId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TWUI, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI, args);
+		}
+
+		args = new Object[] {
 				Long.valueOf(feed.getCompanyId()),
 				
-			feed.getTwitterScreenName()
-			});
+				feed.getTwitterScreenName()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TSN, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN, args);
+
+		if ((feedModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_C_TSN.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
+					
+					feedModelImpl.getOriginalTwitterScreenName()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TSN, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN, args);
+		}
 	}
 
 	/**
@@ -795,8 +876,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		boolean isNew = feed.isNew();
 
-		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
-
 		Session session = null;
 
 		try {
@@ -827,59 +906,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
-				new Object[] {
-					Long.valueOf(feed.getCompanyId()),
-					Long.valueOf(feed.getTwitterUserId())
-				}, feed);
-
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
-				new Object[] {
-					Long.valueOf(feed.getCompanyId()),
-					
-				feed.getTwitterScreenName()
-				}, feed);
-		}
-		else {
-			if ((feedModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_C_TWUI.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(feedModelImpl.getOriginalCompanyId()),
-						Long.valueOf(feedModelImpl.getOriginalTwitterUserId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TWUI, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
-					new Object[] {
-						Long.valueOf(feed.getCompanyId()),
-						Long.valueOf(feed.getTwitterUserId())
-					}, feed);
-			}
-
-			if ((feedModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_C_TSN.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(feedModelImpl.getOriginalCompanyId()),
-						
-						feedModelImpl.getOriginalTwitterScreenName()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TSN, args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN, args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
-					new Object[] {
-						Long.valueOf(feed.getCompanyId()),
-						
-					feed.getTwitterScreenName()
-					}, feed);
-			}
-		}
+		clearUniqueFindersCache(feed);
+		cacheUniqueFindersCache(feed);
 
 		return feed;
 	}

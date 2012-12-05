@@ -1905,9 +1905,47 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		}
 	}
 
+	protected void cacheUniqueFindersCache(App app) {
+		if (app.isNew()) {
+			Object[] args = new Object[] { Long.valueOf(app.getRemoteAppId()) };
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_REMOTEAPPID, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID, args,
+				app);
+		}
+		else {
+			AppModelImpl appModelImpl = (AppModelImpl)app;
+
+			if ((appModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_REMOTEAPPID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { Long.valueOf(app.getRemoteAppId()) };
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_REMOTEAPPID,
+					args, Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
+					args, app);
+			}
+		}
+	}
+
 	protected void clearUniqueFindersCache(App app) {
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-			new Object[] { Long.valueOf(app.getRemoteAppId()) });
+		AppModelImpl appModelImpl = (AppModelImpl)app;
+
+		Object[] args = new Object[] { Long.valueOf(app.getRemoteAppId()) };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REMOTEAPPID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID, args);
+
+		if ((appModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_REMOTEAPPID.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					Long.valueOf(appModelImpl.getOriginalRemoteAppId())
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REMOTEAPPID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID, args);
+		}
 	}
 
 	/**
@@ -2114,27 +2152,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		EntityCacheUtil.putResult(AppModelImpl.ENTITY_CACHE_ENABLED,
 			AppImpl.class, app.getPrimaryKey(), app);
 
-		if (isNew) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-				new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);
-		}
-		else {
-			if ((appModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_REMOTEAPPID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(appModelImpl.getOriginalRemoteAppId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REMOTEAPPID,
-					args);
-
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-					args);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-					new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);
-			}
-		}
+		clearUniqueFindersCache(app);
+		cacheUniqueFindersCache(app);
 
 		return app;
 	}
