@@ -22,4 +22,9 @@ public class FooImpl extends FooBaseImpl {
 	public FooImpl() {
 	}
 
+	public FooImpl(long fooId, String field1) {
+		setFooId(fooId);
+		setField1(field1);
+	}
+
 }

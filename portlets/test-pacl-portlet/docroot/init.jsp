@@ -20,6 +20,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.chat.NoSuchEntryException" %><%@
 page import="com.liferay.chat.model.Entry" %><%@
@@ -50,6 +51,7 @@ page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.OSDetector" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
+page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.GroupWrapper" %><%@
@@ -72,6 +74,7 @@ page import="com.liferay.testpacl.hook.action.SuccessStrutsAction" %><%@
 page import="com.liferay.testpacl.hook.indexer.OrganizationIndexerPostProcessor" %><%@
 page import="com.liferay.testpacl.hook.indexer.UserIndexerPostProcessor" %><%@
 page import="com.liferay.testpacl.model.Foo" %><%@
+page import="com.liferay.testpacl.model.impl.FooImpl" %><%@
 page import="com.liferay.testpacl.service.FooLocalService" %><%@
 page import="com.liferay.testpacl.service.FooLocalServiceUtil" %><%@
 page import="com.liferay.testpacl.util.TestPACLUtil" %><%@
@@ -94,7 +97,9 @@ page import="java.sql.PreparedStatement" %><%@
 page import="java.sql.SQLException" %><%@
 page import="java.sql.Statement" %>
 
-<%@ page import="java.util.Locale" %><%@
+<%@ page import="java.util.ArrayList" %><%@
+page import="java.util.Locale" %><%@
+page import="java.util.List" %><%@
 page import="java.util.Map" %>
 
 <%@ page import="javax.naming.Context" %><%@
