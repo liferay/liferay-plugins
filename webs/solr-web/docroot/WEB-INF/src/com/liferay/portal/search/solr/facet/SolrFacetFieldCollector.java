@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.collector.TermCollector;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +79,7 @@ public class SolrFacetFieldCollector implements FacetCollector {
 		return _termCollectors;
 	}
 
-	private Map<String, Count> _counts = new HashMap<String, Count>();
+	private Map<String, Count> _counts = new LinkedHashMap<String, Count>();
 	private String _fieldName;
 	private List<TermCollector> _termCollectors;
 
