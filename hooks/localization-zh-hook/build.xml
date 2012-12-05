@@ -34,6 +34,14 @@
 			/>
 			<fileset
 				dir="${app.server.portal.dir}"
+				includes="html/portlet/users_admin/user/password.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/users_admin/user/password_reminder_query_questions.jspf"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
 				includes="html/portlet/users_admin/user/search_columns.jspf"
 			/>
 		</copy>
