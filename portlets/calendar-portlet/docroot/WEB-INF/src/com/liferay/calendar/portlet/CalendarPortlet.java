@@ -14,8 +14,6 @@
 
 package com.liferay.calendar.portlet;
 
-import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.compat.util.MVCPortlet;
 import com.liferay.calendar.CalendarResourceCodeException;
 import com.liferay.calendar.DuplicateCalendarResourceException;
 import com.liferay.calendar.NoSuchResourceException;
@@ -43,6 +41,8 @@ import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
+import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.compat.util.MVCPortlet;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
