@@ -1339,6 +1339,62 @@
 
 </p>
 
+<p>
+	<h3>Search Container</h3>
+</p>
+
+<p>
+
+	<%
+	List<Foo> fooList = new ArrayList<Foo>();
+
+	fooList.add(new FooImpl(1, "Bean Introspecion"));
+	fooList.add(new FooImpl(2, "Get ClassLoader"));
+
+	%>
+	<liferay-util:buffer var="searchContainerOutput">
+		<liferay-ui:search-container
+			headerNames="Check,Result"
+		>
+
+			<liferay-ui:search-container-results
+				results="<%= fooList %>"
+				total="1"
+			/>
+
+			<liferay-ui:search-container-row
+				className="com.liferay.testpacl.model.Foo"
+				keyProperty="fooId"
+				modelVar="foo"
+			>
+
+				<liferay-ui:search-container-column-text
+					name="Check"
+					value="<%= foo.getField1() %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					name="Result"
+					value="PASSED"
+				/>
+
+			</liferay-ui:search-container-row>
+
+			<liferay-ui:search-iterator />
+		</liferay-ui:search-container>
+	</liferay-util:buffer>
+	<%
+
+	if (searchContainerOutput.replaceAll("\\s*", "").isEmpty()) {
+		out.write("Bean Introspection/Get ClassLoader: FAILED");
+	}
+	else {
+		out.write(searchContainerOutput);
+	}
+
+	%>
+</p>
+
 <liferay-ui:header
 	title="Search Engine"
 />
