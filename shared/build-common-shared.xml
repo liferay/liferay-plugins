@@ -30,10 +30,22 @@
 					<fileset dir="src" excludes="**/*.java" />
 				</copy>
 
-				<path id="plugin-lib.classpath">
-					<pathelement location="classes" />
-					<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
-				</path>
+				<if>
+					<available file="lib" />
+					<then>
+						<path id="plugin-lib.classpath">
+							<fileset dir="lib" includes="*.jar" />
+							<pathelement location="classes" />
+							<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
+						</path>
+					</then>
+					<else>
+						<path id="plugin-lib.classpath">
+							<pathelement location="classes" />
+							<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
+						</path>
+					</else>
+				</if>
 
 				<antcall target="compile-java">
 					<param name="javac.classpathref" value="plugin.classpath" />
