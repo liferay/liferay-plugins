@@ -46,7 +46,7 @@ User selUser = (User)request.getAttribute("user.selUser");
 </aui:fieldset>
 
 <aui:fieldset column="<%= true %>" cssClass="aui-w50">
-	<div class="user-porfile-image" id="<portlet:namespace />userProfileImage">
+	<div class="user-profile-image" id="<portlet:namespace />userProfileImage">
 		<c:if test="<%= selUser != null %>">
 
 			<%

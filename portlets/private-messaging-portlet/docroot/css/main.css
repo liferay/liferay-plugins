@@ -20,11 +20,9 @@
 	}
 
 	.controls {
-		@include border-radius(4px);
-
 		background-color: #EEE;
 		border: 1px solid #CCC;
-		border-radius: 4px;
+		@include border-radius(4px);
 		margin-bottom: -1px;
 		padding: 5px;
 		width: auto;
@@ -34,7 +32,7 @@
 		}
 
 		.aui-column-content {
-			padding: 0 0;
+			padding: 0;
 		}
 
 		.col-1 {
@@ -94,7 +92,7 @@
 		}
 	}
 
-	.private-messaging-container .results-header, .taglib-user-display.display-style-2 .user-name, .taglib-user-display.display-style-2 .user-details, .thread .taglib-search-iterator-page-iterator-bottom {
+	.private-messaging-container .results-header, .taglib-user-display.display-style-2 .user-details, .taglib-user-display.display-style-2 .user-name, .thread .taglib-search-iterator-page-iterator-bottom {
 		display: none;
 	}
 
@@ -115,7 +113,7 @@
 	/* Results */
 
 	.messages .results-grid {
-		border: 0px;
+		border-width: 0;
 
 		table.taglib-search-iterator, .results-row td, .results-row.alt td {
 			border: 1px solid #CFCFCF;

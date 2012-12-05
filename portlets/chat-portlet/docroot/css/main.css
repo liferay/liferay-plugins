@@ -8,9 +8,9 @@ html body {
 /* ---------- Bottom Dock ---------- */
 
 .chat-bar {
-	background: #e5e5e5 url(../images/btm-dock_bg.png) repeat-x;
-	border: 1px solid #b5b5b5;
-	border-bottom: none;
+	background: #E5E5E5 url(../images/btm-dock_bg.png) repeat-x;
+	border: 1px solid #B5B5B5;
+	border-bottom-width: 0;
 	bottom: 0;
 	height: 24px;
 	left: 15px;
@@ -18,8 +18,8 @@ html body {
 	right: 15px;
 	z-index: 1000;
 
-	.trigger-name, .status-message {
-		text-shadow: 1px 1px #fff;
+	.status-message, .trigger-name {
+		@include text-shadow(1px 1px #FFF);
 	}
 }
 
@@ -32,66 +32,82 @@ html body {
 }
 
 /* ---------- Bottom Dock Tabs ---------- */
-
 .chat-bar {
-	div ul, div ul li {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		position: relative;
+	div ul {
+		&, li {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+
+		li {
+			.panel-trigger {
+				border-left: 1px solid #B5B5B5;
+				border-right: 1px solid #E0E0E0;
+				color: #111;
+				cursor: pointer;
+				float: left;
+				font: bold 11px/24px Tahoma, Geneva, sans-serif;
+				padding: 0 6px;
+				text-decoration: none;
+
+				&:hover {
+					background: #FFF;
+				}
+
+				.unread {
+					background: url(../images/unread-messages.png);
+					color: #FFF;
+					font: bold 10px/16px Arial, Helvetica, sans-serif;
+					height: 16px;
+					position: absolute;
+					right: -4px;
+					text-align: center;
+					top: -6px;
+					width: 16px;
+					z-index: 30;
+				}
+			}
+
+			&.selected .panel-trigger {
+				background: #FFF;
+				border: 0 1px 1px solid #262626;
+				@include border-radius(0 4px);
+				height: 25px;
+				line-height: 27px;
+				margin: -2px 0 -1px;
+				position: relative;
+				z-index: 30;
+
+				.unread {
+					right: -5px;
+					top: -4px;
+				}
+			}
+
+			&.typing .panel-trigger {
+				padding-left: 24px;
+			}
+		}
 	}
 
 	.chat-tabs li {
 		float: right;
 	}
 
-	div ul li {
-		.panel-trigger {
-			border-left: 1px solid #b5b5b5;
-			border-right: 1px solid #e0e0e0;
-			color: #111;
-			cursor: pointer;
-			float: left;
-			font: bold 11px/24px Tahoma, Geneva, sans-serif;
-			padding: 0 6px;
-			text-decoration: none;
+	/* ---------- Bottom Dock Popups ---------- */
 
-			&:hover {
-				background: #fff;
-			}
-		}
-
-		&.selected .panel-trigger {
-			background: #fff;
-			border: 0 1px 1px solid #262626;
-			line-height: 27px;
-			height: 25px;
-			position: relative;
-			z-index: 30;
-			margin: -2px 0 -1px;
-		}
-	}
-}
-
-/* ---------- Unread Messages ---------- */
-
-.chat-bar div ul li {
-	.panel-trigger .unread {
-		background: url(../images/unread-messages.png);
-		color: #fff;
-		font: bold 10px/16px Arial, Helvetica, sans-serif;
-		height: 16px;
+	.chat-panel {
+		bottom: 24px;
+		display: none;
 		position: absolute;
-		right: -4px;
-		text-align: center;
-		top: -6px;
-		width: 16px;
-		z-index: 30;
+		right: 0;
+		z-index: 20;
 	}
 
-	&.selected .panel-trigger .unread {
-		right: -5px;
-		top: -4px;
+	.selected .chat-panel {
+		display: block;
 	}
 }
 
@@ -116,26 +132,6 @@ html body {
 	display: block;
 }
 
-.chat-bar div ul li.typing .panel-trigger {
-	padding-left: 24px;
-}
-
-/* ---------- Bottom Dock Popups ---------- */
-
-.chat-bar {
-	.chat-panel {
-		bottom: 24px;
-		display: none;
-		position: absolute;
-		right: 0;
-		z-index: 20;
-	}
-
-	.selected .chat-panel {
-		display: block;
-	}
-}
-
 /* ---------- Online Users ---------- */
 
 .buddy-list {
@@ -145,6 +141,7 @@ html body {
 
 	.search-buddies-field {
 		background: url(@theme_image_path@/common/search.png) no-repeat 5px 50%;
+		@include box-sizing(border-box);
 		padding-left: 25px;
 		width: 100%;
 	}
@@ -170,29 +167,30 @@ html body {
 		list-style-type: none;
 		margin: 0;
 		max-height: 400px;
-		overflow-y: scroll;
 		overflow-x: hidden;
+		overflow-y: scroll;
 		padding: 2px 0;
-		position: relative;
 
 		.online-users li {
+			border: 1px solid #FFF;
+			cursor: pointer;
 			float: left;
-			margin: 0;
-			padding: 2px;
 			height: 24px;
 			list-style-type: none;
-			cursor: pointer;
-			border: 1px solid #fff;
+			margin: 0;
+			padding: 2px;
 			width: 212px;
 		}
 
-		li.idle {
-			height: 14px;
-		}
+		li {
+			&.idle {
+				height: 14px;
+			}
 
-		li:hover {
-			background: #f3f3f3;
-			border-color: #ddd;
+			&:hover {
+				background: #F3F3F3;
+				border-color: #DDD;
+			}
 		}
 
 		div {
@@ -200,10 +198,6 @@ html body {
 			overflow-x: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-		}
-
-		.idle div {
-			line-height: 14px;
 		}
 
 		img {
@@ -215,8 +209,14 @@ html body {
 			width: 24px;
 		}
 
-		.idle img {
-			display: none;
+		.idle {
+			div {
+				line-height: 14px;
+			}
+
+			img {
+				display: none;
+			}
 		}
 	}
 }
@@ -252,7 +252,9 @@ html body {
 
 	&.saved .panel-trigger .trigger-name {
 		background: url(@theme_image_path@/messages/success.png) no-repeat 0 0;
-		padding: 2px 0 2px 20px;
+		padding-bottom: 2px;
+		padding-left: 20px;
+		padding-top: 2px;
 	}
 }
 
@@ -262,8 +264,9 @@ html body {
 }
 
 .panel-window {
-	background: #fff;
+	background: #FFF;
 	border: 1px solid #262626;
+	@include border-radius(4px 4px 0 4px);
 	font: 11px Tahoma, Geneva, sans-serif;
 	min-width: 226px;
 	position: relative;
@@ -272,32 +275,22 @@ html body {
 .panel-icon {
 	background: #333;
 	border: 1px solid #000;
+	display: block;
 	height: 48px;
+	left: 6px;
 	position: absolute;
 	top: 4px;
-	left: 6px;
-	display: block;
 	width: 48px;
 }
 
 .panel-title {
-	background: #20272b;
-	color: #f2f2f2;
+	background: #20272B;
+	color: #F2F2F2;
 	font-weight: bold;
 	height: 24px;
 	line-height: 24px;
 	padding-right: 35px;
 	text-indent: 60px;
-}
-
-.buddy-list, .chat-settings {
-	.panel-title {
-		text-indent: 6px;
-	}
-
-	.panel-button.minimize {
-		right: 4px;
-	}
 }
 
 .panel-button {
@@ -328,9 +321,19 @@ html body {
 	}
 }
 
+.buddy-list, .chat-settings {
+	.panel-title {
+		text-indent: 6px;
+	}
+
+	.panel-button.minimize {
+		right: 4px;
+	}
+}
+
 .panel-profile {
-	background: #eee;
-	border-bottom: 1px solid #ccc;
+	background: #EEE;
+	border-bottom: 1px solid #CCC;
 	height: 27px;
 	padding-top: 5px;
 	text-indent: 60px;
@@ -349,14 +352,14 @@ html body {
 
 	.name {
 		background: #828F95;
-		color: #fff;
+		color: #FFF;
 		display: block;
 		line-height: 11px;
 		padding: 2px 50px 3px 4px;
 	}
 
 	.date {
-		color: #eee;
+		color: #EEE;
 		font-size: 10px;
 		font-style: normal;
 		margin-top: -2em;
@@ -383,18 +386,14 @@ html body {
 	}
 }
 
-.panel-input textarea, .chat-height-monitor {
-	font: 11px/14px Tahoma, Geneva, sans-serif;
-}
-
 .panel-input {
 	border-top: 1px solid #369;
-	position: relative;
 	height: 19px;
+	position: relative;
 
 	textarea {
 		background: none;
-		border: 0;
+		border-width: 0;
 		bottom: 0;
 		display: block;
 		float: left;
@@ -403,20 +402,26 @@ html body {
 		padding: 2px;
 		position: absolute;
 		width: 222px;
+	}
+}
 
-		&.focus {
-			background: #fff;
-			border-width: 0;
-		}
+.chat-height-monitor, .panel-input textarea {
+	font: 11px/14px Tahoma, Geneva, sans-serif;
+}
+
+.panel-input textarea.focus {
+	&, .ie6 & {
+		background: #FFF;
+		border-width: 0;
 	}
 }
 
 .chat-height-monitor {
 	left: -10000em;
+	@include force-wrap();
 	padding: 0;
 	position: absolute;
 	top: -10000em;
-	white-space: pre-wrap;
 }
 
 .show-notifications-setting {
@@ -427,7 +432,7 @@ html body {
 	display: block;
 }
 
-/* ---------- Buddy service extensions (Social Office) ---------- */
+/* ---------- Buddy service extensions ---------- */
 
 .chat-bar {
 	.online-users .buddy-services {
@@ -436,14 +441,8 @@ html body {
 		margin-top: 4px;
 	}
 
-	.panel-content {
-		li:hover .buddy-services {
-			display: block;
-		}
-
-		.name {
-			float: left;
-		}
+	.panel-content li:hover .buddy-services {
+		display: block;
 	}
 
 	.buddy-services div {
@@ -458,10 +457,10 @@ html body {
 /* ---------- Message waiting indicator (only background-color is used) ---------- */
 
 .message-waiting {
-	background-color: #a5d6ef;
+	background-color: #A5D6EF;
 }
 
-/* ---------- Internet Explorer ---------- */
+/* ---------- IE/IE6/IE7 ---------- */
 
 .ie6 {
 	.chat-bar {
@@ -469,15 +468,10 @@ html body {
 	}
 
 	.lfr-shim {
+		border-width: 0;
 		bottom: 0;
-		border: 0;
 		position: absolute;
 		z-index: 100;
-	}
-
-	.panel-input textarea.focus {
-		background: #fff;
-		border-width: 0;
 	}
 }
 
@@ -505,20 +499,4 @@ html body {
 		word-wrap: break-word;
 		zoom: 1;
 	}
-}
-
-/* ---------- Extras ---------- */
-
-.chat-bar div ul li.selected .panel-trigger {
-	@include border-radius(0 4px);
-}
-
-.panel-window {
-	@include border-radius(4px 4px 0 4px);
-}
-
-.buddy-list .search-buddies-field {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
 }

@@ -1,4 +1,4 @@
 .marketplace-portlet iframe {
-	border: none;
+	border-width: 0;
 	width: 100%;
 }

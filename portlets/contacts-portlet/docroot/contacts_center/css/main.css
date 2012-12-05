@@ -114,7 +114,7 @@ $toolbar-bg: #DCE3EA;
 			}
 		}
 
-		.lfr-contact-name, .lfr-contact-extra, .lfr-contact-job-title {
+		.lfr-contact-extra, .lfr-contact-job-title, .lfr-contact-name {
 			overflow-x: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -146,7 +146,6 @@ $toolbar-bg: #DCE3EA;
 
 		.portlet-msg-success {
 			@include border-radius(0);
-
 			border-width: 0 0 1px;
 			margin: 0;
 		}
@@ -166,7 +165,6 @@ $toolbar-bg: #DCE3EA;
 					width: 35px;
 				}
 			}
-
 		}
 	}
 
@@ -203,7 +201,7 @@ $toolbar-bg: #DCE3EA;
 			padding-left: 10px;
 		}
 
-		.more-results, .lfr-contact-grid-item:hover {
+		.lfr-contact-grid-item:hover, .more-results {
 			background-color: #E8EFF4;
 		}
 
@@ -213,7 +211,7 @@ $toolbar-bg: #DCE3EA;
 			padding-left: 25px;
 		}
 
-		.lastNameAnchor a {
+		.last-name-anchor a {
 			background: $section-header-bg;
 			border-bottom: 1px solid $border-color;
 			cursor: default;
@@ -308,8 +306,8 @@ $toolbar-bg: #DCE3EA;
 
 	.social-relations {
 		background-color: #E9E8E8;
-		padding: 4px 8px;
 		min-height: 17px;
+		padding: 4px 8px;
 		width: auto;
 
 		a {
@@ -433,7 +431,7 @@ $toolbar-bg: #DCE3EA;
 			border: 1px solid #C9C9C9;
 
 			.lfr-app-column-view {
-				border: 0;
+				border-width: 0;
 			}
 		}
 	}
@@ -476,10 +474,10 @@ $toolbar-bg: #DCE3EA;
 
 		.contacts-count {
 			font-weight: bold;
-		}
 
-		.contacts-count, .contacts-center-introduction {
-			margin: 5px 0;
+			&, .contacts-center-introduction {
+				margin: 5px 0;
+			}
 		}
 	}
 
@@ -555,7 +553,7 @@ $toolbar-bg: #DCE3EA;
 			font-weight: bold;
 		}
 
-		.lfr-user-data-name a, .lfr-user-data-job-title, .lfr-user-data-extra {
+		.lfr-user-data-extra, .lfr-user-data-job-title, .lfr-user-data-name a {
 			overflow: hidden;
 			text-overflow: hidden;
 			word-wrap: nowrap;
@@ -580,10 +578,9 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.profile-actions {
-		@include border-radius(4px);
-
 		background: #EEE;
 		border: 1px solid #C7D0DA;
+		@include border-radius(4px);
 		margin: 20px 65px;
 		padding: 4px 4px 0;
 
@@ -630,11 +627,11 @@ $toolbar-bg: #DCE3EA;
 
 			.lfr-token {
 				background-color: #FFF;
-				border: 0
-			}
+				border-width: 0;
 
-			.lfr-token:hover {
-				background-color: #E9E8E8;
+				&:hover {
+					background-color: #E9E8E8;
+				}
 			}
 		}
 	}
@@ -698,7 +695,7 @@ $toolbar-bg: #DCE3EA;
 		}
 	}
 
-	.user-porfile-image {
+	.user-profile-image {
 		padding-top: 20px;
 
 		.lfr-change-logo {

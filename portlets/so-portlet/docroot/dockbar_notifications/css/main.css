@@ -3,16 +3,15 @@
 .so-portlet-dockbar-notifications .menu-button {
 	background-image: none;
 	padding: 5px;
-}
 
-.so-portlet-dockbar-notifications .menu-button .notification-count {
-	@include border-radius(4px);
-
-	background-color: #2C2F34;
-	color: #FFF;
-	display: block;
-	padding: 0 5px;
-	text-shadow: none;
+	.notification-count {
+		background-color: #2C2F34;
+		@include border-radius(4px);
+		color: #FFF;
+		display: block;
+		padding: 0 5px;
+		text-shadow: none;
+	}
 }
 
 .menu-button-active .so-portlet-dockbar-notifications .menu-button .notification-count {
@@ -73,7 +72,7 @@
 		}
 	}
 
-	.user-notification-event-footer, .user-notification-event-content {
+	.user-notification-event-content, .user-notification-event-footer {
 		&:after {
 			clear: both;
 			content: "";
@@ -88,8 +87,8 @@
 		padding: 0;
 
 		.dismiss-notifications, .view-all {
-			float: left;
 			display: block;
+			float: left;
 			width: 50%;
 
 			a {

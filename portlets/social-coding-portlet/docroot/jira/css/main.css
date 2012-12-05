@@ -1,19 +1,21 @@
-.social-coding-portlet-jira .project-title {
-	margin-bottom: 0.5em;
-}
+.social-coding-portlet-jira {
+	.project-title {
+		margin-bottom: 0.5em;
+	}
 
-.social-coding-portlet-jira .jira-summary .activity-details {
-	width: 65%;
-	padding-bottom: 5px;
-}
+	.jira-summary .activity-details {
+		padding-bottom: 5px;
+		width: 65%;
 
-.social-coding-portlet-jira .jira-summary .activity-details .progress-bar {
-	background: #c2c8cb;
-	height: 15px;
-	margin-bottom: 2px;
-}
+		.progress-bar {
+			background: #c2c8cb;
+			height: 15px;
+			margin-bottom: 2px;
 
-.social-coding-portlet-jira .jira-summary .activity-details .progress-text {
-	padding-left: 4px;
-	font-weight: bold;
+			.progress-text {
+				padding-left: 4px;
+				font-weight: bold;
+			}
+		}
+	}
 }

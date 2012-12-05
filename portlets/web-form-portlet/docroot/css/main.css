@@ -1,51 +1,55 @@
-.portlet-configuration .lfr-panel-content {
-	padding: 0 1em;
-}
+.portlet-configuration {
+	.lfr-panel-content {
+		padding: 0 1em;
+	}
 
-.portlet-configuration fieldset.rows-container {
-	border: none;
-	margin-top: 0;
-}
+	fieldset.rows-container {
+		border-width: 0;
+		margin-top: 0;
+	}
 
-.portlet-configuration .editing-disabled dt {
-	color: #999999;
-	float: left;
-	font-weight: bold;
-	width: 6em;
-}
+	.editing-disabled dt {
+		color: #999999;
+		float: left;
+		font-weight: bold;
+		width: 6em;
+	}
 
-.portlet-configuration .lfr-form-row .aui-field {
-	margin-left: 2em;
-}
+	.lfr-form-row {
+		.aui-field {
+			margin-left: 2em;
 
-.portlet-configuration .lfr-form-row .aui-field.optional-control {
-	margin: 1.3em;
-}
+			&.optional-control {
+				margin: 1.3em;
+			}
+		}
 
-.portlet-configuration .lfr-form-row .aui-field.options, .portlet-configuration .lfr-form-row .validation .aui-field {
-	clear: both;
-	display: block;
-}
+		.aui-field.options, .validation .aui-field {
+			clear: both;
+			display: block;
+		}
 
-.portlet-configuration .lfr-form-row .field-title {
-	color: #000;
-	font-size: 120%;
-	font-weight: bold;
-	padding: 3px;
-}
+		.field-title {
+			color: #000;
+			font-size: 120%;
+			font-weight: bold;
+			padding: 3px;
+		}
+	}
 
-.portlet-configuration .syntax-help {
-	margin: 2em 0 0 2em;
-}
+	.syntax-help {
+		margin: 2em 0 0 2em;
+	}
 
-.portlet-configuration .validation {
-	clear: left;
-}
+	.validation {
+		clear: left;
+	}
 
-.portlet-configuration .label-name .aui-field-wrapper-content {
-	margin-top: 0;
-}
+	.label-name .aui-field-wrapper-content {
+		margin-top: 0;
+	}
 
-.portlet-configuration .label-name input, .portlet-configuration .options input {
-	width: 200px;
+	.label-name input, .options input {
+		width: 200px;
+	}
 }

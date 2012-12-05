@@ -8,8 +8,9 @@
 		}
 	}
 
-	.results-row.asset-name td,
-	.results-row.asset-name.alt td {
-		background: #DCDCDC;
+	.results-row.asset-name {
+		&.alt td, td {
+			background: #DCDCDC;
+		}
 	}
 }

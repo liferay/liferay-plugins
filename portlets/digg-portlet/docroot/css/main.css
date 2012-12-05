@@ -1,64 +1,65 @@
-.digg-portlet a {
-	font-weight: bold;
-	text-decoration: none;
-}
+.digg-portlet {
+	a {
+		font-weight: bold;
+		text-decoration: none;
+	}
 
-.digg-portlet .digg {
-	border-bottom: 1px solid #DDD;
-	margin: 0 0 6px;
-	overflow: hidden;
-	padding: 0 0 6px;
-}
+	.digg {
+		border-bottom: 1px solid #DDD;
+		margin: 0 0 6px;
+		overflow: hidden;
+		padding: 0 0 6px;
+	}
 
-.digg-portlet .digg-last {
-	border-bottom: 0;
-	margin: 0;
-}
+	.digg-last {
+		border-bottom: 0;
+		margin: 0;
+	}
 
-.digg-portlet .header {
-	overflow: hidden;
-}
+	.header {
+		overflow: hidden;
+	}
 
-.digg-portlet .count,
-.digg-portlet .thumb {
-	float: left;
-	margin: 0 5px 0 0;
-}
+	.count, .thumb {
+		float: left;
+		margin: 0 5px 0 0;
+	}
 
-.digg-portlet .count {
-	background: url(../images/widget_bg.png) no-repeat 0 -30px;
-	color: #93883F;
-	display: block;
-	height: 30px;
-	line-height: 30px;
-	overflow: hidden;
-	text-align: center;
-	width: 30px;
-}
+	.count {
+		background: url(../images/widget_bg.png) no-repeat 0 -30px;
+		color: #93883F;
+		display: block;
+		height: 30px;
+		line-height: 30px;
+		overflow: hidden;
+		text-align: center;
+		width: 30px;
 
-.digg-portlet .count:hover {
-	background-position: 0 0;
-}
+		&:hover {
+			background-position: 0 0;
 
-.digg-portlet .count:hover span {
-	visibility: hidden;
-}
+			span {
+				visibility: hidden;
+			}
+		}
+	}
 
-.digg-portlet .thumb img {
-	float: left;
-}
+	.thumb img {
+		float: left;
+	}
 
-.digg-portlet .title {
-	display: block;
-	outline: 0;
-}
+	.title {
+		display: block;
+		outline: 0;
+	}
 
-.digg-portlet .text {
-	color: #999;
-	line-height: 1.15;
-	margin: 5px 0 0 35px;
-}
+	.text {
+		color: #999;
+		line-height: 1.15;
+		margin: 5px 0 0 35px;
+	}
 
-.digg-portlet .digg-no-diggs .text {
-	margin: 5px 0 0;
+	.digg-no-diggs .text {
+		margin: 5px 0 0;
+	}
 }
