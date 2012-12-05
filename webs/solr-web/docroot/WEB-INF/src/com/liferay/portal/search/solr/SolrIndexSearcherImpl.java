@@ -63,6 +63,7 @@ import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.params.FacetParams;
 
 /**
  * @author Bruno Farache
@@ -170,6 +171,17 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			else {
 				solrQuery.addFacetField(facetConfiguration.getFieldName());
 			}
+
+			String facetSort = FacetParams.FACET_SORT_COUNT;
+
+			String facetOrder = facetConfiguration.getOrder();
+
+			if (facetOrder.equals("OrderValueAsc")) {
+				facetSort = FacetParams.FACET_SORT_INDEX;
+			}
+
+			solrQuery.add("f." + facetConfiguration.getFieldName() +
+				".facet.sort", facetSort);
 		}
 
 		solrQuery.setFacetLimit(-1);
