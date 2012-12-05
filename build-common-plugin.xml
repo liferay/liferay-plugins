@@ -562,6 +562,15 @@
 								/>
 							</sequential>
 						</for>
+
+						<if>
+							<available file="${project.dir}/shared/@{import.shared.current}/lib" />
+							<then>
+								<copy todir="docroot/WEB-INF/lib/">
+									<fileset dir="${project.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
+								</copy>
+							</then>
+						</if>
 					</then>
 				</if>
 			</sequential>
