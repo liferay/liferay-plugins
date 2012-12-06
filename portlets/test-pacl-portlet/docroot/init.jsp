@@ -51,7 +51,6 @@ page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.OSDetector" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
-page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.GroupWrapper" %><%@
@@ -98,8 +97,8 @@ page import="java.sql.SQLException" %><%@
 page import="java.sql.Statement" %>
 
 <%@ page import="java.util.ArrayList" %><%@
-page import="java.util.Locale" %><%@
 page import="java.util.List" %><%@
+page import="java.util.Locale" %><%@
 page import="java.util.Map" %>
 
 <%@ page import="javax.naming.Context" %><%@

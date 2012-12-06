@@ -1339,26 +1339,25 @@
 
 </p>
 
-<p>
-	<h3>Search Container</h3>
-</p>
+<liferay-ui:header
+	title="Search Container"
+/>
 
 <p>
 
 	<%
-	List<Foo> fooList = new ArrayList<Foo>();
+	List<Foo> foos = new ArrayList<Foo>();
 
-	fooList.add(new FooImpl(1, "Bean Introspecion"));
-	fooList.add(new FooImpl(2, "Get ClassLoader"));
-
+	foos.add(new FooImpl(1, "Class Loader"));
+	foos.add(new FooImpl(2, "Reflection"));
 	%>
-	<liferay-util:buffer var="searchContainerOutput">
+
+	<liferay-util:buffer var="searchContainerHTML">
 		<liferay-ui:search-container
 			headerNames="Check,Result"
 		>
-
 			<liferay-ui:search-container-results
-				results="<%= fooList %>"
+				results="<%= foos %>"
 				total="1"
 			/>
 
@@ -1383,16 +1382,16 @@
 			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
 	</liferay-util:buffer>
-	<%
 
-	if (searchContainerOutput.replaceAll("\\s*", "").isEmpty()) {
-		out.write("Bean Introspection/Get ClassLoader: FAILED");
+	<%
+	if (searchContainerHTML.replaceAll("\\s*", "").isEmpty()) {
+		out.write("FAILED");
 	}
 	else {
-		out.write(searchContainerOutput);
+		out.write(searchContainerHTML);
 	}
-
 	%>
+
 </p>
 
 <liferay-ui:header
