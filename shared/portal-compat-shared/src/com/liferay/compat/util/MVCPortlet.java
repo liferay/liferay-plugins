@@ -18,10 +18,11 @@ import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 
+import java.io.IOException;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-import java.io.IOException;
 
 /**
  * @author Shinn Lok
@@ -38,7 +39,7 @@ public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 		if (copyRequestParameters && !SessionErrors.isEmpty(actionRequest)) {
 			UploadPortletRequest uploadPortletRequest =
 				(UploadPortletRequest)actionRequest.getAttribute(
-					"uploadPortletRequestCopy");
+					PortalUtil.class.getName() + "#uploadPortletRequest");
 
 			PortalUtil.copyRequestParameters(
 				uploadPortletRequest, actionResponse);

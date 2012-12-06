@@ -67,7 +67,8 @@ public class PortalUtil extends com.liferay.portal.util.PortalUtil {
 			getPortal().getUploadPortletRequest(portletRequest);
 
 		portletRequest.setAttribute(
-			"uploadPortletRequestCopy", uploadPortletRequest);
+			PortalUtil.class.getName() + "#uploadPortletRequest",
+			uploadPortletRequest);
 
 		return uploadPortletRequest;
 	}
