@@ -48,6 +48,15 @@ String redirect = ParamUtil.getString(request, "redirect");
 		</aui:select>
 	</aui:fieldset>
 
+	<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+		<liferay-ui:rss-settings
+			delta="<%= rssDelta %>"
+			displayStyle="<%= rssDisplayStyle %>"
+			enabled="<%= enableRSS %>"
+			feedType="<%= rssFeedType %>"
+		/>
+	</c:if>
+
 	<aui:button-row>
 		<aui:button type="submit" />
 	</aui:button-row>

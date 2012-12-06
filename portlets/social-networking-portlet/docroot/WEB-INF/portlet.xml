@@ -10,6 +10,10 @@
 			<value>true</value>
 		</init-param>
 		<init-param>
+			<name>config-template</name>
+			<value>/summary/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-template</name>
 			<value>/summary/view.jsp</value>
 		</init-param>

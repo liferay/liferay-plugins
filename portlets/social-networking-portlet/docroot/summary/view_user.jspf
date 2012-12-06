@@ -148,10 +148,12 @@
 								/>
 							</span>
 
-							<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+							<c:if test="<%= enableRSS %>">
 								<span class="rss-icon">
-									<liferay-ui:icon
-										image="rss"
+									<liferay-ui:rss
+										delta="<%= rssDelta %>"
+										displayStyle="<%= rssDisplayStyle %>"
+										feedType="<%= rssFeedType %>"
 										url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
 									/>
 								</span>
@@ -185,11 +187,12 @@
 								/>
 							</span>
 
-							<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+							<c:if test="<%= enableRSS %>">
 								<span class="rss-icon">
-									<liferay-ui:icon
-										image="rss"
-										method="get"
+									<liferay-ui:rss
+										delta="<%= rssDelta %>"
+										displayStyle="<%= rssDisplayStyle %>"
+										feedType="<%= rssFeedType %>"
 										url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
 									/>
 								</span>

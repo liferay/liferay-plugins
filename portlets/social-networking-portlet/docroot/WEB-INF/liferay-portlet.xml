@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<header-portlet-css>/summary/css/main.css</header-portlet-css>
 		<css-class-wrapper>social-networking-portlet-summary</css-class-wrapper>
 	</portlet>
