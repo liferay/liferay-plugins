@@ -394,7 +394,6 @@ html body {
 	}
 }
 
-
 .chat-height-monitor {
 	left: -10000em;
 	padding: 0;
@@ -492,8 +491,6 @@ html body {
 }
 
 /* ---------- Extras ---------- */
-
-
 
 .chat-bar div ul li.selected .panel-trigger {
 	@include border-radius(0 4px);
