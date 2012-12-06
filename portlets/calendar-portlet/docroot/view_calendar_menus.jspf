@@ -99,6 +99,7 @@
 					var instance = this;
 
 					var calendarList = instance.get('host');
+
 					var activeCalendar = calendarList.activeItem;
 
 					<portlet:renderURL var="editCalendarURL">
@@ -124,6 +125,7 @@
 					var instance = this;
 
 					var calendarList = instance.get('host');
+
 					var activeCalendar = calendarList.activeItem;
 
 					<liferay-security:permissionsURL
@@ -151,6 +153,7 @@
 					var instance = this;
 
 					var calendarList = instance.get('host');
+
 					var activeCalendar = calendarList.activeItem;
 
 					<portlet:actionURL name="deleteCalendar" var="deleteURL">
