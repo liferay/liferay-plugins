@@ -57,10 +57,13 @@
 		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
 
 			<%
+			String requestMessage = "Se cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
 			PortletURL addAsFriendURL = renderResponse.createActionURL();
 
 			addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
 			addAsFriendURL.setParameter("redirect", currentURL);
+			addAsFriendURL.setParameter("requestMessage", requestMessage);
 			%>
 
 			<p class="add-as-friend">
