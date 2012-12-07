@@ -789,7 +789,9 @@ Please find a solution that does not require portal-impl.jar.
 
 					<!-- Dependent Libraries -->
 
+					<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
 					<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+					<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
 				</java>
 			</then>
 			<elseif>
@@ -818,7 +820,9 @@ Please find a solution that does not require portal-impl.jar.
 
 						<!-- Dependent Libraries -->
 
+						<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
 						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
 					</java>
 				</then>
 			</elseif>
@@ -841,6 +845,12 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
+
+						<!-- Dependent Libraries -->
+
+						<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
+						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
 					</java>
 				</then>
 			</elseif>
@@ -912,6 +922,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<!-- Dependent Libraries -->
 
+						<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
 						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
 						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
 					</java>
@@ -943,7 +954,9 @@ Please find a solution that does not require portal-impl.jar.
 
 						<!-- Dependent Libraries -->
 
+						<arg value="${app.server.lib.portal.dir}/util-bridges.jar" />
 						<arg value="${app.server.lib.portal.dir}/util-java.jar" />
+						<arg value="${app.server.lib.portal.dir}/util-taglib.jar" />
 					</java>
 				</then>
 			</elseif>
