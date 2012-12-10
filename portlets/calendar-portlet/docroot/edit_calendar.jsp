@@ -31,9 +31,9 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 <liferay-portlet:actionURL name="updateCalendar" var="updateCalendarURL">
 	<liferay-portlet:param name="mvcPath" value="/calendar/edit_calendar.jsp" />
+	<liferay-portlet:param name="redirect" value="<%= redirect %>" />
 	<liferay-portlet:param name="calendarId" value="<%= (calendar != null) ? String.valueOf(calendar.getCalendarId()) : StringPool.BLANK %>" />
 	<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>" />
-	<liferay-portlet:param name="redirect" value="<%= redirect %>" />
 </liferay-portlet:actionURL>
 
 <aui:form action="<%= updateCalendarURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendar();" %>'>

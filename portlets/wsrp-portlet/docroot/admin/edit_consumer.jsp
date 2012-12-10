@@ -21,13 +21,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 long wsrpConsumerId = ParamUtil.getLong(request, "wsrpConsumerId");
 
-WSRPConsumer wsrpConsumer = null;
-
-try {
-	wsrpConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(wsrpConsumerId);
-}
-catch (NoSuchConsumerException nsce) {
-}
+WSRPConsumer wsrpConsumer = WSRPConsumerLocalServiceUtil.fetchWSRPConsumer(wsrpConsumerId);
 %>
 
 <liferay-ui:header
@@ -35,7 +29,9 @@ catch (NoSuchConsumerException nsce) {
 	title='<%= (wsrpConsumer != null) ? wsrpConsumer.getName() : "new-consumer" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPConsumer"><portlet:param name="mvcPath" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumer(); return false;">
+<form action="<portlet:actionURL name="updateWSRPConsumer" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumer(); return false;">
+<input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_consumer.jsp" />
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
 <input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
 <liferay-ui:error exception="<%= WSRPConsumerNameException.class %>" message="please-enter-a-valid-name" />

@@ -40,7 +40,6 @@ page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.PortletConstants" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.wsrp.NoSuchConsumerException" %><%@
 page import="com.liferay.wsrp.NoSuchConsumerPortletException" %><%@
 page import="com.liferay.wsrp.NoSuchProducerException" %><%@
 page import="com.liferay.wsrp.WSRPConsumerNameException" %><%@
