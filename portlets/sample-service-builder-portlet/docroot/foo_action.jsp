@@ -21,19 +21,15 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 Foo foo = null;
 
-boolean view = false;
-
 if (row != null) {
 	foo = (Foo)row.getObject();
 }
 else {
 	foo = (Foo)request.getAttribute("edit_foo.jsp-foo");
-
-	view = true;
 }
 %>
 
-<liferay-ui:icon-menu showExpanded="<%= view %>" showWhenSingleIcon="<%= view %>">
+<liferay-ui:icon-menu showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
 	<c:if test="<%= !view %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/edit_foo.jsp" />
@@ -53,7 +49,7 @@ else {
 
 	<portlet:actionURL var="deleteURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-		<portlet:param name="redirect" value="<%= view ? redirectURL : currentURL %>" />
+		<portlet:param name="redirect" value="<%= (row == null) ? redirectURL : currentURL %>" />
 		<portlet:param name="fooId" value="<%= String.valueOf(foo.getFooId()) %>" />
 	</portlet:actionURL>
 
