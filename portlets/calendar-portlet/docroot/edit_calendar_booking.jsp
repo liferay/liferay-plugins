@@ -156,6 +156,15 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				<aui:input name="description" />
 
 				<aui:input name="location" />
+
+				<liferay-ui:custom-attributes-available className="<%= CalendarBooking.class.getName() %>">
+					<liferay-ui:custom-attribute-list
+						className="<%= CalendarBooking.class.getName() %>"
+						classPK="<%= (calendarBooking != null) ? calendarBooking.getCalendarBookingId() : 0 %>"
+						editable="<%= true %>"
+						label="<%= true %>"
+					/>
+				</liferay-ui:custom-attributes-available>
 			</liferay-ui:panel>
 
 			<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" id="calendarBookingReminderPanel" persistState="<%= true %>" title="reminders">
