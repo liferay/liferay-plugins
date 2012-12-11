@@ -174,9 +174,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			String facetSort = FacetParams.FACET_SORT_COUNT;
 
-			String facetOrder = facetConfiguration.getOrder();
+			String order = facetConfiguration.getOrder();
 
-			if (facetOrder.equals("OrderValueAsc")) {
+			if (order.equals("OrderValueAsc")) {
 				facetSort = FacetParams.FACET_SORT_INDEX;
 			}
 
