@@ -31,6 +31,10 @@ import com.liferay.calendar.util.RecurrenceUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -308,8 +312,27 @@ public class CalendarBookingLocalServiceImpl
 			long calendarId, long startDate, long endDate)
 		throws SystemException {
 
-		return calendarBookingPersistence.findByC_S_E(
-			calendarId, startDate, endDate);
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			CalendarBooking.class, getClassLoader());
+
+		Property property = PropertyFactoryUtil.forName("calendarId");
+
+		dynamicQuery.add(property.eq(calendarId));
+
+		if (startDate >= 0) {
+			Property propertyStartDate = PropertyFactoryUtil.forName(
+				"startDate");
+
+			dynamicQuery.add(propertyStartDate.gt(startDate));
+		}
+
+		if (endDate >= 0) {
+			Property propertyEndDate = PropertyFactoryUtil.forName("endDate");
+
+			dynamicQuery.add(propertyEndDate.gt(endDate));
+		}
+
+		return dynamicQuery(dynamicQuery);
 	}
 
 	public int getCalendarBookingsCount(
