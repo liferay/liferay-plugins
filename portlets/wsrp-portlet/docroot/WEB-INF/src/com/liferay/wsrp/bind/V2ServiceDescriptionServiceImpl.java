@@ -240,7 +240,7 @@ public class V2ServiceDescriptionServiceImpl
 
 		long timestamp = rootPortlet.getTimestamp();
 
-		for (String footerPortalCss : portlet.getHeaderPortalCss()) {
+		for (String footerPortalCss : portlet.getFooterPortalCss()) {
 			if (!HttpUtil.hasProtocol(footerPortalCss)) {
 				footerPortalCss =
 					portalPath + footerPortalCss + "?t=" + timestamp;
@@ -251,7 +251,7 @@ public class V2ServiceDescriptionServiceImpl
 		}
 
 		for (String footerPortalJavaScript :
-				portlet.getHeaderPortalJavaScript()) {
+				portlet.getFooterPortalJavaScript()) {
 
 			if (!HttpUtil.hasProtocol(footerPortalJavaScript)) {
 				footerPortalJavaScript =
@@ -263,7 +263,7 @@ public class V2ServiceDescriptionServiceImpl
 				footerPortalJavaScript);
 		}
 
-		for (String footerPortletCss : portlet.getHeaderPortletCss()) {
+		for (String footerPortletCss : portlet.getFooterPortletCss()) {
 			if (!HttpUtil.hasProtocol(footerPortletCss)) {
 				footerPortletCss =
 					portletPath + footerPortletCss + "?t=" + timestamp;
@@ -274,7 +274,7 @@ public class V2ServiceDescriptionServiceImpl
 		}
 
 		for (String footerPortletJavaScript :
-				portlet.getHeaderPortletJavaScript()) {
+				portlet.getFooterPortletJavaScript()) {
 
 			if (!HttpUtil.hasProtocol(footerPortletJavaScript)) {
 				footerPortletJavaScript =
