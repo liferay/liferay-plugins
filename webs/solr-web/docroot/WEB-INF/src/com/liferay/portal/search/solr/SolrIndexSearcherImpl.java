@@ -180,8 +180,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				facetSort = FacetParams.FACET_SORT_INDEX;
 			}
 
-			solrQuery.add("f." + facetConfiguration.getFieldName() +
-				".facet.sort", facetSort);
+			solrQuery.add(
+				"f." + facetConfiguration.getFieldName() + ".facet.sort",
+				facetSort);
 		}
 
 		solrQuery.setFacetLimit(-1);
