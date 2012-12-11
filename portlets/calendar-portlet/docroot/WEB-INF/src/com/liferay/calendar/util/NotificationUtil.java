@@ -191,13 +191,15 @@ public class NotificationUtil {
 					calendarBooking.getSecondReminderNotificationType();
 			}
 
-			NotificationSender notificationSender =
-				NotificationSenderFactory.getNotificationSender(
-					notificationType.toString());
+			if (notificationType != null) {
+				NotificationSender notificationSender =
+					NotificationSenderFactory.getNotificationSender(
+						notificationType.toString());
 
-			notificationSender.sendNotification(
-				notificationRecipient, NotificationTemplateType.REMINDER,
-				notificationTemplateContext);
+				notificationSender.sendNotification(
+					notificationRecipient, NotificationTemplateType.REMINDER,
+					notificationTemplateContext);
+			}
 		}
 	}
 
