@@ -29,7 +29,10 @@
 			FROM
 				CalendarBooking
 			WHERE
-				(startDate >= ?) AND
+				(
+					(recurrence IS NOT NULL) OR
+					(startDate >= ?)
+				) AND
 				(firstReminder > 0) AND
 				(secondReminder > 0) AND
 				(status = 0)
