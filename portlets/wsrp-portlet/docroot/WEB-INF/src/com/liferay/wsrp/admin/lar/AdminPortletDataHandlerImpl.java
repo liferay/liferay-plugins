@@ -71,28 +71,20 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		long companyId = portletDataContext.getCompanyId();
 
-		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE, "wsrp-producers")) {
+		List<WSRPProducer> wsrpProducers =
+			WSRPProducerLocalServiceUtil.getWSRPProducers(
+				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-			List<WSRPProducer> wsrpProducers =
-				WSRPProducerLocalServiceUtil.getWSRPProducers(
-					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-			for (WSRPProducer wsrpProducer : wsrpProducers) {
-				WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducer);
-			}
+		for (WSRPProducer wsrpProducer : wsrpProducers) {
+			WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducer);
 		}
 
-		if (portletDataContext.getBooleanParameter(
-				_NAMESPACE, "wsrp-consumers")) {
+		List<WSRPConsumer> wsrpConsumers =
+			WSRPConsumerLocalServiceUtil.getWSRPConsumers(
+				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-			List<WSRPConsumer> wsrpConsumers =
-				WSRPConsumerLocalServiceUtil.getWSRPConsumers(
-					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-			for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
-				WSRPConsumerLocalServiceUtil.deleteWSRPConsumer(wsrpConsumer);
-			}
+		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
+			WSRPConsumerLocalServiceUtil.deleteWSRPConsumer(wsrpConsumer);
 		}
 
 		return null;
