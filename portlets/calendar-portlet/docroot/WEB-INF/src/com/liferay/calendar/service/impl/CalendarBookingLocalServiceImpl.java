@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -173,6 +174,11 @@ public class CalendarBookingLocalServiceImpl
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingFinder.findByFutureReminders(now.getTime());
+
+		long endDate = now.getTime() + Time.MONTH;
+
+		calendarBookings = RecurrenceUtil.expandCalendarBookings(
+			calendarBookings, now.getTime(), endDate, 1);
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			try {

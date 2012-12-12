@@ -37,49 +37,78 @@ import java.util.TimeZone;
  */
 public class RecurrenceUtil {
 
-	public static List<CalendarBooking> expandCalendarBookings(
-		List<CalendarBooking> calendarBookings, long startDate, long endDate) {
+	public static List<CalendarBooking> expandCalendarBooking(
+		CalendarBooking calendarBooking, long startDate, long endDate,
+		int maxSize) {
 
-		List<CalendarBooking> expandedCalendarBookings =
+		List<CalendarBooking> expandedCalendarBooking =
 			new ArrayList<CalendarBooking>();
 
 		DateValue startDateValue = _toDateValue(startDate);
 		DateValue endDateValue = _toDateValue(endDate);
 
-		try {
-			for (CalendarBooking calendarBooking : calendarBookings) {
-				if (!calendarBooking.isRecurring()) {
-					expandedCalendarBookings.add(calendarBooking);
+		if (!calendarBooking.isRecurring()) {
+			expandedCalendarBooking.add(calendarBooking);
 
+			return expandedCalendarBooking;
+		}
+
+		try {
+			RecurrenceIterator recurrenceIterator =
+				RecurrenceIteratorFactory.createRecurrenceIterator(
+					calendarBooking.getRecurrence(),
+					_toDateValue(calendarBooking.getStartDate()),
+					TimeUtils.utcTimezone());
+
+			while (recurrenceIterator.hasNext()) {
+				DateValue dateValue = recurrenceIterator.next();
+
+				if (dateValue.compareTo(startDateValue) < 0) {
 					continue;
 				}
 
-				RecurrenceIterator recurrenceIterator =
-					RecurrenceIteratorFactory.createRecurrenceIterator(
-						calendarBooking.getRecurrence(),
-						_toDateValue(calendarBooking.getStartDate()),
-						TimeUtils.utcTimezone());
+				if (dateValue.compareTo(endDateValue) > 0) {
+					break;
+				}
 
-				while (recurrenceIterator.hasNext()) {
-					DateValue dateValue = recurrenceIterator.next();
+				CalendarBooking clone = _copyCalendarBooking(
+					calendarBooking, dateValue);
 
-					if (dateValue.compareTo(startDateValue) < 0) {
-						continue;
-					}
+				expandedCalendarBooking.add(clone);
 
-					if (dateValue.compareTo(endDateValue) > 0) {
-						break;
-					}
+				if ((maxSize > 0) &&
+					(expandedCalendarBooking.size() >= maxSize)) {
 
-					CalendarBooking clone = _copyCalendarBooking(
-						calendarBooking, dateValue);
-
-					expandedCalendarBookings.add(clone);
+					break;
 				}
 			}
 		}
 		catch (ParseException pe) {
 			_log.error("Unable to parse data ", pe);
+		}
+
+		return expandedCalendarBooking;
+	}
+
+	public static List<CalendarBooking> expandCalendarBookings(
+		List<CalendarBooking> calendarBookings, long startDate, long endDate) {
+
+		return expandCalendarBookings(calendarBookings, startDate, endDate, 0);
+	}
+
+	public static List<CalendarBooking> expandCalendarBookings(
+		List<CalendarBooking> calendarBookings, long startDate, long endDate,
+		int maxSize) {
+
+		List<CalendarBooking> expandedCalendarBookings =
+			new ArrayList<CalendarBooking>();
+
+		for (CalendarBooking calendarBooking : calendarBookings) {
+			List<CalendarBooking> exapndedCalendarBooking =
+				expandCalendarBooking(
+					calendarBooking, startDate, endDate, maxSize);
+
+			expandedCalendarBookings.addAll(exapndedCalendarBooking);
 		}
 
 		return expandedCalendarBookings;
