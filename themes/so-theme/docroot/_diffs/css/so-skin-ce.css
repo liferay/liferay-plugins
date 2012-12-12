@@ -2339,6 +2339,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 			ul li {
 				margin-top: -2px;
 			}
+
+			a {
+				zoom: 1;
+			}
 		}
 
 		hr {
