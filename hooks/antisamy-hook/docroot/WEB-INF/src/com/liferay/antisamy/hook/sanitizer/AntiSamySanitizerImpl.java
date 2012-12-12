@@ -72,9 +72,10 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 	}
 
 	public String sanitize(
-		long companyId, long groupId, long userId, String className,
-		long classPK, String contentType, String[] modes, String s,
-		Map<String, Object> options) {
+			long companyId, long groupId, long userId, String className,
+			long classPK, String contentType, String[] modes, String s,
+			Map<String, Object> options)
+		throws SanitizerException {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Sanitizing " + className + "#" + classPK);
@@ -104,7 +105,7 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 		catch (Exception e) {
 			_log.error("Unable to sanitize input", e);
 
-			return StringPool.BLANK;
+			throw new SanitizerException(e);
 		}
 	}
 
