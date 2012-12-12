@@ -251,9 +251,16 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
-		return updateCalendar(
-			calendarId, calendar.getNameMap(), calendar.getDescriptionMap(),
-			color, calendar.isDefaultCalendar(), serviceContext);
+		if (color <= 0) {
+			color = PortletPropsValues.CALENDAR_COLOR_DEFAULT;
+		}
+
+		calendar.setModifiedDate(serviceContext.getModifiedDate(null));
+		calendar.setColor(color);
+
+		calendarPersistence.update(calendar);
+
+		return calendar;
 	}
 
 	protected void updateDefaultCalendar(Calendar calendar)
