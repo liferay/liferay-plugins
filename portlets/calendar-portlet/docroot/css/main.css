@@ -58,6 +58,11 @@
 	padding: 5px 25px 5px 10px;
 }
 
+.aui-scheduler-event-recorder-overlay-body select {
+	max-width: 340px;
+	width: 100%;
+}
+
 .aui-scheduler-event-recorder-overlay-content {
 	background: #FAFAFA;
 	border: 1px solid #C4C4C4;
@@ -95,15 +100,21 @@
 .aui-calendar-list-item {
 	color: #222;
 	cursor: pointer;
+	display: inline-block;
 	font-size: 12px;
 	line-height: 20px;
+	max-width: 203px;
+	min-width: 203px;
+	overflow: hidden;
 	padding: 0 5px;
 	position: relative;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
 .aui-calendar-list-item-hover, .aui-calendar-list-item-active {
 	background-color: #DCE3EA;
+	white-space: pre-wrap;
 
 	.aui-calendar-list-item-arrow {
 		display: block;
@@ -221,7 +232,9 @@
 	color: #333;
 	cursor: pointer;
 	list-style-type: none;
+	overflow: hidden;
 	padding: 6px 7em 6px 30px;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 
 	&:hover {
