@@ -118,12 +118,10 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			true);
 	public static long CALENDARID_COLUMN_BITMASK = 1L;
 	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
-	public static long ENDDATE_COLUMN_BITMASK = 4L;
-	public static long GROUPID_COLUMN_BITMASK = 8L;
-	public static long PARENTCALENDARBOOKINGID_COLUMN_BITMASK = 16L;
-	public static long STARTDATE_COLUMN_BITMASK = 32L;
-	public static long STATUS_COLUMN_BITMASK = 64L;
-	public static long UUID_COLUMN_BITMASK = 128L;
+	public static long GROUPID_COLUMN_BITMASK = 4L;
+	public static long PARENTCALENDARBOOKINGID_COLUMN_BITMASK = 8L;
+	public static long STATUS_COLUMN_BITMASK = 16L;
+	public static long UUID_COLUMN_BITMASK = 32L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -793,17 +791,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public void setStartDate(long startDate) {
 		_columnBitmask = -1L;
 
-		if (!_setOriginalStartDate) {
-			_setOriginalStartDate = true;
-
-			_originalStartDate = _startDate;
-		}
-
 		_startDate = startDate;
-	}
-
-	public long getOriginalStartDate() {
-		return _originalStartDate;
 	}
 
 	@JSON
@@ -812,19 +800,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void setEndDate(long endDate) {
-		_columnBitmask |= ENDDATE_COLUMN_BITMASK;
-
-		if (!_setOriginalEndDate) {
-			_setOriginalEndDate = true;
-
-			_originalEndDate = _endDate;
-		}
-
 		_endDate = endDate;
-	}
-
-	public long getOriginalEndDate() {
-		return _originalEndDate;
 	}
 
 	@JSON
@@ -1197,14 +1173,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		calendarBookingModelImpl._setOriginalParentCalendarBookingId = false;
 
-		calendarBookingModelImpl._originalStartDate = calendarBookingModelImpl._startDate;
-
-		calendarBookingModelImpl._setOriginalStartDate = false;
-
-		calendarBookingModelImpl._originalEndDate = calendarBookingModelImpl._endDate;
-
-		calendarBookingModelImpl._setOriginalEndDate = false;
-
 		calendarBookingModelImpl._originalStatus = calendarBookingModelImpl._status;
 
 		calendarBookingModelImpl._setOriginalStatus = false;
@@ -1555,11 +1523,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private String _descriptionCurrentLanguageId;
 	private String _location;
 	private long _startDate;
-	private long _originalStartDate;
-	private boolean _setOriginalStartDate;
 	private long _endDate;
-	private long _originalEndDate;
-	private boolean _setOriginalEndDate;
 	private boolean _allDay;
 	private String _recurrence;
 	private long _firstReminder;
