@@ -286,6 +286,11 @@
 
 .calendar-portlet-recurrence-summary {
 	font-weight: bold;
+	text-transform: capitalize;
+
+	span {
+		text-transform: none;
+	}
 }
 
 .calendar-portlet-recurrence-container {

@@ -11,6 +11,10 @@
 
 	var STR_SPACE = ' ';
 
+	var TPL_SPAN = '<span>';
+
+	var TPL_SPAN_CLOSE = '</span>';
+
 	AUI.add(
 		'liferay-calendar-simple-menu',
 		function(A) {
@@ -934,7 +938,7 @@
 
 				MONTH_LABELS: [
 					Liferay.Language.get('january'),
-					Liferay.Language.get('frebruary'),
+					Liferay.Language.get('february'),
 					Liferay.Language.get('march'),
 					Liferay.Language.get('april'),
 					Liferay.Language.get('may'),
@@ -970,7 +974,7 @@
 					}
 
 					if ((recurrence.frequency == instance.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
-						template.push(STR_SPACE, Liferay.Language.get('on'), ' {weekDays}');
+						template.push(STR_SPACE, TPL_SPAN, Liferay.Language.get('on'), TPL_SPAN_CLOSE, ' {weekDays}');
 					}
 
 					if (recurrence.count && (recurrence.endValue === 'after')) {
@@ -982,7 +986,9 @@
 						template.push(
 							STR_COMMA,
 							STR_SPACE,
+							TPL_SPAN,
 							Liferay.Language.get('until'),
+							TPL_SPAN_CLOSE,
 							A.Lang.sub(
 								' {month} {date}, {year}',
 								{
