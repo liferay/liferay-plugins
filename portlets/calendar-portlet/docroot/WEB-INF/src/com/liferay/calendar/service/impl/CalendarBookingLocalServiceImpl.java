@@ -263,6 +263,10 @@ public class CalendarBookingLocalServiceImpl
 		Recurrence recurrenceObj = calendarBooking.getRecurrenceObj();
 
 		if (allFollowing) {
+			if (recurrenceObj.getCount() > 0) {
+				recurrenceObj.setCount(0);
+			}
+
 			newStartDateJCalendar.add(java.util.Calendar.DATE, -1);
 
 			recurrenceObj.setUntilJCalendar(newStartDateJCalendar);
