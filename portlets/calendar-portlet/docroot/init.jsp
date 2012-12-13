@@ -125,7 +125,11 @@ if (themeDisplay.isSignedIn()) {
 	userCalendarResource = CalendarResourceUtil.getUserCalendarResource(liferayPortletRequest, themeDisplay.getUserId());
 
 	if (userCalendarResource != null) {
-		userDefaultCalendar = CalendarServiceUtil.getCalendar(userCalendarResource.getDefaultCalendarId());
+		long defaultCalendarId = userCalendarResource.getDefaultCalendarId();
+
+		if (defaultCalendarId > 0) {
+			userDefaultCalendar = CalendarServiceUtil.getCalendar(defaultCalendarId);
+		}
 	}
 }
 
