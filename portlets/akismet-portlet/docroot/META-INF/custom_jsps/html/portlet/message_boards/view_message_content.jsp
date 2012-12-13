@@ -112,6 +112,9 @@
 
 			messagePos = y + customHTML.length();
 		}
+		else {
+			messagePos++;
+		}
 	}
 	%>
 
