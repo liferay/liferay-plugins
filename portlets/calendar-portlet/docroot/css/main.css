@@ -103,13 +103,12 @@
 	display: inline-block;
 	font-size: 12px;
 	line-height: 20px;
-	max-width: 203px;
-	min-width: 203px;
 	overflow: hidden;
 	padding: 0 5px;
 	position: relative;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	width: 203px;
 }
 
 .aui-calendar-list-item-hover, .aui-calendar-list-item-active {
