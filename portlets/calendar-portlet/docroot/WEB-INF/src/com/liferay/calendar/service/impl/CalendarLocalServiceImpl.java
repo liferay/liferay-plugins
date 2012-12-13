@@ -221,10 +221,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
-		// Resources
-
-		resourceLocalService.updateModelResources(calendar, serviceContext);
-
 		// Calendar
 
 		updateDefaultCalendar(calendar);
