@@ -85,8 +85,8 @@ page import="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServic
 page import="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil" %><%@
 page import="com.liferay.socialnetworking.util.PortletKeys" %><%@
 page import="com.liferay.socialnetworking.util.PortletPropsValues" %><%@
-page import="com.liferay.util.portlet.PortletProps" %><%@
-page import="com.liferay.util.RSSUtil" %>
+page import="com.liferay.util.RSSUtil" %><%@
+page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.text.Format" %><%@
 page import="java.text.NumberFormat" %>
