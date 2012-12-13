@@ -1407,8 +1407,40 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		margin-top: 0.2em;
 	}
 
-	.search-button-container .aui-field-input-text {
-		padding: 5px 4px;
+	.lfr-header-row-content {
+		height: 28px;
+		padding: 4px;
+	}
+
+	.lfr-search-combobox {
+		.aui-w30, .aui-w70 {
+			padding: 2px 0;
+			width: auto;
+		}
+
+		.aui-field-input-text {
+			border-radius: 4px 0 0 4px;
+			height: 16px;
+			padding: 5px;
+		}
+
+		.aui-button-input {
+			border-left-width: 0;
+			border-radius: 0 4px 4px 0;
+			height: 28px;
+		}
+	}
+
+	.select-documents .aui-field-element{
+		padding: 5px 6px 6px;
+	}
+
+	.lfr-actions.lfr-extended {
+		padding: 3px 3px 4px;
+	}
+
+	.aui-buttonitem-icon-only {
+		padding: 5px;
 	}
 
 	.aui-w65 {
