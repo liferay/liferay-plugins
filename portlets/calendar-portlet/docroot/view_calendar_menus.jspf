@@ -106,7 +106,6 @@
 						<portlet:param name="jspPage" value="/edit_calendar.jsp" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="calendarId" value="{calendarId}" />
-						<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
 					</portlet:renderURL>
 
 					window.location.href = A.Lang.sub(
