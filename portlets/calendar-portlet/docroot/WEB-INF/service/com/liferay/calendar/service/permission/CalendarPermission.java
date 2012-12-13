@@ -68,9 +68,14 @@ public class CalendarPermission {
 			String actionId)
 		throws PortalException, SystemException {
 
-		Calendar calendar = CalendarLocalServiceUtil.getCalendar(calendarId);
+		if (calendarId > 0 ) {
+			Calendar calendar = CalendarLocalServiceUtil.getCalendar(
+				calendarId);
 
-		return contains(permissionChecker, calendar, actionId);
+			return contains(permissionChecker, calendar, actionId);
+		}
+
+		return false;
 	}
 
 }

@@ -43,13 +43,21 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
 				getGroupId(), getCalendarResourceId(), true);
 
-		return calendars.get(0);
+		if (calendars.size() > 0) {
+			return calendars.get(0);
+		}
+
+		return null;
 	}
 
 	public long getDefaultCalendarId() throws SystemException {
 		Calendar calendar = getDefaultCalendar();
 
-		return calendar.getCalendarId();
+		if (calendar != null) {
+			return calendar.getCalendarId();
+		}
+
+		return 0;
 	}
 
 	public boolean isGlobal() {
