@@ -977,6 +977,11 @@ AUI.add(
 						value: false
 					},
 
+					groupId: {
+						value: 0,
+						setter: toInt
+					},
+
 					permissions: {
 						lazyAdd: false,
 						setter: function(val) {
