@@ -1465,6 +1465,18 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.asset-column-details-content {
 		border-width: 0;
 	}
+
+	.lfr-asset-column-content {
+		margin-right: 0;
+
+		.lfr-panel {
+			margin-bottom: 0;
+		}
+	}
+
+	.lfr-panel-content {
+		padding: 0;
+	}
 }
 
 .portlet-document-library, .portlet-document-library-display {
