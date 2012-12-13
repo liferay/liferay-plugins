@@ -35,7 +35,9 @@
 		<field name="description" type="String" localized="true">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="location" type="String" />
+		<field name="location" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="startDate" type="long">
 			<hint name="type">Date</hint>
 		</field>
