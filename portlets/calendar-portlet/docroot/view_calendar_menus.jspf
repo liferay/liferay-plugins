@@ -131,7 +131,7 @@
 					<liferay-security:permissionsURL
 						modelResource="<%= Calendar.class.getName() %>"
 						modelResourceDescription="{modelResourceDescription}"
-						resourceGroupId="0"
+						resourceGroupId="{resourceGroupId}"
 						resourcePrimKey="{resourcePrimKey}"
 						var="permissionsURL"
 					/>
