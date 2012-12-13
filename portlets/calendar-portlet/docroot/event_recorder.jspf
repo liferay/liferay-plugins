@@ -63,7 +63,9 @@
 						<select id="<portlet:namespace />eventRecorderCalendar" name="calendarId">
 							<tpl for="calendarIds">
 								<tpl for="parent.availableCalendars[values]">
-									<option value="{[values.get('calendarId')]}">{[Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName'))]}</option>
+									<tpl if="values.get('permissions').MANAGE_BOOKINGS == true">
+										<option value="{[values.get('calendarId')]}">{[Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName'))]}</option>
+									</tpl>
 								</tpl>
 							</tpl>
 						</select>
