@@ -23,6 +23,7 @@
 		<header-portlet-javascript>/js/components.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/javascript.js</header-portlet-javascript>
 		<css-class-wrapper>calendar-portlet</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
