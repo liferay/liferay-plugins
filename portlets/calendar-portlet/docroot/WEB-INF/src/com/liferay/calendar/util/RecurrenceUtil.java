@@ -104,11 +104,11 @@ public class RecurrenceUtil {
 			new ArrayList<CalendarBooking>();
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
-			List<CalendarBooking> exapndedCalendarBooking =
+			List<CalendarBooking> expandedCalendarBooking =
 				expandCalendarBooking(
 					calendarBooking, startDate, endDate, maxSize);
 
-			expandedCalendarBookings.addAll(exapndedCalendarBooking);
+			expandedCalendarBookings.addAll(expandedCalendarBooking);
 		}
 
 		return expandedCalendarBookings;
