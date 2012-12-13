@@ -29,7 +29,7 @@ create table CalendarBooking (
 	parentCalendarBookingId LONG,
 	title STRING null,
 	description STRING null,
-	location VARCHAR(75) null,
+	location STRING null,
 	startDate LONG,
 	endDate LONG,
 	allDay BOOLEAN,
