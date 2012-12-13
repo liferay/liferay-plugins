@@ -56,7 +56,6 @@ public class CalendarResourceLocalServiceImpl
 
 		// Calendar resource
 
-		User user = userPersistence.findByPrimaryKey(userId);
 		long calendarResourceId = counterLocalService.increment();
 
 		if (Validator.isNull(className)) {
@@ -66,16 +65,10 @@ public class CalendarResourceLocalServiceImpl
 
 		long classNameId = PortalUtil.getClassNameId(className);
 
-		long globalUserId = 0;
-
 		if (isGlobalResource(classNameId)) {
-			globalUserId = getGlobalResourceUserId(classNameId, classPK);
+			userId = getGlobalResourceUserId(classNameId, classPK);
 
 			groupId = getGlobalResourceGroupId(serviceContext.getCompanyId());
-		}
-
-		if (globalUserId > 0) {
-			userId = globalUserId;
 		}
 
 		if (PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE ||
@@ -91,6 +84,8 @@ public class CalendarResourceLocalServiceImpl
 		Date now = new Date();
 
 		validate(groupId, classNameId, classPK, code);
+
+		User user = userPersistence.findByPrimaryKey(userId);
 
 		CalendarResource calendarResource = calendarResourcePersistence.create(
 			calendarResourceId);
