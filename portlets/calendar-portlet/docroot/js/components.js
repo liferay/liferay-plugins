@@ -563,6 +563,7 @@
 										points: [ A.WidgetPositionAlign.TL, A.WidgetPositionAlign.BL ]
 									},
 									bubbleTargets: [ instance ],
+									constrain: true,
 									host: instance,
 									items: [],
 									plugins: [ A.Plugin.OverlayAutohide ],
