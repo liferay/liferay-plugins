@@ -74,6 +74,11 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 		return CLASS_NAME;
 	}
 
+	@Override
+	public String getPortletId() {
+		return PortletKeys.KNOWLEDGE_BASE_DISPLAY;
+	}
+
 	public String getType() {
 		return TYPE;
 	}
