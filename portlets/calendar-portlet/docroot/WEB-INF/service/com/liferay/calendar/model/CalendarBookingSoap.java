@@ -45,8 +45,8 @@ public class CalendarBookingSoap implements Serializable {
 		soapModel.setTitle(model.getTitle());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setLocation(model.getLocation());
-		soapModel.setStartDate(model.getStartDate());
-		soapModel.setEndDate(model.getEndDate());
+		soapModel.setStartTime(model.getStartTime());
+		soapModel.setEndTime(model.getEndTime());
 		soapModel.setAllDay(model.getAllDay());
 		soapModel.setRecurrence(model.getRecurrence());
 		soapModel.setFirstReminder(model.getFirstReminder());
@@ -223,20 +223,20 @@ public class CalendarBookingSoap implements Serializable {
 		_location = location;
 	}
 
-	public long getStartDate() {
-		return _startDate;
+	public long getStartTime() {
+		return _startTime;
 	}
 
-	public void setStartDate(long startDate) {
-		_startDate = startDate;
+	public void setStartTime(long startTime) {
+		_startTime = startTime;
 	}
 
-	public long getEndDate() {
-		return _endDate;
+	public long getEndTime() {
+		return _endTime;
 	}
 
-	public void setEndDate(long endDate) {
-		_endDate = endDate;
+	public void setEndTime(long endTime) {
+		_endTime = endTime;
 	}
 
 	public boolean getAllDay() {
@@ -337,8 +337,8 @@ public class CalendarBookingSoap implements Serializable {
 	private String _title;
 	private String _description;
 	private String _location;
-	private long _startDate;
-	private long _endDate;
+	private long _startTime;
+	private long _endTime;
 	private boolean _allDay;
 	private String _recurrence;
 	private long _firstReminder;

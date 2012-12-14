@@ -87,8 +87,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
 		attributes.put("location", getLocation());
-		attributes.put("startDate", getStartDate());
-		attributes.put("endDate", getEndDate());
+		attributes.put("startTime", getStartTime());
+		attributes.put("endTime", getEndTime());
 		attributes.put("allDay", getAllDay());
 		attributes.put("recurrence", getRecurrence());
 		attributes.put("firstReminder", getFirstReminder());
@@ -190,16 +190,16 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 			setLocation(location);
 		}
 
-		Long startDate = (Long)attributes.get("startDate");
+		Long startTime = (Long)attributes.get("startTime");
 
-		if (startDate != null) {
-			setStartDate(startDate);
+		if (startTime != null) {
+			setStartTime(startTime);
 		}
 
-		Long endDate = (Long)attributes.get("endDate");
+		Long endTime = (Long)attributes.get("endTime");
 
-		if (endDate != null) {
-			setEndDate(endDate);
+		if (endTime != null) {
+			setEndTime(endTime);
 		}
 
 		Boolean allDay = (Boolean)attributes.get("allDay");
@@ -561,20 +561,20 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		_location = location;
 	}
 
-	public long getStartDate() {
-		return _startDate;
+	public long getStartTime() {
+		return _startTime;
 	}
 
-	public void setStartDate(long startDate) {
-		_startDate = startDate;
+	public void setStartTime(long startTime) {
+		_startTime = startTime;
 	}
 
-	public long getEndDate() {
-		return _endDate;
+	public long getEndTime() {
+		return _endTime;
 	}
 
-	public void setEndDate(long endDate) {
-		_endDate = endDate;
+	public void setEndTime(long endTime) {
+		_endTime = endTime;
 	}
 
 	public boolean getAllDay() {
@@ -850,8 +850,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		clone.setTitle(getTitle());
 		clone.setDescription(getDescription());
 		clone.setLocation(getLocation());
-		clone.setStartDate(getStartDate());
-		clone.setEndDate(getEndDate());
+		clone.setStartTime(getStartTime());
+		clone.setEndTime(getEndTime());
 		clone.setAllDay(getAllDay());
 		clone.setRecurrence(getRecurrence());
 		clone.setFirstReminder(getFirstReminder());
@@ -869,10 +869,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	public int compareTo(CalendarBooking calendarBooking) {
 		int value = 0;
 
-		if (getStartDate() < calendarBooking.getStartDate()) {
+		if (getStartTime() < calendarBooking.getStartTime()) {
 			value = -1;
 		}
-		else if (getStartDate() > calendarBooking.getStartDate()) {
+		else if (getStartTime() > calendarBooking.getStartTime()) {
 			value = 1;
 		}
 		else {
@@ -955,10 +955,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getDescription());
 		sb.append(", location=");
 		sb.append(getLocation());
-		sb.append(", startDate=");
-		sb.append(getStartDate());
-		sb.append(", endDate=");
-		sb.append(getEndDate());
+		sb.append(", startTime=");
+		sb.append(getStartTime());
+		sb.append(", endTime=");
+		sb.append(getEndTime());
 		sb.append(", allDay=");
 		sb.append(getAllDay());
 		sb.append(", recurrence=");
@@ -1048,12 +1048,12 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getLocation());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startDate</column-name><column-value><![CDATA[");
-		sb.append(getStartDate());
+			"<column><column-name>startTime</column-name><column-value><![CDATA[");
+		sb.append(getStartTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>endDate</column-name><column-value><![CDATA[");
-		sb.append(getEndDate());
+			"<column><column-name>endTime</column-name><column-value><![CDATA[");
+		sb.append(getEndTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>allDay</column-name><column-value><![CDATA[");
@@ -1118,8 +1118,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private String _description;
 	private String _descriptionCurrentLanguageId;
 	private String _location;
-	private long _startDate;
-	private long _endDate;
+	private long _startTime;
+	private long _endTime;
 	private boolean _allDay;
 	private String _recurrence;
 	private long _firstReminder;

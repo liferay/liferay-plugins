@@ -279,13 +279,13 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
-					"com.liferay.calendar.CalendarBookingEndDateException")) {
-			return new com.liferay.calendar.CalendarBookingEndDateException();
+					"com.liferay.calendar.CalendarBookingEndTimeException")) {
+			return new com.liferay.calendar.CalendarBookingEndTimeException();
 		}
 
 		if (className.equals(
-					"com.liferay.calendar.CalendarBookingStartDateException")) {
-			return new com.liferay.calendar.CalendarBookingStartDateException();
+					"com.liferay.calendar.CalendarBookingStartTimeException")) {
+			return new com.liferay.calendar.CalendarBookingStartTimeException();
 		}
 
 		if (className.equals(

@@ -103,7 +103,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
 			new String[] { String.class.getName() },
 			CalendarBookingModelImpl.UUID_COLUMN_BITMASK |
-			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
+			CalendarBookingModelImpl.STARTTIME_COLUMN_BITMASK |
 			CalendarBookingModelImpl.TITLE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -876,7 +876,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			new String[] { String.class.getName(), Long.class.getName() },
 			CalendarBookingModelImpl.UUID_COLUMN_BITMASK |
 			CalendarBookingModelImpl.COMPANYID_COLUMN_BITMASK |
-			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
+			CalendarBookingModelImpl.STARTTIME_COLUMN_BITMASK |
 			CalendarBookingModelImpl.TITLE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_C = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -1433,7 +1433,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCalendarId",
 			new String[] { Long.class.getName() },
 			CalendarBookingModelImpl.CALENDARID_COLUMN_BITMASK |
-			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
+			CalendarBookingModelImpl.STARTTIME_COLUMN_BITMASK |
 			CalendarBookingModelImpl.TITLE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_CALENDARID = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -1916,7 +1916,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"findByCalendarResourceId", new String[] { Long.class.getName() },
 			CalendarBookingModelImpl.CALENDARRESOURCEID_COLUMN_BITMASK |
-			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
+			CalendarBookingModelImpl.STARTTIME_COLUMN_BITMASK |
 			CalendarBookingModelImpl.TITLE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_CALENDARRESOURCEID = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -2412,7 +2412,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			"findByParentCalendarBookingId",
 			new String[] { Long.class.getName() },
 			CalendarBookingModelImpl.PARENTCALENDARBOOKINGID_COLUMN_BITMASK |
-			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
+			CalendarBookingModelImpl.STARTTIME_COLUMN_BITMASK |
 			CalendarBookingModelImpl.TITLE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_PARENTCALENDARBOOKINGID = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -3143,7 +3143,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			new String[] { Long.class.getName(), Integer.class.getName() },
 			CalendarBookingModelImpl.CALENDARRESOURCEID_COLUMN_BITMASK |
 			CalendarBookingModelImpl.STATUS_COLUMN_BITMASK |
-			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
+			CalendarBookingModelImpl.STARTTIME_COLUMN_BITMASK |
 			CalendarBookingModelImpl.TITLE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_S = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -3662,7 +3662,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			new String[] { Long.class.getName(), Integer.class.getName() },
 			CalendarBookingModelImpl.PARENTCALENDARBOOKINGID_COLUMN_BITMASK |
 			CalendarBookingModelImpl.STATUS_COLUMN_BITMASK |
-			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
+			CalendarBookingModelImpl.STARTTIME_COLUMN_BITMASK |
 			CalendarBookingModelImpl.TITLE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_P_S = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -4686,8 +4686,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		calendarBookingImpl.setTitle(calendarBooking.getTitle());
 		calendarBookingImpl.setDescription(calendarBooking.getDescription());
 		calendarBookingImpl.setLocation(calendarBooking.getLocation());
-		calendarBookingImpl.setStartDate(calendarBooking.getStartDate());
-		calendarBookingImpl.setEndDate(calendarBooking.getEndDate());
+		calendarBookingImpl.setStartTime(calendarBooking.getStartTime());
+		calendarBookingImpl.setEndTime(calendarBooking.getEndTime());
 		calendarBookingImpl.setAllDay(calendarBooking.isAllDay());
 		calendarBookingImpl.setRecurrence(calendarBooking.getRecurrence());
 		calendarBookingImpl.setFirstReminder(calendarBooking.getFirstReminder());

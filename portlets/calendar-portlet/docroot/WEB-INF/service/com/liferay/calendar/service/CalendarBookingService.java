@@ -70,7 +70,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long calendarId, long[] childCalendarIds, long parentCalendarBookingId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, long firstReminder,
 		java.lang.String firstReminderType, long secondReminder,
 		java.lang.String secondReminderType,
@@ -84,7 +84,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteCalendarBookingInstance(long calendarBookingId,
-		long startDate, boolean allFollowing)
+		long startTime, boolean allFollowing)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -108,7 +108,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		long calendarId, long startDate, long endDate)
+		long calendarId, long startTime, long endTime)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -134,7 +134,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startDate, long endDate,
+		java.lang.String keywords, long startTime, long endTime,
 		boolean recurring, int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -145,7 +145,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -155,7 +155,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startDate, long endDate,
+		java.lang.String keywords, long startTime, long endTime,
 		boolean recurring, int[] statuses)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -164,7 +164,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -173,7 +173,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, long firstReminder,
 		java.lang.String firstReminderType, long secondReminder,
 		java.lang.String secondReminderType, int status,
@@ -185,7 +185,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, long firstReminder,
 		java.lang.String firstReminderType, long secondReminder,
 		java.lang.String secondReminderType, int status,
@@ -197,7 +197,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, boolean allFollowing,
 		long firstReminder, java.lang.String firstReminderType,
 		long secondReminder, java.lang.String secondReminderType, int status,
@@ -209,7 +209,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, boolean allFollowing,
 		long firstReminder, java.lang.String firstReminderType,
 		long secondReminder, java.lang.String secondReminderType, int status,

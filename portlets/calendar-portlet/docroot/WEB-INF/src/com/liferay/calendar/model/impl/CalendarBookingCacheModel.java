@@ -68,10 +68,10 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(description);
 		sb.append(", location=");
 		sb.append(location);
-		sb.append(", startDate=");
-		sb.append(startDate);
-		sb.append(", endDate=");
-		sb.append(endDate);
+		sb.append(", startTime=");
+		sb.append(startTime);
+		sb.append(", endTime=");
+		sb.append(endTime);
 		sb.append(", allDay=");
 		sb.append(allDay);
 		sb.append(", recurrence=");
@@ -158,8 +158,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setLocation(location);
 		}
 
-		calendarBookingImpl.setStartDate(startDate);
-		calendarBookingImpl.setEndDate(endDate);
+		calendarBookingImpl.setStartTime(startTime);
+		calendarBookingImpl.setEndTime(endTime);
 		calendarBookingImpl.setAllDay(allDay);
 
 		if (recurrence == null) {
@@ -224,8 +224,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		title = objectInput.readUTF();
 		description = objectInput.readUTF();
 		location = objectInput.readUTF();
-		startDate = objectInput.readLong();
-		endDate = objectInput.readLong();
+		startTime = objectInput.readLong();
+		endTime = objectInput.readLong();
 		allDay = objectInput.readBoolean();
 		recurrence = objectInput.readUTF();
 		firstReminder = objectInput.readLong();
@@ -286,8 +286,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			objectOutput.writeUTF(location);
 		}
 
-		objectOutput.writeLong(startDate);
-		objectOutput.writeLong(endDate);
+		objectOutput.writeLong(startTime);
+		objectOutput.writeLong(endTime);
 		objectOutput.writeBoolean(allDay);
 
 		if (recurrence == null) {
@@ -342,8 +342,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	public String title;
 	public String description;
 	public String location;
-	public long startDate;
-	public long endDate;
+	public long startTime;
+	public long endTime;
 	public boolean allDay;
 	public String recurrence;
 	public long firstReminder;

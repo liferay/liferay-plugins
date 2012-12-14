@@ -280,7 +280,7 @@ public class CalendarBookingLocalServiceWrapper
 		long parentCalendarBookingId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, long firstReminder,
 		java.lang.String firstReminderType, long secondReminder,
 		java.lang.String secondReminderType,
@@ -289,7 +289,7 @@ public class CalendarBookingLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.addCalendarBooking(userId,
 			calendarId, childCalendarIds, parentCalendarBookingId, titleMap,
-			descriptionMap, location, startDate, endDate, allDay, recurrence,
+			descriptionMap, location, startTime, endTime, allDay, recurrence,
 			firstReminder, firstReminderType, secondReminder,
 			secondReminderType, serviceContext);
 	}
@@ -301,11 +301,11 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	public void deleteCalendarBookingInstance(long calendarBookingId,
-		long startDate, boolean allFollowing)
+		long startTime, boolean allFollowing)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarBookingLocalService.deleteCalendarBookingInstance(calendarBookingId,
-			startDate, allFollowing);
+			startTime, allFollowing);
 	}
 
 	public void deleteCalendarBookings(long calendarId)
@@ -335,10 +335,10 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		long calendarId, long startDate, long endDate)
+		long calendarId, long startTime, long endTime)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.getCalendarBookings(calendarId,
-			startDate, endDate);
+			startTime, endTime);
 	}
 
 	public int getCalendarBookingsCount(long calendarId,
@@ -364,13 +364,13 @@ public class CalendarBookingLocalServiceWrapper
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startDate, long endDate,
+		java.lang.String keywords, long startTime, long endTime,
 		boolean recurring, int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.search(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId,
-			keywords, startDate, endDate, recurring, statuses, start, end,
+			keywords, startTime, endTime, recurring, statuses, start, end,
 			orderByComparator);
 	}
 
@@ -378,35 +378,35 @@ public class CalendarBookingLocalServiceWrapper
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.search(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
-			description, location, startDate, endDate, recurring, statuses,
+			description, location, startTime, endTime, recurring, statuses,
 			andOperator, start, end, orderByComparator);
 	}
 
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startDate, long endDate, int[] statuses)
+		java.lang.String keywords, long startTime, long endTime, int[] statuses)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.searchCount(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId,
-			keywords, startDate, endDate, statuses);
+			keywords, startTime, endTime, statuses);
 	}
 
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.searchCount(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
-			description, location, startDate, endDate, statuses, andOperator);
+			description, location, startTime, endTime, statuses, andOperator);
 	}
 
 	public void updateAsset(long userId,
@@ -424,7 +424,7 @@ public class CalendarBookingLocalServiceWrapper
 		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, long firstReminder,
 		java.lang.String firstReminderType, long secondReminder,
 		java.lang.String secondReminderType, int status,
@@ -433,7 +433,7 @@ public class CalendarBookingLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.updateCalendarBooking(userId,
 			calendarBookingId, calendarId, childCalendarIds, titleMap,
-			descriptionMap, location, startDate, endDate, allDay, recurrence,
+			descriptionMap, location, startTime, endTime, allDay, recurrence,
 			firstReminder, firstReminderType, secondReminder,
 			secondReminderType, status, serviceContext);
 	}
@@ -442,7 +442,7 @@ public class CalendarBookingLocalServiceWrapper
 		long userId, long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, long firstReminder,
 		java.lang.String firstReminderType, long secondReminder,
 		java.lang.String secondReminderType, int status,
@@ -451,7 +451,7 @@ public class CalendarBookingLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.updateCalendarBooking(userId,
 			calendarBookingId, calendarId, titleMap, descriptionMap, location,
-			startDate, endDate, allDay, recurrence, firstReminder,
+			startTime, endTime, allDay, recurrence, firstReminder,
 			firstReminderType, secondReminder, secondReminderType, status,
 			serviceContext);
 	}
@@ -461,7 +461,7 @@ public class CalendarBookingLocalServiceWrapper
 		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, boolean allFollowing,
 		long firstReminder, java.lang.String firstReminderType,
 		long secondReminder, java.lang.String secondReminderType, int status,
@@ -470,7 +470,7 @@ public class CalendarBookingLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.updateCalendarBookingInstance(userId,
 			calendarBookingId, calendarId, childCalendarIds, titleMap,
-			descriptionMap, location, startDate, endDate, allDay, recurrence,
+			descriptionMap, location, startTime, endTime, allDay, recurrence,
 			allFollowing, firstReminder, firstReminderType, secondReminder,
 			secondReminderType, status, serviceContext);
 	}
@@ -479,7 +479,7 @@ public class CalendarBookingLocalServiceWrapper
 		long userId, long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, boolean allFollowing,
 		long firstReminder, java.lang.String firstReminderType,
 		long secondReminder, java.lang.String secondReminderType, int status,
@@ -488,7 +488,7 @@ public class CalendarBookingLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.updateCalendarBookingInstance(userId,
 			calendarBookingId, calendarId, titleMap, descriptionMap, location,
-			startDate, endDate, allDay, recurrence, allFollowing,
+			startTime, endTime, allDay, recurrence, allFollowing,
 			firstReminder, firstReminderType, secondReminder,
 			secondReminderType, status, serviceContext);
 	}

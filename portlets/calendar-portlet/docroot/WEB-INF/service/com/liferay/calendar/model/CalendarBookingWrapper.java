@@ -60,8 +60,8 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
 		attributes.put("location", getLocation());
-		attributes.put("startDate", getStartDate());
-		attributes.put("endDate", getEndDate());
+		attributes.put("startTime", getStartTime());
+		attributes.put("endTime", getEndTime());
 		attributes.put("allDay", getAllDay());
 		attributes.put("recurrence", getRecurrence());
 		attributes.put("firstReminder", getFirstReminder());
@@ -162,16 +162,16 @@ public class CalendarBookingWrapper implements CalendarBooking,
 			setLocation(location);
 		}
 
-		Long startDate = (Long)attributes.get("startDate");
+		Long startTime = (Long)attributes.get("startTime");
 
-		if (startDate != null) {
-			setStartDate(startDate);
+		if (startTime != null) {
+			setStartTime(startTime);
 		}
 
-		Long endDate = (Long)attributes.get("endDate");
+		Long endTime = (Long)attributes.get("endTime");
 
-		if (endDate != null) {
-			setEndDate(endDate);
+		if (endTime != null) {
+			setEndTime(endTime);
 		}
 
 		Boolean allDay = (Boolean)attributes.get("allDay");
@@ -744,39 +744,39 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
-	* Returns the start date of this calendar booking.
+	* Returns the start time of this calendar booking.
 	*
-	* @return the start date of this calendar booking
+	* @return the start time of this calendar booking
 	*/
-	public long getStartDate() {
-		return _calendarBooking.getStartDate();
+	public long getStartTime() {
+		return _calendarBooking.getStartTime();
 	}
 
 	/**
-	* Sets the start date of this calendar booking.
+	* Sets the start time of this calendar booking.
 	*
-	* @param startDate the start date of this calendar booking
+	* @param startTime the start time of this calendar booking
 	*/
-	public void setStartDate(long startDate) {
-		_calendarBooking.setStartDate(startDate);
+	public void setStartTime(long startTime) {
+		_calendarBooking.setStartTime(startTime);
 	}
 
 	/**
-	* Returns the end date of this calendar booking.
+	* Returns the end time of this calendar booking.
 	*
-	* @return the end date of this calendar booking
+	* @return the end time of this calendar booking
 	*/
-	public long getEndDate() {
-		return _calendarBooking.getEndDate();
+	public long getEndTime() {
+		return _calendarBooking.getEndTime();
 	}
 
 	/**
-	* Sets the end date of this calendar booking.
+	* Sets the end time of this calendar booking.
 	*
-	* @param endDate the end date of this calendar booking
+	* @param endTime the end time of this calendar booking
 	*/
-	public void setEndDate(long endDate) {
-		_calendarBooking.setEndDate(endDate);
+	public void setEndTime(long endTime) {
+		_calendarBooking.setEndTime(endTime);
 	}
 
 	/**

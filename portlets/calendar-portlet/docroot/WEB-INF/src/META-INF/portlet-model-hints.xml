@@ -38,10 +38,10 @@
 		<field name="location" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="startDate" type="long">
+		<field name="startTime" type="long">
 			<hint name="type">Date</hint>
 		</field>
-		<field name="endDate" type="long">
+		<field name="endTime" type="long">
 			<hint name="type">Date</hint>
 		</field>
 		<field name="allDay" type="boolean" />

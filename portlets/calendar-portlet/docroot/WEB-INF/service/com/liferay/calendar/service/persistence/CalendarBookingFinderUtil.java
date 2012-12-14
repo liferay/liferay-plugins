@@ -24,91 +24,91 @@ public class CalendarBookingFinderUtil {
 	public static int countByKeywords(long companyId, long[] groupIds,
 		long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String keywords,
-		long startDate, long endDate, int[] statuses)
+		long startTime, long endTime, int[] statuses)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .countByKeywords(companyId, groupIds, calendarIds,
-			calendarResourceIds, parentCalendarBookingId, keywords, startDate,
-			endDate, statuses);
+			calendarResourceIds, parentCalendarBookingId, keywords, startTime,
+			endTime, statuses);
 	}
 
 	public static int countByC_G_C_C_P_T_D_L_S_E_S(long companyId,
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String title,
 		java.lang.String description, java.lang.String location,
-		long startDate, long endDate, int[] statuses, boolean andOperator)
+		long startTime, long endTime, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .countByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
-			description, location, startDate, endDate, statuses, andOperator);
+			description, location, startTime, endTime, statuses, andOperator);
 	}
 
 	public static int countByC_G_C_C_P_T_D_L_S_E_S(long companyId,
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String[] titles,
 		java.lang.String[] descriptions, java.lang.String[] locations,
-		long startDate, long endDate, int[] statuses, boolean andOperator)
+		long startTime, long endTime, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .countByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, titles,
-			descriptions, locations, startDate, endDate, statuses, andOperator);
+			descriptions, locations, startTime, endTime, statuses, andOperator);
 	}
 
 	public static int filterCountByKeywords(long companyId, long[] groupIds,
 		long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String keywords,
-		long startDate, long endDate, int[] statuses)
+		long startTime, long endTime, int[] statuses)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .filterCountByKeywords(companyId, groupIds, calendarIds,
-			calendarResourceIds, parentCalendarBookingId, keywords, startDate,
-			endDate, statuses);
+			calendarResourceIds, parentCalendarBookingId, keywords, startTime,
+			endTime, statuses);
 	}
 
 	public static int filterCountByC_G_C_C_P_T_D_L_S_E_S(long companyId,
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String title,
 		java.lang.String description, java.lang.String location,
-		long startDate, long endDate, int[] statuses, boolean andOperator)
+		long startTime, long endTime, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .filterCountByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
-			description, location, startDate, endDate, statuses, andOperator);
+			description, location, startTime, endTime, statuses, andOperator);
 	}
 
 	public static int filterCountByC_G_C_C_P_T_D_L_S_E_S(long companyId,
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String[] titles,
 		java.lang.String[] descriptions, java.lang.String[] locations,
-		long startDate, long endDate, int[] statuses, boolean andOperator)
+		long startTime, long endTime, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .filterCountByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, titles,
-			descriptions, locations, startDate, endDate, statuses, andOperator);
+			descriptions, locations, startTime, endTime, statuses, andOperator);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startDate, long endDate,
+		java.lang.String keywords, long startTime, long endTime,
 		boolean recurring, int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .filterFindByKeywords(companyId, groupIds, calendarIds,
-			calendarResourceIds, parentCalendarBookingId, keywords, startDate,
-			endDate, recurring, statuses, start, end, orderByComparator);
+			calendarResourceIds, parentCalendarBookingId, keywords, startTime,
+			endTime, recurring, statuses, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> filterFindByC_G_C_C_P_T_D_L_S_E_S(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -116,7 +116,7 @@ public class CalendarBookingFinderUtil {
 		return getFinder()
 				   .filterFindByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
-			description, location, startDate, endDate, recurring, statuses,
+			description, location, startTime, endTime, recurring, statuses,
 			andOperator, start, end, orderByComparator);
 	}
 
@@ -124,7 +124,7 @@ public class CalendarBookingFinderUtil {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String[] titles, java.lang.String[] descriptions,
-		java.lang.String[] locations, long startDate, long endDate,
+		java.lang.String[] locations, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -132,34 +132,34 @@ public class CalendarBookingFinderUtil {
 		return getFinder()
 				   .filterFindByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, titles,
-			descriptions, locations, startDate, endDate, recurring, statuses,
+			descriptions, locations, startTime, endTime, recurring, statuses,
 			andOperator, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByFutureReminders(
-		long startDate)
+		long startTime)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().findByFutureReminders(startDate);
+		return getFinder().findByFutureReminders(startTime);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByKeywords(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startDate, long endDate,
+		java.lang.String keywords, long startTime, long endTime,
 		boolean recurring, int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .findByKeywords(companyId, groupIds, calendarIds,
-			calendarResourceIds, parentCalendarBookingId, keywords, startDate,
-			endDate, recurring, statuses, start, end, orderByComparator);
+			calendarResourceIds, parentCalendarBookingId, keywords, startTime,
+			endTime, recurring, statuses, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_G_C_C_P_T_D_L_S_E_S(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, long startDate, long endDate,
+		java.lang.String location, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -167,7 +167,7 @@ public class CalendarBookingFinderUtil {
 		return getFinder()
 				   .findByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
-			description, location, startDate, endDate, recurring, statuses,
+			description, location, startTime, endTime, recurring, statuses,
 			andOperator, start, end, orderByComparator);
 	}
 
@@ -175,7 +175,7 @@ public class CalendarBookingFinderUtil {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String[] titles, java.lang.String[] descriptions,
-		java.lang.String[] locations, long startDate, long endDate,
+		java.lang.String[] locations, long startTime, long endTime,
 		boolean recurring, int[] statuses, boolean andOperator, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -183,7 +183,7 @@ public class CalendarBookingFinderUtil {
 		return getFinder()
 				   .findByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
 			calendarIds, calendarResourceIds, parentCalendarBookingId, titles,
-			descriptions, locations, startDate, endDate, recurring, statuses,
+			descriptions, locations, startTime, endTime, recurring, statuses,
 			andOperator, start, end, orderByComparator);
 	}
 
