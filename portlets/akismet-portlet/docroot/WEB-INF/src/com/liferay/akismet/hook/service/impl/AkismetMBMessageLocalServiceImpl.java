@@ -275,7 +275,7 @@ public class AkismetMBMessageLocalServiceImpl
 			return false;
 		}
 
-		String userAgent = headers.get(HttpHeaders.USER_AGENT);
+		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
 
 		if (Validator.isNull(userAgent)) {
 			return false;
