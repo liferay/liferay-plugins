@@ -71,6 +71,8 @@ public class CalendarResourceLocalServiceImpl
 			groupId = getGlobalResourceGroupId(serviceContext.getCompanyId());
 		}
 
+		User user = userPersistence.findByPrimaryKey(userId);
+
 		if (PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE ||
 			Validator.isNull(code)) {
 
@@ -84,8 +86,6 @@ public class CalendarResourceLocalServiceImpl
 		Date now = new Date();
 
 		validate(groupId, classNameId, classPK, code);
-
-		User user = userPersistence.findByPrimaryKey(userId);
 
 		CalendarResource calendarResource = calendarResourcePersistence.create(
 			calendarResourceId);
