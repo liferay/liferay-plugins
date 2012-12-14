@@ -105,7 +105,7 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 		catch (Exception e) {
 			_log.error("Unable to sanitize input", e);
 
-			throw new SanitizerException(e);
+			throw new SanitizerException(e.getMessage());
 		}
 	}
 
