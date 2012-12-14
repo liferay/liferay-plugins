@@ -625,7 +625,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		for (int i = 0; i < taskNames.length; i++) {
-			sb.append("(KaleoTaskInstanceToken.kaleoTaskName LIKE ?)");
+			sb.append(
+				"(lower(KaleoTaskInstanceToken.kaleoTaskName) LIKE lower(?))");
 
 			if ((i + 1) < taskNames.length) {
 				sb.append(" OR ");
