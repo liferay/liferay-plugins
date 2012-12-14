@@ -158,10 +158,10 @@ public class NotificationUtil {
 
 			User user = notificationRecipient.getUser();
 
-			java.util.Calendar now = CalendarFactoryUtil.getCalendar(
+			java.util.Calendar nowCalendar = CalendarFactoryUtil.getCalendar(
 				TimeZoneUtil.getTimeZone(StringPool.UTC));
 
-			long nowTime = now.getTimeInMillis();
+			long nowTime = nowCalendar.getTimeInMillis();
 
 			long startTime = calendarBooking.getStartDate();
 
