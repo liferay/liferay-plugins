@@ -20,8 +20,8 @@
 	<div class="aui-scheduler-event-recorder-overlay-arrow"></div>
 
 	<input name="allDay" type="hidden" value="{allDay}" />
-	<input name="startDate" type="hidden" value="{startDate}" />
-	<input name="endDate" type="hidden" value="{endDate}" />
+	<input name="startTime" type="hidden" value="{startTime}" />
+	<input name="endTime" type="hidden" value="{endTime}" />
 
 	<div class="aui-scheduler-event-recorder-overlay-header">
 		<tpl if="values.permissions.MANAGE_BOOKINGS">

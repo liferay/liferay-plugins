@@ -19,7 +19,7 @@ int count = 0;
 String exceptionDatesString = StringPool.BLANK;
 Frequency frequency = null;
 int interval = 0;
-java.util.Calendar untilJCalendar = startDateJCalendar;
+java.util.Calendar untilJCalendar = startTimeJCalendar;
 List<Weekday> weekdays = new ArrayList<Weekday>();
 
 boolean afterChecked = false;
@@ -163,8 +163,8 @@ if (recurrence != null) {
 							monthValue="<%= untilJCalendar.get(java.util.Calendar.MONTH) %>"
 							name="untilDate"
 							yearParam="untilDateYear"
-							yearRangeEnd="<%= startDateJCalendar.get(java.util.Calendar.YEAR) + 5 %>"
-							yearRangeStart="<%= startDateJCalendar.get(java.util.Calendar.YEAR) - 5 %>"
+							yearRangeEnd="<%= startTimeJCalendar.get(java.util.Calendar.YEAR) + 5 %>"
+							yearRangeStart="<%= startTimeJCalendar.get(java.util.Calendar.YEAR) - 5 %>"
 							yearValue="<%= untilJCalendar.get(java.util.Calendar.YEAR) %>"
 						/>
 					</div>

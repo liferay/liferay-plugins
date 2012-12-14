@@ -30,23 +30,23 @@ long calendarBookingId = BeanParamUtil.getLong(calendarBooking, request, "calend
 long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
 String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
 
-long startDate = BeanParamUtil.getLong(calendarBooking, request, "startDate", nowJCalendar.getTimeInMillis());
+long startTime = BeanParamUtil.getLong(calendarBooking, request, "startTime", nowJCalendar.getTimeInMillis());
 
-java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(startDate, userTimeZone);
+java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(startTime, userTimeZone);
 
-java.util.Calendar defaultEndDateJCalendar = (java.util.Calendar)nowJCalendar.clone();
+java.util.Calendar defaultEndTimeJCalendar = (java.util.Calendar)nowJCalendar.clone();
 
-defaultEndDateJCalendar.add(java.util.Calendar.HOUR, 1);
+defaultEndTimeJCalendar.add(java.util.Calendar.HOUR, 1);
 
-long endDate = BeanParamUtil.getLong(calendarBooking, request, "endDate", defaultEndDateJCalendar.getTimeInMillis());
+long endTime = BeanParamUtil.getLong(calendarBooking, request, "endTime", defaultEndTimeJCalendar.getTimeInMillis());
 
-java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(endDate, userTimeZone);
+java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(endTime, userTimeZone);
 
 boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
 
 if (!allDay) {
-	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(startDateJCalendar, 30);
-	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(endDateJCalendar, 30);
+	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(startTimeJCalendar, 30);
+	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(endTimeJCalendar, 30);
 }
 
 long firstReminder = BeanParamUtil.getLong(calendarBooking, request, "firstReminder");
@@ -103,7 +103,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 <aui:form action="<%= updateCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
 	<aui:input name="childCalendarIds" type="hidden" />
-	<aui:input name="oldStartDate" type="hidden" value="<%= startDateJCalendar.getTimeInMillis() %>" />
+	<aui:input name="oldStartTime" type="hidden" value="<%= startTimeJCalendar.getTimeInMillis() %>" />
 	<aui:input name="allFollowing" type="hidden" />
 	<aui:input name="updateCalendarBookingInstance" type="hidden" />
 
@@ -117,11 +117,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		<aui:input name="title" />
 
 		<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />startDateContainer">
-			<aui:input name="startDate" value="<%= startDateJCalendar %>" />
+			<aui:input label="startDate" name="startTime" value="<%= startTimeJCalendar %>" />
 		</div>
 
 		<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />endDateContainer">
-			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
+			<aui:input label="endDate" name="endTime" value="<%= endTimeJCalendar %>" />
 		</div>
 
 		<aui:input checked="<%= allDay %>" name="allDay" />
@@ -568,7 +568,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			color: '#F8F8F8',
 			content: '&nbsp;',
 			editingEvent: true,
-			endDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= endDate %>)),
+			endDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= endTime %>)),
 			on: {
 				endDateChange: function(event) {
 					event.stopPropagation();
@@ -579,7 +579,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			},
 			preventDateChange: true,
 			scheduler: scheduler,
-			startDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= startDate %>))
+			startDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= startTime %>))
 		}
 	);
 

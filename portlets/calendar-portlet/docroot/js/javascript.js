@@ -33,7 +33,7 @@ AUI.add(
 
 		var TPL_INVITEES_URL = '{inviteesURL}&{portletNamespace}parentCalendarBookingId={calendarBookingId}';
 
-		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startDate={startDate}&{portletNamespace}endDate={endDate}&{portletNamespace}ruleName={ruleName}';
+		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
 
 		var COMPANY_GROUP_ID = toInt(themeDisplay.getCompanyGroupId());
 
@@ -100,7 +100,7 @@ AUI.add(
 							calendarId: schedulerEvent.get('calendarId'),
 							childCalendarIds: STR_BLANK,
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endDate: instance.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
+							endTime: instance.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: schedulerEvent.get('firstReminder'),
 							firstReminderType: schedulerEvent.get('firstReminderType'),
 							location: schedulerEvent.get('location'),
@@ -108,7 +108,7 @@ AUI.add(
 							recurrence: schedulerEvent.get('recurrence'),
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startDate: instance.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
+							startTime: instance.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
 							titleMap: instance.getLocalizationMap(schedulerEvent.get('content'))
 						}
 					},
@@ -228,7 +228,7 @@ AUI.add(
 						'/calendar-portlet/calendarbooking/delete-calendar-booking-instance': {
 							allFollowing: allFollowing,
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
-							startDate: CalendarUtil.toUTCTimeZone(schedulerEvent.get('startDate')).getTime()
+							startTime: CalendarUtil.toUTCTimeZone(schedulerEvent.get('startDate')).getTime()
 						}
 					},
 					{
@@ -308,11 +308,11 @@ AUI.add(
 					TPL_RENDERING_RULES_URL,
 					{
 						calendarIds: calendarIds.join(),
-						endDate: endDate.getTime(),
+						endTime: endDate.getTime(),
 						portletNamespace: instance.PORTLET_NAMESPACE,
 						renderingRulesURL: instance.RENDERING_RULES_URL,
 						ruleName: ruleName,
-						startDate: startDate.getTime()
+						startTime: startDate.getTime()
 					}
 				);
 
@@ -363,14 +363,14 @@ AUI.add(
 							calendarResourceIds: STR_BLANK,
 							companyId: COMPANY_ID,
 							end: -1,
-							endDate: endDate.getTime(),
+							endTime: endDate.getTime(),
 							groupIds: [0, COMPANY_GROUP_ID, GROUP_ID].join(','),
 							keywords: null,
 							orderByComparator: null,
 							parentCalendarBookingId: -1,
 							recurring: true,
 							start: Workflow.STATUS_APPROVED,
-							startDate: startDate.getTime(),
+							startTime: startDate.getTime(),
 							statuses: status.join(',')
 						}
 					},
@@ -570,7 +570,7 @@ AUI.add(
 						calendarId: calendarBooking.calendarId,
 						content: calendarBooking.titleCurrentValue,
 						description: calendarBooking.descriptionCurrentValue,
-						endDate: instance.toUserTimeZone(calendarBooking.endDate),
+						endDate: instance.toUserTimeZone(calendarBooking.endTime),
 						firstReminder: calendarBooking.firstReminder,
 						firstReminderType: calendarBooking.firstReminderType,
 						location: calendarBooking.location,
@@ -578,7 +578,7 @@ AUI.add(
 						recurrence: calendarBooking.recurrence,
 						secondReminder: calendarBooking.secondReminder,
 						secondReminderType: calendarBooking.secondReminderType,
-						startDate: instance.toUserTimeZone(calendarBooking.startDate),
+						startDate: instance.toUserTimeZone(calendarBooking.startTime),
 						status: calendarBooking.status
 					}
 				);
@@ -614,14 +614,14 @@ AUI.add(
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endDate: instance.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
+							endTime: instance.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: schedulerEvent.get('firstReminder'),
 							firstReminderType: schedulerEvent.get('firstReminderType'),
 							location: schedulerEvent.get('location'),
 							recurrence: schedulerEvent.get('recurrence'),
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startDate: instance.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
+							startTime: instance.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
 							status: schedulerEvent.get('status'),
 							titleMap: instance.getLocalizationMap(schedulerEvent.get('content')),
 							userId: USER_ID
@@ -675,14 +675,14 @@ AUI.add(
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endDate: instance.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
+							endTime: instance.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: schedulerEvent.get('firstReminder'),
 							firstReminderType: schedulerEvent.get('firstReminderType'),
 							location: schedulerEvent.get('location'),
 							recurrence: schedulerEvent.get('recurrence'),
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startDate: instance.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
+							startTime: instance.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
 							status: schedulerEvent.get('status'),
 							titleMap: instance.getLocalizationMap(schedulerEvent.get('content')),
 							userId: USER_ID
@@ -1310,10 +1310,10 @@ AUI.add(
 														offset = newVal.getTime() - prevVal.getTime();
 													}
 
-													var calendarStartDate = calendarBooking.startDate + offset;
+													var calendarStartTime = calendarBooking.startTime + offset;
 
-													var endDate = CalendarUtil.toUserTimeZone(calendarStartDate + (schedulerEvent.getSecondsDuration() * 1000));
-													var startDate = CalendarUtil.toUserTimeZone(calendarStartDate);
+													var endDate = CalendarUtil.toUserTimeZone(calendarStartTime + (schedulerEvent.getSecondsDuration() * 1000));
+													var startDate = CalendarUtil.toUserTimeZone(calendarStartTime);
 
 													newSchedulerEvent.setAttrs(
 														{
@@ -1481,15 +1481,19 @@ AUI.add(
 
 						var permissions = calendar.get('permissions');
 
+						var templateData = SchedulerEventRecorder.superclass.getTemplateData.apply(this, arguments);
+
 						return A.merge(
-							SchedulerEventRecorder.superclass.getTemplateData.apply(this, arguments),
+							templateData,
 							{
 								allDay: schedulerEvent.get('allDay'),
 								availableCalendars: availableCalendars,
 								calendar: calendar,
 								calendarIds: AObject.keys(availableCalendars),
 								editing: editing,
+								endTime: templateData.endDate,
 								permissions: permissions,
+								startTime: templateData.startDate,
 								status: CalendarUtil.getStatusLabel(schedulerEvent.get('status'))
 							}
 						);
@@ -1556,8 +1560,8 @@ AUI.add(
 
 						data.date = date.getTime();
 
-						data.endDate = CalendarUtil.toUTCTimeZone(data.endDate).getTime();
-						data.startDate = CalendarUtil.toUTCTimeZone(data.startDate).getTime();
+						data.endTime = CalendarUtil.toUTCTimeZone(data.endTime).getTime();
+						data.startTime = CalendarUtil.toUTCTimeZone(data.startTime).getTime();
 
 						data.titleCurrentValue = encodeURIComponent(data.content);
 
