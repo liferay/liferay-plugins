@@ -17,7 +17,7 @@ package com.liferay.polls;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class NoSuchQuestionException extends NoSuchModelException {
 

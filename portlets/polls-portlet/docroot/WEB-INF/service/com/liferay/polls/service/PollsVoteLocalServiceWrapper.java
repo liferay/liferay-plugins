@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * This class is a wrapper for {@link PollsVoteLocalService}.
  * </p>
  *
- * @author    Juan Fernï¿½ndez
+ * @author    Juan Fernández
  * @see       PollsVoteLocalService
  * @generated
  */

@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote {
 	public PollsVoteClp() {

@@ -38,7 +38,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 	implements PollsQuestion {

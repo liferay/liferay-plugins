@@ -19,7 +19,7 @@ import com.liferay.portal.model.PersistedModel;
 /**
  * The extended model interface for the PollsChoice service. Represents a row in the &quot;Polls_PollsChoice&quot; database table, with each column mapped to a property of this class.
  *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fernández
  * @see PollsChoiceModel
  * @see com.liferay.polls.model.impl.PollsChoiceImpl
  * @see com.liferay.polls.model.impl.PollsChoiceModelImpl

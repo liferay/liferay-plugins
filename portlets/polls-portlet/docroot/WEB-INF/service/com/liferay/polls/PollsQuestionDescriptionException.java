@@ -17,7 +17,7 @@ package com.liferay.polls;
 import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsQuestionDescriptionException extends PortalException {
 

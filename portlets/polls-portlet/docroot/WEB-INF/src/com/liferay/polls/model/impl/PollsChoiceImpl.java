@@ -15,20 +15,11 @@
 package com.liferay.polls.model.impl;
 
 /**
- * The extended model implementation for the PollsChoice service. Represents a row in the &quot;Polls_PollsChoice&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.polls.model.PollsChoice} interface.
- * </p>
- *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fernández
  */
 public class PollsChoiceImpl extends PollsChoiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a polls choice model instance should use the {@link com.liferay.polls.model.PollsChoice} interface instead.
-	 */
+
 	public PollsChoiceImpl() {
 	}
+
 }

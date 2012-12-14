@@ -17,24 +17,8 @@ package com.liferay.polls.service.impl;
 import com.liferay.polls.service.base.PollsQuestionLocalServiceBaseImpl;
 
 /**
- * The implementation of the polls question local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.polls.service.PollsQuestionLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
- * @author Juan Fernï¿½ndez
- * @see com.liferay.polls.service.base.PollsQuestionLocalServiceBaseImpl
- * @see com.liferay.polls.service.PollsQuestionLocalServiceUtil
+ * @author Juan Fernández
  */
 public class PollsQuestionLocalServiceImpl
 	extends PollsQuestionLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.polls.service.PollsQuestionLocalServiceUtil} to access the polls question local service.
-	 */
 }

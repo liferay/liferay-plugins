@@ -17,7 +17,7 @@ package com.liferay.polls.service;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 	public PollsQuestionLocalServiceClp(

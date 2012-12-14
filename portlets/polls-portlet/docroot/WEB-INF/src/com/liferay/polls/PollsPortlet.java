@@ -16,6 +16,8 @@ package com.liferay.polls;
 
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+/**
+ * @author Juan Fernández
+ */
 public class PollsPortlet extends MVCPortlet {
-
 }

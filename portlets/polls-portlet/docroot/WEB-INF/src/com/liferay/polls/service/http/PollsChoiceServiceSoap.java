@@ -50,7 +50,7 @@ package com.liferay.polls.service.http;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    Juan Fernï¿½ndez
+ * @author    Juan Fernández
  * @see       PollsChoiceServiceHttp
  * @see       com.liferay.polls.model.PollsChoiceSoap
  * @see       com.liferay.polls.service.PollsChoiceServiceUtil
