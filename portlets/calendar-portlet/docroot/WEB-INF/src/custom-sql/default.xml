@@ -31,7 +31,7 @@
 			WHERE
 				(
 					(recurrence IS NOT NULL) OR
-					(startDate >= ?)
+					(startTime >= ?)
 				) AND
 				(firstReminder > 0) AND
 				(secondReminder > 0) AND
