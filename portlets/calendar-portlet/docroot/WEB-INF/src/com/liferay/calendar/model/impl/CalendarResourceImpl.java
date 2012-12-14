@@ -43,7 +43,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
 				getGroupId(), getCalendarResourceId(), true);
 
-		if (calendars.size() > 0) {
+		if (!calendars.isEmpty()) {
 			return calendars.get(0);
 		}
 
