@@ -31,6 +31,7 @@
 <%@ page import="com.liferay.portal.NoSuchGroupException" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
