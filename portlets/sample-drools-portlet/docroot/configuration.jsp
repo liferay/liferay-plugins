@@ -40,13 +40,14 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 		<aui:input cssClass="lfr-textarea-container" name="rules" style="height: 250px; width: 100%;" type="textarea" value="<%= rulesValue %>" wrap="off" />
 
 		<%
+		MethodKey methodKey = new MethodKey(ClassResolverUtil.resolveByPortalClassLoader("com.liferay.portal.security.permission.ResourceActionsUtil"), "getModelResource", PageContext.class, String.class);
 
 		// Left list
 
 		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
 		for (long classNameId : classNameIdValues) {
-			String value = (String)PortalClassInvoker.invoke(false, "com.liferay.portal.security.permission.ResourceActionsUtil", "getModelResource", new String[] {PageContext.class.getName(), String.class.getName()}, pageContext, PortalUtil.getClassName(classNameId));
+			String value = (String)PortalClassInvoker.invoke(false, methodKey, pageContext, PortalUtil.getClassName(classNameId));
 
 			leftList.add(new KeyValuePair(String.valueOf(classNameId), value));
 		}
@@ -57,7 +58,7 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 
 		for (long classNameId : AssetRendererFactoryRegistryUtil.getClassNameIds()) {
 			if (!ArrayUtil.contains(classNameIdValues, classNameId)) {
-				String value = (String)PortalClassInvoker.invoke(false, "com.liferay.portal.security.permission.ResourceActionsUtil", "getModelResource", new String[] {PageContext.class.getName(), String.class.getName()}, pageContext, PortalUtil.getClassName(classNameId));
+				String value = (String)PortalClassInvoker.invoke(false, methodKey, pageContext, PortalUtil.getClassName(classNameId));
 
 				rightList.add(new KeyValuePair(String.valueOf(classNameId), value));
 			}
