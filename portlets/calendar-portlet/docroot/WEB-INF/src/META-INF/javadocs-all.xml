@@ -2,6 +2,25 @@
 
 <javadocs>
 	<javadoc>
+		<name>CalendarCustomAttributesDisplay</name>
+		<type>com.liferay.calendar.CalendarCustomAttributesDisplay</type>
+		<author><![CDATA[Fabio Pezzutto]]></author>
+		<author><![CDATA[Eduardo Lundgren]]></author>
+		<method>
+			<name>getClassName</name>
+		</method>
+		<method>
+			<name>getIconPath</name>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+			</param>
+		</method>
+		<field>
+			<name>CLASS_NAME</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>ConfigurationActionImpl</name>
 		<type>com.liferay.calendar.action.ConfigurationActionImpl</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>
@@ -62,6 +81,507 @@
 				<type>java.lang.Exception</type>
 			</throws>
 		</method>
+	</javadoc>
+	<javadoc>
+		<name>CalendarBookingAssetRenderer</name>
+		<type>com.liferay.calendar.asset.CalendarBookingAssetRenderer</type>
+		<author><![CDATA[Fabio Pezzutto]]></author>
+		<author><![CDATA[Eduardo Lundgren]]></author>
+		<method>
+			<name>CalendarBookingAssetRenderer</name>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+			</param>
+		</method>
+		<method>
+			<name>getAssetRendererFactoryClassName</name>
+		</method>
+		<method>
+			<name>getClassPK</name>
+		</method>
+		<method>
+			<name>getGroupId</name>
+		</method>
+		<method>
+			<name>getIconPath</name>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+			</param>
+		</method>
+		<method>
+			<name>getSummary</name>
+			<param>
+				<name>locale</name>
+				<type>java.util.Locale</type>
+			</param>
+		</method>
+		<method>
+			<name>getTitle</name>
+			<param>
+				<name>locale</name>
+				<type>java.util.Locale</type>
+			</param>
+		</method>
+		<method>
+			<name>getURLEdit</name>
+			<param>
+				<name>liferayPortletRequest</name>
+				<type>com.liferay.portal.kernel.portlet.LiferayPortletRequest</type>
+			</param>
+			<param>
+				<name>liferayPortletResponse</name>
+				<type>com.liferay.portal.kernel.portlet.LiferayPortletResponse</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>getUserId</name>
+		</method>
+		<method>
+			<name>getUserName</name>
+		</method>
+		<method>
+			<name>getUuid</name>
+		</method>
+		<method>
+			<name>hasEditPermission</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+			</param>
+		</method>
+		<method>
+			<name>hasViewPermission</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+			</param>
+		</method>
+		<method>
+			<name>isPrintable</name>
+		</method>
+		<method>
+			<name>render</name>
+			<param>
+				<name>renderRequest</name>
+				<type>javax.portlet.RenderRequest</type>
+			</param>
+			<param>
+				<name>renderResponse</name>
+				<type>javax.portlet.RenderResponse</type>
+			</param>
+			<param>
+				<name>template</name>
+				<type>java.lang.String</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+		<field>
+			<name>_calendarBooking</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarBookingAssetRendererFactory</name>
+		<type>com.liferay.calendar.asset.CalendarBookingAssetRendererFactory</type>
+		<author><![CDATA[Fabio Pezzutto]]></author>
+		<author><![CDATA[Eduardo Lundgren]]></author>
+		<method>
+			<name>getAssetRenderer</name>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>type</name>
+				<type>int</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>getClassName</name>
+		</method>
+		<method>
+			<name>getType</name>
+		</method>
+		<method>
+			<name>getURLAdd</name>
+			<param>
+				<name>liferayPortletRequest</name>
+				<type>com.liferay.portal.kernel.portlet.LiferayPortletRequest</type>
+			</param>
+			<param>
+				<name>liferayPortletResponse</name>
+				<type>com.liferay.portal.kernel.portlet.LiferayPortletResponse</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>hasPermission</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>actionId</name>
+				<type>java.lang.String</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>isLinkable</name>
+		</method>
+		<method>
+			<name>getIconPath</name>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+			</param>
+		</method>
+		<field>
+			<name>CLASS_NAME</name>
+		</field>
+		<field>
+			<name>TYPE</name>
+		</field>
+		<field>
+			<name>_LINKABLE</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>GroupModelListener</name>
+		<type>com.liferay.calendar.hook.listeners.GroupModelListener</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>onAfterRemove</name>
+			<param>
+				<name>group</name>
+				<type>com.liferay.portal.model.Group</type>
+			</param>
+			<throws>
+				<name>ModelListenerException</name>
+				<type>com.liferay.portal.ModelListenerException</type>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>CalendarPortletDataHandlerImpl</name>
+		<type>com.liferay.calendar.lar.CalendarPortletDataHandlerImpl</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>getDataPortletPreferences</name>
+		</method>
+		<method>
+			<name>getExportControls</name>
+		</method>
+		<method>
+			<name>isAlwaysExportable</name>
+		</method>
+		<method>
+			<name>isDataLocalized</name>
+		</method>
+		<method>
+			<name>isPublishToLiveByDefault</name>
+		</method>
+		<method>
+			<name>doDeleteData</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>doExportData</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>doImportData</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+			</param>
+			<param>
+				<name>data</name>
+				<type>java.lang.String</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>exportCalendar</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<param>
+				<name>calendarBookingsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<param>
+				<name>calendar</name>
+				<type>com.liferay.calendar.model.Calendar</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>exportCalendarBooking</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarBookingsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>exportCalendarResource</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<param>
+				<name>calendarBookingsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<param>
+				<name>calendarResourcesElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>getCalendarBookingPath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+			</param>
+		</method>
+		<method>
+			<name>getCalendarPath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendar</name>
+				<type>com.liferay.calendar.model.Calendar</type>
+			</param>
+		</method>
+		<method>
+			<name>getCalendarResourcePath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+			</param>
+		</method>
+		<method>
+			<name>getImportCalendarBookingPath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+		</method>
+		<method>
+			<name>getImportCalendarPath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+			</param>
+		</method>
+		<method>
+			<name>importCalendar</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>importCalendarBooking</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarBookingElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>importCalendarBooking</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>path</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>calendarBookingElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>importCalendarResource</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+			</param>
+			<param>
+				<name>calendarResourceElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<field>
+			<name>_ALWAYS_EXPORTABLE</name>
+		</field>
+		<field>
+			<name>_DATA_LOCALIZED</name>
+		</field>
+		<field>
+			<name>_NAMESPACE</name>
+		</field>
+		<field>
+			<name>_PUBLISH_TO_LIVE_BY_DEFAULT</name>
+		</field>
+		<field>
+			<name>_bookings</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>CheckBookingsMessageListener</name>
@@ -172,8 +692,27 @@
 		<name>CalendarResourceImpl</name>
 		<type>com.liferay.calendar.model.impl.CalendarResourceImpl</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>
+		<author><![CDATA[Marcellus Tavares]]></author>
 		<method>
-			<name>CalendarResourceImpl</name>
+			<name>getCalendars</name>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>getDefaultCalendar</name>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>getDefaultCalendarId</name>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
 		</method>
 		<method>
 			<name>isGlobal</name>
@@ -878,11 +1417,48 @@
 			</param>
 		</method>
 		<method>
+			<name>getTimeZone</name>
+			<param>
+				<name>portletRequest</name>
+				<type>javax.portlet.PortletRequest</type>
+			</param>
+		</method>
+		<method>
 			<name>isSessionErrorException</name>
 			<param>
 				<name>cause</name>
 				<type>java.lang.Throwable</type>
 			</param>
+		</method>
+		<method>
+			<name>serveCalendarBookingInvitees</name>
+			<param>
+				<name>resourceRequest</name>
+				<type>javax.portlet.ResourceRequest</type>
+			</param>
+			<param>
+				<name>resourceResponse</name>
+				<type>javax.portlet.ResourceResponse</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>serveCalendarRenderingRules</name>
+			<param>
+				<name>resourceRequest</name>
+				<type>javax.portlet.ResourceRequest</type>
+			</param>
+			<param>
+				<name>resourceResponse</name>
+				<type>javax.portlet.ResourceResponse</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
 		</method>
 		<method>
 			<name>serveCalendarResources</name>
@@ -1166,42 +1742,6 @@
 			<name>_methodParameterTypes15</name>
 		</field>
 		<field>
-			<name>_methodName16</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes16</name>
-		</field>
-		<field>
-			<name>_methodName55</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes55</name>
-		</field>
-		<field>
-			<name>_methodName56</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes56</name>
-		</field>
-		<field>
-			<name>_methodName61</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes61</name>
-		</field>
-		<field>
-			<name>_methodName62</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes62</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
 			<name>_methodName64</name>
 		</field>
 		<field>
@@ -1212,30 +1752,6 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes65</name>
-		</field>
-		<field>
-			<name>_methodName66</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes66</name>
-		</field>
-		<field>
-			<name>_methodName67</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes67</name>
-		</field>
-		<field>
-			<name>_methodName68</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes68</name>
-		</field>
-		<field>
-			<name>_methodName69</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes69</name>
 		</field>
 		<field>
 			<name>_methodName70</name>
@@ -1303,6 +1819,84 @@
 		<field>
 			<name>_methodParameterTypes80</name>
 		</field>
+		<field>
+			<name>_methodName81</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes81</name>
+		</field>
+		<field>
+			<name>_methodName82</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes82</name>
+		</field>
+		<field>
+			<name>_methodName83</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes83</name>
+		</field>
+		<field>
+			<name>_methodName84</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes84</name>
+		</field>
+		<field>
+			<name>_methodName85</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes85</name>
+		</field>
+		<field>
+			<name>_methodName86</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes86</name>
+		</field>
+		<field>
+			<name>_methodName87</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes87</name>
+		</field>
+		<field>
+			<name>_methodName88</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes88</name>
+		</field>
+		<field>
+			<name>_methodName89</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes89</name>
+		</field>
+		<field>
+			<name>_methodName90</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes90</name>
+		</field>
+		<field>
+			<name>_methodName91</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes91</name>
+		</field>
+		<field>
+			<name>_methodName92</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes92</name>
+		</field>
+		<field>
+			<name>_methodName93</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes93</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>CalendarBookingServiceClpInvoker</name>
@@ -1331,42 +1925,6 @@
 			</throws>
 		</method>
 		<field>
-			<name>_methodName38</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes38</name>
-		</field>
-		<field>
-			<name>_methodName39</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes39</name>
-		</field>
-		<field>
-			<name>_methodName44</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes44</name>
-		</field>
-		<field>
-			<name>_methodName45</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes45</name>
-		</field>
-		<field>
-			<name>_methodName46</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes46</name>
-		</field>
-		<field>
-			<name>_methodName47</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes47</name>
-		</field>
-		<field>
 			<name>_methodName48</name>
 		</field>
 		<field>
@@ -1377,30 +1935,6 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes49</name>
-		</field>
-		<field>
-			<name>_methodName50</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes50</name>
-		</field>
-		<field>
-			<name>_methodName51</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes51</name>
-		</field>
-		<field>
-			<name>_methodName52</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes52</name>
-		</field>
-		<field>
-			<name>_methodName53</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes53</name>
 		</field>
 		<field>
 			<name>_methodName54</name>
@@ -1431,6 +1965,84 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes58</name>
+		</field>
+		<field>
+			<name>_methodName59</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes59</name>
+		</field>
+		<field>
+			<name>_methodName60</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes60</name>
+		</field>
+		<field>
+			<name>_methodName61</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes61</name>
+		</field>
+		<field>
+			<name>_methodName62</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes62</name>
+		</field>
+		<field>
+			<name>_methodName63</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes63</name>
+		</field>
+		<field>
+			<name>_methodName64</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes64</name>
+		</field>
+		<field>
+			<name>_methodName65</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes65</name>
+		</field>
+		<field>
+			<name>_methodName66</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes66</name>
+		</field>
+		<field>
+			<name>_methodName67</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes67</name>
+		</field>
+		<field>
+			<name>_methodName68</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes68</name>
+		</field>
+		<field>
+			<name>_methodName69</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes69</name>
+		</field>
+		<field>
+			<name>_methodName70</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes70</name>
+		</field>
+		<field>
+			<name>_methodName71</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes71</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1556,10 +2168,10 @@
 			<name>_methodParameterTypes15</name>
 		</field>
 		<field>
-			<name>_methodName16</name>
+			<name>_methodName52</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes16</name>
+			<name>_methodParameterTypes52</name>
 		</field>
 		<field>
 			<name>_methodName53</name>
@@ -1568,10 +2180,10 @@
 			<name>_methodParameterTypes53</name>
 		</field>
 		<field>
-			<name>_methodName54</name>
+			<name>_methodName58</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes54</name>
+			<name>_methodParameterTypes58</name>
 		</field>
 		<field>
 			<name>_methodName59</name>
@@ -1781,10 +2393,10 @@
 			<name>_methodParameterTypes15</name>
 		</field>
 		<field>
-			<name>_methodName16</name>
+			<name>_methodName52</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes16</name>
+			<name>_methodParameterTypes52</name>
 		</field>
 		<field>
 			<name>_methodName53</name>
@@ -1793,10 +2405,10 @@
 			<name>_methodParameterTypes53</name>
 		</field>
 		<field>
-			<name>_methodName54</name>
+			<name>_methodName58</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes54</name>
+			<name>_methodParameterTypes58</name>
 		</field>
 		<field>
 			<name>_methodName59</name>
@@ -1957,12 +2569,6 @@
 		<field>
 			<name>_methodParameterTypes50</name>
 		</field>
-		<field>
-			<name>_methodName51</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes51</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>CalendarServiceClpInvoker</name>
@@ -2098,6 +2704,7 @@
 		<type>com.liferay.calendar.service.impl.CalendarBookingLocalServiceImpl</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>
 		<author><![CDATA[Fabio Pezzutto]]></author>
+		<author><![CDATA[Marcellus Tavares]]></author>
 		<method>
 			<name>addCalendarBooking</name>
 			<param>
@@ -2129,11 +2736,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2204,6 +2811,29 @@
 			<param>
 				<name>calendarBookingId</name>
 				<type>long</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>deleteCalendarBookingInstance</name>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>allFollowing</name>
+				<type>boolean</type>
 			</param>
 			<throws>
 				<name>PortalException</name>
@@ -2296,11 +2926,11 @@
 				<type>long</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<throws>
@@ -2376,11 +3006,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2443,11 +3073,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2506,11 +3136,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2557,11 +3187,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2572,6 +3202,37 @@
 				<name>andOperator</name>
 				<type>boolean</type>
 			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>updateAsset</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+			</param>
+			<param>
+				<name>assetCategoryIds</name>
+				<type>long[]</type>
+			</param>
+			<param>
+				<name>assetTagNames</name>
+				<type>java.lang.String[]</type>
+			</param>
+			<param>
+				<name>assetLinkEntryIds</name>
+				<type>long[]</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -2608,11 +3269,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2683,11 +3344,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2697,6 +3358,168 @@
 			<param>
 				<name>recurrence</name>
 				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>firstReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>firstReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>secondReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>secondReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>updateCalendarBookingInstance</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>childCalendarIds</name>
+				<type>long[]</type>
+			</param>
+			<param>
+				<name>titleMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>descriptionMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>location</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>allDay</name>
+				<type>boolean</type>
+			</param>
+			<param>
+				<name>recurrence</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>allFollowing</name>
+				<type>boolean</type>
+			</param>
+			<param>
+				<name>firstReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>firstReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>secondReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>secondReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>updateCalendarBookingInstance</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>titleMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>descriptionMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>location</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>allDay</name>
+				<type>boolean</type>
+			</param>
+			<param>
+				<name>recurrence</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>allFollowing</name>
+				<type>boolean</type>
 			</param>
 			<param>
 				<name>firstReminder</name>
@@ -2782,17 +3605,36 @@
 			</throws>
 		</method>
 		<method>
+			<name>getChildCalendarIds</name>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
 			<name>validate</name>
 			<param>
 				<name>titleMap</name>
 				<type>java.util.Map</type>
 			</param>
 			<param>
-				<name>startDateJCalendar</name>
+				<name>startTimeJCalendar</name>
 				<type>java.util.Calendar</type>
 			</param>
 			<param>
-				<name>endDateJCalendar</name>
+				<name>endTimeJCalendar</name>
 				<type>java.util.Calendar</type>
 			</param>
 			<throws>
@@ -2836,11 +3678,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -2885,6 +3727,29 @@
 			<param>
 				<name>calendarBookingId</name>
 				<type>long</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>deleteCalendarBookingInstance</name>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>allFollowing</name>
+				<type>boolean</type>
 			</param>
 			<throws>
 				<name>PortalException</name>
@@ -2951,11 +3816,11 @@
 				<type>long</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<throws>
@@ -3051,11 +3916,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -3122,11 +3987,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -3189,11 +4054,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -3248,11 +4113,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -3303,11 +4168,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -3374,11 +4239,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -3388,6 +4253,160 @@
 			<param>
 				<name>recurrence</name>
 				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>firstReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>firstReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>secondReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>secondReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>updateCalendarBookingInstance</name>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>childCalendarIds</name>
+				<type>long[]</type>
+			</param>
+			<param>
+				<name>titleMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>descriptionMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>location</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>allDay</name>
+				<type>boolean</type>
+			</param>
+			<param>
+				<name>recurrence</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>allFollowing</name>
+				<type>boolean</type>
+			</param>
+			<param>
+				<name>firstReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>firstReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>secondReminder</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>secondReminderType</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>updateCalendarBookingInstance</name>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>titleMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>descriptionMap</name>
+				<type>java.util.Map</type>
+			</param>
+			<param>
+				<name>location</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>allDay</name>
+				<type>boolean</type>
+			</param>
+			<param>
+				<name>recurrence</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>allFollowing</name>
+				<type>boolean</type>
 			</param>
 			<param>
 				<name>firstReminder</name>
@@ -3581,6 +4600,25 @@
 			</throws>
 		</method>
 		<method>
+			<name>getCalendarResourceCalendars</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>calendarResourceId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>defaultCalendar</name>
+				<type>boolean</type>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
 			<name>search</name>
 			<param>
 				<name>companyId</name>
@@ -3715,6 +4753,25 @@
 				<name>andOperator</name>
 				<type>boolean</type>
 			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>updateCalendar</name>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>defaultCalendar</name>
+				<type>boolean</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -3815,10 +4872,10 @@
 				<name>calendar</name>
 				<type>com.liferay.calendar.model.Calendar</type>
 			</param>
-			<param>
-				<name>defaultCalendar</name>
-				<type>boolean</type>
-			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -3842,6 +4899,7 @@
 		<author><![CDATA[Eduardo Lundgren]]></author>
 		<author><![CDATA[Fabio Pezzutto]]></author>
 		<author><![CDATA[Bruno Basto]]></author>
+		<author><![CDATA[Marcellus Tavares]]></author>
 		<method>
 			<name>addCalendarResource</name>
 			<param>
@@ -3863,10 +4921,6 @@
 			<param>
 				<name>classUuid</name>
 				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>defaultCalendarId</name>
-				<type>long</type>
 			</param>
 			<param>
 				<name>code</name>
@@ -3932,6 +4986,21 @@
 			</throws>
 		</method>
 		<method>
+			<name>deleteCalendarResources</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
 			<name>fetchCalendarResource</name>
 			<param>
 				<name>classNameId</name>
@@ -3956,6 +5025,17 @@
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>getCalendarResources</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+			</param>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -4136,45 +5216,6 @@
 				<type>long</type>
 			</param>
 			<param>
-				<name>defaultCalendarId</name>
-				<type>long</type>
-			</param>
-			<param>
-				<name>nameMap</name>
-				<type>java.util.Map</type>
-			</param>
-			<param>
-				<name>descriptionMap</name>
-				<type>java.util.Map</type>
-			</param>
-			<param>
-				<name>type</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>active</name>
-				<type>boolean</type>
-			</param>
-			<param>
-				<name>serviceContext</name>
-				<type>com.liferay.portal.service.ServiceContext</type>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-		<method>
-			<name>updateCalendarResource</name>
-			<param>
-				<name>calendarResourceId</name>
-				<type>long</type>
-			</param>
-			<param>
 				<name>nameMap</name>
 				<type>java.util.Map</type>
 			</param>
@@ -4314,10 +5355,6 @@
 			<param>
 				<name>classUuid</name>
 				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>defaultCalendarId</name>
-				<type>long</type>
 			</param>
 			<param>
 				<name>code</name>
@@ -4574,49 +5611,6 @@
 			<param>
 				<name>calendarResourceId</name>
 				<type>long</type>
-			</param>
-			<param>
-				<name>defaultCalendarId</name>
-				<type>long</type>
-			</param>
-			<param>
-				<name>nameMap</name>
-				<type>java.util.Map</type>
-			</param>
-			<param>
-				<name>descriptionMap</name>
-				<type>java.util.Map</type>
-			</param>
-			<param>
-				<name>type</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>active</name>
-				<type>boolean</type>
-			</param>
-			<param>
-				<name>serviceContext</name>
-				<type>com.liferay.portal.service.ServiceContext</type>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-		<method>
-			<name>updateCalendarResource</name>
-			<param>
-				<name>calendarResourceId</name>
-				<type>long</type>
-			</param>
-			<param>
-				<name>code</name>
-				<type>java.lang.String</type>
 			</param>
 			<param>
 				<name>nameMap</name>
@@ -5203,11 +6197,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5254,11 +6248,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5309,11 +6303,11 @@
 				<type>java.lang.String[]</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5356,11 +6350,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5407,11 +6401,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5462,11 +6456,11 @@
 				<type>java.lang.String[]</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5509,11 +6503,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5576,11 +6570,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5647,11 +6641,11 @@
 				<type>java.lang.String[]</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5686,7 +6680,7 @@
 		<method>
 			<name>findByFutureReminders</name>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<throws>
@@ -5721,11 +6715,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5788,11 +6782,11 @@
 				<type>java.lang.String</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5859,11 +6853,11 @@
 				<type>java.lang.String[]</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5930,11 +6924,11 @@
 				<type>java.lang.String[]</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -5989,11 +6983,11 @@
 				<type>java.lang.String[]</type>
 			</param>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -6046,11 +7040,11 @@
 		<method>
 			<name>getDateRange</name>
 			<param>
-				<name>startDate</name>
+				<name>startTime</name>
 				<type>long</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>endTime</name>
 				<type>long</type>
 			</param>
 			<param>
@@ -7415,6 +8409,13 @@
 			</throws>
 		</method>
 		<method>
+			<name>toICalExDate</name>
+			<param>
+				<name>recurrence</name>
+				<type>com.liferay.calendar.recurrence.Recurrence</type>
+			</param>
+		</method>
+		<method>
 			<name>toString</name>
 			<param>
 				<name>iCalCalendar</name>
@@ -7425,6 +8426,12 @@
 				<type>java.lang.Exception</type>
 			</throws>
 		</method>
+		<field>
+			<name>_EXDATE</name>
+		</field>
+		<field>
+			<name>_EXDATE_FORMAT</name>
+		</field>
 		<field>
 			<name>_RRULE</name>
 		</field>
@@ -7533,6 +8540,37 @@
 		<author><![CDATA[Peter Shin]]></author>
 		<author><![CDATA[Fabio Pezzutto]]></author>
 		<method>
+			<name>getCalendarRenderingRules</name>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+			</param>
+			<param>
+				<name>calendarIds</name>
+				<type>long[]</type>
+			</param>
+			<param>
+				<name>statuses</name>
+				<type>int[]</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>ruleName</name>
+				<type>java.lang.String</type>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
 			<name>getOrderByComparator</name>
 			<param>
 				<name>orderByCol</name>
@@ -7632,36 +8670,14 @@
 		<author><![CDATA[Peter Shin]]></author>
 		<author><![CDATA[Fabio Pezzutto]]></author>
 		<method>
-			<name>getDate</name>
+			<name>getDaysBetween</name>
 			<param>
-				<name>date</name>
-				<type>java.util.Date</type>
-			</param>
-			<param>
-				<name>timeZone</name>
-				<type>java.util.TimeZone</type>
-			</param>
-		</method>
-		<method>
-			<name>getJCalendar</name>
-			<param>
-				<name>jCalendar</name>
+				<name>startTimeJCalendar</name>
 				<type>java.util.Calendar</type>
 			</param>
 			<param>
-				<name>timeZone</name>
-				<type>java.util.TimeZone</type>
-			</param>
-		</method>
-		<method>
-			<name>getJCalendar</name>
-			<param>
-				<name>date</name>
-				<type>java.util.Date</type>
-			</param>
-			<param>
-				<name>timeZone</name>
-				<type>java.util.TimeZone</type>
+				<name>endTimeJCalendar</name>
+				<type>java.util.Calendar</type>
 			</param>
 		</method>
 		<method>
@@ -7738,6 +8754,21 @@
 				<type>java.util.Calendar</type>
 			</param>
 		</method>
+		<field>
+			<name>DAY</name>
+		</field>
+		<field>
+			<name>HOUR</name>
+		</field>
+		<field>
+			<name>MINUTE</name>
+		</field>
+		<field>
+			<name>MONTH</name>
+		</field>
+		<field>
+			<name>SECOND</name>
+		</field>
 		<field>
 			<name>_utcTimeZone</name>
 		</field>
@@ -7946,14 +8977,56 @@
 		<type>com.liferay.calendar.util.RecurrenceUtil</type>
 		<author><![CDATA[Marcellus Tavares]]></author>
 		<method>
+			<name>expandCalendarBooking</name>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>maxSize</name>
+				<type>int</type>
+			</param>
+		</method>
+		<method>
 			<name>expandCalendarBookings</name>
 			<param>
 				<name>calendarBookings</name>
 				<type>java.util.List</type>
 			</param>
 			<param>
-				<name>endDate</name>
+				<name>startTime</name>
 				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+		</method>
+		<method>
+			<name>expandCalendarBookings</name>
+			<param>
+				<name>calendarBookings</name>
+				<type>java.util.List</type>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+			</param>
+			<param>
+				<name>maxSize</name>
+				<type>int</type>
 			</param>
 		</method>
 		<method>
