@@ -41,16 +41,16 @@ public class RecurrenceUtil {
 		CalendarBooking calendarBooking, long startDate, long endDate,
 		int maxSize) {
 
-		List<CalendarBooking> expandedCalendarBooking =
+		List<CalendarBooking> expandedCalendarBookings =
 			new ArrayList<CalendarBooking>();
 
 		DateValue startDateValue = _toDateValue(startDate);
 		DateValue endDateValue = _toDateValue(endDate);
 
 		if (!calendarBooking.isRecurring()) {
-			expandedCalendarBooking.add(calendarBooking);
+			expandedCalendarBookings.add(calendarBooking);
 
-			return expandedCalendarBooking;
+			return expandedCalendarBookings;
 		}
 
 		try {
@@ -71,13 +71,13 @@ public class RecurrenceUtil {
 					break;
 				}
 
-				CalendarBooking clone = _copyCalendarBooking(
+				CalendarBooking newCalendarBooking = _copyCalendarBooking(
 					calendarBooking, dateValue);
 
-				expandedCalendarBooking.add(clone);
+				expandedCalendarBookings.add(newCalendarBooking);
 
 				if ((maxSize > 0) &&
-					(expandedCalendarBooking.size() >= maxSize)) {
+					(expandedCalendarBookings.size() >= maxSize)) {
 
 					break;
 				}
@@ -87,7 +87,7 @@ public class RecurrenceUtil {
 			_log.error("Unable to parse data ", pe);
 		}
 
-		return expandedCalendarBooking;
+		return expandedCalendarBookings;
 	}
 
 	public static List<CalendarBooking> expandCalendarBookings(
