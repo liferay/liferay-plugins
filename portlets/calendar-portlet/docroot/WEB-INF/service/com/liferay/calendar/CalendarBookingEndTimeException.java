@@ -19,21 +19,21 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Eduardo Lundgren
  */
-public class CalendarBookingStartDateException extends PortalException {
+public class CalendarBookingEndTimeException extends PortalException {
 
-	public CalendarBookingStartDateException() {
+	public CalendarBookingEndTimeException() {
 		super();
 	}
 
-	public CalendarBookingStartDateException(String msg) {
+	public CalendarBookingEndTimeException(String msg) {
 		super(msg);
 	}
 
-	public CalendarBookingStartDateException(String msg, Throwable cause) {
+	public CalendarBookingEndTimeException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public CalendarBookingStartDateException(Throwable cause) {
+	public CalendarBookingEndTimeException(Throwable cause) {
 		super(cause);
 	}
 

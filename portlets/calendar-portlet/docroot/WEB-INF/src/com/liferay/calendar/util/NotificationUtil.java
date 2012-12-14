@@ -163,7 +163,7 @@ public class NotificationUtil {
 
 			long nowTime = nowCalendar.getTimeInMillis();
 
-			long startTime = calendarBooking.getStartDate();
+			long startTime = calendarBooking.getStartTime();
 
 			if (nowTime > startTime) {
 				return;
