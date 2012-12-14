@@ -61,8 +61,8 @@
 			<basic name="title" />
 			<basic name="description" />
 			<basic name="location" />
-			<basic name="startDate" />
-			<basic name="endDate" />
+			<basic name="startTime" />
+			<basic name="endTime" />
 			<basic name="allDay" />
 			<basic name="recurrence" />
 			<basic name="firstReminder" />

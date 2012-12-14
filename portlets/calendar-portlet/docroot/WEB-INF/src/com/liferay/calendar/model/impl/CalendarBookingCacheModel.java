@@ -65,10 +65,10 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(description);
 		sb.append(", location=");
 		sb.append(location);
-		sb.append(", startDate=");
-		sb.append(startDate);
-		sb.append(", endDate=");
-		sb.append(endDate);
+		sb.append(", startTime=");
+		sb.append(startTime);
+		sb.append(", endTime=");
+		sb.append(endTime);
 		sb.append(", allDay=");
 		sb.append(allDay);
 		sb.append(", recurrence=");
@@ -155,8 +155,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setLocation(location);
 		}
 
-		calendarBookingImpl.setStartDate(startDate);
-		calendarBookingImpl.setEndDate(endDate);
+		calendarBookingImpl.setStartTime(startTime);
+		calendarBookingImpl.setEndTime(endTime);
 		calendarBookingImpl.setAllDay(allDay);
 
 		if (recurrence == null) {
@@ -220,8 +220,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	public String title;
 	public String description;
 	public String location;
-	public long startDate;
-	public long endDate;
+	public long startTime;
+	public long endTime;
 	public boolean allDay;
 	public String recurrence;
 	public long firstReminder;

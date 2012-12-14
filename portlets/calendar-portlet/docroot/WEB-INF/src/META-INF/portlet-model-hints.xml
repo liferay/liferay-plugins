@@ -38,8 +38,8 @@
 		<field name="location" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="startDate" type="long" />
-		<field name="endDate" type="long" />
+		<field name="startTime" type="Date" />
+		<field name="endTime" type="Date" />
 		<field name="allDay" type="boolean" />
 		<field name="recurrence" type="String">
 			<hint-collection name="TEXTAREA" />
