@@ -112,8 +112,8 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
 				<portlet:param name="calendarId" value="{calendarId}" />
 				<portlet:param name="date" value="{date}" />
-				<portlet:param name="endDate" value="{endDate}" />
-				<portlet:param name="startDate" value="{startDate}" />
+				<portlet:param name="endTime" value="{endTime}" />
+				<portlet:param name="startTime" value="{startTime}" />
 				<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
 			</portlet:renderURL>
 
