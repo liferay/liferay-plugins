@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.polls.model.PollsChoice">
+		<field name="uuid" type="String" />
+		<field name="pollsChoiceId" type="long" />
+		<field name="pollsQuestionId" type="long" />
+		<field name="name" type="String" />
+		<field name="description" type="String" localized="true" />
+	</model>
+	<model name="com.liferay.polls.model.PollsQuestion">
+		<field name="uuid" type="String" />
+		<field name="pollsQuestionId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String" localized="true" />
+		<field name="description" type="String" localized="true" />
+		<field name="expirationDate" type="Date" />
+		<field name="lastVoteDate" type="Date" />
+	</model>
+	<model name="com.liferay.polls.model.PollsVote">
+		<field name="pollsVoteId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="pollsQuestionId" type="long" />
+		<field name="pollsChoiceId" type="long" />
+		<field name="voteDate" type="Date" />
+	</model>
+</model-hints>

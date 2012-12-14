@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.polls.model.PollsChoice" />
+	<import class="com.liferay.polls.model.PollsQuestion" />
+	<import class="com.liferay.polls.model.PollsVote" />
+	<class name="com.liferay.polls.model.impl.PollsChoiceImpl" table="Polls_PollsChoice">
+		<cache usage="read-write" />
+		<id name="pollsChoiceId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="pollsQuestionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.polls.model.impl.PollsQuestionImpl" table="Polls_PollsQuestion">
+		<cache usage="read-write" />
+		<id name="pollsQuestionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="expirationDate" type="org.hibernate.type.TimestampType" />
+		<property name="lastVoteDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.polls.model.impl.PollsVoteImpl" table="Polls_PollsVote">
+		<cache usage="read-write" />
+		<id name="pollsVoteId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="pollsQuestionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="pollsChoiceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="voteDate" type="org.hibernate.type.TimestampType" />
+	</class>
+</hibernate-mapping>
