@@ -123,8 +123,8 @@ public class EmailNotificationSender implements NotificationSender {
 			},
 			new String[] {
 				notificationTemplateContext.getString("location"),
-				notificationTemplateContext.getString("startDate"),
-				notificationTemplateContext.getString("endDate"),
+				notificationTemplateContext.getString("startTime"),
+				notificationTemplateContext.getString("endTime"),
 				notificationTemplateContext.getString("title"),
 				notificationTemplateContext.getString("fromAddress"),
 				notificationTemplateContext.getString("fromName"),
