@@ -88,7 +88,7 @@ a:hover {
 }
 
 #heading {
-	height: 79px;
+	min-height: 79px;
 }
 
 #heading, #footer {
