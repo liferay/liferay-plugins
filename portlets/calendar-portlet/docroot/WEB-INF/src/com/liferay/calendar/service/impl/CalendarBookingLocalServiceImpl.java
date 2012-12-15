@@ -184,7 +184,7 @@ public class CalendarBookingLocalServiceImpl
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			try {
 				NotificationUtil.notifyCalendarBookingReminders(
-					calendarBooking);
+					calendarBooking, now.getTime());
 			}
 			catch (PortalException pe) {
 				throw pe;

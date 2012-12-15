@@ -27,14 +27,11 @@ import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
@@ -147,7 +144,7 @@ public class NotificationUtil {
 	}
 
 	public static void notifyCalendarBookingReminders(
-			CalendarBooking calendarBooking)
+			CalendarBooking calendarBooking, long nowTime)
 		throws Exception {
 
 		List<NotificationRecipient> notificationRecipients =
@@ -157,11 +154,6 @@ public class NotificationUtil {
 				notificationRecipients) {
 
 			User user = notificationRecipient.getUser();
-
-			java.util.Calendar nowCalendar = CalendarFactoryUtil.getCalendar(
-				TimeZoneUtil.getTimeZone(StringPool.UTC));
-
-			long nowTime = nowCalendar.getTimeInMillis();
 
 			long startTime = calendarBooking.getStartTime();
 
