@@ -40,9 +40,10 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 		<aui:input cssClass="lfr-textarea-container" name="rules" style="height: 250px; width: 100%;" type="textarea" value="<%= rulesValue %>" wrap="off" />
 
 		<%
-		MethodKey methodKey = new MethodKey(ClassResolverUtil.resolveByPortalClassLoader("com.liferay.portal.security.permission.ResourceActionsUtil"), "getModelResource", PageContext.class, String.class);
 
 		// Left list
+
+		MethodKey methodKey = new MethodKey(ClassResolverUtil.resolveByPortalClassLoader("com.liferay.portal.security.permission.ResourceActionsUtil"), "getModelResource", PageContext.class, String.class);
 
 		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
