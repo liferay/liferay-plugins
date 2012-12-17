@@ -96,7 +96,7 @@ public class CalendarResourceUtil {
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			serviceContext.getUserId(), 0, Group.class.getName(), groupId, null,
-			null, nameMap, descriptionMap, null, true, serviceContext);
+			null, nameMap, descriptionMap, true, serviceContext);
 	}
 
 	public static OrderByComparator getOrderByComparator(
@@ -144,7 +144,7 @@ public class CalendarResourceUtil {
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			serviceContext.getUserId(), 0, User.class.getName(), userId, null,
-			null, nameMap, descriptionMap, null, true, serviceContext);
+			null, nameMap, descriptionMap, true, serviceContext);
 	}
 
 	public static CalendarResource getUserCalendarResource(

@@ -330,7 +330,6 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, "name");
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-		String type = ParamUtil.getString(actionRequest, "type");
 		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -339,12 +338,12 @@ public class CalendarPortlet extends MVCPortlet {
 		if (calendarResourceId <= 0) {
 			CalendarResourceServiceUtil.addCalendarResource(
 				serviceContext.getScopeGroupId(), null, 0,
-				PortalUUIDUtil.generate(), code, nameMap, descriptionMap, type,
+				PortalUUIDUtil.generate(), code, nameMap, descriptionMap,
 				active, serviceContext);
 		}
 		else {
 			CalendarResourceServiceUtil.updateCalendarResource(
-				calendarResourceId, nameMap, descriptionMap, type, active,
+				calendarResourceId, nameMap, descriptionMap, active,
 				serviceContext);
 
 			if (defaultCalendarId > 0) {

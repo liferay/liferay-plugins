@@ -159,7 +159,6 @@
 		<column name="code" type="String" />
 		<column name="name" type="String" localized="true" />
 		<column name="description" type="String" localized="true" />
-		<column name="type" type="String" />
 		<column name="active" type="boolean" />
 
 		<!-- Order -->
@@ -203,6 +202,10 @@
 			<finder-column name="name" comparator="LIKE" />
 			<finder-column name="active" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 	</entity>
 	<exceptions>
 		<exception>CalendarBookingDuration</exception>

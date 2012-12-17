@@ -32,7 +32,6 @@ public class CalendarResourceSearchTerms extends CalendarResourceDisplayTerms {
 		description = DAOParamUtil.getLike(portletRequest, DESCRIPTION);
 		name = DAOParamUtil.getLike(portletRequest, NAME);
 		scope = DAOParamUtil.getLong(portletRequest, SCOPE);
-		type = DAOParamUtil.getString(portletRequest, TYPE);
 	}
 
 }

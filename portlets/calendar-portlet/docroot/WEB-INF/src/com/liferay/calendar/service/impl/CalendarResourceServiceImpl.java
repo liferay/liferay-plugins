@@ -39,7 +39,7 @@ public class CalendarResourceServiceImpl
 	public CalendarResource addCalendarResource(
 			long groupId, String className, long classPK, String classUuid,
 			String code, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String type, boolean active,
+			Map<Locale, String> descriptionMap, boolean active,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -48,7 +48,7 @@ public class CalendarResourceServiceImpl
 
 		return calendarResourceLocalService.addCalendarResource(
 			getUserId(), groupId, className, classPK, classUuid, code, nameMap,
-			descriptionMap, type, active, serviceContext);
+			descriptionMap, active, serviceContext);
 	}
 
 	public CalendarResource deleteCalendarResource(long calendarResourceId)
@@ -100,14 +100,14 @@ public class CalendarResourceServiceImpl
 
 	public List<CalendarResource> search(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, String type, boolean active,
+			String name, String description, boolean active,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return calendarResourceFinder.filterFindByC_G_C_C_N_D_T_A(
-			companyId, groupIds, classNameIds, code, name, description, type,
-			active, andOperator, start, end, orderByComparator);
+		return calendarResourceFinder.filterFindByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, code, name, description, active,
+			andOperator, start, end, orderByComparator);
 	}
 
 	public int searchCount(
@@ -121,18 +121,18 @@ public class CalendarResourceServiceImpl
 
 	public int searchCount(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, String type, boolean active,
+			String name, String description, boolean active,
 			boolean andOperator)
 		throws SystemException {
 
-		return calendarResourceFinder.filterCountByC_G_C_C_N_D_T_A(
-			companyId, groupIds, classNameIds, code, name, description, type,
-			active, andOperator);
+		return calendarResourceFinder.filterCountByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, code, name, description, active,
+			andOperator);
 	}
 
 	public CalendarResource updateCalendarResource(
 			long calendarResourceId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String type, boolean active,
+			Map<Locale, String> descriptionMap, boolean active,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -140,7 +140,7 @@ public class CalendarResourceServiceImpl
 			getPermissionChecker(), calendarResourceId, ActionKeys.UPDATE);
 
 		return calendarResourceLocalService.updateCalendarResource(
-			calendarResourceId, nameMap, descriptionMap, type, active,
+			calendarResourceId, nameMap, descriptionMap, active,
 			serviceContext);
 	}
 

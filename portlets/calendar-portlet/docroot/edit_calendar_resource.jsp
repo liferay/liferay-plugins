@@ -49,6 +49,10 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 	<liferay-ui:error exception="<%= CalendarResourceCodeException.class %>" message="please-enter-a-valid-code" />
 	<liferay-ui:error exception="<%= DuplicateCalendarResourceException.class %>" message="please-enter-a-unique-resource-code" />
 
+	<liferay-ui:asset-categories-error />
+
+	<liferay-ui:asset-tags-error />
+
 	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
 
 	<aui:fieldset>
@@ -69,21 +73,6 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 
 		<aui:input name="description" />
 
-		<aui:select name="type" value="<%= (calendarResource == null) ? StringPool.BLANK : calendarResource.getType() %>">
-			<aui:option label="" value="" />
-
-			<%
-			for (String type : PortletPropsValues.CALENDAR_RESOURCE_TYPES) {
-			%>
-
-				<aui:option label="<%= type %>" value="<%= type %>" />
-
-			<%
-			}
-			%>
-
-		</aui:select>
-
 		<c:if test="<%= calendars != null %>">
 			<aui:select label="default-calendar" name="defaultCalendarId" value="<%= calendarResource.getDefaultCalendarId() %>">
 
@@ -101,6 +90,12 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 		</c:if>
 
 		<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>" />
+
+		<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="calendarResourceCategorizationPanel" persistState="<%= true %>" title="categorization">
+			<aui:input classPK="<%= calendarResourceId %>" name="categories" type="assetCategories" />
+
+			<aui:input classPK="<%= calendarResourceId %>" name="tags" type="assetTags" />
+		</liferay-ui:panel>
 
 		<c:if test="<%= calendarResource == null %>">
 			<aui:field-wrapper label="permissions">
