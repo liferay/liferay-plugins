@@ -24,6 +24,7 @@ import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -50,7 +51,7 @@ public class CalendarResourceLocalServiceImpl
 	public CalendarResource addCalendarResource(
 			long userId, long groupId, String className, long classPK,
 			String classUuid, String code, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String type, boolean active,
+			Map<Locale, String> descriptionMap, boolean active,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -110,7 +111,6 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setCode(code);
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
-		calendarResource.setType(type);
 		calendarResource.setActive(active);
 
 		calendarResourcePersistence.update(calendarResource);
@@ -119,6 +119,13 @@ public class CalendarResourceLocalServiceImpl
 
 		resourceLocalService.addModelResources(
 			calendarResource, serviceContext);
+
+		// Asset
+
+		updateAsset(
+			calendarResource.getUserId(), calendarResource,
+			serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
 
 		// Calendar
 
@@ -212,14 +219,14 @@ public class CalendarResourceLocalServiceImpl
 
 	public List<CalendarResource> search(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, String type, boolean active,
+			String name, String description, boolean active,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return calendarResourceFinder.findByC_G_C_C_N_D_T_A(
-			companyId, groupIds, classNameIds, code, name, description, type,
-			active, andOperator, start, end, orderByComparator);
+		return calendarResourceFinder.findByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, code, name, description, active,
+			andOperator, start, end, orderByComparator);
 	}
 
 	public List<CalendarResource> searchByKeywords(
@@ -244,18 +251,35 @@ public class CalendarResourceLocalServiceImpl
 
 	public int searchCount(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, String type, boolean active,
+			String name, String description, boolean active,
 			boolean andOperator)
 		throws SystemException {
 
-		return calendarResourceFinder.countByC_G_C_C_N_D_T_A(
-			companyId, groupIds, classNameIds, code, name, description, type,
-			active, andOperator);
+		return calendarResourceFinder.countByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, code, name, description, active,
+			andOperator);
+	}
+
+	public void updateAsset(
+			long userId, CalendarResource calendarResource,
+			long[] assetCategoryIds, String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		assetEntryLocalService.updateEntry(
+			userId, calendarResource.getGroupId(),
+			calendarResource.getCreateDate(),
+			calendarResource.getModifiedDate(),
+			CalendarResource.class.getName(),
+			calendarResource.getCalendarResourceId(),
+			calendarResource.getUuid(), 0, assetCategoryIds,
+			assetTagNames, true, null, null, null, ContentTypes.TEXT,
+			calendarResource.getName(), calendarResource.getDescription(), null,
+			null, null, 0, 0, null, false);
 	}
 
 	public CalendarResource updateCalendarResource(
 			long calendarResourceId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String type, boolean active,
+			Map<Locale, String> descriptionMap, boolean active,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -267,7 +291,6 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
-		calendarResource.setType(type);
 		calendarResource.setActive(active);
 
 		calendarResourcePersistence.update(calendarResource);
@@ -276,6 +299,13 @@ public class CalendarResourceLocalServiceImpl
 
 		resourceLocalService.updateModelResources(
 			calendarResource, serviceContext);
+
+		// Asset
+
+		updateAsset(
+			calendarResource.getUserId(), calendarResource,
+			serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
 
 		return calendarResource;
 	}

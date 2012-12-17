@@ -48,7 +48,4 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE));
 
-	public static final String[] CALENDAR_RESOURCE_TYPES =
-		PortletProps.getArray(PortletPropsKeys.CALENDAR_RESOURCE_TYPES);
-
 }

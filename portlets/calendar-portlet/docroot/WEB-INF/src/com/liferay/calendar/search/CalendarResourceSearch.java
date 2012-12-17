@@ -47,7 +47,6 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 		headerNames.add("code");
 		headerNames.add("name");
 		headerNames.add("description");
-		headerNames.add("type");
 		headerNames.add("active");
 
 		orderableHeaders.put("code", "code");
@@ -82,8 +81,6 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 		iteratorURL.setParameter(
 			CalendarResourceDisplayTerms.SCOPE,
 			String.valueOf(displayTerms.getScope()));
-		iteratorURL.setParameter(
-			CalendarResourceDisplayTerms.TYPE, displayTerms.getType());
 
 		try {
 			PortalPreferences preferences =
