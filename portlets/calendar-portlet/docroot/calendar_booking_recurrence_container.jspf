@@ -148,7 +148,7 @@ if (recurrence != null) {
 
 					<aui:input disabled="<%= !afterChecked %>" label="" name="count" size="5" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
 
-					<liferay-ui:message key="ocurrences" />
+					<liferay-ui:message key="occurrences" />
 				</aui:field-wrapper>
 
 				<aui:field-wrapper cssClass="calendar-portlet-field-date" label="">
