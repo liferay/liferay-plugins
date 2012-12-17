@@ -86,10 +86,9 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 			{ "code_", Types.VARCHAR },
 			{ "name", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
-			{ "type_", Types.VARCHAR },
 			{ "active_", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table CalendarResource (uuid_ VARCHAR(75) null,calendarResourceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,classNameId LONG,classPK LONG,classUuid VARCHAR(75) null,code_ VARCHAR(75) null,name STRING null,description STRING null,type_ VARCHAR(75) null,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table CalendarResource (uuid_ VARCHAR(75) null,calendarResourceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,classNameId LONG,classPK LONG,classUuid VARCHAR(75) null,code_ VARCHAR(75) null,name STRING null,description STRING null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table CalendarResource";
 	public static final String ORDER_BY_JPQL = " ORDER BY calendarResource.code ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CalendarResource.code_ ASC";
@@ -143,7 +142,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		model.setCode(soapModel.getCode());
 		model.setName(soapModel.getName());
 		model.setDescription(soapModel.getDescription());
-		model.setType(soapModel.getType());
 		model.setActive(soapModel.getActive());
 
 		return model;
@@ -219,7 +217,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		attributes.put("code", getCode());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
-		attributes.put("type", getType());
 		attributes.put("active", getActive());
 
 		return attributes;
@@ -315,12 +312,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		if (description != null) {
 			setDescription(description);
-		}
-
-		String type = (String)attributes.get("type");
-
-		if (type != null) {
-			setType(type);
 		}
 
 		Boolean active = (Boolean)attributes.get("active");
@@ -756,20 +747,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	@JSON
-	public String getType() {
-		if (_type == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _type;
-		}
-	}
-
-	public void setType(String type) {
-		_type = type;
-	}
-
-	@JSON
 	public boolean getActive() {
 		return _active;
 	}
@@ -849,7 +826,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		calendarResourceImpl.setCode(getCode());
 		calendarResourceImpl.setName(getName());
 		calendarResourceImpl.setDescription(getDescription());
-		calendarResourceImpl.setType(getType());
 		calendarResourceImpl.setActive(getActive());
 
 		calendarResourceImpl.resetOriginalValues();
@@ -1021,14 +997,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 			calendarResourceCacheModel.description = null;
 		}
 
-		calendarResourceCacheModel.type = getType();
-
-		String type = calendarResourceCacheModel.type;
-
-		if ((type != null) && (type.length() == 0)) {
-			calendarResourceCacheModel.type = null;
-		}
-
 		calendarResourceCacheModel.active = getActive();
 
 		return calendarResourceCacheModel;
@@ -1036,7 +1004,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1068,8 +1036,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		sb.append(getName());
 		sb.append(", description=");
 		sb.append(getDescription());
-		sb.append(", type=");
-		sb.append(getType());
 		sb.append(", active=");
 		sb.append(getActive());
 		sb.append("}");
@@ -1078,7 +1044,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarResource");
@@ -1145,10 +1111,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>active</column-name><column-value><![CDATA[");
 		sb.append(getActive());
 		sb.append("]]></column-value></column>");
@@ -1193,7 +1155,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private String _originalName;
 	private String _description;
 	private String _descriptionCurrentLanguageId;
-	private String _type;
 	private boolean _active;
 	private boolean _originalActive;
 	private boolean _setOriginalActive;

@@ -478,21 +478,6 @@ public interface CalendarResourceModel extends AttachedModel,
 		Locale defaultLocale);
 
 	/**
-	 * Returns the type of this calendar resource.
-	 *
-	 * @return the type of this calendar resource
-	 */
-	@AutoEscape
-	public String getType();
-
-	/**
-	 * Sets the type of this calendar resource.
-	 *
-	 * @param type the type of this calendar resource
-	 */
-	public void setType(String type);
-
-	/**
 	 * Returns the active of this calendar resource.
 	 *
 	 * @return the active of this calendar resource

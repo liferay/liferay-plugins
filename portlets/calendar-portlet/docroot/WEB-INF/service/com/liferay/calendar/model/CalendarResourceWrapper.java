@@ -61,7 +61,6 @@ public class CalendarResourceWrapper implements CalendarResource,
 		attributes.put("code", getCode());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
-		attributes.put("type", getType());
 		attributes.put("active", getActive());
 
 		return attributes;
@@ -156,12 +155,6 @@ public class CalendarResourceWrapper implements CalendarResource,
 
 		if (description != null) {
 			setDescription(description);
-		}
-
-		String type = (String)attributes.get("type");
-
-		if (type != null) {
-			setType(type);
 		}
 
 		Boolean active = (Boolean)attributes.get("active");
@@ -708,24 +701,6 @@ public class CalendarResourceWrapper implements CalendarResource,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.util.Locale defaultLocale) {
 		_calendarResource.setDescriptionMap(descriptionMap, defaultLocale);
-	}
-
-	/**
-	* Returns the type of this calendar resource.
-	*
-	* @return the type of this calendar resource
-	*/
-	public java.lang.String getType() {
-		return _calendarResource.getType();
-	}
-
-	/**
-	* Sets the type of this calendar resource.
-	*
-	* @param type the type of this calendar resource
-	*/
-	public void setType(java.lang.String type) {
-		_calendarResource.setType(type);
 	}
 
 	/**

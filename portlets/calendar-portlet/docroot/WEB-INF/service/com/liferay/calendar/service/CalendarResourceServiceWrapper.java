@@ -62,12 +62,11 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 		java.lang.String classUuid, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		boolean active, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceService.addCalendarResource(groupId, className,
-			classPK, classUuid, code, nameMap, descriptionMap, type, active,
+			classPK, classUuid, code, nameMap, descriptionMap, active,
 			serviceContext);
 	}
 
@@ -107,13 +106,13 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String code, java.lang.String name,
-		java.lang.String description, java.lang.String type, boolean active,
-		boolean andOperator, int start, int end,
+		java.lang.String description, boolean active, boolean andOperator,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceService.search(companyId, groupIds,
-			classNameIds, code, name, description, type, active, andOperator,
-			start, end, orderByComparator);
+			classNameIds, code, name, description, active, andOperator, start,
+			end, orderByComparator);
 	}
 
 	public int searchCount(long companyId, long[] groupIds,
@@ -125,23 +124,21 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 
 	public int searchCount(long companyId, long[] groupIds,
 		long[] classNameIds, java.lang.String code, java.lang.String name,
-		java.lang.String description, java.lang.String type, boolean active,
-		boolean andOperator)
+		java.lang.String description, boolean active, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceService.searchCount(companyId, groupIds,
-			classNameIds, code, name, description, type, active, andOperator);
+			classNameIds, code, name, description, active, andOperator);
 	}
 
 	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
 		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		boolean active, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceService.updateCalendarResource(calendarResourceId,
-			nameMap, descriptionMap, type, active, serviceContext);
+			nameMap, descriptionMap, active, serviceContext);
 	}
 
 	/**

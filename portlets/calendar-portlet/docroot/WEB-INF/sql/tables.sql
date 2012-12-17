@@ -60,6 +60,5 @@ create table CalendarResource (
 	code_ VARCHAR(75) null,
 	name STRING null,
 	description STRING null,
-	type_ VARCHAR(75) null,
 	active_ BOOLEAN
 );

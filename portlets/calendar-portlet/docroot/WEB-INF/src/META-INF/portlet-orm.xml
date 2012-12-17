@@ -111,9 +111,6 @@
 			</basic>
 			<basic name="name" />
 			<basic name="description" />
-			<basic name="type">
-				<column name="TYPE_" />
-			</basic>
 			<basic name="active">
 				<column name="ACTIVE_" />
 			</basic>

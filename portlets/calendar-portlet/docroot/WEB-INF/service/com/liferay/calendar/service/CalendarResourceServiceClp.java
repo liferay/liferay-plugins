@@ -35,8 +35,7 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 
 		_methodParameterTypes3 = new String[] {
 				"long", "java.lang.String", "long", "java.lang.String",
-				"java.lang.String", "java.util.Map", "java.util.Map",
-				"java.lang.String", "boolean",
+				"java.lang.String", "java.util.Map", "java.util.Map", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -64,9 +63,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 
 		_methodParameterTypes8 = new String[] {
 				"long", "long[][]", "long[][]", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"boolean", "boolean", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+				"java.lang.String", "java.lang.String", "boolean", "boolean",
+				"int", "int", "com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName9 = "searchCount";
@@ -79,15 +77,14 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 
 		_methodParameterTypes10 = new String[] {
 				"long", "long[][]", "long[][]", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
-				"boolean", "boolean"
+				"java.lang.String", "java.lang.String", "boolean", "boolean"
 			};
 
 		_methodName11 = "updateCalendarResource";
 
 		_methodParameterTypes11 = new String[] {
-				"long", "java.util.Map", "java.util.Map", "java.lang.String",
-				"boolean", "com.liferay.portal.service.ServiceContext"
+				"long", "java.util.Map", "java.util.Map", "boolean",
+				"com.liferay.portal.service.ServiceContext"
 			};
 	}
 
@@ -143,8 +140,7 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		java.lang.String classUuid, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		boolean active, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -166,8 +162,6 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 					ClpSerializer.translateInput(nameMap),
 						
 					ClpSerializer.translateInput(descriptionMap),
-						
-					ClpSerializer.translateInput(type),
 						
 					active,
 						
@@ -350,8 +344,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String code, java.lang.String name,
-		java.lang.String description, java.lang.String type, boolean active,
-		boolean andOperator, int start, int end,
+		java.lang.String description, boolean active, boolean andOperator,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -371,8 +365,6 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 					ClpSerializer.translateInput(name),
 						
 					ClpSerializer.translateInput(description),
-						
-					ClpSerializer.translateInput(type),
 						
 					active,
 						
@@ -445,8 +437,7 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 
 	public int searchCount(long companyId, long[] groupIds,
 		long[] classNameIds, java.lang.String code, java.lang.String name,
-		java.lang.String description, java.lang.String type, boolean active,
-		boolean andOperator)
+		java.lang.String description, boolean active, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -465,8 +456,6 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 					ClpSerializer.translateInput(name),
 						
 					ClpSerializer.translateInput(description),
-						
-					ClpSerializer.translateInput(type),
 						
 					active,
 						
@@ -496,8 +485,7 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		boolean active, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -511,8 +499,6 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 					ClpSerializer.translateInput(nameMap),
 						
 					ClpSerializer.translateInput(descriptionMap),
-						
-					ClpSerializer.translateInput(type),
 						
 					active,
 						
