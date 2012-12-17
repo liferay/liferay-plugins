@@ -69,7 +69,7 @@ if (phones.isEmpty()) {
 
 				<li class="<%= phone.isPrimary() ? "primary" : "" %>">
 					<span class="property-type"><%= LanguageUtil.get(pageContext, phone.getType().getName()) %></span>
-					<span class="property"><%= phone.getNumber() %> <%= phone.getExtension() %></span>
+					<span class="property"><%= HtmlUtil.escape(phone.getNumber()) %> <%= phone.getExtension() %></span>
 				</li>
 
 			<%
