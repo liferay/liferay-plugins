@@ -89,10 +89,7 @@ public class MicroblogsActivityInterpreter
 			}
 		}
 
-		String entryContent = getValue(
-			activity.getExtraData(), "content", microblogsEntry.getContent());
-
-		sb.append(entryContent);
+		sb.append(microblogsEntry.getContent());
 
 		String title = sb.toString();
 
