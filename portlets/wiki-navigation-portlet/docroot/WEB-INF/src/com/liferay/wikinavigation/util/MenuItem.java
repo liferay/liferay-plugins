@@ -128,7 +128,8 @@ public class MenuItem implements Serializable {
 				(depth == WikiNavigationConstants.DEPTH_ALL)) {
 
 				List<MenuItem> children = _fromWikiNode(
-					wikiPage.getChildPages(), curDepth + 1, depth, portletURL);
+					wikiPage.getViewableChildPages(), curDepth + 1, depth,
+					portletURL);
 
 				menuItem.addChildren(children);
 			}
