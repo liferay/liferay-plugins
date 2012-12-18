@@ -588,6 +588,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portletId = PortalUtil.getJsSafePortletId(
 			PortalUUIDUtil.toJsSafeUuid(portletId));
+
 		return portletId;
 	}
 
