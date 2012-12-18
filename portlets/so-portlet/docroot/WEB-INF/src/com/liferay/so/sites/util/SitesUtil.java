@@ -165,21 +165,7 @@ public class SitesUtil {
 			params.put("pageCount", Boolean.TRUE);
 			params.put("types", types);
 
-			int groupsCount = GroupLocalServiceUtil.searchCount(
-				companyId, keywords, null, params, true);
-
-			params.clear();
-
-			params.put("usersGroups", userId);
-
-			types.clear();
-
-			types.add(GroupConstants.TYPE_SITE_PRIVATE);
-
-			params.put("pageCount", Boolean.TRUE);
-			params.put("types", types);
-
-			return groupsCount + GroupLocalServiceUtil.searchCount(
+			return GroupLocalServiceUtil.searchCount(
 				companyId, keywords, null, params, true);
 		}
 	}
