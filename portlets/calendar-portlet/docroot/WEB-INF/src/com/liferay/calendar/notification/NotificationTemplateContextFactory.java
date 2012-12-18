@@ -60,10 +60,10 @@ public class NotificationTemplateContextFactory {
 		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
 			user.getLocale(), user.getTimeZone());
 
-		long endDate = calendarBooking.getEndDate();
+		long endTime = calendarBooking.getEndTime();
 
 		notificationTemplateContext.setAttribute(
-			"endDate", dateFormatDateTime.format(endDate));
+			"endTime", dateFormatDateTime.format(endTime));
 
 		PortletPreferences portletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
@@ -94,10 +94,10 @@ public class NotificationTemplateContextFactory {
 				getPortletConfig(), user.getLocale(),
 				"javax.portlet.title.".concat(PortletKeys.CALENDAR)));
 
-		long startDate = calendarBooking.getStartDate();
+		long startTime = calendarBooking.getStartTime();
 
 		notificationTemplateContext.setAttribute(
-			"startDate", dateFormatDateTime.format(startDate));
+			"startTime", dateFormatDateTime.format(startTime));
 
 		notificationTemplateContext.setAttribute(
 			"title", calendarBooking.getTitle(user.getLocale()));

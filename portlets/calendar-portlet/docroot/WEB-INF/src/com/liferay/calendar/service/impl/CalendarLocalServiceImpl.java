@@ -254,7 +254,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendar.setColor(color);
 
-		calendarPersistence.update(calendar);
+		calendarPersistence.update(calendar, false);
 
 		return calendar;
 	}
