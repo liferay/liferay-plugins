@@ -109,12 +109,12 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	public WSRPConsumerPortlet addWSRPConsumerPortlet(
-			String wsrpConsumerUuid, String name, String portletHandle,
+			String uuid, String name, String portletHandle,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerLocalService.getWSRPConsumer(
-			wsrpConsumerUuid);
+			uuid);
 
 		return addWSRPConsumerPortlet(
 			wsrpConsumer.getWsrpConsumerId(), name, portletHandle,
@@ -133,11 +133,11 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return deleteWSRPConsumerPortlet(wsrpConsumerPortlet);
 	}
 
-	public void deleteWSRPConsumerPortlet(String wsrpConsumerPortletUuid)
+	public void deleteWSRPConsumerPortlet(String uuid)
 		throws PortalException, SystemException {
 
 		List<WSRPConsumerPortlet> wsrpConsumerPortlets =
-			wsrpConsumerPortletPersistence.findByUuid(wsrpConsumerPortletUuid);
+			wsrpConsumerPortletPersistence.findByUuid(uuid);
 
 		if (!wsrpConsumerPortlets.isEmpty()) {
 			deleteWSRPConsumerPortlet(wsrpConsumerPortlets.get(0));
@@ -174,19 +174,17 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 	@Clusterable
 	public void destroyWSRPConsumerPortlet(
-		long wsrpConsumerPortletId, String wsrpConsumerPortletUuid,
-		String url) {
+		long wsrpConsumerPortletId, String uuid, String url) {
 
 		try {
-			Portlet portlet = _portletsPool.remove(wsrpConsumerPortletUuid);
+			Portlet portlet = _portletsPool.remove(uuid);
 
 			if (portlet == null) {
 				WSRPConsumerPortlet wsrpConsumerPortlet =
 					getWSRPConsumerPortlet(wsrpConsumerPortletId);
 
 				portlet = PortletLocalServiceUtil.getPortletById(
-					wsrpConsumerPortlet.getCompanyId(),
-					getPortletId(wsrpConsumerPortletUuid));
+					wsrpConsumerPortlet.getCompanyId(), getPortletId(uuid));
 			}
 			else {
 				WSRPConsumerManagerFactory.destroyWSRPConsumerManager(url);
@@ -229,17 +227,15 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerId, portletHandle);
 	}
 
-	public WSRPConsumerPortlet getWSRPConsumerPortlet(
-			String wsrpConsumerPortletUuid)
+	public WSRPConsumerPortlet getWSRPConsumerPortlet(String uuid)
 		throws PortalException, SystemException {
 
 		List<WSRPConsumerPortlet> wsrpConsumerPortlets =
-			wsrpConsumerPortletPersistence.findByUuid(wsrpConsumerPortletUuid);
+			wsrpConsumerPortletPersistence.findByUuid(uuid);
 
 		if (wsrpConsumerPortlets.isEmpty()) {
 			throw new NoSuchConsumerPortletException(
-				"No WSRP consumer portlet exists with uuid " +
-					wsrpConsumerPortletUuid);
+				"No WSRP consumer portlet exists with uuid " + uuid);
 		}
 
 		return wsrpConsumerPortlets.get(0);
@@ -272,15 +268,15 @@ public class WSRPConsumerPortletLocalServiceImpl
 			try {
 				long companyId = (Long)tuple.getObject(0);
 				long wsrpConsumerId = (Long)tuple.getObject(1);
-				String wsrpConsumerPortletUuid = (String)tuple.getObject(2);
+				String uuid = (String)tuple.getObject(2);
 				String name = (String)tuple.getObject(3);
 				String portletHandle = (String)tuple.getObject(4);
 
 				_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
 
 				initWSRPConsumerPortlet(
-					companyId, wsrpConsumerId, wsrpConsumerPortletId,
-					wsrpConsumerPortletUuid, name, portletHandle);
+					companyId, wsrpConsumerId, wsrpConsumerPortletId, uuid,
+					name, portletHandle);
 			}
 			catch (Exception e) {
 				_log.error(
@@ -295,15 +291,14 @@ public class WSRPConsumerPortletLocalServiceImpl
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initWSRPConsumerPortlet(
 			long companyId, long wsrpConsumerId, long wsrpConsumerPortletId,
-			String wsrpConsumerPortletUuid, String name, String portletHandle)
+			String uuid, String name, String portletHandle)
 		throws PortalException, SystemException {
 
 		boolean initializationFailed = false;
 
 		try {
 			Portlet portlet = getPortlet(
-				companyId, wsrpConsumerId, wsrpConsumerPortletUuid, name,
-				portletHandle);
+				companyId, wsrpConsumerId, uuid, name, portletHandle);
 
 			if (!portlet.isActive()) {
 				initializationFailed = true;
@@ -330,8 +325,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		finally {
 			if (initializationFailed) {
 				Tuple tuple = new Tuple(
-					companyId, wsrpConsumerId, wsrpConsumerPortletUuid, name,
-					portletHandle);
+					companyId, wsrpConsumerId, uuid, name, portletHandle);
 
 				_failedWSRPConsumerPortlets.put(wsrpConsumerPortletId, tuple);
 			}
@@ -500,17 +494,17 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	protected Portlet getPortlet(
-			long companyId, long wsrpConsumerId, String wsrpConsumerPortletUuid,
-			String name, String portletHandle)
+			long companyId, long wsrpConsumerId, String uuid, String name,
+			String portletHandle)
 		throws Exception {
 
-		Portlet portlet = _portletsPool.get(wsrpConsumerPortletUuid);
+		Portlet portlet = _portletsPool.get(uuid);
 
 		if ((portlet != null) && portlet.isActive()) {
 			return portlet;
 		}
 
-		String portletId = getPortletId(wsrpConsumerPortletUuid);
+		String portletId = getPortletId(uuid);
 
 		portlet = PortletLocalServiceUtil.clonePortlet(_CONSUMER_PORTLET_ID);
 
@@ -546,8 +540,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to connect to WSRP producer for portlet " +
-						wsrpConsumerPortletUuid,
+					"Unable to connect to WSRP producer for portlet " + uuid,
 					e);
 			}
 		}
@@ -564,7 +557,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 			portlet.setPortletInfo(portletInfo);
 		}
 
-		_portletsPool.put(wsrpConsumerPortletUuid, portlet);
+		_portletsPool.put(uuid, portlet);
 
 		PortletBag portletBag = PortletBagPool.get(_CONSUMER_PORTLET_ID);
 
@@ -582,9 +575,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return portlet;
 	}
 
-	protected String getPortletId(String wsrpConsumerPortletUuid) {
-		String portletId = ConsumerPortlet.PORTLET_NAME_PREFIX.concat(
-			wsrpConsumerPortletUuid);
+	protected String getPortletId(String uuid) {
+		String portletId = ConsumerPortlet.PORTLET_NAME_PREFIX.concat(uuid);
 
 		portletId = PortalUtil.getJsSafePortletId(
 			PortalUUIDUtil.toJsSafeUuid(portletId));
