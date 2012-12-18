@@ -40,11 +40,10 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 }
 %>
 
-<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL">
-	<portlet:param name="mvcPath" value="/tasks/edit_task.jsp" />
-</portlet:actionURL>
+<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" />
 
 <aui:form action="<%= updateTasksEntryURL %>" method="post" name="fm1" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/tasks/edit_task.jsp" />
 	<aui:input name="tasksEntryId" type="hidden" value="<%= tasksEntryId %>" />
 	<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 	<aui:input name="resolverUserId" type="hidden" value="<%= user.getUserId() %>" />

@@ -39,13 +39,13 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 	title='<%= (calendarResource != null) ? calendarResource.getName(locale) : "new-calendar-resource" %>'
 />
 
-<liferay-portlet:actionURL name="updateCalendarResource" var="updateCalendarResourceURL">
-	<liferay-portlet:param name="mvcPath" value="/edit_calendar_resource.jsp" />
-	<liferay-portlet:param name="redirect" value="<%= redirect %>" />
-	<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResourceId) %>" />
-</liferay-portlet:actionURL>
+<liferay-portlet:actionURL name="updateCalendarResource" var="updateCalendarResourceURL" />
 
 <aui:form action="<%= updateCalendarResourceURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarResource();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/edit_calendar_resource.jsp" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="calendarResourceId" type="hidden" value="<%= String.valueOf(calendarResourceId) %>" />
+
 	<liferay-ui:error exception="<%= CalendarResourceCodeException.class %>" message="please-enter-a-valid-code" />
 	<liferay-ui:error exception="<%= DuplicateCalendarResourceException.class %>" message="please-enter-a-unique-resource-code" />
 
