@@ -259,11 +259,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 			portletCategoryNames, serviceContext);
 	}
 
-	public void destroyGadget(java.lang.String uuid, long companyId,
-		java.lang.String name)
+	public void destroyGadget(java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetLocalService.destroyGadget(uuid, companyId, name);
+		_gadgetLocalService.destroyGadget(uuid, companyId);
 	}
 
 	public void destroyGadgets()

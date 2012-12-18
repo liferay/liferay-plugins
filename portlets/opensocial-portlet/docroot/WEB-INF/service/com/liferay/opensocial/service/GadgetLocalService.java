@@ -239,8 +239,7 @@ public interface GadgetLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void destroyGadget(java.lang.String uuid, long companyId,
-		java.lang.String name)
+	public void destroyGadget(java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
