@@ -61,15 +61,11 @@ to = sb.toString() + to;
 
 <div id="<portlet:namespace />messageContainer"></div>
 
-<portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
-
-<liferay-portlet:actionURL name="sendMessage" var="sendMessageURL">
-	<portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" />
-</liferay-portlet:actionURL>
+<liferay-portlet:actionURL name="sendMessage" var="sendMessageURL" />
 
 <aui:layout cssClass="message-body-container">
 	<aui:form action="<%= sendMessageURL %>" enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
-		<aui:input name="redirect" type="hidden" value="<%= backURL %>" />
+		<aui:input name="redirect" type="hidden" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" />
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 

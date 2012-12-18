@@ -16,12 +16,11 @@
 
 <%@ include file="/init.jsp" %>
 
-<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
-	<portlet:param name="redirect" value="<%= currentURL %>" />
-</portlet:actionURL>
+<portlet:actionURL name="unsubscribe" var="unsubscribeURL" />
 
 <aui:form action="<%= unsubscribeURL %>" method="get" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "unsubscribe();" %>'>
 	<liferay-portlet:renderURLParams varImpl="portletURL" />
+	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="subscriptionIds" type="hidden" />
 
 	<liferay-ui:error exception="<%= NoSuchSubscriptionException.class %>" message="the-subscription-could-not-be-found" />

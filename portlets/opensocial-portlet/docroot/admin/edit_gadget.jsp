@@ -59,15 +59,14 @@ if (Validator.isNotNull(editorGadgetURL)) {
 	title='<%= (gadget != null) ? gadget.getName() : "new-gadget" %>'
 />
 
-<portlet:actionURL name="updateGadget" var="updateGadgetURL">
-	<portlet:param name="mvcPath" value="/admin/edit_gadget.jsp" />
-	<portlet:param name="redirect" value="<%= redirect %>" />
-	<portlet:param name="editorGadgetURL" value="<%= editorGadgetURL %>" />
-</portlet:actionURL>
+<portlet:actionURL name="updateGadget" var="updateGadgetURL" />
 
 <aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/admin/edit_gadget.jsp" />
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="gadgetId" type="hidden" value="<%= gadgetId %>" />
+	<aui:input name="editorGadgetURL" type="hidden" value="<%= editorGadgetURL %>" />
 	<aui:input name="portletCategoryNames" type="hidden" value="<%= portletCategoryNames %>" />
 	<aui:input name="publishGadgetRedirect" type="hidden" value="<%= publishGadgetRedirect %>" />
 
