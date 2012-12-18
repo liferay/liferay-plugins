@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="plugin-security-manager-portlet" basedir="." default="deploy">
+<project name="plugins-security-manager-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml"/>
 
 	<target name="build-lang">

@@ -176,7 +176,7 @@ portal-dependency-jars=scala-library.jar</echo>
 							<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
 							<replacevalue><![CDATA[<portlet-class>@portlet.java.package.name@.@portlet.java.class.name@Portlet</portlet-class>]]></replacevalue>
 						</replace>
-					 
+
 						<replaceregexp match="&lt;/instanceable&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/instanceable&gt;" flags="s">
 							<fileset
 								dir="${portlet.dir}/docroot/WEB-INF"

@@ -19,5 +19,6 @@ import com.liferay.polls.service.base.PollsChoiceLocalServiceBaseImpl;
 /**
  * @author Juan Fernández
  */
-public class PollsChoiceLocalServiceImpl extends PollsChoiceLocalServiceBaseImpl {
+public class PollsChoiceLocalServiceImpl
+	extends PollsChoiceLocalServiceBaseImpl {
 }
