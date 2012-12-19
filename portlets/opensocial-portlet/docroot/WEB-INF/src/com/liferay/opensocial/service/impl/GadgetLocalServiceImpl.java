@@ -105,8 +105,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Gadget deleteGadget(Gadget gadget)
-		throws PortalException, SystemException {
+	public Gadget deleteGadget(Gadget gadget) throws SystemException {
 
 		// Gadget
 
