@@ -156,13 +156,14 @@ public class SitesUtil {
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
 
+			params.put("active", Boolean.TRUE);
+			params.put("pageCount", Boolean.TRUE);
+
 			List<Integer> types = new ArrayList<Integer>();
 
 			types.add(GroupConstants.TYPE_SITE_OPEN);
 			types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
-			params.put("active", Boolean.TRUE);
-			params.put("pageCount", Boolean.TRUE);
 			params.put("types", types);
 
 			return GroupLocalServiceUtil.searchCount(
