@@ -63,7 +63,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 					<optgroup label="<liferay-ui:message key="contacts" />">
 				</c:when>
 				<c:otherwise>
-					<aui:option label="" selected="<%= (assigneeUserId == 0) %>" value="0" />
+					<aui:option label="unassigned" selected="<%= (assigneeUserId == 0) %>" value="0" />
 
 					<aui:option label="<%= HtmlUtil.escape(user.getFullName()) %>" selected="<%= (assigneeUserId == user.getUserId()) %>" value="<%= user.getUserId() %>" />
 

@@ -143,8 +143,17 @@ taskListURL.setParameter("tabs2", tabs2);
 					</c:if>
 				</c:if>
 
-				<c:if test='<%= !tabs1.equals("assigned-to-me") && (tasksEntry.getAssigneeUserId() > 0) %>'>
-					<span><liferay-ui:message key="assignee" />: <%= HtmlUtil.escape(tasksEntry.getAssigneeFullName()) %></span>
+				<c:if test='<%= !tabs1.equals("assigned-to-me") %>'>
+					<span><liferay-ui:message key="assignee" />:
+						<c:choose>
+							<c:when test="<%= tasksEntry.getAssigneeUserId() > 0 %>">
+								<%= HtmlUtil.escape(tasksEntry.getAssigneeFullName()) %>
+							</c:when>
+							<c:otherwise>
+								<liferay-ui:message key="unassigned" />
+							</c:otherwise>
+						</c:choose>
+					</span>
 				</c:if>
 
 				<c:if test='<%= !tabs1.equals("i-have-created") %>'>
