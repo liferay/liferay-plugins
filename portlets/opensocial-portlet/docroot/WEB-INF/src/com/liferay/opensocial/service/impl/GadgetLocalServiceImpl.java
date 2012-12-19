@@ -111,7 +111,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		// Gadget
 
 		gadgetLocalService.destroyGadget(
-			gadget.getUuid(), gadget.getCompanyId(), gadget.getName());
+			gadget.getUuid(), gadget.getCompanyId());
 
 		gadgetPersistence.remove(gadget);
 
