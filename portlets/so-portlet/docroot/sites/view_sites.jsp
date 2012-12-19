@@ -132,7 +132,7 @@ else {
 						<c:choose>
 							<c:when test="<%= group.getType() == GroupConstants.TYPE_SITE_OPEN %>">
 								<span class="action join">
-									<liferay-portlet:actionURL portletName="<%= PortletKeys.SITES_ADMIN %>" var="joinURL" windowState="<%= WindowState.NORMAL.toString() %>">
+									<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_MEMBERSHIPS_ADMIN %>" var="joinURL" windowState="<%= WindowState.NORMAL.toString() %>">
 										<portlet:param name="struts_action" value="/sites_admin/edit_site_assignments" />
 										<portlet:param name="<%= Constants.CMD %>" value="group_users" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -145,7 +145,7 @@ else {
 							</c:when>
 							<c:when test="<%= group.getType() == GroupConstants.TYPE_SITE_RESTRICTED && !MembershipRequestLocalServiceUtil.hasMembershipRequest(user.getUserId(), group.getGroupId(), MembershipRequestConstants.STATUS_PENDING) %>">
 								<span class="action request">
-									<liferay-portlet:actionURL portletName="<%= PortletKeys.SITES_ADMIN %>" var="membershipRequestURL" windowState="<%= WindowState.NORMAL.toString() %>">
+									<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_MEMBERSHIPS_ADMIN %>" var="membershipRequestURL" windowState="<%= WindowState.NORMAL.toString() %>">
 										<portlet:param name="struts_action" value="/sites_admin/post_membership_request" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
@@ -164,7 +164,7 @@ else {
 					</c:when>
 					<c:otherwise>
 						<span class="action leave">
-							<liferay-portlet:actionURL portletName="<%= PortletKeys.SITES_ADMIN %>" var="leaveURL" windowState="<%= WindowState.NORMAL.toString() %>">
+							<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_MEMBERSHIPS_ADMIN %>" var="leaveURL" windowState="<%= WindowState.NORMAL.toString() %>">
 								<portlet:param name="struts_action" value="/sites_admin/edit_site_assignments" />
 								<portlet:param name="<%= Constants.CMD %>" value="group_users" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
