@@ -136,7 +136,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	@Clusterable
 	public void destroyGadget(String uuid, long companyId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		try {
 			Portlet portlet = _portletsPool.remove(uuid);
@@ -156,7 +156,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 	}
 
-	public void destroyGadgets() throws PortalException, SystemException {
+	public void destroyGadgets() throws SystemException {
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
