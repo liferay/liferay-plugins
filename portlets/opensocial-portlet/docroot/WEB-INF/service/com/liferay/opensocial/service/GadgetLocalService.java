@@ -240,12 +240,10 @@ public interface GadgetLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void destroyGadget(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void destroyGadgets()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.Gadget fetchGadget(long companyId,
