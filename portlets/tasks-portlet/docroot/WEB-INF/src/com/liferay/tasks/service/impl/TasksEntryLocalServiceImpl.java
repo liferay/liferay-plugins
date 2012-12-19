@@ -429,6 +429,10 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		notificationEventJSONObject.put("userId", serviceContext.getUserId());
 
 		for (long receiverUserId : receiverUserIds) {
+			if (receiverUserId == 0) {
+				continue;
+			}
+
 			String title = StringPool.BLANK;
 
 			if (oldStatus == TasksEntryConstants.STATUS_ALL) {
