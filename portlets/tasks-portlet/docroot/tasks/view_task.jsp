@@ -41,10 +41,10 @@ boolean neverDue = true;
 			String assigneeDisplayURL = StringPool.BLANK;
 			String taglibAssigneeDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
 
-			User assigneeUserDisplay = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
+			User assigneeUser = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
 
-			if (assigneeUserDisplay != null) {
-				assigneeDisplayURL = assigneeUserDisplay.getDisplayURL(themeDisplay);
+			if (assigneeUser != null) {
+				assigneeDisplayURL = assigneeUser.getDisplayURL(themeDisplay);
 
 				taglibAssigneeDisplayURL = "<a href=\"" + assigneeDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getAssigneeFullName()) + "</a>";
 			}
@@ -60,10 +60,10 @@ boolean neverDue = true;
 			String reporterDisplayURL = StringPool.BLANK;
 			String taglibReporterDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
 
-			User reporterUserDisplay = UserLocalServiceUtil.fetchUser(tasksEntry.getUserId());
+			User reporterUser = UserLocalServiceUtil.fetchUser(tasksEntry.getUserId());
 
-			if (reporterUserDisplay != null) {
-				reporterDisplayURL = reporterUserDisplay.getDisplayURL(themeDisplay);
+			if (reporterUser != null) {
+				reporterDisplayURL = reporterUser.getDisplayURL(themeDisplay);
 
 				taglibReporterDisplayURL = "<a href=\"" + reporterDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getReporterFullName()) + "</a>";
 			}
