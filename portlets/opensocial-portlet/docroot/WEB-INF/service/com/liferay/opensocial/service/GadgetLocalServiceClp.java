@@ -121,9 +121,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 		_methodName20 = "destroyGadget";
 
-		_methodParameterTypes20 = new String[] {
-				"java.lang.String", "long", "java.lang.String"
-			};
+		_methodParameterTypes20 = new String[] { "java.lang.String", "long" };
 
 		_methodName21 = "destroyGadgets";
 
@@ -735,20 +733,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void destroyGadget(java.lang.String uuid, long companyId,
-		java.lang.String name)
+	public void destroyGadget(java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName20,
 				_methodParameterTypes20,
-				new Object[] {
-					ClpSerializer.translateInput(uuid),
-					
-				companyId,
-					
-				ClpSerializer.translateInput(name)
-				});
+				new Object[] { ClpSerializer.translateInput(uuid), companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

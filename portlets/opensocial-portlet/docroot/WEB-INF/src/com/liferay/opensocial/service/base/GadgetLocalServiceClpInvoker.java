@@ -131,9 +131,7 @@ public class GadgetLocalServiceClpInvoker {
 
 		_methodName55 = "destroyGadget";
 
-		_methodParameterTypes55 = new String[] {
-				"java.lang.String", "long", "java.lang.String"
-			};
+		_methodParameterTypes55 = new String[] { "java.lang.String", "long" };
 
 		_methodName56 = "destroyGadgets";
 
@@ -296,7 +294,7 @@ public class GadgetLocalServiceClpInvoker {
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			GadgetLocalServiceUtil.destroyGadget((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
+				((Long)arguments[1]).longValue());
 
 			return null;
 		}
