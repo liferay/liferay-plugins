@@ -268,7 +268,8 @@ public class SitesPortlet extends MVCPortlet {
 			groupJSONObject.put("socialOfficeGroup", socialOfficeGroup);
 
 			PortletURL siteAssignmentsPortletURL =
-				liferayPortletResponse.createActionURL(PortletKeys.SITES_ADMIN);
+				liferayPortletResponse.createActionURL(
+					PortletKeys.SITE_MEMBERSHIPS_ADMIN);
 
 			siteAssignmentsPortletURL.setParameter(
 				"struts_action", "/sites_admin/edit_site_assignments");
