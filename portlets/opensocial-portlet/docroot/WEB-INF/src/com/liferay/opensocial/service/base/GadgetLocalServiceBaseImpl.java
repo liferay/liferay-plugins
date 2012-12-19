@@ -115,12 +115,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param gadget the gadget
 	 * @return the gadget that was removed
-	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Gadget deleteGadget(Gadget gadget)
-		throws PortalException, SystemException {
+	public Gadget deleteGadget(Gadget gadget) throws SystemException {
 		return gadgetPersistence.remove(gadget);
 	}
 
