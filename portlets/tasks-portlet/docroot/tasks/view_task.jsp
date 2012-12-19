@@ -34,25 +34,30 @@ boolean neverDue = true;
 <liferay-ui:header title="<%= HtmlUtil.unescape(tasksEntry.getTitle()) %>" />
 
 <div class="task-data-container">
-	<c:if test="<%= tasksEntry.getAssigneeUserId() > 0 %>">
-		<div class="task-data assignee">
+	<div class="task-data assignee">
 
-			<%
-			String assigneeDisplayURL = StringPool.BLANK;
-			String taglibAssigneeDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
+		<%
+		String assigneeDisplayURL = StringPool.BLANK;
+		String taglibAssigneeDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
 
-			User assigneeUser = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
+		User assigneeUser = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
 
-			if (assigneeUser != null) {
-				assigneeDisplayURL = assigneeUser.getDisplayURL(themeDisplay);
+		if (assigneeUser != null) {
+			assigneeDisplayURL = assigneeUser.getDisplayURL(themeDisplay);
 
-				taglibAssigneeDisplayURL = "<a href=\"" + assigneeDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getAssigneeFullName()) + "</a>";
-			}
-			%>
+			taglibAssigneeDisplayURL = "<a href=\"" + assigneeDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getAssigneeFullName()) + "</a>";
+		}
+		%>
 
-			<liferay-ui:message arguments="<%= taglibAssigneeDisplayURL %>" key="assigned-to-x" />
-		</div>
-	</c:if>
+		<c:choose>
+			<c:when test="<%= tasksEntry.getAssigneeUserId() > 0 %>">
+				<liferay-ui:message arguments="<%= taglibAssigneeDisplayURL %>" key="assigned-to-x" />
+			</c:when>
+			<c:otherwise>
+				<liferay-ui:message key="unassigned" />
+			</c:otherwise>
+		</c:choose>
+	</div>
 
 	<div class="task-data reporter">
 
