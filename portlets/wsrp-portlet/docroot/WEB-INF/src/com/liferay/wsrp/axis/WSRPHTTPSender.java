@@ -135,11 +135,12 @@ public class WSRPHTTPSender extends HTTPSender {
 			return;
 		}
 
-		Hashtable requestHeaders = (Hashtable)messageContext.getProperty(
-			HTTPConstants.REQUEST_HEADERS);
+		Hashtable<String, Object> requestHeaders =
+			(Hashtable<String, Object>)messageContext.getProperty(
+				HTTPConstants.REQUEST_HEADERS);
 
 		if (requestHeaders == null) {
-			requestHeaders = new Hashtable();
+			requestHeaders = new Hashtable<String, Object>();
 
 			messageContext.setProperty(
 				HTTPConstants.REQUEST_HEADERS, requestHeaders);
