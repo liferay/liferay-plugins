@@ -15,11 +15,13 @@
 package com.liferay.wsrp.servlet;
 
 import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.util.ExtensionHelperUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -48,8 +50,20 @@ public class WSRPServletContextListener
 
 	@Override
 	protected void doPortalInit() {
-		_hotDeployMessageListener = new WSRPHotDeployMessageListener(
-			ClpSerializer.getServletContextName());
+		_hotDeployMessageListener = new HotDeployMessageListener(
+			ClpSerializer.getServletContextName()) {
+
+			@Override
+			protected void onDeploy() throws Exception {
+				ExtensionHelperUtil.initialize();
+
+				WSRPConsumerPortletLocalServiceUtil.
+					destroyWSRPConsumerPortlets();
+
+				WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
+			}
+
+		};
 
 		MessageBusUtil.registerMessageListener(
 			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
