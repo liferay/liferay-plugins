@@ -46,7 +46,7 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 	title='<%= (wsrpConsumerPortlet != null) ? wsrpConsumerPortlet.getName() : "new-portlet" %>'
 />
 
-<form action='<portlet:actionURL name="updateWSRPConsumerPortlet" />' method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerPortlet(); return false;">
+<form action="<portlet:actionURL name="updateWSRPConsumerPortlet" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerPortlet(); return false;">
 <input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_consumer_portlet.jsp" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
 <input name="<portlet:namespace />wsrpConsumerPortletId" type="hidden" value="<%= wsrpConsumerPortletId %>" />
