@@ -51,7 +51,8 @@ if (meetupsEntry != null) {
 }
 %>
 
-<form action="<portlet:actionURL name="updateMeetupsEntry"><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateMeetupsEntry(); return false;">
+<form action='<portlet:actionURL name="updateMeetupsEntry" />' enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateMeetupsEntry(); return false;">
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
 <input name="<portlet:namespace />meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
 
 <table class="lfr-table">
