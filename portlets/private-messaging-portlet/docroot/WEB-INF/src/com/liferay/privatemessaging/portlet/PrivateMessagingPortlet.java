@@ -18,7 +18,7 @@
 package com.liferay.privatemessaging.portlet;
 
 import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.compat.util.MVCPortlet;
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.UserScreenNameException;
 import com.liferay.portal.kernel.exception.PortalException;

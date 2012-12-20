@@ -42,7 +42,7 @@ import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.compat.util.MVCPortlet;
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;

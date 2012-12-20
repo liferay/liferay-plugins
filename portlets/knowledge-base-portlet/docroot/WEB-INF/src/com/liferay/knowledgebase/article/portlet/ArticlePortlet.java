@@ -15,7 +15,7 @@
 package com.liferay.knowledgebase.article.portlet;
 
 import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.compat.util.MVCPortlet;
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleTitleException;

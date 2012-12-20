@@ -15,7 +15,7 @@
 package com.liferay.socialnetworking.meetups.portlet;
 
 import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.compat.util.MVCPortlet;
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
