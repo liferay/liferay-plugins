@@ -70,8 +70,9 @@
 		boolean rememberMe = ParamUtil.getBoolean(request, "rememberMe");
 		%>
 
-		<form action="<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
-		<input name="saveLastPath" type="hidden" value="0" />
+		<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
+		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+		<input name="saveLastPath" type="hidden" value="<%= false %>" />
 		<input name="<portlet:namespace />rememberMe" type="hidden" value="<%= rememberMe %>" />
 
 		<liferay-ui:error exception="<%= AuthException.class %>" message="authentication-failed" />

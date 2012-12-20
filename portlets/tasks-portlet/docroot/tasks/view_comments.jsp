@@ -80,7 +80,8 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 </div>
 
-<form action="<portlet:actionURL name="updateMessage"><portlet:param name="mvcPath" value="/tasks/view_task.jsp" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm2">
+<form action='<portlet:actionURL name="updateMessage" />' method="post" name="<portlet:namespace />fm2">
+<input name="<portlet:namespace />mvcPath" type="hidden" value="/tasks/view_task.jsp" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />className" type="hidden" value="<%= TasksEntry.class.getName() %>" />
