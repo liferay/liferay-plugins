@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.compat.util;
+package com.liferay.compat.util.bridges.mvc;
 
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
