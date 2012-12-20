@@ -1579,7 +1579,8 @@ AUI.add(
 										}
 									},
 									destroyOnClose: true,
-									modal: true
+									modal: true,
+									width: 915
 								},
 								refreshWindow: window,
 								title: Liferay.Language.get('edit-details'),
