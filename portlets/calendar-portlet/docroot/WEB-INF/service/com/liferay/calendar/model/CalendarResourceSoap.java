@@ -46,7 +46,6 @@ public class CalendarResourceSoap implements Serializable {
 		soapModel.setCode(model.getCode());
 		soapModel.setName(model.getName());
 		soapModel.setDescription(model.getDescription());
-		soapModel.setType(model.getType());
 		soapModel.setActive(model.getActive());
 
 		return soapModel;
@@ -222,14 +221,6 @@ public class CalendarResourceSoap implements Serializable {
 		_description = description;
 	}
 
-	public String getType() {
-		return _type;
-	}
-
-	public void setType(String type) {
-		_type = type;
-	}
-
 	public boolean getActive() {
 		return _active;
 	}
@@ -257,6 +248,5 @@ public class CalendarResourceSoap implements Serializable {
 	private String _code;
 	private String _name;
 	private String _description;
-	private String _type;
 	private boolean _active;
 }
