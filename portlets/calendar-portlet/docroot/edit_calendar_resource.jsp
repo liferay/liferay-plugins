@@ -56,46 +56,49 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
 
 	<aui:fieldset>
-		<c:choose>
-			<c:when test="<%= calendarResource == null %>">
-				<c:if test="<%= !PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE %>">
-					<aui:input name="code" />
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<aui:field-wrapper label="code">
-					<%= code %>
-				</aui:field-wrapper>
-			</c:otherwise>
-		</c:choose>
-
 		<aui:input name="name" />
 
-		<aui:input name="description" />
+		<liferay-ui:panel-container extended="<%= true %>" id="calendarResourceDetailsPanelContainer" persistState="<%= true %>">
+			<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="calendarResourceDetailsPanel" persistState="<%= true %>" title="details">
+				<c:choose>
+					<c:when test="<%= calendarResource == null %>">
+						<c:if test="<%= !PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE %>">
+							<aui:input name="code" />
+						</c:if>
+					</c:when>
+					<c:otherwise>
+						<aui:field-wrapper label="code">
+							<%= code %>
+						</aui:field-wrapper>
+					</c:otherwise>
+				</c:choose>
 
-		<c:if test="<%= calendars != null %>">
-			<aui:select label="default-calendar" name="defaultCalendarId" value="<%= calendarResource.getDefaultCalendarId() %>">
+				<aui:input name="description" />
 
-				<%
-				for (Calendar calendar : calendars) {
-				%>
+				<c:if test="<%= calendars != null %>">
+					<aui:select label="default-calendar" name="defaultCalendarId" value="<%= calendarResource.getDefaultCalendarId() %>">
 
-					<aui:option label="<%= calendar.getName(locale) %>" value="<%= calendar.getCalendarId() %>" />
+						<%
+						for (Calendar calendar : calendars) {
+						%>
 
-				<%
-				}
-				%>
+							<aui:option label="<%= calendar.getName(locale) %>" value="<%= calendar.getCalendarId() %>" />
 
-			</aui:select>
-		</c:if>
+						<%
+						}
+						%>
 
-		<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>" />
+					</aui:select>
+				</c:if>
 
-		<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="calendarResourceCategorizationPanel" persistState="<%= true %>" title="categorization">
-			<aui:input classPK="<%= calendarResourceId %>" name="categories" type="assetCategories" />
+				<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>" />
+			</liferay-ui:panel>
+			<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="calendarResourceCategorizationPanel" persistState="<%= true %>" title="categorization">
+				<aui:input classPK="<%= calendarResourceId %>" name="categories" type="assetCategories" />
 
-			<aui:input classPK="<%= calendarResourceId %>" name="tags" type="assetTags" />
-		</liferay-ui:panel>
+				<aui:input classPK="<%= calendarResourceId %>" name="tags" type="assetTags" />
+			</liferay-ui:panel>
+		</liferay-ui:panel-container>
 
 		<c:if test="<%= calendarResource == null %>">
 			<aui:field-wrapper label="permissions">

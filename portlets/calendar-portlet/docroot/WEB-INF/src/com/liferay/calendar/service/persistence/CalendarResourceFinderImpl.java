@@ -48,30 +48,6 @@ public class CalendarResourceFinderImpl
 	public static final String FIND_BY_C_G_C_C_N_D_A =
 		CalendarResourceFinder.class.getName() + ".findByC_G_C_C_N_D_A";
 
-	public int countByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active)
-		throws SystemException {
-
-		String[] codes = null;
-		String[] names = null;
-		String[] descriptions = null;
-		boolean andOperator = false;
-
-		if (Validator.isNotNull(keywords)) {
-			codes = CustomSQLUtil.keywords(keywords);
-			names = CustomSQLUtil.keywords(keywords);
-			descriptions = CustomSQLUtil.keywords(keywords, false);
-		}
-		else {
-			andOperator = true;
-		}
-
-		return countByC_G_C_C_N_D_A(
-			companyId, groupIds, classNameIds, codes, names, descriptions,
-			active, andOperator);
-	}
-
 	public int countByC_G_C_C_N_D_A(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
 			String name, String description, boolean active,
@@ -98,6 +74,56 @@ public class CalendarResourceFinderImpl
 			active, andOperator, false);
 	}
 
+	public int countByKeywords(
+			long companyId, long[] groupIds, long[] classNameIds,
+			String keywords, boolean active)
+		throws SystemException {
+
+		String[] codes = null;
+		String[] names = null;
+		String[] descriptions = null;
+		boolean andOperator = false;
+
+		if (Validator.isNotNull(keywords)) {
+			codes = CustomSQLUtil.keywords(keywords);
+			names = CustomSQLUtil.keywords(keywords);
+			descriptions = CustomSQLUtil.keywords(keywords, false);
+		}
+		else {
+			andOperator = true;
+		}
+
+		return countByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, codes, names, descriptions,
+			active, andOperator);
+	}
+
+	public int filterCountByC_G_C_C_N_D_A(
+			long companyId, long[] groupIds, long[] classNameIds, String code,
+			String name, String description, boolean active,
+			boolean andOperator)
+		throws SystemException {
+
+		String[] codes = CustomSQLUtil.keywords(code);
+		String[] names = CustomSQLUtil.keywords(name);
+		String[] descriptions = CustomSQLUtil.keywords(description, false);
+
+		return filterCountByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, codes, names, descriptions,
+			active, andOperator);
+	}
+
+	public int filterCountByC_G_C_C_N_D_A(
+			long companyId, long[] groupIds, long[] classNameIds,
+			String[] codes, String[] names, String[] descriptions,
+			boolean active, boolean andOperator)
+		throws SystemException {
+
+		return doCountByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, codes, names, descriptions,
+			active, andOperator, true);
+	}
+
 	public int filterCountByKeywords(
 			long companyId, long[] groupIds, long[] classNameIds,
 			String keywords, boolean active)
@@ -122,29 +148,32 @@ public class CalendarResourceFinderImpl
 			active, andOperator);
 	}
 
-	public int filterCountByC_G_C_C_N_D_A(
+	public List<CalendarResource> filterFindByC_G_C_C_N_D_A(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description,boolean active, boolean andOperator)
+			String name, String description, boolean active,
+			boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
 		String[] codes = CustomSQLUtil.keywords(code);
 		String[] names = CustomSQLUtil.keywords(name);
 		String[] descriptions = CustomSQLUtil.keywords(description, false);
 
-		return filterCountByC_G_C_C_N_D_A(
+		return filterFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
-			active, andOperator);
+			active, andOperator, start, end, orderByComparator);
 	}
 
-	public int filterCountByC_G_C_C_N_D_A(
+	public List<CalendarResource> filterFindByC_G_C_C_N_D_A(
 			long companyId, long[] groupIds, long[] classNameIds,
 			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator)
+			boolean active, boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return doCountByC_G_C_C_N_D_A(
+		return doFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
-			active, andOperator, true);
+			active, andOperator, start, end, orderByComparator, true);
 	}
 
 	public List<CalendarResource> filterFindByKeywords(
@@ -168,59 +197,6 @@ public class CalendarResourceFinderImpl
 		}
 
 		return filterFindByC_G_C_C_N_D_A(
-			companyId, groupIds, classNameIds, codes, names, descriptions,
-			active, andOperator, start, end, orderByComparator);
-	}
-
-	public List<CalendarResource> filterFindByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds, String code,
-			String name, String description, boolean active,
-			boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		String[] codes = CustomSQLUtil.keywords(code);
-		String[] names = CustomSQLUtil.keywords(name);
-		String[] descriptions = CustomSQLUtil.keywords(description, false);
-
-		return filterFindByC_G_C_C_N_D_A(
-			companyId, groupIds, classNameIds, codes, names, descriptions,
-			active, andOperator, start, end, orderByComparator);
-	}
-
-	public List<CalendarResource> filterFindByC_G_C_C_N_D_A(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String[] codes, String[] names, String[] descriptions,
-			boolean active, boolean andOperator, int start,
-			int end, OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return doFindByC_G_C_C_N_D_A(
-			companyId, groupIds, classNameIds, codes, names, descriptions,
-			active, andOperator, start, end, orderByComparator, true);
-	}
-
-	public List<CalendarResource> findByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		String[] codes = null;
-		String[] names = null;
-		String[] descriptions = null;
-		boolean andOperator = false;
-
-		if (Validator.isNotNull(keywords)) {
-			codes = CustomSQLUtil.keywords(keywords);
-			names = CustomSQLUtil.keywords(keywords);
-			descriptions = CustomSQLUtil.keywords(keywords, false);
-		}
-		else {
-			andOperator = true;
-		}
-
-		return findByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
 			active, andOperator, start, end, orderByComparator);
 	}
@@ -251,6 +227,31 @@ public class CalendarResourceFinderImpl
 		return doFindByC_G_C_C_N_D_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
 			active, andOperator, start, end, orderByComparator, false);
+	}
+
+	public List<CalendarResource> findByKeywords(
+			long companyId, long[] groupIds, long[] classNameIds,
+			String keywords, boolean active, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		String[] codes = null;
+		String[] names = null;
+		String[] descriptions = null;
+		boolean andOperator = false;
+
+		if (Validator.isNotNull(keywords)) {
+			codes = CustomSQLUtil.keywords(keywords);
+			names = CustomSQLUtil.keywords(keywords);
+			descriptions = CustomSQLUtil.keywords(keywords, false);
+		}
+		else {
+			andOperator = true;
+		}
+
+		return findByC_G_C_C_N_D_A(
+			companyId, groupIds, classNameIds, codes, names, descriptions,
+			active, andOperator, start, end, orderByComparator);
 	}
 
 	protected int doCountByC_G_C_C_N_D_A(
