@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="solr-web" basedir="." default="deploy">
+<project name="solr3-web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
 
 	<property name="original.war.file" value="apache-solr-3.5.0.zip" />
