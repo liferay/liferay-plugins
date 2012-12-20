@@ -100,7 +100,7 @@
 .aui-calendar-list-item {
 	color: #222;
 	cursor: pointer;
-	display: inline-block;
+	display: block;
 	font-size: 12px;
 	line-height: 20px;
 	overflow: hidden;
@@ -108,7 +108,6 @@
 	position: relative;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	width: 203px;
 }
 
 .aui-calendar-list-item-hover, .aui-calendar-list-item-active {
