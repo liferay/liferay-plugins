@@ -34,7 +34,6 @@
 					(startTime >= ?)
 				) AND
 				(firstReminder > 0) AND
-				(secondReminder > 0) AND
 				(status = 0)
 		]]>
 	</sql>
