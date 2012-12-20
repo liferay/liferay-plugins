@@ -120,13 +120,6 @@ public class CalendarResourceLocalServiceImpl
 		resourceLocalService.addModelResources(
 			calendarResource, serviceContext);
 
-		// Asset
-
-		updateAsset(
-			calendarResource.getUserId(), calendarResource,
-			serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames());
-
 		// Calendar
 
 		serviceContext.setAddGroupPermissions(true);
@@ -135,6 +128,13 @@ public class CalendarResourceLocalServiceImpl
 		calendarLocalService.addCalendar(
 			userId, groupId, calendarResourceId, nameMap, descriptionMap,
 			PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, serviceContext);
+
+		// Asset
+
+		updateAsset(
+			calendarResource.getUserId(), calendarResource,
+			serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
 
 		return calendarResource;
 	}
