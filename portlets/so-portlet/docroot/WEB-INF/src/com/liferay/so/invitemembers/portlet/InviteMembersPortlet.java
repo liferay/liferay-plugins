@@ -144,11 +144,10 @@ public class InviteMembersPortlet extends MVCPortlet {
 			request, com.liferay.portal.util.PortletKeys.LOGIN,
 			group.getDefaultPublicPlid(), PortletRequest.RENDER_PHASE);
 
-		createAccountURL.setWindowState(WindowState.MAXIMIZED);
-		createAccountURL.setPortletMode(PortletMode.VIEW);
-
 		createAccountURL.setParameter("struts_action", "/login/create_account");
 		createAccountURL.setParameter("saveLastPath", Boolean.FALSE.toString());
+		createAccountURL.setPortletMode(PortletMode.VIEW);
+		createAccountURL.setWindowState(WindowState.MAXIMIZED);
 
 		return createAccountURL.toString();
 	}
