@@ -581,7 +581,7 @@ public class CalendarPortletDataHandlerImpl extends BasePortletDataHandler {
 						calendarResource.getCode(),
 						calendarResource.getNameMap(),
 						calendarResource.getDescriptionMap(),
-						calendarResource.getActive(), serviceContext);
+						calendarResource.isActive(), serviceContext);
 			}
 			else {
 				importedCalendarResource =
@@ -589,7 +589,7 @@ public class CalendarPortletDataHandlerImpl extends BasePortletDataHandler {
 						existingCalendarResource.getCalendarResourceId(),
 						calendarResource.getNameMap(),
 						calendarResource.getDescriptionMap(),
-						calendarResource.getActive(), serviceContext);
+						calendarResource.isActive(), serviceContext);
 			}
 		}
 		else {
@@ -600,7 +600,7 @@ public class CalendarPortletDataHandlerImpl extends BasePortletDataHandler {
 					calendarResource.getClassUuid(), calendarResource.getCode(),
 					calendarResource.getNameMap(),
 					calendarResource.getDescriptionMap(),
-					calendarResource.getActive(), serviceContext);
+					calendarResource.isActive(), serviceContext);
 		}
 
 		portletDataContext.importClassedModel(
