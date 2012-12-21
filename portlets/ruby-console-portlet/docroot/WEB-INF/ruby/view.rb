@@ -1,6 +1,8 @@
+include_class 'com.liferay.portal.kernel.util.WebKeys'
+
 $renderResponse.setContentType "text/html"
 
-themeDisplay = $renderRequest.getAttribute(com.liferay.portal.kernel.util.WebKeys.THEME_DISPLAY);
+themeDisplay = $renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 namespace = $renderResponse.getNamespace
 
