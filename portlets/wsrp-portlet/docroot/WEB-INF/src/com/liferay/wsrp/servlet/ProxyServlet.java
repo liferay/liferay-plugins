@@ -25,6 +25,7 @@ import com.liferay.wsrp.util.WebKeys;
 
 import java.io.IOException;
 
+import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -61,17 +62,20 @@ public class ProxyServlet extends HttpServlet {
 	}
 
 	protected boolean isAllowedURL(URL url) throws Exception {
-		if (PortletPropsValues.PROXY_URL_IPS_ALLOWED.length == 0) {
+		String[] allowedIps = PortletPropsValues.PROXY_URL_IPS_ALLOWED;
+
+		if (allowedIps.length == 0) {
 			return true;
 		}
 		else {
+			InetAddress inetAddress = InetAddress.getByName(url.getHost());
+
+			String hostAddress = inetAddress.getHostAddress();
 			String serverIp = PortalUtil.getComputerAddress();
 
-			for (String ip : PortletPropsValues.PROXY_URL_IPS_ALLOWED) {
-				String host = url.getHost();
-
-				if ((ip.equals(_SERVER_IP) && host.equals(serverIp)) ||
-					host.equals(ip)) {
+			for (String ip : allowedIps) {
+				if ((ip.equals(_SERVER_IP) && serverIp.equals(hostAddress)) ||
+					ip.equals(hostAddress)) {
 
 					return true;
 				}
