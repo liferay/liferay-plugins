@@ -49,8 +49,10 @@ public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 				(UploadPortletRequest)actionRequest.getAttribute(
 					PortalUtil.class.getName() + "#uploadPortletRequest");
 
-			PortalUtil.copyRequestParameters(
-				uploadPortletRequest, actionResponse);
+			if (uploadPortletRequest != null) {
+				PortalUtil.copyRequestParameters(
+					uploadPortletRequest, actionResponse);
+			}
 		}
 	}
 
