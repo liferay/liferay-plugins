@@ -272,7 +272,7 @@ public class CalendarResourceLocalServiceImpl
 			CalendarResource.class.getName(),
 			calendarResource.getCalendarResourceId(),
 			calendarResource.getUuid(), 0, assetCategoryIds, assetTagNames,
-			true, null, null, null, ContentTypes.TEXT,
+			true, null, null, null, null, ContentTypes.TEXT,
 			calendarResource.getName(), calendarResource.getDescription(), null,
 			null, null, 0, 0, null, false);
 	}
