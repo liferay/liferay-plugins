@@ -287,6 +287,8 @@ public class KaleoInstanceLocalServiceImpl
 		kaleoInstance.setWorkflowContext(
 			WorkflowContextUtil.convert(workflowContext));
 
+		kaleoInstancePersistence.update(kaleoInstance);
+
 		return kaleoInstance;
 	}
 
