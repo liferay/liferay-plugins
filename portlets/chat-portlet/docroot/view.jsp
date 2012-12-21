@@ -57,7 +57,7 @@
 
 			<div class="chat-tabs-container">
 				<ul class="chat-tabs">
-					<li class="buddy-list <%= activePanelId.equals("buddylist") ? "selected" : "" %>">
+					<li class="buddy-list loading <%= activePanelId.equals("buddylist") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="buddylist">
 							<span class="trigger-name"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></span>
 						</div>

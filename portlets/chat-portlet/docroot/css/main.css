@@ -149,6 +149,23 @@ html body {
 		width: 100%;
 	}
 
+	&.loading.selected {
+		.chat-panel .panel-window .panel-content {
+			opacity: 0.3;
+
+			li:hover {
+				background: none;
+				border-color: transparent;
+				cursor: default;
+			}
+		}
+
+		.panel-trigger .trigger-name {
+			background: url(@theme_image_path@/application/loading_indicator.gif) no-repeat 0 0;
+			padding: 2px 0 2px 20px;
+		}
+	}
+
 	.panel-content {
 		list-style-type: none;
 		margin: 0;
