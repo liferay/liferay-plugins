@@ -151,7 +151,7 @@ html body {
 
 	&.loading.selected {
 		.chat-panel .panel-window .panel-content {
-			opacity: 0.3;
+			@include opacity(0.3);
 
 			li:hover {
 				background: none;

@@ -1110,7 +1110,7 @@ AUI().use(
 					instance._cacheLoaded = true;
 					instance._initialRequest = false;
 
-					A.one('.buddy-list').removeClass('loading');
+					instance._chatContainer.one('.chat-tabs > .buddy-list').removeClass('loading');
 				}
 			},
 
