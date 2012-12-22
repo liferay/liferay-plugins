@@ -610,7 +610,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 			int index = recurrence.indexOf(StringPool.NEW_LINE);
 
-			if (index != 0) {
+			if (index > 0) {
 				recurrence = recurrence.substring(0, index);
 			}
 
