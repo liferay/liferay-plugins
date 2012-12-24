@@ -66,7 +66,7 @@ public class ResourceImporter extends FileSystemImporter {
 	@Override
 	@SuppressWarnings("unchecked")
 	protected void addJournalArticles(
-			String journalStructureId, String journalTemplateId,
+			String ddmStructureKey, String ddmTemplateKey,
 			String articlesDirName)
 		throws Exception {
 
@@ -89,14 +89,14 @@ public class ResourceImporter extends FileSystemImporter {
 			URLConnection urlConnection = url.openConnection();
 
 			doAddJournalArticles(
-				journalStructureId, journalTemplateId, name,
+				ddmStructureKey, ddmTemplateKey, name,
 				urlConnection.getInputStream());
 		}
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	protected void addJournalStructures(
+	protected void addDDMStructures(
 			String parentStructureId, String structuresDirName)
 		throws Exception {
 
@@ -118,15 +118,15 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddJournalStructures(
+			doAddDDMStructures(
 				parentStructureId, name, urlConnection.getInputStream());
 		}
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	protected void addJournalTemplates(
-			String journalStructureId, String templatesDirName)
+	protected void addDDMTemplates(
+			String ddmStructureKey, String templatesDirName)
 		throws Exception {
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
@@ -147,8 +147,8 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddJournalTemplates(
-				journalStructureId, name, urlConnection.getInputStream());
+			doAddDDMTemplates(
+				ddmStructureKey, name, urlConnection.getInputStream());
 		}
 	}
 

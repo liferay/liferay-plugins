@@ -121,7 +121,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void addJournalArticles(
-			String journalStructureId, String journalTemplateId,
+			String ddmStructureKey, String ddmTemplateKey,
 			String articlesDirName)
 		throws Exception {
 
@@ -143,7 +143,7 @@ public class FileSystemImporter extends BaseImporter {
 					new FileInputStream(file));
 
 				doAddJournalArticles(
-					journalStructureId, journalTemplateId, file.getName(),
+					ddmStructureKey, ddmTemplateKey, file.getName(),
 					inputStream);
 			}
 			finally {
@@ -154,8 +154,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addJournalStructures(
-			String parentStructureId, String structuresDirName)
+	protected void addDDMStructures(
+			String parentDDMStructureKey, String structuresDirName)
 		throws Exception {
 
 		File journalStructuresDir = new File(_resourcesDir, structuresDirName);
@@ -175,8 +175,8 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddJournalStructures(
-					parentStructureId, file.getName(), inputStream);
+				doAddDDMStructures(
+					parentDDMStructureKey, file.getName(), inputStream);
 			}
 			finally {
 				if (inputStream != null) {
@@ -186,8 +186,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addJournalTemplates(
-			String journalStructureId, String templatesDirName)
+	protected void addDDMTemplates(
+			String ddmStructureKey, String templatesDirName)
 		throws Exception {
 
 		File journalTemplatesDir = new File(_resourcesDir, templatesDirName);
@@ -207,8 +207,8 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddJournalTemplates(
-					journalStructureId, file.getName(), inputStream);
+				doAddDDMTemplates(
+					ddmStructureKey, file.getName(), inputStream);
 			}
 			finally {
 				if (inputStream != null) {
@@ -399,7 +399,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void doAddJournalArticles(
-			String journalStructureId, String journalTemplateId,
+			String ddmStructureKey, String ddmTemplateKey,
 			String fileName, InputStream inputStream)
 		throws Exception {
 
@@ -449,8 +449,8 @@ public class FileSystemImporter extends BaseImporter {
 			JournalArticleLocalServiceUtil.addArticle(
 				userId, groupId, 0, 0, 0, journalArticleId, false,
 				JournalArticleConstants.VERSION_DEFAULT, titleMap,
-				descriptionMap, content, "general", journalStructureId,
-				journalTemplateId, StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0,
+				descriptionMap, content, "general", ddmStructureKey,
+				ddmTemplateKey, StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0,
 				0, 0, true, 0, 0, 0, 0, 0, true, true, smallImage,
 				smallImageURL, null, new HashMap<String, byte[]>(),
 				StringPool.BLANK, serviceContext);
@@ -461,11 +461,12 @@ public class FileSystemImporter extends BaseImporter {
 			StringPool.BLANK, serviceContext);
 	}
 
-	protected void doAddJournalStructures(
-			String parentStructureId, String fileName, InputStream inputStream)
+	protected void doAddDDMStructures(
+			String parentDDMStructureKey, String fileName,
+			InputStream inputStream)
 		throws Exception {
 
-		String journalStructureId = getJournalId(fileName);
+		String ddmStructureKey = getJournalId(fileName);
 
 		String name = FileUtil.stripExtension(fileName);
 
@@ -478,25 +479,25 @@ public class FileSystemImporter extends BaseImporter {
 		long classNameId = PortalUtil.getClassNameId(JournalArticle.class);
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.addStructure(
-			userId, groupId, parentStructureId, classNameId, journalStructureId,
-			nameMap, null, xsd, StorageType.XML.getValue(),
+			userId, groupId, parentDDMStructureKey, classNameId,
+			ddmStructureKey, nameMap, null, xsd, StorageType.XML.getValue(),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
-		addJournalTemplates(
-			ddmStructure.getStructureKey(), _JOURNAL_TEMPLATES_DIR_NAME + name);
+		addDDMTemplates(
+			ddmStructure.getStructureKey(), _DDM_TEMPLATES_DIR_NAME + name);
 
-		if (Validator.isNull(parentStructureId)) {
-			addJournalStructures(
+		if (Validator.isNull(parentDDMStructureKey)) {
+			addDDMStructures(
 				ddmStructure.getStructureKey(),
-				_JOURNAL_STRUCTURES_DIR_NAME + name);
+				_DDM_STRUCTURES_DIR_NAME + name);
 		}
 	}
 
-	protected void doAddJournalTemplates(
-			String journalStructureId, String fileName, InputStream inputStream)
+	protected void doAddDDMTemplates(
+			String ddmStructureKey, String fileName, InputStream inputStream)
 		throws Exception {
 
-		String journalTemplateId = getJournalId(fileName);
+		String ddmTemplateKey = getJournalId(fileName);
 
 		String name = FileUtil.stripExtension(fileName);
 
@@ -509,19 +510,19 @@ public class FileSystemImporter extends BaseImporter {
 		setServiceContext(fileName);
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
-			groupId, journalStructureId);
+			groupId, ddmStructureKey);
 
 		long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
 		long classPK = ddmStructure.getStructureId();
 
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, classNameId, classPK, journalTemplateId, nameMap,
+			userId, groupId, classNameId, classPK, ddmTemplateKey, nameMap,
 			null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE, "xsd", xsl, false, false,
 			null, null, serviceContext);
 
 		addJournalArticles(
-			journalStructureId, ddmTemplate.getTemplateKey(),
+			ddmStructureKey, ddmTemplate.getTemplateKey(),
 			_JOURNAL_ARTICLES_DIR_NAME + name);
 	}
 
@@ -751,9 +752,9 @@ public class FileSystemImporter extends BaseImporter {
 		addJournalArticles(
 			StringPool.BLANK, StringPool.BLANK, _JOURNAL_ARTICLES_DIR_NAME);
 
-		addJournalStructures(StringPool.BLANK, _JOURNAL_STRUCTURES_DIR_NAME);
+		addDDMStructures(StringPool.BLANK, _DDM_STRUCTURES_DIR_NAME);
 
-		addJournalTemplates(StringPool.BLANK, _JOURNAL_TEMPLATES_DIR_NAME);
+		addDDMTemplates(StringPool.BLANK, _DDM_TEMPLATES_DIR_NAME);
 	}
 
 	protected void setupSettings(String fileName) throws Exception {
@@ -846,10 +847,10 @@ public class FileSystemImporter extends BaseImporter {
 	private static final String _JOURNAL_ARTICLES_DIR_NAME =
 		"/journal/articles/";
 
-	private static final String _JOURNAL_STRUCTURES_DIR_NAME =
+	private static final String _DDM_STRUCTURES_DIR_NAME =
 		"/journal/structures/";
 
-	private static final String _JOURNAL_TEMPLATES_DIR_NAME =
+	private static final String _DDM_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
 
 	private Map<String, JSONObject> _assetJSONObjectMap =
