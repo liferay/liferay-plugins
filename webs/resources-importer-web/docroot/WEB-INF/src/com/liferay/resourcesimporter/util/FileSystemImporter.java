@@ -48,14 +48,16 @@ import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
+import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
+import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
+import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
+import com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil;
+import com.liferay.portlet.dynamicdatamapping.storage.StorageType;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
-import com.liferay.portlet.journal.model.JournalStructure;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.model.JournalTemplateConstants;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -473,18 +475,19 @@ public class FileSystemImporter extends BaseImporter {
 
 		setServiceContext(fileName);
 
-		JournalStructure journalStructure =
-			JournalStructureLocalServiceUtil.addStructure(
-				userId, groupId, journalStructureId, false, parentStructureId,
-				nameMap, null, xsd, serviceContext);
+		long classNameId = PortalUtil.getClassNameId(JournalArticle.class);
+
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.addStructure(
+			userId, groupId, parentStructureId, classNameId, journalStructureId,
+			nameMap, null, xsd, StorageType.XML.getValue(),
+			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
 		addJournalTemplates(
-			journalStructure.getStructureId(),
-			_JOURNAL_TEMPLATES_DIR_NAME + name);
+			ddmStructure.getStructureKey(), _JOURNAL_TEMPLATES_DIR_NAME + name);
 
 		if (Validator.isNull(parentStructureId)) {
 			addJournalStructures(
-				journalStructure.getStructureId(),
+				ddmStructure.getStructureKey(),
 				_JOURNAL_STRUCTURES_DIR_NAME + name);
 		}
 	}
@@ -505,14 +508,20 @@ public class FileSystemImporter extends BaseImporter {
 
 		setServiceContext(fileName);
 
-		JournalTemplate journalTemplate =
-			JournalTemplateLocalServiceUtil.addTemplate(
-				userId, groupId, journalTemplateId, false, journalStructureId,
-				nameMap, null, xsl, true, JournalTemplateConstants.LANG_TYPE_VM,
-				false, false, StringPool.BLANK, null, serviceContext);
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
+			groupId, journalStructureId);
+
+		long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
+		long classPK = ddmStructure.getStructureId();
+
+		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
+			userId, groupId, classNameId, classPK, journalTemplateId, nameMap,
+			null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
+			DDMTemplateConstants.TEMPLATE_MODE_CREATE, "xsd", xsl, false, false,
+			null, null, serviceContext);
 
 		addJournalArticles(
-			journalStructureId, journalTemplate.getTemplateId(),
+			journalStructureId, ddmTemplate.getTemplateKey(),
 			_JOURNAL_ARTICLES_DIR_NAME + name);
 	}
 
@@ -725,9 +734,9 @@ public class FileSystemImporter extends BaseImporter {
 
 		JournalArticleLocalServiceUtil.deleteArticles(groupId);
 
-		JournalTemplateLocalServiceUtil.deleteTemplates(groupId);
+		DDMTemplateLocalServiceUtil.deleteTemplates(groupId);
 
-		JournalStructureLocalServiceUtil.deleteStructures(groupId);
+		DDMStructureLocalServiceUtil.deleteStructures(groupId);
 
 		JSONObject jsonObject = getJSONObject(fileName);
 
