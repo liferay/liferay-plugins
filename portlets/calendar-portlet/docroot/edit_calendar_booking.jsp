@@ -556,10 +556,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		{
 			after: {
 				endDateChange: function(event) {
-					Liferay.DatePickerUtil.syncUI(formNode, 'endDate', event.newVal);
+					Liferay.DatePickerUtil.syncUI(formNode, 'endTime', event.newVal);
 				},
 				startDateChange: function(event) {
-					Liferay.DatePickerUtil.syncUI(formNode, 'startDate', event.newVal);
+					Liferay.DatePickerUtil.syncUI(formNode, 'startTime', event.newVal);
 				}
 			},
 			borderStyle: 'dashed',
@@ -582,8 +582,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		}
 	);
 
-	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />endDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'endDate');
-	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />startDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'startDate');
+	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />endDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'endTime');
+	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />startDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'startTime');
 
 	scheduler.after(
 		'*:load',
@@ -676,4 +676,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			scheduler.syncEventsUI();
 		}
 	);
+
+	scheduler.load();
 </aui:script>
