@@ -1634,7 +1634,7 @@ AUI.add(
 						var eventRecorderCalendar = A.one('#' + portletNamespace + 'eventRecorderCalendar');
 
 						if (eventRecorderCalendar) {
-							eventRecorderCalendar.val(calendarId);
+							eventRecorderCalendar.val(calendarId.toString());
 						}
 
 						instance._syncToolbarButtons(event.newVal);
