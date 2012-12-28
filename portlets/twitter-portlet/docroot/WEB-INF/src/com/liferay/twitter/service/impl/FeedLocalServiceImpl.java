@@ -208,7 +208,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	}
 
 	private static final String _URL =
-		"http://twitter.com/statuses/user_timeline/";
+		"http://api.twitter.com/1/statuses/user_timeline/";
 
 	private static Log _log = LogFactoryUtil.getLog(FeedLocalServiceImpl.class);
 
