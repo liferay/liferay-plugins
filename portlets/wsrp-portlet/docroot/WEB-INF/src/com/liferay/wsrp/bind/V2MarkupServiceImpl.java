@@ -807,12 +807,13 @@ public class V2MarkupServiceImpl
 
 		sb.append(portalURL);
 
+		sb.append(PortalUtil.getPathContext());
+
 		if (Validator.isNotNull(languageId)) {
 			sb.append(StringPool.SLASH);
 			sb.append(languageId);
 		}
 
-		sb.append(PortalUtil.getPathContext());
 		sb.append(_PATH_WIDGET);
 
 		return sb.toString();
