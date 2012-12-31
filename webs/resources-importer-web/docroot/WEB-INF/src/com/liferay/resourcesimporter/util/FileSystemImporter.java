@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -54,7 +56,6 @@ import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil;
-import com.liferay.portlet.dynamicdatamapping.storage.StorageType;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
@@ -480,7 +481,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.addStructure(
 			userId, groupId, parentDDMStructureKey, classNameId,
-			ddmStructureKey, nameMap, null, xsd, StorageType.XML.getValue(),
+			ddmStructureKey, nameMap, null, xsd,
+			PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_STORAGE_TYPE),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
 		addDDMTemplates(
@@ -518,8 +520,9 @@ public class FileSystemImporter extends BaseImporter {
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, classNameId, classPK, ddmTemplateKey, nameMap,
 			null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-			DDMTemplateConstants.TEMPLATE_MODE_CREATE, "xsd", xsl, false, false,
-			null, null, serviceContext);
+			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
+			DDMTemplateConstants.LANG_TYPE_XSD, xsl, false, false, null, null,
+			serviceContext);
 
 		addJournalArticles(
 			ddmStructureKey, ddmTemplate.getTemplateKey(),
