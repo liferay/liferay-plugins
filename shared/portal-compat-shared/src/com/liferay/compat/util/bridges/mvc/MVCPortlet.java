@@ -17,8 +17,15 @@ package com.liferay.compat.util.bridges.mvc;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.io.IOException;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -26,6 +33,7 @@ import javax.portlet.PortletException;
 
 /**
  * @author Shinn Lok
+ * @author Peter Shin
  */
 public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 
@@ -45,5 +53,77 @@ public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 				uploadPortletRequest, actionResponse);
 		}
 	}
+
+	@Override
+	protected boolean callActionMethod(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
+
+		try {
+			return super.callActionMethod(actionRequest, actionResponse);
+		}
+		catch (PortletException pe) {
+			return _callActionMethod(actionRequest, actionResponse, pe);
+		}
+	}
+
+	private boolean _callActionMethod(
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			PortletException portletException)
+		throws PortletException {
+
+		Throwable throwable = portletException.getCause();
+
+		if (!(throwable instanceof NoSuchMethodException)) {
+			throw portletException;
+		}
+
+		String actionName = ParamUtil.getString(
+			actionRequest, ActionRequest.ACTION_NAME);
+
+		try {
+			Method method = _getActionMethod(actionName);
+
+			method.invoke(this, actionRequest, actionResponse);
+
+			return true;
+		}
+		catch (InvocationTargetException ite) {
+			Throwable cause = ite.getCause();
+
+			if (cause != null) {
+				throw new PortletException(cause);
+			}
+			else {
+				throw new PortletException(ite);
+			}
+		}
+		catch (Exception e) {
+			throw portletException;
+		}
+	}
+
+
+	private Method _getActionMethod(String actionName)
+		throws NoSuchMethodException {
+
+		Method method = _actionMethods.get(actionName);
+
+		if (method != null) {
+			return method;
+		}
+
+		Class<?> clazz = getClass();
+
+		method = clazz.getMethod(
+			actionName, ActionRequest.class, ActionResponse.class);
+
+		_actionMethods.put(actionName, method);
+
+		return method;
+	}
+
+	private Map<String, Method> _actionMethods =
+		new ConcurrentHashMap<String, Method>();
 
 }
