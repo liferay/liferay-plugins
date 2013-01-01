@@ -103,7 +103,6 @@ public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 		}
 	}
 
-
 	private Method _getActionMethod(String actionName)
 		throws NoSuchMethodException {
 
