@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -692,7 +693,7 @@ public class V2MarkupServiceImpl
 			PortletContext portletContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		String[] locales = mimeRequest.getLocales();
 
@@ -803,7 +804,7 @@ public class V2MarkupServiceImpl
 
 		String portalURL = PortalUtil.getPortalURL(request);
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(5);
 
 		sb.append(portalURL);
 		sb.append(PortalUtil.getPathContext());
