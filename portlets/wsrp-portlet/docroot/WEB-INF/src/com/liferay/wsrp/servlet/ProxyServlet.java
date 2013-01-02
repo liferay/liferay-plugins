@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -68,6 +69,12 @@ public class ProxyServlet extends HttpServlet {
 		}
 
 		String domain = HttpUtil.getDomain(url);
+
+		int pos = -1;
+
+		if ((pos = domain.indexOf(CharPool.COLON)) != -1) {
+			domain = domain.substring(0, pos);
+		}
 
 		InetAddress inetAddress = InetAddress.getByName(domain);
 
