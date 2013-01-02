@@ -806,7 +806,6 @@ public class V2MarkupServiceImpl
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(portalURL);
-
 		sb.append(PortalUtil.getPathContext());
 
 		if (Validator.isNotNull(languageId)) {
