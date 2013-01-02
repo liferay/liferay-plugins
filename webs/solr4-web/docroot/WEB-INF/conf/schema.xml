@@ -58,15 +58,24 @@
 	<fields>
 		<field name="comments" type="text" indexed="true" stored="true" />
 		<field name="content" type="text" indexed="true" stored="true" />
+		<field name="entryClassPK" type="string" indexed="true" stored="true" omitNorms="false"/>
+		<field name="entryClassName" type="string" indexed="true" stored="true" omitNorms="false"/>
+		<field name="groupId" type="string" indexed="true" stored="true" omitNorms="false"/>
+		<field name="folderId" type="string" indexed="true" stored="true" omitNorms="false"/>
+		<field name="scopeGroupId" type="string" indexed="true" stored="true" omitNorms="false"/>
+		<field name="path" type="string" indexed="true" stored="true" />
+		<field name="articleId" type="string" indexed="true" stored="true" />
+		<field name="nodeId" type="string" indexed="true" stored="true" />
+		<field name="createDate" type="text" indexed="true" stored="true" />
 		<field name="description" type="text" indexed="true" stored="true" />
-		<field name="entryClassPK" type="text" indexed="true" stored="true" />
-		<field name="firstName" type="text" indexed="true" stored="true" />
-		<field name="lastName" type="text" indexed="true" stored="true" />
+		<field name="firstName" type="string" indexed="true" stored="true" />
+		<field name="lastName" type="string" indexed="true" stored="true" />
 		<field name="leftOrganizationId" type="slong" indexed="true" stored="true" />
-		<field name="name" type="text" indexed="true" stored="true" />
+		<field name="name" type="string" indexed="true" stored="true" />
 		<field name="properties" type="string" indexed="true" stored="true" />
 		<field name="rightOrganizationId" type="slong" indexed="true" stored="true" />
 		<field name="title" type="text" indexed="true" stored="true" />
+		<field name="id" type="string" indexed="true" stored="true" />
 		<field name="uid" type="string" indexed="true" stored="true" />
 		<field name="url" type="string" indexed="true" stored="true" />
 		<field name="userName" type="string" indexed="true" stored="true" />
