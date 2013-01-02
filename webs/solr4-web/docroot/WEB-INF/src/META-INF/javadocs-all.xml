@@ -911,14 +911,6 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>StoppableSolrServer</name>
-		<type>com.liferay.portal.search.solr.server.StoppableSolrServer</type>
-		<author><![CDATA[Raymond Augé]]></author>
-		<method>
-			<name>stop</name>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>SolrServletContextListener</name>
 		<type>com.liferay.portal.search.solr.servlet.SolrServletContextListener</type>
 		<author><![CDATA[Zsigmond Rab]]></author>

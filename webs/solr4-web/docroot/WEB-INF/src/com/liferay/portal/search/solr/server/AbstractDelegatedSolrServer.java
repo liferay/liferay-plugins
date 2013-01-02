@@ -14,13 +14,30 @@
 
 package com.liferay.portal.search.solr.server;
 
+import java.util.List;
+
 import org.apache.solr.client.solrj.SolrServer;
 
 /**
- * @author Raymond Augé
+ * @author Michael C. Han
  */
-public abstract class StoppableSolrServer extends SolrServer {
+public abstract class AbstractDelegatedSolrServer extends SolrServer {
+	public AbstractDelegatedSolrServer(SolrServerFactory solrServerFactory) {
+		this.solrServerFactory = solrServerFactory;
+	}
 
-	public abstract void stop();
+	@Override
+	public void shutdown() {
+		List<SolrServerWrapper> solrServerWrappers =
+			solrServerFactory.getLiveServers();
+
+		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
+			SolrServer solrServer = solrServerWrapper.getServer();
+
+			solrServer.shutdown();
+		}
+	}
+
+	protected SolrServerFactory solrServerFactory;
 
 }

@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrRequest;
-import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.request.UpdateRequest;
 import org.apache.solr.common.util.NamedList;
@@ -28,10 +27,10 @@ import org.apache.solr.common.util.NamedList;
 /**
  * @author Bruno Farache
  */
-public class BroadcastWriterSolrServer extends SolrServer {
+public class BroadcastWriterSolrServer extends AbstractDelegatedSolrServer {
 
 	public BroadcastWriterSolrServer(SolrServerFactory solrServerFactory) {
-		_solrServerFactory = solrServerFactory;
+		super(solrServerFactory);
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class BroadcastWriterSolrServer extends SolrServer {
 		}
 
 		List<SolrServerWrapper> solrServerWrappers =
-			_solrServerFactory.getLiveServers();
+			solrServerFactory.getLiveServers();
 
 		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
 			try {
@@ -69,7 +68,5 @@ public class BroadcastWriterSolrServer extends SolrServer {
 
 	private static Log _log = LogFactoryUtil.getLog(
 		BroadcastWriterSolrServer.class);
-
-	private SolrServerFactory _solrServerFactory;
 
 }

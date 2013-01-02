@@ -15,7 +15,6 @@
 package com.liferay.portal.search.solr.server;
 
 import org.apache.solr.client.solrj.SolrRequest;
-import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.common.SolrException;
 import org.apache.solr.common.util.NamedList;
@@ -23,17 +22,17 @@ import org.apache.solr.common.util.NamedList;
 /**
  * @author Bruno Farache
  */
-public class LoadBalancerSolrServer extends SolrServer {
+public class LoadBalancerSolrServer extends AbstractDelegatedSolrServer {
 
 	public LoadBalancerSolrServer(SolrServerFactory solrServerFactory) {
-		_solrServerFactory = solrServerFactory;
+		super(solrServerFactory);
 	}
 
 	@Override
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws SolrServerException {
 
-		SolrServerWrapper solrServerWapper = _solrServerFactory.getLiveServer();
+		SolrServerWrapper solrServerWapper = solrServerFactory.getLiveServer();
 
 		try {
 			return solrServerWapper.request(solrRequest);
@@ -45,7 +44,5 @@ public class LoadBalancerSolrServer extends SolrServer {
 			throw new SolrServerException(e);
 		}
 	}
-
-	private SolrServerFactory _solrServerFactory;
 
 }

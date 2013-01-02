@@ -4,16 +4,18 @@
 <project name="solr4-web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
 
-	<property name="original.war.file" value="apache-solr-3.5.0.zip" />
+	<property name="solr.version" value="4.0.0" />
+	<property name="original.war.file" value="apache-solr-${solr.version}.zip" />
+	<property name="solr.dist.path" value="apache-solr-${solr.version}/dist" />
+	<property name="solrj.lib.dist.path" value="${solr.dist.path}/solrj-lib" />
 
 	<target name="merge-unzip">
 		<unzip
 			dest="tmp/WEB-INF/lib"
 			src="${original.war.file}"
 		>
-			<patternset
-				includes="apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar"
-			/>
+			<patternset includes="${solr.dist.path}/apache-solr-core-*.jar,${solr.dist.path}/apache-solr-solrj-*.jar" />
+			<patternset includes="${solrj.lib.dist.path}/wstx-asl*.jar,${solrj.lib.dist.path}/zookeeper*.jar" />
 			<mapper type="flatten" />
 		</unzip>
 	</target>
@@ -21,7 +23,7 @@
 	<target name="shrink-zip">
 		<antcall target="shrink-zip-cmd">
 			<param name="zip.file.name" value="${original.war.file}" />
-			<param name="zip.includes" value="apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar" />
+			<param name="zip.includes" value="${solr.dist.path}/apache-solr-core-*.jar,${solr.dist.path}/apache-solr-solrj-*.jar,${solrj.lib.dist.path}/wstx-asl*.jar,${solrj.lib.dist.path}/zookeeper*.jar" />
 		</antcall>
 	</target>
 </project>

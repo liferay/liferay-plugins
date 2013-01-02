@@ -10,16 +10,21 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-codec.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-httpclient.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-io.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/httpclient.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/httpcore.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jcl-over-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j-over-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-core-3.5.0.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-solrj-3.5.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-core-4.0.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-solrj-4.0.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/wstx-asl-3.2.7.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/zookeeper-3.3.6.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

@@ -23,7 +23,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.SolrPingResponse;
 
@@ -101,19 +100,12 @@ public class LiveServerChecker implements Runnable {
 				continue;
 			}
 
+			solrServer.shutdown();
+
 			_solrServerFactory.killServer(solrServerWrapper);
-
-			if (solrServer instanceof StoppableSolrServer) {
-				StoppableSolrServer stoppableSolrServer =
-					(StoppableSolrServer)solrServer;
-
-				stoppableSolrServer.stop();
-			}
 		}
 
 		_scheduledExecutorService.shutdownNow();
-
-		MultiThreadedHttpConnectionManager.shutdownAll();
 	}
 
 	private ScheduledExecutorService _scheduledExecutorService;
