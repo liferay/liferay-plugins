@@ -37,13 +37,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 			registerChatExtension();
 		}
 		else if (servletContextName.equals("contacts-portlet")) {
-			long companyId = message.getLong("companyId");
-
-			if (PortletLocalServiceUtil.hasPortlet(
-					companyId, "1_WAR_chatportlet")) {
-
-				registerChatExtension();
-			}
+			registerChatExtension();
 		}
 	}
 
@@ -60,6 +54,19 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	}
 
 	protected void registerChatExtension() throws Exception {
+		if (_registerMethodKey == null) {
+			try {
+				_registerMethodKey = new MethodKey(
+					ClassResolverUtil.resolveByPortletClassLoader(
+						"com.liferay.chat.util.ChatExtensionsUtil",
+						"chat-portlet"),
+					"register", String.class, String.class);
+			}
+			catch (RuntimeException re) {
+				return;
+			}
+		}
+
 		PortletClassInvoker.invoke(
 			false, "1_WAR_chatportlet", _registerMethodKey, "contacts-portlet",
 			"/chat/view.jsp");
@@ -71,9 +78,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		ContactsExtensionsUtil.unregister(servletContextName);
 	}
 
-	private MethodKey _registerMethodKey = new MethodKey(
-		ClassResolverUtil.resolveByPortletClassLoader(
-			"com.liferay.chat.util.ChatExtensionsUtil", "chat-portlet"),
-		"register", String.class, String.class);
+	private MethodKey _registerMethodKey;
 
 }
