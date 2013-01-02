@@ -14,19 +14,7 @@
  */
 --%>
 
-<%@ include file="/html/portlet/init.jsp" %>
-
-<%@ page import="com.liferay.portlet.polls.DuplicateVoteException" %><%@
-page import="com.liferay.portlet.polls.NoSuchChoiceException" %><%@
-page import="com.liferay.portlet.polls.NoSuchQuestionException" %><%@
-page import="com.liferay.portlet.polls.model.PollsChoice" %><%@
-page import="com.liferay.portlet.polls.model.PollsQuestion" %><%@
-page import="com.liferay.portlet.polls.model.PollsVote" %><%@
-page import="com.liferay.portlet.polls.service.PollsQuestionLocalServiceUtil" %><%@
-page import="com.liferay.portlet.polls.service.PollsVoteLocalServiceUtil" %><%@
-page import="com.liferay.portlet.polls.service.permission.PollsPermission" %><%@
-page import="com.liferay.portlet.polls.service.permission.PollsQuestionPermission" %><%@
-page import="com.liferay.portlet.polls.util.PollsUtil" %>
+<%@ include file="/init.jsp" %>
 
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
@@ -42,4 +30,4 @@ long questionId = GetterUtil.getLong(preferences.getValue("questionId", StringPo
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
 
-<%@ include file="/html/portlet/polls_display/init-ext.jsp" %>
+<%@ include file="/polls_display/init-ext.jsp" %>

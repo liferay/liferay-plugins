@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/html/portlet/polls_display/init.jsp" %>
+<%@ include file="/polls_display/init.jsp" %>
 
 <%
 Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
