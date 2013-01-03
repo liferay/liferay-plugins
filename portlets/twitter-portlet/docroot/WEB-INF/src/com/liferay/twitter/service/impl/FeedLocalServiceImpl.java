@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -35,6 +34,8 @@ import com.liferay.twitter.FeedTwitterScreenNameException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.base.FeedLocalServiceBaseImpl;
 import com.liferay.twitter.social.TwitterActivityKeys;
+import com.liferay.twitter.util.TimelineProcessor;
+import com.liferay.twitter.util.TimelineProcessorFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -92,27 +93,6 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		}
 	}
 
-	protected JSONArray getUserTimelineJSONArray(
-		String twitterScreenName, long sinceId) {
-
-		try {
-			String url = _URL + twitterScreenName + ".json";
-
-			if (sinceId > 0) {
-				url += "?since_id=" + sinceId;
-			}
-
-			return JSONFactoryUtil.createJSONArray(HttpUtil.URLtoString(url));
-		}
-		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(e, e);
-			}
-
-			return null;
-		}
-	}
-
 	protected void updateFeed(User user)
 		throws PortalException, SystemException {
 
@@ -124,15 +104,19 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			throw new FeedTwitterScreenNameException();
 		}
 
-		Date now = new Date();
-
 		Feed feed = feedPersistence.fetchByC_TSN(
 			user.getCompanyId(), twitterScreenName);
 
 		JSONArray jsonArray = null;
 
+		TimelineProcessor timelineProcessor =
+			TimelineProcessorFactory.getInstance();
+
+		Date now = new Date();
+
 		if (feed == null) {
-			jsonArray = getUserTimelineJSONArray(twitterScreenName, 0);
+			jsonArray = timelineProcessor.getUserTimelineJSONArray(
+				twitterScreenName, 0);
 
 			long feedId = counterLocalService.increment();
 
@@ -153,7 +137,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		}
 
 		if (jsonArray == null) {
-			jsonArray = getUserTimelineJSONArray(
+			jsonArray = timelineProcessor.getUserTimelineJSONArray(
 				twitterScreenName, feed.getLastStatusId());
 		}
 
@@ -206,9 +190,6 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			feedPersistence.update(feed);
 		}
 	}
-
-	private static final String _URL =
-		"http://api.twitter.com/1/statuses/user_timeline/";
 
 	private static Log _log = LogFactoryUtil.getLog(FeedLocalServiceImpl.class);
 
