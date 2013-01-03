@@ -36,13 +36,11 @@ long blogsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKe
 
 	<%
 	String className = PortalUtil.getClassName(mbDiscussion.getClassNameId());
-
-	if (!className.equals(BlogsEntry.class.getName())) {
-		viewURL = null;
-	}
 	%>
 
-	<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= String.valueOf(viewURL) %>" />
+	<c:if test="<%= className.equals(BlogsEntry.class.getName()) %>">
+		<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= String.valueOf(viewURL) %>" />
+	</c:if>
 
 	<portlet:actionURL name="markNotSpam" var="markAsHamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 		<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
