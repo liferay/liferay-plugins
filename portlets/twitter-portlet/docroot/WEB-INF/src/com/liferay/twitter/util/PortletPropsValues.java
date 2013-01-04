@@ -21,7 +21,7 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String USERS_TIMELINE_PROCESSOR = PortletProps.get(
-		PortletPropsKeys.USERS_TIMELINE_PROCESSOR);
+	public static final String TWITTER_USERS_TIMELINE_PROCESSOR =
+		PortletProps.get(PortletPropsKeys.TWITTER_USERS_TIMELINE_PROCESSOR);
 
 }

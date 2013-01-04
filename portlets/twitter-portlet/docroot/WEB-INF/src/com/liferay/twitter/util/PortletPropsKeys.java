@@ -19,7 +19,7 @@ package com.liferay.twitter.util;
  */
 public class PortletPropsKeys {
 
-	public static final String USERS_TIMELINE_PROCESSOR =
-		"users.timeline.processor";
+	public static final String TWITTER_USERS_TIMELINE_PROCESSOR =
+		"twitter.users.timeline.processor";
 
 }

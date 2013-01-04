@@ -38,31 +38,41 @@ import java.util.regex.Pattern;
 /**
  * @author Shinn Lok
  */
-public class DefaultTimelineProcessor implements TimelineProcessor {
+public class HttpTimelineProcessor implements TimelineProcessor {
 
 	public JSONArray getUserTimelineJSONArray(
 		String twitterScreenName, long sinceId) {
 
-		Http.Options options = new Http.Options();
-
-		options.addHeader(HttpHeaders.USER_AGENT, getRandomUserAgent());
-		options.setLocation(_URL + twitterScreenName);
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
 		try {
+			JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+			Http.Options options = new Http.Options();
+
+			options.addHeader(HttpHeaders.USER_AGENT, getUserAgent());
+			options.setLocation(_URL + twitterScreenName);
+
 			String html = HttpUtil.URLtoString(options);
 
-			jsonArray = doGetUserTimelineJSONArray(html, sinceId, jsonArray);
+			jsonArray = getUserTimelineJSONArray(html, sinceId, jsonArray);
+
+			return jsonArray;
 		}
 		catch (Exception e) {
-			_log.error(e, e);
-		}
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
 
-		return jsonArray;
+			return null;
+		}
 	}
 
-	protected JSONArray doGetUserTimelineJSONArray(
+	protected String getUserAgent() {
+		String userAgent = _USER_AGENTS[_random.nextInt(_USER_AGENTS.length)];
+
+		return userAgent;
+	}
+
+	protected JSONArray getUserTimelineJSONArray(
 		String html, long sinceId, JSONArray jsonArray) {
 
 		Matcher matcher = _pattern.matcher(html);
@@ -73,37 +83,29 @@ public class DefaultTimelineProcessor implements TimelineProcessor {
 			return jsonArray;
 		}
 
-		JSONObject statusJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject statusJSONObject = JSONFactoryUtil.createJSONObject();
 
 		Date createDate = new Date(GetterUtil.getLong(matcher.group(3)) * 1000);
 
-		statusJSON.put("created_at", _dateFormat.format(createDate));
-		statusJSON.put("id", matcher.group(1));
-		statusJSON.put("text", HtmlUtil.extractText(matcher.group(4)));
+		statusJSONObject.put("created_at", _dateFormat.format(createDate));
 
-		JSONObject userJSON = JSONFactoryUtil.createJSONObject();
+		statusJSONObject.put("id", matcher.group(1));
+		statusJSONObject.put("text", HtmlUtil.extractText(matcher.group(4)));
 
-		userJSON.put("id", matcher.group(2));
+		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-		statusJSON.put("user", userJSON);
+		userJSONObject.put("id", matcher.group(2));
 
-		jsonArray.put(statusJSON);
+		statusJSONObject.put("user", userJSONObject);
+
+		jsonArray.put(statusJSONObject);
 
 		StringBuffer sb = new StringBuffer();
 
 		matcher.appendReplacement(sb, StringPool.BLANK);
-
 		matcher.appendTail(sb);
 
-		return doGetUserTimelineJSONArray(sb.toString(), sinceId, jsonArray);
-	}
-
-	protected String getRandomUserAgent() {
-		Random random = new Random();
-
-		String userAgent = _USER_AGENTS[random.nextInt(_USER_AGENTS.length)];
-
-		return userAgent;
+		return getUserTimelineJSONArray(sb.toString(), sinceId, jsonArray);
 	}
 
 	private static final String _URL = "https://www.twitter.com/";
@@ -119,14 +121,13 @@ public class DefaultTimelineProcessor implements TimelineProcessor {
 	};
 
 	private static Log _log = LogFactoryUtil.getLog(
-		DefaultTimelineProcessor.class);
+		HttpTimelineProcessor.class);
 
-	private static Format _dateFormat =
-		FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"EEE MMM d hh:mm:ss Z yyyy", Locale.US);
-
-	private static Pattern _pattern = Pattern.compile(
+	private Format _dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
+		"EEE MMM d hh:mm:ss Z yyyy", Locale.US);
+	private Pattern _pattern = Pattern.compile(
 		"data-item-id=\"([0-9]+)\".*?data-user-id=\"([0-9]+)\".*?data-time=\"" +
 		"([0-9]+)\".*?<p class=\"js-tweet-text\">(.*?)</p>", Pattern.DOTALL);
+	private Random _random = new Random();
 
 }

@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 /**
  * @author Shinn Lok
  */
-public class TwitterTimelineProcessor implements TimelineProcessor {
+public class APITimelineProcessor implements TimelineProcessor {
 
 	public JSONArray getUserTimelineJSONArray(
 		String twitterScreenName, long sinceId) {
@@ -49,7 +49,6 @@ public class TwitterTimelineProcessor implements TimelineProcessor {
 	private static final String _URL =
 		"http://api.twitter.com/1/statuses/user_timeline/";
 
-	private static Log _log = LogFactoryUtil.getLog(
-		TwitterTimelineProcessor.class);
+	private static Log _log = LogFactoryUtil.getLog(APITimelineProcessor.class);
 
 }
