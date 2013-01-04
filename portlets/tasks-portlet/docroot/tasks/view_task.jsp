@@ -35,22 +35,22 @@ boolean neverDue = true;
 
 <div class="task-data-container">
 	<div class="task-data assignee">
-
-		<%
-		String assigneeDisplayURL = StringPool.BLANK;
-		String taglibAssigneeDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
-
-		User assigneeUser = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
-
-		if (assigneeUser != null) {
-			assigneeDisplayURL = assigneeUser.getDisplayURL(themeDisplay);
-
-			taglibAssigneeDisplayURL = "<a href=\"" + assigneeDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getAssigneeFullName()) + "</a>";
-		}
-		%>
-
 		<c:choose>
 			<c:when test="<%= tasksEntry.getAssigneeUserId() > 0 %>">
+
+				<%
+				String assigneeDisplayURL = StringPool.BLANK;
+				String taglibAssigneeDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
+
+				User assigneeUser = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
+
+				if (assigneeUser != null) {
+					assigneeDisplayURL = assigneeUser.getDisplayURL(themeDisplay);
+
+					taglibAssigneeDisplayURL = "<a href=\"" + assigneeDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getAssigneeFullName()) + "</a>";
+				}
+				%>
+
 				<liferay-ui:message arguments="<%= taglibAssigneeDisplayURL %>" key="assigned-to-x" />
 			</c:when>
 			<c:otherwise>
