@@ -72,8 +72,8 @@ html body {
 
 			&.selected .panel-trigger {
 				background: #FFF;
-				border: 0 1px 1px solid #262626;
-				@include border-radius(0 4px);
+				border: solid #262626;
+				border-width: 0 1px 1px;
 				height: 25px;
 				line-height: 27px;
 				margin: -2px 0 -1px;
@@ -141,7 +141,6 @@ html body {
 
 	.search-buddies-field {
 		background: url(@theme_image_path@/common/search.png) no-repeat 5px 50%;
-		@include box-sizing(border-box);
 		padding-left: 25px;
 		width: 100%;
 	}
@@ -266,7 +265,6 @@ html body {
 .panel-window {
 	background: #FFF;
 	border: 1px solid #262626;
-	@include border-radius(4px 4px 0 4px);
 	font: 11px Tahoma, Geneva, sans-serif;
 	min-width: 226px;
 	position: relative;
@@ -417,8 +415,9 @@ html body {
 }
 
 .chat-height-monitor {
-	left: -10000em;
 	@include force-wrap();
+
+	left: -10000em;
 	padding: 0;
 	position: absolute;
 	top: -10000em;
@@ -462,16 +461,18 @@ html body {
 
 /* ---------- IE/IE6/IE7 ---------- */
 
-.ie6 {
-	.chat-bar {
-		position: absolute;
+.ie {
+	.buddy-list .panel-content .online-users li {
+		width: 202px;
 	}
 
-	.lfr-shim {
-		border-width: 0;
-		bottom: 0;
-		position: absolute;
-		z-index: 100;
+	.panel-output {
+		position: relative;
+	}
+
+	.chat-height-monitor {
+		word-wrap: break-word;
+		zoom: 1;
 	}
 }
 
@@ -486,17 +487,25 @@ html body {
 	}
 }
 
-.ie {
-	.buddy-list .panel-content .online-users li {
-		width: 202px;
+.ie6 {
+	.chat-bar {
+		position: absolute;
 	}
 
-	.panel-output {
-		position: relative;
+	.lfr-shim {
+		border-width: 0;
+		bottom: 0;
+		position: absolute;
+		z-index: 100;
 	}
+}
 
-	.chat-height-monitor {
-		word-wrap: break-word;
-		zoom: 1;
-	}
+/* ---------- Extras ---------- */
+
+.chat-bar div ul li.selected .panel-trigger {
+	@include border-radius(0 4px);
+}
+
+.panel-window {
+	@include border-radius(4px 4px 0 4px);
 }

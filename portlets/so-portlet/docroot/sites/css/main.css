@@ -304,3 +304,11 @@
 		text-align: center;
 	}
 }
+
+/* ---------- Extras ---------- */
+
+.so-portlet-sites ul.site-list {
+	&, li:hover {
+		@include border-radius(4px);
+	}
+}

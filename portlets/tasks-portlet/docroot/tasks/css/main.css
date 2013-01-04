@@ -33,7 +33,6 @@
 
 	.control-wrapper {
 		border: 1px solid #C8C9CA;
-		@include border-radius(4px);
 		margin: 0.5em 0;
 		padding: 6px;
 
@@ -62,7 +61,6 @@
 	.filter-wrapper {
 		background: #DFF4FF;
 		border: 1px solid #A7CEDF;
-		@include border-radius(4px);
 		margin: 0 0 1em;
 		position: relative;
 
@@ -378,4 +376,12 @@
 
 .ie6 .tasks-portlet .tags {
 	width: 250px;
+}
+
+/* ---------- Extras ---------- */
+
+.tasks-portlet {
+	.control-wrapper, .filter-wrapper {
+		@include border-radius(4px);
+	}
 }

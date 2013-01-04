@@ -74,16 +74,6 @@
 	}
 }
 
-.ie6 .social-networking-portlet-summary .summary-container {
-	img {
-		width: 120px;
-	}
-
-	.user-profile-image {
-		width: expression(this.width > 180 : '180px' : 'auto');
-	}
-}
-
 .ie .social-networking-portlet-summary {
 	.summary-container {
 		height: 1%;
@@ -91,5 +81,15 @@
 
 	.aui-helper-clearfix {
 		-ie-exp: expression(!this.x?(this.innerHTML+='<br\ style=clear:both;font:0/0;>',this.x=1):void 0);
+	}
+}
+
+.ie6 .social-networking-portlet-summary .summary-container {
+	img {
+		width: 120px;
+	}
+
+	.user-profile-image {
+		width: expression(this.width > 180 : '180px' : 'auto');
 	}
 }
