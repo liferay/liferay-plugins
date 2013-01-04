@@ -27,7 +27,7 @@ import org.apache.solr.common.util.NamedList;
 /**
  * @author Bruno Farache
  */
-public class BroadcastWriterSolrServer extends AbstractDelegatedSolrServer {
+public class BroadcastWriterSolrServer extends BaseDelegatedSolrServer {
 
 	public BroadcastWriterSolrServer(SolrServerFactory solrServerFactory) {
 		super(solrServerFactory);

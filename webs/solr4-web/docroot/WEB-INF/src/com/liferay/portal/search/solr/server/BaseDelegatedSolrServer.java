@@ -21,8 +21,9 @@ import org.apache.solr.client.solrj.SolrServer;
 /**
  * @author Michael C. Han
  */
-public abstract class AbstractDelegatedSolrServer extends SolrServer {
-	public AbstractDelegatedSolrServer(SolrServerFactory solrServerFactory) {
+public abstract class BaseDelegatedSolrServer extends SolrServer {
+
+	public BaseDelegatedSolrServer(SolrServerFactory solrServerFactory) {
 		this.solrServerFactory = solrServerFactory;
 	}
 

@@ -428,44 +428,32 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>BaseDelegatedSolrServer</name>
+		<type>com.liferay.portal.search.solr.server.BaseDelegatedSolrServer</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>BaseDelegatedSolrServer</name>
+			<param>
+				<name>solrServerFactory</name>
+				<type>SolrServerFactory</type>
+			</param>
+		</method>
+		<method>
+			<name>shutdown</name>
+		</method>
+		<field>
+			<name>solrServerFactory</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>BasicAuthSolrServer</name>
 		<type>com.liferay.portal.search.solr.server.BasicAuthSolrServer</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>BasicAuthSolrServer</name>
 			<param>
-				<name>url</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>MalformedURLException</name>
-				<type>java.net.MalformedURLException</type>
-			</throws>
-		</method>
-		<method>
-			<name>BasicAuthSolrServer</name>
-			<param>
-				<name>username</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>password</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>url</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>MalformedURLException</name>
-				<type>java.net.MalformedURLException</type>
-			</throws>
-		</method>
-		<method>
-			<name>BasicAuthSolrServer</name>
-			<param>
 				<name>authScope</name>
-				<type>org.apache.commons.httpclient.auth.AuthScope</type>
+				<type>org.apache.http.auth.AuthScope</type>
 			</param>
 			<param>
 				<name>username</name>
@@ -479,10 +467,28 @@
 				<name>url</name>
 				<type>java.lang.String</type>
 			</param>
-			<throws>
-				<name>MalformedURLException</name>
-				<type>java.net.MalformedURLException</type>
-			</throws>
+		</method>
+		<method>
+			<name>BasicAuthSolrServer</name>
+			<param>
+				<name>url</name>
+				<type>java.lang.String</type>
+			</param>
+		</method>
+		<method>
+			<name>BasicAuthSolrServer</name>
+			<param>
+				<name>username</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>password</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>url</name>
+				<type>java.lang.String</type>
+			</param>
 		</method>
 		<method>
 			<name>getBaseURL</name>
@@ -545,14 +551,6 @@
 			</param>
 		</method>
 		<method>
-			<name>setConnectionManagerTimeout</name>
-			<param>
-				<name>connectionManagerTimeout</name>
-				<type>int</type>
-			</param>
-			<deprecated><![CDATA[]]></deprecated>
-		</method>
-		<method>
 			<name>setConnectionTimeout</name>
 			<param>
 				<name>connectionTimeout</name>
@@ -602,16 +600,16 @@
 			</param>
 		</method>
 		<method>
-			<name>stop</name>
+			<name>shutdown</name>
 		</method>
 		<field>
 			<name>_log</name>
 		</field>
 		<field>
-			<name>_multiThreadedHttpConnectionManager</name>
+			<name>_password</name>
 		</field>
 		<field>
-			<name>_password</name>
+			<name>_poolingClientConnectionManager</name>
 		</field>
 		<field>
 			<name>_server</name>
@@ -647,9 +645,6 @@
 		</method>
 		<field>
 			<name>_log</name>
-		</field>
-		<field>
-			<name>_solrServerFactory</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -715,9 +710,6 @@
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
 			</throws>
 		</method>
-		<field>
-			<name>_solrServerFactory</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>SolrServerFactory</name>
@@ -947,25 +939,6 @@
 		</method>
 		<field>
 			<name>_liveServerCheckers</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>PortletPropsKeys</name>
-		<type>com.liferay.portal.search.solr.util.PortletPropsKeys</type>
-		<author><![CDATA[Matthew Kong]]></author>
-		<field>
-			<name>SOLR_COPY_FIELDS</name>
-		</field>
-		<field>
-			<name>SOLR_SORTABLE_TEXT_FIELDS</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>PortletPropsValues</name>
-		<type>com.liferay.portal.search.solr.util.PortletPropsValues</type>
-		<author><![CDATA[Matthew Kong]]></author>
-		<field>
-			<name>SOLR_SORTABLE_TEXT_FIELDS</name>
 		</field>
 	</javadoc>
 </javadocs>

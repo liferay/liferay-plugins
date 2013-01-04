@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.io.IOException;
 
-import java.net.MalformedURLException;
-
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.auth.AuthScope;
@@ -44,15 +42,14 @@ import org.apache.solr.common.util.NamedList;
 public class BasicAuthSolrServer extends SolrServer {
 
 	public BasicAuthSolrServer(
-			AuthScope authScope, String username, String password, String url)
-		throws MalformedURLException {
+		AuthScope authScope, String username, String password, String url) {
 
 		_username = username;
 		_password = password;
 
 		_poolingClientConnectionManager = new PoolingClientConnectionManager();
 
-		DefaultHttpClient httpClient = new DefaultHttpClient(
+		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
 			_poolingClientConnectionManager);
 
 		if ((_username != null) && (_password != null)) {
@@ -61,23 +58,21 @@ public class BasicAuthSolrServer extends SolrServer {
 			}
 
 			CredentialsProvider credentialsProvider =
-				httpClient.getCredentialsProvider();
+				defaultHttpClient.getCredentialsProvider();
 
 			credentialsProvider.setCredentials(
 				authScope,
 				new UsernamePasswordCredentials(_username, _password));
 		}
 
-		_server = new HttpSolrServer(url, httpClient);
+		_server = new HttpSolrServer(url, defaultHttpClient);
 	}
 
-	public BasicAuthSolrServer(String url) throws MalformedURLException {
+	public BasicAuthSolrServer(String url) {
 		this(null, null, url);
 	}
 
-	public BasicAuthSolrServer(String username, String password, String url)
-		throws MalformedURLException {
-
+	public BasicAuthSolrServer(String username, String password, String url) {
 		this(null, username, password, url);
 	}
 
@@ -161,7 +156,7 @@ public class BasicAuthSolrServer extends SolrServer {
 
 		while (true) {
 			PoolStats poolStats =
-					_poolingClientConnectionManager.getTotalStats();
+				_poolingClientConnectionManager.getTotalStats();
 
 			int availableConnections = poolStats.getAvailable();
 

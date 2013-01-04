@@ -22,7 +22,7 @@ import org.apache.solr.common.util.NamedList;
 /**
  * @author Bruno Farache
  */
-public class LoadBalancerSolrServer extends AbstractDelegatedSolrServer {
+public class LoadBalancerSolrServer extends BaseDelegatedSolrServer {
 
 	public LoadBalancerSolrServer(SolrServerFactory solrServerFactory) {
 		super(solrServerFactory);
