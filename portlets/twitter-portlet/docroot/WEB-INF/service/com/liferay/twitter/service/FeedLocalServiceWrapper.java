@@ -268,14 +268,12 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	}
 
 	public void updateFeeds()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_feedLocalService.updateFeeds();
 	}
 
 	public void updateFeeds(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_feedLocalService.updateFeeds(companyId);
 	}
 

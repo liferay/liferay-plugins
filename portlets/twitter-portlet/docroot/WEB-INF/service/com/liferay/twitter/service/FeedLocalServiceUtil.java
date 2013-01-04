@@ -276,14 +276,12 @@ public class FeedLocalServiceUtil {
 	}
 
 	public static void updateFeeds()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().updateFeeds();
 	}
 
 	public static void updateFeeds(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().updateFeeds(companyId);
 	}
 
