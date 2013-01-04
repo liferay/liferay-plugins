@@ -3,7 +3,6 @@
 .portlet-configuration {
 	#preview {
 		background: #d0d0d0 url(../images/preview_bg.png) no-repeat center center;
-		@include border-radius(4px);
 		float: right;
 		height: 30.5em;
 	}
@@ -54,5 +53,13 @@
 
 	.invisible {
 		visibility: hidden;
+	}
+}
+
+/* ---------- Extras ---------- */
+
+.portlet-configuration {
+	#preview {
+		@include border-radius(4px);
 	}
 }

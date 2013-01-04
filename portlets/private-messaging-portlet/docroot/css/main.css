@@ -22,7 +22,6 @@
 	.controls {
 		background-color: #EEE;
 		border: 1px solid #CCC;
-		@include border-radius(4px);
 		margin-bottom: -1px;
 		padding: 5px;
 		width: auto;
@@ -180,4 +179,10 @@
 	.line-through {
 		text-decoration: line-through;
 	}
+}
+
+/* ---------- Extras ---------- */
+
+.private-messaging-portlet .controls {
+	@include border-radius(4px);
 }

@@ -6,7 +6,6 @@
 
 	.notification-count {
 		background-color: #2C2F34;
-		@include border-radius(4px);
 		color: #FFF;
 		display: block;
 		padding: 0 5px;
@@ -123,4 +122,10 @@
 			background-image: url(@theme_image_path@/common/deactivate.png);
 		}
 	}
+}
+
+/* ---------- Extras ---------- */
+
+.so-portlet-dockbar-notifications .menu-button .notification-count {
+	@include border-radius(4px);
 }
