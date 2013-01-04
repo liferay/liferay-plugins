@@ -1,10 +1,11 @@
 *~
 *-ext.properties
-.ant_targets
 *.bak
 *.iml
 *.ipr
 *.iws
+*.swp
+.ant_targets
 .sass-cache/
 .sass_cache_*.css
 _sass_cache_*.css
