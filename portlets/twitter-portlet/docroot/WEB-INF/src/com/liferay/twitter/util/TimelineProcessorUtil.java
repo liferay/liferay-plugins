@@ -14,37 +14,35 @@
 
 package com.liferay.twitter.util;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.util.InstanceFactory;
 
 /**
  * @author Shinn Lok
  */
-public class TimelineProcessorFactory {
+public class TimelineProcessorUtil {
 
 	public static TimelineProcessor getInstance() {
-		if (_timelineProcessor == null) {
-			try {
-				_timelineProcessor =
-					(TimelineProcessor)InstanceFactory.newInstance(
-						PortletPropsValues.USERS_TIMELINE_PROCESSOR);
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-
 		return _timelineProcessor;
 	}
 
-	public static void setInstance(TimelineProcessor timelineProcessor) {
-		_timelineProcessor = timelineProcessor;
+	public static JSONArray getUserTimelineJSONArray(
+		String twitterScreenName, long sinceId) {
+
+		return getInstance().getUserTimelineJSONArray(
+			twitterScreenName, sinceId);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		TimelineProcessorFactory.class);
-
 	private static TimelineProcessor _timelineProcessor;
+
+	static {
+		try {
+			InstanceFactory.newInstance(
+				PortletPropsValues.TWITTER_USERS_TIMELINE_PROCESSOR);
+		}
+		catch (Exception e) {
+			throw new ExceptionInInitializerError(e);
+		}
+	}
 
 }

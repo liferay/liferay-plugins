@@ -34,8 +34,7 @@ import com.liferay.twitter.FeedTwitterScreenNameException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.base.FeedLocalServiceBaseImpl;
 import com.liferay.twitter.social.TwitterActivityKeys;
-import com.liferay.twitter.util.TimelineProcessor;
-import com.liferay.twitter.util.TimelineProcessorFactory;
+import com.liferay.twitter.util.TimelineProcessorUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,19 +56,19 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		updateFeed(user);
 	}
 
-	public void updateFeeds() throws PortalException, SystemException {
+	public void updateFeeds() throws SystemException {
 		for (long companyId : PortalUtil.getCompanyIds()) {
 			updateFeeds(companyId);
 		}
 	}
 
-	public void updateFeeds(long companyId)
-		throws PortalException, SystemException {
+	public void updateFeeds(long companyId) throws SystemException {
 
 		ShardUtil.pushCompanyService(companyId);
 
 		try {
-			LinkedHashMap userParams = new LinkedHashMap();
+			LinkedHashMap<String, Object> userParams =
+				new LinkedHashMap<String, Object>();
 
 			userParams.put("contactTwitterSn", Boolean.TRUE);
 
@@ -109,13 +108,10 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
 		JSONArray jsonArray = null;
 
-		TimelineProcessor timelineProcessor =
-			TimelineProcessorFactory.getInstance();
-
 		Date now = new Date();
 
 		if (feed == null) {
-			jsonArray = timelineProcessor.getUserTimelineJSONArray(
+			jsonArray = TimelineProcessorUtil.getUserTimelineJSONArray(
 				twitterScreenName, 0);
 
 			long feedId = counterLocalService.increment();
@@ -137,7 +133,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		}
 
 		if (jsonArray == null) {
-			jsonArray = timelineProcessor.getUserTimelineJSONArray(
+			jsonArray = TimelineProcessorUtil.getUserTimelineJSONArray(
 				twitterScreenName, feed.getLastStatusId());
 		}
 
@@ -147,7 +143,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
 		try {
 			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject statusJSON = jsonArray.getJSONObject(i);
+				JSONObject statusJSONObject = jsonArray.getJSONObject(i);
 
 				SimpleDateFormat sdf = new SimpleDateFormat(
 					"EEE MMM d hh:mm:ss Z yyyy");
@@ -155,33 +151,36 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 				Date createDate = null;
 
 				try {
-					createDate = sdf.parse(statusJSON.getString("created_at"));
+					createDate = sdf.parse(
+						statusJSONObject.getString("created_at"));
 				}
 				catch (ParseException pe) {
 					throw new SystemException(pe);
 				}
 
-				long statusId = statusJSON.getLong("id");
-				String text = statusJSON.getString("text");
+				long statusId = statusJSONObject.getLong("id");
+				String text = statusJSONObject.getString("text");
 
 				if (feed.getTwitterUserId() <= 0) {
-					JSONObject userJSON = statusJSON.getJSONObject("user");
+					JSONObject userJSONObject = statusJSONObject.getJSONObject(
+						"user");
 
-					feed.setTwitterUserId(userJSON.getLong("id"));
+					feed.setTwitterUserId(userJSONObject.getLong("id"));
 				}
 
 				if (feed.getLastStatusId() < statusId) {
 					feed.setLastStatusId(statusId);
 				}
 
-				JSONObject extraData = JSONFactoryUtil.createJSONObject();
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
 
-				extraData.put("text", text);
+				extraDataJSONObject.put("text", text);
 
 				SocialActivityLocalServiceUtil.addActivity(
 					user.getUserId(), 0, createDate, Feed.class.getName(),
 					statusId, TwitterActivityKeys.ADD_STATUS,
-					extraData.toString(), 0);
+					extraDataJSONObject.toString(), 0);
 			}
 		}
 		finally {
