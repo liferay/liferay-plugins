@@ -21,6 +21,7 @@ import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
@@ -33,6 +34,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -64,19 +66,23 @@ public class StorePortlet extends MVCPortlet {
 
 		URL urlObj = new URL(url);
 
-		InputStream inputStream = null;
+		File tempFile = null;
 
 		try {
-			inputStream = urlObj.openStream();
+			InputStream inputStream = urlObj.openStream();
+
+			tempFile = FileUtil.createTempFile();
+
+			FileUtil.write(tempFile, inputStream);
 
 			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
 			if (app == null) {
-				app = AppServiceUtil.addApp(remoteAppId, version, inputStream);
+				app = AppServiceUtil.addApp(remoteAppId, version, tempFile);
 			}
 			else {
 				app = AppServiceUtil.updateApp(
-					app.getAppId(), version, inputStream);
+					app.getAppId(), version, tempFile);
 			}
 
 			JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
@@ -87,7 +93,9 @@ public class StorePortlet extends MVCPortlet {
 			writeJSON(actionRequest, actionResponse, jsonObject);
 		}
 		finally {
-			StreamUtil.cleanUp(inputStream);
+			if (tempFile != null) {
+				tempFile.delete();
+			}
 		}
 	}
 
@@ -198,19 +206,23 @@ public class StorePortlet extends MVCPortlet {
 
 		URL urlObj = new URL(url);
 
-		InputStream inputStream = null;
+		File tempFile = null;
 
 		try {
-			inputStream = urlObj.openStream();
+			InputStream inputStream = urlObj.openStream();
+
+			tempFile = FileUtil.createTempFile();
+
+			FileUtil.write(tempFile, inputStream);
 
 			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
 			if (app == null) {
-				app = AppServiceUtil.addApp(remoteAppId, version, inputStream);
+				app = AppServiceUtil.addApp(remoteAppId, version, tempFile);
 			}
 			else {
 				app = AppServiceUtil.updateApp(
-					app.getAppId(), version, inputStream);
+					app.getAppId(), version, tempFile);
 			}
 
 			AppServiceUtil.installApp(remoteAppId);
@@ -223,7 +235,9 @@ public class StorePortlet extends MVCPortlet {
 			writeJSON(actionRequest, actionResponse, jsonObject);
 		}
 		finally {
-			StreamUtil.cleanUp(inputStream);
+			if (tempFile != null) {
+				tempFile.delete();
+			}
 		}
 	}
 
