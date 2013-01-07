@@ -151,6 +151,6 @@ public class LayoutSetPrototypeUtil {
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.sites.util.SitesUtil"),
-			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
+			"mergeLayoutSetPrototypeLayouts", Group.class, LayoutSet.class);
 
 }

@@ -606,7 +606,7 @@ public class SitesPortlet extends MVCPortlet {
 	private static MethodKey _mergeLayoutSetPrototypeLayoutsMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(_CLASS_NAME),
-			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
+			"mergeLayoutSetPrototypeLayouts", Group.class, LayoutSet.class);
 	private static MethodKey _updateLayoutSetPrototypesMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(_CLASS_NAME),
