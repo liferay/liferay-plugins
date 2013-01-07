@@ -66,7 +66,7 @@ public interface AppService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	public com.liferay.marketplace.model.App addApp(long remoteAppId,
-		java.lang.String version, java.io.InputStream inputStream)
+		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -83,7 +83,7 @@ public interface AppService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.InputStream inputStream)
+		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }
