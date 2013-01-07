@@ -82,7 +82,8 @@ public class UpgradeGroup extends UpgradeProcess {
 				group.getGroupId(), privateLayout);
 
 			PortalClassInvoker.invoke(
-				true, _mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
+				true, _mergeLayoutSetPrototypeLayoutsMethodKey, group,
+				layoutSet);
 
 			updatePortletPreferences(
 				group.getGroupId(), privateLayout, portletPreferences);

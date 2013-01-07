@@ -140,7 +140,8 @@ public class LayoutSetPrototypeUtil {
 			}
 
 			PortalClassInvoker.invoke(
-				true, _mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
+				true, _mergeLayoutSetPrototypeLayoutsMethodKey, group,
+				layoutSet);
 
 			LayoutLocalServiceUtil.updatePriorities(
 				group.getGroupId(), privateLayout);
