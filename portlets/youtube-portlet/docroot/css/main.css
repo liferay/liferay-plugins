@@ -2,7 +2,7 @@
 
 .portlet-configuration {
 	#preview {
-		background: #d0d0d0 url(../images/preview_bg.png) no-repeat center center;
+		background: #D0D0D0 url(../images/preview_bg.png) no-repeat center center;
 		float: right;
 		height: 30.5em;
 	}

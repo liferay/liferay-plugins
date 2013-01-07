@@ -201,12 +201,12 @@ $microblogs-border-color: #C7D0DA;
 
 	.highlighter-content {
 		color: transparent;
+		@include force-wrap();
 		left: 1px;
 		padding: 5px;
 		position: absolute;
 		top: 1px;
 		visibility: hidden;
-		word-wrap: break-word;
 		z-index: 998;
 
 		&.textbox {
@@ -227,7 +227,7 @@ $microblogs-border-color: #C7D0DA;
 
 		div {
 			display: inline-block;
-			white-space: pre;
+			@include force-wrap();
 		}
 	}
 
