@@ -455,7 +455,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void importWSRPProducers(
-		PortletDataContext portletDataContext, Element wsrpProducersElement)
+			PortletDataContext portletDataContext, Element wsrpProducersElement)
 		throws Exception {
 
 		if (wsrpProducersElement == null) {

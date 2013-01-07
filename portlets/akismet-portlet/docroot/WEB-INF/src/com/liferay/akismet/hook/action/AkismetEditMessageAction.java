@@ -92,9 +92,9 @@ public class AkismetEditMessageAction extends BaseStrutsPortletAction {
 
 	@Override
 	public void serveResource(
-		StrutsPortletAction originalStrutsPortletAction,
-		PortletConfig portletConfig, ResourceRequest resourceRequest,
-		ResourceResponse resourceResponse)
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse)
 		throws Exception {
 
 		originalStrutsPortletAction.serveResource(

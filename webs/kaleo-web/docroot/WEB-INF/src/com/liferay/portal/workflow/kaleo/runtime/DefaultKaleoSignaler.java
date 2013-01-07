@@ -93,7 +93,7 @@ public class DefaultKaleoSignaler
 	}
 
 	public void signalExit(
-		String transitionName, ExecutionContext executionContext)
+			String transitionName, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
