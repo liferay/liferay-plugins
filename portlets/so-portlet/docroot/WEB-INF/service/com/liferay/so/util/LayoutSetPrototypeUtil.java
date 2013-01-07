@@ -139,14 +139,14 @@ public class LayoutSetPrototypeUtil {
 			}
 
 			PortalClassInvoker.invoke(
-				true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
+				true, _mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
 
 			LayoutLocalServiceUtil.updatePriorities(
 				group.getGroupId(), privateLayout);
 		}
 	}
 
-	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+	private static MethodKey _mergeLayoutSetPrototypeLayoutsMethodKey =
 		new MethodKey(
 			"com.liferay.portlet.sites.util.SitesUtil",
 			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
