@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.StringPool;
 public class MarketplaceConstants {
 
 	public static final String MARKETPLACE_URL_LOGOUT =
-		"http://mp.liferay.com/c/portal/logout";
+		"https://mp.liferay.com/c/portal/logout";
 
 	public static String getPathPurchased() {
 		if (_pathPurchased == null) {
