@@ -557,7 +557,7 @@ public class SitesPortlet extends MVCPortlet {
 				group.getGroupId(), privateLayout);
 
 		PortalClassInvoker.invoke(
-			true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
+			true, _mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
 
 		long[] deleteLayoutIds = getLongArray(actionRequest, "deleteLayoutIds");
 
@@ -603,7 +603,7 @@ public class SitesPortlet extends MVCPortlet {
 	private static final String _CLASS_NAME =
 		"com.liferay.portlet.sites.util.SitesUtil";
 
-	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+	private static MethodKey _mergeLayoutSetPrototypeLayoutsMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(_CLASS_NAME),
 			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);

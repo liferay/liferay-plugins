@@ -82,7 +82,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				group.getGroupId(), privateLayout);
 
 			PortalClassInvoker.invoke(
-				true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
+				true, _mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
 
 			updatePortletPreferences(
 				group.getGroupId(), privateLayout, portletPreferences);
@@ -139,7 +139,7 @@ public class UpgradeGroup extends UpgradeProcess {
 	private static final String _OLD_WELCOME_PORTLET_ID =
 		"1_WAR_wysiwygportlet";
 
-	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+	private static MethodKey _mergeLayoutSetPrototypeLayoutsMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.sites.util.SitesUtil"),

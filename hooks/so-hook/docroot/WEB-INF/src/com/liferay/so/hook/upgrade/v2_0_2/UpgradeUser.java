@@ -105,7 +105,7 @@ public class UpgradeUser extends UpgradeProcess {
 			group.getGroupId(), false);
 
 		PortalClassInvoker.invoke(
-			true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+			true, _mergeLayoutSetPrototypeLayoutsMethodKey, group,
 			publicLayoutSet);
 
 		LayoutLocalServiceUtil.deleteLayouts(
@@ -119,13 +119,13 @@ public class UpgradeUser extends UpgradeProcess {
 			group.getGroupId(), true);
 
 		PortalClassInvoker.invoke(
-			true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+			true, _mergeLayoutSetPrototypeLayoutsMethodKey, group,
 			privateLayoutSet);
 
 		SocialOfficeUtil.enableSocialOffice(group);
 	}
 
-	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+	private static MethodKey _mergeLayoutSetPrototypeLayoutsMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.sites.util.SitesUtil"),
