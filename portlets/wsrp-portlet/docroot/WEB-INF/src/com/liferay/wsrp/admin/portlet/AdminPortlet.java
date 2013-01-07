@@ -190,7 +190,7 @@ public class AdminPortlet extends MVCPortlet {
 	}
 
 	protected void doUpdateServiceDescription(
-		ActionRequest actionRequest, ActionResponse actionResponse)
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		long wsrpConsumerId = ParamUtil.getLong(
