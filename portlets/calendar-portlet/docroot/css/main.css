@@ -1,4 +1,4 @@
-@import "compass/css3";
+@import "compass";
 
 .calendar-portlet {
 	.allday-class-active .lfr-input-time {
@@ -112,7 +112,7 @@
 
 .aui-calendar-list-item-hover, .aui-calendar-list-item-active {
 	background-color: #DCE3EA;
-	white-space: pre-wrap;
+	@include force-wrap();
 
 	.aui-calendar-list-item-arrow {
 		display: block;
@@ -219,7 +219,7 @@
 .aui-simple-menu-content {
 	background: none repeat scroll 0 0 #FFF;
 	border: 1px solid rgba(0, 0, 0, 0.2);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	@include box-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 	font-size: 13px;
 	margin: 0;
 	outline: medium none;
@@ -365,7 +365,7 @@
 }
 
 .aui-scheduler-view-day-content .yui3-widget-hd {
-	padding-top: 4px
+	padding-top: 4px;
 }
 
 .aui-scheduler-view-day-header-day a {
@@ -375,7 +375,7 @@
 
 .yui3-skin-sam .calendar-portlet-mini-calendar .yui3-calendar-content {
 	background: #ffffff !important;
-	border: 1px solid #DDD
+	border: 1px solid #DDD;
 }
 
 .aui-dialog-iframe-popup .calendar-portlet .aui-fieldset {
