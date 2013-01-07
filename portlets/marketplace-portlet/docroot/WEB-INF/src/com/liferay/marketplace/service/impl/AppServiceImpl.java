@@ -20,6 +20,7 @@ import com.liferay.marketplace.service.permission.MarketplacePermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
+import java.io.File;
 import java.io.InputStream;
 
 /**
@@ -27,13 +28,13 @@ import java.io.InputStream;
  */
 public class AppServiceImpl extends AppServiceBaseImpl {
 
-	public App addApp(long remoteAppId, String version, InputStream inputStream)
+	public App addApp(long remoteAppId, String version, File file)
 		throws PortalException, SystemException {
 
 		MarketplacePermission.check(getPermissionChecker());
 
 		return appLocalService.addApp(
-			getUserId(), remoteAppId, version, inputStream);
+			getUserId(), remoteAppId, version, file);
 	}
 
 	public App deleteApp(long appId) throws PortalException, SystemException {
@@ -58,12 +59,12 @@ public class AppServiceImpl extends AppServiceBaseImpl {
 		appLocalService.uninstallApp(remoteAppId);
 	}
 
-	public App updateApp(long appId, String version, InputStream inputStream)
+	public App updateApp(long appId, String version, File file)
 		throws PortalException, SystemException {
 
 		MarketplacePermission.check(getPermissionChecker());
 
-		return appLocalService.updateApp(appId, version, inputStream);
+		return appLocalService.updateApp(appId, version, file);
 	}
 
 }
