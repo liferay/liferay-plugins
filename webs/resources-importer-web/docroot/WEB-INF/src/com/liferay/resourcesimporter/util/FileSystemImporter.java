@@ -486,12 +486,13 @@ public class FileSystemImporter extends BaseImporter {
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
 		addDDMTemplates(
-			ddmStructure.getStructureKey(), _DDM_TEMPLATES_DIR_NAME + name);
+			ddmStructure.getStructureKey(),
+			_JOURNAL_DDM_TEMPLATES_DIR_NAME + name);
 
 		if (Validator.isNull(parentDDMStructureKey)) {
 			addDDMStructures(
 				ddmStructure.getStructureKey(),
-				_DDM_STRUCTURES_DIR_NAME + name);
+				_JOURNAL_DDM_STRUCTURES_DIR_NAME + name);
 		}
 	}
 
@@ -515,11 +516,11 @@ public class FileSystemImporter extends BaseImporter {
 			groupId, ddmStructureKey);
 
 		long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
-		long classPK = ddmStructure.getStructureId();
 
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, classNameId, classPK, ddmTemplateKey, nameMap,
-			null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
+			userId, groupId, classNameId, ddmStructure.getStructureId(),
+			ddmTemplateKey, nameMap, null,
+			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
 			DDMTemplateConstants.LANG_TYPE_XSD, xsl, false, false, null, null,
 			serviceContext);
@@ -755,9 +756,9 @@ public class FileSystemImporter extends BaseImporter {
 		addJournalArticles(
 			StringPool.BLANK, StringPool.BLANK, _JOURNAL_ARTICLES_DIR_NAME);
 
-		addDDMStructures(StringPool.BLANK, _DDM_STRUCTURES_DIR_NAME);
+		addDDMStructures(StringPool.BLANK, _JOURNAL_DDM_STRUCTURES_DIR_NAME);
 
-		addDDMTemplates(StringPool.BLANK, _DDM_TEMPLATES_DIR_NAME);
+		addDDMTemplates(StringPool.BLANK, _JOURNAL_DDM_TEMPLATES_DIR_NAME);
 	}
 
 	protected void setupSettings(String fileName) throws Exception {
@@ -850,10 +851,10 @@ public class FileSystemImporter extends BaseImporter {
 	private static final String _JOURNAL_ARTICLES_DIR_NAME =
 		"/journal/articles/";
 
-	private static final String _DDM_STRUCTURES_DIR_NAME =
+	private static final String _JOURNAL_DDM_STRUCTURES_DIR_NAME =
 		"/journal/structures/";
 
-	private static final String _DDM_TEMPLATES_DIR_NAME =
+	private static final String _JOURNAL_DDM_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
 
 	private Map<String, JSONObject> _assetJSONObjectMap =
