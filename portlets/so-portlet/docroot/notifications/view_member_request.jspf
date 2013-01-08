@@ -18,9 +18,9 @@
 --%>
 
 <%
-String redirect = currentURL;
-
 Group invitedGroup = null;
+
+String redirectURL = currentURL;
 
 try {
 	invitedGroup = GroupLocalServiceUtil.getGroup(notificationEventJSONObject.getLong("groupId"));
@@ -33,7 +33,7 @@ try {
 		portletURL.setParameter("mvcPath", "/notifications/view.jsp");
 		portletURL.setParameter("p_p_state", WindowState.MAXIMIZED.toString());
 
-		redirect = portletURL.toString();
+		redirectURL = portletURL.toString();
 	}
 }
 catch (Exception e) {
@@ -72,7 +72,7 @@ catch (Exception e) {
 
 			<div class="request">
 				<liferay-portlet:actionURL name="updateMemberRequest" portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="confirmURL">
-					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="redirect" value="<%= redirectURL %>" />
 					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSONObject.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
 					<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
