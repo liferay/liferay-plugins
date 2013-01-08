@@ -109,7 +109,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcPath", "/notifications/view.jsp");
-		portletURL.setParameter("p_p_state", WindowState.MAXIMIZED.toString());
+		portletURL.setWindowState(WindowState.MAXIMIZED);
 
 		serviceContext.setAttribute("redirectURL", portletURL.toString());
 
