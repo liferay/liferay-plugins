@@ -36,6 +36,64 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
+	protected void addDDMStructures(
+			String parentStructureId, String structuresDirName)
+		throws Exception {
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			resourcesDir.concat(structuresDirName));
+
+		if (resourcePaths == null) {
+			return;
+		}
+
+		for (String resourcePath : resourcePaths) {
+			if (resourcePath.endsWith(StringPool.SLASH)) {
+				continue;
+			}
+
+			String name = FileUtil.getShortFileName(resourcePath);
+
+			URL url = servletContext.getResource(resourcePath);
+
+			URLConnection urlConnection = url.openConnection();
+
+			doAddDDMStructures(
+				parentStructureId, name, urlConnection.getInputStream());
+		}
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	protected void addDDMTemplates(
+			String ddmStructureKey, String templatesDirName)
+		throws Exception {
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			resourcesDir.concat(templatesDirName));
+
+		if (resourcePaths == null) {
+			return;
+		}
+
+		for (String resourcePath : resourcePaths) {
+			if (resourcePath.endsWith(StringPool.SLASH)) {
+				continue;
+			}
+
+			String name = FileUtil.getShortFileName(resourcePath);
+
+			URL url = servletContext.getResource(resourcePath);
+
+			URLConnection urlConnection = url.openConnection();
+
+			doAddDDMTemplates(
+				ddmStructureKey, name, urlConnection.getInputStream());
+		}
+	}
+
+	@Override
 	protected void addDLFileEntries(String fileEntriesDirName)
 		throws Exception {
 
@@ -91,64 +149,6 @@ public class ResourceImporter extends FileSystemImporter {
 			doAddJournalArticles(
 				ddmStructureKey, ddmTemplateKey, name,
 				urlConnection.getInputStream());
-		}
-	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	protected void addDDMStructures(
-			String parentStructureId, String structuresDirName)
-		throws Exception {
-
-		Set<String> resourcePaths = servletContext.getResourcePaths(
-			resourcesDir.concat(structuresDirName));
-
-		if (resourcePaths == null) {
-			return;
-		}
-
-		for (String resourcePath : resourcePaths) {
-			if (resourcePath.endsWith(StringPool.SLASH)) {
-				continue;
-			}
-
-			String name = FileUtil.getShortFileName(resourcePath);
-
-			URL url = servletContext.getResource(resourcePath);
-
-			URLConnection urlConnection = url.openConnection();
-
-			doAddDDMStructures(
-				parentStructureId, name, urlConnection.getInputStream());
-		}
-	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	protected void addDDMTemplates(
-			String ddmStructureKey, String templatesDirName)
-		throws Exception {
-
-		Set<String> resourcePaths = servletContext.getResourcePaths(
-			resourcesDir.concat(templatesDirName));
-
-		if (resourcePaths == null) {
-			return;
-		}
-
-		for (String resourcePath : resourcePaths) {
-			if (resourcePath.endsWith(StringPool.SLASH)) {
-				continue;
-			}
-
-			String name = FileUtil.getShortFileName(resourcePath);
-
-			URL url = servletContext.getResource(resourcePath);
-
-			URLConnection urlConnection = url.openConnection();
-
-			doAddDDMTemplates(
-				ddmStructureKey, name, urlConnection.getInputStream());
 		}
 	}
 
