@@ -190,7 +190,7 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 				<div class="body">
 					<%= StringUtil.replace(HtmlUtil.escape(mbMessage.getBody()), "\n", "<br />") %>
 
-					<c:if test="<%= mbMessage.isAttachments() %>">
+					<c:if test="<%= mbMessage.getAttachmentsFileEntriesCount() > 0 %>">
 						<hr />
 
 						<%
@@ -219,7 +219,7 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 					</c:if>
 				</div>
 
-				<c:if test="<%= mbMessage.isAttachments() %>">
+				<c:if test="<%= mbMessage.getAttachmentsFileEntriesCount() > 0 %>">
 					<div class="message-attachments">
 						<h3><liferay-ui:message key="attachments" />:</h3>
 
