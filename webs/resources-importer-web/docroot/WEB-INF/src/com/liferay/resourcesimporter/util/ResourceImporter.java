@@ -36,7 +36,6 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	protected void addDDMStructures(
 			String parentStructureId, String structuresDirName)
 		throws Exception {
@@ -65,7 +64,6 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	protected void addDDMTemplates(
 			String ddmStructureKey, String templatesDirName)
 		throws Exception {
@@ -122,7 +120,6 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	protected void addJournalArticles(
 			String ddmStructureKey, String ddmTemplateKey,
 			String articlesDirName)
