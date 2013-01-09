@@ -474,7 +474,7 @@ $toolbar-bg: #DCE3EA;
 		.contacts-count {
 			font-weight: bold;
 
-			.contacts-center-introduction {
+			&, .contacts-center-introduction {
 				margin: 5px 0;
 			}
 		}
