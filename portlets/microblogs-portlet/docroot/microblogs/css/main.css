@@ -201,7 +201,9 @@ $microblogs-border-color: #C7D0DA;
 
 	.highlighter-content {
 		color: transparent;
+
 		@include force-wrap();
+
 		left: 1px;
 		padding: 5px;
 		position: absolute;
@@ -227,6 +229,7 @@ $microblogs-border-color: #C7D0DA;
 
 		div {
 			display: inline-block;
+
 			@include force-wrap();
 		}
 	}

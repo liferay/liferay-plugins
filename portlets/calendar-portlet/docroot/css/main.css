@@ -112,6 +112,7 @@
 
 .aui-calendar-list-item-hover, .aui-calendar-list-item-active {
 	background-color: #DCE3EA;
+
 	@include force-wrap();
 
 	.aui-calendar-list-item-arrow {
@@ -219,7 +220,6 @@
 .aui-simple-menu-content {
 	background: none repeat scroll 0 0 #FFF;
 	border: 1px solid rgba(0, 0, 0, 0.2);
-	@include box-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 	font-size: 13px;
 	margin: 0;
 	outline: medium none;
@@ -439,6 +439,10 @@
 
 .aui-calendar-list-item-arrow, .aui-calendar-list-item-color, .aui-simple-color-picker-item {
 	@include border-radius(1px);
+}
+
+.aui-simple-menu-content {
+	@include box-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .aui-simple-menu-item {
