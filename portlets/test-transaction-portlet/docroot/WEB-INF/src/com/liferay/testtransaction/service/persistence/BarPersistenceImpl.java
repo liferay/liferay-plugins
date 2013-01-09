@@ -189,16 +189,18 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 			query.append(_SQL_SELECT_BAR_WHERE);
 
+			boolean bindText = false;
+
 			if (text == null) {
 				query.append(_FINDER_COLUMN_TEXT_TEXT_1);
 			}
+			else if (text.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_TEXT_TEXT_3);
+			}
 			else {
-				if (text.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_TEXT_TEXT_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_TEXT_TEXT_2);
-				}
+				bindText = true;
+
+				query.append(_FINDER_COLUMN_TEXT_TEXT_2);
 			}
 
 			if (orderByComparator != null) {
@@ -221,7 +223,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (text != null) {
+				if (bindText) {
 					qPos.add(text);
 				}
 
@@ -406,16 +408,18 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 		query.append(_SQL_SELECT_BAR_WHERE);
 
+		boolean bindText = false;
+
 		if (text == null) {
 			query.append(_FINDER_COLUMN_TEXT_TEXT_1);
 		}
+		else if (text.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_TEXT_TEXT_3);
+		}
 		else {
-			if (text.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_TEXT_TEXT_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_TEXT_TEXT_2);
-			}
+			bindText = true;
+
+			query.append(_FINDER_COLUMN_TEXT_TEXT_2);
 		}
 
 		if (orderByComparator != null) {
@@ -486,7 +490,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (text != null) {
+		if (bindText) {
 			qPos.add(text);
 		}
 
@@ -541,16 +545,18 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 			query.append(_SQL_COUNT_BAR_WHERE);
 
+			boolean bindText = false;
+
 			if (text == null) {
 				query.append(_FINDER_COLUMN_TEXT_TEXT_1);
 			}
+			else if (text.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_TEXT_TEXT_3);
+			}
 			else {
-				if (text.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_TEXT_TEXT_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_TEXT_TEXT_2);
-				}
+				bindText = true;
+
+				query.append(_FINDER_COLUMN_TEXT_TEXT_2);
 			}
 
 			String sql = query.toString();
@@ -564,7 +570,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (text != null) {
+				if (bindText) {
 					qPos.add(text);
 				}
 
@@ -587,7 +593,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 	private static final String _FINDER_COLUMN_TEXT_TEXT_1 = "bar.text IS NULL";
 	private static final String _FINDER_COLUMN_TEXT_TEXT_2 = "bar.text = ?";
-	private static final String _FINDER_COLUMN_TEXT_TEXT_3 = "(bar.text IS NULL OR bar.text = ?)";
+	private static final String _FINDER_COLUMN_TEXT_TEXT_3 = "(bar.text IS NULL OR bar.text = '')";
 
 	/**
 	 * Caches the bar in the entity cache if it is enabled.

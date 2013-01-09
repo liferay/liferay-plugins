@@ -92,7 +92,7 @@
 		</constructor-arg>
 	</bean>
 	<bean id="transactionAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
-		<constructor-arg value="com.liferay.portal.spring.transaction.TransactionInterceptor" />
+		<constructor-arg value="com.liferay.portal.spring.transaction.TransactionInterceptorFactoryBean" />
 		<constructor-arg>
 			<map>
 				<entry key="platformTransactionManager" value-ref="liferayTransactionManager" />

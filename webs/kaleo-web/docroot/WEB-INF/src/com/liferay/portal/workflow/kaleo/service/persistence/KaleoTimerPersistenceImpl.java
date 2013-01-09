@@ -202,16 +202,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 			query.append(_SQL_SELECT_KALEOTIMER_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
@@ -236,7 +238,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
@@ -445,16 +447,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 		query.append(_SQL_SELECT_KALEOTIMER_WHERE);
 
+		boolean bindKaleoClassName = false;
+
 		if (kaleoClassName == null) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
 		}
+		else if (kaleoClassName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+		}
 		else {
-			if (kaleoClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
-			}
+			bindKaleoClassName = true;
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
 		}
 
 		query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
@@ -527,7 +531,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (kaleoClassName != null) {
+		if (bindKaleoClassName) {
 			qPos.add(kaleoClassName);
 		}
 
@@ -588,16 +592,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 			query.append(_SQL_COUNT_KALEOTIMER_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
@@ -613,7 +619,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
@@ -638,7 +644,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1 = "kaleoTimer.kaleoClassName IS NULL AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2 = "kaleoTimer.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3 = "(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3 = "(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = '') AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2 = "kaleoTimer.kaleoClassPK = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING =
 		new FinderPath(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
@@ -776,16 +782,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 			query.append(_SQL_SELECT_KALEOTIMER_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2);
@@ -812,7 +820,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
@@ -1037,16 +1045,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 		query.append(_SQL_SELECT_KALEOTIMER_WHERE);
 
+		boolean bindKaleoClassName = false;
+
 		if (kaleoClassName == null) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_1);
 		}
+		else if (kaleoClassName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
+		}
 		else {
-			if (kaleoClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
-			}
+			bindKaleoClassName = true;
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
 		}
 
 		query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2);
@@ -1121,7 +1131,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (kaleoClassName != null) {
+		if (bindKaleoClassName) {
 			qPos.add(kaleoClassName);
 		}
 
@@ -1189,16 +1199,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 			query.append(_SQL_COUNT_KALEOTIMER_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2);
@@ -1216,7 +1228,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
@@ -1246,7 +1258,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_2 =
 		"kaleoTimer.kaleoClassName = ? AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSNAME_3 =
-		"(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = ?) AND ";
+		"(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = '') AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2 = "kaleoTimer.kaleoClassPK = ? AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_BLOCKING_2 = "kaleoTimer.blocking = ?";
 

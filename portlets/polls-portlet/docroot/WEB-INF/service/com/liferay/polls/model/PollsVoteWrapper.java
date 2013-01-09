@@ -25,7 +25,7 @@ import java.util.Map;
  * This class is a wrapper for {@link PollsVote}.
  * </p>
  *
- * @author    Juan Fernández
+ * @author    Juan Fernï¿½ndez
  * @see       PollsVote
  * @generated
  */
@@ -356,7 +356,7 @@ public class PollsVoteWrapper implements PollsVote, ModelWrapper<PollsVote> {
 		return new PollsVoteWrapper((PollsVote)_pollsVote.clone());
 	}
 
-	public int compareTo(PollsVote pollsVote) {
+	public int compareTo(com.liferay.polls.model.PollsVote pollsVote) {
 		return _pollsVote.compareTo(pollsVote);
 	}
 
@@ -365,15 +365,15 @@ public class PollsVoteWrapper implements PollsVote, ModelWrapper<PollsVote> {
 		return _pollsVote.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<PollsVote> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.polls.model.PollsVote> toCacheModel() {
 		return _pollsVote.toCacheModel();
 	}
 
-	public PollsVote toEscapedModel() {
+	public com.liferay.polls.model.PollsVote toEscapedModel() {
 		return new PollsVoteWrapper(_pollsVote.toEscapedModel());
 	}
 
-	public PollsVote toUnescapedModel() {
+	public com.liferay.polls.model.PollsVote toUnescapedModel() {
 		return new PollsVoteWrapper(_pollsVote.toUnescapedModel());
 	}
 

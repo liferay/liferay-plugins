@@ -190,16 +190,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			query.append(_SQL_SELECT_MODULE_WHERE);
 
+			boolean bindUuid = false;
+
 			if (uuid == null) {
 				query.append(_FINDER_COLUMN_UUID_UUID_1);
 			}
+			else if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
 			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_UUID_2);
-				}
+				bindUuid = true;
+
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
 			}
 
 			if (orderByComparator != null) {
@@ -222,7 +224,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid != null) {
+				if (bindUuid) {
 					qPos.add(uuid);
 				}
 
@@ -410,16 +412,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 		query.append(_SQL_SELECT_MODULE_WHERE);
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_UUID_2);
 		}
 
 		if (orderByComparator != null) {
@@ -490,7 +494,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (uuid != null) {
+		if (bindUuid) {
 			qPos.add(uuid);
 		}
 
@@ -545,16 +549,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			query.append(_SQL_COUNT_MODULE_WHERE);
 
+			boolean bindUuid = false;
+
 			if (uuid == null) {
 				query.append(_FINDER_COLUMN_UUID_UUID_1);
 			}
+			else if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
 			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_UUID_2);
-				}
+				bindUuid = true;
+
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
 			}
 
 			String sql = query.toString();
@@ -568,7 +574,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid != null) {
+				if (bindUuid) {
 					qPos.add(uuid);
 				}
 
@@ -591,7 +597,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 	private static final String _FINDER_COLUMN_UUID_UUID_1 = "module.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "module.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(module.uuid IS NULL OR module.uuid = ?)";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(module.uuid IS NULL OR module.uuid = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_APPID = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByAppId",
@@ -1171,16 +1177,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			query.append(_SQL_SELECT_MODULE_WHERE);
 
+			boolean bindContextName = false;
+
 			if (contextName == null) {
 				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
 			}
+			else if (contextName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
+			}
 			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
-				}
+				bindContextName = true;
+
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
 			}
 
 			if (orderByComparator != null) {
@@ -1203,7 +1211,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (contextName != null) {
+				if (bindContextName) {
 					qPos.add(contextName);
 				}
 
@@ -1394,16 +1402,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 		query.append(_SQL_SELECT_MODULE_WHERE);
 
+		boolean bindContextName = false;
+
 		if (contextName == null) {
 			query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
 		}
+		else if (contextName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
+		}
 		else {
-			if (contextName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
-			}
+			bindContextName = true;
+
+			query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
 		}
 
 		if (orderByComparator != null) {
@@ -1474,7 +1484,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (contextName != null) {
+		if (bindContextName) {
 			qPos.add(contextName);
 		}
 
@@ -1530,16 +1540,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			query.append(_SQL_COUNT_MODULE_WHERE);
 
+			boolean bindContextName = false;
+
 			if (contextName == null) {
 				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1);
 			}
+			else if (contextName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
+			}
 			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
-				}
+				bindContextName = true;
+
+				query.append(_FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2);
 			}
 
 			String sql = query.toString();
@@ -1553,7 +1565,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (contextName != null) {
+				if (bindContextName) {
 					qPos.add(contextName);
 				}
 
@@ -1576,7 +1588,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_1 = "module.contextName IS NULL";
 	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_2 = "module.contextName = ?";
-	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = ?)";
+	private static final String _FINDER_COLUMN_CONTEXTNAME_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_A_C = new FinderPath(ModuleModelImpl.ENTITY_CACHE_ENABLED,
 			ModuleModelImpl.FINDER_CACHE_ENABLED, ModuleImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByA_C",
@@ -1673,16 +1685,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			query.append(_FINDER_COLUMN_A_C_APPID_2);
 
+			boolean bindContextName = false;
+
 			if (contextName == null) {
 				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_1);
 			}
+			else if (contextName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
+			}
 			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
-				}
+				bindContextName = true;
+
+				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
 			}
 
 			String sql = query.toString();
@@ -1698,7 +1712,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 				qPos.add(appId);
 
-				if (contextName != null) {
+				if (bindContextName) {
 					qPos.add(contextName);
 				}
 
@@ -1788,16 +1802,18 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			query.append(_FINDER_COLUMN_A_C_APPID_2);
 
+			boolean bindContextName = false;
+
 			if (contextName == null) {
 				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_1);
 			}
+			else if (contextName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
+			}
 			else {
-				if (contextName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
-				}
+				bindContextName = true;
+
+				query.append(_FINDER_COLUMN_A_C_CONTEXTNAME_2);
 			}
 
 			String sql = query.toString();
@@ -1813,7 +1829,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 				qPos.add(appId);
 
-				if (contextName != null) {
+				if (bindContextName) {
 					qPos.add(contextName);
 				}
 
@@ -1837,7 +1853,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	private static final String _FINDER_COLUMN_A_C_APPID_2 = "module.appId = ? AND ";
 	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_1 = "module.contextName IS NULL";
 	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_2 = "module.contextName = ?";
-	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = ?)";
+	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = '')";
 
 	/**
 	 * Caches the module in the entity cache if it is enabled.

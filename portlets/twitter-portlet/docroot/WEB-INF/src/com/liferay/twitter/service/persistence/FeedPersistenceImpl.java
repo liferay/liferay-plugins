@@ -415,16 +415,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 			query.append(_FINDER_COLUMN_C_TSN_COMPANYID_2);
 
+			boolean bindTwitterScreenName = false;
+
 			if (twitterScreenName == null) {
 				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_1);
 			}
+			else if (twitterScreenName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3);
+			}
 			else {
-				if (twitterScreenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2);
-				}
+				bindTwitterScreenName = true;
+
+				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2);
 			}
 
 			String sql = query.toString();
@@ -440,7 +442,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				qPos.add(companyId);
 
-				if (twitterScreenName != null) {
+				if (bindTwitterScreenName) {
 					qPos.add(twitterScreenName);
 				}
 
@@ -531,16 +533,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 			query.append(_FINDER_COLUMN_C_TSN_COMPANYID_2);
 
+			boolean bindTwitterScreenName = false;
+
 			if (twitterScreenName == null) {
 				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_1);
 			}
+			else if (twitterScreenName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3);
+			}
 			else {
-				if (twitterScreenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2);
-				}
+				bindTwitterScreenName = true;
+
+				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2);
 			}
 
 			String sql = query.toString();
@@ -556,7 +560,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				qPos.add(companyId);
 
-				if (twitterScreenName != null) {
+				if (bindTwitterScreenName) {
 					qPos.add(twitterScreenName);
 				}
 
@@ -580,7 +584,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	private static final String _FINDER_COLUMN_C_TSN_COMPANYID_2 = "feed.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_1 = "feed.twitterScreenName IS NULL";
 	private static final String _FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2 = "feed.twitterScreenName = ?";
-	private static final String _FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3 = "(feed.twitterScreenName IS NULL OR feed.twitterScreenName = ?)";
+	private static final String _FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3 = "(feed.twitterScreenName IS NULL OR feed.twitterScreenName = '')";
 
 	/**
 	 * Caches the feed in the entity cache if it is enabled.

@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services, specifically {@link com.liferay.polls.service.http.PollsQuestionServiceSoap}.
  *
- * @author    Juan Fernández
+ * @author    Juan Fernï¿½ndez
  * @see       com.liferay.polls.service.http.PollsQuestionServiceSoap
  * @generated
  */

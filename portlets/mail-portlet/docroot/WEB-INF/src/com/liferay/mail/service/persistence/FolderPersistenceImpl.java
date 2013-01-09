@@ -655,16 +655,18 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
 
+			boolean bindFullName = false;
+
 			if (fullName == null) {
 				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
 			}
+			else if (fullName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+			}
 			else {
-				if (fullName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
-				}
+				bindFullName = true;
+
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
 			}
 
 			String sql = query.toString();
@@ -680,7 +682,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 				qPos.add(accountId);
 
-				if (fullName != null) {
+				if (bindFullName) {
 					qPos.add(fullName);
 				}
 
@@ -770,16 +772,18 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
 
+			boolean bindFullName = false;
+
 			if (fullName == null) {
 				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
 			}
+			else if (fullName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+			}
 			else {
-				if (fullName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
-				}
+				bindFullName = true;
+
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
 			}
 
 			String sql = query.toString();
@@ -795,7 +799,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 				qPos.add(accountId);
 
-				if (fullName != null) {
+				if (bindFullName) {
 					qPos.add(fullName);
 				}
 
@@ -819,7 +823,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	private static final String _FINDER_COLUMN_A_F_ACCOUNTID_2 = "folder.accountId = ? AND ";
 	private static final String _FINDER_COLUMN_A_F_FULLNAME_1 = "folder.fullName IS NULL";
 	private static final String _FINDER_COLUMN_A_F_FULLNAME_2 = "folder.fullName = ?";
-	private static final String _FINDER_COLUMN_A_F_FULLNAME_3 = "(folder.fullName IS NULL OR folder.fullName = ?)";
+	private static final String _FINDER_COLUMN_A_F_FULLNAME_3 = "(folder.fullName IS NULL OR folder.fullName = '')";
 
 	/**
 	 * Caches the folder in the entity cache if it is enabled.

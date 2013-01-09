@@ -652,16 +652,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_U_EA_USERID_2);
 
+			boolean bindEmailAddress = false;
+
 			if (emailAddress == null) {
 				query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_1);
 			}
+			else if (emailAddress.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_3);
+			}
 			else {
-				if (emailAddress.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_2);
-				}
+				bindEmailAddress = true;
+
+				query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_2);
 			}
 
 			String sql = query.toString();
@@ -677,7 +679,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(userId);
 
-				if (emailAddress != null) {
+				if (bindEmailAddress) {
 					qPos.add(emailAddress);
 				}
 
@@ -767,16 +769,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_U_EA_USERID_2);
 
+			boolean bindEmailAddress = false;
+
 			if (emailAddress == null) {
 				query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_1);
 			}
+			else if (emailAddress.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_3);
+			}
 			else {
-				if (emailAddress.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_2);
-				}
+				bindEmailAddress = true;
+
+				query.append(_FINDER_COLUMN_U_EA_EMAILADDRESS_2);
 			}
 
 			String sql = query.toString();
@@ -792,7 +796,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(userId);
 
-				if (emailAddress != null) {
+				if (bindEmailAddress) {
 					qPos.add(emailAddress);
 				}
 
@@ -816,7 +820,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static final String _FINDER_COLUMN_U_EA_USERID_2 = "entry.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_EA_EMAILADDRESS_1 = "entry.emailAddress IS NULL";
 	private static final String _FINDER_COLUMN_U_EA_EMAILADDRESS_2 = "entry.emailAddress = ?";
-	private static final String _FINDER_COLUMN_U_EA_EMAILADDRESS_3 = "(entry.emailAddress IS NULL OR entry.emailAddress = ?)";
+	private static final String _FINDER_COLUMN_U_EA_EMAILADDRESS_3 = "(entry.emailAddress IS NULL OR entry.emailAddress = '')";
 
 	/**
 	 * Caches the entry in the entity cache if it is enabled.

@@ -652,16 +652,18 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 			query.append(_FINDER_COLUMN_U_A_USERID_2);
 
+			boolean bindAddress = false;
+
 			if (address == null) {
 				query.append(_FINDER_COLUMN_U_A_ADDRESS_1);
 			}
+			else if (address.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_A_ADDRESS_3);
+			}
 			else {
-				if (address.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_A_ADDRESS_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_A_ADDRESS_2);
-				}
+				bindAddress = true;
+
+				query.append(_FINDER_COLUMN_U_A_ADDRESS_2);
 			}
 
 			String sql = query.toString();
@@ -677,7 +679,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 				qPos.add(userId);
 
-				if (address != null) {
+				if (bindAddress) {
 					qPos.add(address);
 				}
 
@@ -767,16 +769,18 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 			query.append(_FINDER_COLUMN_U_A_USERID_2);
 
+			boolean bindAddress = false;
+
 			if (address == null) {
 				query.append(_FINDER_COLUMN_U_A_ADDRESS_1);
 			}
+			else if (address.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_A_ADDRESS_3);
+			}
 			else {
-				if (address.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_A_ADDRESS_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_A_ADDRESS_2);
-				}
+				bindAddress = true;
+
+				query.append(_FINDER_COLUMN_U_A_ADDRESS_2);
 			}
 
 			String sql = query.toString();
@@ -792,7 +796,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 				qPos.add(userId);
 
-				if (address != null) {
+				if (bindAddress) {
 					qPos.add(address);
 				}
 
@@ -816,7 +820,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	private static final String _FINDER_COLUMN_U_A_USERID_2 = "account.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_A_ADDRESS_1 = "account.address IS NULL";
 	private static final String _FINDER_COLUMN_U_A_ADDRESS_2 = "account.address = ?";
-	private static final String _FINDER_COLUMN_U_A_ADDRESS_3 = "(account.address IS NULL OR account.address = ?)";
+	private static final String _FINDER_COLUMN_U_A_ADDRESS_3 = "(account.address IS NULL OR account.address = '')";
 
 	/**
 	 * Caches the account in the entity cache if it is enabled.

@@ -171,16 +171,18 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 			query.append(_SQL_SELECT_SVNREPOSITORY_WHERE);
 
+			boolean bindUrl = false;
+
 			if (url == null) {
 				query.append(_FINDER_COLUMN_URL_URL_1);
 			}
+			else if (url.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_URL_URL_3);
+			}
 			else {
-				if (url.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_URL_URL_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_URL_URL_2);
-				}
+				bindUrl = true;
+
+				query.append(_FINDER_COLUMN_URL_URL_2);
 			}
 
 			String sql = query.toString();
@@ -194,7 +196,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (url != null) {
+				if (bindUrl) {
 					qPos.add(url);
 				}
 
@@ -278,16 +280,18 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 			query.append(_SQL_COUNT_SVNREPOSITORY_WHERE);
 
+			boolean bindUrl = false;
+
 			if (url == null) {
 				query.append(_FINDER_COLUMN_URL_URL_1);
 			}
+			else if (url.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_URL_URL_3);
+			}
 			else {
-				if (url.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_URL_URL_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_URL_URL_2);
-				}
+				bindUrl = true;
+
+				query.append(_FINDER_COLUMN_URL_URL_2);
 			}
 
 			String sql = query.toString();
@@ -301,7 +305,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (url != null) {
+				if (bindUrl) {
 					qPos.add(url);
 				}
 
@@ -324,7 +328,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 	private static final String _FINDER_COLUMN_URL_URL_1 = "svnRepository.url IS NULL";
 	private static final String _FINDER_COLUMN_URL_URL_2 = "svnRepository.url = ?";
-	private static final String _FINDER_COLUMN_URL_URL_3 = "(svnRepository.url IS NULL OR svnRepository.url = ?)";
+	private static final String _FINDER_COLUMN_URL_URL_3 = "(svnRepository.url IS NULL OR svnRepository.url = '')";
 
 	/**
 	 * Caches the s v n repository in the entity cache if it is enabled.

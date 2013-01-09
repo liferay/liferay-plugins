@@ -25,7 +25,7 @@ import java.util.Map;
  * This class is a wrapper for {@link PollsQuestion}.
  * </p>
  *
- * @author    Juan Fernández
+ * @author    Juan Fernï¿½ndez
  * @see       PollsQuestion
  * @generated
  */
@@ -656,7 +656,7 @@ public class PollsQuestionWrapper implements PollsQuestion,
 		return new PollsQuestionWrapper((PollsQuestion)_pollsQuestion.clone());
 	}
 
-	public int compareTo(PollsQuestion pollsQuestion) {
+	public int compareTo(com.liferay.polls.model.PollsQuestion pollsQuestion) {
 		return _pollsQuestion.compareTo(pollsQuestion);
 	}
 
@@ -665,15 +665,15 @@ public class PollsQuestionWrapper implements PollsQuestion,
 		return _pollsQuestion.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<PollsQuestion> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.polls.model.PollsQuestion> toCacheModel() {
 		return _pollsQuestion.toCacheModel();
 	}
 
-	public PollsQuestion toEscapedModel() {
+	public com.liferay.polls.model.PollsQuestion toEscapedModel() {
 		return new PollsQuestionWrapper(_pollsQuestion.toEscapedModel());
 	}
 
-	public PollsQuestion toUnescapedModel() {
+	public com.liferay.polls.model.PollsQuestion toUnescapedModel() {
 		return new PollsQuestionWrapper(_pollsQuestion.toUnescapedModel());
 	}
 

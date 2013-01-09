@@ -1725,24 +1725,30 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPANYID_2);
 
+			boolean bindKaleoDefinitionName = false;
+
 			if (kaleoDefinitionName == null) {
 				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_1);
 			}
+			else if (kaleoDefinitionName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3);
+			}
 			else {
-				if (kaleoDefinitionName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2);
-				}
+				bindKaleoDefinitionName = true;
+
+				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONVERSION_2);
+
+			boolean bindCompletionDate = false;
 
 			if (completionDate == null) {
 				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_1);
 			}
 			else {
+				bindCompletionDate = true;
+
 				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_2);
 			}
 
@@ -1768,13 +1774,13 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 				qPos.add(companyId);
 
-				if (kaleoDefinitionName != null) {
+				if (bindKaleoDefinitionName) {
 					qPos.add(kaleoDefinitionName);
 				}
 
 				qPos.add(kaleoDefinitionVersion);
 
-				if (completionDate != null) {
+				if (bindCompletionDate) {
 					qPos.add(CalendarUtil.getTimestamp(completionDate));
 				}
 
@@ -2019,24 +2025,30 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 		query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPANYID_2);
 
+		boolean bindKaleoDefinitionName = false;
+
 		if (kaleoDefinitionName == null) {
 			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_1);
 		}
+		else if (kaleoDefinitionName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3);
+		}
 		else {
-			if (kaleoDefinitionName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2);
-			}
+			bindKaleoDefinitionName = true;
+
+			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2);
 		}
 
 		query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONVERSION_2);
+
+		boolean bindCompletionDate = false;
 
 		if (completionDate == null) {
 			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_1);
 		}
 		else {
+			bindCompletionDate = true;
+
 			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_2);
 		}
 
@@ -2110,13 +2122,13 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 		qPos.add(companyId);
 
-		if (kaleoDefinitionName != null) {
+		if (bindKaleoDefinitionName) {
 			qPos.add(kaleoDefinitionName);
 		}
 
 		qPos.add(kaleoDefinitionVersion);
 
-		if (completionDate != null) {
+		if (bindCompletionDate) {
 			qPos.add(CalendarUtil.getTimestamp(completionDate));
 		}
 
@@ -2187,24 +2199,30 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPANYID_2);
 
+			boolean bindKaleoDefinitionName = false;
+
 			if (kaleoDefinitionName == null) {
 				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_1);
 			}
+			else if (kaleoDefinitionName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3);
+			}
 			else {
-				if (kaleoDefinitionName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2);
-				}
+				bindKaleoDefinitionName = true;
+
+				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONVERSION_2);
+
+			boolean bindCompletionDate = false;
 
 			if (completionDate == null) {
 				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_1);
 			}
 			else {
+				bindCompletionDate = true;
+
 				query.append(_FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_2);
 			}
 
@@ -2221,13 +2239,13 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 				qPos.add(companyId);
 
-				if (kaleoDefinitionName != null) {
+				if (bindKaleoDefinitionName) {
 					qPos.add(kaleoDefinitionName);
 				}
 
 				qPos.add(kaleoDefinitionVersion);
 
-				if (completionDate != null) {
+				if (bindCompletionDate) {
 					qPos.add(CalendarUtil.getTimestamp(completionDate));
 				}
 
@@ -2254,7 +2272,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2 =
 		"kaleoInstance.kaleoDefinitionName = ? AND ";
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3 =
-		"(kaleoInstance.kaleoDefinitionName IS NULL OR kaleoInstance.kaleoDefinitionName = ?) AND ";
+		"(kaleoInstance.kaleoDefinitionName IS NULL OR kaleoInstance.kaleoDefinitionName = '') AND ";
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONVERSION_2 =
 		"kaleoInstance.kaleoDefinitionVersion = ? AND ";
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_1 = "kaleoInstance.completionDate IS NULL";

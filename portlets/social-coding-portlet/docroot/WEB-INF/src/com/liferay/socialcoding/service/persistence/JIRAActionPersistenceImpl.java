@@ -194,16 +194,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 			query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
+			boolean bindJiraUserId = false;
+
 			if (jiraUserId == null) {
 				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 			}
+			else if (jiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+			}
 			else {
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
-				}
+				bindJiraUserId = true;
+
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 			}
 
 			if (orderByComparator != null) {
@@ -226,7 +228,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (jiraUserId != null) {
+				if (bindJiraUserId) {
 					qPos.add(jiraUserId);
 				}
 
@@ -419,16 +421,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 		query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
+		boolean bindJiraUserId = false;
+
 		if (jiraUserId == null) {
 			query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 		}
+		else if (jiraUserId.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+		}
 		else {
-			if (jiraUserId.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
-			}
+			bindJiraUserId = true;
+
+			query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 		}
 
 		if (orderByComparator != null) {
@@ -499,7 +503,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (jiraUserId != null) {
+		if (bindJiraUserId) {
 			qPos.add(jiraUserId);
 		}
 
@@ -554,16 +558,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 			query.append(_SQL_COUNT_JIRAACTION_WHERE);
 
+			boolean bindJiraUserId = false;
+
 			if (jiraUserId == null) {
 				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 			}
+			else if (jiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+			}
 			else {
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
-				}
+				bindJiraUserId = true;
+
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 			}
 
 			String sql = query.toString();
@@ -577,7 +583,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (jiraUserId != null) {
+				if (bindJiraUserId) {
 					qPos.add(jiraUserId);
 				}
 
@@ -600,7 +606,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraAction.jiraUserId IS NULL";
 	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraAction.jiraUserId = ?";
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraAction.jiraUserId IS NULL OR jiraAction.jiraUserId = ?)";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraAction.jiraUserId IS NULL OR jiraAction.jiraUserId = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_JIRAISSUEID =
 		new FinderPath(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, JIRAActionImpl.class,
@@ -1186,16 +1192,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 			query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
+			boolean bindType = false;
+
 			if (type == null) {
 				query.append(_FINDER_COLUMN_TYPE_TYPE_1);
 			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_TYPE_TYPE_3);
+			}
 			else {
-				if (type.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_TYPE_TYPE_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_TYPE_TYPE_2);
-				}
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_TYPE_TYPE_2);
 			}
 
 			if (orderByComparator != null) {
@@ -1218,7 +1226,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (type != null) {
+				if (bindType) {
 					qPos.add(type);
 				}
 
@@ -1408,16 +1416,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 		query.append(_SQL_SELECT_JIRAACTION_WHERE);
 
+		boolean bindType = false;
+
 		if (type == null) {
 			query.append(_FINDER_COLUMN_TYPE_TYPE_1);
 		}
+		else if (type.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_TYPE_TYPE_3);
+		}
 		else {
-			if (type.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_TYPE_TYPE_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_TYPE_TYPE_2);
-			}
+			bindType = true;
+
+			query.append(_FINDER_COLUMN_TYPE_TYPE_2);
 		}
 
 		if (orderByComparator != null) {
@@ -1488,7 +1498,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (type != null) {
+		if (bindType) {
 			qPos.add(type);
 		}
 
@@ -1543,16 +1553,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 			query.append(_SQL_COUNT_JIRAACTION_WHERE);
 
+			boolean bindType = false;
+
 			if (type == null) {
 				query.append(_FINDER_COLUMN_TYPE_TYPE_1);
 			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_TYPE_TYPE_3);
+			}
 			else {
-				if (type.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_TYPE_TYPE_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_TYPE_TYPE_2);
-				}
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_TYPE_TYPE_2);
 			}
 
 			String sql = query.toString();
@@ -1566,7 +1578,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (type != null) {
+				if (bindType) {
 					qPos.add(type);
 				}
 
@@ -1589,7 +1601,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 	private static final String _FINDER_COLUMN_TYPE_TYPE_1 = "jiraAction.type IS NULL";
 	private static final String _FINDER_COLUMN_TYPE_TYPE_2 = "jiraAction.type = ?";
-	private static final String _FINDER_COLUMN_TYPE_TYPE_3 = "(jiraAction.type IS NULL OR jiraAction.type = ?)";
+	private static final String _FINDER_COLUMN_TYPE_TYPE_3 = "(jiraAction.type IS NULL OR jiraAction.type = '')";
 
 	/**
 	 * Caches the j i r a action in the entity cache if it is enabled.

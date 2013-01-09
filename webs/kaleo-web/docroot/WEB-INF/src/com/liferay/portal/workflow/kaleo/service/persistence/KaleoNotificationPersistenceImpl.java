@@ -1204,30 +1204,34 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			query.append(_SQL_SELECT_KALEONOTIFICATION_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSPK_2);
 
+			boolean bindExecutionType = false;
+
 			if (executionType == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1);
 			}
+			else if (executionType.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
+			}
 			else {
-				if (executionType.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2);
-				}
+				bindExecutionType = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2);
 			}
 
 			if (orderByComparator != null) {
@@ -1250,13 +1254,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
 				qPos.add(kaleoClassPK);
 
-				if (executionType != null) {
+				if (bindExecutionType) {
 					qPos.add(executionType);
 				}
 
@@ -1480,30 +1484,34 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 		query.append(_SQL_SELECT_KALEONOTIFICATION_WHERE);
 
+		boolean bindKaleoClassName = false;
+
 		if (kaleoClassName == null) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_1);
 		}
+		else if (kaleoClassName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
+		}
 		else {
-			if (kaleoClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_2);
-			}
+			bindKaleoClassName = true;
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_2);
 		}
 
 		query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSPK_2);
 
+		boolean bindExecutionType = false;
+
 		if (executionType == null) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1);
 		}
+		else if (executionType.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
+		}
 		else {
-			if (executionType.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2);
-			}
+			bindExecutionType = true;
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2);
 		}
 
 		if (orderByComparator != null) {
@@ -1574,13 +1582,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (kaleoClassName != null) {
+		if (bindKaleoClassName) {
 			qPos.add(kaleoClassName);
 		}
 
 		qPos.add(kaleoClassPK);
 
-		if (executionType != null) {
+		if (bindExecutionType) {
 			qPos.add(executionType);
 		}
 
@@ -1644,30 +1652,34 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			query.append(_SQL_COUNT_KALEONOTIFICATION_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSPK_2);
 
+			boolean bindExecutionType = false;
+
 			if (executionType == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1);
 			}
+			else if (executionType.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
+			}
 			else {
-				if (executionType.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2);
-				}
+				bindExecutionType = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2);
 			}
 
 			String sql = query.toString();
@@ -1681,13 +1693,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
 				qPos.add(kaleoClassPK);
 
-				if (executionType != null) {
+				if (bindExecutionType) {
 					qPos.add(executionType);
 				}
 
@@ -1710,11 +1722,11 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_1 = "kaleoNotification.kaleoClassName IS NULL AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_2 = "kaleoNotification.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3 = "(kaleoNotification.kaleoClassName IS NULL OR kaleoNotification.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3 = "(kaleoNotification.kaleoClassName IS NULL OR kaleoNotification.kaleoClassName = '') AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSPK_2 = "kaleoNotification.kaleoClassPK = ? AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1 = "kaleoNotification.executionType IS NULL";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2 = "kaleoNotification.executionType = ?";
-	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3 = "(kaleoNotification.executionType IS NULL OR kaleoNotification.executionType = ?)";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3 = "(kaleoNotification.executionType IS NULL OR kaleoNotification.executionType = '')";
 
 	/**
 	 * Caches the kaleo notification in the entity cache if it is enabled.

@@ -183,10 +183,14 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 			query.append(_SQL_SELECT_AKISMETDATA_WHERE);
 
+			boolean bindModifiedDate = false;
+
 			if (modifiedDate == null) {
 				query.append(_FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_1);
 			}
 			else {
+				bindModifiedDate = true;
+
 				query.append(_FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_2);
 			}
 
@@ -210,7 +214,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (modifiedDate != null) {
+				if (bindModifiedDate) {
 					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 
@@ -403,10 +407,14 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		query.append(_SQL_SELECT_AKISMETDATA_WHERE);
 
+		boolean bindModifiedDate = false;
+
 		if (modifiedDate == null) {
 			query.append(_FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_1);
 		}
 		else {
+			bindModifiedDate = true;
+
 			query.append(_FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_2);
 		}
 
@@ -478,7 +486,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (modifiedDate != null) {
+		if (bindModifiedDate) {
 			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 		}
 
@@ -535,10 +543,14 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 			query.append(_SQL_COUNT_AKISMETDATA_WHERE);
 
+			boolean bindModifiedDate = false;
+
 			if (modifiedDate == null) {
 				query.append(_FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_1);
 			}
 			else {
+				bindModifiedDate = true;
+
 				query.append(_FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_2);
 			}
 
@@ -553,7 +565,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (modifiedDate != null) {
+				if (bindModifiedDate) {
 					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
 				}
 

@@ -202,28 +202,32 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			query.append(_SQL_SELECT_OAUTHTOKEN_WHERE);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
 			}
-			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
-				}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
+			else {
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
+			}
+
+			boolean bindServiceName = false;
 
 			if (serviceName == null) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
 			}
+			else if (serviceName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
+			}
 			else {
-				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
-				}
+				bindServiceName = true;
+
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
 			}
 
 			if (orderByComparator != null) {
@@ -246,11 +250,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
-				if (serviceName != null) {
+				if (bindServiceName) {
 					qPos.add(serviceName);
 				}
 
@@ -455,28 +459,32 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		query.append(_SQL_SELECT_OAUTHTOKEN_WHERE);
 
+		boolean bindGadgetKey = false;
+
 		if (gadgetKey == null) {
 			query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
 		}
-		else {
-			if (gadgetKey.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
-			}
+		else if (gadgetKey.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 		}
+		else {
+			bindGadgetKey = true;
+
+			query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
+		}
+
+		boolean bindServiceName = false;
 
 		if (serviceName == null) {
 			query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
 		}
+		else if (serviceName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
+		}
 		else {
-			if (serviceName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
-			}
+			bindServiceName = true;
+
+			query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
 		}
 
 		if (orderByComparator != null) {
@@ -547,11 +555,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (gadgetKey != null) {
+		if (bindGadgetKey) {
 			qPos.add(gadgetKey);
 		}
 
-		if (serviceName != null) {
+		if (bindServiceName) {
 			qPos.add(serviceName);
 		}
 
@@ -610,28 +618,32 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			query.append(_SQL_COUNT_OAUTHTOKEN_WHERE);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
 			}
-			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
-				}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
+			else {
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
+			}
+
+			boolean bindServiceName = false;
 
 			if (serviceName == null) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
 			}
+			else if (serviceName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
+			}
 			else {
-				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
-				}
+				bindServiceName = true;
+
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
 			}
 
 			String sql = query.toString();
@@ -645,11 +657,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
-				if (serviceName != null) {
+				if (bindServiceName) {
 					qPos.add(serviceName);
 				}
 
@@ -672,10 +684,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 	private static final String _FINDER_COLUMN_G_S_GADGETKEY_1 = "oAuthToken.gadgetKey IS NULL AND ";
 	private static final String _FINDER_COLUMN_G_S_GADGETKEY_2 = "oAuthToken.gadgetKey = ? AND ";
-	private static final String _FINDER_COLUMN_G_S_GADGETKEY_3 = "(oAuthToken.gadgetKey IS NULL OR oAuthToken.gadgetKey = ?) AND ";
+	private static final String _FINDER_COLUMN_G_S_GADGETKEY_3 = "(oAuthToken.gadgetKey IS NULL OR oAuthToken.gadgetKey = '') AND ";
 	private static final String _FINDER_COLUMN_G_S_SERVICENAME_1 = "oAuthToken.serviceName IS NULL";
 	private static final String _FINDER_COLUMN_G_S_SERVICENAME_2 = "oAuthToken.serviceName = ?";
-	private static final String _FINDER_COLUMN_G_S_SERVICENAME_3 = "(oAuthToken.serviceName IS NULL OR oAuthToken.serviceName = ?)";
+	private static final String _FINDER_COLUMN_G_S_SERVICENAME_3 = "(oAuthToken.serviceName IS NULL OR oAuthToken.serviceName = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, OAuthTokenImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByU_G_S_M_T",
@@ -811,42 +823,48 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			query.append(_FINDER_COLUMN_U_G_S_M_T_USERID_2);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_1);
 			}
-			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_2);
-				}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3);
 			}
+			else {
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_2);
+			}
+
+			boolean bindServiceName = false;
 
 			if (serviceName == null) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1);
 			}
+			else if (serviceName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
+			}
 			else {
-				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2);
-				}
+				bindServiceName = true;
+
+				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_U_G_S_M_T_MODULEID_2);
 
+			boolean bindTokenName = false;
+
 			if (tokenName == null) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1);
 			}
+			else if (tokenName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
+			}
 			else {
-				if (tokenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2);
-				}
+				bindTokenName = true;
+
+				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2);
 			}
 
 			String sql = query.toString();
@@ -862,17 +880,17 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 				qPos.add(userId);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
-				if (serviceName != null) {
+				if (bindServiceName) {
 					qPos.add(serviceName);
 				}
 
 				qPos.add(moduleId);
 
-				if (tokenName != null) {
+				if (bindTokenName) {
 					qPos.add(tokenName);
 				}
 
@@ -978,42 +996,48 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			query.append(_FINDER_COLUMN_U_G_S_M_T_USERID_2);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_1);
 			}
-			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_2);
-				}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3);
 			}
+			else {
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_2);
+			}
+
+			boolean bindServiceName = false;
 
 			if (serviceName == null) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1);
 			}
+			else if (serviceName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
+			}
 			else {
-				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2);
-				}
+				bindServiceName = true;
+
+				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_U_G_S_M_T_MODULEID_2);
 
+			boolean bindTokenName = false;
+
 			if (tokenName == null) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1);
 			}
+			else if (tokenName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
+			}
 			else {
-				if (tokenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2);
-				}
+				bindTokenName = true;
+
+				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2);
 			}
 
 			String sql = query.toString();
@@ -1029,17 +1053,17 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 				qPos.add(userId);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
-				if (serviceName != null) {
+				if (bindServiceName) {
 					qPos.add(serviceName);
 				}
 
 				qPos.add(moduleId);
 
-				if (tokenName != null) {
+				if (bindTokenName) {
 					qPos.add(tokenName);
 				}
 
@@ -1063,14 +1087,14 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	private static final String _FINDER_COLUMN_U_G_S_M_T_USERID_2 = "oAuthToken.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_GADGETKEY_1 = "oAuthToken.gadgetKey IS NULL AND ";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_GADGETKEY_2 = "oAuthToken.gadgetKey = ? AND ";
-	private static final String _FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3 = "(oAuthToken.gadgetKey IS NULL OR oAuthToken.gadgetKey = ?) AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3 = "(oAuthToken.gadgetKey IS NULL OR oAuthToken.gadgetKey = '') AND ";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1 = "oAuthToken.serviceName IS NULL AND ";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2 = "oAuthToken.serviceName = ? AND ";
-	private static final String _FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3 = "(oAuthToken.serviceName IS NULL OR oAuthToken.serviceName = ?) AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3 = "(oAuthToken.serviceName IS NULL OR oAuthToken.serviceName = '') AND ";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_MODULEID_2 = "oAuthToken.moduleId = ? AND ";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1 = "oAuthToken.tokenName IS NULL";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2 = "oAuthToken.tokenName = ?";
-	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3 = "(oAuthToken.tokenName IS NULL OR oAuthToken.tokenName = ?)";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3 = "(oAuthToken.tokenName IS NULL OR oAuthToken.tokenName = '')";
 
 	/**
 	 * Caches the o auth token in the entity cache if it is enabled.

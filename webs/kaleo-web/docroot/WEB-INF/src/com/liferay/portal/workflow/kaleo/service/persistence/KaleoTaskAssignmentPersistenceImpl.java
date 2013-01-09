@@ -1181,16 +1181,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
@@ -1215,7 +1217,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
@@ -1424,16 +1426,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
+		boolean bindKaleoClassName = false;
+
 		if (kaleoClassName == null) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
 		}
+		else if (kaleoClassName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+		}
 		else {
-			if (kaleoClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
-			}
+			bindKaleoClassName = true;
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
 		}
 
 		query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
@@ -1506,7 +1510,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (kaleoClassName != null) {
+		if (bindKaleoClassName) {
 			qPos.add(kaleoClassName);
 		}
 
@@ -1568,16 +1572,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			query.append(_SQL_COUNT_KALEOTASKASSIGNMENT_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2);
@@ -1593,7 +1599,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
@@ -1618,7 +1624,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1 = "kaleoTaskAssignment.kaleoClassName IS NULL AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_2 = "kaleoTaskAssignment.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3 = "(kaleoTaskAssignment.kaleoClassName IS NULL OR kaleoTaskAssignment.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3 = "(kaleoTaskAssignment.kaleoClassName IS NULL OR kaleoTaskAssignment.kaleoClassName = '') AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_KALEOCLASSPK_2 = "kaleoTaskAssignment.kaleoClassPK = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_KCN_KCPK_ACN =
 		new FinderPath(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
@@ -1759,30 +1765,34 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2);
 
+			boolean bindAssigneeClassName = false;
+
 			if (assigneeClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1);
 			}
+			else if (assigneeClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
+			}
 			else {
-				if (assigneeClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
-				}
+				bindAssigneeClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
 			}
 
 			if (orderByComparator != null) {
@@ -1805,13 +1815,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
 				qPos.add(kaleoClassPK);
 
-				if (assigneeClassName != null) {
+				if (bindAssigneeClassName) {
 					qPos.add(assigneeClassName);
 				}
 
@@ -2036,30 +2046,34 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		query.append(_SQL_SELECT_KALEOTASKASSIGNMENT_WHERE);
 
+		boolean bindKaleoClassName = false;
+
 		if (kaleoClassName == null) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1);
 		}
+		else if (kaleoClassName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
+		}
 		else {
-			if (kaleoClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
-			}
+			bindKaleoClassName = true;
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
 		}
 
 		query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2);
 
+		boolean bindAssigneeClassName = false;
+
 		if (assigneeClassName == null) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1);
 		}
+		else if (assigneeClassName.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
+		}
 		else {
-			if (assigneeClassName.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
-			}
+			bindAssigneeClassName = true;
+
+			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
 		}
 
 		if (orderByComparator != null) {
@@ -2130,13 +2144,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (kaleoClassName != null) {
+		if (bindKaleoClassName) {
 			qPos.add(kaleoClassName);
 		}
 
 		qPos.add(kaleoClassPK);
 
-		if (assigneeClassName != null) {
+		if (bindAssigneeClassName) {
 			qPos.add(assigneeClassName);
 		}
 
@@ -2200,30 +2214,34 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 			query.append(_SQL_COUNT_KALEOTASKASSIGNMENT_WHERE);
 
+			boolean bindKaleoClassName = false;
+
 			if (kaleoClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1);
 			}
+			else if (kaleoClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
+			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
-				}
+				bindKaleoClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2);
 			}
 
 			query.append(_FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2);
 
+			boolean bindAssigneeClassName = false;
+
 			if (assigneeClassName == null) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1);
 			}
+			else if (assigneeClassName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
+			}
 			else {
-				if (assigneeClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
-				}
+				bindAssigneeClassName = true;
+
+				query.append(_FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2);
 			}
 
 			String sql = query.toString();
@@ -2237,13 +2255,13 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
+				if (bindKaleoClassName) {
 					qPos.add(kaleoClassName);
 				}
 
 				qPos.add(kaleoClassPK);
 
-				if (assigneeClassName != null) {
+				if (bindAssigneeClassName) {
 					qPos.add(assigneeClassName);
 				}
 
@@ -2266,11 +2284,11 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_1 = "kaleoTaskAssignment.kaleoClassName IS NULL AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_2 = "kaleoTaskAssignment.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3 = "(kaleoTaskAssignment.kaleoClassName IS NULL OR kaleoTaskAssignment.kaleoClassName = ?) AND ";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSNAME_3 = "(kaleoTaskAssignment.kaleoClassName IS NULL OR kaleoTaskAssignment.kaleoClassName = '') AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_KALEOCLASSPK_2 = "kaleoTaskAssignment.kaleoClassPK = ? AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1 = "kaleoTaskAssignment.assigneeClassName IS NULL";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2 = "kaleoTaskAssignment.assigneeClassName = ?";
-	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3 = "(kaleoTaskAssignment.assigneeClassName IS NULL OR kaleoTaskAssignment.assigneeClassName = ?)";
+	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3 = "(kaleoTaskAssignment.assigneeClassName IS NULL OR kaleoTaskAssignment.assigneeClassName = '')";
 
 	/**
 	 * Caches the kaleo task assignment in the entity cache if it is enabled.

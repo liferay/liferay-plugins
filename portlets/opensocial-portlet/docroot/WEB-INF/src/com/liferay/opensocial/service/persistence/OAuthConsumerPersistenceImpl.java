@@ -197,16 +197,18 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			query.append(_SQL_SELECT_OAUTHCONSUMER_WHERE);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_1);
 			}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
+			}
 			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_2);
-				}
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_2);
 			}
 
 			if (orderByComparator != null) {
@@ -229,7 +231,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
@@ -422,16 +424,18 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		query.append(_SQL_SELECT_OAUTHCONSUMER_WHERE);
 
+		boolean bindGadgetKey = false;
+
 		if (gadgetKey == null) {
 			query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_1);
 		}
+		else if (gadgetKey.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
+		}
 		else {
-			if (gadgetKey.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_2);
-			}
+			bindGadgetKey = true;
+
+			query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_2);
 		}
 
 		if (orderByComparator != null) {
@@ -502,7 +506,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (gadgetKey != null) {
+		if (bindGadgetKey) {
 			qPos.add(gadgetKey);
 		}
 
@@ -557,16 +561,18 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			query.append(_SQL_COUNT_OAUTHCONSUMER_WHERE);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_1);
 			}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
+			}
 			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_2);
-				}
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_2);
 			}
 
 			String sql = query.toString();
@@ -580,7 +586,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
@@ -603,7 +609,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 	private static final String _FINDER_COLUMN_GADGETKEY_GADGETKEY_1 = "oAuthConsumer.gadgetKey IS NULL";
 	private static final String _FINDER_COLUMN_GADGETKEY_GADGETKEY_2 = "oAuthConsumer.gadgetKey = ?";
-	private static final String _FINDER_COLUMN_GADGETKEY_GADGETKEY_3 = "(oAuthConsumer.gadgetKey IS NULL OR oAuthConsumer.gadgetKey = ?)";
+	private static final String _FINDER_COLUMN_GADGETKEY_GADGETKEY_3 = "(oAuthConsumer.gadgetKey IS NULL OR oAuthConsumer.gadgetKey = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_G_S = new FinderPath(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthConsumerModelImpl.FINDER_CACHE_ENABLED,
 			OAuthConsumerImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_S",
@@ -699,28 +705,32 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			query.append(_SQL_SELECT_OAUTHCONSUMER_WHERE);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
 			}
-			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
-				}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
+			else {
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
+			}
+
+			boolean bindServiceName = false;
 
 			if (serviceName == null) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
 			}
+			else if (serviceName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
+			}
 			else {
-				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
-				}
+				bindServiceName = true;
+
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
 			}
 
 			String sql = query.toString();
@@ -734,11 +744,11 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
-				if (serviceName != null) {
+				if (bindServiceName) {
 					qPos.add(serviceName);
 				}
 
@@ -827,28 +837,32 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			query.append(_SQL_COUNT_OAUTHCONSUMER_WHERE);
 
+			boolean bindGadgetKey = false;
+
 			if (gadgetKey == null) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
 			}
-			else {
-				if (gadgetKey.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
-				}
+			else if (gadgetKey.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
+			else {
+				bindGadgetKey = true;
+
+				query.append(_FINDER_COLUMN_G_S_GADGETKEY_2);
+			}
+
+			boolean bindServiceName = false;
 
 			if (serviceName == null) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
 			}
+			else if (serviceName.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
+			}
 			else {
-				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
-				}
+				bindServiceName = true;
+
+				query.append(_FINDER_COLUMN_G_S_SERVICENAME_2);
 			}
 
 			String sql = query.toString();
@@ -862,11 +876,11 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (gadgetKey != null) {
+				if (bindGadgetKey) {
 					qPos.add(gadgetKey);
 				}
 
-				if (serviceName != null) {
+				if (bindServiceName) {
 					qPos.add(serviceName);
 				}
 
@@ -889,10 +903,10 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 	private static final String _FINDER_COLUMN_G_S_GADGETKEY_1 = "oAuthConsumer.gadgetKey IS NULL AND ";
 	private static final String _FINDER_COLUMN_G_S_GADGETKEY_2 = "oAuthConsumer.gadgetKey = ? AND ";
-	private static final String _FINDER_COLUMN_G_S_GADGETKEY_3 = "(oAuthConsumer.gadgetKey IS NULL OR oAuthConsumer.gadgetKey = ?) AND ";
+	private static final String _FINDER_COLUMN_G_S_GADGETKEY_3 = "(oAuthConsumer.gadgetKey IS NULL OR oAuthConsumer.gadgetKey = '') AND ";
 	private static final String _FINDER_COLUMN_G_S_SERVICENAME_1 = "oAuthConsumer.serviceName IS NULL";
 	private static final String _FINDER_COLUMN_G_S_SERVICENAME_2 = "oAuthConsumer.serviceName = ?";
-	private static final String _FINDER_COLUMN_G_S_SERVICENAME_3 = "(oAuthConsumer.serviceName IS NULL OR oAuthConsumer.serviceName = ?)";
+	private static final String _FINDER_COLUMN_G_S_SERVICENAME_3 = "(oAuthConsumer.serviceName IS NULL OR oAuthConsumer.serviceName = '')";
 
 	/**
 	 * Caches the o auth consumer in the entity cache if it is enabled.

@@ -17,7 +17,7 @@ package com.liferay.polls.service;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author Juan Fernández
+ * @author Juan Fern�ndez
  */
 public class PollsVoteServiceClp implements PollsVoteService {
 	public PollsVoteServiceClp(InvokableService invokableService) {

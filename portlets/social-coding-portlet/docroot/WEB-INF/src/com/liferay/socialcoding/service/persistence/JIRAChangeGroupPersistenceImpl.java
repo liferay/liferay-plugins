@@ -199,16 +199,18 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 			query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
+			boolean bindJiraUserId = false;
+
 			if (jiraUserId == null) {
 				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 			}
+			else if (jiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+			}
 			else {
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
-				}
+				bindJiraUserId = true;
+
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 			}
 
 			if (orderByComparator != null) {
@@ -231,7 +233,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (jiraUserId != null) {
+				if (bindJiraUserId) {
 					qPos.add(jiraUserId);
 				}
 
@@ -425,16 +427,18 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		query.append(_SQL_SELECT_JIRACHANGEGROUP_WHERE);
 
+		boolean bindJiraUserId = false;
+
 		if (jiraUserId == null) {
 			query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 		}
+		else if (jiraUserId.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+		}
 		else {
-			if (jiraUserId.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
-			}
+			bindJiraUserId = true;
+
+			query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 		}
 
 		if (orderByComparator != null) {
@@ -505,7 +509,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (jiraUserId != null) {
+		if (bindJiraUserId) {
 			qPos.add(jiraUserId);
 		}
 
@@ -560,16 +564,18 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 			query.append(_SQL_COUNT_JIRACHANGEGROUP_WHERE);
 
+			boolean bindJiraUserId = false;
+
 			if (jiraUserId == null) {
 				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1);
 			}
+			else if (jiraUserId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
+			}
 			else {
-				if (jiraUserId.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
-				}
+				bindJiraUserId = true;
+
+				query.append(_FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2);
 			}
 
 			String sql = query.toString();
@@ -583,7 +589,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (jiraUserId != null) {
+				if (bindJiraUserId) {
 					qPos.add(jiraUserId);
 				}
 
@@ -606,7 +612,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_1 = "jiraChangeGroup.jiraUserId IS NULL";
 	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_2 = "jiraChangeGroup.jiraUserId = ?";
-	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraChangeGroup.jiraUserId IS NULL OR jiraChangeGroup.jiraUserId = ?)";
+	private static final String _FINDER_COLUMN_JIRAUSERID_JIRAUSERID_3 = "(jiraChangeGroup.jiraUserId IS NULL OR jiraChangeGroup.jiraUserId = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_JIRAISSUEID =
 		new FinderPath(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupModelImpl.FINDER_CACHE_ENABLED,

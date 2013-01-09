@@ -3213,16 +3213,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_F_T_C_TOUSERID_2);
 
+			boolean bindContent = false;
+
 			if (content == null) {
 				query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
 			}
+			else if (content.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
+			}
 			else {
-				if (content.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
-				}
+				bindContent = true;
+
+				query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
 			}
 
 			if (orderByComparator != null) {
@@ -3249,7 +3251,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(toUserId);
 
-				if (content != null) {
+				if (bindContent) {
 					qPos.add(content);
 				}
 
@@ -3470,16 +3472,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		query.append(_FINDER_COLUMN_F_T_C_TOUSERID_2);
 
+		boolean bindContent = false;
+
 		if (content == null) {
 			query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
 		}
+		else if (content.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
+		}
 		else {
-			if (content.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
-			}
+			bindContent = true;
+
+			query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
 		}
 
 		if (orderByComparator != null) {
@@ -3554,7 +3558,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		qPos.add(toUserId);
 
-		if (content != null) {
+		if (bindContent) {
 			qPos.add(content);
 		}
 
@@ -3619,16 +3623,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			query.append(_FINDER_COLUMN_F_T_C_TOUSERID_2);
 
+			boolean bindContent = false;
+
 			if (content == null) {
 				query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
 			}
+			else if (content.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
+			}
 			else {
-				if (content.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
-				}
+				bindContent = true;
+
+				query.append(_FINDER_COLUMN_F_T_C_CONTENT_2);
 			}
 
 			String sql = query.toString();
@@ -3646,7 +3652,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				qPos.add(toUserId);
 
-				if (content != null) {
+				if (bindContent) {
 					qPos.add(content);
 				}
 
@@ -3671,7 +3677,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static final String _FINDER_COLUMN_F_T_C_TOUSERID_2 = "entry.toUserId = ? AND ";
 	private static final String _FINDER_COLUMN_F_T_C_CONTENT_1 = "entry.content IS NULL";
 	private static final String _FINDER_COLUMN_F_T_C_CONTENT_2 = "entry.content = ?";
-	private static final String _FINDER_COLUMN_F_T_C_CONTENT_3 = "(entry.content IS NULL OR entry.content = ?)";
+	private static final String _FINDER_COLUMN_F_T_C_CONTENT_3 = "(entry.content IS NULL OR entry.content = '')";
 
 	/**
 	 * Caches the entry in the entity cache if it is enabled.

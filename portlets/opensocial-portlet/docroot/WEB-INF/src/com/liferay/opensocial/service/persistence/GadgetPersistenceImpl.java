@@ -193,16 +193,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			query.append(_SQL_SELECT_GADGET_WHERE);
 
+			boolean bindUuid = false;
+
 			if (uuid == null) {
 				query.append(_FINDER_COLUMN_UUID_UUID_1);
 			}
+			else if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
 			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_UUID_2);
-				}
+				bindUuid = true;
+
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
 			}
 
 			if (orderByComparator != null) {
@@ -225,7 +227,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid != null) {
+				if (bindUuid) {
 					qPos.add(uuid);
 				}
 
@@ -413,16 +415,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		query.append(_SQL_SELECT_GADGET_WHERE);
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_UUID_2);
 		}
 
 		if (orderByComparator != null) {
@@ -493,7 +497,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (uuid != null) {
+		if (bindUuid) {
 			qPos.add(uuid);
 		}
 
@@ -581,16 +585,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			query.append(_FILTER_SQL_SELECT_GADGET_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_UUID_2);
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
@@ -635,7 +641,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			if (uuid != null) {
+			if (bindUuid) {
 				qPos.add(uuid);
 			}
 
@@ -713,16 +719,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			query.append(_FILTER_SQL_SELECT_GADGET_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_UUID_2);
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
@@ -822,7 +830,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (uuid != null) {
+		if (bindUuid) {
 			qPos.add(uuid);
 		}
 
@@ -877,16 +885,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			query.append(_SQL_COUNT_GADGET_WHERE);
 
+			boolean bindUuid = false;
+
 			if (uuid == null) {
 				query.append(_FINDER_COLUMN_UUID_UUID_1);
 			}
+			else if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
 			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_UUID_2);
-				}
+				bindUuid = true;
+
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
 			}
 
 			String sql = query.toString();
@@ -900,7 +910,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid != null) {
+				if (bindUuid) {
 					qPos.add(uuid);
 				}
 
@@ -937,16 +947,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		query.append(_FILTER_SQL_COUNT_GADGET_WHERE);
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_UUID_2);
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
@@ -964,7 +976,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			if (uuid != null) {
+			if (bindUuid) {
 				qPos.add(uuid);
 			}
 
@@ -982,7 +994,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 	private static final String _FINDER_COLUMN_UUID_UUID_1 = "gadget.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "gadget.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(gadget.uuid IS NULL OR gadget.uuid = ?)";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(gadget.uuid IS NULL OR gadget.uuid = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetModelImpl.FINDER_CACHE_ENABLED, GadgetImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
@@ -1101,16 +1113,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			query.append(_SQL_SELECT_GADGET_WHERE);
 
+			boolean bindUuid = false;
+
 			if (uuid == null) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
 			}
+			else if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
+			}
 			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_C_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_C_UUID_2);
-				}
+				bindUuid = true;
+
+				query.append(_FINDER_COLUMN_UUID_C_UUID_2);
 			}
 
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
@@ -1135,7 +1149,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid != null) {
+				if (bindUuid) {
 					qPos.add(uuid);
 				}
 
@@ -1339,16 +1353,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		query.append(_SQL_SELECT_GADGET_WHERE);
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_C_UUID_2);
 		}
 
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
@@ -1421,7 +1437,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (uuid != null) {
+		if (bindUuid) {
 			qPos.add(uuid);
 		}
 
@@ -1517,16 +1533,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			query.append(_FILTER_SQL_SELECT_GADGET_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_C_UUID_2);
 		}
 
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
@@ -1573,7 +1591,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			if (uuid != null) {
+			if (bindUuid) {
 				qPos.add(uuid);
 			}
 
@@ -1655,16 +1673,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			query.append(_FILTER_SQL_SELECT_GADGET_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_C_UUID_2);
 		}
 
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
@@ -1766,7 +1786,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		if (uuid != null) {
+		if (bindUuid) {
 			qPos.add(uuid);
 		}
 
@@ -1827,16 +1847,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			query.append(_SQL_COUNT_GADGET_WHERE);
 
+			boolean bindUuid = false;
+
 			if (uuid == null) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
 			}
+			else if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
+			}
 			else {
-				if (uuid.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_UUID_C_UUID_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_UUID_C_UUID_2);
-				}
+				bindUuid = true;
+
+				query.append(_FINDER_COLUMN_UUID_C_UUID_2);
 			}
 
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
@@ -1852,7 +1874,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid != null) {
+				if (bindUuid) {
 					qPos.add(uuid);
 				}
 
@@ -1893,16 +1915,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		query.append(_FILTER_SQL_COUNT_GADGET_WHERE);
 
+		boolean bindUuid = false;
+
 		if (uuid == null) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
 		}
+		else if (uuid.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
+		}
 		else {
-			if (uuid.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
-			}
-			else {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_2);
-			}
+			bindUuid = true;
+
+			query.append(_FINDER_COLUMN_UUID_C_UUID_2);
 		}
 
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
@@ -1922,7 +1946,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			if (uuid != null) {
+			if (bindUuid) {
 				qPos.add(uuid);
 			}
 
@@ -1942,7 +1966,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "gadget.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "gadget.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(gadget.uuid IS NULL OR gadget.uuid = ?) AND ";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(gadget.uuid IS NULL OR gadget.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "gadget.companyId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_COMPANYID =
 		new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
@@ -2870,16 +2894,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			query.append(_FINDER_COLUMN_C_U_COMPANYID_2);
 
+			boolean bindUrl = false;
+
 			if (url == null) {
 				query.append(_FINDER_COLUMN_C_U_URL_1);
 			}
+			else if (url.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_U_URL_3);
+			}
 			else {
-				if (url.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_C_U_URL_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_U_URL_2);
-				}
+				bindUrl = true;
+
+				query.append(_FINDER_COLUMN_C_U_URL_2);
 			}
 
 			String sql = query.toString();
@@ -2895,7 +2921,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 				qPos.add(companyId);
 
-				if (url != null) {
+				if (bindUrl) {
 					qPos.add(url);
 				}
 
@@ -2977,16 +3003,18 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			query.append(_FINDER_COLUMN_C_U_COMPANYID_2);
 
+			boolean bindUrl = false;
+
 			if (url == null) {
 				query.append(_FINDER_COLUMN_C_U_URL_1);
 			}
+			else if (url.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_U_URL_3);
+			}
 			else {
-				if (url.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_C_U_URL_3);
-				}
-				else {
-					query.append(_FINDER_COLUMN_C_U_URL_2);
-				}
+				bindUrl = true;
+
+				query.append(_FINDER_COLUMN_C_U_URL_2);
 			}
 
 			String sql = query.toString();
@@ -3002,7 +3030,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 				qPos.add(companyId);
 
-				if (url != null) {
+				if (bindUrl) {
 					qPos.add(url);
 				}
 
@@ -3026,7 +3054,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	private static final String _FINDER_COLUMN_C_U_COMPANYID_2 = "gadget.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_U_URL_1 = "gadget.url IS NULL";
 	private static final String _FINDER_COLUMN_C_U_URL_2 = "gadget.url = ?";
-	private static final String _FINDER_COLUMN_C_U_URL_3 = "(gadget.url IS NULL OR gadget.url = ?)";
+	private static final String _FINDER_COLUMN_C_U_URL_3 = "(gadget.url IS NULL OR gadget.url = '')";
 
 	/**
 	 * Caches the gadget in the entity cache if it is enabled.

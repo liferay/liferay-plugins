@@ -2222,10 +2222,14 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 			query.append(_FINDER_COLUMN_C_PKITI_CD_PARENTKALEOINSTANCETOKENID_2);
 
+			boolean bindCompletionDate = false;
+
 			if (completionDate == null) {
 				query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_1);
 			}
 			else {
+				bindCompletionDate = true;
+
 				query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_2);
 			}
 
@@ -2253,7 +2257,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 				qPos.add(parentKaleoInstanceTokenId);
 
-				if (completionDate != null) {
+				if (bindCompletionDate) {
 					qPos.add(CalendarUtil.getTimestamp(completionDate));
 				}
 
@@ -2484,10 +2488,14 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 		query.append(_FINDER_COLUMN_C_PKITI_CD_PARENTKALEOINSTANCETOKENID_2);
 
+		boolean bindCompletionDate = false;
+
 		if (completionDate == null) {
 			query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_1);
 		}
 		else {
+			bindCompletionDate = true;
+
 			query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_2);
 		}
 
@@ -2563,7 +2571,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 		qPos.add(parentKaleoInstanceTokenId);
 
-		if (completionDate != null) {
+		if (bindCompletionDate) {
 			qPos.add(CalendarUtil.getTimestamp(completionDate));
 		}
 
@@ -2633,10 +2641,14 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 			query.append(_FINDER_COLUMN_C_PKITI_CD_PARENTKALEOINSTANCETOKENID_2);
 
+			boolean bindCompletionDate = false;
+
 			if (completionDate == null) {
 				query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_1);
 			}
 			else {
+				bindCompletionDate = true;
+
 				query.append(_FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_2);
 			}
 
@@ -2655,7 +2667,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 				qPos.add(parentKaleoInstanceTokenId);
 
-				if (completionDate != null) {
+				if (bindCompletionDate) {
 					qPos.add(CalendarUtil.getTimestamp(completionDate));
 				}
 
