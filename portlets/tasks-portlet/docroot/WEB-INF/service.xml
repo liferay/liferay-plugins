@@ -69,5 +69,6 @@
 	</entity>
 	<exceptions>
 		<exception>TasksEntryDueDate</exception>
+		<exception>TasksEntryTitle</exception>
 	</exceptions>
 </service-builder>
