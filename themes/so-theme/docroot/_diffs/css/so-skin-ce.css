@@ -1626,6 +1626,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 /* Faceted Search */
 
 .portlet-search {
+	border-left: 1px solid $gray-dark;
+
 	.portlet-topper {
 		display: none;
 	}
@@ -2440,6 +2442,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 	}
 
+	#so-context #column-1 {
+		overflow: visible;
+	}
+
 	.context-pane .context-pane-content {
 		border-left: 1px solid $gray-dark;
 	}
@@ -2478,6 +2484,16 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 			.aui-paginator-page-link {
 				line-height: 18px;
 			}
+		}
+	}
+
+	.portlet-search {
+		.results-grid {
+			margin: 0 1px 0 -7px;
+		}
+
+		.result-content {
+			margin: 0;
 		}
 	}
 
