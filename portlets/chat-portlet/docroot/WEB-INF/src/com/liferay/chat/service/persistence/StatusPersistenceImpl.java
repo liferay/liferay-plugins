@@ -19,7 +19,6 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.model.impl.StatusImpl;
 import com.liferay.chat.model.impl.StatusModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2112,13 +2111,24 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 *
 	 * @param primaryKey the primary key of the status
 	 * @return the status
-	 * @throws com.liferay.portal.NoSuchModelException if a status with the primary key could not be found
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Status findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchStatusException, SystemException {
+		Status status = fetchByPrimaryKey(primaryKey);
+
+		if (status == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchStatusException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return status;
 	}
 
 	/**
@@ -2131,18 +2141,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public Status findByPrimaryKey(long statusId)
 		throws NoSuchStatusException, SystemException {
-		Status status = fetchByPrimaryKey(statusId);
-
-		if (status == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + statusId);
-			}
-
-			throw new NoSuchStatusException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				statusId);
-		}
-
-		return status;
+		return findByPrimaryKey((Serializable)statusId);
 	}
 
 	/**
@@ -2155,19 +2154,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	@Override
 	public Status fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the status with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param statusId the primary key of the status
-	 * @return the status, or <code>null</code> if a status with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status fetchByPrimaryKey(long statusId) throws SystemException {
 		Status status = (Status)EntityCacheUtil.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
-				StatusImpl.class, statusId);
+				StatusImpl.class, primaryKey);
 
 		if (status == _nullStatus) {
 			return null;
@@ -2179,20 +2167,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			try {
 				session = openSession();
 
-				status = (Status)session.get(StatusImpl.class,
-						Long.valueOf(statusId));
+				status = (Status)session.get(StatusImpl.class, primaryKey);
 
 				if (status != null) {
 					cacheResult(status);
 				}
 				else {
 					EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
-						StatusImpl.class, statusId, _nullStatus);
+						StatusImpl.class, primaryKey, _nullStatus);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
-					StatusImpl.class, statusId);
+					StatusImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2202,6 +2189,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 
 		return status;
+	}
+
+	/**
+	 * Returns the status with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param statusId the primary key of the status
+	 * @return the status, or <code>null</code> if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status fetchByPrimaryKey(long statusId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)statusId);
 	}
 
 	/**

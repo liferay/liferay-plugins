@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
@@ -2971,13 +2970,24 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 *
 	 * @param primaryKey the primary key of the kaleo definition
 	 * @return the kaleo definition
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo definition with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoDefinition findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchDefinitionException, SystemException {
+		KaleoDefinition kaleoDefinition = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoDefinition == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchDefinitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoDefinition;
 	}
 
 	/**
@@ -2990,18 +3000,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	public KaleoDefinition findByPrimaryKey(long kaleoDefinitionId)
 		throws NoSuchDefinitionException, SystemException {
-		KaleoDefinition kaleoDefinition = fetchByPrimaryKey(kaleoDefinitionId);
-
-		if (kaleoDefinition == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoDefinitionId);
-			}
-
-			throw new NoSuchDefinitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoDefinitionId);
-		}
-
-		return kaleoDefinition;
+		return findByPrimaryKey((Serializable)kaleoDefinitionId);
 	}
 
 	/**
@@ -3014,20 +3013,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	@Override
 	public KaleoDefinition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoDefinitionId the primary key of the kaleo definition
-	 * @return the kaleo definition, or <code>null</code> if a kaleo definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoDefinition fetchByPrimaryKey(long kaleoDefinitionId)
-		throws SystemException {
 		KaleoDefinition kaleoDefinition = (KaleoDefinition)EntityCacheUtil.getResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoDefinitionImpl.class, kaleoDefinitionId);
+				KaleoDefinitionImpl.class, primaryKey);
 
 		if (kaleoDefinition == _nullKaleoDefinition) {
 			return null;
@@ -3040,20 +3027,20 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				session = openSession();
 
 				kaleoDefinition = (KaleoDefinition)session.get(KaleoDefinitionImpl.class,
-						Long.valueOf(kaleoDefinitionId));
+						primaryKey);
 
 				if (kaleoDefinition != null) {
 					cacheResult(kaleoDefinition);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoDefinitionImpl.class, kaleoDefinitionId,
+						KaleoDefinitionImpl.class, primaryKey,
 						_nullKaleoDefinition);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoDefinitionImpl.class, kaleoDefinitionId);
+					KaleoDefinitionImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -3063,6 +3050,18 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		}
 
 		return kaleoDefinition;
+	}
+
+	/**
+	 * Returns the kaleo definition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoDefinitionId the primary key of the kaleo definition
+	 * @return the kaleo definition, or <code>null</code> if a kaleo definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoDefinition fetchByPrimaryKey(long kaleoDefinitionId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoDefinitionId);
 	}
 
 	/**

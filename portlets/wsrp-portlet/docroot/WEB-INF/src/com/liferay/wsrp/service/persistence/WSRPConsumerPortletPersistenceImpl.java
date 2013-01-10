@@ -14,7 +14,6 @@
 
 package com.liferay.wsrp.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2337,13 +2336,24 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 *
 	 * @param primaryKey the primary key of the w s r p consumer portlet
 	 * @return the w s r p consumer portlet
-	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WSRPConsumerPortlet findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchConsumerPortletException, SystemException {
+		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByPrimaryKey(primaryKey);
+
+		if (wsrpConsumerPortlet == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchConsumerPortletException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return wsrpConsumerPortlet;
 	}
 
 	/**
@@ -2356,19 +2366,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	public WSRPConsumerPortlet findByPrimaryKey(long wsrpConsumerPortletId)
 		throws NoSuchConsumerPortletException, SystemException {
-		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByPrimaryKey(wsrpConsumerPortletId);
-
-		if (wsrpConsumerPortlet == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					wsrpConsumerPortletId);
-			}
-
-			throw new NoSuchConsumerPortletException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				wsrpConsumerPortletId);
-		}
-
-		return wsrpConsumerPortlet;
+		return findByPrimaryKey((Serializable)wsrpConsumerPortletId);
 	}
 
 	/**
@@ -2381,20 +2379,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	@Override
 	public WSRPConsumerPortlet fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
-	 * @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WSRPConsumerPortlet fetchByPrimaryKey(long wsrpConsumerPortletId)
-		throws SystemException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)EntityCacheUtil.getResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-				WSRPConsumerPortletImpl.class, wsrpConsumerPortletId);
+				WSRPConsumerPortletImpl.class, primaryKey);
 
 		if (wsrpConsumerPortlet == _nullWSRPConsumerPortlet) {
 			return null;
@@ -2407,20 +2393,20 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 				session = openSession();
 
 				wsrpConsumerPortlet = (WSRPConsumerPortlet)session.get(WSRPConsumerPortletImpl.class,
-						Long.valueOf(wsrpConsumerPortletId));
+						primaryKey);
 
 				if (wsrpConsumerPortlet != null) {
 					cacheResult(wsrpConsumerPortlet);
 				}
 				else {
 					EntityCacheUtil.putResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-						WSRPConsumerPortletImpl.class, wsrpConsumerPortletId,
+						WSRPConsumerPortletImpl.class, primaryKey,
 						_nullWSRPConsumerPortlet);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-					WSRPConsumerPortletImpl.class, wsrpConsumerPortletId);
+					WSRPConsumerPortletImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2430,6 +2416,18 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 
 		return wsrpConsumerPortlet;
+	}
+
+	/**
+	 * Returns the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
+	 * @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumerPortlet fetchByPrimaryKey(long wsrpConsumerPortletId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)wsrpConsumerPortletId);
 	}
 
 	/**

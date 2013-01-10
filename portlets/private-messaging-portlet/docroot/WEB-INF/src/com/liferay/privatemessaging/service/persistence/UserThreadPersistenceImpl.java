@@ -14,7 +14,6 @@
 
 package com.liferay.privatemessaging.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2741,13 +2740,24 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @param primaryKey the primary key of the user thread
 	 * @return the user thread
-	 * @throws com.liferay.portal.NoSuchModelException if a user thread with the primary key could not be found
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public UserThread findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByPrimaryKey(primaryKey);
+
+		if (userThread == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchUserThreadException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return userThread;
 	}
 
 	/**
@@ -2760,18 +2770,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public UserThread findByPrimaryKey(long userThreadId)
 		throws NoSuchUserThreadException, SystemException {
-		UserThread userThread = fetchByPrimaryKey(userThreadId);
-
-		if (userThread == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + userThreadId);
-			}
-
-			throw new NoSuchUserThreadException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				userThreadId);
-		}
-
-		return userThread;
+		return findByPrimaryKey((Serializable)userThreadId);
 	}
 
 	/**
@@ -2784,20 +2783,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	@Override
 	public UserThread fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the user thread with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param userThreadId the primary key of the user thread
-	 * @return the user thread, or <code>null</code> if a user thread with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public UserThread fetchByPrimaryKey(long userThreadId)
-		throws SystemException {
 		UserThread userThread = (UserThread)EntityCacheUtil.getResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-				UserThreadImpl.class, userThreadId);
+				UserThreadImpl.class, primaryKey);
 
 		if (userThread == _nullUserThread) {
 			return null;
@@ -2810,19 +2797,19 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				session = openSession();
 
 				userThread = (UserThread)session.get(UserThreadImpl.class,
-						Long.valueOf(userThreadId));
+						primaryKey);
 
 				if (userThread != null) {
 					cacheResult(userThread);
 				}
 				else {
 					EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-						UserThreadImpl.class, userThreadId, _nullUserThread);
+						UserThreadImpl.class, primaryKey, _nullUserThread);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-					UserThreadImpl.class, userThreadId);
+					UserThreadImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2832,6 +2819,18 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		}
 
 		return userThread;
+	}
+
+	/**
+	 * Returns the user thread with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param userThreadId the primary key of the user thread
+	 * @return the user thread, or <code>null</code> if a user thread with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByPrimaryKey(long userThreadId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)userThreadId);
 	}
 
 	/**

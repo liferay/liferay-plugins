@@ -19,7 +19,6 @@ import com.liferay.mail.model.Message;
 import com.liferay.mail.model.impl.MessageImpl;
 import com.liferay.mail.model.impl.MessageModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1631,13 +1630,24 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 *
 	 * @param primaryKey the primary key of the message
 	 * @return the message
-	 * @throws com.liferay.portal.NoSuchModelException if a message with the primary key could not be found
+	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Message findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchMessageException, SystemException {
+		Message message = fetchByPrimaryKey(primaryKey);
+
+		if (message == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchMessageException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return message;
 	}
 
 	/**
@@ -1650,18 +1660,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public Message findByPrimaryKey(long messageId)
 		throws NoSuchMessageException, SystemException {
-		Message message = fetchByPrimaryKey(messageId);
-
-		if (message == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + messageId);
-			}
-
-			throw new NoSuchMessageException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				messageId);
-		}
-
-		return message;
+		return findByPrimaryKey((Serializable)messageId);
 	}
 
 	/**
@@ -1674,19 +1673,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	@Override
 	public Message fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the message with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param messageId the primary key of the message
-	 * @return the message, or <code>null</code> if a message with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Message fetchByPrimaryKey(long messageId) throws SystemException {
 		Message message = (Message)EntityCacheUtil.getResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
-				MessageImpl.class, messageId);
+				MessageImpl.class, primaryKey);
 
 		if (message == _nullMessage) {
 			return null;
@@ -1698,20 +1686,19 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			try {
 				session = openSession();
 
-				message = (Message)session.get(MessageImpl.class,
-						Long.valueOf(messageId));
+				message = (Message)session.get(MessageImpl.class, primaryKey);
 
 				if (message != null) {
 					cacheResult(message);
 				}
 				else {
 					EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
-						MessageImpl.class, messageId, _nullMessage);
+						MessageImpl.class, primaryKey, _nullMessage);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
-					MessageImpl.class, messageId);
+					MessageImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1721,6 +1708,17 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 
 		return message;
+	}
+
+	/**
+	 * Returns the message with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param messageId the primary key of the message
+	 * @return the message, or <code>null</code> if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Message fetchByPrimaryKey(long messageId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)messageId);
 	}
 
 	/**

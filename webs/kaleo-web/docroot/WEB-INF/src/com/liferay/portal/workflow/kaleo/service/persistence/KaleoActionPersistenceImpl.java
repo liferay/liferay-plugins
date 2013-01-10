@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2042,13 +2041,24 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 *
 	 * @param primaryKey the primary key of the kaleo action
 	 * @return the kaleo action
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo action with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoAction findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchActionException, SystemException {
+		KaleoAction kaleoAction = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoAction == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoAction;
 	}
 
 	/**
@@ -2061,18 +2071,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 */
 	public KaleoAction findByPrimaryKey(long kaleoActionId)
 		throws NoSuchActionException, SystemException {
-		KaleoAction kaleoAction = fetchByPrimaryKey(kaleoActionId);
-
-		if (kaleoAction == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoActionId);
-			}
-
-			throw new NoSuchActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoActionId);
-		}
-
-		return kaleoAction;
+		return findByPrimaryKey((Serializable)kaleoActionId);
 	}
 
 	/**
@@ -2085,20 +2084,8 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	@Override
 	public KaleoAction fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo action with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoActionId the primary key of the kaleo action
-	 * @return the kaleo action, or <code>null</code> if a kaleo action with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoAction fetchByPrimaryKey(long kaleoActionId)
-		throws SystemException {
 		KaleoAction kaleoAction = (KaleoAction)EntityCacheUtil.getResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoActionImpl.class, kaleoActionId);
+				KaleoActionImpl.class, primaryKey);
 
 		if (kaleoAction == _nullKaleoAction) {
 			return null;
@@ -2111,19 +2098,19 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 				session = openSession();
 
 				kaleoAction = (KaleoAction)session.get(KaleoActionImpl.class,
-						Long.valueOf(kaleoActionId));
+						primaryKey);
 
 				if (kaleoAction != null) {
 					cacheResult(kaleoAction);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoActionImpl.class, kaleoActionId, _nullKaleoAction);
+						KaleoActionImpl.class, primaryKey, _nullKaleoAction);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoActionImpl.class, kaleoActionId);
+					KaleoActionImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2133,6 +2120,18 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		}
 
 		return kaleoAction;
+	}
+
+	/**
+	 * Returns the kaleo action with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoActionId the primary key of the kaleo action
+	 * @return the kaleo action, or <code>null</code> if a kaleo action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoAction fetchByPrimaryKey(long kaleoActionId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoActionId);
 	}
 
 	/**

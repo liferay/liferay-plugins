@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2633,13 +2632,24 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	 *
 	 * @param primaryKey the primary key of the kaleo instance
 	 * @return the kaleo instance
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo instance with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoInstance findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoInstance == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchInstanceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoInstance;
 	}
 
 	/**
@@ -2652,18 +2662,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	 */
 	public KaleoInstance findByPrimaryKey(long kaleoInstanceId)
 		throws NoSuchInstanceException, SystemException {
-		KaleoInstance kaleoInstance = fetchByPrimaryKey(kaleoInstanceId);
-
-		if (kaleoInstance == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoInstanceId);
-			}
-
-			throw new NoSuchInstanceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoInstanceId);
-		}
-
-		return kaleoInstance;
+		return findByPrimaryKey((Serializable)kaleoInstanceId);
 	}
 
 	/**
@@ -2676,20 +2675,8 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	@Override
 	public KaleoInstance fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo instance with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoInstanceId the primary key of the kaleo instance
-	 * @return the kaleo instance, or <code>null</code> if a kaleo instance with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoInstance fetchByPrimaryKey(long kaleoInstanceId)
-		throws SystemException {
 		KaleoInstance kaleoInstance = (KaleoInstance)EntityCacheUtil.getResult(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoInstanceImpl.class, kaleoInstanceId);
+				KaleoInstanceImpl.class, primaryKey);
 
 		if (kaleoInstance == _nullKaleoInstance) {
 			return null;
@@ -2702,20 +2689,19 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 				session = openSession();
 
 				kaleoInstance = (KaleoInstance)session.get(KaleoInstanceImpl.class,
-						Long.valueOf(kaleoInstanceId));
+						primaryKey);
 
 				if (kaleoInstance != null) {
 					cacheResult(kaleoInstance);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoInstanceImpl.class, kaleoInstanceId,
-						_nullKaleoInstance);
+						KaleoInstanceImpl.class, primaryKey, _nullKaleoInstance);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoInstanceImpl.class, kaleoInstanceId);
+					KaleoInstanceImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2725,6 +2711,18 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		}
 
 		return kaleoInstance;
+	}
+
+	/**
+	 * Returns the kaleo instance with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoInstanceId the primary key of the kaleo instance
+	 * @return the kaleo instance, or <code>null</code> if a kaleo instance with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByPrimaryKey(long kaleoInstanceId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoInstanceId);
 	}
 
 	/**

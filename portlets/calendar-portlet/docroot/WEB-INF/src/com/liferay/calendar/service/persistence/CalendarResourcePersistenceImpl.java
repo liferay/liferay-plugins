@@ -19,7 +19,6 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.model.impl.CalendarResourceImpl;
 import com.liferay.calendar.model.impl.CalendarResourceModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -4621,16 +4620,16 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 	private static final String _FINDER_COLUMN_G_C_GROUPID_2 = "calendarResource.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_C_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_C_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_C_CODE_1 = "calendarResource.code IS NULL";
 	private static final String _FINDER_COLUMN_G_C_CODE_2 = "calendarResource.code = ?";
 	private static final String _FINDER_COLUMN_G_C_CODE_3 = "(calendarResource.code IS NULL OR calendarResource.code = '')";
 	private static final String _FINDER_COLUMN_G_C_CODE_4 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_C_CODE_1) + ")";
+		removeConjunction(_FINDER_COLUMN_G_C_CODE_1) + ")";
 	private static final String _FINDER_COLUMN_G_C_CODE_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_C_CODE_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_C_CODE_2) + ")";
 	private static final String _FINDER_COLUMN_G_C_CODE_6 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_C_CODE_3) + ")";
+		removeConjunction(_FINDER_COLUMN_G_C_CODE_3) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -7222,19 +7221,19 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 	private static final String _FINDER_COLUMN_G_N_A_GROUPID_2 = "calendarResource.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_N_A_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_N_A_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_N_A_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_N_A_NAME_1 = "calendarResource.name LIKE NULL AND ";
 	private static final String _FINDER_COLUMN_G_N_A_NAME_2 = "calendarResource.name LIKE ? AND ";
 	private static final String _FINDER_COLUMN_G_N_A_NAME_3 = "(calendarResource.name IS NULL OR calendarResource.name LIKE '') AND ";
 	private static final String _FINDER_COLUMN_G_N_A_NAME_4 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_N_A_NAME_1) + ")";
+		removeConjunction(_FINDER_COLUMN_G_N_A_NAME_1) + ")";
 	private static final String _FINDER_COLUMN_G_N_A_NAME_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_N_A_NAME_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_N_A_NAME_2) + ")";
 	private static final String _FINDER_COLUMN_G_N_A_NAME_6 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_N_A_NAME_3) + ")";
+		removeConjunction(_FINDER_COLUMN_G_N_A_NAME_3) + ")";
 	private static final String _FINDER_COLUMN_G_N_A_ACTIVE_2 = "calendarResource.active = ?";
 	private static final String _FINDER_COLUMN_G_N_A_ACTIVE_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_N_A_ACTIVE_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_N_A_ACTIVE_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_C_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -8928,13 +8927,24 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 *
 	 * @param primaryKey the primary key of the calendar resource
 	 * @return the calendar resource
-	 * @throws com.liferay.portal.NoSuchModelException if a calendar resource with the primary key could not be found
+	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public CalendarResource findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchResourceException, SystemException {
+		CalendarResource calendarResource = fetchByPrimaryKey(primaryKey);
+
+		if (calendarResource == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchResourceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return calendarResource;
 	}
 
 	/**
@@ -8947,19 +8957,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	public CalendarResource findByPrimaryKey(long calendarResourceId)
 		throws NoSuchResourceException, SystemException {
-		CalendarResource calendarResource = fetchByPrimaryKey(calendarResourceId);
-
-		if (calendarResource == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					calendarResourceId);
-			}
-
-			throw new NoSuchResourceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				calendarResourceId);
-		}
-
-		return calendarResource;
+		return findByPrimaryKey((Serializable)calendarResourceId);
 	}
 
 	/**
@@ -8972,20 +8970,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	@Override
 	public CalendarResource fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the calendar resource with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param calendarResourceId the primary key of the calendar resource
-	 * @return the calendar resource, or <code>null</code> if a calendar resource with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public CalendarResource fetchByPrimaryKey(long calendarResourceId)
-		throws SystemException {
 		CalendarResource calendarResource = (CalendarResource)EntityCacheUtil.getResult(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-				CalendarResourceImpl.class, calendarResourceId);
+				CalendarResourceImpl.class, primaryKey);
 
 		if (calendarResource == _nullCalendarResource) {
 			return null;
@@ -8998,20 +8984,20 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				session = openSession();
 
 				calendarResource = (CalendarResource)session.get(CalendarResourceImpl.class,
-						Long.valueOf(calendarResourceId));
+						primaryKey);
 
 				if (calendarResource != null) {
 					cacheResult(calendarResource);
 				}
 				else {
 					EntityCacheUtil.putResult(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-						CalendarResourceImpl.class, calendarResourceId,
+						CalendarResourceImpl.class, primaryKey,
 						_nullCalendarResource);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
-					CalendarResourceImpl.class, calendarResourceId);
+					CalendarResourceImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -9021,6 +9007,18 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		return calendarResource;
+	}
+
+	/**
+	 * Returns the calendar resource with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param calendarResourceId the primary key of the calendar resource
+	 * @return the calendar resource, or <code>null</code> if a calendar resource with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public CalendarResource fetchByPrimaryKey(long calendarResourceId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)calendarResourceId);
 	}
 
 	/**
@@ -9227,17 +9225,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	private static final String _SQL_SELECT_CALENDARRESOURCE_WHERE = "SELECT calendarResource FROM CalendarResource calendarResource WHERE ";
 	private static final String _SQL_COUNT_CALENDARRESOURCE = "SELECT COUNT(calendarResource) FROM CalendarResource calendarResource";
 	private static final String _SQL_COUNT_CALENDARRESOURCE_WHERE = "SELECT COUNT(calendarResource) FROM CalendarResource calendarResource WHERE ";
-
-	private static String _removeConjunction(String sql) {
-		int pos = sql.indexOf(" AND ");
-
-		if (pos != -1) {
-			sql = sql.substring(0, pos);
-		}
-
-		return sql;
-	}
-
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "calendarResource.calendarResourceId";
 	private static final String _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN = "calendarResource.userId";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "calendarResource.";

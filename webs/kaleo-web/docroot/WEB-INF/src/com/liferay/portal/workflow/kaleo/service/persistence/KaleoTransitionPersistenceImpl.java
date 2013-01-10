@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2490,13 +2489,24 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 *
 	 * @param primaryKey the primary key of the kaleo transition
 	 * @return the kaleo transition
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo transition with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTransition findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTransitionException, SystemException {
+		KaleoTransition kaleoTransition = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoTransition == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTransitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoTransition;
 	}
 
 	/**
@@ -2509,18 +2519,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public KaleoTransition findByPrimaryKey(long kaleoTransitionId)
 		throws NoSuchTransitionException, SystemException {
-		KaleoTransition kaleoTransition = fetchByPrimaryKey(kaleoTransitionId);
-
-		if (kaleoTransition == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoTransitionId);
-			}
-
-			throw new NoSuchTransitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoTransitionId);
-		}
-
-		return kaleoTransition;
+		return findByPrimaryKey((Serializable)kaleoTransitionId);
 	}
 
 	/**
@@ -2533,20 +2532,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	@Override
 	public KaleoTransition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo transition with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoTransitionId the primary key of the kaleo transition
-	 * @return the kaleo transition, or <code>null</code> if a kaleo transition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTransition fetchByPrimaryKey(long kaleoTransitionId)
-		throws SystemException {
 		KaleoTransition kaleoTransition = (KaleoTransition)EntityCacheUtil.getResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTransitionImpl.class, kaleoTransitionId);
+				KaleoTransitionImpl.class, primaryKey);
 
 		if (kaleoTransition == _nullKaleoTransition) {
 			return null;
@@ -2559,20 +2546,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				session = openSession();
 
 				kaleoTransition = (KaleoTransition)session.get(KaleoTransitionImpl.class,
-						Long.valueOf(kaleoTransitionId));
+						primaryKey);
 
 				if (kaleoTransition != null) {
 					cacheResult(kaleoTransition);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTransitionImpl.class, kaleoTransitionId,
+						KaleoTransitionImpl.class, primaryKey,
 						_nullKaleoTransition);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoTransitionImpl.class, kaleoTransitionId);
+					KaleoTransitionImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2582,6 +2569,18 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 
 		return kaleoTransition;
+	}
+
+	/**
+	 * Returns the kaleo transition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoTransitionId the primary key of the kaleo transition
+	 * @return the kaleo transition, or <code>null</code> if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTransition fetchByPrimaryKey(long kaleoTransitionId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoTransitionId);
 	}
 
 	/**

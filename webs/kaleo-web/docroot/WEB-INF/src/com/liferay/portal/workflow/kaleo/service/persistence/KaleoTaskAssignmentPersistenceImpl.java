@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2645,13 +2644,24 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 *
 	 * @param primaryKey the primary key of the kaleo task assignment
 	 * @return the kaleo task assignment
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task assignment with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a kaleo task assignment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTaskAssignment findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTaskAssignmentException, SystemException {
+		KaleoTaskAssignment kaleoTaskAssignment = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoTaskAssignment == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTaskAssignmentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoTaskAssignment;
 	}
 
 	/**
@@ -2664,19 +2674,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 */
 	public KaleoTaskAssignment findByPrimaryKey(long kaleoTaskAssignmentId)
 		throws NoSuchTaskAssignmentException, SystemException {
-		KaleoTaskAssignment kaleoTaskAssignment = fetchByPrimaryKey(kaleoTaskAssignmentId);
-
-		if (kaleoTaskAssignment == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoTaskAssignmentId);
-			}
-
-			throw new NoSuchTaskAssignmentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoTaskAssignmentId);
-		}
-
-		return kaleoTaskAssignment;
+		return findByPrimaryKey((Serializable)kaleoTaskAssignmentId);
 	}
 
 	/**
@@ -2689,20 +2687,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	@Override
 	public KaleoTaskAssignment fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo task assignment with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
-	 * @return the kaleo task assignment, or <code>null</code> if a kaleo task assignment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTaskAssignment fetchByPrimaryKey(long kaleoTaskAssignmentId)
-		throws SystemException {
 		KaleoTaskAssignment kaleoTaskAssignment = (KaleoTaskAssignment)EntityCacheUtil.getResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTaskAssignmentImpl.class, kaleoTaskAssignmentId);
+				KaleoTaskAssignmentImpl.class, primaryKey);
 
 		if (kaleoTaskAssignment == _nullKaleoTaskAssignment) {
 			return null;
@@ -2715,20 +2701,20 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				session = openSession();
 
 				kaleoTaskAssignment = (KaleoTaskAssignment)session.get(KaleoTaskAssignmentImpl.class,
-						Long.valueOf(kaleoTaskAssignmentId));
+						primaryKey);
 
 				if (kaleoTaskAssignment != null) {
 					cacheResult(kaleoTaskAssignment);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTaskAssignmentImpl.class, kaleoTaskAssignmentId,
+						KaleoTaskAssignmentImpl.class, primaryKey,
 						_nullKaleoTaskAssignment);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoTaskAssignmentImpl.class, kaleoTaskAssignmentId);
+					KaleoTaskAssignmentImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2738,6 +2724,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 
 		return kaleoTaskAssignment;
+	}
+
+	/**
+	 * Returns the kaleo task assignment with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
+	 * @return the kaleo task assignment, or <code>null</code> if a kaleo task assignment with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignment fetchByPrimaryKey(long kaleoTaskAssignmentId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoTaskAssignmentId);
 	}
 
 	/**

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -3692,13 +3691,24 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 *
 	 * @param primaryKey the primary key of the kaleo log
 	 * @return the kaleo log
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo log with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoLog findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoLog == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchLogException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoLog;
 	}
 
 	/**
@@ -3711,18 +3721,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 */
 	public KaleoLog findByPrimaryKey(long kaleoLogId)
 		throws NoSuchLogException, SystemException {
-		KaleoLog kaleoLog = fetchByPrimaryKey(kaleoLogId);
-
-		if (kaleoLog == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoLogId);
-			}
-
-			throw new NoSuchLogException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoLogId);
-		}
-
-		return kaleoLog;
+		return findByPrimaryKey((Serializable)kaleoLogId);
 	}
 
 	/**
@@ -3735,20 +3734,8 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	@Override
 	public KaleoLog fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo log with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoLogId the primary key of the kaleo log
-	 * @return the kaleo log, or <code>null</code> if a kaleo log with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoLog fetchByPrimaryKey(long kaleoLogId)
-		throws SystemException {
 		KaleoLog kaleoLog = (KaleoLog)EntityCacheUtil.getResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoLogImpl.class, kaleoLogId);
+				KaleoLogImpl.class, primaryKey);
 
 		if (kaleoLog == _nullKaleoLog) {
 			return null;
@@ -3760,20 +3747,19 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			try {
 				session = openSession();
 
-				kaleoLog = (KaleoLog)session.get(KaleoLogImpl.class,
-						Long.valueOf(kaleoLogId));
+				kaleoLog = (KaleoLog)session.get(KaleoLogImpl.class, primaryKey);
 
 				if (kaleoLog != null) {
 					cacheResult(kaleoLog);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoLogImpl.class, kaleoLogId, _nullKaleoLog);
+						KaleoLogImpl.class, primaryKey, _nullKaleoLog);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoLogImpl.class, kaleoLogId);
+					KaleoLogImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -3783,6 +3769,18 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 
 		return kaleoLog;
+	}
+
+	/**
+	 * Returns the kaleo log with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoLogId the primary key of the kaleo log
+	 * @return the kaleo log, or <code>null</code> if a kaleo log with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByPrimaryKey(long kaleoLogId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoLogId);
 	}
 
 	/**

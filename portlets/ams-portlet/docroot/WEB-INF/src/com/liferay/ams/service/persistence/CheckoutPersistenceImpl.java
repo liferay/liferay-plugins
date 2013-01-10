@@ -19,7 +19,6 @@ import com.liferay.ams.model.Checkout;
 import com.liferay.ams.model.impl.CheckoutImpl;
 import com.liferay.ams.model.impl.CheckoutModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -329,13 +328,24 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 *
 	 * @param primaryKey the primary key of the checkout
 	 * @return the checkout
-	 * @throws com.liferay.portal.NoSuchModelException if a checkout with the primary key could not be found
+	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Checkout findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchCheckoutException, SystemException {
+		Checkout checkout = fetchByPrimaryKey(primaryKey);
+
+		if (checkout == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchCheckoutException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return checkout;
 	}
 
 	/**
@@ -348,18 +358,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 */
 	public Checkout findByPrimaryKey(long checkoutId)
 		throws NoSuchCheckoutException, SystemException {
-		Checkout checkout = fetchByPrimaryKey(checkoutId);
-
-		if (checkout == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + checkoutId);
-			}
-
-			throw new NoSuchCheckoutException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				checkoutId);
-		}
-
-		return checkout;
+		return findByPrimaryKey((Serializable)checkoutId);
 	}
 
 	/**
@@ -372,20 +371,8 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	@Override
 	public Checkout fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the checkout with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param checkoutId the primary key of the checkout
-	 * @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Checkout fetchByPrimaryKey(long checkoutId)
-		throws SystemException {
 		Checkout checkout = (Checkout)EntityCacheUtil.getResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-				CheckoutImpl.class, checkoutId);
+				CheckoutImpl.class, primaryKey);
 
 		if (checkout == _nullCheckout) {
 			return null;
@@ -397,20 +384,19 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			try {
 				session = openSession();
 
-				checkout = (Checkout)session.get(CheckoutImpl.class,
-						Long.valueOf(checkoutId));
+				checkout = (Checkout)session.get(CheckoutImpl.class, primaryKey);
 
 				if (checkout != null) {
 					cacheResult(checkout);
 				}
 				else {
 					EntityCacheUtil.putResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-						CheckoutImpl.class, checkoutId, _nullCheckout);
+						CheckoutImpl.class, primaryKey, _nullCheckout);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-					CheckoutImpl.class, checkoutId);
+					CheckoutImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -420,6 +406,18 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		}
 
 		return checkout;
+	}
+
+	/**
+	 * Returns the checkout with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param checkoutId the primary key of the checkout
+	 * @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Checkout fetchByPrimaryKey(long checkoutId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)checkoutId);
 	}
 
 	/**

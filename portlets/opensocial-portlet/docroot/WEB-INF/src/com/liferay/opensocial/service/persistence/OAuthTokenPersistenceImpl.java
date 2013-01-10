@@ -19,7 +19,6 @@ import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.model.impl.OAuthTokenImpl;
 import com.liferay.opensocial.model.impl.OAuthTokenModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1471,13 +1470,24 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 *
 	 * @param primaryKey the primary key of the o auth token
 	 * @return the o auth token
-	 * @throws com.liferay.portal.NoSuchModelException if a o auth token with the primary key could not be found
+	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public OAuthToken findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchOAuthTokenException, SystemException {
+		OAuthToken oAuthToken = fetchByPrimaryKey(primaryKey);
+
+		if (oAuthToken == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchOAuthTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return oAuthToken;
 	}
 
 	/**
@@ -1490,18 +1500,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 */
 	public OAuthToken findByPrimaryKey(long oAuthTokenId)
 		throws NoSuchOAuthTokenException, SystemException {
-		OAuthToken oAuthToken = fetchByPrimaryKey(oAuthTokenId);
-
-		if (oAuthToken == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oAuthTokenId);
-			}
-
-			throw new NoSuchOAuthTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				oAuthTokenId);
-		}
-
-		return oAuthToken;
+		return findByPrimaryKey((Serializable)oAuthTokenId);
 	}
 
 	/**
@@ -1514,20 +1513,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	@Override
 	public OAuthToken fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the o auth token with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param oAuthTokenId the primary key of the o auth token
-	 * @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthToken fetchByPrimaryKey(long oAuthTokenId)
-		throws SystemException {
 		OAuthToken oAuthToken = (OAuthToken)EntityCacheUtil.getResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-				OAuthTokenImpl.class, oAuthTokenId);
+				OAuthTokenImpl.class, primaryKey);
 
 		if (oAuthToken == _nullOAuthToken) {
 			return null;
@@ -1540,19 +1527,19 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				session = openSession();
 
 				oAuthToken = (OAuthToken)session.get(OAuthTokenImpl.class,
-						Long.valueOf(oAuthTokenId));
+						primaryKey);
 
 				if (oAuthToken != null) {
 					cacheResult(oAuthToken);
 				}
 				else {
 					EntityCacheUtil.putResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-						OAuthTokenImpl.class, oAuthTokenId, _nullOAuthToken);
+						OAuthTokenImpl.class, primaryKey, _nullOAuthToken);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-					OAuthTokenImpl.class, oAuthTokenId);
+					OAuthTokenImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1562,6 +1549,18 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		}
 
 		return oAuthToken;
+	}
+
+	/**
+	 * Returns the o auth token with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param oAuthTokenId the primary key of the o auth token
+	 * @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthToken fetchByPrimaryKey(long oAuthTokenId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)oAuthTokenId);
 	}
 
 	/**

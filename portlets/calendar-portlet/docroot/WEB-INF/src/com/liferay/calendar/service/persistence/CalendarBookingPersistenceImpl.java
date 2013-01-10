@@ -19,7 +19,6 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.impl.CalendarBookingImpl;
 import com.liferay.calendar.model.impl.CalendarBookingModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -4723,13 +4722,24 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 *
 	 * @param primaryKey the primary key of the calendar booking
 	 * @return the calendar booking
-	 * @throws com.liferay.portal.NoSuchModelException if a calendar booking with the primary key could not be found
+	 * @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public CalendarBooking findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchBookingException, SystemException {
+		CalendarBooking calendarBooking = fetchByPrimaryKey(primaryKey);
+
+		if (calendarBooking == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchBookingException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return calendarBooking;
 	}
 
 	/**
@@ -4742,18 +4752,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 */
 	public CalendarBooking findByPrimaryKey(long calendarBookingId)
 		throws NoSuchBookingException, SystemException {
-		CalendarBooking calendarBooking = fetchByPrimaryKey(calendarBookingId);
-
-		if (calendarBooking == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + calendarBookingId);
-			}
-
-			throw new NoSuchBookingException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				calendarBookingId);
-		}
-
-		return calendarBooking;
+		return findByPrimaryKey((Serializable)calendarBookingId);
 	}
 
 	/**
@@ -4766,20 +4765,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	@Override
 	public CalendarBooking fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the calendar booking with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param calendarBookingId the primary key of the calendar booking
-	 * @return the calendar booking, or <code>null</code> if a calendar booking with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public CalendarBooking fetchByPrimaryKey(long calendarBookingId)
-		throws SystemException {
 		CalendarBooking calendarBooking = (CalendarBooking)EntityCacheUtil.getResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
-				CalendarBookingImpl.class, calendarBookingId);
+				CalendarBookingImpl.class, primaryKey);
 
 		if (calendarBooking == _nullCalendarBooking) {
 			return null;
@@ -4792,20 +4779,20 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				session = openSession();
 
 				calendarBooking = (CalendarBooking)session.get(CalendarBookingImpl.class,
-						Long.valueOf(calendarBookingId));
+						primaryKey);
 
 				if (calendarBooking != null) {
 					cacheResult(calendarBooking);
 				}
 				else {
 					EntityCacheUtil.putResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
-						CalendarBookingImpl.class, calendarBookingId,
+						CalendarBookingImpl.class, primaryKey,
 						_nullCalendarBooking);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
-					CalendarBookingImpl.class, calendarBookingId);
+					CalendarBookingImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -4815,6 +4802,18 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		}
 
 		return calendarBooking;
+	}
+
+	/**
+	 * Returns the calendar booking with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param calendarBookingId the primary key of the calendar booking
+	 * @return the calendar booking, or <code>null</code> if a calendar booking with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public CalendarBooking fetchByPrimaryKey(long calendarBookingId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)calendarBookingId);
 	}
 
 	/**

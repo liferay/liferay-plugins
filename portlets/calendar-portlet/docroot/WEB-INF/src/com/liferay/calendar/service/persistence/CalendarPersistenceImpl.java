@@ -19,7 +19,6 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.impl.CalendarImpl;
 import com.liferay.calendar.model.impl.CalendarModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -4072,13 +4071,24 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 *
 	 * @param primaryKey the primary key of the calendar
 	 * @return the calendar
-	 * @throws com.liferay.portal.NoSuchModelException if a calendar with the primary key could not be found
+	 * @throws com.liferay.calendar.NoSuchCalendarException if a calendar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Calendar findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByPrimaryKey(primaryKey);
+
+		if (calendar == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchCalendarException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return calendar;
 	}
 
 	/**
@@ -4091,18 +4101,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	public Calendar findByPrimaryKey(long calendarId)
 		throws NoSuchCalendarException, SystemException {
-		Calendar calendar = fetchByPrimaryKey(calendarId);
-
-		if (calendar == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + calendarId);
-			}
-
-			throw new NoSuchCalendarException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				calendarId);
-		}
-
-		return calendar;
+		return findByPrimaryKey((Serializable)calendarId);
 	}
 
 	/**
@@ -4115,20 +4114,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public Calendar fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the calendar with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param calendarId the primary key of the calendar
-	 * @return the calendar, or <code>null</code> if a calendar with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Calendar fetchByPrimaryKey(long calendarId)
-		throws SystemException {
 		Calendar calendar = (Calendar)EntityCacheUtil.getResult(CalendarModelImpl.ENTITY_CACHE_ENABLED,
-				CalendarImpl.class, calendarId);
+				CalendarImpl.class, primaryKey);
 
 		if (calendar == _nullCalendar) {
 			return null;
@@ -4140,20 +4127,19 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 			try {
 				session = openSession();
 
-				calendar = (Calendar)session.get(CalendarImpl.class,
-						Long.valueOf(calendarId));
+				calendar = (Calendar)session.get(CalendarImpl.class, primaryKey);
 
 				if (calendar != null) {
 					cacheResult(calendar);
 				}
 				else {
 					EntityCacheUtil.putResult(CalendarModelImpl.ENTITY_CACHE_ENABLED,
-						CalendarImpl.class, calendarId, _nullCalendar);
+						CalendarImpl.class, primaryKey, _nullCalendar);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(CalendarModelImpl.ENTITY_CACHE_ENABLED,
-					CalendarImpl.class, calendarId);
+					CalendarImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -4163,6 +4149,18 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		}
 
 		return calendar;
+	}
+
+	/**
+	 * Returns the calendar with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param calendarId the primary key of the calendar
+	 * @return the calendar, or <code>null</code> if a calendar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByPrimaryKey(long calendarId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)calendarId);
 	}
 
 	/**

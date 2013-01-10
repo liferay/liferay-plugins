@@ -19,7 +19,6 @@ import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.impl.MicroblogsEntryImpl;
 import com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -4826,13 +4825,24 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param primaryKey the primary key of the microblogs entry
 	 * @return the microblogs entry
-	 * @throws com.liferay.portal.NoSuchModelException if a microblogs entry with the primary key could not be found
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByPrimaryKey(primaryKey);
+
+		if (microblogsEntry == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return microblogsEntry;
 	}
 
 	/**
@@ -4845,18 +4855,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	public MicroblogsEntry findByPrimaryKey(long microblogsEntryId)
 		throws NoSuchEntryException, SystemException {
-		MicroblogsEntry microblogsEntry = fetchByPrimaryKey(microblogsEntryId);
-
-		if (microblogsEntry == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + microblogsEntryId);
-			}
-
-			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				microblogsEntryId);
-		}
-
-		return microblogsEntry;
+		return findByPrimaryKey((Serializable)microblogsEntryId);
 	}
 
 	/**
@@ -4869,20 +4868,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	@Override
 	public MicroblogsEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the microblogs entry with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param microblogsEntryId the primary key of the microblogs entry
-	 * @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MicroblogsEntry fetchByPrimaryKey(long microblogsEntryId)
-		throws SystemException {
 		MicroblogsEntry microblogsEntry = (MicroblogsEntry)EntityCacheUtil.getResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-				MicroblogsEntryImpl.class, microblogsEntryId);
+				MicroblogsEntryImpl.class, primaryKey);
 
 		if (microblogsEntry == _nullMicroblogsEntry) {
 			return null;
@@ -4895,20 +4882,20 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 				session = openSession();
 
 				microblogsEntry = (MicroblogsEntry)session.get(MicroblogsEntryImpl.class,
-						Long.valueOf(microblogsEntryId));
+						primaryKey);
 
 				if (microblogsEntry != null) {
 					cacheResult(microblogsEntry);
 				}
 				else {
 					EntityCacheUtil.putResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-						MicroblogsEntryImpl.class, microblogsEntryId,
+						MicroblogsEntryImpl.class, primaryKey,
 						_nullMicroblogsEntry);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-					MicroblogsEntryImpl.class, microblogsEntryId);
+					MicroblogsEntryImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -4918,6 +4905,18 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		}
 
 		return microblogsEntry;
+	}
+
+	/**
+	 * Returns the microblogs entry with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param microblogsEntryId the primary key of the microblogs entry
+	 * @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByPrimaryKey(long microblogsEntryId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)microblogsEntryId);
 	}
 
 	/**

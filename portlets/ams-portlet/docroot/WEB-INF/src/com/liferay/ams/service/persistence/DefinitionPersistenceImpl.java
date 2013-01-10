@@ -19,7 +19,6 @@ import com.liferay.ams.model.Definition;
 import com.liferay.ams.model.impl.DefinitionImpl;
 import com.liferay.ams.model.impl.DefinitionModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -333,13 +332,24 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param primaryKey the primary key of the definition
 	 * @return the definition
-	 * @throws com.liferay.portal.NoSuchModelException if a definition with the primary key could not be found
+	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchDefinitionException, SystemException {
+		Definition definition = fetchByPrimaryKey(primaryKey);
+
+		if (definition == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchDefinitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return definition;
 	}
 
 	/**
@@ -352,18 +362,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	public Definition findByPrimaryKey(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
-		Definition definition = fetchByPrimaryKey(definitionId);
-
-		if (definition == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + definitionId);
-			}
-
-			throw new NoSuchDefinitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				definitionId);
-		}
-
-		return definition;
+		return findByPrimaryKey((Serializable)definitionId);
 	}
 
 	/**
@@ -376,20 +375,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	@Override
 	public Definition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the definition with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param definitionId the primary key of the definition
-	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Definition fetchByPrimaryKey(long definitionId)
-		throws SystemException {
 		Definition definition = (Definition)EntityCacheUtil.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-				DefinitionImpl.class, definitionId);
+				DefinitionImpl.class, primaryKey);
 
 		if (definition == _nullDefinition) {
 			return null;
@@ -402,19 +389,19 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 				session = openSession();
 
 				definition = (Definition)session.get(DefinitionImpl.class,
-						Long.valueOf(definitionId));
+						primaryKey);
 
 				if (definition != null) {
 					cacheResult(definition);
 				}
 				else {
 					EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-						DefinitionImpl.class, definitionId, _nullDefinition);
+						DefinitionImpl.class, primaryKey, _nullDefinition);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-					DefinitionImpl.class, definitionId);
+					DefinitionImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -424,6 +411,18 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		}
 
 		return definition;
+	}
+
+	/**
+	 * Returns the definition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param definitionId the primary key of the definition
+	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Definition fetchByPrimaryKey(long definitionId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)definitionId);
 	}
 
 	/**

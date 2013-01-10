@@ -14,7 +14,6 @@
 
 package com.liferay.so.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2000,13 +1999,24 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param primaryKey the primary key of the member request
 	 * @return the member request
-	 * @throws com.liferay.portal.NoSuchModelException if a member request with the primary key could not be found
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchMemberRequestException, SystemException {
+		MemberRequest memberRequest = fetchByPrimaryKey(primaryKey);
+
+		if (memberRequest == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchMemberRequestException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return memberRequest;
 	}
 
 	/**
@@ -2019,18 +2029,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 */
 	public MemberRequest findByPrimaryKey(long memberRequestId)
 		throws NoSuchMemberRequestException, SystemException {
-		MemberRequest memberRequest = fetchByPrimaryKey(memberRequestId);
-
-		if (memberRequest == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + memberRequestId);
-			}
-
-			throw new NoSuchMemberRequestException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				memberRequestId);
-		}
-
-		return memberRequest;
+		return findByPrimaryKey((Serializable)memberRequestId);
 	}
 
 	/**
@@ -2043,20 +2042,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	@Override
 	public MemberRequest fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the member request with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param memberRequestId the primary key of the member request
-	 * @return the member request, or <code>null</code> if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MemberRequest fetchByPrimaryKey(long memberRequestId)
-		throws SystemException {
 		MemberRequest memberRequest = (MemberRequest)EntityCacheUtil.getResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-				MemberRequestImpl.class, memberRequestId);
+				MemberRequestImpl.class, primaryKey);
 
 		if (memberRequest == _nullMemberRequest) {
 			return null;
@@ -2069,20 +2056,19 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				session = openSession();
 
 				memberRequest = (MemberRequest)session.get(MemberRequestImpl.class,
-						Long.valueOf(memberRequestId));
+						primaryKey);
 
 				if (memberRequest != null) {
 					cacheResult(memberRequest);
 				}
 				else {
 					EntityCacheUtil.putResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-						MemberRequestImpl.class, memberRequestId,
-						_nullMemberRequest);
+						MemberRequestImpl.class, primaryKey, _nullMemberRequest);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-					MemberRequestImpl.class, memberRequestId);
+					MemberRequestImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2092,6 +2078,18 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 
 		return memberRequest;
+	}
+
+	/**
+	 * Returns the member request with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param memberRequestId the primary key of the member request
+	 * @return the member request, or <code>null</code> if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MemberRequest fetchByPrimaryKey(long memberRequestId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)memberRequestId);
 	}
 
 	/**

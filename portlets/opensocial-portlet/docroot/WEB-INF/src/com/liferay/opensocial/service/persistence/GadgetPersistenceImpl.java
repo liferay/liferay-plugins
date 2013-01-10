@@ -19,7 +19,6 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.model.impl.GadgetModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -3435,13 +3434,24 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 *
 	 * @param primaryKey the primary key of the gadget
 	 * @return the gadget
-	 * @throws com.liferay.portal.NoSuchModelException if a gadget with the primary key could not be found
+	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Gadget findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchGadgetException, SystemException {
+		Gadget gadget = fetchByPrimaryKey(primaryKey);
+
+		if (gadget == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchGadgetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return gadget;
 	}
 
 	/**
@@ -3454,18 +3464,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public Gadget findByPrimaryKey(long gadgetId)
 		throws NoSuchGadgetException, SystemException {
-		Gadget gadget = fetchByPrimaryKey(gadgetId);
-
-		if (gadget == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + gadgetId);
-			}
-
-			throw new NoSuchGadgetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				gadgetId);
-		}
-
-		return gadget;
+		return findByPrimaryKey((Serializable)gadgetId);
 	}
 
 	/**
@@ -3478,19 +3477,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	@Override
 	public Gadget fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the gadget with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param gadgetId the primary key of the gadget
-	 * @return the gadget, or <code>null</code> if a gadget with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Gadget fetchByPrimaryKey(long gadgetId) throws SystemException {
 		Gadget gadget = (Gadget)EntityCacheUtil.getResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-				GadgetImpl.class, gadgetId);
+				GadgetImpl.class, primaryKey);
 
 		if (gadget == _nullGadget) {
 			return null;
@@ -3502,20 +3490,19 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			try {
 				session = openSession();
 
-				gadget = (Gadget)session.get(GadgetImpl.class,
-						Long.valueOf(gadgetId));
+				gadget = (Gadget)session.get(GadgetImpl.class, primaryKey);
 
 				if (gadget != null) {
 					cacheResult(gadget);
 				}
 				else {
 					EntityCacheUtil.putResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-						GadgetImpl.class, gadgetId, _nullGadget);
+						GadgetImpl.class, primaryKey, _nullGadget);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-					GadgetImpl.class, gadgetId);
+					GadgetImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -3525,6 +3512,17 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		}
 
 		return gadget;
+	}
+
+	/**
+	 * Returns the gadget with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param gadgetId the primary key of the gadget
+	 * @return the gadget, or <code>null</code> if a gadget with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Gadget fetchByPrimaryKey(long gadgetId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)gadgetId);
 	}
 
 	/**

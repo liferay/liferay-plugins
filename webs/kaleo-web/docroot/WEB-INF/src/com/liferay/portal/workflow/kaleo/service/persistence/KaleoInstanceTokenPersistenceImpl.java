@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -3068,13 +3067,24 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 *
 	 * @param primaryKey the primary key of the kaleo instance token
 	 * @return the kaleo instance token
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo instance token with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoInstanceToken findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoInstanceToken == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchInstanceTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoInstanceToken;
 	}
 
 	/**
@@ -3087,19 +3097,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	public KaleoInstanceToken findByPrimaryKey(long kaleoInstanceTokenId)
 		throws NoSuchInstanceTokenException, SystemException {
-		KaleoInstanceToken kaleoInstanceToken = fetchByPrimaryKey(kaleoInstanceTokenId);
-
-		if (kaleoInstanceToken == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoInstanceTokenId);
-			}
-
-			throw new NoSuchInstanceTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoInstanceTokenId);
-		}
-
-		return kaleoInstanceToken;
+		return findByPrimaryKey((Serializable)kaleoInstanceTokenId);
 	}
 
 	/**
@@ -3112,20 +3110,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	public KaleoInstanceToken fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo instance token with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoInstanceTokenId the primary key of the kaleo instance token
-	 * @return the kaleo instance token, or <code>null</code> if a kaleo instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoInstanceToken fetchByPrimaryKey(long kaleoInstanceTokenId)
-		throws SystemException {
 		KaleoInstanceToken kaleoInstanceToken = (KaleoInstanceToken)EntityCacheUtil.getResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoInstanceTokenImpl.class, kaleoInstanceTokenId);
+				KaleoInstanceTokenImpl.class, primaryKey);
 
 		if (kaleoInstanceToken == _nullKaleoInstanceToken) {
 			return null;
@@ -3138,20 +3124,20 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 				session = openSession();
 
 				kaleoInstanceToken = (KaleoInstanceToken)session.get(KaleoInstanceTokenImpl.class,
-						Long.valueOf(kaleoInstanceTokenId));
+						primaryKey);
 
 				if (kaleoInstanceToken != null) {
 					cacheResult(kaleoInstanceToken);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoInstanceTokenImpl.class, kaleoInstanceTokenId,
+						KaleoInstanceTokenImpl.class, primaryKey,
 						_nullKaleoInstanceToken);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoInstanceTokenImpl.class, kaleoInstanceTokenId);
+					KaleoInstanceTokenImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -3161,6 +3147,18 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		}
 
 		return kaleoInstanceToken;
+	}
+
+	/**
+	 * Returns the kaleo instance token with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoInstanceTokenId the primary key of the kaleo instance token
+	 * @return the kaleo instance token, or <code>null</code> if a kaleo instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByPrimaryKey(long kaleoInstanceTokenId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoInstanceTokenId);
 	}
 
 	/**

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
@@ -1886,13 +1885,24 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 *
 	 * @param primaryKey the primary key of the kaleo node
 	 * @return the kaleo node
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo node with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoNode findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchNodeException, SystemException {
+		KaleoNode kaleoNode = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoNode == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchNodeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoNode;
 	}
 
 	/**
@@ -1905,18 +1915,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	public KaleoNode findByPrimaryKey(long kaleoNodeId)
 		throws NoSuchNodeException, SystemException {
-		KaleoNode kaleoNode = fetchByPrimaryKey(kaleoNodeId);
-
-		if (kaleoNode == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoNodeId);
-			}
-
-			throw new NoSuchNodeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoNodeId);
-		}
-
-		return kaleoNode;
+		return findByPrimaryKey((Serializable)kaleoNodeId);
 	}
 
 	/**
@@ -1929,20 +1928,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	@Override
 	public KaleoNode fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo node with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoNodeId the primary key of the kaleo node
-	 * @return the kaleo node, or <code>null</code> if a kaleo node with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoNode fetchByPrimaryKey(long kaleoNodeId)
-		throws SystemException {
 		KaleoNode kaleoNode = (KaleoNode)EntityCacheUtil.getResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeImpl.class, kaleoNodeId);
+				KaleoNodeImpl.class, primaryKey);
 
 		if (kaleoNode == _nullKaleoNode) {
 			return null;
@@ -1955,19 +1942,19 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				session = openSession();
 
 				kaleoNode = (KaleoNode)session.get(KaleoNodeImpl.class,
-						Long.valueOf(kaleoNodeId));
+						primaryKey);
 
 				if (kaleoNode != null) {
 					cacheResult(kaleoNode);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoNodeImpl.class, kaleoNodeId, _nullKaleoNode);
+						KaleoNodeImpl.class, primaryKey, _nullKaleoNode);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoNodeImpl.class, kaleoNodeId);
+					KaleoNodeImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1977,6 +1964,18 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 
 		return kaleoNode;
+	}
+
+	/**
+	 * Returns the kaleo node with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoNodeId the primary key of the kaleo node
+	 * @return the kaleo node, or <code>null</code> if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNode fetchByPrimaryKey(long kaleoNodeId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoNodeId);
 	}
 
 	/**

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1568,13 +1567,24 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 *
 	 * @param primaryKey the primary key of the kaleo timer
 	 * @return the kaleo timer
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTimer findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTimerException, SystemException {
+		KaleoTimer kaleoTimer = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoTimer == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTimerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoTimer;
 	}
 
 	/**
@@ -1587,18 +1597,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 */
 	public KaleoTimer findByPrimaryKey(long kaleoTimerId)
 		throws NoSuchTimerException, SystemException {
-		KaleoTimer kaleoTimer = fetchByPrimaryKey(kaleoTimerId);
-
-		if (kaleoTimer == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoTimerId);
-			}
-
-			throw new NoSuchTimerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoTimerId);
-		}
-
-		return kaleoTimer;
+		return findByPrimaryKey((Serializable)kaleoTimerId);
 	}
 
 	/**
@@ -1611,20 +1610,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	@Override
 	public KaleoTimer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo timer with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoTimerId the primary key of the kaleo timer
-	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimer fetchByPrimaryKey(long kaleoTimerId)
-		throws SystemException {
 		KaleoTimer kaleoTimer = (KaleoTimer)EntityCacheUtil.getResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTimerImpl.class, kaleoTimerId);
+				KaleoTimerImpl.class, primaryKey);
 
 		if (kaleoTimer == _nullKaleoTimer) {
 			return null;
@@ -1637,19 +1624,19 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 				session = openSession();
 
 				kaleoTimer = (KaleoTimer)session.get(KaleoTimerImpl.class,
-						Long.valueOf(kaleoTimerId));
+						primaryKey);
 
 				if (kaleoTimer != null) {
 					cacheResult(kaleoTimer);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTimerImpl.class, kaleoTimerId, _nullKaleoTimer);
+						KaleoTimerImpl.class, primaryKey, _nullKaleoTimer);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoTimerImpl.class, kaleoTimerId);
+					KaleoTimerImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1659,6 +1646,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		}
 
 		return kaleoTimer;
+	}
+
+	/**
+	 * Returns the kaleo timer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoTimerId the primary key of the kaleo timer
+	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer fetchByPrimaryKey(long kaleoTimerId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoTimerId);
 	}
 
 	/**

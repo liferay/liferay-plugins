@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.impl.KBArticleImpl;
 import com.liferay.knowledgebase.model.impl.KBArticleModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -3822,10 +3821,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_R_L_RESOURCEPRIMKEY_2 = "kbArticle.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_L_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_L_RESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_L_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_L_LATEST_2 = "kbArticle.latest = ?";
 	private static final String _FINDER_COLUMN_R_L_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_L_LATEST_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_L_LATEST_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_R_M = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_M",
@@ -4617,10 +4616,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2 = "kbArticle.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_M_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_M_MAIN_2 = "kbArticle.main = ?";
 	private static final String _FINDER_COLUMN_R_M_MAIN_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_M_MAIN_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_M_MAIN_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_R_S = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_S",
@@ -5414,10 +5413,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_R_S_RESOURCEPRIMKEY_2 = "kbArticle.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_S_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_S_RESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_S_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_S_STATUS_2 = "kbArticle.status = ?";
 	private static final String _FINDER_COLUMN_R_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_S_STATUS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_S_STATUS_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_L = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_L",
@@ -10421,10 +10420,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_P_L_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_P_L_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_L_PARENTRESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_P_L_PARENTRESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_P_L_LATEST_2 = "kbArticle.latest = ?";
 	private static final String _FINDER_COLUMN_P_L_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_L_LATEST_2) + ")";
+		removeConjunction(_FINDER_COLUMN_P_L_LATEST_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_M = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByP_M",
@@ -11222,10 +11221,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_P_M_MAIN_2 = "kbArticle.main = ?";
 	private static final String _FINDER_COLUMN_P_M_MAIN_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_M_MAIN_2) + ")";
+		removeConjunction(_FINDER_COLUMN_P_M_MAIN_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_S = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByP_S",
@@ -12023,10 +12022,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_P_S_STATUS_2 = "kbArticle.status = ?";
 	private static final String _FINDER_COLUMN_P_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_S_STATUS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_P_S_STATUS_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_R_G_L = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_G_L",
@@ -13548,13 +13547,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_2 = "kbArticle.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_L_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_R_G_L_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_L_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_L_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_L_LATEST_2 = "kbArticle.latest = ?";
 	private static final String _FINDER_COLUMN_R_G_L_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_L_LATEST_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_L_LATEST_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_R_G_M = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_G_M",
@@ -15076,13 +15075,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2 = "kbArticle.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_M_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_R_G_M_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_M_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_M_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_M_MAIN_2 = "kbArticle.main = ?";
 	private static final String _FINDER_COLUMN_R_G_M_MAIN_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_M_MAIN_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_M_MAIN_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_R_G_S = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_G_S",
@@ -16602,13 +16601,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_2 = "kbArticle.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_S_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_R_G_S_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_S_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_S_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_S_STATUS_2 = "kbArticle.status = ?";
 	private static final String _FINDER_COLUMN_R_G_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_S_STATUS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_R_G_S_STATUS_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_P_L = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P_L",
@@ -18146,13 +18145,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_G_P_L_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_L_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_L_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_L_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_L_LATEST_2 = "kbArticle.latest = ?";
 	private static final String _FINDER_COLUMN_G_P_L_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_L_LATEST_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_L_LATEST_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_P_M = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P_M",
@@ -19686,13 +19685,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_G_P_M_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_M_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_M_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_M_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_M_MAIN_2 = "kbArticle.main = ?";
 	private static final String _FINDER_COLUMN_G_P_M_MAIN_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_M_MAIN_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_M_MAIN_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_P_S = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P_S",
@@ -21228,13 +21227,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_G_P_S_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_STATUS_2 = "kbArticle.status = ?";
 	private static final String _FINDER_COLUMN_G_P_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_STATUS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_STATUS_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_P_S_L = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P_S_L",
@@ -22975,23 +22974,23 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_G_P_S_L_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_L_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_L_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_L_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_L_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_L_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_L_PARENTRESOURCEPRIMKEY_2) +
+		removeConjunction(_FINDER_COLUMN_G_P_S_L_PARENTRESOURCEPRIMKEY_2) +
 		")";
 	private static final String _FINDER_COLUMN_G_P_S_L_SECTIONS_1 = "kbArticle.sections LIKE NULL AND ";
 	private static final String _FINDER_COLUMN_G_P_S_L_SECTIONS_2 = "kbArticle.sections LIKE ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_L_SECTIONS_3 = "(kbArticle.sections IS NULL OR kbArticle.sections LIKE '') AND ";
 	private static final String _FINDER_COLUMN_G_P_S_L_SECTIONS_4 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_L_SECTIONS_1) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_L_SECTIONS_1) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_L_SECTIONS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_L_SECTIONS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_L_SECTIONS_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_L_SECTIONS_6 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_L_SECTIONS_3) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_L_SECTIONS_3) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_L_LATEST_2 = "kbArticle.latest = ?";
 	private static final String _FINDER_COLUMN_G_P_S_L_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_L_LATEST_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_L_LATEST_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_P_S_M = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P_S_M",
@@ -24731,23 +24730,23 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_G_P_S_M_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_M_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_M_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_M_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_M_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_M_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_M_PARENTRESOURCEPRIMKEY_2) +
+		removeConjunction(_FINDER_COLUMN_G_P_S_M_PARENTRESOURCEPRIMKEY_2) +
 		")";
 	private static final String _FINDER_COLUMN_G_P_S_M_SECTIONS_1 = "kbArticle.sections LIKE NULL AND ";
 	private static final String _FINDER_COLUMN_G_P_S_M_SECTIONS_2 = "kbArticle.sections LIKE ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_M_SECTIONS_3 = "(kbArticle.sections IS NULL OR kbArticle.sections LIKE '') AND ";
 	private static final String _FINDER_COLUMN_G_P_S_M_SECTIONS_4 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_M_SECTIONS_1) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_M_SECTIONS_1) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_M_SECTIONS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_M_SECTIONS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_M_SECTIONS_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_M_SECTIONS_6 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_M_SECTIONS_3) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_M_SECTIONS_3) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_M_MAIN_2 = "kbArticle.main = ?";
 	private static final String _FINDER_COLUMN_G_P_S_M_MAIN_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_M_MAIN_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_M_MAIN_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_P_S_S = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P_S_S",
@@ -26486,23 +26485,23 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 	private static final String _FINDER_COLUMN_G_P_S_S_GROUPID_2 = "kbArticle.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_S_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_S_GROUPID_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_S_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_S_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_S_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_S_PARENTRESOURCEPRIMKEY_2) +
+		removeConjunction(_FINDER_COLUMN_G_P_S_S_PARENTRESOURCEPRIMKEY_2) +
 		")";
 	private static final String _FINDER_COLUMN_G_P_S_S_SECTIONS_1 = "kbArticle.sections LIKE NULL AND ";
 	private static final String _FINDER_COLUMN_G_P_S_S_SECTIONS_2 = "kbArticle.sections LIKE ? AND ";
 	private static final String _FINDER_COLUMN_G_P_S_S_SECTIONS_3 = "(kbArticle.sections IS NULL OR kbArticle.sections LIKE '') AND ";
 	private static final String _FINDER_COLUMN_G_P_S_S_SECTIONS_4 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_S_SECTIONS_1) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_S_SECTIONS_1) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_S_SECTIONS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_S_SECTIONS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_S_SECTIONS_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_S_SECTIONS_6 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_S_SECTIONS_3) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_S_SECTIONS_3) + ")";
 	private static final String _FINDER_COLUMN_G_P_S_S_STATUS_2 = "kbArticle.status = ?";
 	private static final String _FINDER_COLUMN_G_P_S_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_S_S_STATUS_2) + ")";
+		removeConjunction(_FINDER_COLUMN_G_P_S_S_STATUS_2) + ")";
 
 	/**
 	 * Caches the k b article in the entity cache if it is enabled.
@@ -27361,13 +27360,24 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 *
 	 * @param primaryKey the primary key of the k b article
 	 * @return the k b article
-	 * @throws com.liferay.portal.NoSuchModelException if a k b article with the primary key could not be found
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBArticle findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByPrimaryKey(primaryKey);
+
+		if (kbArticle == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchArticleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kbArticle;
 	}
 
 	/**
@@ -27380,18 +27390,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	public KBArticle findByPrimaryKey(long kbArticleId)
 		throws NoSuchArticleException, SystemException {
-		KBArticle kbArticle = fetchByPrimaryKey(kbArticleId);
-
-		if (kbArticle == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbArticleId);
-			}
-
-			throw new NoSuchArticleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kbArticleId);
-		}
-
-		return kbArticle;
+		return findByPrimaryKey((Serializable)kbArticleId);
 	}
 
 	/**
@@ -27404,20 +27403,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the k b article with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kbArticleId the primary key of the k b article
-	 * @return the k b article, or <code>null</code> if a k b article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBArticle fetchByPrimaryKey(long kbArticleId)
-		throws SystemException {
 		KBArticle kbArticle = (KBArticle)EntityCacheUtil.getResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-				KBArticleImpl.class, kbArticleId);
+				KBArticleImpl.class, primaryKey);
 
 		if (kbArticle == _nullKBArticle) {
 			return null;
@@ -27430,19 +27417,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				session = openSession();
 
 				kbArticle = (KBArticle)session.get(KBArticleImpl.class,
-						Long.valueOf(kbArticleId));
+						primaryKey);
 
 				if (kbArticle != null) {
 					cacheResult(kbArticle);
 				}
 				else {
 					EntityCacheUtil.putResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-						KBArticleImpl.class, kbArticleId, _nullKBArticle);
+						KBArticleImpl.class, primaryKey, _nullKBArticle);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-					KBArticleImpl.class, kbArticleId);
+					KBArticleImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -27452,6 +27439,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		return kbArticle;
+	}
+
+	/**
+	 * Returns the k b article with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kbArticleId the primary key of the k b article
+	 * @return the k b article, or <code>null</code> if a k b article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByPrimaryKey(long kbArticleId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kbArticleId);
 	}
 
 	/**
@@ -27658,17 +27657,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	private static final String _SQL_SELECT_KBARTICLE_WHERE = "SELECT kbArticle FROM KBArticle kbArticle WHERE ";
 	private static final String _SQL_COUNT_KBARTICLE = "SELECT COUNT(kbArticle) FROM KBArticle kbArticle";
 	private static final String _SQL_COUNT_KBARTICLE_WHERE = "SELECT COUNT(kbArticle) FROM KBArticle kbArticle WHERE ";
-
-	private static String _removeConjunction(String sql) {
-		int pos = sql.indexOf(" AND ");
-
-		if (pos != -1) {
-			sql = sql.substring(0, pos);
-		}
-
-		return sql;
-	}
-
 	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "kbArticle.rootResourcePrimKey";
 	private static final String _FILTER_SQL_SELECT_KBARTICLE_WHERE = "SELECT DISTINCT {kbArticle.*} FROM KBArticle kbArticle WHERE ";
 	private static final String _FILTER_SQL_SELECT_KBARTICLE_NO_INLINE_DISTINCT_WHERE_1 =

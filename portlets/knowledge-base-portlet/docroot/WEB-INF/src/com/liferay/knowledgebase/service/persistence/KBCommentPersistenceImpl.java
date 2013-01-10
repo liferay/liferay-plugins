@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.impl.KBCommentImpl;
 import com.liferay.knowledgebase.model.impl.KBCommentModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -3652,13 +3651,24 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 *
 	 * @param primaryKey the primary key of the k b comment
 	 * @return the k b comment
-	 * @throws com.liferay.portal.NoSuchModelException if a k b comment with the primary key could not be found
+	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBComment findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchCommentException, SystemException {
+		KBComment kbComment = fetchByPrimaryKey(primaryKey);
+
+		if (kbComment == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchCommentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kbComment;
 	}
 
 	/**
@@ -3671,18 +3681,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	public KBComment findByPrimaryKey(long kbCommentId)
 		throws NoSuchCommentException, SystemException {
-		KBComment kbComment = fetchByPrimaryKey(kbCommentId);
-
-		if (kbComment == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbCommentId);
-			}
-
-			throw new NoSuchCommentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kbCommentId);
-		}
-
-		return kbComment;
+		return findByPrimaryKey((Serializable)kbCommentId);
 	}
 
 	/**
@@ -3695,20 +3694,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	@Override
 	public KBComment fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the k b comment with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kbCommentId the primary key of the k b comment
-	 * @return the k b comment, or <code>null</code> if a k b comment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBComment fetchByPrimaryKey(long kbCommentId)
-		throws SystemException {
 		KBComment kbComment = (KBComment)EntityCacheUtil.getResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
-				KBCommentImpl.class, kbCommentId);
+				KBCommentImpl.class, primaryKey);
 
 		if (kbComment == _nullKBComment) {
 			return null;
@@ -3721,19 +3708,19 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				session = openSession();
 
 				kbComment = (KBComment)session.get(KBCommentImpl.class,
-						Long.valueOf(kbCommentId));
+						primaryKey);
 
 				if (kbComment != null) {
 					cacheResult(kbComment);
 				}
 				else {
 					EntityCacheUtil.putResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
-						KBCommentImpl.class, kbCommentId, _nullKBComment);
+						KBCommentImpl.class, primaryKey, _nullKBComment);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
-					KBCommentImpl.class, kbCommentId);
+					KBCommentImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -3743,6 +3730,18 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		}
 
 		return kbComment;
+	}
+
+	/**
+	 * Returns the k b comment with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kbCommentId the primary key of the k b comment
+	 * @return the k b comment, or <code>null</code> if a k b comment with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBComment fetchByPrimaryKey(long kbCommentId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kbCommentId);
 	}
 
 	/**

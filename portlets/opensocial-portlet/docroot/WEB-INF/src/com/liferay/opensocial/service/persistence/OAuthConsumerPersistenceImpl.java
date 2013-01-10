@@ -19,7 +19,6 @@ import com.liferay.opensocial.model.OAuthConsumer;
 import com.liferay.opensocial.model.impl.OAuthConsumerImpl;
 import com.liferay.opensocial.model.impl.OAuthConsumerModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1252,13 +1251,24 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 *
 	 * @param primaryKey the primary key of the o auth consumer
 	 * @return the o auth consumer
-	 * @throws com.liferay.portal.NoSuchModelException if a o auth consumer with the primary key could not be found
+	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public OAuthConsumer findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchOAuthConsumerException, SystemException {
+		OAuthConsumer oAuthConsumer = fetchByPrimaryKey(primaryKey);
+
+		if (oAuthConsumer == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchOAuthConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return oAuthConsumer;
 	}
 
 	/**
@@ -1271,18 +1281,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	public OAuthConsumer findByPrimaryKey(long oAuthConsumerId)
 		throws NoSuchOAuthConsumerException, SystemException {
-		OAuthConsumer oAuthConsumer = fetchByPrimaryKey(oAuthConsumerId);
-
-		if (oAuthConsumer == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oAuthConsumerId);
-			}
-
-			throw new NoSuchOAuthConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				oAuthConsumerId);
-		}
-
-		return oAuthConsumer;
+		return findByPrimaryKey((Serializable)oAuthConsumerId);
 	}
 
 	/**
@@ -1295,20 +1294,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	@Override
 	public OAuthConsumer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param oAuthConsumerId the primary key of the o auth consumer
-	 * @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthConsumer fetchByPrimaryKey(long oAuthConsumerId)
-		throws SystemException {
 		OAuthConsumer oAuthConsumer = (OAuthConsumer)EntityCacheUtil.getResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-				OAuthConsumerImpl.class, oAuthConsumerId);
+				OAuthConsumerImpl.class, primaryKey);
 
 		if (oAuthConsumer == _nullOAuthConsumer) {
 			return null;
@@ -1321,20 +1308,19 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				session = openSession();
 
 				oAuthConsumer = (OAuthConsumer)session.get(OAuthConsumerImpl.class,
-						Long.valueOf(oAuthConsumerId));
+						primaryKey);
 
 				if (oAuthConsumer != null) {
 					cacheResult(oAuthConsumer);
 				}
 				else {
 					EntityCacheUtil.putResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-						OAuthConsumerImpl.class, oAuthConsumerId,
-						_nullOAuthConsumer);
+						OAuthConsumerImpl.class, primaryKey, _nullOAuthConsumer);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-					OAuthConsumerImpl.class, oAuthConsumerId);
+					OAuthConsumerImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1344,6 +1330,18 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		}
 
 		return oAuthConsumer;
+	}
+
+	/**
+	 * Returns the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param oAuthConsumerId the primary key of the o auth consumer
+	 * @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthConsumer fetchByPrimaryKey(long oAuthConsumerId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)oAuthConsumerId);
 	}
 
 	/**

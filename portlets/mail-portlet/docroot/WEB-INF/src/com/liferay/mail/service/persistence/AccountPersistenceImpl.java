@@ -19,7 +19,6 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.model.impl.AccountImpl;
 import com.liferay.mail.model.impl.AccountModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1172,13 +1171,24 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 *
 	 * @param primaryKey the primary key of the account
 	 * @return the account
-	 * @throws com.liferay.portal.NoSuchModelException if a account with the primary key could not be found
+	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Account findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchAccountException, SystemException {
+		Account account = fetchByPrimaryKey(primaryKey);
+
+		if (account == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchAccountException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return account;
 	}
 
 	/**
@@ -1191,18 +1201,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	public Account findByPrimaryKey(long accountId)
 		throws NoSuchAccountException, SystemException {
-		Account account = fetchByPrimaryKey(accountId);
-
-		if (account == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + accountId);
-			}
-
-			throw new NoSuchAccountException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				accountId);
-		}
-
-		return account;
+		return findByPrimaryKey((Serializable)accountId);
 	}
 
 	/**
@@ -1215,19 +1214,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	@Override
 	public Account fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the account with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param accountId the primary key of the account
-	 * @return the account, or <code>null</code> if a account with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Account fetchByPrimaryKey(long accountId) throws SystemException {
 		Account account = (Account)EntityCacheUtil.getResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
-				AccountImpl.class, accountId);
+				AccountImpl.class, primaryKey);
 
 		if (account == _nullAccount) {
 			return null;
@@ -1239,20 +1227,19 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			try {
 				session = openSession();
 
-				account = (Account)session.get(AccountImpl.class,
-						Long.valueOf(accountId));
+				account = (Account)session.get(AccountImpl.class, primaryKey);
 
 				if (account != null) {
 					cacheResult(account);
 				}
 				else {
 					EntityCacheUtil.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
-						AccountImpl.class, accountId, _nullAccount);
+						AccountImpl.class, primaryKey, _nullAccount);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
-					AccountImpl.class, accountId);
+					AccountImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1262,6 +1249,17 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		}
 
 		return account;
+	}
+
+	/**
+	 * Returns the account with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param accountId the primary key of the account
+	 * @return the account, or <code>null</code> if a account with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Account fetchByPrimaryKey(long accountId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)accountId);
 	}
 
 	/**

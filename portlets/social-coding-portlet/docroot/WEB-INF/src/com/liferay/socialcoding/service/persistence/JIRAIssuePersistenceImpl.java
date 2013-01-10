@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -6559,13 +6558,24 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 *
 	 * @param primaryKey the primary key of the j i r a issue
 	 * @return the j i r a issue
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a issue with the primary key could not be found
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public JIRAIssue findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByPrimaryKey(primaryKey);
+
+		if (jiraIssue == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchJIRAIssueException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return jiraIssue;
 	}
 
 	/**
@@ -6578,18 +6588,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	public JIRAIssue findByPrimaryKey(long jiraIssueId)
 		throws NoSuchJIRAIssueException, SystemException {
-		JIRAIssue jiraIssue = fetchByPrimaryKey(jiraIssueId);
-
-		if (jiraIssue == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraIssueId);
-			}
-
-			throw new NoSuchJIRAIssueException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				jiraIssueId);
-		}
-
-		return jiraIssue;
+		return findByPrimaryKey((Serializable)jiraIssueId);
 	}
 
 	/**
@@ -6602,20 +6601,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	@Override
 	public JIRAIssue fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the j i r a issue with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param jiraIssueId the primary key of the j i r a issue
-	 * @return the j i r a issue, or <code>null</code> if a j i r a issue with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAIssue fetchByPrimaryKey(long jiraIssueId)
-		throws SystemException {
 		JIRAIssue jiraIssue = (JIRAIssue)EntityCacheUtil.getResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-				JIRAIssueImpl.class, jiraIssueId);
+				JIRAIssueImpl.class, primaryKey);
 
 		if (jiraIssue == _nullJIRAIssue) {
 			return null;
@@ -6628,19 +6615,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				session = openSession();
 
 				jiraIssue = (JIRAIssue)session.get(JIRAIssueImpl.class,
-						Long.valueOf(jiraIssueId));
+						primaryKey);
 
 				if (jiraIssue != null) {
 					cacheResult(jiraIssue);
 				}
 				else {
 					EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-						JIRAIssueImpl.class, jiraIssueId, _nullJIRAIssue);
+						JIRAIssueImpl.class, primaryKey, _nullJIRAIssue);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-					JIRAIssueImpl.class, jiraIssueId);
+					JIRAIssueImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -6650,6 +6637,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 
 		return jiraIssue;
+	}
+
+	/**
+	 * Returns the j i r a issue with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param jiraIssueId the primary key of the j i r a issue
+	 * @return the j i r a issue, or <code>null</code> if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByPrimaryKey(long jiraIssueId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)jiraIssueId);
 	}
 
 	/**

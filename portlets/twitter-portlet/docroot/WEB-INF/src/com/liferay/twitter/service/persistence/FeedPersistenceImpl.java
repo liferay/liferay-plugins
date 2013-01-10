@@ -14,7 +14,6 @@
 
 package com.liferay.twitter.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -944,13 +943,24 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param primaryKey the primary key of the feed
 	 * @return the feed
-	 * @throws com.liferay.portal.NoSuchModelException if a feed with the primary key could not be found
+	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Feed findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchFeedException, SystemException {
+		Feed feed = fetchByPrimaryKey(primaryKey);
+
+		if (feed == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchFeedException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return feed;
 	}
 
 	/**
@@ -963,18 +973,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	public Feed findByPrimaryKey(long feedId)
 		throws NoSuchFeedException, SystemException {
-		Feed feed = fetchByPrimaryKey(feedId);
-
-		if (feed == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + feedId);
-			}
-
-			throw new NoSuchFeedException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				feedId);
-		}
-
-		return feed;
+		return findByPrimaryKey((Serializable)feedId);
 	}
 
 	/**
@@ -987,19 +986,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	@Override
 	public Feed fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the feed with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param feedId the primary key of the feed
-	 * @return the feed, or <code>null</code> if a feed with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Feed fetchByPrimaryKey(long feedId) throws SystemException {
 		Feed feed = (Feed)EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
-				FeedImpl.class, feedId);
+				FeedImpl.class, primaryKey);
 
 		if (feed == _nullFeed) {
 			return null;
@@ -1011,19 +999,19 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				feed = (Feed)session.get(FeedImpl.class, Long.valueOf(feedId));
+				feed = (Feed)session.get(FeedImpl.class, primaryKey);
 
 				if (feed != null) {
 					cacheResult(feed);
 				}
 				else {
 					EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
-						FeedImpl.class, feedId, _nullFeed);
+						FeedImpl.class, primaryKey, _nullFeed);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
-					FeedImpl.class, feedId);
+					FeedImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1033,6 +1021,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 
 		return feed;
+	}
+
+	/**
+	 * Returns the feed with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param feedId the primary key of the feed
+	 * @return the feed, or <code>null</code> if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Feed fetchByPrimaryKey(long feedId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)feedId);
 	}
 
 	/**

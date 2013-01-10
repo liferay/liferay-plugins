@@ -19,7 +19,6 @@ import com.liferay.ams.model.Asset;
 import com.liferay.ams.model.impl.AssetImpl;
 import com.liferay.ams.model.impl.AssetModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -327,13 +326,24 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 *
 	 * @param primaryKey the primary key of the asset
 	 * @return the asset
-	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
+	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Asset findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchAssetException, SystemException {
+		Asset asset = fetchByPrimaryKey(primaryKey);
+
+		if (asset == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchAssetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return asset;
 	}
 
 	/**
@@ -346,18 +356,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	public Asset findByPrimaryKey(long assetId)
 		throws NoSuchAssetException, SystemException {
-		Asset asset = fetchByPrimaryKey(assetId);
-
-		if (asset == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + assetId);
-			}
-
-			throw new NoSuchAssetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				assetId);
-		}
-
-		return asset;
+		return findByPrimaryKey((Serializable)assetId);
 	}
 
 	/**
@@ -370,19 +369,8 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	@Override
 	public Asset fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the asset with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param assetId the primary key of the asset
-	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Asset fetchByPrimaryKey(long assetId) throws SystemException {
 		Asset asset = (Asset)EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-				AssetImpl.class, assetId);
+				AssetImpl.class, primaryKey);
 
 		if (asset == _nullAsset) {
 			return null;
@@ -394,20 +382,19 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			try {
 				session = openSession();
 
-				asset = (Asset)session.get(AssetImpl.class,
-						Long.valueOf(assetId));
+				asset = (Asset)session.get(AssetImpl.class, primaryKey);
 
 				if (asset != null) {
 					cacheResult(asset);
 				}
 				else {
 					EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-						AssetImpl.class, assetId, _nullAsset);
+						AssetImpl.class, primaryKey, _nullAsset);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-					AssetImpl.class, assetId);
+					AssetImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -417,6 +404,17 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		}
 
 		return asset;
+	}
+
+	/**
+	 * Returns the asset with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param assetId the primary key of the asset
+	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Asset fetchByPrimaryKey(long assetId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)assetId);
 	}
 
 	/**

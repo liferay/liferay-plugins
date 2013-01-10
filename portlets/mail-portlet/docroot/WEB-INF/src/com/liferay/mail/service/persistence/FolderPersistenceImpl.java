@@ -19,7 +19,6 @@ import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.impl.FolderImpl;
 import com.liferay.mail.model.impl.FolderModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1163,13 +1162,24 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 *
 	 * @param primaryKey the primary key of the folder
 	 * @return the folder
-	 * @throws com.liferay.portal.NoSuchModelException if a folder with the primary key could not be found
+	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Folder findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchFolderException, SystemException {
+		Folder folder = fetchByPrimaryKey(primaryKey);
+
+		if (folder == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchFolderException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return folder;
 	}
 
 	/**
@@ -1182,18 +1192,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public Folder findByPrimaryKey(long folderId)
 		throws NoSuchFolderException, SystemException {
-		Folder folder = fetchByPrimaryKey(folderId);
-
-		if (folder == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + folderId);
-			}
-
-			throw new NoSuchFolderException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				folderId);
-		}
-
-		return folder;
+		return findByPrimaryKey((Serializable)folderId);
 	}
 
 	/**
@@ -1206,19 +1205,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	@Override
 	public Folder fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the folder with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param folderId the primary key of the folder
-	 * @return the folder, or <code>null</code> if a folder with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder fetchByPrimaryKey(long folderId) throws SystemException {
 		Folder folder = (Folder)EntityCacheUtil.getResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
-				FolderImpl.class, folderId);
+				FolderImpl.class, primaryKey);
 
 		if (folder == _nullFolder) {
 			return null;
@@ -1230,20 +1218,19 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			try {
 				session = openSession();
 
-				folder = (Folder)session.get(FolderImpl.class,
-						Long.valueOf(folderId));
+				folder = (Folder)session.get(FolderImpl.class, primaryKey);
 
 				if (folder != null) {
 					cacheResult(folder);
 				}
 				else {
 					EntityCacheUtil.putResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
-						FolderImpl.class, folderId, _nullFolder);
+						FolderImpl.class, primaryKey, _nullFolder);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
-					FolderImpl.class, folderId);
+					FolderImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1253,6 +1240,17 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 
 		return folder;
+	}
+
+	/**
+	 * Returns the folder with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param folderId the primary key of the folder
+	 * @return the folder, or <code>null</code> if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder fetchByPrimaryKey(long folderId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)folderId);
 	}
 
 	/**

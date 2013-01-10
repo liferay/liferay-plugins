@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1628,13 +1627,24 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 *
 	 * @param primaryKey the primary key of the kaleo condition
 	 * @return the kaleo condition
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo condition with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoCondition findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchConditionException, SystemException {
+		KaleoCondition kaleoCondition = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoCondition == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchConditionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoCondition;
 	}
 
 	/**
@@ -1647,18 +1657,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public KaleoCondition findByPrimaryKey(long kaleoConditionId)
 		throws NoSuchConditionException, SystemException {
-		KaleoCondition kaleoCondition = fetchByPrimaryKey(kaleoConditionId);
-
-		if (kaleoCondition == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoConditionId);
-			}
-
-			throw new NoSuchConditionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoConditionId);
-		}
-
-		return kaleoCondition;
+		return findByPrimaryKey((Serializable)kaleoConditionId);
 	}
 
 	/**
@@ -1671,20 +1670,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo condition with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoConditionId the primary key of the kaleo condition
-	 * @return the kaleo condition, or <code>null</code> if a kaleo condition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoCondition fetchByPrimaryKey(long kaleoConditionId)
-		throws SystemException {
 		KaleoCondition kaleoCondition = (KaleoCondition)EntityCacheUtil.getResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionImpl.class, kaleoConditionId);
+				KaleoConditionImpl.class, primaryKey);
 
 		if (kaleoCondition == _nullKaleoCondition) {
 			return null;
@@ -1697,20 +1684,20 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				session = openSession();
 
 				kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
-						Long.valueOf(kaleoConditionId));
+						primaryKey);
 
 				if (kaleoCondition != null) {
 					cacheResult(kaleoCondition);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoConditionImpl.class, kaleoConditionId,
+						KaleoConditionImpl.class, primaryKey,
 						_nullKaleoCondition);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoConditionImpl.class, kaleoConditionId);
+					KaleoConditionImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1720,6 +1707,18 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		}
 
 		return kaleoCondition;
+	}
+
+	/**
+	 * Returns the kaleo condition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoConditionId the primary key of the kaleo condition
+	 * @return the kaleo condition, or <code>null</code> if a kaleo condition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoCondition fetchByPrimaryKey(long kaleoConditionId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoConditionId);
 	}
 
 	/**

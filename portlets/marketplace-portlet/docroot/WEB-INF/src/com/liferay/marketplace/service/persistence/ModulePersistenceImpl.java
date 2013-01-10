@@ -19,7 +19,6 @@ import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.model.impl.ModuleImpl;
 import com.liferay.marketplace.model.impl.ModuleModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2229,13 +2228,24 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 *
 	 * @param primaryKey the primary key of the module
 	 * @return the module
-	 * @throws com.liferay.portal.NoSuchModelException if a module with the primary key could not be found
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Module findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchModuleException, SystemException {
+		Module module = fetchByPrimaryKey(primaryKey);
+
+		if (module == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchModuleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return module;
 	}
 
 	/**
@@ -2248,18 +2258,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	public Module findByPrimaryKey(long moduleId)
 		throws NoSuchModuleException, SystemException {
-		Module module = fetchByPrimaryKey(moduleId);
-
-		if (module == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + moduleId);
-			}
-
-			throw new NoSuchModuleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				moduleId);
-		}
-
-		return module;
+		return findByPrimaryKey((Serializable)moduleId);
 	}
 
 	/**
@@ -2272,19 +2271,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	@Override
 	public Module fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the module with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param moduleId the primary key of the module
-	 * @return the module, or <code>null</code> if a module with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module fetchByPrimaryKey(long moduleId) throws SystemException {
 		Module module = (Module)EntityCacheUtil.getResult(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-				ModuleImpl.class, moduleId);
+				ModuleImpl.class, primaryKey);
 
 		if (module == _nullModule) {
 			return null;
@@ -2296,20 +2284,19 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			try {
 				session = openSession();
 
-				module = (Module)session.get(ModuleImpl.class,
-						Long.valueOf(moduleId));
+				module = (Module)session.get(ModuleImpl.class, primaryKey);
 
 				if (module != null) {
 					cacheResult(module);
 				}
 				else {
 					EntityCacheUtil.putResult(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-						ModuleImpl.class, moduleId, _nullModule);
+						ModuleImpl.class, primaryKey, _nullModule);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-					ModuleImpl.class, moduleId);
+					ModuleImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2319,6 +2306,17 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		}
 
 		return module;
+	}
+
+	/**
+	 * Returns the module with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param moduleId the primary key of the module
+	 * @return the module, or <code>null</code> if a module with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByPrimaryKey(long moduleId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)moduleId);
 	}
 
 	/**

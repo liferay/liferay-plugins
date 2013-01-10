@@ -14,7 +14,6 @@
 
 package com.liferay.wsrp.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2284,13 +2283,24 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 *
 	 * @param primaryKey the primary key of the w s r p producer
 	 * @return the w s r p producer
-	 * @throws com.liferay.portal.NoSuchModelException if a w s r p producer with the primary key could not be found
+	 * @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WSRPProducer findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchProducerException, SystemException {
+		WSRPProducer wsrpProducer = fetchByPrimaryKey(primaryKey);
+
+		if (wsrpProducer == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchProducerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return wsrpProducer;
 	}
 
 	/**
@@ -2303,18 +2313,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public WSRPProducer findByPrimaryKey(long wsrpProducerId)
 		throws NoSuchProducerException, SystemException {
-		WSRPProducer wsrpProducer = fetchByPrimaryKey(wsrpProducerId);
-
-		if (wsrpProducer == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + wsrpProducerId);
-			}
-
-			throw new NoSuchProducerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				wsrpProducerId);
-		}
-
-		return wsrpProducer;
+		return findByPrimaryKey((Serializable)wsrpProducerId);
 	}
 
 	/**
@@ -2327,20 +2326,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	@Override
 	public WSRPProducer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the w s r p producer with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param wsrpProducerId the primary key of the w s r p producer
-	 * @return the w s r p producer, or <code>null</code> if a w s r p producer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WSRPProducer fetchByPrimaryKey(long wsrpProducerId)
-		throws SystemException {
 		WSRPProducer wsrpProducer = (WSRPProducer)EntityCacheUtil.getResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
-				WSRPProducerImpl.class, wsrpProducerId);
+				WSRPProducerImpl.class, primaryKey);
 
 		if (wsrpProducer == _nullWSRPProducer) {
 			return null;
@@ -2353,20 +2340,19 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 				session = openSession();
 
 				wsrpProducer = (WSRPProducer)session.get(WSRPProducerImpl.class,
-						Long.valueOf(wsrpProducerId));
+						primaryKey);
 
 				if (wsrpProducer != null) {
 					cacheResult(wsrpProducer);
 				}
 				else {
 					EntityCacheUtil.putResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
-						WSRPProducerImpl.class, wsrpProducerId,
-						_nullWSRPProducer);
+						WSRPProducerImpl.class, primaryKey, _nullWSRPProducer);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
-					WSRPProducerImpl.class, wsrpProducerId);
+					WSRPProducerImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2376,6 +2362,18 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		}
 
 		return wsrpProducer;
+	}
+
+	/**
+	 * Returns the w s r p producer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param wsrpProducerId the primary key of the w s r p producer
+	 * @return the w s r p producer, or <code>null</code> if a w s r p producer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPProducer fetchByPrimaryKey(long wsrpProducerId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)wsrpProducerId);
 	}
 
 	/**

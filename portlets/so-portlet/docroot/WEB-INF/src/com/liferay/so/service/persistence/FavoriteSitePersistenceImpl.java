@@ -14,7 +14,6 @@
 
 package com.liferay.so.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1116,13 +1115,24 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 *
 	 * @param primaryKey the primary key of the favorite site
 	 * @return the favorite site
-	 * @throws com.liferay.portal.NoSuchModelException if a favorite site with the primary key could not be found
+	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public FavoriteSite findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchFavoriteSiteException, SystemException {
+		FavoriteSite favoriteSite = fetchByPrimaryKey(primaryKey);
+
+		if (favoriteSite == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchFavoriteSiteException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return favoriteSite;
 	}
 
 	/**
@@ -1135,18 +1145,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	public FavoriteSite findByPrimaryKey(long favoriteSiteId)
 		throws NoSuchFavoriteSiteException, SystemException {
-		FavoriteSite favoriteSite = fetchByPrimaryKey(favoriteSiteId);
-
-		if (favoriteSite == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + favoriteSiteId);
-			}
-
-			throw new NoSuchFavoriteSiteException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				favoriteSiteId);
-		}
-
-		return favoriteSite;
+		return findByPrimaryKey((Serializable)favoriteSiteId);
 	}
 
 	/**
@@ -1159,20 +1158,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	@Override
 	public FavoriteSite fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the favorite site with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param favoriteSiteId the primary key of the favorite site
-	 * @return the favorite site, or <code>null</code> if a favorite site with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public FavoriteSite fetchByPrimaryKey(long favoriteSiteId)
-		throws SystemException {
 		FavoriteSite favoriteSite = (FavoriteSite)EntityCacheUtil.getResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
-				FavoriteSiteImpl.class, favoriteSiteId);
+				FavoriteSiteImpl.class, primaryKey);
 
 		if (favoriteSite == _nullFavoriteSite) {
 			return null;
@@ -1185,20 +1172,19 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 				session = openSession();
 
 				favoriteSite = (FavoriteSite)session.get(FavoriteSiteImpl.class,
-						Long.valueOf(favoriteSiteId));
+						primaryKey);
 
 				if (favoriteSite != null) {
 					cacheResult(favoriteSite);
 				}
 				else {
 					EntityCacheUtil.putResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
-						FavoriteSiteImpl.class, favoriteSiteId,
-						_nullFavoriteSite);
+						FavoriteSiteImpl.class, primaryKey, _nullFavoriteSite);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
-					FavoriteSiteImpl.class, favoriteSiteId);
+					FavoriteSiteImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1208,6 +1194,18 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		}
 
 		return favoriteSite;
+	}
+
+	/**
+	 * Returns the favorite site with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param favoriteSiteId the primary key of the favorite site
+	 * @return the favorite site, or <code>null</code> if a favorite site with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FavoriteSite fetchByPrimaryKey(long favoriteSiteId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)favoriteSiteId);
 	}
 
 	/**

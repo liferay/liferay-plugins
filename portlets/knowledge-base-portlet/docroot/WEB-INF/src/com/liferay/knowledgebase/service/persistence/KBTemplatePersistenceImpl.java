@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.model.impl.KBTemplateImpl;
 import com.liferay.knowledgebase.model.impl.KBTemplateModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2637,13 +2636,24 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param primaryKey the primary key of the k b template
 	 * @return the k b template
-	 * @throws com.liferay.portal.NoSuchModelException if a k b template with the primary key could not be found
+	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTemplateException, SystemException {
+		KBTemplate kbTemplate = fetchByPrimaryKey(primaryKey);
+
+		if (kbTemplate == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTemplateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kbTemplate;
 	}
 
 	/**
@@ -2656,18 +2666,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	public KBTemplate findByPrimaryKey(long kbTemplateId)
 		throws NoSuchTemplateException, SystemException {
-		KBTemplate kbTemplate = fetchByPrimaryKey(kbTemplateId);
-
-		if (kbTemplate == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbTemplateId);
-			}
-
-			throw new NoSuchTemplateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kbTemplateId);
-		}
-
-		return kbTemplate;
+		return findByPrimaryKey((Serializable)kbTemplateId);
 	}
 
 	/**
@@ -2680,20 +2679,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	@Override
 	public KBTemplate fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kbTemplateId the primary key of the k b template
-	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBTemplate fetchByPrimaryKey(long kbTemplateId)
-		throws SystemException {
 		KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-				KBTemplateImpl.class, kbTemplateId);
+				KBTemplateImpl.class, primaryKey);
 
 		if (kbTemplate == _nullKBTemplate) {
 			return null;
@@ -2706,19 +2693,19 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				session = openSession();
 
 				kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
-						Long.valueOf(kbTemplateId));
+						primaryKey);
 
 				if (kbTemplate != null) {
 					cacheResult(kbTemplate);
 				}
 				else {
 					EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-						KBTemplateImpl.class, kbTemplateId, _nullKBTemplate);
+						KBTemplateImpl.class, primaryKey, _nullKBTemplate);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-					KBTemplateImpl.class, kbTemplateId);
+					KBTemplateImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2728,6 +2715,18 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		}
 
 		return kbTemplate;
+	}
+
+	/**
+	 * Returns the k b template with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kbTemplateId the primary key of the k b template
+	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBTemplate fetchByPrimaryKey(long kbTemplateId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kbTemplateId);
 	}
 
 	/**

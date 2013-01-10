@@ -14,7 +14,6 @@
 
 package com.liferay.tasks.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -5452,13 +5451,24 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 *
 	 * @param primaryKey the primary key of the tasks entry
 	 * @return the tasks entry
-	 * @throws com.liferay.portal.NoSuchModelException if a tasks entry with the primary key could not be found
+	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public TasksEntry findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByPrimaryKey(primaryKey);
+
+		if (tasksEntry == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTasksEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return tasksEntry;
 	}
 
 	/**
@@ -5471,18 +5481,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	public TasksEntry findByPrimaryKey(long tasksEntryId)
 		throws NoSuchTasksEntryException, SystemException {
-		TasksEntry tasksEntry = fetchByPrimaryKey(tasksEntryId);
-
-		if (tasksEntry == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + tasksEntryId);
-			}
-
-			throw new NoSuchTasksEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				tasksEntryId);
-		}
-
-		return tasksEntry;
+		return findByPrimaryKey((Serializable)tasksEntryId);
 	}
 
 	/**
@@ -5495,20 +5494,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	@Override
 	public TasksEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the tasks entry with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param tasksEntryId the primary key of the tasks entry
-	 * @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public TasksEntry fetchByPrimaryKey(long tasksEntryId)
-		throws SystemException {
 		TasksEntry tasksEntry = (TasksEntry)EntityCacheUtil.getResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
-				TasksEntryImpl.class, tasksEntryId);
+				TasksEntryImpl.class, primaryKey);
 
 		if (tasksEntry == _nullTasksEntry) {
 			return null;
@@ -5521,19 +5508,19 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				session = openSession();
 
 				tasksEntry = (TasksEntry)session.get(TasksEntryImpl.class,
-						Long.valueOf(tasksEntryId));
+						primaryKey);
 
 				if (tasksEntry != null) {
 					cacheResult(tasksEntry);
 				}
 				else {
 					EntityCacheUtil.putResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
-						TasksEntryImpl.class, tasksEntryId, _nullTasksEntry);
+						TasksEntryImpl.class, primaryKey, _nullTasksEntry);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
-					TasksEntryImpl.class, tasksEntryId);
+					TasksEntryImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -5543,6 +5530,18 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		}
 
 		return tasksEntry;
+	}
+
+	/**
+	 * Returns the tasks entry with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param tasksEntryId the primary key of the tasks entry
+	 * @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByPrimaryKey(long tasksEntryId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)tasksEntryId);
 	}
 
 	/**

@@ -19,7 +19,6 @@ import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.impl.AppImpl;
 import com.liferay.marketplace.model.impl.AppModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2198,13 +2197,24 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 *
 	 * @param primaryKey the primary key of the app
 	 * @return the app
-	 * @throws com.liferay.portal.NoSuchModelException if a app with the primary key could not be found
+	 * @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public App findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchAppException, SystemException {
+		App app = fetchByPrimaryKey(primaryKey);
+
+		if (app == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchAppException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return app;
 	}
 
 	/**
@@ -2217,18 +2227,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public App findByPrimaryKey(long appId)
 		throws NoSuchAppException, SystemException {
-		App app = fetchByPrimaryKey(appId);
-
-		if (app == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + appId);
-			}
-
-			throw new NoSuchAppException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				appId);
-		}
-
-		return app;
+		return findByPrimaryKey((Serializable)appId);
 	}
 
 	/**
@@ -2241,19 +2240,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	@Override
 	public App fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the app with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param appId the primary key of the app
-	 * @return the app, or <code>null</code> if a app with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public App fetchByPrimaryKey(long appId) throws SystemException {
 		App app = (App)EntityCacheUtil.getResult(AppModelImpl.ENTITY_CACHE_ENABLED,
-				AppImpl.class, appId);
+				AppImpl.class, primaryKey);
 
 		if (app == _nullApp) {
 			return null;
@@ -2265,19 +2253,19 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			try {
 				session = openSession();
 
-				app = (App)session.get(AppImpl.class, Long.valueOf(appId));
+				app = (App)session.get(AppImpl.class, primaryKey);
 
 				if (app != null) {
 					cacheResult(app);
 				}
 				else {
 					EntityCacheUtil.putResult(AppModelImpl.ENTITY_CACHE_ENABLED,
-						AppImpl.class, appId, _nullApp);
+						AppImpl.class, primaryKey, _nullApp);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
-					AppImpl.class, appId);
+					AppImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2287,6 +2275,17 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		}
 
 		return app;
+	}
+
+	/**
+	 * Returns the app with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param appId the primary key of the app
+	 * @return the app, or <code>null</code> if a app with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public App fetchByPrimaryKey(long appId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)appId);
 	}
 
 	/**

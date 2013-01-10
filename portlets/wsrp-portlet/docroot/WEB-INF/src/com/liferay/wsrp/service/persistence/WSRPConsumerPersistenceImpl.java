@@ -14,7 +14,6 @@
 
 package com.liferay.wsrp.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1966,13 +1965,24 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 *
 	 * @param primaryKey the primary key of the w s r p consumer
 	 * @return the w s r p consumer
-	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer with the primary key could not be found
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WSRPConsumer findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchConsumerException, SystemException {
+		WSRPConsumer wsrpConsumer = fetchByPrimaryKey(primaryKey);
+
+		if (wsrpConsumer == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return wsrpConsumer;
 	}
 
 	/**
@@ -1985,18 +1995,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 */
 	public WSRPConsumer findByPrimaryKey(long wsrpConsumerId)
 		throws NoSuchConsumerException, SystemException {
-		WSRPConsumer wsrpConsumer = fetchByPrimaryKey(wsrpConsumerId);
-
-		if (wsrpConsumer == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + wsrpConsumerId);
-			}
-
-			throw new NoSuchConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				wsrpConsumerId);
-		}
-
-		return wsrpConsumer;
+		return findByPrimaryKey((Serializable)wsrpConsumerId);
 	}
 
 	/**
@@ -2009,20 +2008,8 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	@Override
 	public WSRPConsumer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param wsrpConsumerId the primary key of the w s r p consumer
-	 * @return the w s r p consumer, or <code>null</code> if a w s r p consumer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WSRPConsumer fetchByPrimaryKey(long wsrpConsumerId)
-		throws SystemException {
 		WSRPConsumer wsrpConsumer = (WSRPConsumer)EntityCacheUtil.getResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-				WSRPConsumerImpl.class, wsrpConsumerId);
+				WSRPConsumerImpl.class, primaryKey);
 
 		if (wsrpConsumer == _nullWSRPConsumer) {
 			return null;
@@ -2035,20 +2022,19 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 				session = openSession();
 
 				wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
-						Long.valueOf(wsrpConsumerId));
+						primaryKey);
 
 				if (wsrpConsumer != null) {
 					cacheResult(wsrpConsumer);
 				}
 				else {
 					EntityCacheUtil.putResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-						WSRPConsumerImpl.class, wsrpConsumerId,
-						_nullWSRPConsumer);
+						WSRPConsumerImpl.class, primaryKey, _nullWSRPConsumer);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-					WSRPConsumerImpl.class, wsrpConsumerId);
+					WSRPConsumerImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2058,6 +2044,18 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 
 		return wsrpConsumer;
+	}
+
+	/**
+	 * Returns the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param wsrpConsumerId the primary key of the w s r p consumer
+	 * @return the w s r p consumer, or <code>null</code> if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumer fetchByPrimaryKey(long wsrpConsumerId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)wsrpConsumerId);
 	}
 
 	/**

@@ -19,7 +19,6 @@ import com.liferay.ams.model.Type;
 import com.liferay.ams.model.impl.TypeImpl;
 import com.liferay.ams.model.impl.TypeModelImpl;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -318,13 +317,24 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 *
 	 * @param primaryKey the primary key of the type
 	 * @return the type
-	 * @throws com.liferay.portal.NoSuchModelException if a type with the primary key could not be found
+	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Type findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTypeException, SystemException {
+		Type type = fetchByPrimaryKey(primaryKey);
+
+		if (type == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTypeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return type;
 	}
 
 	/**
@@ -337,18 +347,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 */
 	public Type findByPrimaryKey(long typeId)
 		throws NoSuchTypeException, SystemException {
-		Type type = fetchByPrimaryKey(typeId);
-
-		if (type == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + typeId);
-			}
-
-			throw new NoSuchTypeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				typeId);
-		}
-
-		return type;
+		return findByPrimaryKey((Serializable)typeId);
 	}
 
 	/**
@@ -361,19 +360,8 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	@Override
 	public Type fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the type with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param typeId the primary key of the type
-	 * @return the type, or <code>null</code> if a type with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Type fetchByPrimaryKey(long typeId) throws SystemException {
 		Type type = (Type)EntityCacheUtil.getResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-				TypeImpl.class, typeId);
+				TypeImpl.class, primaryKey);
 
 		if (type == _nullType) {
 			return null;
@@ -385,19 +373,19 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			try {
 				session = openSession();
 
-				type = (Type)session.get(TypeImpl.class, Long.valueOf(typeId));
+				type = (Type)session.get(TypeImpl.class, primaryKey);
 
 				if (type != null) {
 					cacheResult(type);
 				}
 				else {
 					EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-						TypeImpl.class, typeId, _nullType);
+						TypeImpl.class, primaryKey, _nullType);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-					TypeImpl.class, typeId);
+					TypeImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -407,6 +395,17 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		}
 
 		return type;
+	}
+
+	/**
+	 * Returns the type with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param typeId the primary key of the type
+	 * @return the type, or <code>null</code> if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Type fetchByPrimaryKey(long typeId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)typeId);
 	}
 
 	/**

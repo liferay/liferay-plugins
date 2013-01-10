@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -2320,13 +2319,24 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param primaryKey the primary key of the kaleo timer instance token
 	 * @return the kaleo timer instance token
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo timer instance token with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTimerInstanceToken findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoTimerInstanceToken == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTimerInstanceTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoTimerInstanceToken;
 	}
 
 	/**
@@ -2340,19 +2350,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	public KaleoTimerInstanceToken findByPrimaryKey(
 		long kaleoTimerInstanceTokenId)
 		throws NoSuchTimerInstanceTokenException, SystemException {
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByPrimaryKey(kaleoTimerInstanceTokenId);
-
-		if (kaleoTimerInstanceToken == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoTimerInstanceTokenId);
-			}
-
-			throw new NoSuchTimerInstanceTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoTimerInstanceTokenId);
-		}
-
-		return kaleoTimerInstanceToken;
+		return findByPrimaryKey((Serializable)kaleoTimerInstanceTokenId);
 	}
 
 	/**
@@ -2365,20 +2363,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	@Override
 	public KaleoTimerInstanceToken fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo timer instance token with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoTimerInstanceTokenId the primary key of the kaleo timer instance token
-	 * @return the kaleo timer instance token, or <code>null</code> if a kaleo timer instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken fetchByPrimaryKey(
-		long kaleoTimerInstanceTokenId) throws SystemException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = (KaleoTimerInstanceToken)EntityCacheUtil.getResult(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTimerInstanceTokenImpl.class, kaleoTimerInstanceTokenId);
+				KaleoTimerInstanceTokenImpl.class, primaryKey);
 
 		if (kaleoTimerInstanceToken == _nullKaleoTimerInstanceToken) {
 			return null;
@@ -2391,20 +2377,20 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 				session = openSession();
 
 				kaleoTimerInstanceToken = (KaleoTimerInstanceToken)session.get(KaleoTimerInstanceTokenImpl.class,
-						Long.valueOf(kaleoTimerInstanceTokenId));
+						primaryKey);
 
 				if (kaleoTimerInstanceToken != null) {
 					cacheResult(kaleoTimerInstanceToken);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTimerInstanceTokenImpl.class,
-						kaleoTimerInstanceTokenId, _nullKaleoTimerInstanceToken);
+						KaleoTimerInstanceTokenImpl.class, primaryKey,
+						_nullKaleoTimerInstanceToken);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoTimerInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoTimerInstanceTokenImpl.class, kaleoTimerInstanceTokenId);
+					KaleoTimerInstanceTokenImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2414,6 +2400,18 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		}
 
 		return kaleoTimerInstanceToken;
+	}
+
+	/**
+	 * Returns the kaleo timer instance token with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoTimerInstanceTokenId the primary key of the kaleo timer instance token
+	 * @return the kaleo timer instance token, or <code>null</code> if a kaleo timer instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByPrimaryKey(
+		long kaleoTimerInstanceTokenId) throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoTimerInstanceTokenId);
 	}
 
 	/**

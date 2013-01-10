@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
@@ -2061,13 +2060,24 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 *
 	 * @param primaryKey the primary key of the kaleo notification
 	 * @return the kaleo notification
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo notification with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoNotification findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchNotificationException, SystemException {
+		KaleoNotification kaleoNotification = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoNotification == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchNotificationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoNotification;
 	}
 
 	/**
@@ -2080,19 +2090,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	public KaleoNotification findByPrimaryKey(long kaleoNotificationId)
 		throws NoSuchNotificationException, SystemException {
-		KaleoNotification kaleoNotification = fetchByPrimaryKey(kaleoNotificationId);
-
-		if (kaleoNotification == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoNotificationId);
-			}
-
-			throw new NoSuchNotificationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoNotificationId);
-		}
-
-		return kaleoNotification;
+		return findByPrimaryKey((Serializable)kaleoNotificationId);
 	}
 
 	/**
@@ -2105,20 +2103,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public KaleoNotification fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo notification with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoNotificationId the primary key of the kaleo notification
-	 * @return the kaleo notification, or <code>null</code> if a kaleo notification with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoNotification fetchByPrimaryKey(long kaleoNotificationId)
-		throws SystemException {
 		KaleoNotification kaleoNotification = (KaleoNotification)EntityCacheUtil.getResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNotificationImpl.class, kaleoNotificationId);
+				KaleoNotificationImpl.class, primaryKey);
 
 		if (kaleoNotification == _nullKaleoNotification) {
 			return null;
@@ -2131,20 +2117,20 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				session = openSession();
 
 				kaleoNotification = (KaleoNotification)session.get(KaleoNotificationImpl.class,
-						Long.valueOf(kaleoNotificationId));
+						primaryKey);
 
 				if (kaleoNotification != null) {
 					cacheResult(kaleoNotification);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoNotificationImpl.class, kaleoNotificationId,
+						KaleoNotificationImpl.class, primaryKey,
 						_nullKaleoNotification);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoNotificationImpl.class, kaleoNotificationId);
+					KaleoNotificationImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2154,6 +2140,18 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 
 		return kaleoNotification;
+	}
+
+	/**
+	 * Returns the kaleo notification with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoNotificationId the primary key of the kaleo notification
+	 * @return the kaleo notification, or <code>null</code> if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotification fetchByPrimaryKey(long kaleoNotificationId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoNotificationId);
 	}
 
 	/**

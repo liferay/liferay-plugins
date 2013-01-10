@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -850,13 +849,24 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 *
 	 * @param primaryKey the primary key of the j i r a change item
 	 * @return the j i r a change item
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change item with the primary key could not be found
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public JIRAChangeItem findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchJIRAChangeItemException, SystemException {
+		JIRAChangeItem jiraChangeItem = fetchByPrimaryKey(primaryKey);
+
+		if (jiraChangeItem == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchJIRAChangeItemException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return jiraChangeItem;
 	}
 
 	/**
@@ -869,18 +879,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	public JIRAChangeItem findByPrimaryKey(long jiraChangeItemId)
 		throws NoSuchJIRAChangeItemException, SystemException {
-		JIRAChangeItem jiraChangeItem = fetchByPrimaryKey(jiraChangeItemId);
-
-		if (jiraChangeItem == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraChangeItemId);
-			}
-
-			throw new NoSuchJIRAChangeItemException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				jiraChangeItemId);
-		}
-
-		return jiraChangeItem;
+		return findByPrimaryKey((Serializable)jiraChangeItemId);
 	}
 
 	/**
@@ -893,20 +892,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	@Override
 	public JIRAChangeItem fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param jiraChangeItemId the primary key of the j i r a change item
-	 * @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAChangeItem fetchByPrimaryKey(long jiraChangeItemId)
-		throws SystemException {
 		JIRAChangeItem jiraChangeItem = (JIRAChangeItem)EntityCacheUtil.getResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-				JIRAChangeItemImpl.class, jiraChangeItemId);
+				JIRAChangeItemImpl.class, primaryKey);
 
 		if (jiraChangeItem == _nullJIRAChangeItem) {
 			return null;
@@ -919,20 +906,20 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 				session = openSession();
 
 				jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
-						Long.valueOf(jiraChangeItemId));
+						primaryKey);
 
 				if (jiraChangeItem != null) {
 					cacheResult(jiraChangeItem);
 				}
 				else {
 					EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-						JIRAChangeItemImpl.class, jiraChangeItemId,
+						JIRAChangeItemImpl.class, primaryKey,
 						_nullJIRAChangeItem);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-					JIRAChangeItemImpl.class, jiraChangeItemId);
+					JIRAChangeItemImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -942,6 +929,18 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		}
 
 		return jiraChangeItem;
+	}
+
+	/**
+	 * Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param jiraChangeItemId the primary key of the j i r a change item
+	 * @return the j i r a change item, or <code>null</code> if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeItem fetchByPrimaryKey(long jiraChangeItemId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)jiraChangeItemId);
 	}
 
 	/**

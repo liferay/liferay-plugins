@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1911,13 +1910,24 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 *
 	 * @param primaryKey the primary key of the j i r a action
 	 * @return the j i r a action
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a action with the primary key could not be found
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public JIRAAction findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchJIRAActionException, SystemException {
+		JIRAAction jiraAction = fetchByPrimaryKey(primaryKey);
+
+		if (jiraAction == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchJIRAActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return jiraAction;
 	}
 
 	/**
@@ -1930,18 +1940,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public JIRAAction findByPrimaryKey(long jiraActionId)
 		throws NoSuchJIRAActionException, SystemException {
-		JIRAAction jiraAction = fetchByPrimaryKey(jiraActionId);
-
-		if (jiraAction == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraActionId);
-			}
-
-			throw new NoSuchJIRAActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				jiraActionId);
-		}
-
-		return jiraAction;
+		return findByPrimaryKey((Serializable)jiraActionId);
 	}
 
 	/**
@@ -1954,20 +1953,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	@Override
 	public JIRAAction fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the j i r a action with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param jiraActionId the primary key of the j i r a action
-	 * @return the j i r a action, or <code>null</code> if a j i r a action with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAAction fetchByPrimaryKey(long jiraActionId)
-		throws SystemException {
 		JIRAAction jiraAction = (JIRAAction)EntityCacheUtil.getResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-				JIRAActionImpl.class, jiraActionId);
+				JIRAActionImpl.class, primaryKey);
 
 		if (jiraAction == _nullJIRAAction) {
 			return null;
@@ -1980,19 +1967,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				session = openSession();
 
 				jiraAction = (JIRAAction)session.get(JIRAActionImpl.class,
-						Long.valueOf(jiraActionId));
+						primaryKey);
 
 				if (jiraAction != null) {
 					cacheResult(jiraAction);
 				}
 				else {
 					EntityCacheUtil.putResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-						JIRAActionImpl.class, jiraActionId, _nullJIRAAction);
+						JIRAActionImpl.class, primaryKey, _nullJIRAAction);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-					JIRAActionImpl.class, jiraActionId);
+					JIRAActionImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -2002,6 +1989,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 
 		return jiraAction;
+	}
+
+	/**
+	 * Returns the j i r a action with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param jiraActionId the primary key of the j i r a action
+	 * @return the j i r a action, or <code>null</code> if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction fetchByPrimaryKey(long jiraActionId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)jiraActionId);
 	}
 
 	/**

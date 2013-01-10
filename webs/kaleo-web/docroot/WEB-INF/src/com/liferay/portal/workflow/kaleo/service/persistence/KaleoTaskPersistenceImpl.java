@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -1612,13 +1611,24 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 *
 	 * @param primaryKey the primary key of the kaleo task
 	 * @return the kaleo task
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTask findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Long)primaryKey).longValue());
+		throws NoSuchTaskException, SystemException {
+		KaleoTask kaleoTask = fetchByPrimaryKey(primaryKey);
+
+		if (kaleoTask == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			}
+
+			throw new NoSuchTaskException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				primaryKey);
+		}
+
+		return kaleoTask;
 	}
 
 	/**
@@ -1631,18 +1641,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public KaleoTask findByPrimaryKey(long kaleoTaskId)
 		throws NoSuchTaskException, SystemException {
-		KaleoTask kaleoTask = fetchByPrimaryKey(kaleoTaskId);
-
-		if (kaleoTask == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoTaskId);
-			}
-
-			throw new NoSuchTaskException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				kaleoTaskId);
-		}
-
-		return kaleoTask;
+		return findByPrimaryKey((Serializable)kaleoTaskId);
 	}
 
 	/**
@@ -1655,20 +1654,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	@Override
 	public KaleoTask fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
-		return fetchByPrimaryKey(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Returns the kaleo task with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param kaleoTaskId the primary key of the kaleo task
-	 * @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTask fetchByPrimaryKey(long kaleoTaskId)
-		throws SystemException {
 		KaleoTask kaleoTask = (KaleoTask)EntityCacheUtil.getResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoTaskImpl.class, kaleoTaskId);
+				KaleoTaskImpl.class, primaryKey);
 
 		if (kaleoTask == _nullKaleoTask) {
 			return null;
@@ -1681,19 +1668,19 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 				session = openSession();
 
 				kaleoTask = (KaleoTask)session.get(KaleoTaskImpl.class,
-						Long.valueOf(kaleoTaskId));
+						primaryKey);
 
 				if (kaleoTask != null) {
 					cacheResult(kaleoTask);
 				}
 				else {
 					EntityCacheUtil.putResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoTaskImpl.class, kaleoTaskId, _nullKaleoTask);
+						KaleoTaskImpl.class, primaryKey, _nullKaleoTask);
 				}
 			}
 			catch (Exception e) {
 				EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoTaskImpl.class, kaleoTaskId);
+					KaleoTaskImpl.class, primaryKey);
 
 				throw processException(e);
 			}
@@ -1703,6 +1690,18 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		}
 
 		return kaleoTask;
+	}
+
+	/**
+	 * Returns the kaleo task with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoTaskId the primary key of the kaleo task
+	 * @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTask fetchByPrimaryKey(long kaleoTaskId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)kaleoTaskId);
 	}
 
 	/**
