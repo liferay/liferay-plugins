@@ -147,24 +147,36 @@ for (String importer : importers) {
 		JournalArticleLocalService#getArticlesCount=<%= _assertEquals(5, JournalArticleLocalServiceUtil.getArticlesCount(groupId)) %><br />
 
 		<%
-		JournalStructure journalStructure = JournalStructureLocalServiceUtil.getStructure(groupId, "CHILD-STRUCTURE-1");
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, "CHILD-STRUCTURE-1");
 
-		String parentStructureId = journalStructure.getParentStructureId();
+		long parentStructureId = ddmStructure.getParentStructureId();
+		String parentStructureKey = StringPool.BLANK;
+
+		if (parentStructureId > 0) {
+			DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.getStructure(parentStructureId);
+
+			parentStructureKey = parentDDMStructure.getStructureKey();
+		}
 		%>
 
-		JournalStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE", parentStructureId) %><br />
+		DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE", parentStructureKey) %><br />
 
-		JournalStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(3, JournalStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
+		DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(3, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
 
 		<%
-		JournalTemplate journalTemplate = JournalTemplateLocalServiceUtil.getTemplate(groupId, "CHILD-TEMPLATE-1");
+		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, "CHILD-TEMPLATE-1");
 
-		String journalStructureId = journalTemplate.getStructureId();
+		DDMStructure ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
+		String ddmStructureKey = StringPool.BLANK;
+
+		if (ddmTemplateStructure != null) {
+			ddmStructureKey = ddmTemplateStructure.getStructureKey();
+		}
 		%>
 
-		JournalTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1", journalStructureId) %><br />
+		DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1", ddmStructureKey) %><br />
 
-		JournalTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(2, JournalTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(2, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
 	</p>
 
 <%
