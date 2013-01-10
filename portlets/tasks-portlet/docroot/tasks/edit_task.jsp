@@ -53,7 +53,9 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 	<aui:model-context bean="<%= tasksEntry %>" model="<%= TasksEntry.class %>" />
 
 	<aui:fieldset>
-		<aui:input cssClass="input-task-description" label="description" name="title" />
+		<aui:input cssClass="input-task-description" label="description" name="title" >
+			<aui:validator name="required" />
+		</aui:input>
 
 		<aui:select label="assignee" name="assigneeUserId">
 			<c:choose>
