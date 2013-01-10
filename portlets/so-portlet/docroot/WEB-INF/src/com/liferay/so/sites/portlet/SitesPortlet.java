@@ -248,7 +248,12 @@ public class SitesPortlet extends MVCPortlet {
 			groupJSONObject.put(
 				"name", group.getDescriptiveName(themeDisplay.getLocale()));
 
-			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
+			boolean member = GroupLocalServiceUtil.hasUserGroup(
+				themeDisplay.getUserId(), group.getGroupId());
+
+			if ((group.hasPrivateLayouts() && member) ||
+				group.hasPublicLayouts()) {
+
 				PortletURL portletURL = liferayPortletResponse.createActionURL(
 					PortletKeys.SITE_REDIRECTOR);
 
@@ -280,9 +285,6 @@ public class SitesPortlet extends MVCPortlet {
 			siteAssignmentsPortletURL.setParameter(
 				"groupId", String.valueOf(group.getGroupId()));
 			siteAssignmentsPortletURL.setWindowState(WindowState.NORMAL);
-
-			boolean member = GroupLocalServiceUtil.hasUserGroup(
-				themeDisplay.getUserId(), group.getGroupId());
 
 			PermissionChecker permissionChecker =
 				themeDisplay.getPermissionChecker();
