@@ -149,7 +149,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 						<span class="name">
 							<c:choose>
-								<c:when test="<%= group.hasPrivateLayouts() || group.hasPublicLayouts() %>">
+								<c:when test="<%= (group.hasPrivateLayouts() && member) || group.hasPublicLayouts() %>">
 									<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="siteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 										<portlet:param name="struts_action" value="/my_sites/view" />
 										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
