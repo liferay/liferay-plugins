@@ -55,8 +55,7 @@ import java.util.zip.ZipFile;
  */
 public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
-	public App addApp(
-			long userId, long remoteAppId, String version, File file)
+	public App addApp(long userId, long remoteAppId, String version, File file)
 		throws PortalException, SystemException {
 
 		// App

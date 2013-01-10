@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
 import java.io.File;
-import java.io.InputStream;
 
 /**
  * @author Ryan Park
@@ -33,8 +32,7 @@ public class AppServiceImpl extends AppServiceBaseImpl {
 
 		MarketplacePermission.check(getPermissionChecker());
 
-		return appLocalService.addApp(
-			getUserId(), remoteAppId, version, file);
+		return appLocalService.addApp(getUserId(), remoteAppId, version, file);
 	}
 
 	public App deleteApp(long appId) throws PortalException, SystemException {
