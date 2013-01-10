@@ -104,7 +104,7 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_definitionId);
+		return _definitionId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

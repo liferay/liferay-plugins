@@ -1762,7 +1762,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusImpl.class, status.getPrimaryKey(), status);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { Long.valueOf(status.getUserId()) }, status);
+			new Object[] { status.getUserId() }, status);
 
 		status.resetOriginalValues();
 	}
@@ -1838,7 +1838,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 	protected void cacheUniqueFindersCache(Status status) {
 		if (status.isNew()) {
-			Object[] args = new Object[] { Long.valueOf(status.getUserId()) };
+			Object[] args = new Object[] { status.getUserId() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
 				Long.valueOf(1));
@@ -1849,7 +1849,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			if ((statusModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { Long.valueOf(status.getUserId()) };
+				Object[] args = new Object[] { status.getUserId() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
 					Long.valueOf(1));
@@ -1862,16 +1862,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	protected void clearUniqueFindersCache(Status status) {
 		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
 
-		Object[] args = new Object[] { Long.valueOf(status.getUserId()) };
+		Object[] args = new Object[] { status.getUserId() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 
 		if ((statusModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					Long.valueOf(statusModelImpl.getOriginalUserId())
-				};
+			args = new Object[] { statusModelImpl.getOriginalUserId() };
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
@@ -1903,7 +1901,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public Status remove(long statusId)
 		throws NoSuchStatusException, SystemException {
-		return remove(Long.valueOf(statusId));
+		return remove((Serializable)statusId);
 	}
 
 	/**
@@ -2018,7 +2016,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			if ((statusModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(statusModelImpl.getOriginalModifiedDate())
+						statusModelImpl.getOriginalModifiedDate()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
@@ -2026,9 +2024,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(statusModelImpl.getModifiedDate())
-					};
+				args = new Object[] { statusModelImpl.getModifiedDate() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
 					args);
@@ -2038,15 +2034,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 			if ((statusModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Boolean.valueOf(statusModelImpl.getOriginalOnline())
-					};
+				Object[] args = new Object[] { statusModelImpl.getOriginalOnline() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
 					args);
 
-				args = new Object[] { Boolean.valueOf(statusModelImpl.getOnline()) };
+				args = new Object[] { statusModelImpl.getOnline() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
@@ -2056,8 +2050,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			if ((statusModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(statusModelImpl.getOriginalModifiedDate()),
-						Boolean.valueOf(statusModelImpl.getOriginalOnline())
+						statusModelImpl.getOriginalModifiedDate(),
+						statusModelImpl.getOriginalOnline()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_M_O, args);
@@ -2065,8 +2059,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(statusModelImpl.getModifiedDate()),
-						Boolean.valueOf(statusModelImpl.getOnline())
+						statusModelImpl.getModifiedDate(),
+						statusModelImpl.getOnline()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_M_O, args);

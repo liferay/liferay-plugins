@@ -54,7 +54,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_akismetDataId);
+		return _akismetDataId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

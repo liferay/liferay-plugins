@@ -54,7 +54,7 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoTimerInstanceTokenId);
+		return _kaleoTimerInstanceTokenId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

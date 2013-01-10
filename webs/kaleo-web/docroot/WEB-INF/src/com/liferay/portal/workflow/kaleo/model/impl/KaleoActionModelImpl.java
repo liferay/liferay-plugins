@@ -116,7 +116,7 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoActionId);
+		return _kaleoActionId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

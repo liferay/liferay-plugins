@@ -108,7 +108,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoConditionId);
+		return _kaleoConditionId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

@@ -102,7 +102,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_oAuthConsumerId);
+		return _oAuthConsumerId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

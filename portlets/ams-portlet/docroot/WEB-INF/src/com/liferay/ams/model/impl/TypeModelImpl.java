@@ -90,7 +90,7 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_typeId);
+		return _typeId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

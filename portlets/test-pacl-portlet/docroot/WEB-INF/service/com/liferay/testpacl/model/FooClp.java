@@ -54,7 +54,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_fooId);
+		return _fooId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

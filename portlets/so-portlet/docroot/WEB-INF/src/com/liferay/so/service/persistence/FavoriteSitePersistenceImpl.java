@@ -793,10 +793,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U,
-			new Object[] {
-				Long.valueOf(favoriteSite.getGroupId()),
-				Long.valueOf(favoriteSite.getUserId())
-			}, favoriteSite);
+			new Object[] { favoriteSite.getGroupId(), favoriteSite.getUserId() },
+			favoriteSite);
 
 		favoriteSite.resetOriginalValues();
 	}
@@ -873,8 +871,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	protected void cacheUniqueFindersCache(FavoriteSite favoriteSite) {
 		if (favoriteSite.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(favoriteSite.getGroupId()),
-					Long.valueOf(favoriteSite.getUserId())
+					favoriteSite.getGroupId(), favoriteSite.getUserId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, args,
@@ -888,8 +885,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			if ((favoriteSiteModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_G_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(favoriteSite.getGroupId()),
-						Long.valueOf(favoriteSite.getUserId())
+						favoriteSite.getGroupId(), favoriteSite.getUserId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, args,
@@ -904,8 +900,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		FavoriteSiteModelImpl favoriteSiteModelImpl = (FavoriteSiteModelImpl)favoriteSite;
 
 		Object[] args = new Object[] {
-				Long.valueOf(favoriteSite.getGroupId()),
-				Long.valueOf(favoriteSite.getUserId())
+				favoriteSite.getGroupId(), favoriteSite.getUserId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
@@ -914,8 +909,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		if ((favoriteSiteModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_G_U.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(favoriteSiteModelImpl.getOriginalGroupId()),
-					Long.valueOf(favoriteSiteModelImpl.getOriginalUserId())
+					favoriteSiteModelImpl.getOriginalGroupId(),
+					favoriteSiteModelImpl.getOriginalUserId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
@@ -948,7 +943,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	public FavoriteSite remove(long favoriteSiteId)
 		throws NoSuchFavoriteSiteException, SystemException {
-		return remove(Long.valueOf(favoriteSiteId));
+		return remove((Serializable)favoriteSiteId);
 	}
 
 	/**
@@ -1066,16 +1061,14 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			if ((favoriteSiteModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(favoriteSiteModelImpl.getOriginalUserId())
+						favoriteSiteModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(favoriteSiteModelImpl.getUserId())
-					};
+				args = new Object[] { favoriteSiteModelImpl.getUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,

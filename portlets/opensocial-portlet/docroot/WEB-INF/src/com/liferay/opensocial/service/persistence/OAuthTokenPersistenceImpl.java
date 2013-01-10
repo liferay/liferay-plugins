@@ -1106,13 +1106,9 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
-				Long.valueOf(oAuthToken.getUserId()),
-				
-			oAuthToken.getGadgetKey(),
-				
-			oAuthToken.getServiceName(), Long.valueOf(oAuthToken.getModuleId()),
-				
-			oAuthToken.getTokenName()
+				oAuthToken.getUserId(), oAuthToken.getGadgetKey(),
+				oAuthToken.getServiceName(), oAuthToken.getModuleId(),
+				oAuthToken.getTokenName()
 			}, oAuthToken);
 
 		oAuthToken.resetOriginalValues();
@@ -1190,13 +1186,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	protected void cacheUniqueFindersCache(OAuthToken oAuthToken) {
 		if (oAuthToken.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(oAuthToken.getUserId()),
-					
-					oAuthToken.getGadgetKey(),
-					
-					oAuthToken.getServiceName(),
-					Long.valueOf(oAuthToken.getModuleId()),
-					
+					oAuthToken.getUserId(), oAuthToken.getGadgetKey(),
+					oAuthToken.getServiceName(), oAuthToken.getModuleId(),
 					oAuthToken.getTokenName()
 				};
 
@@ -1211,13 +1202,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			if ((oAuthTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_G_S_M_T.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(oAuthToken.getUserId()),
-						
-						oAuthToken.getGadgetKey(),
-						
-						oAuthToken.getServiceName(),
-						Long.valueOf(oAuthToken.getModuleId()),
-						
+						oAuthToken.getUserId(), oAuthToken.getGadgetKey(),
+						oAuthToken.getServiceName(), oAuthToken.getModuleId(),
 						oAuthToken.getTokenName()
 					};
 
@@ -1233,13 +1219,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		OAuthTokenModelImpl oAuthTokenModelImpl = (OAuthTokenModelImpl)oAuthToken;
 
 		Object[] args = new Object[] {
-				Long.valueOf(oAuthToken.getUserId()),
-				
-				oAuthToken.getGadgetKey(),
-				
-				oAuthToken.getServiceName(),
-				Long.valueOf(oAuthToken.getModuleId()),
-				
+				oAuthToken.getUserId(), oAuthToken.getGadgetKey(),
+				oAuthToken.getServiceName(), oAuthToken.getModuleId(),
 				oAuthToken.getTokenName()
 			};
 
@@ -1249,13 +1230,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		if ((oAuthTokenModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_G_S_M_T.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),
-					
+					oAuthTokenModelImpl.getOriginalUserId(),
 					oAuthTokenModelImpl.getOriginalGadgetKey(),
-					
 					oAuthTokenModelImpl.getOriginalServiceName(),
-					Long.valueOf(oAuthTokenModelImpl.getOriginalModuleId()),
-					
+					oAuthTokenModelImpl.getOriginalModuleId(),
 					oAuthTokenModelImpl.getOriginalTokenName()
 				};
 
@@ -1289,7 +1267,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 */
 	public OAuthToken remove(long oAuthTokenId)
 		throws NoSuchOAuthTokenException, SystemException {
-		return remove(Long.valueOf(oAuthTokenId));
+		return remove((Serializable)oAuthTokenId);
 	}
 
 	/**
@@ -1408,7 +1386,6 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						oAuthTokenModelImpl.getOriginalGadgetKey(),
-						
 						oAuthTokenModelImpl.getOriginalServiceName()
 					};
 
@@ -1418,7 +1395,6 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 				args = new Object[] {
 						oAuthTokenModelImpl.getGadgetKey(),
-						
 						oAuthTokenModelImpl.getServiceName()
 					};
 

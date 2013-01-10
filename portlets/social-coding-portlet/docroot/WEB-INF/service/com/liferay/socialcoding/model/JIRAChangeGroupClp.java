@@ -55,7 +55,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_jiraChangeGroupId);
+		return _jiraChangeGroupId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

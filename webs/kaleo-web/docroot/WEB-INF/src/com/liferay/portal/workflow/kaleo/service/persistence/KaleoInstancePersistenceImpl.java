@@ -2380,7 +2380,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	 */
 	public KaleoInstance remove(long kaleoInstanceId)
 		throws NoSuchInstanceException, SystemException {
-		return remove(Long.valueOf(kaleoInstanceId));
+		return remove((Serializable)kaleoInstanceId);
 	}
 
 	/**
@@ -2498,7 +2498,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			if ((kaleoInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getOriginalCompanyId())
+						kaleoInstanceModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -2506,9 +2506,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getCompanyId())
-					};
+				args = new Object[] { kaleoInstanceModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);
@@ -2519,7 +2517,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			if ((kaleoInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getOriginalKaleoDefinitionId())
+						kaleoInstanceModelImpl.getOriginalKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -2528,7 +2526,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getKaleoDefinitionId())
+						kaleoInstanceModelImpl.getKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -2540,8 +2538,8 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			if ((kaleoInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KDI_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getOriginalKaleoDefinitionId()),
-						Boolean.valueOf(kaleoInstanceModelImpl.getOriginalCompleted())
+						kaleoInstanceModelImpl.getOriginalKaleoDefinitionId(),
+						kaleoInstanceModelImpl.getOriginalCompleted()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KDI_C, args);
@@ -2549,8 +2547,8 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getKaleoDefinitionId()),
-						Boolean.valueOf(kaleoInstanceModelImpl.getCompleted())
+						kaleoInstanceModelImpl.getKaleoDefinitionId(),
+						kaleoInstanceModelImpl.getCompleted()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KDI_C, args);
@@ -2561,11 +2559,9 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			if ((kaleoInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_KDN_KDV_CD.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getOriginalCompanyId()),
-						
+						kaleoInstanceModelImpl.getOriginalCompanyId(),
 						kaleoInstanceModelImpl.getOriginalKaleoDefinitionName(),
-						Integer.valueOf(kaleoInstanceModelImpl.getOriginalKaleoDefinitionVersion()),
-						
+						kaleoInstanceModelImpl.getOriginalKaleoDefinitionVersion(),
 						kaleoInstanceModelImpl.getOriginalCompletionDate()
 					};
 
@@ -2575,11 +2571,9 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoInstanceModelImpl.getCompanyId()),
-						
+						kaleoInstanceModelImpl.getCompanyId(),
 						kaleoInstanceModelImpl.getKaleoDefinitionName(),
-						Integer.valueOf(kaleoInstanceModelImpl.getKaleoDefinitionVersion()),
-						
+						kaleoInstanceModelImpl.getKaleoDefinitionVersion(),
 						kaleoInstanceModelImpl.getCompletionDate()
 					};
 

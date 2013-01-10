@@ -1290,10 +1290,8 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 			PollsVoteImpl.class, pollsVote.getPrimaryKey(), pollsVote);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_PQI,
-			new Object[] {
-				Long.valueOf(pollsVote.getUserId()),
-				Long.valueOf(pollsVote.getPollsQuestionId())
-			}, pollsVote);
+			new Object[] { pollsVote.getUserId(), pollsVote.getPollsQuestionId() },
+			pollsVote);
 
 		pollsVote.resetOriginalValues();
 	}
@@ -1370,8 +1368,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 	protected void cacheUniqueFindersCache(PollsVote pollsVote) {
 		if (pollsVote.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(pollsVote.getUserId()),
-					Long.valueOf(pollsVote.getPollsQuestionId())
+					pollsVote.getUserId(), pollsVote.getPollsQuestionId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_PQI, args,
@@ -1385,8 +1382,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 			if ((pollsVoteModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_PQI.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(pollsVote.getUserId()),
-						Long.valueOf(pollsVote.getPollsQuestionId())
+						pollsVote.getUserId(), pollsVote.getPollsQuestionId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_PQI, args,
@@ -1401,8 +1397,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 		PollsVoteModelImpl pollsVoteModelImpl = (PollsVoteModelImpl)pollsVote;
 
 		Object[] args = new Object[] {
-				Long.valueOf(pollsVote.getUserId()),
-				Long.valueOf(pollsVote.getPollsQuestionId())
+				pollsVote.getUserId(), pollsVote.getPollsQuestionId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_PQI, args);
@@ -1411,8 +1406,8 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 		if ((pollsVoteModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_PQI.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(pollsVoteModelImpl.getOriginalUserId()),
-					Long.valueOf(pollsVoteModelImpl.getOriginalPollsQuestionId())
+					pollsVoteModelImpl.getOriginalUserId(),
+					pollsVoteModelImpl.getOriginalPollsQuestionId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_PQI, args);
@@ -1445,7 +1440,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 	 */
 	public PollsVote remove(long pollsVoteId)
 		throws NoSuchVoteException, SystemException {
-		return remove(Long.valueOf(pollsVoteId));
+		return remove((Serializable)pollsVoteId);
 	}
 
 	/**
@@ -1562,7 +1557,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 			if ((pollsVoteModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_POLLSQUESTIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(pollsVoteModelImpl.getOriginalPollsQuestionId())
+						pollsVoteModelImpl.getOriginalPollsQuestionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_POLLSQUESTIONID,
@@ -1570,9 +1565,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_POLLSQUESTIONID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(pollsVoteModelImpl.getPollsQuestionId())
-					};
+				args = new Object[] { pollsVoteModelImpl.getPollsQuestionId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_POLLSQUESTIONID,
 					args);
@@ -1583,7 +1576,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 			if ((pollsVoteModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_POLLSCHOICEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(pollsVoteModelImpl.getOriginalPollsChoiceId())
+						pollsVoteModelImpl.getOriginalPollsChoiceId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_POLLSCHOICEID,
@@ -1591,9 +1584,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_POLLSCHOICEID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(pollsVoteModelImpl.getPollsChoiceId())
-					};
+				args = new Object[] { pollsVoteModelImpl.getPollsChoiceId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_POLLSCHOICEID,
 					args);

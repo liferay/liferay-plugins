@@ -480,7 +480,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 */
 	public SVNRepository remove(long svnRepositoryId)
 		throws NoSuchSVNRepositoryException, SystemException {
-		return remove(Long.valueOf(svnRepositoryId));
+		return remove((Serializable)svnRepositoryId);
 	}
 
 	/**

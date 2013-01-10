@@ -919,9 +919,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S,
 			new Object[] {
-				oAuthConsumer.getGadgetKey(),
-				
-			oAuthConsumer.getServiceName()
+				oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName()
 			}, oAuthConsumer);
 
 		oAuthConsumer.resetOriginalValues();
@@ -999,9 +997,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	protected void cacheUniqueFindersCache(OAuthConsumer oAuthConsumer) {
 		if (oAuthConsumer.isNew()) {
 			Object[] args = new Object[] {
-					oAuthConsumer.getGadgetKey(),
-					
-					oAuthConsumer.getServiceName()
+					oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, args,
@@ -1016,7 +1012,6 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 					FINDER_PATH_FETCH_BY_G_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						oAuthConsumer.getGadgetKey(),
-						
 						oAuthConsumer.getServiceName()
 					};
 
@@ -1032,9 +1027,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
 
 		Object[] args = new Object[] {
-				oAuthConsumer.getGadgetKey(),
-				
-				oAuthConsumer.getServiceName()
+				oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
@@ -1044,7 +1037,6 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				FINDER_PATH_FETCH_BY_G_S.getColumnBitmask()) != 0) {
 			args = new Object[] {
 					oAuthConsumerModelImpl.getOriginalGadgetKey(),
-					
 					oAuthConsumerModelImpl.getOriginalServiceName()
 				};
 
@@ -1078,7 +1070,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	public OAuthConsumer remove(long oAuthConsumerId)
 		throws NoSuchOAuthConsumerException, SystemException {
-		return remove(Long.valueOf(oAuthConsumerId));
+		return remove((Serializable)oAuthConsumerId);
 	}
 
 	/**

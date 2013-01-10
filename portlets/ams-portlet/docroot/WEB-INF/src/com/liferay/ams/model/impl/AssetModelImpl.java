@@ -100,7 +100,7 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_assetId);
+		return _assetId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

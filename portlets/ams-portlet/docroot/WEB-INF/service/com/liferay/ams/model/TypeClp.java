@@ -52,7 +52,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_typeId);
+		return _typeId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

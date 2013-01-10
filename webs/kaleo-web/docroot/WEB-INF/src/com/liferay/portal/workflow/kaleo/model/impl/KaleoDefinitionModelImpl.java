@@ -173,7 +173,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoDefinitionId);
+		return _kaleoDefinitionId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

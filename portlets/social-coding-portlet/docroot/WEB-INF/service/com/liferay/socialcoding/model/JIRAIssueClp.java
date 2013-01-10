@@ -54,7 +54,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_jiraIssueId);
+		return _jiraIssueId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

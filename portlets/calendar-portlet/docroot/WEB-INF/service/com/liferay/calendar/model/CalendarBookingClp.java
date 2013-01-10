@@ -62,7 +62,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_calendarBookingId);
+		return _calendarBookingId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

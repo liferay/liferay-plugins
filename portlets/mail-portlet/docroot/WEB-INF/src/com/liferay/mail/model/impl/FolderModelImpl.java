@@ -105,7 +105,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_folderId);
+		return _folderId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

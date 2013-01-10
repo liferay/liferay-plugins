@@ -54,7 +54,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoTransitionId);
+		return _kaleoTransitionId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

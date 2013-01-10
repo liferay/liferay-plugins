@@ -1704,7 +1704,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public JIRAAction remove(long jiraActionId)
 		throws NoSuchJIRAActionException, SystemException {
-		return remove(Long.valueOf(jiraActionId));
+		return remove((Serializable)jiraActionId);
 	}
 
 	/**
@@ -1841,7 +1841,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			if ((jiraActionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(jiraActionModelImpl.getOriginalJiraIssueId())
+						jiraActionModelImpl.getOriginalJiraIssueId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
@@ -1849,9 +1849,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(jiraActionModelImpl.getJiraIssueId())
-					};
+				args = new Object[] { jiraActionModelImpl.getJiraIssueId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
 					args);

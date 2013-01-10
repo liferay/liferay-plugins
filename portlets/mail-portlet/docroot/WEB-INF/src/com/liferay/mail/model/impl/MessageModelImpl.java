@@ -117,7 +117,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_messageId);
+		return _messageId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

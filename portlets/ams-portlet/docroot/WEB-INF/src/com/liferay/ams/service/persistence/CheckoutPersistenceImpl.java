@@ -183,7 +183,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 */
 	public Checkout remove(long checkoutId)
 		throws NoSuchCheckoutException, SystemException {
-		return remove(Long.valueOf(checkoutId));
+		return remove((Serializable)checkoutId);
 	}
 
 	/**

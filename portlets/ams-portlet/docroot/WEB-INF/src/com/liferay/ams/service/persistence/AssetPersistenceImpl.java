@@ -182,7 +182,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	public Asset remove(long assetId)
 		throws NoSuchAssetException, SystemException {
-		return remove(Long.valueOf(assetId));
+		return remove((Serializable)assetId);
 	}
 
 	/**

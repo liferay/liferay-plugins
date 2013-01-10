@@ -834,11 +834,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			FolderImpl.class, folder.getPrimaryKey(), folder);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
-			new Object[] {
-				Long.valueOf(folder.getAccountId()),
-				
-			folder.getFullName()
-			}, folder);
+			new Object[] { folder.getAccountId(), folder.getFullName() }, folder);
 
 		folder.resetOriginalValues();
 	}
@@ -915,9 +911,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	protected void cacheUniqueFindersCache(Folder folder) {
 		if (folder.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(folder.getAccountId()),
-					
-					folder.getFullName()
+					folder.getAccountId(), folder.getFullName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_F, args,
@@ -930,9 +924,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			if ((folderModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_A_F.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(folder.getAccountId()),
-						
-						folder.getFullName()
+						folder.getAccountId(), folder.getFullName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_F, args,
@@ -945,11 +937,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	protected void clearUniqueFindersCache(Folder folder) {
 		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
 
-		Object[] args = new Object[] {
-				Long.valueOf(folder.getAccountId()),
-				
-				folder.getFullName()
-			};
+		Object[] args = new Object[] { folder.getAccountId(), folder.getFullName() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_F, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F, args);
@@ -957,8 +945,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		if ((folderModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_A_F.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(folderModelImpl.getOriginalAccountId()),
-					
+					folderModelImpl.getOriginalAccountId(),
 					folderModelImpl.getOriginalFullName()
 				};
 
@@ -992,7 +979,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public Folder remove(long folderId)
 		throws NoSuchFolderException, SystemException {
-		return remove(Long.valueOf(folderId));
+		return remove((Serializable)folderId);
 	}
 
 	/**
@@ -1107,7 +1094,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			if ((folderModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(folderModelImpl.getOriginalAccountId())
+						folderModelImpl.getOriginalAccountId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
@@ -1115,7 +1102,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID,
 					args);
 
-				args = new Object[] { Long.valueOf(folderModelImpl.getAccountId()) };
+				args = new Object[] { folderModelImpl.getAccountId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ACCOUNTID,
 					args);

@@ -56,7 +56,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_meetupsEntryId);
+		return _meetupsEntryId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

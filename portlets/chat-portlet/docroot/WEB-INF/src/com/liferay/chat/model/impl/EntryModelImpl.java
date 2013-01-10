@@ -100,7 +100,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_entryId);
+		return _entryId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

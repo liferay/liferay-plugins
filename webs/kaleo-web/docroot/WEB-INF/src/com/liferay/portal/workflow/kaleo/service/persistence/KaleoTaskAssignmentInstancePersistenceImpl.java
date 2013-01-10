@@ -2176,7 +2176,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance remove(
 		long kaleoTaskAssignmentInstanceId)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
-		return remove(Long.valueOf(kaleoTaskAssignmentInstanceId));
+		return remove((Serializable)kaleoTaskAssignmentInstanceId);
 	}
 
 	/**
@@ -2297,7 +2297,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			if ((kaleoTaskAssignmentInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getOriginalCompanyId())
+						kaleoTaskAssignmentInstanceModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -2306,7 +2306,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getCompanyId())
+						kaleoTaskAssignmentInstanceModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -2318,7 +2318,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			if ((kaleoTaskAssignmentInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getOriginalKaleoDefinitionId())
+						kaleoTaskAssignmentInstanceModelImpl.getOriginalKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -2327,7 +2327,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getKaleoDefinitionId())
+						kaleoTaskAssignmentInstanceModelImpl.getKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -2339,7 +2339,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			if ((kaleoTaskAssignmentInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOINSTANCEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getOriginalKaleoInstanceId())
+						kaleoTaskAssignmentInstanceModelImpl.getOriginalKaleoInstanceId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
@@ -2348,7 +2348,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getKaleoInstanceId())
+						kaleoTaskAssignmentInstanceModelImpl.getKaleoInstanceId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
@@ -2360,7 +2360,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			if ((kaleoTaskAssignmentInstanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOTASKINSTANCETOKENID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getOriginalKaleoTaskInstanceTokenId())
+						kaleoTaskAssignmentInstanceModelImpl.getOriginalKaleoTaskInstanceTokenId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEOTASKINSTANCETOKENID,
@@ -2369,7 +2369,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoTaskAssignmentInstanceModelImpl.getKaleoTaskInstanceTokenId())
+						kaleoTaskAssignmentInstanceModelImpl.getKaleoTaskInstanceTokenId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEOTASKINSTANCETOKENID,

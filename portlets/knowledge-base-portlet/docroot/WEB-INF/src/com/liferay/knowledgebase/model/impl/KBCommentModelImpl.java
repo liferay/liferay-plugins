@@ -169,7 +169,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kbCommentId);
+		return _kbCommentId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

@@ -595,17 +595,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
-			new Object[] {
-				Long.valueOf(feed.getCompanyId()),
-				Long.valueOf(feed.getTwitterUserId())
-			}, feed);
+			new Object[] { feed.getCompanyId(), feed.getTwitterUserId() }, feed);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
-			new Object[] {
-				Long.valueOf(feed.getCompanyId()),
-				
-			feed.getTwitterScreenName()
-			}, feed);
+			new Object[] { feed.getCompanyId(), feed.getTwitterScreenName() },
+			feed);
 
 		feed.resetOriginalValues();
 	}
@@ -681,19 +675,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	protected void cacheUniqueFindersCache(Feed feed) {
 		if (feed.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(feed.getCompanyId()),
-					Long.valueOf(feed.getTwitterUserId())
+					feed.getCompanyId(), feed.getTwitterUserId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TWUI, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI, args, feed);
 
-			args = new Object[] {
-					Long.valueOf(feed.getCompanyId()),
-					
-					feed.getTwitterScreenName()
-				};
+			args = new Object[] { feed.getCompanyId(), feed.getTwitterScreenName() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TSN, args,
 				Long.valueOf(1));
@@ -705,8 +694,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			if ((feedModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_TWUI.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(feed.getCompanyId()),
-						Long.valueOf(feed.getTwitterUserId())
+						feed.getCompanyId(), feed.getTwitterUserId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TWUI, args,
@@ -718,9 +706,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			if ((feedModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_TSN.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(feed.getCompanyId()),
-						
-						feed.getTwitterScreenName()
+						feed.getCompanyId(), feed.getTwitterScreenName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TSN, args,
@@ -734,8 +720,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
 
 		Object[] args = new Object[] {
-				Long.valueOf(feed.getCompanyId()),
-				Long.valueOf(feed.getTwitterUserId())
+				feed.getCompanyId(), feed.getTwitterUserId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TWUI, args);
@@ -744,19 +729,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		if ((feedModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_C_TWUI.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
-					Long.valueOf(feedModelImpl.getOriginalTwitterUserId())
+					feedModelImpl.getOriginalCompanyId(),
+					feedModelImpl.getOriginalTwitterUserId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TWUI, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI, args);
 		}
 
-		args = new Object[] {
-				Long.valueOf(feed.getCompanyId()),
-				
-				feed.getTwitterScreenName()
-			};
+		args = new Object[] { feed.getCompanyId(), feed.getTwitterScreenName() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_TSN, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN, args);
@@ -764,8 +745,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		if ((feedModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_C_TSN.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
-					
+					feedModelImpl.getOriginalCompanyId(),
 					feedModelImpl.getOriginalTwitterScreenName()
 				};
 
@@ -798,7 +778,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
-		return remove(Long.valueOf(feedId));
+		return remove((Serializable)feedId);
 	}
 
 	/**

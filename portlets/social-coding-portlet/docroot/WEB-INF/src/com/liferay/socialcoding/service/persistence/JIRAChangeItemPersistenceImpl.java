@@ -679,7 +679,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	public JIRAChangeItem remove(long jiraChangeItemId)
 		throws NoSuchJIRAChangeItemException, SystemException {
-		return remove(Long.valueOf(jiraChangeItemId));
+		return remove((Serializable)jiraChangeItemId);
 	}
 
 	/**
@@ -797,7 +797,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			if ((jiraChangeItemModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRACHANGEGROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(jiraChangeItemModelImpl.getOriginalJiraChangeGroupId())
+						jiraChangeItemModelImpl.getOriginalJiraChangeGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,
@@ -806,7 +806,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 					args);
 
 				args = new Object[] {
-						Long.valueOf(jiraChangeItemModelImpl.getJiraChangeGroupId())
+						jiraChangeItemModelImpl.getJiraChangeGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRACHANGEGROUPID,

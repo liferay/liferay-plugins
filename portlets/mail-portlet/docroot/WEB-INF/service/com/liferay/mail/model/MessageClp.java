@@ -55,7 +55,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_messageId);
+		return _messageId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

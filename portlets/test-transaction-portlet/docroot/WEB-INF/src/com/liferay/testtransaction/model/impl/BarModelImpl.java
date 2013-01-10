@@ -92,7 +92,7 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_barId);
+		return _barId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

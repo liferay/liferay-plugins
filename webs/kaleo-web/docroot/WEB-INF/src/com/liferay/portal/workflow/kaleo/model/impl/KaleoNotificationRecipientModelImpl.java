@@ -109,7 +109,7 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoNotificationRecipientId);
+		return _kaleoNotificationRecipientId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

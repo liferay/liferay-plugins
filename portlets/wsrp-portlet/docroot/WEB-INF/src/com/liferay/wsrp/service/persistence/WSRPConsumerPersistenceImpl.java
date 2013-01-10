@@ -1746,7 +1746,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 */
 	public WSRPConsumer remove(long wsrpConsumerId)
 		throws NoSuchConsumerException, SystemException {
-		return remove(Long.valueOf(wsrpConsumerId));
+		return remove((Serializable)wsrpConsumerId);
 	}
 
 	/**
@@ -1888,7 +1888,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						wsrpConsumerModelImpl.getOriginalUuid(),
-						Long.valueOf(wsrpConsumerModelImpl.getOriginalCompanyId())
+						wsrpConsumerModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -1897,7 +1897,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 
 				args = new Object[] {
 						wsrpConsumerModelImpl.getUuid(),
-						Long.valueOf(wsrpConsumerModelImpl.getCompanyId())
+						wsrpConsumerModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -1908,7 +1908,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 			if ((wsrpConsumerModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(wsrpConsumerModelImpl.getOriginalCompanyId())
+						wsrpConsumerModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -1916,9 +1916,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(wsrpConsumerModelImpl.getCompanyId())
-					};
+				args = new Object[] { wsrpConsumerModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);

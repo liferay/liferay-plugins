@@ -8411,14 +8411,12 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				calendarResource.getUuid(),
-				Long.valueOf(calendarResource.getGroupId())
+				calendarResource.getUuid(), calendarResource.getGroupId()
 			}, calendarResource);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
-				Long.valueOf(calendarResource.getClassNameId()),
-				Long.valueOf(calendarResource.getClassPK())
+				calendarResource.getClassNameId(), calendarResource.getClassPK()
 			}, calendarResource);
 
 		calendarResource.resetOriginalValues();
@@ -8497,8 +8495,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	protected void cacheUniqueFindersCache(CalendarResource calendarResource) {
 		if (calendarResource.isNew()) {
 			Object[] args = new Object[] {
-					calendarResource.getUuid(),
-					Long.valueOf(calendarResource.getGroupId())
+					calendarResource.getUuid(), calendarResource.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -8507,8 +8504,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				calendarResource);
 
 			args = new Object[] {
-					Long.valueOf(calendarResource.getClassNameId()),
-					Long.valueOf(calendarResource.getClassPK())
+					calendarResource.getClassNameId(),
+					calendarResource.getClassPK()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
@@ -8523,7 +8520,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						calendarResource.getUuid(),
-						Long.valueOf(calendarResource.getGroupId())
+						calendarResource.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -8535,8 +8532,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((calendarResourceModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(calendarResource.getClassNameId()),
-						Long.valueOf(calendarResource.getClassPK())
+						calendarResource.getClassNameId(),
+						calendarResource.getClassPK()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
@@ -8551,8 +8548,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		CalendarResourceModelImpl calendarResourceModelImpl = (CalendarResourceModelImpl)calendarResource;
 
 		Object[] args = new Object[] {
-				calendarResource.getUuid(),
-				Long.valueOf(calendarResource.getGroupId())
+				calendarResource.getUuid(), calendarResource.getGroupId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -8562,7 +8558,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 			args = new Object[] {
 					calendarResourceModelImpl.getOriginalUuid(),
-					Long.valueOf(calendarResourceModelImpl.getOriginalGroupId())
+					calendarResourceModelImpl.getOriginalGroupId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -8570,8 +8566,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		args = new Object[] {
-				Long.valueOf(calendarResource.getClassNameId()),
-				Long.valueOf(calendarResource.getClassPK())
+				calendarResource.getClassNameId(), calendarResource.getClassPK()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
@@ -8580,8 +8575,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		if ((calendarResourceModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_C_C.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(calendarResourceModelImpl.getOriginalClassNameId()),
-					Long.valueOf(calendarResourceModelImpl.getOriginalClassPK())
+					calendarResourceModelImpl.getOriginalClassNameId(),
+					calendarResourceModelImpl.getOriginalClassPK()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
@@ -8618,7 +8613,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	public CalendarResource remove(long calendarResourceId)
 		throws NoSuchResourceException, SystemException {
-		return remove(Long.valueOf(calendarResourceId));
+		return remove((Serializable)calendarResourceId);
 	}
 
 	/**
@@ -8742,7 +8737,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((calendarResourceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RESOURCEBLOCKID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getOriginalResourceBlockId())
+						calendarResourceModelImpl.getOriginalResourceBlockId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RESOURCEBLOCKID,
@@ -8751,7 +8746,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					args);
 
 				args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getResourceBlockId())
+						calendarResourceModelImpl.getResourceBlockId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RESOURCEBLOCKID,
@@ -8781,7 +8776,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						calendarResourceModelImpl.getOriginalUuid(),
-						Long.valueOf(calendarResourceModelImpl.getOriginalCompanyId())
+						calendarResourceModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -8790,7 +8785,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 				args = new Object[] {
 						calendarResourceModelImpl.getUuid(),
-						Long.valueOf(calendarResourceModelImpl.getCompanyId())
+						calendarResourceModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -8801,16 +8796,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((calendarResourceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getOriginalGroupId())
+						calendarResourceModelImpl.getOriginalGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getGroupId())
-					};
+				args = new Object[] { calendarResourceModelImpl.getGroupId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
@@ -8820,16 +8813,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((calendarResourceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACTIVE.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Boolean.valueOf(calendarResourceModelImpl.getOriginalActive())
+						calendarResourceModelImpl.getOriginalActive()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ACTIVE, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACTIVE,
 					args);
 
-				args = new Object[] {
-						Boolean.valueOf(calendarResourceModelImpl.getActive())
-					};
+				args = new Object[] { calendarResourceModelImpl.getActive() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ACTIVE, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACTIVE,
@@ -8839,8 +8830,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((calendarResourceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getOriginalGroupId()),
-						
+						calendarResourceModelImpl.getOriginalGroupId(),
 						calendarResourceModelImpl.getOriginalCode()
 					};
 
@@ -8849,8 +8839,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					args);
 
 				args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getGroupId()),
-						
+						calendarResourceModelImpl.getGroupId(),
 						calendarResourceModelImpl.getCode()
 					};
 
@@ -8862,8 +8851,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((calendarResourceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getOriginalGroupId()),
-						Boolean.valueOf(calendarResourceModelImpl.getOriginalActive())
+						calendarResourceModelImpl.getOriginalGroupId(),
+						calendarResourceModelImpl.getOriginalActive()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_A, args);
@@ -8871,8 +8860,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					args);
 
 				args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getGroupId()),
-						Boolean.valueOf(calendarResourceModelImpl.getActive())
+						calendarResourceModelImpl.getGroupId(),
+						calendarResourceModelImpl.getActive()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_A, args);

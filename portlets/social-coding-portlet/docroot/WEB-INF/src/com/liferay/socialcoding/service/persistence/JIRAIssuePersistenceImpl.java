@@ -6244,7 +6244,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	public JIRAIssue remove(long jiraIssueId)
 		throws NoSuchJIRAIssueException, SystemException {
-		return remove(Long.valueOf(jiraIssueId));
+		return remove((Serializable)jiraIssueId);
 	}
 
 	/**
@@ -6362,7 +6362,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId())
+						jiraIssueModelImpl.getOriginalProjectId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PROJECTID,
@@ -6370,9 +6370,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getProjectId())
-					};
+				args = new Object[] { jiraIssueModelImpl.getProjectId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PROJECTID,
 					args);
@@ -6421,8 +6419,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
+						jiraIssueModelImpl.getOriginalProjectId(),
 						jiraIssueModelImpl.getOriginalReporterJiraUserId()
 					};
 
@@ -6431,8 +6428,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getProjectId()),
-						
+						jiraIssueModelImpl.getProjectId(),
 						jiraIssueModelImpl.getReporterJiraUserId()
 					};
 
@@ -6444,8 +6440,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
+						jiraIssueModelImpl.getOriginalProjectId(),
 						jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
 					};
 
@@ -6454,8 +6449,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getProjectId()),
-						
+						jiraIssueModelImpl.getProjectId(),
 						jiraIssueModelImpl.getAssigneeJiraUserId()
 					};
 
@@ -6467,10 +6461,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
+						jiraIssueModelImpl.getOriginalProjectId(),
 						jiraIssueModelImpl.getOriginalReporterJiraUserId(),
-						
 						jiraIssueModelImpl.getOriginalStatus()
 					};
 
@@ -6479,10 +6471,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getProjectId()),
-						
+						jiraIssueModelImpl.getProjectId(),
 						jiraIssueModelImpl.getReporterJiraUserId(),
-						
 						jiraIssueModelImpl.getStatus()
 					};
 
@@ -6494,10 +6484,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
+						jiraIssueModelImpl.getOriginalProjectId(),
 						jiraIssueModelImpl.getOriginalAssigneeJiraUserId(),
-						
 						jiraIssueModelImpl.getOriginalStatus()
 					};
 
@@ -6506,10 +6494,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(jiraIssueModelImpl.getProjectId()),
-						
+						jiraIssueModelImpl.getProjectId(),
 						jiraIssueModelImpl.getAssigneeJiraUserId(),
-						
 						jiraIssueModelImpl.getStatus()
 					};
 

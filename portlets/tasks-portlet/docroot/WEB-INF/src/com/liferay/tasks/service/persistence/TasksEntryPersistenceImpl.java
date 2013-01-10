@@ -5154,7 +5154,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	public TasksEntry remove(long tasksEntryId)
 		throws NoSuchTasksEntryException, SystemException {
-		return remove(Long.valueOf(tasksEntryId));
+		return remove((Serializable)tasksEntryId);
 	}
 
 	/**
@@ -5271,16 +5271,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getOriginalGroupId())
+						tasksEntryModelImpl.getOriginalGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getGroupId())
-					};
+				args = new Object[] { tasksEntryModelImpl.getGroupId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
@@ -5290,16 +5288,14 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getOriginalUserId())
+						tasksEntryModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getUserId())
-					};
+				args = new Object[] { tasksEntryModelImpl.getUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
@@ -5309,7 +5305,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEUSERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getOriginalAssigneeUserId())
+						tasksEntryModelImpl.getOriginalAssigneeUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ASSIGNEEUSERID,
@@ -5317,9 +5313,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ASSIGNEEUSERID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getAssigneeUserId())
-					};
+				args = new Object[] { tasksEntryModelImpl.getAssigneeUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ASSIGNEEUSERID,
 					args);
@@ -5330,7 +5324,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RESOLVERUSERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getOriginalResolverUserId())
+						tasksEntryModelImpl.getOriginalResolverUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RESOLVERUSERID,
@@ -5338,9 +5332,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RESOLVERUSERID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getResolverUserId())
-					};
+				args = new Object[] { tasksEntryModelImpl.getResolverUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RESOLVERUSERID,
 					args);
@@ -5351,8 +5343,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getOriginalGroupId()),
-						Long.valueOf(tasksEntryModelImpl.getOriginalUserId())
+						tasksEntryModelImpl.getOriginalGroupId(),
+						tasksEntryModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
@@ -5360,8 +5352,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getGroupId()),
-						Long.valueOf(tasksEntryModelImpl.getUserId())
+						tasksEntryModelImpl.getGroupId(),
+						tasksEntryModelImpl.getUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
@@ -5372,8 +5364,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getOriginalGroupId()),
-						Long.valueOf(tasksEntryModelImpl.getOriginalAssigneeUserId())
+						tasksEntryModelImpl.getOriginalGroupId(),
+						tasksEntryModelImpl.getOriginalAssigneeUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_A, args);
@@ -5381,8 +5373,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getGroupId()),
-						Long.valueOf(tasksEntryModelImpl.getAssigneeUserId())
+						tasksEntryModelImpl.getGroupId(),
+						tasksEntryModelImpl.getAssigneeUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_A, args);
@@ -5393,8 +5385,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			if ((tasksEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_R.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getOriginalGroupId()),
-						Long.valueOf(tasksEntryModelImpl.getOriginalResolverUserId())
+						tasksEntryModelImpl.getOriginalGroupId(),
+						tasksEntryModelImpl.getOriginalResolverUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R, args);
@@ -5402,8 +5394,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(tasksEntryModelImpl.getGroupId()),
-						Long.valueOf(tasksEntryModelImpl.getResolverUserId())
+						tasksEntryModelImpl.getGroupId(),
+						tasksEntryModelImpl.getResolverUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R, args);

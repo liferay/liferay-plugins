@@ -1279,8 +1279,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			kaleoCondition);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { Long.valueOf(kaleoCondition.getKaleoNodeId()) },
-			kaleoCondition);
+			new Object[] { kaleoCondition.getKaleoNodeId() }, kaleoCondition);
 
 		kaleoCondition.resetOriginalValues();
 	}
@@ -1356,9 +1355,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 	protected void cacheUniqueFindersCache(KaleoCondition kaleoCondition) {
 		if (kaleoCondition.isNew()) {
-			Object[] args = new Object[] {
-					Long.valueOf(kaleoCondition.getKaleoNodeId())
-				};
+			Object[] args = new Object[] { kaleoCondition.getKaleoNodeId() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEONODEID, args,
 				Long.valueOf(1));
@@ -1370,9 +1367,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_KALEONODEID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(kaleoCondition.getKaleoNodeId())
-					};
+				Object[] args = new Object[] { kaleoCondition.getKaleoNodeId() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEONODEID,
 					args, Long.valueOf(1));
@@ -1385,18 +1380,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	protected void clearUniqueFindersCache(KaleoCondition kaleoCondition) {
 		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoCondition;
 
-		Object[] args = new Object[] {
-				Long.valueOf(kaleoCondition.getKaleoNodeId())
-			};
+		Object[] args = new Object[] { kaleoCondition.getKaleoNodeId() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID, args);
 
 		if ((kaleoConditionModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_KALEONODEID.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					Long.valueOf(kaleoConditionModelImpl.getOriginalKaleoNodeId())
-				};
+			args = new Object[] { kaleoConditionModelImpl.getOriginalKaleoNodeId() };
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID, args);
@@ -1428,7 +1419,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public KaleoCondition remove(long kaleoConditionId)
 		throws NoSuchConditionException, SystemException {
-		return remove(Long.valueOf(kaleoConditionId));
+		return remove((Serializable)kaleoConditionId);
 	}
 
 	/**
@@ -1546,7 +1537,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoConditionModelImpl.getOriginalCompanyId())
+						kaleoConditionModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -1554,9 +1545,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(kaleoConditionModelImpl.getCompanyId())
-					};
+				args = new Object[] { kaleoConditionModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);
@@ -1567,7 +1556,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoConditionModelImpl.getOriginalKaleoDefinitionId())
+						kaleoConditionModelImpl.getOriginalKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -1576,7 +1565,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoConditionModelImpl.getKaleoDefinitionId())
+						kaleoConditionModelImpl.getKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,

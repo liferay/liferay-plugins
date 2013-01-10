@@ -54,7 +54,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoTaskAssignmentId);
+		return _kaleoTaskAssignmentId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

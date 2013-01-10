@@ -694,7 +694,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Bar remove(long barId) throws NoSuchBarException, SystemException {
-		return remove(Long.valueOf(barId));
+		return remove((Serializable)barId);
 	}
 
 	/**

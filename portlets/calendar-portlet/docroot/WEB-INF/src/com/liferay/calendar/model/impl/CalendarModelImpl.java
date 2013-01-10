@@ -176,7 +176,7 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_calendarId);
+		return _calendarId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

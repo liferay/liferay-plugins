@@ -109,7 +109,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_userThreadId);
+		return _userThreadId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

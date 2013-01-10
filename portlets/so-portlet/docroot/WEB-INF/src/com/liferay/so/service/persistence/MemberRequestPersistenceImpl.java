@@ -1611,9 +1611,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S,
 			new Object[] {
-				Long.valueOf(memberRequest.getGroupId()),
-				Long.valueOf(memberRequest.getReceiverUserId()),
-				Integer.valueOf(memberRequest.getStatus())
+				memberRequest.getGroupId(), memberRequest.getReceiverUserId(),
+				memberRequest.getStatus()
 			}, memberRequest);
 
 		memberRequest.resetOriginalValues();
@@ -1698,9 +1697,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				memberRequest);
 
 			args = new Object[] {
-					Long.valueOf(memberRequest.getGroupId()),
-					Long.valueOf(memberRequest.getReceiverUserId()),
-					Integer.valueOf(memberRequest.getStatus())
+					memberRequest.getGroupId(),
+					memberRequest.getReceiverUserId(), memberRequest.getStatus()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_R_S, args,
@@ -1724,9 +1722,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			if ((memberRequestModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_G_R_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(memberRequest.getGroupId()),
-						Long.valueOf(memberRequest.getReceiverUserId()),
-						Integer.valueOf(memberRequest.getStatus())
+						memberRequest.getGroupId(),
+						memberRequest.getReceiverUserId(),
+						memberRequest.getStatus()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_R_S, args,
@@ -1754,9 +1752,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 
 		args = new Object[] {
-				Long.valueOf(memberRequest.getGroupId()),
-				Long.valueOf(memberRequest.getReceiverUserId()),
-				Integer.valueOf(memberRequest.getStatus())
+				memberRequest.getGroupId(), memberRequest.getReceiverUserId(),
+				memberRequest.getStatus()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R_S, args);
@@ -1765,9 +1762,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		if ((memberRequestModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_G_R_S.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(memberRequestModelImpl.getOriginalGroupId()),
-					Long.valueOf(memberRequestModelImpl.getOriginalReceiverUserId()),
-					Integer.valueOf(memberRequestModelImpl.getOriginalStatus())
+					memberRequestModelImpl.getOriginalGroupId(),
+					memberRequestModelImpl.getOriginalReceiverUserId(),
+					memberRequestModelImpl.getOriginalStatus()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_R_S, args);
@@ -1800,7 +1797,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 */
 	public MemberRequest remove(long memberRequestId)
 		throws NoSuchMemberRequestException, SystemException {
-		return remove(Long.valueOf(memberRequestId));
+		return remove((Serializable)memberRequestId);
 	}
 
 	/**
@@ -1918,7 +1915,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			if ((memberRequestModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECEIVERUSERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(memberRequestModelImpl.getOriginalReceiverUserId())
+						memberRequestModelImpl.getOriginalReceiverUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RECEIVERUSERID,
@@ -1926,9 +1923,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RECEIVERUSERID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(memberRequestModelImpl.getReceiverUserId())
-					};
+				args = new Object[] { memberRequestModelImpl.getReceiverUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RECEIVERUSERID,
 					args);
@@ -1939,8 +1934,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			if ((memberRequestModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_R_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(memberRequestModelImpl.getOriginalReceiverUserId()),
-						Integer.valueOf(memberRequestModelImpl.getOriginalStatus())
+						memberRequestModelImpl.getOriginalReceiverUserId(),
+						memberRequestModelImpl.getOriginalStatus()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_S, args);
@@ -1948,8 +1943,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 					args);
 
 				args = new Object[] {
-						Long.valueOf(memberRequestModelImpl.getReceiverUserId()),
-						Integer.valueOf(memberRequestModelImpl.getStatus())
+						memberRequestModelImpl.getReceiverUserId(),
+						memberRequestModelImpl.getStatus()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_S, args);

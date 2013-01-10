@@ -663,7 +663,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public Attachment remove(long attachmentId)
 		throws NoSuchAttachmentException, SystemException {
-		return remove(Long.valueOf(attachmentId));
+		return remove((Serializable)attachmentId);
 	}
 
 	/**
@@ -780,7 +780,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			if ((attachmentModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(attachmentModelImpl.getOriginalMessageId())
+						attachmentModelImpl.getOriginalMessageId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MESSAGEID,
@@ -788,9 +788,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MESSAGEID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(attachmentModelImpl.getMessageId())
-					};
+				args = new Object[] { attachmentModelImpl.getMessageId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MESSAGEID,
 					args);

@@ -1670,7 +1670,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 */
 	public KaleoNotificationRecipient remove(long kaleoNotificationRecipientId)
 		throws NoSuchNotificationRecipientException, SystemException {
-		return remove(Long.valueOf(kaleoNotificationRecipientId));
+		return remove((Serializable)kaleoNotificationRecipientId);
 	}
 
 	/**
@@ -1790,7 +1790,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 			if ((kaleoNotificationRecipientModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoNotificationRecipientModelImpl.getOriginalCompanyId())
+						kaleoNotificationRecipientModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -1799,7 +1799,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoNotificationRecipientModelImpl.getCompanyId())
+						kaleoNotificationRecipientModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -1811,7 +1811,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 			if ((kaleoNotificationRecipientModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoNotificationRecipientModelImpl.getOriginalKaleoDefinitionId())
+						kaleoNotificationRecipientModelImpl.getOriginalKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -1820,7 +1820,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoNotificationRecipientModelImpl.getKaleoDefinitionId())
+						kaleoNotificationRecipientModelImpl.getKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -1832,7 +1832,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 			if ((kaleoNotificationRecipientModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEONOTIFICATIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoNotificationRecipientModelImpl.getOriginalKaleoNotificationId())
+						kaleoNotificationRecipientModelImpl.getOriginalKaleoNotificationId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID,
@@ -1841,7 +1841,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoNotificationRecipientModelImpl.getKaleoNotificationId())
+						kaleoNotificationRecipientModelImpl.getKaleoNotificationId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID,

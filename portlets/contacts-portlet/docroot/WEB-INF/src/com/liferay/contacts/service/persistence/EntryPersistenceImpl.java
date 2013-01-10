@@ -831,11 +831,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			EntryImpl.class, entry.getPrimaryKey(), entry);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_EA,
-			new Object[] {
-				Long.valueOf(entry.getUserId()),
-				
-			entry.getEmailAddress()
-			}, entry);
+			new Object[] { entry.getUserId(), entry.getEmailAddress() }, entry);
 
 		entry.resetOriginalValues();
 	}
@@ -911,9 +907,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	protected void cacheUniqueFindersCache(Entry entry) {
 		if (entry.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(entry.getUserId()),
-					
-					entry.getEmailAddress()
+					entry.getUserId(), entry.getEmailAddress()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_EA, args,
@@ -926,9 +920,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			if ((entryModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_EA.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(entry.getUserId()),
-						
-						entry.getEmailAddress()
+						entry.getUserId(), entry.getEmailAddress()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_EA, args,
@@ -941,11 +933,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	protected void clearUniqueFindersCache(Entry entry) {
 		EntryModelImpl entryModelImpl = (EntryModelImpl)entry;
 
-		Object[] args = new Object[] {
-				Long.valueOf(entry.getUserId()),
-				
-				entry.getEmailAddress()
-			};
+		Object[] args = new Object[] { entry.getUserId(), entry.getEmailAddress() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_EA, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_EA, args);
@@ -953,8 +941,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		if ((entryModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_EA.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(entryModelImpl.getOriginalUserId()),
-					
+					entryModelImpl.getOriginalUserId(),
 					entryModelImpl.getOriginalEmailAddress()
 				};
 
@@ -988,7 +975,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public Entry remove(long entryId)
 		throws NoSuchEntryException, SystemException {
-		return remove(Long.valueOf(entryId));
+		return remove((Serializable)entryId);
 	}
 
 	/**
@@ -1102,15 +1089,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		else {
 			if ((entryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(entryModelImpl.getOriginalUserId())
-					};
+				Object[] args = new Object[] { entryModelImpl.getOriginalUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] { Long.valueOf(entryModelImpl.getUserId()) };
+				args = new Object[] { entryModelImpl.getUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,

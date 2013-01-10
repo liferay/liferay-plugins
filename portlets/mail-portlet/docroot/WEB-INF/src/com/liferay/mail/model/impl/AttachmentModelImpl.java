@@ -103,7 +103,7 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_attachmentId);
+		return _attachmentId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

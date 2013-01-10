@@ -2797,7 +2797,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	public KaleoInstanceToken remove(long kaleoInstanceTokenId)
 		throws NoSuchInstanceTokenException, SystemException {
-		return remove(Long.valueOf(kaleoInstanceTokenId));
+		return remove((Serializable)kaleoInstanceTokenId);
 	}
 
 	/**
@@ -2915,7 +2915,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			if ((kaleoInstanceTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getOriginalCompanyId())
+						kaleoInstanceTokenModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -2923,9 +2923,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getCompanyId())
-					};
+				args = new Object[] { kaleoInstanceTokenModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);
@@ -2936,7 +2934,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			if ((kaleoInstanceTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEODEFINITIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getOriginalKaleoDefinitionId())
+						kaleoInstanceTokenModelImpl.getOriginalKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -2945,7 +2943,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getKaleoDefinitionId())
+						kaleoInstanceTokenModelImpl.getKaleoDefinitionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEODEFINITIONID,
@@ -2957,7 +2955,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			if ((kaleoInstanceTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOINSTANCEID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getOriginalKaleoInstanceId())
+						kaleoInstanceTokenModelImpl.getOriginalKaleoInstanceId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
@@ -2966,7 +2964,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getKaleoInstanceId())
+						kaleoInstanceTokenModelImpl.getKaleoInstanceId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEOINSTANCEID,
@@ -2978,8 +2976,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			if ((kaleoInstanceTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_PKITI.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getOriginalCompanyId()),
-						Long.valueOf(kaleoInstanceTokenModelImpl.getOriginalParentKaleoInstanceTokenId())
+						kaleoInstanceTokenModelImpl.getOriginalCompanyId(),
+						kaleoInstanceTokenModelImpl.getOriginalParentKaleoInstanceTokenId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_PKITI, args);
@@ -2987,8 +2985,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getCompanyId()),
-						Long.valueOf(kaleoInstanceTokenModelImpl.getParentKaleoInstanceTokenId())
+						kaleoInstanceTokenModelImpl.getCompanyId(),
+						kaleoInstanceTokenModelImpl.getParentKaleoInstanceTokenId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_PKITI, args);
@@ -2999,9 +2997,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			if ((kaleoInstanceTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_PKITI_CD.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getOriginalCompanyId()),
-						Long.valueOf(kaleoInstanceTokenModelImpl.getOriginalParentKaleoInstanceTokenId()),
-						
+						kaleoInstanceTokenModelImpl.getOriginalCompanyId(),
+						kaleoInstanceTokenModelImpl.getOriginalParentKaleoInstanceTokenId(),
 						kaleoInstanceTokenModelImpl.getOriginalCompletionDate()
 					};
 
@@ -3011,9 +3008,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kaleoInstanceTokenModelImpl.getCompanyId()),
-						Long.valueOf(kaleoInstanceTokenModelImpl.getParentKaleoInstanceTokenId()),
-						
+						kaleoInstanceTokenModelImpl.getCompanyId(),
+						kaleoInstanceTokenModelImpl.getParentKaleoInstanceTokenId(),
 						kaleoInstanceTokenModelImpl.getCompletionDate()
 					};
 

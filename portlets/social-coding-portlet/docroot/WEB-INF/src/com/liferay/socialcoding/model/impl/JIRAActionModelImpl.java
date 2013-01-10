@@ -104,7 +104,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_jiraActionId);
+		return _jiraActionId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

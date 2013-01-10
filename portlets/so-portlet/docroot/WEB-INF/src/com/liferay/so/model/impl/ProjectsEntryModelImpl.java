@@ -107,7 +107,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_projectsEntryId);
+		return _projectsEntryId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

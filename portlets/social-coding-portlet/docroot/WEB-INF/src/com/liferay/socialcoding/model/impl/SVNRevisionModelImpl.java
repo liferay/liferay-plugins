@@ -100,7 +100,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_svnRevisionId);
+		return _svnRevisionId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

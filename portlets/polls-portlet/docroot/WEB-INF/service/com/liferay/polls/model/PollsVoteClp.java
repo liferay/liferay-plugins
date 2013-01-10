@@ -54,7 +54,7 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_pollsVoteId);
+		return _pollsVoteId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

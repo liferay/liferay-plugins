@@ -53,7 +53,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_statusId);
+		return _statusId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

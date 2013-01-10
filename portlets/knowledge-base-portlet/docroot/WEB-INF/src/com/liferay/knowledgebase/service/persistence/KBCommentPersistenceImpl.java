@@ -3181,15 +3181,13 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			KBCommentImpl.class, kbComment.getPrimaryKey(), kbComment);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				kbComment.getUuid(), Long.valueOf(kbComment.getGroupId())
-			}, kbComment);
+			new Object[] { kbComment.getUuid(), kbComment.getGroupId() },
+			kbComment);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C,
 			new Object[] {
-				Long.valueOf(kbComment.getUserId()),
-				Long.valueOf(kbComment.getClassNameId()),
-				Long.valueOf(kbComment.getClassPK())
+				kbComment.getUserId(), kbComment.getClassNameId(),
+				kbComment.getClassPK()
 			}, kbComment);
 
 		kbComment.resetOriginalValues();
@@ -3267,7 +3265,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	protected void cacheUniqueFindersCache(KBComment kbComment) {
 		if (kbComment.isNew()) {
 			Object[] args = new Object[] {
-					kbComment.getUuid(), Long.valueOf(kbComment.getGroupId())
+					kbComment.getUuid(), kbComment.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -3276,9 +3274,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				kbComment);
 
 			args = new Object[] {
-					Long.valueOf(kbComment.getUserId()),
-					Long.valueOf(kbComment.getClassNameId()),
-					Long.valueOf(kbComment.getClassPK())
+					kbComment.getUserId(), kbComment.getClassNameId(),
+					kbComment.getClassPK()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_C_C, args,
@@ -3292,8 +3289,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			if ((kbCommentModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbComment.getUuid(),
-						Long.valueOf(kbComment.getGroupId())
+						kbComment.getUuid(), kbComment.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -3305,9 +3301,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			if ((kbCommentModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_C_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kbComment.getUserId()),
-						Long.valueOf(kbComment.getClassNameId()),
-						Long.valueOf(kbComment.getClassPK())
+						kbComment.getUserId(), kbComment.getClassNameId(),
+						kbComment.getClassPK()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_C_C, args,
@@ -3321,9 +3316,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	protected void clearUniqueFindersCache(KBComment kbComment) {
 		KBCommentModelImpl kbCommentModelImpl = (KBCommentModelImpl)kbComment;
 
-		Object[] args = new Object[] {
-				kbComment.getUuid(), Long.valueOf(kbComment.getGroupId())
-			};
+		Object[] args = new Object[] { kbComment.getUuid(), kbComment.getGroupId() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
@@ -3332,7 +3325,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 			args = new Object[] {
 					kbCommentModelImpl.getOriginalUuid(),
-					Long.valueOf(kbCommentModelImpl.getOriginalGroupId())
+					kbCommentModelImpl.getOriginalGroupId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -3340,9 +3333,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		}
 
 		args = new Object[] {
-				Long.valueOf(kbComment.getUserId()),
-				Long.valueOf(kbComment.getClassNameId()),
-				Long.valueOf(kbComment.getClassPK())
+				kbComment.getUserId(), kbComment.getClassNameId(),
+				kbComment.getClassPK()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_C_C, args);
@@ -3351,9 +3343,9 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		if ((kbCommentModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_C_C.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(kbCommentModelImpl.getOriginalUserId()),
-					Long.valueOf(kbCommentModelImpl.getOriginalClassNameId()),
-					Long.valueOf(kbCommentModelImpl.getOriginalClassPK())
+					kbCommentModelImpl.getOriginalUserId(),
+					kbCommentModelImpl.getOriginalClassNameId(),
+					kbCommentModelImpl.getOriginalClassPK()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_C_C, args);
@@ -3390,7 +3382,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	public KBComment remove(long kbCommentId)
 		throws NoSuchCommentException, SystemException {
-		return remove(Long.valueOf(kbCommentId));
+		return remove((Serializable)kbCommentId);
 	}
 
 	/**
@@ -3532,7 +3524,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						kbCommentModelImpl.getOriginalUuid(),
-						Long.valueOf(kbCommentModelImpl.getOriginalCompanyId())
+						kbCommentModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -3541,7 +3533,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 				args = new Object[] {
 						kbCommentModelImpl.getUuid(),
-						Long.valueOf(kbCommentModelImpl.getCompanyId())
+						kbCommentModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -3552,16 +3544,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			if ((kbCommentModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kbCommentModelImpl.getOriginalGroupId())
+						kbCommentModelImpl.getOriginalGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(kbCommentModelImpl.getGroupId())
-					};
+				args = new Object[] { kbCommentModelImpl.getGroupId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
@@ -3571,8 +3561,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			if ((kbCommentModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kbCommentModelImpl.getOriginalGroupId()),
-						Long.valueOf(kbCommentModelImpl.getOriginalClassNameId())
+						kbCommentModelImpl.getOriginalGroupId(),
+						kbCommentModelImpl.getOriginalClassNameId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_C, args);
@@ -3580,8 +3570,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kbCommentModelImpl.getGroupId()),
-						Long.valueOf(kbCommentModelImpl.getClassNameId())
+						kbCommentModelImpl.getGroupId(),
+						kbCommentModelImpl.getClassNameId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_C, args);
@@ -3592,8 +3582,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			if ((kbCommentModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kbCommentModelImpl.getOriginalClassNameId()),
-						Long.valueOf(kbCommentModelImpl.getOriginalClassPK())
+						kbCommentModelImpl.getOriginalClassNameId(),
+						kbCommentModelImpl.getOriginalClassPK()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
@@ -3601,8 +3591,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(kbCommentModelImpl.getClassNameId()),
-						Long.valueOf(kbCommentModelImpl.getClassPK())
+						kbCommentModelImpl.getClassNameId(),
+						kbCommentModelImpl.getClassPK()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);

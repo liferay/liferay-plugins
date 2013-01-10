@@ -52,7 +52,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_moduleId);
+		return _moduleId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

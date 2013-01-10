@@ -116,7 +116,7 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoTaskInstanceTokenId);
+		return _kaleoTaskInstanceTokenId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

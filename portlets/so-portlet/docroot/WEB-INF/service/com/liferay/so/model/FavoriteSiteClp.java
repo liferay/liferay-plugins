@@ -54,7 +54,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_favoriteSiteId);
+		return _favoriteSiteId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

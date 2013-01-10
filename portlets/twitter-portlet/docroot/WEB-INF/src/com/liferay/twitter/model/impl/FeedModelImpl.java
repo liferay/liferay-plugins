@@ -105,7 +105,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_feedId);
+		return _feedId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

@@ -1908,9 +1908,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				wsrpProducer.getUuid(), Long.valueOf(wsrpProducer.getGroupId())
-			}, wsrpProducer);
+			new Object[] { wsrpProducer.getUuid(), wsrpProducer.getGroupId() },
+			wsrpProducer);
 
 		wsrpProducer.resetOriginalValues();
 	}
@@ -1987,8 +1986,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	protected void cacheUniqueFindersCache(WSRPProducer wsrpProducer) {
 		if (wsrpProducer.isNew()) {
 			Object[] args = new Object[] {
-					wsrpProducer.getUuid(),
-					Long.valueOf(wsrpProducer.getGroupId())
+					wsrpProducer.getUuid(), wsrpProducer.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -2002,8 +2000,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			if ((wsrpProducerModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						wsrpProducer.getUuid(),
-						Long.valueOf(wsrpProducer.getGroupId())
+						wsrpProducer.getUuid(), wsrpProducer.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -2018,7 +2015,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		WSRPProducerModelImpl wsrpProducerModelImpl = (WSRPProducerModelImpl)wsrpProducer;
 
 		Object[] args = new Object[] {
-				wsrpProducer.getUuid(), Long.valueOf(wsrpProducer.getGroupId())
+				wsrpProducer.getUuid(), wsrpProducer.getGroupId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2028,7 +2025,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 			args = new Object[] {
 					wsrpProducerModelImpl.getOriginalUuid(),
-					Long.valueOf(wsrpProducerModelImpl.getOriginalGroupId())
+					wsrpProducerModelImpl.getOriginalGroupId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2065,7 +2062,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public WSRPProducer remove(long wsrpProducerId)
 		throws NoSuchProducerException, SystemException {
-		return remove(Long.valueOf(wsrpProducerId));
+		return remove((Serializable)wsrpProducerId);
 	}
 
 	/**
@@ -2207,7 +2204,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						wsrpProducerModelImpl.getOriginalUuid(),
-						Long.valueOf(wsrpProducerModelImpl.getOriginalCompanyId())
+						wsrpProducerModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2216,7 +2213,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 				args = new Object[] {
 						wsrpProducerModelImpl.getUuid(),
-						Long.valueOf(wsrpProducerModelImpl.getCompanyId())
+						wsrpProducerModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2227,7 +2224,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			if ((wsrpProducerModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(wsrpProducerModelImpl.getOriginalCompanyId())
+						wsrpProducerModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -2235,9 +2232,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(wsrpProducerModelImpl.getCompanyId())
-					};
+				args = new Object[] { wsrpProducerModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);

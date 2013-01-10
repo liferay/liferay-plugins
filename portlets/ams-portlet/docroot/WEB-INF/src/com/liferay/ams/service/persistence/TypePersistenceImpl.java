@@ -181,7 +181,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Type remove(long typeId) throws NoSuchTypeException, SystemException {
-		return remove(Long.valueOf(typeId));
+		return remove((Serializable)typeId);
 	}
 
 	/**

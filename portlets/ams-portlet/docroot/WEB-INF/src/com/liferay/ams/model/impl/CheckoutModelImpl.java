@@ -101,7 +101,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_checkoutId);
+		return _checkoutId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

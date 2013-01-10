@@ -2263,9 +2263,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
-			}, kbTemplate);
+			new Object[] { kbTemplate.getUuid(), kbTemplate.getGroupId() },
+			kbTemplate);
 
 		kbTemplate.resetOriginalValues();
 	}
@@ -2342,7 +2341,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	protected void cacheUniqueFindersCache(KBTemplate kbTemplate) {
 		if (kbTemplate.isNew()) {
 			Object[] args = new Object[] {
-					kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
+					kbTemplate.getUuid(), kbTemplate.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -2356,8 +2355,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			if ((kbTemplateModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbTemplate.getUuid(),
-						Long.valueOf(kbTemplate.getGroupId())
+						kbTemplate.getUuid(), kbTemplate.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -2372,7 +2370,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		KBTemplateModelImpl kbTemplateModelImpl = (KBTemplateModelImpl)kbTemplate;
 
 		Object[] args = new Object[] {
-				kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
+				kbTemplate.getUuid(), kbTemplate.getGroupId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2382,7 +2380,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 			args = new Object[] {
 					kbTemplateModelImpl.getOriginalUuid(),
-					Long.valueOf(kbTemplateModelImpl.getOriginalGroupId())
+					kbTemplateModelImpl.getOriginalGroupId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2419,7 +2417,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	public KBTemplate remove(long kbTemplateId)
 		throws NoSuchTemplateException, SystemException {
-		return remove(Long.valueOf(kbTemplateId));
+		return remove((Serializable)kbTemplateId);
 	}
 
 	/**
@@ -2561,7 +2559,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						kbTemplateModelImpl.getOriginalUuid(),
-						Long.valueOf(kbTemplateModelImpl.getOriginalCompanyId())
+						kbTemplateModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2570,7 +2568,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				args = new Object[] {
 						kbTemplateModelImpl.getUuid(),
-						Long.valueOf(kbTemplateModelImpl.getCompanyId())
+						kbTemplateModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2581,16 +2579,14 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			if ((kbTemplateModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(kbTemplateModelImpl.getOriginalGroupId())
+						kbTemplateModelImpl.getOriginalGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(kbTemplateModelImpl.getGroupId())
-					};
+				args = new Object[] { kbTemplateModelImpl.getGroupId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,

@@ -1357,11 +1357,8 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 			PollsChoiceImpl.class, pollsChoice.getPrimaryKey(), pollsChoice);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_PQI_N,
-			new Object[] {
-				Long.valueOf(pollsChoice.getPollsQuestionId()),
-				
-			pollsChoice.getName()
-			}, pollsChoice);
+			new Object[] { pollsChoice.getPollsQuestionId(), pollsChoice.getName() },
+			pollsChoice);
 
 		pollsChoice.resetOriginalValues();
 	}
@@ -1438,9 +1435,7 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 	protected void cacheUniqueFindersCache(PollsChoice pollsChoice) {
 		if (pollsChoice.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(pollsChoice.getPollsQuestionId()),
-					
-					pollsChoice.getName()
+					pollsChoice.getPollsQuestionId(), pollsChoice.getName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_PQI_N, args,
@@ -1454,9 +1449,7 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 			if ((pollsChoiceModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_PQI_N.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(pollsChoice.getPollsQuestionId()),
-						
-						pollsChoice.getName()
+						pollsChoice.getPollsQuestionId(), pollsChoice.getName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_PQI_N, args,
@@ -1471,9 +1464,7 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 		PollsChoiceModelImpl pollsChoiceModelImpl = (PollsChoiceModelImpl)pollsChoice;
 
 		Object[] args = new Object[] {
-				Long.valueOf(pollsChoice.getPollsQuestionId()),
-				
-				pollsChoice.getName()
+				pollsChoice.getPollsQuestionId(), pollsChoice.getName()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PQI_N, args);
@@ -1482,8 +1473,7 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 		if ((pollsChoiceModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_PQI_N.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(pollsChoiceModelImpl.getOriginalPollsQuestionId()),
-					
+					pollsChoiceModelImpl.getOriginalPollsQuestionId(),
 					pollsChoiceModelImpl.getOriginalName()
 				};
 
@@ -1521,7 +1511,7 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 	 */
 	public PollsChoice remove(long pollsChoiceId)
 		throws NoSuchChoiceException, SystemException {
-		return remove(Long.valueOf(pollsChoiceId));
+		return remove((Serializable)pollsChoiceId);
 	}
 
 	/**
@@ -1662,7 +1652,7 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 			if ((pollsChoiceModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_POLLSQUESTIONID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(pollsChoiceModelImpl.getOriginalPollsQuestionId())
+						pollsChoiceModelImpl.getOriginalPollsQuestionId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_POLLSQUESTIONID,
@@ -1670,9 +1660,7 @@ public class PollsChoicePersistenceImpl extends BasePersistenceImpl<PollsChoice>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_POLLSQUESTIONID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(pollsChoiceModelImpl.getPollsQuestionId())
-					};
+				args = new Object[] { pollsChoiceModelImpl.getPollsQuestionId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_POLLSQUESTIONID,
 					args);

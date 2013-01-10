@@ -157,7 +157,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_appId);
+		return _appId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

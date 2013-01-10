@@ -166,7 +166,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_microblogsEntryId);
+		return _microblogsEntryId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

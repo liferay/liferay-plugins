@@ -54,7 +54,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_appId);
+		return _appId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

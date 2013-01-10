@@ -154,7 +154,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_gadgetId);
+		return _gadgetId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

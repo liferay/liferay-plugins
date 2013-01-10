@@ -107,7 +107,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_wsrpConsumerId);
+		return _wsrpConsumerId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

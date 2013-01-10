@@ -54,7 +54,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_wsrpProducerId);
+		return _wsrpProducerId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

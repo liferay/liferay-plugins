@@ -654,7 +654,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
-		return remove(Long.valueOf(fooId));
+		return remove((Serializable)fooId);
 	}
 
 	/**
@@ -767,15 +767,13 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		else {
 			if ((fooModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Boolean.valueOf(fooModelImpl.getOriginalField2())
-					};
+				Object[] args = new Object[] { fooModelImpl.getOriginalField2() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,
 					args);
 
-				args = new Object[] { Boolean.valueOf(fooModelImpl.getField2()) };
+				args = new Object[] { fooModelImpl.getField2() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,

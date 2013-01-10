@@ -56,7 +56,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kbTemplateId);
+		return _kbTemplateId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

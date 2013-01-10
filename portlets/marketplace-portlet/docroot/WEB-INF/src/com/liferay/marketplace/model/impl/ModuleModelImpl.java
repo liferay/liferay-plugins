@@ -98,7 +98,7 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_moduleId);
+		return _moduleId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

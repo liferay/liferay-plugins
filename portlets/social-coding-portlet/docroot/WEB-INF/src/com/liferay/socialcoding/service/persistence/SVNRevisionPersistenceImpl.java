@@ -1760,7 +1760,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public SVNRevision remove(long svnRevisionId)
 		throws NoSuchSVNRevisionException, SystemException {
-		return remove(Long.valueOf(svnRevisionId));
+		return remove((Serializable)svnRevisionId);
 	}
 
 	/**
@@ -1897,7 +1897,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			if ((svnRevisionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNREPOSITORYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(svnRevisionModelImpl.getOriginalSvnRepositoryId())
+						svnRevisionModelImpl.getOriginalSvnRepositoryId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNREPOSITORYID,
@@ -1905,9 +1905,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNREPOSITORYID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(svnRevisionModelImpl.getSvnRepositoryId())
-					};
+				args = new Object[] { svnRevisionModelImpl.getSvnRepositoryId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNREPOSITORYID,
 					args);
@@ -1919,7 +1917,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNU_SVNR.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						svnRevisionModelImpl.getOriginalSvnUserId(),
-						Long.valueOf(svnRevisionModelImpl.getOriginalSvnRepositoryId())
+						svnRevisionModelImpl.getOriginalSvnRepositoryId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNU_SVNR,
@@ -1929,7 +1927,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 
 				args = new Object[] {
 						svnRevisionModelImpl.getSvnUserId(),
-						Long.valueOf(svnRevisionModelImpl.getSvnRepositoryId())
+						svnRevisionModelImpl.getSvnRepositoryId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_SVNU_SVNR,

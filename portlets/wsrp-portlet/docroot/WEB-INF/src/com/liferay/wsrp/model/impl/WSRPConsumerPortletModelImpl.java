@@ -104,7 +104,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_wsrpConsumerPortletId);
+		return _wsrpConsumerPortletId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

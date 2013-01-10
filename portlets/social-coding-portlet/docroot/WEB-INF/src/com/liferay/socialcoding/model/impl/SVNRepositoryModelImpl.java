@@ -94,7 +94,7 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_svnRepositoryId);
+		return _svnRepositoryId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

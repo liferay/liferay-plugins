@@ -52,7 +52,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_barId);
+		return _barId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

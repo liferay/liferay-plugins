@@ -113,7 +113,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_oAuthTokenId);
+		return _oAuthTokenId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

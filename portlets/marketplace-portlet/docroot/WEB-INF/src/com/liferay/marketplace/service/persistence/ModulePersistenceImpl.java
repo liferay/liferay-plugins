@@ -1864,11 +1864,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			ModuleImpl.class, module.getPrimaryKey(), module);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_C,
-			new Object[] {
-				Long.valueOf(module.getAppId()),
-				
-			module.getContextName()
-			}, module);
+			new Object[] { module.getAppId(), module.getContextName() }, module);
 
 		module.resetOriginalValues();
 	}
@@ -1945,9 +1941,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	protected void cacheUniqueFindersCache(Module module) {
 		if (module.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(module.getAppId()),
-					
-					module.getContextName()
+					module.getAppId(), module.getContextName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_C, args,
@@ -1960,9 +1954,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			if ((moduleModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_A_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(module.getAppId()),
-						
-						module.getContextName()
+						module.getAppId(), module.getContextName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_C, args,
@@ -1975,11 +1967,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	protected void clearUniqueFindersCache(Module module) {
 		ModuleModelImpl moduleModelImpl = (ModuleModelImpl)module;
 
-		Object[] args = new Object[] {
-				Long.valueOf(module.getAppId()),
-				
-				module.getContextName()
-			};
+		Object[] args = new Object[] { module.getAppId(), module.getContextName() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_C, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_C, args);
@@ -1987,8 +1975,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		if ((moduleModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_A_C.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(moduleModelImpl.getOriginalAppId()),
-					
+					moduleModelImpl.getOriginalAppId(),
 					moduleModelImpl.getOriginalContextName()
 				};
 
@@ -2026,7 +2013,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 */
 	public Module remove(long moduleId)
 		throws NoSuchModuleException, SystemException {
-		return remove(Long.valueOf(moduleId));
+		return remove((Serializable)moduleId);
 	}
 
 	/**
@@ -2161,15 +2148,13 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 			if ((moduleModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_APPID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(moduleModelImpl.getOriginalAppId())
-					};
+				Object[] args = new Object[] { moduleModelImpl.getOriginalAppId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_APPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_APPID,
 					args);
 
-				args = new Object[] { Long.valueOf(moduleModelImpl.getAppId()) };
+				args = new Object[] { moduleModelImpl.getAppId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_APPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_APPID,

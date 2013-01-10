@@ -831,8 +831,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			AccountImpl.class, account.getPrimaryKey(), account);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
-			new Object[] { Long.valueOf(account.getUserId()), account.getAddress() },
-			account);
+			new Object[] { account.getUserId(), account.getAddress() }, account);
 
 		account.resetOriginalValues();
 	}
@@ -909,9 +908,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	protected void cacheUniqueFindersCache(Account account) {
 		if (account.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(account.getUserId()),
-					
-					account.getAddress()
+					account.getUserId(), account.getAddress()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_A, args,
@@ -924,9 +921,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			if ((accountModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(account.getUserId()),
-						
-						account.getAddress()
+						account.getUserId(), account.getAddress()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_A, args,
@@ -940,11 +935,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	protected void clearUniqueFindersCache(Account account) {
 		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
 
-		Object[] args = new Object[] {
-				Long.valueOf(account.getUserId()),
-				
-				account.getAddress()
-			};
+		Object[] args = new Object[] { account.getUserId(), account.getAddress() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
@@ -952,8 +943,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		if ((accountModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(accountModelImpl.getOriginalUserId()),
-					
+					accountModelImpl.getOriginalUserId(),
 					accountModelImpl.getOriginalAddress()
 				};
 
@@ -987,7 +977,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	public Account remove(long accountId)
 		throws NoSuchAccountException, SystemException {
-		return remove(Long.valueOf(accountId));
+		return remove((Serializable)accountId);
 	}
 
 	/**
@@ -1102,14 +1092,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			if ((accountModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(accountModelImpl.getOriginalUserId())
+						accountModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] { Long.valueOf(accountModelImpl.getUserId()) };
+				args = new Object[] { accountModelImpl.getUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,

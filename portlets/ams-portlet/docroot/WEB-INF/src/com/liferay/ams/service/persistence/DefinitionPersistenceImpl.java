@@ -183,7 +183,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	public Definition remove(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
-		return remove(Long.valueOf(definitionId));
+		return remove((Serializable)definitionId);
 	}
 
 	/**

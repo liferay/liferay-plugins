@@ -1843,7 +1843,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			AppImpl.class, app.getPrimaryKey(), app);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-			new Object[] { Long.valueOf(app.getRemoteAppId()) }, app);
+			new Object[] { app.getRemoteAppId() }, app);
 
 		app.resetOriginalValues();
 	}
@@ -1918,7 +1918,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 	protected void cacheUniqueFindersCache(App app) {
 		if (app.isNew()) {
-			Object[] args = new Object[] { Long.valueOf(app.getRemoteAppId()) };
+			Object[] args = new Object[] { app.getRemoteAppId() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_REMOTEAPPID, args,
 				Long.valueOf(1));
@@ -1930,7 +1930,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			if ((appModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_REMOTEAPPID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { Long.valueOf(app.getRemoteAppId()) };
+				Object[] args = new Object[] { app.getRemoteAppId() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_REMOTEAPPID,
 					args, Long.valueOf(1));
@@ -1943,16 +1943,14 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	protected void clearUniqueFindersCache(App app) {
 		AppModelImpl appModelImpl = (AppModelImpl)app;
 
-		Object[] args = new Object[] { Long.valueOf(app.getRemoteAppId()) };
+		Object[] args = new Object[] { app.getRemoteAppId() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REMOTEAPPID, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID, args);
 
 		if ((appModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_REMOTEAPPID.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					Long.valueOf(appModelImpl.getOriginalRemoteAppId())
-				};
+			args = new Object[] { appModelImpl.getOriginalRemoteAppId() };
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REMOTEAPPID, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID, args);
@@ -1987,7 +1985,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public App remove(long appId) throws NoSuchAppException, SystemException {
-		return remove(Long.valueOf(appId));
+		return remove((Serializable)appId);
 	}
 
 	/**
@@ -2123,7 +2121,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						appModelImpl.getOriginalUuid(),
-						Long.valueOf(appModelImpl.getOriginalCompanyId())
+						appModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2131,8 +2129,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 					args);
 
 				args = new Object[] {
-						appModelImpl.getUuid(),
-						Long.valueOf(appModelImpl.getCompanyId())
+						appModelImpl.getUuid(), appModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2142,16 +2139,14 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			if ((appModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(appModelImpl.getOriginalCompanyId())
-					};
+				Object[] args = new Object[] { appModelImpl.getOriginalCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] { Long.valueOf(appModelImpl.getCompanyId()) };
+				args = new Object[] { appModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);

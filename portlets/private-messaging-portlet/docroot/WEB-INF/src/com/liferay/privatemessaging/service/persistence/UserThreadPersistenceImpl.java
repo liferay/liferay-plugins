@@ -2348,10 +2348,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			UserThreadImpl.class, userThread.getPrimaryKey(), userThread);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-			new Object[] {
-				Long.valueOf(userThread.getUserId()),
-				Long.valueOf(userThread.getMbThreadId())
-			}, userThread);
+			new Object[] { userThread.getUserId(), userThread.getMbThreadId() },
+			userThread);
 
 		userThread.resetOriginalValues();
 	}
@@ -2428,8 +2426,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	protected void cacheUniqueFindersCache(UserThread userThread) {
 		if (userThread.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(userThread.getUserId()),
-					Long.valueOf(userThread.getMbThreadId())
+					userThread.getUserId(), userThread.getMbThreadId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
@@ -2442,8 +2439,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(userThread.getUserId()),
-						Long.valueOf(userThread.getMbThreadId())
+						userThread.getUserId(), userThread.getMbThreadId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
@@ -2458,8 +2454,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
 
 		Object[] args = new Object[] {
-				Long.valueOf(userThread.getUserId()),
-				Long.valueOf(userThread.getMbThreadId())
+				userThread.getUserId(), userThread.getMbThreadId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
@@ -2468,8 +2463,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if ((userThreadModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(userThreadModelImpl.getOriginalUserId()),
-					Long.valueOf(userThreadModelImpl.getOriginalMbThreadId())
+					userThreadModelImpl.getOriginalUserId(),
+					userThreadModelImpl.getOriginalMbThreadId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
@@ -2502,7 +2497,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public UserThread remove(long userThreadId)
 		throws NoSuchUserThreadException, SystemException {
-		return remove(Long.valueOf(userThreadId));
+		return remove((Serializable)userThreadId);
 	}
 
 	/**
@@ -2620,7 +2615,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getOriginalMbThreadId())
+						userThreadModelImpl.getOriginalMbThreadId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID,
@@ -2628,9 +2623,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getMbThreadId())
-					};
+				args = new Object[] { userThreadModelImpl.getMbThreadId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID,
 					args);
@@ -2641,16 +2634,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getOriginalUserId())
+						userThreadModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getUserId())
-					};
+				args = new Object[] { userThreadModelImpl.getUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
@@ -2660,8 +2651,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getOriginalUserId()),
-						Boolean.valueOf(userThreadModelImpl.getOriginalDeleted())
+						userThreadModelImpl.getOriginalUserId(),
+						userThreadModelImpl.getOriginalDeleted()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
@@ -2669,8 +2660,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getUserId()),
-						Boolean.valueOf(userThreadModelImpl.getDeleted())
+						userThreadModelImpl.getUserId(),
+						userThreadModelImpl.getDeleted()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
@@ -2681,9 +2672,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getOriginalUserId()),
-						Boolean.valueOf(userThreadModelImpl.getOriginalRead()),
-						Boolean.valueOf(userThreadModelImpl.getOriginalDeleted())
+						userThreadModelImpl.getOriginalUserId(),
+						userThreadModelImpl.getOriginalRead(),
+						userThreadModelImpl.getOriginalDeleted()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
@@ -2691,9 +2682,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(userThreadModelImpl.getUserId()),
-						Boolean.valueOf(userThreadModelImpl.getRead()),
-						Boolean.valueOf(userThreadModelImpl.getDeleted())
+						userThreadModelImpl.getUserId(),
+						userThreadModelImpl.getRead(),
+						userThreadModelImpl.getDeleted()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);

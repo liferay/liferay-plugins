@@ -55,7 +55,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_wallEntryId);
+		return _wallEntryId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

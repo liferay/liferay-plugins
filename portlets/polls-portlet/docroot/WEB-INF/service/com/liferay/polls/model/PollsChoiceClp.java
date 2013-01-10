@@ -59,7 +59,7 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_pollsChoiceId);
+		return _pollsChoiceId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

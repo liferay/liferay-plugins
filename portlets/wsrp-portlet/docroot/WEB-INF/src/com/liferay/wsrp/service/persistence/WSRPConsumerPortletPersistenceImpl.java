@@ -1950,9 +1950,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_W_P,
 			new Object[] {
-				Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
-				
-			wsrpConsumerPortlet.getPortletHandle()
+				wsrpConsumerPortlet.getWsrpConsumerId(),
+				wsrpConsumerPortlet.getPortletHandle()
 			}, wsrpConsumerPortlet);
 
 		wsrpConsumerPortlet.resetOriginalValues();
@@ -2033,8 +2032,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		WSRPConsumerPortlet wsrpConsumerPortlet) {
 		if (wsrpConsumerPortlet.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
-					
+					wsrpConsumerPortlet.getWsrpConsumerId(),
 					wsrpConsumerPortlet.getPortletHandle()
 				};
 
@@ -2049,8 +2047,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			if ((wsrpConsumerPortletModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_W_P.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
-						
+						wsrpConsumerPortlet.getWsrpConsumerId(),
 						wsrpConsumerPortlet.getPortletHandle()
 					};
 
@@ -2067,8 +2064,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortlet;
 
 		Object[] args = new Object[] {
-				Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
-				
+				wsrpConsumerPortlet.getWsrpConsumerId(),
 				wsrpConsumerPortlet.getPortletHandle()
 			};
 
@@ -2078,8 +2074,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		if ((wsrpConsumerPortletModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_W_P.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()),
-					
+					wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId(),
 					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()
 				};
 
@@ -2117,7 +2112,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	public WSRPConsumerPortlet remove(long wsrpConsumerPortletId)
 		throws NoSuchConsumerPortletException, SystemException {
-		return remove(Long.valueOf(wsrpConsumerPortletId));
+		return remove((Serializable)wsrpConsumerPortletId);
 	}
 
 	/**
@@ -2259,7 +2254,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						wsrpConsumerPortletModelImpl.getOriginalUuid(),
-						Long.valueOf(wsrpConsumerPortletModelImpl.getOriginalCompanyId())
+						wsrpConsumerPortletModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2268,7 +2263,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 				args = new Object[] {
 						wsrpConsumerPortletModelImpl.getUuid(),
-						Long.valueOf(wsrpConsumerPortletModelImpl.getCompanyId())
+						wsrpConsumerPortletModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2279,7 +2274,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			if ((wsrpConsumerPortletModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_WSRPCONSUMERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId())
+						wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_WSRPCONSUMERID,
@@ -2288,7 +2283,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 					args);
 
 				args = new Object[] {
-						Long.valueOf(wsrpConsumerPortletModelImpl.getWsrpConsumerId())
+						wsrpConsumerPortletModelImpl.getWsrpConsumerId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_WSRPCONSUMERID,

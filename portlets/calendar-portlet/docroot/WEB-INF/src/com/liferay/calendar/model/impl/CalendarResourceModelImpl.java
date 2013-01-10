@@ -183,7 +183,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_calendarResourceId);
+		return _calendarResourceId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

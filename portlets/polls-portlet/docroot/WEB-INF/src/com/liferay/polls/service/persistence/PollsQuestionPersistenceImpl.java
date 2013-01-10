@@ -1914,10 +1914,8 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 			pollsQuestion);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				pollsQuestion.getUuid(),
-				Long.valueOf(pollsQuestion.getGroupId())
-			}, pollsQuestion);
+			new Object[] { pollsQuestion.getUuid(), pollsQuestion.getGroupId() },
+			pollsQuestion);
 
 		pollsQuestion.resetOriginalValues();
 	}
@@ -1994,8 +1992,7 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 	protected void cacheUniqueFindersCache(PollsQuestion pollsQuestion) {
 		if (pollsQuestion.isNew()) {
 			Object[] args = new Object[] {
-					pollsQuestion.getUuid(),
-					Long.valueOf(pollsQuestion.getGroupId())
+					pollsQuestion.getUuid(), pollsQuestion.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -2009,8 +2006,7 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 			if ((pollsQuestionModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						pollsQuestion.getUuid(),
-						Long.valueOf(pollsQuestion.getGroupId())
+						pollsQuestion.getUuid(), pollsQuestion.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -2025,8 +2021,7 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 		PollsQuestionModelImpl pollsQuestionModelImpl = (PollsQuestionModelImpl)pollsQuestion;
 
 		Object[] args = new Object[] {
-				pollsQuestion.getUuid(),
-				Long.valueOf(pollsQuestion.getGroupId())
+				pollsQuestion.getUuid(), pollsQuestion.getGroupId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2036,7 +2031,7 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 			args = new Object[] {
 					pollsQuestionModelImpl.getOriginalUuid(),
-					Long.valueOf(pollsQuestionModelImpl.getOriginalGroupId())
+					pollsQuestionModelImpl.getOriginalGroupId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2073,7 +2068,7 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 	 */
 	public PollsQuestion remove(long pollsQuestionId)
 		throws NoSuchQuestionException, SystemException {
-		return remove(Long.valueOf(pollsQuestionId));
+		return remove((Serializable)pollsQuestionId);
 	}
 
 	/**
@@ -2215,7 +2210,7 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						pollsQuestionModelImpl.getOriginalUuid(),
-						Long.valueOf(pollsQuestionModelImpl.getOriginalCompanyId())
+						pollsQuestionModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2224,7 +2219,7 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 
 				args = new Object[] {
 						pollsQuestionModelImpl.getUuid(),
-						Long.valueOf(pollsQuestionModelImpl.getCompanyId())
+						pollsQuestionModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2235,16 +2230,14 @@ public class PollsQuestionPersistenceImpl extends BasePersistenceImpl<PollsQuest
 			if ((pollsQuestionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(pollsQuestionModelImpl.getOriginalGroupId())
+						pollsQuestionModelImpl.getOriginalGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(pollsQuestionModelImpl.getGroupId())
-					};
+				args = new Object[] { pollsQuestionModelImpl.getGroupId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,

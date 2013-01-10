@@ -1644,7 +1644,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public WallEntry remove(long wallEntryId)
 		throws NoSuchWallEntryException, SystemException {
-		return remove(Long.valueOf(wallEntryId));
+		return remove((Serializable)wallEntryId);
 	}
 
 	/**
@@ -1762,16 +1762,14 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			if ((wallEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(wallEntryModelImpl.getOriginalGroupId())
+						wallEntryModelImpl.getOriginalGroupId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(wallEntryModelImpl.getGroupId())
-					};
+				args = new Object[] { wallEntryModelImpl.getGroupId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
@@ -1781,14 +1779,14 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			if ((wallEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(wallEntryModelImpl.getOriginalUserId())
+						wallEntryModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] { Long.valueOf(wallEntryModelImpl.getUserId()) };
+				args = new Object[] { wallEntryModelImpl.getUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
@@ -1798,8 +1796,8 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			if ((wallEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(wallEntryModelImpl.getOriginalGroupId()),
-						Long.valueOf(wallEntryModelImpl.getOriginalUserId())
+						wallEntryModelImpl.getOriginalGroupId(),
+						wallEntryModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
@@ -1807,8 +1805,8 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 					args);
 
 				args = new Object[] {
-						Long.valueOf(wallEntryModelImpl.getGroupId()),
-						Long.valueOf(wallEntryModelImpl.getUserId())
+						wallEntryModelImpl.getGroupId(),
+						wallEntryModelImpl.getUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);

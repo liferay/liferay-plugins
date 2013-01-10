@@ -57,7 +57,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kbCommentId);
+		return _kbCommentId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

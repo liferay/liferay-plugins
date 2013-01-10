@@ -53,7 +53,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_gadgetId);
+		return _gadgetId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

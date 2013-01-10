@@ -121,7 +121,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_accountId);
+		return _accountId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

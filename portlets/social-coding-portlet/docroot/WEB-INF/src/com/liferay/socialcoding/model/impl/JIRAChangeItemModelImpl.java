@@ -99,7 +99,7 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_jiraChangeItemId);
+		return _jiraChangeItemId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

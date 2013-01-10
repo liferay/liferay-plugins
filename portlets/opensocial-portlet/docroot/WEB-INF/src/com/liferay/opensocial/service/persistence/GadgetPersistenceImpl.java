@@ -3065,8 +3065,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			GadgetImpl.class, gadget.getPrimaryKey(), gadget);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
-			new Object[] { Long.valueOf(gadget.getCompanyId()), gadget.getUrl() },
-			gadget);
+			new Object[] { gadget.getCompanyId(), gadget.getUrl() }, gadget);
 
 		gadget.resetOriginalValues();
 	}
@@ -3142,11 +3141,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 	protected void cacheUniqueFindersCache(Gadget gadget) {
 		if (gadget.isNew()) {
-			Object[] args = new Object[] {
-					Long.valueOf(gadget.getCompanyId()),
-					
-					gadget.getUrl()
-				};
+			Object[] args = new Object[] { gadget.getCompanyId(), gadget.getUrl() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_U, args,
 				Long.valueOf(1));
@@ -3158,9 +3153,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			if ((gadgetModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(gadget.getCompanyId()),
-						
-						gadget.getUrl()
+						gadget.getCompanyId(), gadget.getUrl()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_U, args,
@@ -3173,11 +3166,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	protected void clearUniqueFindersCache(Gadget gadget) {
 		GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadget;
 
-		Object[] args = new Object[] {
-				Long.valueOf(gadget.getCompanyId()),
-				
-				gadget.getUrl()
-			};
+		Object[] args = new Object[] { gadget.getCompanyId(), gadget.getUrl() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
@@ -3185,8 +3174,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		if ((gadgetModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_C_U.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(gadgetModelImpl.getOriginalCompanyId()),
-					
+					gadgetModelImpl.getOriginalCompanyId(),
 					gadgetModelImpl.getOriginalUrl()
 				};
 
@@ -3224,7 +3212,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public Gadget remove(long gadgetId)
 		throws NoSuchGadgetException, SystemException {
-		return remove(Long.valueOf(gadgetId));
+		return remove((Serializable)gadgetId);
 	}
 
 	/**
@@ -3361,7 +3349,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						gadgetModelImpl.getOriginalUuid(),
-						Long.valueOf(gadgetModelImpl.getOriginalCompanyId())
+						gadgetModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -3370,7 +3358,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 				args = new Object[] {
 						gadgetModelImpl.getUuid(),
-						Long.valueOf(gadgetModelImpl.getCompanyId())
+						gadgetModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -3381,7 +3369,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			if ((gadgetModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(gadgetModelImpl.getOriginalCompanyId())
+						gadgetModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -3389,7 +3377,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] { Long.valueOf(gadgetModelImpl.getCompanyId()) };
+				args = new Object[] { gadgetModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);

@@ -1889,7 +1889,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			FooImpl.class, foo.getPrimaryKey(), foo);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) }, foo);
+			new Object[] { foo.getUuid(), foo.getGroupId() }, foo);
 
 		foo.resetOriginalValues();
 	}
@@ -1964,9 +1964,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 	protected void cacheUniqueFindersCache(Foo foo) {
 		if (foo.isNew()) {
-			Object[] args = new Object[] {
-					foo.getUuid(), Long.valueOf(foo.getGroupId())
-				};
+			Object[] args = new Object[] { foo.getUuid(), foo.getGroupId() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 				Long.valueOf(1));
@@ -1977,9 +1975,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 			if ((fooModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						foo.getUuid(), Long.valueOf(foo.getGroupId())
-					};
+				Object[] args = new Object[] { foo.getUuid(), foo.getGroupId() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
@@ -1991,9 +1987,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	protected void clearUniqueFindersCache(Foo foo) {
 		FooModelImpl fooModelImpl = (FooModelImpl)foo;
 
-		Object[] args = new Object[] {
-				foo.getUuid(), Long.valueOf(foo.getGroupId())
-			};
+		Object[] args = new Object[] { foo.getUuid(), foo.getGroupId() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
@@ -2002,7 +1996,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 			args = new Object[] {
 					fooModelImpl.getOriginalUuid(),
-					Long.valueOf(fooModelImpl.getOriginalGroupId())
+					fooModelImpl.getOriginalGroupId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2038,7 +2032,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
-		return remove(Long.valueOf(fooId));
+		return remove((Serializable)fooId);
 	}
 
 	/**
@@ -2174,7 +2168,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						fooModelImpl.getOriginalUuid(),
-						Long.valueOf(fooModelImpl.getOriginalCompanyId())
+						fooModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2182,8 +2176,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 					args);
 
 				args = new Object[] {
-						fooModelImpl.getUuid(),
-						Long.valueOf(fooModelImpl.getCompanyId())
+						fooModelImpl.getUuid(), fooModelImpl.getCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
@@ -2193,15 +2186,13 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 			if ((fooModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Boolean.valueOf(fooModelImpl.getOriginalField2())
-					};
+				Object[] args = new Object[] { fooModelImpl.getOriginalField2() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,
 					args);
 
-				args = new Object[] { Boolean.valueOf(fooModelImpl.getField2()) };
+				args = new Object[] { fooModelImpl.getField2() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FIELD2, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FIELD2,

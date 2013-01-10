@@ -811,8 +811,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
-			new Object[] { Long.valueOf(akismetData.getMbMessageId()) },
-			akismetData);
+			new Object[] { akismetData.getMbMessageId() }, akismetData);
 
 		akismetData.resetOriginalValues();
 	}
@@ -888,9 +887,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 	protected void cacheUniqueFindersCache(AkismetData akismetData) {
 		if (akismetData.isNew()) {
-			Object[] args = new Object[] {
-					Long.valueOf(akismetData.getMbMessageId())
-				};
+			Object[] args = new Object[] { akismetData.getMbMessageId() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args,
 				Long.valueOf(1));
@@ -902,9 +899,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 			if ((akismetDataModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_MBMESSAGEID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(akismetData.getMbMessageId())
-					};
+				Object[] args = new Object[] { akismetData.getMbMessageId() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MBMESSAGEID,
 					args, Long.valueOf(1));
@@ -917,16 +912,14 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	protected void clearUniqueFindersCache(AkismetData akismetData) {
 		AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
 
-		Object[] args = new Object[] { Long.valueOf(akismetData.getMbMessageId()) };
+		Object[] args = new Object[] { akismetData.getMbMessageId() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args);
 
 		if ((akismetDataModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_MBMESSAGEID.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					Long.valueOf(akismetDataModelImpl.getOriginalMbMessageId())
-				};
+			args = new Object[] { akismetDataModelImpl.getOriginalMbMessageId() };
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args);
@@ -958,7 +951,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	public AkismetData remove(long akismetDataId)
 		throws NoSuchDataException, SystemException {
-		return remove(Long.valueOf(akismetDataId));
+		return remove((Serializable)akismetDataId);
 	}
 
 	/**

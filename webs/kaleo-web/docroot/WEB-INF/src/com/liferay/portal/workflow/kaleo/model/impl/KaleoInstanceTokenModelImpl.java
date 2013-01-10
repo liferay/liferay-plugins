@@ -114,7 +114,7 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoInstanceTokenId);
+		return _kaleoInstanceTokenId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

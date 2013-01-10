@@ -665,7 +665,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	public ProjectsEntry remove(long projectsEntryId)
 		throws NoSuchProjectsEntryException, SystemException {
-		return remove(Long.valueOf(projectsEntryId));
+		return remove((Serializable)projectsEntryId);
 	}
 
 	/**
@@ -783,16 +783,14 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			if ((projectsEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(projectsEntryModelImpl.getOriginalUserId())
+						projectsEntryModelImpl.getOriginalUserId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(projectsEntryModelImpl.getUserId())
-					};
+				args = new Object[] { projectsEntryModelImpl.getUserId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,

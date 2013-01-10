@@ -104,7 +104,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_statusId);
+		return _statusId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

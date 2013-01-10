@@ -53,7 +53,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoNodeId);
+		return _kaleoNodeId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

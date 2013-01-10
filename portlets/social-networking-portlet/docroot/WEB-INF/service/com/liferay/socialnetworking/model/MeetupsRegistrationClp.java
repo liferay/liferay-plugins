@@ -56,7 +56,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_meetupsRegistrationId);
+		return _meetupsRegistrationId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

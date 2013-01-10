@@ -1363,7 +1363,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 */
 	public KaleoTimer remove(long kaleoTimerId)
 		throws NoSuchTimerException, SystemException {
-		return remove(Long.valueOf(kaleoTimerId));
+		return remove((Serializable)kaleoTimerId);
 	}
 
 	/**
@@ -1482,7 +1482,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						kaleoTimerModelImpl.getOriginalKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getOriginalKaleoClassPK())
+						kaleoTimerModelImpl.getOriginalKaleoClassPK()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
@@ -1491,7 +1491,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 				args = new Object[] {
 						kaleoTimerModelImpl.getKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK())
+						kaleoTimerModelImpl.getKaleoClassPK()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK, args);
@@ -1503,8 +1503,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KCN_KCPK_BLOCKING.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						kaleoTimerModelImpl.getOriginalKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getOriginalKaleoClassPK()),
-						Boolean.valueOf(kaleoTimerModelImpl.getOriginalBlocking())
+						kaleoTimerModelImpl.getOriginalKaleoClassPK(),
+						kaleoTimerModelImpl.getOriginalBlocking()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,
@@ -1514,8 +1514,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 				args = new Object[] {
 						kaleoTimerModelImpl.getKaleoClassName(),
-						Long.valueOf(kaleoTimerModelImpl.getKaleoClassPK()),
-						Boolean.valueOf(kaleoTimerModelImpl.getBlocking())
+						kaleoTimerModelImpl.getKaleoClassPK(),
+						kaleoTimerModelImpl.getBlocking()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING,

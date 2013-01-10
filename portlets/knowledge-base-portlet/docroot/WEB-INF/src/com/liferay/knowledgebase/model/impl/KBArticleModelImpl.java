@@ -197,7 +197,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kbArticleId);
+		return _kbArticleId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

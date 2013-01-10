@@ -54,7 +54,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_assetId);
+		return _assetId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

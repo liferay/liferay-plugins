@@ -54,7 +54,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_attachmentId);
+		return _attachmentId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

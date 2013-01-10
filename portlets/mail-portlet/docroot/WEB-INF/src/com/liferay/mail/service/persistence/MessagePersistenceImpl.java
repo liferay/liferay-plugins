@@ -1278,10 +1278,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			MessageImpl.class, message.getPrimaryKey(), message);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
-			new Object[] {
-				Long.valueOf(message.getFolderId()),
-				Long.valueOf(message.getRemoteMessageId())
-			}, message);
+			new Object[] { message.getFolderId(), message.getRemoteMessageId() },
+			message);
 
 		message.resetOriginalValues();
 	}
@@ -1358,8 +1356,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	protected void cacheUniqueFindersCache(Message message) {
 		if (message.isNew()) {
 			Object[] args = new Object[] {
-					Long.valueOf(message.getFolderId()),
-					Long.valueOf(message.getRemoteMessageId())
+					message.getFolderId(), message.getRemoteMessageId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_R, args,
@@ -1372,8 +1369,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			if ((messageModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_F_R.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(message.getFolderId()),
-						Long.valueOf(message.getRemoteMessageId())
+						message.getFolderId(), message.getRemoteMessageId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_R, args,
@@ -1388,8 +1384,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
 
 		Object[] args = new Object[] {
-				Long.valueOf(message.getFolderId()),
-				Long.valueOf(message.getRemoteMessageId())
+				message.getFolderId(), message.getRemoteMessageId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_R, args);
@@ -1398,8 +1393,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		if ((messageModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_F_R.getColumnBitmask()) != 0) {
 			args = new Object[] {
-					Long.valueOf(messageModelImpl.getOriginalFolderId()),
-					Long.valueOf(messageModelImpl.getOriginalRemoteMessageId())
+					messageModelImpl.getOriginalFolderId(),
+					messageModelImpl.getOriginalRemoteMessageId()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_R, args);
@@ -1432,7 +1427,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public Message remove(long messageId)
 		throws NoSuchMessageException, SystemException {
-		return remove(Long.valueOf(messageId));
+		return remove((Serializable)messageId);
 	}
 
 	/**
@@ -1547,7 +1542,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			if ((messageModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(messageModelImpl.getOriginalCompanyId())
+						messageModelImpl.getOriginalCompanyId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
@@ -1555,9 +1550,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
-				args = new Object[] {
-						Long.valueOf(messageModelImpl.getCompanyId())
-					};
+				args = new Object[] { messageModelImpl.getCompanyId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
 					args);
@@ -1568,14 +1561,14 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			if ((messageModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FOLDERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(messageModelImpl.getOriginalFolderId())
+						messageModelImpl.getOriginalFolderId()
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FOLDERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FOLDERID,
 					args);
 
-				args = new Object[] { Long.valueOf(messageModelImpl.getFolderId()) };
+				args = new Object[] { messageModelImpl.getFolderId() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_FOLDERID, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_FOLDERID,

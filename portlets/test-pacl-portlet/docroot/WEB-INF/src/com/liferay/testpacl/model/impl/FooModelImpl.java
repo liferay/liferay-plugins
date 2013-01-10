@@ -106,7 +106,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_fooId);
+		return _fooId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {

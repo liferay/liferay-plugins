@@ -131,7 +131,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_kaleoLogId);
+		return _kaleoLogId;
 	}
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
