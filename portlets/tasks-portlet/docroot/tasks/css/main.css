@@ -303,7 +303,16 @@
 		background: #EEE;
 		border-top: 1px solid #BFBFBF;
 		margin: 1em 0;
+		overflow: hidden;
 		padding: 0.5em;
+
+		.aui-button-submit {
+			margin-right: 3px;
+		}
+
+		.aui-button, .task-action-button, .task-action-spacer {
+			float: left;
+		}
 	}
 
 	.task-action-spacer {
