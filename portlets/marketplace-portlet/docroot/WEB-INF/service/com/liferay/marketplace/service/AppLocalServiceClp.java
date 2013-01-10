@@ -115,7 +115,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		_methodName19 = "addApp";
 
 		_methodParameterTypes19 = new String[] {
-				"long", "long", "java.lang.String", "java.io.InputStream"
+				"long", "long", "java.lang.String", "java.io.File"
 			};
 
 		_methodName20 = "fetchRemoteApp";
@@ -137,7 +137,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		_methodName24 = "updateApp";
 
 		_methodParameterTypes24 = new String[] {
-				"long", "java.lang.String", "java.io.InputStream"
+				"long", "java.lang.String", "java.io.File"
 			};
 	}
 
@@ -664,8 +664,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	public com.liferay.marketplace.model.App addApp(long userId,
-		long remoteAppId, java.lang.String version,
-		java.io.InputStream inputStream)
+		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -680,7 +679,7 @@ public class AppLocalServiceClp implements AppLocalService {
 						
 					ClpSerializer.translateInput(version),
 						
-					ClpSerializer.translateInput(inputStream)
+					ClpSerializer.translateInput(file)
 					});
 		}
 		catch (Throwable t) {
@@ -819,7 +818,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.InputStream inputStream)
+		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -832,7 +831,7 @@ public class AppLocalServiceClp implements AppLocalService {
 						
 					ClpSerializer.translateInput(version),
 						
-					ClpSerializer.translateInput(inputStream)
+					ClpSerializer.translateInput(file)
 					});
 		}
 		catch (Throwable t) {

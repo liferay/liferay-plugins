@@ -270,11 +270,10 @@ public class AppLocalServiceUtil {
 	}
 
 	public static com.liferay.marketplace.model.App addApp(long userId,
-		long remoteAppId, java.lang.String version,
-		java.io.InputStream inputStream)
+		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addApp(userId, remoteAppId, version, inputStream);
+		return getService().addApp(userId, remoteAppId, version, file);
 	}
 
 	public static com.liferay.marketplace.model.App fetchRemoteApp(
@@ -303,10 +302,10 @@ public class AppLocalServiceUtil {
 	}
 
 	public static com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.InputStream inputStream)
+		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateApp(appId, version, inputStream);
+		return getService().updateApp(appId, version, file);
 	}
 
 	public static void clearService() {

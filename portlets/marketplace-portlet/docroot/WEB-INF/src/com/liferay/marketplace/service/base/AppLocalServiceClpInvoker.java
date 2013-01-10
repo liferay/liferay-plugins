@@ -115,7 +115,7 @@ public class AppLocalServiceClpInvoker {
 		_methodName48 = "addApp";
 
 		_methodParameterTypes48 = new String[] {
-				"long", "long", "java.lang.String", "java.io.InputStream"
+				"long", "long", "java.lang.String", "java.io.File"
 			};
 
 		_methodName49 = "deleteApp";
@@ -147,7 +147,7 @@ public class AppLocalServiceClpInvoker {
 		_methodName55 = "updateApp";
 
 		_methodParameterTypes55 = new String[] {
-				"long", "java.lang.String", "java.io.InputStream"
+				"long", "java.lang.String", "java.io.File"
 			};
 	}
 
@@ -256,8 +256,7 @@ public class AppLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return AppLocalServiceUtil.addApp(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2],
-				(java.io.InputStream)arguments[3]);
+				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
 		}
 
 		if (_methodName49.equals(name) &&
@@ -299,8 +298,7 @@ public class AppLocalServiceClpInvoker {
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1],
-				(java.io.InputStream)arguments[2]);
+				(java.lang.String)arguments[1], (java.io.File)arguments[2]);
 		}
 
 		throw new UnsupportedOperationException();

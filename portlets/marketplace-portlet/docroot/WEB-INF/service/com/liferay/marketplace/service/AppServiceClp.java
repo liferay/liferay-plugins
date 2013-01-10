@@ -34,7 +34,7 @@ public class AppServiceClp implements AppService {
 		_methodName3 = "addApp";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "java.lang.String", "java.io.InputStream"
+				"long", "java.lang.String", "java.io.File"
 			};
 
 		_methodName4 = "deleteApp";
@@ -52,7 +52,7 @@ public class AppServiceClp implements AppService {
 		_methodName7 = "updateApp";
 
 		_methodParameterTypes7 = new String[] {
-				"long", "java.lang.String", "java.io.InputStream"
+				"long", "java.lang.String", "java.io.File"
 			};
 	}
 
@@ -104,7 +104,7 @@ public class AppServiceClp implements AppService {
 	}
 
 	public com.liferay.marketplace.model.App addApp(long remoteAppId,
-		java.lang.String version, java.io.InputStream inputStream)
+		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -117,7 +117,7 @@ public class AppServiceClp implements AppService {
 						
 					ClpSerializer.translateInput(version),
 						
-					ClpSerializer.translateInput(inputStream)
+					ClpSerializer.translateInput(file)
 					});
 		}
 		catch (Throwable t) {
@@ -232,7 +232,7 @@ public class AppServiceClp implements AppService {
 	}
 
 	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.InputStream inputStream)
+		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -245,7 +245,7 @@ public class AppServiceClp implements AppService {
 						
 					ClpSerializer.translateInput(version),
 						
-					ClpSerializer.translateInput(inputStream)
+					ClpSerializer.translateInput(file)
 					});
 		}
 		catch (Throwable t) {
