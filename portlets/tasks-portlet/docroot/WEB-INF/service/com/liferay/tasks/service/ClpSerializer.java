@@ -237,6 +237,10 @@ public class ClpSerializer {
 			return new com.liferay.tasks.TasksEntryDueDateException();
 		}
 
+		if (className.equals("com.liferay.tasks.TasksEntryTitleException")) {
+			return new com.liferay.tasks.TasksEntryTitleException();
+		}
+
 		if (className.equals("com.liferay.tasks.NoSuchTasksEntryException")) {
 			return new com.liferay.tasks.NoSuchTasksEntryException();
 		}
