@@ -127,10 +127,6 @@
 		<column name="active" type="boolean" />
 		<column name="startKaleoNodeId" type="long" />
 
-		<!-- Relationships -->
-
-		<column name="kaleoNodes" type="Collection" entity="KaleoNode" mapping-key="kaleoDefinitionId" />
-
 		<!-- Order -->
 
 		<order by="desc">
@@ -376,11 +372,6 @@
 		<column name="initial" type="boolean" />
 		<column name="terminal" type="boolean" />
 
-		<!-- Relationships -->
-
-		<column name="kaleoActions" type="Collection" entity="KaleoAction" mapping-key="kaleoNodeId" />
-		<column name="kaleoTransitions" type="Collection" entity="KaleoTransition" mapping-key="kaleoNodeId" />
-
 		<!-- Order -->
 
 		<order by="asc">
@@ -430,10 +421,6 @@
 		<column name="template" type="String" />
 		<column name="templateLanguage" type="String" />
 		<column name="notificationTypes" type="String" />
-
-		<!-- Relationships -->
-
-		<column name="receipients" type="Collection" entity="KaleoNotificationRecipient" mapping-key="kaleoNotificationId" />
 
 		<!-- Order -->
 
@@ -690,10 +677,6 @@
 		<column name="completionDate" type="Date" />
 		<column name="dueDate" type="Date" />
 		<column name="workflowContext" type="String" />
-
-		<!-- Relationships -->
-
-		<column name="kaleoTaskAssignmentInstances" type="Collection" entity="KaleoTaskAssignmentInstance" mapping-key="kaleoTaskInstanceTokenId" />
 
 		<!-- Order -->
 
