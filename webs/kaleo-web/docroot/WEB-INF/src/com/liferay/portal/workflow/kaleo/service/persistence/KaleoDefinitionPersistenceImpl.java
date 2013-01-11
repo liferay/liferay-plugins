@@ -14,18 +14,13 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
-import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
-import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.jdbc.RowMapper;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -3218,257 +3213,6 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Returns all the kaleo nodes associated with the kaleo definition.
-	 *
-	 * @param pk the primary key of the kaleo definition
-	 * @return the kaleo nodes associated with the kaleo definition
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoNodes(
-		long pk) throws SystemException {
-		return getKaleoNodes(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-	}
-
-	/**
-	 * Returns a range of all the kaleo nodes associated with the kaleo definition.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param pk the primary key of the kaleo definition
-	 * @param start the lower bound of the range of kaleo definitions
-	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
-	 * @return the range of kaleo nodes associated with the kaleo definition
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoNodes(
-		long pk, int start, int end) throws SystemException {
-		return getKaleoNodes(pk, start, end, null);
-	}
-
-	public static final FinderPath FINDER_PATH_GET_KALEONODES = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.FINDER_CACHE_ENABLED,
-			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class,
-			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"getKaleoNodes",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName(), OrderByComparator.class.getName()
-			});
-
-	static {
-		FINDER_PATH_GET_KALEONODES.setCacheKeyGeneratorCacheName(null);
-	}
-
-	/**
-	 * Returns an ordered range of all the kaleo nodes associated with the kaleo definition.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param pk the primary key of the kaleo definition
-	 * @param start the lower bound of the range of kaleo definitions
-	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of kaleo nodes associated with the kaleo definition
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoNodes(
-		long pk, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		boolean pagination = true;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			pagination = false;
-			finderArgs = new Object[] { pk };
-		}
-		else {
-			finderArgs = new Object[] { pk, start, end, orderByComparator };
-		}
-
-		List<com.liferay.portal.workflow.kaleo.model.KaleoNode> list = (List<com.liferay.portal.workflow.kaleo.model.KaleoNode>)FinderCacheUtil.getResult(FINDER_PATH_GET_KALEONODES,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				String sql = null;
-
-				if (orderByComparator != null) {
-					sql = _SQL_GETKALEONODES.concat(ORDER_BY_CLAUSE)
-											.concat(orderByComparator.getOrderBy());
-				}
-				else {
-					sql = _SQL_GETKALEONODES;
-
-					if (pagination) {
-						sql = sql.concat(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ORDER_BY_SQL);
-					}
-				}
-
-				SQLQuery q = session.createSQLQuery(sql);
-
-				q.addEntity("KaleoNode",
-					com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(pk);
-
-				if (!pagination) {
-					list = (List<com.liferay.portal.workflow.kaleo.model.KaleoNode>)QueryUtil.list(q,
-							getDialect(), start, end, false);
-
-					Collections.sort(list);
-
-					list = new UnmodifiableList<com.liferay.portal.workflow.kaleo.model.KaleoNode>(list);
-				}
-				else {
-					list = (List<com.liferay.portal.workflow.kaleo.model.KaleoNode>)QueryUtil.list(q,
-							getDialect(), start, end);
-				}
-
-				kaleoNodePersistence.cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_GET_KALEONODES,
-					finderArgs, list);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_GET_KALEONODES,
-					finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public static final FinderPath FINDER_PATH_GET_KALEONODES_SIZE = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.FINDER_CACHE_ENABLED,
-			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class,
-			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"getKaleoNodesSize", new String[] { Long.class.getName() });
-
-	static {
-		FINDER_PATH_GET_KALEONODES_SIZE.setCacheKeyGeneratorCacheName(null);
-	}
-
-	/**
-	 * Returns the number of kaleo nodes associated with the kaleo definition.
-	 *
-	 * @param pk the primary key of the kaleo definition
-	 * @return the number of kaleo nodes associated with the kaleo definition
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int getKaleoNodesSize(long pk) throws SystemException {
-		Object[] finderArgs = new Object[] { pk };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_GET_KALEONODES_SIZE,
-				finderArgs, this);
-
-		if (count == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				SQLQuery q = session.createSQLQuery(_SQL_GETKALEONODESSIZE);
-
-				q.addScalar(COUNT_COLUMN_NAME,
-					com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(pk);
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(FINDER_PATH_GET_KALEONODES_SIZE,
-					finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_GET_KALEONODES_SIZE,
-					finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	public static final FinderPath FINDER_PATH_CONTAINS_KALEONODE = new FinderPath(com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl.FINDER_CACHE_ENABLED,
-			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class,
-			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"containsKaleoNode",
-			new String[] { Long.class.getName(), Long.class.getName() });
-
-	/**
-	 * Returns <code>true</code> if the kaleo node is associated with the kaleo definition.
-	 *
-	 * @param pk the primary key of the kaleo definition
-	 * @param kaleoNodePK the primary key of the kaleo node
-	 * @return <code>true</code> if the kaleo node is associated with the kaleo definition; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	public boolean containsKaleoNode(long pk, long kaleoNodePK)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { pk, kaleoNodePK };
-
-		Boolean value = (Boolean)FinderCacheUtil.getResult(FINDER_PATH_CONTAINS_KALEONODE,
-				finderArgs, this);
-
-		if (value == null) {
-			try {
-				value = Boolean.valueOf(containsKaleoNode.contains(pk,
-							kaleoNodePK));
-
-				FinderCacheUtil.putResult(FINDER_PATH_CONTAINS_KALEONODE,
-					finderArgs, value);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_CONTAINS_KALEONODE,
-					finderArgs);
-
-				throw processException(e);
-			}
-		}
-
-		return value.booleanValue();
-	}
-
-	/**
-	 * Returns <code>true</code> if the kaleo definition has any kaleo nodes associated with it.
-	 *
-	 * @param pk the primary key of the kaleo definition to check for associations with kaleo nodes
-	 * @return <code>true</code> if the kaleo definition has any kaleo nodes associated with it; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	public boolean containsKaleoNodes(long pk) throws SystemException {
-		if (getKaleoNodesSize(pk) > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	/**
 	 * Initializes the kaleo definition persistence.
 	 */
 	public void afterPropertiesSet() {
@@ -3491,8 +3235,6 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				_log.error(e);
 			}
 		}
-
-		containsKaleoNode = new ContainsKaleoNode();
 	}
 
 	public void destroy() {
@@ -3502,44 +3244,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = KaleoNodePersistence.class)
-	protected KaleoNodePersistence kaleoNodePersistence;
-	protected ContainsKaleoNode containsKaleoNode;
-
-	protected class ContainsKaleoNode {
-		protected ContainsKaleoNode() {
-			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
-					_SQL_CONTAINSKALEONODE,
-					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
-					RowMapper.COUNT);
-		}
-
-		protected boolean contains(long kaleoDefinitionId, long kaleoNodeId) {
-			List<Integer> results = _mappingSqlQuery.execute(new Object[] {
-						new Long(kaleoDefinitionId), new Long(kaleoNodeId)
-					});
-
-			if (results.size() > 0) {
-				Integer count = results.get(0);
-
-				if (count.intValue() > 0) {
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		private MappingSqlQuery<Integer> _mappingSqlQuery;
-	}
-
 	private static final String _SQL_SELECT_KALEODEFINITION = "SELECT kaleoDefinition FROM KaleoDefinition kaleoDefinition";
 	private static final String _SQL_SELECT_KALEODEFINITION_WHERE = "SELECT kaleoDefinition FROM KaleoDefinition kaleoDefinition WHERE ";
 	private static final String _SQL_COUNT_KALEODEFINITION = "SELECT COUNT(kaleoDefinition) FROM KaleoDefinition kaleoDefinition";
 	private static final String _SQL_COUNT_KALEODEFINITION_WHERE = "SELECT COUNT(kaleoDefinition) FROM KaleoDefinition kaleoDefinition WHERE ";
-	private static final String _SQL_GETKALEONODES = "SELECT {KaleoNode.*} FROM KaleoNode INNER JOIN KaleoDefinition ON (KaleoDefinition.kaleoDefinitionId = KaleoNode.kaleoDefinitionId) WHERE (KaleoDefinition.kaleoDefinitionId = ?)";
-	private static final String _SQL_GETKALEONODESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoNode WHERE kaleoDefinitionId = ?";
-	private static final String _SQL_CONTAINSKALEONODE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoNode WHERE kaleoDefinitionId = ? AND kaleoNodeId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoDefinition.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoDefinition exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoDefinition exists with the key {";
