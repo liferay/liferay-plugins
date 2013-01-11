@@ -150,6 +150,7 @@ for (String importer : importers) {
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, "CHILD-STRUCTURE-1");
 
 		long parentStructureId = ddmStructure.getParentStructureId();
+
 		String parentStructureKey = StringPool.BLANK;
 
 		if (parentStructureId > 0) {
@@ -167,6 +168,7 @@ for (String importer : importers) {
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, "CHILD-TEMPLATE-1");
 
 		DDMStructure ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
+
 		String ddmStructureKey = StringPool.BLANK;
 
 		if (ddmTemplateStructure != null) {
