@@ -267,8 +267,6 @@ public class CalendarResourceLocalServiceImpl
 
 		assetEntryLocalService.updateEntry(
 			userId, calendarResource.getGroupId(),
-			calendarResource.getCreateDate(),
-			calendarResource.getModifiedDate(),
 			CalendarResource.class.getName(),
 			calendarResource.getCalendarResourceId(),
 			calendarResource.getUuid(), 0, assetCategoryIds, assetTagNames,
