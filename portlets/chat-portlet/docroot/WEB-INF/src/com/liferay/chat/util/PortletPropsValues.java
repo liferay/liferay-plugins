@@ -28,6 +28,10 @@ public class PortletPropsValues {
 	public static final String BUDDY_LIST_STRATEGY = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.BUDDY_LIST_STRATEGY));
 
+	public static final String[] BUDDY_LIST_STRATEGY_SITES_FILTERED =
+		PortletProps.getArray(
+			PortletPropsKeys.BUDDY_LIST_STRATEGY_SITES_FILTERED);
+
 	public static final boolean JABBER_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.JABBER_ENABLED));
 

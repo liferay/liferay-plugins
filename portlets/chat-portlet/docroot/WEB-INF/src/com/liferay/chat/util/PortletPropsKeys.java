@@ -24,6 +24,9 @@ public interface PortletPropsKeys {
 
 	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
 
+	public static final String BUDDY_LIST_STRATEGY_SITES_FILTERED =
+		"buddy.list.strategy.sites.filtered";
+
 	public static final String JABBER_ENABLED = "jabber.enabled";
 
 	public static final String JABBER_HOST = "jabber.host";
