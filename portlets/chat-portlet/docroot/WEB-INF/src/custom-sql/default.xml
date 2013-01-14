@@ -111,6 +111,7 @@
 							(userId = ?)
 					)
 				) AND
+				[$SITES_FILTER$]
 				(Chat_Status.modifiedDate > ?) AND
 				(Chat_Status.online_ = [$TRUE$]) AND
 				(User_.userId != ?)

@@ -21,6 +21,9 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
@@ -117,7 +120,8 @@ public class StatusFinderImpl
 	}
 
 	public List<Object[]> findByUsersGroups(
-			long userId, long modifiedDate, int start, int end)
+			long userId, long modifiedDate, String[] siteNames, int start,
+			int end)
 		throws SystemException {
 
 		Session session = null;
@@ -126,6 +130,17 @@ public class StatusFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_USERS_GROUPS);
+
+			String replacement = null;
+
+			if (siteNames.length > 0) {
+				replacement = _buildSiteFilterQuery(siteNames);
+			}
+			else {
+				replacement = StringPool.BLANK;
+			}
+
+			sql = StringUtil.replace(sql, "[$SITES_FILTER$]", replacement);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -140,6 +155,9 @@ public class StatusFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(userId);
+
+			_setSiteNames(qPos, siteNames);
+
 			qPos.add(modifiedDate);
 			qPos.add(userId);
 
@@ -150,6 +168,35 @@ public class StatusFinderImpl
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	private String _buildSiteFilterQuery(String[] siteNames) {
+		StringBundler sb = new StringBundler(siteNames.length * 2 - 1);
+
+		sb.append("(User_.userId NOT IN (");
+		sb.append("SELECT userId FROM Users_Groups INNER JOIN Group_ ON ");
+		sb.append("(Users_Groups.groupId = Group_.groupId) WHERE Group_.name");
+		sb.append(" IN (");
+
+		for (int i = 0; i < siteNames.length; i++) {
+			sb.append(StringPool.QUESTION);
+
+			if ((i + 1) < siteNames.length) {
+				sb.append(StringPool.COMMA);
+			}
+		}
+
+		sb.append(" ))) AND");
+
+		return sb.toString();
+	}
+
+	private void _setSiteNames(QueryPos qPos, String[] names) {
+		if ((names != null) && (names.length > 0)) {
+			for (String name : names) {
+				qPos.add(name);
+			}
 		}
 	}
 
