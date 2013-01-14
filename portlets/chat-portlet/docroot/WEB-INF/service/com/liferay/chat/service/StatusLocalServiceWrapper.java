@@ -270,10 +270,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	}
 
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
-		long modifiedDate, int start, int end)
+		long modifiedDate, java.lang.String[] groupNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getGroupStatuses(userId, modifiedDate,
-			start, end);
+			groupNames, start, end);
 	}
 
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,

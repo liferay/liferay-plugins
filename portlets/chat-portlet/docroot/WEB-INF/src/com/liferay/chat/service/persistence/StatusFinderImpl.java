@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
@@ -117,7 +119,8 @@ public class StatusFinderImpl
 	}
 
 	public List<Object[]> findByUsersGroups(
-			long userId, long modifiedDate, int start, int end)
+			long userId, long modifiedDate, String[] groupNames, int start,
+			int end)
 		throws SystemException {
 
 		Session session = null;
@@ -126,6 +129,8 @@ public class StatusFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_USERS_GROUPS);
+
+			sql = sql.concat(buildExcludeGroupsSQL(groupNames));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -142,6 +147,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 			qPos.add(userId);
+			qPos.add(groupNames);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -151,6 +157,30 @@ public class StatusFinderImpl
 		finally {
 			closeSession(session);
 		}
+	}
+
+	protected String buildExcludeGroupsSQL(String[] groupNames) {
+		if (groupNames.length == 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(groupNames.length * 2 + 3);
+
+		sb.append("AND (User_.userId NOT IN (SELECT userId FROM Users_Groups ");
+		sb.append("INNER JOIN Group_ ON (Users_Groups.groupId = ");
+		sb.append("Group_.groupId) WHERE Group_.name IN (");
+
+		for (int i = 0; i < groupNames.length; i++) {
+			sb.append(StringPool.QUESTION);
+
+			if ((i + 1) < groupNames.length) {
+				sb.append(StringPool.COMMA);
+			}
+		}
+
+		sb.append(")))");
+
+		return sb.toString();
 	}
 
 }

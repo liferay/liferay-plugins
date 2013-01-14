@@ -114,7 +114,9 @@ public class StatusLocalServiceClpInvoker {
 
 		_methodName51 = "getGroupStatuses";
 
-		_methodParameterTypes51 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes51 = new String[] {
+				"long", "long", "java.lang.String[][]", "int", "int"
+			};
 
 		_methodName52 = "getSocialStatuses";
 
@@ -252,8 +254,9 @@ public class StatusLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return StatusLocalServiceUtil.getGroupStatuses(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue());
+				(java.lang.String[])arguments[2],
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue());
 		}
 
 		if (_methodName52.equals(name) &&
