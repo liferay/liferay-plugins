@@ -172,7 +172,7 @@ public class StatusFinderImpl
 	}
 
 	private String _buildSiteFilterQuery(String[] siteNames) {
-		StringBundler sb = new StringBundler(siteNames.length * 2 - 1);
+		StringBundler sb = new StringBundler(siteNames.length * 2 + 4);
 
 		sb.append("(User_.userId NOT IN (");
 		sb.append("SELECT userId FROM Users_Groups INNER JOIN Group_ ON ");
