@@ -27,6 +27,6 @@ public interface StatusFinder {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<java.lang.Object[]> findByUsersGroups(long userId,
-		long modifiedDate, int start, int end)
+		long modifiedDate, java.lang.String[] groupNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

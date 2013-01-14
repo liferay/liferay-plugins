@@ -108,7 +108,9 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 		_methodName19 = "getGroupStatuses";
 
-		_methodParameterTypes19 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes19 = new String[] {
+				"long", "long", "java.lang.String[][]", "int", "int"
+			};
 
 		_methodName20 = "getSocialStatuses";
 
@@ -655,14 +657,24 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
-		long modifiedDate, int start, int end)
+		long modifiedDate, java.lang.String[] groupNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName19,
 					_methodParameterTypes19,
-					new Object[] { userId, modifiedDate, start, end });
+					new Object[] {
+						userId,
+						
+					modifiedDate,
+						
+					ClpSerializer.translateInput(groupNames),
+						
+					start,
+						
+					end
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
