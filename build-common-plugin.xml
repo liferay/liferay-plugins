@@ -194,7 +194,7 @@
 		</copy>
 
 		<path id="service.classpath">
-			<path refid="lib.classpath" />
+			<path refid="ivy.lib.classpath" />
 			<path refid="portal.classpath" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
 			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
@@ -280,8 +280,8 @@
 		<mkdir dir="docroot/WEB-INF/service-classes" />
 
 		<path id="service.classpath">
+			<path refid="ivy.plugin.classpath" />
 			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-			<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
 			<fileset dir="docroot/WEB-INF/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 		</path>
 
@@ -302,7 +302,7 @@
 
 	<target name="build-wsdd" depends="compile">
 		<path id="wsdd.classpath">
-			<path refid="lib.classpath" />
+			<path refid="ivy.lib.classpath" />
 			<path refid="portal.classpath" />
 			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
 			<pathelement location="docroot/WEB-INF/classes" />

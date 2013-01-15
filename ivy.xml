@@ -1,0 +1,34 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="plugins" />
+
+	<configurations defaultconfmapping="*->default">
+		<conf name="default" />
+		<conf name="ccpp" />
+		<conf name="ecj" />
+		<conf name="plugin" />
+		<conf name="portal" />
+		<conf name="runtime" />
+		<conf name="test" />
+	</configurations>
+
+	<dependencies>
+		<dependency conf="ccpp" name="ccpp" org="javax.ccpp" rev="1.0" />
+		<dependency conf="ecj" name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
+		<dependency conf="plugin" name="jsp-api" org="javax.servlet.jsp" rev="2.1" />
+		<dependency conf="plugin,portal" name="activation" org="javax.activation" rev="1.1" />
+		<dependency conf="plugin,portal" name="servlet-api" org="javax.servlet" rev="2.5" />
+		<dependency conf="portal" name="jargs" org="net.sf" rev="1.0" />
+		<dependency conf="portal" name="log4j" org="log4j" rev="1.2.16" />
+		<dependency conf="portal" name="mail" org="javax.mail" rev="1.4" />
+		<dependency conf="portal" name="qdox" org="com.thoughtworks.qdox" rev="1.12.1" />
+		<dependency conf="runtime" name="ant-contrib" org="ant-contrib" rev="1.0b3" />
+		<dependency conf="runtime" name="antelopetasks" org="org.tigris.antelope" rev="3.2.10" />
+		<dependency conf="runtime" name="jalopy" org="jalopy" rev="1.5rc3" />
+		<dependency conf="runtime" name="scala-compiler" org="org.scala-lang" rev="2.9.2" />
+		<dependency conf="runtime" name="serializer" org="xalan" rev="2.7.1" />
+		<dependency conf="runtime" name="xalan" org="xalan" rev="2.7.1" />
+		<dependency conf="runtime" name="xercesImpl" org="xerces" rev="2.10.0" />
+		<dependency conf="runtime" name="xml-apis" org="xml-apis" rev="1.4.01" />
+		<dependency conf="test" name="junit" org="junit" rev="4.8.2" />
+	</dependencies>
+</ivy-module>

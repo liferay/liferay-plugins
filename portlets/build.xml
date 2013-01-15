@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="portlets" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="portlets" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="project.dir" value=".." />
 
 	<import file="../build-common-plugins.xml" />
@@ -74,18 +74,23 @@
 							</or>
 							<then>
 								<copy todir="${portlet.dir}">
-									<fileset
-										dir="${project.dir}/tools/portlet_jsf_tmpl"
-									/>
+									<fileset dir="${project.dir}/tools/portlet_jsf_tmpl" />
 								</copy>
 							</then>
 						</if>
 
 						<copy overwrite="true" todir="${portlet.dir}">
-							<fileset
-								dir="${project.dir}/tools/portlet_${portlet.framework}_tmpl"
-							/>
+							<fileset dir="${project.dir}/tools/portlet_${portlet.framework}_tmpl" excludes="ivy.xml" />
 						</copy>
+
+						<if>
+							<available file="${project.dir}/tools/portlet_${portlet.framework}_tmpl/ivy.xml" />
+							<then>
+								<ivy:resolve file="${project.dir}/tools/portlet_${portlet.framework}_tmpl/ivy.xml" log="quiet" />
+
+								<ivy:retrieve log="quiet" pattern="${portlet.dir}/docroot/WEB-INF/lib/[artifact].[ext]" type="jar" />
+							</then>
+						</if>
 					</then>
 				</if>
 

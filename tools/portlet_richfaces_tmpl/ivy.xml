@@ -1,0 +1,21 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="portlet_richfaces_tmpl" />
+
+	<dependencies>
+		<dependency name="cssparser" org="net.sourceforge.cssparser" rev="0.9.5" />
+		<dependency name="guava" org="com.google.guava" rev="10.0.1" />
+		<dependency name="jboss-el" org="org.jboss.el" rev="2.0.1.GA" />
+		<dependency name="jsf-api" org="com.sun.faces" rev="2.1.3-b02" />
+		<dependency name="jsf-impl" org="com.sun.faces" rev="2.1.3-b02" />
+		<dependency name="jsr305" org="com.google.code.findbugs" rev="1.3.9" />
+		<dependency name="liferay-faces-bridge-api" org="com.liferay.faces" rev="3.1.1-ga2" />
+		<dependency name="liferay-faces-bridge-impl" org="com.liferay.faces" rev="3.1.1-ga2" />
+		<dependency name="liferay-faces-portal" org="com.liferay.faces" rev="3.1.1-ga2" />
+		<dependency name="liferay-faces-util" org="com.liferay.faces" rev="3.1.1-ga2" />
+		<dependency name="richfaces-components-api" org="org.richfaces.ui" rev="4.2.0.Final" />
+		<dependency name="richfaces-components-ui" org="org.richfaces.ui" rev="4.2.0.Final" />
+		<dependency name="richfaces-core-api" org="org.richfaces.core" rev="4.2.0.Final" />
+		<dependency name="richfaces-core-impl" org="org.richfaces.core" rev="4.2.0.Final" />
+		<dependency name="sac" org="org.w3c.css" rev="1.3" />
+	</dependencies>
+</ivy-module>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="project.dir" value="." />
 
 	<import file="build-common.xml" />
@@ -249,12 +249,7 @@ the outputted files will work in any supported application server.
 			excludes="html/js/editor/_fckeditor/**,html/js/editor/fckeditor/_samples/**"
 		/>
 
-		<copy todir="${tstamp.value}/WEB-INF/lib">
-			<fileset
-				dir="lib"
-				includes="ccpp.jar"
-			/>
-		</copy>
+		<ivy:retrieve conf="ccpp" log="quiet" pattern="${tstamp.value}/WEB-INF/lib/[artifact].[ext]" type="jar" />
 
 		<zip
 			basedir="${tstamp.value}"
