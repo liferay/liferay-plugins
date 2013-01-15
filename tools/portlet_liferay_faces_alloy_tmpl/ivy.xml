@@ -1,0 +1,14 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="portlet_liferay_faces_alloy_tmpl" />
+
+	<dependencies>
+		<dependency org="com.liferay.faces" name="liferay-faces-alloy" rev="3.1.1-ga2" />
+		<dependency org="com.liferay.faces" name="liferay-faces-bridge-api" rev="3.1.1-ga2" />
+		<dependency org="com.liferay.faces" name="liferay-faces-bridge-impl" rev="3.1.1-ga2" />
+		<dependency org="com.liferay.faces" name="liferay-faces-portal" rev="3.1.1-ga2" />
+		<dependency org="com.liferay.faces" name="liferay-faces-util" rev="3.1.1-ga2" />
+		<dependency org="com.sun.faces" name="jsf-api" rev="2.1.3-b02" />
+		<dependency org="com.sun.faces" name="jsf-impl" rev="2.1.3-b02" />
+		<dependency org="org.jboss.el" name="jboss-el" rev="2.0.1.GA" />
+	</dependencies>
+</ivy-module>

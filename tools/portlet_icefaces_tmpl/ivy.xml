@@ -1,0 +1,15 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="portlet_icefaces_tmpl" />
+
+	<dependencies>
+		<dependency name="icefaces" org="org.icefaces" rev="3.0.1" />
+		<dependency name="icefaces-ace" org="org.icefaces" rev="3.0.1" />
+		<dependency name="jboss-el" org="org.jboss.el" rev="2.0.1.GA" />
+		<dependency name="jsf-api" org="com.sun.faces" rev="2.1.3-b02" />
+		<dependency name="jsf-impl" org="com.sun.faces" rev="2.1.3-b02" />
+		<dependency name="liferay-faces-bridge-api" org="com.liferay.faces" rev="3.1.1-ga2" />
+		<dependency name="liferay-faces-bridge-impl" org="com.liferay.faces" rev="3.1.1-ga2" />
+		<dependency name="liferay-faces-portal" org="com.liferay.faces" rev="3.1.1-ga2" />
+		<dependency name="liferay-faces-util" org="com.liferay.faces" rev="3.1.1-ga2" />
+	</dependencies>
+</ivy-module>

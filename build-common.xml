@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common">
+<project name="build-common" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property environment="env" />
 
 	<property file="${project.dir}/build.${user.name}.properties" />
@@ -13,34 +13,69 @@
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
 	<property name="app.server.lib.portal.dir" location="${app.server.portal.dir}/WEB-INF/lib" />
 
-	<path id="lib.classpath">
-		<fileset dir="${project.dir}/lib" includes="*.jar" />
+	<condition property="ivy.home" value="${env.IVY_HOME}">
+		<isset property="env.IVY_HOME" />
+	</condition>
+
+	<property name="ivy.home" value="${user.home}/.ant" />
+	<property name="ivy.install.version" value="2.2.0" />
+	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
+
+	<script language="javascript">
+		var logger = project.getBuildListeners().firstElement();
+
+		logger.setMessageOutputLevel(project.MSG_WARN);
+	</script>
+
+	<mkdir dir="${ivy.jar.dir}" />
+
+	<get dest="${ivy.jar.dir}" skipexisting="true" src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" />
+
+	<path id="ivy.lib.path">
+		<fileset dir="${ivy.jar.dir}" includes="ivy-${ivy.install.version}.jar" />
 	</path>
 
+	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
+
+	<ivy:settings file="${project.dir}/ivy-settings.xml" />
+
+	<ivy:resolve file="${project.dir}/ivy.xml" />
+
+	<script language="javascript">
+		var logger = project.getBuildListeners().firstElement();
+
+		logger.setMessageOutputLevel(project.MSG_INFO);
+	</script>
+
+	<ivy:cachepath pathid="ivy.lib.classpath" />
+	<ivy:cachepath conf="plugin" pathid="ivy.plugin.classpath" />
+	<ivy:cachepath conf="portal" pathid="ivy.portal.classpath" />
+	<ivy:cachepath conf="test" pathid="ivy.test.classpath" />
+
 	<path id="plugin.classpath">
+		<path refid="ivy.plugin.classpath" />
 		<path refid="plugin-lib.classpath" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="annotations.jar,commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
-		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
 	</path>
 
 	<path id="portal.classpath">
+		<path refid="ivy.portal.classpath" />
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<fileset dir="${project.dir}/lib" includes="activation.jar,jargs.jar,jsp-api.jar,qdox.jar,servlet-api.jar" />
 	</path>
 
 	<path id="test.classpath">
+		<path refid="ivy.test.classpath" />
 		<path refid="plugin.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="commons-io.jar" />
-		<fileset dir="${project.dir}/lib" includes="junit.jar" />
 		<pathelement location="test-classes/integration" />
 		<pathelement location="test-classes/unit" />
 	</path>
 
-	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
-	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
+	<taskdef classpathref="ivy.lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
+	<taskdef classpathref="ivy.lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
 
 	<condition property="correct.ant.version">
 		<antversion atleast="1.7.0" />
@@ -65,7 +100,7 @@
 			</not>
 		</and>
 		<then>
-			<copy file="${project.dir}/lib/ecj.jar" todir="${ant.home}/lib" />
+			<ivy:retrieve conf="ecj" log="quiet" pattern="${ant.home}/lib/[artifact].[ext]" type="jar" />
 
 			<fail>
 .

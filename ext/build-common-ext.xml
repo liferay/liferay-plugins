@@ -22,7 +22,7 @@ a portlet plugin.
 
 	<target name="build-service">
 		<path id="service.classpath">
-			<path refid="lib.classpath" />
+			<path refid="ivy.lib.classpath" />
 			<path refid="portal.classpath" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
 			<!--<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />

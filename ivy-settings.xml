@@ -1,0 +1,17 @@
+<ivysettings>
+	<settings defaultResolver="default" />
+
+	<resolvers>
+		<ibiblio m2compatible="true" name="jboss-nexus" root="https://repository.jboss.org/nexus/content/repositories/releases" usepoms="false" />
+		<ibiblio m2compatible="true" name="jboss-thirdparty" root="https://repository.jboss.org/nexus/content/repositories/thirdparty-releases" usepoms="false" />
+		<ibiblio m2compatible="true" name="maven2" root="http://repo1.maven.org/maven2/" usepoms="false" />
+		<ibiblio m2compatible="true" name="primefaces" root="http://repository.primefaces.org/" usepoms="false" />
+
+		<chain name="default" dual="true">
+			<resolver ref="jboss-nexus" />
+			<resolver ref="jboss-thirdparty" />
+			<resolver ref="maven2" />
+			<resolver ref="primefaces" />
+		</chain>
+	</resolvers>
+</ivysettings>
