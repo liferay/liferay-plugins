@@ -64,6 +64,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -526,7 +527,8 @@ public class FileSystemImporter extends BaseImporter {
 		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
 			journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
-			StringPool.BLANK, serviceContext);
+			StringPool.BLANK, new HashMap<String, Serializable>(),
+			serviceContext);
 	}
 
 	protected void doImportResources() throws Exception {
