@@ -109,18 +109,6 @@
 
 	.tasks-title {
 		padding: 1px 0 1px 20px;
-
-		&.high {
-			background: url(../images/priority_high.png) no-repeat;
-		}
-
-		&.low {
-			background: url(../images/priority_low.png) no-repeat;
-		}
-
-		&.normal {
-			background: url(../images/priority_normal.png) no-repeat;
-		}
 	}
 
 	/* ---------- Progress ---------- */
@@ -158,17 +146,19 @@
 		top: 0;
 	}
 
-	.due-date {
+	.due-date, .progress-indicator {
 		text-align: center;
-		z-index: 10;
 	}
 
 	.past-due {
 		color: red;
 	}
 
+	.due-date {
+		z-index: 10;
+	}
+
 	.progress-indicator {
-		text-align: center;
 		z-index: 11;
 	}
 
@@ -276,27 +266,9 @@
 		margin-bottom: 1em;
 	}
 
-	.task-data-table {
-		.task-data {
-			display: block;
-			padding: 1px 0 1px 20px;
-		}
-
-		.high {
-			background: url(../images/priority_high.png) no-repeat 0 50%;
-		}
-
-		.normal {
-			background: url(../images/priority_normal.png) no-repeat 0 50%;
-		}
-
-		.low {
-			background: url(../images/priority_low.png) no-repeat 0 50%;
-		}
-
-		.due-date {
-			background: url(@theme_image_path@/common/date.png) no-repeat 0 50%;
-		}
+	.task-data-table .task-data {
+		display: block;
+		padding: 1px 0 1px 20px;
 	}
 
 	.task-action {
@@ -352,35 +324,33 @@
 	}
 }
 
-.upcoming-tasks-portlet {
-	.tasks-entries-container {
-		ul, li, {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-		}
-
-		.tasks-title a {
-			display: block;
-			padding: 1px 0 1px 20px;
-		}
-
-		.high a {
-			background: url(../images/priority_high.png) no-repeat 0 50%;
-		}
-
-		.normal a {
-			background: url(../images/priority_normal.png) no-repeat 0 50%;
-		}
-
-		.low a {
-			background: url(../images/priority_low.png) no-repeat 0 50%;
-		}
-
-		.due-date a {
-			background: url(@theme_image_path@/common/date.png) no-repeat 0 50%;
-		}
+.upcoming-tasks-portlet .tasks-entries-container {
+	ul, li, {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
+
+	.tasks-title a {
+		display: block;
+		padding: 1px 0 1px 20px;
+	}
+}
+
+.tasks-portlet .task-data-table .high, .tasks-portlet .tasks-title.high, .upcoming-tasks-portlet .tasks-entries-container .high a {
+	background: url(../images/priority_high.png) no-repeat 0 50%;
+}
+
+.tasks-portlet .task-data-table .normal, .tasks-portlet .tasks-title.normal, .upcoming-tasks-portlet .tasks-entries-container .normal a {
+	background: url(../images/priority_normal.png) no-repeat 0 50%;
+}
+
+.tasks-portlet .task-data-table .low, .tasks-portlet .tasks-title.low, .upcoming-tasks-portlet .tasks-entries-container .low a {
+	background: url(../images/priority_low.png) no-repeat 0 50%;
+}
+
+.tasks-portlet .task-data-table .due-date, .upcoming-tasks-portlet .tasks-entries-container .due-date a {
+	background: url(@theme_image_path@/common/date.png) no-repeat 0 50%;
 }
 
 .ie6 .tasks-portlet .tags {
