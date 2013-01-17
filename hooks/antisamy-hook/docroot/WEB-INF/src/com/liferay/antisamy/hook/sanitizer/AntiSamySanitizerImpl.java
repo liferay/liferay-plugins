@@ -109,7 +109,9 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 	}
 
 	private void _init() {
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		InputStream inputStream = classLoader.getResourceAsStream(
 			"sanitizer-configuration.xml");
