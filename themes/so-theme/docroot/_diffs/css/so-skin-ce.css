@@ -121,8 +121,8 @@ a:hover {
 		border: 1px solid $gray-dark;
 		border-width: 0 1px 1px;
 		position: relative;
-		zoom: 1;
 		z-index: 3;
+		zoom: 1;
 	}
 
 	.portlet-layout {
