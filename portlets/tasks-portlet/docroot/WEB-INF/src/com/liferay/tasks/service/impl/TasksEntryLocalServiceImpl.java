@@ -55,7 +55,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	public TasksEntry addTasksEntry(
 			long userId, String title, int priority, long assigneeUserId,
 			int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
-			int dueDateMinute, boolean neverDue, ServiceContext serviceContext)
+			int dueDateMinute, boolean addDueDate, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Tasks entry
@@ -68,7 +68,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		Date dueDate = null;
 
-		if (!neverDue) {
+		if (addDueDate) {
 			dueDate = PortalUtil.getDate(
 				dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
 				dueDateMinute, user.getTimeZone(),
@@ -287,7 +287,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			long tasksEntryId, String title, int priority, long assigneeUserId,
 			long resolverUserId, int dueDateMonth, int dueDateDay,
 			int dueDateYear, int dueDateHour, int dueDateMinute,
-			boolean neverDue, int status, ServiceContext serviceContext)
+			boolean addDueDate, int status, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Tasks entry
@@ -303,7 +303,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		Date dueDate = null;
 
-		if (!neverDue) {
+		if (addDueDate) {
 			dueDate = PortalUtil.getDate(
 				dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
 				dueDateMinute, user.getTimeZone(),

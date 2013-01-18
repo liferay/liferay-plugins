@@ -33,10 +33,14 @@ catch (NoSuchTasksEntryException nstee) {
 long priority = BeanParamUtil.getLong(tasksEntry, request, "priority", TasksEntryConstants.PRIORITY_NORMAL);
 long assigneeUserId = BeanParamUtil.getLong(tasksEntry, request, "assigneeUserId");
 
-boolean neverDue = true;
+boolean addDueDate = false;
+String dueDateClass = "aui-helper-hidden";
+String dueDateToggleText = LanguageUtil.get(pageContext, "add-due-date");
 
 if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
-	neverDue = false;
+	addDueDate = true;
+	dueDateClass = "";
+	dueDateToggleText = LanguageUtil.get(pageContext, "remove-due-date");
 }
 %>
 
@@ -115,13 +119,14 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 			<aui:option label="low" selected="<%= (priority == 3) %>" value="3" />
 		</aui:select>
 
-		<aui:input disabled="<%= neverDue %>" label="due-date" name="dueDate" />
-
 		<%
-		String taglibNeverReviewOnClick = renderResponse.getNamespace() + "disableInputDate('dueDate', this.checked);";
+		String taglibAddDueDateOnClick = renderResponse.getNamespace() + "displayInputDate();";
 		%>
 
-		<aui:input name="neverDue" onClick="<%= taglibNeverReviewOnClick %>" type="checkbox" value="<%= neverDue %>" />
+		<label class="aui-field-label due-date-label"><%= LanguageUtil.get(pageContext, "due-date") %></label>
+		<a href="#" class="aui-field-content due-date-toggle" onClick="<%= taglibAddDueDateOnClick %>" id="toggleDueDate"><%= dueDateToggleText %></a>
+		<aui:input id="addDueDate" name="addDueDate" type="hidden" value="<%= addDueDate %>" />
+		<aui:input cssClass="<%= dueDateClass %>" label="" name="dueDate" />
 
 		<c:if test="<%= tasksEntry != null %>">
 			<aui:select name="status">
@@ -139,6 +144,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 			</aui:select>
 		</c:if>
 
+		<label class="aui-field-label" for="tags"><%= LanguageUtil.get(pageContext, "tags") %></label>
 		<aui:input name="tags" type="assetTags" />
 
 		<aui:button-row cssClass="task-action">
@@ -173,21 +179,30 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 	Liferay.provide(
 		window,
-		'<portlet:namespace />disableInputDate',
-		function(date, checked) {
+		'<portlet:namespace />displayInputDate',
+		function() {
 			var A = AUI();
 
-			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Month"].disabled = checked;
-			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Day"].disabled = checked;
-			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Year"].disabled = checked;
-			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Hour"].disabled = checked;
-			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Minute"].disabled = checked;
-			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "AmPm"].disabled = checked;
+			var checkbox = A.one('#<portlet:namespace />addDueDate');
 
-			var calendarWidget = A.Widget.getByNode(document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Month"]);
+			if(checkbox) {
+				var checkboxValue = checkbox.get('value');
+				var dueDateToggle = A.one('#toggleDueDate');
 
-			if (calendarWidget) {
-				calendarWidget.set('disabled', checked);
+				if (checkboxValue == 'true') {
+					checkbox.set('value', false);
+					dueDateToggle.html('<%= LanguageUtil.get(pageContext, "add-due-date") %>');
+				}
+				else {
+					checkbox.set('value', true);
+					dueDateToggle.html('<%= LanguageUtil.get(pageContext, "remove-due-date") %>');
+				}
+			}
+
+			var dueDate = A.one('.aui-field-date');
+
+			if (dueDate) {
+				dueDate.toggleClass('aui-helper-hidden');
 			}
 		},
 		['aui-base']
