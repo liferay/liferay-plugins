@@ -37,7 +37,7 @@ public class TimelineProcessorUtil {
 
 	static {
 		try {
-			InstanceFactory.newInstance(
+			_timelineProcessor = (TimelineProcessor)InstanceFactory.newInstance(
 				PortletPropsValues.TWITTER_USERS_TIMELINE_PROCESSOR);
 		}
 		catch (Exception e) {
