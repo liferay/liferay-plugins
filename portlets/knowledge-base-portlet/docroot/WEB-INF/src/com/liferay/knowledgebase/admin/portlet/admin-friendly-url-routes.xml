@@ -4,47 +4,47 @@
 <routes>
 	<route>
 		<pattern>/articles</pattern>
-		<implicit-parameter name="jspPage">/admin/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/templates</pattern>
-		<implicit-parameter name="jspPage">/admin/view_templates.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view_templates.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}</pattern>
-		<implicit-parameter name="jspPage">/admin/view_article.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view_article.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/template/{kbTemplateId:\d+}</pattern>
-		<implicit-parameter name="jspPage">/admin/view_template.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view_template.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}/{status:-?\d+}/history</pattern>
-		<implicit-parameter name="jspPage">/admin/history.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/history.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}/{status:-?\d+}/history/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/admin/history.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/history.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/article/{resourcePrimKey:\d+}/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/admin/view_article.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/template/{kbTemplateId:\d+}/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/admin/view_template.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view_template.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/articles/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/admin/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/templates/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/admin/view_templates.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/admin/view_templates.jsp</implicit-parameter>
 	</route>
 </routes>
