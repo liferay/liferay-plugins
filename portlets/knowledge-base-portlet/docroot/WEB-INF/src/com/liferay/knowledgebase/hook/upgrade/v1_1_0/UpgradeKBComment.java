@@ -35,8 +35,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 			StringUtil.replaceFirst(
 				KBCommentTable.TABLE_NAME, "KB", "KB_"),
 			KBCommentTable.TABLE_NAME, KBCommentTable.TABLE_COLUMNS,
-			KBCommentTable.TABLE_SQL_CREATE,
-			KBCommentTable.TABLE_SQL_DROP);
+			KBCommentTable.TABLE_SQL_CREATE, KBCommentTable.TABLE_SQL_DROP);
 	}
 
 	protected void renameAndUpdateTable(
