@@ -14,8 +14,14 @@
 
 package com.liferay.emailtombfilter.util;
 
+import com.liferay.util.portlet.PortletProps;
+
 /**
  * @author Brian Wing Shun Chan
  */
 public class PortletPropsValues {
+
+	public static final String EMAIL_QUOTED_TEXT_BEGINNING_REGEXP =
+		PortletProps.get(PortletPropsKeys.EMAIL_QUOTED_TEXT_BEGINNING_REGEXP);
+
 }

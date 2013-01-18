@@ -18,4 +18,8 @@ package com.liferay.emailtombfilter.util;
  * @author Brian Wing Shun Chan
  */
 public interface PortletPropsKeys {
+
+	public static final String EMAIL_QUOTED_TEXT_BEGINNING_REGEXP =
+		"email.quoted.text.beginning.regexp";
+
 }

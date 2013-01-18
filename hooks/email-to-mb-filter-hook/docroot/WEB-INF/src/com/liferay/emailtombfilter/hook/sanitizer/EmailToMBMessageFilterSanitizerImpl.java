@@ -14,6 +14,7 @@
 
 package com.liferay.emailtombfilter.hook.sanitizer;
 
+import com.liferay.emailtombfilter.util.PortletPropsValues;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
@@ -99,7 +100,8 @@ public class EmailToMBMessageFilterSanitizerImpl implements Sanitizer {
 		return s.trim();
 	}
 
-	private static final Pattern _pattern = Pattern.compile("");
+	private static final Pattern _pattern = Pattern.compile(
+		PortletPropsValues.EMAIL_QUOTED_TEXT_BEGINNING_REGEXP);
 
 	private static Log _log = LogFactoryUtil.getLog(
 		EmailToMBMessageFilterSanitizerImpl.class);
