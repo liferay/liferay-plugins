@@ -57,14 +57,14 @@
 						<%
 						LinkedHashMap usersParams = new LinkedHashMap();
 
-						List<User> users = UserLocalServiceUtil.search(layout.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, usersParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
+						List<User> users = UserLocalServiceUtil.search(layout.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, usersParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new UserFirstNameComparator(true));
 
 						User defaultUser = UserLocalServiceUtil.getDefaultUser(layout.getCompanyId());
 
 						List<User> inviteUsers = new ArrayList<User>();
 
 						for (User curUser : users) {
-							if (!UserLocalServiceUtil.hasGroupUser(layout.getGroupId(), curUser.getUserId()) && !curUser.equals(defaultUser)) {
+							if (!GroupLocalServiceUtil.hasUserGroup(curUser.getUserId(), layout.getGroupId()) && !curUser.equals(defaultUser)) {
 								inviteUsers.add(curUser);
 							}
 						}

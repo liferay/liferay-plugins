@@ -81,14 +81,15 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 			List<User> users = null;
 
 			if (group.isUser()) {
-				users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
+				users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new UserFirstNameComparator(true));
 			}
 			else {
 				LinkedHashMap userParams = new LinkedHashMap();
 
+				userParams.put("inherit", true);
 				userParams.put("usersGroups", new Long(themeDisplay.getScopeGroupId()));
 
-				users = UserLocalServiceUtil.search(company.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, userParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
+				users = UserLocalServiceUtil.search(company.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, userParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new UserFirstNameComparator(true));
 			}
 
 			for (User curUser : users) {

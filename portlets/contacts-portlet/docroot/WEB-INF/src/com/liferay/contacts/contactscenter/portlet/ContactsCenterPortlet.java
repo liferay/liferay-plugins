@@ -763,6 +763,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
 
+			params.put("inherit", true);
+
 			Group group = themeDisplay.getScopeGroup();
 			Layout layout = themeDisplay.getLayout();
 
