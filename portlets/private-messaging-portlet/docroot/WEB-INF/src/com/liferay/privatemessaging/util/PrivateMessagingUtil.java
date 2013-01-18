@@ -65,6 +65,8 @@ public class PrivateMessagingUtil {
 			new LinkedHashMap<String, Object>();
 
 		if (type.equals("site")) {
+			params.put("inherit", true);
+
 			List<Group> usersGroups = GroupLocalServiceUtil.getUserGroups(
 				userId, true);
 
