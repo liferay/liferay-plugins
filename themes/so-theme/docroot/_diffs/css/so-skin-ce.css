@@ -891,6 +891,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.taglib-page-iterator {
 		word-break: break-all;
 	}
+
+	.search-results .journal-article-page-number {
+		display: inline-block;
+	}
 }
 
 .profile-page .so-portlet-activities {
