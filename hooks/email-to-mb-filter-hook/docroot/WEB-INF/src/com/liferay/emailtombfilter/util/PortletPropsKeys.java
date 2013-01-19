@@ -19,7 +19,7 @@ package com.liferay.emailtombfilter.util;
  */
 public interface PortletPropsKeys {
 
-	public static final String EMAIL_QUOTED_TEXT_BEGINNING_REGEXP =
-		"email.quoted.text.beginning.regexp";
+	public static final String PLAIN_TEXT_EMAIL_REGEXP =
+		"plain.text.email.regexp";
 
 }
