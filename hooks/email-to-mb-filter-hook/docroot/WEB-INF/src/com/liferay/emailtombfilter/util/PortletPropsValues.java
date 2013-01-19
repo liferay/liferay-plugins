@@ -21,7 +21,7 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String EMAIL_QUOTED_TEXT_BEGINNING_REGEXP =
-		PortletProps.get(PortletPropsKeys.EMAIL_QUOTED_TEXT_BEGINNING_REGEXP);
+	public static final String PLAIN_TEXT_EMAIL_REGEXP = PortletProps.get(
+		PortletPropsKeys.PLAIN_TEXT_EMAIL_REGEXP);
 
 }
