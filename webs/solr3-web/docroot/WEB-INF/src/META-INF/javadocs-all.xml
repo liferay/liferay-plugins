@@ -2,8 +2,8 @@
 
 <javadocs>
 	<javadoc>
-		<name>SolrIndexSearcherImpl</name>
-		<type>com.liferay.portal.search.solr.SolrIndexSearcherImpl</type>
+		<name>SolrIndexSearcher</name>
+		<type>com.liferay.portal.search.solr.SolrIndexSearcher</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<author><![CDATA[Zsolt Berentey]]></author>
 		<author><![CDATA[Raymond Augé]]></author>
@@ -170,8 +170,8 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>SolrIndexWriterImpl</name>
-		<type>com.liferay.portal.search.solr.SolrIndexWriterImpl</type>
+		<name>SolrIndexWriter</name>
+		<type>com.liferay.portal.search.solr.SolrIndexWriter</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>addDocument</name>
@@ -434,16 +434,9 @@
 		<method>
 			<name>BasicAuthSolrServer</name>
 			<param>
-				<name>url</name>
-				<type>java.lang.String</type>
+				<name>authScope</name>
+				<type>org.apache.commons.httpclient.auth.AuthScope</type>
 			</param>
-			<throws>
-				<name>MalformedURLException</name>
-				<type>java.net.MalformedURLException</type>
-			</throws>
-		</method>
-		<method>
-			<name>BasicAuthSolrServer</name>
 			<param>
 				<name>username</name>
 				<type>java.lang.String</type>
@@ -464,9 +457,16 @@
 		<method>
 			<name>BasicAuthSolrServer</name>
 			<param>
-				<name>authScope</name>
-				<type>org.apache.commons.httpclient.auth.AuthScope</type>
+				<name>url</name>
+				<type>java.lang.String</type>
 			</param>
+			<throws>
+				<name>MalformedURLException</name>
+				<type>java.net.MalformedURLException</type>
+			</throws>
+		</method>
+		<method>
+			<name>BasicAuthSolrServer</name>
 			<param>
 				<name>username</name>
 				<type>java.lang.String</type>
@@ -955,25 +955,6 @@
 		</method>
 		<field>
 			<name>_liveServerCheckers</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>PortletPropsKeys</name>
-		<type>com.liferay.portal.search.solr.util.PortletPropsKeys</type>
-		<author><![CDATA[Matthew Kong]]></author>
-		<field>
-			<name>SOLR_COPY_FIELDS</name>
-		</field>
-		<field>
-			<name>SOLR_SORTABLE_TEXT_FIELDS</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>PortletPropsValues</name>
-		<type>com.liferay.portal.search.solr.util.PortletPropsValues</type>
-		<author><![CDATA[Matthew Kong]]></author>
-		<field>
-			<name>SOLR_SORTABLE_TEXT_FIELDS</name>
 		</field>
 	</javadoc>
 </javadocs>

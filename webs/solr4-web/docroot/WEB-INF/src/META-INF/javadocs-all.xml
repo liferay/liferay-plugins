@@ -2,8 +2,8 @@
 
 <javadocs>
 	<javadoc>
-		<name>SolrIndexSearcherImpl</name>
-		<type>com.liferay.portal.search.solr.SolrIndexSearcherImpl</type>
+		<name>SolrIndexSearcher</name>
+		<type>com.liferay.portal.search.solr.SolrIndexSearcher</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<author><![CDATA[Zsolt Berentey]]></author>
 		<author><![CDATA[Raymond Augé]]></author>
@@ -170,8 +170,8 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>SolrIndexWriterImpl</name>
-		<type>com.liferay.portal.search.solr.SolrIndexWriterImpl</type>
+		<name>SolrIndexWriter</name>
+		<type>com.liferay.portal.search.solr.SolrIndexWriter</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>addDocument</name>
