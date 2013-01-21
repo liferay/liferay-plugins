@@ -17,7 +17,7 @@
 	</bean>
 	<bean id="com.liferay.portal.search.solr.server.LiveServerChecker" class="com.liferay.portal.search.solr.server.LiveServerChecker">
 		<constructor-arg>
-			<bean class="com.liferay.portal.search.solr.server.SolrServerFactoryImpl">
+			<bean class="com.liferay.portal.search.solr.server.SolrServerFactory">
 				<constructor-arg>
 					<map key-type="java.lang.String" value-type="org.apache.solr.client.solrj.SolrServer">
 						<entry key="node1">

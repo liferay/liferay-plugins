@@ -14,24 +14,90 @@
 
 package com.liferay.portal.search.solr.server;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 
 /**
  * @author Bruno Farache
  */
-public interface SolrServerFactory {
+public class SolrServerFactory {
 
-	public List<SolrServerWrapper> getDeadServers();
+	public SolrServerFactory(Map<String, SolrServer> solrServers) {
+		for (Map.Entry<String, SolrServer> entry : solrServers.entrySet()) {
+			String id = entry.getKey();
+			SolrServer solrServer = entry.getValue();
 
-	public SolrServerWrapper getLiveServer()
-		throws SolrServerException;
+			SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
+				id, solrServer);
 
-	public List<SolrServerWrapper> getLiveServers();
+			solrServerWrapper.setSolrServerFactory(this);
 
-	public void killServer(SolrServerWrapper serverWrapper);
+			_liveServers.put(id, solrServerWrapper);
+		}
+	}
 
-	public void startServer(SolrServerWrapper serverWrapper);
+	public List<SolrServerWrapper> getDeadServers() {
+		synchronized (this) {
+			return new ArrayList<SolrServerWrapper>(_deadServers.values());
+		}
+	}
+
+	public SolrServerWrapper getLiveServer() throws SolrServerException {
+		List<SolrServerWrapper> liveServers = getLiveServers();
+
+		SolrServerWrapper solrServerWrapper = _solrServerSelector.select(
+			liveServers);
+
+		if (solrServerWrapper != null) {
+			return solrServerWrapper;
+		}
+
+		throw new SolrServerException("No server available");
+	}
+
+	public List<SolrServerWrapper> getLiveServers() {
+		synchronized (this) {
+			return new ArrayList<SolrServerWrapper>(_liveServers.values());
+		}
+	}
+
+	public void killServer(SolrServerWrapper solrServerWrapper) {
+		synchronized (this) {
+			if (_deadServers.containsKey(solrServerWrapper.getId())) {
+				return;
+			}
+
+			_deadServers.put(solrServerWrapper.getId(), solrServerWrapper);
+			_liveServers.remove(solrServerWrapper.getId());
+		}
+	}
+
+	public void setSolrServerSelector(SolrServerSelector solrServerSelector) {
+		_solrServerSelector = solrServerSelector;
+	}
+
+	public void startServer(SolrServerWrapper solrServerWrapper) {
+		synchronized (this) {
+			if (_liveServers.containsKey(solrServerWrapper.getId())) {
+				return;
+			}
+
+			_deadServers.remove(solrServerWrapper.getId());
+			_liveServers.put(solrServerWrapper.getId(), solrServerWrapper);
+
+			solrServerWrapper.resetInvocationCount();
+		}
+	}
+
+	private Map<String, SolrServerWrapper> _deadServers =
+		new HashMap<String, SolrServerWrapper>();
+	private Map<String, SolrServerWrapper> _liveServers =
+		new HashMap<String, SolrServerWrapper>();
+	private SolrServerSelector _solrServerSelector;
 
 }
