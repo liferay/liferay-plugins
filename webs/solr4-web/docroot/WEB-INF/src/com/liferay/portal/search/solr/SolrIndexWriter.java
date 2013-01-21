@@ -16,11 +16,10 @@ package com.liferay.portal.search.solr;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.DelegatingSpellCheckIndexWriter;
+import com.liferay.portal.kernel.search.BaseIndexWriter;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -40,8 +39,7 @@ import org.apache.solr.common.SolrInputDocument;
 /**
  * @author Bruno Farache
  */
-public class SolrIndexWriterImpl
-	extends DelegatingSpellCheckIndexWriter implements IndexWriter {
+public class SolrIndexWriter extends BaseIndexWriter {
 
 	public void addDocument(SearchContext searchContext, Document document)
 		throws SearchException {
@@ -249,7 +247,7 @@ public class SolrIndexWriterImpl
 		return solrInputDocuments;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriterImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriter.class);
 
 	private boolean _commit;
 	private SolrServer _solrServer;

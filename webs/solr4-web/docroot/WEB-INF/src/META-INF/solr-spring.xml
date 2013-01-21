@@ -35,18 +35,18 @@
 
 	<!-- Solr search engine adapter -->
 
-	<bean id="com.liferay.portal.search.solr.SolrIndexSearcherImpl" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
+	<bean id="com.liferay.portal.search.solr.SolrIndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcher">
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 		<property name="swallowException" value="true" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.SolrIndexWriterImpl" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
+	<bean id="com.liferay.portal.search.solr.SolrIndexWriter" class="com.liferay.portal.search.solr.SolrIndexWriter">
 		<property name="commit" value="true" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.SolrSearchEngineImpl" class="com.liferay.portal.kernel.search.BaseSearchEngine">
 		<property name="clusteredWrite" value="false" />
-		<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcherImpl" />
-		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriterImpl" />
+		<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcher" />
+		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
 		<property name="luceneBased" value="true" />
 		<property name="vendor" value="SOLR" />
 	</bean>
