@@ -25,12 +25,12 @@ public class PortletPropsValues {
 	public static final int BUDDY_LIST_MAX_BUDDIES = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.BUDDY_LIST_MAX_BUDDIES));
 
+	public static final String[] BUDDY_LIST_SITE_EXCLUDES =
+		PortletProps.getArray(
+			PortletPropsKeys.BUDDY_LIST_SITE_EXCLUDES);
+
 	public static final String BUDDY_LIST_STRATEGY = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.BUDDY_LIST_STRATEGY));
-
-	public static final String[] BUDDY_LIST_STRATEGY_SITES_FILTERED =
-		PortletProps.getArray(
-			PortletPropsKeys.BUDDY_LIST_STRATEGY_SITES_FILTERED);
 
 	public static final boolean JABBER_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.JABBER_ENABLED));

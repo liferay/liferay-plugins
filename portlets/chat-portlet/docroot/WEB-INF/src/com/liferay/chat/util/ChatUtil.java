@@ -51,7 +51,7 @@ public class ChatUtil {
 
 			buddies = StatusLocalServiceUtil.getGroupStatuses(
 				userId, modifiedDate,
-				PortletPropsValues.BUDDY_LIST_STRATEGY_SITES_FILTERED, 0,
+				PortletPropsValues.BUDDY_LIST_SITE_EXCLUDES, 0,
 				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends")) {
@@ -67,7 +67,7 @@ public class ChatUtil {
 			List<Object[]> groupBuddies =
 				StatusLocalServiceUtil.getGroupStatuses(
 					userId, modifiedDate,
-					PortletPropsValues.BUDDY_LIST_STRATEGY_SITES_FILTERED, 0,
+					PortletPropsValues.BUDDY_LIST_SITE_EXCLUDES, 0,
 					PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 			List<Object[]> socialBuddies =
 				StatusLocalServiceUtil.getSocialStatuses(

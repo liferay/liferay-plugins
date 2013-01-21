@@ -22,10 +22,10 @@ public interface PortletPropsKeys {
 	public static final String BUDDY_LIST_MAX_BUDDIES =
 		"buddy.list.max.buddies";
 
-	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
+	public static final String BUDDY_LIST_SITE_EXCLUDES =
+		"buddy.list.site.excludes";
 
-	public static final String BUDDY_LIST_STRATEGY_SITES_FILTERED =
-		"buddy.list.strategy.sites.filtered";
+	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
 
 	public static final String JABBER_ENABLED = "jabber.enabled";
 
