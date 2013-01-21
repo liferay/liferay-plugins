@@ -724,39 +724,7 @@
 		<type>com.liferay.portal.search.solr.server.SolrServerFactory</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
-			<name>getDeadServers</name>
-		</method>
-		<method>
-			<name>getLiveServer</name>
-			<throws>
-				<name>org.apache.solr.client.solrj.SolrServerException</name>
-				<type>org.apache.solr.client.solrj.SolrServerException</type>
-			</throws>
-		</method>
-		<method>
-			<name>getLiveServers</name>
-		</method>
-		<method>
-			<name>killServer</name>
-			<param>
-				<name>serverWrapper</name>
-				<type>SolrServerWrapper</type>
-			</param>
-		</method>
-		<method>
-			<name>startServer</name>
-			<param>
-				<name>serverWrapper</name>
-				<type>SolrServerWrapper</type>
-			</param>
-		</method>
-	</javadoc>
-	<javadoc>
-		<name>SolrServerFactoryImpl</name>
-		<type>com.liferay.portal.search.solr.server.SolrServerFactoryImpl</type>
-		<author><![CDATA[Bruno Farache]]></author>
-		<method>
-			<name>SolrServerFactoryImpl</name>
+			<name>SolrServerFactory</name>
 			<param>
 				<name>solrServers</name>
 				<type>java.util.Map</type>
