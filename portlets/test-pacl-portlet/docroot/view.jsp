@@ -1028,6 +1028,55 @@
 </p>
 
 <liferay-ui:header
+	title="Java Security API"
+/>
+
+<p>
+	<h3>Crypto</h3>
+</p>
+<p>
+	AES Encrypt=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+
+				keyGenerator.init(128);
+
+				SecretKey secretKey = keyGenerator.generateKey();
+
+				Cipher aesCipher = Cipher.getInstance("AES");
+
+				aesCipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+				byte[] cipherTextBytes = aesCipher.doFinal(
+					"Hello World".getBytes());
+			}
+		};
+		%>
+
+	HmacMD5=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Mac mac = Mac.getInstance("HmacMD5");
+
+				SecretKeySpec hmacMD5KeySpec = new SecretKeySpec(
+					"test".getBytes(), "HmacMD5");
+
+				mac.init(hmacMD5KeySpec);
+
+				byte[] bytes = mac.doFinal("Hello".getBytes());
+			}
+		};
+		%>
+</p>
+
+<liferay-ui:header
 	title="JNDI"
 />
 
