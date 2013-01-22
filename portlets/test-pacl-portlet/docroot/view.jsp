@@ -480,6 +480,97 @@
 </p>
 
 <liferay-ui:header
+	title="Environment Variables"
+/>
+
+<p>
+	java.home=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				System.getenv("java.home");
+			}
+
+		};
+		%>
+
+	java.io.tmpdir=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				System.getenv("java.io.tmpdir");
+			}
+
+		};
+		%>
+
+	java.vendor=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				System.getenv("java.vendor");
+			}
+
+		};
+		%>
+
+	java.vendor.url=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				System.getenv("java.vendor.url");
+			}
+
+		};
+		%>
+
+	java.vm.specification.name=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				System.getenv("java.vm.specification.name");
+			}
+
+		};
+		%>
+
+	java.vm.vendor=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				System.getenv("java.vm.vendor");
+			}
+
+		};
+		%>
+
+	java.vm.version=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				System.getenv("java.vm.version");
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
 	title="Expando Bridge"
 />
 
