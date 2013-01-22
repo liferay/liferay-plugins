@@ -440,8 +440,14 @@ html body {
 		margin-top: 4px;
 	}
 
-	.panel-content li:hover .buddy-services {
-		display: block;
+	.panel-content {
+		li:hover .buddy-services {
+			display: block;
+		}
+
+		.name {
+			float: left;
+		}
 	}
 
 	.buddy-services div {
