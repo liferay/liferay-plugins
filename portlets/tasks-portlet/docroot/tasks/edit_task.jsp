@@ -22,24 +22,18 @@
 <%
 long tasksEntryId = ParamUtil.getLong(request, "tasksEntryId");
 
-TasksEntry tasksEntry = null;
-
-try {
-	tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(tasksEntryId);
-}
-catch (NoSuchTasksEntryException nstee) {
-}
+TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId);
 
 long priority = BeanParamUtil.getLong(tasksEntry, request, "priority", TasksEntryConstants.PRIORITY_NORMAL);
 long assigneeUserId = BeanParamUtil.getLong(tasksEntry, request, "assigneeUserId");
 
 boolean addDueDate = false;
-String dueDateClass = "aui-helper-hidden";
+String dueDateClassName = "aui-helper-hidden";
 String dueDateToggleText = LanguageUtil.get(pageContext, "add-due-date");
 
 if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 	addDueDate = true;
-	dueDateClass = StringPool.BLANK;
+	dueDateClassName = StringPool.BLANK;
 	dueDateToggleText = LanguageUtil.get(pageContext, "remove-due-date");
 }
 %>
@@ -47,7 +41,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 <portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" />
 
 <c:choose>
-	<c:when test="<%= tasksEntry == null && tasksEntryId != 0 %>">
+	<c:when test="<%= (tasksEntry == null) && (tasksEntryId > 0) %>">
 		<span class="portlet-msg-error"><liferay-ui:message key="task-could-not-be-found" /></span>
 	</c:when>
 	<c:otherwise>
@@ -134,7 +128,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 				<aui:input id="addDueDate" name="addDueDate" type="hidden" value="<%= addDueDate %>" />
 
-				<aui:input cssClass="<%= dueDateClass %>" label="" name="dueDate" />
+				<aui:input cssClass="<%= dueDateClassName %>" label="" name="dueDate" />
 
 				<c:if test="<%= tasksEntry != null %>">
 					<aui:select name="status">
@@ -152,7 +146,8 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 					</aui:select>
 				</c:if>
 
-				<label class="aui-field-label" for="tags"><%= LanguageUtil.get(pageContext, "tags") %></label>
+				<label class="aui-field-label" for="tags"><liferay-ui:message key="tags" /></label>
+
 				<aui:input name="tags" type="assetTags" />
 
 				<aui:button-row cssClass="task-action">

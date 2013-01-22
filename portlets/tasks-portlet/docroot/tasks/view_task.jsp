@@ -22,13 +22,7 @@
 <%
 long tasksEntryId = ParamUtil.getLong(request, "tasksEntryId");
 
-TasksEntry tasksEntry = null;
-
-try {
-	tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(tasksEntryId);
-}
-catch (NoSuchTasksEntryException nstee) {
-}
+TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId);
 %>
 
 <c:choose>
