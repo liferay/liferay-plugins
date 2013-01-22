@@ -55,7 +55,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	public TasksEntry addTasksEntry(
 			long userId, String title, int priority, long assigneeUserId,
 			int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
-			int dueDateMinute, boolean addDueDate, ServiceContext serviceContext)
+			int dueDateMinute, boolean addDueDate,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Tasks entry

@@ -39,7 +39,7 @@ String dueDateToggleText = LanguageUtil.get(pageContext, "add-due-date");
 
 if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 	addDueDate = true;
-	dueDateClass = "";
+	dueDateClass = StringPool.BLANK;
 	dueDateToggleText = LanguageUtil.get(pageContext, "remove-due-date");
 }
 %>
@@ -129,8 +129,11 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				%>
 
 				<label class="aui-field-label due-date-label"><%= LanguageUtil.get(pageContext, "due-date") %></label>
+
 				<a class="aui-field-content due-date-toggle" href="#" id="toggleDueDate" onClick="<%= taglibAddDueDateOnClick %>"><%= dueDateToggleText %></a>
+
 				<aui:input id="addDueDate" name="addDueDate" type="hidden" value="<%= addDueDate %>" />
+
 				<aui:input cssClass="<%= dueDateClass %>" label="" name="dueDate" />
 
 				<c:if test="<%= tasksEntry != null %>">
@@ -206,7 +209,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				}
 			}
 
-			var dueDate = A.one('.aui-field-date');
+			var dueDate = A.one('#<portlet:namespace />fm1 .aui-field-date');
 
 			if (dueDate) {
 				dueDate.toggleClass('aui-helper-hidden');
