@@ -36,8 +36,6 @@ import com.liferay.portlet.asset.model.BaseAssetRendererFactory;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author Peter Shin
  */
@@ -89,11 +87,9 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException, SystemException {
 
-		HttpServletRequest request =
-			liferayPortletRequest.getHttpServletRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)liferayPortletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
 		if (!AdminPermission.contains(
 				themeDisplay.getPermissionChecker(),
@@ -103,7 +99,7 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 		}
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, PortletKeys.KNOWLEDGE_BASE_ADMIN,
+			liferayPortletRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
 			getControlPanelPlid(themeDisplay), PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcPath", "/admin/edit_article.jsp");
