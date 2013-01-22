@@ -710,7 +710,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	public com.liferay.tasks.model.TasksEntry addTasksEntry(long userId,
 		java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
-		int dueDateMinute, boolean neverDue,
+		int dueDateMinute, boolean addDueDate,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -738,7 +738,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 						
 					dueDateMinute,
 						
-					neverDue,
+					addDueDate,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -1290,7 +1290,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		long tasksEntryId, java.lang.String title, int priority,
 		long assigneeUserId, long resolverUserId, int dueDateMonth,
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
-		boolean neverDue, int status,
+		boolean addDueDate, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1320,7 +1320,7 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 						
 					dueDateMinute,
 						
-					neverDue,
+					addDueDate,
 						
 					status,
 						
