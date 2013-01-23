@@ -1028,12 +1028,13 @@
 </p>
 
 <liferay-ui:header
-	title="Java Security API"
+	title="Java Security"
 />
 
 <p>
 	<h3>Crypto</h3>
 </p>
+
 <p>
 	AES Encrypt=
 
@@ -1047,12 +1048,13 @@
 
 				SecretKey secretKey = keyGenerator.generateKey();
 
-				Cipher aesCipher = Cipher.getInstance("AES");
+				Cipher cipher = Cipher.getInstance("AES");
 
-				aesCipher.init(Cipher.ENCRYPT_MODE, secretKey);
+				cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
-				byte[] cipherTextBytes = aesCipher.doFinal(
-					"Hello World".getBytes());
+				String text = "Hello World";
+
+				cipher.doFinal(text.getBytes());
 			}
 		};
 		%>
@@ -1065,12 +1067,15 @@
 			protected void test() throws Exception {
 				Mac mac = Mac.getInstance("HmacMD5");
 
-				SecretKeySpec hmacMD5KeySpec = new SecretKeySpec(
-					"test".getBytes(), "HmacMD5");
+				String key = "123456789";
 
-				mac.init(hmacMD5KeySpec);
+				SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), "HmacMD5");
 
-				byte[] bytes = mac.doFinal("Hello".getBytes());
+				mac.init(secretKeySpec);
+
+				String text = "Hello World";
+
+				mac.doFinal(text.getBytes());
 			}
 		};
 		%>
