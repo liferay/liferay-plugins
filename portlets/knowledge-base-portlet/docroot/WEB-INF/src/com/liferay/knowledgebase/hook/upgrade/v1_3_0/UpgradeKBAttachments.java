@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_3_0;
 
+import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.v6_2_0.BaseUpgradeAttachments;
@@ -50,6 +51,11 @@ public class UpgradeKBAttachments extends BaseUpgradeAttachments {
 	protected void doUpgrade() throws Exception {
 		updateAttachments();
 		deleteEmptyDirectories();
+	}
+
+	@Override
+	protected String getClassName() {
+		return KBArticle.class.getName();
 	}
 
 	@Override
