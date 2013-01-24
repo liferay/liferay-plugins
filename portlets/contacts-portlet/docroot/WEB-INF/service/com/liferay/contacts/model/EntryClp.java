@@ -274,8 +274,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	public int compareTo(Entry entry) {
 		int value = 0;
 
-		value = getFullName().toLowerCase()
-					.compareTo(entry.getFullName().toLowerCase());
+		value = getFullName().compareToIgnoreCase(entry.getFullName());
 
 		if (value != 0) {
 			return value;

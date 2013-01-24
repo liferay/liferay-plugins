@@ -1120,8 +1120,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			return value;
 		}
 
-		value = getTitle().toLowerCase()
-					.compareTo(calendarBooking.getTitle().toLowerCase());
+		value = getTitle().compareToIgnoreCase(calendarBooking.getTitle());
 
 		if (value != 0) {
 			return value;

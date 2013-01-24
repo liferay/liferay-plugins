@@ -613,8 +613,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	public int compareTo(CalendarResource calendarResource) {
 		int value = 0;
 
-		value = getCode().toLowerCase()
-					.compareTo(calendarResource.getCode().toLowerCase());
+		value = getCode().compareToIgnoreCase(calendarResource.getCode());
 
 		if (value != 0) {
 			return value;
