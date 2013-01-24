@@ -157,11 +157,11 @@ AUI().use(
 				popup.set('title', title);
 			},
 
-			updateSites: function(showSuccessMessage) {
+			updateSites: function(showSuccessMessage, keywordsInput, requestTemplate) {
 				var instance = this;
 
 				if (instance._directoryList) {
-					instance._directoryList.sendRequest();
+					instance._directoryList.sendRequest(keywordsInput, requestTemplate);
 				}
 
 				if (instance._siteList) {
