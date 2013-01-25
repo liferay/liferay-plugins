@@ -59,13 +59,6 @@ public class UpgradeKBAttachments extends BaseUpgradeAttachments {
 	}
 
 	@Override
-	protected long getClassNameId() {
-		return PortalUtil.getClassNameId(
-			"com.liferay.portal.repository.liferayrepository." +
-				"LiferayRepository");
-	}
-
-	@Override
 	protected long getContainerModelFolderId(
 			long groupId, long companyId, long resourcePrimKey,
 			long containerId, long userId, String userName,
