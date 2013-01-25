@@ -15,7 +15,9 @@
 
 		<!-- Other fields -->
 
-		<column name="mbMessageId" type="long" />
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
+		<column name="classRPK" type="long" />
 		<column name="type" type="String" />
 		<column name="permalink" type="String" />
 		<column name="referrer" type="String" />
@@ -28,8 +30,9 @@
 		<finder name="LtModifiedDate" return-type="Collection">
 			<finder-column name="modifiedDate" comparator="&lt;" />
 		</finder>
-		<finder name="MBMessageId" return-type="AkismetData">
-			<finder-column name="mbMessageId" />
+		<finder name="C_C" return-type="AkismetData">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
 		</finder>
 	</entity>
 </service-builder>
