@@ -26,8 +26,8 @@ public class AkismetMBMessageListener extends BaseModelListener<MBMessage> {
 	@Override
 	public void onAfterRemove(MBMessage message) {
 		try {
-			AkismetDataLocalServiceUtil.deleteMBMessageAkismetData(
-				message.getMessageId());
+			AkismetDataLocalServiceUtil.deleteAkismetData(
+				MBMessage.class.getName(), message.getMessageId());
 		}
 		catch (Exception e) {
 		}
