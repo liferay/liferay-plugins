@@ -1079,6 +1079,7 @@
 			}
 		};
 		%>
+
 </p>
 
 <liferay-ui:header
