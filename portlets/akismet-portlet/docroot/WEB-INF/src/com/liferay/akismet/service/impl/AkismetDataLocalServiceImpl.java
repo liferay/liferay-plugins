@@ -18,11 +18,13 @@ import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.base.AkismetDataLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.util.PortalUtil;
 
 import java.util.Date;
 
 /**
  * @author Amos Fong
+ * @author Peter Shin
  */
 public class AkismetDataLocalServiceImpl
 	extends AkismetDataLocalServiceBaseImpl {
@@ -31,25 +33,32 @@ public class AkismetDataLocalServiceImpl
 		akismetDataPersistence.removeByLtModifiedDate(modifiedDate);
 	}
 
-	public void deleteMBMessageAkismetData(long mbMessageId)
+	public void deleteAkismetData(String className, long classPK)
 		throws PortalException, SystemException {
 
-		akismetDataPersistence.removeByMBMessageId(mbMessageId);
+		long classNameId = PortalUtil.getClassNameId(className);
+
+		akismetDataPersistence.removeByC_C(classNameId, classPK);
 	}
 
-	public AkismetData fetchMBMessageAkismetData(long mbMessageId)
+	public AkismetData fetchAkismetData(String className, long classPK)
 		throws SystemException {
 
-		return akismetDataPersistence.fetchByMBMessageId(mbMessageId);
+		long classNameId = PortalUtil.getClassNameId(className);
+
+		return akismetDataPersistence.fetchByC_C(classNameId, classPK);
 	}
 
 	public AkismetData updateAkismetData(
-			long mbMessageId, String type, String permalink, String referrer,
-			String userAgent, String userIP, String userURL)
+			String className, long classPK, long classRPK, String type,
+			String permalink, String referrer, String userAgent, String userIP,
+			String userURL)
 		throws SystemException {
 
-		AkismetData akismetData = akismetDataPersistence.fetchByMBMessageId(
-			mbMessageId);
+		long classNameId = PortalUtil.getClassNameId(className);
+
+		AkismetData akismetData = akismetDataPersistence.fetchByC_C(
+			classNameId, classPK);
 
 		if (akismetData == null) {
 			long akismetDataId = counterLocalService.increment();
@@ -58,7 +67,9 @@ public class AkismetDataLocalServiceImpl
 		}
 
 		akismetData.setModifiedDate(new Date());
-		akismetData.setMbMessageId(mbMessageId);
+		akismetData.setClassNameId(classNameId);
+		akismetData.setClassPK(classPK);
+		akismetData.setClassRPK(classRPK);
 		akismetData.setType(type);
 		akismetData.setPermalink(permalink);
 		akismetData.setReferrer(referrer);

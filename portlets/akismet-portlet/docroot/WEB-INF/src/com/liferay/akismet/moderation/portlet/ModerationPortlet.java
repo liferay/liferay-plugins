@@ -28,6 +28,7 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.messageboards.NoSuchMessageException;
 import com.liferay.portlet.messageboards.RequiredMessageException;
+import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -93,7 +94,7 @@ public class ModerationPortlet extends MVCPortlet {
 				themeDisplay.getUserId(), mbMessageId,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 
-			AkismetUtil.submitHam(mbMessageId);
+			AkismetUtil.submitHam(MBMessage.class.getName(), mbMessageId);
 		}
 	}
 

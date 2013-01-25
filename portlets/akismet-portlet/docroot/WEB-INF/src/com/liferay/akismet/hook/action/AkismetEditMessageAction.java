@@ -32,6 +32,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import javax.portlet.ActionRequest;
@@ -137,7 +138,7 @@ public class AkismetEditMessageAction extends BaseStrutsPortletAction {
 			if (AkismetUtil.isMessageBoardsEnabled(
 					themeDisplay.getCompanyId())) {
 
-				AkismetUtil.submitSpam(messageId);
+				AkismetUtil.submitSpam(MBMessage.class.getName(), messageId);
 			}
 		}
 		else {
@@ -148,7 +149,7 @@ public class AkismetEditMessageAction extends BaseStrutsPortletAction {
 			if (AkismetUtil.isMessageBoardsEnabled(
 					themeDisplay.getCompanyId())) {
 
-				AkismetUtil.submitHam(messageId);
+				AkismetUtil.submitSpam(MBMessage.class.getName(), messageId);
 			}
 		}
 	}

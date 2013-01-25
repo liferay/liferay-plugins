@@ -43,6 +43,7 @@ import java.util.Map;
 
 /**
  * @author Amos Fong
+ * @author Peter Shin
  */
 public class AkismetUtil {
 
@@ -132,27 +133,40 @@ public class AkismetUtil {
 		return false;
 	}
 
-	public static void submitHam(long mbMessageId)
+	public static void submitHam(String className, long classPK)
 		throws PortalException, SystemException {
 
 		AkismetData akismetData =
-			AkismetDataLocalServiceUtil.fetchMBMessageAkismetData(mbMessageId);
+			AkismetDataLocalServiceUtil.fetchAkismetData(className, classPK);
 
 		if (akismetData == null) {
 			return;
 		}
 
-		MBMessage message = MBMessageLocalServiceUtil.getMBMessage(mbMessageId);
+		Long companyId = null;
+		String content = null;
+		String emailAddress = null;
+		String fullName = null;
 
-		User user = UserLocalServiceUtil.getUser(message.getUserId());
+		if (Validator.equals(className, MBMessage.class.getName())) {
+			MBMessage message = MBMessageLocalServiceUtil.getMBMessage(classPK);
 
-		String content = message.getSubject() + "\n\n" + message.getBody();
+			User user = UserLocalServiceUtil.getUser(message.getUserId());
+
+			companyId = message.getCompanyId();
+			content = message.getSubject() + "\n\n" + message.getBody();
+			emailAddress = user.getEmailAddress();
+			fullName = user.getFullName();
+		}
+
+		if (companyId == null) {
+			return;
+		}
 
 		submitHam(
-			message.getCompanyId(), akismetData.getUserIP(),
-			akismetData.getUserAgent(), akismetData.getReferrer(),
-			akismetData.getPermalink(), akismetData.getType(),
-			user.getFullName(), user.getEmailAddress(), content);
+			companyId, akismetData.getUserIP(), akismetData.getUserAgent(),
+			akismetData.getReferrer(), akismetData.getPermalink(),
+			akismetData.getType(), fullName, emailAddress, content);
 	}
 
 	public static void submitHam(
@@ -186,27 +200,40 @@ public class AkismetUtil {
 		}
 	}
 
-	public static void submitSpam(long mbMessageId)
+	public static void submitSpam(String className, long classPK)
 		throws PortalException, SystemException {
 
 		AkismetData akismetData =
-			AkismetDataLocalServiceUtil.fetchMBMessageAkismetData(mbMessageId);
+			AkismetDataLocalServiceUtil.fetchAkismetData(className, classPK);
 
 		if (akismetData == null) {
 			return;
 		}
 
-		MBMessage message = MBMessageLocalServiceUtil.getMBMessage(mbMessageId);
+		Long companyId = null;
+		String content = null;
+		String emailAddress = null;
+		String fullName = null;
 
-		User user = UserLocalServiceUtil.getUser(message.getUserId());
+		if (Validator.equals(className, MBMessage.class.getName())) {
+			MBMessage message = MBMessageLocalServiceUtil.getMBMessage(classPK);
 
-		String content = message.getSubject() + "\n\n" + message.getBody();
+			User user = UserLocalServiceUtil.getUser(message.getUserId());
+
+			companyId = message.getCompanyId();
+			content = message.getSubject() + "\n\n" + message.getBody();
+			emailAddress = user.getEmailAddress();
+			fullName = user.getFullName();
+		}
+
+		if (companyId == null) {
+			return;
+		}
 
 		submitSpam(
-			message.getCompanyId(), akismetData.getUserIP(),
-			akismetData.getUserAgent(), akismetData.getReferrer(),
-			akismetData.getPermalink(), akismetData.getType(),
-			user.getFullName(), user.getEmailAddress(), content);
+			companyId, akismetData.getUserIP(), akismetData.getUserAgent(),
+			akismetData.getReferrer(), akismetData.getPermalink(),
+			akismetData.getType(), fullName, emailAddress, content);
 	}
 
 	public static void submitSpam(
