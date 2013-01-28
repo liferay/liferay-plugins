@@ -4,7 +4,7 @@
 <routes>
 	<route>
 		<pattern></pattern>
-		<implicit-parameter name="jspPage">/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/view.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/logo.png</pattern>
@@ -13,7 +13,7 @@
 		<implicit-parameter name="p_p_resource_id">logo.png</implicit-parameter>
 	</route>
 	<route>
-		<pattern>{jspPage}</pattern>
+		<pattern>{mvcPath}</pattern>
 		<ignored-parameter name="p_p_cacheability" />
 		<ignored-parameter name="p_p_resource_id" />
 	</route>

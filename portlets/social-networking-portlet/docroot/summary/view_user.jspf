@@ -208,7 +208,7 @@
 
 		editSummaryURL.setWindowState(WindowState.MAXIMIZED);
 
-		editSummaryURL.setParameter("jspPage", "/summary/edit_summary.jsp");
+		editSummaryURL.setParameter("mvcPath", "/summary/edit_summary.jsp");
 		%>
 
 		<liferay-ui:icon

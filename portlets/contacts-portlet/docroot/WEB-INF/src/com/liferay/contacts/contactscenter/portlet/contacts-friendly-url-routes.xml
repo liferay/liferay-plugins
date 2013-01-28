@@ -8,28 +8,28 @@
 	</route>
 	<route>
 		<pattern>/search</pattern>
-		<implicit-parameter name="jspPage">/contacts_center/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/contacts_center/view.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_id">1_WAR_contactsportlet</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
 		<implicit-parameter name="p_p_state">maximized</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/search</pattern>
-		<implicit-parameter name="jspPage">/contacts_center/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/contacts_center/view.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_id">1_WAR_contactsportlet</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/view</pattern>
-		<implicit-parameter name="jspPage">/contacts_center/view_user.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/contacts_center/view_user.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_id">1_WAR_contactsportlet</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
 		<implicit-parameter name="p_p_state">maximized</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/view</pattern>
-		<implicit-parameter name="jspPage">/contacts_center/view_user.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/contacts_center/view_user.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_id">1_WAR_contactsportlet</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>

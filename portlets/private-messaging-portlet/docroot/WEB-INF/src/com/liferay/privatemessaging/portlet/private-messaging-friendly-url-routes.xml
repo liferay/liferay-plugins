@@ -4,7 +4,7 @@
 <routes>
 	<route>
 		<pattern></pattern>
-		<implicit-parameter name="jspPage">/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/view.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/thread/{mbThreadId:\d+}</pattern>
@@ -14,7 +14,7 @@
 		<pattern>/thread/{mbThreadId:\d+}/{p_p_state}</pattern>
 	</route>
 	<route>
-		<pattern>/{jspPage}</pattern>
+		<pattern>/{mvcPath}</pattern>
 		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
 	</route>
 </routes>

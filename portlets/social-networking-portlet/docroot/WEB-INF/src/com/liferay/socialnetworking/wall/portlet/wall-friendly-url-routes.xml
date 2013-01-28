@@ -4,7 +4,7 @@
 <routes>
 	<route>
 		<pattern></pattern>
-		<implicit-parameter name="jspPage">/wall/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/wall/view.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/{wallToWallScreenName}</pattern>

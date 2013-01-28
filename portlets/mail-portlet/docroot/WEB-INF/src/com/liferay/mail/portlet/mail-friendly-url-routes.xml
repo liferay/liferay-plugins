@@ -4,11 +4,11 @@
 <routes>
 	<route>
 		<pattern></pattern>
-		<implicit-parameter name="jspPage">/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/view.jsp</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{jspPageName}</pattern>
-		<generated-parameter name="jspPage">/{jspPageName}.jsp</generated-parameter>
+		<pattern>/{mvcPathName}</pattern>
+		<generated-parameter name="mvcPath">/{mvcPathName}.jsp</generated-parameter>
 		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
 	</route>
 </routes>

@@ -3,8 +3,8 @@
 
 <routes>
 	<route>
-		<pattern>/{jspPageName}</pattern>
-		<generated-parameter name="jspPage">/{jspPageName}.jsp</generated-parameter>
+		<pattern>/{mvcPathName}</pattern>
+		<generated-parameter name="mvcPath">/{mvcPathName}.jsp</generated-parameter>
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 	</route>
 </routes>

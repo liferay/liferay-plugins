@@ -4,7 +4,7 @@
 <routes>
 	<route>
 		<pattern></pattern>
-		<implicit-parameter name="jspPage">/svn/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/svn/view.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss/all/plugin/trunk</pattern>
