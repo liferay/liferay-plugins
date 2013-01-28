@@ -1407,13 +1407,13 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.lfr-header-row-content {
-		height: 28px;
 		padding: 4px;
 	}
 
 	.lfr-search-combobox {
+		margin: 0 0 0 2px;
+
 		.aui-w30, .aui-w70 {
-			padding: 2px 0;
 			width: auto;
 		}
 
@@ -1515,6 +1515,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 	.taglib-header {
 		position: relative;
+		z-index: 1;
 	}
 
 	.header-back-to {
