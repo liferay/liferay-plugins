@@ -4,11 +4,11 @@
 <routes>
 	<route>
 		<pattern></pattern>
-		<implicit-parameter name="jspPage">/svn/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/svn/view.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss/all/plugins/trunk</pattern>
-		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="mvcPath" />
 		<implicit-parameter name="all">1</implicit-parameter>
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
@@ -17,7 +17,7 @@
 	</route>
 	<route>
 		<pattern>/rss/all/portal/trunk</pattern>
-		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="mvcPath" />
 		<implicit-parameter name="all">1</implicit-parameter>
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
@@ -26,7 +26,7 @@
 	</route>
 	<route>
 		<pattern>/rss/user/plugins/trunk</pattern>
-		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="mvcPath" />
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
@@ -34,7 +34,7 @@
 	</route>
 	<route>
 		<pattern>/rss/user/portal/trunk</pattern>
-		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="mvcPath" />
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>

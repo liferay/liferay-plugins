@@ -38,7 +38,7 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 <c:if test="<%= CalendarPortletPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_RESOURCE) %>">
 	<aui:button-row>
 		<liferay-portlet:renderURL var="editCalendarResourceURL">
-			<liferay-portlet:param name="jspPage" value="/edit_calendar_resource.jsp" />
+			<liferay-portlet:param name="mvcPath" value="/edit_calendar_resource.jsp" />
 			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
 		</liferay-portlet:renderURL>
 

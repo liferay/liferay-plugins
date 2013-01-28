@@ -4,11 +4,11 @@
 <routes>
 	<route>
 		<pattern></pattern>
-		<implicit-parameter name="jspPage">/search/view.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/search/view.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss</pattern>
-		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="mvcPath" />
 		<ignored-parameter name="p_p_state" />
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
@@ -16,20 +16,20 @@
 	</route>
 	<route>
 		<pattern>/{resourcePrimKey:\d+}</pattern>
-		<implicit-parameter name="jspPage">/search/view_article.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/search/view_article.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/{resourcePrimKey:\d+}/{status:-?\d+}/history</pattern>
-		<implicit-parameter name="jspPage">/search/history.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/search/history.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/{resourcePrimKey:\d+}/{status:-?\d+}/history/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/search/history.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/search/history.jsp</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/{resourcePrimKey:\d+}/{p_p_state}</pattern>
-		<implicit-parameter name="jspPage">/search/view_article.jsp</implicit-parameter>
+		<implicit-parameter name="mvcPath">/search/view_article.jsp</implicit-parameter>
 	</route>
 </routes>
