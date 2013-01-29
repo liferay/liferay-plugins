@@ -479,6 +479,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletFileRepositoryUtil.addPortletFileEntry(
 				portletDataContext.getScopeGroupId(),
 				portletDataContext.getUserId(kbArticle.getUserUuid()),
+				KBArticle.class.getName(), kbArticle.getClassPK(),
 				PortletKeys.KNOWLEDGE_BASE_ADMIN,
 				kbArticle.getAttachmentsFolderId(), inputStream, fileName);
 		}

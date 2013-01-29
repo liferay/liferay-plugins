@@ -1115,6 +1115,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
 					serviceContext.getScopeGroupId(), userId,
+					KBArticle.class.getName(), kbArticle.getClassPK(),
 					PortletKeys.KNOWLEDGE_BASE_ARTICLE,
 					kbArticle.getAttachmentsFolderId(), inputStream,
 					shortFileName);
