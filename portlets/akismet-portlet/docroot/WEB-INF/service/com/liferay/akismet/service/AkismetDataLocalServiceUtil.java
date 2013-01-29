@@ -278,26 +278,28 @@ public class AkismetDataLocalServiceUtil {
 		getService().deleteAkismetData(modifiedDate);
 	}
 
-	public static void deleteMBMessageAkismetData(long mbMessageId)
+	public static void deleteAkismetData(java.lang.String className,
+		long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMBMessageAkismetData(mbMessageId);
+		getService().deleteAkismetData(className, classPK);
 	}
 
-	public static com.liferay.akismet.model.AkismetData fetchMBMessageAkismetData(
-		long mbMessageId)
+	public static com.liferay.akismet.model.AkismetData fetchAkismetData(
+		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchMBMessageAkismetData(mbMessageId);
+		return getService().fetchAkismetData(className, classPK);
 	}
 
 	public static com.liferay.akismet.model.AkismetData updateAkismetData(
-		long mbMessageId, java.lang.String type, java.lang.String permalink,
-		java.lang.String referrer, java.lang.String userAgent,
-		java.lang.String userIP, java.lang.String userURL)
+		java.lang.String className, long classPK, java.lang.String type,
+		java.lang.String permalink, java.lang.String referrer,
+		java.lang.String userAgent, java.lang.String userIP,
+		java.lang.String userURL)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateAkismetData(mbMessageId, type, permalink, referrer,
-			userAgent, userIP, userURL);
+				   .updateAkismetData(className, classPK, type, permalink,
+			referrer, userAgent, userIP, userURL);
 	}
 
 	public static void clearService() {

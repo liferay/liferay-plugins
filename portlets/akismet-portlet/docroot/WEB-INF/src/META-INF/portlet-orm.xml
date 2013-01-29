@@ -13,7 +13,8 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="mbMessageId" />
+			<basic name="classNameId" />
+			<basic name="classPK" />
 			<basic name="type">
 				<column name="TYPE_" />
 			</basic>
@@ -22,6 +23,7 @@
 			<basic name="userAgent" />
 			<basic name="userIP" />
 			<basic name="userURL" />
+			<transient name="className" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

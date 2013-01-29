@@ -32,7 +32,8 @@ public class AkismetDataSoap implements Serializable {
 
 		soapModel.setAkismetDataId(model.getAkismetDataId());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setMbMessageId(model.getMbMessageId());
+		soapModel.setClassNameId(model.getClassNameId());
+		soapModel.setClassPK(model.getClassPK());
 		soapModel.setType(model.getType());
 		soapModel.setPermalink(model.getPermalink());
 		soapModel.setReferrer(model.getReferrer());
@@ -107,12 +108,20 @@ public class AkismetDataSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getMbMessageId() {
-		return _mbMessageId;
+	public long getClassNameId() {
+		return _classNameId;
 	}
 
-	public void setMbMessageId(long mbMessageId) {
-		_mbMessageId = mbMessageId;
+	public void setClassNameId(long classNameId) {
+		_classNameId = classNameId;
+	}
+
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
 	}
 
 	public String getType() {
@@ -165,7 +174,8 @@ public class AkismetDataSoap implements Serializable {
 
 	private long _akismetDataId;
 	private Date _modifiedDate;
-	private long _mbMessageId;
+	private long _classNameId;
+	private long _classPK;
 	private String _type;
 	private String _permalink;
 	private String _referrer;

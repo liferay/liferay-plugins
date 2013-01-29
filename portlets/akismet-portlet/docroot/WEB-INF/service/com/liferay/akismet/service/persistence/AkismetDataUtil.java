@@ -334,46 +334,49 @@ public class AkismetDataUtil {
 	}
 
 	/**
-	* Returns the akismet data where mbMessageId = &#63; or throws a {@link com.liferay.akismet.NoSuchDataException} if it could not be found.
+	* Returns the akismet data where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.akismet.NoSuchDataException} if it could not be found.
 	*
-	* @param mbMessageId the mb message ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the matching akismet data
 	* @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.akismet.model.AkismetData findByMBMessageId(
-		long mbMessageId)
+	public static com.liferay.akismet.model.AkismetData findByC_C(
+		long classNameId, long classPK)
 		throws com.liferay.akismet.NoSuchDataException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByMBMessageId(mbMessageId);
+		return getPersistence().findByC_C(classNameId, classPK);
 	}
 
 	/**
-	* Returns the akismet data where mbMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the akismet data where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param mbMessageId the mb message ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.akismet.model.AkismetData fetchByMBMessageId(
-		long mbMessageId)
+	public static com.liferay.akismet.model.AkismetData fetchByC_C(
+		long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByMBMessageId(mbMessageId);
+		return getPersistence().fetchByC_C(classNameId, classPK);
 	}
 
 	/**
-	* Returns the akismet data where mbMessageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the akismet data where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param mbMessageId the mb message ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.akismet.model.AkismetData fetchByMBMessageId(
-		long mbMessageId, boolean retrieveFromCache)
+	public static com.liferay.akismet.model.AkismetData fetchByC_C(
+		long classNameId, long classPK, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByMBMessageId(mbMessageId, retrieveFromCache);
+				   .fetchByC_C(classNameId, classPK, retrieveFromCache);
 	}
 
 	/**
@@ -437,17 +440,18 @@ public class AkismetDataUtil {
 	}
 
 	/**
-	* Removes the akismet data where mbMessageId = &#63; from the database.
+	* Removes the akismet data where classNameId = &#63; and classPK = &#63; from the database.
 	*
-	* @param mbMessageId the mb message ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the akismet data that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.akismet.model.AkismetData removeByMBMessageId(
-		long mbMessageId)
+	public static com.liferay.akismet.model.AkismetData removeByC_C(
+		long classNameId, long classPK)
 		throws com.liferay.akismet.NoSuchDataException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByMBMessageId(mbMessageId);
+		return getPersistence().removeByC_C(classNameId, classPK);
 	}
 
 	/**
@@ -473,15 +477,16 @@ public class AkismetDataUtil {
 	}
 
 	/**
-	* Returns the number of akismet datas where mbMessageId = &#63;.
+	* Returns the number of akismet datas where classNameId = &#63; and classPK = &#63;.
 	*
-	* @param mbMessageId the mb message ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
 	* @return the number of matching akismet datas
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByMBMessageId(long mbMessageId)
+	public static int countByC_C(long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByMBMessageId(mbMessageId);
+		return getPersistence().countByC_C(classNameId, classPK);
 	}
 
 	/**

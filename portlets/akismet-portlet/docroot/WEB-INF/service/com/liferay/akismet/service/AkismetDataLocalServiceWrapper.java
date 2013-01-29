@@ -273,25 +273,26 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 		_akismetDataLocalService.deleteAkismetData(modifiedDate);
 	}
 
-	public void deleteMBMessageAkismetData(long mbMessageId)
+	public void deleteAkismetData(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_akismetDataLocalService.deleteMBMessageAkismetData(mbMessageId);
+		_akismetDataLocalService.deleteAkismetData(className, classPK);
 	}
 
-	public com.liferay.akismet.model.AkismetData fetchMBMessageAkismetData(
-		long mbMessageId)
+	public com.liferay.akismet.model.AkismetData fetchAkismetData(
+		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _akismetDataLocalService.fetchMBMessageAkismetData(mbMessageId);
+		return _akismetDataLocalService.fetchAkismetData(className, classPK);
 	}
 
 	public com.liferay.akismet.model.AkismetData updateAkismetData(
-		long mbMessageId, java.lang.String type, java.lang.String permalink,
-		java.lang.String referrer, java.lang.String userAgent,
-		java.lang.String userIP, java.lang.String userURL)
+		java.lang.String className, long classPK, java.lang.String type,
+		java.lang.String permalink, java.lang.String referrer,
+		java.lang.String userAgent, java.lang.String userIP,
+		java.lang.String userURL)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _akismetDataLocalService.updateAkismetData(mbMessageId, type,
-			permalink, referrer, userAgent, userIP, userURL);
+		return _akismetDataLocalService.updateAkismetData(className, classPK,
+			type, permalink, referrer, userAgent, userIP, userURL);
 	}
 
 	/**

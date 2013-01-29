@@ -250,18 +250,19 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	public void deleteAkismetData(java.util.Date modifiedDate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteMBMessageAkismetData(long mbMessageId)
+	public void deleteAkismetData(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.akismet.model.AkismetData fetchMBMessageAkismetData(
-		long mbMessageId)
+	public com.liferay.akismet.model.AkismetData fetchAkismetData(
+		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.akismet.model.AkismetData updateAkismetData(
-		long mbMessageId, java.lang.String type, java.lang.String permalink,
-		java.lang.String referrer, java.lang.String userAgent,
-		java.lang.String userIP, java.lang.String userURL)
+		java.lang.String className, long classPK, java.lang.String type,
+		java.lang.String permalink, java.lang.String referrer,
+		java.lang.String userAgent, java.lang.String userIP,
+		java.lang.String userURL)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

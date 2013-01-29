@@ -15,6 +15,7 @@
 package com.liferay.akismet.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
+import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -38,7 +39,7 @@ import java.util.Date;
  * @see com.liferay.akismet.model.impl.AkismetDataModelImpl
  * @generated
  */
-public interface AkismetDataModel extends BaseModel<AkismetData> {
+public interface AkismetDataModel extends AttachedModel, BaseModel<AkismetData> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -88,18 +89,41 @@ public interface AkismetDataModel extends BaseModel<AkismetData> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the mb message ID of this akismet data.
+	 * Returns the fully qualified class name of this akismet data.
 	 *
-	 * @return the mb message ID of this akismet data
+	 * @return the fully qualified class name of this akismet data
 	 */
-	public long getMbMessageId();
+	public String getClassName();
+
+	public void setClassName(String className);
 
 	/**
-	 * Sets the mb message ID of this akismet data.
+	 * Returns the class name ID of this akismet data.
 	 *
-	 * @param mbMessageId the mb message ID of this akismet data
+	 * @return the class name ID of this akismet data
 	 */
-	public void setMbMessageId(long mbMessageId);
+	public long getClassNameId();
+
+	/**
+	 * Sets the class name ID of this akismet data.
+	 *
+	 * @param classNameId the class name ID of this akismet data
+	 */
+	public void setClassNameId(long classNameId);
+
+	/**
+	 * Returns the class p k of this akismet data.
+	 *
+	 * @return the class p k of this akismet data
+	 */
+	public long getClassPK();
+
+	/**
+	 * Sets the class p k of this akismet data.
+	 *
+	 * @param classPK the class p k of this akismet data
+	 */
+	public void setClassPK(long classPK);
 
 	/**
 	 * Returns the type of this akismet data.

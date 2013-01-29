@@ -117,20 +117,20 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 
 		_methodParameterTypes19 = new String[] { "java.util.Date" };
 
-		_methodName20 = "deleteMBMessageAkismetData";
+		_methodName20 = "deleteAkismetData";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes20 = new String[] { "java.lang.String", "long" };
 
-		_methodName21 = "fetchMBMessageAkismetData";
+		_methodName21 = "fetchAkismetData";
 
-		_methodParameterTypes21 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "java.lang.String", "long" };
 
 		_methodName22 = "updateAkismetData";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String"
+				"java.lang.String", "java.lang.String"
 			};
 	}
 
@@ -688,12 +688,13 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		}
 	}
 
-	public void deleteMBMessageAkismetData(long mbMessageId)
+	public void deleteAkismetData(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20, new Object[] { mbMessageId });
+				_methodParameterTypes20,
+				new Object[] { ClpSerializer.translateInput(className), classPK });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -716,14 +717,19 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		}
 	}
 
-	public com.liferay.akismet.model.AkismetData fetchMBMessageAkismetData(
-		long mbMessageId)
+	public com.liferay.akismet.model.AkismetData fetchAkismetData(
+		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { mbMessageId });
+					_methodParameterTypes21,
+					new Object[] {
+						ClpSerializer.translateInput(className),
+						
+					classPK
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -745,9 +751,10 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 	}
 
 	public com.liferay.akismet.model.AkismetData updateAkismetData(
-		long mbMessageId, java.lang.String type, java.lang.String permalink,
-		java.lang.String referrer, java.lang.String userAgent,
-		java.lang.String userIP, java.lang.String userURL)
+		java.lang.String className, long classPK, java.lang.String type,
+		java.lang.String permalink, java.lang.String referrer,
+		java.lang.String userAgent, java.lang.String userIP,
+		java.lang.String userURL)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -755,7 +762,9 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
 					_methodParameterTypes22,
 					new Object[] {
-						mbMessageId,
+						ClpSerializer.translateInput(className),
+						
+					classPK,
 						
 					ClpSerializer.translateInput(type),
 						
