@@ -205,14 +205,14 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 				delta="<%= rssDelta %>"
 				displayStyle="<%= rssDisplayStyle %>"
 				enabled="<%= enableRSS %>"
-				feedType="<%= RSSUtil.getFormatType(rssFormat) %>"
+				feedType="<%= rssFeedType %>"
 			/>
 
 			<aui:fieldset cssClass="rss-time-interval" id="rssTimeIntervalContainer">
 				<aui:select label="time-interval" name="preferences--rssTimeInterval--">
-					<aui:option label="week" selected="<%= rssTimeInterval == Time.WEEK %>" value="<% Time.WEEK %>" />
-					<aui:option label="month" selected="<%= rssTimeInterval == Time.MONTH %>" value="<% Time.MONTH %>" />
-					<aui:option label="year" selected="<%= rssTimeInterval == Time.YEAR %>" value="<% Time.YEAR %>" />
+					<aui:option label="week" selected="<%= rssTimeInterval == Time.WEEK %>" value="<%= Time.WEEK %>" />
+					<aui:option label="month" selected="<%= rssTimeInterval == Time.MONTH %>" value="<%= Time.MONTH %>" />
+					<aui:option label="year" selected="<%= rssTimeInterval == Time.YEAR %>" value="<%= Time.YEAR %>" />
 				</aui:select>
 			</aui:fieldset>
 		</c:when>
@@ -281,5 +281,5 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 		submitForm(document.<portlet:namespace />fm);
 	}
 
-	Liferay.Util.toggleBoxes('<portlet:namespace />enableRssCheckbox','<portlet:namespace />rssTimeIntervalContainer');
+	Liferay.Util.toggleBoxes('<portlet:namespace />enableRssCheckbox', '<portlet:namespace />rssTimeIntervalContainer');
 </aui:script>

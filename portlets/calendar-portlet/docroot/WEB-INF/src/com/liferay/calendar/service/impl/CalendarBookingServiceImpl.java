@@ -19,7 +19,7 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.base.CalendarBookingServiceBaseImpl;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
-import com.liferay.calendar.util.CalendarBookingRSSUtil;
+import com.liferay.calendar.util.RSSUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.RSSUtil;
 
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndContentImpl;
@@ -162,11 +161,12 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	public String getCalendarBookingsRSS(
-			long calendarId, long rssTimeInterval, int rssDelta,
-			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
+			long calendarId, long startTime, long endTime, int delta,
+			String displayStyle, String type, double version,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		Calendar calendar = calendarLocalService.getCalendar(calendarId);
+		Calendar calendar = calendarService.getCalendar(calendarId);
 
 		Locale locale = themeDisplay.getLocale();
 
@@ -175,14 +175,11 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		String feedURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
-		long startTime = (new Date()).getTime();
-		long endTime = startTime + rssTimeInterval;
-
 		List<CalendarBooking> calendarBookings = getCalendarBookings(
-			calendarId, startTime, endTime, rssDelta);
+			calendarId, startTime, endTime, delta);
 
 		return exportToRSS(
-			rssDisplayStyle, rssFormat, name, description, feedURL,
+			displayStyle, type, version, name, description, feedURL,
 			calendarBookings, themeDisplay);
 	}
 
@@ -379,7 +376,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	protected String exportToRSS(
-			String rssDisplayStyle, String rssFormat, String name,
+			String displayStyle, String type, double version, String name,
 			String description, String feedURL,
 			List<CalendarBooking> calendarBookings, ThemeDisplay themeDisplay)
 		throws SystemException {
@@ -405,8 +402,8 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 			syndContent.setType(RSSUtil.ENTRY_TYPE_DEFAULT);
 
-			String value = CalendarBookingRSSUtil.getContent(
-				calendarBooking, rssDisplayStyle, themeDisplay);
+			String value = RSSUtil.getContent(
+				calendarBooking, displayStyle, themeDisplay);
 
 			syndContent.setValue(value);
 
@@ -424,11 +421,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			syndEntries.add(syndEntry);
 		}
 
-		String feedType = RSSUtil.getFeedType(
-			RSSUtil.getFormatType(rssFormat),
-			RSSUtil.getFormatVersion(rssFormat));
-
-		syndFeed.setFeedType(feedType);
+		syndFeed.setFeedType(RSSUtil.getFeedType(type, version));
 
 		List<SyndLink> syndLinks = new ArrayList<SyndLink>();
 

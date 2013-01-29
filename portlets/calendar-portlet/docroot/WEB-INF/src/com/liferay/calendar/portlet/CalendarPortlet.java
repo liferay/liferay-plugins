@@ -38,6 +38,7 @@ import com.liferay.calendar.util.CalendarDataHandlerFactory;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
+import com.liferay.calendar.util.RSSUtil;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
@@ -81,6 +82,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -167,17 +169,23 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
-		String rssDisplayStyle = ParamUtil.getString(
-			resourceRequest, "rssDisplayStyle");
-		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
-		long rssTimeInterval = ParamUtil.getLong(
-			resourceRequest, "rssTimeInterval");
-
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
+		int max = ParamUtil.getInteger(
+			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
+		String type = ParamUtil.getString(
+			resourceRequest, "type", RSSUtil.FORMAT_DEFAULT);
+		double version = ParamUtil.getDouble(
+			resourceRequest, "version", RSSUtil.VERSION_DEFAULT);
+		String displayStyle = ParamUtil.getString(
+			resourceRequest, "displayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
+		long timeInterval = ParamUtil.getLong(
+			resourceRequest, "timeInterval", RSSUtil.TIME_INTERVAL_DEFAULT);
+
+		long startTime = (new Date()).getTime();
+		long endTime = startTime + timeInterval;
 
 		String rss = CalendarBookingServiceUtil.getCalendarBookingsRSS(
-			calendarId, rssTimeInterval, rssDelta, rssDisplayStyle, rssFormat,
+			calendarId, startTime, endTime, max, displayStyle, type, version,
 			themeDisplay);
 
 		PortletResponseUtil.sendFile(
