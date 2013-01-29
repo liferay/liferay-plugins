@@ -90,11 +90,11 @@ public class ModerationPortlet extends MVCPortlet {
 			actionRequest);
 
 		for (long mbMessageId : mbMessageIds) {
-			MBMessage message = MBMessageLocalServiceUtil.updateStatus(
+			MBMessage mbMessage = MBMessageLocalServiceUtil.updateStatus(
 				themeDisplay.getUserId(), mbMessageId,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 
-			AkismetUtil.submitHam(message);
+			AkismetUtil.submitHam(mbMessage);
 		}
 	}
 
