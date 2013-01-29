@@ -17,9 +17,9 @@ package com.liferay.calendar.util;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.ContentUtil;
-import com.liferay.util.RSSUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.text.Format;
@@ -30,21 +30,23 @@ import java.util.TimeZone;
 /**
  * @author Bruno Basto
  */
-public class CalendarBookingRSSUtil {
+public class RSSUtil extends com.liferay.util.RSSUtil {
+
+	public static final long TIME_INTERVAL_DEFAULT = Time.WEEK;
 
 	public static String getContent(
-		CalendarBooking calendarBooking, String rssDisplayStyle,
+		CalendarBooking calendarBooking, String displayStyle,
 		ThemeDisplay themeDisplay) {
 
 		Locale locale = themeDisplay.getLocale();
 
 		String content = null;
 
-		if (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) {
+		if (displayStyle.equals(DISPLAY_STYLE_ABSTRACT)) {
 			content = StringUtil.shorten(
 				calendarBooking.getDescription(locale), 200);
 		}
-		else if (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE)) {
+		else if (displayStyle.equals(DISPLAY_STYLE_TITLE)) {
 			content = calendarBooking.getTitle(locale);
 		}
 		else {

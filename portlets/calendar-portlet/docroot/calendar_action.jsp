@@ -89,13 +89,16 @@ Calendar calendar = (Calendar)row.getObject();
 	<c:if test="<%= enableRSS %>">
 		<liferay-portlet:resourceURL id="calendarBookingsRSS" varImpl="calendarRSSURL">
 			<portlet:param name="calendarId" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
-			<portlet:param name="rssTimeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
+			<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
+			<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+			<portlet:param name="feedType" value="<%= rssFeedType %>" />
+			<portlet:param name="timeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
 		</liferay-portlet:resourceURL>
 
 		<liferay-ui:rss
 			delta="<%= rssDelta %>"
 			displayStyle="<%= rssDisplayStyle %>"
-			feedType="<%= RSSUtil.getFormatType(rssFormat) %>"
+			feedType="<%= rssFeedType %>"
 			resourceURL="<%= calendarRSSURL %>"
 		/>
 	</c:if>
