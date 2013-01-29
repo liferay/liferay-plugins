@@ -126,6 +126,25 @@ public class CalendarBookingServiceUtil {
 		return getService().getCalendarBookings(calendarId, startTime, endTime);
 	}
 
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, long startTime, long endTime, int max)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getCalendarBookings(calendarId, startTime, endTime, max);
+	}
+
+	public static java.lang.String getCalendarBookingsRSS(long calendarId,
+		long startTime, long endTime, int max, java.lang.String type,
+		double version, java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getCalendarBookingsRSS(calendarId, startTime, endTime, max,
+			type, version, displayStyle, themeDisplay);
+	}
+
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings(
 		long parentCalendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,

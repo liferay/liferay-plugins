@@ -120,6 +120,24 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 			startTime, endTime);
 	}
 
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, long startTime, long endTime, int max)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingService.getCalendarBookings(calendarId,
+			startTime, endTime, max);
+	}
+
+	public java.lang.String getCalendarBookingsRSS(long calendarId,
+		long startTime, long endTime, int max, java.lang.String type,
+		double version, java.lang.String displayStyle,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingService.getCalendarBookingsRSS(calendarId,
+			startTime, endTime, max, type, version, displayStyle, themeDisplay);
+	}
+
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings(
 		long parentCalendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
