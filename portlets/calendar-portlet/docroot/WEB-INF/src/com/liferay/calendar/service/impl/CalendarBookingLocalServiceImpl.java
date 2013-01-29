@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -323,6 +324,14 @@ public class CalendarBookingLocalServiceImpl
 			long calendarId, long startTime, long endTime)
 		throws SystemException {
 
+		return getCalendarBookings(
+			calendarId, startTime, endTime, QueryUtil.ALL_POS);
+	}
+
+	public List<CalendarBooking> getCalendarBookings(
+			long calendarId, long startTime, long endTime, int limit)
+		throws SystemException {
+
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			CalendarBooking.class, getClassLoader());
 
@@ -340,7 +349,11 @@ public class CalendarBookingLocalServiceImpl
 		if (endTime >= 0) {
 			Property propertyEndTime = PropertyFactoryUtil.forName("endTime");
 
-			dynamicQuery.add(propertyEndTime.gt(endTime));
+			dynamicQuery.add(propertyEndTime.lt(endTime));
+		}
+
+		if (limit > 0) {
+			dynamicQuery.setLimit(0, limit);
 		}
 
 		return dynamicQuery(dynamicQuery);

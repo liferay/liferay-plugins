@@ -14,10 +14,12 @@
 
 package com.liferay.calendar.service.impl;
 
+import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.base.CalendarBookingServiceBaseImpl;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
+import com.liferay.calendar.util.CalendarBookingRSSUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -27,7 +29,22 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.RSSUtil;
 
+import com.sun.syndication.feed.synd.SyndContent;
+import com.sun.syndication.feed.synd.SyndContentImpl;
+import com.sun.syndication.feed.synd.SyndEntry;
+import com.sun.syndication.feed.synd.SyndEntryImpl;
+import com.sun.syndication.feed.synd.SyndFeed;
+import com.sun.syndication.feed.synd.SyndFeedImpl;
+import com.sun.syndication.feed.synd.SyndLink;
+import com.sun.syndication.feed.synd.SyndLinkImpl;
+import com.sun.syndication.io.FeedException;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -36,6 +53,7 @@ import java.util.Map;
 /**
  * @author Eduardo Lundgren
  * @author Fabio Pezzutto
+ * @author Bruno Basto
  */
 public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
@@ -124,15 +142,48 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			long calendarId, long startTime, long endTime)
 		throws PortalException, SystemException {
 
+		return getCalendarBookings(
+			calendarId, startTime, endTime, QueryUtil.ALL_POS);
+	}
+
+	public List<CalendarBooking> getCalendarBookings(
+			long calendarId, long startTime, long endTime, int limit)
+		throws PortalException, SystemException {
+
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.getCalendarBookings(
-				calendarId, startTime, endTime);
+				calendarId, startTime, endTime, limit);
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			filterCalendarBooking(calendarBooking);
 		}
 
 		return calendarBookings;
+	}
+
+	public String getCalendarBookingsRSS(
+			long calendarId, long rssTimeInterval, int rssDelta,
+			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		Calendar calendar = calendarLocalService.getCalendar(calendarId);
+
+		Locale locale = themeDisplay.getLocale();
+
+		String name = calendar.getName(locale);
+		String description = calendar.getDescription(locale);
+
+		String feedURL = PortalUtil.getLayoutFullURL(themeDisplay);
+
+		long startTime = (new Date()).getTime();
+		long endTime = startTime + rssTimeInterval;
+
+		List<CalendarBooking> calendarBookings = getCalendarBookings(
+			calendarId, startTime, endTime, rssDelta);
+
+		return exportToRSS(
+			rssDisplayStyle, rssFormat, name, description, feedURL,
+			calendarBookings, themeDisplay);
 	}
 
 	public List<CalendarBooking> getChildCalendarBookings(
@@ -325,6 +376,81 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			descriptionMap, location, startTime, endTime, allDay, recurrence,
 			allFollowing, firstReminder, firstReminderType, secondReminder,
 			secondReminderType, status, serviceContext);
+	}
+
+	protected String exportToRSS(
+			String rssDisplayStyle, String rssFormat, String name,
+			String description, String feedURL,
+			List<CalendarBooking> calendarBookings, ThemeDisplay themeDisplay)
+		throws SystemException {
+
+		SyndFeed syndFeed = new SyndFeedImpl();
+
+		syndFeed.setDescription(description);
+
+		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
+
+		syndFeed.setEntries(syndEntries);
+
+		Locale locale = themeDisplay.getLocale();
+
+		for (CalendarBooking calendarBooking : calendarBookings) {
+			SyndEntry syndEntry = new SyndEntryImpl();
+
+			String author = PortalUtil.getUserName(calendarBooking);
+
+			syndEntry.setAuthor(author);
+
+			SyndContent syndContent = new SyndContentImpl();
+
+			syndContent.setType(RSSUtil.ENTRY_TYPE_DEFAULT);
+
+			String value = CalendarBookingRSSUtil.getContent(
+				calendarBooking, rssDisplayStyle, themeDisplay);
+
+			syndContent.setValue(value);
+
+			syndEntry.setDescription(syndContent);
+
+			String link = StringPool.BLANK;
+
+			syndEntry.setLink(link);
+
+			syndEntry.setPublishedDate(calendarBooking.getCreateDate());
+			syndEntry.setTitle(calendarBooking.getTitle(locale));
+			syndEntry.setUpdatedDate(calendarBooking.getModifiedDate());
+			syndEntry.setUri(link);
+
+			syndEntries.add(syndEntry);
+		}
+
+		String feedType = RSSUtil.getFeedType(
+			RSSUtil.getFormatType(rssFormat),
+			RSSUtil.getFormatVersion(rssFormat));
+
+		syndFeed.setFeedType(feedType);
+
+		List<SyndLink> syndLinks = new ArrayList<SyndLink>();
+
+		syndFeed.setLinks(syndLinks);
+
+		SyndLink selfSyndLink = new SyndLinkImpl();
+
+		syndLinks.add(selfSyndLink);
+
+		selfSyndLink.setHref(feedURL);
+		selfSyndLink.setRel("self");
+
+		syndFeed.setPublishedDate(new Date());
+		syndFeed.setTitle(name);
+		syndFeed.setUri(feedURL);
+
+		try {
+			return RSSUtil.export(syndFeed);
+		}
+		catch (FeedException fe) {
+			throw new SystemException(fe);
+		}
 	}
 
 	protected CalendarBooking filterCalendarBooking(
