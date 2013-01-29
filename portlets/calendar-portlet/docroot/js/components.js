@@ -150,6 +150,10 @@
 										cssClass += STR_SPACE + CSS_SIMPLE_MENU_ITEM_HIDDEN;
 									}
 
+									if (item.cssClass) {
+										cssClass += STR_SPACE + item.cssClass;
+									}
+
 									var li = A.Node.create(
 										Lang.sub(
 											TPL_SIMPLE_MENU_ITEM,

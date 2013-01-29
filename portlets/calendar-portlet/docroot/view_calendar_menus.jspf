@@ -156,10 +156,10 @@
 					var activeCalendar = calendarList.activeItem;
 
 					<portlet:actionURL name="deleteCalendar" var="deleteURL">
-					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="calendarId" value="{calendarId}" />
-					<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
+						<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="calendarId" value="{calendarId}" />
+						<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
 					</portlet:actionURL>
 
 					if (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />')) {
@@ -174,6 +174,39 @@
 				},
 				id: 'delete'
 			},
+			<c:if test="<%= enableRSS %>">
+			{
+				caption: '<liferay-ui:message key="rss" />',
+				cssClass: 'calendar-subscribe-link',
+				fn: function(event) {
+					var instance = this;
+
+					var calendarList = instance.get('host');
+
+					var activeCalendar = calendarList.activeItem;
+
+					<liferay-portlet:resourceURL id="calendarBookingsRSS" varImpl="calendarRSSURL">
+						<portlet:param name="calendarId" value="{calendarId}" />
+						<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
+						<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
+						<portlet:param name="rssFormat" value="<%= rssFormat %>" />
+						<portlet:param name="rssTimeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
+					</liferay-portlet:resourceURL>
+
+					var url = A.Lang.sub(
+						decodeURIComponent('<%= calendarRSSURL %>'),
+						{
+							calendarId: activeCalendar.get('calendarId')
+						}
+					);
+
+					window.open(url, '_blank');
+
+					instance.set('visible', false);
+				},
+				id: 'subscribe'
+			},
+			</c:if>
 			{
 				caption: '-'
 			},

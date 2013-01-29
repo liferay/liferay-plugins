@@ -48,8 +48,16 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 	<aui:input name="notificationTemplateContentBodyParameterName" type="hidden" value="<%= notificationTemplateContentBodyParameterName %>" />
 	<aui:input name="notificationTemplateContentSubjectParameterName" type="hidden" value="<%= notificationTemplateContentSubjectParameterName %>" />
 
+	<%
+	String tabs2Names = "user-settings,templates,email-from";
+
+	if (PortalUtil.isRSSFeedsEnabled()) {
+		tabs2Names += ",rss";
+	}
+	%>
+
 	<liferay-ui:tabs
-		names="user-settings,templates,email-from"
+		names="<%= tabs2Names %>"
 		param="tabs2"
 		url="<%= portletURL %>"
 	/>
@@ -192,6 +200,22 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 				<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" type="text" value="<%= emailFromAddress %>" />
 			</aui:fieldset>
 		</c:when>
+		<c:when test='<%= tabs2.equals("rss") %>'>
+			<liferay-ui:rss-settings
+				delta="<%= rssDelta %>"
+				displayStyle="<%= rssDisplayStyle %>"
+				enabled="<%= enableRSS %>"
+				feedType="<%= RSSUtil.getFormatType(rssFormat) %>"
+			/>
+
+			<aui:fieldset cssClass="rss-time-interval" id="rssTimeIntervalContainer">
+				<aui:select label="time-interval" name="preferences--rssTimeInterval--">
+					<aui:option label="week" selected="<%= rssTimeInterval == Time.WEEK %>" value="<% Time.WEEK %>" />
+					<aui:option label="month" selected="<%= rssTimeInterval == Time.MONTH %>" value="<% Time.MONTH %>" />
+					<aui:option label="year" selected="<%= rssTimeInterval == Time.YEAR %>" value="<% Time.YEAR %>" />
+				</aui:select>
+			</aui:fieldset>
+		</c:when>
 	</c:choose>
 
 	<aui:button-row>
@@ -256,4 +280,6 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 
 		submitForm(document.<portlet:namespace />fm);
 	}
+
+	Liferay.Util.toggleBoxes('<portlet:namespace />enableRssCheckbox','<portlet:namespace />rssTimeIntervalContainer');
 </aui:script>

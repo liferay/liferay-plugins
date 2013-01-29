@@ -86,6 +86,20 @@ Calendar calendar = (Calendar)row.getObject();
 		/>
 	</c:if>
 
+	<c:if test="<%= enableRSS %>">
+		<liferay-portlet:resourceURL id="calendarBookingsRSS" varImpl="calendarRSSURL">
+			<portlet:param name="calendarId" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
+			<portlet:param name="rssTimeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
+		</liferay-portlet:resourceURL>
+
+		<liferay-ui:rss
+			delta="<%= rssDelta %>"
+			displayStyle="<%= rssDisplayStyle %>"
+			feedType="<%= RSSUtil.getFormatType(rssFormat) %>"
+			resourceURL="<%= calendarRSSURL %>"
+		/>
+	</c:if>
+
 	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.DELETE) %>">
 		<portlet:actionURL name="deleteCalendar" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />

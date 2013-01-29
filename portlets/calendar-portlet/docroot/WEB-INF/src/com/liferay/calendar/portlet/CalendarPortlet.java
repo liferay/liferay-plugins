@@ -52,6 +52,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -100,6 +101,7 @@ import javax.portlet.ResourceResponse;
  * @author Fabio Pezzutto
  * @author Andrea Di Giorgi
  * @author Marcellus Tavares
+ * @author Bruno Basto
  */
 public class CalendarPortlet extends MVCPortlet {
 
@@ -151,6 +153,38 @@ public class CalendarPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
+	public void serveCalendarBookingsRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		if (!PortalUtil.isRSSFeedsEnabled()) {
+			PortalUtil.sendRSSFeedsDisabledError(
+				resourceRequest, resourceResponse);
+
+			return;
+		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
+		String rssDisplayStyle = ParamUtil.getString(
+			resourceRequest, "rssDisplayStyle");
+		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
+		long rssTimeInterval = ParamUtil.getLong(
+			resourceRequest, "rssTimeInterval");
+
+		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
+
+		String rss = CalendarBookingServiceUtil.getCalendarBookingsRSS(
+			calendarId, rssTimeInterval, rssDelta, rssDisplayStyle, rssFormat,
+			themeDisplay);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, null, rss.getBytes(),
+			ContentTypes.TEXT_XML_UTF8);
+	}
+
 	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -161,6 +195,9 @@ public class CalendarPortlet extends MVCPortlet {
 
 			if (resourceID.equals("calendarBookingInvitees")) {
 				serveCalendarBookingInvitees(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("calendarBookingsRSS")) {
+				serveCalendarBookingsRSS(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("calendarRenderingRules")) {
 				serveCalendarRenderingRules(resourceRequest, resourceResponse);
