@@ -163,22 +163,22 @@ public class AkismetUtil {
 		}
 	}
 
-	public static void submitHam(MBMessage message)
+	public static void submitHam(MBMessage mbMessage)
 		throws PortalException, SystemException {
 
 		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
-			MBMessage.class.getName(), message.getMessageId());
+			MBMessage.class.getName(), mbMessage.getMessageId());
 
 		if (akismetData == null) {
 			return;
 		}
 
-		User user = UserLocalServiceUtil.getUser(message.getUserId());
+		User user = UserLocalServiceUtil.getUser(mbMessage.getUserId());
 
-		String content = message.getSubject() + "\n\n" + message.getBody();
+		String content = mbMessage.getSubject() + "\n\n" + mbMessage.getBody();
 
 		submitHam(
-			message.getCompanyId(), akismetData.getUserIP(),
+			mbMessage.getCompanyId(), akismetData.getUserIP(),
 			akismetData.getUserAgent(), akismetData.getReferrer(),
 			akismetData.getPermalink(), akismetData.getType(),
 			user.getFullName(), user.getEmailAddress(), content);
@@ -215,22 +215,22 @@ public class AkismetUtil {
 		}
 	}
 
-	public static void submitSpam(MBMessage message)
+	public static void submitSpam(MBMessage mbMessage)
 		throws PortalException, SystemException {
 
 		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
-			MBMessage.class.getName(), message.getMessageId());
+			MBMessage.class.getName(), mbMessage.getMessageId());
 
 		if (akismetData == null) {
 			return;
 		}
 
-		User user = UserLocalServiceUtil.getUser(message.getUserId());
+		User user = UserLocalServiceUtil.getUser(mbMessage.getUserId());
 
-		String content = message.getSubject() + "\n\n" + message.getBody();
+		String content = mbMessage.getSubject() + "\n\n" + mbMessage.getBody();
 
 		submitSpam(
-			message.getCompanyId(), akismetData.getUserIP(),
+			mbMessage.getCompanyId(), akismetData.getUserIP(),
 			akismetData.getUserAgent(), akismetData.getReferrer(),
 			akismetData.getPermalink(), akismetData.getType(),
 			user.getFullName(), user.getEmailAddress(), content);
