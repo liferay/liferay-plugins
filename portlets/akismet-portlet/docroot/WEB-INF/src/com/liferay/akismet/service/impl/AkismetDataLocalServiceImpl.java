@@ -50,9 +50,8 @@ public class AkismetDataLocalServiceImpl
 	}
 
 	public AkismetData updateAkismetData(
-			String className, long classPK, long classRPK, String type,
-			String permalink, String referrer, String userAgent, String userIP,
-			String userURL)
+			String className, long classPK, String type, String permalink,
+			String referrer, String userAgent, String userIP, String userURL)
 		throws SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(className);
@@ -69,7 +68,6 @@ public class AkismetDataLocalServiceImpl
 		akismetData.setModifiedDate(new Date());
 		akismetData.setClassNameId(classNameId);
 		akismetData.setClassPK(classPK);
-		akismetData.setClassRPK(classRPK);
 		akismetData.setType(type);
 		akismetData.setPermalink(permalink);
 		akismetData.setReferrer(referrer);
