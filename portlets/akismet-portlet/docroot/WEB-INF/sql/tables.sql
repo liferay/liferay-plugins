@@ -1,7 +1,8 @@
 create table Akismet_AkismetData (
 	akismetDataId LONG not null primary key,
 	modifiedDate DATE null,
-	mbMessageId LONG,
+	classNameId LONG,
+	classPK LONG,
 	type_ VARCHAR(75) null,
 	permalink STRING null,
 	referrer STRING null,

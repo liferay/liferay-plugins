@@ -22,9 +22,11 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -61,7 +63,8 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "akismetDataId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "mbMessageId", Types.BIGINT },
+			{ "classNameId", Types.BIGINT },
+			{ "classPK", Types.BIGINT },
 			{ "type_", Types.VARCHAR },
 			{ "permalink", Types.VARCHAR },
 			{ "referrer", Types.VARCHAR },
@@ -69,7 +72,7 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 			{ "userIP", Types.VARCHAR },
 			{ "userURL", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Akismet_AkismetData (akismetDataId LONG not null primary key,modifiedDate DATE null,mbMessageId LONG,type_ VARCHAR(75) null,permalink STRING null,referrer STRING null,userAgent STRING null,userIP VARCHAR(75) null,userURL STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table Akismet_AkismetData (akismetDataId LONG not null primary key,modifiedDate DATE null,classNameId LONG,classPK LONG,type_ VARCHAR(75) null,permalink STRING null,referrer STRING null,userAgent STRING null,userIP VARCHAR(75) null,userURL STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table Akismet_AkismetData";
 	public static final String ORDER_BY_JPQL = " ORDER BY akismetData.akismetDataId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Akismet_AkismetData.akismetDataId ASC";
@@ -85,9 +88,10 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.akismet.model.AkismetData"),
 			true);
-	public static long MBMESSAGEID_COLUMN_BITMASK = 1L;
-	public static long MODIFIEDDATE_COLUMN_BITMASK = 2L;
-	public static long AKISMETDATAID_COLUMN_BITMASK = 4L;
+	public static long CLASSNAMEID_COLUMN_BITMASK = 1L;
+	public static long CLASSPK_COLUMN_BITMASK = 2L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 4L;
+	public static long AKISMETDATAID_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.akismet.model.AkismetData"));
 
@@ -124,7 +128,8 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 
 		attributes.put("akismetDataId", getAkismetDataId());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("mbMessageId", getMbMessageId());
+		attributes.put("classNameId", getClassNameId());
+		attributes.put("classPK", getClassPK());
 		attributes.put("type", getType());
 		attributes.put("permalink", getPermalink());
 		attributes.put("referrer", getReferrer());
@@ -149,10 +154,16 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 			setModifiedDate(modifiedDate);
 		}
 
-		Long mbMessageId = (Long)attributes.get("mbMessageId");
+		Long classNameId = (Long)attributes.get("classNameId");
 
-		if (mbMessageId != null) {
-			setMbMessageId(mbMessageId);
+		if (classNameId != null) {
+			setClassNameId(classNameId);
+		}
+
+		Long classPK = (Long)attributes.get("classPK");
+
+		if (classPK != null) {
+			setClassPK(classPK);
 		}
 
 		String type = (String)attributes.get("type");
@@ -218,24 +229,62 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 		return _originalModifiedDate;
 	}
 
-	public long getMbMessageId() {
-		return _mbMessageId;
-	}
-
-	public void setMbMessageId(long mbMessageId) {
-		_columnBitmask |= MBMESSAGEID_COLUMN_BITMASK;
-
-		if (!_setOriginalMbMessageId) {
-			_setOriginalMbMessageId = true;
-
-			_originalMbMessageId = _mbMessageId;
+	public String getClassName() {
+		if (getClassNameId() <= 0) {
+			return StringPool.BLANK;
 		}
 
-		_mbMessageId = mbMessageId;
+		return PortalUtil.getClassName(getClassNameId());
 	}
 
-	public long getOriginalMbMessageId() {
-		return _originalMbMessageId;
+	public void setClassName(String className) {
+		long classNameId = 0;
+
+		if (Validator.isNotNull(className)) {
+			classNameId = PortalUtil.getClassNameId(className);
+		}
+
+		setClassNameId(classNameId);
+	}
+
+	public long getClassNameId() {
+		return _classNameId;
+	}
+
+	public void setClassNameId(long classNameId) {
+		_columnBitmask |= CLASSNAMEID_COLUMN_BITMASK;
+
+		if (!_setOriginalClassNameId) {
+			_setOriginalClassNameId = true;
+
+			_originalClassNameId = _classNameId;
+		}
+
+		_classNameId = classNameId;
+	}
+
+	public long getOriginalClassNameId() {
+		return _originalClassNameId;
+	}
+
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_columnBitmask |= CLASSPK_COLUMN_BITMASK;
+
+		if (!_setOriginalClassPK) {
+			_setOriginalClassPK = true;
+
+			_originalClassPK = _classPK;
+		}
+
+		_classPK = classPK;
+	}
+
+	public long getOriginalClassPK() {
+		return _originalClassPK;
 	}
 
 	public String getType() {
@@ -349,7 +398,8 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 
 		akismetDataImpl.setAkismetDataId(getAkismetDataId());
 		akismetDataImpl.setModifiedDate(getModifiedDate());
-		akismetDataImpl.setMbMessageId(getMbMessageId());
+		akismetDataImpl.setClassNameId(getClassNameId());
+		akismetDataImpl.setClassPK(getClassPK());
 		akismetDataImpl.setType(getType());
 		akismetDataImpl.setPermalink(getPermalink());
 		akismetDataImpl.setReferrer(getReferrer());
@@ -412,9 +462,13 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 
 		akismetDataModelImpl._originalModifiedDate = akismetDataModelImpl._modifiedDate;
 
-		akismetDataModelImpl._originalMbMessageId = akismetDataModelImpl._mbMessageId;
+		akismetDataModelImpl._originalClassNameId = akismetDataModelImpl._classNameId;
 
-		akismetDataModelImpl._setOriginalMbMessageId = false;
+		akismetDataModelImpl._setOriginalClassNameId = false;
+
+		akismetDataModelImpl._originalClassPK = akismetDataModelImpl._classPK;
+
+		akismetDataModelImpl._setOriginalClassPK = false;
 
 		akismetDataModelImpl._columnBitmask = 0;
 	}
@@ -434,7 +488,9 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 			akismetDataCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		akismetDataCacheModel.mbMessageId = getMbMessageId();
+		akismetDataCacheModel.classNameId = getClassNameId();
+
+		akismetDataCacheModel.classPK = getClassPK();
 
 		akismetDataCacheModel.type = getType();
 
@@ -489,14 +545,16 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{akismetDataId=");
 		sb.append(getAkismetDataId());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", mbMessageId=");
-		sb.append(getMbMessageId());
+		sb.append(", classNameId=");
+		sb.append(getClassNameId());
+		sb.append(", classPK=");
+		sb.append(getClassPK());
 		sb.append(", type=");
 		sb.append(getType());
 		sb.append(", permalink=");
@@ -515,7 +573,7 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.akismet.model.AkismetData");
@@ -530,8 +588,12 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>mbMessageId</column-name><column-value><![CDATA[");
-		sb.append(getMbMessageId());
+			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
+		sb.append(getClassNameId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>classPK</column-name><column-value><![CDATA[");
+		sb.append(getClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>type</column-name><column-value><![CDATA[");
@@ -570,9 +632,12 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 	private long _akismetDataId;
 	private Date _modifiedDate;
 	private Date _originalModifiedDate;
-	private long _mbMessageId;
-	private long _originalMbMessageId;
-	private boolean _setOriginalMbMessageId;
+	private long _classNameId;
+	private long _originalClassNameId;
+	private boolean _setOriginalClassNameId;
+	private long _classPK;
+	private long _originalClassPK;
+	private boolean _setOriginalClassPK;
 	private String _type;
 	private String _permalink;
 	private String _referrer;

@@ -110,20 +110,20 @@ public class AkismetDataLocalServiceClpInvoker {
 
 		_methodParameterTypes37 = new String[] { "java.util.Date" };
 
-		_methodName38 = "deleteMBMessageAkismetData";
+		_methodName38 = "deleteAkismetData";
 
-		_methodParameterTypes38 = new String[] { "long" };
+		_methodParameterTypes38 = new String[] { "java.lang.String", "long" };
 
-		_methodName39 = "fetchMBMessageAkismetData";
+		_methodName39 = "fetchAkismetData";
 
-		_methodParameterTypes39 = new String[] { "long" };
+		_methodParameterTypes39 = new String[] { "java.lang.String", "long" };
 
 		_methodName40 = "updateAkismetData";
 
 		_methodParameterTypes40 = new String[] {
-				"long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String"
+				"java.lang.String", "java.lang.String"
 			};
 	}
 
@@ -231,22 +231,25 @@ public class AkismetDataLocalServiceClpInvoker {
 
 		if (_methodName38.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
-			AkismetDataLocalServiceUtil.deleteMBMessageAkismetData(((Long)arguments[0]).longValue());
+			AkismetDataLocalServiceUtil.deleteAkismetData((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
-			return AkismetDataLocalServiceUtil.fetchMBMessageAkismetData(((Long)arguments[0]).longValue());
+			return AkismetDataLocalServiceUtil.fetchAkismetData((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName40.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
-			return AkismetDataLocalServiceUtil.updateAkismetData(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
+			return AkismetDataLocalServiceUtil.updateAkismetData((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6], (java.lang.String)arguments[7]);
 		}
 
 		throw new UnsupportedOperationException();

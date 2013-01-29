@@ -9,7 +9,8 @@
 			<generator class="assigned" />
 		</id>
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="mbMessageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
 		<property name="permalink" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="referrer" type="com.liferay.portal.dao.orm.hibernate.StringType" />

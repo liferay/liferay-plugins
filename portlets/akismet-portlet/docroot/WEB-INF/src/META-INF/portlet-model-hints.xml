@@ -4,7 +4,8 @@
 	<model name="com.liferay.akismet.model.AkismetData">
 		<field name="akismetDataId" type="long" />
 		<field name="modifiedDate" type="Date" />
-		<field name="mbMessageId" type="long" />
+		<field name="classNameId" type="long" />
+		<field name="classPK" type="long" />
 		<field name="type" type="String" />
 		<field name="permalink" type="String">
 			<hint-collection name="URL" />

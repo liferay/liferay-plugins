@@ -587,35 +587,40 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 	private static final String _FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_1 = "akismetData.modifiedDate < NULL";
 	private static final String _FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_2 = "akismetData.modifiedDate < ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_MBMESSAGEID = new FinderPath(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_C_C = new FinderPath(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataModelImpl.FINDER_CACHE_ENABLED, AkismetDataImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByMBMessageId",
-			new String[] { Long.class.getName() },
-			AkismetDataModelImpl.MBMESSAGEID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_MBMESSAGEID = new FinderPath(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+			FINDER_CLASS_NAME_ENTITY, "fetchByC_C",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			AkismetDataModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			AkismetDataModelImpl.CLASSPK_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_C = new FinderPath(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMBMessageId",
-			new String[] { Long.class.getName() });
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
+			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the akismet data where mbMessageId = &#63; or throws a {@link com.liferay.akismet.NoSuchDataException} if it could not be found.
+	 * Returns the akismet data where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.akismet.NoSuchDataException} if it could not be found.
 	 *
-	 * @param mbMessageId the mb message ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the matching akismet data
 	 * @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AkismetData findByMBMessageId(long mbMessageId)
+	public AkismetData findByC_C(long classNameId, long classPK)
 		throws NoSuchDataException, SystemException {
-		AkismetData akismetData = fetchByMBMessageId(mbMessageId);
+		AkismetData akismetData = fetchByC_C(classNameId, classPK);
 
 		if (akismetData == null) {
-			StringBundler msg = new StringBundler(4);
+			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("mbMessageId=");
-			msg.append(mbMessageId);
+			msg.append("classNameId=");
+			msg.append(classNameId);
+
+			msg.append(", classPK=");
+			msg.append(classPK);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -630,50 +635,55 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	}
 
 	/**
-	 * Returns the akismet data where mbMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the akismet data where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param mbMessageId the mb message ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AkismetData fetchByMBMessageId(long mbMessageId)
+	public AkismetData fetchByC_C(long classNameId, long classPK)
 		throws SystemException {
-		return fetchByMBMessageId(mbMessageId, true);
+		return fetchByC_C(classNameId, classPK, true);
 	}
 
 	/**
-	 * Returns the akismet data where mbMessageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the akismet data where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param mbMessageId the mb message ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AkismetData fetchByMBMessageId(long mbMessageId,
+	public AkismetData fetchByC_C(long classNameId, long classPK,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { mbMessageId };
+		Object[] finderArgs = new Object[] { classNameId, classPK };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_C,
 					finderArgs, this);
 		}
 
 		if (result instanceof AkismetData) {
 			AkismetData akismetData = (AkismetData)result;
 
-			if ((mbMessageId != akismetData.getMbMessageId())) {
+			if ((classNameId != akismetData.getClassNameId()) ||
+					(classPK != akismetData.getClassPK())) {
 				result = null;
 			}
 		}
 
 		if (result == null) {
-			StringBundler query = new StringBundler(3);
+			StringBundler query = new StringBundler(4);
 
 			query.append(_SQL_SELECT_AKISMETDATA_WHERE);
 
-			query.append(_FINDER_COLUMN_MBMESSAGEID_MBMESSAGEID_2);
+			query.append(_FINDER_COLUMN_C_C_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
 			String sql = query.toString();
 
@@ -686,18 +696,20 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(mbMessageId);
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
 
 				List<AkismetData> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 						finderArgs, list);
 				}
 				else {
 					if ((list.size() > 1) && _log.isWarnEnabled()) {
 						_log.warn(
-							"AkismetDataPersistenceImpl.fetchByMBMessageId(long, boolean) with parameters (" +
+							"AkismetDataPersistenceImpl.fetchByC_C(long, long, boolean) with parameters (" +
 							StringUtil.merge(finderArgs) +
 							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 					}
@@ -708,14 +720,15 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 					cacheResult(akismetData);
 
-					if ((akismetData.getMbMessageId() != mbMessageId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
+					if ((akismetData.getClassNameId() != classNameId) ||
+							(akismetData.getClassPK() != classPK)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 							finderArgs, akismetData);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 					finderArgs);
 
 				throw processException(e);
@@ -734,40 +747,45 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	}
 
 	/**
-	 * Removes the akismet data where mbMessageId = &#63; from the database.
+	 * Removes the akismet data where classNameId = &#63; and classPK = &#63; from the database.
 	 *
-	 * @param mbMessageId the mb message ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the akismet data that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public AkismetData removeByMBMessageId(long mbMessageId)
+	public AkismetData removeByC_C(long classNameId, long classPK)
 		throws NoSuchDataException, SystemException {
-		AkismetData akismetData = findByMBMessageId(mbMessageId);
+		AkismetData akismetData = findByC_C(classNameId, classPK);
 
 		return remove(akismetData);
 	}
 
 	/**
-	 * Returns the number of akismet datas where mbMessageId = &#63;.
+	 * Returns the number of akismet datas where classNameId = &#63; and classPK = &#63;.
 	 *
-	 * @param mbMessageId the mb message ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
 	 * @return the number of matching akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByMBMessageId(long mbMessageId) throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_MBMESSAGEID;
+	public int countByC_C(long classNameId, long classPK)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_C;
 
-		Object[] finderArgs = new Object[] { mbMessageId };
+		Object[] finderArgs = new Object[] { classNameId, classPK };
 
 		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
 				this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler(2);
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_COUNT_AKISMETDATA_WHERE);
 
-			query.append(_FINDER_COLUMN_MBMESSAGEID_MBMESSAGEID_2);
+			query.append(_FINDER_COLUMN_C_C_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
 			String sql = query.toString();
 
@@ -780,7 +798,9 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(mbMessageId);
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
 
 				count = (Long)q.uniqueResult();
 
@@ -799,7 +819,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_MBMESSAGEID_MBMESSAGEID_2 = "akismetData.mbMessageId = ?";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 = "akismetData.classNameId = ? AND ";
+	private static final String _FINDER_COLUMN_C_C_CLASSPK_2 = "akismetData.classPK = ?";
 
 	/**
 	 * Caches the akismet data in the entity cache if it is enabled.
@@ -810,8 +831,9 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
-			new Object[] { akismetData.getMbMessageId() }, akismetData);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
+			new Object[] { akismetData.getClassNameId(), akismetData.getClassPK() },
+			akismetData);
 
 		akismetData.resetOriginalValues();
 	}
@@ -887,24 +909,28 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 	protected void cacheUniqueFindersCache(AkismetData akismetData) {
 		if (akismetData.isNew()) {
-			Object[] args = new Object[] { akismetData.getMbMessageId() };
+			Object[] args = new Object[] {
+					akismetData.getClassNameId(), akismetData.getClassPK()
+				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args,
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args,
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C, args,
 				akismetData);
 		}
 		else {
 			AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
 
 			if ((akismetDataModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_MBMESSAGEID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { akismetData.getMbMessageId() };
+					FINDER_PATH_FETCH_BY_C_C.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						akismetData.getClassNameId(), akismetData.getClassPK()
+					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MBMESSAGEID,
-					args, Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_MBMESSAGEID,
-					args, akismetData);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C, args,
+					akismetData);
 			}
 		}
 	}
@@ -912,17 +938,22 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	protected void clearUniqueFindersCache(AkismetData akismetData) {
 		AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
 
-		Object[] args = new Object[] { akismetData.getMbMessageId() };
+		Object[] args = new Object[] {
+				akismetData.getClassNameId(), akismetData.getClassPK()
+			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C, args);
 
 		if ((akismetDataModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_MBMESSAGEID.getColumnBitmask()) != 0) {
-			args = new Object[] { akismetDataModelImpl.getOriginalMbMessageId() };
+				FINDER_PATH_FETCH_BY_C_C.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					akismetDataModelImpl.getOriginalClassNameId(),
+					akismetDataModelImpl.getOriginalClassPK()
+				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBMESSAGEID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_MBMESSAGEID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C, args);
 		}
 	}
 
@@ -1084,7 +1115,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		akismetDataImpl.setAkismetDataId(akismetData.getAkismetDataId());
 		akismetDataImpl.setModifiedDate(akismetData.getModifiedDate());
-		akismetDataImpl.setMbMessageId(akismetData.getMbMessageId());
+		akismetDataImpl.setClassNameId(akismetData.getClassNameId());
+		akismetDataImpl.setClassPK(akismetData.getClassPK());
 		akismetDataImpl.setType(akismetData.getType());
 		akismetDataImpl.setPermalink(akismetData.getPermalink());
 		akismetDataImpl.setReferrer(akismetData.getReferrer());
