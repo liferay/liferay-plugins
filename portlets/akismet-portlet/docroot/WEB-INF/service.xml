@@ -17,7 +17,6 @@
 
 		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
-		<column name="classRPK" type="long" />
 		<column name="type" type="String" />
 		<column name="permalink" type="String" />
 		<column name="referrer" type="String" />

@@ -33,7 +33,6 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
-import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import java.io.IOException;
 
@@ -133,42 +132,6 @@ public class AkismetUtil {
 		return false;
 	}
 
-	public static void submitHam(String className, long classPK)
-		throws PortalException, SystemException {
-
-		AkismetData akismetData =
-			AkismetDataLocalServiceUtil.fetchAkismetData(className, classPK);
-
-		if (akismetData == null) {
-			return;
-		}
-
-		Long companyId = null;
-		String content = null;
-		String emailAddress = null;
-		String fullName = null;
-
-		if (Validator.equals(className, MBMessage.class.getName())) {
-			MBMessage message = MBMessageLocalServiceUtil.getMBMessage(classPK);
-
-			User user = UserLocalServiceUtil.getUser(message.getUserId());
-
-			companyId = message.getCompanyId();
-			content = message.getSubject() + "\n\n" + message.getBody();
-			emailAddress = user.getEmailAddress();
-			fullName = user.getFullName();
-		}
-
-		if (companyId == null) {
-			return;
-		}
-
-		submitHam(
-			companyId, akismetData.getUserIP(), akismetData.getUserAgent(),
-			akismetData.getReferrer(), akismetData.getPermalink(),
-			akismetData.getType(), fullName, emailAddress, content);
-	}
-
 	public static void submitHam(
 			long companyId, String ipAddress, String userAgent, String referrer,
 			String permalink, String commentType, String userName,
@@ -200,40 +163,25 @@ public class AkismetUtil {
 		}
 	}
 
-	public static void submitSpam(String className, long classPK)
+	public static void submitHam(MBMessage message)
 		throws PortalException, SystemException {
 
-		AkismetData akismetData =
-			AkismetDataLocalServiceUtil.fetchAkismetData(className, classPK);
+		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
+			MBMessage.class.getName(), message.getMessageId());
 
 		if (akismetData == null) {
 			return;
 		}
 
-		Long companyId = null;
-		String content = null;
-		String emailAddress = null;
-		String fullName = null;
+		User user = UserLocalServiceUtil.getUser(message.getUserId());
 
-		if (Validator.equals(className, MBMessage.class.getName())) {
-			MBMessage message = MBMessageLocalServiceUtil.getMBMessage(classPK);
+		String content = message.getSubject() + "\n\n" + message.getBody();
 
-			User user = UserLocalServiceUtil.getUser(message.getUserId());
-
-			companyId = message.getCompanyId();
-			content = message.getSubject() + "\n\n" + message.getBody();
-			emailAddress = user.getEmailAddress();
-			fullName = user.getFullName();
-		}
-
-		if (companyId == null) {
-			return;
-		}
-
-		submitSpam(
-			companyId, akismetData.getUserIP(), akismetData.getUserAgent(),
-			akismetData.getReferrer(), akismetData.getPermalink(),
-			akismetData.getType(), fullName, emailAddress, content);
+		submitHam(
+			message.getCompanyId(), akismetData.getUserIP(),
+			akismetData.getUserAgent(), akismetData.getReferrer(),
+			akismetData.getPermalink(), akismetData.getType(),
+			user.getFullName(), user.getEmailAddress(), content);
 	}
 
 	public static void submitSpam(
@@ -265,6 +213,27 @@ public class AkismetUtil {
 		if (Validator.isNull(response)) {
 			_log.error("There was an issue submitting message as spam");
 		}
+	}
+
+	public static void submitSpam(MBMessage message)
+		throws PortalException, SystemException {
+
+		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
+			MBMessage.class.getName(), message.getMessageId());
+
+		if (akismetData == null) {
+			return;
+		}
+
+		User user = UserLocalServiceUtil.getUser(message.getUserId());
+
+		String content = message.getSubject() + "\n\n" + message.getBody();
+
+		submitSpam(
+			message.getCompanyId(), akismetData.getUserIP(),
+			akismetData.getUserAgent(), akismetData.getReferrer(),
+			akismetData.getPermalink(), akismetData.getType(),
+			user.getFullName(), user.getEmailAddress(), content);
 	}
 
 	public static boolean verifyApiKey(long companyId, String apiKey)

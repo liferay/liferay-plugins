@@ -405,8 +405,8 @@ public class AkismetMBMessageLocalServiceImpl
 
 		return AkismetDataLocalServiceUtil.updateAkismetData(
 			MBMessage.class.getName(), message.getMessageId(),
-			message.getMessageId(), AkismetConstants.TYPE_COMMENT, permalink,
-			referrer, userAgent, userIP, StringPool.BLANK);
+			AkismetConstants.TYPE_COMMENT, permalink, referrer, userAgent,
+			userIP, StringPool.BLANK);
 	}
 
 }

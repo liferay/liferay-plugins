@@ -131,25 +131,21 @@ public class AkismetEditMessageAction extends BaseStrutsPortletAction {
 			actionRequest);
 
 		if (spam) {
-			MBMessageLocalServiceUtil.updateStatus(
+			MBMessage message = MBMessageLocalServiceUtil.updateStatus(
 				themeDisplay.getUserId(), messageId,
 				WorkflowConstants.STATUS_DENIED, serviceContext);
 
-			if (AkismetUtil.isMessageBoardsEnabled(
-					themeDisplay.getCompanyId())) {
-
-				AkismetUtil.submitSpam(MBMessage.class.getName(), messageId);
+			if (AkismetUtil.isMessageBoardsEnabled(message.getCompanyId())) {
+				AkismetUtil.submitSpam(message);
 			}
 		}
 		else {
-			MBMessageLocalServiceUtil.updateStatus(
+			MBMessage message = MBMessageLocalServiceUtil.updateStatus(
 				themeDisplay.getUserId(), messageId,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 
-			if (AkismetUtil.isMessageBoardsEnabled(
-					themeDisplay.getCompanyId())) {
-
-				AkismetUtil.submitSpam(MBMessage.class.getName(), messageId);
+			if (AkismetUtil.isMessageBoardsEnabled(message.getCompanyId())) {
+				AkismetUtil.submitHam(message);
 			}
 		}
 	}
