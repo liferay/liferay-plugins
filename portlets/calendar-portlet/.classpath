@@ -16,9 +16,11 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/ical4j.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jdom.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jstl-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jstl-impl.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/rome.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
