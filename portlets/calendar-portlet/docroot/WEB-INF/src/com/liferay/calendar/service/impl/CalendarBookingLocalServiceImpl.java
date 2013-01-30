@@ -329,7 +329,7 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	public List<CalendarBooking> getCalendarBookings(
-			long calendarId, long startTime, long endTime, int limit)
+			long calendarId, long startTime, long endTime, int max)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
@@ -352,8 +352,8 @@ public class CalendarBookingLocalServiceImpl
 			dynamicQuery.add(propertyEndTime.lt(endTime));
 		}
 
-		if (limit > 0) {
-			dynamicQuery.setLimit(0, limit);
+		if (max > 0) {
+			dynamicQuery.setLimit(0, max);
 		}
 
 		return dynamicQuery(dynamicQuery);
