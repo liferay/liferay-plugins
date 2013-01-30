@@ -146,12 +146,12 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	public List<CalendarBooking> getCalendarBookings(
-			long calendarId, long startTime, long endTime, int limit)
+			long calendarId, long startTime, long endTime, int max)
 		throws PortalException, SystemException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.getCalendarBookings(
-				calendarId, startTime, endTime, limit);
+				calendarId, startTime, endTime, max);
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			filterCalendarBooking(calendarBooking);
