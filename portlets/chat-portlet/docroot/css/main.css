@@ -447,6 +447,7 @@ html body {
 
 		.name {
 			float: left;
+			max-width: 150px;
 		}
 	}
 
