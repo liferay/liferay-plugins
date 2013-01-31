@@ -43,7 +43,7 @@ import javax.portlet.PortletPreferences;
 /**
  * @author Marcellus Tavares
  */
-public class CalendarPortletDataHandlerImpl extends BasePortletDataHandler {
+public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 	@Override
 	public String[] getDataPortletPreferences() {
@@ -86,7 +86,7 @@ public class CalendarPortletDataHandlerImpl extends BasePortletDataHandler {
 		throws Exception {
 
 		if (!portletDataContext.addPrimaryKey(
-				CalendarPortletDataHandlerImpl.class, "deleteData")) {
+				CalendarPortletDataHandler.class, "deleteData")) {
 
 			CalendarResourceLocalServiceUtil.deleteCalendarResources(
 				portletDataContext.getScopeGroupId());

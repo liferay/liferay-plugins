@@ -33,7 +33,7 @@ import javax.portlet.PortletPreferences;
 /**
  * @author Michael C. Han
  */
-public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
+public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 	@Override
 	public boolean isPublishToLiveByDefault() {
