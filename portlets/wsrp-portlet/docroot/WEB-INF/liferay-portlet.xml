@@ -13,7 +13,7 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-		<portlet-data-handler-class>com.liferay.wsrp.admin.lar.AdminPortletDataHandlerImpl</portlet-data-handler-class>
+		<portlet-data-handler-class>com.liferay.wsrp.admin.lar.AdminPortletDataHandler</portlet-data-handler-class>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<css-class-wrapper>wsrp-portlet-admin</css-class-wrapper>
 	</portlet>

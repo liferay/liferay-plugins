@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<portlet-data-handler-class>com.liferay.opensocial.admin.lar.AdminPortletDataHandlerImpl</portlet-data-handler-class>
+		<portlet-data-handler-class>com.liferay.opensocial.admin.lar.AdminPortletDataHandler</portlet-data-handler-class>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<header-portlet-css>/admin/css/main.css</header-portlet-css>
 		<css-class-wrapper>opensocial-portlet-admin</css-class-wrapper>
