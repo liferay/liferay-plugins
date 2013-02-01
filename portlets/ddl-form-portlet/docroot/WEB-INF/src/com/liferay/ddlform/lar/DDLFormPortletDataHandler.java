@@ -14,7 +14,7 @@
 
 package com.liferay.ddlform.lar;
 
-import com.liferay.portal.kernel.lar.BasePortletDataHandler;
+import com.liferay.compat.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;

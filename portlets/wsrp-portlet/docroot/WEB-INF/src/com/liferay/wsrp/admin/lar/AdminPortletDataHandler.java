@@ -14,8 +14,8 @@
 
 package com.liferay.wsrp.admin.lar;
 
+import com.liferay.compat.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
