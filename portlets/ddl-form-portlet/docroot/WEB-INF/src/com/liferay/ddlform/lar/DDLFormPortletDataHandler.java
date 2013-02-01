@@ -38,9 +38,8 @@ import javax.portlet.PortletPreferences;
  */
 public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 
-	@Override
-	public boolean isAlwaysExportable() {
-		return _ALWAYS_EXPORTABLE;
+	public DDLFormPortletDataHandler() {
+		setAlwaysExportable(true);
 	}
 
 	@Override
@@ -150,7 +149,5 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 
 		return portletPreferences;
 	}
-
-	private static final boolean _ALWAYS_EXPORTABLE = true;
 
 }

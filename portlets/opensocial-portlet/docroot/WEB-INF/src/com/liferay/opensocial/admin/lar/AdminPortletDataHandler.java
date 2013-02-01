@@ -35,9 +35,10 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortletDataHandler extends BasePortletDataHandler {
 
-	@Override
-	public boolean isPublishToLiveByDefault() {
-		return _PUBLISH_TO_LIVE_BY_DEFAULT;
+	public static final String NAMESPACE = "opensocial";
+
+	public AdminPortletDataHandler() {
+		setPublishToLiveByDefault(true);
 	}
 
 	@Override
@@ -122,7 +123,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		Element gadgetElement = gadgetsElement.addElement("gadget");
 
 		portletDataContext.addClassedModel(
-			gadgetElement, path, gadget, _NAMESPACE);
+			gadgetElement, path, gadget, NAMESPACE);
 	}
 
 	protected String getGadgetPath(
@@ -130,7 +131,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 		StringBundler sb = new StringBundler(4);
 
-		sb.append(portletDataContext.getPortletPath(_PORTLET_KEY));
+		sb.append(portletDataContext.getPortletPath(_PORTLET_ID));
 		sb.append("/gadgets/");
 		sb.append(gadget.getUuid());
 		sb.append(".xml");
@@ -159,7 +160,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		catch (NoSuchGadgetException nsge) {
 			ServiceContext serviceContext =
 				portletDataContext.createServiceContext(
-					gadgetElement, gadget, _NAMESPACE);
+					gadgetElement, gadget, NAMESPACE);
 
 			serviceContext.setUuid(gadget.getUuid());
 
@@ -169,10 +170,6 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		}
 	}
 
-	private static final String _NAMESPACE = "opensocial";
-
-	private static final String _PORTLET_KEY = "1_WAR_opensocialportlet";
-
-	private static final boolean _PUBLISH_TO_LIVE_BY_DEFAULT = true;
+	private static final String _PORTLET_ID = "1_WAR_opensocialportlet";
 
 }

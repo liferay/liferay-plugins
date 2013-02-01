@@ -36,7 +36,7 @@ public class KBArticleAttachmentsUtil {
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
-		long repositoryId = PortletFileRepositoryUtil.getPortletRepository(
+		long repositoryId = PortletFileRepositoryUtil.getPortletRepositoryId(
 			groupId, PortletKeys.KNOWLEDGE_BASE_ARTICLE, serviceContext);
 
 		Folder folder = PortletFileRepositoryUtil.getPortletFolder(
