@@ -156,9 +156,9 @@ $theme.include($body_top_include)
 		</div>
 	</div>
 
-	#set ($releaseInfo = $portal.getClass().forName("com.liferay.portal.kernel.util.ReleaseInfo"))
+	#set ($release_info = $portal.getClass().forName("com.liferay.portal.kernel.util.ReleaseInfo"))
 
-	#if (!$releaseInfo.getReleaseInfo().contains("EE"))
+	#if (!$release_info.getReleaseInfo().contains("EE"))
 		<footer id="footer" role="contentinfo">
 			<p class="powered-by">
 				#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
