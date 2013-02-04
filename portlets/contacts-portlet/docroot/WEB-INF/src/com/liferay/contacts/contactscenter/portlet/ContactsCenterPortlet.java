@@ -975,10 +975,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			userJSONObject.put("connected", connected);
 
-			boolean following =
-				SocialRelationLocalServiceUtil.hasRelation(
-					themeDisplay.getUserId(), user.getUserId(),
-					SocialRelationConstants.TYPE_UNI_FOLLOWER);
+			boolean following = SocialRelationLocalServiceUtil.hasRelation(
+				themeDisplay.getUserId(), user.getUserId(),
+				SocialRelationConstants.TYPE_UNI_FOLLOWER);
 
 			userJSONObject.put("following", following);
 		}
