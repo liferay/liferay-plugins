@@ -40,9 +40,8 @@ public class WSRPConsumerImpl extends WSRPConsumerBaseImpl {
 		String registrationContextString = getRegistrationContextString();
 
 		if (Validator.isNotNull(registrationContextString)) {
-			_registrationContext =
-				(RegistrationContext)Base64.stringToObject(
-					registrationContextString, getClass().getClassLoader());
+			_registrationContext = (RegistrationContext)Base64.stringToObject(
+				registrationContextString, getClass().getClassLoader());
 		}
 
 		return _registrationContext;
