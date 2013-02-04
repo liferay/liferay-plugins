@@ -60,6 +60,10 @@ public class PluginsSecurityManagerUtil {
 
 		Map<ClassLoader, Object> paclPolicies = _getPACLPolicies();
 
+		if (paclPolicies.isEmpty()) {
+			paclPolicies = _cachedPaclPolicies;
+		}
+
 		for (Map.Entry<ClassLoader, Object> entry : paclPolicies.entrySet()) {
 			Object value = entry.getValue();
 

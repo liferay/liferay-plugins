@@ -18,6 +18,9 @@
 
 <div class="portlet-msg-alert">
 	<c:choose>
+		<c:when test="<%= !PluginsSecurityManagerUtil.isAllowed() %>">
+			<liferay-ui:message key="the-plugins-security-manager-is-not-active" />
+		</c:when>
 		<c:when test="<%= PluginsSecurityManagerUtil.isPACLActive() %>">
 			<liferay-ui:message key="the-plugins-security-manager-is-active-because-one-or-more-of-the-following-plugins-requests-security-management" />
 		</c:when>
