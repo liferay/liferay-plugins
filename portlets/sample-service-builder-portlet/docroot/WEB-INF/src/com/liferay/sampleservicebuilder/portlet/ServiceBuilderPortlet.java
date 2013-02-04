@@ -58,7 +58,7 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 
 			if (Validator.isNotNull(cmd)) {
 				if (SessionErrors.isEmpty(actionRequest)) {
-					SessionMessages.add(actionRequest, "requestProcessed");
+					SessionMessages.add(actionRequest, "request_processed");
 				}
 
 				String redirect = ParamUtil.getString(
