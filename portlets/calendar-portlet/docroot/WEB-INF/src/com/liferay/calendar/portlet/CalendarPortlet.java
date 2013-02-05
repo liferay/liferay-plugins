@@ -154,7 +154,7 @@ public class CalendarPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	public void serveCalendarBookingsRSS(
+	protected void serveCalendarBookingsRSS(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
