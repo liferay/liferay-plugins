@@ -13,14 +13,13 @@ _sass_cache_*.css
 
 /*/*/bin
 /*/*/classes
+/*/*/temp
 /*/*/test-classes
 /*/*/test-results
 /*/*/tmp
-/*/*/temp
 
 /*/*/docroot/WEB-INF/classes
 /*/*/docroot/WEB-INF/lib/portal-compat-shared.jar
 
 /build.*.properties
 /dist
-
