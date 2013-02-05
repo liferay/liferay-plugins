@@ -172,8 +172,8 @@ public class CalendarPortlet extends MVCPortlet {
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
 		int max = ParamUtil.getInteger(
 			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
-		String type = ParamUtil.getString(
-			resourceRequest, "type", RSSUtil.FORMAT_DEFAULT);
+		String feedType = ParamUtil.getString(
+			resourceRequest, "feedType", RSSUtil.FORMAT_DEFAULT);
 		double version = ParamUtil.getDouble(
 			resourceRequest, "version", RSSUtil.VERSION_DEFAULT);
 		String displayStyle = ParamUtil.getString(
@@ -185,7 +185,7 @@ public class CalendarPortlet extends MVCPortlet {
 		long endTime = startTime + timeInterval;
 
 		String rss = CalendarBookingServiceUtil.getCalendarBookingsRSS(
-			calendarId, startTime, endTime, max, displayStyle, type, version,
+			calendarId, startTime, endTime, max, displayStyle, feedType, version,
 			themeDisplay);
 
 		PortletResponseUtil.sendFile(
