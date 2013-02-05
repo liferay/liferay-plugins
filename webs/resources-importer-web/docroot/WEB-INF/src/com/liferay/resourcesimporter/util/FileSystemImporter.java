@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -442,7 +443,7 @@ public class FileSystemImporter extends BaseImporter {
 			ddmTemplateKey, nameMap, null,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
-			DDMTemplateConstants.LANG_TYPE_XSD, xsl, false, false, null, null,
+			TemplateConstants.LANG_TYPE_XSD, xsl, false, false, null, null,
 			serviceContext);
 
 		addJournalArticles(
