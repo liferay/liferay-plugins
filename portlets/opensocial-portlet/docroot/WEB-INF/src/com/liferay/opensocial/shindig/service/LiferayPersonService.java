@@ -211,8 +211,8 @@ public class LiferayPersonService implements PersonService {
 				OrganizationLocalServiceUtil.getOrganization(
 					group.getClassPK());
 
-			Name name =
-				new NameImpl(organization.getName() + " (Organization)");
+			Name name = new NameImpl(
+				organization.getName() + " (Organization)");
 
 			person = new PersonImpl(groupId, name.getFormatted(), name);
 
