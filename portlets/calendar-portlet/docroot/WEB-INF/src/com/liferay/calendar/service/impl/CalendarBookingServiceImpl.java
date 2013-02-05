@@ -161,25 +161,19 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	public String getCalendarBookingsRSS(
-			long calendarId, long startTime, long endTime, int delta,
-			String displayStyle, String type, double version,
-			ThemeDisplay themeDisplay)
+			long calendarId, long startTime, long endTime, int max, String type,
+			double version, String displayStyle, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		Calendar calendar = calendarService.getCalendar(calendarId);
 
-		Locale locale = themeDisplay.getLocale();
-
-		String name = calendar.getName(locale);
-		String description = calendar.getDescription(locale);
-
-		String feedURL = PortalUtil.getLayoutFullURL(themeDisplay);
-
 		List<CalendarBooking> calendarBookings = getCalendarBookings(
-			calendarId, startTime, endTime, delta);
+			calendarId, startTime, endTime, max);
 
 		return exportToRSS(
-			displayStyle, type, version, name, description, feedURL,
+			calendar.getName(themeDisplay.getLocale()),
+			calendar.getDescription(themeDisplay.getLocale()), type, version,
+			displayStyle, PortalUtil.getLayoutFullURL(themeDisplay),
 			calendarBookings, themeDisplay);
 	}
 
@@ -376,8 +370,8 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	protected String exportToRSS(
-			String displayStyle, String type, double version, String name,
-			String description, String feedURL,
+			String name, String description, String type, double version,
+			String displayStyle, String feedURL,
 			List<CalendarBooking> calendarBookings, ThemeDisplay themeDisplay)
 		throws SystemException {
 
@@ -427,12 +421,12 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		syndFeed.setLinks(syndLinks);
 
-		SyndLink selfSyndLink = new SyndLinkImpl();
+		SyndLink syndLink = new SyndLinkImpl();
 
-		syndLinks.add(selfSyndLink);
+		syndLinks.add(syndLink);
 
-		selfSyndLink.setHref(feedURL);
-		selfSyndLink.setRel("self");
+		syndLink.setHref(feedURL);
+		syndLink.setRel("self");
 
 		syndFeed.setPublishedDate(new Date());
 		syndFeed.setTitle(name);

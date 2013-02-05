@@ -82,7 +82,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -170,22 +169,25 @@ public class CalendarPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
+
+		long timeInterval = ParamUtil.getLong(
+			resourceRequest, "timeInterval", RSSUtil.TIME_INTERVAL_DEFAULT);
+
+		long startTime = System.currentTimeMillis();
+
+		long endTime = startTime + timeInterval;
+
 		int max = ParamUtil.getInteger(
 			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
-		String feedType = ParamUtil.getString(
-			resourceRequest, "feedType", RSSUtil.FORMAT_DEFAULT);
+		String type = ParamUtil.getString(
+			resourceRequest, "type", RSSUtil.FORMAT_DEFAULT);
 		double version = ParamUtil.getDouble(
 			resourceRequest, "version", RSSUtil.VERSION_DEFAULT);
 		String displayStyle = ParamUtil.getString(
 			resourceRequest, "displayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
-		long timeInterval = ParamUtil.getLong(
-			resourceRequest, "timeInterval", RSSUtil.TIME_INTERVAL_DEFAULT);
-
-		long startTime = (new Date()).getTime();
-		long endTime = startTime + timeInterval;
 
 		String rss = CalendarBookingServiceUtil.getCalendarBookingsRSS(
-			calendarId, startTime, endTime, max, displayStyle, feedType, version,
+			calendarId, startTime, endTime, max, type, version, displayStyle,
 			themeDisplay);
 
 		PortletResponseUtil.sendFile(

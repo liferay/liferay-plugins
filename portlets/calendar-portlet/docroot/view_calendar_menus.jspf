@@ -174,39 +174,41 @@
 				},
 				id: 'delete'
 			},
+
 			<c:if test="<%= enableRSS %>">
-			{
-				caption: '<liferay-ui:message key="rss" />',
-				cssClass: 'calendar-subscribe-link',
-				fn: function(event) {
-					var instance = this;
+				{
+					caption: '<liferay-ui:message key="rss" />',
+					cssClass: 'calendar-subscribe-link',
+					fn: function(event) {
+						var instance = this;
 
-					var calendarList = instance.get('host');
+						var calendarList = instance.get('host');
 
-					var activeCalendar = calendarList.activeItem;
+						var activeCalendar = calendarList.activeItem;
 
-					<liferay-portlet:resourceURL id="calendarBookingsRSS" varImpl="calendarRSSURL">
-						<portlet:param name="calendarId" value="{calendarId}" />
-						<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
-						<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
-						<portlet:param name="feedType" value="<%= rssFeedType %>" />
-						<portlet:param name="timeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
-					</liferay-portlet:resourceURL>
+						<liferay-portlet:resourceURL id="calendarBookingsRSS" varImpl="calendarRSSURL">
+							<portlet:param name="calendarId" value="{calendarId}" />
+							<portlet:param name="timeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
+							<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
+							<portlet:param name="type" value="<%= rssFeedType %>" />
+							<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+						</liferay-portlet:resourceURL>
 
-					var url = A.Lang.sub(
-						decodeURIComponent('<%= calendarRSSURL %>'),
-						{
-							calendarId: activeCalendar.get('calendarId')
-						}
-					);
+						var url = A.Lang.sub(
+							decodeURIComponent('<%= calendarRSSURL %>'),
+							{
+								calendarId: activeCalendar.get('calendarId')
+							}
+						);
 
-					window.open(url, '_blank');
+						window.open(url, '_blank');
 
-					instance.set('visible', false);
+						instance.set('visible', false);
+					},
+					id: 'subscribe'
 				},
-				id: 'subscribe'
-			},
 			</c:if>
+
 			{
 				caption: '-'
 			},
