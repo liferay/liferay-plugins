@@ -154,47 +154,6 @@ public class CalendarPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	protected void serveCalendarBookingsRSS(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		if (!PortalUtil.isRSSFeedsEnabled()) {
-			PortalUtil.sendRSSFeedsDisabledError(
-				resourceRequest, resourceResponse);
-
-			return;
-		}
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
-
-		long timeInterval = ParamUtil.getLong(
-			resourceRequest, "timeInterval", RSSUtil.TIME_INTERVAL_DEFAULT);
-
-		long startTime = System.currentTimeMillis();
-
-		long endTime = startTime + timeInterval;
-
-		int max = ParamUtil.getInteger(
-			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
-		String type = ParamUtil.getString(
-			resourceRequest, "type", RSSUtil.FORMAT_DEFAULT);
-		double version = ParamUtil.getDouble(
-			resourceRequest, "version", RSSUtil.VERSION_DEFAULT);
-		String displayStyle = ParamUtil.getString(
-			resourceRequest, "displayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
-
-		String rss = CalendarBookingServiceUtil.getCalendarBookingsRSS(
-			calendarId, startTime, endTime, max, type, version, displayStyle,
-			themeDisplay);
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, rss.getBytes(),
-			ContentTypes.TEXT_XML_UTF8);
-	}
-
 	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -662,6 +621,47 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonArray);
+	}
+
+	protected void serveCalendarBookingsRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		if (!PortalUtil.isRSSFeedsEnabled()) {
+			PortalUtil.sendRSSFeedsDisabledError(
+				resourceRequest, resourceResponse);
+
+			return;
+		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
+
+		long timeInterval = ParamUtil.getLong(
+			resourceRequest, "timeInterval", RSSUtil.TIME_INTERVAL_DEFAULT);
+
+		long startTime = System.currentTimeMillis();
+
+		long endTime = startTime + timeInterval;
+
+		int max = ParamUtil.getInteger(
+			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
+		String type = ParamUtil.getString(
+			resourceRequest, "type", RSSUtil.FORMAT_DEFAULT);
+		double version = ParamUtil.getDouble(
+			resourceRequest, "version", RSSUtil.VERSION_DEFAULT);
+		String displayStyle = ParamUtil.getString(
+			resourceRequest, "displayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
+
+		String rss = CalendarBookingServiceUtil.getCalendarBookingsRSS(
+			calendarId, startTime, endTime, max, type, version, displayStyle,
+			themeDisplay);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, null, rss.getBytes(),
+			ContentTypes.TEXT_XML_UTF8);
 	}
 
 	protected void serveCalendarRenderingRules(
