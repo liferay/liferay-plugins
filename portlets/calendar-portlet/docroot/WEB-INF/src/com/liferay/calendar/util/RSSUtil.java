@@ -24,9 +24,6 @@ import com.liferay.util.portlet.PortletProps;
 
 import java.text.Format;
 
-import java.util.Locale;
-import java.util.TimeZone;
-
 /**
  * @author Bruno Basto
  */
@@ -38,43 +35,37 @@ public class RSSUtil extends com.liferay.util.RSSUtil {
 		CalendarBooking calendarBooking, String displayStyle,
 		ThemeDisplay themeDisplay) {
 
-		Locale locale = themeDisplay.getLocale();
-
-		String content = null;
-
 		if (displayStyle.equals(DISPLAY_STYLE_ABSTRACT)) {
-			content = StringUtil.shorten(
-				calendarBooking.getDescription(locale), 200);
+			return StringUtil.shorten(
+				calendarBooking.getDescription(themeDisplay.getLocale()), 200);
 		}
 		else if (displayStyle.equals(DISPLAY_STYLE_TITLE)) {
-			content = calendarBooking.getTitle(locale);
+			return calendarBooking.getTitle(themeDisplay.getLocale());
 		}
 		else {
-			TimeZone timeZone = themeDisplay.getTimeZone();
-
-			String rssEntryTemplate = ContentUtil.get(
+			String content = ContentUtil.get(
 				PortletProps.get(PortletPropsKeys.CALENDAR_RSS_TEMPLATE));
 
 			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
-				locale, timeZone);
+				themeDisplay.getLocale(), themeDisplay.getTimeZone());
 
 			content = StringUtil.replace(
-				rssEntryTemplate,
+				content,
 				new String[] {
+					"[$BOOKING_DESCRIPTION$]", "[$BOOKING_END_DATE$]",
 					"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
-					"[$BOOKING_END_DATE$]", "[$BOOKING_TITLE$]",
-					"[$BOOKING_DESCRIPTION$]"
+					"[$BOOKING_TITLE$]"
 				},
 				new String[] {
+					calendarBooking.getDescription(themeDisplay.getLocale()),
+					dateFormatDateTime.format(calendarBooking.getEndTime()),
 					calendarBooking.getLocation(),
 					dateFormatDateTime.format(calendarBooking.getStartTime()),
-					dateFormatDateTime.format(calendarBooking.getEndTime()),
-					calendarBooking.getTitle(locale),
-					calendarBooking.getDescription(locale),
+					calendarBooking.getTitle(themeDisplay.getLocale())
 				});
-		}
 
-		return content;
+			return content;
+		}
 	}
 
 }
