@@ -16,6 +16,7 @@ package com.liferay.ddlform.lar;
 
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -23,8 +24,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portlet.dynamicdatalists.lar.DDLPortletDataHandler;
-import com.liferay.portlet.dynamicdatalists.lar.DDLPortletDataHandlerUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
@@ -84,10 +83,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 		DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(
 			recordSetId);
 
-		DDLPortletDataHandler ddlPortletDataHandler =
-			DDLPortletDataHandlerUtil.getDDLPortletDataHandler();
-
-		ddlPortletDataHandler.exportRecordSet(
+		StagedModelDataHandlerUtil.exportStagedModel(
 			portletDataContext, rootElement, recordSet);
 
 		return document.formattedString();
@@ -115,10 +111,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 		Element recordSetElement = rootElement.element("record-set");
 
 		if (recordSetElement != null) {
-			DDLPortletDataHandler ddlPortletDataHandler =
-				DDLPortletDataHandlerUtil.getDDLPortletDataHandler();
-
-			ddlPortletDataHandler.importRecordSet(
+			StagedModelDataHandlerUtil.importStagedModel(
 				portletDataContext, recordSetElement);
 		}
 
