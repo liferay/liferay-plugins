@@ -447,6 +447,10 @@ else {
 
 				var siteName = siteNode.one('.name a');
 
+				if (!siteName) {
+					siteName = siteNode.one('.name');
+				}
+
 				var unescapedSiteName = Liferay.Util.unescapeHTML(siteName.getContent());
 
 				if (currentTargetClass == "leave-site") {
