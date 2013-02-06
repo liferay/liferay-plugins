@@ -19,12 +19,12 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-if (enableKBArticleViewCountIncrement) {
-	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
+if (enableKBArticleViewCountIncrement && (kbArticle.getStatus() != WorkflowConstants.STATUS_DRAFT)) {
+	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
 
 	KBArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), kbArticle.getResourcePrimKey(), latestKBArticle.getViewCount() + 1);
 
-	AssetEntryServiceUtil.incrementViewCounter(KBArticle.class.getName(), kbArticle.getClassPK());
+	AssetEntryServiceUtil.incrementViewCounter(KBArticle.class.getName(), latestKBArticle.getClassPK());
 }
 %>
 
