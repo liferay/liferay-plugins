@@ -89,7 +89,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 					else {
 						LinkedHashMap userParams = new LinkedHashMap();
 
-						userParams.put("inherit", true);
+						userParams.put("inherit", Boolean.TRUE);
 						userParams.put("usersGroups", new Long(themeDisplay.getScopeGroupId()));
 
 						users = UserLocalServiceUtil.search(company.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, userParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new UserFirstNameComparator(true));
