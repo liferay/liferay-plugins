@@ -551,12 +551,12 @@ public class KaleoTaskInstanceTokenFinderImpl
 			List<Long> roleIds = getSearchByUserRoleIds(
 				kaleoTaskInstanceTokenQuery);
 
-			long userId = kaleoTaskInstanceTokenQuery.getUserId();
-
 			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId);
+				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+					kaleoTaskInstanceTokenQuery.getUserId());
 
-			User user = UserLocalServiceUtil.getUser(userId);
+			User user = UserLocalServiceUtil.getUser(
+				kaleoTaskInstanceTokenQuery.getUserId());
 
 			long[] userGroupIds = user.getUserGroupIds();
 
@@ -826,12 +826,12 @@ public class KaleoTaskInstanceTokenFinderImpl
 			List<Long> roleIds = getSearchByUserRoleIds(
 				kaleoTaskInstanceTokenQuery);
 
-			long userId = kaleoTaskInstanceTokenQuery.getUserId();
-
 			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId);
+				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+					kaleoTaskInstanceTokenQuery.getUserId());
 
-			User user = UserLocalServiceUtil.getUser(userId);
+			User user = UserLocalServiceUtil.getUser(
+				kaleoTaskInstanceTokenQuery.getUserId());
 
 			long[] userGroupIds = user.getUserGroupIds();
 
