@@ -208,7 +208,6 @@ $microblogs-border-color: #C7D0DA;
 		padding: 5px;
 		position: absolute;
 		top: 1px;
-		visibility: hidden;
 		width: 100%;
 		z-index: 998;
 
