@@ -55,7 +55,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			GadgetLocalServiceUtil.deleteGadget(gadget);
 		}
 
-		return null;
+		return portletPreferences;
 	}
 
 	@Override
