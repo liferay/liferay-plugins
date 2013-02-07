@@ -16,22 +16,28 @@ package com.liferay.mysubscriptions.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
+import com.liferay.portlet.bookmarks.model.BookmarksFolder;
+import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
+import com.liferay.portlet.wiki.model.WikiNode;
+import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 
 import java.util.Locale;
 
@@ -71,6 +77,36 @@ public class MySubscriptionsUtil {
 				classPK, PortletKeys.MESSAGE_BOARDS);
 		}
 
+		if (className.equals(WikiNode.class.getName())) {
+			long wikiPlid;
+
+			wikiPlid = PortalUtil.getPlidFromPortletId(themeDisplay.getScopeGroupId(), PortletKeys.WIKI);
+			if (wikiPlid == 0) {
+				wikiPlid = PortalUtil.getPlidFromPortletId(themeDisplay.getScopeGroupId(), PortletKeys.WIKI_DISPLAY);
+			}
+			Layout wikiLayout = null;
+			if (wikiPlid != 0) {
+				wikiLayout = LayoutLocalServiceUtil.getLayout(wikiPlid);
+
+				String layoutFullURL = PortalUtil.getLayoutFullURL(wikiLayout, themeDisplay);
+
+				StringBuilder wikiNodeURL = new StringBuilder();
+
+				wikiNodeURL.append(layoutFullURL);
+				wikiNodeURL.append(Portal.FRIENDLY_URL_SEPARATOR);
+				wikiNodeURL.append("wiki");
+				wikiNodeURL.append(StringPool.SLASH);
+				wikiNodeURL.append(classPK);
+				wikiNodeURL.append(StringPool.SLASH);
+				wikiNodeURL.append("all_pages");
+
+				return wikiNodeURL.toString();
+			}
+			else {
+				return "";
+			}
+		}
+
 		return null;
 	}
 
@@ -82,7 +118,10 @@ public class MySubscriptionsUtil {
 			return title;
 		}
 
-		if (className.equals(BlogsEntry.class.getName())) {
+		if (className.equals(BookmarksFolder.class.getName())) {
+			return BookmarksFolderLocalServiceUtil.getBookmarksFolder(classPK).getName();
+		}
+		else if (className.equals(BlogsEntry.class.getName())) {
 			title = "Blog at ";
 		}
 		else if (className.equals(Layout.class.getName())) {
@@ -90,6 +129,9 @@ public class MySubscriptionsUtil {
 		}
 		else if (className.equals(MBCategory.class.getName())) {
 			title = "Message Board at ";
+		}
+		else if (className.equals(WikiNode.class.getName())) {
+			return WikiNodeLocalServiceUtil.getWikiNode(classPK).getName();
 		}
 
 		try {
