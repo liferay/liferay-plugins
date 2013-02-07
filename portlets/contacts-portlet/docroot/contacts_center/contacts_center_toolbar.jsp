@@ -145,6 +145,53 @@ if (user2 != null) {
 		}
 	);
 
+	<%
+	ServletContext servletContext = ServletContextPool.get("private-messaging-portlet");
+	%>
+
+	<c:if test="<%= Validator.isNotNull(servletContext) && (user2 == null || (user2.getUserId() != themeDisplay.getUserId())) %>">
+		contactsToolbarChildren.push(
+			{
+				handler: function(event) {
+					<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
+
+					var uri = '<liferay-portlet:renderURL portletName="1_WAR_privatemessagingportlet" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /><portlet:param name="redirect" value="<%= redirectURL %>" /></liferay-portlet:renderURL>';
+
+					<c:choose>
+						<c:when test="<%= user2 != null %>">
+							var userIds = [<%= user2.getUserId() %>];
+						</c:when>
+						<c:otherwise>
+							var userIds = A.all('.lfr-contact-grid-item input').val();
+						</c:otherwise>
+					</c:choose>
+
+					new A.Dialog(
+						{
+							align: Liferay.Util.Window.ALIGN_CENTER,
+							cssClass: 'private-messaging-portlet',
+							destroyOnClose: true,
+							modal: true,
+							title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>',
+							width: 600
+						}
+					).plug(
+						A.Plugin.IO,
+						{
+							data: {
+								userIds: userIds.join()
+							},
+							uri: uri
+						}
+					).render();
+				},
+				icon: 'send-message',
+				id: '<portlet:namespace />sendMessageButton',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "message") %>'
+			}
+		);
+	</c:if>
+
 	contactsToolbarChildren.push(
 		{
 			handler: function(event) {
@@ -172,54 +219,6 @@ if (user2 != null) {
 				icon: 'user',
 				id: '<portlet:namespace />gotoProfileButton',
 				label: '<%= UnicodeLanguageUtil.get(pageContext, "profile") %>'
-			}
-		);
-	</c:if>
-
-	<%
-	ServletContext servletContext = ServletContextPool.get("private-messaging-portlet");
-	%>
-
-	<c:if test="<%= Validator.isNotNull(servletContext) && (user2 == null || (user2.getUserId() != themeDisplay.getUserId())) %>">
-		contactsToolbarChildren.push(
-			{
-				handler: function(event) {
-					var uri = '<liferay-portlet:renderURL portletName="1_WAR_privatemessagingportlet" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /></liferay-portlet:renderURL>';
-
-					<c:choose>
-						<c:when test="<%= user2 != null %>">
-							var userIds = [<%= user2.getUserId() %>];
-						</c:when>
-						<c:otherwise>
-							var userIds = A.all('.lfr-contact-grid-item input').val();
-						</c:otherwise>
-					</c:choose>
-
-					new A.Dialog(
-						{
-							align: {
-								node: null,
-								points: ['tc', 'tc']
-							},
-							cssClass: 'private-messaging-portlet',
-							destroyOnClose: true,
-							modal: true,
-							title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>',
-							width: 600
-						}
-					).plug(
-						A.Plugin.IO,
-						{
-							data: {
-								userIds: userIds.join()
-							},
-							uri: uri
-						}
-					).render();
-				},
-				icon: 'send-message',
-				id: '<portlet:namespace />sendMessageButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "send-message") %>'
 			}
 		);
 	</c:if>

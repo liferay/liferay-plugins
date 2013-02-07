@@ -20,6 +20,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String redirect = ParamUtil.getString(request, "redirect");
+
 long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 
 String subject = StringPool.BLANK;
@@ -61,10 +63,8 @@ to = sb.toString() + to;
 
 <div id="<portlet:namespace />messageContainer"></div>
 
-<portlet:renderURL var="redirectURL" windowState="<%= WindowState.NORMAL.toString() %>" />
-
 <liferay-portlet:actionURL name="sendMessage" var="sendMessageURL">
-	<portlet:param name="redirect" value="<%= redirectURL %>" />
+	<portlet:param name="redirect" value="<%= redirect %>" />
 </liferay-portlet:actionURL>
 
 <aui:layout cssClass="message-body-container">
@@ -141,7 +141,7 @@ to = sb.toString() + to;
 			var loadingMask = new A.LoadingMask(
 				{
 					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
-					target: A.one('.private-messaging-portlet .aui-dialog-bd')
+					target: A.one('.private-messaging-portlet .message-body-container')
 				}
 			);
 
