@@ -589,18 +589,14 @@ public class KaleoTaskInstanceTokenFinderImpl
 				sb.append(" OR ");
 			}
 
-			if (!roleIds.isEmpty() || !userGroupRoles.isEmpty() ||
-				!userGroupGroupRoles.isEmpty()) {
-
-				sb.setIndex(sb.length() - 4);
-			}
+			sb.setIndex(sb.index() - 1);
 
 			sb.append("))");
 
 			return sb.toString();
 		}
 		else {
-			StringBundler sb = new StringBundler(4);
+			StringBundler sb = new StringBundler(3);
 
 			sb.append("AND ((");
 			sb.append("KaleoTaskAssignmentInstance.assigneeClassName = ?) ");
@@ -653,21 +649,21 @@ public class KaleoTaskInstanceTokenFinderImpl
 	protected List<UserGroupGroupRole> getUserGroupGroupRoles(long userId)
 		throws Exception {
 
-		List<UserGroupGroupRole> userGroupGroupRoles =
+		List<UserGroupGroupRole> allUserGroupGroupRoles =
 			new ArrayList<UserGroupGroupRole>();
 
 		List<UserGroup> userGroups =
 			UserGroupLocalServiceUtil.getUserUserGroups(userId);
 
 		for (UserGroup userGroup : userGroups) {
-			List<UserGroupGroupRole> usreGroupGroupRoles =
+			List<UserGroupGroupRole> userGroupGroupRoles =
 				UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
 					userGroup.getUserGroupId());
 
-			userGroupGroupRoles.addAll(usreGroupGroupRoles);
+			allUserGroupGroupRoles.addAll(userGroupGroupRoles);
 		}
 
-		return userGroupGroupRoles;
+		return allUserGroupGroupRoles;
 	}
 
 	protected void setAssetPrimaryKey(
