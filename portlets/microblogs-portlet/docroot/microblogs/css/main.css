@@ -209,6 +209,7 @@ $microblogs-border-color: #C7D0DA;
 		position: absolute;
 		top: 1px;
 		visibility: hidden;
+		width: 100%;
 		z-index: 998;
 
 		&.textbox {
@@ -229,6 +230,7 @@ $microblogs-border-color: #C7D0DA;
 
 		div {
 			display: inline-block;
+			width: 100%;
 
 			@include force-wrap();
 		}
