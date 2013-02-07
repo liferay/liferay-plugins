@@ -398,10 +398,11 @@ public class FileSystemImporter extends BaseImporter {
 
 		setServiceContext(fileName);
 
-		long classNameId = PortalUtil.getClassNameId(JournalArticle.class);
+		long journalArticleClassNameId = PortalUtil.getClassNameId(
+			JournalArticle.class);
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.addStructure(
-			userId, groupId, parentDDMStructureKey, classNameId,
+			userId, groupId, parentDDMStructureKey, journalArticleClassNameId,
 			ddmStructureKey, nameMap, null, xsd,
 			PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_STORAGE_TYPE),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
@@ -433,14 +434,18 @@ public class FileSystemImporter extends BaseImporter {
 
 		setServiceContext(fileName);
 
-		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
-			groupId, ddmStructureKey);
+		long journalArticleClassNameId = PortalUtil.getClassNameId(
+			JournalArticle.class);
 
-		long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
+			groupId, journalArticleClassNameId, ddmStructureKey);
+
+		long ddmStructureClassNameId = PortalUtil.getClassNameId(
+			DDMStructure.class);
 
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, classNameId, ddmStructure.getStructureId(),
-			ddmTemplateKey, nameMap, null,
+			userId, groupId, ddmStructureClassNameId,
+			ddmStructure.getStructureId(), ddmTemplateKey, nameMap, null,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
 			TemplateConstants.LANG_TYPE_XSD, xsl, false, false, null, null,
