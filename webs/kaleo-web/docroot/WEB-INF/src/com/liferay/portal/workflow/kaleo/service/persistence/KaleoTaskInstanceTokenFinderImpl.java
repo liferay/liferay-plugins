@@ -574,38 +574,25 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 			for (int i = 0; i < roleIds.size(); i++) {
 				sb.append("(KaleoTaskAssignmentInstance.assigneeClassPK = ?)");
-
-				if ((i + 1) < roleIds.size()) {
-					sb.append(" OR ");
-				}
-			}
-
-			if (!roleIds.isEmpty() && !userGroupRoles.isEmpty()) {
 				sb.append(" OR ");
 			}
 
 			for (int i = 0; i < userGroupRoles.size(); i++) {
 				sb.append("((KaleoTaskAssignmentInstance.groupId = ?) AND ");
 				sb.append("(KaleoTaskAssignmentInstance.assigneeClassPK = ?))");
-
-				if ((i + 1) < userGroupRoles.size()) {
-					sb.append(" OR ");
-				}
-			}
-
-			if ((!roleIds.isEmpty() || !userGroupRoles.isEmpty()) &&
-				!userGroupGroupRoles.isEmpty()) {
-
 				sb.append(" OR ");
 			}
 
 			for (int i = 0; i < userGroupGroupRoles.size(); i++) {
 				sb.append("((KaleoTaskAssignmentInstance.groupId = ?) AND ");
 				sb.append("(KaleoTaskAssignmentInstance.assigneeClassPK = ?))");
+				sb.append(" OR ");
+			}
 
-				if ((i + 1) < userGroupGroupRoles.size()) {
-					sb.append(" OR ");
-				}
+			if (!roleIds.isEmpty() || !userGroupRoles.isEmpty() ||
+				!userGroupGroupRoles.isEmpty()) {
+
+				sb.setIndex(sb.length() - 4);
 			}
 
 			sb.append("))");
@@ -835,27 +822,21 @@ public class KaleoTaskInstanceTokenFinderImpl
 			List<Long> roleIds = getSearchByUserRoleIds(
 				kaleoTaskInstanceTokenQuery);
 
-			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-					kaleoTaskInstanceTokenQuery.getUserId());
-
-			List<UserGroupGroupRole> userGroupGroupRoles =
-				getUserGroupGroupRoles(kaleoTaskInstanceTokenQuery.getUserId());
-
-			if (roleIds.isEmpty() && userGroupRoles.isEmpty() &&
-				userGroupGroupRoles.isEmpty()) {
-
-				return;
-			}
-
 			for (Long roleId : roleIds) {
 				qPos.add(roleId);
 			}
+
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
+					kaleoTaskInstanceTokenQuery.getUserId());
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				qPos.add(userGroupRole.getGroupId());
 				qPos.add(userGroupRole.getRoleId());
 			}
+
+			List<UserGroupGroupRole> userGroupGroupRoles =
+				getUserGroupGroupRoles(kaleoTaskInstanceTokenQuery.getUserId());
 
 			for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
 				qPos.add(userGroupGroupRole.getGroupId());
