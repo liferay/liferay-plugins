@@ -28,11 +28,13 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.model.UserGroupGroupRole;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -555,20 +557,19 @@ public class KaleoTaskInstanceTokenFinderImpl
 				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
 					kaleoTaskInstanceTokenQuery.getUserId());
 
-			User user = UserLocalServiceUtil.getUser(
-				kaleoTaskInstanceTokenQuery.getUserId());
-
-			long[] userGroupIds = user.getUserGroupIds();
-
 			List<UserGroupGroupRole> userGroupGroupRoles =
 				new ArrayList<UserGroupGroupRole>();
 
-			for (long userGroupId : userGroupIds) {
-				List<UserGroupGroupRole> roles =
-					UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
-						userGroupId);
+			List<UserGroup> userGroups =
+				UserGroupLocalServiceUtil.getUserUserGroups(
+					kaleoTaskInstanceTokenQuery.getUserId());
 
-				userGroupGroupRoles.addAll(roles);
+			for (UserGroup userGroup : userGroups) {
+				List<UserGroupGroupRole> usreGroupGroupRoles =
+					UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
+						userGroup.getUserGroupId());
+
+				userGroupGroupRoles.addAll(usreGroupGroupRoles);
 			}
 
 			if (roleIds.isEmpty() && userGroupRoles.isEmpty() &&
