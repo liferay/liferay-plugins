@@ -38,6 +38,10 @@ $microblogs-border-color: #C7D0DA;
 
 		.aui-field-select {
 			display: inline-block;
+
+			.aui-field-element {
+				position: static;
+			}
 		}
 
 		.button-holder-right {
