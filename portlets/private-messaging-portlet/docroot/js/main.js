@@ -80,18 +80,21 @@ AUI.add(
 			newMessage: function(mbThreadId) {
 				var instance = this;
 
+				var redirectURL = new Liferay.PortletURL.createRenderURL();
+
+				redirectURL.setWindowState('NORMAL');
+
 				var portletURL = new Liferay.PortletURL.createResourceURL();
 
-				portletURL.setParameter('mvcPath', '/new_message.jsp');
 				portletURL.setPortletId('1_WAR_privatemessagingportlet');
 				portletURL.setWindowState('EXCLUSIVE');
 
+				portletURL.setParameter('mvcPath', '/new_message.jsp');
+				portletURL.setParameter('redirect', redirectURL.toString());
+
 				new A.Dialog(
 					{
-						align: {
-							node: null,
-							points: ['tc', 'tc']
-						},
+						align: Liferay.Util.Window.ALIGN_CENTER,
 						cssClass: 'private-messaging-portlet',
 						destroyOnClose: true,
 						modal: true,

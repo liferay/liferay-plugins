@@ -147,6 +147,22 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 	</c:when>
 </c:choose>
 
+<c:if test="<%= user2.getUserId() != themeDisplay.getUserId() %>">
+
+	<%
+	String messageTaglibOnClick = liferayPortletResponse.getNamespace() + "sendMessage();";
+	%>
+
+	<liferay-ui:icon
+		cssClass="send-message"
+		image="../mail/compose"
+		label="<%= true %>"
+		message="message"
+		onClick="<%= messageTaglibOnClick %>"
+		url="javascript:;"
+	/>
+</c:if>
+
 <portlet:resourceURL id="exportVCard" var="exportURL">
 	<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 </portlet:resourceURL>
@@ -157,6 +173,35 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 	message="vcard"
 	url="<%= exportURL %>"
 />
+
+<aui:script>
+	function <portlet:namespace />sendMessage() {
+		var A = AUI();
+
+		<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
+
+		var uri = '<liferay-portlet:renderURL portletName="1_WAR_privatemessagingportlet" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /><portlet:param name="redirect" value="<%= redirectURL %>" /></liferay-portlet:renderURL>';
+
+		new A.Dialog(
+			{
+				align: Liferay.Util.Window.ALIGN_CENTER,
+				cssClass: 'private-messaging-portlet',
+				destroyOnClose: true,
+				modal: true,
+				title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>',
+				width: 600
+			}
+		).plug(
+			A.Plugin.IO,
+			{
+				data: {
+					userIds: <%= user2.getUserId() %>
+				},
+				uri: uri
+			}
+		).render();
+	}
+</aui:script>
 
 <aui:script use="aui-base,aui-dialog,aui-dialog-iframe">
 	<liferay-portlet:renderURL var="viewSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">

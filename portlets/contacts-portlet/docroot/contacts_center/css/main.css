@@ -713,3 +713,14 @@ $toolbar-bg: #DCE3EA;
 		@include border-radius(4px);
 	}
 }
+
+.private-messaging-portlet {
+	.message-to input, .message-subject input {
+		width: 300px;
+	}
+
+	.message-body {
+		width: 90%;
+	}
+
+}
