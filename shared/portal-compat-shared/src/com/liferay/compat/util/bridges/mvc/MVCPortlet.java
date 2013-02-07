@@ -42,8 +42,8 @@ public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		DynamicActionRequest dynamicActionRequest =
-			new DynamicActionRequest(actionRequest);
+		DynamicActionRequest dynamicActionRequest = new DynamicActionRequest(
+			actionRequest);
 
 		if (copyRequestParameters &&
 			(dynamicActionRequest.getUploadPortletRequest() != null)) {
