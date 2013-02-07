@@ -59,7 +59,7 @@ catch (NoSuchRecordSetException nsrse) {
 				long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
 				long classPK = recordSet.getDDMStructureId();
 
-				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(classNameId, classPK, DDMTemplateConstants.TEMPLATE_TYPE_FORM, DDMTemplateConstants.TEMPLATE_MODE_CREATE);
+				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(scopeGroupId, classNameId, classPK, DDMTemplateConstants.TEMPLATE_TYPE_FORM, DDMTemplateConstants.TEMPLATE_MODE_CREATE);
 
 				for (DDMTemplate ddmTemplate : ddmTemplates) {
 					boolean selected = false;
