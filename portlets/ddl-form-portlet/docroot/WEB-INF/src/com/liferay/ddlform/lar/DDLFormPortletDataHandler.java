@@ -77,9 +77,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 			return StringPool.BLANK;
 		}
 
-		Document document = SAXReaderUtil.createDocument();
-
-		Element rootElement = document.addElement("record-sets");
+		Element rootElement = addExportRootElement();
 
 		DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(
 			recordSetId);
@@ -90,7 +88,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 		ddlPortletDataHandler.exportRecordSet(
 			portletDataContext, rootElement, recordSet);
 
-		return document.formattedString();
+		return rootElement.formattedString();
 	}
 
 	@Override

@@ -89,9 +89,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			"com.liferay.portlet.calendar",
 			portletDataContext.getScopeGroupId());
 
-		Document document = SAXReaderUtil.createDocument();
-
-		Element rootElement = document.addElement("calendar-data");
+		Element rootElement = addExportRootElement();
 
 		rootElement.addAttribute(
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
@@ -117,7 +115,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			}
 		}
 
-		return document.formattedString();
+		return rootElement.formattedString();
 	}
 
 	@Override

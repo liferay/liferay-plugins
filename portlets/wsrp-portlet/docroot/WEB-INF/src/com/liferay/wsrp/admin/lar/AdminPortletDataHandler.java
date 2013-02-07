@@ -91,9 +91,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		Document document = SAXReaderUtil.createDocument();
-
-		Element rootElement = document.addElement("wsrp-data");
+		Element rootElement = addExportRootElement();
 
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "wsrp-producers")) {
@@ -129,7 +127,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			}
 		}
 
-		return document.formattedString();
+		return rootElement.formattedString();
 	}
 
 	@Override
