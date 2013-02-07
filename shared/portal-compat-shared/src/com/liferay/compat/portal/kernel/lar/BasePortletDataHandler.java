@@ -15,6 +15,9 @@
 package com.liferay.compat.portal.kernel.lar;
 
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -56,6 +59,14 @@ public abstract class BasePortletDataHandler
 
 	public boolean isPublishToLiveByDefault() {
 		return _publishToLiveByDefault;
+	}
+
+	protected Element addExportRootElement() {
+		Document document = SAXReaderUtil.createDocument();
+
+		Class<?> clazz = getClass();
+
+		return document.addElement(clazz.getSimpleName());
 	}
 
 	protected void setAlwaysExportable(boolean alwaysExportable) {
