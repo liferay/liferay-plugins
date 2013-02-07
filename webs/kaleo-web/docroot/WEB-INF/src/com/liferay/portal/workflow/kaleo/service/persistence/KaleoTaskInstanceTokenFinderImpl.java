@@ -558,19 +558,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 					kaleoTaskInstanceTokenQuery.getUserId());
 
 			List<UserGroupGroupRole> userGroupGroupRoles =
-				new ArrayList<UserGroupGroupRole>();
-
-			List<UserGroup> userGroups =
-				UserGroupLocalServiceUtil.getUserUserGroups(
-					kaleoTaskInstanceTokenQuery.getUserId());
-
-			for (UserGroup userGroup : userGroups) {
-				List<UserGroupGroupRole> usreGroupGroupRoles =
-					UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
-						userGroup.getUserGroupId());
-
-				userGroupGroupRoles.addAll(usreGroupGroupRoles);
-			}
+				getUserGroupGroupRoles(kaleoTaskInstanceTokenQuery.getUserId());
 
 			if (roleIds.isEmpty() && userGroupRoles.isEmpty() &&
 				userGroupGroupRoles.isEmpty()) {
@@ -673,6 +661,26 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		return sb.toString();
+	}
+
+	protected List<UserGroupGroupRole> getUserGroupGroupRoles(long userId)
+		throws Exception {
+
+		List<UserGroupGroupRole> userGroupGroupRoles =
+			new ArrayList<UserGroupGroupRole>();
+
+		List<UserGroup> userGroups =
+			UserGroupLocalServiceUtil.getUserUserGroups(userId);
+
+		for (UserGroup userGroup : userGroups) {
+			List<UserGroupGroupRole> usreGroupGroupRoles =
+				UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
+					userGroup.getUserGroupId());
+
+			userGroupGroupRoles.addAll(usreGroupGroupRoles);
+		}
+
+		return userGroupGroupRoles;
 	}
 
 	protected void setAssetPrimaryKey(
@@ -831,21 +839,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
 					kaleoTaskInstanceTokenQuery.getUserId());
 
-			User user = UserLocalServiceUtil.getUser(
-				kaleoTaskInstanceTokenQuery.getUserId());
-
-			long[] userGroupIds = user.getUserGroupIds();
-
 			List<UserGroupGroupRole> userGroupGroupRoles =
-				new ArrayList<UserGroupGroupRole>();
-
-			for (long userGroupId : userGroupIds) {
-				List<UserGroupGroupRole> roles =
-					UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
-						userGroupId);
-
-				userGroupGroupRoles.addAll(roles);
-			}
+				getUserGroupGroupRoles(kaleoTaskInstanceTokenQuery.getUserId());
 
 			if (roleIds.isEmpty() && userGroupRoles.isEmpty() &&
 				userGroupGroupRoles.isEmpty()) {
