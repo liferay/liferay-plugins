@@ -48,7 +48,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		if (portletPreferences == null) {
-			return null;
+			return portletPreferences;
 		}
 
 		portletPreferences.setValue("formDDMTemplateId", StringPool.BLANK);

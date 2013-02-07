@@ -82,7 +82,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			WSRPConsumerLocalServiceUtil.deleteWSRPConsumer(wsrpConsumer);
 		}
 
-		return null;
+		return portletPreferences;
 	}
 
 	@Override

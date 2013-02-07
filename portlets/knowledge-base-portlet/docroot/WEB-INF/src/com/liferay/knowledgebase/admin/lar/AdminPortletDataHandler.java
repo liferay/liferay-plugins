@@ -88,17 +88,19 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		if (!portletDataContext.addPrimaryKey(
+		if (portletDataContext.addPrimaryKey(
 				AdminPortletDataHandler.class, "deleteData")) {
 
-			KBArticleLocalServiceUtil.deleteGroupKBArticles(
-				portletDataContext.getScopeGroupId());
-
-			KBTemplateLocalServiceUtil.deleteGroupKBTemplates(
-				portletDataContext.getScopeGroupId());
+			return portletPreferences;
 		}
 
-		return null;
+		KBArticleLocalServiceUtil.deleteGroupKBArticles(
+			portletDataContext.getScopeGroupId());
+
+		KBTemplateLocalServiceUtil.deleteGroupKBTemplates(
+			portletDataContext.getScopeGroupId());
+
+		return portletPreferences;
 	}
 
 	@Override
