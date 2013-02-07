@@ -16,7 +16,7 @@ package com.liferay.mysubscriptions.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
@@ -78,33 +78,31 @@ public class MySubscriptionsUtil {
 		}
 
 		if (className.equals(WikiNode.class.getName())) {
-			long wikiPlid;
+			long plid = PortalUtil.getPlidFromPortletId(
+				themeDisplay.getScopeGroupId(), PortletKeys.WIKI);
 
-			wikiPlid = PortalUtil.getPlidFromPortletId(themeDisplay.getScopeGroupId(), PortletKeys.WIKI);
-			if (wikiPlid == 0) {
-				wikiPlid = PortalUtil.getPlidFromPortletId(themeDisplay.getScopeGroupId(), PortletKeys.WIKI_DISPLAY);
+			if (plid == 0) {
+				plid = PortalUtil.getPlidFromPortletId(
+					themeDisplay.getScopeGroupId(), PortletKeys.WIKI_DISPLAY);
 			}
-			Layout wikiLayout = null;
-			if (wikiPlid != 0) {
-				wikiLayout = LayoutLocalServiceUtil.getLayout(wikiPlid);
 
-				String layoutFullURL = PortalUtil.getLayoutFullURL(wikiLayout, themeDisplay);
-
-				StringBuilder wikiNodeURL = new StringBuilder();
-
-				wikiNodeURL.append(layoutFullURL);
-				wikiNodeURL.append(Portal.FRIENDLY_URL_SEPARATOR);
-				wikiNodeURL.append("wiki");
-				wikiNodeURL.append(StringPool.SLASH);
-				wikiNodeURL.append(classPK);
-				wikiNodeURL.append(StringPool.SLASH);
-				wikiNodeURL.append("all_pages");
-
-				return wikiNodeURL.toString();
+			if (plid == 0) {
+				return null;
 			}
-			else {
-				return "";
-			}
+
+			Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+			String layoutFullURL = PortalUtil.getLayoutFullURL(
+				layout, themeDisplay);
+
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(layoutFullURL);
+			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
+			sb.append("wiki/");
+			sb.append(classPK);
+
+			return sb.toString();
 		}
 
 		return null;
@@ -118,20 +116,27 @@ public class MySubscriptionsUtil {
 			return title;
 		}
 
-		if (className.equals(BookmarksFolder.class.getName())) {
-			return BookmarksFolderLocalServiceUtil.getBookmarksFolder(classPK).getName();
-		}
-		else if (className.equals(BlogsEntry.class.getName())) {
+		if (className.equals(BlogsEntry.class.getName())) {
 			title = "Blog at ";
 		}
+		else if (className.equals(BookmarksFolder.class.getName())) {
+			BookmarksFolder bookmarksFolder =
+				BookmarksFolderLocalServiceUtil.getBookmarksFolder(classPK);
+
+			return bookmarksFolder.getName();
+		}
 		else if (className.equals(Layout.class.getName())) {
-			return LayoutLocalServiceUtil.getLayout(classPK).getName(locale);
+			Layout layout = LayoutLocalServiceUtil.getLayout(classPK);
+
+			return layout.getName(locale);
 		}
 		else if (className.equals(MBCategory.class.getName())) {
 			title = "Message Board at ";
 		}
 		else if (className.equals(WikiNode.class.getName())) {
-			return WikiNodeLocalServiceUtil.getWikiNode(classPK).getName();
+			WikiNode wikiNode = WikiNodeLocalServiceUtil.getWikiNode(classPK);
+
+			return wikiNode.getName();
 		}
 
 		try {
