@@ -18,9 +18,13 @@ import com.liferay.compat.portal.kernel.portlet.DynamicActionRequest;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.security.auth.FullNameGenerator;
+
+import java.lang.reflect.Method;
 
 import java.util.Enumeration;
 
@@ -47,6 +51,30 @@ public class PortalUtil extends com.liferay.portal.util.PortalUtil {
 			}
 
 			dynamicActionRequest.setParameterValues(param, values);
+		}
+	}
+
+	public static String getFullName(
+		String firstName, String middleName, String lastName) {
+
+		try {
+			ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+
+			Class<?> clazz = classLoader.loadClass(
+				"com.liferay.portal.security.auth.FullNameGeneratorFactory");
+
+			Method method = clazz.getMethod("getInstance");
+
+			method.setAccessible(true);
+
+			FullNameGenerator fullNameGenerator =
+				(FullNameGenerator)method.invoke(false);
+
+			return fullNameGenerator.getFullName(
+				firstName, middleName, lastName);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
