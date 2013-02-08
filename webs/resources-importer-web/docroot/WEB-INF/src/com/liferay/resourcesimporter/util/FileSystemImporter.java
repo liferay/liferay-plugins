@@ -690,6 +690,8 @@ public class FileSystemImporter extends BaseImporter {
 		JSONObject assetJSONObject = _assetJSONObjectMap.get(name);
 
 		if (assetJSONObject == null) {
+			serviceContext.setAssetTagNames(null);
+
 			return;
 		}
 
