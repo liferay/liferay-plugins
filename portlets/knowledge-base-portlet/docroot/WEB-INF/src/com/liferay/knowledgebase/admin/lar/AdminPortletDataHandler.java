@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -460,12 +461,16 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 				portletDataContext.getZipEntryAsInputStream(
 					fileElement.attributeValue("path"));
 
+			String mimeType = MimeTypesUtil.getContentType(
+				inputStream, fileName);
+
 			PortletFileRepositoryUtil.addPortletFileEntry(
 				portletDataContext.getScopeGroupId(),
 				portletDataContext.getUserId(kbArticle.getUserUuid()),
 				KBArticle.class.getName(), kbArticle.getClassPK(),
 				PortletKeys.KNOWLEDGE_BASE_ADMIN,
-				kbArticle.getAttachmentsFolderId(), inputStream, fileName);
+				kbArticle.getAttachmentsFolderId(), inputStream, fileName,
+				mimeType);
 		}
 
 		dirNames.put(resourcePrimKey, dirName);
