@@ -703,14 +703,11 @@ public class FileSystemImporter extends BaseImporter {
 	protected void setServiceContext(String name) {
 		JSONObject assetJSONObject = _assetJSONObjectMap.get(name);
 
-		if (assetJSONObject == null) {
-			serviceContext.setAssetTagNames(null);
+		String[] assetTagNames = null;
 
-			return;
+		if (assetJSONObject != null) {
+			assetTagNames = getJSONArrayAsStringArray(assetJSONObject, "tags");
 		}
-
-		String[] assetTagNames = getJSONArrayAsStringArray(
-			assetJSONObject, "tags");
 
 		serviceContext.setAssetTagNames(assetTagNames);
 	}
