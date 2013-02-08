@@ -25,6 +25,9 @@ public interface PortletPropsKeys {
 	public static final String AUTOCOMPLETE_RECIPIENT_MAX =
 		"autocomplete.recipient.max";
 
+	public static final String AUTOCOMPLETE_RECIPIENT_SITE_EXCLUDES =
+		"autocomplete.recipient.site.excludes";
+
 	public static final String AUTOCOMPLETE_RECIPIENT_TYPE =
 		"autocomplete.recipient.type";
 
