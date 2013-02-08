@@ -90,12 +90,13 @@ public class MySubscriptionsUtil {
 			String layoutFullURL = PortalUtil.getLayoutFullURL(
 				layout, themeDisplay);
 
-			StringBundler sb = new StringBundler(4);
+			StringBundler sb = new StringBundler(5);
 
 			sb.append(layoutFullURL);
 			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
 			sb.append("wiki/");
 			sb.append(classPK);
+			sb.append("/all_pages");
 
 			return sb.toString();
 		}
