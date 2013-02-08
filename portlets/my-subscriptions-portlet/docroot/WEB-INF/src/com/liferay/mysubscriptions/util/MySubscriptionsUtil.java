@@ -82,11 +82,6 @@ public class MySubscriptionsUtil {
 				themeDisplay.getScopeGroupId(), PortletKeys.WIKI);
 
 			if (plid == 0) {
-				plid = PortalUtil.getPlidFromPortletId(
-					themeDisplay.getScopeGroupId(), PortletKeys.WIKI_DISPLAY);
-			}
-
-			if (plid == 0) {
 				return null;
 			}
 
