@@ -455,11 +455,11 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
 
 		for (Element fileElement : fileElements) {
-			String fileName = fileElement.attributeValue("file-name");
-
 			InputStream inputStream =
 				portletDataContext.getZipEntryAsInputStream(
 					fileElement.attributeValue("path"));
+
+			String fileName = fileElement.attributeValue("file-name");
 
 			String mimeType = MimeTypesUtil.getContentType(
 				inputStream, fileName);
