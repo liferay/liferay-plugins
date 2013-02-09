@@ -34,9 +34,10 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.mail.internet.InternetAddress;
 
@@ -107,7 +108,7 @@ public class EmailNotificationSender implements NotificationSender {
 	}
 
 	protected void getAssignedRecipients(
-			List<InternetAddress> internetAddresses,
+			Set<InternetAddress> internetAddresses,
 			ExecutionContext executionContext)
 		throws Exception {
 
@@ -149,8 +150,7 @@ public class EmailNotificationSender implements NotificationSender {
 			ExecutionContext executionContext)
 		throws Exception {
 
-		List<InternetAddress> internetAddresses =
-			new ArrayList<InternetAddress>();
+		Set<InternetAddress> internetAddresses = new HashSet<InternetAddress>();
 
 		if (kaleoNotificationRecipients.isEmpty()) {
 			getAssignedRecipients(internetAddresses, executionContext);
@@ -191,7 +191,7 @@ public class EmailNotificationSender implements NotificationSender {
 	}
 
 	protected void getRoleRecipientAddresses(
-			long roleId, int roleType, List<InternetAddress> internetAddresses,
+			long roleId, int roleType, Set<InternetAddress> internetAddresses,
 			ExecutionContext executionContext)
 		throws Exception {
 
@@ -229,7 +229,7 @@ public class EmailNotificationSender implements NotificationSender {
 	}
 
 	protected void getUserEmailAddress(
-			long userId, List<InternetAddress> internetAddresses,
+			long userId, Set<InternetAddress> internetAddresses,
 			ExecutionContext executionContext)
 		throws Exception {
 
