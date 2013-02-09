@@ -649,21 +649,19 @@ public class KaleoTaskInstanceTokenFinderImpl
 	protected List<UserGroupGroupRole> getUserGroupGroupRoles(long userId)
 		throws Exception {
 
-		List<UserGroupGroupRole> allUserGroupGroupRoles =
+		List<UserGroupGroupRole> userGroupGroupRoles =
 			new ArrayList<UserGroupGroupRole>();
 
 		List<UserGroup> userGroups =
 			UserGroupLocalServiceUtil.getUserUserGroups(userId);
 
 		for (UserGroup userGroup : userGroups) {
-			List<UserGroupGroupRole> userGroupGroupRoles =
+			userGroupGroupRoles.addAll(
 				UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
-					userGroup.getUserGroupId());
-
-			allUserGroupGroupRoles.addAll(userGroupGroupRoles);
+					userGroup.getUserGroupId()));
 		}
 
-		return allUserGroupGroupRoles;
+		return userGroupGroupRoles;
 	}
 
 	protected void setAssetPrimaryKey(
