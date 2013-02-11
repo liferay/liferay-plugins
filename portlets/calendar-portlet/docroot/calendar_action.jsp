@@ -90,9 +90,6 @@ Calendar calendar = (Calendar)row.getObject();
 		<liferay-portlet:resourceURL id="calendarBookingsRSS" varImpl="calendarRSSURL">
 			<portlet:param name="calendarId" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
 			<portlet:param name="timeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
-			<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
-			<portlet:param name="type" value="<%= rssFeedType %>" />
-			<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
 		</liferay-portlet:resourceURL>
 
 		<liferay-ui:rss

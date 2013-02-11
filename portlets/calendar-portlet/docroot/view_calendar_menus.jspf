@@ -189,9 +189,10 @@
 						<liferay-portlet:resourceURL id="calendarBookingsRSS" varImpl="calendarRSSURL">
 							<portlet:param name="calendarId" value="{calendarId}" />
 							<portlet:param name="timeInterval" value="<%= String.valueOf(rssTimeInterval) %>" />
-							<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
-							<portlet:param name="type" value="<%= rssFeedType %>" />
 							<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+							<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
+							<portlet:param name="type" value="<%= RSSUtil.getFeedTypeFormat(rssFeedType) %>" />
+							<portlet:param name="version" value="<%= String.valueOf(RSSUtil.getFeedTypeVersion(rssFeedType)) %>" />
 						</liferay-portlet:resourceURL>
 
 						var url = A.Lang.sub(
