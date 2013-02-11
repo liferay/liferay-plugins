@@ -824,14 +824,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				oldKBArticle.getRootResourcePrimKey());
 			kbArticle.setParentResourcePrimKey(
 				oldKBArticle.getParentResourcePrimKey());
+			kbArticle.setVersion(oldVersion + 1);
 			kbArticle.setPriority(oldKBArticle.getPriority());
 			kbArticle.setViewCount(oldKBArticle.getViewCount());
 
-			version = oldVersion + 1;
+			oldKBArticle.setLatest(false);
+
+			kbArticlePersistence.update(oldKBArticle);
 		}
 		else {
 			kbArticle = oldKBArticle;
-			version = oldVersion;
 		}
 
 		if (oldStatus == WorkflowConstants.STATUS_PENDING) {
@@ -839,7 +841,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		kbArticle.setModifiedDate(serviceContext.getModifiedDate(null));
-		kbArticle.setVersion(version);
 		kbArticle.setTitle(title);
 		kbArticle.setContent(content);
 		kbArticle.setDescription(description);
@@ -850,12 +851,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setStatus(status);
 
 		kbArticlePersistence.update(kbArticle);
-
-		if (oldVersion < version) {
-			oldKBArticle.setLatest(false);
-
-			kbArticlePersistence.update(oldKBArticle);
-		}
 
 		// Resources
 
