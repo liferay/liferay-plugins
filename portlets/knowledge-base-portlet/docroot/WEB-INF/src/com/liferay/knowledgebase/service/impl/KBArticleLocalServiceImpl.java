@@ -805,11 +805,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		int oldVersion = oldKBArticle.getVersion();
-		int oldStatus = oldKBArticle.getStatus();
 
 		KBArticle kbArticle = null;
 
-		if (oldStatus == WorkflowConstants.STATUS_APPROVED) {
+		if (oldKBArticle.isApproved()) {
 			long kbArticleId = counterLocalService.increment();
 
 			kbArticle = kbArticlePersistence.create(kbArticleId);
@@ -836,7 +835,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticle = oldKBArticle;
 		}
 
-		if (oldStatus == WorkflowConstants.STATUS_PENDING) {
+		if (oldKBArticle.isPending()) {
 			status = WorkflowConstants.STATUS_PENDING;
 		}
 
