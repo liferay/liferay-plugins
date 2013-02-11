@@ -60,8 +60,9 @@ public class UpgradeBookmarks extends UpgradeProcess {
 				}
 
 				BookmarksFolderLocalServiceUtil.updateFolder(
-					folder.getFolderId(), folder.getParentFolderId(), name,
-					folder.getDescription(), true, new ServiceContext());
+					folder.getUserId(), folder.getFolderId(),
+					folder.getParentFolderId(), name, folder.getDescription(),
+					true, new ServiceContext());
 			}
 		}
 	}
