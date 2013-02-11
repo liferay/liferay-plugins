@@ -831,11 +831,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			status = WorkflowConstants.STATUS_PENDING;
 		}
 
+		if (!kbArticle.isDraft()) {
+			kbArticle.setUserId(user.getUserId());
+			kbArticle.setUserName(user.getFullName());
+		}
+
 		kbArticle.setResourcePrimKey(oldResourcePrimKey);
 		kbArticle.setGroupId(oldGroupId);
 		kbArticle.setCompanyId(user.getCompanyId());
-		kbArticle.setUserId(user.getUserId());
-		kbArticle.setUserName(user.getFullName());
 		kbArticle.setCreateDate(oldCreateDate);
 		kbArticle.setModifiedDate(serviceContext.getModifiedDate(null));
 		kbArticle.setRootResourcePrimKey(oldRootResourcePrimKey);
