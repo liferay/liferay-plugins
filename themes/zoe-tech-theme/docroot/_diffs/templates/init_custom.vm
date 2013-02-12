@@ -9,7 +9,7 @@
 ## ---------- Footer Content ---------- ##
 
 #if ($theme_settings.display-footer == true)
-	#set ($css_class = $css_class + " show-footer")
+	#set ($css_class = "$css_class show-footer")
 #end
 
 #if ($theme_settings.footer-section-1-article-id)

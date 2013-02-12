@@ -39,10 +39,8 @@ $theme.include($body_top_include)
 				<span>$the_title</span>
 			</h2>
 
-			#if ($theme_settings.display-header-social == true)
-				#if ($header_social)
-					$header_social
-				#end
+			#if ($theme_settings.display-header-social == true && $header_social)
+				$header_social
 			#end
 
 			#if (!$is_signed_in)

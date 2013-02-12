@@ -1,5 +1,5 @@
 #set ($article_id = $reserved-article-id.getData())
-#set ($content_id = "carousel-" + $article_id)
+#set ($content_id = "carousel-${article_id}")
 
 <style>
 	#${content_id} {
@@ -10,14 +10,14 @@
 <div class="carousel-container" id="$content_id">
 	<ul id="tabs">
 		#foreach ($item in $carousel-item.siblings)
-			#set ($carousel_menu_item_class = "tab-item item-" + $velocityCount + " aui-carousel-menu-index")
+			#set ($carousel_menu_item_class = "tab-item item-${velocityCount} aui-carousel-menu-index")
 
 			#if ($velocityCount == 1)
-				#set ($carousel_menu_item_class = $carousel_menu_item_class + " aui-carousel-menu-active first")
+				#set ($carousel_menu_item_class = "$carousel_menu_item_class aui-carousel-menu-active first")
 			#end
 
 			#if (!$velocityHasNext)
-				#set ($carousel_menu_item_class = $carousel_menu_item_class + " last")
+				#set ($carousel_menu_item_class = "$carousel_menu_item_class last")
 			#end
 
 			<li class="$carousel_menu_item_class">
@@ -49,7 +49,7 @@
 			#set ($carousel_item_class = "aui-carousel-item")
 
 			#if ($velocityCount == 1)
-				#set ($carousel_item_class = $carousel_item_class + " aui-carousel-item-active")
+				#set ($carousel_item_class = "$carousel_item_class aui-carousel-item-active")
 			#end
 
 			#if ($item.url-location.data != "")
@@ -71,8 +71,8 @@
 			new A.Carousel(
 				{
 					contentBox: '#${content_id} #carousel',
-					height: ${height.data},
-					intervalTime: ${duration.data},
+					height: $height.data,
+					intervalTime: $duration.data,
 					nodeMenu: '#${content_id} #tabs',
 					nodeMenuItemSelector: '.tab-item',
 					width: 287
