@@ -65,18 +65,18 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 		else if (activityType == TasksActivityKeys.REOPEN_ENTRY) {
 			if ((userId != receiverUserId) && (receiverUserId != 0)) {
-				titlePattern = "activity-tasks-reopened-entry-for";
+				titlePattern = "activity-tasks-reopen-entry-for";
 			}
 			else {
-				titlePattern = "activity-tasks-reopened-entry";
+				titlePattern = "activity-tasks-reopen-entry";
 			}
 		}
 		else if (activityType == TasksActivityKeys.RESOLVE_ENTRY) {
 			if ((userId != receiverUserId) && (receiverUserId != 0)) {
-				titlePattern = "activity-tasks-resolved-entry-for";
+				titlePattern = "activity-tasks-resolve-entry-for";
 			}
 			else {
-				titlePattern = "activity-tasks-resolved-entry";
+				titlePattern = "activity-tasks-resolve-entry";
 			}
 
 			userId = tasksEntry.getResolverUserId();
