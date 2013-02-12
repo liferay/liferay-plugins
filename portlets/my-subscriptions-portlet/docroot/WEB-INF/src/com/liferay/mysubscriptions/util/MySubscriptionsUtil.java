@@ -85,14 +85,15 @@ public class MySubscriptionsUtil {
 				return null;
 			}
 
+			StringBundler sb = new StringBundler(5);
+
 			Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
 			String layoutFullURL = PortalUtil.getLayoutFullURL(
 				layout, themeDisplay);
 
-			StringBundler sb = new StringBundler(5);
-
 			sb.append(layoutFullURL);
+
 			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
 			sb.append("wiki/");
 			sb.append(classPK);
