@@ -44,6 +44,7 @@ import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.privatemessaging.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+import com.liferay.so.sites.util.SitesUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -69,23 +70,14 @@ public class PrivateMessagingUtil {
 		if (type.equals("site")) {
 			params.put("inherit", Boolean.TRUE);
 
-			String[] exludeGroups = StringUtil.split(
-				PortletPropsValues.AUTOCOMPLETE_RECIPIENT_SITE_EXCLUDES);
-
 			List<Group> usersGroups = GroupLocalServiceUtil.getUserGroups(
 				userId, true);
 
-			List<Long> usersGroupsIds = new ArrayList<Long>();
-
-			for (Group group : usersGroups) {
-				if (!ArrayUtil.contains(exludeGroups, group.getName())) {
-					usersGroupsIds.add(group.getGroupId());
-				}
-			}
-
-			long[] usersGroupsIdsArray = ArrayUtil.toLongArray(usersGroupsIds);
-
-			params.put("usersGroups", ArrayUtil.toArray(usersGroupsIdsArray));
+			params.put(
+				"usersGroups",
+				SitesUtil.filterGroups(
+					usersGroups,
+					PortletPropsValues.AUTOCOMPLETE_RECIPIENT_SITE_EXCLUDES));
 		}
 		else if (!type.equals("all")) {
 			params.put(
