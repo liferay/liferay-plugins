@@ -796,8 +796,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// KB article
 
 		User user = userPersistence.findByPrimaryKey(userId);
-		int version = KBArticleConstants.DEFAULT_VERSION;
-		int status = WorkflowConstants.STATUS_DRAFT;
 
 		validate(title, content);
 
@@ -826,17 +824,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticle.setVersion(oldVersion + 1);
 			kbArticle.setPriority(oldKBArticle.getPriority());
 			kbArticle.setViewCount(oldKBArticle.getViewCount());
-
-			oldKBArticle.setLatest(false);
-
-			kbArticlePersistence.update(oldKBArticle);
 		}
 		else {
 			kbArticle = oldKBArticle;
 		}
 
 		if (oldKBArticle.isPending()) {
-			status = WorkflowConstants.STATUS_PENDING;
+			kbArticle.setStatus(WorkflowConstants.STATUS_PENDING);
+		}
+		else {
+			kbArticle.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 
 		kbArticle.setModifiedDate(serviceContext.getModifiedDate(null));
@@ -847,9 +844,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			StringUtil.merge(AdminUtil.escapeSections(sections)));
 		kbArticle.setLatest(true);
 		kbArticle.setMain(false);
-		kbArticle.setStatus(status);
 
 		kbArticlePersistence.update(kbArticle);
+
+		if (oldKBArticle.isApproved()) {
+			oldKBArticle.setLatest(false);
+
+			kbArticlePersistence.update(oldKBArticle);
+		}
 
 		// Resources
 
