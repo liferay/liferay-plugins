@@ -178,8 +178,8 @@ $theme.include($bottom_include)
 #if ($show_edit_profile_button)
 	<script type="text/javascript">
 		AUI().use(
-			'liferay-logo-selector',
 			'aui-base',
+			'liferay-logo-selector',
 			function(A) {
 				editPortrait = new Liferay.LogoSelector(
 					{

@@ -74,6 +74,7 @@ $theme.include($body_top_include)
 			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
 	</div>
+
 	#parse ("$full_templates_path/footer.vm")
 </div>
 

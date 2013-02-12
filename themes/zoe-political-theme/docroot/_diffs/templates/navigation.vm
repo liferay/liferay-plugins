@@ -5,19 +5,19 @@
 
 	<ul>
 		#foreach ($nav_item in $nav_items)
-			#set ($navItemClass = "")
+			#set ($nav_item_class = "")
 
 			#if ($velocityCount == 1)
-				#set ($navItemClass = $navItemClass + " first")
+				#set ($nav_item_class = "$nav_item_class first")
 			#elseif (!$velocityHasNext)
-				#set ($navItemClass = $navItemClass + " last")
+				#set ($nav_item_class = "$nav_item_class last")
 			#end
 
 			#if ($nav_item.isSelected())
-				#set ($navItemClass = $navItemClass + " selected")
+				#set ($nav_item_class = "$nav_item_class selected")
 			#end
 
-			<li class="$navItemClass">
+			<li class="$nav_item_class">
 				<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $nav_item.getName()</span></a>
 
 				#if ($nav_item.hasChildren())
