@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
@@ -44,7 +43,6 @@ import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.privatemessaging.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
-import com.liferay.so.sites.util.SitesUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -70,13 +68,13 @@ public class PrivateMessagingUtil {
 		if (type.equals("site")) {
 			params.put("inherit", Boolean.TRUE);
 
-			List<Group> usersGroups = GroupLocalServiceUtil.getUserGroups(
+			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
 				userId, true);
 
 			params.put(
 				"usersGroups",
-				SitesUtil.filterGroups(
-					usersGroups,
+				_filterGroupIds(
+					groups,
 					PortletPropsValues.AUTOCOMPLETE_RECIPIENT_SITE_EXCLUDES));
 		}
 		else if (!type.equals("all")) {
@@ -299,6 +297,18 @@ public class PrivateMessagingUtil {
 		catch (NoSuchUserThreadException nsute) {
 			return false;
 		}
+	}
+
+	private static Long[] _filterGroupIds(List<Group> groups, String[] names) {
+		List<Long> groupIds = new ArrayList<Long>();
+
+		for (Group group : groups) {
+			if (!ArrayUtil.contains(names, group.getName())) {
+				groupIds.add(group.getGroupId());
+			}
+		}
+
+		return ArrayUtil.toArray(ArrayUtil.toLongArray(groupIds));
 	}
 
 }
