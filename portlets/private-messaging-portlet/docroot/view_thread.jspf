@@ -132,6 +132,8 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portlet.messageboards.model.MBMessage"
+		escapedModel="<%= true %>"
+		keyProperty="messageId"
 		modelVar="mbMessage"
 	>
 		<liferay-ui:search-container-column-text valign="top">
@@ -188,7 +190,7 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 				</span>
 
 				<div class="body">
-					<%= StringUtil.replace(HtmlUtil.escape(mbMessage.getBody()), "\n", "<br />") %>
+					<%= StringUtil.replace(mbMessage.getBody(), "\n", "<br />") %>
 
 					<c:if test="<%= mbMessage.isAttachments() %>">
 						<hr />
@@ -251,10 +253,7 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 
 <c:if test="<%= hasExistingRecipients %>">
 	<aui:layout cssClass="message-body-container">
-		<liferay-portlet:renderURL var="backToThreadURL" windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>
-
 		<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
-			<aui:input name="redirect" type="hidden" value="<%= backToThreadURL %>" />
 			<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 			<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
@@ -286,8 +285,10 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 </aui:layout>
 
 <aui:script>
+	<liferay-portlet:renderURL var="backToThreadURL" windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>
+
 	function <portlet:namespace />sendPrivateMessage() {
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage" />');
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage"><portlet:param name="redirect" value="<%= backToThreadURL %>" /></liferay-portlet:actionURL>');
 	}
 </aui:script>
 
