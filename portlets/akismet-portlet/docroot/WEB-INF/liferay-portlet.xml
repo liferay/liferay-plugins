@@ -22,7 +22,7 @@
 		<portlet-name>2</portlet-name>
 		<icon>/icons/moderation.png</icon>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.akismet.moderation.messaging.DeleteSpamListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.akismet.moderation.messaging.DeleteMBMessagesListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>1</simple-trigger-value>

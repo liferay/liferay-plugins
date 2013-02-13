@@ -35,9 +35,9 @@ import java.util.List;
 /**
  * @author Amos Fong
  */
-public class DeleteSpamListener extends BaseMessageListener {
+public class DeleteMBMessagesListener extends BaseMessageListener {
 
-	protected void deleteSpamMessages(long companyId)
+	protected void deleteSpam(long companyId)
 		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
@@ -70,7 +70,7 @@ public class DeleteSpamListener extends BaseMessageListener {
 		long[] companyIds = PortalUtil.getCompanyIds();
 
 		for (long companyId : companyIds) {
-			deleteSpamMessages(companyId);
+			deleteSpam(companyId);
 		}
 	}
 

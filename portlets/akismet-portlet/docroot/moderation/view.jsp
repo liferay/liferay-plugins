@@ -67,13 +67,13 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 
 	Liferay.provide(
 		window,
-		'<portlet:namespace />notSpam',
+		'<portlet:namespace />notSpamMBMessages',
 		function() {
 			var notSpamMBMessageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
 
 			if (notSpamMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-mark-the-selected-messages-not-spam") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />notSpamMBMessageIds.value = notSpamMBMessageIds;
-				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="markNotSpam"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
+				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="markNotSpamMBMessages"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']

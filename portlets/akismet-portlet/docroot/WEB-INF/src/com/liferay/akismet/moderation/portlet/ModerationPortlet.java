@@ -47,7 +47,7 @@ public class ModerationPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		checkPermission(themeDisplay.getScopeGroupId());
+		checkMBMessagePermission(themeDisplay.getScopeGroupId());
 
 		long[] mbMessageIds = ParamUtil.getLongValues(
 			actionRequest, "deleteMBMessageIds");
@@ -64,7 +64,7 @@ public class ModerationPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		checkPermission(themeDisplay.getScopeGroupId());
+		checkMBMessagePermission(themeDisplay.getScopeGroupId());
 
 		long[] mbMessageIds = ParamUtil.getLongValues(
 			actionRequest, "deleteMBMessageIds");
@@ -74,14 +74,14 @@ public class ModerationPortlet extends MVCPortlet {
 		}
 	}
 
-	public void markNotSpam(
+	public void markNotSpamMBMessages(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		checkPermission(themeDisplay.getScopeGroupId());
+		checkMBMessagePermission(themeDisplay.getScopeGroupId());
 
 		long[] mbMessageIds = ParamUtil.getLongValues(
 			actionRequest, "notSpamMBMessageIds");
@@ -98,7 +98,9 @@ public class ModerationPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void checkPermission(long scopeGroupId) throws PortalException {
+	protected void checkMBMessagePermission(long scopeGroupId)
+		throws PortalException {
+
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
