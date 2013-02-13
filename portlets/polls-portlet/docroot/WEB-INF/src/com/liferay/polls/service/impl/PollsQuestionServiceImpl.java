@@ -14,15 +14,15 @@
 
 package com.liferay.polls.service.impl;
 
+import com.liferay.polls.model.PollsChoice;
+import com.liferay.polls.model.PollsQuestion;
+import com.liferay.polls.service.base.PollsQuestionServiceBaseImpl;
+import com.liferay.polls.service.permission.PollsPermission;
+import com.liferay.polls.service.permission.PollsQuestionPermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.polls.model.PollsChoice;
-import com.liferay.portlet.polls.model.PollsQuestion;
-import com.liferay.portlet.polls.service.base.PollsQuestionServiceBaseImpl;
-import com.liferay.portlet.polls.service.permission.PollsPermission;
-import com.liferay.portlet.polls.service.permission.PollsQuestionPermission;
 
 import java.util.List;
 import java.util.Locale;

@@ -14,14 +14,14 @@
 
 package com.liferay.polls.service.impl;
 
+import com.liferay.polls.model.PollsVote;
+import com.liferay.polls.service.base.PollsVoteServiceBaseImpl;
+import com.liferay.polls.service.permission.PollsQuestionPermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.polls.model.PollsVote;
-import com.liferay.portlet.polls.service.base.PollsVoteServiceBaseImpl;
-import com.liferay.portlet.polls.service.permission.PollsQuestionPermission;
 
 /**
  * @author Brian Wing Shun Chan

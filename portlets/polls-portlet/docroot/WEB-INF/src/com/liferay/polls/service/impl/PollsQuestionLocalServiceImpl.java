@@ -14,6 +14,13 @@
 
 package com.liferay.polls.service.impl;
 
+import com.liferay.polls.PollsQuestionChoiceException;
+import com.liferay.polls.PollsQuestionDescriptionException;
+import com.liferay.polls.PollsQuestionExpirationDateException;
+import com.liferay.polls.PollsQuestionTitleException;
+import com.liferay.polls.model.PollsChoice;
+import com.liferay.polls.model.PollsQuestion;
+import com.liferay.polls.service.base.PollsQuestionLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -22,13 +29,6 @@ import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.polls.QuestionChoiceException;
-import com.liferay.portlet.polls.QuestionDescriptionException;
-import com.liferay.portlet.polls.QuestionExpirationDateException;
-import com.liferay.portlet.polls.QuestionTitleException;
-import com.liferay.portlet.polls.model.PollsChoice;
-import com.liferay.portlet.polls.model.PollsQuestion;
-import com.liferay.portlet.polls.service.base.PollsQuestionLocalServiceBaseImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -62,7 +62,7 @@ public class PollsQuestionLocalServiceImpl
 			expirationDate = PortalUtil.getDate(
 				expirationDateMonth, expirationDateDay, expirationDateYear,
 				expirationDateHour, expirationDateMinute, user.getTimeZone(),
-				QuestionExpirationDateException.class);
+				PollsQuestionExpirationDateException.class);
 		}
 
 		Date now = new Date();
@@ -145,7 +145,7 @@ public class PollsQuestionLocalServiceImpl
 		resourceLocalService.addResources(
 			question.getCompanyId(), question.getGroupId(),
 			question.getUserId(), PollsQuestion.class.getName(),
-			question.getQuestionId(), false, addGroupPermissions,
+			question.getPollsQuestionId(), false, addGroupPermissions,
 			addGuestPermissions);
 	}
 
@@ -157,7 +157,7 @@ public class PollsQuestionLocalServiceImpl
 		resourceLocalService.addModelResources(
 			question.getCompanyId(), question.getGroupId(),
 			question.getUserId(), PollsQuestion.class.getName(),
-			question.getQuestionId(), groupPermissions, guestPermissions);
+			question.getPollsQuestionId(), groupPermissions, guestPermissions);
 	}
 
 	public void deleteQuestion(long questionId)
@@ -180,22 +180,24 @@ public class PollsQuestionLocalServiceImpl
 
 		resourceLocalService.deleteResource(
 			question.getCompanyId(), PollsQuestion.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL, question.getQuestionId());
+			ResourceConstants.SCOPE_INDIVIDUAL, question.getPollsQuestionId());
 
 		// Choices
 
-		pollsChoicePersistence.removeByQuestionId(question.getQuestionId());
+		pollsChoicePersistence.removeByPollsQuestionId(
+			question.getPollsQuestionId());
 
 		// Votes
 
-		pollsVotePersistence.removeByQuestionId(question.getQuestionId());
+		pollsVotePersistence.removeByPollsQuestionId(
+			question.getPollsQuestionId());
 	}
 
 	public void deleteQuestions(long groupId)
 		throws PortalException, SystemException {
 
 		for (PollsQuestion question :
-				pollsQuestionPersistence.findByGroupId(groupId)) {
+			pollsQuestionPersistence.findByGroupId(groupId)) {
 
 			deleteQuestion(question);
 		}
@@ -242,7 +244,7 @@ public class PollsQuestionLocalServiceImpl
 			expirationDate = PortalUtil.getDate(
 				expirationDateMonth, expirationDateDay, expirationDateYear,
 				expirationDateHour, expirationDateMinute, user.getTimeZone(),
-				QuestionExpirationDateException.class);
+				PollsQuestionExpirationDateException.class);
 		}
 
 		validate(titleMap, descriptionMap, choices);
@@ -260,18 +262,18 @@ public class PollsQuestionLocalServiceImpl
 		// Choices
 
 		if (choices != null) {
-			int oldChoicesCount = pollsChoicePersistence.countByQuestionId(
+			int oldChoicesCount = pollsChoicePersistence.countByPollsQuestionId(
 				questionId);
 
 			if (oldChoicesCount > choices.size()) {
-				throw new QuestionChoiceException();
+				throw new PollsQuestionChoiceException();
 			}
 
 			for (PollsChoice choice : choices) {
 				String choiceName = choice.getName();
 				String choiceDescription = choice.getDescription();
 
-				choice = pollsChoicePersistence.fetchByQ_N(
+				choice = pollsChoicePersistence.fetchByPQI_N(
 					questionId, choiceName);
 
 				if (choice == null) {
@@ -281,7 +283,7 @@ public class PollsQuestionLocalServiceImpl
 				}
 				else {
 					pollsChoiceLocalService.updateChoice(
-						choice.getChoiceId(), questionId, choiceName,
+						choice.getPollsChoiceId(), questionId, choiceName,
 						choiceDescription);
 				}
 			}
@@ -300,17 +302,17 @@ public class PollsQuestionLocalServiceImpl
 		String title = titleMap.get(locale);
 
 		if (Validator.isNull(title)) {
-			throw new QuestionTitleException();
+			throw new PollsQuestionTitleException();
 		}
 
 		String description = descriptionMap.get(locale);
 
 		if (Validator.isNull(description)) {
-			throw new QuestionDescriptionException();
+			throw new PollsQuestionDescriptionException();
 		}
 
 		if ((choices != null) && (choices.size() < 2)) {
-			throw new QuestionChoiceException();
+			throw new PollsQuestionChoiceException();
 		}
 
 		if (choices != null) {
@@ -318,7 +320,7 @@ public class PollsQuestionLocalServiceImpl
 				String choiceDescription = choice.getDescription(locale);
 
 				if (Validator.isNull(choiceDescription)) {
-					throw new QuestionChoiceException();
+					throw new PollsQuestionChoiceException();
 				}
 			}
 		}

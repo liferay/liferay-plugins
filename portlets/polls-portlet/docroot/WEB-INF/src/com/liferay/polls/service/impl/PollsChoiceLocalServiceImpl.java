@@ -14,13 +14,13 @@
 
 package com.liferay.polls.service.impl;
 
+import com.liferay.polls.PollsQuestionChoiceException;
+import com.liferay.polls.model.PollsChoice;
+import com.liferay.polls.service.base.PollsChoiceLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.polls.QuestionChoiceException;
-import com.liferay.portlet.polls.model.PollsChoice;
-import com.liferay.portlet.polls.service.base.PollsChoiceLocalServiceBaseImpl;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class PollsChoiceLocalServiceImpl
 		PollsChoice choice = pollsChoicePersistence.create(choiceId);
 
 		choice.setUuid(serviceContext.getUuid());
-		choice.setQuestionId(questionId);
+		choice.setPollsQuestionId(questionId);
 		choice.setName(name);
 		choice.setDescription(description);
 
@@ -62,11 +62,11 @@ public class PollsChoiceLocalServiceImpl
 	public List<PollsChoice> getChoices(long questionId)
 		throws SystemException {
 
-		return pollsChoicePersistence.findByQuestionId(questionId);
+		return pollsChoicePersistence.findByPollsQuestionId(questionId);
 	}
 
 	public int getChoicesCount(long questionId) throws SystemException {
-		return pollsChoicePersistence.countByQuestionId(questionId);
+		return pollsChoicePersistence.countByPollsQuestionId(questionId);
 	}
 
 	public PollsChoice updateChoice(
@@ -79,7 +79,7 @@ public class PollsChoiceLocalServiceImpl
 
 		PollsChoice choice = pollsChoicePersistence.findByPrimaryKey(choiceId);
 
-		choice.setQuestionId(questionId);
+		choice.setPollsQuestionId(questionId);
 		choice.setName(name);
 		choice.setDescription(description);
 
@@ -92,7 +92,7 @@ public class PollsChoiceLocalServiceImpl
 		throws PortalException {
 
 		if (Validator.isNull(name) || Validator.isNull(description)) {
-			throw new QuestionChoiceException();
+			throw new PollsQuestionChoiceException();
 		}
 	}
 
