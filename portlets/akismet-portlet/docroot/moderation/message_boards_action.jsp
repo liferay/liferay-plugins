@@ -34,7 +34,7 @@ long messageBoardsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), P
 
 	<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= viewURL %>" />
 
-	<portlet:actionURL name="markNotSpam" var="markAsHamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+	<portlet:actionURL name="markNotSpamMBMessages" var="markAsHamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 		<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 		<portlet:param name="notSpamMBMessageIds" value="<%= String.valueOf(message.getMessageId()) %>" />
 	</portlet:actionURL>

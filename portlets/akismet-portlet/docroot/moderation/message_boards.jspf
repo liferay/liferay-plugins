@@ -31,7 +31,7 @@
 
 		<c:if test="<%= !results.isEmpty() %>">
 			<aui:button-row>
-				<aui:button onClick='<%= renderResponse.getNamespace() + "notSpam();" %>' value="not-spam" />
+				<aui:button onClick='<%= renderResponse.getNamespace() + "notSpamMBMessages();" %>' value="not-spam" />
 
 				<aui:button onClick='<%= renderResponse.getNamespace() + "deleteMBMessages(false);" %>' value="delete" />
 			</aui:button-row>

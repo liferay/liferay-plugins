@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
@@ -62,6 +63,28 @@ public class AkismetUtil {
 				(PortletPropsValues.AKISMET_RETAIN_SPAM_TIME * Time.DAY));
 	}
 
+	public static boolean hasRequiredInfo(ServiceContext serviceContext) {
+		Map<String, String> headers = serviceContext.getHeaders();
+
+		if (headers == null) {
+			return false;
+		}
+
+		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
+
+		if (Validator.isNull(userAgent)) {
+			return false;
+		}
+
+		String userIP = serviceContext.getRemoteAddr();
+
+		if (Validator.isNull(userIP)) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public static boolean isDiscussionsEnabled(long companyId)
 		throws SystemException {
 
@@ -91,17 +114,17 @@ public class AkismetUtil {
 	}
 
 	public static boolean isSpam(
-			long companyId, String ipAddress, String userAgent, String referrer,
-			String permalink, String commentType, String userName,
-			String emailAddress, String content)
+			long userId, String content, AkismetData akismetData)
 		throws PortalException, SystemException {
+
+		User user = UserLocalServiceUtil.getUser(userId);
 
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(Http.HTTP_WITH_SLASH);
 		sb.append(
 			PrefsPortletPropsUtil.getString(
-				companyId, PortletPropsKeys.AKISMET_API_KEY));
+				user.getCompanyId(), PortletPropsKeys.AKISMET_API_KEY));
 		sb.append(StringPool.PERIOD);
 		sb.append(AkismetConstants.URL_REST);
 		sb.append(AkismetConstants.PATH_CHECK_SPAM);
@@ -109,8 +132,10 @@ public class AkismetUtil {
 		String location = sb.toString();
 
 		String response = _sendRequest(
-			location, companyId, ipAddress, userAgent, referrer, permalink,
-			commentType, userName, emailAddress, content);
+			location, user.getCompanyId(), akismetData.getUserIP(),
+			akismetData.getUserAgent(), akismetData.getReferrer(),
+			akismetData.getPermalink(), akismetData.getType(),
+			user.getFullName(), user.getEmailAddress(), content);
 
 		if (Validator.isNull(response) || response.equals("invalid")) {
 			_log.error("There was an issue with Akismet comment validation");
@@ -119,14 +144,14 @@ public class AkismetUtil {
 		}
 		else if (response.equals("true")) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Spam detected: " + permalink);
+				_log.debug("Spam detected: " + akismetData.getPermalink());
 			}
 
 			return true;
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Passed: " + permalink);
+			_log.debug("Passed: " + akismetData.getPermalink());
 		}
 
 		return false;
