@@ -12,17 +12,17 @@
  * details.
  */
 
-package com.liferay.portlet.polls.service.persistence;
+package com.liferay.polls.service.persistence;
 
+import com.liferay.polls.NoSuchChoiceException;
+import com.liferay.polls.model.PollsChoice;
+import com.liferay.polls.model.impl.PollsChoiceImpl;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.portlet.polls.NoSuchChoiceException;
-import com.liferay.portlet.polls.model.PollsChoice;
-import com.liferay.portlet.polls.model.impl.PollsChoiceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.List;
