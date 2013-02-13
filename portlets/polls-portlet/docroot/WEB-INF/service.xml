@@ -2,7 +2,7 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 
 <service-builder package-path="com.liferay.polls">
-	<author>Juan Fern·ndez</author>
+	<author>Juan Fern√°ndez</author>
 	<namespace>Polls</namespace>
 	<entity name="PollsChoice" uuid="true" local-service="true" remote-service="true">
 
