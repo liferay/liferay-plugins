@@ -14,8 +14,8 @@
 
 package com.liferay.polls.model.impl;
 
+import com.liferay.polls.service.PollsVoteLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portlet.polls.service.PollsVoteLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -26,7 +26,8 @@ public class PollsChoiceImpl extends PollsChoiceBaseImpl {
 	}
 
 	public int getVotesCount() throws SystemException {
-		return PollsVoteLocalServiceUtil.getChoiceVotesCount(getChoiceId());
+		return PollsVoteLocalServiceUtil.getChoiceVotesCount(
+			getPollsChoiceId());
 	}
 
 }

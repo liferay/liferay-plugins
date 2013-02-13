@@ -14,11 +14,11 @@
 
 package com.liferay.polls.model.impl;
 
+import com.liferay.polls.model.PollsChoice;
+import com.liferay.polls.service.PollsChoiceLocalServiceUtil;
+import com.liferay.polls.service.PollsVoteLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.polls.model.PollsChoice;
-import com.liferay.portlet.polls.service.PollsChoiceLocalServiceUtil;
-import com.liferay.portlet.polls.service.PollsVoteLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -32,11 +32,12 @@ public class PollsQuestionImpl extends PollsQuestionBaseImpl {
 	}
 
 	public List<PollsChoice> getChoices() throws SystemException {
-		return PollsChoiceLocalServiceUtil.getChoices(getQuestionId());
+		return PollsChoiceLocalServiceUtil.getChoices(getPollsQuestionId());
 	}
 
 	public int getVotesCount() throws SystemException {
-		return PollsVoteLocalServiceUtil.getQuestionVotesCount(getQuestionId());
+		return PollsVoteLocalServiceUtil.getQuestionVotesCount(
+			getPollsQuestionId());
 	}
 
 	public boolean isExpired() {
