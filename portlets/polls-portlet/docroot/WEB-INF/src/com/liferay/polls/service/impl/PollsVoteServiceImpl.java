@@ -14,10 +14,38 @@
 
 package com.liferay.polls.service.impl;
 
-import com.liferay.polls.service.base.PollsVoteServiceBaseImpl;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.polls.model.PollsVote;
+import com.liferay.portlet.polls.service.base.PollsVoteServiceBaseImpl;
+import com.liferay.portlet.polls.service.permission.PollsQuestionPermission;
 
 /**
- * @author Juan Fernández
+ * @author Brian Wing Shun Chan
  */
 public class PollsVoteServiceImpl extends PollsVoteServiceBaseImpl {
+
+	public PollsVote addVote(
+			long questionId, long choiceId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		long userId = 0;
+
+		try {
+			userId = getUserId();
+		}
+		catch (PrincipalException pe) {
+			userId = counterLocalService.increment();
+		}
+
+		PollsQuestionPermission.check(
+			getPermissionChecker(), questionId, ActionKeys.ADD_VOTE);
+
+		return pollsVoteLocalService.addVote(
+			userId, questionId, choiceId, serviceContext);
+	}
+
 }
