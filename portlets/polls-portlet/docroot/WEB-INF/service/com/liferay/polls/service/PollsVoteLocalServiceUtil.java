@@ -25,7 +25,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fern√°ndez
  * @see PollsVoteLocalService
  * @see com.liferay.polls.service.base.PollsVoteLocalServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsVoteLocalServiceImpl
@@ -257,6 +257,46 @@ public class PollsVoteLocalServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static com.liferay.polls.model.PollsVote addPollsVote(long userId,
+		long pollsQuestionId, long pollsChoiceId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addPollsVote(userId, pollsQuestionId, pollsChoiceId,
+			serviceContext);
+	}
+
+	public static java.util.List<com.liferay.polls.model.PollsVote> getPollsChoicePollsVotes(
+		long pollsChoiceId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsChoicePollsVotes(pollsChoiceId, start, end);
+	}
+
+	public static int getPollsChoicePollsVotesCount(long pollsChoiceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsChoicePollsVotesCount(pollsChoiceId);
+	}
+
+	public static java.util.List<com.liferay.polls.model.PollsVote> getPollsQuestionPollsVotes(
+		long pollsQuestionId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getPollsQuestionPollsVotes(pollsQuestionId, start, end);
+	}
+
+	public static int getPollsQuestionPollsVotesCount(long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsQuestionPollsVotesCount(pollsQuestionId);
+	}
+
+	public static com.liferay.polls.model.PollsVote getPollsVote(
+		long pollsQuestionId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsVote(pollsQuestionId, userId);
 	}
 
 	public static void clearService() {

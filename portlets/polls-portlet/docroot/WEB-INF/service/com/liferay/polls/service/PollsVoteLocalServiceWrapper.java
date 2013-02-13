@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * This class is a wrapper for {@link PollsVoteLocalService}.
  * </p>
  *
- * @author    Juan Fernï¿½ndez
+ * @author    Juan Fern√°ndez
  * @see       PollsVoteLocalService
  * @generated
  */
@@ -248,6 +248,46 @@ public class PollsVoteLocalServiceWrapper implements PollsVoteLocalService,
 		throws java.lang.Throwable {
 		return _pollsVoteLocalService.invokeMethod(name, parameterTypes,
 			arguments);
+	}
+
+	public com.liferay.polls.model.PollsVote addPollsVote(long userId,
+		long pollsQuestionId, long pollsChoiceId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsVoteLocalService.addPollsVote(userId, pollsQuestionId,
+			pollsChoiceId, serviceContext);
+	}
+
+	public java.util.List<com.liferay.polls.model.PollsVote> getPollsChoicePollsVotes(
+		long pollsChoiceId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsVoteLocalService.getPollsChoicePollsVotes(pollsChoiceId,
+			start, end);
+	}
+
+	public int getPollsChoicePollsVotesCount(long pollsChoiceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsVoteLocalService.getPollsChoicePollsVotesCount(pollsChoiceId);
+	}
+
+	public java.util.List<com.liferay.polls.model.PollsVote> getPollsQuestionPollsVotes(
+		long pollsQuestionId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsVoteLocalService.getPollsQuestionPollsVotes(pollsQuestionId,
+			start, end);
+	}
+
+	public int getPollsQuestionPollsVotesCount(long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsVoteLocalService.getPollsQuestionPollsVotesCount(pollsQuestionId);
+	}
+
+	public com.liferay.polls.model.PollsVote getPollsVote(
+		long pollsQuestionId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsVoteLocalService.getPollsVote(pollsQuestionId, userId);
 	}
 
 	/**

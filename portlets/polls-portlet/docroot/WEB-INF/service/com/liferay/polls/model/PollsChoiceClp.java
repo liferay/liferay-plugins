@@ -35,7 +35,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 	implements PollsChoice {
@@ -241,6 +241,10 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 				currentThread.setContextClassLoader(contextClassLoader);
 			}
 		}
+	}
+
+	public int getPollsVotesCount() {
+		throw new UnsupportedOperationException();
 	}
 
 	public BaseModel<?> getPollsChoiceRemoteModel() {

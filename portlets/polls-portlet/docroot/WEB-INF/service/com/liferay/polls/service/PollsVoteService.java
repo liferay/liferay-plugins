@@ -30,7 +30,7 @@ import com.liferay.portal.service.InvokableService;
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fern√°ndez
  * @see PollsVoteServiceUtil
  * @see com.liferay.polls.service.base.PollsVoteServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsVoteServiceImpl
@@ -64,4 +64,10 @@ public interface PollsVoteService extends BaseService, InvokableService {
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public com.liferay.polls.model.PollsVote addPollsVote(
+		long pollsQuestionId, long pollsChoiceId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

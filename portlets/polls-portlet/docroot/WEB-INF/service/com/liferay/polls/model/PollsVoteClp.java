@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote {
 	public PollsVoteClp() {
@@ -213,6 +213,10 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 
 	public void setVoteDate(Date voteDate) {
 		_voteDate = voteDate;
+	}
+
+	public com.liferay.polls.model.PollsChoice getPollsChoice() {
+		throw new UnsupportedOperationException();
 	}
 
 	public BaseModel<?> getPollsVoteRemoteModel() {

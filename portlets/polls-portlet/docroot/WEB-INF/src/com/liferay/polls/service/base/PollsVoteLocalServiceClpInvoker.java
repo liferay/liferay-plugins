@@ -98,13 +98,40 @@ public class PollsVoteLocalServiceClpInvoker {
 				"com.liferay.polls.model.PollsVote"
 			};
 
-		_methodName45 = "getBeanIdentifier";
+		_methodName47 = "getBeanIdentifier";
 
-		_methodParameterTypes45 = new String[] {  };
+		_methodParameterTypes47 = new String[] {  };
 
-		_methodName46 = "setBeanIdentifier";
+		_methodName48 = "setBeanIdentifier";
 
-		_methodParameterTypes46 = new String[] { "java.lang.String" };
+		_methodParameterTypes48 = new String[] { "java.lang.String" };
+
+		_methodName53 = "addPollsVote";
+
+		_methodParameterTypes53 = new String[] {
+				"long", "long", "long",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName54 = "getPollsChoicePollsVotes";
+
+		_methodParameterTypes54 = new String[] { "long", "int", "int" };
+
+		_methodName55 = "getPollsChoicePollsVotesCount";
+
+		_methodParameterTypes55 = new String[] { "long" };
+
+		_methodName56 = "getPollsQuestionPollsVotes";
+
+		_methodParameterTypes56 = new String[] { "long", "int", "int" };
+
+		_methodName57 = "getPollsQuestionPollsVotesCount";
+
+		_methodParameterTypes57 = new String[] { "long" };
+
+		_methodName58 = "getPollsVote";
+
+		_methodParameterTypes58 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -190,16 +217,54 @@ public class PollsVoteLocalServiceClpInvoker {
 			return PollsVoteLocalServiceUtil.updatePollsVote((com.liferay.polls.model.PollsVote)arguments[0]);
 		}
 
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			return PollsVoteLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			PollsVoteLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
+		}
+
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+			return PollsVoteLocalServiceUtil.addPollsVote(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[3]);
+		}
+
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+			return PollsVoteLocalServiceUtil.getPollsChoicePollsVotes(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+			return PollsVoteLocalServiceUtil.getPollsChoicePollsVotesCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return PollsVoteLocalServiceUtil.getPollsQuestionPollsVotes(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+			return PollsVoteLocalServiceUtil.getPollsQuestionPollsVotesCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+			return PollsVoteLocalServiceUtil.getPollsVote(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -235,8 +300,20 @@ public class PollsVoteLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
-	private String _methodName46;
-	private String[] _methodParameterTypes46;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 }

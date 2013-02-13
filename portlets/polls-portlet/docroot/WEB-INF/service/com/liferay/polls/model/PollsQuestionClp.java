@@ -38,7 +38,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 	implements PollsQuestion {
@@ -444,6 +444,24 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setLastVoteDate(Date lastVoteDate) {
 		_lastVoteDate = lastVoteDate;
+	}
+
+	public java.util.List<com.liferay.polls.model.PollsChoice> getPollsChoices() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isExpired() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isExpired(
+		com.liferay.portal.service.ServiceContext serviceContext,
+		java.util.Date defaultCreateDate) {
+		throw new UnsupportedOperationException();
+	}
+
+	public int getPollsVotesCount() {
+		throw new UnsupportedOperationException();
 	}
 
 	public BaseModel<?> getPollsQuestionRemoteModel() {

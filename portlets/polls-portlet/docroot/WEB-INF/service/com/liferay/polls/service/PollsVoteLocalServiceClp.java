@@ -17,7 +17,7 @@ package com.liferay.polls.service;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * @author Juan Fern�ndez
+ * @author Juan Fernández
  */
 public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 	public PollsVoteLocalServiceClp(InvokableLocalService invokableLocalService) {
@@ -105,6 +105,33 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		_methodName16 = "setBeanIdentifier";
 
 		_methodParameterTypes16 = new String[] { "java.lang.String" };
+
+		_methodName18 = "addPollsVote";
+
+		_methodParameterTypes18 = new String[] {
+				"long", "long", "long",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName19 = "getPollsChoicePollsVotes";
+
+		_methodParameterTypes19 = new String[] { "long", "int", "int" };
+
+		_methodName20 = "getPollsChoicePollsVotesCount";
+
+		_methodParameterTypes20 = new String[] { "long" };
+
+		_methodName21 = "getPollsQuestionPollsVotes";
+
+		_methodParameterTypes21 = new String[] { "long", "int", "int" };
+
+		_methodName22 = "getPollsQuestionPollsVotesCount";
+
+		_methodParameterTypes22 = new String[] { "long" };
+
+		_methodName23 = "getPollsVote";
+
+		_methodParameterTypes23 = new String[] { "long", "long" };
 	}
 
 	public com.liferay.polls.model.PollsVote addPollsVote(
@@ -600,6 +627,195 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	public com.liferay.polls.model.PollsVote addPollsVote(long userId,
+		long pollsQuestionId, long pollsChoiceId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
+					new Object[] {
+						userId,
+						
+					pollsQuestionId,
+						
+					pollsChoiceId,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.polls.model.PollsVote> getPollsChoicePollsVotes(
+		long pollsChoiceId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] { pollsChoiceId, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.polls.model.PollsVote>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getPollsChoicePollsVotesCount(long pollsChoiceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { pollsChoiceId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public java.util.List<com.liferay.polls.model.PollsVote> getPollsQuestionPollsVotes(
+		long pollsQuestionId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] { pollsQuestionId, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.polls.model.PollsVote>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getPollsQuestionPollsVotesCount(long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] { pollsQuestionId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public com.liferay.polls.model.PollsVote getPollsVote(
+		long pollsQuestionId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { pollsQuestionId, userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -635,4 +851,16 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
 }

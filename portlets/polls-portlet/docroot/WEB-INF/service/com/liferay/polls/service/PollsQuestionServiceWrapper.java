@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * This class is a wrapper for {@link PollsQuestionService}.
  * </p>
  *
- * @author    Juan Fernï¿½ndez
+ * @author    Juan Fern√°ndez
  * @see       PollsQuestionService
  * @generated
  */
@@ -55,6 +55,51 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 		throws java.lang.Throwable {
 		return _pollsQuestionService.invokeMethod(name, parameterTypes,
 			arguments);
+	}
+
+	public com.liferay.polls.model.PollsQuestion addPollsQuestion(
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+		java.util.List<com.liferay.polls.model.PollsChoice> pollsChoices,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionService.addPollsQuestion(titleMap, descriptionMap,
+			expirationDateMonth, expirationDateDay, expirationDateYear,
+			expirationDateHour, expirationDateMinute, neverExpire,
+			pollsChoices, serviceContext);
+	}
+
+	public com.liferay.polls.model.PollsQuestion deletePollsQuestion(
+		long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionService.deletePollsQuestion(pollsQuestionId);
+	}
+
+	public com.liferay.polls.model.PollsQuestion getPollsQuestion(
+		long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionService.getPollsQuestion(pollsQuestionId);
+	}
+
+	public com.liferay.polls.model.PollsQuestion updatePollsQuestion(
+		long pollsQuestionId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+		java.util.List<com.liferay.polls.model.PollsChoice> pollsChoices,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionService.updatePollsQuestion(pollsQuestionId,
+			titleMap, descriptionMap, expirationDateMonth, expirationDateDay,
+			expirationDateYear, expirationDateHour, expirationDateMinute,
+			neverExpire, pollsChoices, serviceContext);
 	}
 
 	/**

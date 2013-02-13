@@ -19,7 +19,7 @@ import com.liferay.portal.model.PersistedModel;
 /**
  * The extended model interface for the PollsChoice service. Represents a row in the &quot;Polls_PollsChoice&quot; database table, with each column mapped to a property of this class.
  *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fern√°ndez
  * @see PollsChoiceModel
  * @see com.liferay.polls.model.impl.PollsChoiceImpl
  * @see com.liferay.polls.model.impl.PollsChoiceModelImpl
@@ -31,4 +31,6 @@ public interface PollsChoice extends PollsChoiceModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.polls.model.impl.PollsChoiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public int getPollsVotesCount()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

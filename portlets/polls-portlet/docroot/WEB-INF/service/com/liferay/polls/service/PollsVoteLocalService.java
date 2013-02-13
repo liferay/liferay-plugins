@@ -30,7 +30,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fern√°ndez
  * @see PollsVoteLocalServiceUtil
  * @see com.liferay.polls.service.base.PollsVoteLocalServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsVoteLocalServiceImpl
@@ -230,4 +230,34 @@ public interface PollsVoteLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public com.liferay.polls.model.PollsVote addPollsVote(long userId,
+		long pollsQuestionId, long pollsChoiceId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.polls.model.PollsVote> getPollsChoicePollsVotes(
+		long pollsChoiceId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPollsChoicePollsVotesCount(long pollsChoiceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.polls.model.PollsVote> getPollsQuestionPollsVotes(
+		long pollsQuestionId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPollsQuestionPollsVotesCount(long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.polls.model.PollsVote getPollsVote(
+		long pollsQuestionId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

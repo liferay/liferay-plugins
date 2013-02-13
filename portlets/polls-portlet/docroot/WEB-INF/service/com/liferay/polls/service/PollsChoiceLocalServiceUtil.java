@@ -25,7 +25,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fern√°ndez
  * @see PollsChoiceLocalService
  * @see com.liferay.polls.service.base.PollsChoiceLocalServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsChoiceLocalServiceImpl
@@ -257,6 +257,38 @@ public class PollsChoiceLocalServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static com.liferay.polls.model.PollsChoice addPollsChoice(
+		long pollsQuestionId, java.lang.String name,
+		java.lang.String description,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addPollsChoice(pollsQuestionId, name, description,
+			serviceContext);
+	}
+
+	public static java.util.List<com.liferay.polls.model.PollsChoice> getPollsChoices(
+		long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsChoices(pollsQuestionId);
+	}
+
+	public static int getPollsChoicesCount(long pollsQuestionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsChoicesCount(pollsQuestionId);
+	}
+
+	public static com.liferay.polls.model.PollsChoice updatePollsChoice(
+		long pollsChoiceId, long pollsQuestionId, java.lang.String name,
+		java.lang.String description)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updatePollsChoice(pollsChoiceId, pollsQuestionId, name,
+			description);
 	}
 
 	public static void clearService() {

@@ -25,7 +25,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Juan Fernï¿½ndez
+ * @author Juan Fern√°ndez
  * @see PollsQuestionLocalService
  * @see com.liferay.polls.service.base.PollsQuestionLocalServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsQuestionLocalServiceImpl
@@ -82,11 +82,13 @@ public class PollsQuestionLocalServiceUtil {
 	*
 	* @param pollsQuestion the polls question
 	* @return the polls question that was removed
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.polls.model.PollsQuestion deletePollsQuestion(
 		com.liferay.polls.model.PollsQuestion pollsQuestion)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deletePollsQuestion(pollsQuestion);
 	}
 
@@ -273,6 +275,72 @@ public class PollsQuestionLocalServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static com.liferay.polls.model.PollsQuestion addPollsQuestion(
+		long userId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+		java.util.List<com.liferay.polls.model.PollsChoice> pollsChoices,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addPollsQuestion(userId, titleMap, descriptionMap,
+			expirationDateMonth, expirationDateDay, expirationDateYear,
+			expirationDateHour, expirationDateMinute, neverExpire,
+			pollsChoices, serviceContext);
+	}
+
+	public static void addPollsQuestionResources(long pollsQuestionId,
+		boolean addGroupPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.addPollsQuestionResources(pollsQuestionId, addGroupPermissions,
+			addGuestPermissions);
+	}
+
+	public static void deletePollsQuestions(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deletePollsQuestions(groupId);
+	}
+
+	public static java.util.List<com.liferay.polls.model.PollsQuestion> getPollsQuestions(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsQuestions(groupId);
+	}
+
+	public static java.util.List<com.liferay.polls.model.PollsQuestion> getPollsQuestions(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsQuestions(groupId, start, end);
+	}
+
+	public static int getPollsQuestionsCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPollsQuestionsCount(groupId);
+	}
+
+	public static com.liferay.polls.model.PollsQuestion updatePollsQuestion(
+		long userId, long pollsQuestionId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+		java.util.List<com.liferay.polls.model.PollsChoice> pollsChoices,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updatePollsQuestion(userId, pollsQuestionId, titleMap,
+			descriptionMap, expirationDateMonth, expirationDateDay,
+			expirationDateYear, expirationDateHour, expirationDateMinute,
+			neverExpire, pollsChoices, serviceContext);
 	}
 
 	public static void clearService() {

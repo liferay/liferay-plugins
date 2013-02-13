@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * This class is a wrapper for {@link PollsQuestionLocalService}.
  * </p>
  *
- * @author    Juan Fernï¿½ndez
+ * @author    Juan Fern√°ndez
  * @see       PollsQuestionLocalService
  * @generated
  */
@@ -77,11 +77,13 @@ public class PollsQuestionLocalServiceWrapper
 	*
 	* @param pollsQuestion the polls question
 	* @return the polls question that was removed
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.polls.model.PollsQuestion deletePollsQuestion(
 		com.liferay.polls.model.PollsQuestion pollsQuestion)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _pollsQuestionLocalService.deletePollsQuestion(pollsQuestion);
 	}
 
@@ -270,6 +272,68 @@ public class PollsQuestionLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _pollsQuestionLocalService.invokeMethod(name, parameterTypes,
 			arguments);
+	}
+
+	public com.liferay.polls.model.PollsQuestion addPollsQuestion(long userId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+		java.util.List<com.liferay.polls.model.PollsChoice> pollsChoices,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.addPollsQuestion(userId, titleMap,
+			descriptionMap, expirationDateMonth, expirationDateDay,
+			expirationDateYear, expirationDateHour, expirationDateMinute,
+			neverExpire, pollsChoices, serviceContext);
+	}
+
+	public void addPollsQuestionResources(long pollsQuestionId,
+		boolean addGroupPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_pollsQuestionLocalService.addPollsQuestionResources(pollsQuestionId,
+			addGroupPermissions, addGuestPermissions);
+	}
+
+	public void deletePollsQuestions(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_pollsQuestionLocalService.deletePollsQuestions(groupId);
+	}
+
+	public java.util.List<com.liferay.polls.model.PollsQuestion> getPollsQuestions(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.getPollsQuestions(groupId);
+	}
+
+	public java.util.List<com.liferay.polls.model.PollsQuestion> getPollsQuestions(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.getPollsQuestions(groupId, start, end);
+	}
+
+	public int getPollsQuestionsCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.getPollsQuestionsCount(groupId);
+	}
+
+	public com.liferay.polls.model.PollsQuestion updatePollsQuestion(
+		long userId, long pollsQuestionId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+		java.util.List<com.liferay.polls.model.PollsChoice> pollsChoices,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.updatePollsQuestion(userId,
+			pollsQuestionId, titleMap, descriptionMap, expirationDateMonth,
+			expirationDateDay, expirationDateYear, expirationDateHour,
+			expirationDateMinute, neverExpire, pollsChoices, serviceContext);
 	}
 
 	/**

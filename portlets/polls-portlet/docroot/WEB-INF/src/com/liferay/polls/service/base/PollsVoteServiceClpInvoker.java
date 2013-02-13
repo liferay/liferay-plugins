@@ -23,34 +23,49 @@ import java.util.Arrays;
  */
 public class PollsVoteServiceClpInvoker {
 	public PollsVoteServiceClpInvoker() {
-		_methodName30 = "getBeanIdentifier";
+		_methodName32 = "getBeanIdentifier";
 
-		_methodParameterTypes30 = new String[] {  };
+		_methodParameterTypes32 = new String[] {  };
 
-		_methodName31 = "setBeanIdentifier";
+		_methodName33 = "setBeanIdentifier";
 
-		_methodParameterTypes31 = new String[] { "java.lang.String" };
+		_methodParameterTypes33 = new String[] { "java.lang.String" };
+
+		_methodName38 = "addPollsVote";
+
+		_methodParameterTypes38 = new String[] {
+				"long", "long", "com.liferay.portal.service.ServiceContext"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return PollsVoteServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			PollsVoteServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
+		if (_methodName38.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
+			return PollsVoteServiceUtil.addPollsVote(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[2]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
+	private String _methodName33;
+	private String[] _methodParameterTypes33;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
 }
