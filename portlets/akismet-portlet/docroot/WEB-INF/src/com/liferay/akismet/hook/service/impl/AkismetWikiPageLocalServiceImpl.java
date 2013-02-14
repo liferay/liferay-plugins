@@ -73,6 +73,7 @@ public class AkismetWikiPageLocalServiceImpl
 		}
 
 		String akismetContent = page.getTitle() + "\n\n" + page.getContent();
+
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		if (AkismetUtil.isSpam(userId, akismetContent, akismetData)) {
@@ -109,6 +110,7 @@ public class AkismetWikiPageLocalServiceImpl
 		}
 
 		String akismetContent = page.getTitle() + "\n\n" + page.getContent();
+
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		if (AkismetUtil.isSpam(userId, akismetContent, akismetData)) {

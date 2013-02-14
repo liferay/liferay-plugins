@@ -43,7 +43,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 	%>
 
 	<div class="portlet-msg-info">
-		<%= LanguageUtil.format(pageContext, "another-user-has-made-changes-to-the-following-pages-and-the-approved-changes-were-not-merged-into-the-latest-version-x", wikiPageLinks, false) %>
+		<%= LanguageUtil.format(pageContext, "another-user-made-changes-to-the-following-pages-and-the-approved-changes-were-not-merged-into-the-latest-version-x", wikiPageLinks, false) %>
 	</div>
 </c:if>
 

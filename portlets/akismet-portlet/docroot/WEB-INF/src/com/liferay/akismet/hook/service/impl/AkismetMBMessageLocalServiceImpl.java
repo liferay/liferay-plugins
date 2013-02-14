@@ -80,6 +80,7 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 
 		String content = subject + "\n\n" + body;
+
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		if (AkismetUtil.isSpam(userId, content, akismetData)) {
@@ -120,6 +121,7 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 
 		String content = subject + "\n\n" + body;
+
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		if (AkismetUtil.isSpam(userId, content, akismetData)) {
@@ -159,6 +161,7 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 
 		String content = subject + "\n\n" + body;
+
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		if (AkismetUtil.isSpam(userId, content, akismetData)) {
@@ -220,6 +223,7 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 
 		String content = subject + "\n\n" + body;
+
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		if (AkismetUtil.isSpam(userId, content, akismetData)) {
@@ -259,6 +263,7 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 
 		String content = subject + "\n\n" + body;
+
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		if (AkismetUtil.isSpam(userId, content, akismetData)) {

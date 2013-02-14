@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -46,6 +47,7 @@ import com.liferay.portlet.messageboards.RequiredMessageException;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.wiki.NoSuchPageException;
+import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 import com.liferay.portlet.wiki.util.comparator.PageVersionComparator;
@@ -181,16 +183,17 @@ public class ModerationPortlet extends MVCPortlet {
 						actionRequest, PortletKeys.WIKI, plid,
 						PortletRequest.RENDER_PHASE);
 
+				WikiNode wikiNode = wikiPage.getNode();
+
 				liferayPortletURL.setParameter("struts_action", "/wiki/view");
-				liferayPortletURL.setParameter(
-					"nodeName", wikiPage.getNode().getName());
+				liferayPortletURL.setParameter("nodeName", wikiNode.getName());
 				liferayPortletURL.setParameter("title", wikiPage.getTitle());
 				liferayPortletURL.setParameter(
 					"version", String.valueOf(wikiPage.getVersion()));
 
 				sb.append(liferayPortletURL.toString());
 				sb.append("\" target=\"_blank\">");
-				sb.append(wikiPage.getTitle());
+				sb.append(HtmlUtil.escape(wikiPage.getTitle()));
 				sb.append("</a>");
 
 				wikiPageLinks.add(sb.toString());
@@ -238,7 +241,7 @@ public class ModerationPortlet extends MVCPortlet {
 			wikiPage.setStatus(WorkflowConstants.STATUS_DENIED);
 			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_SPAM);
 
-			wikiPage = WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
+			WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 		}
 	}
 

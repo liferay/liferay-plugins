@@ -70,7 +70,7 @@ public class UpdateWikiPagesListener extends BaseMessageListener {
 			wikiPage.setStatus(WorkflowConstants.STATUS_DENIED);
 			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_SPAM);
 
-			wikiPage = WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
+			WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 		}
 	}
 
