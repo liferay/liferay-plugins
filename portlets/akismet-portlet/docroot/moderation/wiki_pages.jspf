@@ -54,7 +54,7 @@
 			<aui:button-row>
 				<aui:button onClick='<%= renderResponse.getNamespace() + "notSpamWikiPages();" %>' value="not-spam" />
 
-				<aui:button onClick='<%= renderResponse.getNamespace() + "spamWikiPages(false);" %>' value="spam" />
+				<aui:button onClick='<%= renderResponse.getNamespace() + "spamWikiPages();" %>' value="spam" />
 			</aui:button-row>
 		</c:if>
 
@@ -67,11 +67,13 @@
 
 			<%
 			long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), PortletKeys.WIKI);
+
+			WikiNode wikiNode = wikiPage.getNode();
 			%>
 
 			<liferay-portlet:renderURL plid="<%= wikiPlid %>" portletName="<%= PortletKeys.WIKI %>" varImpl="rowURL">
 				<portlet:param name="struts_action" value="/wiki/view" />
-				<portlet:param name="nodeName" value="<%= wikiPage.getNode().getName() %>" />
+				<portlet:param name="nodeName" value="<%= wikiNode.getName() %>" />
 				<portlet:param name="title" value="<%= wikiPage.getTitle() %>" />
 				<portlet:param name="version" value="<%= String.valueOf(wikiPage.getVersion()) %>" />
 			</liferay-portlet:renderURL>

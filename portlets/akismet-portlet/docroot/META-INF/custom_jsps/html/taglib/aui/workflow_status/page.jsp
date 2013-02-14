@@ -66,7 +66,7 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 
 			sb.append(html.substring(0, pos + deniedMessage.length()));
 			sb.append("<br />");
-			sb.append(LanguageUtil.get(pageContext, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible"));
+			sb.append(LanguageUtil.get(pageContext, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible"));
 			sb.append(html.substring(pos + deniedMessage.length()));
 
 			html = sb.toString();

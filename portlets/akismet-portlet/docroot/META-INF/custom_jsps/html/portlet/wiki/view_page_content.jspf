@@ -23,7 +23,7 @@
 		</c:when>
 		<c:otherwise>
 			<div class="portlet-msg-error">
-				<liferay-ui:message key="this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible" />
+				<liferay-ui:message key="this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible" />
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -31,7 +31,7 @@
 
 <c:if test='<%= SessionMessages.contains(portletSession, "anotherUserHasMadeChanges") %>'>
 	<div class="portlet-msg-info">
-		<liferay-ui:message key="another-user-has-made-changes-to-the-page.-this-version-was-not-merged-into-the-latest-version" />
+		<liferay-ui:message key="another-user-made-changes-to-the-page.-this-version-was-not-merged-into-the-latest-version" />
 	</div>
 </c:if>
 
