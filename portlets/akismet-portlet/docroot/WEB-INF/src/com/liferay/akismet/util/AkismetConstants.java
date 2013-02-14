@@ -29,6 +29,12 @@ public class AkismetConstants {
 
 	public static final String TYPE_COMMENT = "comment";
 
+	public static final String TYPE_WIKI = "wiki";
+
 	public static final String URL_REST = "rest.akismet.com/1.1";
+
+	public static final String WIKI_PAGE_PENDING_APPROVAL = "Pending Approval";
+
+	public static final String WIKI_PAGE_SPAM = "Spam";
 
 }

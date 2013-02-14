@@ -34,6 +34,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.wiki.model.WikiPage;
 
 import java.io.IOException;
 
@@ -157,6 +158,18 @@ public class AkismetUtil {
 		return false;
 	}
 
+	public static boolean isWikiEnabled(long companyId) throws SystemException {
+		String apiKey = PrefsPortletPropsUtil.getString(
+			companyId, PortletPropsKeys.AKISMET_API_KEY);
+
+		if (Validator.isNull(apiKey)) {
+			return false;
+		}
+
+		return PrefsPortletPropsUtil.getBoolean(
+			companyId, PortletPropsKeys.AKISMET_WIKI_CHECK_ENABLED);
+	}
+
 	public static void submitHam(
 			long companyId, String ipAddress, String userAgent, String referrer,
 			String permalink, String commentType, String userName,
@@ -209,6 +222,27 @@ public class AkismetUtil {
 			user.getFullName(), user.getEmailAddress(), content);
 	}
 
+	public static void submitHam(WikiPage wikiPage)
+		throws PortalException, SystemException {
+
+		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
+			WikiPage.class.getName(), wikiPage.getPageId());
+
+		if (akismetData == null) {
+			return;
+		}
+
+		User user = UserLocalServiceUtil.getUser(wikiPage.getUserId());
+
+		String content = wikiPage.getTitle() + "\n\n" + wikiPage.getContent();
+
+		submitHam(
+			wikiPage.getCompanyId(), akismetData.getUserIP(),
+			akismetData.getUserAgent(), akismetData.getReferrer(),
+			akismetData.getPermalink(), akismetData.getType(),
+			user.getFullName(), user.getEmailAddress(), content);
+	}
+
 	public static void submitSpam(
 			long companyId, String ipAddress, String userAgent, String referrer,
 			String permalink, String commentType, String userName,
@@ -256,6 +290,27 @@ public class AkismetUtil {
 
 		submitSpam(
 			mbMessage.getCompanyId(), akismetData.getUserIP(),
+			akismetData.getUserAgent(), akismetData.getReferrer(),
+			akismetData.getPermalink(), akismetData.getType(),
+			user.getFullName(), user.getEmailAddress(), content);
+	}
+
+	public static void submitSpam(WikiPage wikiPage)
+		throws PortalException, SystemException {
+
+		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
+			WikiPage.class.getName(), wikiPage.getPageId());
+
+		if (akismetData == null) {
+			return;
+		}
+
+		User user = UserLocalServiceUtil.getUser(wikiPage.getUserId());
+
+		String content = wikiPage.getTitle() + "\n\n" + wikiPage.getContent();
+
+		submitSpam(
+			wikiPage.getCompanyId(), akismetData.getUserIP(),
 			akismetData.getUserAgent(), akismetData.getReferrer(),
 			akismetData.getPermalink(), akismetData.getType(),
 			user.getFullName(), user.getEmailAddress(), content);

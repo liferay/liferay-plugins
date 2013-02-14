@@ -30,6 +30,15 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.akismet.moderation.messaging.UpdateWikiPagesListener</scheduler-event-listener-class>
+			<trigger>
+				<simple>
+					<simple-trigger-value>1</simple-trigger-value>
+					<time-unit>day</time-unit>
+				</simple>
+			</trigger>
+		</scheduler-entry>
 		<control-panel-entry-category>content</control-panel-entry-category>
 		<css-class-wrapper>akismet-portlet-moderation</css-class-wrapper>
 	</portlet>

@@ -24,21 +24,27 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.akismet.util.AkismetUtil" %><%@
+<%@ page import="com.liferay.akismet.util.AkismetConstants" %><%@
+page import="com.liferay.akismet.util.AkismetUtil" %><%@
+page import="com.liferay.akismet.util.PortletKeys" %><%@
 page import="com.liferay.akismet.util.PortletPropsKeys" %><%@
 page import="com.liferay.akismet.util.PrefsPortletPropsUtil" %><%@
+page import="com.liferay.compat.portal.util.PortalUtil" %><%@
+page import="com.liferay.portal.kernel.dao.orm.DynamicQuery" %><%@
+page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.dao.orm.Property" %><%@
+page import="com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.RowChecker" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
+page import="com.liferay.portal.kernel.servlet.SessionMessages" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.security.auth.PrincipalException" %><%@
-page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portal.util.PortletKeys" %><%@
 page import="com.liferay.portlet.blogs.model.BlogsEntry" %><%@
 page import="com.liferay.portlet.messageboards.NoSuchMessageException" %><%@
 page import="com.liferay.portlet.messageboards.RequiredMessageException" %><%@
@@ -46,7 +52,10 @@ page import="com.liferay.portlet.messageboards.model.MBCategoryConstants" %><%@
 page import="com.liferay.portlet.messageboards.model.MBDiscussion" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBDiscussionLocalServiceUtil" %><%@
-page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
+page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
+page import="com.liferay.portlet.wiki.NoSuchPageException" %><%@
+page import="com.liferay.portlet.wiki.model.WikiPage" %><%@
+page import="com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil" %>
 
 <%@ page import="java.text.DateFormat" %>
 
