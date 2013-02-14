@@ -17,6 +17,7 @@
 <%@ include file="/html/taglib/init.jsp" %>
 
 <%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
+<%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
 
 <%
 Object bean = request.getAttribute("aui:workflow-status:bean");
@@ -46,6 +47,26 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 			sb.append(html.substring(0, pos + deniedMessage.length()));
 			sb.append("<br />");
 			sb.append(LanguageUtil.get(pageContext, "your-message-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible"));
+			sb.append(html.substring(pos + deniedMessage.length()));
+
+			html = sb.toString();
+		}
+	}
+	else if (bean instanceof WikiPage) {
+		WikiPage wikiPage = (WikiPage)bean;
+
+		if (wikiPage.getUserId() == themeDisplay.getUserId()) {
+			displayMessage = true;
+
+			String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.toLabel(status));
+
+			int pos = html.indexOf(deniedMessage);
+
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(html.substring(0, pos + deniedMessage.length()));
+			sb.append("<br />");
+			sb.append(LanguageUtil.get(pageContext, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible"));
 			sb.append(html.substring(pos + deniedMessage.length()));
 
 			html = sb.toString();

@@ -9,8 +9,16 @@
 		<service-type>com.liferay.portlet.messageboards.service.MBMessageLocalService</service-type>
 		<service-impl>com.liferay.akismet.hook.service.impl.AkismetMBMessageLocalServiceImpl</service-impl>
 	</service>
+	<service>
+		<service-type>com.liferay.portlet.wiki.service.WikiPageLocalService</service-type>
+		<service-impl>com.liferay.akismet.hook.service.impl.AkismetWikiPageLocalServiceImpl</service-impl>
+	</service>
 	 <struts-action>
 		<struts-action-path>/message_boards/edit_message</struts-action-path>
 		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditMessageAction</struts-action-impl>
+	</struts-action>
+	 <struts-action>
+		<struts-action-path>/wiki/edit_page</struts-action-path>
+		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditPageAction</struts-action-impl>
 	</struts-action>
 </hook>

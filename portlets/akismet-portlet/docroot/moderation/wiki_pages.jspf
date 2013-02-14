@@ -1,0 +1,110 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<aui:form method="post" name="fm">
+	<aui:input name="spamWikiPageIds" type="hidden" />
+	<aui:input name="notSpamWikiPageIds" type="hidden" />
+
+	<liferay-ui:search-container
+		emptyResultsMessage="there-are-no-pages"
+		headerNames="title,version,posted-by"
+		iteratorURL="<%= portletURL %>"
+		rowChecker="<%= new RowChecker(renderResponse) %>"
+	>
+		<liferay-ui:search-container-results>
+
+			<%
+			DynamicQuery wikiPageDynamicQuery = DynamicQueryFactoryUtil.forClass(WikiPage.class);
+
+			Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
+
+			wikiPageDynamicQuery.add(groupIdProperty.eq(scopeGroupId));
+
+			Property summaryProperty = PropertyFactoryUtil.forName("summary");
+
+			wikiPageDynamicQuery.add(summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
+
+			Property statusProperty = PropertyFactoryUtil.forName("status");
+
+			wikiPageDynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_DENIED));
+
+			results = WikiPageLocalServiceUtil.dynamicQuery(wikiPageDynamicQuery, searchContainer.getStart(), searchContainer.getEnd());
+			total = (int)WikiPageLocalServiceUtil.dynamicQueryCount(wikiPageDynamicQuery);
+
+			pageContext.setAttribute("results", results);
+			pageContext.setAttribute("total", total);
+			%>
+
+		</liferay-ui:search-container-results>
+
+		<c:if test="<%= !results.isEmpty() %>">
+			<aui:button-row>
+				<aui:button onClick='<%= renderResponse.getNamespace() + "notSpamWikiPages();" %>' value="not-spam" />
+
+				<aui:button onClick='<%= renderResponse.getNamespace() + "spamWikiPages(false);" %>' value="spam" />
+			</aui:button-row>
+		</c:if>
+
+		<liferay-ui:search-container-row
+			className="com.liferay.portlet.wiki.model.WikiPage"
+			escapedModel="<%= true %>"
+			keyProperty="pageId"
+			modelVar="wikiPage"
+		>
+
+			<%
+			long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), PortletKeys.WIKI);
+			%>
+
+			<liferay-portlet:renderURL plid="<%= wikiPlid %>" portletName="<%= PortletKeys.WIKI %>" varImpl="rowURL">
+				<portlet:param name="struts_action" value="/wiki/view" />
+				<portlet:param name="nodeName" value="<%= wikiPage.getNode().getName() %>" />
+				<portlet:param name="title" value="<%= wikiPage.getTitle() %>" />
+				<portlet:param name="version" value="<%= String.valueOf(wikiPage.getVersion()) %>" />
+			</liferay-portlet:renderURL>
+
+			<liferay-ui:search-container-column-text
+				href="<%= rowURL %>"
+				name="title"
+			/>
+
+			<liferay-ui:search-container-column-text
+				href="<%= rowURL %>"
+				name="version"
+			/>
+
+			<liferay-ui:search-container-column-text
+				href="<%= rowURL %>"
+				name="posted-by"
+			>
+				<div>
+					<%= PortalUtil.getUserName(wikiPage.getUserId(), wikiPage.getUserName()) %>
+				</div>
+
+				<div>
+					<%= longDateFormatDate.format(wikiPage.getCreateDate()) %>
+				</div>
+			</liferay-ui:search-container-column-text>
+
+			<liferay-ui:search-container-column-jsp
+				align="right"
+				path="/moderation/wiki_pages_action.jsp"
+			/>
+		</liferay-ui:search-container-row>
+
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
+</aui:form>

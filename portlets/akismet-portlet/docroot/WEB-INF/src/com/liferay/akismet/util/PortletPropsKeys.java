@@ -36,4 +36,7 @@ public interface PortletPropsKeys {
 	public static final String AKISMET_RETAIN_SPAM_TIME =
 		"akismet.retain.spam.time";
 
+	public static final String AKISMET_WIKI_CHECK_ENABLED =
+		"akismet.wiki.check.enabled";
+
 }
