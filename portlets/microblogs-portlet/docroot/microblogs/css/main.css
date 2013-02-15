@@ -206,6 +206,7 @@ $microblogs-border-color: #C7D0DA;
 
 	.highlighter-content {
 		color: transparent;
+		line-height: 1.5em;
 
 		@include force-wrap();
 
@@ -214,6 +215,7 @@ $microblogs-border-color: #C7D0DA;
 		position: absolute;
 		top: 1px;
 		width: 100%;
+		visibility: hidden;
 		z-index: 998;
 
 		&.textbox {
@@ -225,7 +227,6 @@ $microblogs-border-color: #C7D0DA;
 		span {
 			background-color: #97D1FF;
 			font-weight: normal;
-			line-height: 1.45em;
 			margin: -2px -2px 0;
 			padding: 2px 2px 0;
 			visibility: visible;
@@ -243,6 +244,7 @@ $microblogs-border-color: #C7D0DA;
 	.aui-field-input-text {
 		background: none transparent;
 		border-width: 0;
+		line-height: 1.5em;
 		min-width: 99%;
 		outline: none;
 		position: absolute;
