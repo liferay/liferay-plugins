@@ -115,7 +115,8 @@ public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 	public List<PollsVote> getQuestionVotes(long questionId, int start, int end)
 		throws SystemException {
 
-		return pollsVotePersistence.findByPollsQuestionId(questionId, start, end);
+		return pollsVotePersistence.findByPollsQuestionId(
+			questionId, start, end);
 	}
 
 	public int getQuestionVotesCount(long questionId) throws SystemException {

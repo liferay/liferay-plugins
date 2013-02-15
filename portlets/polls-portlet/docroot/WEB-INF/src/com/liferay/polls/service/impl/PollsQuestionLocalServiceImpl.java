@@ -197,7 +197,7 @@ public class PollsQuestionLocalServiceImpl
 		throws PortalException, SystemException {
 
 		for (PollsQuestion question :
-			pollsQuestionPersistence.findByGroupId(groupId)) {
+				pollsQuestionPersistence.findByGroupId(groupId)) {
 
 			deleteQuestion(question);
 		}
