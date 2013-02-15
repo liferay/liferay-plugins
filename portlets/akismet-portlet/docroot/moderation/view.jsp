@@ -96,20 +96,6 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 
 	Liferay.provide(
 		window,
-		'<portlet:namespace />spamWikiPages',
-		function() {
-			var spamWikiPageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-
-			if (spamWikiPageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-mark-the-selected-pages-as-spam") %>')) {
-				document.<portlet:namespace />fm.<portlet:namespace />spamWikiPageIds.value = spamWikiPageIds;
-				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="spamWikiPages"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
-			}
-		},
-		['liferay-util-list-fields']
-	);
-
-	Liferay.provide(
-		window,
 		'<portlet:namespace />notSpamWikiPages',
 		function() {
 			var notSpamWikiPageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
@@ -117,6 +103,20 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 			if (notSpamWikiPageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-mark-the-selected-pages-not-spam") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />notSpamWikiPageIds.value = notSpamWikiPageIds;
 				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="markNotSpamWikiPages"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
+			}
+		},
+		['liferay-util-list-fields']
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />spamWikiPages',
+		function() {
+			var spamWikiPageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+
+			if (spamWikiPageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-mark-the-selected-pages-as-spam") %>')) {
+				document.<portlet:namespace />fm.<portlet:namespace />spamWikiPageIds.value = spamWikiPageIds;
+				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="spamWikiPages"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']
