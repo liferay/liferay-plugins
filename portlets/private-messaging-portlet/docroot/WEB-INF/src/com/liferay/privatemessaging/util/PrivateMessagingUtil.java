@@ -39,6 +39,7 @@ import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator;
+import com.liferay.portlet.sites.util.SitesUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.privatemessaging.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
@@ -73,7 +74,7 @@ public class PrivateMessagingUtil {
 
 			params.put(
 				"usersGroups",
-				_filterGroupIds(
+				SitesUtil.filterGroups(
 					groups,
 					PortletPropsValues.AUTOCOMPLETE_RECIPIENT_SITE_EXCLUDES));
 		}
@@ -297,18 +298,6 @@ public class PrivateMessagingUtil {
 		catch (NoSuchUserThreadException nsute) {
 			return false;
 		}
-	}
-
-	private static Long[] _filterGroupIds(List<Group> groups, String[] names) {
-		List<Long> groupIds = new ArrayList<Long>();
-
-		for (Group group : groups) {
-			if (!ArrayUtil.contains(names, group.getName())) {
-				groupIds.add(group.getGroupId());
-			}
-		}
-
-		return ArrayUtil.toArray(ArrayUtil.toLongArray(groupIds));
 	}
 
 }
