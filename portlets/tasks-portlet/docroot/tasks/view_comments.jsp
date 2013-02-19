@@ -102,7 +102,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 		<input disabled id="<portlet:namespace />postButton" type="button" value="<liferay-ui:message key="post" />" onClick="<portlet:namespace />postReply();" />
 
-		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.<portlet:namespace />fm2.<portlet:namespace />messageId.value = '';document.<portlet:namespace />fm2.<portlet:namespace />body.value = '';Liferay.Tasks.toggleCommentForm();" />
+		<input onClick="document.<portlet:namespace />fm2.<portlet:namespace />messageId.value = '';document.<portlet:namespace />fm2.<portlet:namespace />body.value = '';Liferay.Tasks.toggleCommentForm();" type="button" value="<liferay-ui:message key="cancel" />" />
 	</div>
 </div>
 

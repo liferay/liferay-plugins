@@ -54,6 +54,6 @@ Map bibles = RBVUtil.getBibles();
 
 <br />
 
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
+<input onClick="submitForm(document.<portlet:namespace />fm);" type="button" value="<liferay-ui:message key="save" />" />
 
 </form>
