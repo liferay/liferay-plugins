@@ -60,7 +60,7 @@
 	</liferay-ui:search-container-row>
 
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-consumer" />" onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+		<input onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_consumer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" type="button" value="<liferay-ui:message key="add-consumer" />" />
 	</div>
 
 	<br />

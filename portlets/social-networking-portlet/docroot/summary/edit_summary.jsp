@@ -52,6 +52,6 @@ String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class
 
 <input type="submit" value="<liferay-ui:message key="save" />" />
 
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= redirectURL %>';" />
+<input onClick="location.href = '<%= redirectURL %>';" type="button" value="<liferay-ui:message key="cancel" />" />
 
 </form>

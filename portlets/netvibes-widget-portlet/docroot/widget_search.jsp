@@ -78,7 +78,7 @@ String region = ParamUtil.getString(request, "region", "all");
 	<td colspan="3">
 		<input name="<portlet:namespace/>query" size="30" type="text" value="<%= query %>" />
 
-		<input type="button" value="<liferay-ui:message key="search" />" onClick="<portlet:namespace />search();" />
+		<input onClick="<portlet:namespace />search();" type="button" value="<liferay-ui:message key="search" />" />
 	</td>
 </tr>
 </table>

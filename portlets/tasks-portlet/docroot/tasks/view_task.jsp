@@ -148,12 +148,12 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 				boolean resolved = (tasksEntry.getStatus() == TasksEntryConstants.STATUS_RESOLVED);
 				%>
 
-				<input class="task-action-button" type="button" value="<liferay-ui:message key='<%= resolved ? "reopen" : "resolve" %>' />" onClick="<portlet:namespace />updateStatus(<%= resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED %>)" />
+				<input class="task-action-button" onClick="<portlet:namespace />updateStatus(<%= resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED %>)" type="button" value="<liferay-ui:message key='<%= resolved ? "reopen" : "resolve" %>' />" />
 
 				<span class="task-action-spacer">
-					<input type="button" value="<liferay-ui:message key="edit" />" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', '<liferay-ui:message key="update-task" />');" />
+					<input onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', '<liferay-ui:message key="update-task" />');" type="button" value="<liferay-ui:message key="edit" />" />
 
-					<input type="button" value="<liferay-ui:message key="delete" />" onClick="if(confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-entry" />')){<portlet:namespace />deleteTask()}" />
+					<input onClick="if(confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-entry" />')){<portlet:namespace />deleteTask()}" type="button" value="<liferay-ui:message key="delete" />" />
 				</span>
 
 				<aui:script use="aui-io">
@@ -206,7 +206,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 			</c:if>
 
 			<div class="task-action-right">
-				<input type="button" value="<liferay-ui:message key="close" />" onClick="Liferay.Tasks.closePopup();" />
+				<input onClick="Liferay.Tasks.closePopup();" type="button" value="<liferay-ui:message key="close" />" />
 			</div>
 		</div>
 

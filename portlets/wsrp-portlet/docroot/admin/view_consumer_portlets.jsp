@@ -76,7 +76,7 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 	</liferay-ui:search-container-row>
 
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-portlet" />" onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" /></portlet:renderURL>';" />
+		<input onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" /></portlet:renderURL>';" type="button" value="<liferay-ui:message key="add-portlet" />" />
 	</div>
 
 	<br />
