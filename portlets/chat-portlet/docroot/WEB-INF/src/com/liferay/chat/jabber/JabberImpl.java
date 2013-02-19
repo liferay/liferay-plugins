@@ -74,10 +74,11 @@ public class JabberImpl implements Jabber {
 		resource = StringUtil.extractLast(resource, StringPool.SLASH);
 
 		if (resource == null) {
-			resource = StringPool.BLANK;
+			return StringPool.BLANK;
 		}
-
-		return resource;
+		else {
+			return resource;
+		}
 	}
 
 	public String getScreenName(String jabberId) {
