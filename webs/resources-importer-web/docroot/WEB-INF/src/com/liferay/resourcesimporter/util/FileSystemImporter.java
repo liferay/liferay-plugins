@@ -30,6 +30,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.kernel.xml.Attribute;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
@@ -60,6 +64,7 @@ import com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUti
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.liferay.portlet.journal.util.JournalConverterUtil;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -396,6 +401,10 @@ public class FileSystemImporter extends BaseImporter {
 
 		String xsd = StringUtil.read(inputStream);
 
+		if (isJournalStructureXSD(xsd)) {
+			xsd = JournalConverterUtil.getDDMXSD(xsd);
+		}
+
 		setServiceContext(fileName);
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.addStructure(
@@ -422,9 +431,13 @@ public class FileSystemImporter extends BaseImporter {
 
 		String ddmTemplateKey = getJournalId(fileName);
 
+		String extension = FileUtil.getExtension(fileName);
+
 		String name = FileUtil.stripExtension(fileName);
 
 		Map<Locale, String> nameMap = getMap(name);
+
+		String language = getTemplateLanguage(extension);
 
 		String xsl = StringUtil.read(inputStream);
 
@@ -439,10 +452,8 @@ public class FileSystemImporter extends BaseImporter {
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
 			ddmStructure.getStructureId(), ddmTemplateKey, nameMap, null,
-			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-			DDMTemplateConstants.TEMPLATE_MODE_CREATE,
-			TemplateConstants.LANG_TYPE_XSD, xsl, false, false, null, null,
-			serviceContext);
+			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null, language, xsl,
+			false, false, null, null, serviceContext);
 
 		addJournalArticles(
 			ddmStructureKey, ddmTemplate.getTemplateKey(),
@@ -628,6 +639,33 @@ public class FileSystemImporter extends BaseImporter {
 		map.put(locale, value);
 
 		return map;
+	}
+
+	protected String getTemplateLanguage(String fileExtension) {
+		if (fileExtension.equals(TemplateConstants.LANG_TYPE_CSS) ||
+			fileExtension.equals(TemplateConstants.LANG_TYPE_FTL) ||
+			fileExtension.equals(TemplateConstants.LANG_TYPE_VM) ||
+			fileExtension.equals(TemplateConstants.LANG_TYPE_XSL)) {
+
+			return fileExtension;
+		}
+
+		return TemplateConstants.LANG_TYPE_VM;
+	}
+
+	protected boolean isJournalStructureXSD(String xsd) throws Exception {
+		Document document = SAXReaderUtil.read(xsd);
+
+		Element rootElement = document.getRootElement();
+
+		Attribute availableLocalesAttribute = rootElement.attribute(
+			"available-locales");
+
+		if (availableLocalesAttribute == null) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected File[] listFiles(File dir) {
