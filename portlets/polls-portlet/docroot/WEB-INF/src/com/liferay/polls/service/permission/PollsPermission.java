@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.polls.service.permission;
+package com.liferay.polls.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -36,7 +36,7 @@ public class PollsPermission {
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, "com.liferay.portlet.polls", groupId, actionId);
+			groupId, "com.liferay.polls", groupId, actionId);
 	}
 
 }
