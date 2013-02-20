@@ -12,22 +12,22 @@
  * details.
  */
 
-package com.liferay.portlet.polls.util;
+package com.liferay.polls.util;
 
+import com.liferay.polls.NoSuchVoteException;
+import com.liferay.polls.model.PollsChoice;
+import com.liferay.polls.model.PollsQuestion;
+import com.liferay.polls.service.PollsChoiceLocalServiceUtil;
+import com.liferay.polls.service.PollsVoteLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.WebKeys;
-import com.liferay.portlet.polls.NoSuchVoteException;
-import com.liferay.portlet.polls.model.PollsChoice;
-import com.liferay.portlet.polls.model.PollsQuestion;
-import com.liferay.portlet.polls.service.PollsChoiceLocalServiceUtil;
-import com.liferay.portlet.polls.service.PollsVoteLocalServiceUtil;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -40,12 +40,12 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Juan Fernández
  * @author Shepherd Ching
  */
 public class PollsUtil {
 
-	public static CategoryDataset getVotesDataset(long questionId)
+	public static CategoryDataset getPollsVotesDataset(long pollsQuestionId)
 		throws SystemException {
 
 		DefaultCategoryDataset defaultCategoryDataset =
@@ -53,19 +53,20 @@ public class PollsUtil {
 
 		String seriesName = StringPool.BLANK;
 
-		for (PollsChoice choice :
-				PollsChoiceLocalServiceUtil.getChoices(questionId)) {
+		for (PollsChoice pollsChoice :
+				PollsChoiceLocalServiceUtil.getPollsChoices(pollsQuestionId)) {
 
-			Integer number = choice.getVotesCount();
+			Integer number = pollsChoice.getPollsVotesCount();
 
 			defaultCategoryDataset.addValue(
-				number, seriesName, choice.getName());
+				number, seriesName, pollsChoice.getName());
 		}
 
 		return defaultCategoryDataset;
 	}
 
-	public static boolean hasVoted(HttpServletRequest request, long questionId)
+	public static boolean hasVoted(
+			HttpServletRequest request, long pollsQuestionId)
 		throws PortalException, SystemException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
@@ -73,8 +74,8 @@ public class PollsUtil {
 
 		if (themeDisplay.isSignedIn()) {
 			try {
-				PollsVoteLocalServiceUtil.getVote(
-					questionId, themeDisplay.getUserId());
+				PollsVoteLocalServiceUtil.getPollsVote(
+					pollsQuestionId, themeDisplay.getUserId());
 			}
 			catch (NoSuchVoteException nsve) {
 				return false;
@@ -84,16 +85,17 @@ public class PollsUtil {
 		}
 
 		String cookie = CookieKeys.getCookie(
-			request, _getCookieName(questionId));
+			request, _getCookieName(pollsQuestionId));
 
 		return GetterUtil.getBoolean(cookie);
 	}
 
-	public static void saveVote(
+	public static void savePollsVote(
 		HttpServletRequest request, HttpServletResponse response,
-		long questionId) {
+		long pollsQuestionId) {
 
-		Cookie cookie = new Cookie(_getCookieName(questionId), StringPool.TRUE);
+		Cookie cookie = new Cookie(
+			_getCookieName(pollsQuestionId), StringPool.TRUE);
 
 		cookie.setMaxAge((int)(Time.WEEK / 1000));
 		cookie.setPath(StringPool.SLASH);
@@ -101,20 +103,21 @@ public class PollsUtil {
 		CookieKeys.addCookie(request, response, cookie);
 	}
 
-	public static void saveVote(
+	public static void savePollsVote(
 		PortletRequest portletRequest, PortletResponse portletResponse,
-		long questionId) {
+		long pollsQuestionId) {
 
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			portletRequest);
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(
 			portletResponse);
 
-		saveVote(request, response, questionId);
+		savePollsVote(request, response, pollsQuestionId);
 	}
 
-	private static String _getCookieName(long questionId) {
-		return PollsQuestion.class.getName() + StringPool.POUND + questionId;
+	private static String _getCookieName(long pollsQuestionId) {
+		return PollsQuestion.class.getName() + StringPool.POUND +
+			pollsQuestionId;
 	}
 
 }
