@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.portlet.polls.service.persistence.PollsChoiceFinder.findByUUID_G">
+		<![CDATA[
+			SELECT
+				DISTINCT {PollsChoice.*}
+			FROM
+				PollsChoice
+			INNER JOIN
+				PollsQuestion ON
+					(PollsQuestion.questionId = PollsChoice.questionId)
+			WHERE
+				(PollsChoice.uuid_ = ?) AND
+				(PollsQuestion.groupId = ?)
+		]]>
+	</sql>
+</custom-sql>
