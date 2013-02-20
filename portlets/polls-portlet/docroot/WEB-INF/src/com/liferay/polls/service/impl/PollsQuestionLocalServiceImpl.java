@@ -89,18 +89,7 @@ public class PollsQuestionLocalServiceImpl
 
 		// Resources
 
-		if (serviceContext.isAddGroupPermissions() ||
-			serviceContext.isAddGuestPermissions()) {
-
-			addPollsQuestionResources(
-				pollsQuestion, serviceContext.isAddGroupPermissions(),
-				serviceContext.isAddGuestPermissions());
-		}
-		else {
-			addPollsQuestionResources(
-				pollsQuestion, serviceContext.getGroupPermissions(),
-				serviceContext.getGuestPermissions());
-		}
+		resourceLocalService.addModelResources(pollsQuestion, serviceContext);
 
 		// Polls choices
 
@@ -127,42 +116,6 @@ public class PollsQuestionLocalServiceImpl
 			pollsQuestion, addGroupPermissions, addGuestPermissions);
 	}
 
-	public void addPollsQuestionResources(
-			long pollsQuestionId, String[] groupPermissions,
-			String[] guestPermissions)
-		throws PortalException, SystemException {
-
-		PollsQuestion pollsQuestion = pollsQuestionPersistence.findByPrimaryKey(
-			pollsQuestionId);
-
-		addPollsQuestionResources(
-			pollsQuestion, groupPermissions, guestPermissions);
-	}
-
-	public void addPollsQuestionResources(
-			PollsQuestion pollsQuestion, boolean addGroupPermissions,
-			boolean addGuestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addResources(
-			pollsQuestion.getCompanyId(), pollsQuestion.getGroupId(),
-			pollsQuestion.getUserId(), PollsQuestion.class.getName(),
-			pollsQuestion.getPollsQuestionId(), false, addGroupPermissions,
-			addGuestPermissions);
-	}
-
-	public void addPollsQuestionResources(
-			PollsQuestion pollsQuestion, String[] groupPermissions,
-			String[] guestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.addModelResources(
-			pollsQuestion.getCompanyId(), pollsQuestion.getGroupId(),
-			pollsQuestion.getUserId(), PollsQuestion.class.getName(),
-			pollsQuestion.getPollsQuestionId(), groupPermissions,
-			guestPermissions);
-	}
-
 	@Override
 	public PollsQuestion deletePollsQuestion(long pollsQuestionId)
 		throws PortalException, SystemException {
@@ -184,9 +137,7 @@ public class PollsQuestionLocalServiceImpl
 		// Resources
 
 		resourceLocalService.deleteResource(
-			pollsQuestion.getCompanyId(), PollsQuestion.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			pollsQuestion.getPollsQuestionId());
+			pollsQuestion, ResourceConstants.SCOPE_INDIVIDUAL);
 
 		// Polls choices
 
