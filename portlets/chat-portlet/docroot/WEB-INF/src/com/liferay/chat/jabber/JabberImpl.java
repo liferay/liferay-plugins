@@ -76,9 +76,8 @@ public class JabberImpl implements Jabber {
 		if (resource == null) {
 			return StringPool.BLANK;
 		}
-		else {
-			return resource;
-		}
+
+		return resource;
 	}
 
 	public String getScreenName(String jabberId) {
