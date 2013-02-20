@@ -1,73 +1,99 @@
 <?xml version="1.0"?>
 
-<root>
-	<dynamic-element name="width" type="text" index-type="" repeatable="false">
-		<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
-			<entry name="required"><![CDATA[true]]></entry>
-			<entry name="instructions"><![CDATA[Image width (960) without the "px" label]]></entry>
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="width" repeatable="false" dataType="string" indexType="" required="true" showLabel="true" type="text" width="25">
+		<meta-data locale="en_US">
+			<entry name="tip"><![CDATA[Image width (960) without the "px" label]]></entry>
 			<entry name="label"><![CDATA[Image Width]]></entry>
 			<entry name="predefinedValue"><![CDATA[960]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="height" type="text" index-type="" repeatable="false">
-		<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
-			<entry name="required"><![CDATA[true]]></entry>
-			<entry name="instructions"><![CDATA[Image height (260) without the "px" label]]></entry>
+	<dynamic-element name="height" repeatable="false" dataType="string" indexType="" required="true" showLabel="true" type="text" width="25">
+		<meta-data locale="en_US">
+			<entry name="tip"><![CDATA[Image height (260) without the "px" label]]></entry>
 			<entry name="label"><![CDATA[Image Height]]></entry>
 			<entry name="predefinedValue"><![CDATA[260]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="duration" type="list" index-type="" repeatable="false">
-		<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
-			<entry name="required"><![CDATA[true]]></entry>
-			<entry name="instructions"><![CDATA[Number of Seconds]]></entry>
+	<dynamic-element name="duration" repeatable="false" dataType="string" indexType="" required="true" showLabel="true" type="select">
+		<meta-data locale="en_US">
+			<entry name="tip"><![CDATA[Number of Seconds]]></entry>
 			<entry name="label"><![CDATA[Transition Delay]]></entry>
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
-		<dynamic-element name="1" type="1" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="2" type="2" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="3" type="3" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="4" type="4" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="5" type="5" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="6" type="6" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="7" type="7" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="8" type="8" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="9" type="9" index-type="" repeatable="false">  </dynamic-element>
-		<dynamic-element name="10" type="10" index-type="" repeatable="false" />
+		<dynamic-element name="optionxVf1" type="option" index-type="" repeatable="false" value="1">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[1]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionZ6fK" type="option" index-type="" repeatable="false" value="2">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[2]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionYo9p" type="option" index-type="" repeatable="false" value="3">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[3]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionCo8T" type="option" index-type="" repeatable="false" value="4">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[4]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option8McG" type="option" index-type="" repeatable="false" value="5">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[5]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionk2R5" type="option" index-type="" repeatable="false" value="6">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[6]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option0VmH" type="option" index-type="" repeatable="false" value="7">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[7]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option9cMX" type="option" index-type="" repeatable="false" value="8">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[8]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option7a5F" type="option" index-type="" repeatable="false" value="9">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[9]]></entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option9S9d" type="option" index-type="" repeatable="false" value="10">
+			<meta-data locale="en_US">
+				<entry name="label"><![CDATA[10]]></entry>
+			</meta-data>
+		</dynamic-element>
 	</dynamic-element>
-	<dynamic-element name="controls" type="boolean" index-type="" repeatable="false">
-		<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
-			<entry name="required"><![CDATA[false]]></entry>
-			<entry name="instructions"><![CDATA[Display the Controls that allows selecting which carousel image to display]]></entry>
+	<dynamic-element name="controls" repeatable="false" dataType="boolean" indexType="" required="false" showLabel="true" type="checkbox">
+		<meta-data locale="en_US">
+			<entry name="tip"><![CDATA[Display the Controls that allows selecting which carousel image to display]]></entry>
 			<entry name="label"><![CDATA[Display Controls]]></entry>
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="image" type="document_library" index-type="" repeatable="true">
-		<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
-			<entry name="required"><![CDATA[true]]></entry>
-			<entry name="instructions"><![CDATA[]]></entry>
+	<dynamic-element name="image" repeatable="true" dataType="document-library" indexType="" required="true" showLabel="true" type="ddm-documentlibrary" fieldNamespace="ddm">
+		<meta-data locale="en_US">
+			<entry name="tip"><![CDATA[]]></entry>
 			<entry name="label"><![CDATA[Image]]></entry>
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
-		<dynamic-element name="link" type="text" index-type="" repeatable="false">
-			<meta-data>
-				<entry name="displayAsTooltip"><![CDATA[false]]></entry>
-				<entry name="required"><![CDATA[false]]></entry>
-				<entry name="instructions"><![CDATA[]]></entry>
+		<dynamic-element name="link" repeatable="false" dataType="string" indexType="" required="false" showLabel="true" type="text" width="25">
+			<meta-data locale="en_US">
+				<entry name="tip"><![CDATA[]]></entry>
 				<entry name="label"><![CDATA[link]]></entry>
 				<entry name="predefinedValue"><![CDATA[]]></entry>
 			</meta-data>
-			<dynamic-element name="url-location" type="text" index-type="" repeatable="false">
-				<meta-data>
-					<entry name="displayAsTooltip"><![CDATA[false]]></entry>
-					<entry name="required"><![CDATA[false]]></entry>
-					<entry name="instructions"><![CDATA[]]></entry>
+			<dynamic-element name="url-location" repeatable="false" dataType="string" indexType="" required="false" showLabel="true" type="text" width="25">
+				<meta-data locale="en_US">
+					<entry name="tip"><![CDATA[]]></entry>
 					<entry name="label"><![CDATA[url-location]]></entry>
 					<entry name="predefinedValue"><![CDATA[]]></entry>
 				</meta-data>
