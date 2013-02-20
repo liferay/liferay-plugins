@@ -119,29 +119,25 @@ public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName20 = "addPollsQuestionResources";
+		_methodName20 = "deletePollsQuestions";
 
-		_methodParameterTypes20 = new String[] { "long", "boolean", "boolean" };
+		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName21 = "deletePollsQuestions";
+		_methodName21 = "getPollsQuestions";
 
 		_methodParameterTypes21 = new String[] { "long" };
 
 		_methodName22 = "getPollsQuestions";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] { "long", "int", "int" };
 
-		_methodName23 = "getPollsQuestions";
+		_methodName23 = "getPollsQuestionsCount";
 
-		_methodParameterTypes23 = new String[] { "long", "int", "int" };
+		_methodParameterTypes23 = new String[] { "long" };
 
-		_methodName24 = "getPollsQuestionsCount";
+		_methodName24 = "updatePollsQuestion";
 
-		_methodParameterTypes24 = new String[] { "long" };
-
-		_methodName25 = "updatePollsQuestion";
-
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"long", "long", "java.util.Map", "java.util.Map", "int", "int",
 				"int", "int", "int", "boolean", "java.util.List",
 				"com.liferay.portal.service.ServiceContext"
@@ -745,48 +741,12 @@ public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 		return (com.liferay.polls.model.PollsQuestion)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void addPollsQuestionResources(long pollsQuestionId,
-		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
-				new Object[] {
-					pollsQuestionId,
-					
-				addGroupPermissions,
-					
-				addGuestPermissions
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	public void deletePollsQuestions(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21, new Object[] { groupId });
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -815,8 +775,8 @@ public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -843,8 +803,8 @@ public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { groupId, start, end });
 		}
 		catch (Throwable t) {
@@ -871,8 +831,8 @@ public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -906,8 +866,8 @@ public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						userId,
 						
@@ -1006,6 +966,4 @@ public class PollsQuestionLocalServiceClp implements PollsQuestionLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

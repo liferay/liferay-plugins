@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * This class is a wrapper for {@link PollsQuestionLocalService}.
  * </p>
  *
- * @author    Juan Fern√°ndez
+ * @author    Juan Fernández
  * @see       PollsQuestionLocalService
  * @generated
  */
@@ -287,14 +287,6 @@ public class PollsQuestionLocalServiceWrapper
 			descriptionMap, expirationDateMonth, expirationDateDay,
 			expirationDateYear, expirationDateHour, expirationDateMinute,
 			neverExpire, pollsChoices, serviceContext);
-	}
-
-	public void addPollsQuestionResources(long pollsQuestionId,
-		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_pollsQuestionLocalService.addPollsQuestionResources(pollsQuestionId,
-			addGroupPermissions, addGuestPermissions);
 	}
 
 	public void deletePollsQuestions(long groupId)

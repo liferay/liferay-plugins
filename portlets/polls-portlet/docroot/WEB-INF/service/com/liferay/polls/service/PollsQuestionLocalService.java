@@ -30,7 +30,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Juan Fern√°ndez
+ * @author Juan Fernández
  * @see PollsQuestionLocalServiceUtil
  * @see com.liferay.polls.service.base.PollsQuestionLocalServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsQuestionLocalServiceImpl
@@ -259,11 +259,6 @@ public interface PollsQuestionLocalService extends BaseLocalService,
 		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
 		java.util.List<com.liferay.polls.model.PollsChoice> pollsChoices,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void addPollsQuestionResources(long pollsQuestionId,
-		boolean addGroupPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

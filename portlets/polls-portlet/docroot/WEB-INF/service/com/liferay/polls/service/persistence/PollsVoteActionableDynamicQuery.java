@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 
 /**
- * @author Juan Fern√°ndez
+ * @author Juan Fernández
  * @generated
  */
 public abstract class PollsVoteActionableDynamicQuery

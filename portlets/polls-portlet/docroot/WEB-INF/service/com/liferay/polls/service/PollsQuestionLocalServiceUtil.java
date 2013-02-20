@@ -25,7 +25,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Juan Fern√°ndez
+ * @author Juan Fernández
  * @see PollsQuestionLocalService
  * @see com.liferay.polls.service.base.PollsQuestionLocalServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsQuestionLocalServiceImpl
@@ -292,15 +292,6 @@ public class PollsQuestionLocalServiceUtil {
 			expirationDateMonth, expirationDateDay, expirationDateYear,
 			expirationDateHour, expirationDateMinute, neverExpire,
 			pollsChoices, serviceContext);
-	}
-
-	public static void addPollsQuestionResources(long pollsQuestionId,
-		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addPollsQuestionResources(pollsQuestionId, addGroupPermissions,
-			addGuestPermissions);
 	}
 
 	public static void deletePollsQuestions(long groupId)

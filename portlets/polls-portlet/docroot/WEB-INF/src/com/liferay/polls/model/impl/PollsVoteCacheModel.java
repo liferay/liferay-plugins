@@ -30,7 +30,7 @@ import java.util.Date;
 /**
  * The cache model class for representing PollsVote in entity cache.
  *
- * @author Juan Fern√°ndez
+ * @author Juan Fernández
  * @see PollsVote
  * @generated
  */

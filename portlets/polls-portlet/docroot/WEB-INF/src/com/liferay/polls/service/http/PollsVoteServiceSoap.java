@@ -57,7 +57,7 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    Juan Fern√°ndez
+ * @author    Juan Fernández
  * @see       PollsVoteServiceHttp
  * @see       com.liferay.polls.model.PollsVoteSoap
  * @see       com.liferay.polls.service.PollsVoteServiceUtil

@@ -25,7 +25,7 @@ import com.liferay.portal.service.InvokableService;
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
- * @author Juan Fern√°ndez
+ * @author Juan Fernández
  * @see PollsChoiceService
  * @see com.liferay.polls.service.base.PollsChoiceServiceBaseImpl
  * @see com.liferay.polls.service.impl.PollsChoiceServiceImpl

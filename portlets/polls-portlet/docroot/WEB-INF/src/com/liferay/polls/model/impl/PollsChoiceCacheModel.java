@@ -28,7 +28,7 @@ import java.io.ObjectOutput;
 /**
  * The cache model class for representing PollsChoice in entity cache.
  *
- * @author Juan Fern√°ndez
+ * @author Juan Fernández
  * @see PollsChoice
  * @generated
  */
