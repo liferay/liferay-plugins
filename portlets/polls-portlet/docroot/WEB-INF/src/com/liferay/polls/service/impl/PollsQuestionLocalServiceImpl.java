@@ -104,18 +104,6 @@ public class PollsQuestionLocalServiceImpl
 		return pollsQuestion;
 	}
 
-	public void addPollsQuestionResources(
-			long pollsQuestionId, boolean addGroupPermissions,
-			boolean addGuestPermissions)
-		throws PortalException, SystemException {
-
-		PollsQuestion pollsQuestion = pollsQuestionPersistence.findByPrimaryKey(
-			pollsQuestionId);
-
-		addPollsQuestionResources(
-			pollsQuestion, addGroupPermissions, addGuestPermissions);
-	}
-
 	@Override
 	public PollsQuestion deletePollsQuestion(long pollsQuestionId)
 		throws PortalException, SystemException {
