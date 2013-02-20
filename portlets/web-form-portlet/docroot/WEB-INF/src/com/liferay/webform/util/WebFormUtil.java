@@ -86,7 +86,6 @@ public class WebFormUtil {
 
 			String fieldLabel = preferences.getValue(
 				"fieldLabel" + i, StringPool.BLANK);
-
 			String fieldType = preferences.getValue(
 				"fieldType" + i, StringPool.BLANK);
 
@@ -101,7 +100,6 @@ public class WebFormUtil {
 
 				fieldLabel = preferences.getValue(
 					"fieldLabel" + i, StringPool.BLANK);
-
 				fieldType = preferences.getValue(
 					"fieldType" + i, StringPool.BLANK);
 			}
