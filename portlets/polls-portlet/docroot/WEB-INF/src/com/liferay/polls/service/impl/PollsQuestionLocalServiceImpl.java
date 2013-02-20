@@ -42,16 +42,16 @@ import java.util.Map;
 public class PollsQuestionLocalServiceImpl
 	extends PollsQuestionLocalServiceBaseImpl {
 
-	public PollsQuestion addQuestion(
+	public PollsQuestion addPollsQuestion(
 			long userId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, int expirationDateMonth,
 			int expirationDateDay, int expirationDateYear,
 			int expirationDateHour, int expirationDateMinute,
-			boolean neverExpire, List<PollsChoice> choices,
+			boolean neverExpire, List<PollsChoice> pollsChoices,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Question
+		// Polls question
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
@@ -67,174 +67,183 @@ public class PollsQuestionLocalServiceImpl
 
 		Date now = new Date();
 
-		validate(titleMap, descriptionMap, choices);
+		validate(titleMap, descriptionMap, pollsChoices);
 
-		long questionId = counterLocalService.increment();
+		long pollsQuestionId = counterLocalService.increment();
 
-		PollsQuestion question = pollsQuestionPersistence.create(questionId);
+		PollsQuestion pollsQuestion = pollsQuestionPersistence.create(
+			pollsQuestionId);
 
-		question.setUuid(serviceContext.getUuid());
-		question.setGroupId(groupId);
-		question.setCompanyId(user.getCompanyId());
-		question.setUserId(user.getUserId());
-		question.setUserName(user.getFullName());
-		question.setCreateDate(serviceContext.getCreateDate(now));
-		question.setModifiedDate(serviceContext.getModifiedDate(now));
-		question.setTitleMap(titleMap);
-		question.setDescriptionMap(descriptionMap);
-		question.setExpirationDate(expirationDate);
+		pollsQuestion.setUuid(serviceContext.getUuid());
+		pollsQuestion.setGroupId(groupId);
+		pollsQuestion.setCompanyId(user.getCompanyId());
+		pollsQuestion.setUserId(user.getUserId());
+		pollsQuestion.setUserName(user.getFullName());
+		pollsQuestion.setCreateDate(serviceContext.getCreateDate(now));
+		pollsQuestion.setModifiedDate(serviceContext.getModifiedDate(now));
+		pollsQuestion.setTitleMap(titleMap);
+		pollsQuestion.setDescriptionMap(descriptionMap);
+		pollsQuestion.setExpirationDate(expirationDate);
 
-		pollsQuestionPersistence.update(question);
+		pollsQuestionPersistence.update(pollsQuestion);
 
 		// Resources
 
 		if (serviceContext.isAddGroupPermissions() ||
 			serviceContext.isAddGuestPermissions()) {
 
-			addQuestionResources(
-				question, serviceContext.isAddGroupPermissions(),
+			addPollsQuestionResources(
+				pollsQuestion, serviceContext.isAddGroupPermissions(),
 				serviceContext.isAddGuestPermissions());
 		}
 		else {
-			addQuestionResources(
-				question, serviceContext.getGroupPermissions(),
+			addPollsQuestionResources(
+				pollsQuestion, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
 
-		// Choices
+		// Polls choices
 
-		if (choices != null) {
-			for (PollsChoice choice : choices) {
-				pollsChoiceLocalService.addChoice(
-					questionId, choice.getName(), choice.getDescription(),
-					new ServiceContext());
+		if (pollsChoices != null) {
+			for (PollsChoice pollsChoice : pollsChoices) {
+				pollsChoiceLocalService.addPollsChoice(
+					pollsQuestionId, pollsChoice.getName(),
+					pollsChoice.getDescription(), new ServiceContext());
 			}
 		}
 
-		return question;
+		return pollsQuestion;
 	}
 
-	public void addQuestionResources(
-			long questionId, boolean addGroupPermissions,
+	public void addPollsQuestionResources(
+			long pollsQuestionId, boolean addGroupPermissions,
 			boolean addGuestPermissions)
 		throws PortalException, SystemException {
 
-		PollsQuestion question = pollsQuestionPersistence.findByPrimaryKey(
-			questionId);
+		PollsQuestion pollsQuestion = pollsQuestionPersistence.findByPrimaryKey(
+			pollsQuestionId);
 
-		addQuestionResources(
-			question, addGroupPermissions, addGuestPermissions);
+		addPollsQuestionResources(
+			pollsQuestion, addGroupPermissions, addGuestPermissions);
 	}
 
-	public void addQuestionResources(
-			long questionId, String[] groupPermissions,
+	public void addPollsQuestionResources(
+			long pollsQuestionId, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
-		PollsQuestion question = pollsQuestionPersistence.findByPrimaryKey(
-			questionId);
+		PollsQuestion pollsQuestion = pollsQuestionPersistence.findByPrimaryKey(
+			pollsQuestionId);
 
-		addQuestionResources(question, groupPermissions, guestPermissions);
+		addPollsQuestionResources(
+			pollsQuestion, groupPermissions, guestPermissions);
 	}
 
-	public void addQuestionResources(
-			PollsQuestion question, boolean addGroupPermissions,
+	public void addPollsQuestionResources(
+			PollsQuestion pollsQuestion, boolean addGroupPermissions,
 			boolean addGuestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addResources(
-			question.getCompanyId(), question.getGroupId(),
-			question.getUserId(), PollsQuestion.class.getName(),
-			question.getPollsQuestionId(), false, addGroupPermissions,
+			pollsQuestion.getCompanyId(), pollsQuestion.getGroupId(),
+			pollsQuestion.getUserId(), PollsQuestion.class.getName(),
+			pollsQuestion.getPollsQuestionId(), false, addGroupPermissions,
 			addGuestPermissions);
 	}
 
-	public void addQuestionResources(
-			PollsQuestion question, String[] groupPermissions,
+	public void addPollsQuestionResources(
+			PollsQuestion pollsQuestion, String[] groupPermissions,
 			String[] guestPermissions)
 		throws PortalException, SystemException {
 
 		resourceLocalService.addModelResources(
-			question.getCompanyId(), question.getGroupId(),
-			question.getUserId(), PollsQuestion.class.getName(),
-			question.getPollsQuestionId(), groupPermissions, guestPermissions);
+			pollsQuestion.getCompanyId(), pollsQuestion.getGroupId(),
+			pollsQuestion.getUserId(), PollsQuestion.class.getName(),
+			pollsQuestion.getPollsQuestionId(), groupPermissions,
+			guestPermissions);
 	}
 
-	public void deleteQuestion(long questionId)
+	@Override
+	public PollsQuestion deletePollsQuestion(long pollsQuestionId)
 		throws PortalException, SystemException {
 
-		PollsQuestion question = pollsQuestionPersistence.findByPrimaryKey(
-			questionId);
+		PollsQuestion pollsQuestion = pollsQuestionPersistence.findByPrimaryKey(
+			pollsQuestionId);
 
-		deleteQuestion(question);
+		return deletePollsQuestion(pollsQuestion);
 	}
 
-	public void deleteQuestion(PollsQuestion question)
+	@Override
+	public PollsQuestion deletePollsQuestion(PollsQuestion pollsQuestion)
 		throws PortalException, SystemException {
 
-		// Question
+		// Polls question
 
-		pollsQuestionPersistence.remove(question);
+		pollsQuestionPersistence.remove(pollsQuestion);
 
 		// Resources
 
 		resourceLocalService.deleteResource(
-			question.getCompanyId(), PollsQuestion.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL, question.getPollsQuestionId());
+			pollsQuestion.getCompanyId(), PollsQuestion.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			pollsQuestion.getPollsQuestionId());
 
-		// Choices
+		// Polls choices
 
 		pollsChoicePersistence.removeByPollsQuestionId(
-			question.getPollsQuestionId());
+			pollsQuestion.getPollsQuestionId());
 
-		// Votes
+		// Polls votes
 
 		pollsVotePersistence.removeByPollsQuestionId(
-			question.getPollsQuestionId());
+			pollsQuestion.getPollsQuestionId());
+
+		return pollsQuestion;
 	}
 
-	public void deleteQuestions(long groupId)
+	public void deletePollsQuestions(long groupId)
 		throws PortalException, SystemException {
 
-		for (PollsQuestion question :
+		for (PollsQuestion pollsQuestion :
 				pollsQuestionPersistence.findByGroupId(groupId)) {
 
-			deleteQuestion(question);
+			deletePollsQuestion(pollsQuestion);
 		}
 	}
 
-	public PollsQuestion getQuestion(long questionId)
+	public PollsQuestion getPollsQuestion(long pollsQuestionId)
 		throws PortalException, SystemException {
 
-		return pollsQuestionPersistence.findByPrimaryKey(questionId);
+		return pollsQuestionPersistence.findByPrimaryKey(pollsQuestionId);
 	}
 
-	public List<PollsQuestion> getQuestions(long groupId)
+	public List<PollsQuestion> getPollsQuestions(long groupId)
 		throws SystemException {
 
 		return pollsQuestionPersistence.findByGroupId(groupId);
 	}
 
-	public List<PollsQuestion> getQuestions(long groupId, int start, int end)
+	public List<PollsQuestion> getPollsQuestions(
+			long groupId, int start, int end)
 		throws SystemException {
 
 		return pollsQuestionPersistence.findByGroupId(groupId, start, end);
 	}
 
-	public int getQuestionsCount(long groupId) throws SystemException {
+	public int getPollsQuestionsCount(long groupId) throws SystemException {
 		return pollsQuestionPersistence.countByGroupId(groupId);
 	}
 
-	public PollsQuestion updateQuestion(
-			long userId, long questionId, Map<Locale, String> titleMap,
+	public PollsQuestion updatePollsQuestion(
+			long userId, long pollsQuestionId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, int expirationDateMonth,
 			int expirationDateDay, int expirationDateYear,
 			int expirationDateHour, int expirationDateMinute,
-			boolean neverExpire, List<PollsChoice> choices,
+			boolean neverExpire, List<PollsChoice> pollsChoices,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Question
+		// Polls question
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
@@ -247,54 +256,51 @@ public class PollsQuestionLocalServiceImpl
 				PollsQuestionExpirationDateException.class);
 		}
 
-		validate(titleMap, descriptionMap, choices);
+		validate(titleMap, descriptionMap, pollsChoices);
 
-		PollsQuestion question = pollsQuestionPersistence.findByPrimaryKey(
-			questionId);
+		PollsQuestion pollsQuestion = pollsQuestionPersistence.findByPrimaryKey(
+			pollsQuestionId);
 
-		question.setModifiedDate(serviceContext.getModifiedDate(null));
-		question.setTitleMap(titleMap);
-		question.setDescriptionMap(descriptionMap);
-		question.setExpirationDate(expirationDate);
+		pollsQuestion.setModifiedDate(serviceContext.getModifiedDate(null));
+		pollsQuestion.setTitleMap(titleMap);
+		pollsQuestion.setDescriptionMap(descriptionMap);
+		pollsQuestion.setExpirationDate(expirationDate);
 
-		pollsQuestionPersistence.update(question);
+		pollsQuestionPersistence.update(pollsQuestion);
 
-		// Choices
+		// Polls choices
 
-		if (choices != null) {
+		if (pollsChoices != null) {
 			int oldChoicesCount = pollsChoicePersistence.countByPollsQuestionId(
-				questionId);
+				pollsQuestionId);
 
-			if (oldChoicesCount > choices.size()) {
+			if (oldChoicesCount > pollsChoices.size()) {
 				throw new PollsQuestionChoiceException();
 			}
 
-			for (PollsChoice choice : choices) {
-				String choiceName = choice.getName();
-				String choiceDescription = choice.getDescription();
+			for (PollsChoice pollsChoice : pollsChoices) {
+				pollsChoice = pollsChoicePersistence.fetchByPQI_N(
+					pollsQuestionId, pollsChoice.getName());
 
-				choice = pollsChoicePersistence.fetchByPQI_N(
-					questionId, choiceName);
-
-				if (choice == null) {
-					pollsChoiceLocalService.addChoice(
-						questionId, choiceName, choiceDescription,
-						new ServiceContext());
+				if (pollsChoice == null) {
+					pollsChoiceLocalService.addPollsChoice(
+						pollsQuestionId, pollsChoice.getName(),
+						pollsChoice.getDescription(), new ServiceContext());
 				}
 				else {
-					pollsChoiceLocalService.updateChoice(
-						choice.getPollsChoiceId(), questionId, choiceName,
-						choiceDescription);
+					pollsChoiceLocalService.updatePollsChoice(
+						pollsChoice.getPollsChoiceId(), pollsQuestionId,
+						pollsChoice.getName(), pollsChoice.getDescription());
 				}
 			}
 		}
 
-		return question;
+		return pollsQuestion;
 	}
 
 	protected void validate(
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			List<PollsChoice> choices)
+			List<PollsChoice> pollsChoices)
 		throws PortalException {
 
 		Locale locale = LocaleUtil.getDefault();
@@ -311,15 +317,13 @@ public class PollsQuestionLocalServiceImpl
 			throw new PollsQuestionDescriptionException();
 		}
 
-		if ((choices != null) && (choices.size() < 2)) {
+		if ((pollsChoices != null) && (pollsChoices.size() < 2)) {
 			throw new PollsQuestionChoiceException();
 		}
 
-		if (choices != null) {
-			for (PollsChoice choice : choices) {
-				String choiceDescription = choice.getDescription(locale);
-
-				if (Validator.isNull(choiceDescription)) {
+		if (pollsChoices != null) {
+			for (PollsChoice pollsChoice : pollsChoices) {
+				if (Validator.isNull(pollsChoice.getDescription(locale))) {
 					throw new PollsQuestionChoiceException();
 				}
 			}

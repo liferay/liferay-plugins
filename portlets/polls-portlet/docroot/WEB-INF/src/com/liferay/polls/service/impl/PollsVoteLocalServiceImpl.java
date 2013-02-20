@@ -36,39 +36,41 @@ import java.util.List;
  */
 public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 
-	public PollsVote addVote(
-			long userId, long questionId, long choiceId,
+	public PollsVote addPollsVote(
+			long userId, long pollsQuestionId, long pollsChoiceId,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Choice
+		// Polls choice
 
 		Date now = new Date();
 
-		PollsChoice choice = pollsChoicePersistence.findByPrimaryKey(choiceId);
+		PollsChoice pollsChoice = pollsChoicePersistence.findByPrimaryKey(
+			pollsChoiceId);
 
-		if (choice.getPollsQuestionId() != questionId) {
+		if (pollsChoice.getPollsQuestionId() != pollsQuestionId) {
 			throw new NoSuchQuestionException();
 		}
 
-		// Question
+		// Polls question
 
-		PollsQuestion question = pollsQuestionPersistence.findByPrimaryKey(
-				questionId);
+		PollsQuestion pollsQuestion = pollsQuestionPersistence.findByPrimaryKey(
+			pollsQuestionId);
 
-		if (question.isExpired(serviceContext, now)) {
+		if (pollsQuestion.isExpired(serviceContext, now)) {
 			throw new PollsQuestionExpiredException();
 		}
 
-		question.setLastVoteDate(serviceContext.getCreateDate(now));
+		pollsQuestion.setLastVoteDate(serviceContext.getCreateDate(now));
 
-		pollsQuestionPersistence.update(question);
+		pollsQuestionPersistence.update(pollsQuestion);
 
-		// Vote
+		// Polls vote
 
-		PollsVote vote = pollsVotePersistence.fetchByU_PQI(userId, questionId);
+		PollsVote pollsVote = pollsVotePersistence.fetchByU_PQI(
+			userId, pollsQuestionId);
 
-		if (vote != null) {
+		if (pollsVote != null) {
 			throw new DuplicatePollsVoteException();
 		}
 		else {
@@ -83,50 +85,57 @@ public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 				userName = serviceContext.translate("anonymous");
 			}
 
-			long voteId = counterLocalService.increment();
+			long pollsVoteId = counterLocalService.increment();
 
-			vote = pollsVotePersistence.create(voteId);
+			pollsVote = pollsVotePersistence.create(pollsVoteId);
 
-			vote.setCompanyId(serviceContext.getCompanyId());
-			vote.setUserId(userId);
-			vote.setUserName(userName);
-			vote.setCreateDate(serviceContext.getCreateDate(now));
-			vote.setModifiedDate(serviceContext.getModifiedDate(now));
-			vote.setPollsQuestionId(questionId);
-			vote.setPollsChoiceId(choiceId);
-			vote.setVoteDate(serviceContext.getCreateDate(now));
+			pollsVote.setCompanyId(serviceContext.getCompanyId());
+			pollsVote.setUserId(userId);
+			pollsVote.setUserName(userName);
+			pollsVote.setCreateDate(serviceContext.getCreateDate(now));
+			pollsVote.setModifiedDate(serviceContext.getModifiedDate(now));
+			pollsVote.setPollsQuestionId(pollsQuestionId);
+			pollsVote.setPollsChoiceId(pollsChoiceId);
+			pollsVote.setVoteDate(serviceContext.getCreateDate(now));
 
-			pollsVotePersistence.update(vote);
+			pollsVotePersistence.update(pollsVote);
 		}
 
-		return vote;
+		return pollsVote;
 	}
 
-	public List<PollsVote> getChoiceVotes(long choiceId, int start, int end)
+	public List<PollsVote> getPollsChoicePollsVotes(
+			long pollsChoiceId, int start, int end)
 		throws SystemException {
 
-		return pollsVotePersistence.findByPollsChoiceId(choiceId, start, end);
+		return pollsVotePersistence.findByPollsChoiceId(
+			pollsChoiceId, start, end);
 	}
 
-	public int getChoiceVotesCount(long choiceId) throws SystemException {
-		return pollsVotePersistence.countByPollsChoiceId(choiceId);
+	public int getPollsChoicePollsVotesCount(long pollsChoiceId)
+		throws SystemException {
+
+		return pollsVotePersistence.countByPollsChoiceId(pollsChoiceId);
 	}
 
-	public List<PollsVote> getQuestionVotes(long questionId, int start, int end)
+	public List<PollsVote> getPollsQuestionPollsVotes(
+			long pollsQuestionId, int start, int end)
 		throws SystemException {
 
 		return pollsVotePersistence.findByPollsQuestionId(
-			questionId, start, end);
+			pollsQuestionId, start, end);
 	}
 
-	public int getQuestionVotesCount(long questionId) throws SystemException {
-		return pollsVotePersistence.countByPollsQuestionId(questionId);
+	public int getPollsQuestionPollsVotesCount(long pollsQuestionId)
+		throws SystemException {
+
+		return pollsVotePersistence.countByPollsQuestionId(pollsQuestionId);
 	}
 
-	public PollsVote getVote(long questionId, long userId)
+	public PollsVote getPollsVote(long pollsQuestionId, long userId)
 		throws PortalException, SystemException {
 
-		return pollsVotePersistence.findByU_PQI(userId, questionId);
+		return pollsVotePersistence.findByU_PQI(userId, pollsQuestionId);
 	}
 
 }

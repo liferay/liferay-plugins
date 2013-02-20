@@ -31,12 +31,13 @@ public class PollsQuestionImpl extends PollsQuestionBaseImpl {
 	public PollsQuestionImpl() {
 	}
 
-	public List<PollsChoice> getChoices() throws SystemException {
-		return PollsChoiceLocalServiceUtil.getChoices(getPollsQuestionId());
+	public List<PollsChoice> getPollsChoices() throws SystemException {
+		return PollsChoiceLocalServiceUtil.getPollsChoices(
+			getPollsQuestionId());
 	}
 
-	public int getVotesCount() throws SystemException {
-		return PollsVoteLocalServiceUtil.getQuestionVotesCount(
+	public int getPollsVotesCount() throws SystemException {
+		return PollsVoteLocalServiceUtil.getPollsQuestionPollsVotesCount(
 			getPollsQuestionId());
 	}
 

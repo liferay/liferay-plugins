@@ -30,62 +30,66 @@ import java.util.List;
 public class PollsChoiceLocalServiceImpl
 	extends PollsChoiceLocalServiceBaseImpl {
 
-	public PollsChoice addChoice(
-			long questionId, String name, String description,
+	public PollsChoice addPollsChoice(
+			long pollsQuestionId, String name, String description,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		validate(name, description);
 
-		pollsQuestionPersistence.findByPrimaryKey(questionId);
+		pollsQuestionPersistence.findByPrimaryKey(pollsQuestionId);
 
-		long choiceId = counterLocalService.increment();
+		long pollsChoiceId = counterLocalService.increment();
 
-		PollsChoice choice = pollsChoicePersistence.create(choiceId);
+		PollsChoice pollsChoice = pollsChoicePersistence.create(pollsChoiceId);
 
-		choice.setUuid(serviceContext.getUuid());
-		choice.setPollsQuestionId(questionId);
-		choice.setName(name);
-		choice.setDescription(description);
+		pollsChoice.setUuid(serviceContext.getUuid());
+		pollsChoice.setPollsQuestionId(pollsQuestionId);
+		pollsChoice.setName(name);
+		pollsChoice.setDescription(description);
 
-		pollsChoicePersistence.update(choice);
+		pollsChoicePersistence.update(pollsChoice);
 
-		return choice;
+		return pollsChoice;
 	}
 
-	public PollsChoice getChoice(long choiceId)
+	public PollsChoice getPollsChoice(long pollsChoiceId)
 		throws PortalException, SystemException {
 
-		return pollsChoicePersistence.findByPrimaryKey(choiceId);
+		return pollsChoicePersistence.findByPrimaryKey(pollsChoiceId);
 	}
 
-	public List<PollsChoice> getChoices(long questionId)
+	public List<PollsChoice> getPollsChoices(long pollsQuestionId)
 		throws SystemException {
 
-		return pollsChoicePersistence.findByPollsQuestionId(questionId);
+		return pollsChoicePersistence.findByPollsQuestionId(pollsQuestionId);
 	}
 
-	public int getChoicesCount(long questionId) throws SystemException {
-		return pollsChoicePersistence.countByPollsQuestionId(questionId);
+	public int getPollsChoicesCount(long pollsQuestionId)
+		throws SystemException {
+
+		return pollsChoicePersistence.countByPollsQuestionId(pollsQuestionId);
 	}
 
-	public PollsChoice updateChoice(
-			long choiceId, long questionId, String name, String description)
+	public PollsChoice updatePollsChoice(
+			long pollsChoiceId, long pollsQuestionId, String name,
+			String description)
 		throws PortalException, SystemException {
 
 		validate(name, description);
 
-		pollsQuestionPersistence.findByPrimaryKey(questionId);
+		pollsQuestionPersistence.findByPrimaryKey(pollsQuestionId);
 
-		PollsChoice choice = pollsChoicePersistence.findByPrimaryKey(choiceId);
+		PollsChoice pollsChoice = pollsChoicePersistence.findByPrimaryKey(
+			pollsChoiceId);
 
-		choice.setPollsQuestionId(questionId);
-		choice.setName(name);
-		choice.setDescription(description);
+		pollsChoice.setPollsQuestionId(pollsQuestionId);
+		pollsChoice.setName(name);
+		pollsChoice.setDescription(description);
 
-		pollsChoicePersistence.update(choice);
+		pollsChoicePersistence.update(pollsChoice);
 
-		return choice;
+		return pollsChoice;
 	}
 
 	protected void validate(String name, String description)

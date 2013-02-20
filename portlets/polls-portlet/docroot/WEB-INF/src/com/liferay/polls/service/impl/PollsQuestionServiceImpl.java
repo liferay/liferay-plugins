@@ -34,58 +34,58 @@ import java.util.Map;
  */
 public class PollsQuestionServiceImpl extends PollsQuestionServiceBaseImpl {
 
-	public PollsQuestion addQuestion(
+	public PollsQuestion addPollsQuestion(
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			int expirationDateMonth, int expirationDateDay,
 			int expirationDateYear, int expirationDateHour,
 			int expirationDateMinute, boolean neverExpire,
-			List<PollsChoice> choices, ServiceContext serviceContext)
+			List<PollsChoice> pollsChoices, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		PollsPermission.check(
 			getPermissionChecker(), serviceContext.getScopeGroupId(),
 			ActionKeys.ADD_QUESTION);
 
-		return pollsQuestionLocalService.addQuestion(
+		return pollsQuestionLocalService.addPollsQuestion(
 			getUserId(), titleMap, descriptionMap, expirationDateMonth,
 			expirationDateDay, expirationDateYear, expirationDateHour,
-			expirationDateMinute, neverExpire, choices, serviceContext);
+			expirationDateMinute, neverExpire, pollsChoices, serviceContext);
 	}
 
-	public void deleteQuestion(long questionId)
+	public PollsQuestion deletePollsQuestion(long pollsQuestionId)
 		throws PortalException, SystemException {
 
 		PollsQuestionPermission.check(
-			getPermissionChecker(), questionId, ActionKeys.DELETE);
+			getPermissionChecker(), pollsQuestionId, ActionKeys.DELETE);
 
-		pollsQuestionLocalService.deleteQuestion(questionId);
+		return pollsQuestionLocalService.deletePollsQuestion(pollsQuestionId);
 	}
 
-	public PollsQuestion getQuestion(long questionId)
+	public PollsQuestion getPollsQuestion(long pollsQuestionId)
 		throws PortalException, SystemException {
 
 		PollsQuestionPermission.check(
-			getPermissionChecker(), questionId, ActionKeys.VIEW);
+			getPermissionChecker(), pollsQuestionId, ActionKeys.VIEW);
 
-		return pollsQuestionLocalService.getQuestion(questionId);
+		return pollsQuestionLocalService.getPollsQuestion(pollsQuestionId);
 	}
 
-	public PollsQuestion updateQuestion(
-			long questionId, Map<Locale, String> titleMap,
+	public PollsQuestion updatePollsQuestion(
+			long pollsQuestionId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, int expirationDateMonth,
 			int expirationDateDay, int expirationDateYear,
 			int expirationDateHour, int expirationDateMinute,
-			boolean neverExpire, List<PollsChoice> choices,
+			boolean neverExpire, List<PollsChoice> pollsChoices,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		PollsQuestionPermission.check(
-			getPermissionChecker(), questionId, ActionKeys.UPDATE);
+			getPermissionChecker(), pollsQuestionId, ActionKeys.UPDATE);
 
-		return pollsQuestionLocalService.updateQuestion(
-			getUserId(), questionId, titleMap, descriptionMap,
+		return pollsQuestionLocalService.updatePollsQuestion(
+			getUserId(), pollsQuestionId, titleMap, descriptionMap,
 			expirationDateMonth, expirationDateDay, expirationDateYear,
-			expirationDateHour, expirationDateMinute, neverExpire, choices,
+			expirationDateHour, expirationDateMinute, neverExpire, pollsChoices,
 			serviceContext);
 	}
 
