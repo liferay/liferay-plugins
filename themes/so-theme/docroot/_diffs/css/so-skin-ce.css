@@ -1273,10 +1273,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 	}
 
-	.contact-group-filter .contact-group-filter-content {
-		min-height: 30px;
-	}
-
 	.social-relations a {
 		border: 1px solid transparent;
 		color: $button-text-color;
