@@ -85,23 +85,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			<aui:input name="type" type="hidden" value="" />
 
 			<aui:layout cssClass="toolbar">
-				<aui:column columnWidth="30" cssClass="search-column">
-					<div class="lfr-search-column contacts-search aui-search-bar">
-						<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
-					</div>
-				</aui:column>
-
-				<aui:column columnWidth="70" cssClass="button-column">
-					<div id="<portlet:namespace/>userToolbarButtons"><!-- --></div>
-
-					<div class="aui-helper-hidden" id="<portlet:namespace/>contactCenterToolbarButtons">
-						<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
-					</div>
-				</aui:column>
-			</aui:layout>
-
-			<aui:layout cssClass="contacts-result-container lfr-app-column-view">
-				<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
+				<div class="filter-container">
 					<aui:layout cssClass="contact-group-filter">
 						<aui:button name="checkAll" type="checkbox" />
 
@@ -135,14 +119,22 @@ portletURL.setWindowState(WindowState.NORMAL);
 									</optgroup>
 								</c:if>
 							</aui:select>
-
-							<c:if test="<%= !showOnlySiteMembers %>">
-								<span class="add-contact">
-									<aui:a href="javascript:;" label="add" />
-								</span>
-							</c:if>
 						</c:if>
 					</aui:layout>
+				</div>
+
+				<c:if test="<%= !showOnlySiteMembers %>">
+					<div class="add-contact">
+						<aui:button value="add-contact" />
+					</div>
+				</c:if>
+			</aui:layout>
+
+			<aui:layout cssClass="contacts-result-container lfr-app-column-view">
+				<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
+					<div class="lfr-search-column contacts-search aui-search-bar">
+						<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+					</div>
 
 					<aui:layout cssClass='<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>'>
 
@@ -285,6 +277,12 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</aui:column>
 
 				<aui:column columnWidth="70" cssClass="contacts-container">
+					<div id="<portlet:namespace/>userToolbarButtons"><!-- --></div>
+
+					<div class="aui-helper-hidden" id="<portlet:namespace/>contactCenterToolbarButtons">
+						<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
+					</div>
+
 					<div id="<portlet:namespace/>messageContainer"></div>
 
 					<div id="<portlet:namespace/>detailUserView">
@@ -526,7 +524,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
 
 				<c:if test="<%= !showOnlySiteMembers %>">
-					A.one('.contacts-portlet .add-contact').on(
+					A.one('.contacts-portlet .add-contact input').on(
 						'click',
 						function(event) {
 							contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
