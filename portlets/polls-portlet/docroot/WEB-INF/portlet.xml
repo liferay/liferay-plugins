@@ -13,6 +13,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Polls</title>
 			<short-title>Polls</short-title>
@@ -47,6 +48,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Polls Display</title>
 			<short-title>Polls Display</short-title>
