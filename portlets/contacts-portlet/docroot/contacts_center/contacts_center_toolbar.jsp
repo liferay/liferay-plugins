@@ -210,19 +210,6 @@ if (user2 != null) {
 		}
 	);
 
-	<c:if test="<%= Validator.isNotNull(userDisplayURL) %>">
-		contactsToolbarChildren.push(
-			{
-				handler: function(event) {
-					location.href= '<%= userDisplayURL %>';
-				},
-				icon: 'user',
-				id: '<portlet:namespace />gotoProfileButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "profile") %>'
-			}
-		);
-	</c:if>
-
 	var contactsToolbar = new A.Toolbar(
 		{
 			activeState: false,
