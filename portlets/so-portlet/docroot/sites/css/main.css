@@ -84,12 +84,8 @@
 		clear: both;
 	}
 
-	.sites-tabs {
-		float: left;
-
-		select {
-			padding: 5px 1px;
-		}
+	.sites-tabs select {
+		padding: 5px 1px;
 	}
 
 	.search {
@@ -181,12 +177,16 @@
 		}
 	}
 
-	.aui-field {
-		margin: 10px 0;
-	}
-
 	.buttons-left {
 		float: left;
+
+		input {
+			vertical-align: top;
+		}
+
+		.aui-field-input-select {
+			margin: 0;
+		}
 	}
 
 	.buttons-right {
@@ -209,7 +209,6 @@
 		}
 
 		.sites-tabs {
-			float: left;
 			margin-right: 5px;
 
 			select {
