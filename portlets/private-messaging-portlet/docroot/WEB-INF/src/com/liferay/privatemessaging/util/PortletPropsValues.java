@@ -29,8 +29,7 @@ public class PortletPropsValues {
 		PortletProps.get(PortletPropsKeys.AUTOCOMPLETE_RECIPIENT_MAX));
 
 	public static final String[] AUTOCOMPLETE_RECIPIENT_SITE_EXCLUDES =
-		PortletProps.getArray(
-			PortletPropsKeys.AUTOCOMPLETE_RECIPIENT_SITE_EXCLUDES);
+		new String[0];
 
 	public static final String AUTOCOMPLETE_RECIPIENT_TYPE =
 		GetterUtil.getString(
