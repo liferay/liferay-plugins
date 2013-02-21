@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 6.1.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_6_1_0.dtd">
+<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 6.2.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_6_2_0.dtd">
 
 <resource-action-mapping>
 	<portlet-resource>
-		<portlet-name>25</portlet-name>
+		<portlet-name>1</portlet-name>
 		<permissions>
 			<supports>
 				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
@@ -23,9 +23,9 @@
 		</permissions>
 	</portlet-resource>
 	<model-resource>
-		<model-name>com.liferay.portlet.polls</model-name>
+		<model-name>com.liferay.polls</model-name>
 		<portlet-ref>
-			<portlet-name>25</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
@@ -37,11 +37,11 @@
 				<action-key>ADD_QUESTION</action-key>
 			</guest-unsupported>
 		</permissions>
-	</model-resource>	
+	</model-resource>
 	<model-resource>
-		<model-name>com.liferay.portlet.polls.model.PollsQuestion</model-name>
+		<model-name>com.liferay.polls.model.PollsQuestion</model-name>
 		<portlet-ref>
-			<portlet-name>25</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
