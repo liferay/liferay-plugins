@@ -312,7 +312,7 @@ public class JabberImpl implements Jabber {
 
 	protected Connection connect()
 		throws PortalException, SystemException, UnknownHostException,
-			XMPPException {
+			   XMPPException {
 
 		long userId = -1;
 		String password = null;
@@ -322,7 +322,7 @@ public class JabberImpl implements Jabber {
 
 	protected Connection connect(long userId, String password)
 		throws PortalException, SystemException, UnknownHostException,
-			XMPPException {
+			   XMPPException {
 
 		Connection connection = getConnection(userId);
 
@@ -408,7 +408,7 @@ public class JabberImpl implements Jabber {
 
 	protected void importUser(long userId, String password)
 		throws PortalException, SystemException, UnknownHostException,
-			XMPPException {
+			   XMPPException {
 
 		Connection connection = connect();
 
