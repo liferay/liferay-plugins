@@ -1,23 +1,29 @@
 <?xml version="1.0"?>
 
-<root available-locales="en_US" default-locale="en_US">
-	<dynamic-element name="socials" repeatable="true" dataType="string" indexType="" required="true" showLabel="true" type="text" width="25">
-		<dynamic-element name="icon" repeatable="false" dataType="document-library" indexType="" required="true" showLabel="true" type="ddm-documentlibrary" fieldNamespace="ddm">
-			<meta-data locale="en_US">
-				<entry name="tip"><![CDATA[]]></entry>
+<root>
+	<dynamic-element name="socials" type="text" index-type="" repeatable="true">
+		<dynamic-element name="icon" type="document_library" index-type="" repeatable="false">
+			<meta-data>
+				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+				<entry name="required"><![CDATA[true]]></entry>
+				<entry name="instructions"><![CDATA[]]></entry>
 				<entry name="label"><![CDATA[Social Icon]]></entry>
 				<entry name="predefinedValue"><![CDATA[]]></entry>
 			</meta-data>
 		</dynamic-element>
-		<dynamic-element name="link" repeatable="false" dataType="string" indexType="" required="true" showLabel="true" type="text" width="25">
-			<meta-data locale="en_US">
-				<entry name="tip"><![CDATA[]]></entry>
+		<dynamic-element name="link" type="text" index-type="" repeatable="false">
+			<meta-data>
+				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+				<entry name="required"><![CDATA[true]]></entry>
+				<entry name="instructions"><![CDATA[]]></entry>
 				<entry name="label"><![CDATA[Social Link URL]]></entry>
 				<entry name="predefinedValue"><![CDATA[]]></entry>
 			</meta-data>
 		</dynamic-element>
-		<meta-data locale="en_US">
-			<entry name="tip"><![CDATA[]]></entry>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[true]]></entry>
+			<entry name="instructions"><![CDATA[]]></entry>
 			<entry name="label"><![CDATA[Social Link Name]]></entry>
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
