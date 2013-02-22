@@ -431,13 +431,11 @@ public class FileSystemImporter extends BaseImporter {
 
 		String ddmTemplateKey = getJournalId(fileName);
 
-		String extension = FileUtil.getExtension(fileName);
-
 		String name = FileUtil.stripExtension(fileName);
 
 		Map<Locale, String> nameMap = getMap(name);
 
-		String language = getTemplateLanguage(extension);
+		String language = getDDMTemplateLanguage(fileName);
 
 		String xsl = StringUtil.read(inputStream);
 
@@ -557,6 +555,20 @@ public class FileSystemImporter extends BaseImporter {
 		setupSitemap("sitemap.json");
 	}
 
+	protected String getDDMTemplateLanguage(String fileName) {
+		String extension = FileUtil.getExtension(fileName);
+
+		if (extension.equals(TemplateConstants.LANG_TYPE_CSS) ||
+			extension.equals(TemplateConstants.LANG_TYPE_FTL) ||
+			extension.equals(TemplateConstants.LANG_TYPE_VM) ||
+			extension.equals(TemplateConstants.LANG_TYPE_XSL)) {
+
+			return extension;
+		}
+
+		return TemplateConstants.LANG_TYPE_VM;
+	}
+
 	protected JSONObject getDefaultPortletJSONObject(String journalArticleId) {
 		JSONObject portletJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -639,18 +651,6 @@ public class FileSystemImporter extends BaseImporter {
 		map.put(locale, value);
 
 		return map;
-	}
-
-	protected String getTemplateLanguage(String fileExtension) {
-		if (fileExtension.equals(TemplateConstants.LANG_TYPE_CSS) ||
-			fileExtension.equals(TemplateConstants.LANG_TYPE_FTL) ||
-			fileExtension.equals(TemplateConstants.LANG_TYPE_VM) ||
-			fileExtension.equals(TemplateConstants.LANG_TYPE_XSL)) {
-
-			return fileExtension;
-		}
-
-		return TemplateConstants.LANG_TYPE_VM;
 	}
 
 	protected boolean isJournalStructureXSD(String xsd) throws Exception {
