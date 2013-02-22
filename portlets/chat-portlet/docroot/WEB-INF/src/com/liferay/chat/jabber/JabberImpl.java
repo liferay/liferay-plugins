@@ -372,32 +372,17 @@ public class JabberImpl implements Jabber {
 			return _connectionConfiguration;
 		}
 
-		if (Validator.isIPAddress(PortletPropsValues.JABBER_HOST)) {
-			_connectionConfiguration = new ConnectionConfiguration(
-				PortletPropsValues.JABBER_HOST, PortletPropsValues.JABBER_PORT,
-				PortletPropsValues.JABBER_SERVICE_NAME);
+		String jabberHost = PortletPropsValues.JABBER_HOST
+
+		if (!Validator.isIPAddress(jabberHost)) {
+			InetAddress inetAddress = InetAddress.getByName(jabberHost);
+
+			jabberHost = inetAddress.getHostAddress();
 		}
-		else {
-			try {
-				InetAddress inetAddress = InetAddress.getByName(
-					PortletPropsValues.JABBER_HOST);
 
-				String jabberServerIPAddress = inetAddress.getHostAddress();
-
-				_connectionConfiguration = new ConnectionConfiguration(
-					jabberServerIPAddress, PortletPropsValues.JABBER_PORT,
-					PortletPropsValues.JABBER_SERVICE_NAME);
-			}
-			catch (UnknownHostException uhe) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to resolve Jabber host " +
-							PortletPropsValues.JABBER_HOST);
-				}
-
-				throw new UnknownHostException();
-			}
-		}
+		_connectionConfiguration = new ConnectionConfiguration(
+			jabberHost, PortletPropsValues.JABBER_PORT,
+			PortletPropsValues.JABBER_SERVICE_NAME);
 
 		_connectionConfiguration.setSendPresence(false);
 
