@@ -54,6 +54,7 @@ page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBDiscussionLocalServiceUtil" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
 page import="com.liferay.portlet.wiki.NoSuchPageException" %><%@
+page import="com.liferay.portlet.wiki.model.WikiNode" %><%@
 page import="com.liferay.portlet.wiki.model.WikiPage" %><%@
 page import="com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil" %>
 
