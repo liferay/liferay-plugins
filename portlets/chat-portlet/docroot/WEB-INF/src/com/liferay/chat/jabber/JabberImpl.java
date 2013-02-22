@@ -29,6 +29,9 @@ import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -308,7 +311,8 @@ public class JabberImpl implements Jabber {
 	}
 
 	protected Connection connect()
-		throws PortalException, SystemException, XMPPException {
+		throws PortalException, SystemException, UnknownHostException,
+			XMPPException {
 
 		long userId = -1;
 		String password = null;
@@ -317,7 +321,8 @@ public class JabberImpl implements Jabber {
 	}
 
 	protected Connection connect(long userId, String password)
-		throws PortalException, SystemException, XMPPException {
+		throws PortalException, SystemException, UnknownHostException,
+			XMPPException {
 
 		Connection connection = getConnection(userId);
 
@@ -360,14 +365,39 @@ public class JabberImpl implements Jabber {
 		return _connections.get(userId);
 	}
 
-	protected ConnectionConfiguration getConnectionConfiguration() {
+	protected ConnectionConfiguration getConnectionConfiguration()
+		throws UnknownHostException {
+
 		if (_connectionConfiguration != null) {
 			return _connectionConfiguration;
 		}
 
-		_connectionConfiguration = new ConnectionConfiguration(
-			PortletPropsValues.JABBER_HOST, PortletPropsValues.JABBER_PORT,
-			PortletPropsValues.JABBER_SERVICE_NAME);
+		if (Validator.isIPAddress(PortletPropsValues.JABBER_HOST)) {
+			_connectionConfiguration = new ConnectionConfiguration(
+				PortletPropsValues.JABBER_HOST, PortletPropsValues.JABBER_PORT,
+				PortletPropsValues.JABBER_SERVICE_NAME);
+		}
+		else {
+			try {
+				InetAddress inetAddress = InetAddress.getByName(
+					PortletPropsValues.JABBER_HOST);
+
+				String jabberServerIPAddress = inetAddress.getHostAddress();
+
+				_connectionConfiguration = new ConnectionConfiguration(
+					jabberServerIPAddress, PortletPropsValues.JABBER_PORT,
+					PortletPropsValues.JABBER_SERVICE_NAME);
+			}
+			catch (UnknownHostException uhe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to resolve Jabber host " +
+							PortletPropsValues.JABBER_HOST);
+				}
+
+				throw new UnknownHostException();
+			}
+		}
 
 		_connectionConfiguration.setSendPresence(false);
 
@@ -392,7 +422,8 @@ public class JabberImpl implements Jabber {
 	}
 
 	protected void importUser(long userId, String password)
-		throws PortalException, SystemException, XMPPException {
+		throws PortalException, SystemException, UnknownHostException,
+			XMPPException {
 
 		Connection connection = connect();
 
