@@ -1,0 +1,324 @@
+@import "compass";
+
+body {
+	font-family: Tahoma, Verdana, sans-serif;
+}
+
+/* ---------- Skip to Content ---------- */
+
+#skip-to-content, .page-title, #navigation h1, #breadcrumbs {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+#banner {
+	background: url(../images/custom/header_bg.png) repeat-x 0 0 scroll;
+	display: inline-block;
+	margin: 0 auto;
+	width: 100%;
+}
+
+#heading {
+	margin: 0 auto;
+	width: 960px;
+}
+
+#pageSearch {
+	float: right;
+	position: relative;
+	top: 25px;
+}
+
+#keywords {
+	font-size: 12px;
+	height: 15px;
+	width: 150px;
+}
+
+/* ---------- Sign In ---------- */
+
+#sign-in {
+	color: #FFF;
+	position: absolute;
+	right: 5px;
+	text-decoration: none;
+	top: 5px;
+}
+
+#portlet_58 {
+	margin-top: 330px;
+}
+
+/* ---------- Navigation ---------- */
+
+#navigation {
+	margin: auto;
+	width: 960px;
+
+	ul {
+		min-width: 960px;
+		margin: 0 auto;
+	}
+
+	li {
+		background: url(../images/custom/nav_bar.png) repeat-x scroll;
+		display: inline;
+		float: left;
+		height: 45px;
+		line-height: 45px;
+		text-align: center;
+
+		ul {
+			display: none;
+		}
+
+		&:hover {
+			background-position: left -45px;
+		}
+
+		&:hover .child-menu {
+			display: inline-block;
+			float: left;
+			left: 0;
+			margin: 0;
+			position: absolute;
+			top: 45px;
+			width: 100%;
+			z-index: 2;
+		}
+
+		&:hover .child-menu li {
+			border: 1px solid #525F62;
+			clear: both;
+			display: block;
+			width: 200px;
+		}
+	}
+
+	a {
+		color: #FFF;
+		display: block;
+		font-size: 12px;
+		padding: 0 46px;
+		text-decoration: none;
+		text-transform: uppercase;
+		vertical-align: middle;
+
+		&:hover {
+			color: #FFF;
+			text-decoration: none;
+		}
+	}
+}
+
+/* ---------- Main Content ---------- */
+
+#content {
+	background: url(../images/custom/content_background.png) repeat-x 50% -147px scroll;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.columns-1-3-2-4 {
+	color: #5A6A6A;
+	margin: 0 auto;
+	width: 960px;
+
+	a {
+		color: #CF710D;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&:before {
+		content: url(../images/custom/jackson_banner_picture.png);
+		margin: 0 auto;
+		position: relative;
+		top: 8px;
+	}
+}
+
+.portlet-layout {
+	margin-bottom: 15px;
+}
+
+#layout-column_column-1 {
+	margin: 8px auto;
+	padding: 0;
+}
+
+#column-2, #column-3, #column-4 {
+	background-color: #FFF;
+	border-bottom: 2px solid #DEDEDE;
+	border-top: 2px solid #DEDEDE;
+
+	h2 {
+		color: #D0730C;
+		margin-top: 5px;
+	}
+
+	p {
+		margin-top: 0;
+	}
+
+	.portlet-body {
+		padding: 0 10px;
+	}
+
+	.portlet-topper {
+		color: #D0730C;
+		font-size: 16px;
+		margin-top: 5px;
+		padding-left: 20px;
+	}
+}
+
+#column-2 {
+	border-left: 2px solid #DEDEDE;
+
+	.portlet-body {
+		border-right: 1px solid #DEDEDE;
+	}
+}
+
+#column-3 .portlet-body {
+	border-right: 1px solid #DEDEDE;
+}
+
+#column-4 {
+	border-right: 2px solid #DEDEDE;
+}
+
+#column-5 {
+	border-radius: 3px;
+	border: 2px solid #DEDEDE;
+	padding: 0 3px;
+
+	h2 {
+		background-color: #CF710D;
+		color: #FFF;
+		margin-top: 3px;
+		padding-left: 6px;
+	}
+
+	p {
+		padding: 0 12px 0 15px;
+	}
+
+	.portlet-topper {
+		background-color: #CF710D;
+		color: #FFF;
+		font-size: 15px;
+		margin-top: 3px;
+		padding-left: 6px;
+	}
+
+	.portlet-content {
+		padding-left: 0;
+	}
+}
+
+#column-6 {
+	padding-left: 15px;
+
+	.portlet-topper {
+		font-size: 15px;
+	}
+
+	.portlet-content {
+		padding-left: 0;
+	}
+}
+
+#column-7 {
+	margin-right: 10px;
+	padding-left: 15px;
+}
+
+#column-7, #column-8 {
+	.portlet-topper {
+		font-size: 14px;
+	}
+
+	.portlet-content {
+		padding-bottom: 5px;
+		padding-top: 5px;
+	}
+
+	.portlet-body {
+		padding-right: 30px;
+	}
+}
+	
+#column-9, #column-10, #column-11, #column-12 {
+	background-color: #102624;
+	color: #FFF;
+
+	.portlet-topper {
+		font-size: 14px;
+		margin-top: 6px;
+		padding: 12px;
+	}
+
+	.portlet-content {
+		padding-left: 2px;
+	}
+
+	.portlet-body {
+		padding-bottom: 20px;
+		padding-left: 10px;
+	}
+
+	p a {
+		color: #FFF;
+	}
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+	text-align: right;
+	width: 980px;
+}
+
+/* ---------- Compass ---------- */
+
+#layout-column_column-2 {
+	@include background-image(linear-gradient(top left, #F7F7F7, #FFF 75%));
+}
+
+#column-5 .portlet-boundary{
+	@include background-image(linear-gradient(top left, #F7F7F7, #FFF 40%));
+}
+
+/* ---------- Internet Explorer ---------- */
+
+.ie7 {
+	#banner {
+		height: 168px;
+	}
+
+	#pageSearch {
+		float: right;
+		position: relative;
+		top: -40px;
+	}
+
+	#navigation {
+		bottom: 22px;
+		position: relative;
+		z-index: 2;
+	}
+
+	#layout-column_column-1 {
+		background: url(../images/custom/jackson_banner_picture.png) no-repeat;
+		height: 323px;
+		margin: 0 auto;
+		position: relative;
+		top: 8px;
+		z-index: 1;
+	}
+}
