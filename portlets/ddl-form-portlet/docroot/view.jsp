@@ -61,20 +61,22 @@ try {
 								<aui:fieldset>
 
 									<%
-									DDMStructure ddmStructure = recordSet.getDDMStructure();
+									long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
+
+									long classPK = recordSet.getDDMStructureId();
 
 									if (formDDMTemplateId > 0) {
-										try {
-											ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(formDDMTemplateId);
+										classNameId = PortalUtil.getClassNameId(DDMTemplate.class);
 
-											ddmStructure.setXsd(ddmTemplate.getScript());
-										}
-										catch (NoSuchTemplateException nste) {
-										}
+										classPK = formDDMTemplateId;
 									}
 									%>
 
-									<%= DDMXSDUtil.getHTML(pageContext, ddmStructure.getXsd(), locale) %>
+									<liferay-ddm:html
+										classNameId="<%= classNameId %>"
+										classPK="<%= classPK %>"
+										requestedLocale="<%= locale %>"
+									/>
 
 									<aui:button-row>
 										<aui:button onClick='<%= renderResponse.getNamespace() + "publishRecord();" %>' type="submit" value="send" />
