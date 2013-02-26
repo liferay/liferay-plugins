@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_1_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>6.2.0+</version>
+		<version>6.1.0+</version>
+	</compatibility>
+	<theme id="sobetatheme" name="Social Office Beta Theme">
+		<color-scheme id="soClassic" name="Social Office Classic">
+			<css-class>so-classic</css-class>
+		</color-scheme>
+		<color-scheme id="normal" name="Social Office Beta">
+			<default-cs>true</default-cs>
+			<css-class>normal</css-class>
+		</color-scheme>
+	</theme>
+</look-and-feel>

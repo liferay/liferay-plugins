@@ -1,0 +1,57 @@
+@import "compass";
+
+$blue-link: #2571AD;
+$button-text-color: #34404F;
+$fixed-width: 980px;
+$gray: #CECECE;
+$gray-dark: #C7D0DA;
+$gray-light: #F4F4F4;
+$gray-medium: #EEE;
+$navigation-width: 200px;
+$red: #8F0920;
+$default-border-color: #D9D8D8;
+$link-color: #2571AD;
+
+@mixin remove-gradients {
+	background-image: none;
+	background-color: transparent;
+}
+
+@mixin default-border {
+	border: 1px solid $default-border-color;
+}
+
+@mixin input-field-default {
+	background: #FFF;
+	border: 1px solid $gray-dark;
+	vertical-align: middle;
+
+	&:active, &:focus, &:hover, &.focus {
+		@include input-field-focus;
+	}
+
+	input[type=text] {
+		background: transparent;
+		border-width: 0;
+	}
+
+	@include default-border;
+}
+
+@mixin input-field-focus {
+	background-color: #FFFFF6;
+	border-color: $blue-link;
+}
+
+@mixin button-default {
+	background-color: #E9E8E8;
+	background-image: none;
+	border: 1px solid $gray;
+	text-shadow: none;
+}
+
+@mixin button-hover {
+	background: $gray-medium;
+	border-color: #AAA;
+	color: #5A5A5A;
+}

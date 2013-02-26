@@ -1,0 +1,208 @@
+@import "compass";
+@import "classic-skin";
+
+body.so-classic {
+	a {
+		color: $link-color;
+	}
+
+	#dockbar a {
+		color: $button-text-color;
+	}
+
+	#banner {
+		background-color: transparent;
+		border-color: $default-border-color;
+		padding: 1.5em 2em;
+
+		.site-title a {
+			color: $red;
+			font-weight: 800;
+		}
+	}
+
+	#navigation {
+		background: #FFF;
+
+		&, ul, a {
+			border-color: $default-border-color;
+		}
+
+		a {
+			border: 1px solid transparent;
+			border-width: 1px 0;
+			color: $link-color;
+
+			&, &:active, &:focus, &:hover {
+				text-shadow: none;
+
+				@include remove-gradients;
+			}
+
+			&:active, &:focus, &:hover {
+				background: #F4F4F4;
+				border-bottom-color: $default-border-color;
+			}
+		}
+
+		li.selected {
+			border-left: 4px solid $red;
+			border-top-color: transparent;
+
+			a {
+				background: #F4F4F4;
+				color: $red;
+
+				@include box-shadow(none);
+			}
+		}
+	}
+
+	#content {
+		background: transparent;
+		border-width: 0;
+	}
+
+	#main-content {
+		background: transparent;
+
+		@include box-shadow(none);
+	}
+
+	.portlet-topper {
+		color: #929292;
+
+		.portlet-title {
+			font-size: 1em;
+			font-weight: bold;
+		}
+	}
+
+	.top-links-container {
+
+		.top-links {
+			background-color: #EEE;
+		}
+	}
+
+	.aui-toolbar {
+		.aui-toolbar-item {
+			border-width: 1px 0 1px 1px;
+		}
+
+		.aui-toolbar-last {
+			border-right-width: 1px;
+		}
+	}
+
+	.aui-tabview-list {
+		padding: 0 3px 0;
+
+		@include button-default;
+
+		.aui-tab:first-child, .first, .first .aui-tab-content {
+			border-left-width: 0;
+		}
+
+		.aui-tab-content {
+			border: 1px solid $default-border-color;
+			border-width: 1px 1px 1px 0;
+			margin: -1px 0;
+		}
+
+		.aui-tab-label, .aui-tab-label a {
+			&:active, &:hover, &:normal, &:visited {
+				text-decoration: none;
+			}
+		}
+
+		.aui-tab-label, .aui-tab-content .aui-tab-label, .aui-tab-content:hover .aui-tab-label {
+			color: #5A5A5A;
+			font-weight: bold;
+			padding: 3px 12px 2px;
+			text-shadow: none;
+
+			@include button-default;
+			@include box-shadow(none);
+		}
+
+		.aui-tab-active {
+			.aui-tab-label, .aui-tab-content:hover {
+				background: #FFF;
+				border-color: $gray $gray #FFF;
+
+				.aui-tab-label {
+					color: #5A5A5A;
+					text-shadow: none;
+				}
+			 }
+		}
+	}
+
+	.aui-panel-hd, .lfr-panel.lfr-extended .lfr-panel-titlebar {
+		@include normal-gradient;
+		@include default-border;
+	}
+
+	.invite-members, .social-relations a, .aui-buttonitem-content, .aui-tabview-list .aui-tab-label {
+		@include button-default;
+
+		background-image: none;
+	}
+
+	.invite-members, .social-relations a {
+		@include border-radius(4px);
+
+		&:hover, &:focus {
+			text-decoration: none;
+
+			@include button-hover;
+		}
+
+		&:active {
+			@include button-active;
+		}
+	}
+
+	.aui-dialog-content .aui-dialog-hd {
+		border: 1px solid $default-border-color;
+	}
+
+	.aui-tooltip-content {
+		@include box-shadow(0 2px 10px -4px rgba(0, 0, 0, 1));
+	}
+
+	.aui-overlaycontextpanel-arrow-bl {
+		.aui-overlaycontextpanel-pointer {
+			border-right: 12px dashed transparent;
+			padding: 0;
+		}
+
+		.aui-overlaycontextpanel-pointer-inner {
+			left: 1px;
+		}
+	}
+
+	.hidden-accessible, #navigation h1 {
+		@include hidden-accessible;
+	}
+
+	/*  Layout  */
+
+	.portlet-column-content {
+		border: 1px solid $default-border-color;
+		border-width: 0 1px;
+		margin: 0 0 0 -1px;
+		padding: 0;
+	}
+
+	.portlet-column-content-only, .ltr .portlet-column-content-last, .rtl .portlet-column-content-first {
+		border-right-width: 0;
+	}
+
+	.portlet-column-last .portlet-column-content {
+		border-left-width: 0;
+	}
+}
+
+@import "classic-forms";
