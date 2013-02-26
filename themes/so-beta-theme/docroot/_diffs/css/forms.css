@@ -1,0 +1,195 @@
+@import "compass";
+@import "strata-skin";
+
+fieldset {
+	@include default-border;
+
+	padding: 8px;
+}
+
+.aui-fieldset {
+	border-width: 0;
+	padding: 0;
+	position: relative;
+}
+
+.aui-dialog-iframe-popup .aui-fieldset {
+	margin-bottom: 0;
+}
+
+.aui-fieldset .aui-field-content, .aui-field-row, .aui-button-holder, .aui-field-wrapper-content {
+	margin: 10px 0;
+}
+
+.aui-field-inline, .aui-field-row {
+	.aui-field-content {
+		margin: 0;
+		margin-right: 5px;
+	}
+}
+
+.aui-search-bar {
+	.aui-field-content {
+		margin-right: 0;
+	}
+
+	.aui-field-content, .aui-button-content {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+.aui-field-choice .aui-field-label {
+	display: inline-block;
+}
+
+.aui-field-date .aui-field-content {
+	overflow: hidden;
+}
+
+.aui-text-placeholder {
+	color: #777;
+}
+
+legend {
+	font-weight: bold;
+	padding: 0 6px;
+}
+
+.aui-fieldset-legend {
+	color: #000;
+	font-size: 120%;
+	font-weight: bold;
+	padding: 0 0 1.5em;
+}
+
+.aui-legend {
+	border-bottom: 1px solid $default-border-color;
+	display: block;
+	position: absolute;
+	width: 90%;
+}
+
+input {
+	background: #FFF;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
+	@include input-field-default;
+}
+
+select {
+	padding: 1px;
+}
+
+input[type="image"] {
+	background: transparent none;
+	border: none;
+	padding: 0;
+}
+
+a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+	@include button-default;
+
+	&:hover, &:focus {
+		@include button-hover;
+	}
+
+	&:active, &.active {
+		@include button-active;
+	}
+}
+
+input, textarea {
+	&.focus {
+		@include input-field-focus;
+	}
+}
+
+.lfr-actions.lfr-extended {
+	&, ul {
+		@include button-default;
+
+		padding: 0;
+	}
+
+	&:focus {
+		&, ul {
+			@include button-focus;
+		}
+	}
+
+	&.disabled, &.disabled:hover {
+		&, ul {
+			@include button-disabled;
+		}
+	}
+
+	&:hover {
+		&, ul {
+			@include button-hover;
+		}
+	}
+}
+
+.lfr-actions.disabled .taglib-text {
+	color: #A9A9A9;
+}
+
+.aui-button-disabled {
+	input[type], button {
+		&, &:hover, &:focus {
+			@include button-disabled;
+		}
+	}
+}
+
+.aui-buttonitem-disabled {
+	@include button-disabled;
+}
+
+input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
+	border-color: $red;
+	border-style: dotted;
+}
+
+/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+.ie {
+	fieldset {
+		padding-top: 0;
+	}
+
+	.aui-button-disabled input {
+		-ms-filter: alpha(opacity=50);
+		filter: alpha(opacity=50);
+	}
+}
+
+.ie7 {
+	.aui-fieldset {
+		zoom: 1;
+	}
+}
+
+.ie6 {
+	input.text, input.password, input.submit, input.file, input.button, button {
+		@include input-field-default;
+	}
+
+	input.submit, input.button, button, .aui-button-disabled input.submit, .aui-button-disabled input.button, .aui-button-disabled button {
+		@include button-default;
+	}
+
+	.aui-button-disabled {
+		input.submit, input.button, button {
+			color: #555;
+		}
+	}
+
+	input, textarea {
+		&.focus {
+			@include input-field-focus;
+		}
+	}
+}

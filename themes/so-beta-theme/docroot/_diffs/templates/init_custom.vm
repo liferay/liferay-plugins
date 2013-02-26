@@ -1,0 +1,85 @@
+#set ($logo = "logo")
+
+#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+#set ($user_dashboard_portlet_url = $site_default_url)
+#set ($user_dashboard_url = $site_default_url)
+#set ($user_profile_url = $community_default_public_url)
+#set ($is_profile_page = false)
+#set ($current_user = $user_local_service.getUserById($page_group.getClassPK()))
+#set ($so_logo = $images_folder + "/custom/so_logo.png")
+
+#if (($company.getLogoId() == 0) && !$layout.layoutSet.isLogo())
+	#set ($site_logo = $images_folder + "/custom/so_logo.png")
+	#set ($site_logo_height = "32px")
+	#set ($site_logo_width = "32px")
+#end
+
+#if ($is_signed_in)
+	#set ($liferay_toggle_controls = $sessionClicks.get($request, "liferay_toggle_controls", ""))
+
+	#if ($liferay_toggle_controls == "")
+		$sessionClicks.put($request, "liferay_toggle_controls", "hidden")
+
+		#set ($liferay_toggle_controls = "hidden")
+		#set ($css_class = $css_class.replaceAll("controls-visible", "controls-hidden"))
+	#end
+
+	#set ($nav_css_class = "${nav_css_class} sort-pages modify-pages")
+
+	#set ($user_group = $user.getGroup())
+	#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutLocalService"))
+	#set ($user_layout = $layoutLocalService.getLayouts($user_group.getGroupId(), true))
+
+	#set ($is_user_dashboard = ($page_group.getGroupId() == $current_user.getGroupId()))
+#end
+
+#if ($page_group.isUser())
+	#set ($current_user_name = $current_user.getFullName())
+	#set ($current_user_profile_url = $theme_display.getURLPortal() + $theme_display.getPathFriendlyURLPublic() + "/" + $current_user.getScreenName())
+	#set ($current_user_profile_portrait_url = $current_user.getPortraitURL($themeDisplay))
+
+	#set ($show_edit_profile_button = false)
+
+	#if ($current_user.getPortraitId() == 0)
+		#set ($current_user_profile_portrait_url = $images_folder + "/custom/so_user_profile_male_default.png")
+	#end
+
+	#if (($current_user.getUserId() == $user.getUserId()) && $layout.isPublicLayout())
+		#set ($group_local_service = $serviceLocator.findService('com.liferay.portal.service.GroupLocalService'))
+
+		#set ($control_panel_group = $group_local_service.getGroup($company_id, "Control Panel"))
+
+		#set ($layout_local_service = $serviceLocator.findService('com.liferay.portal.service.LayoutLocalService'))
+
+		#set ($control_panel_plid = $layout_local_service.getDefaultPlid($control_panel_group.getGroupId(), true))
+
+		#set ($current_user_edit_profile_portrait_url = $portletURLFactory.create($request, "2", $control_panel_plid, "RENDER_PHASE"))
+
+		$current_user_edit_profile_portrait_url.setParameter("struts_action", "/my_account/edit_user_portrait")
+		$current_user_edit_profile_portrait_url.setParameter("p_u_i_d", "$user_id")
+		$current_user_edit_profile_portrait_url.setParameter("redirect", "$current_user_profile_url")
+		$current_user_edit_profile_portrait_url.setPortletMode("view")
+		$current_user_edit_profile_portrait_url.setWindowState("pop_up")
+
+		#set ($show_edit_profile_button = true)
+	#end
+
+	#set ($css_class = $css_class + " user-group")
+	#set ($user_detail_class = "so-user-detail")
+
+	#if ($page_group.getClassPK() == $user_id)
+		#set ($community_name = $languageUtil.get($locale, "my-private-pages"))
+	#end
+
+	#if ($layout.isPublicLayout())
+		#set ($is_profile_page = true)
+		#set ($is_user_dashboard = false)
+		#set ($the_title = $current_user_name)
+		#set ($css_class = $css_class + " profile-page")
+		#set ($user_detail_class = "user-profile-detail")
+	#end
+#end
+
+#if ($is_user_dashboard)
+	#set ($css_class = "${css_class} user-dashboard")
+#end

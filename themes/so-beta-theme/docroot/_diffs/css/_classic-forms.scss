@@ -1,0 +1,131 @@
+@import "compass";
+@import "classic-skin";
+
+body.so-classic {
+	.aui-legend {
+		border-bottom: 1px solid $default-border-color;
+	}
+
+	input {
+		background: #FFF;
+	}
+
+	input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
+		@include input-field-default;
+	}
+
+	select {
+		padding: 1px;
+	}
+
+	input[type="image"] {
+		background: transparent none;
+		border: none;
+		padding: 0;
+	}
+
+	.top-links .top-links-navigation a, .portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a,
+	a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+		@include button-default;
+
+		&:hover, &:focus {
+			@include button-hover;
+		}
+
+		&:active, &.active {
+			@include button-active;
+		}
+	}
+
+	input, textarea {
+		&.focus {
+			@include input-field-focus;
+		}
+	}
+
+	.lfr-actions.lfr-extended {
+		&, ul {
+			@include button-default;
+		}
+
+		&:focus {
+			&, ul {
+				@include button-focus;
+			}
+		}
+
+		&.disabled, &.disabled:hover {
+			&, ul {
+				@include button-disabled;
+			}
+		}
+
+		&:hover {
+			&, ul {
+				@include button-hover;
+			}
+		}
+	}
+
+	.lfr-actions.disabled .taglib-text {
+		color: #A9A9A9;
+	}
+
+	.aui-button-disabled {
+		input[type], button {
+			&, &:hover, &:focus {
+				@include button-disabled;
+			}
+		}
+	}
+
+	.aui-buttonitem-disabled {
+		@include button-disabled;
+	}
+
+	input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
+		border-color: $red;
+		border-style: dotted;
+	}
+
+	/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+	.ie {
+		fieldset {
+			padding-top: 0;
+		}
+
+		.aui-button-disabled input {
+			-ms-filter: alpha(opacity=50);
+			filter: alpha(opacity=50);
+		}
+	}
+
+	.ie7 {
+		.aui-fieldset {
+			zoom: 1;
+		}
+	}
+
+	.ie6 {
+		input.text, input.password, input.submit, input.file, input.button, button {
+			@include input-field-default;
+		}
+
+		input.submit, input.button, button, .aui-button-disabled input.submit, .aui-button-disabled input.button, .aui-button-disabled button {
+			@include button-default;
+		}
+
+		.aui-button-disabled {
+			input.submit, input.button, button {
+				color: #555;
+			}
+		}
+
+		input, textarea {
+			&.focus {
+				@include input-field-focus;
+			}
+		}
+	}
+}

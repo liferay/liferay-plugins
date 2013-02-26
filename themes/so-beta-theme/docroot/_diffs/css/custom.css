@@ -1,0 +1,517 @@
+@import "compass";
+@import "strata-skin";
+
+body {
+	background: #FFF;
+	color: $default-text-color;
+	font: 13px/1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.so-beta-theme #dockbar {
+	margin-top: -32px;
+}
+
+a {
+	color: $blue;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.button {
+	@include border-radius(4px);
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+#banner, #content, .clear, .portlet-toolbar, .breadcrumbs ul {
+	@include clear-both;
+}
+
+/*  Forms Custom  */
+
+.aui-panel-hd, .lfr-panel.lfr-extended .lfr-panel-titlebar {
+	@include normal-gradient;
+	@include default-border;
+}
+
+.invite-members, .social-relations a, .aui-buttonitem-content, .aui-tabview-list .aui-tab-label {
+	@include button-default;
+}
+
+.invite-members, .social-relations a {
+	@include border-radius(4px);
+
+	&:hover, &:focus {
+		text-decoration: none;
+
+		@include button-hover;
+	}
+
+	&:active {
+		@include button-active;
+	}
+}
+
+.aui-dialog-content {
+	padding: 0;
+
+	.aui-dialog-hd {
+		border: 1px solid $default-border-color;
+		border-width: 0 0 1px;
+		padding: 0 0 0 0.5em;
+
+		@include border-radius(4px 4px 0 0);
+		@include box-shadow(none);
+
+		.aui-toolbar {
+			margin: -1px;
+		}
+	}
+}
+
+.aui-panel-hd-text {
+	font-weight: normal;
+}
+
+.aui-panel-bd {
+	padding: 0 1em 1em;
+}
+
+.aui-buttonitem-icon-only {
+	padding: 4px 5px 5px;
+}
+
+.aui-button-holder {
+	.aui-toolbar-item {
+		margin: 0 -1px;
+	}
+
+	.aui-toolbar-first {
+		margin-left: 0;
+	}
+}
+
+.aui-buttonitem-content {
+	margin-right: -1px;
+
+	&.aui-toolbar-last {
+		margin-right: 0;
+	}
+}
+
+.aui-tooltip-content {
+	@include box-shadow(0 2px 10px -4px rgba(0, 0, 0, 1));
+}
+
+.aui-overlaycontextpanel-arrow-bl {
+	.aui-overlaycontextpanel-pointer {
+		border-right: 12px dashed transparent;
+		padding: 0;
+	}
+
+	.aui-overlaycontextpanel-pointer-inner {
+		left: 1px;
+	}
+}
+
+.hidden-accessible, #navigation h1 {
+	@include hidden-accessible;
+}
+
+/*  Layout  */
+
+.portlet-column-content {
+	border: 1px solid $default-border-color;
+	border-width: 0 1px;
+	margin: 0 0 0 -1px;
+	padding: 0;
+}
+
+.portlet-column-content-only, .ltr .portlet-column-content-last, .rtl .portlet-column-content-first {
+	border-right-width: 0;
+}
+
+.portlet-column-last .portlet-column-content {
+	border-left-width: 0;
+}
+
+/*  Breadcrumbs  */
+
+.breadcrumbs-horizontal {
+	border: 1px solid $default-border-color;
+	border-width: 1px 0;
+	margin: -1px 0;
+
+	li {
+		background: transparent url(../images/custom/so_breadcrumbs.png) right 50% no-repeat;
+		border-bottom: 1px solid $default-border-color;
+		max-width: 33.333%;
+		margin-bottom: -1px;
+
+		span {
+			display: block;
+		}
+
+		a {
+			color: $default-text-color;
+			display: block;
+			font-weight: normal;
+			margin-left: -5px;
+			overflow: hidden;
+			padding: 0.4em 25px 0.4em 0.75em;
+			text-overflow: ellipsis;
+			white-space: pre;
+			width: 87%;
+
+			&:hover {
+				color: $blue;
+				text-decoration: none;
+			}
+		}
+
+		&.first a {
+			padding-left: 20px;
+		}
+
+		&.last {
+			background-image: none;
+
+			a {
+				color: $red;
+			}
+		}
+	}
+}
+
+/*  Site Breadcrumbs  */
+
+.site-breadcrumbs .breadcrumbs-horizontal {
+	border-top: 1px solid $default-border-color;
+	margin: 0 0 -1px;
+}
+
+/*  Banner  */
+
+#banner {
+	padding: 1em 1.5em;
+	@include header;
+
+	border-width: 1px 0;
+
+	h1, h2 {
+		font-size: 1.8em;
+		font-weight: 200;
+		line-height: 1em;
+		margin: 0;
+		text-shadow: 0 1px 0px #FFF;
+	}
+
+	.site-title {
+		display: inline-block;
+
+		&, a {
+			color: $red;
+			font-weight: 200;
+		}
+
+		a:hover {
+			color: $blue;
+			text-decoration: none;
+		}
+
+		img {
+			display: inline;
+			height: 32px;
+			margin: -.25em 0 -.25em -.45em;
+			position: relative;
+			top: -0.125em;
+			vertical-align: middle;
+			width: auto;
+		}
+	}
+
+	.avatar {
+		background: transparent none 50% 50% no-repeat;
+		background-size: cover;
+		display: inline-block;
+		margin: -0.62em 0.5em -0.55em -0.86em;
+		overflow: hidden;
+		vertical-align: middle;
+
+		&, img {
+			height: 55px;
+			width: 55px;
+		}
+
+		img {
+			visibility: hidden;
+		}
+	}
+}
+
+#page-search {
+	float: right;
+	position: relative;
+
+	input[type="text"] {
+		color: $default-border-color;
+
+	}
+
+	input[type="text"]:focus, &.focus input[type="text"] {
+			color: $default-text-color;
+		}
+	input[type="image"], select {
+		display: none;
+	}
+
+	.search-controls {
+		background: #FFF;
+		display: none;
+		left: 0;
+		padding: 0.4em;
+		right: 0;
+		top: 100%;
+		z-index: 1;
+
+		@include border-radius(4px);
+		@include menu-style;
+
+		input[type="image"], select {
+			display: inline-block;
+		}
+	}
+
+	&.focus {
+		.search-controls {
+			display: block;
+		}
+	}
+}
+
+div#navigation {
+	background: $navigation-bg-color;
+	border-right: 1px solid $default-border-color;
+	float: left;
+	margin-left: -156px;
+	width: 155px;
+
+	.avatar {
+		display: block;
+		height: 155px;
+		overflow: hidden;
+		position: relative;
+		width: 155px;
+
+		img {
+			width: 155px;
+			height: auto;
+			min-height: 155px;
+		}
+
+		.edit-portrait {
+			bottom: 10px;
+			left: 10px;
+			position: absolute;
+			visibility: hidden;
+		}
+
+		&:hover {
+			.edit-portrait {
+				visibility: visible;
+			}
+		}
+	}
+
+	ul {
+		border-bottom: 1px solid #D9D9D9;
+	}
+
+	ul, li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		background-color: #E4E4E4;
+		background-repeat: no-repeat;
+		border-bottom: 1px solid #D9D9D9;
+		color: $default-text-color;
+		display: block;
+		font-size: 1.125em;
+		font-weight: 200;
+		padding: 0.65em 1.05em;
+		text-shadow: 0 1px 0 #FFF;
+
+		@include subtle-gradient;
+
+		&:hover, &:focus {
+			text-decoration: none;
+
+			@include button-hover;
+		}
+
+		&:active {
+			@include button-active;
+		}
+	}
+
+	.selected a {
+		border-bottom: none;
+		border-top: 1px solid #0E50A9;
+
+		@include box-shadow(0 1px 0 #7FBBF4 inset);
+		@include button-primary-gradient;
+	}
+}
+
+#content {
+	background: $navigation-bg-color;
+	border-left: 1px solid $default-border-color;
+	padding-left: 155px;
+}
+
+#main-content {
+	background: #FFF;
+	float: left;
+	min-height: 500px;
+	position: relative;
+	width: 100%;
+
+	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, .6));
+}
+
+.user-dashboard {
+	#content {
+		padding: 0;
+		border: 0;
+	}
+
+	#main-content {
+		float: none;
+		width: auto;
+	}
+}
+
+.aui-tabview-list {
+	padding: 0 .45em;
+
+	@include default-border;
+	@include normal-gradient;
+
+	.aui-tab, .aui-tab:first-child, .last, .first, .aui-tab-content {
+		border-width: 0;
+		padding: 0;
+	}
+
+	.aui-tab-content {
+		margin: -1px -1px 0 0;
+	}
+
+	.aui-tab-label {
+		font-weight: 200;
+		text-decoration: none;
+		margin-bottom: -1px;
+
+		&:hover, &:focus {
+			text-shadow: none;
+
+			@include button-hover;
+		}
+	}
+
+	.aui-tab-active .aui-tab-label, .aui-tab-label:active {
+		@include button-active;
+	}
+}
+
+.portlet {
+	border-bottom: 1px solid $default-border-color;
+	margin-bottom: -1px;
+
+	.portlet-topper, .portlet-content {
+		padding: 1em;
+	}
+
+	.portlet-topper {
+		padding-bottom: 0;
+	}
+
+	.portlet-title {
+		font-size: 1.5em;
+		font-weight: 200;
+
+		.icon {
+			display: none;
+		}
+	}
+}
+
+.portlet-borderless-container {
+	min-height: 0;
+}
+
+.controls-visible .portlet-borderless-container {
+	min-height: 2.5em;
+}
+
+#footer {
+	clear: both;
+	padding: 1em;
+}
+
+@import "portlet-styling";
+@import "classic-scheme";
+@import "ie";
+
+@media (max-width:860px) {
+	#content, #navigation, #navigation ul {
+		border-width: 0;
+	}
+
+	div#navigation {
+		float: none;
+		margin-left: 0;
+		width: 100%;
+
+		li {
+			float: left;
+
+			a {
+				@include background-image(linear, 50% 100%, 50% 0%, color-stop(0%, #252d31), color-stop(100%, #32363a));
+
+				display: block;
+				padding: .75em 1em;
+			}
+		}
+
+		@include subtle-gradient;
+		@include clear-both;
+
+		.avatar {
+			float: left;
+			height: 39px;
+			width: 39px;
+
+			img {
+				min-height: 39px;
+				width: 39px;
+			}
+		}
+	}
+
+	#content {
+		padding-left: 0;
+	}
+
+	.portlet-layout, .portlet-column {
+		display: block;
+		width: auto;
+	}
+}

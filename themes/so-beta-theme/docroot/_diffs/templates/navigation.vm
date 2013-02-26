@@ -1,0 +1,48 @@
+<div class="$nav_css_class" id="navigation">
+	#if ($is_profile_page)
+		<div class="avatar" id="_SO_THEME_taglibLogoSelector" style="background-image: url($current_user.getPortraitURL($themeDisplay))">
+			<div id="_SO_THEME_taglibLogoSelectorContent">
+				<img id="_SO_THEME_avatar" src="$current_user_profile_portrait_url" alt="$current_user.getFullName()">
+			</div>
+
+			#if ($show_edit_profile_button)
+				<span class="aui-button edit-portrait">
+					<button class="aui-button-content" onClick="editPortrait._openEditLogoWindow();">
+						<span class="aui-buttonitem-label">$languageUtil.get($locale, "edit-profile-picture")</span>
+					</button>
+				</span>
+			#end
+		</div>
+	#end
+
+	<h1>
+		<span>#language("navigation")</span>
+	</h1>
+
+	<ul>
+		#foreach ($navItem in $navItems)
+			#if ($layout.getPlid() == $navItem.layout.getPlid())
+				<li class="selected">
+			#else
+				<li>
+			#end
+
+				<a href="$navItem.getURL()" $navItem.getTarget()><span>$navItem.icon() $navItem.getName()</span></a>
+
+				#if ($navItem.hasChildren())
+					<ul class="child-menu">
+						#foreach ($nav_child in $navItem.getChildren())
+							#if ($nav_child.isSelected())
+								<li class="selected">
+							#else
+								<li>
+							#end
+								<a href="$nav_child.getURL()" $nav_child.getTarget()>$nav_child.getName()</a>
+							</li>
+						#end
+					</ul>
+				#end
+			</li>
+		#end
+	</ul>
+</div>

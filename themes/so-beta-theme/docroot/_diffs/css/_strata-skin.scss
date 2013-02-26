@@ -1,0 +1,124 @@
+@import "compass";
+
+$btn-default-text: #0D0D0D;
+$btn-border-default: rgba(0,0,0, .1);
+$btn-background-default: rgb(228,228,228);
+
+$default-border-color: #C9C9C9;
+$default-text-color: #202020;
+
+$control-bg-color: #EEE9E9;
+$navigation-bg-color: #CBD0D3;
+$red: #8F0920;
+$blue: #0E50A9;
+
+@mixin clear-both {
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+}
+
+@mixin hidden-accessible {
+	clip: rect(0, 0, 0, 0);
+	position: absolute;
+	font-size: 0;
+	text-indent: -9999em;
+}
+
+@mixin default-border {
+	border: 1px solid $default-border-color;
+}
+
+@mixin header {
+	background: $control-bg-color;
+
+	@include default-border;
+}
+
+@mixin menu-style {
+	position: absolute;
+
+	@include box-shadow(0 1px 3px rgba(0,0,0, .78));
+}
+
+@mixin normal-gradient {
+	background: $btn-background-default url(../images/custom/normal_gradient_bg.png) repeat-x;
+
+	@include background-image(linear-gradient(bottom, rgb(228,228,228) 0%, rgb(247,247,247) 100%));
+	@include transition-duration(.2s);
+	@include transition-property(background-position);
+}
+
+@mixin subtle-gradient {
+	background: #E4E4E4 no-repeat;
+
+	@include background-image(linear-gradient(bottom, #E4E4E4 0, #F7F7F7 100%));
+	@include transition-duration(.2s);
+	@include transition-property(background-position);
+}
+
+@mixin input-field-default {
+	padding: .4em 0;
+	vertical-align: middle;
+
+	@include default-border;
+	@include border-radius(4px);
+}
+
+@mixin input-field-focus {
+	background: #E9F5FF;
+	border-color: #2571AD;
+}
+
+@mixin button-default {
+	color: $btn-default-text;
+	cursor: pointer;
+	font-weight: normal;
+	padding: 0.35em 0.70em 0.38em;
+	overflow: visible;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 #FFF;
+	width: auto;
+
+	@include box-shadow(0 1px 0 rgba(255,255,255, .35) inset, 0 -1px 0 rgba(0,0,0, .15) inset);
+	@include normal-gradient;
+	@include default-border;
+}
+
+@mixin button-disabled {
+	color: $default-border-color;
+	opacity: 0.5;
+
+	@include normal-gradient;
+}
+
+@mixin button-hover {
+	background-position: 0 -.8em;
+
+	@include box-shadow(0 1px 0 rgba(255,255,255, .25) inset, 0 1px 0px rgba(0,0,0, .14) inset, 0 1px 4px rgba(0,0,0, .1) inset);
+}
+
+@mixin button-focus {
+	background-position: 0 -.8em;
+
+	@include box-shadow(0 1px 0 rgba(255,255,255, .25) inset, 0 1px 0px rgba(0,0,0, .14) inset, 0 1px 4px rgba(0,0,0, .1) inset);
+}
+
+@mixin button-active {
+	background-position: 0 -1.5em;
+
+	@include box-shadow(0 1px 8px rgba(0,0,0, .14) inset, 0 1px 3px rgba(0,0,0, .75) inset);
+}
+
+@mixin button-primary-gradient {
+	background: #0E50A9 url(../images/custom/button_primary_bg.png) repeat-x;
+
+	&, &:hover {
+		color: #FFF;
+		text-shadow: 0 -1px #003C8D;
+	}
+
+	@include background-image(linear-gradient(bottom, #0E50A9 0, #1D87EB 100%));
+}
