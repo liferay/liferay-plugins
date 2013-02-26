@@ -193,21 +193,12 @@
 			<replacevalue></replacevalue>
 		</replace>
 
-		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
-			<replacetoken>"gadgets.uri.iframe.basePath" : "/opensocial-portlet/gadgets/ifr",
-
-
-
-
-"gadgets.jsUriTemplate" : "http://%host%/opensocial-portlet/gadgets/js/%js%",
-
-
-
-
-"gadgets.uri.iframe.basePath" : "/opensocial-portlet/gadgets/ifr",</replacetoken>
-			<replacevalue>"gadgets.uri.iframe.basePath" : "/opensocial-portlet/gadgets/ifr",
-"gadgets.jsUriTemplate" : "http://%host%/opensocial-portlet/gadgets/js/%js%",</replacevalue>
-		</replace>
+		<replaceregexp match="(&quot;gadgets\.uri\.iframe\.basePath&quot; : &quot;.*?&quot;[\s\S]*)&quot;gadgets\.uri\.iframe\.basePath&quot; : &quot;.*?&quot;," replace="\1" flags="g" byline="false">
+			<fileset
+				dir="tmp/WEB-INF/classes/containers/default/"
+				includes="container.js"
+			/>
+		</replaceregexp>
 
 		<!-- Configure oauth.json -->
 
