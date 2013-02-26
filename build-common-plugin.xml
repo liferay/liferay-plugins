@@ -1133,7 +1133,9 @@ Please find a solution that does not require portal-impl.jar.
 					<formatter type="brief" usefile="false" />
 					<formatter type="xml" />
 					<batchtest todir="test-results/${test.type}">
-						<fileset dir="test-classes/${test.type}" includes="**/${class}.class" />
+						<fileset dir="test-classes/${test.type}" includes="**/${class}.class">
+							<exclude name="${junit.test.excludes}" />
+						</fileset>
 					</batchtest>
 				</junit>
 			</then>
