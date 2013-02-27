@@ -18,8 +18,6 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.PortletPropsValues;
 import com.liferay.chat.util.comparator.BuddyComparator;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -194,6 +192,7 @@ public class JabberImpl implements Jabber {
 
 				try {
 					importUser(userId, password);
+
 					connect(userId, password);
 				}
 				catch (XMPPException xmppe2) {
@@ -310,10 +309,7 @@ public class JabberImpl implements Jabber {
 		updateStatus(userId, online, null);
 	}
 
-	protected Connection connect()
-		throws PortalException, SystemException, UnknownHostException,
-			   XMPPException {
-
+	protected Connection connect() throws Exception {
 		long userId = -1;
 		String password = null;
 
@@ -321,8 +317,7 @@ public class JabberImpl implements Jabber {
 	}
 
 	protected Connection connect(long userId, String password)
-		throws PortalException, SystemException, UnknownHostException,
-			   XMPPException {
+		throws Exception {
 
 		Connection connection = getConnection(userId);
 
@@ -372,7 +367,7 @@ public class JabberImpl implements Jabber {
 			return _connectionConfiguration;
 		}
 
-		String jabberHost = PortletPropsValues.JABBER_HOST
+		String jabberHost = PortletPropsValues.JABBER_HOST;
 
 		if (!Validator.isIPAddress(jabberHost)) {
 			InetAddress inetAddress = InetAddress.getByName(jabberHost);
@@ -406,10 +401,7 @@ public class JabberImpl implements Jabber {
 			PortletPropsValues.JABBER_SERVICE_NAME);
 	}
 
-	protected void importUser(long userId, String password)
-		throws PortalException, SystemException, UnknownHostException,
-			   XMPPException {
-
+	protected void importUser(long userId, String password) throws Exception {
 		Connection connection = connect();
 
 		AccountManager accountManager = connection.getAccountManager();
