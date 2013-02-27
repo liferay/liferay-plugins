@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
@@ -128,9 +128,7 @@ public class StatusFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_USERS_GROUPS);
-
-			sql = sql.concat(buildExcludeGroupsSQL(groupNames));
+			String sql = _buildFindUserGroupsSQLQuery(groupNames);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -145,9 +143,9 @@ public class StatusFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(userId);
+			qPos.add(groupNames);
 			qPos.add(modifiedDate);
 			qPos.add(userId);
-			qPos.add(groupNames);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -159,28 +157,23 @@ public class StatusFinderImpl
 		}
 	}
 
-	protected String buildExcludeGroupsSQL(String[] groupNames) {
-		if (groupNames.length == 0) {
-			return StringPool.BLANK;
+	private String _buildFindUserGroupsSQLQuery(String[] groupNames) {
+		String sql = CustomSQLUtil.get(FIND_BY_USERS_GROUPS);
+
+		String filterReplacement = StringPool.BLANK;
+		String joinReplacement = StringPool.BLANK;
+
+		if (groupNames.length > 0) {
+			filterReplacement = "AND Group_.name NOT IN (?)";
+			joinReplacement =
+				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId";
 		}
 
-		StringBundler sb = new StringBundler(groupNames.length * 2 + 3);
+		sql = StringUtil.replace(sql, "[$GROUPS_FILTER$]", filterReplacement);
 
-		sb.append("AND (User_.userId NOT IN (SELECT userId FROM Users_Groups ");
-		sb.append("INNER JOIN Group_ ON (Users_Groups.groupId = ");
-		sb.append("Group_.groupId) WHERE Group_.name IN (");
+		sql = StringUtil.replace(sql, "[$GROUPS_JOIN$]", joinReplacement);
 
-		for (int i = 0; i < groupNames.length; i++) {
-			sb.append(StringPool.QUESTION);
-
-			if ((i + 1) < groupNames.length) {
-				sb.append(StringPool.COMMA);
-			}
-		}
-
-		sb.append(")))");
-
-		return sb.toString();
+		return sql;
 	}
 
 }
