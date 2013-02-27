@@ -169,8 +169,8 @@
 		</replace>
 
 		<antcall target="strip-comments">
-			<param name="strip-comments.file" value="tmp/WEB-INF/classes/containers/default/container.js" />
-			<param name="strip-comments.encoding" value="utf-8" />
+			<param name="strip.comments.file" value="tmp/WEB-INF/classes/containers/default/container.js" />
+			<param name="strip.comments.encoding" value="utf-8" />
 		</antcall>
 
 		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
@@ -257,8 +257,8 @@
 		/>
 
 		<antcall target="strip-comments">
-			<param name="strip-comments.file" value="${tstamp.value}/sampledata/canonicaldb.json" />
-			<param name="strip-comments.encoding" value="utf-8" />
+			<param name="strip.comments.file" value="${tstamp.value}/sampledata/canonicaldb.json" />
+			<param name="strip.comments.encoding" value="utf-8" />
 		</antcall>
 
 		<delete file="tmp/WEB-INF/lib/shindig-social-api-2.0.2.jar" />
@@ -393,18 +393,18 @@
 	</target>
 
 	<target name="strip-comments">
-		<replaceregexp file="${strip-comments.file}"
+		<replaceregexp file="${strip.comments.file}"
+			encoding="${strip.comments.encoding}"
+			flags="gs"
 			match="\s*/[*].*?[*]/\s*"
 			replace=""
-			encoding="${strip-comments.encoding}"
-			flags="gs"
 		/>
 
-		<replaceregexp file="${strip-comments.file}"
+		<replaceregexp file="${strip.comments.file}"
+			byline="true"
+			encoding="${strip.comments.encoding}"
 			match="^\s*(//)(.*)$$"
 			replace=""
-			encoding="${strip-comments.encoding}"
-			byline="true"
 		/>
 	</target>
 </project>
