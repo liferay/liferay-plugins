@@ -104,11 +104,11 @@
 				(Users_Groups.groupId IN 
 					(
 						SELECT
-							groupId
+							Users_Groups.groupId
 						FROM
-							Users_Groups
+							Users_Groups [$GROUPS_JOIN$]
 						WHERE
-							(userId = ?)
+							(userId = ?) [$GROUPS_FILTER$]
 					)
 				) AND
 				(Chat_Status.modifiedDate > ?) AND
