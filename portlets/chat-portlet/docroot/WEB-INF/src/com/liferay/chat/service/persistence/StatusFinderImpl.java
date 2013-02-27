@@ -128,7 +128,7 @@ public class StatusFinderImpl
 		try {
 			session = openSession();
 
-			String sql = _buildFindUserGroupsSQLQuery(groupNames);
+			String sql = getFindByUsersGroups_SQL(groupNames);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -157,23 +157,25 @@ public class StatusFinderImpl
 		}
 	}
 
-	private String _buildFindUserGroupsSQLQuery(String[] groupNames) {
+	protected String getFindByUsersGroups_SQL(String[] groupNames) {
 		String sql = CustomSQLUtil.get(FIND_BY_USERS_GROUPS);
 
-		String filterReplacement = StringPool.BLANK;
-		String joinReplacement = StringPool.BLANK;
-
-		if (groupNames.length > 0) {
-			filterReplacement = "AND Group_.name NOT IN (?)";
-			joinReplacement =
-				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId";
+		if (groupNames.length == 0) {
+			sql = StringUtil.replace(
+				sql,
+				new String[] {
+					"[$USERS_GROUPS_JOIN$]", "[$USERS_GROUPS_WHERE$]"
+				},
+				new String[] {StringPool.BLANK, StringPool.BLANK});
 		}
 
-		sql = StringUtil.replace(sql, "[$GROUPS_FILTER$]", filterReplacement);
-
-		sql = StringUtil.replace(sql, "[$GROUPS_JOIN$]", joinReplacement);
-
-		return sql;
+		return StringUtil.replace(
+			sql,
+			new String[] {"[$USERS_GROUPS_JOIN$]", "[$USERS_GROUPS_WHERE$]"},
+			new String[] {
+				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId",
+				"AND Group_.name NOT IN (?)"
+			});
 	}
 
 }

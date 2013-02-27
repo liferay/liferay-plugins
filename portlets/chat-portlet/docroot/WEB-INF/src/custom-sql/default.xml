@@ -106,9 +106,9 @@
 						SELECT
 							Users_Groups.groupId
 						FROM
-							Users_Groups [$GROUPS_JOIN$]
+							Users_Groups [$USERS_GROUPS_JOIN$]
 						WHERE
-							(userId = ?) [$GROUPS_FILTER$]
+							(userId = ?) [$USERS_GROUPS_WHERE$]
 					)
 				) AND
 				(Chat_Status.modifiedDate > ?) AND
