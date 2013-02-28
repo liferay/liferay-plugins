@@ -14,7 +14,7 @@
 
 package com.liferay.so.activities.model;
 
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
