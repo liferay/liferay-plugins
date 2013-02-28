@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.liferay.so.activities" auto-namespace-tables="false">
+	<namespace>Social</namespace>
+	<entity name="SocialActivity" local-service="true" remote-service="false" table="SO_SocialActivity">
+
+		<!-- PK fields -->
+
+		<column name="activityId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="activitySetId" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="ActivitySetId" return-type="Collection">
+			<finder-column name="activitySetId" />
+		</finder>
+	</entity>
+	<entity name="SocialActivitySet" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="activitySetId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="long" />
+		<column name="modifiedDate" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
+		<column name="type" type="int" />
+		<column name="activityCount" type="int" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="modifiedDate" />
+		</order>
+	</entity>
+</service-builder>

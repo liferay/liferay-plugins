@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.so.activities.model.SocialActivity">
+		<field name="activityId" type="long" />
+		<field name="activitySetId" type="long" />
+	</model>
+	<model name="com.liferay.so.activities.model.SocialActivitySet">
+		<field name="activitySetId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="long" />
+		<field name="modifiedDate" type="long" />
+		<field name="classNameId" type="long" />
+		<field name="classPK" type="long" />
+		<field name="type" type="int" />
+		<field name="activityCount" type="int" />
+	</model>
+</model-hints>
