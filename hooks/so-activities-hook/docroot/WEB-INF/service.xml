@@ -19,6 +19,7 @@
 			<finder-column name="activitySetId" />
 		</finder>
 	</entity>
+	<entity name="SocialActivityInterpreter" local-service="true" remote-service="false" tx-manager="none" />
 	<entity name="SocialActivitySet" local-service="true" remote-service="false">
 
 		<!-- PK fields -->

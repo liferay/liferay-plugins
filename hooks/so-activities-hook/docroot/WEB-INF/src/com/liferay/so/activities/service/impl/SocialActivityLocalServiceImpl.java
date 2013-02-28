@@ -20,6 +20,8 @@ import com.liferay.so.activities.model.SocialActivity;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.base.SocialActivityLocalServiceBaseImpl;
 
+import java.util.List;
+
 /**
  * @author Brian Wing Shun Chan
  */
@@ -58,6 +60,20 @@ public class SocialActivityLocalServiceImpl
 		if (activitySet.getActivityCount() <= 0) {
 			socialActivitySetLocalService.deleteSocialActivitySet(activitySet);
 		}
+	}
+
+	public SocialActivity getActivity(long activityId)
+			throws PortalException, SystemException {
+
+		return socialActivityPersistence.findByPrimaryKey(activityId);
+	}
+
+	public List<SocialActivity> getActivitySetActivities(
+			long activitySetId, int start, int end)
+		throws SystemException {
+
+		return socialActivityPersistence.findByActivitySetId(
+			activitySetId, start, end);
 	}
 
 }
