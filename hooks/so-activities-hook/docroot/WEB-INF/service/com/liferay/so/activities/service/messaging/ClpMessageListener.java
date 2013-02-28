@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 import com.liferay.so.activities.service.ClpSerializer;
+import com.liferay.so.activities.service.SocialActivityInterpreterLocalServiceUtil;
 import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
 
@@ -37,6 +38,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			SocialActivityLocalServiceUtil.clearService();
+
+			SocialActivityInterpreterLocalServiceUtil.clearService();
 
 			SocialActivitySetLocalServiceUtil.clearService();
 		}

@@ -104,37 +104,37 @@ public class SocialActivitySetLocalServiceClpInvoker {
 				"com.liferay.so.activities.model.SocialActivitySet", "boolean"
 			};
 
-		_methodName40 = "getBeanIdentifier";
+		_methodName42 = "getBeanIdentifier";
 
-		_methodParameterTypes40 = new String[] {  };
+		_methodParameterTypes42 = new String[] {  };
 
-		_methodName41 = "setBeanIdentifier";
+		_methodName43 = "setBeanIdentifier";
 
-		_methodParameterTypes41 = new String[] { "java.lang.String" };
+		_methodParameterTypes43 = new String[] { "java.lang.String" };
 
-		_methodName46 = "addActivitySet";
+		_methodName48 = "addActivitySet";
 
-		_methodParameterTypes46 = new String[] {
+		_methodParameterTypes48 = new String[] {
 				"long", "long", "java.lang.String", "long", "int"
 			};
 
-		_methodName47 = "decrementActivityCount";
+		_methodName49 = "decrementActivityCount";
 
-		_methodParameterTypes47 = new String[] { "long" };
+		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName48 = "deleteActivitySet";
+		_methodName50 = "deleteActivitySet";
 
-		_methodParameterTypes48 = new String[] { "long" };
+		_methodParameterTypes50 = new String[] { "long" };
 
-		_methodName49 = "deleteActivitySet";
+		_methodName51 = "deleteActivitySet";
 
-		_methodParameterTypes49 = new String[] {
+		_methodParameterTypes51 = new String[] {
 				"com.liferay.so.activities.model.SocialActivitySet"
 			};
 
-		_methodName50 = "incrementActivityCount";
+		_methodName52 = "incrementActivityCount";
 
-		_methodParameterTypes50 = new String[] { "long" };
+		_methodParameterTypes52 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -226,20 +226,20 @@ public class SocialActivitySetLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			SocialActivitySetLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.addActivitySet(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -247,23 +247,23 @@ public class SocialActivitySetLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.decrementActivityCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.deleteActivitySet(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.deleteActivitySet((com.liferay.so.activities.model.SocialActivitySet)arguments[0]);
+			return SocialActivitySetLocalServiceUtil.decrementActivityCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.deleteActivitySet(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.deleteActivitySet((com.liferay.so.activities.model.SocialActivitySet)arguments[0]);
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.incrementActivityCount(((Long)arguments[0]).longValue());
 		}
 
@@ -302,18 +302,18 @@ public class SocialActivitySetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName40;
-	private String[] _methodParameterTypes40;
-	private String _methodName41;
-	private String[] _methodParameterTypes41;
-	private String _methodName46;
-	private String[] _methodParameterTypes46;
-	private String _methodName47;
-	private String[] _methodParameterTypes47;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
 }

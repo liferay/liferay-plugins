@@ -105,7 +105,43 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		throw new UnsupportedOperationException();
 	}
 
+	public long getClassPK() {
+		throw new UnsupportedOperationException();
+	}
+
+	public long getReceiverUserId() {
+		throw new UnsupportedOperationException();
+	}
+
+	public long getCreateDate() {
+		throw new UnsupportedOperationException();
+	}
+
+	public long getCompanyId() {
+		throw new UnsupportedOperationException();
+	}
+
+	public long getUserId() {
+		throw new UnsupportedOperationException();
+	}
+
+	public long getMirrorActivityId() {
+		throw new UnsupportedOperationException();
+	}
+
 	public long getGroupId() {
+		throw new UnsupportedOperationException();
+	}
+
+	public int getType() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getExtraData() {
+		throw new UnsupportedOperationException();
+	}
+
+	public long getClassNameId() {
 		throw new UnsupportedOperationException();
 	}
 

@@ -3,6 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.so.activities.model.SocialActivity" />
+	<import class="com.liferay.so.activities.model.SocialActivityInterpreter" />
 	<import class="com.liferay.so.activities.model.SocialActivitySet" />
 	<class name="com.liferay.so.activities.model.impl.SocialActivityImpl" table="SO_SocialActivity">
 		<cache usage="read-write" />

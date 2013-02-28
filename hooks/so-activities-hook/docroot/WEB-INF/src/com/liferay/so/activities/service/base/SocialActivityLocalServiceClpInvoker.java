@@ -104,25 +104,33 @@ public class SocialActivityLocalServiceClpInvoker {
 				"com.liferay.so.activities.model.SocialActivity", "boolean"
 			};
 
-		_methodName40 = "getBeanIdentifier";
+		_methodName42 = "getBeanIdentifier";
 
-		_methodParameterTypes40 = new String[] {  };
+		_methodParameterTypes42 = new String[] {  };
 
-		_methodName41 = "setBeanIdentifier";
+		_methodName43 = "setBeanIdentifier";
 
-		_methodParameterTypes41 = new String[] { "java.lang.String" };
+		_methodParameterTypes43 = new String[] { "java.lang.String" };
 
-		_methodName46 = "addActivity";
+		_methodName48 = "addActivity";
 
-		_methodParameterTypes46 = new String[] { "long", "long" };
+		_methodParameterTypes48 = new String[] { "long", "long" };
 
-		_methodName47 = "deleteActivities";
+		_methodName49 = "deleteActivities";
 
-		_methodParameterTypes47 = new String[] { "long[][]" };
+		_methodParameterTypes49 = new String[] { "long[][]" };
 
-		_methodName48 = "deleteActivity";
+		_methodName50 = "deleteActivity";
 
-		_methodParameterTypes48 = new String[] { "long" };
+		_methodParameterTypes50 = new String[] { "long" };
+
+		_methodName51 = "getActivity";
+
+		_methodParameterTypes51 = new String[] { "long" };
+
+		_methodName52 = "getActivitySetActivities";
+
+		_methodParameterTypes52 = new String[] { "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -214,38 +222,50 @@ public class SocialActivityLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return SocialActivityLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			SocialActivityLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			SocialActivityLocalServiceUtil.addActivity(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-
-			return null;
-		}
-
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			SocialActivityLocalServiceUtil.deleteActivities((long[])arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			SocialActivityLocalServiceUtil.addActivity(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+
+			return null;
+		}
+
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			SocialActivityLocalServiceUtil.deleteActivities((long[])arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			SocialActivityLocalServiceUtil.deleteActivity(((Long)arguments[0]).longValue());
 
 			return null;
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return SocialActivityLocalServiceUtil.getActivity(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return SocialActivityLocalServiceUtil.getActivitySetActivities(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -283,14 +303,18 @@ public class SocialActivityLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName40;
-	private String[] _methodParameterTypes40;
-	private String _methodName41;
-	private String[] _methodParameterTypes41;
-	private String _methodName46;
-	private String[] _methodParameterTypes46;
-	private String _methodName47;
-	private String[] _methodParameterTypes47;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
 }

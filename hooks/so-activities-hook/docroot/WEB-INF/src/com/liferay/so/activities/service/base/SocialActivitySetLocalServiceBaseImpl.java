@@ -38,6 +38,7 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivityInterpreterLocalService;
 import com.liferay.so.activities.service.SocialActivityLocalService;
 import com.liferay.so.activities.service.SocialActivitySetLocalService;
 import com.liferay.so.activities.service.persistence.SocialActivityPersistence;
@@ -314,6 +315,25 @@ public abstract class SocialActivitySetLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the social activity interpreter local service.
+	 *
+	 * @return the social activity interpreter local service
+	 */
+	public SocialActivityInterpreterLocalService getSocialActivityInterpreterLocalService() {
+		return socialActivityInterpreterLocalService;
+	}
+
+	/**
+	 * Sets the social activity interpreter local service.
+	 *
+	 * @param socialActivityInterpreterLocalService the social activity interpreter local service
+	 */
+	public void setSocialActivityInterpreterLocalService(
+		SocialActivityInterpreterLocalService socialActivityInterpreterLocalService) {
+		this.socialActivityInterpreterLocalService = socialActivityInterpreterLocalService;
+	}
+
+	/**
 	 * Returns the social activity set local service.
 	 *
 	 * @return the social activity set local service
@@ -561,6 +581,8 @@ public abstract class SocialActivitySetLocalServiceBaseImpl
 	protected SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
+	@BeanReference(type = SocialActivityInterpreterLocalService.class)
+	protected SocialActivityInterpreterLocalService socialActivityInterpreterLocalService;
 	@BeanReference(type = SocialActivitySetLocalService.class)
 	protected SocialActivitySetLocalService socialActivitySetLocalService;
 	@BeanReference(type = SocialActivitySetPersistence.class)

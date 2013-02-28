@@ -259,4 +259,15 @@ public interface SocialActivityLocalService extends BaseLocalService,
 	public void deleteActivity(long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.so.activities.model.SocialActivity getActivity(
+		long activityId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.so.activities.model.SocialActivity> getActivitySetActivities(
+		long activitySetId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

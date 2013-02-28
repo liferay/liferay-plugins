@@ -197,16 +197,70 @@ public class SocialActivityWrapper implements SocialActivity,
 		_socialActivity.persist();
 	}
 
+	public long getClassNameId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getClassNameId();
+	}
+
+	public long getClassPK()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getClassPK();
+	}
+
+	public long getCompanyId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getCompanyId();
+	}
+
+	public long getCreateDate()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getCreateDate();
+	}
+
+	public java.lang.String getExtraData()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getExtraData();
+	}
+
 	public long getGroupId()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _socialActivity.getGroupId();
 	}
 
+	public long getMirrorActivityId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getMirrorActivityId();
+	}
+
 	public com.liferay.portlet.social.model.SocialActivity getPortalSocialActivity()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _socialActivity.getPortalSocialActivity();
+	}
+
+	public long getReceiverUserId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getReceiverUserId();
+	}
+
+	public int getType()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getType();
+	}
+
+	public long getUserId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getUserId();
 	}
 
 	/**

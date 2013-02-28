@@ -292,6 +292,19 @@ public class SocialActivityLocalServiceUtil {
 		getService().deleteActivity(activityId);
 	}
 
+	public static com.liferay.so.activities.model.SocialActivity getActivity(
+		long activityId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getActivity(activityId);
+	}
+
+	public static java.util.List<com.liferay.so.activities.model.SocialActivity> getActivitySetActivities(
+		long activitySetId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getActivitySetActivities(activitySetId, start, end);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -289,6 +289,20 @@ public class SocialActivityLocalServiceWrapper
 		_socialActivityLocalService.deleteActivity(activityId);
 	}
 
+	public com.liferay.so.activities.model.SocialActivity getActivity(
+		long activityId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivityLocalService.getActivity(activityId);
+	}
+
+	public java.util.List<com.liferay.so.activities.model.SocialActivity> getActivitySetActivities(
+		long activitySetId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivityLocalService.getActivitySetActivities(activitySetId,
+			start, end);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */
