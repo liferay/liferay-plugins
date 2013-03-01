@@ -29,6 +29,6 @@
 		<dependency conf="runtime" name="xalan" org="xalan" rev="2.7.1" />
 		<dependency conf="runtime" name="xercesImpl" org="xerces" rev="2.10.0" />
 		<dependency conf="runtime" name="xml-apis" org="xml-apis" rev="1.4.01" />
-		<dependency conf="test" name="junit" org="junit" rev="4.8.2" />
+		<dependency conf="test" name="junit" org="junit" rev="4.11" />
 	</dependencies>
 </ivy-module>
