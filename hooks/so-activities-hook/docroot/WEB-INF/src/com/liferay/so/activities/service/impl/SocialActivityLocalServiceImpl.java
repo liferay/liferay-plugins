@@ -63,7 +63,7 @@ public class SocialActivityLocalServiceImpl
 	}
 
 	public SocialActivity getActivity(long activityId)
-			throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		return socialActivityPersistence.findByPrimaryKey(activityId);
 	}
