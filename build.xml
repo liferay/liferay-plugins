@@ -171,6 +171,8 @@
 
 		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
 
+		<ant dir="webs/resources-importer-web" target="clean" inheritAll="false" />
+
 		<zip destfile="dist/liferay-plugins-sdk-${lp.version}.zip">
 			<zipfileset
 				dir="."
