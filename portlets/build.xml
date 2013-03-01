@@ -74,21 +74,33 @@
 							</or>
 							<then>
 								<copy todir="${portlet.dir}">
-									<fileset dir="${project.dir}/tools/portlet_jsf_tmpl" />
+									<fileset
+										dir="${project.dir}/tools/portlet_jsf_tmpl"
+									/>
 								</copy>
 							</then>
 						</if>
 
 						<copy overwrite="true" todir="${portlet.dir}">
-							<fileset dir="${project.dir}/tools/portlet_${portlet.framework}_tmpl" excludes="ivy.xml" />
+							<fileset
+								dir="${project.dir}/tools/portlet_${portlet.framework}_tmpl"
+								excludes="ivy.xml"
+							/>
 						</copy>
 
 						<if>
 							<available file="${project.dir}/tools/portlet_${portlet.framework}_tmpl/ivy.xml" />
 							<then>
-								<ivy:resolve file="${project.dir}/tools/portlet_${portlet.framework}_tmpl/ivy.xml" log="quiet" />
+								<ivy:resolve
+									file="${project.dir}/tools/portlet_${portlet.framework}_tmpl/ivy.xml"
+									log="quiet"
+								/>
 
-								<ivy:retrieve log="quiet" pattern="${portlet.dir}/docroot/WEB-INF/lib/[artifact].[ext]" type="jar" />
+								<ivy:retrieve
+									log="quiet"
+									pattern="${portlet.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
+									type="jar"
+								/>
 							</then>
 						</if>
 					</then>

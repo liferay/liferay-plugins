@@ -249,7 +249,12 @@ the outputted files will work in any supported application server.
 			excludes="html/js/editor/_fckeditor/**,html/js/editor/fckeditor/_samples/**"
 		/>
 
-		<ivy:retrieve conf="ccpp" log="quiet" pattern="${tstamp.value}/WEB-INF/lib/[artifact].[ext]" type="jar" />
+		<ivy:retrieve
+			conf="ccpp"
+			log="quiet"
+			pattern="${tstamp.value}/WEB-INF/lib/[artifact].[ext]"
+			type="jar"
+		/>
 
 		<zip
 			basedir="${tstamp.value}"
