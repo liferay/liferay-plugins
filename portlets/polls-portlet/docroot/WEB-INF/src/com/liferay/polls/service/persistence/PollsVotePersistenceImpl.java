@@ -56,7 +56,7 @@ import java.util.List;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Juan Fernández
+ * @author Juan Fern√°ndez
  * @see PollsVotePersistence
  * @see PollsVoteUtil
  * @generated
@@ -1905,7 +1905,7 @@ public class PollsVotePersistenceImpl extends BasePersistenceImpl<PollsVote>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<PollsVote>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

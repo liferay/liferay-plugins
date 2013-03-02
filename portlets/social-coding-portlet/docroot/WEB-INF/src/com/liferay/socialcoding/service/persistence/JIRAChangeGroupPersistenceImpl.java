@@ -1659,7 +1659,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<JIRAChangeGroup>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

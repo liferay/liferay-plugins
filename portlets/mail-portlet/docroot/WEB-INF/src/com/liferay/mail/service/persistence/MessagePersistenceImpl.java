@@ -1895,7 +1895,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Message>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

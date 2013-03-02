@@ -9192,7 +9192,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<CalendarResource>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

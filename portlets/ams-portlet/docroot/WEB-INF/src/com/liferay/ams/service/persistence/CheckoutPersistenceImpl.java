@@ -601,7 +601,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Checkout>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

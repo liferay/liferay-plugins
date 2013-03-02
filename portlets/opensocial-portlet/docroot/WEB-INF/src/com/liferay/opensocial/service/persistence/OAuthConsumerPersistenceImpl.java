@@ -1518,7 +1518,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<OAuthConsumer>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

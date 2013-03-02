@@ -1383,7 +1383,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<FavoriteSite>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

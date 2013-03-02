@@ -3339,7 +3339,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<KaleoInstanceToken>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

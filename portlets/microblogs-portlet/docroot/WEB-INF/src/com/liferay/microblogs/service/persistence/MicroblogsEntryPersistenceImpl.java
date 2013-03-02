@@ -5097,7 +5097,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<MicroblogsEntry>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

@@ -25,7 +25,7 @@ import java.util.Map;
  * This class is a wrapper for {@link PollsVote}.
  * </p>
  *
- * @author    Juan Fernández
+ * @author    Juan Fern√°ndez
  * @see       PollsVote
  * @generated
  */
@@ -344,6 +344,16 @@ public class PollsVoteWrapper implements PollsVote, ModelWrapper<PollsVote> {
 
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _pollsVote.getExpandoBridge();
+	}
+
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.model.BaseModel<?> baseModel) {
+		_pollsVote.setExpandoBridgeAttributes(baseModel);
+	}
+
+	public void setExpandoBridgeAttributes(
+		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
+		_pollsVote.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	public void setExpandoBridgeAttributes(

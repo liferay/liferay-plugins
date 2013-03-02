@@ -2238,7 +2238,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<WSRPConsumer>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

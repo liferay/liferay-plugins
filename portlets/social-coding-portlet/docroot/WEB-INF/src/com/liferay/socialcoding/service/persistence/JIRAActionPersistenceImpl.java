@@ -2183,7 +2183,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<JIRAAction>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

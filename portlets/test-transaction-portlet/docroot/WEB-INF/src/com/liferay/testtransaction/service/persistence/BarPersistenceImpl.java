@@ -1119,7 +1119,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Bar>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

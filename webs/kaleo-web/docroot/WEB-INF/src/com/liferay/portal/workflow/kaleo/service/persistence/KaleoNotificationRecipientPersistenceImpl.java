@@ -2169,7 +2169,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<KaleoNotificationRecipient>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

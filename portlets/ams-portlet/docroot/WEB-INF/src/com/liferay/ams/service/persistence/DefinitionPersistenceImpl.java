@@ -607,7 +607,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Definition>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

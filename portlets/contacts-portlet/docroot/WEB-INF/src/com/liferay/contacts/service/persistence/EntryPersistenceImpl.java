@@ -1413,7 +1413,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Entry>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

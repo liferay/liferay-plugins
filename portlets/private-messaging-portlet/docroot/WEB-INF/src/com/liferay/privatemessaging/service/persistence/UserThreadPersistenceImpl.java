@@ -3006,7 +3006,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<UserThread>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

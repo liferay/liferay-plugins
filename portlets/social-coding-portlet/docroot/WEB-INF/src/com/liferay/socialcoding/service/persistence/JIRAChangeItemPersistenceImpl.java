@@ -1125,7 +1125,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<JIRAChangeItem>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

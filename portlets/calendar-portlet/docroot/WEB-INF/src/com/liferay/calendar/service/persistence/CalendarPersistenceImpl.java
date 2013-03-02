@@ -4339,7 +4339,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Calendar>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

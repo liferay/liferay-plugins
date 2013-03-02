@@ -6819,7 +6819,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<JIRAIssue>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

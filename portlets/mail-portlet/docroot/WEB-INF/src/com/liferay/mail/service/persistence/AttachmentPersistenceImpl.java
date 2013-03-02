@@ -1106,7 +1106,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Attachment>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

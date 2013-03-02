@@ -2553,7 +2553,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<WSRPProducer>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

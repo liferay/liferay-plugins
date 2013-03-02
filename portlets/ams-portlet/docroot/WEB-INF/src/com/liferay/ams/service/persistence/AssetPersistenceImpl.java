@@ -598,7 +598,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Asset>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

@@ -203,6 +203,16 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 	}
 
 	public void setExpandoBridgeAttributes(
+		com.liferay.portal.model.BaseModel<?> baseModel) {
+		_jiraChangeGroup.setExpandoBridgeAttributes(baseModel);
+	}
+
+	public void setExpandoBridgeAttributes(
+		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
+		_jiraChangeGroup.setExpandoBridgeAttributes(expandoBridge);
+	}
+
+	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_jiraChangeGroup.setExpandoBridgeAttributes(serviceContext);
 	}
