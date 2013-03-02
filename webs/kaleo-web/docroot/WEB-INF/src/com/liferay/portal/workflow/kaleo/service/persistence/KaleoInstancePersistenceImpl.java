@@ -2827,7 +2827,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<KaleoInstance>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

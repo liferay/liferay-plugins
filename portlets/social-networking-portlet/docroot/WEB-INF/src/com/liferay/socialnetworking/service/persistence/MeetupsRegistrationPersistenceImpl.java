@@ -1944,7 +1944,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<MeetupsRegistration>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

@@ -1836,7 +1836,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<App>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

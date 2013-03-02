@@ -2551,7 +2551,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<KaleoTimerInstanceToken>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

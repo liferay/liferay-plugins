@@ -577,7 +577,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<Type>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

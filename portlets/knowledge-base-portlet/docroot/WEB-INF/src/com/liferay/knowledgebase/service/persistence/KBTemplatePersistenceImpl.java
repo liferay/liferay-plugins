@@ -2293,7 +2293,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<KBTemplate>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

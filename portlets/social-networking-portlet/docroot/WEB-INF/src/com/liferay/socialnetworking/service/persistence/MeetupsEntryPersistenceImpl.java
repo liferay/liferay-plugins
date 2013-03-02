@@ -1575,7 +1575,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 
 				for (String listenerClassName : listenerClassNames) {
 					listenersList.add((ModelListener<MeetupsEntry>)InstanceFactory.newInstance(
-							listenerClassName));
+							getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
