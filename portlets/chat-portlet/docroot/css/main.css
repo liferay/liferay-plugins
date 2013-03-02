@@ -360,10 +360,9 @@ html body {
 		color: #EEE;
 		font-size: 10px;
 		font-style: normal;
-		margin-top: -2em;
+		margin-top: -1.5em;
 		position: absolute;
 		right: 8px;
-		top: 50%;
 	}
 
 	.incoming {
