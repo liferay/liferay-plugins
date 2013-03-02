@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.shindig.service;
 
+import com.liferay.opensocial.shindig.util.HttpServletRequestThreadLocal;
 import com.liferay.opensocial.shindig.util.SerializerUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -21,9 +22,13 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialActivity;
@@ -39,6 +44,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shindig.auth.SecurityToken;
@@ -111,15 +117,16 @@ public class LiferayActivityService implements ActivityService {
 
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
+		String activityAppId = activity.getAppId();
+
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
 		SerializerUtil.copyProperties(
 			activity, extraDataJSONObject, _ACTIVITY_FIELDS);
 
 		SocialActivityLocalServiceUtil.addActivity(
-			userIdLong, 0L, Activity.class.getName(),
-			activity.getPostedTime().longValue(),
-			activity.getAppId().hashCode(), extraDataJSONObject.toString(), 0L);
+			userIdLong, 0L, Activity.class.getName(), activity.getPostedTime(),
+			activityAppId.hashCode(), extraDataJSONObject.toString(), 0L);
 	}
 
 	public void doDeleteActivities(
@@ -285,7 +292,9 @@ public class LiferayActivityService implements ActivityService {
 
 		Activity activity = null;
 
-		if (socialActivity.getClassName().equals(Activity.class.getName())) {
+		String className = socialActivity.getClassName();
+
+		if (className.equals(Activity.class.getName())) {
 			activity = getExternalActivity(socialActivity);
 		}
 		else {
@@ -293,9 +302,20 @@ public class LiferayActivityService implements ActivityService {
 				String.valueOf(socialActivity.getClassPK()),
 				String.valueOf(socialActivity.getUserId()));
 
-			SocialActivityFeedEntry socialActivityFeedEntry =
+			HttpServletRequest request =
+				HttpServletRequestThreadLocal.getHttpServletRequest();
+
+			request.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				request);
+
+			serviceContext.setCompanyId(themeDisplay.getCompanyId());
+			serviceContext.setUserId(themeDisplay.getUserId());
+
+			SocialActivityFeedEntry socialActivityFeedEntry = null;
 				SocialActivityInterpreterLocalServiceUtil.interpret(
-					socialActivity, themeDisplay);
+					StringPool.BLANK, socialActivity, serviceContext);
 
 			activity.setBody(socialActivityFeedEntry.getBody());
 			activity.setTitle(socialActivityFeedEntry.getTitle());
@@ -355,7 +375,8 @@ public class LiferayActivityService implements ActivityService {
 				JSONFactoryUtil.createJSONObject();
 
 			mediaItemsJsonObject.put("mimeType", mediaItem.getMimeType());
-			mediaItemsJsonObject.put("type", mediaItem.getType().toString());
+			mediaItemsJsonObject.put(
+				"type", String.valueOf(mediaItem.getType()));
 			mediaItemsJsonObject.put("url", mediaItem.getUrl());
 
 			mediaItemsJSONArray.put(mediaItemsJsonObject);
@@ -427,6 +448,7 @@ public class LiferayActivityService implements ActivityService {
 
 		themeDisplay.setCompany(company);
 		themeDisplay.setLocale(user.getLocale());
+		themeDisplay.setUser(user);
 
 		return themeDisplay;
 	}
