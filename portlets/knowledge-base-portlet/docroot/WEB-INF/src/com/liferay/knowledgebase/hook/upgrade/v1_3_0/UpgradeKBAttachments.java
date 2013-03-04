@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.v6_2_0.BaseUpgradeAttachments;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.util.PortalUtil;
@@ -99,10 +100,15 @@ public class UpgradeKBAttachments extends BaseUpgradeAttachments {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement(
-				"select kbArticleId, resourcePrimKey, groupId, companyId, " +
-					"userId, userName, status from KBArticle group by " +
-						"resourcePrimKey");
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("select MIN(kbArticleId) as kbArticleId, ");
+			sb.append("resourcePrimKey, groupId, companyId, ");
+			sb.append("MIN(userId) as userId, MIN(userName) as userName, ");
+			sb.append("MIN(status) as status from KBArticle ");
+			sb.append("group by resourcePrimKey, groupId, companyId");
+
+			ps = con.prepareStatement(sb.toString());
 
 			rs = ps.executeQuery();
 
