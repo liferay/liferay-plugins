@@ -5,6 +5,7 @@
 		<conf name="default" />
 		<conf name="ccpp" />
 		<conf name="ecj" />
+		<conf name="log4j" />
 		<conf name="plugin" />
 		<conf name="portal" />
 		<conf name="runtime" />
@@ -14,11 +15,11 @@
 	<dependencies>
 		<dependency conf="ccpp" name="ccpp" org="javax.ccpp" rev="1.0" />
 		<dependency conf="ecj" name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
+		<dependency conf="log4j,portal" name="log4j" org="log4j" rev="1.2.16" />
 		<dependency conf="plugin,portal" name="jsp-api" org="javax.servlet.jsp" rev="2.1" />
 		<dependency conf="plugin,portal" name="activation" org="javax.activation" rev="1.1" />
 		<dependency conf="plugin,portal" name="servlet-api" org="javax.servlet" rev="2.5" />
 		<dependency conf="portal" name="jargs" org="net.sf" rev="1.0" />
-		<dependency conf="portal" name="log4j" org="log4j" rev="1.2.16" />
 		<dependency conf="portal" name="mail" org="javax.mail" rev="1.4" />
 		<dependency conf="portal" name="qdox" org="com.thoughtworks.qdox" rev="1.12.1" />
 		<dependency conf="runtime" name="ant-contrib" org="ant-contrib" rev="1.0b3" />

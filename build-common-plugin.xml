@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<import file="build-common.xml" />
 
 	<if>
