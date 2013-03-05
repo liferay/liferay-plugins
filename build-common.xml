@@ -88,6 +88,14 @@
 	<taskdef classpathref="ivy.lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
 	<taskdef classpathref="ivy.lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
 
+	<property location="${project.dir}" name="project.location.absolute" />
+
+	<propertycopy
+		from="project.location.absolute"
+		name="project.dir"
+		override="true"
+	/>
+
 	<condition property="correct.ant.version">
 		<antversion atleast="1.7.0" />
 	</condition>
