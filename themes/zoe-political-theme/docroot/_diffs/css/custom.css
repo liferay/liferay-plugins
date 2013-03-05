@@ -1,0 +1,284 @@
+@import "compass";
+
+@import url(color_schemes/democrat.css);
+@import url(color_schemes/republican.css);
+@import url(color_schemes/independent.css);
+
+/* -------- Global -------- */
+
+#breadcrumbs, #footer, #heading, #navigation h1, #navigation .child-menu, #skip-to-content, .page-title, .powered-by {
+	clip: rect(0 0 0 0);
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+
+body {
+	background-position: 0 0;
+	background-repeat: repeat-x;
+	font-size: 12px;
+	line-height: 1;
+
+	&.dockbar-ready {
+		background-position: 0 31px;
+
+		&.lfr-dockbar-pinned {
+			padding-top: 2.8em;
+		}
+	}
+}
+
+.button {
+	font-size: 14px;
+	font-weight: normal;
+	padding: 5px 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+
+	&:hover {
+		cursor: pointer;
+		text-decoration: none;
+	}
+}
+
+h3 {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#wrapper {
+	margin: 0 auto;
+	position: relative;
+
+	a {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+#heading {
+	height: 75px;
+	margin: 7px auto;
+	padding: 0 10px;
+	position: relative;
+	width: 940px;
+
+	ul.social {
+		display: inline-block;
+		float: left;
+		list-style: none;
+		margin: 0;
+		position: absolute;
+		top: 6px;
+
+		li {
+			display: block;
+			float: left;
+
+			a {
+				background-repeat: no-repeat;
+				display: block;
+				height: 46px;
+				text-indent: -99999px;
+				width: 37px;
+
+				&.facebook, &.twitter {
+					background-position: 0 0;
+				}
+
+				span {
+					text-indent: -99999px;
+				}
+			}
+		}
+	}
+
+	h1.site-title {
+		margin: 0;
+		text-align: center;
+	}
+
+	.logo {
+		padding: 5px 0;
+	}
+
+	.site-name {
+		border-bottom: 1px dashed;
+		border-top: 1px dashed;
+		display: inline-block;
+		font-size: 2em;
+		margin: 0 20px;
+		padding: 5px 10px;
+		text-transform: uppercase;
+	}
+
+	#sign-in {
+		background: #FFF;
+		cursor: pointer;
+		font-size: 14px;
+		font-weight: normal;
+		padding: 5px 10px;
+		position: absolute;
+		right: 0;
+		text-decoration: none;
+		text-transform: uppercase;
+		top: -10px;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+#navigation {
+	margin-top: 5px;
+
+	ul {
+		display: block;
+		height: 30px;
+		list-style: none;
+		margin: 0 auto;
+		padding: 5px 0;
+		width: 960px;
+
+		li {
+			border-right: 1px solid #FFF;
+			float: left;
+
+			a {
+				display: block;
+				font-size: 1.3em;
+				padding: 7px 25px;
+				text-decoration: none;
+				text-transform: uppercase;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+
+			&.last {
+				border-right-width: 0;
+			}
+		}
+	}
+
+	.call-to-action {
+		border-right-width: 0;
+		float: right;
+		position: relative;
+	}
+}
+
+#content #main-content {
+	background: #FFF;
+	margin: 0 auto;
+	min-height: 100%;
+	padding: 10px 10px 0;
+	width: 940px;
+}
+
+.portlet {
+	margin-bottom: 10px;
+
+	.portlet-topper {
+		padding: 0;
+
+		.portlet-title {
+			display: block;
+			font-size: 1.5em;
+			padding: 10px;
+			text-align: center;
+			text-transform: uppercase;
+
+			.icon {
+				display: none;
+			}
+		}
+	}
+}
+
+@each $color-scheme in democrat, republican, independent {
+	body.#{$color-scheme} {
+		background-image: url(../images/color_schemes/#{$color-scheme}/heading.jpg);
+
+		&.aui-dialog-iframe-popup {
+			background-image: none;
+		}
+
+		.home-content {
+			.join {
+				background-image: url(../images/color_schemes/#{$color-scheme}/join.jpg);
+			}
+
+			.main-banner {
+				background-image: url(../images/color_schemes/#{$color-scheme}/banner.jpg);
+			}
+
+			.pick-your-state {
+				background-image: url(../images/color_schemes/#{$color-scheme}/pick_your_state.jpg);
+			}
+
+			.vote {
+				background-image: url(../images/color_schemes/#{$color-scheme}/vote.jpg);
+			}
+		}
+
+		#heading {
+			ul.social li a {
+				&.facebook {
+					background-image: url(../images/color_schemes/#{$color-scheme}/facebook.png);
+				}
+
+				&.linkedin {
+					background-image: url(../images/color_schemes/#{$color-scheme}/linkedin.png);
+				}
+
+				&.twitter {
+					background-image: url(../images/color_schemes/#{$color-scheme}/twitter.png);
+				}
+			}
+		}
+	}
+}
+
+/* -------- Web Content -------- */
+
+.home-content {
+	.main-banner {
+		background-repeat: no-repeat;
+		height: 279px;
+		width: 940px;
+	}
+
+	.aui-layout-content {
+		margin-top: 10px;
+	}
+
+	.join, .pick-your-state, .vote {
+		height: 108px;
+		width: 100%;
+	}
+}
+
+.entry-footer {
+	height: 4px;
+}
+
+/* -------- Extras -------- */
+
+.button:hover {
+	@include box-shadow(rgba(0, 0, 0, 0.5) 1px 1px 15px);
+}
+
+#heading #sign-in:hover {
+	@include box-shadow(rgba(0, 0, 0, 0.5) 1px 1px 15px);
+}
+
+
+#content #main-content {
+	@include box-shadow(rgba(0, 0, 0, 0.1) 1px 1px 15px);
+}

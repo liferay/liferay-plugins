@@ -1,0 +1,23 @@
+#set($color_scheme = $theme_display.getColorScheme().getCssClass())
+
+## ---------- Logo ---------- ##
+
+#if (($company.getLogoId() == 0) && $use_company_logo)
+	#if ($color_scheme == "independent")
+		#set ($site_logo = "")
+		#set ($site_logo_height = 54)
+		#set ($site_logo_width = 60)
+	#elseif ($color_scheme == "republican")
+		#set ($site_logo = "${images_folder}/color_schemes/republican/logo.png")
+		#set ($site_logo_height = 47)
+		#set ($site_logo_width = 68)
+	#elseif ($color_scheme == "democrat")
+		#set ($site_logo = "${images_folder}/color_schemes/democrat/logo.png")
+		#set ($site_logo_height = 54)
+		#set ($site_logo_width = 60)
+	#end
+#end
+
+#if ($theme_settings.display-header-social)
+	#set ($header_social = $journalContentUtil.getContent($group_id, "HEADER-SOCIAL", null, "$locale", $theme_display))
+#end

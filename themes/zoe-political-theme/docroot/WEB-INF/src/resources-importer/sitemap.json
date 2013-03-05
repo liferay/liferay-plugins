@@ -1,0 +1,61 @@
+{
+	"layoutTemplateId": "2_columns_ii",
+	"layouts": [
+		{
+			"columns": [
+				[
+					"Main Banner.html"
+				],
+				[
+					"Content.html"
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Stay Informed.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupUseCustomTitle": "true",
+							"portletSetupTitle_en_US": "Stay Informed"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Twitter Block.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupUseCustomTitle": "true",
+							"portletSetupTitle_en_US": "Twitter"
+						}
+					}
+				]
+			],
+			"friendlyURL": "/home",
+			"layoutTemplateId": "1_2_columns_ii",
+			"name": "Home",
+			"title": "Home",
+		},
+		{
+			"friendlyURL": "/bio",
+			"name": "Bio",
+			"title": "Bio"
+		},
+		{
+			"friendlyURL": "/issues",
+			"name": "Issues",
+			"title": "Issues"
+		},
+		{
+			"friendlyURL": "/news",
+			"name": "News",
+			"title": "News"
+		},
+		{
+			"friendlyURL": "/get-involved",
+			"name": "Get Involved",
+			"title": "Get Involved"
+		}
+	]
+}
