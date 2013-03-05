@@ -1,0 +1,9 @@
+<ul class="social">
+	#foreach ($social-link in $social-links.siblings)
+		<li>
+			<a class="$social-link.data.toLowerCase()" href="$social-link.url-location.data" title="$social-link.data.toLowerCase()">
+				<span>$social-link.data</span>
+			</a>
+		</li>
+	#end
+</ul>
