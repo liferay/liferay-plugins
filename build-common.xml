@@ -13,11 +13,7 @@
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
 	<property name="app.server.lib.portal.dir" location="${app.server.portal.dir}/WEB-INF/lib" />
 
-	<condition property="ivy.home" value="${env.IVY_HOME}">
-		<isset property="env.IVY_HOME" />
-	</condition>
-
-	<property name="ivy.home" value="${user.home}/.ivy" />
+	<property name="ivy.home" value="${project.dir}/.ivy" />
 	<property name="ivy.install.version" value="2.2.0" />
 	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
 
