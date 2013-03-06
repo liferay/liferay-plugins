@@ -32,15 +32,15 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			long createDate, long fromUserId, long toUserId, String content)
 		throws SystemException {
 
+		List<Entry> entries = entryFinder.findByEmptyContent(
+			fromUserId, toUserId, 0, 5);
+
+		for (Entry entry : entries) {
+			entryPersistence.remove(entry);
+		}
+
 		if (Validator.isNull(content)) {
 			content = StringPool.BLANK;
-
-			List<Entry> entries = entryFinder.findByEmptyContent(
-				fromUserId, toUserId, 0, 5);
-
-			for (Entry entry : entries) {
-				entryPersistence.remove(entry);
-			}
 		}
 		else {
 			if (content.length() > 500) {

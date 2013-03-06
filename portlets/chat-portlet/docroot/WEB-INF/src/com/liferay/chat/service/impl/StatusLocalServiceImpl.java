@@ -15,11 +15,14 @@
 package com.liferay.chat.service.impl;
 
 import com.liferay.chat.jabber.JabberUtil;
+import com.liferay.chat.model.ChatEntryConstants;
+import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.List;
@@ -100,6 +103,15 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		}
 
 		if (activePanelId != null) {
+			List<Entry> entries = entryPersistence.findByF_T(
+				GetterUtil.getLong(activePanelId), userId);
+
+			for (Entry entry : entries) {
+				entry.setFlag(ChatEntryConstants.READ);
+
+				entryPersistence.updateImpl(entry);
+			}
+
 			status.setActivePanelId(activePanelId);
 		}
 

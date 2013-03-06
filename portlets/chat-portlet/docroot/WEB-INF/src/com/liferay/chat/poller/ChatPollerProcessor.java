@@ -117,10 +117,10 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		Status status = StatusLocalServiceUtil.getUserStatus(
 			pollerRequest.getUserId());
 
-		long createDate = status.getModifiedDate();
+		long createDate = -1;
 
 		if (pollerRequest.isInitialRequest()) {
-			createDate = createDate - Time.DAY;
+			createDate = status.getModifiedDate() - Time.DAY;
 		}
 
 		List<Entry> entries = EntryLocalServiceUtil.getNewEntries(
@@ -155,6 +155,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 			entryJSON.put("toUserId", entry.getToUserId());
 			entryJSON.put("content", HtmlUtil.escape(entry.getContent()));
+			entryJSON.put("flag", entry.getFlag());
 
 			entriesJSON.put(entryJSON);
 		}

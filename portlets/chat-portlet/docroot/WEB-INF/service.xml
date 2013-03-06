@@ -18,6 +18,7 @@
 		<column name="fromUserId" type="long" />
 		<column name="toUserId" type="long" />
 		<column name="content" type="String" />
+		<column name="flag" type="int" />
 
 		<!-- Order -->
 
@@ -42,6 +43,10 @@
 		</finder>
 		<finder name="C_T" return-type="Collection">
 			<finder-column name="createDate" />
+			<finder-column name="toUserId" />
+		</finder>
+		<finder name="F_T" return-type="Collection">
+			<finder-column name="fromUserId" />
 			<finder-column name="toUserId" />
 		</finder>
 		<finder name="C_F_T" return-type="Collection">

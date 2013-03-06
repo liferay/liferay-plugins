@@ -25,7 +25,7 @@
 				(
 					(fromUserId = ?) OR (toUserId = ?)
 				) AND
-				(createDate > ?)
+				(flag = ?)
 			ORDER BY
 				createDate DESC
 		]]>
@@ -101,7 +101,7 @@
 				Users_Groups ON
 					(Users_Groups.userId = User_.userId)
 			WHERE
-				(Users_Groups.groupId IN 
+				(Users_Groups.groupId IN
 					(
 						SELECT
 							Users_Groups.groupId
