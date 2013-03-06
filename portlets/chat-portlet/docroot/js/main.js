@@ -144,8 +144,6 @@ AUI().use(
 			instance._panelTitle = options.panelTitle;
 			instance._panelIcon = options.panelIcon;
 
-			instance._created = Liferay.Chat.Util.getCurrentTimestamp();
-
 			var panelHTML = instance._setPanelHTML(options.panelHTML);
 
 			instance.set('panelHTML', panelHTML);
@@ -298,7 +296,6 @@ AUI().use(
 			instance._chatOutput = instance._panel.one('.panel-output');
 			instance._statusMessage = instance._panel.one('.panel-profile');
 
-			instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 			instance._lastMessageTime = 0;
 			instance._lastTypedTime = 0;
 			instance._typingDelay = 5000;
@@ -650,7 +647,6 @@ AUI().use(
 			init: function() {
 				var instance = this;
 
-				instance._closedChats = {};
 				instance._notificationTimeout = 8000;
 				instance._initialRequest = true;
 
@@ -661,8 +657,6 @@ AUI().use(
 				instance._myStatus = instance._chatContainer.one('.status-message');
 				instance._soundContainer = instance._chatContainer.one('.chat-sound');
 				instance._tabsContainer = instance._chatContainer.one('.chat-tabs');
-
-				instance._created = Liferay.Chat.Util.getCurrentTimestamp();
 
 				instance._sendTask = A.debounce(instance.send, 100, instance);
 
@@ -1032,16 +1026,6 @@ AUI().use(
 				}
 			},
 
-			_isMessageNew: function(entry, userId) {
-				var instance = this;
-
-				var createDate = entry.createDate;
-				var initDate = instance._created;
-				var closedDate = instance._closedChats[userId] || 0;
-
-				return (createDate > initDate && createDate > closedDate);
-			},
-
 			_onPanelClose: function(event) {
 				var instance = this;
 
@@ -1054,8 +1038,6 @@ AUI().use(
 				if (panel instanceof Liferay.Chat.Conversation) {
 					delete instance._chatSessions[userId];
 				}
-
-				instance._closedChats[userId] = Liferay.Chat.Util.getCurrentTimestamp();
 
 				instance._activePanelId = '';
 				instance._saveSettings();
@@ -1224,7 +1206,7 @@ AUI().use(
 						if (buddy && incoming) {
 							var chat = instance._chatSessions[userId];
 
-							if (!chat && entry.content && instance._isMessageNew(entry, userId)) {
+							if (!chat && entry.content) {
 								chat = instance._createChatSession(
 									{
 										portraitId: buddy.portraitId,
