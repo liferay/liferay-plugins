@@ -128,7 +128,7 @@ public class BasicAuthSolrServer extends StoppableSolrServer {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setConnectionManagerTimeout(int connectionManagerTimeout) {
 		_server.setConnectionManagerTimeout(connectionManagerTimeout);
