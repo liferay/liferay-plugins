@@ -32,7 +32,7 @@ public class LocalizationUtil
 	extends com.liferay.portal.kernel.util.LocalizationUtil {
 
 	public static Map<Locale, String> getLocalizationMap(
-		HttpServletRequest httpServletRequest, String parameter) {
+		HttpServletRequest request, String parameter) {
 
 		Locale[] locales = LanguageUtil.getAvailableLocales();
 
@@ -45,8 +45,7 @@ public class LocalizationUtil
 				StringPool.UNDERLINE).concat(languageId);
 
 			map.put(
-				locale,
-				ParamUtil.getString(httpServletRequest, localeParameter));
+				locale, ParamUtil.getString(request, localeParameter));
 		}
 
 		return map;
