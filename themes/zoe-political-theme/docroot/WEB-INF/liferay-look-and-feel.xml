@@ -18,6 +18,7 @@
 							var displayButton = A.one('#[@NAMESPACE@]display-buttonCheckbox');
 							var displayButtonInput = A.one('#[@NAMESPACE@]display-button');
 
+							var buttonTitleField = buttonTitle.ancestor('.aui-field');
 							var buttonTitleFieldContent = buttonTitle.ancestor('.aui-field-content');
 							var buttonUrlField = buttonUrl.ancestor('.aui-field');
 							var buttonUrlFieldContent = buttonUrl.ancestor('.aui-field-content');
