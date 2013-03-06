@@ -2666,8 +2666,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				List<ModelListener<Gadget>> listenersList = new ArrayList<ModelListener<Gadget>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Gadget>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

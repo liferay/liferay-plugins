@@ -2318,8 +2318,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				List<ModelListener<Status>> listenersList = new ArrayList<ModelListener<Status>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Status>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

@@ -2250,8 +2250,10 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 				List<ModelListener<KaleoAction>> listenersList = new ArrayList<ModelListener<KaleoAction>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KaleoAction>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

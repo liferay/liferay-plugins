@@ -1366,8 +1366,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 				List<ModelListener<AkismetData>> listenersList = new ArrayList<ModelListener<AkismetData>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<AkismetData>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

@@ -2514,8 +2514,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				List<ModelListener<KaleoNotification>> listenersList = new ArrayList<ModelListener<KaleoNotification>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KaleoNotification>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

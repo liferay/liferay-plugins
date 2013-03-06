@@ -1906,8 +1906,10 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				List<ModelListener<Foo>> listenersList = new ArrayList<ModelListener<Foo>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Foo>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

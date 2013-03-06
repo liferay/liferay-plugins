@@ -2579,8 +2579,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				List<ModelListener<KaleoNode>> listenersList = new ArrayList<ModelListener<KaleoNode>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KaleoNode>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

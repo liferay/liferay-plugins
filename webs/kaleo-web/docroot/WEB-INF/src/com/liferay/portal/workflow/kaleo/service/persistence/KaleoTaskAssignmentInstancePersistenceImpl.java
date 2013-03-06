@@ -2651,8 +2651,10 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 				List<ModelListener<KaleoTaskAssignmentInstance>> listenersList = new ArrayList<ModelListener<KaleoTaskAssignmentInstance>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KaleoTaskAssignmentInstance>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

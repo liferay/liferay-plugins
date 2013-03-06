@@ -2292,8 +2292,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				List<ModelListener<KBTemplate>> listenersList = new ArrayList<ModelListener<KBTemplate>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KBTemplate>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

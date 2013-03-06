@@ -2130,8 +2130,10 @@ public class KaleoNotificationRecipientPersistenceImpl
 				List<ModelListener<KaleoNotificationRecipient>> listenersList = new ArrayList<ModelListener<KaleoNotificationRecipient>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KaleoNotificationRecipient>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

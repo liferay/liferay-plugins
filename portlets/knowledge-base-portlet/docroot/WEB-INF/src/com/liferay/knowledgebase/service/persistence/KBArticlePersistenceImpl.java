@@ -26464,8 +26464,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				List<ModelListener<KBArticle>> listenersList = new ArrayList<ModelListener<KBArticle>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KBArticle>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

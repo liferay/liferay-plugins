@@ -5627,8 +5627,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				List<ModelListener<TasksEntry>> listenersList = new ArrayList<ModelListener<TasksEntry>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<TasksEntry>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

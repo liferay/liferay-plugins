@@ -3287,8 +3287,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 				List<ModelListener<KBComment>> listenersList = new ArrayList<ModelListener<KBComment>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KBComment>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

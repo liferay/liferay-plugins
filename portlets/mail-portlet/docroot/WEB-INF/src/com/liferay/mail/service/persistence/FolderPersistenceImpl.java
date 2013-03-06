@@ -1403,8 +1403,10 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				List<ModelListener<Folder>> listenersList = new ArrayList<ModelListener<Folder>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Folder>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

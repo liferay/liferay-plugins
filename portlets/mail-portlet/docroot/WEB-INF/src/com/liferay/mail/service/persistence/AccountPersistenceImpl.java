@@ -1412,8 +1412,10 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				List<ModelListener<Account>> listenersList = new ArrayList<ModelListener<Account>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Account>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

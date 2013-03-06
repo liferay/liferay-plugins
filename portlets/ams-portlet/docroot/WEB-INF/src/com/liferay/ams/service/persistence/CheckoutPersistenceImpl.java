@@ -588,8 +588,10 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 				List<ModelListener<Checkout>> listenersList = new ArrayList<ModelListener<Checkout>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Checkout>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

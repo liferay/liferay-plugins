@@ -1192,8 +1192,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				List<ModelListener<Feed>> listenersList = new ArrayList<ModelListener<Feed>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Feed>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

@@ -1869,8 +1869,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				List<ModelListener<KaleoCondition>> listenersList = new ArrayList<ModelListener<KaleoCondition>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KaleoCondition>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

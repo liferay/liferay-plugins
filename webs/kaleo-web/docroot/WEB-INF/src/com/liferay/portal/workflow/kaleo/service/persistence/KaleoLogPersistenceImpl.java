@@ -3859,8 +3859,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				List<ModelListener<KaleoLog>> listenersList = new ArrayList<ModelListener<KaleoLog>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<KaleoLog>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

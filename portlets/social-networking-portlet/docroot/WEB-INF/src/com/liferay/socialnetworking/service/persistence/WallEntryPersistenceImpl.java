@@ -2077,8 +2077,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 				List<ModelListener<WallEntry>> listenersList = new ArrayList<ModelListener<WallEntry>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<WallEntry>)InstanceFactory.newInstance(
-							getClassLoader(), listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
