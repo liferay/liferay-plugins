@@ -350,7 +350,7 @@ public class WSRPConsumerLocalServiceUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setService(WSRPConsumerLocalService service) {
 	}

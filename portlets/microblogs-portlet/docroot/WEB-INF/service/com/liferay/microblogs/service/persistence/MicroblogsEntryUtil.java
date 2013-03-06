@@ -1578,7 +1578,7 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setPersistence(MicroblogsEntryPersistence persistence) {
 	}

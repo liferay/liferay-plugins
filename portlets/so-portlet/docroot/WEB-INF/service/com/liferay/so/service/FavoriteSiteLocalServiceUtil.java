@@ -328,7 +328,7 @@ public class FavoriteSiteLocalServiceUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setService(FavoriteSiteLocalService service) {
 	}

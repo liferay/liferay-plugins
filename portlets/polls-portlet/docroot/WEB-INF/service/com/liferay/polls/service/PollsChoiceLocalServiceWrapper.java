@@ -285,14 +285,14 @@ public class PollsChoiceLocalServiceWrapper implements PollsChoiceLocalService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public PollsChoiceLocalService getWrappedPollsChoiceLocalService() {
 		return _pollsChoiceLocalService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedPollsChoiceLocalService(
 		PollsChoiceLocalService pollsChoiceLocalService) {

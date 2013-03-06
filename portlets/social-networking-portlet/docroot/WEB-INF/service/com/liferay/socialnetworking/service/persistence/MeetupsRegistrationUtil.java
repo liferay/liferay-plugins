@@ -691,7 +691,7 @@ public class MeetupsRegistrationUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setPersistence(MeetupsRegistrationPersistence persistence) {
 	}

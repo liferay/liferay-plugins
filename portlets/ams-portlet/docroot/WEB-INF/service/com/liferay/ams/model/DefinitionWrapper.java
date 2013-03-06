@@ -502,7 +502,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedModel}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
 	public Definition getWrappedDefinition() {
 		return _definition;

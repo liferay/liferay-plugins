@@ -446,7 +446,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedModel}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
 	public UserThread getWrappedUserThread() {
 		return _userThread;

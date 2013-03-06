@@ -340,7 +340,7 @@ public class AccountLocalServiceUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setService(AccountLocalService service) {
 	}

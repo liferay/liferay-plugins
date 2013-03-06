@@ -361,14 +361,14 @@ public class MicroblogsEntryLocalServiceWrapper
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public MicroblogsEntryLocalService getWrappedMicroblogsEntryLocalService() {
 		return _microblogsEntryLocalService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedMicroblogsEntryLocalService(
 		MicroblogsEntryLocalService microblogsEntryLocalService) {

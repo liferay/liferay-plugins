@@ -88,14 +88,14 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public TasksEntryService getWrappedTasksEntryService() {
 		return _tasksEntryService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedTasksEntryService(TasksEntryService tasksEntryService) {
 		_tasksEntryService = tasksEntryService;

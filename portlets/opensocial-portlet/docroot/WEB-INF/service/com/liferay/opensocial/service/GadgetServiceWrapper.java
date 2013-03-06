@@ -81,14 +81,14 @@ public class GadgetServiceWrapper implements GadgetService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public GadgetService getWrappedGadgetService() {
 		return _gadgetService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedGadgetService(GadgetService gadgetService) {
 		_gadgetService = gadgetService;

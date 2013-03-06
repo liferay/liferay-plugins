@@ -289,7 +289,7 @@ public class JIRAChangeItemLocalServiceUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setService(JIRAChangeItemLocalService service) {
 	}

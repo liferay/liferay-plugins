@@ -989,7 +989,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
-	* @deprecated Renamed to {@link #isApproved()}
+	* @deprecated As of 6.1.0, replaced by {@link #isApproved()}
 	*/
 	public boolean getApproved() {
 		return _calendarBooking.getApproved();
@@ -1218,7 +1218,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedModel}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
 	public CalendarBooking getWrappedCalendarBooking() {
 		return _calendarBooking;

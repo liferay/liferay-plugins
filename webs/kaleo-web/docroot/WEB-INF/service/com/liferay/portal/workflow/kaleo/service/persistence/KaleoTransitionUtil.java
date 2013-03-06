@@ -922,7 +922,7 @@ public class KaleoTransitionUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setPersistence(KaleoTransitionPersistence persistence) {
 	}

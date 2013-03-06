@@ -348,14 +348,14 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public MessageLocalService getWrappedMessageLocalService() {
 		return _messageLocalService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedMessageLocalService(
 		MessageLocalService messageLocalService) {

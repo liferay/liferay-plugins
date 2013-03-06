@@ -852,7 +852,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedModel}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
 	public CalendarResource getWrappedCalendarResource() {
 		return _calendarResource;

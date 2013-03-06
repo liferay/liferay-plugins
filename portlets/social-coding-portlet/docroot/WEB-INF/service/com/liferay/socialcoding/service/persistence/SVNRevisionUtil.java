@@ -792,7 +792,7 @@ public class SVNRevisionUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setPersistence(SVNRevisionPersistence persistence) {
 	}

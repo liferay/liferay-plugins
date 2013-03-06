@@ -91,7 +91,7 @@ public class FooServiceUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setService(FooService service) {
 	}

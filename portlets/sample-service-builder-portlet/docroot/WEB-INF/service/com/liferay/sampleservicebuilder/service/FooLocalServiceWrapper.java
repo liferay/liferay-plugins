@@ -308,14 +308,14 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public FooLocalService getWrappedFooLocalService() {
 		return _fooLocalService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedFooLocalService(FooLocalService fooLocalService) {
 		_fooLocalService = fooLocalService;

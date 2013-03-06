@@ -331,7 +331,7 @@ public class WallEntryLocalServiceUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setService(WallEntryLocalService service) {
 	}

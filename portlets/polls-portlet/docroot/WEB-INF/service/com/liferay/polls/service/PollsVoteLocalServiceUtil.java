@@ -323,7 +323,7 @@ public class PollsVoteLocalServiceUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setService(PollsVoteLocalService service) {
 	}

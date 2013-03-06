@@ -282,14 +282,14 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public AkismetDataLocalService getWrappedAkismetDataLocalService() {
 		return _akismetDataLocalService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedAkismetDataLocalService(
 		AkismetDataLocalService akismetDataLocalService) {

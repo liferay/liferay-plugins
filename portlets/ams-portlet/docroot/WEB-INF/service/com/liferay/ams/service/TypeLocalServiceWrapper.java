@@ -247,14 +247,14 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public TypeLocalService getWrappedTypeLocalService() {
 		return _typeLocalService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedTypeLocalService(TypeLocalService typeLocalService) {
 		_typeLocalService = typeLocalService;

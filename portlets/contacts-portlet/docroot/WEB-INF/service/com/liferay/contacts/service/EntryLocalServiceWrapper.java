@@ -303,14 +303,14 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public EntryLocalService getWrappedEntryLocalService() {
 		return _entryLocalService;
 	}
 
 	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
+	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
 	public void setWrappedEntryLocalService(EntryLocalService entryLocalService) {
 		_entryLocalService = entryLocalService;

@@ -556,7 +556,7 @@ public class OAuthTokenUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setPersistence(OAuthTokenPersistence persistence) {
 	}
