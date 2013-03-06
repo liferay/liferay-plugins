@@ -4,6 +4,8 @@
 <project name="build-common" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property environment="env" />
 
+	<property location="${project.dir}" name="project.location.absolute" />
+
 	<property file="${project.dir}/build.${user.name}.properties" />
 	<property file="${project.dir}/build.${env.COMPUTERNAME}.properties" />
 	<property file="${project.dir}/build.${env.HOST}.properties" />
@@ -12,7 +14,6 @@
 
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
 	<property location="${app.server.portal.dir}/WEB-INF/lib" name="app.server.lib.portal.dir" />
-	<property location="${project.dir}" name="project.location.absolute" />
 
 	<property name="ivy.home" value="${project.location.absolute}/.ivy" />
 	<property name="ivy.install.version" value="2.2.0" />
