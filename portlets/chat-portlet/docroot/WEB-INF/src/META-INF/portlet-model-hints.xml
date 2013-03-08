@@ -9,6 +9,7 @@
 		<field name="content" type="String">
 			<hint name="max-length">1000</hint>
 		</field>
+		<field name="flag" type="int" />
 	</model>
 	<model name="com.liferay.chat.model.Status">
 		<field name="statusId" type="long" />

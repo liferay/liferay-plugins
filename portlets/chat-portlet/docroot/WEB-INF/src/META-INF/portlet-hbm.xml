@@ -13,6 +13,7 @@
 		<property name="fromUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="toUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="flag" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.chat.model.impl.StatusImpl" table="Chat_Status">
 		<cache usage="read-write" />

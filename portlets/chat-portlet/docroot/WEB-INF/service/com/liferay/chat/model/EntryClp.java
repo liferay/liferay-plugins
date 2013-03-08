@@ -69,6 +69,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		attributes.put("fromUserId", getFromUserId());
 		attributes.put("toUserId", getToUserId());
 		attributes.put("content", getContent());
+		attributes.put("flag", getFlag());
 
 		return attributes;
 	}
@@ -103,6 +104,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 		if (content != null) {
 			setContent(content);
+		}
+
+		Integer flag = (Integer)attributes.get("flag");
+
+		if (flag != null) {
+			setFlag(flag);
 		}
 	}
 
@@ -162,6 +169,14 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		_content = content;
 	}
 
+	public int getFlag() {
+		return _flag;
+	}
+
+	public void setFlag(int flag) {
+		_flag = flag;
+	}
+
 	public BaseModel<?> getEntryRemoteModel() {
 		return _entryRemoteModel;
 	}
@@ -198,6 +213,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		clone.setFromUserId(getFromUserId());
 		clone.setToUserId(getToUserId());
 		clone.setContent(getContent());
+		clone.setFlag(getFlag());
 
 		return clone;
 	}
@@ -256,7 +272,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{entryId=");
 		sb.append(getEntryId());
@@ -268,13 +284,15 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		sb.append(getToUserId());
 		sb.append(", content=");
 		sb.append(getContent());
+		sb.append(", flag=");
+		sb.append(getFlag());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.chat.model.Entry");
@@ -300,6 +318,10 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 			"<column><column-name>content</column-name><column-value><![CDATA[");
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>flag</column-name><column-value><![CDATA[");
+		sb.append(getFlag());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -313,5 +335,6 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	private long _toUserId;
 	private String _toUserUuid;
 	private String _content;
+	private int _flag;
 	private BaseModel<?> _entryRemoteModel;
 }

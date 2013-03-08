@@ -159,6 +159,20 @@ public interface EntryModel extends BaseModel<Entry> {
 	 */
 	public void setContent(String content);
 
+	/**
+	 * Returns the flag of this entry.
+	 *
+	 * @return the flag of this entry
+	 */
+	public int getFlag();
+
+	/**
+	 * Sets the flag of this entry.
+	 *
+	 * @param flag the flag of this entry
+	 */
+	public void setFlag(int flag);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);
