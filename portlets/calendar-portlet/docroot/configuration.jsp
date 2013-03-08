@@ -225,7 +225,7 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 
 <aui:script use="aui-base">
 	var <portlet:namespace />changeNotificationTemplate = function(parameterName, parameterValue) {
-		if (confirm('<liferay-ui:message key="changing-templates-could-loose-unsaved-data-do-you-want-to-proceed" />')) {
+		if (confirm('<liferay-ui:message key="changing-templates-could-lose-unsaved-data-do-you-want-to-proceed" />')) {
 			window.location.href = '<%= portletURL %>&' + parameterName + '=' + parameterValue;
 		}
 	};
