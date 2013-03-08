@@ -34,6 +34,7 @@ public class EntrySoap implements Serializable {
 		soapModel.setFromUserId(model.getFromUserId());
 		soapModel.setToUserId(model.getToUserId());
 		soapModel.setContent(model.getContent());
+		soapModel.setFlag(model.getFlag());
 
 		return soapModel;
 	}
@@ -126,9 +127,18 @@ public class EntrySoap implements Serializable {
 		_content = content;
 	}
 
+	public int getFlag() {
+		return _flag;
+	}
+
+	public void setFlag(int flag) {
+		_flag = flag;
+	}
+
 	private long _entryId;
 	private long _createDate;
 	private long _fromUserId;
 	private long _toUserId;
 	private String _content;
+	private int _flag;
 }

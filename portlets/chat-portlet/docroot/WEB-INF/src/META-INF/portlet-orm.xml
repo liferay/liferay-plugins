@@ -14,6 +14,7 @@
 			<basic name="fromUserId" />
 			<basic name="toUserId" />
 			<basic name="content" />
+			<basic name="flag" />
 			<transient name="fromUserUuid" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />

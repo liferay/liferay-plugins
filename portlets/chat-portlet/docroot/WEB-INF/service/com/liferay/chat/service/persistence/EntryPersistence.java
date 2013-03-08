@@ -742,6 +742,154 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns all the entries where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @return the matching entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.chat.model.Entry> findByF_T(
+		long fromUserId, long toUserId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the entries where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @return the range of matching entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.chat.model.Entry> findByF_T(
+		long fromUserId, long toUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.chat.model.Entry> findByF_T(
+		long fromUserId, long toUserId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry
+	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry findByF_T_First(long fromUserId,
+		long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByF_T_First(long fromUserId,
+		long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry
+	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry findByF_T_Last(long fromUserId,
+		long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByF_T_Last(long fromUserId,
+		long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* @param entryId the primary key of the current entry
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next entry
+	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry[] findByF_T_PrevAndNext(long entryId,
+		long fromUserId, long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.chat.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the entries where fromUserId = &#63; and toUserId = &#63; from the database.
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByF_T(long fromUserId, long toUserId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of entries where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @return the number of matching entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByF_T(long fromUserId, long toUserId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* @param createDate the create date
