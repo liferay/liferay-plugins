@@ -914,7 +914,7 @@ AUI().use(
 					for (var i in entryCache) {
 						var entry = entryCache[i];
 
-						if (entry.flag == 1) {
+						if (entry.flag) {
 							chat.update(
 								{
 									cache: true,
@@ -1025,6 +1025,7 @@ AUI().use(
 
 					if (!entryProcessed) {
 						userEntryCache[entry.entryId] = entry;
+
 						instance._entryIds.push(entry.entryId);
 					}
 				}
@@ -1083,7 +1084,7 @@ AUI().use(
 				var initialRequest = instance._initialRequest;
 
 				if (initialRequest) {
-					instance._loadCache(response.entries);
+					instance._loadCache(entries);
 
 					if (instance._activePanelId.length) {
 						var activePanelId = parseInt(instance._activePanelId, 10);
@@ -1097,10 +1098,6 @@ AUI().use(
 				}
 
 				instance._updateConversations(entries);
-
-				if (initialRequest) {
-					instance._initialRequest = false;
-				}
 			},
 
 			_saveSettings: function() {
@@ -1199,9 +1196,7 @@ AUI().use(
 
 					var entryProcessed = (entryIds.indexOf('|' + entry.entryId) > -1);
 
-					var messageIsUnread = (entry.flag === 0);
-
-					if (!entryProcessed || (instance._initialRequest && messageIsUnread)) {
+					if (!entryProcessed || (instance._initialRequest && !entry.flag)) {
 						var userId = entry.toUserId;
 						var incoming = false;
 
@@ -1225,6 +1220,7 @@ AUI().use(
 									}
 								);
 							}
+
 							if (chat) {
 								chat.update(
 									{
@@ -1243,6 +1239,8 @@ AUI().use(
 				}
 
 				instance._loadCache(entries);
+
+				instance._initialRequest = false;
 			},
 
 			_updatePresence: function() {
