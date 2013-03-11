@@ -44,8 +44,7 @@ public class LocalizationUtil
 			String localeParameter = parameter.concat(
 				StringPool.UNDERLINE).concat(languageId);
 
-			map.put(
-				locale, ParamUtil.getString(request, localeParameter));
+			map.put(locale, ParamUtil.getString(request, localeParameter));
 		}
 
 		return map;
