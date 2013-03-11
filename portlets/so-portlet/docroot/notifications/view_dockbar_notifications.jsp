@@ -126,7 +126,7 @@ while (iterator.hasNext()) {
 	<span class="notification-count"><%= notificationEvents.size() %></span>
 </a>
 
-<aui:script use="aui-base">
+<aui:script use="aui-base,aui-io">
 	var userNotificationEvents = A.one('#<portlet:namespace />notificationsMenuContainer');
 	var userNotificationsContainer = userNotificationEvents.one('.user-notification-events-container');
 
