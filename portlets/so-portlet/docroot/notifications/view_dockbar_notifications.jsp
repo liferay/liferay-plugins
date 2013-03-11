@@ -127,7 +127,7 @@ while (iterator.hasNext()) {
 </a>
 
 <aui:script use="aui-base">
-	var userNotificationEvents = A.one('.dockbar .user-notification-events');
+	var userNotificationEvents = A.one('#<portlet:namespace />notificationsMenuContainer');
 	var userNotificationsContainer = userNotificationEvents.one('.user-notification-events-container');
 
 	<c:if test="<%= notificationEvents.size() > 0 %>">
