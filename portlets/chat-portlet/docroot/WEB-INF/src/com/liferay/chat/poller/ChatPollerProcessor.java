@@ -18,7 +18,8 @@ import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
-import com.liferay.chat.util.ChatUtil;
+import com.liferay.chat.util.BuddyFinderUtil;
+import com.liferay.chat.util.ChatConstants;
 import com.liferay.chat.util.PortletPropsValues;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -72,7 +73,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		List<Object[]> buddies = ChatUtil.getBuddies(
+		List<Object[]> buddies = BuddyFinderUtil.getBuddies(
 			pollerRequest.getCompanyId(), pollerRequest.getUserId());
 
 		JSONArray buddiesJSON = JSONFactoryUtil.createJSONArray();
@@ -175,8 +176,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		}
 		else {
 			long onlineTimestamp =
-				status.getModifiedDate() + ChatUtil.ONLINE_DELTA -
-					ChatUtil.MAX_POLL_LATENCY;
+				status.getModifiedDate() + ChatConstants.ONLINE_DELTA -
+					ChatConstants.MAX_POLL_LATENCY;
 
 			if (onlineTimestamp < pollerRequest.getTimestamp()) {
 				updatePresence = true;
