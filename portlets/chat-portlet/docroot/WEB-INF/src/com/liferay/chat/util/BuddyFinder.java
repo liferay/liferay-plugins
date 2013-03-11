@@ -14,41 +14,16 @@
 
 package com.liferay.chat.util;
 
-import com.liferay.chat.buddies.BuddiesFinder;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.Time;
 
 import java.util.List;
 
-
 /**
- * @author Brian Wing Shun Chan
+ * @author Ankit Srivastava
  */
-public class ChatUtil {
+public interface BuddyFinder {
 
-	public static final long MAX_POLL_LATENCY = Time.SECOND * 15;
-
-	public static final long ONLINE_DELTA = Time.MINUTE;
-
-	
-	public static BuddiesFinder getBuddiesFinder() {
-
-		return _buddiesFinder;
-	}
-	
-
-	public static List<Object[]> getBuddies(long companyId, long userId)
-		throws SystemException {
-		
-		return getBuddiesFinder().getBuddies(companyId, userId);
-		
-	}
-	
-	public void setBuddiesFinder(BuddiesFinder buddiesFinder) {
-
-		_buddiesFinder = buddiesFinder;
-	}
-
-	private static BuddiesFinder _buddiesFinder;
+	public List<Object[]> getBuddies(long companyId, long userId)
+		throws SystemException;
 
 }
