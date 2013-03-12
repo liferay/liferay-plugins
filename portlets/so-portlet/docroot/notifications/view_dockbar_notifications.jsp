@@ -63,7 +63,7 @@ while (iterator.hasNext()) {
 
 			long userId = notificationEventJSONObject.getLong("userId");
 
-			String userFullName = PortalUtil.getUserName(userId, StringPool.BLANK);
+			String userFullName = HtmlUtil.escape(PortalUtil.getUserName(userId, StringPool.BLANK));
 
 			String userDisplayURL = StringPool.BLANK;
 			String userPortaitURL = StringPool.BLANK;

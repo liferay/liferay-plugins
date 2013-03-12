@@ -40,7 +40,7 @@
 
 	#set ($current_user = $user_local_service.getUserById($page_group.getClassPK()))
 
-	#set ($current_user_name = $current_user.getFullName())
+	#set ($current_user_name = $htmlUtil.escapeAttribute($current_user.getFullName()))
 	#set ($current_user_profile_url = $theme_display.getURLPortal() + $theme_display.getPathFriendlyURLPublic() + "/" + $current_user.getScreenName())
 	#set ($current_user_profile_portrait_url = $current_user.getPortraitURL($themeDisplay))
 
