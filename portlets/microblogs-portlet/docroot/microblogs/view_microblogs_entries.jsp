@@ -39,7 +39,7 @@ PortletURL microblogsEntriesURL = (PortletURL)request.getAttribute(WebKeys.MICRO
 		else {
 			User user2 = UserLocalServiceUtil.getUser(group.getClassPK());
 
-			message = LanguageUtil.format(pageContext, "x-does-not-have-any-microblog-entries" , new Object[] {user2.getFullName()});
+			message = LanguageUtil.format(pageContext, "x-does-not-have-any-microblog-entries" , new Object[] {HtmlUtil.escape(user2.getFullName())});
 		}
 	}
 	%>
