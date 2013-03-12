@@ -76,11 +76,13 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	*
 	* @param kbComment the k b comment
 	* @return the k b comment that was removed
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.deleteKBComment(kbComment);
 	}
 
@@ -281,7 +283,8 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	}
 
 	public void deleteKBComments(java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_kbCommentLocalService.deleteKBComments(className, classPK);
 	}
 

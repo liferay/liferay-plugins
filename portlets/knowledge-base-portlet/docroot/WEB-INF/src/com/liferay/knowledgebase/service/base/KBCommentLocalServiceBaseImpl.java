@@ -119,11 +119,12 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param kbComment the k b comment
 	 * @return the k b comment that was removed
+	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	public KBComment deleteKBComment(KBComment kbComment)
-		throws SystemException {
+		throws PortalException, SystemException {
 		return kbCommentPersistence.remove(kbComment);
 	}
 
