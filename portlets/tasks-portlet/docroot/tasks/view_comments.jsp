@@ -54,10 +54,10 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(messageUser.getDisplayURL(themeDisplay)) %>">
-						<span class="user-name"><a href="<%= messageUser.getDisplayURL(themeDisplay) %>"><%= message.getUserName() %></a></span>
+						<span class="user-name"><a href="<%= messageUser.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(message.getUserName()) %></a></span>
 					</c:when>
 					<c:otherwise>
-						<span class="user-name"><%= message.getUserName() %></span>
+						<span class="user-name"><%= HtmlUtil.escape(message.getUserName()) %></span>
 					</c:otherwise>
 				</c:choose>
 
