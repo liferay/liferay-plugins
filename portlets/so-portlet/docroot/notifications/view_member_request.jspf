@@ -62,7 +62,7 @@ catch (Exception e) {
 				</liferay-portlet:actionURL>
 
 				<%
-				String siteDescriptiveName = "<a href='" + siteURL + "'>" + invitedGroup.getDescriptiveName(locale) + "</a>";
+				String siteDescriptiveName = "<a href='" + siteURL + "'>" + HtmlUtil.escape(invitedGroup.getDescriptiveName(locale)) + "</a>";
 
 				userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
 				%>
