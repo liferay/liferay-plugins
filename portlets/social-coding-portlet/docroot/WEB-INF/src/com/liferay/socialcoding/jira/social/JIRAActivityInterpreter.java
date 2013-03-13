@@ -215,18 +215,18 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler();
+		if (jiraChangeItems.length() == 0) {
+			return(
+				themeDisplay.translate(
+					"activity-social-coding-jira-add-change-default"));
+		}
+
+		StringBundler sb = new StringBundler(jiraChangeItems.length());
 
 		for (int i = 0; i < jiraChangeItems.length(); i++) {
 			JSONObject jiraChangeItem = jiraChangeItems.getJSONObject(i);
 
 			sb.append(interpretJIRAChangeItem(jiraChangeItem, themeDisplay));
-		}
-
-		if (sb.length() == 0) {
-			sb.append(
-				themeDisplay.translate(
-					"activity-social-coding-jira-add-change-default"));
 		}
 
 		return sb.toString();
