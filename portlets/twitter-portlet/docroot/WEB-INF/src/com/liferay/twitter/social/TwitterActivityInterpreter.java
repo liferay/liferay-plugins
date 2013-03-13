@@ -17,13 +17,14 @@ package com.liferay.twitter.social;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.twitter.model.Feed;
 
 /**
@@ -36,8 +37,39 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
+
+		JSONObject extraData = JSONFactoryUtil.createJSONObject(
+			activity.getExtraData());
+
+		StringBundler sb = new StringBundler();
+
+		sb.append("<a href=\"http://twitter.com/");
+		sb.append(HtmlUtil.escapeURL(creatorUser.getContact().getTwitterSn()));
+		sb.append("/statuses/");
+		sb.append(activity.getClassPK());
+		sb.append("\" target=\"_blank\">");
+		sb.append(HtmlUtil.escape(extraData.getString("text")));
+		sb.append("</a>");
+
+		return sb.toString();
+	}
+
+	@Override
+	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivity activity, String link,
+			String title, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		String creatorUserName = getUserName(
@@ -46,14 +78,7 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 		User creatorUser = UserLocalServiceUtil.getUserById(
 			activity.getUserId());
 
-		JSONObject extraData = JSONFactoryUtil.createJSONObject(
-			activity.getExtraData());
-
-		// Title
-
-		String title = StringPool.BLANK;
-
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(8);
 
 		sb.append("<a href=\"");
 		sb.append(themeDisplay.getPortalURL());
@@ -66,24 +91,23 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String creatorUserNameURL = sb.toString();
 
-		title = themeDisplay.translate(
-			"activity-twitter-add-status", new Object[] {creatorUserNameURL});
+		return new Object[] {creatorUserNameURL};
+	}
 
-		// Body
+	@Override
+	protected String getTitlePattern(String groupName, SocialActivity activity)
+		throws Exception {
 
-		sb = new StringBuilder();
+		return "activity-twitter-add-status";
+	}
 
-		sb.append("<a href=\"http://twitter.com/");
-		sb.append(HtmlUtil.escapeURL(creatorUser.getContact().getTwitterSn()));
-		sb.append("/statuses/");
-		sb.append(activity.getClassPK());
-		sb.append("\" target=\"_blank\">");
-		sb.append(HtmlUtil.escape(extraData.getString("text")));
-		sb.append("</a>");
+	@Override
+	protected boolean hasPermissions(
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ThemeDisplay themeDisplay)
+	throws Exception {
 
-		String body = sb.toString();
-
-		return new SocialActivityFeedEntry(title, body);
+		return true;
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

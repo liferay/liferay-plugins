@@ -18,11 +18,11 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -34,9 +34,33 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
+
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(themeDisplay.getPortalURL());
+		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(StringPool.SLASH);
+		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
+
+		return sb.toString();
+	}
+
+	@Override
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivity activity, String link,
+			String title, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		int activityType = activity.getType();
+
+		if (activityType != FriendsActivityKeys.ADD_FRIEND) {
+			return new Object[0];
+		}
 
 		String creatorUserName = getUserName(
 			activity.getUserId(), themeDisplay);
@@ -48,60 +72,55 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		User receiverUser = UserLocalServiceUtil.getUserById(
 			activity.getReceiverUserId());
 
-		int activityType = activity.getType();
+		StringBundler sb = new StringBundler(8);
 
-		// Link
-
-		StringBundler sb = new StringBundler(4);
-
+		sb.append("<a href=\"");
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
+		sb.append("/profile\">");
+		sb.append(creatorUserName);
+		sb.append("</a>");
 
-		String link = sb.toString();
+		String creatorUserNameURL = sb.toString();
 
-		// Title
+		sb = new StringBundler(8);
 
-		String title = StringPool.BLANK;
+		sb.append("<a href=\"");
+		sb.append(themeDisplay.getPortalURL());
+		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(StringPool.SLASH);
+		sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
+		sb.append("/profile\">");
+		sb.append(receiverUserName);
+		sb.append("</a>");
+
+		String receiverUserNameURL = sb.toString();
+
+		return new Object[] {creatorUserNameURL, receiverUserNameURL};
+	}
+
+	@Override
+	protected String getTitlePattern(String groupName, SocialActivity activity)
+			throws Exception {
+
+		int activityType = activity.getType();
 
 		if (activityType == FriendsActivityKeys.ADD_FRIEND) {
-			sb = new StringBundler(8);
-
-			sb.append("<a href=\"");
-			sb.append(themeDisplay.getPortalURL());
-			sb.append(themeDisplay.getPathFriendlyURLPublic());
-			sb.append(StringPool.SLASH);
-			sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-			sb.append("/profile\">");
-			sb.append(creatorUserName);
-			sb.append("</a>");
-
-			String creatorUserNameURL = sb.toString();
-
-			sb = new StringBundler(8);
-
-			sb.append("<a href=\"");
-			sb.append(themeDisplay.getPortalURL());
-			sb.append(themeDisplay.getPathFriendlyURLPublic());
-			sb.append(StringPool.SLASH);
-			sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
-			sb.append("/profile\">");
-			sb.append(receiverUserName);
-			sb.append("</a>");
-
-			String receiverUserNameURL = sb.toString();
-
-			title = themeDisplay.translate(
-				"activity-social-networking-summary-add-friend",
-				new Object[] {creatorUserNameURL, receiverUserNameURL});
+			return "activity-social-networking-summary-add-friend";
 		}
 
-		// Body
+		return StringPool.BLANK;
+	}
 
-		String body = StringPool.BLANK;
+	@Override
+	protected boolean hasPermissions(
+			PermissionChecker permissionChecker, SocialActivity activity,
+			String actionId, ThemeDisplay themeDisplay)
+		throws Exception {
 
-		return new SocialActivityFeedEntry(link, title, body);
+		return true;
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
