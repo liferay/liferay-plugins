@@ -49,8 +49,8 @@ public class Definition {
 			if (state.isInitial()) {
 				_initialState = state;
 			}
-			else if (state.isTerminal()) {
-				_terminalStates.add(state);
+			else {
+				_terminalStates.clear();
 			}
 		}
 		else if (node instanceof Fork) {
@@ -102,6 +102,20 @@ public class Definition {
 	}
 
 	public List<State> getTerminalStates() {
+		if (!_terminalStates.isEmpty()) {
+			return _terminalStates;
+		}
+
+		for (Node node : _nodesMap.values()) {
+			if (node instanceof State) {
+				State state = (State)node;
+
+				if (state.isTerminal()) {
+					_terminalStates.add(state);
+				}
+			}
+		}
+
 		return _terminalStates;
 	}
 
