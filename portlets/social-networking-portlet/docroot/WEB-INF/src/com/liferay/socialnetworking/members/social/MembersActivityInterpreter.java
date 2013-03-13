@@ -75,32 +75,23 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		String creatorUserName = getUserName(
 			activity.getUserId(), themeDisplay);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<a href=\"");
-		sb.append(link);
-		sb.append("\">");
-		sb.append(creatorUserName);
-		sb.append("</a>");
-
-		String creatorUserNameURL = sb.toString();
+		String creatorUserNameURL = wrapLink(
+			getLink(activity, themeDisplay), creatorUserName);
 
 		Organization organization =
 			OrganizationLocalServiceUtil.getOrganization(activity.getClassPK());
 
 		Group group = organization.getGroup();
 
-		sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(4);
 
-		sb.append("<a href=\"");
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(group.getFriendlyURL());
-		sb.append("/profile\">");
-		sb.append(HtmlUtil.escape(organization.getName()));
-		sb.append("</a>");
+		sb.append("/profile");
 
-		String organizationNameURL = sb.toString();
+		String organizationNameURL = wrapLink(
+			sb.toString(), HtmlUtil.escape(organization.getName()));
 
 		return new Object[] {creatorUserNameURL, organizationNameURL};
 	}

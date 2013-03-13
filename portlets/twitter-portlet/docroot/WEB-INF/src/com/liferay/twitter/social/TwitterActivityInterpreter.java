@@ -46,17 +46,15 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 		JSONObject extraData = JSONFactoryUtil.createJSONObject(
 			activity.getExtraData());
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(4);
 
-		sb.append("<a href=\"http://twitter.com/");
+		sb.append("http://twitter.com/");
 		sb.append(HtmlUtil.escapeURL(creatorUser.getContact().getTwitterSn()));
 		sb.append("/statuses/");
 		sb.append(activity.getClassPK());
-		sb.append("\" target=\"_blank\">");
-		sb.append(HtmlUtil.escape(extraData.getString("text")));
-		sb.append("</a>");
 
-		return sb.toString();
+		return wrapLink(
+			sb.toString(), HtmlUtil.escape(extraData.getString("text")));
 	}
 
 	@Override
@@ -78,18 +76,15 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 		User creatorUser = UserLocalServiceUtil.getUserById(
 			activity.getUserId());
 
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(5);
 
-		sb.append("<a href=\"");
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-		sb.append("/profile\">");
-		sb.append(creatorUserName);
-		sb.append("</a>");
+		sb.append("/profile");
 
-		String creatorUserNameURL = sb.toString();
+		String creatorUserNameURL = wrapLink(sb.toString(), creatorUserName);
 
 		return new Object[] {creatorUserNameURL};
 	}

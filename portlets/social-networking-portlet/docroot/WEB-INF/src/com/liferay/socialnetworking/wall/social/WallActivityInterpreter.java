@@ -41,23 +41,15 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		String link = getLink(activity, themeDisplay);
-
 		WallEntry wallEntry = WallEntryLocalServiceUtil.getWallEntry(
 			activity.getClassPK());
 
 		String entryComments = getValue(
 			activity.getExtraData(), "comments", wallEntry.getComments());
 
-		StringBundler sb = new StringBundler(5);
+		String link = getLink(activity, themeDisplay);
 
-		sb.append("<a href=\"");
-		sb.append(link);
-		sb.append("\">");
-		sb.append(entryComments);
-		sb.append("</a>");
-
-		return sb.toString();
+		return wrapLink(link, entryComments);
 	}
 
 	@Override
