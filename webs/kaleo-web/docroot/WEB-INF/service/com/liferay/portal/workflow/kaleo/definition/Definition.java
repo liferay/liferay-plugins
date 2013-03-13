@@ -49,9 +49,6 @@ public class Definition {
 			if (state.isInitial()) {
 				_initialState = state;
 			}
-			else {
-				_terminalStates.clear();
-			}
 		}
 		else if (node instanceof Fork) {
 			_forks.add((Fork)node);
@@ -70,7 +67,7 @@ public class Definition {
 	}
 
 	public List<Fork> getForks() {
-		return _forks;
+		return Collections.unmodifiableList(_forks);
 	}
 
 	public int getForksCount() {
@@ -82,7 +79,7 @@ public class Definition {
 	}
 
 	public List<Join> getJoins() {
-		return _joins;
+		return Collections.unmodifiableList(_joins);
 	}
 
 	public int getJoinsCount() {
@@ -102,21 +99,21 @@ public class Definition {
 	}
 
 	public List<State> getTerminalStates() {
-		if (!_terminalStates.isEmpty()) {
-			return _terminalStates;
-		}
+		if (_terminalStates == null) {
+			_terminalStates = new ArrayList<State>();
 
-		for (Node node : _nodesMap.values()) {
-			if (node instanceof State) {
-				State state = (State)node;
+			for (Node node : _nodesMap.values()) {
+				if (node instanceof State) {
+					State state = (State)node;
 
-				if (state.isTerminal()) {
-					_terminalStates.add(state);
+					if (state.isTerminal()) {
+						_terminalStates.add(state);
+					}
 				}
 			}
 		}
 
-		return _terminalStates;
+		return Collections.unmodifiableList(_terminalStates);
 	}
 
 	public int getVersion() {
@@ -134,7 +131,7 @@ public class Definition {
 	private List<Join> _joins = new ArrayList<Join>();
 	private String _name;
 	private Map<String, Node> _nodesMap = new HashMap<String, Node>();
-	private List<State> _terminalStates = new ArrayList<State>();
+	private List<State> _terminalStates;
 	private int _version;
 
 }
