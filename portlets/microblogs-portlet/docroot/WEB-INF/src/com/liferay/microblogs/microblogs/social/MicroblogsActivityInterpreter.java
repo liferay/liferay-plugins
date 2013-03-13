@@ -29,7 +29,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
  * @author Jonathan Lee
@@ -42,33 +41,30 @@ public class MicroblogsActivityInterpreter
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
+		return getUserName(activity.getUserId(), themeDisplay);
+	}
+
+	@Override
+	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	protected String getTitle(
+			SocialActivity activity, ThemeDisplay themeDisplay)
+		throws Exception {
 
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
 				activity.getClassPK());
 
-		if (!MicroblogsEntryPermission.contains(
-				permissionChecker, microblogsEntry, ActionKeys.VIEW)) {
-
-			return null;
-		}
-
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
 		String receiverUserName = getUserName(
 			activity.getReceiverUserId(), themeDisplay);
-
-		// Link
-
-		String link = StringPool.BLANK;
-
-		// Title
 
 		StringBundler sb = new StringBundler(5);
 
@@ -92,13 +88,21 @@ public class MicroblogsActivityInterpreter
 
 		sb.append(HtmlUtil.escape(microblogsEntry.getContent()));
 
-		String title = sb.toString();
+		return sb.toString();
+	}
 
-		// Body
+	@Override
+	protected boolean hasPermissions(
+			PermissionChecker permissionChecker, SocialActivity activity,
+			String actionId, ThemeDisplay themeDisplay)
+		throws Exception {
 
-		String body = creatorUserName;
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
+				activity.getClassPK());
 
-		return new SocialActivityFeedEntry(link, title, body);
+		return MicroblogsEntryPermission.contains(
+			permissionChecker, microblogsEntry, ActionKeys.VIEW);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {
