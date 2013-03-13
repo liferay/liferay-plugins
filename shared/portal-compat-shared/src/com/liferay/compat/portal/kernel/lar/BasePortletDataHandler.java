@@ -14,6 +14,7 @@
 
 package com.liferay.compat.portal.kernel.lar;
 
+import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -61,7 +62,9 @@ public abstract class BasePortletDataHandler
 		return _publishToLiveByDefault;
 	}
 
-	protected Element addExportRootElement() {
+	protected Element addExportDataRootElement(
+		PortletDataContext portletDataContext) {
+
 		Document document = SAXReaderUtil.createDocument();
 
 		Class<?> clazz = getClass();
