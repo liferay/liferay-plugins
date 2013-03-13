@@ -114,7 +114,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			"com.liferay.knowledgebase.admin",
 			portletDataContext.getScopeGroupId());
 
-		Element rootElement = addExportRootElement();
+		Element rootElement = addExportDataRootElement(portletDataContext);
 
 		rootElement.addAttribute(
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
