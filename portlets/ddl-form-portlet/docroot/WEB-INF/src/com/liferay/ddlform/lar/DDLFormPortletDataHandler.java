@@ -77,7 +77,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 			return StringPool.BLANK;
 		}
 
-		Element rootElement = addExportRootElement();
+		Element rootElement = addExportDataRootElement(portletDataContext);
 
 		DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(
 			recordSetId);
@@ -101,10 +101,6 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 			"com.liferay.portlet.dynamicdatalist",
 			portletDataContext.getSourceGroupId(),
 			portletDataContext.getScopeGroupId());
-
-		if (Validator.isNull(data)) {
-			return null;
-		}
 
 		Document document = SAXReaderUtil.read(data);
 
