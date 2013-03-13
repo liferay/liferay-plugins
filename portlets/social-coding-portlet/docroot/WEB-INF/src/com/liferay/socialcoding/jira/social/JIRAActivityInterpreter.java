@@ -55,16 +55,11 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String link = getLink(activity, themeDisplay);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<a href=\"");
-		sb.append(link);
-		sb.append("\" target=\"_blank\">");
+		String text = StringPool.BLANK;
 
 		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
-			sb.append(
-				interpretJIRAChangeItems(
-					extraData.getJSONArray("jiraChangeItems"), themeDisplay));
+			text = interpretJIRAChangeItems(
+				extraData.getJSONArray("jiraChangeItems"), themeDisplay);
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			long jiraActionId = extraData.getLong("jiraActionId");
@@ -72,18 +67,16 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			JIRAAction jiraAction = JIRAActionLocalServiceUtil.getJIRAAction(
 				jiraActionId);
 
-			sb.append(HtmlUtil.escape(jiraAction.getBody()));
+			text = HtmlUtil.escape(jiraAction.getBody());
 		}
 		else if (activityType == JIRAActivityKeys.ADD_ISSUE) {
 			JIRAIssue jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
 				activity.getClassPK());
 
-			sb.append(HtmlUtil.escape(jiraIssue.getSummary()));
+			text = HtmlUtil.escape(jiraIssue.getSummary());
 		}
 
-		sb.append("</a>");
-
-		return sb.toString();
+		return wrapLink(link, text);
 	}
 
 	@Override

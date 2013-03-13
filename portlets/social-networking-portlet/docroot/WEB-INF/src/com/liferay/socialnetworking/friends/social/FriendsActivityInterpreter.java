@@ -72,31 +72,25 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		User receiverUser = UserLocalServiceUtil.getUserById(
 			activity.getReceiverUserId());
 
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(5);
 
-		sb.append("<a href=\"");
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-		sb.append("/profile\">");
-		sb.append(creatorUserName);
-		sb.append("</a>");
+		sb.append("/profile");
 
-		String creatorUserNameURL = sb.toString();
+		String creatorUserNameURL = wrapLink(sb.toString(), creatorUserName);
 
-		sb = new StringBundler(8);
+		sb = new StringBundler(5);
 
-		sb.append("<a href=\"");
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 		sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
-		sb.append("/profile\">");
-		sb.append(receiverUserName);
-		sb.append("</a>");
+		sb.append("/profile");
 
-		String receiverUserNameURL = sb.toString();
+		String receiverUserNameURL = wrapLink(sb.toString(), receiverUserName);
 
 		return new Object[] {creatorUserNameURL, receiverUserNameURL};
 	}

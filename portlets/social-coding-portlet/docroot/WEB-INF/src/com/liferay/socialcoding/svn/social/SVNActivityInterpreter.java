@@ -43,15 +43,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 		SVNRevision svnRevision = SVNRevisionLocalServiceUtil.getSVNRevision(
 			activity.getClassPK());
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<a href=\"");
-		sb.append(link);
-		sb.append("\" target=\"_blank\">");
-		sb.append(HtmlUtil.escape(svnRevision.getComments()));
-		sb.append("</a>");
-
-		return sb.toString();
+		return wrapLink(link, HtmlUtil.escape(svnRevision.getComments()));
 	}
 
 	@Override
