@@ -253,7 +253,7 @@
 					<portlet:namespace />colorPicker.setAttrs(
 						{
 							color: calendar.get('color'),
-							visible: true
+							visible: permissions.UPDATE
 						}
 					);
 
