@@ -41,13 +41,13 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
 			activity.getClassPK());
 
-		return getValue(
+		return getJSONValue(
 			activity.getExtraData(), "title", tasksEntry.getTitle());
 	}
 
 	@Override
-	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
+	protected String getLink(
+		SocialActivity activity, ThemeDisplay themeDisplay) {
 
 		return StringPool.BLANK;
 	}
@@ -58,10 +58,10 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 			String title, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		int activityType = activity.getType();
-
 		long userId = activity.getUserId();
 		long receiverUserId = activity.getReceiverUserId();
+
+		int activityType = activity.getType();
 
 		if (activityType == TasksActivityKeys.RESOLVE_ENTRY) {
 			TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
@@ -78,13 +78,13 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-		throws Exception {
-
-		int activityType = activity.getType();
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		long userId = activity.getUserId();
 		long receiverUserId = activity.getReceiverUserId();
+
+		int activityType = activity.getType();
 
 		if (activityType == TasksActivityKeys.ADD_ENTRY) {
 			if ((userId != receiverUserId) && (receiverUserId != 0)) {
@@ -124,15 +124,12 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected boolean hasPermissions(
-			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
-		throws Exception {
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ThemeDisplay themeDisplay) {
 
 		return true;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		TasksEntry.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {TasksEntry.class.getName()};
 
 }

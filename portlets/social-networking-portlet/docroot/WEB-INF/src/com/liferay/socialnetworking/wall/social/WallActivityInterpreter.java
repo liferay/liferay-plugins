@@ -44,27 +44,29 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		WallEntry wallEntry = WallEntryLocalServiceUtil.getWallEntry(
 			activity.getClassPK());
 
-		String entryComments = getValue(
+		String comments = getJSONValue(
 			activity.getExtraData(), "comments", wallEntry.getComments());
 
 		String link = getLink(activity, themeDisplay);
 
-		return wrapLink(link, entryComments);
+		return wrapLink(link, comments);
 	}
 
 	@Override
 	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		User receiverUser = UserLocalServiceUtil.getUserById(
-			activity.getReceiverUserId());
-
 		StringBundler sb = new StringBundler(6);
 
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
+
+		User receiverUser = UserLocalServiceUtil.getUserById(
+			activity.getReceiverUserId());
+
 		sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
+
 		sb.append("/profile/-/wall/");
 		sb.append(activity.getClassPK());
 
@@ -73,9 +75,8 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected Object[] getTitleArguments(
-			String groupName, SocialActivity activity, String link,
-			String title, ThemeDisplay themeDisplay)
-		throws Exception {
+		String groupName, SocialActivity activity, String link, String title,
+		ThemeDisplay themeDisplay) {
 
 		int activityType = activity.getType();
 
@@ -92,8 +93,8 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-		throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		int activityType = activity.getType();
 
@@ -121,8 +122,6 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		return true;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		WallEntry.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {WallEntry.class.getName()};
 
 }

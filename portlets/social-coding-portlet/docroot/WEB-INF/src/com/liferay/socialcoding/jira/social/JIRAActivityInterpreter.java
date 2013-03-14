@@ -17,6 +17,7 @@ package com.liferay.socialcoding.jira.social;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -44,25 +45,23 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		int activityType = activity.getType();
-
-		JSONObject extraData = null;
-
-		if (Validator.isNotNull(activity.getExtraData())) {
-			extraData = JSONFactoryUtil.createJSONObject(
-				activity.getExtraData());
-		}
-
 		String link = getLink(activity, themeDisplay);
 
 		String text = StringPool.BLANK;
 
+		int activityType = activity.getType();
+
 		if (activityType == JIRAActivityKeys.ADD_CHANGE) {
+			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+				activity.getExtraData());
+
 			text = interpretJIRAChangeItems(
-				extraData.getJSONArray("jiraChangeItems"), themeDisplay);
+				extraDataJSONObject.getJSONArray("jiraChangeItems"),
+				themeDisplay);
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
-			long jiraActionId = extraData.getLong("jiraActionId");
+			long jiraActionId = GetterUtil.getLong(
+				getJSONValue(activity.getExtraData(), "jiraActionId"));
 
 			JIRAAction jiraAction = JIRAActionLocalServiceUtil.getJIRAAction(
 				jiraActionId);
@@ -83,30 +82,26 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		int activityType = activity.getType();
+		StringBundler sb = new StringBundler(4);
 
-		JSONObject extraData = null;
-
-		if (Validator.isNotNull(activity.getExtraData())) {
-			extraData = JSONFactoryUtil.createJSONObject(
-				activity.getExtraData());
-		}
+		sb.append("http://support.liferay.com/browse/");
 
 		JIRAIssue jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
 			activity.getClassPK());
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("http://support.liferay.com/browse/");
 		sb.append(jiraIssue.getKey());
 
+		int activityType = activity.getType();
+
 		if (activityType == JIRAActivityKeys.ADD_COMMENT) {
-			long jiraActionId = extraData.getLong("jiraActionId");
+			sb.append("#action_");
+
+			long jiraActionId = GetterUtil.getLong(
+				getJSONValue(activity.getExtraData(), "jiraActionId"));
 
 			JIRAAction jiraAction = JIRAActionLocalServiceUtil.getJIRAAction(
 				jiraActionId);
 
-			sb.append("#action_");
 			sb.append(jiraAction.getJiraActionId());
 		}
 
@@ -129,8 +124,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-		throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		int activityType = activity.getType();
 
@@ -149,9 +144,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected boolean hasPermissions(
-			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
-		throws Exception {
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ThemeDisplay themeDisplay) {
 
 		return true;
 	}
@@ -202,31 +196,32 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	protected String interpretJIRAChangeItems(
-		JSONArray jiraChangeItems, ThemeDisplay themeDisplay) {
+		JSONArray jiraChangeItemsJSONArray, ThemeDisplay themeDisplay) {
 
-		if (jiraChangeItems == null) {
+		if (jiraChangeItemsJSONArray == null) {
 			return StringPool.BLANK;
 		}
 
-		if (jiraChangeItems.length() == 0) {
+		if (jiraChangeItemsJSONArray.length() == 0) {
 			return(
 				themeDisplay.translate(
 					"activity-social-coding-jira-add-change-default"));
 		}
 
-		StringBundler sb = new StringBundler(jiraChangeItems.length());
+		StringBundler sb = new StringBundler(jiraChangeItemsJSONArray.length());
 
-		for (int i = 0; i < jiraChangeItems.length(); i++) {
-			JSONObject jiraChangeItem = jiraChangeItems.getJSONObject(i);
+		for (int i = 0; i < jiraChangeItemsJSONArray.length(); i++) {
+			JSONObject jiraChangeItemJSONObject =
+				jiraChangeItemsJSONArray.getJSONObject(i);
 
-			sb.append(interpretJIRAChangeItem(jiraChangeItem, themeDisplay));
+			sb.append(
+				interpretJIRAChangeItem(
+					jiraChangeItemJSONObject, themeDisplay));
 		}
 
 		return sb.toString();
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		JIRAIssue.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {JIRAIssue.class.getName()};
 
 }

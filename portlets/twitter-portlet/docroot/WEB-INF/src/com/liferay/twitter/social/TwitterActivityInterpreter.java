@@ -14,11 +14,10 @@
 
 package com.liferay.twitter.social;
 
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -40,26 +39,28 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
-		JSONObject extraData = JSONFactoryUtil.createJSONObject(
-			activity.getExtraData());
-
 		StringBundler sb = new StringBundler(4);
 
 		sb.append("http://twitter.com/");
-		sb.append(HtmlUtil.escapeURL(creatorUser.getContact().getTwitterSn()));
+
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
+
+		Contact creatorContact = creatorUser.getContact();
+
+		sb.append(HtmlUtil.escapeURL(creatorContact.getTwitterSn()));
+
 		sb.append("/statuses/");
 		sb.append(activity.getClassPK());
 
-		return wrapLink(
-			sb.toString(), HtmlUtil.escape(extraData.getString("text")));
+		String text = getJSONValue(activity.getExtraData(), "text");
+
+		return wrapLink(sb.toString(), text);
 	}
 
 	@Override
-	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
+	protected String getLink(
+		SocialActivity activity, ThemeDisplay themeDisplay) {
 
 		return StringPool.BLANK;
 	}
@@ -70,19 +71,21 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 			String title, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
-
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
+
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
+
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
+
 		sb.append("/profile");
+
+		String creatorUserName = getUserName(
+			activity.getUserId(), themeDisplay);
 
 		String creatorUserNameURL = wrapLink(sb.toString(), creatorUserName);
 
@@ -90,8 +93,8 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-		throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		return "activity-twitter-add-status";
 	}
@@ -99,14 +102,11 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected boolean hasPermissions(
 		PermissionChecker permissionChecker, SocialActivity activity,
-		String actionId, ThemeDisplay themeDisplay)
-	throws Exception {
+		String actionId, ThemeDisplay themeDisplay) {
 
 		return true;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		Feed.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {Feed.class.getName()};
 
 }
