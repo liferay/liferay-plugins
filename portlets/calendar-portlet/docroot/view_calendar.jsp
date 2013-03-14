@@ -267,6 +267,29 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	AUI().use('aui-datatype', 'calendar', function(A) {
 		var DateMath = A.DataType.DateMath;
 
+		window.<portlet:namespace />refreshMiniCalendarSelectedDates = function() {
+			<portlet:namespace />miniCalendar._clearSelection();
+
+			var activeView = <portlet:namespace />scheduler.get('activeView');
+			var viewDate = <portlet:namespace />scheduler.get('viewDate');
+
+			var viewName = activeView.get('name');
+
+			var total = 1;
+
+			if (viewName == 'month') {
+				total = A.Date.daysInMonth(viewDate);
+			}
+			else if (viewName == 'week') {
+				total = 7;
+			}
+
+			var selectedDates = Liferay.CalendarUtil.getDatesList(viewDate, total);
+
+			<portlet:namespace />miniCalendar.selectDates(selectedDates);
+			<portlet:namespace />miniCalendar.set('date', viewDate);
+		}
+
 		window.<portlet:namespace />refreshVisibleCalendarRenderingRules = function() {
 			var miniCalendarStartDate = DateMath.subtract(DateMath.toMidnight(window.<portlet:namespace />miniCalendar.get('date')), DateMath.WEEK, 1);
 
@@ -285,6 +308,17 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 						{
 							filterFunction: function(date, node, rules) {
 								node.addClass('lfr-busy-day');
+
+								var selectedDates = this._getSelectedDatesList();
+
+								DateMath.toMidnight(date);
+
+								if ((selectedDates.length > 0) && A.Date.isInRange(date, selectedDates[0], selectedDates[selectedDates.length - 1])) {
+									node.addClass('yui3-calendar-day-selected');
+								}
+								else {
+									node.removeClass('yui3-calendar-day-selected');
+								}
 							},
 							rules: rulesDefinition
 						}
@@ -311,21 +345,18 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			}
 		).render('#<portlet:namespace />miniCalendarContainer');
 
-		<portlet:namespace />refreshVisibleCalendarRenderingRules();
-
 		<portlet:namespace />scheduler.after(
 			['*:add', '*:change', '*:load', '*:remove', '*:reset'],
 			A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100)
 		);
 
 		<portlet:namespace />scheduler.after(
-			'dateChange',
-			function(event) {
-				<portlet:namespace />miniCalendar._clearSelection();
-
-				<portlet:namespace />miniCalendar.selectDates(<portlet:namespace />scheduler.get('viewDate'));
-			}
+			['activeViewChange', 'dateChange'],
+			<portlet:namespace />refreshMiniCalendarSelectedDates
 		);
+
+		<portlet:namespace />refreshVisibleCalendarRenderingRules();
+		<portlet:namespace />refreshMiniCalendarSelectedDates();
 	});
 
 	<portlet:namespace />scheduler.load();

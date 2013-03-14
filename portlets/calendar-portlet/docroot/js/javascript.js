@@ -329,6 +329,20 @@ AUI.add(
 				);
 			},
 
+			getDatesList: function(startDate, total) {
+				if (!A.Date.isValidDate(startDate)) {
+					return [];
+				}
+
+				var output = [];
+
+				for (var i = 0; i < total; i++) {
+					output.push(A.Date.addDays(startDate, i));
+				}
+
+				return output;
+			},
+
 			getDefaultUserCalendar: function() {
 				var instance = this;
 
