@@ -47,8 +47,14 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		try {
 			_solrServer.add(getSolrInputDocument(document));
 
+            /* Set attribute solrSyncCall = "true" in Document for synchronous indexing */
 			if (_commit) {
-				_solrServer.commit();
+                if ("true".equals(document.get("solrSyncCall"))) {
+                    document.remove("solrSyncCall");
+                    _solrServer.commit(true, true);
+                } else {
+				    _solrServer.commit();
+                }
 			}
 		}
 		catch (Exception e) {
