@@ -46,15 +46,17 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
+
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
+
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
+
 		sb.append("/profile");
 
 		return sb.toString();
@@ -78,16 +80,18 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		String creatorUserNameURL = wrapLink(
 			getLink(activity, themeDisplay), creatorUserName);
 
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(themeDisplay.getPortalURL());
+		sb.append(themeDisplay.getPathFriendlyURLPublic());
+
 		Organization organization =
 			OrganizationLocalServiceUtil.getOrganization(activity.getClassPK());
 
 		Group group = organization.getGroup();
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(themeDisplay.getPortalURL());
-		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(group.getFriendlyURL());
+
 		sb.append("/profile");
 
 		String organizationNameURL = wrapLink(
@@ -97,8 +101,8 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-		throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		int activityType = activity.getType();
 
@@ -111,15 +115,12 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected boolean hasPermissions(
-			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
-		throws Exception {
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ThemeDisplay themeDisplay) {
 
 		return true;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		Organization.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {Organization.class.getName()};
 
 }

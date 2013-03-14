@@ -15,7 +15,6 @@
 package com.liferay.socialcoding.svn.social;
 
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -36,7 +35,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
-			throws Exception {
+		throws Exception {
 
 		String link = getLink(activity, themeDisplay);
 
@@ -60,7 +59,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected Object[] getTitleArguments(
 			String groupName, SocialActivity activity, String link,
 			String title, ThemeDisplay themeDisplay)
-			throws Exception {
+		throws Exception {
 
 		int activityType = activity.getType();
 
@@ -83,8 +82,8 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-			throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		int activityType = activity.getType();
 
@@ -97,15 +96,12 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected boolean hasPermissions(
-			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
-		throws Exception {
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ThemeDisplay themeDisplay) {
 
 		return true;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		SVNRevision.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {SVNRevision.class.getName()};
 
 }

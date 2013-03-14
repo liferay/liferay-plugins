@@ -41,15 +41,15 @@ public class MicroblogsActivityInterpreter
 	}
 
 	@Override
-	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
+	protected String getBody(
+		SocialActivity activity, ThemeDisplay themeDisplay) {
 
 		return getUserName(activity.getUserId(), themeDisplay);
 	}
 
 	@Override
-	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
+	protected String getLink(
+		SocialActivity activity, ThemeDisplay themeDisplay) {
 
 		return StringPool.BLANK;
 	}
@@ -59,14 +59,14 @@ public class MicroblogsActivityInterpreter
 			SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
+		StringBundler sb = new StringBundler(5);
+
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
 				activity.getClassPK());
 
 		String receiverUserName = getUserName(
 			activity.getReceiverUserId(), themeDisplay);
-
-		StringBundler sb = new StringBundler(5);
 
 		if (activity.getReceiverUserId() > 0) {
 			if (microblogsEntry.getType() ==
@@ -105,8 +105,7 @@ public class MicroblogsActivityInterpreter
 			permissionChecker, microblogsEntry, ActionKeys.VIEW);
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		MicroblogsEntry.class.getName()
-	};
+	private static final String[] _CLASS_NAMES =
+		{MicroblogsEntry.class.getName()};
 
 }

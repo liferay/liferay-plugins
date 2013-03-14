@@ -37,14 +37,15 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
+
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
+
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
 
 		return sb.toString();
@@ -62,23 +63,21 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			return new Object[0];
 		}
 
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
-		String receiverUserName = getUserName(
-			activity.getReceiverUserId(), themeDisplay);
-
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-		User receiverUser = UserLocalServiceUtil.getUserById(
-			activity.getReceiverUserId());
-
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
+
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			activity.getUserId());
+
 		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
+
 		sb.append("/profile");
+
+		String creatorUserName = getUserName(
+			activity.getUserId(), themeDisplay);
 
 		String creatorUserNameURL = wrapLink(sb.toString(), creatorUserName);
 
@@ -87,8 +86,16 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
+
+		User receiverUser = UserLocalServiceUtil.getUserById(
+			activity.getReceiverUserId());
+
 		sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
+
 		sb.append("/profile");
+
+		String receiverUserName = getUserName(
+			activity.getReceiverUserId(), themeDisplay);
 
 		String receiverUserNameURL = wrapLink(sb.toString(), receiverUserName);
 
@@ -96,8 +103,8 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-			throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		int activityType = activity.getType();
 
@@ -110,15 +117,12 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected boolean hasPermissions(
-			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
-		throws Exception {
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ThemeDisplay themeDisplay) {
 
 		return true;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		User.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {User.class.getName()};
 
 }
