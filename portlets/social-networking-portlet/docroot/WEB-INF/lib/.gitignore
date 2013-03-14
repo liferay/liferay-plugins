@@ -1,5 +1,6 @@
 /commons-logging.jar
 /ip-geocoder-shared.jar
+/jdom.jar
 /jstl-api.jar
 /jstl-impl.jar
 /log4j.jar

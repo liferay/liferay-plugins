@@ -76,11 +76,13 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	*
 	* @param wallEntry the wall entry
 	* @return the wall entry that was removed
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _wallEntryLocalService.deleteWallEntry(wallEntry);
 	}
 
