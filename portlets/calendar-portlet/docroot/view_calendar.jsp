@@ -288,7 +288,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 			<portlet:namespace />miniCalendar.selectDates(selectedDates);
 			<portlet:namespace />miniCalendar.set('date', viewDate);
-		}
+		};
 
 		window.<portlet:namespace />refreshVisibleCalendarRenderingRules = function() {
 			var miniCalendarStartDate = DateMath.subtract(DateMath.toMidnight(window.<portlet:namespace />miniCalendar.get('date')), DateMath.WEEK, 1);
