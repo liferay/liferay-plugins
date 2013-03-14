@@ -116,7 +116,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
 	@Override
 	public WallEntry deleteWallEntry(WallEntry wallEntry)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		// Entry
 
