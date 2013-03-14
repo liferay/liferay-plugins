@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.service.impl;
 
+import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.CalendarResourceCodeException;
 import com.liferay.calendar.DuplicateCalendarResourceException;
 import com.liferay.calendar.model.Calendar;
@@ -25,6 +26,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -86,7 +88,7 @@ public class CalendarResourceLocalServiceImpl
 
 		Date now = new Date();
 
-		validate(groupId, classNameId, classPK, code);
+		validate(groupId, classNameId, classPK, code, nameMap);
 
 		CalendarResource calendarResource = calendarResourcePersistence.create(
 			calendarResourceId);
@@ -293,6 +295,9 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setDescriptionMap(descriptionMap);
 		calendarResource.setActive(active);
 
+		validate(calendarResource.getClassNameId(),
+			calendarResource.getClassPK(), calendarResource.getCode(), nameMap);
+
 		calendarResourcePersistence.update(calendarResource);
 
 		// Resources
@@ -355,10 +360,15 @@ public class CalendarResourceLocalServiceImpl
 	}
 
 	protected void validate(
-			long groupId, long classNameId, long classPK, String code)
+			long groupId, long classNameId, long classPK, String code,
+			Map<Locale, String> nameMap)
 		throws PortalException, SystemException {
 
-		validate(groupId, code);
+		validate(classNameId, classPK, code, nameMap);
+
+		if (calendarResourcePersistence.countByG_C(groupId, code) > 0) {
+			throw new DuplicateCalendarResourceException();
+		}
 
 		CalendarResource calendarResource =
 			calendarResourcePersistence.fetchByC_C(classNameId, classPK);
@@ -368,15 +378,20 @@ public class CalendarResourceLocalServiceImpl
 		}
 	}
 
-	protected void validate(long groupId, String code)
+	protected void validate(long classNameId, long classPK, String code,
+			Map<Locale, String> nameMap)
 		throws PortalException, SystemException {
+
+		Locale locale = LocaleUtil.getDefault();
+
+		String name = nameMap.get(locale);
+
+		if (Validator.isNull(name)) {
+			throw new CalendarNameException();
+		}
 
 		if (Validator.isNull(code) || (code.indexOf(CharPool.SPACE) != -1)) {
 			throw new CalendarResourceCodeException();
-		}
-
-		if (calendarResourcePersistence.countByG_C(groupId, code) > 0) {
-			throw new DuplicateCalendarResourceException();
 		}
 	}
 
