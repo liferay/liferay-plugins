@@ -125,7 +125,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			}
 		}
 
-		return rootElement.formattedString();
+		return getExportDataFormattedDocument(rootElement);
 	}
 
 	@Override

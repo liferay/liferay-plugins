@@ -121,7 +121,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		exportKBTemplates(portletDataContext, rootElement);
 		exportKBComments(portletDataContext, rootElement);
 
-		return rootElement.formattedString();
+		return getExportDataFormattedDocument(rootElement);
 	}
 
 	@Override
