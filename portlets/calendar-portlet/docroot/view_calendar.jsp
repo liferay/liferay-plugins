@@ -152,9 +152,11 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 		Liferay.CalendarUtil.syncCalendarsMap(
 			<c:if test="<%= themeDisplay.isSignedIn() %>">
 				window.<portlet:namespace />myCalendarList,
-				window.<portlet:namespace />otherCalendarList,
+				window.<portlet:namespace />otherCalendarList
 			</c:if>
-			window.<portlet:namespace />siteCalendarList
+			<c:if test="<%= groupCalendarResource != null %>">
+				,window.<portlet:namespace />siteCalendarList
+			</c:if>
 		);
 	}
 
@@ -212,27 +214,29 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 		).render();
 	</c:if>
 
-	window.<portlet:namespace />siteCalendarList = new Liferay.CalendarList(
-		{
-			after: {
-				calendarsChange: syncCalendarsMap,
-				'scheduler-calendar:visibleChange': function(event) {
-					syncCalendarsMap();
+	<c:if test="<%= groupCalendarResource != null %>">
+		window.<portlet:namespace />siteCalendarList = new Liferay.CalendarList(
+			{
+				after: {
+					calendarsChange: syncCalendarsMap,
+					'scheduler-calendar:visibleChange': function(event) {
+						syncCalendarsMap();
 
-					<portlet:namespace />refreshVisibleCalendarRenderingRules();
-				}
-			},
-			boundingBox: '#<portlet:namespace />siteCalendarList',
+						<portlet:namespace />refreshVisibleCalendarRenderingRules();
+					}
+				},
+				boundingBox: '#<portlet:namespace />siteCalendarList',
 
-			<%
-			updateCalendarsJSONArray(request, groupCalendarsJSONArray);
-			%>
+				<%
+				updateCalendarsJSONArray(request, groupCalendarsJSONArray);
+				%>
 
-			calendars: <%= groupCalendarsJSONArray %>,
-			scheduler: <portlet:namespace />scheduler,
-			simpleMenu: window.<portlet:namespace />calendarsMenu
-		}
-	).render();
+				calendars: <%= groupCalendarsJSONArray %>,
+				scheduler: <portlet:namespace />scheduler,
+				simpleMenu: window.<portlet:namespace />calendarsMenu
+			}
+		).render();
+	</c:if>
 
 	syncCalendarsMap();
 
