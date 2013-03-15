@@ -93,11 +93,11 @@
 							<then>
 								<ivy:resolve
 									file="${project.dir}/tools/portlet_${portlet.framework}_tmpl/ivy.xml"
-									log="quiet"
+									log="download-only"
 								/>
 
 								<ivy:retrieve
-									log="quiet"
+									log="download-only"
 									pattern="${portlet.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
 									type="jar"
 								/>
