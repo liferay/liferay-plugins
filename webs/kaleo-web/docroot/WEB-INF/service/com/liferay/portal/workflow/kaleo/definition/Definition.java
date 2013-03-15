@@ -47,9 +47,6 @@ public class Definition {
 			if (state.isInitial()) {
 				_initialState = state;
 			}
-			else if (state.isTerminal()) {
-				_terminalState = state;
-			}
 		}
 	}
 
@@ -78,6 +75,20 @@ public class Definition {
 	}
 
 	public State getTerminalState() {
+		if (_terminalState == null) {
+			for (Node node : _nodesMap.values()) {
+				if (node instanceof State) {
+					State state = (State)node;
+
+					if (state.isTerminal()) {
+						_terminalState = state;
+
+						break;
+					}
+				}
+			}
+		}
+
 		return _terminalState;
 	}
 
