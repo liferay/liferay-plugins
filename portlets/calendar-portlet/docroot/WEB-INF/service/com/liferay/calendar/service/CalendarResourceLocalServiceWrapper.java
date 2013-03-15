@@ -192,12 +192,12 @@ public class CalendarResourceLocalServiceWrapper
 	}
 
 	/**
-	* Returns the calendar resource with the UUID in the group.
+	* Returns the calendar resource matching the UUID and group.
 	*
-	* @param uuid the UUID of calendar resource
-	* @param groupId the group id of the calendar resource
-	* @return the calendar resource
-	* @throws PortalException if a calendar resource with the UUID in the group could not be found
+	* @param uuid the calendar resource's UUID
+	* @param groupId the primary key of the group
+	* @return the matching calendar resource
+	* @throws PortalException if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.calendar.model.CalendarResource getCalendarResourceByUuidAndGroupId(

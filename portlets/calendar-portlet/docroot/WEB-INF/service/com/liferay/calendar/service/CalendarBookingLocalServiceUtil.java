@@ -196,12 +196,12 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	/**
-	* Returns the calendar booking with the UUID in the group.
+	* Returns the calendar booking matching the UUID and group.
 	*
-	* @param uuid the UUID of calendar booking
-	* @param groupId the group id of the calendar booking
-	* @return the calendar booking
-	* @throws PortalException if a calendar booking with the UUID in the group could not be found
+	* @param uuid the calendar booking's UUID
+	* @param groupId the primary key of the group
+	* @return the matching calendar booking
+	* @throws PortalException if a matching calendar booking could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarBooking getCalendarBookingByUuidAndGroupId(

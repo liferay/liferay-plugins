@@ -303,6 +303,11 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.liferay.calendar.CalendarResourceNameException")) {
+			return new com.liferay.calendar.CalendarResourceNameException();
+		}
+
+		if (className.equals(
 					"com.liferay.calendar.DuplicateCalendarResourceException")) {
 			return new com.liferay.calendar.DuplicateCalendarResourceException();
 		}
