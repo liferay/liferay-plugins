@@ -6,21 +6,78 @@
 	<property name="ivy.install.version" value="2.2.0" />
 	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
 
+	<path id="portal.classpath">
+		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
+	</path>
+
 	<checksum file="${project.dir}/ivy.xml" />
 
-	<script language="javascript">
-		importClass(java.io.File);
+	<script classpathref="portal.classpath" language="beanshell">
+		<![CDATA[
+			import java.io.File;
+			import java.lang.reflect.Field;
+			import java.lang.reflect.Method;
 
-		var ivyXMLMD5File = new File(project.getProperty("project.location.absolute") + "/ivy.xml.MD5");
-		var now = new Date();
+			import org.apache.tools.ant.DefaultLogger;
 
-		if ((now.getTime() - 5000) > ivyXMLMD5File.lastModified()) {
-			var buildListeners = project.getBuildListeners();
+			// Clear memory leak
 
-			var defaultLogger = buildListeners.firstElement();
+			Field threadLocalsField = Thread.class.getDeclaredField("threadLocals");
 
-			defaultLogger.setMessageOutputLevel(project.MSG_WARN);
-		}
+			threadLocalsField.setAccessible(true);
+
+			Object threadLocalMap = threadLocalsField.get(Thread.currentThread());
+
+			if (threadLocalMap != null) {
+				Class threadLocalMapClass = Class.forName("java.lang.ThreadLocal$ThreadLocalMap");
+
+				Method expungeStaleEntriesMethod = threadLocalMapClass.getDeclaredMethod("expungeStaleEntries", null);
+
+				expungeStaleEntriesMethod.setAccessible(true);
+
+				expungeStaleEntriesMethod.invoke(threadLocalMap, null);
+
+				Field tableField = threadLocalMapClass.getDeclaredField("table");
+
+				tableField.setAccessible(true);
+
+				for (Object entry : tableField.get(threadLocalMap)) {
+					if (entry != null) {
+						Class entryClass = entry.getClass();
+
+						Field valueField = entryClass.getDeclaredField("value");
+
+						valueField.setAccessible(true);
+
+						Object stack = valueField.get(entry);
+
+						if ((stack instanceof Stack) && !stack.isEmpty()) {
+							Object topElement = stack.peek();
+
+							Class topElementClass = topElement.getClass();
+
+							if (topElementClass.getName().equals("org.apache.ivy.core.IvyContext")) {
+								stack.clear();
+							}
+						}
+					}
+				}
+			}
+
+			// Suppress message output
+
+			File ivyXMLMD5File = new File(project.getProperty("project.location.absolute") + "/ivy.xml.MD5");
+			Date now = new Date();
+
+			if ((now.getTime() - 5000) > ivyXMLMD5File.lastModified()) {
+				Vector buildListeners = project.getBuildListeners();
+
+				DefaultLogger defaultLogger = buildListeners.firstElement();
+
+				defaultLogger.setMessageOutputLevel(project.MSG_WARN);
+			}
+		]]>
 	</script>
 
 	<mkdir dir="${ivy.jar.dir}" />
@@ -40,19 +97,23 @@
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<ivy:settings
-		file="${project.dir}/ivy-settings.xml"
-	/>
+	<ivy:settings file="${project.dir}/ivy-settings.xml" />
 
 	<ivy:resolve
 		file="${project.dir}/ivy.xml"
 		log="download-only"
 	/>
 
-	<script language="javascript">
-		var buildListeners = project.getBuildListeners();
+	<script classpathref="portal.classpath" language="beanshell">
+		import java.io.File;
 
-		var defaultLogger = buildListeners.firstElement();
+		import org.apache.tools.ant.DefaultLogger;
+
+		// Reset message output
+
+		Vector buildListeners = project.getBuildListeners();
+
+		DefaultLogger defaultLogger = buildListeners.firstElement();
 
 		defaultLogger.setMessageOutputLevel(project.MSG_INFO);
 	</script>
