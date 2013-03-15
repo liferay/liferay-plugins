@@ -109,7 +109,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			for (Entry entry : entries) {
 				entry.setFlag(EntryConstants.FLAG_READ);
 
-				entryPersistence.update(entry);
+				entryPersistence.update(entry, false);
 			}
 
 			status.setActivePanelId(activePanelId);
