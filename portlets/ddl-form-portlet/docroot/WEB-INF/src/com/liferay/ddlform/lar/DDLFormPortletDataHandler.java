@@ -81,7 +81,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 		StagedModelDataHandlerUtil.exportStagedModel(
 			portletDataContext, rootElement, recordSet);
 
-		return getExportDataFormattedDocument(rootElement);
+		return getExportDataRootElementString(rootElement);
 	}
 
 	@Override

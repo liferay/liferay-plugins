@@ -115,7 +115,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			}
 		}
 
-		return getExportDataFormattedDocument(rootElement);
+		return getExportDataRootElementString(rootElement);
 	}
 
 	@Override

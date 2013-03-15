@@ -74,7 +74,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			exportGadget(portletDataContext, gadgetsElement, gadget);
 		}
 
-		return getExportDataFormattedDocument(rootElement);
+		return getExportDataRootElementString(rootElement);
 	}
 
 	@Override
