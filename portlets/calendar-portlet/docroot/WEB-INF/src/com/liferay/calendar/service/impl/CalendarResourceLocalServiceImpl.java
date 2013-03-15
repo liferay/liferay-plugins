@@ -14,8 +14,8 @@
 
 package com.liferay.calendar.service.impl;
 
-import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.CalendarResourceCodeException;
+import com.liferay.calendar.CalendarResourceNameException;
 import com.liferay.calendar.DuplicateCalendarResourceException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
@@ -287,6 +287,8 @@ public class CalendarResourceLocalServiceImpl
 
 		// Calendar resource
 
+		validate(nameMap);
+
 		CalendarResource calendarResource =
 			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 
@@ -294,9 +296,6 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
 		calendarResource.setActive(active);
-
-		validate(calendarResource.getClassNameId(),
-			calendarResource.getClassPK(), calendarResource.getCode(), nameMap);
 
 		calendarResourcePersistence.update(calendarResource);
 
@@ -364,7 +363,11 @@ public class CalendarResourceLocalServiceImpl
 			Map<Locale, String> nameMap)
 		throws PortalException, SystemException {
 
-		validate(classNameId, classPK, code, nameMap);
+		validate(nameMap);
+
+		if (Validator.isNull(code) || (code.indexOf(CharPool.SPACE) != -1)) {
+			throw new CalendarResourceCodeException();
+		}
 
 		if (calendarResourcePersistence.countByG_C(groupId, code) > 0) {
 			throw new DuplicateCalendarResourceException();
@@ -378,20 +381,13 @@ public class CalendarResourceLocalServiceImpl
 		}
 	}
 
-	protected void validate(long classNameId, long classPK, String code,
-			Map<Locale, String> nameMap)
-		throws PortalException, SystemException {
+	protected void validate(Map<Locale, String> nameMap)
+		throws PortalException {
 
 		Locale locale = LocaleUtil.getDefault();
 
-		String name = nameMap.get(locale);
-
-		if (Validator.isNull(name)) {
-			throw new CalendarNameException();
-		}
-
-		if (Validator.isNull(code) || (code.indexOf(CharPool.SPACE) != -1)) {
-			throw new CalendarResourceCodeException();
+		if (nameMap.isEmpty() || Validator.isNull(nameMap.get(locale))) {
+			throw new CalendarResourceNameException();
 		}
 	}
 

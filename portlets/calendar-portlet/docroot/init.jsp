@@ -27,6 +27,7 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.calendar.CalendarNameException" %><%@
 page import="com.liferay.calendar.CalendarResourceCodeException" %><%@
+page import="com.liferay.calendar.CalendarResourceNameException" %><%@
 page import="com.liferay.calendar.DuplicateCalendarResourceException" %><%@
 page import="com.liferay.calendar.model.Calendar" %><%@
 page import="com.liferay.calendar.model.CalendarBooking" %><%@
