@@ -6,12 +6,21 @@
 	<property name="ivy.install.version" value="2.2.0" />
 	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
 
+	<checksum file="${project.dir}/ivy.xml" />
+
 	<script language="javascript">
-		var buildListeners = project.getBuildListeners();
+		importClass(java.io.File);
 
-		var logger = buildListeners.firstElement();
+		var ivyXMLMD5File = new File(project.getProperty("project.location.absolute") + "/ivy.xml.MD5");
+		var now = new Date();
 
-		logger.setMessageOutputLevel(project.MSG_WARN);
+		if ((now.getTime() - 5000) > ivyXMLMD5File.lastModified()) {
+			var buildListeners = project.getBuildListeners();
+
+			var defaultLogger = buildListeners.firstElement();
+
+			defaultLogger.setMessageOutputLevel(project.MSG_WARN);
+		}
 	</script>
 
 	<mkdir dir="${ivy.jar.dir}" />
@@ -31,15 +40,20 @@
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<ivy:settings file="${project.dir}/ivy-settings.xml" />
+	<ivy:settings
+		file="${project.dir}/ivy-settings.xml"
+	/>
 
-	<ivy:resolve file="${project.dir}/ivy.xml" />
+	<ivy:resolve
+		file="${project.dir}/ivy.xml"
+		log="download-only"
+	/>
 
 	<script language="javascript">
 		var buildListeners = project.getBuildListeners();
 
-		var logger = buildListeners.firstElement();
+		var defaultLogger = buildListeners.firstElement();
 
-		logger.setMessageOutputLevel(project.MSG_INFO);
+		defaultLogger.setMessageOutputLevel(project.MSG_INFO);
 	</script>
 </project>

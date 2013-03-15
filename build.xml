@@ -253,7 +253,7 @@ the outputted files will work in any supported application server.
 
 		<ivy:retrieve
 			conf="ccpp"
-			log="quiet"
+			log="download-only"
 			pattern="${tstamp.value}/WEB-INF/lib/[artifact].[ext]"
 			type="jar"
 		/>
