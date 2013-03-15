@@ -88,7 +88,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 		ddlPortletDataHandler.exportRecordSet(
 			portletDataContext, rootElement, recordSet);
 
-		return getExportDataFormattedDocument(rootElement);
+		return getExportDataRootElementString(rootElement);
 	}
 
 	@Override
