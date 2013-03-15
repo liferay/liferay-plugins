@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="build-common-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
+	<property name="ivy.home" value="${project.location.absolute}/.ivy" />
+	<property name="ivy.install.version" value="2.2.0" />
+	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
+
+	<script language="javascript">
+		var buildListeners = project.getBuildListeners();
+
+		var logger = buildListeners.firstElement();
+
+		logger.setMessageOutputLevel(project.MSG_WARN);
+	</script>
+
+	<mkdir dir="${ivy.jar.dir}" />
+
+	<get
+		dest="${ivy.jar.dir}"
+		skipexisting="true"
+		src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+	/>
+
+	<path id="ivy.lib.path">
+		<fileset
+			dir="${ivy.jar.dir}"
+			includes="ivy-${ivy.install.version}.jar"
+		/>
+	</path>
+
+	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
+
+	<ivy:settings file="${project.dir}/ivy-settings.xml" />
+
+	<ivy:resolve file="${project.dir}/ivy.xml" />
+
+	<script language="javascript">
+		var buildListeners = project.getBuildListeners();
+
+		var logger = buildListeners.firstElement();
+
+		logger.setMessageOutputLevel(project.MSG_INFO);
+	</script>
+</project>
