@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,10 +17,10 @@ package com.liferay.chat.model;
 /**
  * @author Shinn Lok
  */
-public class ChatEntryConstants {
+public class EntryConstants {
 
-	public static final int READ = 1;
+	public static final int FLAG_READ = 1;
 
-	public static final int UNREAD = 0;
+	public static final int FLAG_UNREAD = 0;
 
 }

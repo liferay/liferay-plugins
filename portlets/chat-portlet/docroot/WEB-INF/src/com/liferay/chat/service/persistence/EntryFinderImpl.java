@@ -14,8 +14,8 @@
 
 package com.liferay.chat.service.persistence;
 
-import com.liferay.chat.model.ChatEntryConstants;
 import com.liferay.chat.model.Entry;
+import com.liferay.chat.model.EntryConstants;
 import com.liferay.chat.model.impl.EntryImpl;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -101,7 +101,7 @@ public class EntryFinderImpl
 				qPos.add(createDate);
 			}
 			else {
-				qPos.add(ChatEntryConstants.UNREAD);
+				qPos.add(EntryConstants.FLAG_UNREAD);
 			}
 
 			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
@@ -143,6 +143,7 @@ public class EntryFinderImpl
 	}
 
 	private static final String _CREATE_DATE_SQL = "(createDate > ?)";
+
 	private static final String _FLAG_SQL = "(flag = ?)";
 
 }
