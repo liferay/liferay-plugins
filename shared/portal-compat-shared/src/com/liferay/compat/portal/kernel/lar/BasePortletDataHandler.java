@@ -16,9 +16,12 @@ package com.liferay.compat.portal.kernel.lar;
 
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+
+import java.io.IOException;
 
 /**
  * @author Brian Wing Shun Chan
@@ -70,6 +73,21 @@ public abstract class BasePortletDataHandler
 		Class<?> clazz = getClass();
 
 		return document.addElement(clazz.getSimpleName());
+	}
+
+	protected String getExportDataRootElementString(Element rootElement) {
+		if (rootElement == null) {
+			return StringPool.BLANK;
+		}
+
+		try {
+			Document document = rootElement.getDocument();
+
+			return document.formattedString();
+		}
+		catch (IOException ioe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	protected void setAlwaysExportable(boolean alwaysExportable) {
