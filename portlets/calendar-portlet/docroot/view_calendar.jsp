@@ -222,18 +222,18 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 	A.each(
 		Liferay.CalendarUtil.availableCalendars,
-		function(calendar) {
-			calendar.on(
-					{
-						'visibleChange': function(event) {
-							var instance = this;
+		function(item, index, collection) {
+			item.on(
+				{
+					'visibleChange': function(event) {
+						var instance = this;
 
-							var calendar = event.currentTarget;
+						var calendar = event.currentTarget;
 
-							Liferay.Store('calendar-portlet-calendar-' + calendar.get('calendarId') + '-visible', event.newVal);
-						}
+						Liferay.Store('calendar-portlet-calendar-' + calendar.get('calendarId') + '-visible', event.newVal);
 					}
-				);
+				}
+			);
 		}
 	);
 
@@ -263,101 +263,97 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	);
 </aui:script>
 
-<aui:script use="aui-base">
-	AUI().use('aui-datatype', 'calendar', function(A) {
-		var DateMath = A.DataType.DateMath;
+<aui:script use="aui-base,aui-datatype,calendar">
+	var DateMath = A.DataType.DateMath;
 
-		window.<portlet:namespace />refreshMiniCalendarSelectedDates = function() {
-			<portlet:namespace />miniCalendar._clearSelection();
+	window.<portlet:namespace />refreshMiniCalendarSelectedDates = function() {
+		<portlet:namespace />miniCalendar._clearSelection();
 
-			var activeView = <portlet:namespace />scheduler.get('activeView');
-			var viewDate = <portlet:namespace />scheduler.get('viewDate');
+		var activeView = <portlet:namespace />scheduler.get('activeView');
+		var viewDate = <portlet:namespace />scheduler.get('viewDate');
 
-			var viewName = activeView.get('name');
+		var viewName = activeView.get('name');
 
-			var total = 1;
+		var total = 1;
 
-			if (viewName == 'month') {
-				total = A.Date.daysInMonth(viewDate);
+		if (viewName == 'month') {
+			total = A.Date.daysInMonth(viewDate);
+		}
+		else if (viewName == 'week') {
+			total = 7;
+		}
+
+		var selectedDates = Liferay.CalendarUtil.getDatesList(viewDate, total);
+
+		<portlet:namespace />miniCalendar.selectDates(selectedDates);
+
+		<portlet:namespace />miniCalendar.set('date', viewDate);
+	};
+
+	window.<portlet:namespace />refreshVisibleCalendarRenderingRules = function() {
+		var miniCalendarStartDate = DateMath.subtract(DateMath.toMidnight(window.<portlet:namespace />miniCalendar.get('date')), DateMath.WEEK, 1);
+
+		var miniCalendarEndDate = DateMath.add(DateMath.add(miniCalendarStartDate, DateMath.MONTH, 1), DateMath.WEEK, 1);
+
+		miniCalendarEndDate.setHours(23, 59, 59, 999);
+
+		Liferay.CalendarUtil.getCalendarRenderingRules(
+			A.Object.keys(Liferay.CalendarUtil.visibleCalendars),
+			Liferay.CalendarUtil.toUTCTimeZone(miniCalendarStartDate),
+			Liferay.CalendarUtil.toUTCTimeZone(miniCalendarEndDate),
+			'busy',
+			function(rulesDefinition) {
+				window.<portlet:namespace />miniCalendar.set(
+					'customRenderer',
+					{
+						filterFunction: function(date, node, rules) {
+							node.addClass('lfr-busy-day');
+
+							var selectedDates = this._getSelectedDatesList();
+
+							DateMath.toMidnight(date);
+
+							var selected = (selectedDates.length > 0) && A.Date.isInRange(date, selectedDates[0], selectedDates[selectedDates.length - 1]);
+
+							node.toggleClass('yui3-calendar-day-selected', selected);
+						},
+						rules: rulesDefinition
+					}
+				);
 			}
-			else if (viewName == 'week') {
-				total = 7;
-			}
+		);
+	};
 
-			var selectedDates = Liferay.CalendarUtil.getDatesList(viewDate, total);
-
-			<portlet:namespace />miniCalendar.selectDates(selectedDates);
-			<portlet:namespace />miniCalendar.set('date', viewDate);
-		};
-
-		window.<portlet:namespace />refreshVisibleCalendarRenderingRules = function() {
-			var miniCalendarStartDate = DateMath.subtract(DateMath.toMidnight(window.<portlet:namespace />miniCalendar.get('date')), DateMath.WEEK, 1);
-
-			var miniCalendarEndDate = DateMath.add(DateMath.add(miniCalendarStartDate, DateMath.MONTH, 1), DateMath.WEEK, 1);
-
-			miniCalendarEndDate.setHours(23,59,59,999);
-
-			Liferay.CalendarUtil.getCalendarRenderingRules(
-				A.Object.keys(Liferay.CalendarUtil.visibleCalendars),
-				Liferay.CalendarUtil.toUTCTimeZone(miniCalendarStartDate),
-				Liferay.CalendarUtil.toUTCTimeZone(miniCalendarEndDate),
-				'busy',
-				function(rulesDefinition) {
-					window.<portlet:namespace />miniCalendar.set(
-						'customRenderer',
+	window.<portlet:namespace />miniCalendar = new A.Calendar(
+		{
+			after: {
+				dateChange: <portlet:namespace />refreshVisibleCalendarRenderingRules,
+				dateClick: function(event) {
+					<portlet:namespace />scheduler.setAttrs(
 						{
-							filterFunction: function(date, node, rules) {
-								node.addClass('lfr-busy-day');
-
-								var selectedDates = this._getSelectedDatesList();
-
-								DateMath.toMidnight(date);
-
-								if ((selectedDates.length > 0) && A.Date.isInRange(date, selectedDates[0], selectedDates[selectedDates.length - 1])) {
-									node.addClass('yui3-calendar-day-selected');
-								}
-								else {
-									node.removeClass('yui3-calendar-day-selected');
-								}
-							},
-							rules: rulesDefinition
+							activeView: <portlet:namespace />dayView,
+							date: event.date
 						}
 					);
 				}
-			);
-		};
+			},
+			date: new Date(<%= String.valueOf(date) %>),
+			locale: 'en'
+		}
+	).render('#<portlet:namespace />miniCalendarContainer');
 
-		window.<portlet:namespace />miniCalendar = new A.Calendar(
-			{
-				after: {
-					dateChange: <portlet:namespace />refreshVisibleCalendarRenderingRules,
-					dateClick: function(event) {
-						<portlet:namespace />scheduler.setAttrs(
-							{
-								activeView: <portlet:namespace />dayView,
-								date: event.date
-							}
-						);
-					}
-				},
-				date: new Date(<%= String.valueOf(date) %>),
-				locale: 'en'
-			}
-		).render('#<portlet:namespace />miniCalendarContainer');
+	<portlet:namespace />scheduler.after(
+		['*:add', '*:change', '*:load', '*:remove', '*:reset'],
+		A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100)
+	);
 
-		<portlet:namespace />scheduler.after(
-			['*:add', '*:change', '*:load', '*:remove', '*:reset'],
-			A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100)
-		);
+	<portlet:namespace />scheduler.after(
+		['activeViewChange', 'dateChange'],
+		<portlet:namespace />refreshMiniCalendarSelectedDates
+	);
 
-		<portlet:namespace />scheduler.after(
-			['activeViewChange', 'dateChange'],
-			<portlet:namespace />refreshMiniCalendarSelectedDates
-		);
-
-		<portlet:namespace />refreshVisibleCalendarRenderingRules();
-		<portlet:namespace />refreshMiniCalendarSelectedDates();
-	});
+	<portlet:namespace />refreshVisibleCalendarRenderingRules();
+	<portlet:namespace />refreshMiniCalendarSelectedDates();
 
 	<portlet:namespace />scheduler.load();
 </aui:script>

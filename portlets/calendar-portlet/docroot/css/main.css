@@ -405,7 +405,7 @@
 		position: relative;
 
 		&.yui3-calendar-day-selected {
-			background-color: #b3d4ff;
+			background-color: #B3D4FF;
 		}
 
 		&:hover {

@@ -330,14 +330,16 @@ AUI.add(
 			},
 
 			getDatesList: function(startDate, total) {
-				if (!A.Date.isValidDate(startDate)) {
-					return [];
-				}
+				var instance = this;
+
+				var ADate = A.Date;
 
 				var output = [];
 
-				for (var i = 0; i < total; i++) {
-					output.push(A.Date.addDays(startDate, i));
+				if (ADate.isValidDate(startDate)) {
+					for (var i = 0; i < total; i++) {
+						output.push(ADate.addDays(startDate, i));
+					}
 				}
 
 				return output;
