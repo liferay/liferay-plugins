@@ -15,8 +15,8 @@
 package com.liferay.chat.service.impl;
 
 import com.liferay.chat.jabber.JabberUtil;
-import com.liferay.chat.model.ChatEntryConstants;
 import com.liferay.chat.model.Entry;
+import com.liferay.chat.model.EntryConstants;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -107,9 +107,9 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 				GetterUtil.getLong(activePanelId), userId);
 
 			for (Entry entry : entries) {
-				entry.setFlag(ChatEntryConstants.READ);
+				entry.setFlag(EntryConstants.FLAG_READ);
 
-				entryPersistence.updateImpl(entry);
+				entryPersistence.update(entry);
 			}
 
 			status.setActivePanelId(activePanelId);
