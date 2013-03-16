@@ -67,6 +67,19 @@ public abstract class BaseSocialActivityInterpreter
 		return null;
 	}
 
+	public SocialActivityFeedEntry interpret(
+		SocialActivity activity, ThemeDisplay themeDisplay) {
+
+		try {
+			return doInterpret(activity, themeDisplay);
+		}
+		catch (Exception e) {
+			_log.error("Unable to interpret activity", e);
+		}
+
+		return null;
+	}
+
 	/**
 	 * @deprecated
 	 */
@@ -168,6 +181,34 @@ public abstract class BaseSocialActivityInterpreter
 		}
 	}
 
+	protected String getJSONValue(String json, String key) {
+		return getJSONValue(json, key, StringPool.BLANK);
+	}
+
+	protected String getJSONValue(
+		String json, String key, String defaultValue) {
+
+		if (Validator.isNull(json)) {
+			return HtmlUtil.escape(defaultValue);
+		}
+
+		try {
+			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+				json);
+
+			String value = extraDataJSONObject.getString(key);
+
+			if (Validator.isNotNull(value)) {
+				return HtmlUtil.escape(value);
+			}
+		}
+		catch (JSONException jsone) {
+			_log.error("Unable to create a JSON object from " + json);
+		}
+
+		return HtmlUtil.escape(defaultValue);
+	}
+
 	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
 		throws Exception {
 
@@ -184,7 +225,7 @@ public abstract class BaseSocialActivityInterpreter
 		return sb.toString();
 	}
 
-	protected String getPath(SocialActivity activity) throws Exception {
+	protected String getPath(SocialActivity activity) {
 		return StringPool.BLANK;
 	}
 
@@ -261,30 +302,6 @@ public abstract class BaseSocialActivityInterpreter
 		catch (Exception e) {
 			return StringPool.BLANK;
 		}
-	}
-
-	protected String getValue(
-		String extraData, String key, String defaultValue) {
-
-		if (Validator.isNull(extraData)) {
-			return HtmlUtil.escape(defaultValue);
-		}
-
-		try {
-			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
-				extraData);
-
-			String value = extraDataJSONObject.getString(key);
-
-			if (Validator.isNotNull(value)) {
-				return HtmlUtil.escape(value);
-			}
-		}
-		catch (JSONException jsone) {
-			_log.error("Unable to create JSON object from " + extraData);
-		}
-
-		return HtmlUtil.escape(defaultValue);
 	}
 
 	protected boolean hasPermissions(
