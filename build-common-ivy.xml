@@ -16,7 +16,8 @@
 
 	<script classpathref="beanshell.classpath" language="beanshell">
 		<![CDATA[
-			// Clear memory leak
+
+			// LPS-33549
 
 			threadLocalsField = Thread.class.getDeclaredField("threadLocals");
 
@@ -38,34 +39,36 @@
 				tableField.setAccessible(true);
 
 				for (Object entry : tableField.get(threadLocalMap)) {
-					if (entry != null) {
-						entryClass = entry.getClass();
+					if (entry == null) {
+						continue;
+					}
 
-						valueField = entryClass.getDeclaredField("value");
+					entryClass = entry.getClass();
 
-						valueField.setAccessible(true);
+					valueField = entryClass.getDeclaredField("value");
 
-						stack = valueField.get(entry);
+					valueField.setAccessible(true);
 
-						if ((stack instanceof Stack) && !stack.isEmpty()) {
-							topElement = stack.peek();
+					stack = valueField.get(entry);
 
-							topElementClass = topElement.getClass();
+					if ((stack instanceof Stack) && !stack.isEmpty()) {
+						topElement = stack.peek();
 
-							if (topElementClass.getName().equals("org.apache.ivy.core.IvyContext")) {
-								stack.clear();
-							}
+						topElementClass = topElement.getClass();
+
+						if (topElementClass.getName().equals("org.apache.ivy.core.IvyContext")) {
+							stack.clear();
 						}
 					}
 				}
 			}
 
-			// Suppress message output
+			// Only show messages if ivy.xml has been updated in the last 5
+			// seconds
 
 			ivyXMLMD5File = new File(project.getProperty("project.location.absolute") + "/ivy.xml.MD5");
-			now = new Date();
 
-			if ((now.getTime() - 5000) > ivyXMLMD5File.lastModified()) {
+			if ((System.currentTimeMillis() - 5000) > ivyXMLMD5File.lastModified()) {
 				buildListeners = project.getBuildListeners();
 
 				defaultLogger = buildListeners.firstElement();
@@ -100,8 +103,6 @@
 	/>
 
 	<script classpathref="beanshell.classpath" language="beanshell">
-		// Reset message output
-
 		buildListeners = project.getBuildListeners();
 
 		defaultLogger = buildListeners.firstElement();
