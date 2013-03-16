@@ -6,21 +6,73 @@
 	<property name="ivy.install.version" value="2.2.0" />
 	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
 
+	<path id="beanshell.classpath">
+		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
+		<fileset dir="${project.dir}/lib" includes="ant-apache-bsf.jar" />
+	</path>
+
 	<checksum file="${project.dir}/ivy.xml" />
 
-	<script language="javascript">
-		importClass(java.io.File);
+	<script classpathref="beanshell.classpath" language="beanshell">
+		<![CDATA[
+			// Clear memory leak
 
-		var ivyXMLMD5File = new File(project.getProperty("project.location.absolute") + "/ivy.xml.MD5");
-		var now = new Date();
+			threadLocalsField = Thread.class.getDeclaredField("threadLocals");
 
-		if ((now.getTime() - 5000) > ivyXMLMD5File.lastModified()) {
-			var buildListeners = project.getBuildListeners();
+			threadLocalsField.setAccessible(true);
 
-			var defaultLogger = buildListeners.firstElement();
+			threadLocalMap = threadLocalsField.get(Thread.currentThread());
 
-			defaultLogger.setMessageOutputLevel(project.MSG_WARN);
-		}
+			if (threadLocalMap != null) {
+				threadLocalMapClass = Class.forName("java.lang.ThreadLocal$ThreadLocalMap");
+
+				expungeStaleEntriesMethod = threadLocalMapClass.getDeclaredMethod("expungeStaleEntries", null);
+
+				expungeStaleEntriesMethod.setAccessible(true);
+
+				expungeStaleEntriesMethod.invoke(threadLocalMap, null);
+
+				tableField = threadLocalMapClass.getDeclaredField("table");
+
+				tableField.setAccessible(true);
+
+				for (Object entry : tableField.get(threadLocalMap)) {
+					if (entry != null) {
+						entryClass = entry.getClass();
+
+						valueField = entryClass.getDeclaredField("value");
+
+						valueField.setAccessible(true);
+
+						stack = valueField.get(entry);
+
+						if ((stack instanceof Stack) && !stack.isEmpty()) {
+							topElement = stack.peek();
+
+							topElementClass = topElement.getClass();
+
+							if (topElementClass.getName().equals("org.apache.ivy.core.IvyContext")) {
+								stack.clear();
+							}
+						}
+					}
+				}
+			}
+
+			// Suppress message output
+
+			ivyXMLMD5File = new File(project.getProperty("project.location.absolute") + "/ivy.xml.MD5");
+			now = new Date();
+
+			if ((now.getTime() - 5000) > ivyXMLMD5File.lastModified()) {
+				buildListeners = project.getBuildListeners();
+
+				defaultLogger = buildListeners.firstElement();
+
+				defaultLogger.setMessageOutputLevel(project.MSG_WARN);
+			}
+		]]>
 	</script>
 
 	<mkdir dir="${ivy.jar.dir}" />
@@ -40,19 +92,19 @@
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<ivy:settings
-		file="${project.dir}/ivy-settings.xml"
-	/>
+	<ivy:settings file="${project.dir}/ivy-settings.xml" />
 
 	<ivy:resolve
 		file="${project.dir}/ivy.xml"
 		log="download-only"
 	/>
 
-	<script language="javascript">
-		var buildListeners = project.getBuildListeners();
+	<script classpathref="beanshell.classpath" language="beanshell">
+		// Reset message output
 
-		var defaultLogger = buildListeners.firstElement();
+		buildListeners = project.getBuildListeners();
+
+		defaultLogger = buildListeners.firstElement();
 
 		defaultLogger.setMessageOutputLevel(project.MSG_INFO);
 	</script>
