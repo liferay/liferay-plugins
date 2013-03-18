@@ -9,7 +9,7 @@
 	<path id="beanshell.classpath">
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<fileset dir="${project.dir}/lib" includes="ant-apache-bsf.jar" />
+		<fileset dir="${project.dir}/lib" includes="*.jar" />
 	</path>
 
 	<checksum file="${project.dir}/ivy.xml" />
