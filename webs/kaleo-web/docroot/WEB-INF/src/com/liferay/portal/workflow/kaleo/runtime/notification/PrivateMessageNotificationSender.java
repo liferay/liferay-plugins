@@ -14,19 +14,23 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
-import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Michael C. Han
  */
-public class PrivateMessageNotificationSender implements NotificationSender {
+public class PrivateMessageNotificationSender
+	extends BaseNotificationSender implements NotificationSender {
 
-	public void sendNotification(
-		List<KaleoNotificationRecipient> notificationRecipients, String subject,
-		String notificationMessage, ExecutionContext executionContext) {
+	@Override
+	protected void doSendNotification(
+			Set<NotificationRecipient> notificationRecipients,
+			String defaultSubject, String notificationMessage,
+			ExecutionContext executionContext)
+		throws Exception {
+
 	}
 
 }

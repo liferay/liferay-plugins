@@ -14,6 +14,12 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.util.Set;
@@ -21,7 +27,7 @@ import java.util.Set;
 /**
  * @author Michael C. Han
  */
-public class IMNotificationSender
+public class UserNotificationMessageSender
 	extends BaseNotificationSender implements NotificationSender {
 
 	@Override
@@ -31,6 +37,24 @@ public class IMNotificationSender
 			ExecutionContext executionContext)
 		throws Exception {
 
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		NotificationEvent notificationEvent =
+			NotificationEventFactoryUtil.createNotificationEvent(
+				System.currentTimeMillis(), PortletKeys.WORKFLOW_TASKS,
+				notificationEventJSONObject);
+
+		notificationEvent.setDeliveryRequired(0);
+
+		for (NotificationRecipient notificationRecipient :
+				notificationRecipients) {
+
+			if (notificationRecipient.getUserId() > 0) {
+				UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
+					notificationRecipient.getUserId(), notificationEvent);
+			}
+		}
 	}
 
 }

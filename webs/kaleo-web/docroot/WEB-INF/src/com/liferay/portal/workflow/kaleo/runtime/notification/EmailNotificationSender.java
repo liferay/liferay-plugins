@@ -18,86 +18,24 @@ import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroupRole;
-import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 /**
  * @author Michael C. Han
  */
-public class EmailNotificationSender implements NotificationSender {
-
-	public void sendNotification(
-			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
-			String defaultSubject, String notificationMessage,
-			ExecutionContext executionContext)
-		throws NotificationMessageSenderException {
-
-		try {
-			Map<String, Serializable> workflowContext =
-				executionContext.getWorkflowContext();
-
-			String fromAddress = (String)workflowContext.get(
-				WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_ADDRESS);
-
-			if (Validator.isNull(fromAddress)) {
-				fromAddress = _fromAddress;
-			}
-
-			String fromName = (String)workflowContext.get(
-				WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_NAME);
-
-			if (Validator.isNull(fromName)) {
-				fromName = _fromName;
-			}
-
-			InternetAddress from = new InternetAddress(fromAddress, fromName);
-
-			InternetAddress[] recipients = getRecipients(
-				kaleoNotificationRecipients, executionContext);
-
-			if (recipients.length == 0) {
-				return;
-			}
-
-			String subject = (String)workflowContext.get(
-				WorkflowConstants.CONTEXT_NOTIFICATION_SUBJECT);
-
-			if (Validator.isNull(subject)) {
-				subject = defaultSubject;
-			}
-
-			MailMessage mailMessage = new MailMessage(
-				from, subject, notificationMessage, true);
-
-			mailMessage.setTo(recipients);
-
-			MailServiceUtil.sendEmail(mailMessage);
-		}
-		catch (Exception e) {
-			throw new NotificationMessageSenderException(
-				"Unable to send mail message", e);
-		}
-	}
+public class EmailNotificationSender
+	extends BaseNotificationSender implements NotificationSender {
 
 	public void setFromAddress(String fromAddress) {
 		_fromAddress = fromAddress;
@@ -107,149 +45,65 @@ public class EmailNotificationSender implements NotificationSender {
 		_fromName = fromName;
 	}
 
-	protected void getAssignedRecipients(
-			Set<InternetAddress> internetAddresses,
+	@Override
+	protected void doSendNotification(
+			Set<NotificationRecipient> notificationRecipients,
+			String defaultSubject, String notificationMessage,
 			ExecutionContext executionContext)
 		throws Exception {
 
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			executionContext.getKaleoTaskInstanceToken();
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
 
-		if (kaleoTaskInstanceToken == null) {
-			return;
+		String fromAddress = (String)workflowContext.get(
+			WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_ADDRESS);
+
+		if (Validator.isNull(fromAddress)) {
+			fromAddress = _fromAddress;
 		}
 
-		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
-			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
+		String fromName = (String)workflowContext.get(
+			WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_NAME);
 
-		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
-				kaleoTaskAssignmentInstances) {
-
-			String assigneeClassName =
-				kaleoTaskAssignmentInstance.getAssigneeClassName();
-
-			if (assigneeClassName.equals(User.class.getName())) {
-				getUserEmailAddress(
-					kaleoTaskAssignmentInstance.getAssigneeClassPK(),
-					internetAddresses, executionContext);
-			}
-			else {
-				long roleId = kaleoTaskAssignmentInstance.getAssigneeClassPK();
-
-				Role role = RoleLocalServiceUtil.getRole(roleId);
-
-				getRoleRecipientAddresses(
-					roleId, role.getType(), internetAddresses,
-					executionContext);
-			}
+		if (Validator.isNull(fromName)) {
+			fromName = _fromName;
 		}
+
+		InternetAddress from = new InternetAddress(fromAddress, fromName);
+
+		InternetAddress[] recipients = getRecipientEmails(
+			notificationRecipients);
+
+		String subject = (String)workflowContext.get(
+			WorkflowConstants.CONTEXT_NOTIFICATION_SUBJECT);
+
+		if (Validator.isNull(subject)) {
+			subject = defaultSubject;
+		}
+
+		MailMessage mailMessage = new MailMessage(
+			from, subject, notificationMessage, true);
+
+		mailMessage.setTo(recipients);
+
+		MailServiceUtil.sendEmail(mailMessage);
 	}
 
-	protected InternetAddress[] getRecipients(
-			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
-			ExecutionContext executionContext)
-		throws Exception {
+	private InternetAddress[] getRecipientEmails(
+			Set<NotificationRecipient> notificationRecipients)
+		throws AddressException, UnsupportedEncodingException {
 
-		Set<InternetAddress> internetAddresses = new HashSet<InternetAddress>();
+		List<InternetAddress> internetAddresses =
+			new ArrayList<InternetAddress>(notificationRecipients.size());
 
-		if (kaleoNotificationRecipients.isEmpty()) {
-			getAssignedRecipients(internetAddresses, executionContext);
-		}
-		else {
-			for (KaleoNotificationRecipient kaleoNotificationRecipient :
-					kaleoNotificationRecipients) {
+		for (NotificationRecipient notificationRecipient :
+				notificationRecipients) {
 
-				if (Validator.isNotNull(
-						kaleoNotificationRecipient.getAddress())) {
-
-					InternetAddress internetAddress = new InternetAddress(
-						kaleoNotificationRecipient.getAddress());
-
-					internetAddresses.add(internetAddress);
-				}
-				else {
-					String recipientClassName =
-						kaleoNotificationRecipient.getRecipientClassName();
-
-					if (recipientClassName.equals(User.class.getName())) {
-						getUserEmailAddress(
-							kaleoNotificationRecipient.getRecipientClassPK(),
-							internetAddresses, executionContext);
-					}
-					else {
-						getRoleRecipientAddresses(
-							kaleoNotificationRecipient.getRecipientClassPK(),
-							kaleoNotificationRecipient.getRecipientRoleType(),
-							internetAddresses, executionContext);
-					}
-				}
-			}
+			internetAddresses.add(notificationRecipient.getInternetAddress());
 		}
 
 		return internetAddresses.toArray(
 			new InternetAddress[internetAddresses.size()]);
-	}
-
-	protected void getRoleRecipientAddresses(
-			long roleId, int roleType, Set<InternetAddress> internetAddresses,
-			ExecutionContext executionContext)
-		throws Exception {
-
-		if (roleType == RoleConstants.TYPE_REGULAR) {
-			List<User> users = UserLocalServiceUtil.getRoleUsers(roleId);
-
-			for (User user : users) {
-				if (user.isActive()) {
-					InternetAddress internetAddress = new InternetAddress(
-						user.getEmailAddress(), user.getFullName());
-
-					internetAddresses.add(internetAddress);
-				}
-			}
-		}
-		else {
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-
-			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-					kaleoInstanceToken.getGroupId(), roleId);
-
-			for (UserGroupRole userGroupRole : userGroupRoles) {
-				User user = userGroupRole.getUser();
-
-				if (user.isActive()) {
-					InternetAddress internetAddress = new InternetAddress(
-						user.getEmailAddress(), user.getFullName());
-
-					internetAddresses.add(internetAddress);
-				}
-			}
-		}
-	}
-
-	protected void getUserEmailAddress(
-			long userId, Set<InternetAddress> internetAddresses,
-			ExecutionContext executionContext)
-		throws Exception {
-
-		if (userId <= 0) {
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-
-			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
-
-			userId = kaleoInstance.getUserId();
-		}
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		if (user.isActive()) {
-			InternetAddress internetAddress = new InternetAddress(
-				user.getEmailAddress(), user.getFullName());
-
-			internetAddresses.add(internetAddress);
-		}
 	}
 
 	private String _fromAddress;

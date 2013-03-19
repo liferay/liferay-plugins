@@ -196,6 +196,9 @@
 				<entry key="private-message">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.PrivateMessageNotificationSender" />
 				</entry>
+				<entry key="user-notification">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.UserNotificationMessageSender" />
+				</entry>
 			</map>
 		</property>
 	</bean>
