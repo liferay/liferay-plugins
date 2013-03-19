@@ -18,12 +18,16 @@
 package com.liferay.tasks.social;
 
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Ryan Park
@@ -35,7 +39,8 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getBody(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
@@ -47,7 +52,7 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected String getLink(
-		SocialActivity activity, ThemeDisplay themeDisplay) {
+		SocialActivity activity, ServiceContext serviceContext) {
 
 		return StringPool.BLANK;
 	}
@@ -55,8 +60,13 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected Object[] getTitleArguments(
 			String groupName, SocialActivity activity, String link,
-			String title, ThemeDisplay themeDisplay)
+			String title, ServiceContext serviceContext)
 		throws Exception {
+
+		HttpServletRequest request = serviceContext.getRequest();
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long userId = activity.getUserId();
 		long receiverUserId = activity.getReceiverUserId();
