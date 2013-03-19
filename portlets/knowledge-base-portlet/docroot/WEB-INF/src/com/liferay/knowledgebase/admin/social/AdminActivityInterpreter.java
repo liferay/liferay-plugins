@@ -127,7 +127,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			}
 		}
 
-		String articleTitle = getValue(
+		String articleTitle = getJSONValue(
 			activity.getExtraData(), "title", kbArticle.getTitle());
 
 		Object[] titleArguments = {
@@ -210,11 +210,11 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		String entityTitle = null;
 
 		if (kbArticle != null) {
-			entityTitle = getValue(
+			entityTitle = getJSONValue(
 				activity.getExtraData(), "title", kbArticle.getTitle());
 		}
 		else if (kbTemplate != null) {
-			entityTitle = getValue(
+			entityTitle = getJSONValue(
 				activity.getExtraData(), "title", kbTemplate.getTitle());
 		}
 
@@ -284,7 +284,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			}
 		}
 
-		String articleTitle = getValue(
+		String articleTitle = getJSONValue(
 			activity.getExtraData(), "title", kbTemplate.getTitle());
 
 		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
