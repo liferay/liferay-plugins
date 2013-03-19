@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilder;
+import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class ScriptingConditionEvaluator implements ConditionEvaluator {
 		throws PortalException, SystemException {
 
 		Map<String, Object> inputObjects =
-			ScriptingContextBuilder.buildScriptingContext(executionContext);
+			ScriptingContextBuilderUtil.buildScriptingContext(executionContext);
 
 		Map<String, Object> results = ScriptingUtil.eval(
 			null, inputObjects, _outputNames,

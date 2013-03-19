@@ -17,7 +17,7 @@ package com.liferay.portal.workflow.kaleo.runtime.action;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilder;
+import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil;
 
 import java.util.Map;
 
@@ -45,7 +45,7 @@ public class ScriptActionExecutor implements ActionExecutor {
 		throws Exception {
 
 		Map<String, Object> inputObjects =
-			ScriptingContextBuilder.buildScriptingContext(executionContext);
+			ScriptingContextBuilderUtil.buildScriptingContext(executionContext);
 
 		ScriptingUtil.exec(
 			null, inputObjects, kaleoAction.getScriptLanguage(),

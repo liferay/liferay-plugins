@@ -23,10 +23,21 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public interface ScriptingContextBuilder {
+public class ScriptingContextBuilderUtil {
 
-	public Map<String, Object> buildScriptingContext(
+	public static Map<String, Object> buildScriptingContext(
 			ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException, SystemException {
+
+		return _scriptingContextBuilder.buildScriptingContext(executionContext);
+	}
+
+	public void setScriptingContextBuilder(
+		ScriptingContextBuilder scriptingContextBuilder) {
+
+		_scriptingContextBuilder = scriptingContextBuilder;
+	}
+
+	private static ScriptingContextBuilder _scriptingContextBuilder;
 
 }
