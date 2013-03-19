@@ -41,7 +41,8 @@ for (long calendarId : calendarIds) {
 
 	if ((calendar != null) && (CalendarPermission.contains(permissionChecker, calendar, ActionKeys.VIEW))) {
 		CalendarResource calendarResource = calendar.getCalendarResource();
-		if ((calendarResource != null) && (calendarResource.isActive())) {
+
+		if (calendarResource.isActive()) {
 			otherCalendars.add(calendar);
 		}
 	}
