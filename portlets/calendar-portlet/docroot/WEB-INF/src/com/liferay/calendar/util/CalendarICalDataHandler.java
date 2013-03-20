@@ -188,7 +188,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		if (isICalDateOnly(dtStart)) {
 			allDay = true;
-			endDate = new Date(endDate.getTime()-1);
+
+			long time = endDate.getTime();
+
+			endDate.setTime(time - 1);
 		}
 
 		// Recurrence
