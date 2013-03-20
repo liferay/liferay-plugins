@@ -35,7 +35,9 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -134,6 +136,23 @@ public class CalendarUtil {
 		return jsonObject;
 	}
 
+	public static Collection<CalendarResource> getCalendarResources(
+			List<CalendarBooking> calendarBookings)
+		throws PortalException, SystemException {
+
+		Set<CalendarResource> calendarResources =
+			new HashSet<CalendarResource>();
+
+		for (CalendarBooking calendarBooking : calendarBookings) {
+			CalendarResource calendarResource =
+				calendarBooking.getCalendarResource();
+
+			calendarResources.add(calendarResource);
+		}
+
+		return calendarResources;
+	}
+
 	public static OrderByComparator getOrderByComparator(
 		String orderByCol, String orderByType) {
 
@@ -226,6 +245,26 @@ public class CalendarUtil {
 			_getPermissionsJSONObject(
 				themeDisplay.getPermissionChecker(), calendar));
 		jsonObject.put("userId", calendar.getUserId());
+
+		return jsonObject;
+	}
+
+	public static JSONObject toCalendarResourceJSONObject(
+			ThemeDisplay themeDisplay, CalendarResource calendarResource)
+		throws SystemException {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put(
+			"calendarResourceId", calendarResource.getCalendarResourceId());
+		jsonObject.put("classNameId", calendarResource.getClassNameId());
+		jsonObject.put("classPK", calendarResource.getClassPK());
+		jsonObject.put("classUuid", calendarResource.getClassUuid());
+		jsonObject.put("code", calendarResource.getCode());
+		jsonObject.put("groupId", calendarResource.getGroupId());
+		jsonObject.put(
+			"name", calendarResource.getName(themeDisplay.getLocale()));
+		jsonObject.put("userId", calendarResource.getUserId());
 
 		return jsonObject;
 	}

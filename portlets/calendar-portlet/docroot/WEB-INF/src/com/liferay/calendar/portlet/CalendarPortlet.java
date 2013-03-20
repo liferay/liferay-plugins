@@ -84,6 +84,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -606,6 +607,9 @@ public class CalendarPortlet extends MVCPortlet {
 		ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 			throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long parentCalendarBookingId = ParamUtil.getLong(
 			resourceRequest, "parentCalendarBookingId");
 
@@ -615,13 +619,14 @@ public class CalendarPortlet extends MVCPortlet {
 			CalendarBookingServiceUtil.getChildCalendarBookings(
 				parentCalendarBookingId);
 
-		for (CalendarBooking calendarBooking : childCalendarBookings) {
-			CalendarResource calendarResource =
-				calendarBooking.getCalendarResource();
+		Collection<CalendarResource> calendarResources =
+			CalendarUtil.getCalendarResources(childCalendarBookings);
 
-			addCalendarJSONObject(
-				resourceRequest, jsonArray, calendarResource.getClassNameId(),
-				calendarResource.getClassPK());
+		for (CalendarResource calendarResource : calendarResources) {
+			JSONObject jsonObject = CalendarUtil.toCalendarResourceJSONObject(
+				themeDisplay, calendarResource);
+
+			jsonArray.put(jsonObject);
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonArray);
