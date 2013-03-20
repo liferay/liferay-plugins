@@ -578,15 +578,26 @@ AUI.add(
 
 			toSchedulerEvent: function(calendarBooking) {
 				var instance = this;
+				var allDay = calendarBooking.allDay;
+				var startDate = calendarBooking.startTime;
+				var endDate = calendarBooking.endTime;
+
+				if (!allDay) {
+					startDate = instance.toUserTimeZone(startDate);
+					endDate = instance.toUserTimeZone(endDate);
+				} else {
+					startDate = instance.toFixedDayDate(startDate);
+					endDate = instance.toFixedDayDate(endDate);
+				}
 
 				return new Liferay.SchedulerEvent(
 					{
-						allDay: calendarBooking.allDay,
+						allDay: allDay,
 						calendarBookingId: calendarBooking.calendarBookingId,
 						calendarId: calendarBooking.calendarId,
 						content: calendarBooking.titleCurrentValue,
 						description: calendarBooking.descriptionCurrentValue,
-						endDate: instance.toUserTimeZone(calendarBooking.endTime),
+						endDate: endDate,
 						firstReminder: calendarBooking.firstReminder,
 						firstReminderType: calendarBooking.firstReminderType,
 						location: calendarBooking.location,
@@ -594,7 +605,7 @@ AUI.add(
 						recurrence: calendarBooking.recurrence,
 						secondReminder: calendarBooking.secondReminder,
 						secondReminderType: calendarBooking.secondReminderType,
-						startDate: instance.toUserTimeZone(calendarBooking.startTime),
+						startDate: startDate,
 						status: calendarBooking.status
 					}
 				);
@@ -618,6 +629,16 @@ AUI.add(
 				}
 
 				return DateMath.subtract(date, DateMath.MINUTES, date.getTimezoneOffset() + instance.USER_TIMEZONE_OFFSET / DateMath.ONE_MINUTE_MS);
+			},
+
+			toFixedDayDate: function(date) {
+				var instance = this;
+
+				if (!isDate(date)) {
+					date = new Date(date);
+				}
+
+				return DateMath.add(date, DateMath.MINUTES, date.getTimezoneOffset());
 			},
 
 			updateEvent: function(schedulerEvent, success) {
