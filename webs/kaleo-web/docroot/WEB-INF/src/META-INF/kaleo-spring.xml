@@ -231,7 +231,6 @@
 		</property>
 	</bean>
 
-
 	<!-- Parser -->
 
 	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" class="com.liferay.portal.workflow.kaleo.parser.XMLWorkflowModelParser">

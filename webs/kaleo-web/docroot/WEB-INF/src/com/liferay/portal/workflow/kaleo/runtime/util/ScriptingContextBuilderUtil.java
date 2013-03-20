@@ -29,7 +29,12 @@ public class ScriptingContextBuilderUtil {
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		return _scriptingContextBuilder.buildScriptingContext(executionContext);
+		return getScriptingContextBuilder().buildScriptingContext(
+			executionContext);
+	}
+
+	public static ScriptingContextBuilder getScriptingContextBuilder() {
+		return _scriptingContextBuilder;
 	}
 
 	public void setScriptingContextBuilder(
