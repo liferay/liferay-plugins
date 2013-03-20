@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
+import com.liferay.portal.kernel.util.HashCode;
+import com.liferay.portal.kernel.util.HashCodeFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 
@@ -40,27 +42,25 @@ public class NotificationRecipient {
 	}
 
 	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
 
-		if ((object == null) || (getClass() != object.getClass())) {
+		if (!(obj instanceof NotificationRecipient)) {
 			return false;
 		}
 
 		NotificationRecipient notificationRecipient =
-			(NotificationRecipient)object;
+			(NotificationRecipient)obj;
 
-		if (_companyId != notificationRecipient.getCompanyId()) {
-			return false;
+		if (Validator.equals(_companyId, notificationRecipient._companyId) &&
+			Validator.equals(_userId, notificationRecipient._userId)) {
+
+			return true;
 		}
 
-		if (_userId != notificationRecipient.getUserId()) {
-			return false;
-		}
-
-		return true;
+		return false;
 	}
 
 	public long getCompanyId() {
@@ -96,11 +96,12 @@ public class NotificationRecipient {
 
 	@Override
 	public int hashCode() {
-		int result = (int) (_companyId ^ (_companyId >>> 32));
+		HashCode hashCode = HashCodeFactoryUtil.getHashCode();
 
-		result = 31 * result + (int) (_userId ^ (_userId >>> 32));
+		hashCode.append(_companyId);
+		hashCode.append(_companyId);
 
-		return result;
+		return hashCode.toHashCode();
 	}
 
 	private long _companyId;

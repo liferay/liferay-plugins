@@ -71,9 +71,6 @@ public class EmailNotificationSender
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
 
-		InternetAddress[] recipients = getRecipientEmails(
-			notificationRecipients);
-
 		String subject = (String)workflowContext.get(
 			WorkflowConstants.CONTEXT_NOTIFICATION_SUBJECT);
 
@@ -84,12 +81,12 @@ public class EmailNotificationSender
 		MailMessage mailMessage = new MailMessage(
 			from, subject, notificationMessage, true);
 
-		mailMessage.setTo(recipients);
+		mailMessage.setTo(getInternetAddresses(notificationRecipients));
 
 		MailServiceUtil.sendEmail(mailMessage);
 	}
 
-	private InternetAddress[] getRecipientEmails(
+	protected InternetAddress[] getInternetAddresses(
 			Set<NotificationRecipient> notificationRecipients)
 		throws AddressException, UnsupportedEncodingException {
 

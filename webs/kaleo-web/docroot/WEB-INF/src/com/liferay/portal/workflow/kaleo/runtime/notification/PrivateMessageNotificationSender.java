@@ -30,7 +30,6 @@ public class PrivateMessageNotificationSender
 			String defaultSubject, String notificationMessage,
 			ExecutionContext executionContext)
 		throws Exception {
-
 	}
 
 }

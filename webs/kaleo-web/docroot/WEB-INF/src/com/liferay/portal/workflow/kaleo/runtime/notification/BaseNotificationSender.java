@@ -61,16 +61,9 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			throw new NotificationMessageSenderException(
 				"Unable to send notification message", e);
 		}
-
 	}
 
-	protected abstract void doSendNotification(
-			Set<NotificationRecipient> notificationRecipients,
-			String defaultSubject, String notificationMessage,
-			ExecutionContext executionContext)
-		throws Exception;
-
-	protected void getAssignedRecipients(
+	protected void addAssignedRecipients(
 			Set<NotificationRecipient> notificationRecipients,
 			ExecutionContext executionContext)
 		throws Exception {
@@ -92,24 +85,63 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				kaleoTaskAssignmentInstance.getAssigneeClassName();
 
 			if (assigneeClassName.equals(User.class.getName())) {
-				getNotificationRecipient(
+				addUserNotificationRecipient(
+					notificationRecipients,
 					kaleoTaskAssignmentInstance.getAssigneeClassPK(),
-					notificationRecipients, executionContext);
+					executionContext);
 			}
 			else {
 				long roleId = kaleoTaskAssignmentInstance.getAssigneeClassPK();
 
 				Role role = RoleLocalServiceUtil.getRole(roleId);
 
-				getRoleRecipientAddresses(
-					roleId, role.getType(), notificationRecipients,
+				addRoleRecipientAddresses(
+					notificationRecipients, roleId, role.getType(),
 					executionContext);
 			}
 		}
 	}
 
-	protected void getNotificationRecipient(
-			long userId, Set<NotificationRecipient> notificationRecipients,
+	protected void addRoleRecipientAddresses(
+			Set<NotificationRecipient> notificationRecipients, long roleId,
+			int roleType, ExecutionContext executionContext)
+		throws Exception {
+
+		if (roleType == RoleConstants.TYPE_REGULAR) {
+			List<User> users = UserLocalServiceUtil.getRoleUsers(roleId);
+
+			for (User user : users) {
+				if (user.isActive()) {
+					NotificationRecipient notificationRecipient =
+						new NotificationRecipient(user);
+
+					notificationRecipients.add(notificationRecipient);
+				}
+			}
+		}
+		else {
+			KaleoInstanceToken kaleoInstanceToken =
+				executionContext.getKaleoInstanceToken();
+
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
+					kaleoInstanceToken.getGroupId(), roleId);
+
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				User user = userGroupRole.getUser();
+
+				if (user.isActive()) {
+					NotificationRecipient notificationRecipient =
+						new NotificationRecipient(user);
+
+					notificationRecipients.add(notificationRecipient);
+				}
+			}
+		}
+	}
+
+	protected void addUserNotificationRecipient(
+			Set<NotificationRecipient> notificationRecipients, long userId,
 			ExecutionContext executionContext)
 		throws Exception {
 
@@ -125,10 +157,18 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		User user = UserLocalServiceUtil.getUser(userId);
 
 		if (user.isActive()) {
+			NotificationRecipient notificationRecipient =
+				new NotificationRecipient(user);
 
-			notificationRecipients.add(new NotificationRecipient(user));
+			notificationRecipients.add(notificationRecipient);
 		}
 	}
+
+	protected abstract void doSendNotification(
+			Set<NotificationRecipient> notificationRecipients,
+			String defaultSubject, String notificationMessage,
+			ExecutionContext executionContext)
+		throws Exception;
 
 	protected Set<NotificationRecipient> getNotificationRecipients(
 			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
@@ -139,71 +179,42 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			new HashSet<NotificationRecipient>();
 
 		if (kaleoNotificationRecipients.isEmpty()) {
-			getAssignedRecipients(notificationRecipients, executionContext);
+			addAssignedRecipients(notificationRecipients, executionContext);
+
+			return notificationRecipients;
 		}
-		else {
-			for (KaleoNotificationRecipient kaleoNotificationRecipient :
+
+		for (KaleoNotificationRecipient kaleoNotificationRecipient :
 				kaleoNotificationRecipients) {
 
-				if (Validator.isNotNull(
-						kaleoNotificationRecipient.getAddress())) {
+			if (Validator.isNotNull(kaleoNotificationRecipient.getAddress())) {
+				NotificationRecipient notificationRecipient =
+					new NotificationRecipient(
+						kaleoNotificationRecipient.getAddress());
 
-					notificationRecipients.add(
-						new NotificationRecipient(
-							(kaleoNotificationRecipient.getAddress())));
+				notificationRecipients.add(notificationRecipient);
+			}
+			else {
+				String recipientClassName =
+					kaleoNotificationRecipient.getRecipientClassName();
+
+				if (recipientClassName.equals(User.class.getName())) {
+					addUserNotificationRecipient(
+						notificationRecipients,
+						kaleoNotificationRecipient.getRecipientClassPK(),
+						executionContext);
 				}
 				else {
-					String recipientClassName =
-						kaleoNotificationRecipient.getRecipientClassName();
-
-					if (recipientClassName.equals(User.class.getName())) {
-						getNotificationRecipient(
-							kaleoNotificationRecipient.getRecipientClassPK(),
-							notificationRecipients, executionContext);
-					}
-					else {
-						getRoleRecipientAddresses(
-							kaleoNotificationRecipient.getRecipientClassPK(),
-							kaleoNotificationRecipient.getRecipientRoleType(),
-							notificationRecipients, executionContext);
-					}
+					addRoleRecipientAddresses(
+						notificationRecipients,
+						kaleoNotificationRecipient.getRecipientClassPK(),
+						kaleoNotificationRecipient.getRecipientRoleType(),
+						executionContext);
 				}
 			}
 		}
 
 		return notificationRecipients;
-	}
-
-	protected void getRoleRecipientAddresses(
-			long roleId, int roleType,
-			Set<NotificationRecipient> notificationRecipients,
-			ExecutionContext executionContext)
-		throws Exception {
-
-		if (roleType == RoleConstants.TYPE_REGULAR) {
-			List<User> users = UserLocalServiceUtil.getRoleUsers(roleId);
-
-			for (User user : users) {
-				if (user.isActive()) {
-					notificationRecipients.add(new NotificationRecipient(user));
-				}
-			}
-		} else {
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-
-			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-					kaleoInstanceToken.getGroupId(), roleId);
-
-			for (UserGroupRole userGroupRole : userGroupRoles) {
-				User user = userGroupRole.getUser();
-
-				if (user.isActive()) {
-					notificationRecipients.add(new NotificationRecipient(user));
-				}
-			}
-		}
 	}
 
 }

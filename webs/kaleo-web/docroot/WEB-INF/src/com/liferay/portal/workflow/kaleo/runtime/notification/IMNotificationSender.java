@@ -30,7 +30,6 @@ public class IMNotificationSender
 			String defaultSubject, String notificationMessage,
 			ExecutionContext executionContext)
 		throws Exception {
-
 	}
 
 }
