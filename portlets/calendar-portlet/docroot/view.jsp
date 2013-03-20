@@ -19,19 +19,13 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "calendar");
 
-String tabNames = "calendar";
-
-if (themeDisplay.isSignedIn()) {
-	tabNames += ",resources";
-}
-
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("tabs1", tabs1);
 %>
 
 <liferay-ui:tabs
-	names="<%= tabNames %>"
+	names='<%= themeDisplay.isSignedIn() ? "calendar,resources" : "calendar" %>'
 	url="<%= portletURL.toString() %>"
 />
 

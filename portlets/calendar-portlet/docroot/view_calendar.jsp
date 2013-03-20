@@ -143,16 +143,19 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	</c:if>
 
 	var syncCalendarsMap = function() {
-		Liferay.CalendarUtil.syncCalendarsMap(
-			<% if (themeDisplay.isSignedIn()) { %>
-				window.<portlet:namespace />myCalendarList,
-				window.<portlet:namespace />otherCalendarList,
-			<% } %>
-			window.<portlet:namespace />siteCalendarList
-		);
+		var calendarLists = [];
+
+		<c:if test="<%= themeDisplay.isSignedIn() %>">
+			calendarLists.push(window.<portlet:namespace />myCalendarList);
+			calendarLists.push(window.<portlet:namespace />otherCalendarList);
+		</c:if>
+
+		calendarLists.push(window.<portlet:namespace />siteCalendarList);
+
+		Liferay.CalendarUtil.syncCalendarsMap.apply(this, calendarLists);
 	}
 
-	if (<%= themeDisplay.isSignedIn() %>) {
+	<c:if test="<%= themeDisplay.isSignedIn() %>">
 		window.<portlet:namespace />myCalendarList = new Liferay.CalendarList(
 			{
 				after: {
@@ -204,7 +207,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				simpleMenu: window.<portlet:namespace />calendarsMenu
 			}
 		).render();
-	}
+	</c:if>
 
 	window.<portlet:namespace />siteCalendarList = new Liferay.CalendarList(
 		{
@@ -256,11 +259,11 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 		}
 	);
 
-	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarResources" var="calendarResourcesURL" />
+	<c:if test="<%= themeDisplay.isSignedIn() %>">
+		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarResources" var="calendarResourcesURL" />
 
-	var addOtherCalendarInput = A.one('#<portlet:namespace />addOtherCalendar');
+		var addOtherCalendarInput = A.one('#<portlet:namespace />addOtherCalendar');
 
-	if (addOtherCalendarInput) {
 		Liferay.CalendarUtil.createCalendarsAutoComplete(
 			'<%= calendarResourcesURL %>',
 			addOtherCalendarInput,
@@ -272,7 +275,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				addOtherCalendarInput.val('');
 			}
 		);
-	}
+	</c:if>
 </aui:script>
 
 <aui:script use="aui-base,aui-datatype,calendar">
