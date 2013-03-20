@@ -78,7 +78,7 @@
 			</param>
 		</method>
 		<method>
-			<name>getAssetRendererFactoryClassName</name>
+			<name>getClassName</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
@@ -352,9 +352,6 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
-		<field>
-			<name>CLASS_NAME</name>
-		</field>
 		<field>
 			<name>TYPE</name>
 		</field>
@@ -3123,9 +3120,6 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
-		<field>
-			<name>CLASS_NAME</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>ArticlePortlet</name>
