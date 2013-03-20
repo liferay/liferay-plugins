@@ -1319,8 +1319,8 @@ AUI.add(
 
 													var changedStartDate = changed.startDate;
 
-													var newVal = changedStartDate.newVal;
-													var prevVal = changedStartDate.prevVal;
+													var newVal = changedStartDate ? changedStartDate.newVal : {};
+													var prevVal = changedStartDate ? changedStartDate.prevVal :	{};
 
 													if (isDate(newVal) && isDate(prevVal)) {
 														offset = newVal.getTime() - prevVal.getTime();
