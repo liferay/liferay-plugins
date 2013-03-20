@@ -2335,9 +2335,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.toc {
-		float: right;
-		margin-left: 1em;
-		max-width: 25%;
+		margin-bottom: 1.5em;
 
 		ol ol {
 			margin: 0 0 0 1em;
