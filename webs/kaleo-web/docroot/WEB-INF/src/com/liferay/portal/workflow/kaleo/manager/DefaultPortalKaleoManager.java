@@ -187,8 +187,8 @@ public class DefaultPortalKaleoManager
 				descriptionMap.put(LocaleUtil.getDefault(), entry.getValue());
 
 				RoleLocalServiceUtil.addRole(
-					defaultUser.getUserId(), company.getCompanyId(), name, null,
-					descriptionMap, RoleConstants.TYPE_REGULAR);
+					defaultUser.getUserId(), null, 0, name, null,
+					descriptionMap, RoleConstants.TYPE_REGULAR, null, null);
 			}
 		}
 	}
