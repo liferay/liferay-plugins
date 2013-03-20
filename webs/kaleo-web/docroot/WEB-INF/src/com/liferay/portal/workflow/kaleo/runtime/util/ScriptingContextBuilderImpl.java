@@ -34,7 +34,7 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public class ScriptingContextBuilderImpl {
+public class ScriptingContextBuilderImpl implements ScriptingContextBuilder {
 
 	public Map<String, Object> buildScriptingContext(
 			ExecutionContext executionContext)
