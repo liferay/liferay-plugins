@@ -306,6 +306,14 @@
 
 			window.<portlet:namespace />calendarListsMenu.calendarResourceId = target.getAttribute('data-calendarResourceId');
 
+			<c:if test="<%= (groupCalendarResource != null) && !CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
+				var hiddenItems = [];
+
+				hiddenItems.push('add');
+
+				window.<portlet:namespace />calendarListsMenu.set('hiddenItems', hiddenItems);
+			</c:if>
+
 			event.stopImmediatePropagation();
 		},
 		'.aui-calendar-list-item-arrow'
