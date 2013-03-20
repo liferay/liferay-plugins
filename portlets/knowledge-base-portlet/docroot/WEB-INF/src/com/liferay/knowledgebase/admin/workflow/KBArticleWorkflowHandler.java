@@ -35,14 +35,12 @@ import java.util.Map;
  */
 public class KBArticleWorkflowHandler extends BaseWorkflowHandler {
 
-	public static final String CLASS_NAME = KBArticle.class.getName();
-
 	public String getClassName() {
-		return CLASS_NAME;
+		return KBArticle.class.getName();
 	}
 
 	public String getType(Locale locale) {
-		return ResourceActionsUtil.getModelResource(locale, CLASS_NAME);
+		return ResourceActionsUtil.getModelResource(locale, getClassName());
 	}
 
 	public KBArticle updateStatus(

@@ -45,8 +45,8 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 		_calendarBooking = calendarBooking;
 	}
 
-	public String getAssetRendererFactoryClassName() {
-		return CalendarBookingAssetRendererFactory.CLASS_NAME;
+	public String getClassName() {
+		return CalendarBooking.class.getName();
 	}
 
 	public long getClassPK() {
