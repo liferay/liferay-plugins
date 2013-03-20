@@ -576,18 +576,32 @@ AUI.add(
 				return availableCalendars;
 			},
 
+			toFixedDayDate: function(date) {
+				var instance = this;
+
+				if (!isDate(date)) {
+					date = new Date(date);
+				}
+
+				return DateMath.add(date, DateMath.MINUTES, date.getTimezoneOffset());
+			},
+
 			toSchedulerEvent: function(calendarBooking) {
 				var instance = this;
-				var allDay = calendarBooking.allDay;
-				var startDate = calendarBooking.startTime;
-				var endDate = calendarBooking.endTime;
 
-				if (!allDay) {
-					startDate = instance.toUserTimeZone(startDate);
-					endDate = instance.toUserTimeZone(endDate);
-				} else {
-					startDate = instance.toFixedDayDate(startDate);
-					endDate = instance.toFixedDayDate(endDate);
+				var allDay = calendarBooking.allDay;
+
+				var startDate;
+				var endDate;
+
+				if (allDay) {
+					startDate = instance.toFixedDayDate(calendarBooking.startTime);
+					endDate = instance.toFixedDayDate(calendarBooking.endTime);
+
+				}
+				else {
+					startDate = instance.toUserTimeZone(calendarBooking.startTime);
+					endDate = instance.toUserTimeZone(calendarBooking.endTime);
 				}
 
 				return new Liferay.SchedulerEvent(
@@ -629,16 +643,6 @@ AUI.add(
 				}
 
 				return DateMath.subtract(date, DateMath.MINUTES, date.getTimezoneOffset() + instance.USER_TIMEZONE_OFFSET / DateMath.ONE_MINUTE_MS);
-			},
-
-			toFixedDayDate: function(date) {
-				var instance = this;
-
-				if (!isDate(date)) {
-					date = new Date(date);
-				}
-
-				return DateMath.add(date, DateMath.MINUTES, date.getTimezoneOffset());
 			},
 
 			updateEvent: function(schedulerEvent, success) {
