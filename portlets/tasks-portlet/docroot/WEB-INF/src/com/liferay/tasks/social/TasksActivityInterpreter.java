@@ -18,16 +18,12 @@
 package com.liferay.tasks.social;
 
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Ryan Park
@@ -63,11 +59,6 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long userId = activity.getUserId();
 		long receiverUserId = activity.getReceiverUserId();
 
@@ -81,8 +72,8 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 			receiverUserId = tasksEntry.getUserId();
 		}
 
-		String creatorUserName = getUserName(userId, themeDisplay);
-		String receiverUserName = getUserName(receiverUserId, themeDisplay);
+		String creatorUserName = getUserName(userId, serviceContext);
+		String receiverUserName = getUserName(receiverUserId, serviceContext);
 
 		return new Object[] {creatorUserName, receiverUserName};
 	}
@@ -135,7 +126,7 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected boolean hasPermissions(
 		PermissionChecker permissionChecker, SocialActivity activity,
-		String actionId, ThemeDisplay themeDisplay) {
+		String actionId, ServiceContext serviceContext) {
 
 		return true;
 	}

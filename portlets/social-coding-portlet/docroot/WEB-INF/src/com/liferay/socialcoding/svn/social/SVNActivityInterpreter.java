@@ -16,17 +16,13 @@ package com.liferay.socialcoding.svn.social;
 
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.model.SVNRevision;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Brian Wing Shun Chan
@@ -67,11 +63,6 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		int activityType = activity.getType();
 
 		if (activityType != SVNActivityKeys.ADD_REVISION) {
@@ -79,7 +70,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
+			activity.getUserId(), serviceContext);
 
 		SVNRevision svnRevision = SVNRevisionLocalServiceUtil.getSVNRevision(
 			activity.getClassPK());
@@ -108,7 +99,7 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected boolean hasPermissions(
 		PermissionChecker permissionChecker, SocialActivity activity,
-		String actionId, ThemeDisplay themeDisplay) {
+		String actionId, ServiceContext serviceContext) {
 
 		return true;
 	}

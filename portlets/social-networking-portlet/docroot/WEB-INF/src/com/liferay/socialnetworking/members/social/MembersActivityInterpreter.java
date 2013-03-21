@@ -17,7 +17,6 @@ package com.liferay.socialnetworking.members.social;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
@@ -25,11 +24,8 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Brian Wing Shun Chan
@@ -45,11 +41,6 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		int activityType = activity.getType();
 
 		if (activityType != MembersActivityKeys.ADD_MEMBER) {
@@ -58,8 +49,8 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		StringBundler sb = new StringBundler(5);
 
-		sb.append(themeDisplay.getPortalURL());
-		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 
 		User creatorUser = UserLocalServiceUtil.getUserById(
@@ -78,11 +69,6 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		int activityType = activity.getType();
 
 		if (activityType != MembersActivityKeys.ADD_MEMBER) {
@@ -90,15 +76,15 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
+			activity.getUserId(), serviceContext);
 
 		String creatorUserNameURL = wrapLink(
 			getLink(activity, serviceContext), creatorUserName);
 
 		StringBundler sb = new StringBundler(4);
 
-		sb.append(themeDisplay.getPortalURL());
-		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathFriendlyURLPublic());
 
 		Organization organization =
 			OrganizationLocalServiceUtil.getOrganization(activity.getClassPK());
@@ -131,7 +117,7 @@ public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected boolean hasPermissions(
 		PermissionChecker permissionChecker, SocialActivity activity,
-		String actionId, ThemeDisplay themeDisplay) {
+		String actionId, ServiceContext serviceContext) {
 
 		return true;
 	}

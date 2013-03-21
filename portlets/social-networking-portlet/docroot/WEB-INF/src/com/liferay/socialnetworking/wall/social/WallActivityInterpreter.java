@@ -17,20 +17,16 @@ package com.liferay.socialnetworking.wall.social;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Brian Wing Shun Chan
@@ -62,15 +58,10 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		StringBundler sb = new StringBundler(6);
 
-		sb.append(themeDisplay.getPortalURL());
-		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathFriendlyURLPublic());
 		sb.append(StringPool.SLASH);
 
 		User receiverUser = UserLocalServiceUtil.getUserById(
@@ -89,11 +80,6 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		String groupName, SocialActivity activity, String link, String title,
 		ServiceContext serviceContext) {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		int activityType = activity.getType();
 
 		if (activityType != WallActivityKeys.ADD_ENTRY) {
@@ -101,9 +87,9 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
+			activity.getUserId(), serviceContext);
 		String receiverUserName = getUserName(
-			activity.getReceiverUserId(), themeDisplay);
+			activity.getReceiverUserId(), serviceContext);
 
 		return new Object[] {creatorUserName, receiverUserName};
 	}
@@ -124,13 +110,13 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected boolean hasPermissions(
 			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
+			String actionId, ServiceContext serviceContext)
 		throws Exception {
 
 		if (!SocialRelationLocalServiceUtil.hasRelation(
-				themeDisplay.getUserId(), activity.getReceiverUserId(),
+				serviceContext.getUserId(), activity.getReceiverUserId(),
 				SocialRelationConstants.TYPE_BI_FRIEND) &&
-			(themeDisplay.getUserId() != activity.getReceiverUserId())) {
+			(serviceContext.getUserId() != activity.getReceiverUserId())) {
 
 			return false;
 		}

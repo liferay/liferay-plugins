@@ -23,18 +23,14 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Brian Wing Shun Chan
@@ -50,11 +46,6 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String link = getLink(activity, serviceContext);
 
 		String text = StringPool.BLANK;
@@ -67,7 +58,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 			text = interpretJIRAChangeItems(
 				extraDataJSONObject.getJSONArray("jiraChangeItems"),
-				themeDisplay);
+				serviceContext);
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
 			long jiraActionId = GetterUtil.getLong(
@@ -125,13 +116,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
+			activity.getUserId(), serviceContext);
 
 		JIRAIssue jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
 			activity.getClassPK());
@@ -161,13 +147,13 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected boolean hasPermissions(
 		PermissionChecker permissionChecker, SocialActivity activity,
-		String actionId, ThemeDisplay themeDisplay) {
+		String actionId, ServiceContext serviceContext) {
 
 		return true;
 	}
 
 	protected String interpretJIRAChangeItem(
-		JSONObject jiraChangeItem, ThemeDisplay themeDisplay) {
+		JSONObject jiraChangeItem, ServiceContext serviceContext) {
 
 		String field = jiraChangeItem.getString("field");
 
@@ -185,7 +171,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (field.equals("description") || field.equals("summary")) {
 			sb.append(
-				themeDisplay.translate(
+				serviceContext.translate(
 					"activity-social-coding-jira-add-change-" + field));
 			sb.append("<br />");
 		}
@@ -195,14 +181,14 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 				 field.equals("status") || field.equals("version")) {
 
 			sb.append(
-				themeDisplay.translate(
+				serviceContext.translate(
 					"activity-social-coding-jira-add-change-" + field,
 					new Object[] {HtmlUtil.escape(newString)}));
 			sb.append("<br />");
 		}
 		else if (field.equals("link") && newValue.startsWith("LEP-")) {
 			sb.append(
-				themeDisplay.translate(
+				serviceContext.translate(
 					"activity-social-coding-jira-add-change-" + field,
 					new Object[] {HtmlUtil.escape(newValue)}));
 			sb.append("<br />");
@@ -212,7 +198,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	protected String interpretJIRAChangeItems(
-		JSONArray jiraChangeItemsJSONArray, ThemeDisplay themeDisplay) {
+		JSONArray jiraChangeItemsJSONArray, ServiceContext serviceContext) {
 
 		if (jiraChangeItemsJSONArray == null) {
 			return StringPool.BLANK;
@@ -220,7 +206,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (jiraChangeItemsJSONArray.length() == 0) {
 			return(
-				themeDisplay.translate(
+				serviceContext.translate(
 					"activity-social-coding-jira-add-change-default"));
 		}
 
@@ -232,7 +218,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 			sb.append(
 				interpretJIRAChangeItem(
-					jiraChangeItemJSONObject, themeDisplay));
+					jiraChangeItemJSONObject, serviceContext));
 		}
 
 		return sb.toString();
