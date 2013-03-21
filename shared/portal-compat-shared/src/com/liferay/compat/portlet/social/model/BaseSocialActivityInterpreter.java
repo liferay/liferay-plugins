@@ -78,6 +78,18 @@ public abstract class BaseSocialActivityInterpreter
 		return null;
 	}
 
+	protected String buildLink(String link, String text) {
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("<a href=\"");
+		sb.append(link);
+		sb.append("\">");
+		sb.append(text);
+		sb.append("</a>");
+
+		return sb.toString();
+	}
+
 	/**
 	 * @deprecated
 	 */
@@ -248,11 +260,7 @@ public abstract class BaseSocialActivityInterpreter
 
 		String userName = getUserName(activity.getUserId(), serviceContext);
 
-		if (Validator.isNotNull(link)) {
-			title = wrapLink(link, title);
-		}
-
-		return new Object[] {groupName, userName, title};
+		return new Object[] {groupName, userName, wrapLink(link, title)};
 	}
 
 	protected String getTitlePattern(String groupName, SocialActivity activity)
@@ -303,22 +311,26 @@ public abstract class BaseSocialActivityInterpreter
 		return false;
 	}
 
-	protected String wrapLink(String link, String text) {
-		StringBundler sb = new StringBundler(5);
+	protected String wrapLink(String link, String title) {
+		title = HtmlUtil.escape(title);
 
-		sb.append("<a href=\"");
-		sb.append(link);
-		sb.append("\">");
-		sb.append(text);
-		sb.append("</a>");
+		if (link == null) {
+			return title;
+		}
 
-		return sb.toString();
+		return buildLink(link, title);
 	}
 
 	protected String wrapLink(
 		String link, String key, ServiceContext serviceContext) {
 
-		return wrapLink(link, serviceContext.translate(key));
+		String title = serviceContext.translate(HtmlUtil.escape(key));
+
+		if (link == null) {
+			return title;
+		}
+
+		return buildLink(link, title);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
