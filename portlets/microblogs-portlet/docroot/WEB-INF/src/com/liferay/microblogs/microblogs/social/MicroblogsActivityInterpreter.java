@@ -17,6 +17,7 @@
 
 package com.liferay.microblogs.microblogs.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.social.model.SocialActivity;
 
 /**

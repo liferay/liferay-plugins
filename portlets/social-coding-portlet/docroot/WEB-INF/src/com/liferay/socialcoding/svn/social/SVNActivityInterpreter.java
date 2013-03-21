@@ -14,11 +14,11 @@
 
 package com.liferay.socialcoding.svn.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.model.SVNRevision;
