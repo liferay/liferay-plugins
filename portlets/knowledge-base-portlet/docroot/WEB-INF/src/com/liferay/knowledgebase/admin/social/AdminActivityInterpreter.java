@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 
@@ -44,7 +44,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected String getEntryTitle(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		String title = StringPool.BLANK;
@@ -90,7 +90,8 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		String className = activity.getClassName();
@@ -100,11 +101,10 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 				activity.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
 			return KnowledgeBaseUtil.getKBArticleURL(
-				themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
-				kbArticle.getStatus(), themeDisplay.getPortalURL(), false);
+				serviceContext.getPlid(), kbArticle.getResourcePrimKey(),
+				kbArticle.getStatus(), serviceContext.getPortalURL(), false);
 		}
 		else if (className.equals(KBComment.class.getName())) {
-
 			KBComment kbComment = KBCommentLocalServiceUtil.getKBComment(
 				activity.getClassPK());
 
@@ -117,8 +117,9 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 						WorkflowConstants.STATUS_APPROVED);
 
 				return KnowledgeBaseUtil.getKBArticleURL(
-					themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
-					kbArticle.getStatus(), themeDisplay.getPortalURL(), false);
+					serviceContext.getPlid(), kbArticle.getResourcePrimKey(),
+					kbArticle.getStatus(), serviceContext.getPortalURL(),
+					false);
 			}
 		}
 
@@ -126,8 +127,8 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitlePattern(String groupName, SocialActivity activity)
-		throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
 		String className = activity.getClassName();
 
@@ -207,7 +208,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 	@Override
 	protected boolean hasPermissions(
 			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
+			String actionId, ServiceContext serviceContext)
 		throws Exception {
 
 		String className = activity.getClassName();
@@ -233,7 +234,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		return false;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
+	private static final String[] _CLASS_NAMES = {
 		KBArticle.class.getName(), KBComment.class.getName(),
 		KBTemplate.class.getName()
 	};
