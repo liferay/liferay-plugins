@@ -14,6 +14,7 @@
 
 package com.liferay.compat.portlet.social.model;
 
+import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -24,20 +25,16 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivityInterpreter;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Brian Wing Shun Chan
@@ -55,10 +52,11 @@ public abstract class BaseSocialActivityInterpreter
 	}
 
 	public SocialActivityFeedEntry interpret(
-		SocialActivity activity, ServiceContext serviceContext) {
+		SocialActivity activity,
+		com.liferay.portal.service.ServiceContext serviceContext) {
 
 		try {
-			return doInterpret(activity, serviceContext);
+			return doInterpret(activity, new ServiceContext(serviceContext));
 		}
 		catch (Exception e) {
 			_log.error("Unable to interpret activity", e);
@@ -71,7 +69,7 @@ public abstract class BaseSocialActivityInterpreter
 		SocialActivity activity, ThemeDisplay themeDisplay) {
 
 		try {
-			return doInterpret(activity, themeDisplay);
+			return doInterpret(activity, new ServiceContext(themeDisplay));
 		}
 		catch (Exception e) {
 			_log.error("Unable to interpret activity", e);
@@ -91,37 +89,28 @@ public abstract class BaseSocialActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		return doInterpret(activity, themeDisplay);
-	}
-
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
 		if (!hasPermissions(
-				permissionChecker, activity, ActionKeys.VIEW, themeDisplay)) {
+				permissionChecker, activity, ActionKeys.VIEW, serviceContext)) {
 
 			return null;
 		}
 
-		String link = getLink(activity, themeDisplay);
+		String link = getLink(activity, serviceContext);
 
-		String title = getTitle(activity, themeDisplay);
+		String title = getTitle(activity, serviceContext);
 
-		String body = getBody(activity, themeDisplay);
+		String body = getBody(activity, serviceContext);
 
 		return new SocialActivityFeedEntry(link, title, body);
 	}
 
-	protected String getBody(SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getBody(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		return StringPool.BLANK;
@@ -136,13 +125,13 @@ public abstract class BaseSocialActivityInterpreter
 	}
 
 	protected String getEntryTitle(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		return StringPool.BLANK;
 	}
 
-	protected String getGroupName(long groupId, ThemeDisplay themeDisplay) {
+	protected String getGroupName(long groupId, ServiceContext serviceContext) {
 		try {
 			if (groupId <= 0) {
 				return StringPool.BLANK;
@@ -152,12 +141,12 @@ public abstract class BaseSocialActivityInterpreter
 
 			String groupName = group.getDescriptiveName();
 
-			if (group.getGroupId() == themeDisplay.getScopeGroupId()) {
+			if (group.getGroupId() == serviceContext.getScopeGroupId()) {
 				return HtmlUtil.escape(groupName);
 			}
 
 			String groupDisplayURL =
-				themeDisplay.getPortalURL() + themeDisplay.getPathMain() +
+				serviceContext.getPortalURL() + serviceContext.getPathMain() +
 					"/my_sites/view?groupId=" + group.getGroupId();
 
 			if (group.hasPublicLayouts()) {
@@ -209,13 +198,14 @@ public abstract class BaseSocialActivityInterpreter
 		return HtmlUtil.escape(defaultValue);
 	}
 
-	protected String getLink(SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		StringBundler sb = new StringBundler(4);
 
-		sb.append(themeDisplay.getPortalURL());
-		sb.append(themeDisplay.getPathMain());
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathMain());
 		sb.append(getPath(activity));
 
 		long classPK = getClassPK(activity);
@@ -230,33 +220,33 @@ public abstract class BaseSocialActivityInterpreter
 	}
 
 	protected String getTitle(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		String groupName = StringPool.BLANK;
 
-		if (activity.getGroupId() != themeDisplay.getScopeGroupId()) {
-			groupName = getGroupName(activity.getGroupId(), themeDisplay);
+		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
+			groupName = getGroupName(activity.getGroupId(), serviceContext);
 		}
 
-		String link = getLink(activity, themeDisplay);
+		String link = getLink(activity, serviceContext);
 
-		String entryTitle = getEntryTitle(activity, themeDisplay);
+		String entryTitle = getEntryTitle(activity, serviceContext);
 
 		Object[] titleArguments = getTitleArguments(
-			groupName, activity, link, entryTitle, themeDisplay);
+			groupName, activity, link, entryTitle, serviceContext);
 
 		String titlePattern = getTitlePattern(groupName, activity);
 
-		return themeDisplay.translate(titlePattern, titleArguments);
+		return serviceContext.translate(titlePattern, titleArguments);
 	}
 
 	protected Object[] getTitleArguments(
 			String groupName, SocialActivity activity, String link,
-			String title, ThemeDisplay themeDisplay)
+			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		String userName = getUserName(activity.getUserId(), themeDisplay);
+		String userName = getUserName(activity.getUserId(), serviceContext);
 
 		if (Validator.isNotNull(link)) {
 			title = wrapLink(link, title);
@@ -271,7 +261,7 @@ public abstract class BaseSocialActivityInterpreter
 		return StringPool.BLANK;
 	}
 
-	protected String getUserName(long userId, ThemeDisplay themeDisplay) {
+	protected String getUserName(long userId, ServiceContext serviceContext) {
 		try {
 			if (userId <= 0) {
 				return StringPool.BLANK;
@@ -279,7 +269,7 @@ public abstract class BaseSocialActivityInterpreter
 
 			User user = UserLocalServiceUtil.getUserById(userId);
 
-			if (user.getUserId() == themeDisplay.getUserId()) {
+			if (user.getUserId() == serviceContext.getUserId()) {
 				return HtmlUtil.escape(user.getFirstName());
 			}
 
@@ -287,11 +277,12 @@ public abstract class BaseSocialActivityInterpreter
 
 			Group group = user.getGroup();
 
-			if (group.getGroupId() == themeDisplay.getScopeGroupId()) {
+			if (group.getGroupId() == serviceContext.getScopeGroupId()) {
 				return HtmlUtil.escape(userName);
 			}
 
-			String userDisplayURL = user.getDisplayURL(themeDisplay);
+			String userDisplayURL = user.getDisplayURL(
+				serviceContext.getThemeDisplay());
 
 			userName =
 				"<a class=\"user\" href=\"" + userDisplayURL + "\">" +
@@ -306,7 +297,7 @@ public abstract class BaseSocialActivityInterpreter
 
 	protected boolean hasPermissions(
 			PermissionChecker permissionChecker, SocialActivity activity,
-			String actionId, ThemeDisplay themeDisplay)
+			String actionId, ServiceContext serviceContext)
 		throws Exception {
 
 		return false;
@@ -325,9 +316,9 @@ public abstract class BaseSocialActivityInterpreter
 	}
 
 	protected String wrapLink(
-		String link, String key, ThemeDisplay themeDisplay) {
+		String link, String key, ServiceContext serviceContext) {
 
-		return wrapLink(link, themeDisplay.translate(key));
+		return wrapLink(link, serviceContext.translate(key));
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
