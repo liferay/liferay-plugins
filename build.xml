@@ -181,6 +181,7 @@
 			/>
 			<zipfileset
 				dir="."
+				excludes="**/releng/"
 				includes="webs/resources-importer-web/**"
 				prefix="liferay-plugins-sdk-${lp.version}"
 			/>
