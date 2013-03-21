@@ -297,22 +297,18 @@
 		function(event) {
 			var target = event.target;
 
-			window.<portlet:namespace />calendarListsMenu.setAttrs(
-				{
-					'align.node': target,
-					visible: !window.<portlet:namespace />calendarListsMenu.get('visible')
-				}
-			);
-
-			window.<portlet:namespace />calendarListsMenu.calendarResourceId = target.getAttribute('data-calendarResourceId');
+			var calendarListsMenuAttrs = {
+				'align.node': target,
+				visible: !window.<portlet:namespace />calendarListsMenu.get('visible')
+			}
 
 			<c:if test="<%= (groupCalendarResource != null) && !CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
-				var hiddenItems = [];
-
-				hiddenItems.push('add');
-
-				window.<portlet:namespace />calendarListsMenu.set('hiddenItems', hiddenItems);
+				calendarListsMenuAttrs['hiddenItems'] = ['add'];
 			</c:if>
+
+			window.<portlet:namespace />calendarListsMenu.setAttrs(calendarListsMenuAttrs);
+
+			window.<portlet:namespace />calendarListsMenu.calendarResourceId = target.getAttribute('data-calendarResourceId');
 
 			event.stopImmediatePropagation();
 		},
