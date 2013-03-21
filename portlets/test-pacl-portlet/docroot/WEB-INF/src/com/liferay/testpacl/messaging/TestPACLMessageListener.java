@@ -28,14 +28,16 @@ public class TestPACLMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
-		long userId = message.getLong("userId");
-
-		Map<String, Boolean> results = TestPACLUtil.testCurrentThread(userId);
-
-		message.setPayload(results);
+		message.setPayload(getResults(message));
 
 		MessageBusUtil.sendMessage(
 			message.getResponseDestinationName(), message);
+	}
+
+	protected Map<String, Boolean> getResults(Message message) {
+		long userId = message.getLong("userId");
+
+		return TestPACLUtil.testCurrentThread(userId);
 	}
 
 }
