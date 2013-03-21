@@ -22,9 +22,7 @@ import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Antonio Junior
@@ -40,16 +38,16 @@ public class UserModelListener extends BaseModelListener<User> {
 				CalendarResourceLocalServiceUtil.fetchCalendarResource(
 					classNameId, user.getUserId());
 
-			if (calendarResource != null) {
-				Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-				nameMap.put(LocaleUtil.getDefault(), user.getFullName());
-
-				calendarResource.setNameMap(nameMap);
-
-				CalendarResourceLocalServiceUtil.updateCalendarResource(
-					calendarResource);
+			if (calendarResource == null) {
+				return;
 			}
+
+			Locale defaultLocale = LocaleUtil.getDefault();
+
+			calendarResource.setName(user.getFullName(), defaultLocale);
+
+			CalendarResourceLocalServiceUtil.updateCalendarResource(
+				calendarResource);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
