@@ -14,8 +14,14 @@
 
 package com.liferay.compat.portal.service;
 
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
+
+import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,6 +38,44 @@ public class ServiceContext {
 
 	public ServiceContext(ThemeDisplay themeDisplay) {
 		_themeDisplay = themeDisplay;
+	}
+
+	public LiferayPortletRequest getLiferayPortletRequest() {
+		if (_serviceContext == null) {
+			return null;
+		}
+
+		HttpServletRequest request = _serviceContext.getRequest();
+
+		if (request == null) {
+			return null;
+		}
+
+		return (LiferayPortletRequest)request.getAttribute(
+			JavaConstants.JAVAX_PORTLET_REQUEST);
+	}
+
+	public LiferayPortletResponse getLiferayPortletResponse() {
+		if (_serviceContext == null) {
+			return null;
+		}
+
+		HttpServletRequest request = _serviceContext.getRequest();
+
+		if (request == null) {
+			return null;
+		}
+
+		return (LiferayPortletResponse)request.getAttribute(
+			JavaConstants.JAVAX_PORTLET_RESPONSE);
+	}
+
+	public Locale getLocale() {
+		if (_themeDisplay != null) {
+			return _themeDisplay.getLocale();
+		}
+
+		return _serviceContext.getLocale();
 	}
 
 	public String getPathFriendlyURLPublic() {
@@ -96,6 +140,20 @@ public class ServiceContext {
 		}
 
 		return (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
+	}
+
+	public TimeZone getTimeZone() {
+		if (_themeDisplay != null) {
+			return _themeDisplay.getTimeZone();
+		}
+
+		ThemeDisplay themeDisplay = getThemeDisplay();
+
+		if (themeDisplay == null) {
+			return null;
+		}
+
+		return themeDisplay.getTimeZone();
 	}
 
 	public long getUserId() {
