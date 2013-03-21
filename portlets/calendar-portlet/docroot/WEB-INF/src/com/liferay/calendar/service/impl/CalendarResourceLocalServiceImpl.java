@@ -299,11 +299,6 @@ public class CalendarResourceLocalServiceImpl
 
 		calendarResourcePersistence.update(calendarResource);
 
-		// Resources
-
-		resourceLocalService.updateModelResources(
-			calendarResource, serviceContext);
-
 		// Asset
 
 		updateAsset(
