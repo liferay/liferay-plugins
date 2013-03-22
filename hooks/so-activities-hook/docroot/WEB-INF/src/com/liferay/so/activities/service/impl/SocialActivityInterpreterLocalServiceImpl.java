@@ -22,12 +22,12 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.so.activities.model.SocialActivity;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivityInterpreter;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.model.impl.SocialActivityInterpreterImpl;
-import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.service.base.SocialActivityInterpreterLocalServiceBaseImpl;
 
 import java.util.ArrayList;
@@ -66,7 +66,11 @@ public class SocialActivityInterpreterLocalServiceImpl
 		SocialActivityInterpreter activityInterpreter) {
 
 		List<SocialActivityInterpreter> activityInterpreters =
-			new ArrayList<SocialActivityInterpreter>();
+			_activityInterpreters.get(activityInterpreter.getSelector());
+
+		if (activityInterpreters == null) {
+			activityInterpreters = new ArrayList<SocialActivityInterpreter>();
+		}
 
 		activityInterpreters.add(activityInterpreter);
 

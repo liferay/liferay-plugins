@@ -12,25 +12,13 @@
  * details.
  */
 
-package com.liferay.so.activities.model;
-
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
+package com.liferay.so.activities.util;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Jonathan Lee
  */
-public interface SocialActivityInterpreter {
+public class SocialActivitiesConstants {
 
-	public String[] getClassNames();
-
-	public String getSelector();
-
-	public SocialActivityFeedEntry interpret(
-		com.liferay.portlet.social.model.SocialActivity activity,
-		ServiceContext serviceContext);
-
-	public SocialActivityFeedEntry interpret(
-		SocialActivitySet activitySet, ServiceContext serviceContext);
+	public static final String SO_ACTIVITY_INTERPRETER_SELECTOR = "SO";
 
 }

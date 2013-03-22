@@ -26,6 +26,13 @@ public class SocialActivityImpl extends SocialActivityBaseImpl {
 	public SocialActivityImpl() {
 	}
 
+	public String getClassName() throws PortalException, SystemException {
+		com.liferay.portlet.social.model.SocialActivity socialActivity =
+			getPortalSocialActivity();
+
+		return socialActivity.getClassName();
+	}
+
 	public long getClassNameId() throws PortalException, SystemException {
 		com.liferay.portlet.social.model.SocialActivity socialActivity =
 			getPortalSocialActivity();
