@@ -42,9 +42,9 @@ public class UserModelListener extends BaseModelListener<User> {
 				return;
 			}
 
-			Locale defaultLocale = LocaleUtil.getDefault();
+			Locale locale = LocaleUtil.getDefault();
 
-			calendarResource.setName(user.getFullName(), defaultLocale);
+			calendarResource.setName(user.getFullName(), locale);
 
 			CalendarResourceLocalServiceUtil.updateCalendarResource(
 				calendarResource);
