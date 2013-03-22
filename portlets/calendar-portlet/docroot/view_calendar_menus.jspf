@@ -211,10 +211,12 @@
 			</c:if>
 
 			{
-				caption: '-'
+				caption: '-',
+				id: 'separator1'
 			},
 			{
-				caption: '<div class="calendar-portlet-color-picker"></div>'
+				caption: '<div class="calendar-portlet-color-picker"></div>',
+				id: 'colorPicker'
 			}
 		],
 		on: {
@@ -244,6 +246,8 @@
 
 					if (permissions.UPDATE === false) {
 						hiddenItems.push('settings');
+						hiddenItems.push('separator1');
+						hiddenItems.push('colorPicker');
 					}
 
 					instance.set('hiddenItems', hiddenItems);
@@ -253,7 +257,7 @@
 					<portlet:namespace />colorPicker.setAttrs(
 						{
 							color: calendar.get('color'),
-							visible: permissions.UPDATE
+							visible: true
 						}
 					);
 
@@ -297,16 +301,12 @@
 		function(event) {
 			var target = event.target;
 
-			var calendarListsMenuAttrs = {
-				'align.node': target,
-				visible: !window.<portlet:namespace />calendarListsMenu.get('visible')
-			}
-
-			<c:if test="<%= (groupCalendarResource != null) && !CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
-				calendarListsMenuAttrs['hiddenItems'] = ['add'];
-			</c:if>
-
-			window.<portlet:namespace />calendarListsMenu.setAttrs(calendarListsMenuAttrs);
+			window.<portlet:namespace />calendarListsMenu.setAttrs(
+				{
+					'align.node': target,
+					visible: !window.<portlet:namespace />calendarListsMenu.get('visible')
+				}
+			);
 
 			window.<portlet:namespace />calendarListsMenu.calendarResourceId = target.getAttribute('data-calendarResourceId');
 
