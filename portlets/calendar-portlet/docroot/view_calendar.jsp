@@ -314,8 +314,8 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 		Liferay.CalendarUtil.getCalendarRenderingRules(
 			A.Object.keys(Liferay.CalendarUtil.visibleCalendars),
-			Liferay.CalendarUtil.toUTCTimeZone(miniCalendarStartDate),
-			Liferay.CalendarUtil.toUTCTimeZone(miniCalendarEndDate),
+			Liferay.CalendarUtil.toUTC(miniCalendarStartDate),
+			Liferay.CalendarUtil.toUTC(miniCalendarEndDate),
 			'busy',
 			function(rulesDefinition) {
 				window.<portlet:namespace />miniCalendar.set(
