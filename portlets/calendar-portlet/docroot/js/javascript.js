@@ -631,7 +631,7 @@ AUI.add(
 
 				var date = instance.toLocalTimeWithoutUserTimeZone(utc);
 
-				return DateMath.add(date, DateMath.MINUTES, date.getTimezoneOffset() + instance.USER_TIMEZONE_OFFSET / DateMath.ONE_MINUTE_MS);
+				return DateMath.add(date, DateMath.MINUTES, instance.USER_TIMEZONE_OFFSET / DateMath.ONE_MINUTE_MS);
 			},
 
 			toLocalTimeWithoutUserTimeZone: function(utc) {
@@ -649,7 +649,7 @@ AUI.add(
 
 				var utc = instance.toUTCWithoutUserTimeZone(date);
 
-				return DateMath.subtract(utc, DateMath.MINUTES, utc.getTimezoneOffset() + instance.USER_TIMEZONE_OFFSET / DateMath.ONE_MINUTE_MS);
+				return DateMath.subtract(utc, DateMath.MINUTES, instance.USER_TIMEZONE_OFFSET / DateMath.ONE_MINUTE_MS);
 			},
 
 			toUTCWithoutUserTimeZone: function(date) {
