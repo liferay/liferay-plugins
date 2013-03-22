@@ -1315,28 +1315,29 @@ AUI.add(
 														}
 													);
 
-													var offset = 0;
-
 													var changedStartDate = changed.startDate;
 
-													var newVal = changedStartDate ? changedStartDate.newVal : {};
-													var prevVal = changedStartDate ? changedStartDate.prevVal :	{};
+													if (changedStartDate) {
+														var offset = 0;
+														var newVal = changedStartDate.newVal;
+														var prevVal = changedStartDate.prevVal;
 
-													if (isDate(newVal) && isDate(prevVal)) {
-														offset = newVal.getTime() - prevVal.getTime();
-													}
-
-													var calendarStartTime = calendarBooking.startTime + offset;
-
-													var endDate = CalendarUtil.toUserTimeZone(calendarStartTime + (schedulerEvent.getSecondsDuration() * 1000));
-													var startDate = CalendarUtil.toUserTimeZone(calendarStartTime);
-
-													newSchedulerEvent.setAttrs(
-														{
-															endDate: endDate,
-															startDate: startDate
+														if (isDate(newVal) && isDate(prevVal)) {
+															offset = newVal.getTime() - prevVal.getTime();
 														}
-													);
+
+														var calendarStartTime = calendarBooking.startTime + offset;
+
+														var endDate = CalendarUtil.toUserTimeZone(calendarStartTime + (schedulerEvent.getSecondsDuration() * 1000));
+														var startDate = CalendarUtil.toUserTimeZone(calendarStartTime);
+
+														newSchedulerEvent.setAttrs(
+															{
+																endDate: endDate,
+																startDate: startDate
+															}
+														);
+													}
 
 													CalendarUtil.updateEvent(
 														newSchedulerEvent,
