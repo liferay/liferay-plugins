@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.util;
+package com.liferay.so.activities.util;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.DateUtil;

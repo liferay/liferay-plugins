@@ -17,24 +17,20 @@ package com.liferay.so.portlet.documentlibrary.social;
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.so.activities.model.BaseSocialActivityInterpreter;
-import com.liferay.so.util.Time;
 
 import java.lang.String;
-
-import java.text.Format;
-
-import java.util.Date;
 
 /**
  * @author Evan Thibodeau
@@ -123,81 +119,60 @@ public class DLActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitle(
-			SocialActivity activity, ServiceContext serviceContext)
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivity activity, String link,
+			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		String userName = getUserName(activity.getUserId(), serviceContext);
+		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
+			activity.getClassPK());
 
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
+		if (fileEntry.getFolderId() > 0) {
+			Folder folder = fileEntry.getFolder();
 
-		StringBundler sb = new StringBundler(10);
+			String folderName = HtmlUtil.escape(folder.getName());
 
-		sb.append("<div class=\"activity-header\">");
-		sb.append("<div class=\"activity-time\" title=\"");
-		sb.append(dateFormatDate.format(new Date(activity.getCreateDate())));
-		sb.append("\">");
-		sb.append(
-			Time.getRelativeTimeSpan(
-				activity.getCreateDate(), serviceContext.getLocale(),
-				serviceContext.getTimeZone()));
-		sb.append("</div><div class=\"activity-user-name\">");
+			StringBundler sb = new StringBundler(6);
 
-		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
-			String groupName = getGroupName(
-				activity.getGroupId(), serviceContext);
+			sb.append(serviceContext.getPortalURL());
+			sb.append(serviceContext.getPathMain());
+			sb.append("/document_library/find_folder?groupId=");
+			sb.append(fileEntry.getRepositoryId());
+			sb.append("&folderId=");
+			sb.append(fileEntry.getFolderId());
 
-			Object[] titleArguments = new Object[] {userName, groupName};
+			String folderURL = wrapLink(sb.toString(), folderName);
 
-			sb.append(serviceContext.translate("x-in-x", titleArguments));
+			return new Object[] {folderURL};
+		}
+
+		return null;
+	}
+
+	@Override
+	protected String getTitlePattern(String groupName, SocialActivity activity)
+		throws Exception {
+
+		String titlePattern = null;
+
+		if (activity.getType() == _ADD_FILE_ENTRY) {
+			titlePattern = "uploaded-a-new-document";
+		}
+		else if (activity.getType() == _UPDATE_FILE_ENTRY) {
+			titlePattern = "updated-a-document";
 		}
 		else {
-			sb.append(userName);
-		}
-
-		sb.append("</div></div><div class=\"activity-action\">");
-
-		int activityType = activity.getType();
-
-		String actionPattern = null;
-
-		if (activityType == _ADD_FILE_ENTRY) {
-			actionPattern = "uploaded-a-new-document";
-		}
-		else if (activityType == _UPDATE_FILE_ENTRY) {
-			actionPattern = "updated-a-document";
+			return StringPool.BLANK;
 		}
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
 			activity.getClassPK());
 
-		if (Validator.isNotNull(fileEntry.getFolderId())) {
-			actionPattern += "-in-the-x-folder";
-
-			String folderTitle = HtmlUtil.escape(
-				fileEntry.getFolder().getName());
-
-			StringBundler folderURL = new StringBundler(6);
-
-			folderURL.append(serviceContext.getPortalURL());
-			folderURL.append(serviceContext.getPathMain());
-			folderURL.append("/document_library/find_folder?groupId=");
-			folderURL.append(fileEntry.getRepositoryId());
-			folderURL.append("&folderId=");
-			folderURL.append(fileEntry.getFolderId());
-
-			String folderLink = wrapLink(folderURL.toString(), folderTitle);
-
-			sb.append(serviceContext.translate(actionPattern, folderLink));
-		}
-		else {
-			sb.append(serviceContext.translate(actionPattern));
+		if (fileEntry.getFolderId() > 0) {
+			titlePattern = titlePattern.concat("-in-the-x-folder");
 		}
 
-		sb.append("</div>");
-
-		return sb.toString();
+		return titlePattern;
 	}
 
 	private static final int _ADD_FILE_ENTRY = 1;

@@ -27,9 +27,11 @@ import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.util.SocialActivitiesConstants;
+import com.liferay.so.activities.util.Time;
 
 import java.text.Format;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -111,6 +113,65 @@ public abstract class BaseSocialActivityInterpreter
 		return assetRenderer.getURLViewInContext(
 			serviceContext.getLiferayPortletRequest(),
 			serviceContext.getLiferayPortletResponse(), null);
+	}
+
+	protected String getTitle(
+			com.liferay.portlet.social.model.SocialActivity activity,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		Format dateFormatDate = getFormatDateTime(
+			serviceContext.getLocale(), serviceContext.getTimeZone());
+
+		Date activityDate = new Date(activity.getCreateDate());
+
+		String relativeTimeSpan = Time.getRelativeTimeSpan(
+			activity.getCreateDate(), serviceContext.getLocale(),
+			serviceContext.getTimeZone());
+
+		StringBundler sb = new StringBundler(10);
+
+		sb.append("<div class=\"activity-header\">");
+		sb.append("<div class=\"activity-time\" title=\"");
+		sb.append(dateFormatDate.format(activityDate));
+		sb.append("\">");
+		sb.append(relativeTimeSpan);
+		sb.append("</div><div class=\"activity-user-name\">");
+
+		String userName = getUserName(activity.getUserId(), serviceContext);
+
+		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
+			String groupName = getGroupName(
+				activity.getGroupId(), serviceContext);
+
+			Object[] userArguments = new Object[] {userName, groupName};
+
+			sb.append(serviceContext.translate("x-in-x", userArguments));
+		}
+		else {
+			sb.append(userName);
+		}
+
+		sb.append("</div></div><div class=\"activity-action\">");
+
+		String titlePattern = getTitlePattern(null, activity);
+
+		Object[] titleArguments = getTitleArguments(
+			null, activity, null, null, serviceContext);
+
+		sb.append(serviceContext.translate(titlePattern, titleArguments));
+		sb.append("</div>");
+
+		return sb.toString();
+	}
+
+	protected Object[] getTitleArguments(
+			String groupName,
+			com.liferay.portlet.social.model.SocialActivity socialActivity,
+			String link, String title, ServiceContext serviceContext)
+		throws Exception {
+
+		return null;
 	}
 
 	@Override

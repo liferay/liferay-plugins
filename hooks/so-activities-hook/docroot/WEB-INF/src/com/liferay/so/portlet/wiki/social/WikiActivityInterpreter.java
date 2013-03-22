@@ -18,6 +18,7 @@ import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
@@ -32,11 +33,6 @@ import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil;
 import com.liferay.so.activities.model.BaseSocialActivityInterpreter;
-import com.liferay.so.util.Time;
-
-import java.text.Format;
-
-import java.util.Date;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -99,56 +95,63 @@ public class WikiActivityInterpreter extends BaseSocialActivityInterpreter {
 			serviceContext.translate("view-wiki"));
 	}
 
-	@Override
-	protected String getTitle(
-			SocialActivity activity, ServiceContext serviceContext)
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivity activity, String link,
+			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		String userName = getUserName(activity.getUserId(), serviceContext);
+		WikiPageResource pageResource =
+			WikiPageResourceLocalServiceUtil.getPageResource(
+				activity.getClassPK());
 
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
+		WikiNode node = WikiNodeLocalServiceUtil.getNode(
+			pageResource.getNodeId());
 
-		StringBundler sb = new StringBundler(10);
+		if (node == null) {
+			return null;
+		}
 
-		sb.append("<div class=\"activity-header\">");
-		sb.append("<div class=\"activity-time\" title=\"");
-		sb.append(dateFormatDate.format(new Date(activity.getCreateDate())));
-		sb.append("\">");
-		sb.append(
-			Time.getRelativeTimeSpan(
-				activity.getCreateDate(), serviceContext.getLocale(),
-				serviceContext.getTimeZone()));
-		sb.append("</div><div class=\"activity-user-name\">");
+		String nodeTitle = null;
 
-		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
-			String groupName = getGroupName(
-				activity.getGroupId(), serviceContext);
+		long plid = PortalUtil.getPlidFromPortletId(
+			activity.getGroupId(), false, PortletKeys.WIKI);
 
-			Object[] titleArguments = new Object[] {userName, groupName};
+		if (plid > 0) {
+			PortletURL nodeURL = PortletURLFactoryUtil.create(
+				serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI,
+				plid, PortletRequest.RENDER_PHASE);
 
-			sb.append(serviceContext.translate("x-in-x", titleArguments));
+			nodeURL.setParameter("struts_action", "/wiki/view");
+			nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
+
+			nodeTitle = wrapLink(
+				nodeURL.toString(), HtmlUtil.escape(node.getName()));
 		}
 		else {
-			sb.append(userName);
+			nodeTitle = HtmlUtil.escape(node.getName());
 		}
 
-		sb.append("</div></div><div class=\"activity-action\">");
+		return new Object[] {nodeTitle};
+	}
 
-		int activityType = activity.getType();
+	protected String getTitlePattern(String groupName, SocialActivity activity)
+		throws Exception {
 
-		String actionPattern = null;
+		String titlePattern = null;
 
-		if ((activityType == _ADD_COMMENT) ||
-			(activityType == SocialActivityConstants.TYPE_ADD_COMMENT)) {
+		if ((activity.getType() == _ADD_COMMENT) ||
+			(activity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
-			actionPattern = "commented-on-a-wiki-page";
+			titlePattern = "commented-on-a-wiki-page";
 		}
-		else if (activityType == _ADD_PAGE) {
-			actionPattern = "created-a-new-wiki-page";
+		else if (activity.getType() == _ADD_PAGE) {
+			titlePattern = "created-a-new-wiki-page";
 		}
-		else if (activityType == _UPDATE_PAGE) {
-			actionPattern = "updated-a-wiki-page";
+		else if (activity.getType() == _UPDATE_PAGE) {
+			titlePattern = "updated-a-wiki-page";
+		}
+		else {
+			return StringPool.BLANK;
 		}
 
 		WikiPageResource pageResource =
@@ -159,36 +162,10 @@ public class WikiActivityInterpreter extends BaseSocialActivityInterpreter {
 			pageResource.getNodeId());
 
 		if (Validator.isNotNull(node)) {
-			actionPattern += "-in-the-x-wiki";
-
-			String nodeTitle = HtmlUtil.escape(node.getName());
-
-			PortletURL nodeURL = null;
-
-			long portletPlid = PortalUtil.getPlidFromPortletId(
-				activity.getGroupId(), false, PortletKeys.WIKI);
-
-			if (portletPlid != 0) {
-				nodeURL = PortletURLFactoryUtil.create(
-					serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI,
-					portletPlid, PortletRequest.RENDER_PHASE);
-
-				nodeURL.setParameter("struts_action", "/wiki/view");
-				nodeURL.setParameter(
-					"nodeId", String.valueOf(node.getNodeId()));
-
-				nodeTitle = wrapLink(nodeURL.toString(), node.getName());
-			}
-
-			sb.append(serviceContext.translate(actionPattern, nodeTitle));
-		}
-		else {
-			sb.append(serviceContext.translate(actionPattern));
+			titlePattern = titlePattern.concat("-in-the-x-wiki");
 		}
 
-		sb.append("</div>");
-
-		return sb.toString();
+		return titlePattern;
 	}
 
 	private static final int _ADD_COMMENT = 3;

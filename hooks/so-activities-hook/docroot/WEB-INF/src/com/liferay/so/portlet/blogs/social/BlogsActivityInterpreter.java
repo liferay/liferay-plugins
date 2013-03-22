@@ -18,19 +18,14 @@ import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.so.activities.model.BaseSocialActivityInterpreter;
-import com.liferay.so.util.Time;
-
-import java.text.Format;
-
-import java.util.Date;
 
 /**
  * @author Evan Thibodeau
@@ -93,61 +88,21 @@ public class BlogsActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitle(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
+	protected String getTitlePattern(
+		String groupName,
+		com.liferay.portlet.social.model.SocialActivity activity) {
 
-		String userName = getUserName(activity.getUserId(), serviceContext);
-
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
-
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("<div class=\"activity-header\">");
-		sb.append("<div class=\"activity-time\" title=\"");
-		sb.append(dateFormatDate.format(new Date(activity.getCreateDate())));
-		sb.append("\">");
-		sb.append(
-			Time.getRelativeTimeSpan(
-				activity.getCreateDate(), serviceContext.getLocale(),
-				serviceContext.getTimeZone()));
-		sb.append("</div><div class=\"activity-user-name\">");
-
-		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
-			String groupName = getGroupName(
-				activity.getGroupId(), serviceContext);
-
-			Object[] titleArguments = new Object[] {userName, groupName};
-
-			sb.append(serviceContext.translate("x-in-x", titleArguments));
+		if (activity.getType() == _ADD_COMMENT) {
+			return "commented-on-a-blog-entry";
 		}
-		else {
-			sb.append(userName);
+		else if (activity.getType() == _ADD_ENTRY) {
+			return "wrote-a-new-blog-entry";
+		}
+		else if (activity.getType() == _UPDATE_ENTRY) {
+			return "updated-a-blog-entry";
 		}
 
-		sb.append("</div></div><div class=\"activity-action\">");
-
-		int activityType = activity.getType();
-
-		String actionPattern = null;
-
-		if ((activityType == _ADD_COMMENT) ||
-			(activityType == SocialActivityConstants.TYPE_ADD_COMMENT)) {
-
-			actionPattern = "commented-on-a-blog-entry";
-		}
-		else if (activityType == _ADD_ENTRY) {
-			actionPattern = "wrote-a-new-blog-entry";
-		}
-		else if (activityType == _UPDATE_ENTRY) {
-			actionPattern = "updated-a-blog-entry";
-		}
-
-		sb.append(serviceContext.translate(actionPattern));
-		sb.append("</div>");
-
-		return sb.toString();
+		return StringPool.BLANK;
 	}
 
 	private static final int _ADD_COMMENT = 1;

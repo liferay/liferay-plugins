@@ -18,6 +18,7 @@ import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.asset.model.AssetRenderer;
@@ -25,11 +26,8 @@ import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.calendar.service.CalEventLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.so.activities.model.BaseSocialActivityInterpreter;
-import com.liferay.so.util.Time;
 
 import java.text.Format;
-
-import java.util.Date;
 
 /**
  * @author Evan Thibodeau
@@ -105,56 +103,17 @@ public class CalendarActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getTitle(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
-		String userName = getUserName(activity.getUserId(), serviceContext);
-
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
-
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("<div class=\"activity-header\">");
-		sb.append("<div class=\"activity-time\" title=\"");
-		sb.append(dateFormatDate.format(new Date(activity.getCreateDate())));
-		sb.append("\">");
-		sb.append(
-			Time.getRelativeTimeSpan(
-				activity.getCreateDate(), serviceContext.getLocale(),
-				serviceContext.getTimeZone()));
-		sb.append("</div><div class=\"activity-user-name\">");
-
-		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
-			String groupName = getGroupName(
-				activity.getGroupId(), serviceContext);
-
-			Object[] titleArguments = new Object[] {userName, groupName};
-
-			sb.append(serviceContext.translate("x-in-x", titleArguments));
+		if (activity.getType() == _ADD_EVENT) {
+			return "added-a-new-calendar-event";
 		}
-		else {
-			sb.append(userName);
+		else if (activity.getType() == _UPDATE_EVENT) {
+			return "updated-a-calendar-event";
 		}
 
-		sb.append("</div></div><div class=\"activity-action\">");
-
-		int activityType = activity.getType();
-
-		String actionPattern = null;
-
-		if (activityType == _ADD_EVENT) {
-			actionPattern = "added-a-new-calendar-event";
-		}
-		else if (activityType == _UPDATE_EVENT) {
-			actionPattern = "updated-a-calendar-event";
-		}
-
-		sb.append(serviceContext.translate(actionPattern));
-		sb.append("</div>");
-
-		return sb.toString();
+		return StringPool.BLANK;
 	}
 
 	private static final int _ADD_EVENT = 1;
