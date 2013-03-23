@@ -65,7 +65,7 @@
 			protected void test() throws Exception {
 				EntityCacheUtil entityCacheUtil = new EntityCacheUtil();
 
-				EntityCache entityCache = entityCacheUtil.getEntityCache();
+				EntityCache entityCache = EntityCacheUtil.getEntityCache();
 
 				entityCacheUtil.setEntityCache(entityCache);
 			}
@@ -81,7 +81,7 @@
 			protected void test() throws Exception {
 				FinderCacheUtil finderCacheUtil = new FinderCacheUtil();
 
-				FinderCache finderCache = finderCacheUtil.getFinderCache();
+				FinderCache finderCache = FinderCacheUtil.getFinderCache();
 
 				finderCacheUtil.setFinderCache(finderCache);
 			}
@@ -97,7 +97,7 @@
 			protected void test() throws Exception {
 				PortalCustomSQLUtil portalCustomSQLUtil = new PortalCustomSQLUtil();
 
-				PortalCustomSQL portalCustomSQL = portalCustomSQLUtil.getPortalCustomSQL();
+				PortalCustomSQL portalCustomSQL = PortalCustomSQLUtil.getPortalCustomSQL();
 
 				portalCustomSQLUtil.setPortalCustomSQL(portalCustomSQL);
 			}
