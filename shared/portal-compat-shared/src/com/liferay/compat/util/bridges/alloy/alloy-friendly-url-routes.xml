@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.1.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_1_0.dtd">
+
+<routes>
+	<route>
+		<pattern>GET</pattern>
+		<implicit-parameter name="action">index</implicit-parameter>
+		<implicit-parameter name="controller">@controller@</implicit-parameter>
+		<implicit-parameter name="format">html</implicit-parameter>
+		<implicit-parameter name="method">GET</implicit-parameter>
+	</route>
+	<route>
+		<pattern>GET/{controller}</pattern>
+		<implicit-parameter name="action">index</implicit-parameter>
+		<implicit-parameter name="format">html</implicit-parameter>
+		<implicit-parameter name="method">GET</implicit-parameter>
+	</route>
+	<route>
+		<pattern>POST/{controller}</pattern>
+		<implicit-parameter name="action">create</implicit-parameter>
+		<implicit-parameter name="format">html</implicit-parameter>
+		<implicit-parameter name="method">POST</implicit-parameter>
+	</route>
+	<route>
+		<pattern>GET/{controller}/{id:\d+}</pattern>
+		<implicit-parameter name="action">view</implicit-parameter>
+		<implicit-parameter name="format">html</implicit-parameter>
+		<implicit-parameter name="method">GET</implicit-parameter>
+	</route>
+	<route>
+		<pattern>POST/{controller}/{id:\d+}</pattern>
+		<implicit-parameter name="action">update</implicit-parameter>
+		<implicit-parameter name="format">html</implicit-parameter>
+		<implicit-parameter name="method">POST</implicit-parameter>
+	</route>
+	<route>
+		<pattern>GET/{controller}/{id:\d+}.{format}</pattern>
+		<implicit-parameter name="action">view</implicit-parameter>
+		<implicit-parameter name="method">GET</implicit-parameter>
+	</route>
+	<route>
+		<pattern>POST/{controller}/{id:\d+}.{format}</pattern>
+		<implicit-parameter name="action">update</implicit-parameter>
+		<implicit-parameter name="method">POST</implicit-parameter>
+	</route>
+	<route>
+		<pattern>GET/{controller}.{format}</pattern>
+		<implicit-parameter name="action">index</implicit-parameter>
+		<implicit-parameter name="method">GET</implicit-parameter>
+	</route>
+	<route>
+		<pattern>POST/{controller}.{format}</pattern>
+		<implicit-parameter name="action">create</implicit-parameter>
+		<implicit-parameter name="method">POST</implicit-parameter>
+	</route>
+	<route>
+		<pattern>{method}/{controller}/{id:\d+}/{action}</pattern>
+		<implicit-parameter name="format">html</implicit-parameter>
+	</route>
+	<route>
+		<pattern>{method}/{controller}/{id:\d+}/{action}.{format}</pattern>
+	</route>
+	<route>
+		<pattern>{method}/{controller}/{action}</pattern>
+		<implicit-parameter name="format">html</implicit-parameter>
+	</route>
+	<route>
+		<pattern>{method}/{controller}/{action}.{format}</pattern>
+	</route>
+	<route>
+		<pattern>{method}/{controller}/{action}/{className}/{folderId:\d+}/{fileName:[^/]+}</pattern>
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">download</implicit-parameter>
+	</route>
+</routes>
