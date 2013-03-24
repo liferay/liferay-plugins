@@ -105,6 +105,9 @@ import javax.servlet.jsp.PageContext;
  */
 public abstract class BaseAlloyControllerImpl implements AlloyController {
 
+	public static final String TOUCH =
+		BaseAlloyControllerImpl.class.getName() + "#TOUCH#";
+
 	public void afterPropertiesSet() {
 		initClass();
 		initServletVariables();
@@ -260,6 +263,32 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 		else {
 			portletRequestDispatcher.include(portletRequest, portletResponse);
+		}
+
+		Boolean touch = (Boolean)portletContext.getAttribute(
+			TOUCH + portlet.getRootPortletId());
+
+		if (touch == null) {
+			String touchPath =
+				"/WEB-INF/jsp/" + portlet.getFriendlyURLMapping() +
+					"/views/touch.jsp";
+
+			if (log.isDebugEnabled()) {
+				log.debug(
+					"Touch " + portlet.getRootPortletId() + " by including " +
+						touchPath);
+			}
+
+			portletContext.setAttribute(
+				TOUCH + portlet.getRootPortletId(), Boolean.FALSE);
+
+			portletRequestDispatcher = portletContext.getRequestDispatcher(
+				touchPath);
+
+			if (portletRequestDispatcher != null) {
+				portletRequestDispatcher.include(
+					portletRequest, portletResponse);
+			}
 		}
 	}
 
@@ -774,9 +803,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected static final String CALLED_PROCESS_ACTION =
-		"CALLED_PROCESS_ACTION";
+		BaseAlloyControllerImpl.class.getName() + "#CALLED_PROCESS_ACTION";
 
-	protected static final String VIEW_PATH = "VIEW_PATH";
+	protected static final String VIEW_PATH =
+		BaseAlloyControllerImpl.class.getName() + "#VIEW_PATH";
 
 	protected static Log log = LogFactoryUtil.getLog(
 		BaseAlloyControllerImpl.class);
