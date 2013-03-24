@@ -166,13 +166,7 @@ public class TestPACLPortlet extends MVCPortlet {
 
 		Field field = clazz.getField("TEST_FIELD");
 
-		try {
-			field.setAccessible(false);
-
-			throw new RuntimeException("Reflection is not protected");
-		}
-		catch (SecurityException se) {
-		}
+		field.setAccessible(false);
 	}
 
 }

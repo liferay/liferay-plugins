@@ -284,7 +284,7 @@
 	java.lang.ClassLoader#getSystemClassLoader=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
 				ClassLoader.getSystemClassLoader();
@@ -338,7 +338,7 @@
 	java.lang.Thread#getContextClassLoader=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
 				Thread thread = Thread.currentThread();
@@ -735,7 +735,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatUtil.java");
+			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
 		}
 
 	};
@@ -743,7 +743,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatUtil.java");
+			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
 		}
 
 	};
@@ -1733,13 +1733,13 @@
 </p>
 
 <p>
-	CompanyLocalServiceUtil#getCompany=
+	CompanyLocalServiceUtil#getCompanyByWebId=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				CompanyLocalServiceUtil.getCompany(themeDisplay.getCompanyId());
+				CompanyLocalServiceUtil.getCompanyByWebId("liferay.com");
 			}
 
 		};
