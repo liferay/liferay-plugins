@@ -34,9 +34,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jivesoftware.smack.AccountManager;
 import org.jivesoftware.smack.Chat;
@@ -67,6 +69,10 @@ public class JabberImpl implements Jabber {
 		connection.disconnect();
 
 		_connections.remove(userId);
+
+		if (_isOnline.contains(userId)) {
+			_isOnline.remove(userId);
+		}
 	}
 
 	public String getResource(String jabberId) {
@@ -442,15 +448,19 @@ public class JabberImpl implements Jabber {
 				}
 			}
 
-			if (online == 1) {
+			if (online == 1 && (!_isOnline.contains(userId))) {
 				Presence presence = new Presence(Presence.Type.available);
 
 				connection.sendPacket(presence);
+
+				_isOnline.add(userId);
 			}
-			else if (online == 0) {
+			else if (online == 0 && (_isOnline.contains(userId))) {
 				Presence presence = new Presence(Presence.Type.unavailable);
 
 				connection.sendPacket(presence);
+
+				_isOnline.remove(userId);
 			}
 		}
 		catch (Exception e) {
@@ -462,6 +472,8 @@ public class JabberImpl implements Jabber {
 
 	private static Map<Long, Connection> _connections =
 		new HashMap<Long, Connection>();
+
+	private static Set<Long> _isOnline = new HashSet<Long>();
 
 	private ConnectionConfiguration _connectionConfiguration;
 
