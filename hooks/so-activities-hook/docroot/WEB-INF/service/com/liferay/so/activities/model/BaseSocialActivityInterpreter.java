@@ -17,24 +17,10 @@ package com.liferay.so.activities.model;
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
-import com.liferay.portlet.asset.model.AssetRenderer;
-import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
-import com.liferay.so.activities.util.SocialActivitiesConstants;
-import com.liferay.so.activities.util.Time;
 
-import java.text.Format;
-
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * @author Brian Wing Shun Chan
@@ -45,11 +31,6 @@ public abstract class BaseSocialActivityInterpreter
 	extends com.liferay.compat.portlet.social.model.
 				BaseSocialActivityInterpreter
 	implements SocialActivityInterpreter {
-
-	@Override
-	public String getSelector() {
-		return SocialActivitiesConstants.SO_ACTIVITY_INTERPRETER_SELECTOR;
-	}
 
 	public SocialActivityFeedEntry interpret(
 		SocialActivitySet activitySet,
@@ -86,120 +67,6 @@ public abstract class BaseSocialActivityInterpreter
 
 		return null;
 	}
-
-	protected AssetRenderer getAssetRenderer(
-			com.liferay.portlet.social.model.SocialActivity activity)
-		throws Exception {
-
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				activity.getClassName());
-
-		return assetRendererFactory.getAssetRenderer(activity.getClassPK());
-	}
-
-	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {
-		return FastDateFormatFactoryUtil.getSimpleDateFormat(
-			_DATE_TIME_FORMAT, locale, timezone);
-	}
-
-	protected String getLinkURL(
-			com.liferay.portlet.social.model.SocialActivity activity,
-			ServiceContext serviceContext)
-		throws Exception {
-
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
-
-		return assetRenderer.getURLViewInContext(
-			serviceContext.getLiferayPortletRequest(),
-			serviceContext.getLiferayPortletResponse(), null);
-	}
-
-	protected String getTitle(
-			com.liferay.portlet.social.model.SocialActivity activity,
-			ServiceContext serviceContext)
-		throws Exception {
-
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
-
-		Date activityDate = new Date(activity.getCreateDate());
-
-		String relativeTimeSpan = Time.getRelativeTimeSpan(
-			activity.getCreateDate(), serviceContext.getLocale(),
-			serviceContext.getTimeZone());
-
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("<div class=\"activity-header\">");
-		sb.append("<div class=\"activity-time\" title=\"");
-		sb.append(dateFormatDate.format(activityDate));
-		sb.append("\">");
-		sb.append(relativeTimeSpan);
-		sb.append("</div><div class=\"activity-user-name\">");
-
-		String userName = getUserName(activity.getUserId(), serviceContext);
-
-		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
-			String groupName = getGroupName(
-				activity.getGroupId(), serviceContext);
-
-			Object[] userArguments = new Object[] {userName, groupName};
-
-			sb.append(serviceContext.translate("x-in-x", userArguments));
-		}
-		else {
-			sb.append(userName);
-		}
-
-		sb.append("</div></div><div class=\"activity-action\">");
-
-		String titlePattern = getTitlePattern(null, activity);
-
-		Object[] titleArguments = getTitleArguments(
-			null, activity, null, null, serviceContext);
-
-		sb.append(serviceContext.translate(titlePattern, titleArguments));
-		sb.append("</div>");
-
-		return sb.toString();
-	}
-
-	protected Object[] getTitleArguments(
-			String groupName,
-			com.liferay.portlet.social.model.SocialActivity socialActivity,
-			String link, String title, ServiceContext serviceContext)
-		throws Exception {
-
-		return null;
-	}
-
-	@Override
-	protected boolean hasPermissions(
-			PermissionChecker permissionChecker,
-			com.liferay.portlet.social.model.SocialActivity activity,
-			String actionId, ServiceContext serviceContext)
-		throws Exception {
-
-		return permissionChecker.hasPermission(
-			activity.getGroupId(), activity.getClassName(),
-			activity.getClassPK(), ActionKeys.VIEW);
-	}
-
-	protected String wrapLink(String link, String iconPath, String text) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<span><img class=\"icon\" src=\"");
-		sb.append(iconPath);
-		sb.append("\"></span><span>");
-		sb.append(text);
-		sb.append("</span>");
-
-		return wrapLink(link, sb.toString());
-	}
-
-	private static final String _DATE_TIME_FORMAT =
-		"EEEE, MMMMM dd, yyyy 'at' h:mm a";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		BaseSocialActivityInterpreter.class);

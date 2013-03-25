@@ -28,14 +28,14 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.so.activities.model.BaseSocialActivityInterpreter;
+import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
 
 import java.lang.String;
 
 /**
  * @author Evan Thibodeau
  */
-public class DLActivityInterpreter extends BaseSocialActivityInterpreter {
+public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
