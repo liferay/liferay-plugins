@@ -14,8 +14,6 @@
 
 package com.liferay.so.activities.service.impl;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -112,9 +110,8 @@ public class SocialActivityInterpreterLocalServiceImpl
 	 *         found
 	 */
 	public SocialActivityFeedEntry interpret(
-			String selector, SocialActivity activity,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		String selector, SocialActivity activity,
+		ServiceContext serviceContext) {
 
 		HttpServletRequest request = serviceContext.getRequest();
 
