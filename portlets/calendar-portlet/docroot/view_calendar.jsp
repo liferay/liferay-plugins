@@ -365,13 +365,10 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				}
 			},
 			date: new Date(<%= String.valueOf(date) %>),
-			locale: 'en'
+			locale: 'en',
+			'strings.first_weekday': <%= weekStartsOn %>
 		}
-	);
-
-	window.<portlet:namespace />miniCalendar.set("strings.first_weekday", <%= weekStartsOn %>);
-
-	window.<portlet:namespace />miniCalendar.render('#<portlet:namespace />miniCalendarContainer');
+	).render('#<portlet:namespace />miniCalendarContainer');
 
 	<portlet:namespace />scheduler.after(
 		['*:add', '*:change', '*:load', '*:remove', '*:reset'],
