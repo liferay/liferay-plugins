@@ -7,7 +7,7 @@
 			<param name="FileNamePattern" value="@liferay.home@/logs/test-log-portlet.%d{yyyy-MM-dd}.log" />
 		</rollingPolicy>
 
-		<layout class="org.apache.log4j.PatternLayout">
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
 			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%t][%c{1}:%L] %m%n" />
 		</layout>
 	</appender>
