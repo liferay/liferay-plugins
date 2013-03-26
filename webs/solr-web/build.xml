@@ -12,7 +12,7 @@
 			src="${original.war.file}"
 		>
 			<patternset
-				includes="apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar"
+				includes="lucene-core.jar,apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar"
 			/>
 			<mapper type="flatten" />
 		</unzip>
@@ -21,7 +21,7 @@
 	<target name="shrink-zip">
 		<antcall target="shrink-zip-cmd">
 			<param name="zip.file.name" value="${original.war.file}" />
-			<param name="zip.includes" value="apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar" />
+			<param name="zip.includes" value="lucene-core.jar,apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar" />
 		</antcall>
 	</target>
 </project>
