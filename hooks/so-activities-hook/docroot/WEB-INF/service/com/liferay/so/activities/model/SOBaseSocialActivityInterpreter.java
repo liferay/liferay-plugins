@@ -72,26 +72,29 @@ public abstract class SOBaseSocialActivityInterpreter
 			serviceContext.getLiferayPortletResponse(), null);
 	}
 
+	@Override
 	protected String getTitle(
 			com.liferay.portlet.social.model.SocialActivity activity,
 			ServiceContext serviceContext)
 		throws Exception {
+
+		StringBundler sb = new StringBundler(10);
+
+		sb.append("<div class=\"activity-header\">");
+		sb.append("<div class=\"activity-time\" title=\"");
 
 		Format dateFormatDate = getFormatDateTime(
 			serviceContext.getLocale(), serviceContext.getTimeZone());
 
 		Date activityDate = new Date(activity.getCreateDate());
 
+		sb.append(dateFormatDate.format(activityDate));
+		sb.append("\">");
+
 		String relativeTimeSpan = Time.getRelativeTimeSpan(
 			activity.getCreateDate(), serviceContext.getLocale(),
 			serviceContext.getTimeZone());
 
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("<div class=\"activity-header\">");
-		sb.append("<div class=\"activity-time\" title=\"");
-		sb.append(dateFormatDate.format(activityDate));
-		sb.append("\">");
 		sb.append(relativeTimeSpan);
 		sb.append("</div><div class=\"activity-user-name\">");
 
@@ -122,6 +125,7 @@ public abstract class SOBaseSocialActivityInterpreter
 		return sb.toString();
 	}
 
+	@Override
 	protected Object[] getTitleArguments(
 			String groupName,
 			com.liferay.portlet.social.model.SocialActivity socialActivity,

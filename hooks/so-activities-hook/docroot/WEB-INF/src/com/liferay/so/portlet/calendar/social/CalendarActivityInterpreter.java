@@ -44,12 +44,13 @@ public class CalendarActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		StringBundler sb = new StringBundler(15);
 
-		String pageTitle = wrapLink(
-			getLinkURL(activity, serviceContext),
-			HtmlUtil.escape(
-				assetRenderer.getTitle(serviceContext.getLocale())));
+		sb.append("<div class=\"activity-body\"><div class=\"title\">");
+
+		String pageTitle = null;
+
+		AssetRenderer assetRenderer = getAssetRenderer(activity);
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
@@ -63,6 +64,17 @@ public class CalendarActivityInterpreter
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
+		else {
+			pageTitle = wrapLink(
+				getLinkURL(activity, serviceContext),
+				HtmlUtil.escape(
+					assetRenderer.getTitle(serviceContext.getLocale())));
+		}
+
+		sb.append(pageTitle);
+		sb.append("</div><div class=\"date\"><strong>");
+		sb.append(serviceContext.translate("date"));
+		sb.append(": </strong>");
 
 		Format dateFormatDate = getFormatDateTime(
 			serviceContext.getLocale(), serviceContext.getTimeZone());
@@ -70,13 +82,6 @@ public class CalendarActivityInterpreter
 		CalEvent event = CalEventLocalServiceUtil.getEvent(
 			activity.getClassPK());
 
-		StringBundler sb = new StringBundler(15);
-
-		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-		sb.append(pageTitle);
-		sb.append("</div><div class=\"date\"><strong>");
-		sb.append(serviceContext.translate("date"));
-		sb.append(": </strong>");
 		sb.append(dateFormatDate.format((event.getStartDate())));
 		sb.append("</div><div class=\"location\"><strong>");
 		sb.append(serviceContext.translate("location"));
@@ -119,9 +124,7 @@ public class CalendarActivityInterpreter
 
 	private static final int _ADD_EVENT = 1;
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		CalEvent.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {CalEvent.class.getName()};
 
 	private static final int _UPDATE_EVENT = 2;
 

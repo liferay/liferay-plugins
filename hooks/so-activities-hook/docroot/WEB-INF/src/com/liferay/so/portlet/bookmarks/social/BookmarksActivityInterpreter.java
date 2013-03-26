@@ -47,14 +47,18 @@ public class BookmarksActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("<div class=\"activity-body\"><div class=\"title\">");
+
+		String bookmarkLink = null;
 
 		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(
 			activity.getClassPK());
 
-		String bookmarkLink = wrapLink(entry.getUrl(), entry.getName());
-
 		String faviconUrl = HttpUtil.getDomain(entry.getUrl()) + "/favicon.ico";
+
+		AssetRenderer assetRenderer = getAssetRenderer(activity);
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
@@ -72,10 +76,10 @@ public class BookmarksActivityInterpreter
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
+		else {
+			bookmarkLink = wrapLink(entry.getUrl(), entry.getName());
+		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 		sb.append(bookmarkLink);
 		sb.append("</div><div class='bookmarks-page-content'>");
 		sb.append(entry.getDescription());
@@ -135,9 +139,8 @@ public class BookmarksActivityInterpreter
 
 	private static final int _ADD_ENTRY = 1;
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		BookmarksEntry.class.getName()
-	};
+	private static final String[] _CLASS_NAMES =
+		{BookmarksEntry.class.getName()};
 
 	private static final int _UPDATE_ENTRY = 2;
 

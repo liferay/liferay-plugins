@@ -41,17 +41,18 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("<div class=\"activity-body\"><div class=\"title\">");
+
+		String pageTitle = null;
 
 		String linkURL = getLinkURL(activity, serviceContext);
 
+		AssetRenderer assetRenderer = getAssetRenderer(activity);
+
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
-
-		String pageTitle = wrapLink(
-			linkURL,
-			HtmlUtil.escape(
-				assetRenderer.getTitle(serviceContext.getLocale())));
 
 		if (Validator.isNotNull(
 				assetRenderer.getIconPath(liferayPortletRequest))) {
@@ -61,10 +62,13 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
+		else {
+			pageTitle = wrapLink(
+				linkURL,
+				HtmlUtil.escape(
+					assetRenderer.getTitle(serviceContext.getLocale())));
+		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 		sb.append(pageTitle);
 		sb.append("</div><div class='forum-page-content'>");
 		sb.append(
@@ -93,14 +97,15 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		MBMessage message = MBMessageLocalServiceUtil.getMessage(
-			activity.getClassPK());
-
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(serviceContext.getPortalURL());
 		sb.append(serviceContext.getPathMain());
 		sb.append("/message_boards/find_category?mbCategoryId=");
+
+		MBMessage message = MBMessageLocalServiceUtil.getMessage(
+			activity.getClassPK());
+
 		sb.append(message.getCategoryId());
 
 		String categoryURL = sb.toString();
@@ -159,9 +164,7 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 	private static final int _ADD_MESSAGE = 1;
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		MBMessage.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {MBMessage.class.getName()};
 
 	private static final int _REPLY_MESSAGE = 2;
 

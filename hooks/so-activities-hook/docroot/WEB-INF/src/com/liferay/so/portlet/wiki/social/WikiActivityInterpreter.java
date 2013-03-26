@@ -51,14 +51,15 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("<div class=\"activity-body\"><div class=\"title\">");
+
+		String pageTitle = null;
 
 		String linkURL = getLinkURL(activity, serviceContext);
 
-		String pageTitle = wrapLink(
-			linkURL,
-			HtmlUtil.escape(
-				assetRenderer.getTitle(serviceContext.getLocale())));
+		AssetRenderer assetRenderer = getAssetRenderer(activity);
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
@@ -71,10 +72,13 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
+		else {
+			wrapLink(
+				linkURL,
+				HtmlUtil.escape(
+					assetRenderer.getTitle(serviceContext.getLocale())));
+		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 		sb.append(pageTitle);
 		sb.append("</div><div class='wiki-page-content'>");
 		sb.append(
@@ -172,9 +176,7 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 	private static final int _ADD_PAGE = 1;
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		WikiPage.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {WikiPage.class.getName()};
 
 	private static final int _UPDATE_PAGE = 2;
 

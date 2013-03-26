@@ -46,28 +46,30 @@ public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		StringBundler sb = new StringBundler(11);
+
+		sb.append("<div class=\"activity-body document\">");
+		sb.append("<span class=\"document-thumbnail\"><img src=\"");
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
 			activity.getClassPK());
-
-		String pageTitle = wrapLink(
-			getLinkURL(activity, serviceContext),
-			HtmlUtil.escape(
-				assetRenderer.getTitle(serviceContext.getLocale())));
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
 		String thumbnailSrc = DLUtil.getThumbnailSrc(
 			fileEntry, fileVersion, null, serviceContext.getThemeDisplay());
 
-		StringBundler sb = new StringBundler(11);
-
-		sb.append("<div class=\"activity-body document\">");
-		sb.append("<span class=\"document-thumbnail\"><img src=\"");
 		sb.append(thumbnailSrc);
 		sb.append("\"></span>");
 		sb.append("<div class=\"document-container\"><div class=\"title\">");
+
+		AssetRenderer assetRenderer = getAssetRenderer(activity);
+
+		String pageTitle = wrapLink(
+			getLinkURL(activity, serviceContext),
+			HtmlUtil.escape(
+				assetRenderer.getTitle(serviceContext.getLocale())));
+
 		sb.append(pageTitle);
 		sb.append("</div><div class=\"version\">");
 		sb.append(
@@ -86,32 +88,35 @@ public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
-			activity.getClassPK());
-
-		String documentLink = wrapLink(
-			getLinkURL(activity, serviceContext),
-			serviceContext.translate("view-document"));
-
 		StringBundler sb = new StringBundler(8);
 
 		sb.append(serviceContext.getPortalURL());
 		sb.append(serviceContext.getPathMain());
 		sb.append("/document_library/get_file?groupId=");
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
+			activity.getClassPK());
+
 		sb.append(fileEntry.getRepositoryId());
 		sb.append("&folderId=");
 		sb.append(fileEntry.getFolderId());
 		sb.append("&title=");
 		sb.append(HttpUtil.encodeURL(fileEntry.getTitle()));
 
-		String downloadLink = wrapLink(
-			sb.toString(), serviceContext.translate("download"));
-
 		sb = new StringBundler(5);
 
 		sb.append("<span>");
+
+		String documentLink = wrapLink(
+			getLinkURL(activity, serviceContext),
+			serviceContext.translate("view-document"));
+
 		sb.append(documentLink);
 		sb.append("</span><span>");
+
+		String downloadLink = wrapLink(
+			sb.toString(), serviceContext.translate("download"));
+
 		sb.append(downloadLink);
 		sb.append("</span>");
 
@@ -128,10 +133,6 @@ public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			activity.getClassPK());
 
 		if (fileEntry.getFolderId() > 0) {
-			Folder folder = fileEntry.getFolder();
-
-			String folderName = HtmlUtil.escape(folder.getName());
-
 			StringBundler sb = new StringBundler(6);
 
 			sb.append(serviceContext.getPortalURL());
@@ -140,6 +141,10 @@ public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			sb.append(fileEntry.getRepositoryId());
 			sb.append("&folderId=");
 			sb.append(fileEntry.getFolderId());
+
+			Folder folder = fileEntry.getFolder();
+
+			String folderName = HtmlUtil.escape(folder.getName());
 
 			String folderURL = wrapLink(sb.toString(), folderName);
 
@@ -177,9 +182,7 @@ public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 	private static final int _ADD_FILE_ENTRY = 1;
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		DLFileEntry.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {DLFileEntry.class.getName()};
 
 	private static final int _UPDATE_FILE_ENTRY = 2;
 

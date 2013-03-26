@@ -41,12 +41,13 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		StringBundler sb = new StringBundler(5);
 
-		String pageTitle = wrapLink(
-			getLinkURL(activity, serviceContext),
-			HtmlUtil.escape(
-				assetRenderer.getTitle(serviceContext.getLocale())));
+		sb.append("<div class=\"activity-body\"><div class=\"title\">");
+
+		String pageTitle = null;
+
+		AssetRenderer assetRenderer = getAssetRenderer(activity);
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
@@ -60,17 +61,21 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
+		else {
+			pageTitle = wrapLink(
+				getLinkURL(activity, serviceContext),
+				HtmlUtil.escape(
+					assetRenderer.getTitle(serviceContext.getLocale())));
+		}
+
+		sb.append(pageTitle);
+		sb.append("</div><div class='blogs-page-content'>");
 
 		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(
 			activity.getClassPK());
 
 		String content = HtmlUtil.extractText(entry.getContent());
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-		sb.append(pageTitle);
-		sb.append("</div><div class='blogs-page-content'>");
 		sb.append(StringUtil.shorten(content, 200));
 		sb.append("</div></div>");
 
@@ -109,9 +114,7 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 	private static final int _ADD_ENTRY = 2;
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		BlogsEntry.class.getName()
-	};
+	private static final String[] _CLASS_NAMES = {BlogsEntry.class.getName()};
 
 	private static final int _UPDATE_ENTRY = 3;
 
