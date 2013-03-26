@@ -31,6 +31,10 @@ public interface SocialActivity extends SocialActivityModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.so.activities.model.impl.SocialActivityImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public java.lang.String getClassName()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public long getClassNameId()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

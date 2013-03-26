@@ -47,7 +47,7 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 
 		_methodParameterTypes32 = new String[] {
 				"java.lang.String",
-				"com.liferay.so.activities.model.SocialActivity",
+				"com.liferay.portlet.social.model.SocialActivity",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -91,7 +91,7 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return SocialActivityInterpreterLocalServiceUtil.interpret((java.lang.String)arguments[0],
-				(com.liferay.so.activities.model.SocialActivity)arguments[1],
+				(com.liferay.portlet.social.model.SocialActivity)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 

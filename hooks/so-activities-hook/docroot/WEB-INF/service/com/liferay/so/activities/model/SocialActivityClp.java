@@ -101,19 +101,15 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		_activitySetId = activitySetId;
 	}
 
-	public com.liferay.portlet.social.model.SocialActivity getPortalSocialActivity() {
-		throw new UnsupportedOperationException();
-	}
-
 	public long getClassPK() {
 		throw new UnsupportedOperationException();
 	}
 
-	public long getReceiverUserId() {
+	public long getCreateDate() {
 		throw new UnsupportedOperationException();
 	}
 
-	public long getCreateDate() {
+	public long getReceiverUserId() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -125,11 +121,11 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		throw new UnsupportedOperationException();
 	}
 
-	public long getMirrorActivityId() {
+	public long getGroupId() {
 		throw new UnsupportedOperationException();
 	}
 
-	public long getGroupId() {
+	public long getClassNameId() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -137,11 +133,19 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		throw new UnsupportedOperationException();
 	}
 
-	public java.lang.String getExtraData() {
+	public com.liferay.portlet.social.model.SocialActivity getPortalSocialActivity() {
 		throw new UnsupportedOperationException();
 	}
 
-	public long getClassNameId() {
+	public java.lang.String getClassName() {
+		throw new UnsupportedOperationException();
+	}
+
+	public long getMirrorActivityId() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getExtraData() {
 		throw new UnsupportedOperationException();
 	}
 

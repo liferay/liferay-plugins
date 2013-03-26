@@ -197,6 +197,12 @@ public class SocialActivityWrapper implements SocialActivity,
 		_socialActivity.persist();
 	}
 
+	public java.lang.String getClassName()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialActivity.getClassName();
+	}
+
 	public long getClassNameId()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

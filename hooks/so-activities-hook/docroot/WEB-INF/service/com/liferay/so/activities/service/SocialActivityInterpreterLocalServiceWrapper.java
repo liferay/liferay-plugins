@@ -95,10 +95,8 @@ public class SocialActivityInterpreterLocalServiceWrapper
 	*/
 	public com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
-		com.liferay.so.activities.model.SocialActivity activity,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portlet.social.model.SocialActivity activity,
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		return _socialActivityInterpreterLocalService.interpret(selector,
 			activity, serviceContext);
 	}

@@ -99,10 +99,8 @@ public class SocialActivityInterpreterLocalServiceUtil {
 	*/
 	public static com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
-		com.liferay.so.activities.model.SocialActivity activity,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portlet.social.model.SocialActivity activity,
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService().interpret(selector, activity, serviceContext);
 	}
 

@@ -49,7 +49,7 @@ public class SocialActivityInterpreterLocalServiceClp
 
 		_methodParameterTypes5 = new String[] {
 				"java.lang.String",
-				"com.liferay.so.activities.model.SocialActivity",
+				"com.liferay.portlet.social.model.SocialActivity",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -151,10 +151,8 @@ public class SocialActivityInterpreterLocalServiceClp
 
 	public com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
-		com.liferay.so.activities.model.SocialActivity activity,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portlet.social.model.SocialActivity activity,
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		Object returnObj = null;
 
 		try {
@@ -170,14 +168,6 @@ public class SocialActivityInterpreterLocalServiceClp
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
