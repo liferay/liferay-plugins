@@ -146,7 +146,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 						entry.getFromUserId());
 
 					entryJSONObject.put("fromFullName", fromUser.getFullName());
-					entryJSONObject.put("fromPortraitId", fromUser.getPortraitId());
+					entryJSONObject.put(
+						"fromPortraitId", fromUser.getPortraitId());
 				}
 				catch (NoSuchUserException nsue) {
 					continue;
