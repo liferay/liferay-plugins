@@ -43,6 +43,8 @@ String tabs1Names = "timeline,mentions";
 
 if (!tabs1.equals("mentions") && !tabs1.equals("timeline")) {
 	tabs1Names += "," + tabs1;
+
+	assetTagName = tabs1;
 }
 
 PortletURL portletURL = renderResponse.createRenderURL();
