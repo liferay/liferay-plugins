@@ -29,6 +29,7 @@ import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
 
 /**
  * @author Evan Thibodeau
+ * @author Matthew Kong
  */
 public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
@@ -45,7 +46,7 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
-		String pageTitle = null;
+		String pageTitle = StringPool.BLANK;
 
 		AssetRenderer assetRenderer = getAssetRenderer(activity);
 

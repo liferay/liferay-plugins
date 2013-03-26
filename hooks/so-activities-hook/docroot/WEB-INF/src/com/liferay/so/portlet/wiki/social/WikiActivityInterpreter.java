@@ -39,6 +39,7 @@ import javax.portlet.PortletURL;
 
 /**
  * @author Jonathan Lee
+ * @author Matthew Kong
  */
 public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
@@ -55,7 +56,7 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
-		String pageTitle = null;
+		String pageTitle = StringPool.BLANK;
 
 		String linkURL = getLinkURL(activity, serviceContext);
 
@@ -73,7 +74,7 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
 		else {
-			wrapLink(
+			pageTitle = wrapLink(
 				linkURL,
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));

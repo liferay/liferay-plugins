@@ -34,6 +34,7 @@ import java.lang.String;
 
 /**
  * @author Evan Thibodeau
+ * @author Matthew Kong
  */
 public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
@@ -158,7 +159,7 @@ public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
 	protected String getTitlePattern(String groupName, SocialActivity activity)
 		throws Exception {
 
-		String titlePattern = null;
+		String titlePattern = StringPool.BLANK;
 
 		if (activity.getType() == _ADD_FILE_ENTRY) {
 			titlePattern = "uploaded-a-new-document";

@@ -29,6 +29,7 @@ import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
 
 /**
  * @author Evan Thibodeau
+ * @author Matthew Kong
  */
 public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
@@ -45,7 +46,7 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
-		String pageTitle = null;
+		String pageTitle = StringPool.BLANK;
 
 		String linkURL = getLinkURL(activity, serviceContext);
 
@@ -138,7 +139,7 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 	protected String getTitlePattern(String groupName, SocialActivity activity)
 		throws Exception {
 
-		String titlePattern = null;
+		String titlePattern = StringPool.BLANK;
 
 		if ((activity.getType() == _REPLY_MESSAGE) ||
 			(activity.getReceiverUserId() > 0)) {

@@ -31,6 +31,7 @@ import java.text.Format;
 
 /**
  * @author Evan Thibodeau
+ * @author Matthew Kong
  */
 public class CalendarActivityInterpreter
 	extends SOBaseSocialActivityInterpreter {
@@ -48,7 +49,7 @@ public class CalendarActivityInterpreter
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
-		String pageTitle = null;
+		String pageTitle = StringPool.BLANK;
 
 		AssetRenderer assetRenderer = getAssetRenderer(activity);
 

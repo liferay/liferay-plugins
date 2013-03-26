@@ -34,6 +34,7 @@ import java.net.URL;
 
 /**
  * @author Evan Thibodeau
+ * @author Matthew Kong
  */
 public class BookmarksActivityInterpreter
 	extends SOBaseSocialActivityInterpreter {
@@ -51,7 +52,7 @@ public class BookmarksActivityInterpreter
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
-		String bookmarkLink = null;
+		String bookmarkLink = StringPool.BLANK;
 
 		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(
 			activity.getClassPK());
