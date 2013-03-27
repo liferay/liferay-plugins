@@ -2,111 +2,95 @@
 <!DOCTYPE project>
 
 <project name="build-common-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
-	<property name="ivy.home" value="${project.location.absolute}/.ivy" />
-	<property name="ivy.install.version" value="2.2.0" />
-	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
+	<property name="ivy.home" value="${project.dir}/.ivy" />
+	<property name="ivy.install.version" value="2.3.0" />
 
-	<path id="beanshell.classpath">
-		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<fileset dir="${project.dir}/lib" includes="*.jar" />
-	</path>
+	<if>
+		<not>
+			<available file="${ivy.home}/ivy-${ivy.install.version}.jar" />
+		</not>
+		<then>
+			<mkdir dir="${ivy.home}" />
 
-	<checksum file="${project.dir}/ivy.xml" />
-
-	<script classpathref="beanshell.classpath" language="beanshell">
-		<![CDATA[
-
-			// LPS-33549
-
-			threadLocalsField = Thread.class.getDeclaredField("threadLocals");
-
-			threadLocalsField.setAccessible(true);
-
-			threadLocalMap = threadLocalsField.get(Thread.currentThread());
-
-			if (threadLocalMap != null) {
-				threadLocalMapClass = Class.forName("java.lang.ThreadLocal$ThreadLocalMap");
-
-				expungeStaleEntriesMethod = threadLocalMapClass.getDeclaredMethod("expungeStaleEntries", null);
-
-				expungeStaleEntriesMethod.setAccessible(true);
-
-				expungeStaleEntriesMethod.invoke(threadLocalMap, null);
-
-				tableField = threadLocalMapClass.getDeclaredField("table");
-
-				tableField.setAccessible(true);
-
-				for (Object entry : tableField.get(threadLocalMap)) {
-					if (entry == null) {
-						continue;
-					}
-
-					entryClass = entry.getClass();
-
-					valueField = entryClass.getDeclaredField("value");
-
-					valueField.setAccessible(true);
-
-					stack = valueField.get(entry);
-
-					if ((stack instanceof Stack) && !stack.isEmpty()) {
-						topElement = stack.peek();
-
-						topElementClass = topElement.getClass();
-
-						if (topElementClass.getName().equals("org.apache.ivy.core.IvyContext")) {
-							stack.clear();
-						}
-					}
-				}
-			}
-
-			// Only show messages if ivy.xml has been updated in the last 5
-			// seconds
-
-			ivyXMLMD5File = new File(project.getProperty("project.location.absolute") + "/ivy.xml.MD5");
-
-			if ((System.currentTimeMillis() - 5000) > ivyXMLMD5File.lastModified()) {
-				buildListeners = project.getBuildListeners();
-
-				defaultLogger = buildListeners.firstElement();
-
-				defaultLogger.setMessageOutputLevel(project.MSG_WARN);
-			}
-		]]>
-	</script>
-
-	<mkdir dir="${ivy.jar.dir}" />
-
-	<get
-		dest="${ivy.jar.dir}"
-		skipexisting="true"
-		src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
-	/>
+			<get
+				dest="${ivy.home}"
+				src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+			/>
+		</then>
+	</if>
 
 	<path id="ivy.lib.path">
 		<fileset
-			dir="${ivy.jar.dir}"
+			dir="${ivy.home}"
 			includes="ivy-${ivy.install.version}.jar"
 		/>
 	</path>
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<ivy:settings file="${project.dir}/ivy-settings.xml" />
+	<basename file="${project.dir}" property="projectdir.name" />
 
-	<ivy:resolve
-		file="${project.dir}/ivy.xml"
-		log="download-only"
-	/>
+	<for list="${project.dir},${basedir}" param="ivy.xml.dir">
+		<sequential>
+			<var name="ivy.md5.dir" unset="true" />
+			<var name="ivy.xml.updated" unset="true" />
+			<var name="tstamp.value" unset="true" />
 
-	<script classpathref="beanshell.classpath" language="beanshell">
-		buildListeners = project.getBuildListeners();
+			<pathconvert property="ivy.md5.dir">
+				<map from="${project.dir}" to="${ivy.home}/${projectdir.name}" />
 
-		defaultLogger = buildListeners.firstElement();
+				<path location="@{ivy.xml.dir}"/>
+			</pathconvert>
 
-		defaultLogger.setMessageOutputLevel(project.MSG_INFO);
-	</script>
+			<if>
+				<available file="@{ivy.xml.dir}/ivy.xml" />
+
+				<then>
+					<checksum file="@{ivy.xml.dir}/ivy.xml" todir="${ivy.md5.dir}" />
+
+					<tstamp>
+						<format offset="-1" pattern="yyyyMMddkkmmssSSS" property="tstamp.value" unit="second" />
+					</tstamp>
+
+					<condition property="ivy.xml.updated">
+						<islastmodified datetime="${tstamp.value}" mode="after" pattern="yyyyMMddkkmmssSSS">
+							<file file="${ivy.md5.dir}/ivy.xml.MD5" />
+						</islastmodified>
+					</condition>
+				</then>
+			</if>
+
+			<if>
+				<istrue value="${ivy.xml.updated}" />
+
+				<then>
+					<ivy:settings file="${project.dir}/ivy-settings.xml" />
+
+					<ivy:resolve
+						file="@{ivy.xml.dir}/ivy.xml"
+						log="download-only"
+					/>
+
+					<if>
+						<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
+
+						<then>
+							<ivy:retrieve
+								log="download-only"
+								pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
+								type="jar"
+							/>
+						</then>
+						<else>
+							<ivy:retrieve
+								log="download-only"
+								pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
+								type="jar"
+							/>
+						</else>
+					</if>
+				</then>
+			</if>
+		</sequential>
+	</for>
 </project>
