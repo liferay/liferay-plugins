@@ -146,8 +146,6 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 					</aui:select>
 				</c:if>
 
-				<label class="aui-field-label" for="tags"><liferay-ui:message key="tags" /></label>
-
 				<aui:input name="tags" type="assetTags" />
 
 				<aui:button-row cssClass="task-action">
