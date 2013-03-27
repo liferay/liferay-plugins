@@ -367,7 +367,7 @@ public class CalendarBookingFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "description", StringPool.LIKE, false, descriptions);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(location)", StringPool.LIKE, false, locations);
+				sql, "lower(location)", StringPool.LIKE, true, locations);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			SQLQuery q = session.createSQLQuery(sql);
@@ -396,15 +396,20 @@ public class CalendarBookingFinderImpl
 			qPos.add(titles, 2);
 			qPos.add(descriptions, 2);
 			qPos.add(locations, 2);
+			qPos.add(startTime);
+			qPos.add(endTime);
+			qPos.add(startTime);
+			qPos.add(endTime);
+			qPos.add(startTime);
+			qPos.add(endTime);
+			qPos.add(endTime);
+			qPos.add(startTime);
+			qPos.add(startTime);
+			qPos.add(endTime);
 
 			if ((statuses != null) && (statuses.length > 0)) {
 				qPos.add(statuses);
 			}
-
-			qPos.add(startTime);
-			qPos.add(startTime);
-			qPos.add(endTime);
-			qPos.add(endTime);
 
 			Iterator<Long> itr = q.iterate();
 
@@ -460,8 +465,7 @@ public class CalendarBookingFinderImpl
 				sql, "[$CALENDAR_RESOURCE_ID$]",
 				getCalendarResourceIds(calendarResourceIds));
 			sql = StringUtil.replace(
-				sql, "[$DATE_RANGE$]",
-				getDateRange(startTime, endTime, recurring));
+				sql, "[$RECURRENCE$]", getRecurrence(recurring));
 			sql = StringUtil.replace(sql, "[$STATUS$]", getStatuses(statuses));
 
 			if (parentCalendarBookingId < 0) {
@@ -474,7 +478,7 @@ public class CalendarBookingFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "description", StringPool.LIKE, false, descriptions);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(location)", StringPool.LIKE, false, locations);
+				sql, "lower(location)", StringPool.LIKE, true, locations);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			StringBundler sb = new StringBundler();
@@ -513,14 +517,15 @@ public class CalendarBookingFinderImpl
 			qPos.add(descriptions, 2);
 			qPos.add(locations, 2);
 			qPos.add(startTime);
+			qPos.add(endTime);
+			qPos.add(startTime);
+			qPos.add(endTime);
 			qPos.add(startTime);
 			qPos.add(endTime);
 			qPos.add(endTime);
-
-			if (recurring) {
-				qPos.add(endTime);
-				qPos.add(endTime);
-			}
+			qPos.add(startTime);
+			qPos.add(startTime);
+			qPos.add(endTime);
 
 			if ((statuses != null) && (statuses.length > 0)) {
 				qPos.add(statuses);
@@ -584,26 +589,6 @@ public class CalendarBookingFinderImpl
 		return sb.toString();
 	}
 
-	protected String getDateRange(
-		long startTime, long endTime, boolean recurring) {
-
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("(((startTime >= ? OR CAST_LONG(?) = -1) AND ");
-		sb.append("(endTime <= ? OR CAST_LONG(?) = -1) AND ");
-		sb.append("(recurrence IS NULL OR recurrence = '')) ");
-
-		if (recurring) {
-			sb.append(" OR (");
-			sb.append("(endTime <= ? OR CAST_LONG(?) = -1) AND ");
-			sb.append("(recurrence IS NOT NULL AND recurrence != ''))");
-		}
-
-		sb.append(")");
-
-		return sb.toString();
-	}
-
 	protected String getGroupIds(long[] groupIds) {
 		if (groupIds.length == 0) {
 			return StringPool.BLANK;
@@ -624,6 +609,14 @@ public class CalendarBookingFinderImpl
 		sb.append(") AND");
 
 		return sb.toString();
+	}
+
+	protected String getRecurrence(boolean recurring) {
+		if (recurring) {
+			return "OR ((recurrence IS NOT NULL AND recurrence != ''))";
+		}
+
+		return StringPool.BLANK;
 	}
 
 	protected String getStatuses(int[] statuses) {

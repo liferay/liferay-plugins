@@ -18,7 +18,12 @@
 					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
-				[$DATE_RANGE$] AND
+				(
+					(startTime >= ? AND endTime <= ?) OR
+					(startTime <= ? AND endTime >= ?) OR
+					(startTime >= ? AND startTime <= ? AND endTime >= ?) OR
+					(startTime <= ? AND endTime >= ? AND endTime <= ?)
+				) AND
 				[$STATUS$]
 		]]>
 	</sql>
@@ -54,7 +59,15 @@
 					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
-				[$DATE_RANGE$] AND
+				(
+					(
+						(startTime >= ? AND endTime <= ?) OR
+						(startTime <= ? AND endTime >= ?) OR
+						(startTime >= ? AND startTime <= ? AND endTime >= ?) OR
+						(startTime <= ? AND endTime >= ? AND endTime <= ?)
+					)
+					[$RECURRENCE$]
+				) AND
 				[$STATUS$]
 				[$ORDER_BY$]
 		]]>
