@@ -134,22 +134,10 @@
 							String wallToWallHREF = null;
 
 							if ((wallUser.getUserId() != themeDisplay.getUserId()) || ((wallUser.getUserId() == themeDisplay.getUserId()) && Validator.isNull(myWallLayoutFriendlyURL))) {
-								wallLayoutFriendlyURL = PortletPropsValues.WALL_LAYOUT_FRIENDLY_URL;
-
-								if (Validator.isNull(wallLayoutFriendlyURL)) {
-									Group wallGroup = wallUser.getGroup();
-
-									long wallPlid = LayoutLocalServiceUtil.getDefaultPlid(wallGroup.getGroupId(), false, portletDisplay.getId());
-
-									if (wallPlid != 0) {
-										Layout wallLayout = LayoutLocalServiceUtil.getLayout(wallPlid);
-
-										wallLayoutFriendlyURL = wallLayout.getFriendlyURL();
-									}
-								}
+								wallLayoutFriendlyURL = WallUtil.getWallLayoutFriendlyURL(wallUser);
 
 								if (Validator.isNotNull(wallLayoutFriendlyURL) && (wallUser.getUserId() != themeDisplay.getUserId())) {
-									wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall/" + wallUser.getScreenName();
+									wallToWallHREF = WallUtil.getWallLink(wallUser, wallLayoutFriendlyURL, HtmlUtil.escapeURL(wallUser.getScreenName()), themeDisplay);
 								}
 							}
 							%>

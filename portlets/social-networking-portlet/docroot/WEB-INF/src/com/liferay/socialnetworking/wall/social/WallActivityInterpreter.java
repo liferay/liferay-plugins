@@ -14,8 +14,6 @@
 
 package com.liferay.socialnetworking.wall.social;
 
-import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -27,9 +25,11 @@ import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
+import com.liferay.socialnetworking.util.WallUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Zsolt Berentey
  */
 public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
@@ -58,27 +58,23 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathFriendlyURLPublic());
-		sb.append(StringPool.SLASH);
-
 		User receiverUser = UserLocalServiceUtil.getUserById(
 			activity.getReceiverUserId());
 
-		sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
+		String wallLayoutFriendlyURL = WallUtil.getWallLayoutFriendlyURL(
+			receiverUser);
 
-		sb.append("/profile/-/wall/");
-		sb.append(activity.getClassPK());
-
-		return sb.toString();
+		return WallUtil.getWallLink(
+			receiverUser, wallLayoutFriendlyURL,
+			String.valueOf(activity.getClassPK()),
+			serviceContext.getThemeDisplay());
 	}
 
 	@Override
 	protected Object[] getTitleArguments(
-		String groupName, SocialActivity activity, String link, String title,
-		ServiceContext serviceContext) {
+			String groupName, SocialActivity activity, String link,
+			String title, ServiceContext serviceContext)
+		throws Exception {
 
 		int activityType = activity.getType();
 
@@ -88,6 +84,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String creatorUserName = getUserName(
 			activity.getUserId(), serviceContext);
+
 		String receiverUserName = getUserName(
 			activity.getReceiverUserId(), serviceContext);
 
