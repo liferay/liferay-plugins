@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
 	<if>
@@ -194,7 +194,7 @@
 		</copy>
 
 		<path id="service.classpath">
-			<path refid="ivy.lib.classpath" />
+			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
 			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
@@ -280,7 +280,7 @@
 		<mkdir dir="docroot/WEB-INF/service-classes" />
 
 		<path id="service.classpath">
-			<path refid="ivy.plugin.classpath" />
+			<path refid="lib.classpath" />
 			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 		</path>
@@ -302,7 +302,7 @@
 
 	<target name="build-wsdd" depends="compile">
 		<path id="wsdd.classpath">
-			<path refid="ivy.lib.classpath" />
+			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
 			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
 			<pathelement location="docroot/WEB-INF/classes" />

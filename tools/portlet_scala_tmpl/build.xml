@@ -55,7 +55,7 @@
 	</target>
 
 	<target name="init-scala">
-		<taskdef classpathref="ivy.lib.classpath" resource="scala/tools/ant/antlib.xml">
+		<taskdef classpathref="lib.classpath" resource="scala/tools/ant/antlib.xml">
 			<classpath>
 				<pathelement location="docroot/WEB-INF/lib/scala-library.jar" />
 			</classpath>
