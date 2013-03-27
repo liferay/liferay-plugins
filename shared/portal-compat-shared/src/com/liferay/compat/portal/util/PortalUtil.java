@@ -68,7 +68,7 @@ public class PortalUtil extends com.liferay.portal.util.PortalUtil {
 			method.setAccessible(true);
 
 			FullNameGenerator fullNameGenerator =
-				(FullNameGenerator)method.invoke(false);
+				(FullNameGenerator)method.invoke(null);
 
 			return fullNameGenerator.getFullName(
 				firstName, middleName, lastName);
