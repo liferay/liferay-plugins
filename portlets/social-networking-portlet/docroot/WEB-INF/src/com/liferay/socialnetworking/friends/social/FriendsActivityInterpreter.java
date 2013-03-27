@@ -40,18 +40,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathFriendlyURLPublic());
-		sb.append(StringPool.SLASH);
-
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
-		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-
-		return sb.toString();
+		return getUserName(activity.getReceiverUserId(), serviceContext);
 	}
 
 	@Override
