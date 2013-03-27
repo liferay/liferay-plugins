@@ -21,4 +21,6 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String SUMMARY = "1_WAR_socialnetworkingportlet";
 
+	public static final String WALL = "3_WAR_socialnetworkingportlet";
+
 }

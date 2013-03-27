@@ -16,8 +16,6 @@ package com.liferay.socialnetworking.friends.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
-import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
