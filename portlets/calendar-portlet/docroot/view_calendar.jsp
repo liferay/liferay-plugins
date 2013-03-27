@@ -51,7 +51,12 @@ for (long calendarId : calendarIds) {
 Calendar defaultCalendar = null;
 
 if ((userCalendars != null) && (userCalendars.size() > 0)) {
-	defaultCalendar = userCalendars.get(0);
+	for (Calendar calendar : userCalendars) {
+		if (calendar.isDefaultCalendar()) {
+			defaultCalendar = calendar;
+			break;
+		}
+	}
 }
 
 JSONArray groupCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDisplay, groupCalendars);
