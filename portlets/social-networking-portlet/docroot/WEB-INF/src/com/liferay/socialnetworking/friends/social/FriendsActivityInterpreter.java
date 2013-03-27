@@ -14,12 +14,7 @@
 
 package com.liferay.socialnetworking.friends.social;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
@@ -41,18 +36,7 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathFriendlyURLPublic());
-		sb.append(StringPool.SLASH);
-
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
-		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-
-		return sb.toString();
+		return getUserName(activity.getReceiverUserId(), serviceContext);
 	}
 
 	@Override
