@@ -1,0 +1,8 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="test-pacl-portlet" />
+
+	<dependencies>
+		<dependency name="jackson-core-asl" org="org.codehaus.jackson" rev="1.9.11" />
+		<dependency name="jackson-mapper-asl" org="org.codehaus.jackson" rev="1.9.11" />
+	</dependencies>
+</ivy-module>

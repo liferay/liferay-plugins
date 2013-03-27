@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="wsrp-portlet" />
+
+	<dependencies>
+		<dependency name="wss4j" org="org.apache.ws.security" rev="1.5.8" />
+	</dependencies>
+</ivy-module>

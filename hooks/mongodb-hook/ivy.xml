@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="mongodb-hook" />
+
+	<dependencies>
+		<dependency name="mongo-java-driver" org="org.mongodb" rev="2.1" />
+	</dependencies>
+</ivy-module>

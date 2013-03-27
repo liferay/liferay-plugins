@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="sample-groovy-portlet" />
+
+	<dependencies>
+		<dependency name="groovy-all" org="org.codehaus.groovy" rev="1.5.7" />
+	</dependencies>
+</ivy-module>

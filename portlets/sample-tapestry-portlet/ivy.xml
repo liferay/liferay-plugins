@@ -1,0 +1,14 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="sample-tapestry-portlet" />
+
+	<dependencies>
+		<dependency name="hivemind" org="hivemind" rev="1.1" />
+		<dependency name="hivemind-lib" org="hivemind" rev="1.1" />
+		<dependency name="javassist" org="javassist" rev="3.0" />
+		<dependency name="ognl" org="ognl" rev="2.6.7" />
+		<dependency name="tapestry-annotations" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-contrib" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-framework" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-portlet" org="org.apache.tapestry" rev="4.1" />
+	</dependencies>
+</ivy-module>
