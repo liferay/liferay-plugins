@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="ip-geocoder-portlet" />
+
+	<dependencies>
+		<dependency name="geoip" org="org.kohsuke" rev="1.2.8" />
+	</dependencies>
+</ivy-module>

@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="sample-python-portlet" />
+
+	<dependencies>
+		<dependency name="jython" org="org.python" rev="2.2.1" />
+	</dependencies>
+</ivy-module>
