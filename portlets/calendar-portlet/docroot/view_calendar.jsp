@@ -51,9 +51,9 @@ for (long calendarId : calendarIds) {
 Calendar defaultCalendar = null;
 
 if ((userCalendars != null) && (userCalendars.size() > 0)) {
-	for (Calendar calendar : userCalendars) {
-		if (calendar.isDefaultCalendar()) {
-			defaultCalendar = calendar;
+	for (Calendar userCalendar : userCalendars) {
+		if (userCalendar.isDefaultCalendar()) {
+			defaultCalendar = userCalendar;
 
 			break;
 		}
