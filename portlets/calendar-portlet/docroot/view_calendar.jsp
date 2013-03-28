@@ -54,6 +54,7 @@ if ((userCalendars != null) && (userCalendars.size() > 0)) {
 	for (Calendar calendar : userCalendars) {
 		if (calendar.isDefaultCalendar()) {
 			defaultCalendar = calendar;
+
 			break;
 		}
 	}
