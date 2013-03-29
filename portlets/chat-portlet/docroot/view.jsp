@@ -34,8 +34,10 @@
 	Status status = StatusLocalServiceUtil.getUserStatus(themeDisplay.getUserId());
 
 	boolean online = status.getOnline();
-	String openPanelId = status.getActivePanelId();		// after BE changes, remove
-	// String openPanelId = status.getOpenPanelId();	// after BE changes, uncomment
+
+	JSONObject activePanelIdsJSONObject = JSONFactoryUtil.createJSONObject(status.getActivePanelIds());
+
+	String openPanelId = activePanelIdsJSONObject.getString("open");
 
 	String statusMessage = HtmlUtil.escape(status.getMessage());
 	boolean playSound = status.getPlaySound();
@@ -143,7 +145,7 @@
 			</div>
 		</div>
 
-		<input id="openPanelId" type="hidden" value="<%= openPanelId %>" />
+		<input id="activePanelIds" type="hidden" value="<%= status.getActivePanelIds() %>" />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
 
 		<div class="chat-extensions aui-helper-hidden">
