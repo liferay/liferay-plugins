@@ -49,6 +49,10 @@
 		<finder name="KaleoDefinitionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionId" />
 		</finder>
+		<finder name="KCN_KCPK" return-type="Collection">
+			<finder-column name="kaleoClassName" />
+			<finder-column name="kaleoClassPK" />
+		</finder>
 		<finder name="KCN_KCPK_ET" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
@@ -435,6 +439,10 @@
 		</finder>
 		<finder name="KaleoDefinitionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionId" />
+		</finder>
+		<finder name="KCN_KCPK" return-type="Collection">
+			<finder-column name="kaleoClassName" />
+			<finder-column name="kaleoClassPK" />
 		</finder>
 		<finder name="KCN_KCPK_ET" return-type="Collection">
 			<finder-column name="kaleoClassName" />

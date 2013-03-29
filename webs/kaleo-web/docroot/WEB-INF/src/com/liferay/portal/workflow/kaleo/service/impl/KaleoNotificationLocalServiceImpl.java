@@ -130,6 +130,14 @@ public class KaleoNotificationLocalServiceImpl
 	}
 
 	public List<KaleoNotification> getKaleoNotifications(
+			String kaleoClassName, long kaleoClassPK)
+		throws SystemException {
+
+		return kaleoNotificationPersistence.findByKCN_KCPK(
+			kaleoClassName, kaleoClassPK);
+	}
+
+	public List<KaleoNotification> getKaleoNotifications(
 			String kaleoClassName, long kaleoClassPK, String executionType)
 		throws SystemException {
 

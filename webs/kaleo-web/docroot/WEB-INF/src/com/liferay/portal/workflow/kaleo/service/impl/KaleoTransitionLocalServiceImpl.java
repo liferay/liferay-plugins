@@ -109,6 +109,14 @@ public class KaleoTransitionLocalServiceImpl
 		return kaleoTransitionPersistence.findByKaleoNodeId(kaleoNodeId);
 	}
 
+	public List<KaleoTransition> getKaleoTransitionsByKaleoDefinitionId(
+			long kaleoDefinitionId)
+		throws SystemException {
+
+		return kaleoTransitionPersistence.findByKaleoDefinitionId(
+			kaleoDefinitionId);
+	}
+
 	public int getKaleoTransitionsCount(long kaleoNodeId)
 		throws SystemException {
 
