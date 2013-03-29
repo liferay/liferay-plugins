@@ -128,17 +128,21 @@ public class KaleoTransitionLocalServiceClpInvoker {
 
 		_methodParameterTypes104 = new String[] { "long" };
 
-		_methodName105 = "getKaleoTransition";
+		_methodName105 = "getKaleoDefinitionKaleoTransitions";
 
-		_methodParameterTypes105 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes105 = new String[] { "long" };
 
-		_methodName106 = "getKaleoTransitions";
+		_methodName106 = "getKaleoTransition";
 
-		_methodParameterTypes106 = new String[] { "long" };
+		_methodParameterTypes106 = new String[] { "long", "java.lang.String" };
 
-		_methodName107 = "getKaleoTransitionsCount";
+		_methodName107 = "getKaleoTransitions";
 
 		_methodParameterTypes107 = new String[] { "long" };
+
+		_methodName108 = "getKaleoTransitionsCount";
+
+		_methodParameterTypes108 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -267,17 +271,22 @@ public class KaleoTransitionLocalServiceClpInvoker {
 
 		if (_methodName105.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes105, parameterTypes)) {
-			return KaleoTransitionLocalServiceUtil.getKaleoTransition(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			return KaleoTransitionLocalServiceUtil.getKaleoDefinitionKaleoTransitions(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName106.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes106, parameterTypes)) {
-			return KaleoTransitionLocalServiceUtil.getKaleoTransitions(((Long)arguments[0]).longValue());
+			return KaleoTransitionLocalServiceUtil.getKaleoTransition(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName107.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
+			return KaleoTransitionLocalServiceUtil.getKaleoTransitions(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName108.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getKaleoTransitionsCount(((Long)arguments[0]).longValue());
 		}
 
@@ -332,4 +341,6 @@ public class KaleoTransitionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes106;
 	private String _methodName107;
 	private String[] _methodParameterTypes107;
+	private String _methodName108;
+	private String[] _methodParameterTypes108;
 }

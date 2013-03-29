@@ -279,6 +279,13 @@ public class KaleoNotificationLocalServiceWrapper
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
+		java.lang.String kaleoClassName, long kaleoClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoNotificationLocalService.getKaleoNotifications(kaleoClassName,
+			kaleoClassPK);
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException {

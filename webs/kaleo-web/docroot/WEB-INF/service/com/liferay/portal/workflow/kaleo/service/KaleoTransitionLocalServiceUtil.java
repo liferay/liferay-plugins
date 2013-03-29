@@ -290,6 +290,12 @@ public class KaleoTransitionLocalServiceUtil {
 		return getService().getDefaultKaleoTransition(kaleoNodeId);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoDefinitionKaleoTransitions(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoDefinitionKaleoTransitions(kaleoDefinitionId);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
 		long kaleoNodeId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,

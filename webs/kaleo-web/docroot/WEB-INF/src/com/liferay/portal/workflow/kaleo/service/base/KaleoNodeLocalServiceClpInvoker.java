@@ -120,6 +120,10 @@ public class KaleoNodeLocalServiceClpInvoker {
 		_methodName103 = "deleteKaleoDefinitionKaleoNodes";
 
 		_methodParameterTypes103 = new String[] { "long" };
+
+		_methodName104 = "getKaleoDefinitionKaleoNodes";
+
+		_methodParameterTypes104 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -238,6 +242,11 @@ public class KaleoNodeLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName104.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes104, parameterTypes)) {
+			return KaleoNodeLocalServiceUtil.getKaleoDefinitionKaleoNodes(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -281,4 +290,6 @@ public class KaleoNodeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes102;
 	private String _methodName103;
 	private String[] _methodParameterTypes103;
+	private String _methodName104;
+	private String[] _methodParameterTypes104;
 }

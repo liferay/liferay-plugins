@@ -124,7 +124,11 @@ public class KaleoActionLocalServiceClpInvoker {
 
 		_methodName104 = "getKaleoActions";
 
-		_methodParameterTypes104 = new String[] {
+		_methodParameterTypes104 = new String[] { "java.lang.String", "long" };
+
+		_methodName105 = "getKaleoActions";
+
+		_methodParameterTypes105 = new String[] {
 				"java.lang.String", "long", "java.lang.String"
 			};
 	}
@@ -251,6 +255,12 @@ public class KaleoActionLocalServiceClpInvoker {
 		if (_methodName104.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes104, parameterTypes)) {
 			return KaleoActionLocalServiceUtil.getKaleoActions((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName105.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes105, parameterTypes)) {
+			return KaleoActionLocalServiceUtil.getKaleoActions((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
@@ -299,4 +309,6 @@ public class KaleoActionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes103;
 	private String _methodName104;
 	private String[] _methodParameterTypes104;
+	private String _methodName105;
+	private String[] _methodParameterTypes105;
 }

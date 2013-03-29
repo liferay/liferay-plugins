@@ -247,4 +247,9 @@ public interface KaleoNodeLocalService extends BaseLocalService,
 
 	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoDefinitionKaleoNodes(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

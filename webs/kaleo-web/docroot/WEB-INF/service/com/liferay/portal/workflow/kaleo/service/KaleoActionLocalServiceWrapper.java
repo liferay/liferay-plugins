@@ -277,6 +277,13 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
+		java.lang.String kaleoClassName, long kaleoClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
+			kaleoClassPK);
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType)
 		throws com.liferay.portal.kernel.exception.SystemException {
