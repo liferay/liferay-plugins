@@ -22,6 +22,30 @@
 
 	<bean id="com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer" class="com.liferay.portal.workflow.kaleo.deployment.DefaultWorkflowDeployer" />
 
+	<!-- Export -->
+
+	<bean id="com.liferay.portal.workflow.kaleo.export.builder.NodeBuilderRegistry" class="com.liferay.portal.workflow.kaleo.export.builder.NodeBuilderRegistry">
+		<property name="nodeBuilders">
+			<util:map>
+				<entry key="CONDITION">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.ConditionNodeBuilder" />
+				</entry>
+				<entry key="FORK">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.ForkNodeBuilder" />
+				</entry>
+				<entry key="JOIN">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.JoinNodeBuilder" />
+				</entry>
+				<entry key="STATE">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.StateNodeBuilder" />
+				</entry>
+				<entry key="TASK">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.TaskNodeBuilder" />
+				</entry>
+			</util:map>
+		</property>
+	</bean>
+
 	<!-- Manager -->
 
 	<bean id="com.liferay.portal.kernel.workflow.WorkflowDefinitionManager" class="com.liferay.portal.workflow.kaleo.WorkflowDefinitionManagerImpl">

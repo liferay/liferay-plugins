@@ -12,27 +12,24 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.export.builder;
 
-import java.util.Set;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.workflow.kaleo.definition.Node;
+import com.liferay.portal.workflow.kaleo.definition.State;
+import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 
 /**
  * @author Michael C. Han
  */
-public class Task extends Node {
+public class StateNodeBuilder extends BaseNodeBuilder implements NodeBuilder {
 
-	public Task(String name, String description) {
-		super(NodeType.TASK, name, description);
+	protected Node createNode(KaleoNode kaleoNode) throws SystemException {
+		State state = new State(
+			kaleoNode.getName(), kaleoNode.getDescription(),
+			kaleoNode.isInitial());
+
+		return state;
 	}
-
-	public Set<Assignment> getAssignments() {
-		return _assignments;
-	}
-
-	public void setAssignments(Set<Assignment> assignments) {
-		_assignments = assignments;
-	}
-
-	private Set<Assignment> _assignments;
 
 }
