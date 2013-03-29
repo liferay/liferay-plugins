@@ -14,10 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.node;
 
-import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.workflow.kaleo.definition.NodeType;
+import com.liferay.portal.workflow.kaleo.util.NodeTypeDependentObjectRegistry;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,28 +23,15 @@ import java.util.Map;
  */
 public class NodeExecutorFactory {
 
-	public static NodeExecutor getNodeExecutor(NodeType nodeType)
-		throws WorkflowException {
-
-		NodeExecutor nodeExecutor = _nodeExecutors.get(nodeType);
-
-		if (nodeExecutor == null) {
-			throw new WorkflowException("Invalid node type " + nodeType);
-		}
-
-		return nodeExecutor;
+	public static NodeExecutor getNodeExecutor(String nodeTypeString) {
+		return _nodeExecutors.getNodeTypeDependentObjects(nodeTypeString);
 	}
 
-	public void setNodeExectors(Map<String, NodeExecutor> nodeExecutors) {
-		_nodeExecutors = new HashMap<NodeType, NodeExecutor>();
-
-		for (Map.Entry<String, NodeExecutor> entry : nodeExecutors.entrySet()) {
-			NodeType nodeType = NodeType.valueOf(entry.getKey());
-
-			_nodeExecutors.put(nodeType, entry.getValue());
-		}
+	public void setNodeExectors(Map<String, NodeExecutor> nodeExectors) {
+		_nodeExecutors.setNodeTypeDependentObjects(nodeExectors);
 	}
 
-	private static Map<NodeType, NodeExecutor> _nodeExecutors;
+	private static NodeTypeDependentObjectRegistry<NodeExecutor>
+		_nodeExecutors = new NodeTypeDependentObjectRegistry<NodeExecutor>();
 
 }

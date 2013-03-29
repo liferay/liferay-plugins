@@ -244,48 +244,23 @@
 
 	<bean id="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry" class="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry">
 		<property name="nodeValidators">
-			<map>
-				<entry>
-					<key>
-						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
-							<constructor-arg value="CONDITION" />
-						</bean>
-					</key>
+			<util:map>
+				<entry key="CONDITION">
 					<bean class="com.liferay.portal.workflow.kaleo.parser.ConditionNodeValidator" />
 				</entry>
-				<entry>
-					<key>
-						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
-							<constructor-arg value="FORK" />
-						</bean>
-					</key>
+				<entry key="FORK">
 					<bean class="com.liferay.portal.workflow.kaleo.parser.ForkNodeValidator" />
 				</entry>
-				<entry>
-					<key>
-						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
-							<constructor-arg value="JOIN" />
-						</bean>
-					</key>
+				<entry key="JOIN">
 					<bean class="com.liferay.portal.workflow.kaleo.parser.JoinNodeValidator" />
 				</entry>
-				<entry>
-					<key>
-						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
-							<constructor-arg value="STATE" />
-						</bean>
-					</key>
+				<entry key="STATE">
 					<bean class="com.liferay.portal.workflow.kaleo.parser.StateNodeValidator" />
 				</entry>
-				<entry>
-					<key>
-						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
-							<constructor-arg value="TASK" />
-						</bean>
-					</key>
+				<entry key="TASK">
 					<bean class="com.liferay.portal.workflow.kaleo.parser.TaskNodeValidator" />
 				</entry>
-			</map>
+			</util:map>
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator">

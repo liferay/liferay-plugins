@@ -32,7 +32,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowInstanceAdapter;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
-import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
@@ -136,7 +135,7 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstanceToken.getCurrentKaleoNode();
 
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
-				NodeType.valueOf(currentKaleoNode.getType()));
+				currentKaleoNode.getType());
 
 			nodeExecutor.executeTimer(currentKaleoNode, executionContext);
 
