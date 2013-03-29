@@ -14,9 +14,14 @@
 
 package com.liferay.portal.workflow.kaleo;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
+import com.liferay.portal.workflow.kaleo.export.DefinitionExporterUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
+import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 
 /**
  * @author Michael C. Han
@@ -25,15 +30,38 @@ public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {
 
 	public WorkflowDefinitionAdapter(KaleoDefinition kaleoDefinition) {
 		setActive(kaleoDefinition.getActive());
-		setContent(kaleoDefinition.getContent());
 		setName(kaleoDefinition.getName());
 		setTitle(kaleoDefinition.getTitle());
 		setVersion(kaleoDefinition.getVersion());
+
+		String content = kaleoDefinition.getContent();
+
+		if (Validator.isNull(content)) {
+			try {
+				content = DefinitionExporterUtil.export(
+					kaleoDefinition.getKaleoDefinitionId());
+
+				kaleoDefinition.setContent(content);
+
+				KaleoDefinitionLocalServiceUtil.updateKaleoDefinition(
+					kaleoDefinition);
+			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn("Unable to export definition to string", e);
+				}
+			}
+		}
+
+		setContent(content);
 	}
 
 	@Override
 	public String getTitle(String languageId) {
 		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		WorkflowDefinitionAdapter.class);
 
 }
