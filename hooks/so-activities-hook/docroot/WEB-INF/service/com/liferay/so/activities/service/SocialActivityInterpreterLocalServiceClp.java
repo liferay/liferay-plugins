@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -50,7 +50,7 @@ public class SocialActivityInterpreterLocalServiceClp
 		_methodParameterTypes5 = new String[] {
 				"java.lang.String",
 				"com.liferay.so.activities.model.SocialActivity",
-				"com.liferay.compat.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName6 = "interpret";
@@ -58,7 +58,7 @@ public class SocialActivityInterpreterLocalServiceClp
 		_methodParameterTypes6 = new String[] {
 				"java.lang.String",
 				"com.liferay.so.activities.model.SocialActivitySet",
-				"com.liferay.compat.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 	}
 
@@ -152,7 +152,7 @@ public class SocialActivityInterpreterLocalServiceClp
 	public com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
 		com.liferay.so.activities.model.SocialActivity activity,
-		com.liferay.compat.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -194,7 +194,7 @@ public class SocialActivityInterpreterLocalServiceClp
 	public com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
 		com.liferay.so.activities.model.SocialActivitySet activitySet,
-		com.liferay.compat.portal.service.ServiceContext serviceContext) {
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		Object returnObj = null;
 
 		try {

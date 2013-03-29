@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -48,7 +48,7 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 		_methodParameterTypes32 = new String[] {
 				"java.lang.String",
 				"com.liferay.so.activities.model.SocialActivity",
-				"com.liferay.compat.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName33 = "interpret";
@@ -56,7 +56,7 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 		_methodParameterTypes33 = new String[] {
 				"java.lang.String",
 				"com.liferay.so.activities.model.SocialActivitySet",
-				"com.liferay.compat.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 	}
 
@@ -92,14 +92,14 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return SocialActivityInterpreterLocalServiceUtil.interpret((java.lang.String)arguments[0],
 				(com.liferay.so.activities.model.SocialActivity)arguments[1],
-				(com.liferay.compat.portal.service.ServiceContext)arguments[2]);
+				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 
 		if (_methodName33.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			return SocialActivityInterpreterLocalServiceUtil.interpret((java.lang.String)arguments[0],
 				(com.liferay.so.activities.model.SocialActivitySet)arguments[1],
-				(com.liferay.compat.portal.service.ServiceContext)arguments[2]);
+				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 
 		throw new UnsupportedOperationException();

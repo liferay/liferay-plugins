@@ -204,12 +204,8 @@ public class MessageIndexer extends BaseIndexer {
 
 				Property statusProperty = PropertyFactoryUtil.forName("status");
 
-				Integer[] statuses = {
-					WorkflowConstants.STATUS_APPROVED,
-					WorkflowConstants.STATUS_IN_TRASH
-				};
-
-				dynamicQuery.add(statusProperty.in(statuses));
+				dynamicQuery.add(
+					statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 			}
 
 			@Override

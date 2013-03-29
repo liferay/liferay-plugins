@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -100,7 +100,7 @@ public class SocialActivityInterpreterLocalServiceUtil {
 	public static com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
 		com.liferay.so.activities.model.SocialActivity activity,
-		com.liferay.compat.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().interpret(selector, activity, serviceContext);
@@ -109,7 +109,7 @@ public class SocialActivityInterpreterLocalServiceUtil {
 	public static com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
 		com.liferay.so.activities.model.SocialActivitySet activitySet,
-		com.liferay.compat.portal.service.ServiceContext serviceContext) {
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		return getService().interpret(selector, activitySet, serviceContext);
 	}
 
