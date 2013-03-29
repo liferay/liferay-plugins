@@ -1,0 +1,8 @@
+*.css
+*.properties
+*.xml
+*.xsl
+
+/*/
+
+!/cache/
