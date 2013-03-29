@@ -647,11 +647,12 @@ AUI().use(
 			init: function() {
 				var instance = this;
 
-				instance._notificationTimeout = 8000;
 				instance._initialRequest = true;
+				instance._minimizedPanelIds = {};
+				instance._notificationTimeout = 8000;
 
 				instance._chatContainer = A.one('#chatBar');
-				instance._activePanelId = A.one('#activePanelId').val() || '';
+				instance._openPanelId = A.one('#openPanelId').val() || '';
 				instance._portletId = A.one('#chatPortletId').val();
 
 				instance._myStatus = instance._chatContainer.one('.status-message');
@@ -679,18 +680,6 @@ AUI().use(
 
 				instance._createBuddyListPanel();
 				instance._createSettingsPanel();
-			},
-
-			close: function(panelName) {
-				var instance = this;
-
-				if ((panelName != 'buddylist') && (panelName != 'settings')) {
-					var panel = instance._panels[panelName];
-
-					if (panel) {
-						panel.close();
-					}
-				}
 			},
 
 			getContainer: function() {
@@ -981,7 +970,9 @@ AUI().use(
 				var instance = this;
 
 				return {
-					activePanelId: instance._activePanelId,
+					// activePanelIds: A.Object.keys(instance._minimizedPanelIds),	// after BE changes, uncomment
+					activePanelId: instance._openPanelId,							// after BE changes, remove
+					// openPanelId: instance._openPanelId,							// after BE changes, uncomment
 					online: instance._online,
 					statusMessage: instance._statusMessage,
 					playSound: instance._playSound
@@ -1044,14 +1035,16 @@ AUI().use(
 					delete instance._chatSessions[userId];
 				}
 
-				instance._activePanelId = '';
+				delete Liferay.Chat.Manager._minimizedPanelIds[userId];
+
+				instance._openPanelId = '';
 				instance._saveSettings();
 			},
 
 			_onPanelHide: function(event) {
 				var instance = this;
 
-				instance._activePanelId = '';
+				instance._openPanelId = '';
 				instance._saveSettings();
 			},
 
@@ -1070,7 +1063,13 @@ AUI().use(
 					panel._chatInput.focus();
 				}
 
-				instance._activePanelId = panel._panelId;
+				var userId = panel._panelId;
+
+				if (A.Lang.toInt(userId)) {
+					Liferay.Chat.Manager._minimizedPanelIds[userId] = true;
+				}
+
+				instance._openPanelId = panel._panelId;
 				instance._saveSettings();
 			},
 
@@ -1086,11 +1085,11 @@ AUI().use(
 				if (initialRequest) {
 					instance._loadCache(entries);
 
-					if (instance._activePanelId.length) {
-						var activePanelId = parseInt(instance._activePanelId, 10);
+					if (instance._openPanelId.length) {
+						var openPanelId = parseInt(instance._openPanelId, 10);
 
-						if (!isNaN(activePanelId)) {
-							instance._createChatFromUser(instance._activePanelId);
+						if (!isNaN(openPanelId)) {
+							instance._createChatFromUser(instance._openPanelId);
 						}
 					}
 
@@ -1280,7 +1279,7 @@ AUI().use(
 					);
 				}
 
-				instance._activePanelId = '';
+				instance._openPanelId = '';
 
 				settings.hide();
 				instance._saveSettings();

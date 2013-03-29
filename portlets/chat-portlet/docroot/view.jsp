@@ -34,7 +34,9 @@
 	Status status = StatusLocalServiceUtil.getUserStatus(themeDisplay.getUserId());
 
 	boolean online = status.getOnline();
-	String activePanelId = status.getActivePanelId();
+	String openPanelId = status.getActivePanelId();		// after BE changes, remove
+	// String openPanelId = status.getOpenPanelId();	// after BE changes, uncomment
+
 	String statusMessage = HtmlUtil.escape(status.getMessage());
 	boolean playSound = status.getPlaySound();
 
@@ -57,7 +59,7 @@
 
 			<div class="chat-tabs-container">
 				<ul class="chat-tabs">
-					<li class="buddy-list loading <%= activePanelId.equals("buddylist") ? "selected" : "" %>">
+					<li class="buddy-list loading <%= openPanelId.equals("buddylist") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="buddylist">
 							<span class="trigger-name"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></span>
 						</div>
@@ -103,7 +105,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="chat-settings <%= activePanelId.equals("settings") ? "selected" : "" %>">
+					<li class="chat-settings <%= openPanelId.equals("settings") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="settings">
 							<span class="trigger-name"><liferay-ui:message key="settings" /></span>
 						</div>
@@ -141,7 +143,7 @@
 			</div>
 		</div>
 
-		<input id="activePanelId" type="hidden" value="<%= activePanelId %>" />
+		<input id="openPanelId" type="hidden" value="<%= openPanelId %>" />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
 
 		<div class="chat-extensions aui-helper-hidden">
