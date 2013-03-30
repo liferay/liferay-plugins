@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			status.setAwake((awake == 1) ? true : false);
 		}
 
-		if (activePanelIds != null) {
+		if (Validator.isNotNull(activePanelIds)) {
 			try {
 				JSONObject activePanelIdsJSONObject =
 					JSONFactoryUtil.createJSONObject(activePanelIds);

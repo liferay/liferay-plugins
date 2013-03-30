@@ -35,9 +35,15 @@
 
 	boolean online = status.getOnline();
 
-	JSONObject activePanelIdsJSONObject = JSONFactoryUtil.createJSONObject(status.getActivePanelIds());
+	JSONObject activePanelIdsJSONObject = null;
 
-	String openPanelId = activePanelIdsJSONObject.getString("open");
+	String openPanelId = "";
+
+	if (Validator.isNotNull(status.getActivePanelIds())) {
+		activePanelIdsJSONObject = JSONFactoryUtil.createJSONObject(status.getActivePanelIds());
+
+		openPanelId = activePanelIdsJSONObject.getString("open");
+	}
 
 	String statusMessage = HtmlUtil.escape(status.getMessage());
 	boolean playSound = status.getPlaySound();
@@ -145,7 +151,7 @@
 			</div>
 		</div>
 
-		<input id="activePanelIds" type="hidden" value="<%= status.getActivePanelIds() %>" />
+		<input id="activePanelIds" type="hidden" value='<%= status.getActivePanelIds() %>' />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
 
 		<div class="chat-extensions aui-helper-hidden">

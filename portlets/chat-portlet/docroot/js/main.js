@@ -648,11 +648,9 @@ AUI().use(
 				var instance = this;
 
 				instance._initialRequest = true;
-				instance._minimizedPanelIds = {};
 				instance._notificationTimeout = 8000;
 
 				instance._chatContainer = A.one('#chatBar');
-				instance._openPanelId = A.one('#openPanelId').val() || '';
 				instance._portletId = A.one('#chatPortletId').val();
 
 				instance._myStatus = instance._chatContainer.one('.status-message');
@@ -678,6 +676,7 @@ AUI().use(
 					}
 				);
 
+				instance._initializeActivePanels();
 				instance._createBuddyListPanel();
 				instance._createSettingsPanel();
 			},
@@ -919,6 +918,9 @@ AUI().use(
 				if (options.open) {
 					chat.show();
 				}
+				else {
+					chat.setAsRead();
+				}
 
 				return chat;
 			},
@@ -969,14 +971,37 @@ AUI().use(
 			_getSettings: function() {
 				var instance = this;
 
+				var activePanelIds = {
+					open: instance._openPanelId,
+					minimized: A.Object.keys(instance._minimizedPanelIds)
+				};
+
 				return {
-					// activePanelIds: A.Object.keys(instance._minimizedPanelIds),	// after BE changes, uncomment
-					activePanelId: instance._openPanelId,							// after BE changes, remove
-					// openPanelId: instance._openPanelId,							// after BE changes, uncomment
+					activePanelIds: A.JSON.stringify(activePanelIds),
 					online: instance._online,
 					statusMessage: instance._statusMessage,
 					playSound: instance._playSound
 				};
+			},
+
+			_initializeActivePanels: function() {
+				var instance = this;
+
+				var activePanelIds = A.one('#activePanelIds').val() || '';
+
+				try {
+					activePanelIds = A.JSON.parse(activePanelIds);
+				}
+				catch (e) {
+					activePanelIds = {
+						open: null,
+						minimized: []
+					};
+				}
+
+				instance._activePanelIds = activePanelIds;
+
+				instance._openPanelId = activePanelIds.open || '';
 			},
 
 			_loadCache: function(entries) {
@@ -1035,14 +1060,18 @@ AUI().use(
 					delete instance._chatSessions[userId];
 				}
 
-				delete Liferay.Chat.Manager._minimizedPanelIds[userId];
-
 				instance._openPanelId = '';
 				instance._saveSettings();
 			},
 
 			_onPanelHide: function(event) {
 				var instance = this;
+
+				var userId = event.target._panelId;
+
+				if (A.Lang.toInt(userId)) {
+					Liferay.Chat.Manager._minimizedPanelIds[userId] = true;
+				}
 
 				instance._openPanelId = '';
 				instance._saveSettings();
@@ -1065,9 +1094,7 @@ AUI().use(
 
 				var userId = panel._panelId;
 
-				if (A.Lang.toInt(userId)) {
-					Liferay.Chat.Manager._minimizedPanelIds[userId] = true;
-				}
+				delete Liferay.Chat.Manager._minimizedPanelIds[userId];
 
 				instance._openPanelId = panel._panelId;
 				instance._saveSettings();
@@ -1093,10 +1120,41 @@ AUI().use(
 						}
 					}
 
+					instance._restoreMinimizedPanels();
+
 					instance._chatContainer.one('.chat-tabs > .buddy-list').removeClass('loading');
 				}
 
 				instance._updateConversations(entries);
+			},
+
+			_restoreMinimizedPanels: function() {
+				var instance = this;
+
+				var buddies = instance._buddies;
+
+				var minimized = instance._activePanelIds.minimized;
+
+				A.Array.each(
+					minimized,
+					function(item, index, collection) {
+						var buddy = buddies[item];
+
+						if (buddy) {
+							instance._createChatSession(
+								{
+									fullName: buddy.fullName,
+									open: false,
+									portraitId: buddy.portraitId,
+									statusMessage: buddy.statusMessage,
+									userId: item
+								}
+							);
+						}
+					}
+				);
+
+				A.mix(instance._minimizedPanelIds, A.Array.hash(minimized));
 			},
 
 			_saveSettings: function() {
@@ -1301,6 +1359,7 @@ AUI().use(
 			_chatSessions: {},
 			_entries: [],
 			_panels: {},
+			_minimizedPanelIds: {},
 			_settings: {},
 			_styleSheet: null
 		};
