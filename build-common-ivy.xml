@@ -28,23 +28,18 @@
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<basename file="${project.dir}" property="projectdir.name" />
+	<basename file="${project.dir}" property="project.dir.name" />
 
-	<for list="${project.dir},${basedir}" param="ivy.xml.dir">
+	<for list="${basedir},${project.dir}" param="ivy.xml.dir">
 		<sequential>
-			<var name="ivy.md5.dir" unset="true" />
-			<var name="ivy.xml.updated" unset="true" />
-			<var name="tstamp.value" unset="true" />
-
 			<pathconvert property="ivy.md5.dir">
-				<map from="${project.dir}" to="${ivy.home}/${projectdir.name}" />
+				<map from="${project.dir}" to="${ivy.home}/${project.dir.name}" />
 
 				<path location="@{ivy.xml.dir}"/>
 			</pathconvert>
 
 			<if>
 				<available file="@{ivy.xml.dir}/ivy.xml" />
-
 				<then>
 					<checksum file="@{ivy.xml.dir}/ivy.xml" todir="${ivy.md5.dir}" />
 
@@ -52,17 +47,19 @@
 						<format offset="-1" pattern="yyyyMMddkkmmssSSS" property="tstamp.value" unit="second" />
 					</tstamp>
 
-					<condition property="ivy.xml.updated">
+					<condition property="ivy.xml.modified">
 						<islastmodified datetime="${tstamp.value}" mode="after" pattern="yyyyMMddkkmmssSSS">
 							<file file="${ivy.md5.dir}/ivy.xml.MD5" />
 						</islastmodified>
 					</condition>
+
+					<var name="ivy.md5.dir" unset="true" />
+					<var name="tstamp.value" unset="true" />
 				</then>
 			</if>
 
 			<if>
-				<istrue value="${ivy.xml.updated}" />
-
+				<istrue value="${ivy.xml.modified}" />
 				<then>
 					<ivy:settings file="${project.dir}/ivy-settings.xml" />
 
@@ -73,7 +70,6 @@
 
 					<if>
 						<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
-
 						<then>
 							<ivy:retrieve
 								log="download-only"
@@ -91,6 +87,8 @@
 					</if>
 				</then>
 			</if>
+
+			<var name="ivy.xml.modified" unset="true" />
 		</sequential>
 	</for>
 </project>
