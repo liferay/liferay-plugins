@@ -25,10 +25,9 @@ long date = ParamUtil.getLong(request, "date", nowJCalendar.getTimeInMillis());
 
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
-long calendarBookingId = BeanParamUtil.getLong(calendarBooking, request, "calendarBookingId");
+long calendarBookingId = BeanPropertiesUtil.getLong(calendarBooking, "calendarBookingId");
 
 long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
-String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
 
 long startTime = BeanParamUtil.getLong(calendarBooking, request, "startTime", nowJCalendar.getTimeInMillis());
 
@@ -94,12 +93,13 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 <aui:form action="<%= updateCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
 	<aui:input name="mvcPath" type="hidden" value="/edit_calendar_booking.jsp" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
 	<aui:input name="childCalendarIds" type="hidden" />
 	<aui:input name="oldStartTime" type="hidden" value="<%= startTimeJCalendar.getTimeInMillis() %>" />
 	<aui:input name="allFollowing" type="hidden" />
 	<aui:input name="updateCalendarBookingInstance" type="hidden" />
+
+	<liferay-ui:error exception="<%= CalendarBookingDurationException.class %>" message="please-enter-a-start-date-that-comes-before-the-end-date" />
 
 	<liferay-ui:asset-categories-error />
 
@@ -333,8 +333,12 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
 
-	<c:if test="<%= calendarBooking == null %>">
-		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = '<%= HtmlUtil.escapeJS(title) %>';
+	<%
+	String titleCurrentValue = ParamUtil.getString(request, "titleCurrentValue");
+	%>
+
+	<c:if test="<%= Validator.isNotNull(titleCurrentValue) %>">
+		document.<portlet:namespace />fm.<portlet:namespace />title_<%= themeDisplay.getLanguageId() %>.value = '<%= HtmlUtil.escapeJS(titleCurrentValue) %>';
 	</c:if>
 </aui:script>
 

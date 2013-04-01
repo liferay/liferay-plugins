@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.portlet;
 
+import com.liferay.calendar.CalendarBookingDurationException;
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.CalendarResourceCodeException;
 import com.liferay.calendar.CalendarResourceNameException;
@@ -57,7 +58,6 @@ import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -256,18 +256,17 @@ public class CalendarPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarBooking.class.getName(), actionRequest);
 
-		if (calendarBookingId <= 0) {
-			CalendarBooking calendarBooking =
-				CalendarBookingServiceUtil.addCalendarBooking(
-					calendarId, childCalendarIds,
-					CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-					titleMap, descriptionMap, location,
-					startTimeJCalendar.getTimeInMillis(),
-					endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
-					reminders[0], remindersType[0], reminders[1],
-					remindersType[1], serviceContext);
+		CalendarBooking calendarBooking = null;
 
-			calendarBookingId = calendarBooking.getCalendarBookingId();
+		if (calendarBookingId <= 0) {
+			calendarBooking = CalendarBookingServiceUtil.addCalendarBooking(
+				calendarId, childCalendarIds,
+				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+				titleMap, descriptionMap, location,
+				startTimeJCalendar.getTimeInMillis(),
+				endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
+				reminders[0], remindersType[0], reminders[1], remindersType[1],
+				serviceContext);
 		}
 		else {
 			boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
@@ -277,18 +276,18 @@ public class CalendarPortlet extends MVCPortlet {
 				boolean allFollowing = ParamUtil.getBoolean(
 					actionRequest, "allFollowing");
 
-				CalendarBookingServiceUtil.updateCalendarBookingInstance(
-					calendarBookingId, calendarId, childCalendarIds, titleMap,
-					descriptionMap, location,
-					startTimeJCalendar.getTimeInMillis(),
-					endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
-					allFollowing, reminders[0], remindersType[0], reminders[1],
-					remindersType[1], status, serviceContext);
+				calendarBooking =
+					CalendarBookingServiceUtil.updateCalendarBookingInstance(
+						calendarBookingId, calendarId, childCalendarIds,
+						titleMap, descriptionMap, location,
+						startTimeJCalendar.getTimeInMillis(),
+						endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
+						allFollowing, reminders[0], remindersType[0],
+						reminders[1], remindersType[1], status, serviceContext);
 			}
 			else {
-				CalendarBooking calendarBooking =
-					CalendarBookingServiceUtil.getCalendarBooking(
-						calendarBookingId);
+				calendarBooking = CalendarBookingServiceUtil.getCalendarBooking(
+					calendarBookingId);
 
 				long duration =
 					(endTimeJCalendar.getTimeInMillis() -
@@ -306,23 +305,7 @@ public class CalendarPortlet extends MVCPortlet {
 			}
 		}
 
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-		redirect = HttpUtil.setParameter(
-			redirect, actionResponse.getNamespace() + "calendarBookingId",
-			calendarBookingId);
-		redirect = HttpUtil.setParameter(
-			redirect, actionResponse.getNamespace() + "calendarId", calendarId);
-		redirect = HttpUtil.removeParameter(
-			redirect, actionResponse.getNamespace() + "startTime");
-		redirect = HttpUtil.removeParameter(
-			redirect, actionResponse.getNamespace() + "endTime");
-		redirect = HttpUtil.removeParameter(
-			redirect, actionResponse.getNamespace() + "allDay");
-		redirect = HttpUtil.removeParameter(
-			redirect, actionResponse.getNamespace() + "repeat");
-
-		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
+		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
 	}
 
 	public void updateCalendarResource(
@@ -414,6 +397,10 @@ public class CalendarPortlet extends MVCPortlet {
 
 	protected void getCalendarBooking(PortletRequest portletRequest)
 		throws Exception {
+
+		if (portletRequest.getAttribute(WebKeys.CALENDAR_BOOKING) != null) {
+			return;
+		}
 
 		long calendarBookingId = ParamUtil.getLong(
 			portletRequest, "calendarBookingId");
@@ -591,7 +578,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof CalendarNameException ||
+		if (cause instanceof CalendarBookingDurationException ||
+			cause instanceof CalendarNameException ||
 			cause instanceof CalendarResourceCodeException ||
 			cause instanceof CalendarResourceNameException ||
 			cause instanceof DuplicateCalendarResourceException ||
