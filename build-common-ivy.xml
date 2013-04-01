@@ -32,63 +32,53 @@
 
 	<for list="${basedir},${project.dir}" param="ivy.xml.dir">
 		<sequential>
-			<pathconvert property="ivy.md5.dir">
-				<map from="${project.dir}" to="${ivy.home}/${project.dir.name}" />
-
-				<path location="@{ivy.xml.dir}"/>
-			</pathconvert>
-
 			<if>
 				<available file="@{ivy.xml.dir}/ivy.xml" />
 				<then>
-					<checksum file="@{ivy.xml.dir}/ivy.xml" todir="${ivy.md5.dir}" />
+					<pathconvert property="ivy.md5.dir">
+						<map from="${project.dir}" to="${ivy.home}/${project.dir.name}" />
 
-					<tstamp>
-						<format offset="-1" pattern="yyyyMMddkkmmssSSS" property="tstamp.value" unit="second" />
-					</tstamp>
+						<path location="@{ivy.xml.dir}"/>
+					</pathconvert>
 
-					<condition property="ivy.xml.modified">
-						<islastmodified datetime="${tstamp.value}" mode="after" pattern="yyyyMMddkkmmssSSS">
-							<file file="${ivy.md5.dir}/ivy.xml.MD5" />
-						</islastmodified>
-					</condition>
-
-					<var name="ivy.md5.dir" unset="true" />
-					<var name="tstamp.value" unset="true" />
-				</then>
-			</if>
-
-			<if>
-				<istrue value="${ivy.xml.modified}" />
-				<then>
-					<ivy:settings file="${project.dir}/ivy-settings.xml" />
-
-					<ivy:resolve
-						file="@{ivy.xml.dir}/ivy.xml"
-						log="download-only"
-					/>
+					<checksum file="@{ivy.xml.dir}/ivy.xml" todir="${ivy.md5.dir}" verifyproperty="ivy.xml.unmodified" />
 
 					<if>
-						<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
+						<isfalse value="${ivy.xml.unmodified}" />
 						<then>
-							<ivy:retrieve
+							<ivy:settings file="${project.dir}/ivy-settings.xml" />
+
+							<ivy:resolve
+								file="@{ivy.xml.dir}/ivy.xml"
 								log="download-only"
-								pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
-								type="jar"
 							/>
+
+							<if>
+								<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
+								<then>
+									<ivy:retrieve
+										log="download-only"
+										pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
+										type="jar"
+									/>
+								</then>
+								<else>
+									<ivy:retrieve
+										log="download-only"
+										pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
+										type="jar"
+									/>
+								</else>
+							</if>
+
+							<checksum file="@{ivy.xml.dir}/ivy.xml" todir="${ivy.md5.dir}" />
 						</then>
-						<else>
-							<ivy:retrieve
-								log="download-only"
-								pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
-								type="jar"
-							/>
-						</else>
 					</if>
+
+					<var name="ivy.md5.dir" unset="true" />
+					<var name="ivy.xml.unmodified" unset="true" />
 				</then>
 			</if>
-
-			<var name="ivy.xml.modified" unset="true" />
 		</sequential>
 	</for>
 </project>
