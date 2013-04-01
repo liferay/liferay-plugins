@@ -39,7 +39,7 @@ long[] calendarIds = StringUtil.split(SessionClicks.get(request, "otherCalendars
 for (long calendarId : calendarIds) {
 	Calendar calendar = CalendarLocalServiceUtil.fetchCalendar(calendarId);
 
-	if ((calendar != null) && (CalendarPermission.contains(permissionChecker, calendar, ActionKeys.VIEW))) {
+	if ((calendar != null) && CalendarPermission.contains(permissionChecker, calendar, ActionKeys.VIEW)) {
 		CalendarResource calendarResource = calendar.getCalendarResource();
 
 		if (calendarResource.isActive()) {
