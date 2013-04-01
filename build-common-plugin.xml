@@ -588,28 +588,15 @@
 		<if>
 			<available file="docroot/WEB-INF/src/META-INF/portal-log4j.xml" />
 			<then>
-				<tstamp>
-					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-				</tstamp>
-
-				<ivy:retrieve
-					conf="log4j"
-					log="quiet"
-					pattern="${tstamp.value}/[artifact].[ext]"
-					type="jar"
-				/>
-
 				<unzip
 					dest="docroot/WEB-INF/src/META-INF"
-					src="${tstamp.value}/log4j.jar"
+					src="${project.dir}/lib/log4j.jar"
 				>
 					<patternset
 						includes="**/log4j.dtd"
 					/>
 					<flattenmapper />
 				</unzip>
-
-				<delete dir="${tstamp.value}" />
 			</then>
 		</if>
 
