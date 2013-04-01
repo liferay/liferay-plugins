@@ -57,23 +57,18 @@
 		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
 
 			<%
-			String requestMessage = "Se cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
 			PortletURL addAsFriendURL = renderResponse.createActionURL();
 
 			addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
 			addAsFriendURL.setParameter("redirect", currentURL);
-			addAsFriendURL.setParameter("requestMessage", requestMessage);
 			%>
 
-			<p class="add-as-friend">
-				<liferay-ui:icon
-					image="join"
-					label="<%= true %>"
-					message="add-as-friend"
-					url="<%= addAsFriendURL.toString() %>"
-				/>
-			</p>
+			<aui:form action="<%= addAsFriendURL.toString() %>" method="post" name="fm" >
+				<p class="add-as-friend">
+					<aui:input label="send-a-massage" name="requestMessage" type="textarea" />
+					<aui:button type="submit" value="add-as-friend" />
+				</p>
+			</aui:form>
 		</c:when>
 	</c:choose>
 
@@ -222,11 +217,13 @@
 		editSummaryURL.setParameter("mvcPath", "/summary/edit_summary.jsp");
 		%>
 
-		<liferay-ui:icon
-			image="edit"
-			label="<%= true %>"
-			message="edit-profile"
-			url="<%= editSummaryURL.toString() %>"
-		/>
+		<p class="edit-profile">
+			<liferay-ui:icon
+				image="edit"
+				label="<%= true %>"
+				message="edit-profile"
+				url="<%= editSummaryURL.toString() %>"
+			/>
+		</p>
 	</c:if>
 </div>

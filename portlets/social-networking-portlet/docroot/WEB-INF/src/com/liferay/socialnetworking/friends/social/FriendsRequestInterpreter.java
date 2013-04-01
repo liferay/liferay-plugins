@@ -87,8 +87,10 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 				extraData);
 
 			body = extraDataJSONObject.getString("requestMessage");
-			body = StringUtil.quote(body);
-			body = HtmlUtil.escape(body);
+			if (!(body.equals(""))) {
+				body = StringUtil.quote(body);
+				body = HtmlUtil.escape(body);
+			}
 		}
 		catch (JSONException jsone) {
 			_log.error("Unable to create JSON object from " + extraData);
