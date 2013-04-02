@@ -51,7 +51,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 			String dbType = db.getType();
 
-			// LPS-12048
+			// LPS-33975
 
 			if (dbType.equals(DB.TYPE_SQLSERVER)) {
 				contentMaxLength = 442;
