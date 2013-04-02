@@ -136,7 +136,7 @@ int oAuthServiceCount = 0;
 
 		A.one('#<portlet:namespace />keyType' + rowCount).get('options').each(
 			function() {
-				if (this.get('selected') && this.get('value') == '<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>') {
+				if (this.get('selected') && (this.get('value') == '<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>')) {
 					consumerSecretField.hide();
 				}
 				else {

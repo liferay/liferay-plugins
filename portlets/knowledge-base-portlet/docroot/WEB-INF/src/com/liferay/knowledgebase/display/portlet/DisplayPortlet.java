@@ -568,15 +568,16 @@ public class DisplayPortlet extends MVCPortlet {
 			include(path, renderRequest, renderResponse);
 		}
 		else if (SessionErrors.contains(
-				renderRequest, NoSuchArticleException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchCommentException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchSubscriptionException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchTemplateException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, PrincipalException.class.getName())) {
+					renderRequest, NoSuchArticleException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, NoSuchCommentException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest,
+					 NoSuchSubscriptionException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, NoSuchTemplateException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, PrincipalException.class.getName())) {
 
 			include(templatePath + "error.jsp", renderRequest, renderResponse);
 		}

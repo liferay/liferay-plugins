@@ -570,8 +570,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			markupResponse = markupService.getMarkup(getMarkup);
 		}
 
-		// There is a memory leak in Axis that caches the entire response
-		// after each call. See LPS-25067.
+		// There is a memory leak in Axis that caches the entire response after
+		// each call. See LPS-25067.
 
 		Stub stub = (Stub)markupService;
 

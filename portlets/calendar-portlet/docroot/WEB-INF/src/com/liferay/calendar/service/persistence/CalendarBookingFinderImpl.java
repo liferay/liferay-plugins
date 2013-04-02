@@ -561,7 +561,7 @@ public class CalendarBookingFinderImpl
 
 	protected String getCalendarResourceIds(long[] calendarResourceIds) {
 		if ((calendarResourceIds == null) ||
-				(calendarResourceIds.length == 0)) {
+			(calendarResourceIds.length == 0)) {
 
 			return StringPool.BLANK;
 		}

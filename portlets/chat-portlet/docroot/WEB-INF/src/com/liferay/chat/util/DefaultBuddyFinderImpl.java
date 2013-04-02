@@ -57,7 +57,7 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"communities,friends") ||
-				PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
+				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"friends,sites")) {
 
 			List<Object[]> groupBuddies =
