@@ -353,10 +353,12 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 	var syncCalendarsMap = function() {
 		Liferay.CalendarUtil.syncCalendarsMap(
-			window.<portlet:namespace />calendarListAccepted,
-			window.<portlet:namespace />calendarListDeclined,
-			window.<portlet:namespace />calendarListMaybe,
-			window.<portlet:namespace />calendarListPending
+			[
+				window.<portlet:namespace />calendarListAccepted,
+				window.<portlet:namespace />calendarListDeclined,
+				window.<portlet:namespace />calendarListMaybe,
+				window.<portlet:namespace />calendarListPending
+			]
 		);
 
 		A.each(

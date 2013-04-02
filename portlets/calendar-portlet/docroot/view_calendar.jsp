@@ -149,15 +149,20 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	</c:if>
 
 	var syncCalendarsMap = function() {
-		Liferay.CalendarUtil.syncCalendarsMap(
-			<c:if test="<%= themeDisplay.isSignedIn() %>">
+		var calendarLists = [];
+
+		<c:if test="<%= themeDisplay.isSignedIn() %>">
+			calendarLists.push(
 				window.<portlet:namespace />myCalendarList,
 				window.<portlet:namespace />otherCalendarList
-			</c:if>
-			<c:if test="<%= groupCalendarResource != null %>">
-				,window.<portlet:namespace />siteCalendarList
-			</c:if>
-		);
+			);
+		</c:if>
+
+		<c:if test="<%= groupCalendarResource != null %>">
+			calendarLists.push(window.<portlet:namespace />siteCalendarList);
+		</c:if>
+
+		Liferay.CalendarUtil.syncCalendarsMap(calendarLists);
 	}
 
 	<c:if test="<%= themeDisplay.isSignedIn() %>">

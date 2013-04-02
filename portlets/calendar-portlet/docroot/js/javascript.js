@@ -560,14 +560,14 @@ AUI.add(
 				}
 			},
 
-			syncCalendarsMap: function() {
+			syncCalendarsMap: function(calendarLists) {
 				var instance = this;
 
 				var visibleCalendars = instance.visibleCalendars = {};
 				var availableCalendars = instance.availableCalendars = {};
 
 				AArray.each(
-					arguments,
+					calendarLists,
 					function(calendarList) {
 						var calendars = calendarList.get('calendars');
 
