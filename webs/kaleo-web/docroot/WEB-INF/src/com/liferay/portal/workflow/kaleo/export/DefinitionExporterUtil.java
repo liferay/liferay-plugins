@@ -25,13 +25,17 @@ public class DefinitionExporterUtil {
 	public static String export(long kaleoDefinitionId)
 		throws PortalException, SystemException {
 
-		return _definitionExporter.export(kaleoDefinitionId);
+		return getDefinitionExporter().export(kaleoDefinitionId);
 	}
 
 	public static String export(long companyId, String name, int version)
 		throws PortalException, SystemException {
 
-		return _definitionExporter.export(companyId, name, version);
+		return getDefinitionExporter().export(companyId, name, version);
+	}
+
+	public static DefinitionExporter getDefinitionExporter() {
+		return _definitionExporter;
 	}
 
 	public void setDefinitionExporter(DefinitionExporter definitionExporter) {

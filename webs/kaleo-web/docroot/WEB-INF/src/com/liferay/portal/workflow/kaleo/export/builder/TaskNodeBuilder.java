@@ -29,6 +29,7 @@ import java.util.Set;
  */
 public class TaskNodeBuilder extends BaseNodeBuilder implements NodeBuilder {
 
+	@Override
 	protected Node createNode(KaleoNode kaleoNode)
 		throws PortalException, SystemException {
 

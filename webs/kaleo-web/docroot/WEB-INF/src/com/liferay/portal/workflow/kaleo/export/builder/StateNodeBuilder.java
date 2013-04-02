@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.export.builder;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.State;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
@@ -24,12 +23,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
  */
 public class StateNodeBuilder extends BaseNodeBuilder implements NodeBuilder {
 
-	protected Node createNode(KaleoNode kaleoNode) throws SystemException {
-		State state = new State(
+	@Override
+	protected Node createNode(KaleoNode kaleoNode) {
+		return new State(
 			kaleoNode.getName(), kaleoNode.getDescription(),
 			kaleoNode.isInitial());
-
-		return state;
 	}
 
 }

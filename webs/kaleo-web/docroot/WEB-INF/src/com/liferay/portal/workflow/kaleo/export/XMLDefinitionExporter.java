@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.Node;
@@ -37,7 +36,7 @@ import java.util.Collection;
 public class XMLDefinitionExporter implements DefinitionExporter {
 
 	public String export(long kaleoDefinitionId)
-			throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		Definition definition = _definitionBuilder.buildDefinition(
 			kaleoDefinitionId);
@@ -61,11 +60,9 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 	public void setVersion(String version) {
 		_version = version;
 
+		_namespace = "urn:liferay.com:liferay-workflow_" + _version;
 		_schemaVersion = StringUtil.replace(
 			_version, StringPool.PERIOD, StringPool.UNDERLINE);
-
-		_namespace =
-			"urn:liferay.com:liferay-workflow_" + _version;
 	}
 
 	protected String doExport(Definition definition) throws SystemException {
@@ -75,34 +72,33 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 			Element workflowDefinitionElement = document.addElement(
 				"workflow-definition");
 
-			workflowDefinitionElement.addNamespace(
-				"", "urn:liferay.com:liferay-workflow_" + _version);
-
 			workflowDefinitionElement.addAttribute(
 				"xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-
 			workflowDefinitionElement.addAttribute(
 				"xsi:schemaLocation",
 				"urn:liferay.com:liferay-workflow_" + _version +
 					" http://www.liferay.com/dtd/liferay-workflow-definition_" +
 					_schemaVersion + ".xsd");
+			workflowDefinitionElement.addNamespace(
+				"", "urn:liferay.com:liferay-workflow_" + _version);
 
-			Element name = workflowDefinitionElement.addElement(
+			Element nameElement = workflowDefinitionElement.addElement(
 				"name", _namespace);
 
-			name.addText(definition.getName());
+			nameElement.addText(definition.getName());
 
 			if (Validator.isNotNull(definition.getDescription())) {
-				Element description = workflowDefinitionElement.addElement(
-					"description", _namespace);
+				Element descriptionElement =
+					workflowDefinitionElement.addElement(
+						"description", _namespace);
 
-				description.addText(definition.getDescription());
+				descriptionElement.addText(definition.getDescription());
 			}
 
-			Element version = workflowDefinitionElement.addElement(
+			Element versionElement = workflowDefinitionElement.addElement(
 				"version", _namespace);
 
-			version.addText(String.valueOf(definition.getVersion()));
+			versionElement.addText(String.valueOf(definition.getVersion()));
 
 			Collection<Node> nodes = definition.getNodes();
 
@@ -116,17 +112,14 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 
 			return document.formattedString();
 		}
-		catch (IOException ie) {
-			throw new SystemException("Unable to serialize definition", ie);
+		catch (IOException ioe) {
+			throw new SystemException("Unable to export definition", ioe);
 		}
 	}
 
 	private DefinitionBuilder _definitionBuilder;
-
 	private String _namespace;
-
 	private String _schemaVersion;
-
 	private String _version = "6.2.0";
 
 }

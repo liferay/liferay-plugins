@@ -26,17 +26,17 @@ import java.util.Map;
 public class NodeValidatorRegistry {
 
 	public NodeValidator<Node> getNodeValidator(NodeType nodeType) {
-		return _nodeExecutors.getNodeTypeDependentObjects(nodeType);
+		return _nodeValidators.getNodeTypeDependentObjects(nodeType);
 	}
 
 	public void setNodeValidators(
-		Map<String, NodeValidator<Node>> nodeExectors) {
+		Map<String, NodeValidator<Node>> nodeValidators) {
 
-		_nodeExecutors.setNodeTypeDependentObjects(nodeExectors);
+		_nodeValidators.setNodeTypeDependentObjects(nodeValidators);
 	}
 
 	private static NodeTypeDependentObjectRegistry<NodeValidator<Node>>
-		_nodeExecutors =
-		new NodeTypeDependentObjectRegistry<NodeValidator<Node>>();
+		_nodeValidators =
+			new NodeTypeDependentObjectRegistry<NodeValidator<Node>>();
 
 }

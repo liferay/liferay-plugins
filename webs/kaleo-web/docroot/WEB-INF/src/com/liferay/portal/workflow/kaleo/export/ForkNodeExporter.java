@@ -25,7 +25,6 @@ public class ForkNodeExporter extends BaseNodeExporter implements NodeExporter {
 	@Override
 	protected Element createNodeElement(Element element, String namespace) {
 		return element.addElement("fork", namespace);
-
 	}
 
 	@Override

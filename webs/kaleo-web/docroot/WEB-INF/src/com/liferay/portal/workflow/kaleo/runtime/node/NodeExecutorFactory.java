@@ -27,8 +27,8 @@ public class NodeExecutorFactory {
 		return _nodeExecutors.getNodeTypeDependentObjects(nodeTypeString);
 	}
 
-	public void setNodeExectors(Map<String, NodeExecutor> nodeExectors) {
-		_nodeExecutors.setNodeTypeDependentObjects(nodeExectors);
+	public void setNodeExectors(Map<String, NodeExecutor> nodeExecutors) {
+		_nodeExecutors.setNodeTypeDependentObjects(nodeExecutors);
 	}
 
 	private static NodeTypeDependentObjectRegistry<NodeExecutor>

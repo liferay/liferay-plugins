@@ -28,8 +28,8 @@ public class NodeExporterRegistry {
 		return _nodeExporters.getNodeTypeDependentObjects(nodeType);
 	}
 
-	public void setNodeExporter(Map<String, NodeExporter> nodeExporter) {
-		_nodeExporters.setNodeTypeDependentObjects(nodeExporter);
+	public void setNodeExporter(Map<String, NodeExporter> nodeExporters) {
+		_nodeExporters.setNodeTypeDependentObjects(nodeExporters);
 	}
 
 	private static NodeTypeDependentObjectRegistry<NodeExporter>

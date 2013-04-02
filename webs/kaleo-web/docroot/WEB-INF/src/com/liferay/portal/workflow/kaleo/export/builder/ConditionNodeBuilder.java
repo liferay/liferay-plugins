@@ -27,6 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 public class ConditionNodeBuilder
 	extends BaseNodeBuilder implements NodeBuilder {
 
+	@Override
 	protected Node createNode(KaleoNode kaleoNode)
 		throws PortalException, SystemException {
 
@@ -34,12 +35,10 @@ public class ConditionNodeBuilder
 			kaleoConditionLocalService.getKaleoNodeKaleoCondition(
 				kaleoNode.getKaleoNodeId());
 
-		Condition condition = new Condition(
+		return new Condition(
 			kaleoNode.getName(), kaleoNode.getDescription(),
 			kaleoCondition.getScript(), kaleoCondition.getScriptLanguage(),
 			kaleoCondition.getScriptRequiredContexts());
-
-		return condition;
 	}
 
 }

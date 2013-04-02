@@ -68,7 +68,6 @@ public class DefaultDefinitionBuilder
 				kaleoDefinition.getKaleoDefinitionId());
 
 		for (KaleoNode kaleoNode : kaleoNodes) {
-
 			NodeBuilder nodeBuilder = NodeBuilderRegistry.getNodeBuilder(
 				kaleoNode.getType());
 
@@ -78,7 +77,7 @@ public class DefaultDefinitionBuilder
 		}
 
 		List<KaleoTransition> kaleoTransitions =
-			kaleoTransitionLocalService.getKaleoTransitionsByKaleoDefinitionId(
+			kaleoTransitionLocalService.getKaleoDefinitionKaleoTransitions(
 				kaleoDefinition.getKaleoDefinitionId());
 
 		for (KaleoTransition kaleoTransition : kaleoTransitions) {

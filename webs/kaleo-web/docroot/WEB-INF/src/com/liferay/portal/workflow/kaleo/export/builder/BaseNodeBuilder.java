@@ -94,7 +94,7 @@ public abstract class BaseNodeBuilder
 					kaleoNotification.getKaleoNotificationId());
 
 		for (KaleoNotificationRecipient kaleoNotificationRecipient :
-			kaleoNotificationRecipients) {
+				kaleoNotificationRecipients) {
 
 			String recipientClassName =
 				kaleoNotificationRecipient.getRecipientClassName();
@@ -133,7 +133,7 @@ public abstract class BaseNodeBuilder
 	}
 
 	protected Set<Action> buildActions(String kaleoClassName, long kaleoClassPK)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		List<KaleoAction> kaleoActions =
 			kaleoActionLocalService.getKaleoActions(
@@ -142,7 +142,6 @@ public abstract class BaseNodeBuilder
 		Set<Action> actions = new HashSet<Action>(kaleoActions.size());
 
 		for (KaleoAction kaleoAction : kaleoActions) {
-
 			Action action = new Action(
 				kaleoAction.getName(), kaleoAction.getDescription(),
 				kaleoAction.getExecutionType(), kaleoAction.getScript(),
@@ -175,7 +174,13 @@ public abstract class BaseNodeBuilder
 
 			Assignment assignment = null;
 
-			if (assigneeClassName.equals(ResourceAction.class.getName())) {
+			if (assigneeClassName.equals(AssignmentType.SCRIPT.name())) {
+				assignment = new ScriptAssignment(
+					kaleoTaskAssignment.getAssigneeScript(),
+					kaleoTaskAssignment.getAssigneeScriptLanguage(),
+					kaleoTaskAssignment.getAssigneeScriptRequiredContexts());
+			}
+			else if (assigneeClassName.equals(ResourceAction.class.getName())) {
 				assignment = new ResourceActionAssignment(
 					kaleoTaskAssignment.getAssigneeActionId());
 			}
@@ -184,12 +189,6 @@ public abstract class BaseNodeBuilder
 
 				assignment = new RoleAssignment(
 					role.getName(), role.getTypeLabel());
-			}
-			else if (assigneeClassName.equals(AssignmentType.SCRIPT.name())) {
-				assignment = new ScriptAssignment(
-					kaleoTaskAssignment.getAssigneeScript(),
-					kaleoTaskAssignment.getAssigneeScriptLanguage(),
-					kaleoTaskAssignment.getAssigneeScriptRequiredContexts());
 			}
 			else if (assigneeClassName.equals(User.class.getName())) {
 				if (assigneeClassPK == 0) {
@@ -254,7 +253,6 @@ public abstract class BaseNodeBuilder
 		Set<Timer> timers = new HashSet<Timer>(kaleoTimers.size());
 
 		for (KaleoTimer kaleoTimer : kaleoTimers) {
-
 			Timer timer = new Timer(
 				kaleoTimer.getName(), kaleoTimer.getDescription(),
 				kaleoTimer.isBlocking());

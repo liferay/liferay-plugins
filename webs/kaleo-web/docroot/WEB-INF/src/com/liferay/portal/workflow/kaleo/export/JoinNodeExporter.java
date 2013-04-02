@@ -25,7 +25,6 @@ public class JoinNodeExporter extends BaseNodeExporter implements NodeExporter {
 	@Override
 	protected Element createNodeElement(Element element, String namespace) {
 		return element.addElement("join", namespace);
-
 	}
 
 	@Override

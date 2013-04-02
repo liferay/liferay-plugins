@@ -27,7 +27,6 @@ public class ConditionNodeExporter
 	@Override
 	protected Element createNodeElement(Element element, String namespace) {
 		return element.addElement("condition", namespace);
-
 	}
 
 	@Override

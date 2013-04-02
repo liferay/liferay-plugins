@@ -30,9 +30,6 @@ public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {
 
 	public WorkflowDefinitionAdapter(KaleoDefinition kaleoDefinition) {
 		setActive(kaleoDefinition.getActive());
-		setName(kaleoDefinition.getName());
-		setTitle(kaleoDefinition.getTitle());
-		setVersion(kaleoDefinition.getVersion());
 
 		String content = kaleoDefinition.getContent();
 
@@ -54,6 +51,10 @@ public class WorkflowDefinitionAdapter extends DefaultWorkflowDefinition {
 		}
 
 		setContent(content);
+
+		setName(kaleoDefinition.getName());
+		setTitle(kaleoDefinition.getTitle());
+		setVersion(kaleoDefinition.getVersion());
 	}
 
 	@Override

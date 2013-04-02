@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.export.builder;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.definition.Join;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
@@ -24,10 +23,9 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
  */
 public class JoinNodeBuilder extends BaseNodeBuilder implements NodeBuilder {
 
-	protected Node createNode(KaleoNode kaleoNode) throws SystemException {
-		Join join = new Join(kaleoNode.getName(), kaleoNode.getDescription());
-
-		return join;
+	@Override
+	protected Node createNode(KaleoNode kaleoNode) {
+		return new Join(kaleoNode.getName(), kaleoNode.getDescription());
 	}
 
 }

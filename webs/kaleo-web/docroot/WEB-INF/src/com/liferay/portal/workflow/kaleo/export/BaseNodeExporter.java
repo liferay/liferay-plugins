@@ -57,11 +57,9 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		}
 
 		Set<Action> actions = node.getActions();
-
 		Set<Notification> notifications = node.getNotifications();
 
 		if (!actions.isEmpty() || !notifications.isEmpty()) {
-
 			Element actionsElement = nodeElement.addElement("actions");
 
 			exportActionsElement(
@@ -70,7 +68,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		}
 
 		exportAdditionalNodeElements(node, nodeElement);
-
 		exportTransitionsElement(node, nodeElement);
 	}
 
@@ -90,7 +87,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		addTextElement(
 			delayElement, "duration",
 			String.valueOf(delayDuration.getDuration()));
-
 		addTextElement(
 			delayElement, "scale", delayDuration.getDurationScale().getValue());
 	}
@@ -107,7 +103,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		Element element, String namespace);
 
 	protected void exportActionElement(Element actionElement, Action action) {
-
 		addTextElement(actionElement, "name", action.getName());
 
 		if (Validator.isNotNull(action.getDescription())) {
@@ -237,7 +232,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 
 		addCDataElement(
 			notificationElement, "template", notification.getTemplate());
-
 		addTextElement(
 			notificationElement, "template-language",
 			notification.getTemplateLanguage().getValue());
@@ -338,7 +332,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 			DelayDuration recurrenceDelayDuration = timer.getRecurrence();
 
 			if (recurrenceDelayDuration != null) {
-
 				addDelayDuration(
 					timerElement, "recurrence", recurrenceDelayDuration);
 			}
@@ -364,7 +357,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 				exportActionsElement(
 					actions, notifications, timerActionsElement, "timer-action",
 					"timer-notification");
-
 				exportAssignmentsElement(
 					assignments, timerActionsElement, "reassignments");
 			}
@@ -372,29 +364,27 @@ public abstract class BaseNodeExporter implements NodeExporter {
 	}
 
 	protected void exportTransitionsElement(Node node, Element nodeElement) {
-		List<Transition> outGoingTransitions =
+		List<Transition> outgoingTransitions =
 			node.getOutgoingTransitionsList();
 
-		if (outGoingTransitions.isEmpty()) {
+		if (outgoingTransitions.isEmpty()) {
 			return;
 		}
 
 		Element transitionsElement = nodeElement.addElement("transitions");
 
-		for (Transition outGoingTransition : outGoingTransitions) {
-
+		for (Transition outgoingTransition : outgoingTransitions) {
 			Element transition = transitionsElement.addElement("transition");
 
-			addTextElement(transition, "name", outGoingTransition.getName());
-
+			addTextElement(transition, "name", outgoingTransition.getName());
 			addTextElement(
 				transition, "target",
-				outGoingTransition.getTargetNode().getName());
+				outgoingTransition.getTargetNode().getName());
 
-			if (outGoingTransition.isDefault()) {
+			if (outgoingTransition.isDefault()) {
 				addTextElement(
 					transition, "default",
-					String.valueOf(outGoingTransition.isDefault()));
+					String.valueOf(outgoingTransition.isDefault()));
 			}
 		}
 
@@ -409,7 +399,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		}
 		else {
 			addTextElement(roleElement, "role-type", roleType);
-
 			addTextElement(roleElement, "name", roleName);
 
 			if (!autoCreate) {
@@ -424,7 +413,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		String scriptRequiredContexts) {
 
 		addCDataElement(scriptingElement, "script", script);
-
 		addTextElement(scriptingElement, "script-language", scriptLanguage);
 
 		if (Validator.isNotNull(scriptRequiredContexts)) {

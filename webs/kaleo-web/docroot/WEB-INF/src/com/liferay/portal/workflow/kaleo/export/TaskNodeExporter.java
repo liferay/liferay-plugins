@@ -32,7 +32,7 @@ public class TaskNodeExporter extends BaseNodeExporter implements NodeExporter {
 	protected void exportAdditionalNodeElements(
 		Node node, Element nodeElement) {
 
-		Task task= (Task)node;
+		Task task = (Task)node;
 
 		exportAssignmentsElement(
 			task.getAssignments(), nodeElement, "assignments");

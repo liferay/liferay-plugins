@@ -25,28 +25,27 @@ import java.util.Map;
 public class NodeTypeDependentObjectRegistry<T> {
 
 	public T getNodeTypeDependentObjects(NodeType nodeType) {
+		T nodeTypeDependentObject = _nodeTypeDependentObjects.get(nodeType);
 
-		T nodeExecutor = _nodeTypeDependentObjects.get(nodeType);
-
-		if (nodeExecutor == null) {
+		if (nodeTypeDependentObject == null) {
 			throw new IllegalArgumentException("Invalid node type " + nodeType);
 		}
 
-		return nodeExecutor;
+		return nodeTypeDependentObject;
 	}
 
 	public T getNodeTypeDependentObjects(String nodeTypeString) {
-
 		NodeType nodeType = NodeType.valueOf(nodeTypeString);
 
 		return getNodeTypeDependentObjects(nodeType);
 	}
 
-	public void setNodeTypeDependentObjects(Map<String, T> nodeExecutors) {
+	public void setNodeTypeDependentObjects(
+		Map<String, T> nodeTypeDependentObjects) {
 
 		_nodeTypeDependentObjects = new HashMap<NodeType, T>();
 
-		for (Map.Entry<String, T> entry : nodeExecutors.entrySet()) {
+		for (Map.Entry<String, T> entry : nodeTypeDependentObjects.entrySet()) {
 			NodeType nodeType = NodeType.valueOf(entry.getKey());
 
 			_nodeTypeDependentObjects.put(nodeType, entry.getValue());

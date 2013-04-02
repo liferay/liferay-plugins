@@ -97,6 +97,14 @@ public class KaleoTransitionLocalServiceImpl
 		return kaleoTransitionPersistence.findByKNI_DT(kaleoNodeId, true);
 	}
 
+	public List<KaleoTransition> getKaleoDefinitionKaleoTransitions(
+			long kaleoDefinitionId)
+		throws SystemException {
+
+		return kaleoTransitionPersistence.findByKaleoDefinitionId(
+			kaleoDefinitionId);
+	}
+
 	public KaleoTransition getKaleoTransition(long kaleoNodeId, String name)
 		throws PortalException, SystemException {
 
@@ -107,14 +115,6 @@ public class KaleoTransitionLocalServiceImpl
 		throws SystemException {
 
 		return kaleoTransitionPersistence.findByKaleoNodeId(kaleoNodeId);
-	}
-
-	public List<KaleoTransition> getKaleoTransitionsByKaleoDefinitionId(
-			long kaleoDefinitionId)
-		throws SystemException {
-
-		return kaleoTransitionPersistence.findByKaleoDefinitionId(
-			kaleoDefinitionId);
 	}
 
 	public int getKaleoTransitionsCount(long kaleoNodeId)
