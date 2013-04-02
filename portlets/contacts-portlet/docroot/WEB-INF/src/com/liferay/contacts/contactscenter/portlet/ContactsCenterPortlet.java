@@ -496,10 +496,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				updateAsset(actionRequest);
 			}
 			else if (fieldGroup.equals("comments") ||
-					fieldGroup.equals("details") ||
-					fieldGroup.equals("instantMessenger") ||
-					fieldGroup.equals("sms") ||
-					fieldGroup.equals("socialNetwork")) {
+					 fieldGroup.equals("details") ||
+					 fieldGroup.equals("instantMessenger") ||
+					 fieldGroup.equals("sms") ||
+					 fieldGroup.equals("socialNetwork")) {
 
 				updateProfile(actionRequest);
 			}

@@ -209,7 +209,7 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 			// Latest version
 
 			if ((wikiPage.getVersion() >= latestVersion) &&
-				 wikiPage.isApproved()) {
+				wikiPage.isApproved()) {
 
 				if (previousVersionWikiPage != null) {
 					WikiPageLocalServiceUtil.revertPage(
@@ -246,7 +246,7 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 			// Latest version
 
 			if ((latestContent != null) && (previousContent != null) &&
-				 latestContent.equals(previousContent)) {
+				latestContent.equals(previousContent)) {
 
 				WikiPageLocalServiceUtil.revertPage(
 					themeDisplay.getUserId(), wikiPage.getNodeId(),

@@ -128,7 +128,7 @@ public class WURFLHolderImpl implements WURFLHolder {
 			inputStream = new GZIPInputStream(inputStream);
 		}
 		else if (PortletPropsValues.WURFL_DATABASE_PRIMARY.endsWith(".jar") ||
-			PortletPropsValues.WURFL_DATABASE_PRIMARY.endsWith(".zip")) {
+				 PortletPropsValues.WURFL_DATABASE_PRIMARY.endsWith(".zip")) {
 
 			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 
