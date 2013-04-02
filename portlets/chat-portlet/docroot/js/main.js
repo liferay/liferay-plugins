@@ -677,6 +677,7 @@ AUI().use(
 				);
 
 				instance._initializeActivePanels();
+
 				instance._createBuddyListPanel();
 				instance._createSettingsPanel();
 			},
@@ -1069,7 +1070,7 @@ AUI().use(
 
 				var userId = event.target._panelId;
 
-				if (A.Lang.toInt(userId)) {
+				if (Lang.toInt(userId)) {
 					Liferay.Chat.Manager._minimizedPanelIds[userId] = true;
 				}
 
@@ -1135,9 +1136,13 @@ AUI().use(
 
 				var minimized = instance._activePanelIds.minimized;
 
+				var minimizedPanelIds = instance._minimizedPanelIds;
+
 				A.Array.each(
 					minimized,
 					function(item, index, collection) {
+						minimizedPanelIds[item] = true;
+
 						var buddy = buddies[item];
 
 						if (buddy) {
@@ -1153,8 +1158,6 @@ AUI().use(
 						}
 					}
 				);
-
-				A.mix(instance._minimizedPanelIds, A.Array.hash(minimized));
 			},
 
 			_saveSettings: function() {
