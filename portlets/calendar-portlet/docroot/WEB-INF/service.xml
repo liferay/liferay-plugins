@@ -216,5 +216,6 @@
 		<exception>CalendarResourceCode</exception>
 		<exception>CalendarResourceName</exception>
 		<exception>DuplicateCalendarResource</exception>
+		<exception>RequiredCalendar</exception>
 	</exceptions>
 </service-builder>
