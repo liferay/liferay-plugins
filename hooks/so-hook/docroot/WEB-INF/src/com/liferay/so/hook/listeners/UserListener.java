@@ -112,6 +112,13 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
+			if (UserLocalServiceUtil.hasRoleUser(
+					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER,
+					user.getUserId(), true)) {
+
+				return;
+			}
+
 			if (associationClassName.equals(Group.class.getName()) ||
 				associationClassName.equals(Organization.class.getName()) ||
 				associationClassName.equals(UserGroup.class.getName())) {
