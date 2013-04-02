@@ -158,6 +158,13 @@ public class RoleListener extends BaseModelListener<Role> {
 					continue;
 				}
 
+				if (UserLocalServiceUtil.hasRoleUser(
+						user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER,
+						user.getUserId(), true)) {
+
+					continue;
+				}
+
 				LayoutSetPrototypeUtil.removeLayoutSetPrototype(
 					userGroup, false,
 					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
