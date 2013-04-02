@@ -100,7 +100,7 @@ Calendar calendar = (Calendar)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.DELETE) %>">
+	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.DELETE) && !calendar.isDefaultCalendar() %>">
 		<portlet:actionURL name="deleteCalendar" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />

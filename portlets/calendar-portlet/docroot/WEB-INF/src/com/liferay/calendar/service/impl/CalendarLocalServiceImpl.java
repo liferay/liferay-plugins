@@ -15,6 +15,7 @@
 package com.liferay.calendar.service.impl;
 
 import com.liferay.calendar.CalendarNameException;
+import com.liferay.calendar.RequiredCalendarException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
 import com.liferay.calendar.util.PortletPropsValues;
@@ -92,7 +93,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (calendar.isDefaultCalendar()) {
-			return null;
+			throw new RequiredCalendarException();
 		}
 
 		// Calendar
