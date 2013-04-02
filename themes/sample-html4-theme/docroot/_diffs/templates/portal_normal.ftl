@@ -74,8 +74,8 @@
 	</div>
 </div>
 
-</body>
-
 ${theme.include(bottom_include)}
+
+</body>
 
 </html>
