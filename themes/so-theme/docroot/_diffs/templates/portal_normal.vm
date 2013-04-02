@@ -169,11 +169,7 @@ $theme.include($body_top_include)
 
 $theme.include($body_bottom_include)
 
-</body>
-
 $theme.include($bottom_include)
-
-</html>
 
 #if ($show_edit_profile_button)
 	<script type="text/javascript">
@@ -216,3 +212,7 @@ $theme.include($bottom_include)
 		);
 	</script>
 #end
+
+</body>
+
+</html>
