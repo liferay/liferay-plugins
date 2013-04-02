@@ -91,6 +91,10 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	public Calendar deleteCalendar(Calendar calendar)
 		throws PortalException, SystemException {
 
+		if (calendar.isDefaultCalendar()) {
+			return null;
+		}
+
 		// Calendar
 
 		calendarPersistence.remove(calendar);

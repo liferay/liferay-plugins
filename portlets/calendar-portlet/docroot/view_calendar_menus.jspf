@@ -236,7 +236,9 @@
 						hiddenItems.push('hide');
 					}
 
-					if (permissions.DELETE === false) {
+					var defaultCalendarId = <%= userDefaultCalendar.getCalendarId() %>;
+
+					if (permissions.DELETE === false || calendar.get('calendarId') === defaultCalendarId) {
 						hiddenItems.push('delete');
 					}
 
