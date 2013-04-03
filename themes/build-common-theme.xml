@@ -121,7 +121,14 @@
 					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/classic"
-							excludes="_diffs/**,templates/**"
+							excludes="_diffs/**,templates/**,**/.sass-cache/**"
+						/>
+					</copy>
+					
+					<copy todir="docroot" overwrite="false" preservelastmodified="true">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/classic"
+							includes="**/.sass-cache/**"
 						/>
 					</copy>
 
@@ -139,7 +146,14 @@
 					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/control_panel"
-							excludes="_diffs/**,templates/**"
+							excludes="_diffs/**,templates/**,**/.sass-cache/**"
+						/>
+					</copy>
+					
+					<copy todir="docroot" overwrite="false" preservelastmodified="true">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/control_panel"
+							includes="**/.sass-cache/**"
 						/>
 					</copy>
 
@@ -159,7 +173,14 @@
 					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${theme.parent}/docroot"
-							excludes="_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
+							excludes="_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml,**/.sass-cache/**"
+						/>
+					</copy>
+					
+					<copy todir="docroot" overwrite="false" preservelastmodified="true">
+						<fileset
+							dir="${theme.parent}/docroot"
+							includes="**/.sass-cache/**"
 						/>
 					</copy>
 				</then>
