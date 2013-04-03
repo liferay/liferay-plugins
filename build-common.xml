@@ -9,6 +9,7 @@
 	</path>
 
 	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
+	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
 
 	<property location="${project.dir}" name="project.location.absolute" />
 
@@ -19,8 +20,6 @@
 	/>
 
 	<import file="build-common-ivy.xml" />
-
-	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
 
 	<property file="${project.dir}/build.${user.name}.properties" />
 	<property file="${project.dir}/build.${env.COMPUTERNAME}.properties" />

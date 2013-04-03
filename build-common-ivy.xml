@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="build-common-ivy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="ivy.home" value="${project.dir}/.ivy" />
 	<property name="ivy.install.version" value="2.3.0" />
 
@@ -54,7 +54,10 @@
 							/>
 
 							<if>
-								<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
+								<or>
+									<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
+									<antelope:endswith string="${ant.project.name}" with="-shared" />
+								</or>
 								<then>
 									<ivy:retrieve
 										log="download-only"

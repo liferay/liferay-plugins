@@ -188,7 +188,7 @@
 			/>
 			<zipfileset
 				dir="."
-				includes="lib/ant-contrib.jar"
+				includes="lib/ant-contrib.jar,lib/antelopetasks.jar"
 				prefix="liferay-plugins-sdk-${lp.version}"
 			/>
 		</zip>
