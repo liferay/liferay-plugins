@@ -31,7 +31,6 @@
 		<property name="definitionBuilder">
 			<bean class="com.liferay.portal.workflow.kaleo.export.builder.DefaultDefinitionBuilder" />
 		</property>
-		<property name="version" value="6.2.0" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.export.builder.NodeBuilderRegistry" class="com.liferay.portal.workflow.kaleo.export.builder.NodeBuilderRegistry">
 		<property name="nodeBuilders">

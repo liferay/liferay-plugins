@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.export;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -34,6 +35,12 @@ import java.util.Collection;
  * @author Michael C. Han
  */
 public class XMLDefinitionExporter implements DefinitionExporter {
+
+	public void afterPropertiesSet() {
+		_namespace = "urn:liferay.com:liferay-workflow_" + _version;
+		_schemaVersion = StringUtil.replace(
+			_version, StringPool.PERIOD, StringPool.UNDERLINE);
+	}
 
 	public String export(long kaleoDefinitionId)
 		throws PortalException, SystemException {
@@ -59,10 +66,6 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 
 	public void setVersion(String version) {
 		_version = version;
-
-		_namespace = "urn:liferay.com:liferay-workflow_" + _version;
-		_schemaVersion = StringUtil.replace(
-			_version, StringPool.PERIOD, StringPool.UNDERLINE);
 	}
 
 	protected String doExport(Definition definition) throws SystemException {
@@ -120,6 +123,6 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 	private DefinitionBuilder _definitionBuilder;
 	private String _namespace;
 	private String _schemaVersion;
-	private String _version = "6.2.0";
+	private String _version = ReleaseInfo.getVersion();
 
 }
