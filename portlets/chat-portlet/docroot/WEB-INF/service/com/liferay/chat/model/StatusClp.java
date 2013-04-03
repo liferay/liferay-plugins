@@ -69,7 +69,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("online", getOnline());
 		attributes.put("awake", getAwake());
-		attributes.put("activePanelId", getActivePanelId());
+		attributes.put("activePanelIds", getActivePanelIds());
 		attributes.put("message", getMessage());
 		attributes.put("playSound", getPlaySound());
 
@@ -108,10 +108,10 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 			setAwake(awake);
 		}
 
-		String activePanelId = (String)attributes.get("activePanelId");
+		String activePanelIds = (String)attributes.get("activePanelIds");
 
-		if (activePanelId != null) {
-			setActivePanelId(activePanelId);
+		if (activePanelIds != null) {
+			setActivePanelIds(activePanelIds);
 		}
 
 		String message = (String)attributes.get("message");
@@ -183,12 +183,12 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		_awake = awake;
 	}
 
-	public String getActivePanelId() {
-		return _activePanelId;
+	public String getActivePanelIds() {
+		return _activePanelIds;
 	}
 
-	public void setActivePanelId(String activePanelId) {
-		_activePanelId = activePanelId;
+	public void setActivePanelIds(String activePanelIds) {
+		_activePanelIds = activePanelIds;
 	}
 
 	public String getMessage() {
@@ -243,7 +243,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setOnline(getOnline());
 		clone.setAwake(getAwake());
-		clone.setActivePanelId(getActivePanelId());
+		clone.setActivePanelIds(getActivePanelIds());
 		clone.setMessage(getMessage());
 		clone.setPlaySound(getPlaySound());
 
@@ -308,8 +308,8 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		sb.append(getOnline());
 		sb.append(", awake=");
 		sb.append(getAwake());
-		sb.append(", activePanelId=");
-		sb.append(getActivePanelId());
+		sb.append(", activePanelIds=");
+		sb.append(getActivePanelIds());
 		sb.append(", message=");
 		sb.append(getMessage());
 		sb.append(", playSound=");
@@ -347,8 +347,8 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		sb.append(getAwake());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>activePanelId</column-name><column-value><![CDATA[");
-		sb.append(getActivePanelId());
+			"<column><column-name>activePanelIds</column-name><column-value><![CDATA[");
+		sb.append(getActivePanelIds());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>message</column-name><column-value><![CDATA[");
@@ -370,7 +370,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	private long _modifiedDate;
 	private boolean _online;
 	private boolean _awake;
-	private String _activePanelId;
+	private String _activePanelIds;
 	private String _message;
 	private boolean _playSound;
 	private BaseModel<?> _statusRemoteModel;

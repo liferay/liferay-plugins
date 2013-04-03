@@ -282,10 +282,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
-		java.lang.String activePanelId, java.lang.String message, int playSound)
+		java.lang.String activePanelIds, java.lang.String message, int playSound)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.updateStatus(userId, modifiedDate, online,
-			awake, activePanelId, message, playSound);
+			awake, activePanelIds, message, playSound);
 	}
 
 	/**

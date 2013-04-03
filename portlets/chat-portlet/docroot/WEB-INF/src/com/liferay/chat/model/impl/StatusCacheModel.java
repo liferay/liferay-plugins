@@ -47,8 +47,8 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 		sb.append(online);
 		sb.append(", awake=");
 		sb.append(awake);
-		sb.append(", activePanelId=");
-		sb.append(activePanelId);
+		sb.append(", activePanelIds=");
+		sb.append(activePanelIds);
 		sb.append(", message=");
 		sb.append(message);
 		sb.append(", playSound=");
@@ -67,11 +67,11 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 		statusImpl.setOnline(online);
 		statusImpl.setAwake(awake);
 
-		if (activePanelId == null) {
-			statusImpl.setActivePanelId(StringPool.BLANK);
+		if (activePanelIds == null) {
+			statusImpl.setActivePanelIds(StringPool.BLANK);
 		}
 		else {
-			statusImpl.setActivePanelId(activePanelId);
+			statusImpl.setActivePanelIds(activePanelIds);
 		}
 
 		if (message == null) {
@@ -94,7 +94,7 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 		modifiedDate = objectInput.readLong();
 		online = objectInput.readBoolean();
 		awake = objectInput.readBoolean();
-		activePanelId = objectInput.readUTF();
+		activePanelIds = objectInput.readUTF();
 		message = objectInput.readUTF();
 		playSound = objectInput.readBoolean();
 	}
@@ -107,11 +107,11 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 		objectOutput.writeBoolean(online);
 		objectOutput.writeBoolean(awake);
 
-		if (activePanelId == null) {
+		if (activePanelIds == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(activePanelId);
+			objectOutput.writeUTF(activePanelIds);
 		}
 
 		if (message == null) {
@@ -129,7 +129,7 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 	public long modifiedDate;
 	public boolean online;
 	public boolean awake;
-	public String activePanelId;
+	public String activePanelIds;
 	public String message;
 	public boolean playSound;
 }

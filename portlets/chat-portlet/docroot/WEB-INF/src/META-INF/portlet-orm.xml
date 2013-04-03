@@ -31,7 +31,7 @@
 				<column name="ONLINE_" />
 			</basic>
 			<basic name="awake" />
-			<basic name="activePanelId" />
+			<basic name="activePanelIds" />
 			<basic name="message" />
 			<basic name="playSound" />
 			<transient name="modelAttributes" />

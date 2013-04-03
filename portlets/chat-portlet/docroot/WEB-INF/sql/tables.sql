@@ -13,7 +13,7 @@ create table Chat_Status (
 	modifiedDate LONG,
 	online_ BOOLEAN,
 	awake BOOLEAN,
-	activePanelId VARCHAR(75) null,
+	activePanelIds STRING null,
 	message STRING null,
 	playSound BOOLEAN
 );
