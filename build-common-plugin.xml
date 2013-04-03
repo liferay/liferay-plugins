@@ -15,21 +15,7 @@
 		</then>
 	</if>
 
-	<antelope:stringutil string="${basedir}" property="plugin.name.beginindex">
-		<antelope:lastindexof string="${file.separator}" />
-	</antelope:stringutil>
-
-	<antelope:math
-		datatype="int"
-		operand1="${plugin.name.beginindex}"
-		operand2="1"
-		operation="+"
-		result="plugin.name.beginindex"
-	/>
-
-	<antelope:stringutil string="${basedir}" property="plugin.name">
-		<antelope:substring beginindex="${plugin.name.beginindex}" />
-	</antelope:stringutil>
+	<property name="plugin.name" value="${ant.project.name}" />
 
 	<if>
 		<antelope:endswith string="${plugin.name}" with="-shared" />
