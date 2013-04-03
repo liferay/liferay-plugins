@@ -31,9 +31,8 @@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.servlet.BrowserSnifferUtil" %><%@
 page import="com.liferay.portal.kernel.servlet.ServletContextPool" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.portal.model.ContactConstants" %><%@
-page import="com.liferay.portal.model.Portlet" %><%@
+page import="com.liferay.portal.kernel.util.StringPool" %><%
+<%@ page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.webserver.WebServerServletTokenUtil" %>
@@ -41,5 +40,8 @@ page import="com.liferay.portal.webserver.WebServerServletTokenUtil" %>
 <%@ page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
 page import="java.util.Set" %>
+
+page import="com.liferay.portal.kernel.util.Validator" %><%
+page import="com.liferay.portal.model.ContactConstants" %>
 
 <liferay-theme:defineObjects />

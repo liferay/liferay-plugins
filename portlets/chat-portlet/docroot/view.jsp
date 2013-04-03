@@ -37,7 +37,7 @@
 
 	JSONObject activePanelIdsJSONObject = null;
 
-	String openPanelId = "";
+	String openPanelId = StringPool.BLANK;
 
 	if (Validator.isNotNull(status.getActivePanelIds())) {
 		activePanelIdsJSONObject = JSONFactoryUtil.createJSONObject(status.getActivePanelIds());
@@ -151,7 +151,7 @@
 			</div>
 		</div>
 
-		<input id="activePanelIds" type="hidden" value='<%= status.getActivePanelIds() %>' />
+		<input id="activePanelIds" type="hidden" value="<%= HtmlUtil.escapeAttribute(status.getActivePanelIds()) %>" />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
 
 		<div class="chat-extensions aui-helper-hidden">
