@@ -15,8 +15,8 @@
 package com.liferay.calendar.recurrence;
 
 import com.google.ical.values.DateTimeValue;
-import com.google.ical.values.DateTimeValueImpl;
 import com.google.ical.values.DateValue;
+import com.google.ical.values.DateValueImpl;
 import com.google.ical.values.RDateList;
 import com.google.ical.values.RRule;
 import com.google.ical.values.WeekdayNum;
@@ -156,10 +156,9 @@ public class RecurrenceSerializer {
 	}
 
 	private static DateValue _toDateValue(Calendar jCalendar) {
-		DateValue dateValue = new DateTimeValueImpl(
+		DateValue dateValue = new DateValueImpl(
 			jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH) + 1,
-			jCalendar.get(Calendar.DATE), jCalendar.get(Calendar.HOUR_OF_DAY),
-			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND));
+			jCalendar.get(Calendar.DATE));
 
 		return dateValue;
 	}

@@ -245,35 +245,28 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		java.util.Calendar newStartTimeJCalendar = JCalendarUtil.getJCalendar(
+		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTime);
-
-		java.util.Calendar oldStartTimeJCalendar = JCalendarUtil.getJCalendar(
-			calendarBooking.getStartTime());
-
-		newStartTimeJCalendar.set(
-			java.util.Calendar.HOUR_OF_DAY,
-			oldStartTimeJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
-		newStartTimeJCalendar.set(
-			java.util.Calendar.MINUTE,
-			oldStartTimeJCalendar.get(java.util.Calendar.MINUTE));
-		newStartTimeJCalendar.set(
-			java.util.Calendar.SECOND,
-			oldStartTimeJCalendar.get(java.util.Calendar.SECOND));
 
 		Recurrence recurrenceObj = calendarBooking.getRecurrenceObj();
 
 		if (allFollowing) {
+			if (startTime == calendarBooking.getStartTime()) {
+				deleteCalendarBooking(calendarBooking);
+
+				return;
+			}
+
 			if (recurrenceObj.getCount() > 0) {
 				recurrenceObj.setCount(0);
 			}
 
-			newStartTimeJCalendar.add(java.util.Calendar.DATE, -1);
+			startTimeJCalendar.add(java.util.Calendar.DATE, -1);
 
-			recurrenceObj.setUntilJCalendar(newStartTimeJCalendar);
+			recurrenceObj.setUntilJCalendar(startTimeJCalendar);
 		}
 		else {
-			recurrenceObj.addExceptionDate(newStartTimeJCalendar);
+			recurrenceObj.addExceptionDate(startTimeJCalendar);
 		}
 
 		calendarBooking.setRecurrence(
