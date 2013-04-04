@@ -2334,6 +2334,13 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 	}
 
+	.wiki-body:after {
+		clear: both;
+		content: "";
+		display: block;
+		width: 100%;
+	}
+
 	.toc {
 		margin-bottom: 1.5em;
 
