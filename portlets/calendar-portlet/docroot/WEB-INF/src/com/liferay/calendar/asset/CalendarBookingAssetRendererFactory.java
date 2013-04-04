@@ -76,6 +76,10 @@ public class CalendarBookingAssetRendererFactory
 			CalendarResourceUtil.getGroupCalendarResource(
 				liferayPortletRequest, themeDisplay.getScopeGroupId());
 
+		if (calendarResource == null) {
+			return null;
+		}
+
 		Calendar calendar = calendarResource.getDefaultCalendar();
 
 		if (!CalendarPermission.contains(
