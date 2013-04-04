@@ -639,7 +639,11 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 				transition.setTimers(timer);
 			}
 
-			sourceNode.addTransition(transition);
+			sourceNode.addOutgoingTransition(transition);
+
+			if (Validator.isNotNull(targetNode)) {
+				targetNode.addIncomingTransition(transition);
+			}
 		}
 	}
 
