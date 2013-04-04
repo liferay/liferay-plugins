@@ -5949,8 +5949,8 @@
 		<method>
 			<name>getNodeExecutor</name>
 			<param>
-				<name>nodeType</name>
-				<type>com.liferay.portal.workflow.kaleo.definition.NodeType</type>
+				<name>nodeTypeString</name>
+				<type>java.lang.String</type>
 			</param>
 			<throws>
 				<name>WorkflowException</name>

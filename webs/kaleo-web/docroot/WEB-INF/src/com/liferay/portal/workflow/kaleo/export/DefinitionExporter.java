@@ -12,27 +12,20 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.export;
 
-import java.util.Set;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Michael C. Han
  */
-public class Task extends Node {
+public interface DefinitionExporter {
 
-	public Task(String name, String description) {
-		super(NodeType.TASK, name, description);
-	}
+	public String export(long kaleoDefinitionId)
+		throws PortalException, SystemException;
 
-	public Set<Assignment> getAssignments() {
-		return _assignments;
-	}
-
-	public void setAssignments(Set<Assignment> assignments) {
-		_assignments = assignments;
-	}
-
-	private Set<Assignment> _assignments;
+	public String export(long companyId, String name, int version)
+		throws PortalException, SystemException;
 
 }

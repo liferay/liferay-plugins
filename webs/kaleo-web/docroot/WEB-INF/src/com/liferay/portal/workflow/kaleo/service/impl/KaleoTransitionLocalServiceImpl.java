@@ -97,6 +97,14 @@ public class KaleoTransitionLocalServiceImpl
 		return kaleoTransitionPersistence.findByKNI_DT(kaleoNodeId, true);
 	}
 
+	public List<KaleoTransition> getKaleoDefinitionKaleoTransitions(
+			long kaleoDefinitionId)
+		throws SystemException {
+
+		return kaleoTransitionPersistence.findByKaleoDefinitionId(
+			kaleoDefinitionId);
+	}
+
 	public KaleoTransition getKaleoTransition(long kaleoNodeId, String name)
 		throws PortalException, SystemException {
 

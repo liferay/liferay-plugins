@@ -78,6 +78,14 @@ public class KaleoActionLocalServiceImpl
 	}
 
 	public List<KaleoAction> getKaleoActions(
+			String kaleoClassName, long kaleoClassPK)
+		throws SystemException {
+
+		return kaleoActionPersistence.findByKCN_KCPK(
+			kaleoClassName, kaleoClassPK);
+	}
+
+	public List<KaleoAction> getKaleoActions(
 			String kaleoClassName, long kaleoClassPK, String executionType)
 		throws SystemException {
 

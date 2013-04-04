@@ -56,7 +56,7 @@ public class DefaultWorkflowValidator implements WorkflowValidator {
 
 		for (Node node : nodes) {
 			NodeValidator<Node> nodeValidator =
-				_nodeValidatorRegistry.getValidator(node.getNodeType());
+				_nodeValidatorRegistry.getNodeValidator(node.getNodeType());
 
 			nodeValidator.validate(definition, node);
 		}

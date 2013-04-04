@@ -12,27 +12,26 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.export.builder;
 
-import java.util.Set;
+import com.liferay.portal.workflow.kaleo.util.NodeTypeDependentObjectRegistry;
+
+import java.util.Map;
 
 /**
  * @author Michael C. Han
  */
-public class Task extends Node {
+public class NodeBuilderRegistry {
 
-	public Task(String name, String description) {
-		super(NodeType.TASK, name, description);
+	public static NodeBuilder getNodeBuilder(String nodeTypeString) {
+		return _nodeBuilders.getNodeTypeDependentObjects(nodeTypeString);
 	}
 
-	public Set<Assignment> getAssignments() {
-		return _assignments;
+	public void setNodeBuilders(Map<String, NodeBuilder> nodeBuilders) {
+		_nodeBuilders.setNodeTypeDependentObjects(nodeBuilders);
 	}
 
-	public void setAssignments(Set<Assignment> assignments) {
-		_assignments = assignments;
-	}
-
-	private Set<Assignment> _assignments;
+	protected static NodeTypeDependentObjectRegistry<NodeBuilder>
+		_nodeBuilders = new NodeTypeDependentObjectRegistry<NodeBuilder>();
 
 }

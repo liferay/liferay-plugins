@@ -28,6 +28,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNodeLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -141,6 +142,12 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
 		kaleoNotificationLocalService.deleteKaleoDefinitionKaleoNotifications(
 			kaleoDefinitionId);
+	}
+
+	public List<KaleoNode> getKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
+		throws SystemException {
+
+		return kaleoNodePersistence.findByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 }

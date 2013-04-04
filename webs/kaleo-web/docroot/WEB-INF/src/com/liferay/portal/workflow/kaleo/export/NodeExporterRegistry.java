@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.parser;
+package com.liferay.portal.workflow.kaleo.export;
 
-import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.util.NodeTypeDependentObjectRegistry;
 
@@ -23,20 +22,17 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public class NodeValidatorRegistry {
+public class NodeExporterRegistry {
 
-	public NodeValidator<Node> getNodeValidator(NodeType nodeType) {
-		return _nodeValidators.getNodeTypeDependentObjects(nodeType);
+	public static NodeExporter getNodeExporter(NodeType nodeType) {
+		return _nodeExporters.getNodeTypeDependentObjects(nodeType);
 	}
 
-	public void setNodeValidators(
-		Map<String, NodeValidator<Node>> nodeValidators) {
-
-		_nodeValidators.setNodeTypeDependentObjects(nodeValidators);
+	public void setNodeExporter(Map<String, NodeExporter> nodeExporters) {
+		_nodeExporters.setNodeTypeDependentObjects(nodeExporters);
 	}
 
-	private static NodeTypeDependentObjectRegistry<NodeValidator<Node>>
-		_nodeValidators =
-			new NodeTypeDependentObjectRegistry<NodeValidator<Node>>();
+	private static NodeTypeDependentObjectRegistry<NodeExporter>
+		_nodeExporters = new NodeTypeDependentObjectRegistry<NodeExporter>();
 
 }

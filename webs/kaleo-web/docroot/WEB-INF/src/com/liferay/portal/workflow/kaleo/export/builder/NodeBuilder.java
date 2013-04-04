@@ -12,27 +12,19 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.export.builder;
 
-import java.util.Set;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.workflow.kaleo.definition.Node;
+import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 
 /**
  * @author Michael C. Han
  */
-public class Task extends Node {
+public interface NodeBuilder {
 
-	public Task(String name, String description) {
-		super(NodeType.TASK, name, description);
-	}
-
-	public Set<Assignment> getAssignments() {
-		return _assignments;
-	}
-
-	public void setAssignments(Set<Assignment> assignments) {
-		_assignments = assignments;
-	}
-
-	private Set<Assignment> _assignments;
+	public Node buildNode(KaleoNode kaleoNode)
+		throws PortalException, SystemException;
 
 }

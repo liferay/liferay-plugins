@@ -12,27 +12,26 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.export;
 
-import java.util.Set;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.workflow.kaleo.definition.Node;
 
 /**
  * @author Michael C. Han
  */
-public class Task extends Node {
+public class ForkNodeExporter extends BaseNodeExporter implements NodeExporter {
 
-	public Task(String name, String description) {
-		super(NodeType.TASK, name, description);
+	@Override
+	protected Element createNodeElement(Element element, String namespace) {
+		return element.addElement("fork", namespace);
 	}
 
-	public Set<Assignment> getAssignments() {
-		return _assignments;
-	}
+	@Override
+	protected void exportAdditionalNodeElements(
+		Node node, Element nodeElement) {
 
-	public void setAssignments(Set<Assignment> assignments) {
-		_assignments = assignments;
+		exportTimersElement(node, nodeElement, "timers", "timer");
 	}
-
-	private Set<Assignment> _assignments;
 
 }
