@@ -196,16 +196,16 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		long timestamp = -1;
 		int online = getInteger(pollerRequest, "online");
 		int awake = getInteger(pollerRequest, "awake");
-		String activePanelId = getString(pollerRequest, "activePanelId");
+		String activePanelIds = getString(pollerRequest, "activePanelIds");
 		String statusMessage = getString(pollerRequest, "statusMessage");
 		int playSound = getInteger(pollerRequest, "playSound");
 
-		if ((online != -1) || (awake != -1) || (activePanelId != null) ||
+		if ((online != -1) || (awake != -1) || (activePanelIds != null) ||
 			(statusMessage != null) || (playSound != -1)) {
 
 			StatusLocalServiceUtil.updateStatus(
 				pollerRequest.getUserId(), timestamp, online, awake,
-				activePanelId, statusMessage, playSound);
+				activePanelIds, statusMessage, playSound);
 		}
 	}
 
