@@ -23,5 +23,11 @@
 			<short-title>Calendar</short-title>
 			<keywords>Calendar</keywords>
 		</portlet-info>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
 	</portlet>
 </portlet-app>
