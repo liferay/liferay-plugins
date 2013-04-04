@@ -487,7 +487,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		statusImpl.setModifiedDate(status.getModifiedDate());
 		statusImpl.setOnline(status.isOnline());
 		statusImpl.setAwake(status.isAwake());
-		statusImpl.setActivePanelId(status.getActivePanelId());
+		statusImpl.setActivePanelIds(status.getActivePanelIds());
 		statusImpl.setMessage(status.getMessage());
 		statusImpl.setPlaySound(status.isPlaySound());
 

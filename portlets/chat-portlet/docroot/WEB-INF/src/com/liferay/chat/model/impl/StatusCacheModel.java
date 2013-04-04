@@ -44,8 +44,8 @@ public class StatusCacheModel implements CacheModel<Status>, Serializable {
 		sb.append(online);
 		sb.append(", awake=");
 		sb.append(awake);
-		sb.append(", activePanelId=");
-		sb.append(activePanelId);
+		sb.append(", activePanelIds=");
+		sb.append(activePanelIds);
 		sb.append(", message=");
 		sb.append(message);
 		sb.append(", playSound=");
@@ -64,11 +64,11 @@ public class StatusCacheModel implements CacheModel<Status>, Serializable {
 		statusImpl.setOnline(online);
 		statusImpl.setAwake(awake);
 
-		if (activePanelId == null) {
-			statusImpl.setActivePanelId(StringPool.BLANK);
+		if (activePanelIds == null) {
+			statusImpl.setActivePanelIds(StringPool.BLANK);
 		}
 		else {
-			statusImpl.setActivePanelId(activePanelId);
+			statusImpl.setActivePanelIds(activePanelIds);
 		}
 
 		if (message == null) {
@@ -90,7 +90,7 @@ public class StatusCacheModel implements CacheModel<Status>, Serializable {
 	public long modifiedDate;
 	public boolean online;
 	public boolean awake;
-	public String activePanelId;
+	public String activePanelIds;
 	public String message;
 	public boolean playSound;
 }
