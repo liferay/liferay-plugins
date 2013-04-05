@@ -357,6 +357,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Tasks entry
+
 		Date now = new Date();
 
 		TasksEntry tasksEntry = tasksEntryPersistence.findByPrimaryKey(
