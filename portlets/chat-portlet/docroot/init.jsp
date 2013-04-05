@@ -43,5 +43,4 @@ page import="com.liferay.portal.webserver.WebServerServletTokenUtil" %>
 page import="java.util.Map" %><%@
 page import="java.util.Set" %>
 
-
 <liferay-theme:defineObjects />
