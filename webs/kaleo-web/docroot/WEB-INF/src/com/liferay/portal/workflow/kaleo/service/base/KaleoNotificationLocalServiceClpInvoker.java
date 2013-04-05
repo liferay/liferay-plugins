@@ -131,7 +131,11 @@ public class KaleoNotificationLocalServiceClpInvoker {
 
 		_methodName109 = "getKaleoNotifications";
 
-		_methodParameterTypes109 = new String[] {
+		_methodParameterTypes109 = new String[] { "java.lang.String", "long" };
+
+		_methodName110 = "getKaleoNotifications";
+
+		_methodParameterTypes110 = new String[] {
 				"java.lang.String", "long", "java.lang.String"
 			};
 	}
@@ -264,6 +268,12 @@ public class KaleoNotificationLocalServiceClpInvoker {
 		if (_methodName109.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			return KaleoNotificationLocalServiceUtil.getKaleoNotifications((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName110.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
+			return KaleoNotificationLocalServiceUtil.getKaleoNotifications((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
@@ -314,4 +324,6 @@ public class KaleoNotificationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes108;
 	private String _methodName109;
 	private String[] _methodParameterTypes109;
+	private String _methodName110;
+	private String[] _methodParameterTypes110;
 }

@@ -293,6 +293,12 @@ public class KaleoNodeLocalServiceUtil {
 		getService().deleteKaleoDefinitionKaleoNodes(kaleoDefinitionId);
 	}
 
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> getKaleoDefinitionKaleoNodes(
+		long kaleoDefinitionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKaleoDefinitionKaleoNodes(kaleoDefinitionId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
