@@ -122,7 +122,7 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 				"No matching join found for fork " + fork.getName());
 		}
 		else if (join.getIncomingTransitionsCount() !=
-					joinIncomingTransitions) {
+			joinIncomingTransitions) {
 
 			throw new WorkflowException(
 				"Incorrect number of incoming transitions for join " +
