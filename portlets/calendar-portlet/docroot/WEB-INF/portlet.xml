@@ -24,6 +24,12 @@
 			<keywords>Calendar</keywords>
 		</portlet-info>
 		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
 			<role-name>power-user</role-name>
 		</security-role-ref>
 		<security-role-ref>
