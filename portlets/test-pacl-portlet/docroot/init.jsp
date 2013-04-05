@@ -79,12 +79,6 @@ page import="com.liferay.testpacl.service.FooLocalServiceUtil" %><%@
 page import="com.liferay.testpacl.util.TestPACLUtil" %><%@
 page import="com.liferay.util.PwdGenerator" %>
 
-<%@ page import="javax.crypto.Cipher" %><%@
-page import="javax.crypto.KeyGenerator" %><%@
-page import="javax.crypto.Mac" %><%@
-page import="javax.crypto.SecretKey" %><%@
-page import="javax.crypto.spec.SecretKeySpec" %>
-
 <%@ page import="java.io.File" %><%@
 page import="java.io.IOException" %><%@
 page import="java.io.Writer" %>
@@ -106,6 +100,12 @@ page import="java.sql.Statement" %>
 page import="java.util.List" %><%@
 page import="java.util.Locale" %><%@
 page import="java.util.Map" %>
+
+<%@ page import="javax.crypto.Cipher" %><%@
+page import="javax.crypto.KeyGenerator" %><%@
+page import="javax.crypto.Mac" %><%@
+page import="javax.crypto.SecretKey" %><%@
+page import="javax.crypto.spec.SecretKeySpec" %>
 
 <%@ page import="javax.naming.Context" %><%@
 page import="javax.naming.InitialContext" %>
