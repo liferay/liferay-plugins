@@ -35,8 +35,8 @@ import org.apache.shindig.common.servlet.GuiceServletContextListener;
 /**
  * @author Igor Spasic
  */
-public class AuthenticationServletFilter extends
-	org.apache.shindig.auth.AuthenticationServletFilter {
+public class AuthenticationServletFilter
+	extends org.apache.shindig.auth.AuthenticationServletFilter {
 
 	@Override
 	public void doFilter(
