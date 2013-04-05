@@ -121,7 +121,6 @@ public abstract class BaseNodeBuilder
 				else {
 					recipient = new UserRecipient();
 				}
-
 			}
 			else {
 				recipient = new AddressRecipient(
