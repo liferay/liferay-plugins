@@ -37,8 +37,7 @@ public class ConditionNodeBuilder
 
 		return new Condition(
 			kaleoNode.getName(), kaleoNode.getDescription(),
-			kaleoCondition.getScript(), kaleoCondition.getScriptLanguage(),
-			kaleoCondition.getScriptRequiredContexts());
+			kaleoCondition.getScript(), kaleoCondition.getScriptLanguage());
 	}
 
 }

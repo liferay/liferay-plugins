@@ -112,8 +112,7 @@ public abstract class BaseNodeExporter implements NodeExporter {
 
 		populateScriptingElement(
 			actionElement, action.getScript(),
-			action.getScriptLanguage().getValue(),
-			action.getScriptRequiredContexts());
+			action.getScriptLanguage().getValue());
 
 		if (action.getPriority() > 0) {
 			addTextElement(
@@ -203,8 +202,7 @@ public abstract class BaseNodeExporter implements NodeExporter {
 
 				populateScriptingElement(
 					scriptedAssignmentElement, scriptAssignment.getScript(),
-					scriptAssignment.getScriptLanguage().getValue(),
-					scriptAssignment.getScriptRequiredContexts());
+					scriptAssignment.getScriptLanguage().getValue());
 			}
 			else if (assignmentType.equals(AssignmentType.USER)) {
 				Element userElement = assignmentsElement.addElement("user");
@@ -409,17 +407,10 @@ public abstract class BaseNodeExporter implements NodeExporter {
 	}
 
 	protected void populateScriptingElement(
-		Element scriptingElement, String script, String scriptLanguage,
-		String scriptRequiredContexts) {
+		Element scriptingElement, String script, String scriptLanguage) {
 
 		addCDataElement(scriptingElement, "script", script);
 		addTextElement(scriptingElement, "script-language", scriptLanguage);
-
-		if (Validator.isNotNull(scriptRequiredContexts)) {
-			addTextElement(
-				scriptingElement, "script-required-contexts",
-				scriptRequiredContexts);
-		}
 	}
 
 	protected void populateUserElement(

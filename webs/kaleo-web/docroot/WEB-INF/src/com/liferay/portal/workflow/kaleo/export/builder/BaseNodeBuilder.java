@@ -145,9 +145,7 @@ public abstract class BaseNodeBuilder
 			Action action = new Action(
 				kaleoAction.getName(), kaleoAction.getDescription(),
 				kaleoAction.getExecutionType(), kaleoAction.getScript(),
-				kaleoAction.getScriptLanguage(),
-				kaleoAction.getScriptRequiredContexts(),
-				kaleoAction.getPriority());
+				kaleoAction.getScriptLanguage(), kaleoAction.getPriority());
 
 			actions.add(action);
 		}
@@ -177,8 +175,7 @@ public abstract class BaseNodeBuilder
 			if (assigneeClassName.equals(AssignmentType.SCRIPT.name())) {
 				assignment = new ScriptAssignment(
 					kaleoTaskAssignment.getAssigneeScript(),
-					kaleoTaskAssignment.getAssigneeScriptLanguage(),
-					kaleoTaskAssignment.getAssigneeScriptRequiredContexts());
+					kaleoTaskAssignment.getAssigneeScriptLanguage());
 			}
 			else if (assigneeClassName.equals(ResourceAction.class.getName())) {
 				assignment = new ResourceActionAssignment(

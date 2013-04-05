@@ -39,8 +39,7 @@ public class ConditionNodeExporter
 
 		populateScriptingElement(
 			nodeElement, condition.getScript(),
-			condition.getScriptLanguage().getValue(),
-			condition.getScriptRequiredContexts());
+			condition.getScriptLanguage().getValue());
 	}
 
 }
