@@ -1,5 +1,6 @@
 create table TestPACL_Bar (
-	barId LONG not null primary key
+	barId LONG not null primary key,
+	field1 VARCHAR(75) null
 );
 
 create table TestPACL_Foo (
