@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.webdav.WebDAVException;
 
 import java.io.InputStream;
 
-import java.lang.Object;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;

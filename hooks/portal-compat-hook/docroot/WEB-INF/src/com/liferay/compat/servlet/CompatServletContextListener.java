@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.webdav.WebDAVStorage;
 import com.liferay.portal.kernel.webdav.WebDAVStorageWrapper;
 import com.liferay.portal.kernel.webdav.WebDAVUtil;
 
-import java.lang.Object;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

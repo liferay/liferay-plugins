@@ -217,8 +217,8 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
 				FileEntry fileEntry = (FileEntry)resource.getModel();
 
-				// Do not allow WebDAV to check in a file entry if it requires
-				// a manual check in
+				// Do not allow WebDAV to check in a file entry if it requires a
+				// manual check in
 
 				if (isManualCheckInRequired(fileEntry)) {
 					return false;

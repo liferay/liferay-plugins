@@ -32,7 +32,7 @@ public class SolrServerWrapperComparator
 			return 1;
 		}
 		else if (solrServerWrapper1.getInvocationCount() <
-						solrServerWrapper2.getInvocationCount()) {
+					solrServerWrapper2.getInvocationCount()) {
 
 			return -1;
 		}

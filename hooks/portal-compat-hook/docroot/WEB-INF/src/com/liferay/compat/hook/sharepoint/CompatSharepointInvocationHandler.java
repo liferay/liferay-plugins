@@ -16,7 +16,6 @@ package com.liferay.compat.hook.sharepoint;
 
 import com.liferay.compat.portal.kernel.webdav.WebDAVUtil;
 
-import java.lang.Object;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
