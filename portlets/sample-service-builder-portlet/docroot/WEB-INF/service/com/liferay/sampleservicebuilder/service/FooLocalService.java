@@ -176,12 +176,12 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the foo with the UUID in the group.
+	* Returns the foo matching the UUID and group.
 	*
-	* @param uuid the UUID of foo
-	* @param groupId the group id of the foo
-	* @return the foo
-	* @throws PortalException if a foo with the UUID in the group could not be found
+	* @param uuid the foo's UUID
+	* @param groupId the primary key of the group
+	* @return the matching foo
+	* @throws PortalException if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -190,12 +190,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	/**
-	* Returns the k b article with the UUID in the group.
+	* Returns the k b article matching the UUID and group.
 	*
-	* @param uuid the UUID of k b article
-	* @param groupId the group id of the k b article
-	* @return the k b article
-	* @throws PortalException if a k b article with the UUID in the group could not be found
+	* @param uuid the k b article's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b article
+	* @throws PortalException if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndGroupId(

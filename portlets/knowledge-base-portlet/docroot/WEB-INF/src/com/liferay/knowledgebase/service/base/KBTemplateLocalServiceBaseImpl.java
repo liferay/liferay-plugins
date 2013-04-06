@@ -229,12 +229,12 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the k b template with the UUID in the group.
+	 * Returns the k b template matching the UUID and group.
 	 *
-	 * @param uuid the UUID of k b template
-	 * @param groupId the group id of the k b template
-	 * @return the k b template
-	 * @throws PortalException if a k b template with the UUID in the group could not be found
+	 * @param uuid the k b template's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching k b template
+	 * @throws PortalException if a matching k b template could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public KBTemplate getKBTemplateByUuidAndGroupId(String uuid, long groupId)

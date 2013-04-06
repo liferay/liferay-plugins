@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -50,6 +51,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The persistence implementation for the microblogs entry service.
@@ -580,11 +582,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+					orderByComparator, true);
 			}
 			else {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
+					orderByComparator, true);
 			}
 		}
 		else {
@@ -1419,11 +1421,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+					orderByComparator, true);
 			}
 			else {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
+					orderByComparator, true);
 			}
 		}
 		else {
@@ -2282,7 +2284,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		query.append(_FINDER_COLUMN_U_T_USERID_2);
 
-		query.append(_FINDER_COLUMN_U_T_TYPE_2);
+		query.append(_FINDER_COLUMN_U_T_TYPE_2_SQL);
 
 		if (!getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
@@ -2291,11 +2293,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+					orderByComparator, true);
 			}
 			else {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
+					orderByComparator, true);
 			}
 		}
 		else {
@@ -2411,7 +2413,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		query.append(_FINDER_COLUMN_U_T_USERID_2);
 
-		query.append(_FINDER_COLUMN_U_T_TYPE_2);
+		query.append(_FINDER_COLUMN_U_T_TYPE_2_SQL);
 
 		if (!getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
@@ -2624,7 +2626,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		query.append(_FINDER_COLUMN_U_T_USERID_2);
 
-		query.append(_FINDER_COLUMN_U_T_TYPE_2);
+		query.append(_FINDER_COLUMN_U_T_TYPE_2_SQL);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				MicroblogsEntry.class.getName(),
@@ -2660,6 +2662,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	private static final String _FINDER_COLUMN_U_T_USERID_2 = "microblogsEntry.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_T_TYPE_2 = "microblogsEntry.type = ?";
+	private static final String _FINDER_COLUMN_U_T_TYPE_2_SQL = "microblogsEntry.type_ = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_T_R = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
 			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -3174,7 +3177,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		query.append(_FINDER_COLUMN_T_R_TYPE_2);
+		query.append(_FINDER_COLUMN_T_R_TYPE_2_SQL);
 
 		query.append(_FINDER_COLUMN_T_R_RECEIVERUSERID_2);
 
@@ -3185,11 +3188,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+					orderByComparator, true);
 			}
 			else {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
+					orderByComparator, true);
 			}
 		}
 		else {
@@ -3303,7 +3306,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		query.append(_FINDER_COLUMN_T_R_TYPE_2);
+		query.append(_FINDER_COLUMN_T_R_TYPE_2_SQL);
 
 		query.append(_FINDER_COLUMN_T_R_RECEIVERUSERID_2);
 
@@ -3518,7 +3521,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
 
-		query.append(_FINDER_COLUMN_T_R_TYPE_2);
+		query.append(_FINDER_COLUMN_T_R_TYPE_2_SQL);
 
 		query.append(_FINDER_COLUMN_T_R_RECEIVERUSERID_2);
 
@@ -3555,6 +3558,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	private static final String _FINDER_COLUMN_T_R_TYPE_2 = "microblogsEntry.type = ? AND ";
+	private static final String _FINDER_COLUMN_T_R_TYPE_2_SQL = "microblogsEntry.type_ = ? AND ";
 	private static final String _FINDER_COLUMN_T_R_RECEIVERUSERID_2 = "microblogsEntry.receiverUserId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_T_RMEI = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
@@ -4079,7 +4083,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2);
+		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2_SQL);
 
 		query.append(_FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2);
 
@@ -4090,11 +4094,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+					orderByComparator, true);
 			}
 			else {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
+					orderByComparator, true);
 			}
 		}
 		else {
@@ -4209,7 +4213,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2);
+		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2_SQL);
 
 		query.append(_FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2);
 
@@ -4425,7 +4429,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
 
-		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2);
+		query.append(_FINDER_COLUMN_T_RMEI_TYPE_2_SQL);
 
 		query.append(_FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2);
 
@@ -4462,6 +4466,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	private static final String _FINDER_COLUMN_T_RMEI_TYPE_2 = "microblogsEntry.type = ? AND ";
+	private static final String _FINDER_COLUMN_T_RMEI_TYPE_2_SQL = "microblogsEntry.type_ = ? AND ";
 	private static final String _FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2 =
 		"microblogsEntry.receiverMicroblogsEntryId = ?";
 
@@ -5083,6 +5088,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		return count.intValue();
 	}
 
+	@Override
+	protected Set<String> getBadColumnNames() {
+		return _badColumnNames;
+	}
+
 	/**
 	 * Initializes the microblogs entry persistence.
 	 */
@@ -5135,6 +5145,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(MicroblogsEntryPersistenceImpl.class);
+	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+				"type"
+			});
 	private static MicroblogsEntry _nullMicroblogsEntry = new MicroblogsEntryImpl() {
 			@Override
 			public Object clone() {

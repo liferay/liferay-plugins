@@ -190,12 +190,12 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	}
 
 	/**
-	* Returns the k b comment with the UUID in the group.
+	* Returns the k b comment matching the UUID and group.
 	*
-	* @param uuid the UUID of k b comment
-	* @param groupId the group id of the k b comment
-	* @return the k b comment
-	* @throws PortalException if a k b comment with the UUID in the group could not be found
+	* @param uuid the k b comment's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b comment
+	* @throws PortalException if a matching k b comment could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.knowledgebase.model.KBComment getKBCommentByUuidAndGroupId(

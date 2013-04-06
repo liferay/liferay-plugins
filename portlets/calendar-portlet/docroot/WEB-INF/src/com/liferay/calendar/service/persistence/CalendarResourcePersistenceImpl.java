@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -52,6 +53,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The persistence implementation for the calendar resource service.
@@ -4630,6 +4632,15 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		removeConjunction(_FINDER_COLUMN_G_C_CODE_2) + ")";
 	private static final String _FINDER_COLUMN_G_C_CODE_6 = "(" +
 		removeConjunction(_FINDER_COLUMN_G_C_CODE_3) + ")";
+	private static final String _FINDER_COLUMN_G_C_CODE_1_SQL = "calendarResource.code_ IS NULL";
+	private static final String _FINDER_COLUMN_G_C_CODE_2_SQL = "calendarResource.code_ = ?";
+	private static final String _FINDER_COLUMN_G_C_CODE_3_SQL = "(calendarResource.code_ IS NULL OR calendarResource.code_ = '')";
+	private static final String _FINDER_COLUMN_G_C_CODE_4_SQL = "(" +
+		removeConjunction(_FINDER_COLUMN_G_C_CODE_1) + ")";
+	private static final String _FINDER_COLUMN_G_C_CODE_5_SQL = "(" +
+		removeConjunction(_FINDER_COLUMN_G_C_CODE_2) + ")";
+	private static final String _FINDER_COLUMN_G_C_CODE_6_SQL = "(" +
+		removeConjunction(_FINDER_COLUMN_G_C_CODE_3) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -5466,6 +5477,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 	private static final String _FINDER_COLUMN_G_A_GROUPID_2 = "calendarResource.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_A_ACTIVE_2 = "calendarResource.active = ?";
+	private static final String _FINDER_COLUMN_G_A_ACTIVE_2_SQL = "calendarResource.active_ = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_C = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByC_C",
@@ -7233,6 +7245,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		removeConjunction(_FINDER_COLUMN_G_N_A_NAME_3) + ")";
 	private static final String _FINDER_COLUMN_G_N_A_ACTIVE_2 = "calendarResource.active = ?";
 	private static final String _FINDER_COLUMN_G_N_A_ACTIVE_5 = "(" +
+		removeConjunction(_FINDER_COLUMN_G_N_A_ACTIVE_2) + ")";
+	private static final String _FINDER_COLUMN_G_N_A_ACTIVE_2_SQL = "calendarResource.active_ = ?";
+	private static final String _FINDER_COLUMN_G_N_A_ACTIVE_5_SQL = "(" +
 		removeConjunction(_FINDER_COLUMN_G_N_A_ACTIVE_2) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_C_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
@@ -9178,6 +9193,11 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		return count.intValue();
 	}
 
+	@Override
+	protected Set<String> getBadColumnNames() {
+		return _badColumnNames;
+	}
+
 	/**
 	 * Initializes the calendar resource persistence.
 	 */
@@ -9222,6 +9242,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CalendarResourcePersistenceImpl.class);
+	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+				"uuid", "code", "active"
+			});
 	private static CalendarResource _nullCalendarResource = new CalendarResourceImpl() {
 			@Override
 			public Object clone() {
