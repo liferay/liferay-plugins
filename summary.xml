@@ -351,7 +351,7 @@
 		<artifact-id><![CDATA[so-hook]]></artifact-id>
 		<name><![CDATA[Social Office]]></name>
 		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[collaboration, communication, office, so, social, social office, team]]></tags>
+		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -688,7 +688,7 @@
 		<artifact-id><![CDATA[contacts-portlet]]></artifact-id>
 		<name><![CDATA[Contacts]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[communication, contacts, office, social office, team]]></tags>
+		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -766,7 +766,7 @@
 		<artifact-id><![CDATA[events-display-portlet]]></artifact-id>
 		<name><![CDATA[Events Display]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[calendar, communication, events, office, social office, team]]></tags>
+		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -1050,7 +1050,7 @@
 		<artifact-id><![CDATA[microblogs-portlet]]></artifact-id>
 		<name><![CDATA[Microblogs]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[blogs, communication, microblogs, office, social office, team]]></tags>
+		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -1064,6 +1064,30 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[false]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[modules-admin-portlet]]></artifact-id>
+		<name><![CDATA[Modules Administration]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
@@ -1173,6 +1197,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[portlets/plugins-security-manager-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1205,7 +1230,7 @@
 		<artifact-id><![CDATA[private-messaging-portlet]]></artifact-id>
 		<name><![CDATA[Private Messaging]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[communication, messaging, office, private, social office, team]]></tags>
+		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -2013,7 +2038,7 @@
 		<artifact-id><![CDATA[tasks-portlet]]></artifact-id>
 		<name><![CDATA[Task Management System]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[management system, office, organization, so, social office, task, team]]></tags>
+		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -2301,7 +2326,7 @@
 		<artifact-id><![CDATA[test-kaleo-portlet]]></artifact-id>
 		<name><![CDATA[Test Kaleo Web]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
+		<tags><![CDATA[test]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -2926,7 +2951,7 @@
 		<artifact-id><![CDATA[so-welcome-theme]]></artifact-id>
 		<name><![CDATA[Social Office Welcome]]></name>
 		<type><![CDATA[theme]]></type>
-		<tags><![CDATA[collaboration, communication, office, so, social, social office, team]]></tags>
+		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
@@ -3050,6 +3075,30 @@
 			<screenshot><![CDATA[themes/zoe-healthcare-theme/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
 			<screenshot><![CDATA[themes/zoe-healthcare-theme/docroot/WEB-INF/releng/screenshots/5.jpg]]></screenshot>
 			<screenshot><![CDATA[themes/zoe-healthcare-theme/docroot/WEB-INF/releng/screenshots/6.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[zoe-political-theme]]></artifact-id>
+		<name><![CDATA[Zoe Political]]></name>
+		<type><![CDATA[theme]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[Themes]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[resources-importer-web]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
