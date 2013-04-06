@@ -2424,6 +2424,48 @@
 </p>
 
 <p>
+	<h3>Index</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("create index index1 ON TestPACL_CreateFailure (userId)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("create index index1 ON TestPACL_CreateFailure (userId)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("create index index1 ON TestPACL_CreateSuccess (userId)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testStatement("create index index1 ON TestPACL_CreateSuccess (userId)");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
 	<h3>Insert</h3>
 </p>
 
