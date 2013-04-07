@@ -30,6 +30,7 @@ public class StoreControlPanelEntry extends BaseControlPanelEntry {
 		throws Exception {
 
 		return permissionChecker.isOmniadmin();
+		
 	}
 
 }
