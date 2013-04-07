@@ -119,9 +119,11 @@ String dirName = ParamUtil.getString(request, "dirName");
 			<aui:model-context bean="<%= kbArticle %>" model="<%= KBArticle.class %>" />
 		</c:if>
 
-		<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="categories" type="assetCategories" />
+		<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="categorization">
+			<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="categories" type="assetCategories" />
 
-		<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="tags" type="assetTags" />
+			<aui:input classPK="<%= (kbArticle != null) ? kbArticle.getClassPK() : 0 %>" name="tags" type="assetTags" />
+		</liferay-ui:panel>
 
 		<c:if test="<%= kbArticle == null %>">
 			<aui:field-wrapper cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "aui-helper-hidden" : StringPool.BLANK %>' label="permissions">
