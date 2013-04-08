@@ -14,18 +14,21 @@
 
 package com.liferay.socialnetworking.friends.social;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Zsolt Berentey
  */
 public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
@@ -64,43 +67,13 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 			return new Object[0];
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathFriendlyURLPublic());
-		sb.append(StringPool.SLASH);
-
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
-		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-
-		sb.append("/profile");
-
 		String creatorUserName = getUserName(
 			activity.getUserId(), serviceContext);
-
-		String creatorUserNameURL = wrapLink(sb.toString(), creatorUserName);
-
-		sb = new StringBundler(5);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathFriendlyURLPublic());
-		sb.append(StringPool.SLASH);
-
-		User receiverUser = UserLocalServiceUtil.getUserById(
-			activity.getReceiverUserId());
-
-		sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
-
-		sb.append("/profile");
 
 		String receiverUserName = getUserName(
 			activity.getReceiverUserId(), serviceContext);
 
-		String receiverUserNameURL = wrapLink(sb.toString(), receiverUserName);
-
-		return new Object[] {creatorUserNameURL, receiverUserNameURL};
+		return new Object[] {creatorUserName, receiverUserName};
 	}
 
 	@Override
