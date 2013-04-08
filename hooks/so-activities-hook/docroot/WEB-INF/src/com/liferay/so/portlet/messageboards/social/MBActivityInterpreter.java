@@ -71,7 +71,8 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		}
 
 		sb.append(pageTitle);
-		sb.append("</div><div class='forum-page-content'>");
+
+		sb.append("</div><div class=\"forum-page-content\">");
 		sb.append(
 			StringUtil.shorten(
 				HtmlUtil.extractText(
@@ -114,7 +115,7 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 		String categoryLink = wrapLink(categoryURL, categoryName);
 
-		if ((activity.getType() == _REPLY_MESSAGE) ||
+		if ((activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) ||
 			(activity.getReceiverUserId() > 0)) {
 
 			String receiverUserName = getUserName(
@@ -126,7 +127,7 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 			return new Object[] {receiverUserName};
 		}
-		else if (activity.getType() == _ADD_MESSAGE) {
+		else if (activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) {
 			if (message.getCategoryId() > 0) {
 				return new Object[] {categoryLink};
 			}
@@ -141,12 +142,12 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 		String titlePattern = StringPool.BLANK;
 
-		if ((activity.getType() == _REPLY_MESSAGE) ||
+		if ((activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) ||
 			(activity.getReceiverUserId() > 0)) {
 
 			titlePattern = "replied-to-x-forum-post";
 		}
-		else if (activity.getType() == _ADD_MESSAGE) {
+		else if (activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) {
 			titlePattern = "wrote-a-new-forum-post";
 		}
 		else {
@@ -163,10 +164,18 @@ public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		return titlePattern;
 	}
 
-	private static final int _ADD_MESSAGE = 1;
+	/**
+	 * {@link
+	 * com.liferay.portlet.messageboards.social.MBActivityKeys#ADD_MESSAGE}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_MESSAGE = 1;
+
+	/**
+	 * {@link
+	 * com.liferay.portlet.messageboards.social.MBActivityKeys#REPLY_MESSAGE}
+	 */
+	private static final int _ACTIVITY_KEY_REPLY_MESSAGE = 2;
 
 	private static final String[] _CLASS_NAMES = {MBMessage.class.getName()};
-
-	private static final int _REPLY_MESSAGE = 2;
 
 }

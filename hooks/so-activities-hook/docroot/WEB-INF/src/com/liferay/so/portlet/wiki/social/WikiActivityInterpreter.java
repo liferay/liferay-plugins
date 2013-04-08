@@ -81,7 +81,8 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		}
 
 		sb.append(pageTitle);
-		sb.append("</div><div class='wiki-page-content'>");
+
+		sb.append("</div><div class=\"wiki-page-content\">");
 		sb.append(
 			StringUtil.shorten(
 				assetRenderer.getSummary(serviceContext.getLocale()), 200));
@@ -100,6 +101,7 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			serviceContext.translate("view-wiki"));
 	}
 
+	@Override
 	protected Object[] getTitleArguments(
 			String groupName, SocialActivity activity, String link,
 			String title, ServiceContext serviceContext)
@@ -139,20 +141,21 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		return new Object[] {nodeTitle};
 	}
 
+	@Override
 	protected String getTitlePattern(String groupName, SocialActivity activity)
 		throws Exception {
 
 		String titlePattern = null;
 
-		if ((activity.getType() == _ADD_COMMENT) ||
+		if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
 			(activity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
 			titlePattern = "commented-on-a-wiki-page";
 		}
-		else if (activity.getType() == _ADD_PAGE) {
+		else if (activity.getType() == _ACTIVITY_KEY_ADD_PAGE) {
 			titlePattern = "created-a-new-wiki-page";
 		}
-		else if (activity.getType() == _UPDATE_PAGE) {
+		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
 			titlePattern = "updated-a-wiki-page";
 		}
 		else {
@@ -173,12 +176,21 @@ public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		return titlePattern;
 	}
 
-	private static final int _ADD_COMMENT = 3;
+	/**
+	 * {@link com.liferay.portlet.wiki.social.WikiActivityKeys#ADD_COMMENT}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_COMMENT = 3;
 
-	private static final int _ADD_PAGE = 1;
+	/**
+	 * {@link com.liferay.portlet.wiki.social.WikiActivityKeys#ADD_PAGE}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_PAGE = 1;
+
+	/**
+	 * {@link com.liferay.portlet.wiki.social.WikiActivityKeys#UPDATE_PAGE}
+	 */
+	private static final int _ACTIVITY_KEY_UPDATE_PAGE = 2;
 
 	private static final String[] _CLASS_NAMES = {WikiPage.class.getName()};
-
-	private static final int _UPDATE_PAGE = 2;
 
 }

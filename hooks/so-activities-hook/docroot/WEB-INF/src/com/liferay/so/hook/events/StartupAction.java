@@ -25,9 +25,6 @@ import com.liferay.so.activities.model.SocialActivityInterpreter;
 import com.liferay.so.activities.model.impl.SocialActivityInterpreterImpl;
 import com.liferay.so.activities.service.SocialActivityInterpreterLocalServiceUtil;
 
-import java.lang.Exception;
-import java.lang.String;
-
 /**
  * @author Brian Wing Shun Chan
  * @author Jonathan Lee

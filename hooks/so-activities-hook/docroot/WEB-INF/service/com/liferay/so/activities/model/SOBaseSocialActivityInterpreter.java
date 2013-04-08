@@ -57,7 +57,7 @@ public abstract class SOBaseSocialActivityInterpreter
 
 	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {
 		return FastDateFormatFactoryUtil.getSimpleDateFormat(
-			_DATE_TIME_FORMAT, locale, timezone);
+			"EEEE, MMMMM dd, yyyy 'at' h:mm a", locale, timezone);
 	}
 
 	protected String getLinkURL(
@@ -89,6 +89,7 @@ public abstract class SOBaseSocialActivityInterpreter
 		Date activityDate = new Date(activity.getCreateDate());
 
 		sb.append(dateFormatDate.format(activityDate));
+
 		sb.append("\">");
 
 		String relativeTimeSpan = Time.getRelativeTimeSpan(
@@ -96,6 +97,7 @@ public abstract class SOBaseSocialActivityInterpreter
 			serviceContext.getTimeZone());
 
 		sb.append(relativeTimeSpan);
+
 		sb.append("</div><div class=\"activity-user-name\">");
 
 		String userName = getUserName(activity.getUserId(), serviceContext);
@@ -120,6 +122,7 @@ public abstract class SOBaseSocialActivityInterpreter
 			null, activity, null, null, serviceContext);
 
 		sb.append(serviceContext.translate(titlePattern, titleArguments));
+
 		sb.append("</div>");
 
 		return sb.toString();
@@ -158,8 +161,5 @@ public abstract class SOBaseSocialActivityInterpreter
 
 		return wrapLink(link, sb.toString());
 	}
-
-	private static final String _DATE_TIME_FORMAT =
-		"EEEE, MMMMM dd, yyyy 'at' h:mm a";
 
 }

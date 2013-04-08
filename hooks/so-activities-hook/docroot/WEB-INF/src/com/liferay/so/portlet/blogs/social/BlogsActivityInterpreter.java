@@ -70,7 +70,8 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		}
 
 		sb.append(pageTitle);
-		sb.append("</div><div class='blogs-page-content'>");
+
+		sb.append("</div><div class=\"blogs-page-content\">");
 
 		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(
 			activity.getClassPK());
@@ -78,6 +79,7 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		String content = HtmlUtil.extractText(entry.getContent());
 
 		sb.append(StringUtil.shorten(content, 200));
+
 		sb.append("</div></div>");
 
 		return sb.toString();
@@ -98,25 +100,34 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 		String groupName,
 		com.liferay.portlet.social.model.SocialActivity activity) {
 
-		if (activity.getType() == _ADD_COMMENT) {
+		if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
 			return "commented-on-a-blog-entry";
 		}
-		else if (activity.getType() == _ADD_ENTRY) {
+		else if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
 			return "wrote-a-new-blog-entry";
 		}
-		else if (activity.getType() == _UPDATE_ENTRY) {
+		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
 			return "updated-a-blog-entry";
 		}
 
 		return StringPool.BLANK;
 	}
 
-	private static final int _ADD_COMMENT = 1;
+	/**
+	 * {@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_COMMENT}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_COMMENT = 1;
 
-	private static final int _ADD_ENTRY = 2;
+	/**
+	 * {@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_ENTRY}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_ENTRY = 2;
+
+	/**
+	 * {@link com.liferay.portlet.blogs.social.BlogsActivityKeys#UPDATE_ENTRY}
+	 */
+	private static final int _ACTIVITY_KEY_UPDATE_ENTRY = 3;
 
 	private static final String[] _CLASS_NAMES = {BlogsEntry.class.getName()};
-
-	private static final int _UPDATE_ENTRY = 3;
 
 }

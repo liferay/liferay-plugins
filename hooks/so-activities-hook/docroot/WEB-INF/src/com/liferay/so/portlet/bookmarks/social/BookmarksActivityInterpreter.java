@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author Evan Thibodeau
  * @author Matthew Kong
@@ -52,7 +54,7 @@ public class BookmarksActivityInterpreter
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
-		String bookmarkLink = StringPool.BLANK;
+		String link = StringPool.BLANK;
 
 		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(
 			activity.getClassPK());
@@ -65,24 +67,24 @@ public class BookmarksActivityInterpreter
 			serviceContext.getLiferayPortletRequest();
 
 		if (ping(faviconUrl)) {
-			bookmarkLink = wrapLink(
-				entry.getUrl(), faviconUrl, entry.getName());
+			link = wrapLink(entry.getUrl(), faviconUrl, entry.getName());
 		}
 		else if (Validator.isNotNull(
 					assetRenderer.getIconPath(liferayPortletRequest))) {
 
-			bookmarkLink = wrapLink(
+			link = wrapLink(
 				getLinkURL(activity, serviceContext),
 				assetRenderer.getIconPath(liferayPortletRequest),
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
 		else {
-			bookmarkLink = wrapLink(entry.getUrl(), entry.getName());
+			link = wrapLink(entry.getUrl(), entry.getName());
 		}
 
-		sb.append(bookmarkLink);
-		sb.append("</div><div class='bookmarks-page-content'>");
+		sb.append(link);
+
+		sb.append("</div><div class=\"bookmarks-page-content\">");
 		sb.append(entry.getDescription());
 		sb.append("</div></div>");
 
@@ -103,46 +105,56 @@ public class BookmarksActivityInterpreter
 	protected String getTitlePattern(
 		String groupName, SocialActivity activity) {
 
-		if (activity.getType() == _ADD_ENTRY) {
+		if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
 			return "added-a-new-bookmark";
 		}
-		else if (activity.getType() == _UPDATE_ENTRY) {
+		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
 			return "updated-a-bookmark";
 		}
 
 		return StringPool.BLANK;
 	}
 
-	protected boolean ping(String url) {
-		url = url.replaceFirst("https", "http");
+	protected boolean ping(String urlString) {
+		urlString = urlString.replaceFirst("https", "http");
 
 		try {
-			URL connectionUrl = new URL(url);
+			URL url = new URL(urlString);
 
-			HttpURLConnection connection =
-				(HttpURLConnection)connectionUrl.openConnection();
+			HttpURLConnection httpURLConnection =
+				(HttpURLConnection)url.openConnection();
 
-			connection.setConnectTimeout(500);
-			connection.setReadTimeout(500);
-			connection.setRequestMethod("HEAD");
+			httpURLConnection.setConnectTimeout(500);
+			httpURLConnection.setReadTimeout(500);
+			httpURLConnection.setRequestMethod("HEAD");
 
-			int responseCode = connection.getResponseCode();
+			int responseCode = httpURLConnection.getResponseCode();
 
-			if ((responseCode >= 200) && (responseCode <= 399)) {
+			if ((responseCode < HttpServletResponse.SC_BAD_REQUEST) &&
+				(responseCode >= HttpServletResponse.SC_OK)) {
+
 				return true;
 			}
 		}
-		catch (IOException exception) {
+		catch (IOException ioe) {
 		}
 
 		return false;
 	}
 
-	private static final int _ADD_ENTRY = 1;
+	/**
+	 * {@link
+	 * com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#ADD_ENTRY}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_ENTRY = 1;
+
+	/**
+	 * {@link
+	 * com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#UPDATE_ENTRY}
+	 */
+	private static final int _ACTIVITY_KEY_UPDATE_ENTRY = 2;
 
 	private static final String[] _CLASS_NAMES =
 		{BookmarksEntry.class.getName()};
-
-	private static final int _UPDATE_ENTRY = 2;
 
 }

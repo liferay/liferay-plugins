@@ -73,6 +73,7 @@ public class CalendarActivityInterpreter
 		}
 
 		sb.append(pageTitle);
+
 		sb.append("</div><div class=\"date\"><strong>");
 		sb.append(serviceContext.translate("date"));
 		sb.append(": </strong>");
@@ -84,6 +85,7 @@ public class CalendarActivityInterpreter
 			activity.getClassPK());
 
 		sb.append(dateFormatDate.format((event.getStartDate())));
+
 		sb.append("</div><div class=\"location\"><strong>");
 		sb.append(serviceContext.translate("location"));
 		sb.append(": </strong>");
@@ -113,20 +115,28 @@ public class CalendarActivityInterpreter
 	protected String getTitlePattern(
 		String groupName, SocialActivity activity) {
 
-		if (activity.getType() == _ADD_EVENT) {
+		if (activity.getType() == _ACTIVITY_KEY_ADD_EVENT) {
 			return "added-a-new-calendar-event";
 		}
-		else if (activity.getType() == _UPDATE_EVENT) {
+		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
 			return "updated-a-calendar-event";
 		}
 
 		return StringPool.BLANK;
 	}
 
-	private static final int _ADD_EVENT = 1;
+	/**
+	 * {@link
+	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#ADD_EVENT}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_EVENT = 1;
+
+	/**
+	 * {@link
+	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#UPDATE_EVENT}
+	 */
+	private static final int _ACTIVITY_KEY_UPDATE_EVENT = 2;
 
 	private static final String[] _CLASS_NAMES = {CalEvent.class.getName()};
-
-	private static final int _UPDATE_EVENT = 2;
 
 }
