@@ -1,21 +1,16 @@
-#set ($sidebar_portlet = "")
-#set ($sidebar_portlet_title = "")
-
-#if (!$layout.isPublicLayout())
-	#set ($sidebar_portlet = "5_WAR_soportlet")
-	#set ($sidebar_portlet_title = $languageUtil.get($locale, "javax.portlet.title.134"))
-#else
+#if ($layout.isPublicLayout())
 	#set ($sidebar_portlet = "3_WAR_contactsportlet")
 	#set ($sidebar_portlet_title = $languageUtil.format($locale, "x's-contacts", $current_user.getFirstName()))
+
+	<hr />
+
+	<h3>$htmlUtil.escape($sidebar_portlet_title)</h3>
+
+	$velocityPortletPreferences.setValue("displayStyle", "0")
+	$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
+
+	$theme.runtime($sidebar_portlet, "", $velocityPortletPreferences.toString())
+
+	$velocityPortletPreferences.reset()
 #end
 
-<hr />
-
-<h3>$htmlUtil.escape($sidebar_portlet_title)</h3>
-
-$velocityPortletPreferences.setValue("displayStyle", "0")
-$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
-
-$theme.runtime($sidebar_portlet, "", $velocityPortletPreferences.toString())
-
-$velocityPortletPreferences.reset()
