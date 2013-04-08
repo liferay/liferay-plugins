@@ -54,7 +54,7 @@ public class WallUtil {
 	}
 
 	public static String getWallLink(
-			User user, String wallLayoutFriendlyURL, String parameter,
+			User user, String wallLayoutFriendlyURL, String screenNameOrUserId,
 			ThemeDisplay themeDisplay)
 		throws Exception {
 
@@ -70,7 +70,7 @@ public class WallUtil {
 		sb.append(HtmlUtil.escapeURL(user.getScreenName()));
 		sb.append(wallLayoutFriendlyURL);
 		sb.append("/-/wall/");
-		sb.append(parameter);
+		sb.append(screenNameOrUserId);
 
 		return sb.toString();
 	}

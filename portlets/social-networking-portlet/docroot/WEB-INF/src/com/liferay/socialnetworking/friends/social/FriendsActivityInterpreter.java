@@ -53,7 +53,6 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String creatorUserName = getUserName(
 			activity.getUserId(), serviceContext);
-
 		String receiverUserName = getUserName(
 			activity.getReceiverUserId(), serviceContext);
 

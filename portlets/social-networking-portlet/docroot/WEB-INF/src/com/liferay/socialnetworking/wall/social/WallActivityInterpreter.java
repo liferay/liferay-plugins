@@ -84,7 +84,6 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String creatorUserName = getUserName(
 			activity.getUserId(), serviceContext);
-
 		String receiverUserName = getUserName(
 			activity.getReceiverUserId(), serviceContext);
 
