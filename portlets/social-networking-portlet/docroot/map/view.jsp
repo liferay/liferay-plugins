@@ -93,7 +93,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 					}
 				};
 
-				var map = new google.maps.Map(document.getElementById("<portlet:namespace />map"), mapOptions);
+				var map = new google.maps.Map(document.getElementById('<portlet:namespace />map'), mapOptions);
 
 				<%
 				List<User> users = null;
@@ -144,24 +144,29 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 
 					<c:if test="<%= userProfileMap %>">
 						map.setCenter(new google.maps.LatLng(<%= latitude %>, <%= longitude %>));
+
 						map.setZoom(<%= windowState.equals(WindowState.MAXIMIZED) ? 5 : 0 %>);
 					</c:if>
 
-					var marker<%= i %> = new google.maps.Marker({
-						position: new google.maps.LatLng(<%= latitude %>, <%= longitude %>),
-						map: map,
-						title: '<%= HtmlUtil.escapeJS(mapUser.getFullName()) %>'
-					});
+					var marker<%= i %> = new google.maps.Marker(
+						{
+							position: new google.maps.LatLng(<%= latitude %>, <%= longitude %>),
+							map: map,
+							title: '<%= HtmlUtil.escapeJS(mapUser.getFullName()) %>'
+						}
+					);
 
 					google.maps.event.addListener(
 						marker<%= i %>,
-						"click",
+						'click',
 						function() {
 							<c:choose>
 								<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-									var infoWindow = new google.maps.InfoWindow({
-										content: '<center><img alt="<%= HtmlUtil.escapeJS(LanguageUtil.get(pageContext, "user-portrait")) %>" src="<%= mapUser.getPortraitURL(themeDisplay) %>" width="65" /><br /><%= HtmlUtil.escapeJS(mapUser.getFullName()) %></center>'
-									});
+									var infoWindow = new google.maps.InfoWindow(
+										{
+											content: '<center><img alt="<%= HtmlUtil.escapeJS(LanguageUtil.get(pageContext, "user-portrait")) %>" src="<%= mapUser.getPortraitURL(themeDisplay) %>" width="65" /><br /><%= HtmlUtil.escapeJS(mapUser.getFullName()) %></center>'
+										}
+									);
 
 									infoWindow.open(map, marker<%= i %>);
 								</c:when>
