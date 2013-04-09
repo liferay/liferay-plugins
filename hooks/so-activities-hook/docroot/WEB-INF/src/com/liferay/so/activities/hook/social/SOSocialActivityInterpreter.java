@@ -25,6 +25,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
+import com.liferay.portlet.social.model.SocialActivity;
 
 import java.text.Format;
 
@@ -45,8 +46,7 @@ public abstract class SOSocialActivityInterpreter
 		return _SELECTOR;
 	}
 
-	protected AssetRenderer getAssetRenderer(
-			com.liferay.portlet.social.model.SocialActivity activity)
+	protected AssetRenderer getAssetRenderer(SocialActivity activity)
 		throws Exception {
 
 		AssetRendererFactory assetRendererFactory =
@@ -62,8 +62,7 @@ public abstract class SOSocialActivityInterpreter
 	}
 
 	protected String getLinkURL(
-			com.liferay.portlet.social.model.SocialActivity activity,
-			ServiceContext serviceContext)
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		AssetRenderer assetRenderer = getAssetRenderer(activity);
@@ -110,8 +109,7 @@ public abstract class SOSocialActivityInterpreter
 
 	@Override
 	protected String getTitle(
-			com.liferay.portlet.social.model.SocialActivity activity,
-			ServiceContext serviceContext)
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		StringBundler sb = new StringBundler(10);
@@ -166,9 +164,8 @@ public abstract class SOSocialActivityInterpreter
 
 	@Override
 	protected Object[] getTitleArguments(
-			String groupName,
-			com.liferay.portlet.social.model.SocialActivity socialActivity,
-			String link, String title, ServiceContext serviceContext)
+			String groupName, SocialActivity socialActivity, String link,
+			String title, ServiceContext serviceContext)
 		throws Exception {
 
 		return null;
@@ -176,8 +173,7 @@ public abstract class SOSocialActivityInterpreter
 
 	@Override
 	protected boolean hasPermissions(
-			PermissionChecker permissionChecker,
-			com.liferay.portlet.social.model.SocialActivity activity,
+			PermissionChecker permissionChecker, SocialActivity activity,
 			String actionId, ServiceContext serviceContext)
 		throws Exception {
 
