@@ -25,7 +25,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
-import com.liferay.so.activities.util.SocialActivitiesConstants;
 
 import java.text.Format;
 
@@ -43,7 +42,7 @@ public abstract class SOSocialActivityInterpreter
 
 	@Override
 	public String getSelector() {
-		return SocialActivitiesConstants.SO_ACTIVITY_INTERPRETER_SELECTOR;
+		return _SELECTOR;
 	}
 
 	protected AssetRenderer getAssetRenderer(
@@ -198,5 +197,7 @@ public abstract class SOSocialActivityInterpreter
 
 		return wrapLink(link, sb.toString());
 	}
+
+	private static final String _SELECTOR = "SO";
 
 }
