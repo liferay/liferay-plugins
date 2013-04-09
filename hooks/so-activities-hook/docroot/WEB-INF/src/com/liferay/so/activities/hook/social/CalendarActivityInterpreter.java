@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.activities.portlet.calendar.social;
+package com.liferay.so.activities.hook.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
