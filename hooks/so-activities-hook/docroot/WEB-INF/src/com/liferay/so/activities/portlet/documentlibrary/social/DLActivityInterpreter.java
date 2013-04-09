@@ -27,13 +27,13 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
+import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 /**
  * @author Evan Thibodeau
  * @author Matthew Kong
  */
-public class DLActivityInterpreter extends SOBaseSocialActivityInterpreter {
+public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;

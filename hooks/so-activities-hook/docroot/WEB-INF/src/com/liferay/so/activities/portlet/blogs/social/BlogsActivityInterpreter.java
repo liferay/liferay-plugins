@@ -25,13 +25,13 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
+import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 /**
  * @author Evan Thibodeau
  * @author Matthew Kong
  */
-public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
+public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;

@@ -25,13 +25,13 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
+import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 /**
  * @author Evan Thibodeau
  * @author Matthew Kong
  */
-public class MBActivityInterpreter extends SOBaseSocialActivityInterpreter {
+public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;

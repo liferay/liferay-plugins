@@ -38,7 +38,7 @@ import java.util.TimeZone;
  * @author Ryan Park
  * @author Matthew Kong
  */
-public abstract class SOBaseSocialActivityInterpreter
+public abstract class SOSocialActivityInterpreter
 	extends BaseSocialActivityInterpreter {
 
 	@Override

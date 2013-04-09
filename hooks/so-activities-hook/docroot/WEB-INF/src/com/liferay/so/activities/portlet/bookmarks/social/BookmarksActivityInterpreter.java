@@ -25,7 +25,7 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
+import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 import java.io.IOException;
 
@@ -38,8 +38,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Evan Thibodeau
  * @author Matthew Kong
  */
-public class BookmarksActivityInterpreter
-	extends SOBaseSocialActivityInterpreter {
+public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;

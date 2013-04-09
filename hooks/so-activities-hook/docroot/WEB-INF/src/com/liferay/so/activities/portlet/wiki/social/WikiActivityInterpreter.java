@@ -32,7 +32,7 @@ import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil;
-import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
+import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -41,7 +41,7 @@ import javax.portlet.PortletURL;
  * @author Jonathan Lee
  * @author Matthew Kong
  */
-public class WikiActivityInterpreter extends SOBaseSocialActivityInterpreter {
+public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
