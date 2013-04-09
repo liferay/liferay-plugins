@@ -126,7 +126,7 @@ catch (NoSuchRoleException nsre) {
 									<a href="<%= portletURL %>">
 										<liferay-ui:icon
 											message="my-profile"
-											src='/html/icons/users_admin.png'
+											src="/html/icons/users_admin.png"
 										/>
 
 										<liferay-ui:message key="my-profile" />
@@ -138,7 +138,7 @@ catch (NoSuchRoleException nsre) {
 										<a class='<%= !layout.getGroup().isControlPanel() ? "use-dialog full-dialog" : StringPool.BLANK %>' data-controlPanelCategory="<%= !layout.getGroup().isControlPanel() ? PortletCategoryKeys.MY : StringPool.BLANK %>" href="<%= themeDisplay.getURLMyAccount().toString() %>">
 											<liferay-ui:icon
 												message="my-account"
-												src='/html/icons/my_account.png'
+												src="/html/icons/my_account.png"
 											/>
 
 											<liferay-ui:message key="my-account" />
