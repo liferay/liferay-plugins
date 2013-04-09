@@ -15,15 +15,17 @@
 package com.liferay.so.activities.model;
 
 import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.so.activities.util.SocialActivitiesConstants;
-import com.liferay.so.activities.util.Time;
 
 import java.text.Format;
 
@@ -72,6 +74,41 @@ public abstract class SOBaseSocialActivityInterpreter
 			serviceContext.getLiferayPortletResponse(), null);
 	}
 
+	protected String getRelativeTimeDescription(
+		long milliseconds, Locale locale, TimeZone timeZone) {
+
+		Format timeFormat = FastDateFormatFactoryUtil.getTime(locale, timeZone);
+
+		int daysBetween = DateUtil.getDaysBetween(
+			new Date(milliseconds), new Date(), timeZone);
+
+		long millisAgo = System.currentTimeMillis() - milliseconds;
+
+		if (millisAgo <= Time.MINUTE) {
+			return "about-a-minute-ago";
+		}
+		else if (millisAgo < Time.HOUR) {
+			return LanguageUtil.format(
+				locale, "x-minutes-ago", (millisAgo / Time.MINUTE));
+		}
+		else if ((millisAgo / Time.HOUR) == 1) {
+			return "about-an-hour-ago";
+		}
+		else if ((millisAgo < Time.DAY) || (daysBetween == 0)) {
+			return LanguageUtil.format(
+				locale, "x-hours-ago", (millisAgo / Time.HOUR));
+		}
+		else if (daysBetween == 1) {
+			return LanguageUtil.format(
+				locale, "yesterday-at-x", timeFormat.format(milliseconds));
+		}
+
+		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
+			"EEEE, MMMMM dd, yyyy", locale, timeZone);
+
+		return dateFormat.format(milliseconds);
+	}
+
 	@Override
 	protected String getTitle(
 			com.liferay.portlet.social.model.SocialActivity activity,
@@ -92,11 +129,11 @@ public abstract class SOBaseSocialActivityInterpreter
 
 		sb.append("\">");
 
-		String relativeTimeSpan = Time.getRelativeTimeSpan(
+		String relativeTimeDescription = getRelativeTimeDescription(
 			activity.getCreateDate(), serviceContext.getLocale(),
 			serviceContext.getTimeZone());
 
-		sb.append(relativeTimeSpan);
+		sb.append(relativeTimeDescription);
 
 		sb.append("</div><div class=\"activity-user-name\">");
 
