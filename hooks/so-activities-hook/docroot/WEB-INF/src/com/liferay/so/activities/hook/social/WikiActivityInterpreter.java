@@ -32,7 +32,6 @@ import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil;
-import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;

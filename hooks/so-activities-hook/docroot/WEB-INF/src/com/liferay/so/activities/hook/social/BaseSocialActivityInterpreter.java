@@ -12,12 +12,15 @@
  * details.
  */
 
-package com.liferay.so.activities.model;
+package com.liferay.so.activities.hook.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
+import com.liferay.so.activities.model.SocialActivity;
+import com.liferay.so.activities.model.SocialActivityInterpreter;
+import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 
 import java.util.List;

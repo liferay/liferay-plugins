@@ -25,7 +25,6 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 /**
  * @author Evan Thibodeau

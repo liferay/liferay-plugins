@@ -25,7 +25,6 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.so.activities.model.SOSocialActivityInterpreter;
 
 /**
  * @author Evan Thibodeau
