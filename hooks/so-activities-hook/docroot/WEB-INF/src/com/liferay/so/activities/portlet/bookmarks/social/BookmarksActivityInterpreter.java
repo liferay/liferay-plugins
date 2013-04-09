@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.portlet.bookmarks.social;
+package com.liferay.so.activities.portlet.bookmarks.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.hook.events;
+package com.liferay.so.activities.hook.events;
 
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.events.ActionException;

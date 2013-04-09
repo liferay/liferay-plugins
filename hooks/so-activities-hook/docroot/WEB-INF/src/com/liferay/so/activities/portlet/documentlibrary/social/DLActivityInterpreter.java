@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.portlet.documentlibrary.social;
+package com.liferay.so.activities.portlet.documentlibrary.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.repository.model.FileEntry;

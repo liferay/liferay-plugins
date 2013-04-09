@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.portlet.blogs.social;
+package com.liferay.so.activities.portlet.calendar.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -22,16 +22,19 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.asset.model.AssetRenderer;
-import com.liferay.portlet.blogs.model.BlogsEntry;
-import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
+import com.liferay.portlet.calendar.model.CalEvent;
+import com.liferay.portlet.calendar.service.CalEventLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.so.activities.model.SOBaseSocialActivityInterpreter;
+
+import java.text.Format;
 
 /**
  * @author Evan Thibodeau
  * @author Matthew Kong
  */
-public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
+public class CalendarActivityInterpreter
+	extends SOBaseSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
@@ -42,7 +45,7 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
@@ -71,15 +74,28 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 		sb.append(pageTitle);
 
-		sb.append("</div><div class=\"blogs-page-content\">");
+		sb.append("</div><div class=\"date\"><strong>");
+		sb.append(serviceContext.translate("date"));
+		sb.append(": </strong>");
 
-		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(
+		Format dateFormatDate = getFormatDateTime(
+			serviceContext.getLocale(), serviceContext.getTimeZone());
+
+		CalEvent event = CalEventLocalServiceUtil.getEvent(
 			activity.getClassPK());
 
-		String content = HtmlUtil.extractText(entry.getContent());
+		sb.append(dateFormatDate.format((event.getStartDate())));
 
-		sb.append(StringUtil.shorten(content, 200));
-
+		sb.append("</div><div class=\"location\"><strong>");
+		sb.append(serviceContext.translate("location"));
+		sb.append(": </strong>");
+		sb.append(event.getLocation());
+		sb.append("</div><div class=\"description\"><strong>");
+		sb.append(serviceContext.translate("description"));
+		sb.append(": </strong>");
+		sb.append(
+			StringUtil.shorten(
+				assetRenderer.getSummary(serviceContext.getLocale()), 200));
 		sb.append("</div></div>");
 
 		return sb.toString();
@@ -92,42 +108,35 @@ public class BlogsActivityInterpreter extends SOBaseSocialActivityInterpreter {
 
 		return wrapLink(
 			getLinkURL(activity, serviceContext),
-			serviceContext.translate("view-blog"));
+			serviceContext.translate("view-calendar"));
 	}
 
 	@Override
 	protected String getTitlePattern(
-		String groupName,
-		com.liferay.portlet.social.model.SocialActivity activity) {
+		String groupName, SocialActivity activity) {
 
-		if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
-			return "commented-on-a-blog-entry";
+		if (activity.getType() == _ACTIVITY_KEY_ADD_EVENT) {
+			return "added-a-new-calendar-event";
 		}
-		else if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
-			return "wrote-a-new-blog-entry";
-		}
-		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
-			return "updated-a-blog-entry";
+		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
+			return "updated-a-calendar-event";
 		}
 
 		return StringPool.BLANK;
 	}
 
 	/**
-	 * {@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_COMMENT}
+	 * {@link
+	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#ADD_EVENT}
 	 */
-	private static final int _ACTIVITY_KEY_ADD_COMMENT = 1;
+	private static final int _ACTIVITY_KEY_ADD_EVENT = 1;
 
 	/**
-	 * {@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_ENTRY}
+	 * {@link
+	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#UPDATE_EVENT}
 	 */
-	private static final int _ACTIVITY_KEY_ADD_ENTRY = 2;
+	private static final int _ACTIVITY_KEY_UPDATE_EVENT = 2;
 
-	/**
-	 * {@link com.liferay.portlet.blogs.social.BlogsActivityKeys#UPDATE_ENTRY}
-	 */
-	private static final int _ACTIVITY_KEY_UPDATE_ENTRY = 3;
-
-	private static final String[] _CLASS_NAMES = {BlogsEntry.class.getName()};
+	private static final String[] _CLASS_NAMES = {CalEvent.class.getName()};
 
 }
