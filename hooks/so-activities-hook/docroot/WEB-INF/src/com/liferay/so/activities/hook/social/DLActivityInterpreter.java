@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -76,6 +77,47 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			StringUtil.shorten(
 				assetRenderer.getSummary(serviceContext.getLocale()), 200));
 		sb.append("</div></div></div>");
+
+		return sb.toString();
+	}
+
+	@Override
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(8);
+
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathMain());
+		sb.append("/document_library/get_file?groupId=");
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
+			activity.getClassPK());
+
+		sb.append(fileEntry.getRepositoryId());
+
+		sb.append("&folderId=");
+		sb.append(fileEntry.getFolderId());
+		sb.append("&title=");
+		sb.append(HttpUtil.encodeURL(fileEntry.getTitle()));
+
+		String downloadLink = wrapLink(
+			sb.toString(), serviceContext.translate("download"));
+
+		sb = new StringBundler(5);
+
+		sb.append("<span>");
+
+		String documentLink = wrapLink(
+			getLinkURL(activity, serviceContext),
+			serviceContext.translate("view-document"));
+
+		sb.append(documentLink);
+
+		sb.append("</span><span>");
+		sb.append(downloadLink);
+		sb.append("</span>");
 
 		return sb.toString();
 	}
