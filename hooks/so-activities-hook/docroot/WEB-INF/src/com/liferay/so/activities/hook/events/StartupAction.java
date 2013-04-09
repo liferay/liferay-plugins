@@ -61,9 +61,8 @@ public class StartupAction extends SimpleAction {
 						InstanceFactory.newInstance(
 							activityInterpreterClassName);
 
-				activityInterpreter =
-					new SocialActivityInterpreterImpl(
-						portletId, activityInterpreter);
+				activityInterpreter = new SocialActivityInterpreterImpl(
+					portletId, activityInterpreter);
 
 				SocialActivityInterpreterLocalServiceUtil.
 					addActivityInterpreter(activityInterpreter);
