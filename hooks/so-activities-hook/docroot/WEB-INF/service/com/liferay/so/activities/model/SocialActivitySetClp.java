@@ -275,7 +275,6 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public SocialActivitySet toUnescapedModel() {
 		return this;
 	}
