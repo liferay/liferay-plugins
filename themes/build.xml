@@ -21,7 +21,7 @@
 			</then>
 		</if>
 
-		<property name="theme.parent.dir" value="${basedir}" />
+		<property name="theme.parent.dir" value="${user.dir}" />
 		<property name="theme.dir" value="${theme.parent.dir}/${theme.name}-theme" />
 
 		<if>

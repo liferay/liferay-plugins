@@ -21,7 +21,7 @@
 			</then>
 		</if>
 
-		<property name="layouttpl.parent.dir" value="${basedir}" />
+		<property name="layouttpl.parent.dir" value="${user.dir}" />
 		<property name="layouttpl.dir" value="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl" />
 
 		<if>

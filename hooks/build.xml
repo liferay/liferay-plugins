@@ -21,7 +21,7 @@
 			</then>
 		</if>
 
-		<property name="hook.parent.dir" value="${basedir}" />
+		<property name="hook.parent.dir" value="${user.dir}" />
 		<property name="hook.dir" value="${hook.parent.dir}/${hook.name}-hook" />
 
 		<if>
