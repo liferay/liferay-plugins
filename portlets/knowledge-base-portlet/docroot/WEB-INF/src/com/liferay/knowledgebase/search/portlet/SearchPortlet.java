@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -442,14 +443,29 @@ public class SearchPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		if (SessionErrors.contains(
-				renderRequest, NoSuchArticleException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchCommentException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchSubscriptionException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, PrincipalException.class.getName())) {
+		String mvcPath = ParamUtil.getString(
+				renderRequest, "mvcPath", viewTemplate);
+
+		long assetCategoryId = ParamUtil.getLong(renderRequest, "categoryId");
+		String assetTagName = ParamUtil.getString(renderRequest, "tag");
+
+		if ((mvcPath.equals(viewTemplate) && (assetCategoryId > 0)) ||
+			(mvcPath.equals(viewTemplate) &&
+			 Validator.isNotNull(assetTagName))) {
+
+			String path = templatePath + "search.jsp";
+
+			include(path, renderRequest, renderResponse);
+		}
+		else if (SessionErrors.contains(
+					 renderRequest, NoSuchArticleException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, NoSuchCommentException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest,
+					 NoSuchSubscriptionException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, PrincipalException.class.getName())) {
 
 			include(templatePath + "error.jsp", renderRequest, renderResponse);
 		}
