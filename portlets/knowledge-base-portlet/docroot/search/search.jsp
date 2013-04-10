@@ -19,6 +19,19 @@
 <%
 String keywords = ParamUtil.getString(request, "keywords");
 
+long assetCategoryId = ParamUtil.getLong(request, "categoryId");
+String assetTagName = ParamUtil.getString(request, "tag");
+
+if (assetCategoryId > 0) {
+	AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(assetCategoryId);
+
+	keywords = assetCategory.getName();
+}
+
+if (Validator.isNotNull(assetTagName)) {
+	keywords = assetTagName;
+}
+
 String orderByCol = ParamUtil.getString(request, "orderByCol", "score");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 %>
