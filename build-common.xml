@@ -105,6 +105,37 @@ ECJ was automatically installed. Please rerun your task.
 		/>
 	</target>
 
+	<target name="create">
+		<if>
+			<or>
+				<not>
+					<isset property="plugin.type" />
+				</not>
+			</or>
+			<then>
+				<fail>This task must be called by the create script.</fail>
+			</then>
+		</if>
+
+		<if>
+			<or>
+				<equals arg1="${plugin.type}" arg2="hook" />
+				<equals arg1="${plugin.type}" arg2="portlet" />
+				<equals arg1="${plugin.type}" arg2="theme" />
+			</or>
+			<then>
+				<subant target="create">
+					<fileset dir="${project.dir}/${plugin.type}s" includes="build.xml"/>
+				</subant>
+			</then>
+			<else>
+				<subant target="create">
+					<fileset dir="${project.dir}/${plugin.type}" includes="build.xml"/>
+				</subant>
+			</else>
+		</if>
+	</target>
+
 	<target name="format-javadoc">
 		<java
 			classname="com.liferay.portal.tools.JavadocFormatter"

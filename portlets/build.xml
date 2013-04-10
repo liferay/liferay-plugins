@@ -21,7 +21,7 @@
 			</then>
 		</if>
 
-		<property name="portlet.parent.dir" value="${basedir}" />
+		<property name="portlet.parent.dir" value="${user.dir}" />
 		<property name="portlet.dir" value="${portlet.parent.dir}/${portlet.name}-portlet" />
 
 		<if>

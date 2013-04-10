@@ -16,7 +16,7 @@
 			</then>
 		</if>
 
-		<property name="ext.parent.dir" value="${basedir}" />
+		<property name="ext.parent.dir" value="${user.dir}" />
 		<property name="ext.plugin.dir" value="${ext.parent.dir}/${ext.name}-ext" />
 
 		<if>
