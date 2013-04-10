@@ -116,6 +116,10 @@ public abstract class BaseSocialActivityInterpreter
 
 		String title = getTitle(activity, serviceContext);
 
+		if (Validator.isNull(title)) {
+			return null;
+		}
+
 		String body = getBody(activity, serviceContext);
 
 		return new SocialActivityFeedEntry(link, title, body);
