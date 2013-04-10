@@ -10,52 +10,43 @@
 		<if>
 			<or>
 				<not>
-					<isset property="theme.name" />
+					<isset property="theme.display.name" />
 				</not>
 				<not>
-					<isset property="theme.display.name" />
+					<isset property="theme.name" />
 				</not>
 			</or>
 			<then>
-				<echo message="This task must be called by create.bat." />
+				<fail>This task must be called by the create script.</fail>
 			</then>
-			<else>
-				<if>
-					<not>
-						<isset property="theme.parent.dir" />
-					</not>
-					<then>
-						<property name="theme.parent.dir" value="${basedir}" />
-					</then>
-				</if>
-
-				<property name="theme.dir" value="${theme.parent.dir}/${theme.name}-theme" />
-
-				<if>
-					<available file="${theme.dir}" />
-					<then>
-						<fail>${theme.name}-theme already exists.</fail>
-					</then>
-				</if>
-
-				<copy todir="${theme.dir}">
-					<fileset
-						dir="${project.dir}/tools/theme_tmpl"
-					/>
-				</copy>
-
-				<mkdir dir="${theme.dir}/docroot/_diffs" />
-				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/document_library/documents" />
-				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/articles" />
-				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/structures" />
-				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/templates" />
-
-				<replace dir="${theme.dir}">
-					<replacefilter token="@theme.name@" value="${theme.name}" />
-					<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
-				</replace>
-			</else>
 		</if>
+
+		<property name="theme.parent.dir" value="${basedir}" />
+		<property name="theme.dir" value="${theme.parent.dir}/${theme.name}-theme" />
+
+		<if>
+			<available file="${theme.dir}" />
+			<then>
+				<fail>${theme.name}-theme already exists.</fail>
+			</then>
+		</if>
+
+		<copy todir="${theme.dir}">
+			<fileset
+				dir="${project.dir}/tools/theme_tmpl"
+			/>
+		</copy>
+
+		<mkdir dir="${theme.dir}/docroot/_diffs" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/document_library/documents" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/articles" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/structures" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/templates" />
+
+		<replace dir="${theme.dir}">
+			<replacefilter token="@theme.name@" value="${theme.name}" />
+			<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
+		</replace>
 	</target>
 
 	<target name="merge">
