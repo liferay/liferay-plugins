@@ -13,7 +13,9 @@
 			WHERE
 				(jiraissue.project = ?) AND
 				(jiraissue.security IS NULL) AND
-				(jiraaction.created > ?)
+				(jiraaction.created > ?) AND
+				(jiraaction.actionLevel IS NULL) AND
+				(jiraaction.roleLevel IS NULL)
 		]]>
 	</sql>
 	<sql id="com.liferay.socialcoding.service.persistence.JIRAActionFinder.findByCD_P">
@@ -28,7 +30,9 @@
 			WHERE
 				(jiraissue.project = ?) AND
 				(jiraissue.security IS NULL) AND
-				(jiraaction.created > ?)
+				(jiraaction.created > ?) AND
+				(jiraaction.actionLevel IS NULL) AND
+				(jiraaction.roleLevel IS NULL)
 		]]>
 	</sql>
 	<sql id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder.countByCD_P">
