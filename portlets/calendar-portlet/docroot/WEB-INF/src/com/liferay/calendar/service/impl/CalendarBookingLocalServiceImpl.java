@@ -245,6 +245,14 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
+		deleteCalendarBookingInstance(calendarBooking, startTime, allFollowing);
+	}
+
+	public void deleteCalendarBookingInstance(
+			CalendarBooking calendarBooking, long startTime,
+			boolean allFollowing)
+		throws PortalException, SystemException {
+
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTime);
 
@@ -595,11 +603,29 @@ public class CalendarBookingLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		CalendarBooking calendarBooking =
+				calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+		String originalRecurrence = calendarBooking.getRecurrence();
+		long originalStartTime = calendarBooking.getStartTime();
+
+
 		deleteCalendarBookingInstance(
-			calendarBookingId, startTime, allFollowing);
+			calendarBooking, startTime, allFollowing);
+		Recurrence recurrenceObj = RecurrenceSerializer.deserialize(
+				recurrence);
 
 		if (!allFollowing) {
 			recurrence = StringPool.BLANK;
+		}
+		else if (originalRecurrence.equals(recurrence)
+				&& recurrenceObj.getCount() > 0) {
+
+			int indexOfInstance = RecurrenceUtil.getIndexOfInstance(
+					recurrence, originalStartTime, startTime);
+			int newCount = recurrenceObj.getCount() - indexOfInstance;
+
+			recurrenceObj.setCount(newCount);
+			recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 		}
 
 		return addCalendarBooking(
