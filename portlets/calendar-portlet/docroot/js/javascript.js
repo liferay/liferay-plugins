@@ -1375,6 +1375,11 @@ AUI.add(
 														}
 													);
 
+													var schedulerEventDuration = schedulerEvent.getSecondsDuration() * 1000;
+
+													var calendarEndTime = calendarBooking.startTime + schedulerEventDuration;
+													var calendarStartTime = calendarBooking.startTime;
+
 													var changedStartDate = changed.startDate;
 
 													if (changedStartDate) {
@@ -1386,18 +1391,16 @@ AUI.add(
 															offset = newVal.getTime() - prevVal.getTime();
 														}
 
-														var calendarStartTime = calendarBooking.startTime + offset;
-
-														var endDate = CalendarUtil.toLocalTime(calendarStartTime + (schedulerEvent.getSecondsDuration() * 1000));
-														var startDate = CalendarUtil.toLocalTime(calendarStartTime);
-
-														newSchedulerEvent.setAttrs(
-															{
-																endDate: endDate,
-																startDate: startDate
-															}
-														);
+														calendarStartTime = calendarStartTime + offset;
+														calendarEndTime = calendarStartTime + schedulerEventDuration;
 													}
+
+													newSchedulerEvent.setAttrs(
+														{
+															endDate: CalendarUtil.toLocalTime(calendarEndTime),
+															startDate: CalendarUtil.toLocalTime(calendarStartTime)
+														}
+													);
 
 													CalendarUtil.updateEvent(
 														newSchedulerEvent,
