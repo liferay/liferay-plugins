@@ -56,6 +56,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -73,10 +74,13 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.comparator.UserFirstNameComparator;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
@@ -346,6 +350,26 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 	}
 
+	public void updateDiscussion(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
+			updateMessage(actionRequest);
+		}
+		else if (cmd.equals(Constants.DELETE)) {
+			deleteMessage(actionRequest);
+		}
+		else if (cmd.equals(Constants.SUBSCRIBE_TO_COMMENTS)) {
+			subscribeToComments(actionRequest, true);
+		}
+		else if (cmd.equals(Constants.UNSUBSCRIBE_FROM_COMMENTS)) {
+			subscribeToComments(actionRequest, false);
+		}
+	}
+
 	protected void addCalendarJSONObject(
 			PortletRequest portletRequest, JSONArray jsonArray,
 			long classNameId, long classPK)
@@ -382,6 +406,25 @@ public class CalendarPortlet extends MVCPortlet {
 
 			jsonArray.put(jsonObject);
 		}
+	}
+
+	protected void deleteMessage(ActionRequest actionRequest) throws Exception {
+		long groupId = PortalUtil.getScopeGroupId(actionRequest);
+
+		String className = ParamUtil.getString(actionRequest, "className");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		String permissionClassName = ParamUtil.getString(
+			actionRequest, "permissionClassName");
+		long permissionClassPK = ParamUtil.getLong(
+			actionRequest, "permissionClassPK");
+		long permissionOwnerId = ParamUtil.getLong(
+			actionRequest, "permissionOwnerId");
+
+		long messageId = ParamUtil.getLong(actionRequest, "messageId");
+
+		MBMessageServiceUtil.deleteDiscussionMessage(
+			groupId, className, classPK, permissionClassName, permissionClassPK,
+			permissionOwnerId, messageId);
 	}
 
 	protected void getCalendar(PortletRequest portletRequest) throws Exception {
@@ -812,6 +855,80 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
+
+	protected void subscribeToComments(
+			ActionRequest actionRequest, boolean subscribe)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String className = ParamUtil.getString(actionRequest, "className");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+
+		if (subscribe) {
+			SubscriptionLocalServiceUtil.addSubscription(
+				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
+				className, classPK);
+		}
+		else {
+			SubscriptionLocalServiceUtil.deleteSubscription(
+				themeDisplay.getUserId(), className, classPK);
+		}
+	}
+
+	protected MBMessage updateMessage(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String className = ParamUtil.getString(actionRequest, "className");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		String permissionClassName = ParamUtil.getString(
+			actionRequest, "permissionClassName");
+		long permissionClassPK = ParamUtil.getLong(
+			actionRequest, "permissionClassPK");
+		long permissionOwnerId = ParamUtil.getLong(
+			actionRequest, "permissionOwnerId");
+
+		long messageId = ParamUtil.getLong(actionRequest, "messageId");
+
+		long threadId = ParamUtil.getLong(actionRequest, "threadId");
+		long parentMessageId = ParamUtil.getLong(
+			actionRequest, "parentMessageId");
+		String subject = ParamUtil.getString(actionRequest, "subject");
+		String body = ParamUtil.getString(actionRequest, "body");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			MBMessage.class.getName(), actionRequest);
+
+		MBMessage message = null;
+
+		if (messageId <= 0) {
+			message = MBMessageServiceUtil.addDiscussionMessage(
+				serviceContext.getScopeGroupId(), className, classPK,
+				permissionClassName, permissionClassPK, permissionOwnerId,
+				threadId, parentMessageId, subject, body, serviceContext);
+		}
+		else {
+			message = MBMessageServiceUtil.updateDiscussionMessage(
+				className, classPK, permissionClassName, permissionClassPK,
+				permissionOwnerId, messageId, subject, body, serviceContext);
+		}
+
+		// Subscription
+
+		boolean subscribe = ParamUtil.getBoolean(actionRequest, "subscribe");
+
+		if (subscribe) {
+			SubscriptionLocalServiceUtil.addSubscription(
+				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
+				className, classPK);
+		}
+
+		return message;
 	}
 
 }

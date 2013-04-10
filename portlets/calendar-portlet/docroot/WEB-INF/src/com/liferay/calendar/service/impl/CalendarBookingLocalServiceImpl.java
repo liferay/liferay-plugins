@@ -217,9 +217,27 @@ public class CalendarBookingLocalServiceImpl
 			deleteCalendarBooking(childCalendarBooking);
 		}
 
+		// Subscriptions
+
+		subscriptionLocalService.deleteSubscriptions(
+			calendarBooking.getCompanyId(), CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId());
+
 		// Asset
 
 		assetEntryLocalService.deleteEntry(
+			CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId());
+
+		// Message boards
+
+		mbMessageLocalService.deleteDiscussionMessages(
+			CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId());
+
+		// Ratings
+
+		ratingsStatsLocalService.deleteStats(
 			CalendarBooking.class.getName(),
 			calendarBooking.getCalendarBookingId());
 
