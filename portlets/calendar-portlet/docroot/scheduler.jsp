@@ -20,6 +20,7 @@
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
 long date = ParamUtil.getLong(request, "date", System.currentTimeMillis());
 String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
+String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
 String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
 boolean hideAgendaView = ParamUtil.getBoolean(request, "hideAgendaView");
 boolean hideDayView = ParamUtil.getBoolean(request, "hideDayView");
@@ -91,7 +92,8 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 				duration: <%= defaultDuration %>,
 				editCalendarBookingURL: '<%= HtmlUtil.escapeJS(editCalendarBookingURL) %>',
 				portletNamespace: '<portlet:namespace />',
-				template: new A.Template(A.one('#<portlet:namespace />eventRecorderTpl').text())
+				template: new A.Template(A.one('#<portlet:namespace />eventRecorderTpl').text()),
+				viewCalendarBookingURL: '<%= HtmlUtil.escapeJS(viewCalendarBookingURL) %>'
 			}
 		);
 	</c:if>

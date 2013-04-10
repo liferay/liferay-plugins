@@ -95,6 +95,8 @@ page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.SessionClicks" %><%@
 page import="com.liferay.portal.util.comparator.UserScreenNameComparator" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
+page import="com.liferay.portlet.asset.model.AssetEntry" %><%@
+page import="com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil" %><%@
 page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.text.Format" %>
@@ -160,6 +162,15 @@ long rssTimeInterval = GetterUtil.getLong(preferences.getValue("rssTimeInterval"
 TimeZone userTimeZone = TimeZone.getTimeZone(timeZoneId);
 TimeZone utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);
 
+Format dateFormatDate = FastDateFormatFactoryUtil.getDate(locale);
 Format dateFormatLongDate = FastDateFormatFactoryUtil.getDate(FastDateFormatConstants.LONG, locale, timeZone);
-Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale);
+
+Format dateFormatTime = null;
+
+if (isoTimeFormat) {
+	dateFormatTime = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", locale, timeZone);
+}
+else {
+	dateFormatTime = FastDateFormatFactoryUtil.getSimpleDateFormat("hh:mm a", locale, timeZone);
+}
 %>

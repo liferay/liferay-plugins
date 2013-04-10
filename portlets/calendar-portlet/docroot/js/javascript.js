@@ -1534,6 +1534,12 @@ AUI.add(
 						value: {
 							children: []
 						}
+					},
+
+					viewCalendarBookingURL: {
+						setter: String,
+						validator: isValue,
+						value: STR_BLANK
 					}
 				},
 
@@ -1621,7 +1627,7 @@ AUI.add(
 						}
 					},
 
-					_handleEditDetailsEvent: function(event) {
+					_handleEditEvent: function(event) {
 						var instance = this;
 
 						var scheduler = instance.get('scheduler');
@@ -1663,8 +1669,42 @@ AUI.add(
 									width: 915
 								},
 								refreshWindow: window,
-								title: Liferay.Language.get('edit-details'),
+								title: Liferay.Language.get('edit'),
 								uri: Lang.sub(editCalendarBookingURL, data)
+							}
+						);
+
+						instance.hideOverlay();
+					},
+
+					_handleViewEvent: function(event) {
+						var instance = this;
+
+						var scheduler = instance.get('scheduler');
+
+						var viewCalendarBookingURL = decodeURIComponent(instance.get('viewCalendarBookingURL'));
+
+						var data = instance.serializeForm();
+
+						var schedulerEvent = instance.get('event');
+
+						data.calendarBookingId = schedulerEvent.get('calendarBookingId');
+
+						Liferay.Util.openWindow(
+							{
+								dialog: {
+									after: {
+										destroy: function(event) {
+											scheduler.load();
+										}
+									},
+									destroyOnClose: true,
+									modal: true,
+									width: 915
+								},
+								refreshWindow: window,
+								title: Liferay.Language.get('view'),
+								uri: Lang.sub(viewCalendarBookingURL, data)
 							}
 						);
 
@@ -1815,7 +1855,17 @@ AUI.add(
 							toolbar.removeAll();
 						}
 						else {
-							var schedulerEvent = instance.get('event') || instance;
+							var schedulerEvent = instance.get('event');
+
+							var viewButtonEnabled = false;
+
+							if (schedulerEvent) {
+								viewButtonEnabled = true;
+							}
+							else {
+								schedulerEvent = instance;
+							}
+
 							var status = schedulerEvent.get('status');
 							var calendar = CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
 
@@ -1846,11 +1896,21 @@ AUI.add(
 
 							toolbar.add(
 								{
-									handler: A.bind(instance._handleEditDetailsEvent, instance),
-									id: 'editDetailsBtn',
-									label: Liferay.Language.get('edit-details')
+									handler: A.bind(instance._handleEditEvent, instance),
+									id: 'editBtn',
+									label: Liferay.Language.get('edit')
 								}
 							);
+
+							if ((viewButtonEnabled === true) && permissions.VIEW_BOOKING_DETAILS) {
+								toolbar.add(
+									{
+										handler: A.bind(instance._handleViewEvent, instance),
+										id: 'viewBtn',
+										label: Liferay.Language.get('view')
+									}
+								);
+							}
 
 							if (schedulerEvent.isMasterBooking()) {
 								toolbar.add(
@@ -1900,7 +1960,7 @@ AUI.add(
 								toolbar.remove('acceptBtn');
 								toolbar.remove('declineBtn');
 								toolbar.remove('deleteBtn');
-								toolbar.remove('editDetailsBtn');
+								toolbar.remove('editBtn');
 								toolbar.remove('maybeBtn');
 								toolbar.remove('saveBtn');
 							}

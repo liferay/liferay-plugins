@@ -132,6 +132,13 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
 
 			<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
+
+			<portlet:renderURL var="viewCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+				<portlet:param name="mvcPath" value="/view_calendar_booking.jsp" />
+				<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
+			</portlet:renderURL>
+
+			<liferay-util:param name="viewCalendarBookingURL" value="<%= viewCalendarBookingURL %>" />
 		</liferay-util:include>
 	</aui:column>
 </aui:fieldset>
