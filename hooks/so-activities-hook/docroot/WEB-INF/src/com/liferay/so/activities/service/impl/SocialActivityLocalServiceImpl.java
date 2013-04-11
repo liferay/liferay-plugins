@@ -17,7 +17,6 @@ package com.liferay.so.activities.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.so.activities.model.SocialActivity;
-import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.base.SocialActivityLocalServiceBaseImpl;
 
 import java.util.List;
@@ -28,17 +27,18 @@ import java.util.List;
 public class SocialActivityLocalServiceImpl
 	extends SocialActivityLocalServiceBaseImpl {
 
-	public void addActivity(long activitySetId, long activityId)
+	public void addActivity(long activityId)
 		throws PortalException, SystemException {
 
-		SocialActivity activitySetsActivity = socialActivityPersistence.create(
-			activityId);
+		SocialActivity activity = socialActivityPersistence.create(activityId);
 
-		activitySetsActivity.setActivitySetId(activitySetId);
+		socialActivityPersistence.update(activity, false);
 
-		socialActivityPersistence.update(activitySetsActivity, false);
+		long activitySetId =
+			socialActivityInterpreterLocalService.getActivitySetId(activityId);
 
-		socialActivitySetLocalService.incrementActivityCount(activitySetId);
+		socialActivitySetLocalService.incrementActivityCount(
+			activitySetId, activityId);
 	}
 
 	public void deleteActivities(long[] activityIds)
@@ -52,14 +52,13 @@ public class SocialActivityLocalServiceImpl
 	public void deleteActivity(long activityId)
 		throws PortalException, SystemException {
 
+		SocialActivity activity = socialActivityPersistence.findByPrimaryKey(
+			activityId);
+
+		socialActivitySetLocalService.decrementActivityCount(
+			activity.getActivitySetId());
+
 		socialActivityPersistence.remove(activityId);
-
-		SocialActivitySet activitySet =
-			socialActivitySetLocalService.decrementActivityCount(activityId);
-
-		if (activitySet.getActivityCount() <= 0) {
-			socialActivitySetLocalService.deleteSocialActivitySet(activitySet);
-		}
 	}
 
 	public SocialActivity getActivity(long activityId)
