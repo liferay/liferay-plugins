@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="portlets" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
-	<property name="project.dir" value=".." />
+	<property location=".." name="project.dir" />
 
 	<import file="../build-common-plugins.xml" />
 
@@ -235,10 +235,11 @@ portal-dependency-jars=vaadin.jar</echo>
 		</if>
 
 		<replace dir="${portlet.dir}">
-			<replacefilter token="@portlet.name@" value="${portlet.name}" />
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 			<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
 			<replacefilter token="@portlet.java.class.name@" value="${portlet.java.class.name}" />
 			<replacefilter token="@portlet.java.package.name@" value="${portlet.java.package.name}" />
+			<replacefilter token="@portlet.name@" value="${portlet.name}" />
 		</replace>
 
 		<mkdir dir="${portlet.dir}/docroot/WEB-INF/tld" />

@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="hooks" basedir="." default="deploy">
-	<property name="project.dir" value=".." />
+	<property location=".." name="project.dir" />
 
 	<import file="../build-common-plugins.xml" />
 
@@ -38,8 +38,9 @@
 		</copy>
 
 		<replace dir="${hook.dir}">
-			<replacefilter token="@hook.name@" value="${hook.name}" />
 			<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
+			<replacefilter token="@hook.name@" value="${hook.name}" />
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 		</replace>
 	</target>
 </project>

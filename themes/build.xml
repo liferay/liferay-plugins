@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="themes" basedir="." default="deploy">
-	<property name="project.dir" value=".." />
+	<property location=".." name="project.dir" />
 
 	<import file="../build-common-plugins.xml" />
 
@@ -44,8 +44,9 @@
 		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/templates" />
 
 		<replace dir="${theme.dir}">
-			<replacefilter token="@theme.name@" value="${theme.name}" />
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 			<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
+			<replacefilter token="@theme.name@" value="${theme.name}" />
 		</replace>
 	</target>
 

@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="ext" basedir="." default="deploy">
-	<property name="project.dir" value=".." />
+	<property location=".." name="project.dir" />
 
 	<import file="../build-common-plugins.xml" />
 
@@ -41,8 +41,9 @@
 		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-taglib/src" />
 
 		<replace dir="${ext.plugin.dir}">
-			<replacefilter token="@ext.name@" value="${ext.name}" />
 			<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
+			<replacefilter token="@ext.name@" value="${ext.name}" />
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 		</replace>
 	</target>
 

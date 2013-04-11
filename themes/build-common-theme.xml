@@ -2,7 +2,8 @@
 <!DOCTYPE project>
 
 <project name="build-common-theme">
-	<property name="project.dir" value="../.." />
+	<dirname file="${ant.file.build-common-theme}" property="plugin.type.dir" />
+	<property location="${plugin.type.dir}/.." name="project.dir" />
 
 	<import file="../build-common-plugin.xml" />
 
@@ -124,7 +125,7 @@
 							excludes="**/.sass-cache/**,_diffs/**,templates/**"
 						/>
 					</copy>
-					
+
 					<copy todir="docroot" overwrite="false" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/classic"
@@ -149,7 +150,7 @@
 							excludes="**/.sass-cache/**,_diffs/**,templates/**"
 						/>
 					</copy>
-					
+
 					<copy todir="docroot" overwrite="false" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/control_panel"
@@ -176,7 +177,7 @@
 							excludes="**/.sass-cache/**,_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
 						/>
 					</copy>
-					
+
 					<copy todir="docroot" overwrite="false" preservelastmodified="true">
 						<fileset
 							dir="${theme.parent}/docroot"
