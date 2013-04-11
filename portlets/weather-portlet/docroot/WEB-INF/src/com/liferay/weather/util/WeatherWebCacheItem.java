@@ -61,7 +61,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 	protected Weather doConvert(String key) throws Exception {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("http://free.worldweatheronline.com/feed/weather.ashx?key=");
+		sb.append("http://api.worldweatheronline.com/free/v1/weather.ashx?key=");
 		sb.append(_apiKey);
 		sb.append("&q=");
 		sb.append(HttpUtil.encodeURL(_zip));
