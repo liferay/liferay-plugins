@@ -274,10 +274,10 @@ public class SocialActivityLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static void addActivity(long activitySetId, long activityId)
+	public static void addActivity(long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().addActivity(activitySetId, activityId);
+		getService().addActivity(activityId);
 	}
 
 	public static void deleteActivities(long[] activityIds)

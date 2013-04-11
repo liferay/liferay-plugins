@@ -116,27 +116,15 @@ public class SocialActivitySetLocalServiceClp
 
 		_methodName19 = "addActivitySet";
 
-		_methodParameterTypes19 = new String[] {
-				"long", "long", "java.lang.String", "long", "int"
-			};
+		_methodParameterTypes19 = new String[] { "long" };
 
 		_methodName20 = "decrementActivityCount";
 
 		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName21 = "deleteActivitySet";
+		_methodName21 = "incrementActivityCount";
 
-		_methodParameterTypes21 = new String[] { "long" };
-
-		_methodName22 = "deleteActivitySet";
-
-		_methodParameterTypes22 = new String[] {
-				"com.liferay.so.activities.model.SocialActivitySet"
-			};
-
-		_methodName23 = "incrementActivityCount";
-
-		_methodParameterTypes23 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "long", "long" };
 	}
 
 	public com.liferay.so.activities.model.SocialActivitySet addSocialActivitySet(
@@ -674,26 +662,14 @@ public class SocialActivitySetLocalServiceClp
 	}
 
 	public com.liferay.so.activities.model.SocialActivitySet addActivitySet(
-		long userId, long activityId, java.lang.String className, long classPK,
-		int type)
+		long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
-					new Object[] {
-						userId,
-						
-					activityId,
-						
-					ClpSerializer.translateInput(className),
-						
-					classPK,
-						
-					type
-					});
+					_methodParameterTypes19, new Object[] { activityId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -718,15 +694,12 @@ public class SocialActivitySetLocalServiceClp
 		return (com.liferay.so.activities.model.SocialActivitySet)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.so.activities.model.SocialActivitySet decrementActivityCount(
-		long activitySetId)
+	public void decrementActivityCount(long activitySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { activitySetId });
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20, new Object[] { activitySetId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -747,19 +720,15 @@ public class SocialActivitySetLocalServiceClp
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.so.activities.model.SocialActivitySet)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.so.activities.model.SocialActivitySet deleteActivitySet(
-		long activitySetId)
+	public void incrementActivityCount(long activitySetId, long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { activitySetId });
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21,
+				new Object[] { activitySetId, activityId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -780,70 +749,6 @@ public class SocialActivitySetLocalServiceClp
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.so.activities.model.SocialActivitySet)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.liferay.so.activities.model.SocialActivitySet deleteActivitySet(
-		com.liferay.so.activities.model.SocialActivitySet activitySet)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
-					new Object[] { ClpSerializer.translateInput(activitySet) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.so.activities.model.SocialActivitySet)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.liferay.so.activities.model.SocialActivitySet incrementActivityCount(
-		long activitySetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { activitySetId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.so.activities.model.SocialActivitySet)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableLocalService _invokableLocalService;
@@ -889,8 +794,4 @@ public class SocialActivitySetLocalServiceClp
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
 }

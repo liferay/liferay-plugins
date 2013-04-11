@@ -271,10 +271,10 @@ public class SocialActivityLocalServiceWrapper
 			arguments);
 	}
 
-	public void addActivity(long activitySetId, long activityId)
+	public void addActivity(long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_socialActivityLocalService.addActivity(activitySetId, activityId);
+		_socialActivityLocalService.addActivity(activityId);
 	}
 
 	public void deleteActivities(long[] activityIds)

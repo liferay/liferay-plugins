@@ -114,7 +114,7 @@ public class SocialActivityLocalServiceClpInvoker {
 
 		_methodName48 = "addActivity";
 
-		_methodParameterTypes48 = new String[] { "long", "long" };
+		_methodParameterTypes48 = new String[] { "long" };
 
 		_methodName49 = "deleteActivities";
 
@@ -236,8 +236,7 @@ public class SocialActivityLocalServiceClpInvoker {
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			SocialActivityLocalServiceUtil.addActivity(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			SocialActivityLocalServiceUtil.addActivity(((Long)arguments[0]).longValue());
 
 			return null;
 		}

@@ -115,7 +115,7 @@ public class SocialActivityLocalServiceClp implements SocialActivityLocalService
 
 		_methodName19 = "addActivity";
 
-		_methodParameterTypes19 = new String[] { "long", "long" };
+		_methodParameterTypes19 = new String[] { "long" };
 
 		_methodName20 = "deleteActivities";
 
@@ -665,13 +665,12 @@ public class SocialActivityLocalServiceClp implements SocialActivityLocalService
 		throw new UnsupportedOperationException();
 	}
 
-	public void addActivity(long activitySetId, long activityId)
+	public void addActivity(long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
-				new Object[] { activitySetId, activityId });
+				_methodParameterTypes19, new Object[] { activityId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

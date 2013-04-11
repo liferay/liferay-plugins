@@ -82,6 +82,12 @@ public class SocialActivityInterpreterLocalServiceUtil {
 		getService().deleteActivityInterpreter(activityInterpreter);
 	}
 
+	public static long getActivitySetId(long activityId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getActivitySetId(activityId);
+	}
+
 	/**
 	* Creates a human readable activity feed entry for the activity using an
 	* available compatible activity interpreter.

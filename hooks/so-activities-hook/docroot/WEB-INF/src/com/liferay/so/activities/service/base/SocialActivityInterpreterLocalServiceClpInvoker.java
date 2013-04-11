@@ -43,17 +43,21 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 				"com.liferay.so.activities.model.SocialActivityInterpreter"
 			};
 
-		_methodName32 = "interpret";
+		_methodName32 = "getActivitySetId";
 
-		_methodParameterTypes32 = new String[] {
+		_methodParameterTypes32 = new String[] { "long" };
+
+		_methodName33 = "interpret";
+
+		_methodParameterTypes33 = new String[] {
 				"java.lang.String",
 				"com.liferay.portlet.social.model.SocialActivity",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName33 = "interpret";
+		_methodName34 = "interpret";
 
-		_methodParameterTypes33 = new String[] {
+		_methodParameterTypes34 = new String[] {
 				"java.lang.String",
 				"com.liferay.so.activities.model.SocialActivitySet",
 				"com.liferay.portal.service.ServiceContext"
@@ -90,13 +94,18 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+			return SocialActivityInterpreterLocalServiceUtil.getActivitySetId(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			return SocialActivityInterpreterLocalServiceUtil.interpret((java.lang.String)arguments[0],
 				(com.liferay.portlet.social.model.SocialActivity)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+		if (_methodName34.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
 			return SocialActivityInterpreterLocalServiceUtil.interpret((java.lang.String)arguments[0],
 				(com.liferay.so.activities.model.SocialActivitySet)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
@@ -117,4 +126,6 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 	private String[] _methodParameterTypes32;
 	private String _methodName33;
 	private String[] _methodParameterTypes33;
+	private String _methodName34;
+	private String[] _methodParameterTypes34;
 }

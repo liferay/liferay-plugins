@@ -249,27 +249,15 @@ public interface SocialActivitySetLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public com.liferay.so.activities.model.SocialActivitySet addActivitySet(
-		long userId, long activityId, java.lang.String className, long classPK,
-		int type)
+		long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.so.activities.model.SocialActivitySet decrementActivityCount(
-		long activitySetId)
+	public void decrementActivityCount(long activitySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.so.activities.model.SocialActivitySet deleteActivitySet(
-		long activitySetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.so.activities.model.SocialActivitySet deleteActivitySet(
-		com.liferay.so.activities.model.SocialActivitySet activitySet)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.so.activities.model.SocialActivitySet incrementActivityCount(
-		long activitySetId)
+	public void incrementActivityCount(long activitySetId, long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

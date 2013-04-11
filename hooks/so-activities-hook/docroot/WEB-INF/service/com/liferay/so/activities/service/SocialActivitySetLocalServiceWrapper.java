@@ -273,39 +273,23 @@ public class SocialActivitySetLocalServiceWrapper
 	}
 
 	public com.liferay.so.activities.model.SocialActivitySet addActivitySet(
-		long userId, long activityId, java.lang.String className, long classPK,
-		int type)
+		long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _socialActivitySetLocalService.addActivitySet(userId,
-			activityId, className, classPK, type);
+		return _socialActivitySetLocalService.addActivitySet(activityId);
 	}
 
-	public com.liferay.so.activities.model.SocialActivitySet decrementActivityCount(
-		long activitySetId)
+	public void decrementActivityCount(long activitySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _socialActivitySetLocalService.decrementActivityCount(activitySetId);
+		_socialActivitySetLocalService.decrementActivityCount(activitySetId);
 	}
 
-	public com.liferay.so.activities.model.SocialActivitySet deleteActivitySet(
-		long activitySetId)
+	public void incrementActivityCount(long activitySetId, long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _socialActivitySetLocalService.deleteActivitySet(activitySetId);
-	}
-
-	public com.liferay.so.activities.model.SocialActivitySet deleteActivitySet(
-		com.liferay.so.activities.model.SocialActivitySet activitySet)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _socialActivitySetLocalService.deleteActivitySet(activitySet);
-	}
-
-	public com.liferay.so.activities.model.SocialActivitySet incrementActivityCount(
-		long activitySetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _socialActivitySetLocalService.incrementActivityCount(activitySetId);
+		_socialActivitySetLocalService.incrementActivityCount(activitySetId,
+			activityId);
 	}
 
 	/**
