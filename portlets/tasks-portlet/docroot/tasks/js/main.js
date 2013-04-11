@@ -237,7 +237,7 @@ AUI().use(
 						var container = event.ancestor('.progress-wrapper');
 
 						container.one('.new-progress').setStyle('width', pos + '%');
-						container.one('.progress-indicator').set('text', pos + '% Complete');
+						container.one('.progress-indicator').set('text', pos + '% '+Liferay.Language.get('complete'));
 					},
 					'.progress-selector a'
 				);
