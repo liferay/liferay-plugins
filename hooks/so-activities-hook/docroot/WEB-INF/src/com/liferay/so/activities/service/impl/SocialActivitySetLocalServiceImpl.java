@@ -20,8 +20,6 @@ import com.liferay.so.activities.model.SocialActivity;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.base.SocialActivitySetLocalServiceBaseImpl;
 
-import java.util.List;
-
 /**
  * @author Jonathan Lee
  */
@@ -50,13 +48,13 @@ public class SocialActivitySetLocalServiceImpl
 		activitySet.setClassPK(activity.getClassPK());
 		activitySet.setType(activity.getType());
 
-		socialActivitySetPersistence.update(activitySet);
+		socialActivitySetPersistence.update(activitySet, false);
 
 		// Activity
 
 		activity.setActivitySetId(activitySetId);
 
-		socialActivityPersistence.update(activity);
+		socialActivityPersistence.update(activity, false);
 
 		return activitySet;
 	}
@@ -79,18 +77,7 @@ public class SocialActivitySetLocalServiceImpl
 
 		activitySet.setActivityCount(activitySet.getActivityCount() - 1);
 
-		socialActivitySetPersistence.update(activitySet);
-	}
-
-	public void decrementActivityCount(long classNameId, long classPK)
-		throws PortalException, SystemException {
-
-		List<SocialActivity> activities = socialActivityPersistence.findByC_C(
-			classNameId, classPK);
-
-		for (SocialActivity activity : activities) {
-			decrementActivityCount(activity.getActivitySetId());
-		}
+		socialActivitySetPersistence.update(activitySet, false);
 	}
 
 	public void incrementActivityCount(long activitySetId, long activityId)
@@ -106,7 +93,7 @@ public class SocialActivitySetLocalServiceImpl
 
 		activitySet.setModifiedDate(activity.getCreateDate());
 
-		socialActivitySetPersistence.update(activitySet);
+		socialActivitySetPersistence.update(activitySet, false);
 	}
 
 }

@@ -102,12 +102,11 @@ public class SocialActivityInterpreterLocalServiceImpl
 		long activitySetId = 0;
 
 		List<SocialActivityInterpreter> activityInterpreters =
-			_activityInterpreters.get(
-				PropsValues.SOCIAL_ACTIVITY_SETS_SELECTOR);
+			_activityInterpreters.get("SO");
 
 		if (activityInterpreters != null) {
 			SocialActivity activity =
-				socialActivityPersistence.findByPrimaryKey(activityId);
+				SocialActivityLocalServiceUtil.getActivity(activityId);
 
 			String className = PortalUtil.getClassName(
 				activity.getClassNameId());
