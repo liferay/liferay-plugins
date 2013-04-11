@@ -121,7 +121,7 @@
 					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/classic"
-							excludes="_diffs/**,templates/**,**/.sass-cache/**"
+							excludes="**/.sass-cache/**,_diffs/**,templates/**"
 						/>
 					</copy>
 					
@@ -146,7 +146,7 @@
 					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/control_panel"
-							excludes="_diffs/**,templates/**,**/.sass-cache/**"
+							excludes="**/.sass-cache/**,_diffs/**,templates/**"
 						/>
 					</copy>
 					
@@ -173,7 +173,7 @@
 					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${theme.parent}/docroot"
-							excludes="_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml,**/.sass-cache/**"
+							excludes="**/.sass-cache/**,_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
 						/>
 					</copy>
 					
