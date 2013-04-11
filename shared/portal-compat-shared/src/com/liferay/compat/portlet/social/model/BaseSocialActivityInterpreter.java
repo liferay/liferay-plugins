@@ -132,14 +132,6 @@ public abstract class BaseSocialActivityInterpreter
 		return StringPool.BLANK;
 	}
 
-	protected String getClassName(SocialActivity activity) {
-		return activity.getClassName();
-	}
-
-	protected long getClassPK(SocialActivity activity) {
-		return activity.getClassPK();
-	}
-
 	protected String getEntryTitle(
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
@@ -218,20 +210,24 @@ public abstract class BaseSocialActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(4);
+		String path = getPath(activity, serviceContext);
 
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathMain());
-		sb.append(getPath(activity));
+		if (Validator.isNull(path)) {
+			return null;
+		}
 
-		long classPK = getClassPK(activity);
+		if (!path.startsWith(StringPool.SLASH)) {
+			return path;
+		}
 
-		sb.append(classPK);
-
-		return sb.toString();
+		return serviceContext.getPortalURL() + serviceContext.getPathMain() +
+			path;
 	}
 
-	protected String getPath(SocialActivity activity) {
+	protected String getPath(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
 		return StringPool.BLANK;
 	}
 
@@ -245,14 +241,18 @@ public abstract class BaseSocialActivityInterpreter
 			groupName = getGroupName(activity.getGroupId(), serviceContext);
 		}
 
+		String titlePattern = getTitlePattern(groupName, activity);
+
+		if (Validator.isNull(titlePattern)) {
+			return null;
+		}
+
 		String link = getLink(activity, serviceContext);
 
 		String entryTitle = getEntryTitle(activity, serviceContext);
 
 		Object[] titleArguments = getTitleArguments(
 			groupName, activity, link, entryTitle, serviceContext);
-
-		String titlePattern = getTitlePattern(groupName, activity);
 
 		return serviceContext.translate(titlePattern, titleArguments);
 	}
