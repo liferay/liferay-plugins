@@ -40,10 +40,9 @@ public class KBArticleAttachmentsUtil {
 		Repository repository = PortletFileRepositoryUtil.getPortletRepository(
 			groupId, PortletKeys.KNOWLEDGE_BASE_ARTICLE);
 
-		long repositoryId = repository.getRepositoryId();
-
 		Folder folder = PortletFileRepositoryUtil.getPortletFolder(
-			userId, repositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			userId, repository.getRepositoryId(),
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			String.valueOf(resourcePrimKey), serviceContext);
 
 		return folder.getFolderId();
