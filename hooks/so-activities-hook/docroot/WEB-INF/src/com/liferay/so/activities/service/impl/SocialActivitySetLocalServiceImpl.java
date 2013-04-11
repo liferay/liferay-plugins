@@ -16,11 +16,11 @@ package com.liferay.so.activities.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.User;
-import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.so.activities.model.SocialActivity;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.base.SocialActivitySetLocalServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * @author Jonathan Lee
@@ -28,14 +28,12 @@ import com.liferay.so.activities.service.base.SocialActivitySetLocalServiceBaseI
 public class SocialActivitySetLocalServiceImpl
 	extends SocialActivitySetLocalServiceBaseImpl {
 
-	public SocialActivitySet addActivitySet(
-			long userId, long activityId, String className, long classPK,
-			int type)
+	public SocialActivitySet addActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		User user = userPersistence.findByPrimaryKey(userId);
+		// Activity set
 
-		SocialActivity activity = SocialActivityLocalServiceUtil.getActivity(
+		SocialActivity activity = socialActivityPersistence.findByPrimaryKey(
 			activityId);
 
 		long activitySetId = counterLocalService.increment();
@@ -43,63 +41,72 @@ public class SocialActivitySetLocalServiceImpl
 		SocialActivitySet activitySet = socialActivitySetPersistence.create(
 			activitySetId);
 
-		activitySet.setActivitySetId(activity.getActivityId());
-		activitySet.setCompanyId(user.getCompanyId());
-		activitySet.setUserId(userId);
+		activitySet.setGroupId(activity.getGroupId());
+		activitySet.setCompanyId(activity.getCompanyId());
+		activitySet.setUserId(activity.getUserId());
 		activitySet.setCreateDate(activity.getCreateDate());
 		activitySet.setModifiedDate(activity.getCreateDate());
-		activitySet.setClassName(className);
-		activitySet.setClassPK(classPK);
-		activitySet.setType(type);
-		activitySet.setActivityCount(0);
+		activitySet.setClassName(activity.getClassName());
+		activitySet.setClassPK(activity.getClassPK());
+		activitySet.setType(activity.getType());
 
-		socialActivitySetPersistence.update(activitySet, false);
+		socialActivitySetPersistence.update(activitySet);
 
-		socialActivityLocalService.addActivity(
-			activitySet.getActivitySetId(), activityId);
+		// Activity
+
+		activity.setActivitySetId(activitySetId);
+
+		socialActivityPersistence.update(activity);
 
 		return activitySet;
 	}
 
-	public SocialActivitySet decrementActivityCount(long activitySetId)
+	public void decrementActivityCount(long activitySetId)
 		throws PortalException, SystemException {
 
-		SocialActivitySet socialActivitySet =
+		if (activitySetId == 0) {
+			return;
+		}
+
+		SocialActivitySet activitySet =
 			socialActivitySetPersistence.findByPrimaryKey(activitySetId);
 
-		socialActivitySet.setActivityCount(
-			socialActivitySet.getActivityCount() - 1);
+		if (activitySet.getActivityCount() == 1) {
+			socialActivitySetPersistence.remove(activitySetId);
 
-		return socialActivitySetPersistence.update(socialActivitySet, false);
+			return;
+		}
+
+		activitySet.setActivityCount(activitySet.getActivityCount() - 1);
+
+		socialActivitySetPersistence.update(activitySet);
 	}
 
-	public SocialActivitySet deleteActivitySet(long activitySetId)
+	public void decrementActivityCount(long classNameId, long classPK)
 		throws PortalException, SystemException {
 
-		socialActivityPersistence.removeByActivitySetId(activitySetId);
+		List<SocialActivity> activities = socialActivityPersistence.findByC_C(
+			classNameId, classPK);
 
-		return socialActivitySetPersistence.remove(activitySetId);
+		for (SocialActivity activity : activities) {
+			decrementActivityCount(activity.getActivitySetId());
+		}
 	}
 
-	public SocialActivitySet deleteActivitySet(SocialActivitySet activitySet)
-		throws SystemException {
-
-		socialActivityPersistence.removeByActivitySetId(
-			activitySet.getActivitySetId());
-
-		return socialActivitySetPersistence.remove(activitySet);
-	}
-
-	public SocialActivitySet incrementActivityCount(long activitySetId)
+	public void incrementActivityCount(long activitySetId, long activityId)
 		throws PortalException, SystemException {
 
-		SocialActivitySet socialActivitySet =
+		SocialActivitySet activitySet =
 			socialActivitySetPersistence.findByPrimaryKey(activitySetId);
 
-		socialActivitySet.setActivityCount(
-			socialActivitySet.getActivityCount() + 1);
+		activitySet.setActivityCount(activitySet.getActivityCount() + 1);
 
-		return socialActivitySetPersistence.update(socialActivitySet, false);
+		SocialActivity activity = socialActivityPersistence.findByPrimaryKey(
+			activityId);
+
+		activitySet.setModifiedDate(activity.getCreateDate());
+
+		socialActivitySetPersistence.update(activitySet);
 	}
 
 }

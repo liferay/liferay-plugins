@@ -42,6 +42,10 @@ public class SocialActivityInterpreterImpl
 		}
 	}
 
+	public long getActivitySetId(long activityId) {
+		return _activityInterpreter.getActivitySetId(activityId);
+	}
+
 	public String[] getClassNames() {
 		return _activityInterpreter.getClassNames();
 	}

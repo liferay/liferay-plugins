@@ -22,6 +22,8 @@ import com.liferay.portlet.social.model.SocialActivityFeedEntry;
  */
 public interface SocialActivityInterpreter {
 
+	public long getActivitySetId(long activityId);
+
 	public String[] getClassNames();
 
 	public String getSelector();
