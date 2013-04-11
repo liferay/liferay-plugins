@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="webs" basedir="." default="deploy">
-	<property name="project.dir" value=".." />
+	<property location=".." name="project.dir" />
 
 	<import file="../build-common-plugins.xml" />
 </project>

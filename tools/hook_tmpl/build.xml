@@ -2,5 +2,5 @@
 <!DOCTYPE project>
 
 <project name="@hook.name@-hook" basedir="." default="deploy">
-	<import file="../build-common-hook.xml" />
+	<import file="@plugin.type.dir@/build-common-hook.xml" />
 </project>

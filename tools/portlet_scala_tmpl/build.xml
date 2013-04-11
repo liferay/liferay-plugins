@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="@portlet.name@-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
+	<import file="@plugin.type.dir@/build-common-portlet.xml" />
 
 	<target name="compile">
 		<antcall target="build-common-plugin.compile" />

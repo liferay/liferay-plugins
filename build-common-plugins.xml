@@ -4,6 +4,16 @@
 <project name="build-common-plugins" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<if>
+		<equals arg1="${basedir}" arg2="${user.dir}" />
+		<then>
+			<property name="plugin.type.dir" value=".." />
+		</then>
+		<else>
+			<property name="plugin.type.dir" value="${basedir}" />
+		</else>
+	</if>
+
 	<target name="build-service">
 		<for param="service.file">
 			<path>
