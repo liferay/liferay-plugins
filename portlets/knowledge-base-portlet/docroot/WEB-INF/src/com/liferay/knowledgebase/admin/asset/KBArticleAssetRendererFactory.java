@@ -51,19 +51,23 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 		if (type == TYPE_LATEST_APPROVED) {
 			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
 				classPK, WorkflowConstants.STATUS_APPROVED);
-
-			return new KBArticleAssetRenderer(kbArticle);
+		}
+		else {
+			try {
+				kbArticle = KBArticleLocalServiceUtil.getKBArticle(classPK);
+			}
+			catch (NoSuchArticleException nsae) {
+				kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+					classPK, WorkflowConstants.STATUS_ANY);
+			}
 		}
 
-		try {
-			kbArticle = KBArticleLocalServiceUtil.getKBArticle(classPK);
-		}
-		catch (NoSuchArticleException nsae) {
-			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-				classPK, WorkflowConstants.STATUS_ANY);
-		}
+		KBArticleAssetRenderer kbArticleAssetRenderer =
+			new KBArticleAssetRenderer(kbArticle);
 
-		return new KBArticleAssetRenderer(kbArticle);
+		kbArticleAssetRenderer.setAssetRendererType(type);
+
+		return kbArticleAssetRenderer;
 	}
 
 	public String getClassName() {
