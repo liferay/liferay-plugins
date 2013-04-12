@@ -318,6 +318,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 			URI uri = attendee.getCalAddress();
 
+			if (uri == null) {
+				continue;
+			}
+
 			User attendeeUser = UserLocalServiceUtil.fetchUserByEmailAddress(
 				calendar.getCompanyId(), uri.getSchemeSpecificPart());
 
