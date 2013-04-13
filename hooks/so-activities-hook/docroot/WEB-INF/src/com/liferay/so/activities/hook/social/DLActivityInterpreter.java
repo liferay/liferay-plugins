@@ -105,7 +105,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		downloadLink.append("/document_library/get_file?groupId=");
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
-				activity.getClassPK());
+			activity.getClassPK());
 
 		downloadLink.append(fileEntry.getRepositoryId());
 
