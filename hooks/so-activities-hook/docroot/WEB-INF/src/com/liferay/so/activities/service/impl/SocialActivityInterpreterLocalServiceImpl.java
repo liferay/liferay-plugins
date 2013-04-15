@@ -96,44 +96,6 @@ public class SocialActivityInterpreterLocalServiceImpl
 		activityInterpreters.remove(activityInterpreter);
 	}
 
-	public long getActivitySetId(long activityId)
-		throws PortalException, SystemException {
-
-		long activitySetId = 0;
-
-		List<SocialActivityInterpreter> activityInterpreters =
-			_activityInterpreters.get("SO");
-
-		if (activityInterpreters != null) {
-			SocialActivity activity =
-				SocialActivityLocalServiceUtil.getActivity(activityId);
-
-			String className = PortalUtil.getClassName(
-				activity.getClassNameId());
-
-			for (int i = 0; i < activityInterpreters.size(); i++) {
-				SocialActivityInterpreterImpl activityInterpreter =
-					(SocialActivityInterpreterImpl)activityInterpreters.get(i);
-
-				if (activityInterpreter.hasClassName(className)) {
-					activitySetId = activityInterpreter.getActivitySetId(
-						activityId);
-
-					break;
-				}
-			}
-		}
-
-		if (activitySetId == 0) {
-			SocialActivitySet activitySet =
-				socialActivitySetLocalService.addActivitySet(activityId);
-
-			activitySetId = activitySet.getActivitySetId();
-		}
-
-		return activitySetId;
-	}
-
 	/**
 	 * Creates a human readable activity feed entry for the activity using an
 	 * available compatible activity interpreter.
@@ -265,6 +227,30 @@ public class SocialActivityInterpreterLocalServiceImpl
 		}
 
 		return null;
+	}
+
+	public void updateActivitySet(long activityId)
+		throws PortalException, SystemException {
+
+		List<SocialActivityInterpreter> activityInterpreters =
+			_activityInterpreters.get("SO");
+
+		if (activityInterpreters != null) {
+			com.liferay.so.activities.model.SocialActivity activity =
+				socialActivityPersistence.findByPrimaryKey(activityId);
+
+			String className = PortalUtil.getClassName(
+				activity.getClassNameId());
+
+			for (int i = 0; i < activityInterpreters.size(); i++) {
+				SocialActivityInterpreterImpl activityInterpreter =
+					(SocialActivityInterpreterImpl)activityInterpreters.get(i);
+
+				if (activityInterpreter.hasClassName(className)) {
+					activityInterpreter.updateActivitySet(activityId);
+				}
+			}
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

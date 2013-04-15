@@ -14,6 +14,8 @@
 
 package com.liferay.so.activities.model.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
@@ -40,10 +42,6 @@ public class SocialActivityInterpreterImpl
 		for (String className : classNames) {
 			_classNames.add(className);
 		}
-	}
-
-	public long getActivitySetId(long activityId) {
-		return _activityInterpreter.getActivitySetId(activityId);
 	}
 
 	public String[] getClassNames() {
@@ -77,6 +75,12 @@ public class SocialActivityInterpreterImpl
 		SocialActivitySet activitySet, ServiceContext serviceContext) {
 
 		return _activityInterpreter.interpret(activitySet, serviceContext);
+	}
+
+	public void updateActivitySet(long activityId)
+		throws PortalException, SystemException {
+
+		_activityInterpreter.updateActivitySet(activityId);
 	}
 
 	private SocialActivityInterpreter _activityInterpreter;

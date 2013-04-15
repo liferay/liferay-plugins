@@ -43,10 +43,6 @@ import com.liferay.portlet.social.model.SocialActivityInterpreter;
 public abstract class BaseSocialActivityInterpreter
 	implements SocialActivityInterpreter {
 
-	public long getActivitySetId(long activityId) {
-		return 0;
-	}
-
 	public String getSelector() {
 		return StringPool.BLANK;
 	}
@@ -123,6 +119,10 @@ public abstract class BaseSocialActivityInterpreter
 		String body = getBody(activity, serviceContext);
 
 		return new SocialActivityFeedEntry(link, title, body);
+	}
+
+	protected long getActivitySetId(long activityId) {
+		return 0;
 	}
 
 	protected String getBody(

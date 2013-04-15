@@ -15,6 +15,8 @@
 package com.liferay.so.activities.hook.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
@@ -22,6 +24,8 @@ import com.liferay.so.activities.model.SocialActivity;
 import com.liferay.so.activities.model.SocialActivityInterpreter;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
+import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.so.activities.service.persistence.SocialActivityUtil;
 
 import java.util.List;
 
@@ -47,6 +51,27 @@ public abstract class BaseSocialActivityInterpreter
 		}
 
 		return null;
+	}
+
+	public void updateActivitySet(long activityId)
+		throws PortalException, SystemException {
+
+		SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
+			activityId);
+
+		if ((activity == null) || (activity.getActivitySetId() > 0)) {
+			return;
+		}
+
+		long activitySetId = getActivitySetId(activityId);
+
+		if (activitySetId > 0) {
+			SocialActivitySetLocalServiceUtil.incrementActivityCount(
+				activitySetId, activityId);
+		}
+		else {
+			SocialActivitySetLocalServiceUtil.addActivitySet(activityId);
+		}
 	}
 
 	protected SocialActivityFeedEntry doInterpret(

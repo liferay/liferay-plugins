@@ -34,11 +34,8 @@ public class SocialActivityLocalServiceImpl
 
 		socialActivityPersistence.update(activity, false);
 
-		long activitySetId =
-			socialActivityInterpreterLocalService.getActivitySetId(activityId);
-
-		socialActivitySetLocalService.incrementActivityCount(
-			activitySetId, activityId);
+		socialActivityInterpreterLocalService.updateActivitySet(
+			activity.getActivityId());
 	}
 
 	public void deleteActivities(long[] activityIds)
