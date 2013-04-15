@@ -444,7 +444,7 @@ public class SearchPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		String mvcPath = ParamUtil.getString(
-				renderRequest, "mvcPath", viewTemplate);
+			renderRequest, "mvcPath", viewTemplate);
 
 		long assetCategoryId = ParamUtil.getLong(renderRequest, "categoryId");
 		String assetTagName = ParamUtil.getString(renderRequest, "tag");
