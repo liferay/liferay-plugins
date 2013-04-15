@@ -239,16 +239,6 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	public void deleteCalendarBookingInstance(
-			long calendarBookingId, long startTime, boolean allFollowing)
-		throws PortalException, SystemException {
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
-
-		deleteCalendarBookingInstance(calendarBooking, startTime, allFollowing);
-	}
-
-	public void deleteCalendarBookingInstance(
 			CalendarBooking calendarBooking, long startTime,
 			boolean allFollowing)
 		throws PortalException, SystemException {
@@ -281,6 +271,16 @@ public class CalendarBookingLocalServiceImpl
 			RecurrenceSerializer.serialize(recurrenceObj));
 
 		calendarBookingPersistence.update(calendarBooking);
+	}
+
+	public void deleteCalendarBookingInstance(
+			long calendarBookingId, long startTime, boolean allFollowing)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		deleteCalendarBookingInstance(calendarBooking, startTime, allFollowing);
 	}
 
 	public void deleteCalendarBookings(long calendarId)
@@ -604,28 +604,31 @@ public class CalendarBookingLocalServiceImpl
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
-				calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
 		String originalRecurrence = calendarBooking.getRecurrence();
-		long originalStartTime = calendarBooking.getStartTime();
 
+		deleteCalendarBookingInstance(calendarBooking, startTime, allFollowing);
 
-		deleteCalendarBookingInstance(
-			calendarBooking, startTime, allFollowing);
-		Recurrence recurrenceObj = RecurrenceSerializer.deserialize(
+		if (allFollowing) {
+			Recurrence recurrenceObj = RecurrenceSerializer.deserialize(
 				recurrence);
 
-		if (!allFollowing) {
-			recurrence = StringPool.BLANK;
+			if (originalRecurrence.equals(recurrence) && 
+					(recurrenceObj.getCount() > 0)) {
+
+				int index = RecurrenceUtil.getIndexOfInstance(
+					recurrence, calendarBooking.getStartTime(), startTime);
+
+				int newCount = recurrenceObj.getCount() - index;
+
+				recurrenceObj.setCount(newCount);
+
+				recurrence = RecurrenceSerializer.serialize(recurrenceObj);
+			}
 		}
-		else if (originalRecurrence.equals(recurrence)
-				&& recurrenceObj.getCount() > 0) {
-
-			int indexOfInstance = RecurrenceUtil.getIndexOfInstance(
-					recurrence, originalStartTime, startTime);
-			int newCount = recurrenceObj.getCount() - indexOfInstance;
-
-			recurrenceObj.setCount(newCount);
-			recurrence = RecurrenceSerializer.serialize(recurrenceObj);
+		else {
+			recurrence = StringPool.BLANK;
 		}
 
 		return addCalendarBooking(

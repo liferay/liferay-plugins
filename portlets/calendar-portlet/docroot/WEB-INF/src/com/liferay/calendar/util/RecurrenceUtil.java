@@ -114,32 +114,33 @@ public class RecurrenceUtil {
 		return expandedCalendarBookings;
 	}
 
-	public static int getIndexOfInstance(String recurrence,
-			long calendarBookingStartTime, long instanceStartTime) {
+	public static int getIndexOfInstance(
+		String recurrence, long recurrenceStartTime, long instanceStartTime) {
 
-		DateValue instanceStartDaveValue = _toDateValue(instanceStartTime);
-		DateValue dateValue = null;
 		int count = 0;
+
+		DateValue instanceDateValue = _toDateValue(instanceStartTime);
 
 		try {
 			RecurrenceIterator recurrenceIterator =
-				RecurrenceIteratorFactory.createRecurrenceIterator(recurrence,
-					_toDateValue(calendarBookingStartTime),
+				RecurrenceIteratorFactory.createRecurrenceIterator(
+					recurrence, _toDateValue(recurrenceStartTime),
 					TimeUtils.utcTimezone());
 
 			while (recurrenceIterator.hasNext()) {
-				dateValue = recurrenceIterator.next();
+				DateValue dateValue = recurrenceIterator.next();
 
-				if (dateValue.compareTo(instanceStartDaveValue) < 0) {
-					count++;
-				}
-				else {
+				if (dateValue.compareTo(instanceDateValue) >= 0) {
 					break;
 				}
+
+				count++;
 			}
-		} catch (ParseException e) {
+		}
+		catch (ParseException e) {
 			_log.error("Unable to parse data ", e);
 		}
+
 		return count;
 	}
 
@@ -175,6 +176,5 @@ public class RecurrenceUtil {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RecurrenceUtil.class);
-
 
 }
