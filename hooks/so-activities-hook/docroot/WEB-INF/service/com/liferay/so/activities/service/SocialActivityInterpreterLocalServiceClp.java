@@ -45,25 +45,25 @@ public class SocialActivityInterpreterLocalServiceClp
 				"com.liferay.so.activities.model.SocialActivityInterpreter"
 			};
 
-		_methodName5 = "getActivitySetId";
+		_methodName5 = "interpret";
 
-		_methodParameterTypes5 = new String[] { "long" };
-
-		_methodName6 = "interpret";
-
-		_methodParameterTypes6 = new String[] {
+		_methodParameterTypes5 = new String[] {
 				"java.lang.String",
 				"com.liferay.portlet.social.model.SocialActivity",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName7 = "interpret";
+		_methodName6 = "interpret";
 
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes6 = new String[] {
 				"java.lang.String",
 				"com.liferay.so.activities.model.SocialActivitySet",
 				"com.liferay.portal.service.ServiceContext"
 			};
+
+		_methodName7 = "updateActivitySet";
+
+		_methodParameterTypes7 = new String[] { "long" };
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -153,38 +153,6 @@ public class SocialActivityInterpreterLocalServiceClp
 		}
 	}
 
-	public long getActivitySetId(long activityId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName5,
-					_methodParameterTypes5, new Object[] { activityId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Long)returnObj).longValue();
-	}
-
 	public com.liferay.portlet.social.model.SocialActivityFeedEntry interpret(
 		java.lang.String selector,
 		com.liferay.portlet.social.model.SocialActivity activity,
@@ -192,8 +160,8 @@ public class SocialActivityInterpreterLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
 					new Object[] {
 						ClpSerializer.translateInput(selector),
 						
@@ -224,8 +192,8 @@ public class SocialActivityInterpreterLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] {
 						ClpSerializer.translateInput(selector),
 						
@@ -247,6 +215,34 @@ public class SocialActivityInterpreterLocalServiceClp
 		}
 
 		return (com.liferay.portlet.social.model.SocialActivityFeedEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void updateActivitySet(long activityId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName7,
+				_methodParameterTypes7, new Object[] { activityId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	private InvokableLocalService _invokableLocalService;

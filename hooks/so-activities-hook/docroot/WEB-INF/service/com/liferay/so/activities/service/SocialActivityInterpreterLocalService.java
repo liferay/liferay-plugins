@@ -17,7 +17,6 @@ package com.liferay.so.activities.service;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
-import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
@@ -79,11 +78,6 @@ public interface SocialActivityInterpreterLocalService extends BaseLocalService,
 	public void deleteActivityInterpreter(
 		com.liferay.so.activities.model.SocialActivityInterpreter activityInterpreter);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getActivitySetId(long activityId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	/**
 	* Creates a human readable activity feed entry for the activity using an
 	* available compatible activity interpreter.
@@ -108,4 +102,8 @@ public interface SocialActivityInterpreterLocalService extends BaseLocalService,
 		java.lang.String selector,
 		com.liferay.so.activities.model.SocialActivitySet activitySet,
 		com.liferay.portal.service.ServiceContext serviceContext);
+
+	public void updateActivitySet(long activityId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

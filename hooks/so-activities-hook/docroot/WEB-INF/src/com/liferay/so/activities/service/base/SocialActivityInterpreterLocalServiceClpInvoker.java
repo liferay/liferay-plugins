@@ -43,25 +43,25 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 				"com.liferay.so.activities.model.SocialActivityInterpreter"
 			};
 
-		_methodName32 = "getActivitySetId";
+		_methodName32 = "interpret";
 
-		_methodParameterTypes32 = new String[] { "long" };
-
-		_methodName33 = "interpret";
-
-		_methodParameterTypes33 = new String[] {
+		_methodParameterTypes32 = new String[] {
 				"java.lang.String",
 				"com.liferay.portlet.social.model.SocialActivity",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName34 = "interpret";
+		_methodName33 = "interpret";
 
-		_methodParameterTypes34 = new String[] {
+		_methodParameterTypes33 = new String[] {
 				"java.lang.String",
 				"com.liferay.so.activities.model.SocialActivitySet",
 				"com.liferay.portal.service.ServiceContext"
 			};
+
+		_methodName34 = "updateActivitySet";
+
+		_methodParameterTypes34 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -94,21 +94,23 @@ public class SocialActivityInterpreterLocalServiceClpInvoker {
 
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
-			return SocialActivityInterpreterLocalServiceUtil.getActivitySetId(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			return SocialActivityInterpreterLocalServiceUtil.interpret((java.lang.String)arguments[0],
 				(com.liferay.portlet.social.model.SocialActivity)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 
-		if (_methodName34.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			return SocialActivityInterpreterLocalServiceUtil.interpret((java.lang.String)arguments[0],
 				(com.liferay.so.activities.model.SocialActivitySet)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
+		}
+
+		if (_methodName34.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+			SocialActivityInterpreterLocalServiceUtil.updateActivitySet(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();
