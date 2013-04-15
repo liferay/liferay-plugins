@@ -453,7 +453,7 @@ public class SearchPortlet extends MVCPortlet {
 			(mvcPath.equals(viewTemplate) &&
 			 Validator.isNotNull(assetTagName))) {
 
-			String path = templatePath + "search.jsp";
+			String path = templatePath + "view_prp_articles.jsp";
 
 			include(path, renderRequest, renderResponse);
 		}
