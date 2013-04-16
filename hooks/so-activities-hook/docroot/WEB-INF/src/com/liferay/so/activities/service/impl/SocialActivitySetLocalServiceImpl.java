@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.so.activities.model.SocialActivity;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.base.SocialActivitySetLocalServiceBaseImpl;
+import com.liferay.so.activities.util.comparator.SocialActivitySetModifiedDateComparator;
 
 /**
  * @author Jonathan Lee
@@ -79,6 +80,33 @@ public class SocialActivitySetLocalServiceImpl
 		activitySet.setActivityCount(activitySet.getActivityCount() - 1);
 
 		socialActivitySetPersistence.update(activitySet, false);
+	}
+
+	public SocialActivitySet getClassActivitySet(
+			long classNameId, long classPK, int type)
+		throws SystemException {
+
+		return socialActivitySetPersistence.fetchByC_C_T_First(
+			classNameId, classPK, type,
+			new SocialActivitySetModifiedDateComparator());
+	}
+
+	public SocialActivitySet getClassActivitySet(
+			long userId, long classNameId, long classPK, int type)
+		throws SystemException {
+
+		return socialActivitySetPersistence.fetchByU_C_C_T_First(
+			userId, classNameId, classPK, type,
+			new SocialActivitySetModifiedDateComparator());
+	}
+
+	public SocialActivitySet getUserActivitySet(
+			long groupId, long userId, int type)
+		throws SystemException {
+
+		return socialActivitySetPersistence.fetchByG_U_T_First(
+			groupId, userId, type,
+			new SocialActivitySetModifiedDateComparator());
 	}
 
 	public void incrementActivityCount(long activitySetId, long activityId)
