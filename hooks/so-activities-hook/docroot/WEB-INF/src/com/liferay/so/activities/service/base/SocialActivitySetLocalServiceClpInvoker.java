@@ -120,9 +120,21 @@ public class SocialActivitySetLocalServiceClpInvoker {
 
 		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName50 = "incrementActivityCount";
+		_methodName50 = "getClassActivitySet";
 
-		_methodParameterTypes50 = new String[] { "long", "long" };
+		_methodParameterTypes50 = new String[] { "long", "long", "int" };
+
+		_methodName51 = "getClassActivitySet";
+
+		_methodParameterTypes51 = new String[] { "long", "long", "long", "int" };
+
+		_methodName52 = "getUserActivitySet";
+
+		_methodParameterTypes52 = new String[] { "long", "long", "int" };
+
+		_methodName53 = "incrementActivityCount";
+
+		_methodParameterTypes53 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -240,6 +252,28 @@ public class SocialActivitySetLocalServiceClpInvoker {
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getClassActivitySet(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getClassActivitySet(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getUserActivitySet(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			SocialActivitySetLocalServiceUtil.incrementActivityCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
@@ -291,4 +325,10 @@ public class SocialActivitySetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
 }
