@@ -27,6 +27,7 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.model.SocialActivitySet;
 
 import java.text.Format;
 
@@ -181,6 +182,16 @@ public abstract class SOSocialActivityInterpreter
 		return permissionChecker.hasPermission(
 			activity.getGroupId(), activity.getClassName(),
 			activity.getClassPK(), ActionKeys.VIEW);
+	}
+
+	protected boolean isExpired(SocialActivitySet activitySet) {
+		long age = System.currentTimeMillis() - activitySet.getCreateDate();
+
+		if (age > (Time.HOUR * 8)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected String wrapLink(String link, String iconPath, String text) {
