@@ -27,8 +27,8 @@ import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
-import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 
 /**
  * @author Evan Thibodeau
@@ -43,8 +43,8 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
-			SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
-				activityId);
+			SocialActivity activity =
+				SocialActivityLocalServiceUtil.getActivity(activityId);
 
 			if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
 				(activity.getType() ==
