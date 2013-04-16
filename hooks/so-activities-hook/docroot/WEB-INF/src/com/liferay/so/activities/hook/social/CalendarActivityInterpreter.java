@@ -25,9 +25,9 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.calendar.service.CalEventLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
 
 import java.text.Format;
 
