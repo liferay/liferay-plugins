@@ -239,6 +239,7 @@ public class CalendarUtil {
 		jsonObject.put("classPK", calendarResource.getClassPK());
 		jsonObject.put("global", calendarResource.isGlobal());
 		jsonObject.put("groupId", calendar.getGroupId());
+		jsonObject.put("resourceGroupId", calendar.getResourceGroupId());
 		jsonObject.put("name", calendar.getName(themeDisplay.getLocale()));
 		jsonObject.put(
 			"permissions",

@@ -70,7 +70,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.GroupServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -85,6 +85,7 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -720,13 +721,16 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
-		String[] params = {"usersGroups:" + themeDisplay.getUserId() + ":long"};
-
 		String name = StringUtil.merge(
 			CustomSQLUtil.keywords(keywords), StringPool.BLANK);
 
-		List<Group> groups = GroupServiceUtil.search(
-			themeDisplay.getCompanyId(), name, null, params, 0,
+		LinkedHashMap<String, Object> params =
+			new LinkedHashMap<String, Object>();
+
+		params.put("usersGroups", themeDisplay.getUserId());
+
+		List<Group> groups = GroupLocalServiceUtil.search(
+			themeDisplay.getCompanyId(), name, null, params, true, 0,
 			SearchContainer.DEFAULT_DELTA);
 
 		for (Group group : groups) {

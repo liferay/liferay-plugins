@@ -18,6 +18,8 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * @author Eduardo Lundgren
@@ -33,5 +35,22 @@ public class CalendarImpl extends CalendarBaseImpl {
 		return CalendarResourceLocalServiceUtil.getCalendarResource(
 			getCalendarResourceId());
 	}
+
+	public long getResourceGroupId() {
+		try {
+			CalendarResource calendarResource = getCalendarResource();
+
+			if (calendarResource.isGroup()) {
+				return calendarResource.getClassPK();
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return getGroupId();
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(CalendarImpl.class);
 
 }
