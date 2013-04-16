@@ -51,7 +51,7 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 					SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByC_C_T_First(
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getClassNameId(), activity.getClassPK(),
 						activity.getType());
 
@@ -61,7 +61,7 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
 

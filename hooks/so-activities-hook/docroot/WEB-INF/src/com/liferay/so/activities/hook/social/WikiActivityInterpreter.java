@@ -57,7 +57,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 			if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByC_C_T_First(
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getClassNameId(), activity.getClassPK(),
 						activity.getType());
 
@@ -67,7 +67,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
 
@@ -75,7 +75,6 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 					return activitySet.getActivitySetId();
 				}
 			}
-
 		}
 		catch (Exception e) {
 		}

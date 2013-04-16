@@ -53,9 +53,8 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 				activityId);
 
 			if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
-
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
 

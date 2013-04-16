@@ -50,7 +50,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 			if (activity.getType() == _ACTIVITY_KEY_ADD_FILE_ENTRY) {
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByG_U_T_First(
+					SocialActivitySetLocalServiceUtil.getUserActivitySet(
 						activity.getGroupId(), activity.getUserId(),
 						activity.getType());
 
@@ -60,7 +60,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
 
