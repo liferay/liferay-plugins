@@ -49,5 +49,24 @@
 		<order by="desc">
 			<order-column name="modifiedDate" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="G_U_T" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="userId" />
+			<finder-column name="type" />
+		</finder>
+		<finder name="C_C_T" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="type" />
+		</finder>
+		<finder name="U_C_C_T" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="type" />
+		</finder>
 	</entity>
 </service-builder>
