@@ -55,10 +55,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
 				activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_ADD_PAGE) {
-				return 0;
-			}
-			else if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
+			if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
 				SocialActivitySet activitySet =
 					SocialActivitySetLocalServiceUtil.fetchByC_C_T_First(
 						activity.getClassNameId(), activity.getClassPK(),
