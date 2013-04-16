@@ -45,11 +45,10 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
 				activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) {
-				return 0;
-			}
+			if (((activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) &&
+				 (activity.getReceiverUserId() > 0)) ||
+				(activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE)) {
 
-			if (activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) {
 				SocialActivitySet activitySet =
 					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
 						activity.getUserId(), activity.getClassNameId(),
