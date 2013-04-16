@@ -1064,6 +1064,11 @@ AUI.add(
 						},
 						value: {},
 						validator: isObject
+					},
+
+					resourceGroupId: {
+						value: 0,
+						setter: toInt
 					}
 				},
 

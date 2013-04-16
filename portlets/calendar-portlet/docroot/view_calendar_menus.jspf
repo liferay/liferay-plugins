@@ -138,7 +138,7 @@
 					window.location.href = A.Lang.sub(
 						decodeURIComponent('<%= permissionsURL %>'),
 						{
-							resourceGroupId: activeCalendar.get('groupId'),
+							resourceGroupId: activeCalendar.get('resourceGroupId'),
 							resourcePrimKey: activeCalendar.get('calendarId'),
 							modelResourceDescription: activeCalendar.get('name')
 						}
