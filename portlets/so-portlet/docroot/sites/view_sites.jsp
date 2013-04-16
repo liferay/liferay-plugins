@@ -221,7 +221,6 @@ else {
 								<a href="<%= privateLayoutsURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
 							</c:otherwise>
 						</c:choose>
-
 					</c:if>
 				</span>
 
