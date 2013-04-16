@@ -38,129 +38,66 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	 */
 
 	/**
-	* Returns the feed where companyId = &#63; and twitterUserId = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
+	* Returns the feed where userId = &#63; and twitterScreenName = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
 	*
-	* @param companyId the company ID
-	* @param twitterUserId the twitter user ID
-	* @return the matching feed
-	* @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.twitter.model.Feed findByC_TWUI(long companyId,
-		long twitterUserId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.twitter.NoSuchFeedException;
-
-	/**
-	* Returns the feed where companyId = &#63; and twitterUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param companyId the company ID
-	* @param twitterUserId the twitter user ID
-	* @return the matching feed, or <code>null</code> if a matching feed could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.twitter.model.Feed fetchByC_TWUI(long companyId,
-		long twitterUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the feed where companyId = &#63; and twitterUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param companyId the company ID
-	* @param twitterUserId the twitter user ID
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching feed, or <code>null</code> if a matching feed could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.twitter.model.Feed fetchByC_TWUI(long companyId,
-		long twitterUserId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes the feed where companyId = &#63; and twitterUserId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	* @param twitterUserId the twitter user ID
-	* @return the feed that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.twitter.model.Feed removeByC_TWUI(long companyId,
-		long twitterUserId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.twitter.NoSuchFeedException;
-
-	/**
-	* Returns the number of feeds where companyId = &#63; and twitterUserId = &#63;.
-	*
-	* @param companyId the company ID
-	* @param twitterUserId the twitter user ID
-	* @return the number of matching feeds
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_TWUI(long companyId, long twitterUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the feed where companyId = &#63; and twitterScreenName = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
-	*
-	* @param companyId the company ID
+	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @return the matching feed
 	* @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.twitter.model.Feed findByC_TSN(long companyId,
+	public com.liferay.twitter.model.Feed findByU_TSN(long userId,
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException;
 
 	/**
-	* Returns the feed where companyId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the feed where userId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param companyId the company ID
+	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @return the matching feed, or <code>null</code> if a matching feed could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.twitter.model.Feed fetchByC_TSN(long companyId,
+	public com.liferay.twitter.model.Feed fetchByU_TSN(long userId,
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the feed where companyId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the feed where userId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param companyId the company ID
+	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching feed, or <code>null</code> if a matching feed could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.twitter.model.Feed fetchByC_TSN(long companyId,
+	public com.liferay.twitter.model.Feed fetchByU_TSN(long userId,
 		java.lang.String twitterScreenName, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the feed where companyId = &#63; and twitterScreenName = &#63; from the database.
+	* Removes the feed where userId = &#63; and twitterScreenName = &#63; from the database.
 	*
-	* @param companyId the company ID
+	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @return the feed that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.twitter.model.Feed removeByC_TSN(long companyId,
+	public com.liferay.twitter.model.Feed removeByU_TSN(long userId,
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException;
 
 	/**
-	* Returns the number of feeds where companyId = &#63; and twitterScreenName = &#63;.
+	* Returns the number of feeds where userId = &#63; and twitterScreenName = &#63;.
 	*
-	* @param companyId the company ID
+	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @return the number of matching feeds
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_TSN(long companyId, java.lang.String twitterScreenName)
+	public int countByU_TSN(long userId, java.lang.String twitterScreenName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
