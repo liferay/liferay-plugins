@@ -28,8 +28,8 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
-import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
@@ -52,8 +52,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
-			SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
-				activityId);
+			SocialActivity activity =
+				SocialActivityLocalServiceUtil.getActivity(activityId);
 
 			if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
 				SocialActivitySet activitySet =

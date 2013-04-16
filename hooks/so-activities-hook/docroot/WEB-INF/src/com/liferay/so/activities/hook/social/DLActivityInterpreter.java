@@ -29,8 +29,8 @@ import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
-import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 
 /**
  * @author Evan Thibodeau
@@ -45,8 +45,8 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
-			SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
-				activityId);
+			SocialActivity activity =
+				SocialActivityLocalServiceUtil.getActivity(activityId);
 
 			if (activity.getType() == _ACTIVITY_KEY_ADD_FILE_ENTRY) {
 				SocialActivitySet activitySet =
