@@ -127,13 +127,8 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			feed.setTwitterScreenName(twitterScreenName);
 
 			feedPersistence.update(feed, false);
-
-			if (jsonArray == null) {
-				return;
-			}
 		}
-
-		if (jsonArray == null) {
+		else {
 			jsonArray = TimelineProcessorUtil.getUserTimelineJSONArray(
 				twitterScreenName, feed.getLastStatusId());
 		}
