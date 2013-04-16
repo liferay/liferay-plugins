@@ -28,6 +28,7 @@ import com.liferay.twitter.model.Feed;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Zsolt Berentey
  */
 public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 
@@ -72,25 +73,10 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathFriendlyURLPublic());
-		sb.append(StringPool.SLASH);
-
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-
-		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-
-		sb.append("/profile");
-
 		String creatorUserName = getUserName(
 			activity.getUserId(), serviceContext);
 
-		String creatorUserNameURL = wrapLink(sb.toString(), creatorUserName);
-
-		return new Object[] {creatorUserNameURL};
+		return new Object[] {creatorUserName};
 	}
 
 	@Override
