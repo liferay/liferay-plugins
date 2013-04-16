@@ -394,35 +394,13 @@
 	background: url(@theme_image_path@/common/rss.png) 8px center no-repeat;
 }
 
-.entry-categories, .entry-links, .entry-tags {
-	margin-top: 15px;
-}
-
-.lfr-panel.lfr-extended, .lfr-panel-container, .lfr-floating-container {
-  border-color: #FFFFFF; 
-}
-
 .property-list {
 	margin-left: 0;
 	margin-top: 0;
-	overflow: hidden;
 	padding: 0;
 
-	dd {
-		float: left;
-		line-height: 1.5;
-		margin: 0 0 10px 0;
-		padding-left: 5px;
-
-		img {
-			vertical-align: middle;
-		}
-	}
-
 	dt {
-		clear: left;
 		font-weight: bold;
-		min-width: 5em;
 	}
 }
 	

@@ -39,22 +39,12 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 <aui:fieldset>
 	<dl class="property-list">
 		<dt>
-			<liferay-ui:icon
-				image="../common/time"
-				message=""
-			/>
-
 			<liferay-ui:message key="start-date" />:
 		</dt>
 		<dd>
 			<%= dateFormatLongDate.format(startTimeJCalendar.getTime()) + ", " + dateFormatTime.format(startTimeJCalendar.getTime()) %>
 		</dd>
 		<dt>
-			<liferay-ui:icon
-				image="../common/time"
-				message=""
-			/>
-
 			<liferay-ui:message key="end-date" />:
 		</dt>
 		<dd>
@@ -67,11 +57,6 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 
 		<c:if test="<%= !childCalendarBookings.isEmpty() %>">
 			<dt>
-				<liferay-ui:icon
-					image="../common/organization_icon"
-					message=""
-				/>
-
 				<liferay-ui:message key="resources" />:
 			</dt>
 			<dd>
@@ -91,11 +76,6 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 		</c:if>
 		<c:if test="<%= Validator.isNotNull(calendarBooking.getLocation()) %>">
 			<dt>
-				<liferay-ui:icon
-					image="../common/view_locations"
-					message=""
-				/>
-
 				<liferay-ui:message key="location" />:
 			</dt>
 			<dd>
