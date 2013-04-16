@@ -25,6 +25,9 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 
 /**
  * @author Evan Thibodeau
@@ -34,6 +37,33 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
+	}
+
+	@Override
+	protected long getActivitySetId(long activityId) {
+		try {
+			SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
+				activityId);
+
+			if (activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) {
+				return 0;
+			}
+
+			if (activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) {
+				SocialActivitySet activitySet =
+					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
+						activity.getUserId(), activity.getClassNameId(),
+						activity.getClassPK(), activity.getType());
+
+				if ((activitySet != null) && !isExpired(activitySet)) {
+					return activitySet.getActivitySetId();
+				}
+			}
+		}
+		catch (Exception e) {
+		}
+
+		return 0;
 	}
 
 	@Override

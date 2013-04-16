@@ -27,6 +27,9 @@ import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
+import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
@@ -44,6 +47,43 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
+	}
+
+	@Override
+	protected long getActivitySetId(long activityId) {
+		try {
+			SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
+				activityId);
+
+			if (activity.getType() == _ACTIVITY_KEY_ADD_PAGE) {
+				return 0;
+			}
+			else if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
+				SocialActivitySet activitySet =
+					SocialActivitySetLocalServiceUtil.fetchByC_C_T_First(
+						activity.getClassNameId(), activity.getClassPK(),
+						activity.getType());
+
+				if ((activitySet != null) && !isExpired(activitySet)) {
+					return activitySet.getActivitySetId();
+				}
+			}
+			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+				SocialActivitySet activitySet =
+					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
+						activity.getUserId(), activity.getClassNameId(),
+						activity.getClassPK(), activity.getType());
+
+				if ((activitySet != null) && !isExpired(activitySet)) {
+					return activitySet.getActivitySetId();
+				}
+			}
+
+		}
+		catch (Exception e) {
+		}
+
+		return 0;
 	}
 
 	@Override
