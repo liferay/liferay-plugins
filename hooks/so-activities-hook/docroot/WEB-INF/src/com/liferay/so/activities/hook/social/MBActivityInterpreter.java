@@ -50,7 +50,7 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 				(activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE)) {
 
 				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.fetchByU_C_C_T_First(
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
 
