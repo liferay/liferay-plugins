@@ -45,6 +45,7 @@ import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Zsolt Berentey
  */
 public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
@@ -103,8 +104,8 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			throw new FeedTwitterScreenNameException();
 		}
 
-		Feed feed = feedPersistence.fetchByC_TSN(
-			user.getCompanyId(), twitterScreenName);
+		Feed feed = feedPersistence.fetchByU_TSN(
+			user.getUserId(), twitterScreenName);
 
 		JSONArray jsonArray = null;
 
