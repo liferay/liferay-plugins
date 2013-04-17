@@ -261,7 +261,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		int i = 0;
 
 		for (Iterator<VAlarm> iterator = componentList.iterator();
-				iterator.hasNext(); i++) {
+				iterator.hasNext();) {
 
 			VAlarm vAlarm = iterator.next();
 
@@ -277,17 +277,38 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 			Trigger trigger = vAlarm.getTrigger();
 
-			Dur dur = trigger.getDuration();
-
 			long time = 0;
 
-			time += dur.getWeeks() * Time.WEEK;
-			time += dur.getDays() * Time.DAY;
-			time += dur.getHours() * Time.HOUR;
-			time += dur.getMinutes() * Time.MINUTE;
-			time += dur.getSeconds() * Time.SECOND;
+			DateTime dateTime = trigger.getDateTime();
+
+			Dur dur = trigger.getDuration();
+
+			if ((dateTime == null) && (dur == null)) {
+				continue;
+			}
+
+			if (dateTime != null) {
+				time = startDate.getTime() - dateTime.getTime();
+
+				if (time < 0) {
+					continue;
+				}
+			}
+			else {
+				if (!dur.isNegative()) {
+					continue;
+				}
+
+				time += dur.getWeeks() * Time.WEEK;
+				time += dur.getDays() * Time.DAY;
+				time += dur.getHours() * Time.HOUR;
+				time += dur.getMinutes() * Time.MINUTE;
+				time += dur.getSeconds() * Time.SECOND;
+			}
 
 			reminders[i] = time;
+
+			i++;
 		}
 
 		long firstReminder = 0;
@@ -295,14 +316,14 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		long secondReminder = 0;
 		String secondReminderType = null;
 
-		if (!componentList.isEmpty()) {
+		if (i > 0) {
 			firstReminder = reminders[0];
 			firstReminderType = reminderTypes[0];
+		}
 
-			if (componentList.size() > 1) {
-				secondReminder = reminders[1];
-				secondReminderType = reminderTypes[1];
-			}
+		if (i > 1) {
+			secondReminder = reminders[1];
+			secondReminderType = reminderTypes[1];
 		}
 
 		// Attendees
