@@ -58,7 +58,7 @@ public class WallUtil {
 			ThemeDisplay themeDisplay)
 		throws Exception {
 
-		if (wallLayoutFriendlyURL == null) {
+		if (Validator.isNull(wallLayoutFriendlyURL)) {
 			return null;
 		}
 
