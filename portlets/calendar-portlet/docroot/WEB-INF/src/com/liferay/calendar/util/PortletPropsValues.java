@@ -36,11 +36,11 @@ public class PortletPropsValues {
 	public static final String CALENDAR_NOTIFICATION_DEFAULT_TYPE =
 		PortletProps.get(PortletPropsKeys.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
-	public static final String CALENDAR_NOTIFICATION_FROM_ADDRESS =
-		PortletProps.get(PortletPropsKeys.CALENDAR_NOTIFICATION_FROM_ADDRESS);
+	public static final String CALENDAR_NOTIFICATION_SENDER_EMAIL =
+		PortletProps.get(PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_EMAIL);
 
-	public static final String CALENDAR_NOTIFICATION_FROM_NAME =
-		PortletProps.get(PortletPropsKeys.CALENDAR_NOTIFICATION_FROM_NAME);
+	public static final String CALENDAR_NOTIFICATION_SENDER_NAME =
+		PortletProps.get(PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_NAME);
 
 	public static final boolean CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE =
 		GetterUtil.getBoolean(

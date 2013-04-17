@@ -27,6 +27,7 @@ import java.util.Map;
  */
 public class NotificationTemplateContext implements Cloneable, Serializable {
 
+	private long _calendarId;
 	public NotificationTemplateContext() {
 		_notificationType = NotificationType.parse(
 			PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
@@ -50,6 +51,10 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 
 	public long getGroupId() {
 		return _groupId;
+	}
+
+	public long getCalendarId() {
+		return _calendarId;
 	}
 
 	public NotificationType getNotificationType() {
@@ -80,6 +85,10 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 
 	public void setNotificationType(NotificationType notificationType) {
 		_notificationType = notificationType;
+	}
+
+	public void setCalendarId(long calendarId) {
+		_calendarId = calendarId;
 	}
 
 	private Map<String, Serializable> _attributes =

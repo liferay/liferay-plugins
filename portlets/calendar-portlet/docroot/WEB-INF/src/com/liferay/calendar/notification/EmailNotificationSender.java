@@ -14,8 +14,10 @@
 
 package com.liferay.calendar.notification;
 
+import com.liferay.calendar.model.Calendar;
+import com.liferay.calendar.model.CalendarNotificationTemplate;
+import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.util.NotificationUtil;
-import com.liferay.calendar.util.PortletPropsKeys;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -34,13 +36,21 @@ public class EmailNotificationSender implements NotificationSender {
 		throws NotificationSenderException {
 
 		try {
-			String fromAddress = notificationTemplateContext.getString(
-				"fromAddress");
-			String fromName = notificationTemplateContext.getString("fromName");
-			String subject = getSubject(
-				notificationTemplateType, notificationTemplateContext);
-			String body = getBody(
-				notificationTemplateType, notificationTemplateContext);
+			Calendar calendar = CalendarLocalServiceUtil.getCalendar(
+					notificationTemplateContext.getCalendarId());
+			CalendarNotificationTemplate template = NotificationUtil
+					.getNotificationTemplate(
+							calendar, NotificationType.EMAIL,
+							notificationTemplateType);
+
+			String fromAddress = NotificationUtil
+					.getEmailFromAddress(template);
+			String fromName = NotificationUtil
+					.getEmailFromName(template);
+			String subject = processNotificationTemplateContent(
+					template.getSubject(), notificationTemplateContext);
+			String body = processNotificationTemplateContent(
+					template.getBody(), notificationTemplateContext);
 
 			sendNotification(
 				fromAddress, fromName, notificationRecipient, subject, body);
@@ -76,36 +86,6 @@ public class EmailNotificationSender implements NotificationSender {
 			throw new NotificationSenderException(
 				"Unable to send mail message", e);
 		}
-	}
-
-	protected String getBody(
-			NotificationTemplateType notificationTemplateType,
-			NotificationTemplateContext notificationTemplateContext)
-		throws Exception {
-
-		String notificationTemplateContent =
-			NotificationUtil.getNotificationTemplateContent(
-				PortletPropsKeys.CALENDAR_NOTIFICATION_BODY,
-				NotificationType.EMAIL, notificationTemplateType,
-				notificationTemplateContext);
-
-		return processNotificationTemplateContent(
-			notificationTemplateContent, notificationTemplateContext);
-	}
-
-	protected String getSubject(
-			NotificationTemplateType notificationTemplateType,
-			NotificationTemplateContext notificationTemplateContext)
-		throws Exception {
-
-		String notificationTemplateContent =
-			NotificationUtil.getNotificationTemplateContent(
-				PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT,
-				NotificationType.EMAIL, notificationTemplateType,
-				notificationTemplateContext);
-
-		return processNotificationTemplateContent(
-			notificationTemplateContent, notificationTemplateContext);
 	}
 
 	protected String processNotificationTemplateContent(

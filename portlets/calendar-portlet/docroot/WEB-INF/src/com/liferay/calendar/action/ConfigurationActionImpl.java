@@ -39,13 +39,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
-		if (tabs2.equals("email-from")) {
-			validateEmailFrom(actionRequest);
-		}
-		else if (tabs2.equals("templates")) {
-			validateTemplate(actionRequest);
-		}
-		else if (tabs2.equals("user-settings")) {
+		if (tabs2.equals("user-settings")) {
 			updateUserSettings(actionRequest, actionResponse);
 		}
 
@@ -83,48 +77,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		preferences.setValue("weekStartsOn", String.valueOf(weekStartsOn));
 
 		preferences.store();
-	}
-
-	protected void validateEmailFrom(ActionRequest actionRequest)
-		throws Exception {
-
-		String emailFromName = getParameter(actionRequest, "emailFromName");
-		String emailFromAddress = getParameter(
-			actionRequest, "emailFromAddress");
-
-		if (Validator.isNull(emailFromName)) {
-			SessionErrors.add(actionRequest, "emailFromName");
-		}
-		else if (!Validator.isEmailAddress(emailFromAddress)) {
-			SessionErrors.add(actionRequest, "emailFromAddress");
-		}
-	}
-
-	protected void validateTemplate(ActionRequest actionRequest)
-		throws Exception {
-
-		String notificationTemplateContentBodyParameterName =
-			ParamUtil.getString(
-				actionRequest, "notificationTemplateContentBodyParameterName");
-
-		String notificationTemplateContentBody = getParameter(
-			actionRequest, notificationTemplateContentBodyParameterName);
-
-		String notificationTemplateContentSubjectParameterName =
-			ParamUtil.getString(
-				actionRequest,
-			"notificationTemplateContentSubjectParameterName");
-
-		String notificationTemplateContentSubject = getParameter(
-			actionRequest, notificationTemplateContentSubjectParameterName);
-
-		if (Validator.isNull(notificationTemplateContentBody)) {
-			SessionErrors.add(
-				actionRequest, "notificationTemplateContentSubject");
-		}
-		else if (Validator.isNull(notificationTemplateContentSubject)) {
-			SessionErrors.add(actionRequest, "notificationTemplateContentBody");
-		}
 	}
 
 }
