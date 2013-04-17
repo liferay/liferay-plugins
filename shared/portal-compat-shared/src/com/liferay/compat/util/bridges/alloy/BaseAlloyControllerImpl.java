@@ -14,6 +14,7 @@
 
 package com.liferay.compat.util.bridges.alloy;
 
+import com.liferay.compat.portal.kernel.bean.ConstantsBeanFactoryUtil;
 import com.liferay.compat.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.compat.portal.kernel.util.ServiceBeanMethodInvocationFactoryUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
@@ -296,6 +297,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		if (method != null) {
 			method.invoke(this);
 		}
+	}
+
+	protected Object getConstantsBean(Class<?> clazz) {
+		return ConstantsBeanFactoryUtil.getConstantsBean(clazz);
 	}
 
 	protected Method getMethod(String methodName, Class<?>... parameterTypes) {
