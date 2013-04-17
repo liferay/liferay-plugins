@@ -20,7 +20,6 @@
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
 long date = ParamUtil.getLong(request, "date", System.currentTimeMillis());
 String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
-String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
 String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
 boolean hideAgendaView = ParamUtil.getBoolean(request, "hideAgendaView");
 boolean hideDayView = ParamUtil.getBoolean(request, "hideDayView");
@@ -28,6 +27,7 @@ boolean hideMonthView = ParamUtil.getBoolean(request, "hideMonthView");
 boolean hideWeekView = ParamUtil.getBoolean(request, "hideWeekView");
 boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence");
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
+String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
 %>
 
 <div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
