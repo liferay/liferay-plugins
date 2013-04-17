@@ -60,7 +60,7 @@ import java.util.Properties;
  */
 public class NotificationUtil {
 
-	public static String getEmailFromAddress(
+	public static String getNotificationSenderEmailAddress(
 			CalendarNotificationTemplate calendarNotificationTemplate)
 		throws PortalException, SystemException {
 
@@ -69,7 +69,7 @@ public class NotificationUtil {
 				.getProperty(PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_EMAIL);
 	}
 
-	public static String getEmailFromName(
+	public static String getNotificationSenderName(
 			CalendarNotificationTemplate calendarNotificationTemplate)
 		throws PortalException, SystemException {
 

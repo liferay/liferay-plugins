@@ -125,8 +125,8 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 				CalendarNotificationTemplate template = NotificationUtil.getNotificationTemplate(calendar, notificationType, templateType);
 
-				String emailFromAddress = NotificationUtil.getEmailFromAddress(template);
-				String emailFromName = NotificationUtil.getEmailFromName(template);
+				String emailFromAddress = NotificationUtil.getNotificationSenderEmailAddress(template);
+				String emailFromName = NotificationUtil.getNotificationSenderName(template);
 			%>
 
 			<liferay-ui:error key="<%= bodyParameterName %>" message="please-enter-a-valid-body" />

@@ -44,9 +44,9 @@ public class EmailNotificationSender implements NotificationSender {
 							notificationTemplateType);
 
 			String fromAddress = NotificationUtil
-					.getEmailFromAddress(template);
+					.getNotificationSenderEmailAddress(template);
 			String fromName = NotificationUtil
-					.getEmailFromName(template);
+					.getNotificationSenderName(template);
 			String subject = processNotificationTemplateContent(
 					template.getSubject(), notificationTemplateContext);
 			String body = processNotificationTemplateContent(
