@@ -1067,8 +1067,8 @@ AUI.add(
 					},
 
 					resourceGroupId: {
-						value: 0,
-						setter: toInt
+						setter: toInt,
+						value: 0
 					}
 				},
 
