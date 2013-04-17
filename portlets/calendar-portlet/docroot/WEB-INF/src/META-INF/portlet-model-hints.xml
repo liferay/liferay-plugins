@@ -57,6 +57,20 @@
 		<field name="statusByUserName" type="String" />
 		<field name="statusDate" type="Date" />
 	</model>
+	<model name="com.liferay.calendar.model.CalendarNotificationTemplate">
+		<field name="uuid" type="String" />
+		<field name="calendarNotificationTemplateId" type="long" />
+		<field name="calendarId" type="long" />
+		<field name="notificationType" type="String" />
+		<field name="notificationTemplateType" type="String" />
+		<field name="body" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="subject" type="String" />
+		<field name="notificationSettings" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
 	<model name="com.liferay.calendar.model.CalendarResource">
 		<field name="uuid" type="String" />
 		<field name="calendarResourceId" type="long" />
