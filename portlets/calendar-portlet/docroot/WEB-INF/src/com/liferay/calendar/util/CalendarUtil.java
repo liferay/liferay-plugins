@@ -251,8 +251,7 @@ public class CalendarUtil {
 	}
 
 	public static JSONObject toCalendarResourceJSONObject(
-			ThemeDisplay themeDisplay, CalendarResource calendarResource)
-		throws SystemException {
+		ThemeDisplay themeDisplay, CalendarResource calendarResource) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
