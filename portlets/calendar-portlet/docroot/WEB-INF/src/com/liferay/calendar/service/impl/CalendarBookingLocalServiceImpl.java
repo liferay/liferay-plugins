@@ -606,7 +606,7 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		String originalRecurrence = calendarBooking.getRecurrence();
+		String oldRecurrence = calendarBooking.getRecurrence();
 
 		deleteCalendarBookingInstance(calendarBooking, startTime, allFollowing);
 
@@ -614,15 +614,13 @@ public class CalendarBookingLocalServiceImpl
 			Recurrence recurrenceObj = RecurrenceSerializer.deserialize(
 				recurrence);
 
-			if (originalRecurrence.equals(recurrence) && 
-					(recurrenceObj.getCount() > 0)) {
+			if (oldRecurrence.equals(recurrence) &&
+				(recurrenceObj.getCount() > 0)) {
 
 				int index = RecurrenceUtil.getIndexOfInstance(
 					recurrence, calendarBooking.getStartTime(), startTime);
 
-				int newCount = recurrenceObj.getCount() - index;
-
-				recurrenceObj.setCount(newCount);
+				recurrenceObj.setCount(recurrenceObj.getCount() - index);
 
 				recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 			}
