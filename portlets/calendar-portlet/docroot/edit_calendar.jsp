@@ -117,8 +117,21 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 		</c:when>
 		<c:when test='<%= currentTab.equals("templates") && calendar != null %>'>
 			<%
-				NotificationType notificationType = NotificationType.parse(ParamUtil.getString(request, "notificationType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE));
-				NotificationTemplateType templateType = NotificationTemplateType.parse(ParamUtil.getString(request, "notificationTemplateType", "reminder"));
+				StringBuilder templateTabs = new StringBuilder();
+				for (NotificationType notificationType : NotificationType.values()) {
+					for (NotificationTemplateType templateType : NotificationTemplateType.values()) {
+						templateTabs.append(templateType.getValue() + "-" + notificationType.getValue() + ",");
+					}
+				}
+				templateTabs.deleteCharAt(templateTabs.length()-1);
+				String templateTabsNames = templateTabs.toString();
+
+				String currentTemplateTab = ParamUtil.getString(request, "currentTemplateTab", "invite-email");
+
+				String[] templateTabComponents = currentTemplateTab.split("-");
+
+				NotificationTemplateType templateType = NotificationTemplateType.parse(templateTabComponents[0]);
+				NotificationType notificationType = NotificationType.parse(templateTabComponents[1]);
 
 				String bodyParameterName = NotificationUtil.getPreferenceName(notificationType, templateType, NotificationField.BODY);
 				String subjectParameterName = NotificationUtil.getPreferenceName(notificationType, templateType, NotificationField.SUBJECT);
@@ -129,37 +142,20 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 				String emailFromName = NotificationUtil.getNotificationSenderName(template);
 			%>
 
+			<liferay-ui:tabs
+				names="<%= templateTabsNames %>"
+				param="currentTemplateTab"
+				url="<%= portletURL %>"
+			/>
+
 			<liferay-ui:error key="<%= bodyParameterName %>" message="please-enter-a-valid-body" />
 			<liferay-ui:error key="<%= subjectParameterName %>" message="please-enter-a-valid-subject" />
 
 			<aui:fieldset>
-				<aui:select name="notificationType" value="<%= notificationType.getValue() %>">
 
-					<%
-					for (NotificationType curNotificationType : NotificationType.values()) {
-					%>
-
-						<aui:option label="<%= curNotificationType.getValue() %>" value="<%= curNotificationType.getValue() %>" />
-
-					<%
-					}
-					%>
-
-				</aui:select>
-
-				<aui:select name="notificationTemplateType" value="<%= templateType.getValue() %>">
-
-					<%
-					for (NotificationTemplateType curNotificationTemplateType : NotificationTemplateType.values()) {
-					%>
-
-						<aui:option label="<%= curNotificationTemplateType.getValue() %>" value="<%= curNotificationTemplateType.getValue() %>" />
-
-					<%
-					}
-					%>
-
-				</aui:select>
+				<aui:input name="notificationTemplateType" type="hidden" value="<%= templateType.getValue() %>" />
+				<aui:input name="notificationType" type="hidden" value="<%= notificationType.getValue() %>" />
+				<aui:input name="currentTemplateTab" type="hidden" value="<%= currentTemplateTab %>" />
 
 				<c:if test="<%= notificationType == NotificationType.EMAIL %>">
 

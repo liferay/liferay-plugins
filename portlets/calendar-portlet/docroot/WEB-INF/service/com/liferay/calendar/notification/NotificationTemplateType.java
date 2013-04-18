@@ -19,7 +19,7 @@ package com.liferay.calendar.notification;
  */
 public enum NotificationTemplateType {
 
-	REMINDER("reminder"), INVITE("invite");
+	INVITE("invite"), REMINDER("reminder");
 
 	public static NotificationTemplateType parse(String value) {
 		if (REMINDER.getValue().equals(value)) {
