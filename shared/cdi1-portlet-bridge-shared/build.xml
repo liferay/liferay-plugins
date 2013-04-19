@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="cdi1-portlet-bridge-shared" basedir="." default="deploy">
+	<property name="plugin.version" value="1" />
+	<property name="ivy.pom.developer" value="Neil Griffin" />
+	<property name="ivy.pom.description" value="The Liferay CDI Portlet Bridge provides the ability for portlet developers to use CDI." />
+	<property name="ivy.pom.name" value="Liferay CDI Portlet Bridge" />
+	<import file="../build-common-shared.xml" />
+</project>

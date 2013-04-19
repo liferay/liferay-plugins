@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+	xmlns:m2="http://ant.apache.org/ivy/maven">
+	<info organisation="com.liferay.cdi" module="${plugin.name}" revision="${lp.version}.${plugin.version}${plugin.version.qualifier}">
+		<license name="LGPL 2.1" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt" />
+		<description homepage="http://www.liferay.com" />
+	</info>
+	<configurations>
+		<conf name="provided" />
+	</configurations>
+	<publications>
+		<artifact type="jar" /> 
+		<artifact type="javadoc" ext="zip" m2:classifier="javadoc"  />
+		<artifact type="pom" />
+		<artifact type="sources" ext="jar" m2:classifier="sources" />
+	</publications>
+	<dependencies>
+		<dependency conf="provided->*" org="javax.enterprise" name="cdi-api" rev="1.0-SP4" transitive="false" />
+		<dependency conf="provided->*" org="javax.portlet" name="portlet-api" rev="2.0" transitive="false" />
+		<dependency conf="provided->*" org="javax.servlet" name="javax.servlet-api" rev="3.0.1" transitive="false" />
+	</dependencies>
+</ivy-module>
