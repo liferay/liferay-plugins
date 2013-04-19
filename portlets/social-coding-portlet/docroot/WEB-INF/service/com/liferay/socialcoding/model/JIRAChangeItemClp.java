@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.socialcoding.service.ClpSerializer;
 import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -126,6 +129,20 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setJiraChangeItemId(long jiraChangeItemId) {
 		_jiraChangeItemId = jiraChangeItemId;
+
+		if (_jiraChangeItemRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeItemRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraChangeItemId",
+						long.class);
+
+				method.invoke(_jiraChangeItemRemoteModel, jiraChangeItemId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getJiraChangeGroupId() {
@@ -134,6 +151,20 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeGroupId = jiraChangeGroupId;
+
+		if (_jiraChangeItemRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeItemRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraChangeGroupId",
+						long.class);
+
+				method.invoke(_jiraChangeItemRemoteModel, jiraChangeGroupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getField() {
@@ -142,6 +173,19 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setField(String field) {
 		_field = field;
+
+		if (_jiraChangeItemRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeItemRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setField", String.class);
+
+				method.invoke(_jiraChangeItemRemoteModel, field);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getOldValue() {
@@ -150,6 +194,19 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setOldValue(String oldValue) {
 		_oldValue = oldValue;
+
+		if (_jiraChangeItemRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeItemRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOldValue", String.class);
+
+				method.invoke(_jiraChangeItemRemoteModel, oldValue);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getOldString() {
@@ -158,6 +215,19 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setOldString(String oldString) {
 		_oldString = oldString;
+
+		if (_jiraChangeItemRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeItemRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOldString", String.class);
+
+				method.invoke(_jiraChangeItemRemoteModel, oldString);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getNewValue() {
@@ -166,6 +236,19 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setNewValue(String newValue) {
 		_newValue = newValue;
+
+		if (_jiraChangeItemRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeItemRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setNewValue", String.class);
+
+				method.invoke(_jiraChangeItemRemoteModel, newValue);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getNewString() {
@@ -174,6 +257,19 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 
 	public void setNewString(String newString) {
 		_newString = newString;
+
+		if (_jiraChangeItemRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeItemRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setNewString", String.class);
+
+				method.invoke(_jiraChangeItemRemoteModel, newString);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getJIRAChangeItemRemoteModel() {
@@ -183,6 +279,47 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	public void setJIRAChangeItemRemoteModel(
 		BaseModel<?> jiraChangeItemRemoteModel) {
 		_jiraChangeItemRemoteModel = jiraChangeItemRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _jiraChangeItemRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_jiraChangeItemRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {

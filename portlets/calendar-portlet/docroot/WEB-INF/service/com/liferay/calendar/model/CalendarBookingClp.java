@@ -15,6 +15,7 @@
 package com.liferay.calendar.model;
 
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
+import com.liferay.calendar.service.ClpSerializer;
 
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -31,6 +32,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -269,6 +272,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_calendarBookingRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCalendarBookingId() {
@@ -277,6 +293,20 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setCalendarBookingId(long calendarBookingId) {
 		_calendarBookingId = calendarBookingId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCalendarBookingId",
+						long.class);
+
+				method.invoke(_calendarBookingRemoteModel, calendarBookingId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -285,6 +315,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -293,6 +336,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -301,6 +357,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -317,6 +386,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_calendarBookingRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -325,6 +407,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_calendarBookingRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -333,6 +428,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_calendarBookingRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCalendarId() {
@@ -341,6 +449,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setCalendarId(long calendarId) {
 		_calendarId = calendarId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCalendarId", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, calendarId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCalendarResourceId() {
@@ -349,6 +470,20 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setCalendarResourceId(long calendarResourceId) {
 		_calendarResourceId = calendarResourceId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCalendarResourceId",
+						long.class);
+
+				method.invoke(_calendarBookingRemoteModel, calendarResourceId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getParentCalendarBookingId() {
@@ -357,6 +492,21 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setParentCalendarBookingId(long parentCalendarBookingId) {
 		_parentCalendarBookingId = parentCalendarBookingId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setParentCalendarBookingId",
+						long.class);
+
+				method.invoke(_calendarBookingRemoteModel,
+					parentCalendarBookingId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getTitle() {
@@ -400,6 +550,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setTitle(String title) {
 		_title = title;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTitle", String.class);
+
+				method.invoke(_calendarBookingRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setTitle(String title, Locale locale) {
@@ -495,6 +658,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setDescription(String description) {
 		_description = description;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescription", String.class);
+
+				method.invoke(_calendarBookingRemoteModel, description);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setDescription(String description, Locale locale) {
@@ -559,6 +735,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setLocation(String location) {
 		_location = location;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLocation", String.class);
+
+				method.invoke(_calendarBookingRemoteModel, location);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getStartTime() {
@@ -567,6 +756,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setStartTime(long startTime) {
 		_startTime = startTime;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStartTime", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, startTime);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getEndTime() {
@@ -575,6 +777,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setEndTime(long endTime) {
 		_endTime = endTime;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEndTime", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, endTime);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getAllDay() {
@@ -587,6 +802,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setAllDay(boolean allDay) {
 		_allDay = allDay;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAllDay", boolean.class);
+
+				method.invoke(_calendarBookingRemoteModel, allDay);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getRecurrence() {
@@ -595,6 +823,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setRecurrence(String recurrence) {
 		_recurrence = recurrence;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRecurrence", String.class);
+
+				method.invoke(_calendarBookingRemoteModel, recurrence);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getFirstReminder() {
@@ -603,6 +844,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setFirstReminder(long firstReminder) {
 		_firstReminder = firstReminder;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFirstReminder", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, firstReminder);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getFirstReminderType() {
@@ -611,6 +865,20 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setFirstReminderType(String firstReminderType) {
 		_firstReminderType = firstReminderType;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFirstReminderType",
+						String.class);
+
+				method.invoke(_calendarBookingRemoteModel, firstReminderType);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getSecondReminder() {
@@ -619,6 +887,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setSecondReminder(long secondReminder) {
 		_secondReminder = secondReminder;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSecondReminder", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, secondReminder);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getSecondReminderType() {
@@ -627,6 +908,20 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setSecondReminderType(String secondReminderType) {
 		_secondReminderType = secondReminderType;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSecondReminderType",
+						String.class);
+
+				method.invoke(_calendarBookingRemoteModel, secondReminderType);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getStatus() {
@@ -635,6 +930,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setStatus(int status) {
 		_status = status;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_calendarBookingRemoteModel, status);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getStatusByUserId() {
@@ -643,6 +951,19 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setStatusByUserId(long statusByUserId) {
 		_statusByUserId = statusByUserId;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatusByUserId", long.class);
+
+				method.invoke(_calendarBookingRemoteModel, statusByUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getStatusByUserUuid() throws SystemException {
@@ -660,6 +981,20 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setStatusByUserName(String statusByUserName) {
 		_statusByUserName = statusByUserName;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatusByUserName",
+						String.class);
+
+				method.invoke(_calendarBookingRemoteModel, statusByUserName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getStatusDate() {
@@ -668,46 +1003,200 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	public void setStatusDate(Date statusDate) {
 		_statusDate = statusDate;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatusDate", Date.class);
+
+				method.invoke(_calendarBookingRemoteModel, statusDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getParentCalendarBooking";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.model.CalendarBooking returnObj = (com.liferay.calendar.model.CalendarBooking)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getChildCalendarBookings";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.List<com.liferay.calendar.model.CalendarBooking> returnObj =
+				(java.util.List<com.liferay.calendar.model.CalendarBooking>)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public boolean isRecurring() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "isRecurring";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.calendar.model.Calendar getCalendar() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getCalendar";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.model.Calendar returnObj = (com.liferay.calendar.model.Calendar)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getSecondReminderNotificationType";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.notification.NotificationType returnObj = (com.liferay.calendar.notification.NotificationType)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public long getDuration() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getDuration";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getRecurrenceObj";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.recurrence.Recurrence returnObj = (com.liferay.calendar.recurrence.Recurrence)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getCalendarResource";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.model.CalendarResource returnObj = (com.liferay.calendar.model.CalendarResource)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public boolean isMasterBooking() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "isMasterBooking";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.calendar.notification.NotificationType getFirstReminderNotificationType() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getFirstReminderNotificationType";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.notification.NotificationType returnObj = (com.liferay.calendar.notification.NotificationType)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	/**
@@ -805,6 +1294,47 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	public void setCalendarBookingRemoteModel(
 		BaseModel<?> calendarBookingRemoteModel) {
 		_calendarBookingRemoteModel = calendarBookingRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _calendarBookingRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_calendarBookingRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {

@@ -14,6 +14,7 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.chat.service.ClpSerializer;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -25,6 +26,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -133,6 +136,19 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setStatusId(long statusId) {
 		_statusId = statusId;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatusId", long.class);
+
+				method.invoke(_statusRemoteModel, statusId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -141,6 +157,19 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_statusRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -157,6 +186,19 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setModifiedDate(long modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", long.class);
+
+				method.invoke(_statusRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getOnline() {
@@ -169,6 +211,19 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setOnline(boolean online) {
 		_online = online;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOnline", boolean.class);
+
+				method.invoke(_statusRemoteModel, online);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getAwake() {
@@ -181,6 +236,19 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setAwake(boolean awake) {
 		_awake = awake;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAwake", boolean.class);
+
+				method.invoke(_statusRemoteModel, awake);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getActivePanelIds() {
@@ -189,6 +257,20 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setActivePanelIds(String activePanelIds) {
 		_activePanelIds = activePanelIds;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setActivePanelIds",
+						String.class);
+
+				method.invoke(_statusRemoteModel, activePanelIds);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getMessage() {
@@ -197,6 +279,19 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setMessage(String message) {
 		_message = message;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setMessage", String.class);
+
+				method.invoke(_statusRemoteModel, message);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getPlaySound() {
@@ -209,6 +304,19 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setPlaySound(boolean playSound) {
 		_playSound = playSound;
+
+		if (_statusRemoteModel != null) {
+			try {
+				Class<?> clazz = _statusRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPlaySound", boolean.class);
+
+				method.invoke(_statusRemoteModel, playSound);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getStatusRemoteModel() {
@@ -217,6 +325,47 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	public void setStatusRemoteModel(BaseModel<?> statusRemoteModel) {
 		_statusRemoteModel = statusRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _statusRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_statusRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {

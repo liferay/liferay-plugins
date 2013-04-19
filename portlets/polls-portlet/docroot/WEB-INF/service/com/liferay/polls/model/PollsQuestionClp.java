@@ -14,6 +14,7 @@
 
 package com.liferay.polls.model;
 
+import com.liferay.polls.service.ClpSerializer;
 import com.liferay.polls.service.PollsQuestionLocalServiceUtil;
 
 import com.liferay.portal.LocaleException;
@@ -31,6 +32,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -170,6 +173,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_pollsQuestionRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getPollsQuestionId() {
@@ -178,6 +194,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setPollsQuestionId(long pollsQuestionId) {
 		_pollsQuestionId = pollsQuestionId;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPollsQuestionId", long.class);
+
+				method.invoke(_pollsQuestionRemoteModel, pollsQuestionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -186,6 +215,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_pollsQuestionRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -194,6 +236,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_pollsQuestionRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -202,6 +257,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_pollsQuestionRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -218,6 +286,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_pollsQuestionRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -226,6 +307,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_pollsQuestionRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -234,6 +328,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_pollsQuestionRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getTitle() {
@@ -277,6 +384,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setTitle(String title) {
 		_title = title;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTitle", String.class);
+
+				method.invoke(_pollsQuestionRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setTitle(String title, Locale locale) {
@@ -372,6 +492,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setDescription(String description) {
 		_description = description;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescription", String.class);
+
+				method.invoke(_pollsQuestionRemoteModel, description);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setDescription(String description, Locale locale) {
@@ -436,6 +569,19 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setExpirationDate(Date expirationDate) {
 		_expirationDate = expirationDate;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setExpirationDate", Date.class);
+
+				method.invoke(_pollsQuestionRemoteModel, expirationDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getLastVoteDate() {
@@ -444,24 +590,98 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 
 	public void setLastVoteDate(Date lastVoteDate) {
 		_lastVoteDate = lastVoteDate;
+
+		if (_pollsQuestionRemoteModel != null) {
+			try {
+				Class<?> clazz = _pollsQuestionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLastVoteDate", Date.class);
+
+				method.invoke(_pollsQuestionRemoteModel, lastVoteDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public java.util.List<com.liferay.polls.model.PollsChoice> getPollsChoices() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getPollsChoices";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.List<com.liferay.polls.model.PollsChoice> returnObj = (java.util.List<com.liferay.polls.model.PollsChoice>)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public boolean isExpired() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "isExpired";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public boolean isExpired(
 		com.liferay.portal.service.ServiceContext serviceContext,
 		java.util.Date defaultCreateDate) {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "isExpired";
+
+			Class<?>[] parameterTypes = new Class<?>[] {
+					com.liferay.portal.service.ServiceContext.class,
+					java.util.Date.class
+				};
+
+			Object[] parameterValues = new Object[] {
+					serviceContext, defaultCreateDate
+				};
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public int getPollsVotesCount() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getPollsVotesCount";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Integer returnObj = (Integer)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getPollsQuestionRemoteModel() {
@@ -471,6 +691,47 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 	public void setPollsQuestionRemoteModel(
 		BaseModel<?> pollsQuestionRemoteModel) {
 		_pollsQuestionRemoteModel = pollsQuestionRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _pollsQuestionRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_pollsQuestionRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {

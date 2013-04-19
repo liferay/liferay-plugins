@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.ClpSerializer;
 import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -163,6 +166,20 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setKaleoConditionId(long kaleoConditionId) {
 		_kaleoConditionId = kaleoConditionId;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoConditionId",
+						long.class);
+
+				method.invoke(_kaleoConditionRemoteModel, kaleoConditionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -171,6 +188,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_kaleoConditionRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -179,6 +209,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_kaleoConditionRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -187,6 +230,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_kaleoConditionRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -203,6 +259,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_kaleoConditionRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -211,6 +280,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_kaleoConditionRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -219,6 +301,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_kaleoConditionRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoDefinitionId() {
@@ -227,6 +322,20 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoDefinitionId",
+						long.class);
+
+				method.invoke(_kaleoConditionRemoteModel, kaleoDefinitionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoNodeId() {
@@ -235,6 +344,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNodeId = kaleoNodeId;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoNodeId", long.class);
+
+				method.invoke(_kaleoConditionRemoteModel, kaleoNodeId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getScript() {
@@ -243,6 +365,19 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setScript(String script) {
 		_script = script;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setScript", String.class);
+
+				method.invoke(_kaleoConditionRemoteModel, script);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getScriptLanguage() {
@@ -251,6 +386,20 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setScriptLanguage(String scriptLanguage) {
 		_scriptLanguage = scriptLanguage;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setScriptLanguage",
+						String.class);
+
+				method.invoke(_kaleoConditionRemoteModel, scriptLanguage);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getScriptRequiredContexts() {
@@ -259,6 +408,20 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 
 	public void setScriptRequiredContexts(String scriptRequiredContexts) {
 		_scriptRequiredContexts = scriptRequiredContexts;
+
+		if (_kaleoConditionRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoConditionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setScriptRequiredContexts",
+						String.class);
+
+				method.invoke(_kaleoConditionRemoteModel, scriptRequiredContexts);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getKaleoConditionRemoteModel() {
@@ -268,6 +431,47 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	public void setKaleoConditionRemoteModel(
 		BaseModel<?> kaleoConditionRemoteModel) {
 		_kaleoConditionRemoteModel = kaleoConditionRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _kaleoConditionRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_kaleoConditionRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {

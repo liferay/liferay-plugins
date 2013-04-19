@@ -15,6 +15,7 @@
 package com.liferay.calendar.model;
 
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
+import com.liferay.calendar.service.ClpSerializer;
 
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -30,6 +31,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -182,6 +185,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_calendarRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCalendarId() {
@@ -190,6 +206,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setCalendarId(long calendarId) {
 		_calendarId = calendarId;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCalendarId", long.class);
+
+				method.invoke(_calendarRemoteModel, calendarId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -198,6 +227,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_calendarRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -206,6 +248,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_calendarRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -214,6 +269,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_calendarRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -230,6 +298,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_calendarRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -238,6 +319,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_calendarRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -246,6 +340,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_calendarRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getResourceBlockId() {
@@ -254,6 +361,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setResourceBlockId(long resourceBlockId) {
 		_resourceBlockId = resourceBlockId;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setResourceBlockId", long.class);
+
+				method.invoke(_calendarRemoteModel, resourceBlockId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCalendarResourceId() {
@@ -262,6 +382,20 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setCalendarResourceId(long calendarResourceId) {
 		_calendarResourceId = calendarResourceId;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCalendarResourceId",
+						long.class);
+
+				method.invoke(_calendarRemoteModel, calendarResourceId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getName() {
@@ -305,6 +439,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setName(String name) {
 		_name = name;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setName", String.class);
+
+				method.invoke(_calendarRemoteModel, name);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setName(String name, Locale locale) {
@@ -400,6 +547,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setDescription(String description) {
 		_description = description;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescription", String.class);
+
+				method.invoke(_calendarRemoteModel, description);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setDescription(String description, Locale locale) {
@@ -464,6 +624,19 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setColor(int color) {
 		_color = color;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setColor", int.class);
+
+				method.invoke(_calendarRemoteModel, color);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getDefaultCalendar() {
@@ -476,14 +649,56 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setDefaultCalendar(boolean defaultCalendar) {
 		_defaultCalendar = defaultCalendar;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDefaultCalendar",
+						boolean.class);
+
+				method.invoke(_calendarRemoteModel, defaultCalendar);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getResourceGroupId() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getResourceGroupId";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getCalendarResource";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.calendar.model.CalendarResource returnObj = (com.liferay.calendar.model.CalendarResource)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getCalendarRemoteModel() {
@@ -492,6 +707,47 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	public void setCalendarRemoteModel(BaseModel<?> calendarRemoteModel) {
 		_calendarRemoteModel = calendarRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _calendarRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_calendarRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {

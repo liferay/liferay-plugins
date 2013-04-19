@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.socialcoding.service.ClpSerializer;
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -98,6 +101,19 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRepositoryId = svnRepositoryId;
+
+		if (_svnRepositoryRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRepositoryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSvnRepositoryId", long.class);
+
+				method.invoke(_svnRepositoryRemoteModel, svnRepositoryId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUrl() {
@@ -106,6 +122,19 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 
 	public void setUrl(String url) {
 		_url = url;
+
+		if (_svnRepositoryRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRepositoryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUrl", String.class);
+
+				method.invoke(_svnRepositoryRemoteModel, url);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getRevisionNumber() {
@@ -114,14 +143,55 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 
 	public void setRevisionNumber(long revisionNumber) {
 		_revisionNumber = revisionNumber;
+
+		if (_svnRepositoryRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRepositoryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRevisionNumber", long.class);
+
+				method.invoke(_svnRepositoryRemoteModel, revisionNumber);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public java.lang.String getName() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getName";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getShortURL() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getShortURL";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getSVNRepositoryRemoteModel() {
@@ -131,6 +201,47 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	public void setSVNRepositoryRemoteModel(
 		BaseModel<?> svnRepositoryRemoteModel) {
 		_svnRepositoryRemoteModel = svnRepositoryRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _svnRepositoryRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_svnRepositoryRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
