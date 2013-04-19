@@ -4,7 +4,7 @@
 <project name="build-common-osgi-plugin">
 	<import file="build-common-plugin.xml" />
 
-	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
+	<var name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
 
 	<path id="osgi.module.classpath">
 		<path refid="portal.classpath" />
@@ -13,6 +13,8 @@
 		<fileset dir="${project.dir}/lib" includes="bnd.jar" />
 		<pathelement location="${classes.dir}" />
 	</path>
+
+	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 
 	<macrodef name="manifest-helper">
 		<attribute name="analyze" default="false" />
@@ -31,14 +33,12 @@
 		</sequential>
 	</macrodef>
 
-	<var name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
-	
 	<target name="clean">
 		<delete dir="${classes.dir}" />
 		<delete file="${plugin.file}" failonerror="false" />
 	</target>
 
-	<target name="compile">		
+	<target name="compile">
 		<mkdir dir="${classes.dir}" />
 
 		<copy todir="${classes.dir}">
@@ -157,12 +157,11 @@
 		</if>
 	</target>
 
-
 	<target name="jar" depends="compile">
 		<if>
 			<not>
 				<uptodate targetfile="${plugin.file}">
-					<srcfiles dir="${classes.dir}" includes="**/*.*"/>
+					<srcfiles dir="${classes.dir}" includes="**/*.*" />
 				</uptodate>
 			</not>
 			<then>
@@ -170,7 +169,9 @@
 					<available file="bnd.bnd" />
 					<then>
 						<manifest-helper />
+
 						<bndexpand propertyfile="${project.dir}/common.bnd" />
+
 						<bnd
 							eclipse="false"
 							exceptions="true"
