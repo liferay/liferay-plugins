@@ -20,14 +20,20 @@
 	<if>
 		<antelope:endswith string="${plugin.name}" with="-shared" />
 		<then>
-			<var name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
-			<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
+			<property name="plugin.packaging" value="jar" />
 		</then>
 		<else>
-			<var name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.war" />
-			<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
+			<property name="plugin.packaging" value="war" />
 		</else>
 	</if>
+
+	<var name="plugin.full.version" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
+
+	<var name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
+	<var name="plugin.javadoc.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
+	<var name="plugin.pom.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
+	<var name="plugin.sources.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
+	<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
 
 	<if>
 		<available file="src" />
@@ -493,10 +499,14 @@
 			</then>
 		</if>
 
+		<delete dir="javadoc" />
 		<delete dir="test-classes" />
 		<delete dir="test-results" />
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
+		<delete file="${plugin.javadoc.file}" />
+		<delete file="${plugin.pom.file}" />
+		<delete file="${plugin.sources.file}" />
 		<delete file="${plugin.src.file}" />
 
 		<delete failonerror="false" includeemptydirs="true">
@@ -1003,6 +1013,28 @@ Please find a solution that does not require portal-impl.jar.
 		</for>
 	</target>
 
+	<target name="jar-javadoc" depends="javadoc">
+		<jar
+			basedir="javadoc"
+			jarfile="${plugin.javadoc.file}"
+		/>
+	</target>
+
+	<target name="jar-source">
+		<jar
+			basedir="src"
+			jarfile="${plugin.sources.file}"
+		/>
+	</target>
+
+	<target name="javadoc">
+		<javadoc
+			classpathref="${javac.classpathref}"
+			destdir="javadoc"
+			sourcepath="${javac.srcdir}"
+		/>
+	</target>
+
 	<target name="merge" if="original.war.file">
 		<if>
 			<not>
@@ -1069,6 +1101,32 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 
 		<var name="patched.file.available" unset="true" />
+	</target>
+
+	<target name="publish-local-m2-release" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="local-m2" />
+		</antcall>
+	</target>
+
+	<target name="publish-local-m2-snapshot" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="local-m2" />
+			<param name="plugin.release.qualifier" value="-SNAPSHOT" />
+		</antcall>
+	</target>
+
+	<target name="publish-remote-m2-release" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="sonatype-m2-staging" />
+		</antcall>
+	</target>
+
+	<target name="publish-remote-m2-snapshot" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="sonatype-m2-snapshot" />
+			<param name="plugin.release.qualifier" value="-SNAPSHOT" />
+		</antcall>
 	</target>
 
 	<target name="shrink-zip-cmd">
@@ -1234,7 +1292,7 @@ Please find a solution that does not require portal-impl.jar.
 				<zip destfile="${plugin.src.file}">
 					<zipfileset
 						dir="${docroot.dir}"
-						prefix="${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}"
+						prefix="${plugin.name}-src-${plugin.full.version}"
 					/>
 				</zip>
 			</then>

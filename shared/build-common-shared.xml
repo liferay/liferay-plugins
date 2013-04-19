@@ -52,6 +52,13 @@
 		/>
 	</target>
 
+	<target name="javadoc">
+		<antcall target="build-common-plugin.javadoc">
+			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.srcdir" value="src" />
+		</antcall>
+	</target>
+
 	<target name="war">
 		<antcall target="jar" />
 	</target>

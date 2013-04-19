@@ -23,6 +23,10 @@
 			dir="${ivy.home}"
 			includes="ivy-${ivy.version}.jar"
 		/>
+		<fileset
+			dir="${sdk.dir}/lib"
+			includes="bcpg-jdk16.jar,bcprov-jdk16.jar"
+		/>
 	</path>
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
@@ -84,4 +88,38 @@
 			</if>
 		</sequential>
 	</for>
+
+	<target name="publish">
+		<ivy:settings file="${sdk.dir}/ivy-settings.xml" />
+
+		<ivy:resolve
+			log="download-only"
+			transitive="false"
+		/>
+
+		<property name="ivy.pom.description" value="${plugin.name}" />
+		<property name="ivy.pom.name" value="${plugin.name}" />
+
+		<property name="plugin.release.qualifier" value="" />
+
+		<property name="ivy.pom.version" value="${plugin.full.version}${plugin.release.qualifier}" />
+
+		<ivy:makepom
+			description="${ivy.pom.description}"
+			ivyfile="ivy.xml"
+			pomfile="${plugin.pom.file}"
+			templatefile="${sdk.dir}/tools/pom_tmpl/template.pom"
+		/>
+
+		<ivy:publish
+			forcedeliver="true"
+			overwrite="true"
+			publishivy="false"
+			pubrevision="${ivy.pom.version}"
+			resolver="${ivy.publish.resolver}"
+		>
+			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.[ext]" />
+			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-[type].[ext]" />
+		</ivy:publish>
+	</target>
 </project>
