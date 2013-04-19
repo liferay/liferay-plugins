@@ -2449,7 +2449,11 @@
 	new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_CreateSuccess (userId bigint)");
+
 			testPreparedStatement("create index index1 ON TestPACL_CreateSuccess (userId)");
+
+			executePreparedStatement("drop table TestPACL_CreateSuccess");
 		}
 
 	};
@@ -2457,7 +2461,11 @@
 	new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_CreateSuccess (userId bigint)");
+
 			testStatement("create index index1 ON TestPACL_CreateSuccess (userId)");
+
+			executePreparedStatement("drop table TestPACL_CreateSuccess");
 		}
 
 	};
