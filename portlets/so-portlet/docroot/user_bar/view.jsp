@@ -25,9 +25,7 @@ try {
 	socialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
 }
 catch (NoSuchRoleException nsre) {
-
 	// This exception should never be thrown except while SO is being uninstalled
-
 }
 %>
 
@@ -48,7 +46,7 @@ catch (NoSuchRoleException nsre) {
 	</liferay-util:html-top>
 
 	<liferay-util:body-top>
-		<nav id="user-bar">
+		<nav id="so-portlet-user-bar">
 
 			<%
 			Group mySite = user.getGroup();
@@ -91,7 +89,6 @@ catch (NoSuchRoleException nsre) {
 
 			</ul>
 
-
 			<ul class="user-menu">
 				<li class="go-to">
 					<liferay-portlet:runtime portletName="5_WAR_soportlet" />
@@ -114,7 +111,7 @@ catch (NoSuchRoleException nsre) {
 					</ul>
 				</li>
 				<li class="has-submenu">
-					<a class="config-icon" href="javascript:;" id="userBarConfigButton"><img alt="Configuration Icon" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" height="15" width="15" /><span class="aui-helper-hidden">Configuration</span></a>
+					<a class="config-icon" href="javascript:;"><img alt="Configuration Icon" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" height="15" width="15" /><span class="aui-helper-hidden">Configuration</span></a>
 
 					<ul class="child-menu">
 						<li>
@@ -132,72 +129,67 @@ catch (NoSuchRoleException nsre) {
 	</liferay-util:body-top>
 
 	<aui:script use="aui-base, event">
-		lang = {
-			defaultGoTo: 'Go To ' + '\u25BE',
-			search: 'Search'
-		};
+		var defaultGoTo = '<liferay-ui:message key="go-to" /> ' + '\u25BE';
 
 		var body = A.one('body');
 
-		var userBar = body.one('#user-bar');
-		var hasMenu = userBar.all('.has-submenu');
-		var notificationButton = userBar.one('.user-notification-events-icon');
-		var notifications = userBar.one('.user-notification-events');
-		var notificationEvents = notifications.all('user-notification-event-content');
+		var userBar = A.one('#so-portlet-user-bar');
+
 		var dashboardNav = userBar.one('#dashboardNav');
+		var notifications = userBar.one('.user-notification-events');
+		var notificationButton = userBar.one('.user-notification-events-icon');
 		var searchInput = userBar.one('.search input');
 		var sitesResultContainer = userBar.one('.so-portlet-sites .portlet-body');
-		var userBarConfigButton = userBar.one('#userBarConfigButton');
-		var toggleDockbar = userBar.one("#toggleDockbar");
 
-		var userBarActive = function (event, Boolean) {
-			var target = event.currentTarget;
-			var subMenu = {};
-			var active = function (Boolean) {
-				if (Boolean && !userBar.hasClass('user-bar-active')) {
+		var activateUserBar = function (event, active) {
+			var setActive = function (active) {
+				if (active && !userBar.hasClass('user-bar-active')) {
 					userBar.addClass('user-bar-active');
-				} else if (!Boolean) {
+				} else if (!active) {
 					userBar.removeClass('user-bar-active');
 				}
-
-				return Boolean;
 			};
 
-			if (target == notificationButton && Boolean) {
+			var target = event.currentTarget;
+
+			if (target == notificationButton && active) {
 				if (sitesResultContainer.hasClass('search-focus')) {
 					if (searchInput.get('value') == '') {
-						searchInput.attr('value', lang.defaultGoTo);
+						searchInput.set('value', defaultGoTo);
 					}
 
 					sitesResultContainer.removeClass('search-focus');
 				}
 
-				active(Boolean);
-			} else if (target == searchInput && Boolean) {
+				setActive(active);
+			}
+			else if (target == searchInput && active) {
 				if (!notifications.hasClass('aui-overlaycontext-hidden')) {
 					notifications.addClass('aui-overlaycontext-hidden');
 				}
 
-				active(Boolean);
-			} else if (target.hasClass('hover') && Boolean) {
+				setActive(active);
+			}
+			else if (target.hasClass('hover') && active) {
 				if (!notifications.hasClass('aui-overlaycontext-hidden')) {
 					notifications.addClass('aui-overlaycontext-hidden');
 				}
 
 				if (sitesResultContainer.hasClass('search-focus')) {
 					if (searchInput.get('value') == '') {
-						searchInput.attr('value', lang.defaultGoTo);
+						searchInput.set('value', defaultGoTo);
 					}
 
 					sitesResultContainer.removeClass('search-focus');
 				}
 
 				if (event.type != 'mouseout') {
-					active(Boolean);
+					setActive(active);
 				} else {
-					active(false);
+					setActive(false);
 				}
-			} else if (target == body || (event == 'hideOtherMenus') && !Boolean) {
+			}
+			else if (target == body || (event == 'hideOtherMenus') && !active) {
 				if (sitesResultContainer.hasClass('search-focus') || userBar.hasClass('user-bar-active')) {
 					sitesResultContainer.removeClass('search-focus');
 
@@ -207,25 +199,25 @@ catch (NoSuchRoleException nsre) {
 				}
 
 				if (searchInput.get('value') == '') {
-					searchInput.attr('value', lang.defaultGoTo);
+					searchInput.set('value', defaultGoTo);
 				}
 
 				if (!notifications.hasClass('aui-overlaycontext-hidden')) {
 					notifications.addClass('aui-overlaycontext-hidden');
 				}
 
-				active(Boolean);
+				setActive(active);
 			}
 		};
 
 		userBar.on(
 			'click',
 			function (event) {
-				userBarActive(event, true);
+				activateUserBar(event, true);
 			}
 		);
 
-		hasMenu.each(
+		userBar.all('.has-submenu').each(
 			function (subMenu) {
 				if (subMenu.one('.child-menu')) {
 					subMenu.one('.child-menu').on('click', function(event){event.stopPropagation});
@@ -235,7 +227,7 @@ catch (NoSuchRoleException nsre) {
 						function (event) {
 							event.currentTarget.toggleClass('hover');
 
-							userBarActive(event, true);
+							activateUserBar(event, true);
 						}
 					);
 				}
@@ -246,10 +238,10 @@ catch (NoSuchRoleException nsre) {
 			notificationButton.on(
 				'click',
 				function (event) {
-					event.preventDefault()
+					event.preventDefault();
 					event.stopPropagation();
 
-					userBarActive(event, true);
+					activateUserBar(event, true);
 
 					notifications.toggleClass('aui-overlaycontext-hidden');
 				}
@@ -270,26 +262,26 @@ catch (NoSuchRoleException nsre) {
 			);
 		}
 
+		var toggleDockbar = userBar.one("#toggleDockbar");
+
 		if (toggleDockbar) {
 			toggleDockbar.on(
 				'click',
 				function (event) {
 					event.preventDefault();
 
-					userBarActive(event, true);
+					activateUserBar(event, true);
 
 					body.toggleClass('show-dockbar');
 				}
 			)
 		};
 
-		searchInput.attr('value', lang.defaultGoTo);
-
 		searchInput.on(
 			'focus',
 			function (event) {
-				if (event.target.get('value') == lang.defaultGoTo) {
-					event.target.attr('value', '');
+				if (event.target.get('value') == defaultGoTo) {
+					event.target.set('value', '');
 				}
 
 				if (!sitesResultContainer.hasClass('search-focus')) {
@@ -297,7 +289,7 @@ catch (NoSuchRoleException nsre) {
 					dashboardNav.setStyle('position','static');
 				}
 
-				userBarActive(event, true);
+				activateUserBar(event, true);
 			}
 		);
 
@@ -311,8 +303,10 @@ catch (NoSuchRoleException nsre) {
 		body.on(
 			'click',
 			function (event) {
-				userBarActive(event, false);
+				activateUserBar(event, false);
 			}
 		);
+
+		searchInput.set('value', defaultGoTo);
 	</aui:script>
 </c:if>

@@ -48,7 +48,7 @@
 		<use-default-template>false</use-default-template>
 		<header-portlet-css>/user_bar/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/user_bar/js/main.js</footer-portlet-javascript>
-		<css-class-wrapper>user-bar-portlet</css-class-wrapper>
+		<css-class-wrapper>so-portlet-user-bar</css-class-wrapper>
 		<system>true</system>
 	</portlet>
 	<role-mapper>
