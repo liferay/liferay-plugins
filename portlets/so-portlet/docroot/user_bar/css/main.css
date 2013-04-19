@@ -54,7 +54,7 @@ html > body.lfr-dockbar-pinned {
 		@include box-shadow(0 7px 9px -8px rgba(0, 0, 0, 0.5));
 	}
 
-	#user-bar {
+	#so-portlet-user-bar {
 		left: 0;
 		position: fixed;
 		right: 0;
@@ -62,8 +62,8 @@ html > body.lfr-dockbar-pinned {
 	}
 }
 
-#user-bar {
-	background: #32363A url(@portal_ctx@/user_bar/images/user_bar_default_bg.png) repeat-x;
+#so-portlet-user-bar {
+	background: #32363A url(../images/user_bar_default_bg.png) repeat-x;
 	font: 13px/1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 200;
 	position: relative;
@@ -73,8 +73,8 @@ html > body.lfr-dockbar-pinned {
 
 	&, a {
 		color: #FFF;
-		font-size: 13px;
 		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		font-size: 13px;
 		font-weight: 400;
 		text-decoration: none;
 	}
@@ -97,7 +97,7 @@ html > body.lfr-dockbar-pinned {
 	}
 
 	a {
-		background: rgba(0,0,0, 0);
+		background-color: rgba(0,0,0, 0);
 		padding: 0.25em .8em;
 		text-shadow: 0 1px 2px rgba(0,0,0, .75);
 
@@ -107,7 +107,7 @@ html > body.lfr-dockbar-pinned {
 	}
 
 	li.selected a, a:hover, li:hover a, .hover a {
-		background: rgba(0,0,0, .48);
+		background-color: rgba(0,0,0, .48);
 		text-decoration: none;
 
 		@include box-shadow(0 1px 2px rgba(0,0,0, .75));
@@ -418,7 +418,6 @@ html > body.lfr-dockbar-pinned {
 
 		.site-list-container {
 			.name a {
-				background-image: url(../images/common/site_icon.png);
 				background-repeat: no-repeat;
 				background-position: 8px center;
 				border-top: 1px solid $default-border-color;
@@ -431,20 +430,19 @@ html > body.lfr-dockbar-pinned {
 			}
 
 			.social-office-enabled a {
-				background-image: url(../images/custom/so_site_icon.png);
 			}
 
 			span.action a {
-				background: transparent url(../images/custom/star.png) 0 0 no-repeat;
+				font-size: 0;
 				margin-top: 8px;
+				text-indent: -9999em;
 			}
 
 			span.favorite a {
-				background: transparent url(../images/custom/star_empty.png) 0 0 no-repeat;
 			}
 
 			ul.site-list, li {
-				background: transparent;
+				background-color: transparent;
 				border: none;
 				display: block;
 			}
@@ -468,7 +466,7 @@ html > body.lfr-dockbar-pinned {
 }
 
 @media (max-width:860px) {
-	#user-bar {
+	#so-portlet-user-bar {
 		a {
 			padding: 0.25em .7em;
 		}
