@@ -2,8 +2,5 @@
 <!DOCTYPE project>
 
 <project name="build-common-hook">
-	<dirname file="${ant.file.build-common-hook}" property="plugin.type.dir" />
-	<property location="${plugin.type.dir}/.." name="project.dir" />
-
 	<import file="../build-common-plugin.xml" />
 </project>
