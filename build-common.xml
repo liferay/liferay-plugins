@@ -4,6 +4,8 @@
 <project name="build-common">
 	<property environment="env" />
 
+	<dirname file="${ant.file.build-common}" property="project.dir" />
+
 	<path id="lib.classpath">
 		<fileset dir="${project.dir}/lib" includes="*.jar" />
 	</path>

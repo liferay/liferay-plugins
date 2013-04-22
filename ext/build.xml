@@ -2,8 +2,6 @@
 <!DOCTYPE project>
 
 <project name="ext" basedir="." default="deploy">
-	<property location=".." name="project.dir" />
-
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
