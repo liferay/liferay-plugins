@@ -47,4 +47,9 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE));
 
+	public static final boolean CALENDAR_SYNC_CALEVENTS_ON_STARTUP =
+		GetterUtil.getBoolean(
+			PortletProps.get(
+				PortletPropsKeys.CALENDAR_SYNC_CALEVENTS_ON_STARTUP));
+
 }

@@ -40,6 +40,7 @@ import javax.portlet.PortletRequest;
 /**
  * @author Eduardo Lundgren
  * @author Fabio Pezzutto
+ * @author Marcellus Tavares
  */
 public class CalendarResourceUtil {
 
@@ -66,7 +67,7 @@ public class CalendarResourceUtil {
 	}
 
 	public static CalendarResource getGroupCalendarResource(
-			PortletRequest portletRequest, long groupId)
+			long groupId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
@@ -91,12 +92,19 @@ public class CalendarResourceUtil {
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			portletRequest);
-
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			serviceContext.getUserId(), 0, Group.class.getName(), groupId, null,
 			null, nameMap, descriptionMap, true, serviceContext);
+	}
+
+	public static CalendarResource getGroupCalendarResource(
+			PortletRequest portletRequest, long groupId)
+		throws PortalException, SystemException {
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			portletRequest);
+
+		return getGroupCalendarResource(groupId, serviceContext);
 	}
 
 	public static OrderByComparator getOrderByComparator(

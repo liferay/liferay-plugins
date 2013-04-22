@@ -11,4 +11,7 @@
 			<taglib-location>/WEB-INF/tld/c.tld</taglib-location>
 		</taglib>
 	</jsp-config>
+	<listener>
+		<listener-class>com.liferay.calendar.servlet.CalendarServletContextListener</listener-class>
+	</listener>
 </web-app>

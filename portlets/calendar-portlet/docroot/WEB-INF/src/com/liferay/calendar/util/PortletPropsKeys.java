@@ -50,4 +50,7 @@ public class PortletPropsKeys {
 
 	public static final String CALENDAR_RSS_TEMPLATE = "calendar.rss.template";
 
+	public static final String CALENDAR_SYNC_CALEVENTS_ON_STARTUP =
+		"calendar.sync.calevents.on.startup";
+
 }
