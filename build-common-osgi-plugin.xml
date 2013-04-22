@@ -93,6 +93,49 @@
 		<copy file="${project.dir}/dist/${plugin.file}" todir="${osgi.auto.deploy.dir}" />
 	</target>
 
+	<target name="jar" depends="compile">
+		<if>
+			<not>
+				<uptodate targetfile="${plugin.file}">
+					<srcfiles dir="${classes.dir}" includes="**/*.*" />
+				</uptodate>
+			</not>
+			<then>
+				<if>
+					<available file="bnd.bnd" />
+					<then>
+						<manifest-helper />
+
+						<bndexpand propertyfile="${project.dir}/common.bnd" />
+
+						<bnd
+							eclipse="false"
+							exceptions="true"
+							failok="false"
+							inherit="true"
+							output="${plugin.file}"
+							sourcepath="."
+						>
+							<bndfiles path="bnd.bnd" />
+							<classpath>
+								<pathelement location="${classes.dir}" />
+							</classpath>
+						</bnd>
+					</then>
+					<else>
+						<antcall target="manifest" />
+
+						<jar
+							basedir="${classes.dir}"
+							jarfile="${project.dir}/dist/${plugin.file}"
+							manifest="${classes.dir}/META-INF/MANIFEST.MF"
+						/>
+					</else>
+				</if>
+			</then>
+		</if>
+	</target>
+
 	<target name="manifest">
 		<if>
 			<not>
@@ -152,49 +195,6 @@
 							<attribute name="Premain-Class" value="${manifest.premain.class}" />
 						</manifest>
 					</then>
-				</if>
-			</then>
-		</if>
-	</target>
-
-	<target name="jar" depends="compile">
-		<if>
-			<not>
-				<uptodate targetfile="${plugin.file}">
-					<srcfiles dir="${classes.dir}" includes="**/*.*" />
-				</uptodate>
-			</not>
-			<then>
-				<if>
-					<available file="bnd.bnd" />
-					<then>
-						<manifest-helper />
-
-						<bndexpand propertyfile="${project.dir}/common.bnd" />
-
-						<bnd
-							eclipse="false"
-							exceptions="true"
-							failok="false"
-							inherit="true"
-							output="${plugin.file}"
-							sourcepath="."
-						>
-							<bndfiles path="bnd.bnd" />
-							<classpath>
-								<pathelement location="${classes.dir}" />
-							</classpath>
-						</bnd>
-					</then>
-					<else>
-						<antcall target="manifest" />
-
-						<jar
-							basedir="${classes.dir}"
-							jarfile="${project.dir}/dist/${plugin.file}"
-							manifest="${classes.dir}/META-INF/MANIFEST.MF"
-						/>
-					</else>
 				</if>
 			</then>
 		</if>
