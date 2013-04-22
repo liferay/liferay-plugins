@@ -131,7 +131,24 @@
 		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />
 		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
 	</entity>
+	<entity name="CalendarImporter" local-service="true" remote-service="false">
 
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="Subscription" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetCategory" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetVocabulary" />
+		<reference package-path="com.liferay.portlet.calendar" entity="CalEvent" />
+		<reference package-path="com.liferay.portlet.calendar" entity="CalEvent" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBDiscussion" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBThread" />
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
+		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
+	</entity>
 	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
