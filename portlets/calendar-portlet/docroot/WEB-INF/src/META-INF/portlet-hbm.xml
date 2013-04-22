@@ -4,6 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.calendar.model.Calendar" />
 	<import class="com.liferay.calendar.model.CalendarBooking" />
+	<import class="com.liferay.calendar.model.CalendarImporter" />
 	<import class="com.liferay.calendar.model.CalendarResource" />
 	<class name="com.liferay.calendar.model.impl.CalendarImpl" table="Calendar">
 		<cache usage="read-write" />

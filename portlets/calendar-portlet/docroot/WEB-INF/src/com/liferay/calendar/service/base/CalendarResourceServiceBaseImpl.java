@@ -17,6 +17,7 @@ package com.liferay.calendar.service.base;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.CalendarBookingService;
+import com.liferay.calendar.service.CalendarImporterLocalService;
 import com.liferay.calendar.service.CalendarLocalService;
 import com.liferay.calendar.service.CalendarResourceLocalService;
 import com.liferay.calendar.service.CalendarResourceService;
@@ -214,6 +215,25 @@ public abstract class CalendarResourceServiceBaseImpl extends BaseServiceImpl
 	public void setCalendarBookingFinder(
 		CalendarBookingFinder calendarBookingFinder) {
 		this.calendarBookingFinder = calendarBookingFinder;
+	}
+
+	/**
+	 * Returns the calendar importer local service.
+	 *
+	 * @return the calendar importer local service
+	 */
+	public CalendarImporterLocalService getCalendarImporterLocalService() {
+		return calendarImporterLocalService;
+	}
+
+	/**
+	 * Sets the calendar importer local service.
+	 *
+	 * @param calendarImporterLocalService the calendar importer local service
+	 */
+	public void setCalendarImporterLocalService(
+		CalendarImporterLocalService calendarImporterLocalService) {
+		this.calendarImporterLocalService = calendarImporterLocalService;
 	}
 
 	/**
@@ -529,6 +549,8 @@ public abstract class CalendarResourceServiceBaseImpl extends BaseServiceImpl
 	protected CalendarBookingPersistence calendarBookingPersistence;
 	@BeanReference(type = CalendarBookingFinder.class)
 	protected CalendarBookingFinder calendarBookingFinder;
+	@BeanReference(type = CalendarImporterLocalService.class)
+	protected CalendarImporterLocalService calendarImporterLocalService;
 	@BeanReference(type = CalendarResourceLocalService.class)
 	protected CalendarResourceLocalService calendarResourceLocalService;
 	@BeanReference(type = CalendarResourceService.class)
