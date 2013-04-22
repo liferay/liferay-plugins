@@ -1,17 +1,31 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common-osgi-plugin">
+<project name="build-common-osgi-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common-plugin.xml" />
 
-	<var name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
+	<antelope:stringutil string="${plugin.file}" property="plugin.file">
+		<antelope:replace regex="\.war" replacement="\.jar" />
+	</antelope:stringutil>
 
-	<path id="osgi.module.classpath">
+	<if>
+		<available file="src" />
+		<then>
+			<property name="osgi.plugin.classes.dir" value="classes" />
+			<property name="osgi.plugin.source.dir" value="src" />
+		</then>
+		<else>
+			<property name="osgi.plugin.classes.dir" value="docroot/WEB-INF/classes" />
+			<property name="osgi.plugin.source.dir" value="docroot/WEB-INF/src" />
+		</else>
+	</if>
+
+	<path id="osgi.plugin.classpath">
 		<path refid="portal.classpath" />
 		<path refid="plugin.classpath" />
 		<fileset dir="lib" erroronmissingdir="false" includes="*.jar" />
 		<fileset dir="${project.dir}/lib" includes="bnd.jar" />
-		<pathelement location="${classes.dir}" />
+		<pathelement location="${osgi.plugin.classes.dir}" />
 	</path>
 
 	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
@@ -22,7 +36,7 @@
 		<sequential>
 			<taskdef
 				classname="com.liferay.util.ant.ManifestHelperTask"
-				classpathref="osgi.module.classpath"
+				classpathref="osgi.plugin.classpath"
 				name="liferay-manifest-helper"
 			/>
 
@@ -34,15 +48,15 @@
 	</macrodef>
 
 	<target name="clean">
-		<delete dir="${classes.dir}" />
+		<delete dir="${osgi.plugin.classes.dir}" />
 		<delete file="${plugin.file}" failonerror="false" />
 	</target>
 
 	<target name="compile">
-		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${osgi.plugin.classes.dir}" />
 
-		<copy todir="${classes.dir}">
-			<fileset dir="${sources.dir}" excludes="**/*.java" />
+		<copy todir="${osgi.plugin.classes.dir}">
+			<fileset dir="${osgi.plugin.source.dir}" excludes="**/*.java" />
 		</copy>
 
 		<for list="${import.shared}" param="import.shared.current">
@@ -79,9 +93,9 @@
 		</for>
 
 		<antcall target="compile-java">
-			<param name="javac.classpathref" value="osgi.module.classpath" />
-			<param name="javac.destdir" value="${classes.dir}" />
-			<param name="javac.srcdir" value="${sources.dir}" />
+			<param name="javac.classpathref" value="osgi.plugin.classpath" />
+			<param name="javac.destdir" value="${osgi.plugin.classes.dir}" />
+			<param name="javac.srcdir" value="${osgi.plugin.source.dir}" />
 		</antcall>
 	</target>
 
@@ -97,7 +111,7 @@
 		<if>
 			<not>
 				<uptodate targetfile="${plugin.file}">
-					<srcfiles dir="${classes.dir}" includes="**/*.*" />
+					<srcfiles dir="${osgi.plugin.classes.dir}" includes="**/*.*" />
 				</uptodate>
 			</not>
 			<then>
@@ -118,7 +132,7 @@
 						>
 							<bndfiles path="bnd.bnd" />
 							<classpath>
-								<pathelement location="${classes.dir}" />
+								<pathelement location="${osgi.plugin.classes.dir}" />
 							</classpath>
 						</bnd>
 					</then>
@@ -126,9 +140,9 @@
 						<antcall target="manifest" />
 
 						<jar
-							basedir="${classes.dir}"
+							basedir="${osgi.plugin.classes.dir}"
 							jarfile="${project.dir}/dist/${plugin.file}"
-							manifest="${classes.dir}/META-INF/MANIFEST.MF"
+							manifest="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF"
 						/>
 					</else>
 				</if>
@@ -139,18 +153,18 @@
 	<target name="manifest">
 		<if>
 			<not>
-				<available file="${classes.dir}/META-INF/MANIFEST.MF" />
+				<available file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF" />
 			</not>
 			<then>
 				<manifest-helper analyze="true" />
 
-				<mkdir dir="${classes.dir}/META-INF" />
+				<mkdir dir="${osgi.plugin.classes.dir}/META-INF" />
 
 				<tstamp>
 					<format property="build.time" pattern="EEE MMM d HH:mm:ss z yyyy" />
 				</tstamp>
 
-				<manifest file="${classes.dir}/META-INF/MANIFEST.MF">
+				<manifest file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF">
 					<attribute name="Bundle-ManifestVersion" value="2" />
 					<attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5" />
 					<attribute name="Bundle-Vendor" value="${release.info.vendor}" />
@@ -179,7 +193,7 @@
 						<isset property="manifest.bundle.symbolic.name" />
 					</and>
 					<then>
-						<manifest file="${classes.dir}/META-INF/MANIFEST.MF" mode="update">
+						<manifest file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
 							<attribute name="Bundle-Name" value="${manifest.bundle.name}" />
 							<attribute name="Bundle-SymbolicName" value="${manifest.bundle.symbolic.name}" />
 						</manifest>
@@ -189,7 +203,7 @@
 				<if>
 					<isset property="manifest.premain.class" />
 					<then>
-						<manifest file="${classes.dir}/META-INF/MANIFEST.MF" mode="update">
+						<manifest file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
 							<attribute name="Can-Redefine-Classes" value="${manifest.can.redefine.classes}" />
 							<attribute name="Can-Retransform-Classes" value="${manifest.can.retransform.classes}" />
 							<attribute name="Premain-Class" value="${manifest.premain.class}" />
