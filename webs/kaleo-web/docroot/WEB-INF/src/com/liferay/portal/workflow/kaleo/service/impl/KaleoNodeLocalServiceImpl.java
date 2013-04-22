@@ -101,6 +101,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		// Kaleo timers
 
 		Set<Timer> timers = node.getTimers();
+
 		for (Timer timer : timers) {
 			kaleoTimerLocalService.addKaleoTimer(
 				KaleoNode.class.getName(), kaleoNodeId, kaleoDefinitionId,
