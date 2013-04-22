@@ -2,9 +2,9 @@
 <!DOCTYPE project>
 
 <project name="build-common">
-	<property environment="env" />
-
 	<dirname file="${ant.file.build-common}" property="project.dir" />
+
+	<property environment="env" />
 
 	<path id="lib.classpath">
 		<fileset dir="${project.dir}/lib" includes="*.jar" />
