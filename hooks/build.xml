@@ -2,6 +2,8 @@
 <!DOCTYPE project>
 
 <project name="hooks" basedir="." default="deploy">
+	<import file="../build-common-plugins.xml" />
+
 	<target name="create">
 		<if>
 			<or>
