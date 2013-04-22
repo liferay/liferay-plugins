@@ -74,7 +74,7 @@
 
 		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 			<aui:script>
-				Liferay.Util.focusFormField(document.<portlet:namespace />fm.where);
+				Liferay.Util.focusFormField(document.<portlet:namespace />fm.q);
 			</aui:script>
 		</c:if>
 	</c:when>
