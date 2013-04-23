@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -57,26 +58,33 @@ public class CalendarServletContextListener
 
 			@Override
 			protected void onDeploy() throws Exception {
-				if (PortletPropsValues.CALENDAR_SYNC_CALEVENTS_ON_STARTUP) {
-					StopWatch stopWatch = null;
+				if (!PortletPropsValues.CALENDAR_SYNC_CALEVENTS_ON_STARTUP) {
+					return;
+				}
 
-					if (_log.isInfoEnabled()) {
-						stopWatch = new StopWatch();
+				StopWatch stopWatch = null;
 
-						stopWatch.start();
-					}
+				if (_log.isInfoEnabled()) {
+					stopWatch = new StopWatch();
 
-					CalendarImporterLocalServiceUtil.importCalEvents();
+					stopWatch.start();
+				}
 
-					if (_log.isInfoEnabled()) {
-						_log.info(
-							"Calendar events synchronization takes " +
-								stopWatch.getTime() + " ms. Please set the " +
-									"calendar.sync.calevents.on.startup " +
-										"property to false.");
-					}
+				CalendarImporterLocalServiceUtil.importCalEvents();
+
+				if (_log.isInfoEnabled()) {
+					StringBundler sb = new StringBundler(5);
+
+					sb.append("Calendar events synchronization takes ");
+					sb.append(stopWatch.getTime() + " ms. Set the property ");
+					sb.append("\"calendar.sync.calevents.on.startup \"");
+					sb.append("to \"false\" to disable calendar events ");
+					sb.append("synchronization.");
+
+					_log.info(sb.toString());
 				}
 			}
+
 		};
 
 		MessageBusUtil.registerMessageListener(

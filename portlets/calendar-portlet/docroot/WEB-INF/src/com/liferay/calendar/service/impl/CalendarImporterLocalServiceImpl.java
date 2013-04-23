@@ -25,6 +25,7 @@ import com.liferay.calendar.service.base.CalendarImporterLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.portal.kernel.cal.DayAndPosition;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -44,6 +45,7 @@ import com.liferay.portlet.asset.model.AssetLink;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.calendar.model.CalEvent;
+import com.liferay.portlet.calendar.service.persistence.CalEventActionableDynamicQuery;
 import com.liferay.portlet.messageboards.model.MBDiscussion;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
@@ -73,10 +75,8 @@ public class CalendarImporterLocalServiceImpl
 
 		long calendarBookingId = counterLocalService.increment();
 
-		long companyId = calEvent.getCompanyId();
-
 		CalendarResource calendarResource = getCalendarResource(
-			companyId, calEvent.getGroupId());
+			calEvent.getCompanyId(), calEvent.getGroupId());
 
 		Date startDate = calEvent.getStartDate();
 
@@ -93,7 +93,7 @@ public class CalendarImporterLocalServiceImpl
 		String recurrence = getRecurrence(calEvent.getRecurrenceObj());
 
 		addCalendarBooking(
-			calEvent.getUuid(), calendarBookingId, companyId,
+			calEvent.getUuid(), calendarBookingId, calEvent.getCompanyId(),
 			calendarResource.getGroupId(), calEvent.getUserId(),
 			calEvent.getUserName(), calEvent.getCreateDate(),
 			calEvent.getModifiedDate(), calendarResource.getDefaultCalendarId(),
@@ -125,11 +125,21 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	public void importCalEvents() throws PortalException, SystemException {
-		List<CalEvent> calEvents = calEventPersistence.findAll();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new CalEventActionableDynamicQuery() {
 
-		for (CalEvent calEvent : calEvents) {
-			importCalEvent(calEvent);
-		}
+			@Override
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
+
+				CalEvent calEvent = (CalEvent)object;
+
+				importCalEvent(calEvent);
+			}
+
+		};
+
+		actionableDynamicQuery.performActions();
 	}
 
 	protected void addAssetEntry(
@@ -420,8 +430,8 @@ public class CalendarImporterLocalServiceImpl
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setUserId(userId);
 		serviceContext.setScopeGroupId(groupId);
+		serviceContext.setUserId(userId);
 
 		return assetCategoryLocalService.addCategory(
 			userId, name, assetVocabulary.getVocabularyId(), serviceContext);
@@ -430,11 +440,12 @@ public class CalendarImporterLocalServiceImpl
 	protected CalendarResource getCalendarResource(long companyId, long groupId)
 		throws PortalException, SystemException {
 
-		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setCompanyId(companyId);
+
+		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
+
 		serviceContext.setUserId(userId);
 
 		CalendarResource calendarResource =
@@ -467,8 +478,6 @@ public class CalendarImporterLocalServiceImpl
 			weekdays.add(Weekday.WEDNESDAY);
 			weekdays.add(Weekday.THURSDAY);
 			weekdays.add(Weekday.FRIDAY);
-
-			recurrence.setWeekdays(weekdays);
 		}
 		else if (frequency == Frequency.WEEKLY) {
 			DayAndPosition[] dayAndPositions = tzsRecurrence.getByDay();
@@ -532,6 +541,8 @@ public class CalendarImporterLocalServiceImpl
 	protected void importAssets(CalEvent calEvent, long calendarBookingId)
 		throws PortalException, SystemException {
 
+		// Asset entry
+
 		AssetEntry assetEntry = assetEntryPersistence.fetchByC_C(
 			PortalUtil.getClassNameId(CalEvent.class.getName()),
 			calEvent.getEventId());
@@ -539,8 +550,6 @@ public class CalendarImporterLocalServiceImpl
 		if (assetEntry == null) {
 			return;
 		}
-
-		// Asset entry
 
 		long entryId = counterLocalService.increment();
 
@@ -557,15 +566,6 @@ public class CalendarImporterLocalServiceImpl
 			assetEntry.getUrl(), assetEntry.getLayoutUuid(),
 			assetEntry.getHeight(), assetEntry.getWidth(),
 			assetEntry.getPriority(), assetEntry.getViewCount());
-
-		// Asset tags
-
-		List<AssetTag> assetTags = assetEntry.getTags();
-
-		for (AssetTag assetTag : assetTags) {
-			assetEntryLocalService.addAssetTagAssetEntry(
-				assetTag.getTagId(), entryId);
-		}
 
 		// Asset categories
 
@@ -591,6 +591,15 @@ public class CalendarImporterLocalServiceImpl
 		for (AssetLink assetLink : assetLinks) {
 			importAssetLink(assetLink, entryId);
 		}
+
+		// Asset tags
+
+		List<AssetTag> assetTags = assetEntry.getTags();
+
+		for (AssetTag assetTag : assetTags) {
+			assetEntryLocalService.addAssetTagAssetEntry(
+				assetTag.getTagId(), entryId);
+		}
 	}
 
 	protected void importMBDiscussion(CalEvent calEvent, long calendarBookingId)
@@ -603,18 +612,14 @@ public class CalendarImporterLocalServiceImpl
 			return;
 		}
 
-		String uuid = PortalUUIDUtil.generate();
-
-		long discussionId = counterLocalService.increment();
-
 		long threadId = importMBThread(
 			mbDiscussion.getThreadId(), calendarBookingId);
 
 		addMBDiscussion(
-			uuid, discussionId, mbDiscussion.getGroupId(),
-			mbDiscussion.getCompanyId(), mbDiscussion.getUserId(),
-			mbDiscussion.getUserName(), mbDiscussion.getCreateDate(),
-			mbDiscussion.getModifiedDate(),
+			PortalUUIDUtil.generate(), counterLocalService.increment(),
+			mbDiscussion.getGroupId(), mbDiscussion.getCompanyId(),
+			mbDiscussion.getUserId(), mbDiscussion.getUserName(),
+			mbDiscussion.getCreateDate(), mbDiscussion.getModifiedDate(),
 			PortalUtil.getClassNameId(CalendarBooking.class.getName()),
 			calendarBookingId, threadId);
 	}
@@ -641,14 +646,13 @@ public class CalendarImporterLocalServiceImpl
 			return messageId;
 		}
 
-		String uuid = PortalUUIDUtil.generate();
-
 		messageId = counterLocalService.increment();
 
 		addMBMessage(
-			uuid, messageId, mbMessage.getGroupId(), mbMessage.getCompanyId(),
-			mbMessage.getUserId(), mbMessage.getUserName(),
-			mbMessage.getCreateDate(), mbMessage.getModifiedDate(),
+			PortalUUIDUtil.generate(), messageId, mbMessage.getGroupId(),
+			mbMessage.getCompanyId(), mbMessage.getUserId(),
+			mbMessage.getUserName(), mbMessage.getCreateDate(),
+			mbMessage.getModifiedDate(),
 			PortalUtil.getClassNameId(CalendarBooking.class.getName()),
 			calendarBookingId, mbMessage.getCategoryId(), threadId,
 			mbMessage.getRootMessageId(), mbMessage.getParentMessageId(),
@@ -658,8 +662,6 @@ public class CalendarImporterLocalServiceImpl
 			mbMessage.getStatus(), mbMessage.getStatusByUserId(),
 			mbMessage.getStatusByUserName(), mbMessage.getStatusDate(),
 			mbMessageIds);
-
-		// Ratings
 
 		long mbDiscussionClassNameId = PortalUtil.getClassNameId(
 			MBDiscussion.class.getName());
@@ -674,7 +676,7 @@ public class CalendarImporterLocalServiceImpl
 	}
 
 	protected long importMBThread(long threadId, long calendarBookingId)
-			throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		MBThread mbThread = mbThreadPersistence.findByPrimaryKey(threadId);
 
@@ -684,18 +686,17 @@ public class CalendarImporterLocalServiceImpl
 	protected long importMBThread(MBThread mbThread, long calendarBookingId)
 		throws PortalException, SystemException {
 
-		String uuid = PortalUUIDUtil.generate();
-
 		long threadId = counterLocalService.increment();
 
 		addMBThread(
-			uuid, threadId, mbThread.getGroupId(), mbThread.getCompanyId(),
-			mbThread.getUserId(), mbThread.getUserName(),
-			mbThread.getCreateDate(), mbThread.getModifiedDate(),
-			mbThread.getCategoryId(), 0, mbThread.getRootMessageUserId(),
-			mbThread.getMessageCount(), mbThread.getViewCount(),
-			mbThread.getLastPostByUserId(), mbThread.getLastPostDate(),
-			mbThread.getPriority(), mbThread.isQuestion(), mbThread.getStatus(),
+			PortalUUIDUtil.generate(), threadId, mbThread.getGroupId(),
+			mbThread.getCompanyId(), mbThread.getUserId(),
+			mbThread.getUserName(), mbThread.getCreateDate(),
+			mbThread.getModifiedDate(), mbThread.getCategoryId(), 0,
+			mbThread.getRootMessageUserId(), mbThread.getMessageCount(),
+			mbThread.getViewCount(), mbThread.getLastPostByUserId(),
+			mbThread.getLastPostDate(), mbThread.getPriority(),
+			mbThread.isQuestion(), mbThread.getStatus(),
 			mbThread.getStatusByUserId(), mbThread.getStatusByUserName(),
 			mbThread.getStatusDate());
 
@@ -718,24 +719,18 @@ public class CalendarImporterLocalServiceImpl
 	protected void importRatings(
 			long oldClassNameId, long oldClassPK, long classNameId,
 			long classPK)
-		throws PortalException, SystemException {
-
-		// Ratings Entries
+		throws SystemException {
 
 		List<RatingsEntry> ratingsEntries = ratingsEntryPersistence.findByC_C(
 			oldClassNameId, oldClassPK);
 
 		for (RatingsEntry ratingsEntry : ratingsEntries) {
-			long entryId = counterLocalService.increment();
-
 			addRatingsEntry(
-				entryId, ratingsEntry.getCompanyId(), ratingsEntry.getUserId(),
-				ratingsEntry.getUserName(), ratingsEntry.getCreateDate(),
-				ratingsEntry.getModifiedDate(), classNameId, classPK,
-				ratingsEntry.getScore());
+				counterLocalService.increment(), ratingsEntry.getCompanyId(),
+				ratingsEntry.getUserId(), ratingsEntry.getUserName(),
+				ratingsEntry.getCreateDate(), ratingsEntry.getModifiedDate(),
+				classNameId, classPK, ratingsEntry.getScore());
 		}
-
-		// Ratings stats
 
 		RatingsStats ratingsStats = ratingsStatsPersistence.fetchByC_C(
 			oldClassNameId, oldClassPK);
@@ -744,21 +739,18 @@ public class CalendarImporterLocalServiceImpl
 			return;
 		}
 
-		long statsId = counterLocalService.increment();
-
 		addRatingsStats(
-			statsId, classNameId, classPK, ratingsStats.getTotalEntries(),
-			ratingsStats.getTotalScore(), ratingsStats.getAverageScore());
+			counterLocalService.increment(), classNameId, classPK,
+			ratingsStats.getTotalEntries(), ratingsStats.getTotalScore(),
+			ratingsStats.getAverageScore());
 	}
 
 	protected void importSubscription(
 			Subscription subscription, long calendarBookingId)
 		throws SystemException {
 
-		long subscriptionId = counterLocalService.increment();
-
 		addSubscription(
-			subscriptionId, subscription.getCompanyId(),
+			counterLocalService.increment(), subscription.getCompanyId(),
 			subscription.getUserId(), subscription.getUserName(),
 			subscription.getCreateDate(), subscription.getModifiedDate(),
 			PortalUtil.getClassNameId(CalendarBooking.class), calendarBookingId,
