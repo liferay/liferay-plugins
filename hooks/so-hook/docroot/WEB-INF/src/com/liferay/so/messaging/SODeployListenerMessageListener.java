@@ -24,15 +24,18 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -200,6 +203,41 @@ public class SODeployListenerMessageListener
 
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 			groupId, privateLayout);
+
+		// Layout
+
+		LayoutSetPrototype layoutSetPrototype =
+			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
+				layoutSet.getLayoutSetPrototypeId());
+
+		Group group = layoutSetPrototype.getGroup();
+
+		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+			group.getGroupId(), true);
+
+		String[] layoutUuids = new String[layouts.size()];
+
+		for (int i = 0; i < layouts.size(); i++) {
+			Layout layout = layouts.get(i);
+
+			layoutUuids[i] = layout.getUuid();
+		}
+
+		layouts = LayoutLocalServiceUtil.getLayouts(groupId, privateLayout);
+
+		for (Layout layout : layouts) {
+			if (ArrayUtil.contains(
+				layoutUuids, layout.getSourcePrototypeLayoutUuid())) {
+
+				layout.setLayoutPrototypeUuid(StringPool.BLANK);
+				layout.setSourcePrototypeLayoutUuid(StringPool.BLANK);
+				layout.setLayoutPrototypeLinkEnabled(Boolean.FALSE);
+
+				LayoutLocalServiceUtil.updateLayout(layout);
+			}
+		}
+
+		// Layout set
 
 		UnicodeProperties settingsProperties =
 			layoutSet.getSettingsProperties();
