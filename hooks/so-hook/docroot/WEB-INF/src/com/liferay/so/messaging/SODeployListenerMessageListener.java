@@ -201,37 +201,41 @@ public class SODeployListenerMessageListener
 	protected void updateLayoutSetPrototype(long groupId, boolean privateLayout)
 		throws PortalException, SystemException {
 
+		// Layout
+
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 			groupId, privateLayout);
-
-		// Layout
 
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
 				layoutSet.getLayoutSetPrototypeId());
 
-		Group group = layoutSetPrototype.getGroup();
+		Group layoutSetPrototypeGroup = layoutSetPrototype.getGroup();
 
-		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-			group.getGroupId(), true);
+		List<Layout> layoutSetPrototypeLayouts =
+			LayoutLocalServiceUtil.getLayouts(
+				layoutSetPrototypeGroup.getGroupId(), true);
 
-		String[] layoutUuids = new String[layouts.size()];
+		String[] layoutSetPrototypeLayoutUuids =
+			new String[layoutSetPrototypeLayouts.size()];
 
-		for (int i = 0; i < layouts.size(); i++) {
-			Layout layout = layouts.get(i);
+		for (int i = 0; i < layoutSetPrototypeLayouts.size(); i++) {
+			Layout layout = layoutSetPrototypeLayouts.get(i);
 
-			layoutUuids[i] = layout.getUuid();
+			layoutSetPrototypeLayoutUuids[i] = layout.getUuid();
 		}
 
-		layouts = LayoutLocalServiceUtil.getLayouts(groupId, privateLayout);
+		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+			groupId, privateLayout);
 
 		for (Layout layout : layouts) {
 			if (ArrayUtil.contains(
-				layoutUuids, layout.getSourcePrototypeLayoutUuid())) {
+					layoutSetPrototypeLayoutUuids,
+					layout.getSourcePrototypeLayoutUuid())) {
 
 				layout.setLayoutPrototypeUuid(StringPool.BLANK);
+				layout.setLayoutPrototypeLinkEnabled(false);
 				layout.setSourcePrototypeLayoutUuid(StringPool.BLANK);
-				layout.setLayoutPrototypeLinkEnabled(Boolean.FALSE);
 
 				LayoutLocalServiceUtil.updateLayout(layout);
 			}
