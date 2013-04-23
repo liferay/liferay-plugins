@@ -28,6 +28,11 @@
 		<pathelement location="${osgi.plugin.classes.dir}" />
 	</path>
 
+	<path id="osgi.plugin.test.classpath">
+		<path refid="osgi.plugin.classpath" />
+		<path refid="test.classpath" />
+	</path>
+
 	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 
 	<macrodef name="manifest-helper">
@@ -49,6 +54,8 @@
 
 	<target name="clean">
 		<delete dir="${osgi.plugin.classes.dir}" />
+		<delete dir="test-classes" />
+		<delete dir="test-results" />
 		<delete file="${plugin.file}" failonerror="false" />
 	</target>
 
@@ -210,6 +217,54 @@
 						</manifest>
 					</then>
 				</if>
+			</then>
+		</if>
+	</target>
+
+	<target name="compile-test-cmd">
+		<if>
+			<available file="test/${test.type}" type="dir" />
+			<then>
+				<mkdir dir="test-classes/${test.type}" />
+				<mkdir dir="test-results/${test.type}" />
+
+				<copy todir="test-classes/${test.type}">
+					<fileset dir="test" includes="*.properties" />
+					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
+				</copy>
+
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="osgi.plugin.test.classpath" />
+					<param name="javac.destdir" value="test-classes/${test.type}" />
+					<param name="javac.srcdir" value="test/${test.type}" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="test-cmd">
+		<if>
+			<available file="test/${test.type}" type="dir" />
+			<then>
+				<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
+					<jvmarg line="${junit.debug.jpda}" />
+					<jvmarg value="-Xmx${junit.java.mx}" />
+					<jvmarg value="-XX:MaxPermSize=${junit.java.maxpermsize}" />
+					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<jvmarg value="-Dfile.encoding=UTF-8" />
+					<jvmarg value="-Djava.net.preferIPv4Stack=true" />
+					<jvmarg value="-Duser.timezone=GMT" />
+					<classpath location="test-coverage" />
+					<classpath refid="osgi.plugin.test.classpath" />
+					<formatter type="brief" usefile="false" />
+					<formatter type="xml" />
+					<batchtest todir="test-results/${test.type}">
+						<fileset dir="test-classes/${test.type}" includes="**/${class}.class">
+							<filename regex="${junit.test.excludes}" negate="true" />
+						</fileset>
+					</batchtest>
+				</junit>
 			</then>
 		</if>
 	</target>
