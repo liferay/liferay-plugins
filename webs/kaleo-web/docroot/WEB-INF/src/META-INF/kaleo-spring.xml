@@ -278,9 +278,6 @@
 			</util:map>
 		</property>
 	</bean>
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener" class="com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener">
-		<property name="workflowEngine" ref="com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine" />
-	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil" class="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil">
 		<property name="scriptingContextBuilder">
 			<bean class="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderImpl" />
