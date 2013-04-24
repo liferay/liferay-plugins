@@ -44,6 +44,23 @@ create table CalendarBooking (
 	statusDate DATE null
 );
 
+create table CalendarNotificationTemplate (
+	uuid_ VARCHAR(75) null,
+	calendarNotificationTemplateId LONG not null primary key,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	calendarId LONG,
+	notificationType VARCHAR(75) null,
+	notificationTypeSettings VARCHAR(75) null,
+	notificationTemplateType VARCHAR(75) null,
+	subject VARCHAR(75) null,
+	body TEXT null
+);
+
 create table CalendarResource (
 	uuid_ VARCHAR(75) null,
 	calendarResourceId LONG not null primary key,

@@ -86,6 +86,34 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.calendar.model.impl.CalendarNotificationTemplateModelImpl">
+		<attributes>
+			<id name="calendarNotificationTemplateId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="calendarId" />
+			<basic name="notificationType" />
+			<basic name="notificationTypeSettings" />
+			<basic name="notificationTemplateType" />
+			<basic name="subject" />
+			<basic name="body" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.calendar.model.impl.CalendarResourceModelImpl">
 		<attributes>
 			<id name="calendarResourceId" />
@@ -131,6 +159,10 @@
 	</entity>
 	<entity class="com.liferay.calendar.model.impl.CalendarBookingImpl" name="CalendarBooking">
 		<table name="CalendarBooking" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl" name="CalendarNotificationTemplate">
+		<table name="CalendarNotificationTemplate" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.calendar.model.impl.CalendarResourceImpl" name="CalendarResource">

@@ -60,14 +60,18 @@
 	<model name="com.liferay.calendar.model.CalendarNotificationTemplate">
 		<field name="uuid" type="String" />
 		<field name="calendarNotificationTemplateId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
 		<field name="calendarId" type="long" />
 		<field name="notificationType" type="String" />
+		<field name="notificationTypeSettings" type="String" />
 		<field name="notificationTemplateType" type="String" />
-		<field name="body" type="String">
-			<hint-collection name="CLOB" />
-		</field>
 		<field name="subject" type="String" />
-		<field name="notificationSettings" type="String">
+		<field name="body" type="String">
 			<hint-collection name="CLOB" />
 		</field>
 	</model>

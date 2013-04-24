@@ -5,6 +5,7 @@
 	<import class="com.liferay.calendar.model.Calendar" />
 	<import class="com.liferay.calendar.model.CalendarBooking" />
 	<import class="com.liferay.calendar.model.CalendarImporter" />
+	<import class="com.liferay.calendar.model.CalendarNotificationTemplate" />
 	<import class="com.liferay.calendar.model.CalendarResource" />
 	<class name="com.liferay.calendar.model.impl.CalendarImpl" table="Calendar">
 		<cache usage="read-write" />
@@ -55,6 +56,25 @@
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl" table="CalendarNotificationTemplate">
+		<cache usage="read-write" />
+		<id name="calendarNotificationTemplateId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="calendarId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="notificationType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="notificationTypeSettings" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="notificationTemplateType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="subject" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="body" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.calendar.model.impl.CalendarResourceImpl" table="CalendarResource">
 		<cache usage="read-write" />

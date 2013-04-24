@@ -16,6 +16,7 @@ package com.liferay.calendar.service;
 
 import com.liferay.calendar.model.CalendarBookingClp;
 import com.liferay.calendar.model.CalendarClp;
+import com.liferay.calendar.model.CalendarNotificationTemplateClp;
 import com.liferay.calendar.model.CalendarResourceClp;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -112,6 +113,11 @@ public class ClpSerializer {
 			return translateInputCalendarBooking(oldModel);
 		}
 
+		if (oldModelClassName.equals(
+					CalendarNotificationTemplateClp.class.getName())) {
+			return translateInputCalendarNotificationTemplate(oldModel);
+		}
+
 		if (oldModelClassName.equals(CalendarResourceClp.class.getName())) {
 			return translateInputCalendarResource(oldModel);
 		}
@@ -145,6 +151,17 @@ public class ClpSerializer {
 		CalendarBookingClp oldClpModel = (CalendarBookingClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getCalendarBookingRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputCalendarNotificationTemplate(
+		BaseModel<?> oldModel) {
+		CalendarNotificationTemplateClp oldClpModel = (CalendarNotificationTemplateClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getCalendarNotificationTemplateRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -186,6 +203,11 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.liferay.calendar.model.impl.CalendarBookingImpl")) {
 			return translateOutputCalendarBooking(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl")) {
+			return translateOutputCalendarNotificationTemplate(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -324,6 +346,11 @@ public class ClpSerializer {
 			return new com.liferay.calendar.NoSuchBookingException();
 		}
 
+		if (className.equals(
+					"com.liferay.calendar.NoSuchNotificationTemplateException")) {
+			return new com.liferay.calendar.NoSuchNotificationTemplateException();
+		}
+
 		if (className.equals("com.liferay.calendar.NoSuchResourceException")) {
 			return new com.liferay.calendar.NoSuchResourceException();
 		}
@@ -347,6 +374,17 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setCalendarBookingRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputCalendarNotificationTemplate(
+		BaseModel<?> oldModel) {
+		CalendarNotificationTemplateClp newModel = new CalendarNotificationTemplateClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setCalendarNotificationTemplateRemoteModel(oldModel);
 
 		return newModel;
 	}
