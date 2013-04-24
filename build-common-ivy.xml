@@ -46,17 +46,27 @@
 							/>
 
 							<if>
-								<or>
-									<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
-									<antelope:endswith string="${ant.project.name}" with="-shared" />
-								</or>
+								<available file="@{ivy.xml.dir}/bnd.bnd" />
 								<then>
 									<ivy:retrieve
 										log="download-only"
-										pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
+										pattern="@{ivy.xml.dir}/lib/[conf]/[artifact].[ext]"
 										type="jar"
 									/>
 								</then>
+								<elseif>
+									<or>
+										<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
+										<antelope:endswith string="${ant.project.name}" with="-shared" />
+									</or>
+									<then>
+										<ivy:retrieve
+											log="download-only"
+											pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
+											type="jar"
+										/>
+									</then>
+								</elseif>
 								<else>
 									<ivy:retrieve
 										log="download-only"
