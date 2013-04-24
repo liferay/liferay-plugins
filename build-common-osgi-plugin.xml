@@ -132,7 +132,7 @@
 			<fileset dir="lib" includes="*.jar" />
 		</copy>
 
-		<copy file="${project.dir}/dist/${plugin.file}" todir="${osgi.auto.deploy.dir}" />
+		<copy file="${plugin.file}" todir="${osgi.auto.deploy.dir}" />
 	</target>
 
 	<target name="jar" depends="compile">
