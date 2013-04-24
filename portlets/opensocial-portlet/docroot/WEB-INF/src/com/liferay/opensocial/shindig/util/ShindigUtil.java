@@ -335,6 +335,10 @@ public class ShindigUtil {
 		return PortalUtil.getPortletNamespace(portletId);
 	}
 
+	public static String getScheme() {
+		return _scheme.get();
+	}
+
 	public static String getTableOpenSocial() {
 		return _TABLE_OPEN_SOCIAL;
 	}
@@ -377,6 +381,10 @@ public class ShindigUtil {
 
 	public static void setHost(String host) {
 		_host.set(host);
+	}
+
+	public static void setScheme(String scheme) {
+		_scheme.set(scheme);
 	}
 
 	public static void updateOAuthConsumers(
@@ -446,10 +454,15 @@ public class ShindigUtil {
 	private static AutoResetThreadLocal<String> _host =
 		new AutoResetThreadLocal<String>(
 			ShindigUtil.class + "._host", StringPool.BLANK);
+
 	private static Set<String> _ignoreGadgetSpecCache =
 		new ConcurrentHashSet<String>();
 
 	@Inject
 	private static Processor _processor;
+
+	private static AutoResetThreadLocal<String> _scheme =
+		new AutoResetThreadLocal<String>(
+			ShindigUtil.class + "._scheme", StringPool.BLANK);
 
 }

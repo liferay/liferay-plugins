@@ -19,6 +19,7 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import org.apache.shindig.config.ContainerConfigException;
@@ -45,7 +46,9 @@ public class LiferayJsonContainerConfig extends JsonContainerConfig {
 		String value = super.getString(container, property);
 
 		if (Validator.isNotNull(value)) {
-			value = value.replaceAll("%host%", ShindigUtil.getHost());
+			value = StringUtil.replace(
+				value, new String[] {"%scheme%", "%host%"},
+				new String[] {ShindigUtil.getScheme(), ShindigUtil.getHost()});
 		}
 
 		return value;

@@ -29,6 +29,7 @@ import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -90,8 +91,9 @@ public class LiferayOAuthStore implements OAuthStore {
 
 		String keyName = oAuthConsumer.getKeyName();
 
-		String callbackURL = _callbackURL.replace(
-			"%host%", ShindigUtil.getHost());
+		String callbackURL = StringUtil.replace(
+			_callbackURL, new String[] {"%scheme%", "%host%"},
+			new String[] {ShindigUtil.getScheme(), ShindigUtil.getHost()});
 
 		return new ConsumerInfo(netOAuthConsumer, keyName, callbackURL);
 	}
