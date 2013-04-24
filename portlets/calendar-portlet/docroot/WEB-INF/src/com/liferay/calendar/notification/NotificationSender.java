@@ -21,7 +21,6 @@ public interface NotificationSender {
 
 	public void sendNotification(
 			NotificationRecipient notificationRecipient,
-			NotificationTemplateType notificationTemplateType,
 			NotificationTemplateContext notificationTemplateContext)
 		throws NotificationSenderException;
 

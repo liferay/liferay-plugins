@@ -14,38 +14,64 @@
 
 package com.liferay.calendar.model.impl;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.UnicodeProperties;
+
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.Properties;
 
 /**
- * The extended model implementation for the CalendarNotificationTemplate service. Represents a row in the &quot;CalendarNotificationTemplate&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.calendar.model.CalendarNotificationTemplate} interface.
- * </p>
- *
- * @author Eduardo Lundgren
+ * @author Adam Brandizzi
  */
 public class CalendarNotificationTemplateImpl
 	extends CalendarNotificationTemplateBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a calendar notification template model instance should use the {@link com.liferay.calendar.model.CalendarNotificationTemplate} interface instead.
-	 */
+
 	public CalendarNotificationTemplateImpl() {
 	}
 
-	public Properties getNotificationSettingsProperties() {
-		Properties properties = new Properties();
-		
-		try {
-			properties.load(new StringReader(getNotificationSettings()));
-		} catch (IOException e) {
-			e.printStackTrace();
+	@Override
+	public String getTypeSettings() {
+		if (_typeSettingsProperties == null) {
+			return super.getTypeSettings();
 		}
-		
-		return properties;
+		else {
+			return _typeSettingsProperties.toString();
+		}
 	}
+
+	public UnicodeProperties getTypeSettingsProperties() {
+		if (_typeSettingsProperties == null) {
+			_typeSettingsProperties = new UnicodeProperties(true);
+
+			try {
+				_typeSettingsProperties.load(super.getTypeSettings());
+			}
+			catch (IOException ioe) {
+				_log.error(ioe, ioe);
+			}
+		}
+
+		return _typeSettingsProperties;
+	}
+
+	@Override
+	public void setTypeSettings(String typeSettings) {
+		_typeSettingsProperties = null;
+
+		super.setTypeSettings(typeSettings);
+	}
+
+	public void setTypeSettingsProperties(
+		UnicodeProperties typeSettingsProperties) {
+
+		_typeSettingsProperties = typeSettingsProperties;
+
+		super.setTypeSettings(_typeSettingsProperties.toString());
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		CalendarNotificationTemplateImpl.class);
+
+	private UnicodeProperties _typeSettingsProperties;
+
 }

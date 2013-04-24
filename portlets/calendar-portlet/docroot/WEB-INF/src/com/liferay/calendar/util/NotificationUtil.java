@@ -26,17 +26,14 @@ import com.liferay.calendar.notification.NotificationTemplateContext;
 import com.liferay.calendar.notification.NotificationTemplateContextFactory;
 import com.liferay.calendar.notification.NotificationTemplateType;
 import com.liferay.calendar.notification.NotificationType;
-import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.configuration.Filter;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.CamelCaseUtil;
-import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -47,131 +44,86 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.portlet.PortletProps;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+import java.util.Map;
 
 /**
  * @author Eduardo Lundgren
+ * @author Marcellus Tavares
  */
 public class NotificationUtil {
 
-	public static String getNotificationSenderEmailAddress(
-			CalendarNotificationTemplate calendarNotificationTemplate)
-		throws PortalException, SystemException {
+	public static User getDefaultNotificationSender(Calendar calendar)
+		throws Exception {
 
-		return calendarNotificationTemplate
-				.getNotificationSettingsProperties()
-				.getProperty(PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_EMAIL);
-	}
+		CalendarResource calendarResource = calendar.getCalendarResource();
 
-	public static String getNotificationSenderName(
-			CalendarNotificationTemplate calendarNotificationTemplate)
-		throws PortalException, SystemException {
+		User user = UserLocalServiceUtil.getDefaultUser(
+			calendarResource.getCompanyId());
 
-		return calendarNotificationTemplate
-				.getNotificationSettingsProperties()
-				.getProperty(PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_NAME);
-	}
-
-	public static CalendarNotificationTemplate getNotificationTemplate(
-			Calendar calendar, NotificationType notificationType,
-			NotificationTemplateType templateType)
-		throws PortalException, SystemException {
-
-		try {
-			CalendarNotificationTemplate template =
-					CalendarNotificationTemplateLocalServiceUtil
-					.getCalendarNotificationTemplate(
-							calendar.getCalendarId(), notificationType,
-							templateType);
-			if (Validator.isNotNull(template) &&
-				Validator.isNotNull(template.getSubject()) &&
-				Validator.isNotNull(template.getBody())) {
-
-				return template;
-			}
-
-		} catch (SystemException e) {
-			e.printStackTrace();
+		if (calendarResource.isUser()) {
+			user = UserLocalServiceUtil.getUser(calendarResource.getClassPK());
 		}
 
-
-		return getDefaultNotificationTemplate(
-			calendar, notificationType, templateType);
+		return user;
 	}
 
-	public static CalendarNotificationTemplate getDefaultNotificationTemplate(
-			Calendar calendar,	NotificationType notificationType,
-			NotificationTemplateType templateType) {
+	public static String getDefaultNotificationTemplate(
+			NotificationType notificationType,
+			NotificationTemplateType notificationTemplateType,
+			NotificationField notificationField)
+		throws Exception {
 
 		Filter filter = new Filter(
-			notificationType.toString(), templateType.toString());
+			notificationType.toString(), notificationTemplateType.toString());
 
-		String bodyProperty = PortletPropsKeys.CALENDAR_NOTIFICATION_PREFIX +
-				".body";
-		String bodyTemplatePath = PortletProps.get(bodyProperty, filter);
-		String body = ContentUtil.get(bodyTemplatePath);
-		String subjectProperty = PortletPropsKeys.CALENDAR_NOTIFICATION_PREFIX +
-				".subject";
-		String subjectTemplatePath = PortletProps.get(subjectProperty, filter);
-		String subject = ContentUtil.get(subjectTemplatePath);
+		String propertyName =
+			PortletPropsKeys.CALENDAR_NOTIFICATION_PREFIX + StringPool.PERIOD +
+			notificationField.toString();
 
-		String settings = getCalendarDefaultNotificationSettings(calendar);
+		String templatePath = PortletProps.get(propertyName, filter);
 
-
-		CalendarNotificationTemplate template =
-				CalendarNotificationTemplateLocalServiceUtil.
-				createCalendarNotificationTemplate(
-						0, notificationType, templateType,
-						subject, body, settings);
-
-		return template;
+		return ContentUtil.get(templatePath);
 	}
 
-	public static String getCalendarDefaultNotificationSettings(
-			Calendar calendar) {
+	public static String getNotificationTemplate(
+			CalendarNotificationTemplate calendarNotificationTemplate,
+			NotificationType notificationType,
+			NotificationTemplateType notificationTemplateType,
+			NotificationField notificationField)
+		throws Exception {
 
-		String settings = "";
-		try {
-			User user = UserLocalServiceUtil.getUser(calendar.getUserId());
-			Properties properties = new Properties();
+		String defaultTemplate = getDefaultNotificationTemplate(
+			notificationType, notificationTemplateType, notificationField);
 
-			properties.setProperty(
-					PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_EMAIL,
-					user.getEmailAddress());
-			properties.setProperty(
-					PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_NAME,
-					calendar.getUserName());
+		return BeanPropertiesUtil.getString(
+			calendarNotificationTemplate, notificationField.toString(),
+			defaultTemplate);
+	}
 
-			Writer writer = new StringWriter();
-			properties.list(new PrintWriter(writer));
-			settings = writer.toString();
-		} catch (Exception e) {
-			settings = "";
+	public static String getNotificationTemplateProperty(
+		CalendarNotificationTemplate calendarNotificationTemplate,
+		String propertyName) {
+
+		return getNotificationTemplateProperty(
+			calendarNotificationTemplate, propertyName, StringPool.BLANK);
+	}
+
+	public static String getNotificationTemplateProperty(
+		CalendarNotificationTemplate calendarNotificationTemplate,
+		String propertyName, String defaultValue) {
+
+		if (calendarNotificationTemplate == null) {
+			return defaultValue;
 		}
 
-		return settings;
-	}
+		UnicodeProperties typeSettingsProperties =
+			calendarNotificationTemplate.getTypeSettingsProperties();
 
-	public static String getPreferenceName(
-		NotificationType notificationType,
-		NotificationTemplateType notificationTemplateType,
-		NotificationField field) {
-
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(CamelCaseUtil.toCamelCase(field.getValue(), CharPool.PERIOD));
-		sb.append(StringUtil.upperCaseFirstLetter(notificationType.toString()));
-		sb.append(
-			StringUtil.upperCaseFirstLetter(
-				notificationTemplateType.toString()));
-
-		return sb.toString();
+		return typeSettingsProperties.get(propertyName);
 	}
 
 	public static void notifyCalendarBookingInvites(
@@ -192,11 +144,11 @@ public class NotificationUtil {
 
 			NotificationTemplateContext notificationTemplateContext =
 				NotificationTemplateContextFactory.getInstance(
+					notificationType, NotificationTemplateType.INVITE,
 					calendarBooking, user);
 
 			notificationSender.sendNotification(
-				notificationRecipient, NotificationTemplateType.INVITE,
-				notificationTemplateContext);
+				notificationRecipient, notificationTemplateContext);
 		}
 	}
 
@@ -218,10 +170,6 @@ public class NotificationUtil {
 				return;
 			}
 
-			NotificationTemplateContext notificationTemplateContext =
-				NotificationTemplateContextFactory.getInstance(
-					calendarBooking, user);
-
 			NotificationType notificationType = null;
 
 			long diff = (startTime - nowTime) / _CHECK_INTERVAL;
@@ -240,16 +188,47 @@ public class NotificationUtil {
 					calendarBooking.getSecondReminderNotificationType();
 			}
 
+			NotificationTemplateContext notificationTemplateContext =
+				NotificationTemplateContextFactory.getInstance(
+					notificationType, NotificationTemplateType.REMINDER,
+					calendarBooking, user);
+
 			if (notificationType != null) {
 				NotificationSender notificationSender =
 					NotificationSenderFactory.getNotificationSender(
 						notificationType.toString());
 
 				notificationSender.sendNotification(
-					notificationRecipient, NotificationTemplateType.REMINDER,
-					notificationTemplateContext);
+					notificationRecipient, notificationTemplateContext);
 			}
 		}
+	}
+
+	public static String processNotificationTemplate(
+			String notificationTemplate,
+			Map<String, Serializable> notificationContext)
+		throws Exception {
+
+		return StringUtil.replace(
+				notificationTemplate,
+			new String[] {
+				"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
+				"[$BOOKING_END_DATE$]", "[$BOOKING_TITLE$]", "[$FROM_ADDRESS$]",
+				"[$FROM_NAME$]", "[$PORTAL_URL$]", "[$TO_ADDRESS$]",
+				"[$TO_NAME$]", "[$PORTLET_NAME$]"
+			},
+			new String[] {
+				GetterUtil.getString(notificationContext.get("location")),
+				GetterUtil.getString(notificationContext.get("startTime")),
+				GetterUtil.getString(notificationContext.get("endTime")),
+				GetterUtil.getString(notificationContext.get("title")),
+				GetterUtil.getString(notificationContext.get("fromAddress")),
+				GetterUtil.getString(notificationContext.get("fromName")),
+				GetterUtil.getString(notificationContext.get("portalUrl")),
+				GetterUtil.getString(notificationContext.get("toAddress")),
+				GetterUtil.getString(notificationContext.get("toName")),
+				GetterUtil.getString(notificationContext.get("portletName")),
+			});
 	}
 
 	private static List<NotificationRecipient> _getNotificationRecipients(
@@ -310,52 +289,6 @@ public class NotificationUtil {
 		}
 
 		return notificationRecipients;
-	}
-
-	public static void saveNotificationTemplate(
-			long calendarId, NotificationType notificationType,
-			NotificationTemplateType templateType,
-			String subject, String body, String notificationSettings)
-		throws SystemException {
-
-		CalendarNotificationTemplate template =
-				CalendarNotificationTemplateLocalServiceUtil
-				.getCalendarNotificationTemplate(
-						calendarId, notificationType, templateType);
-
-		if (Validator.isNotNull(template)) {
-			template.setSubject(subject);
-			template.setBody(body);
-			template.setNotificationSettings(notificationSettings);
-
-			CalendarNotificationTemplateLocalServiceUtil
-				.updateCalendarNotificationTemplate(template);
-		}
-		else {
-			CalendarNotificationTemplateLocalServiceUtil
-				.addCalendarNotificationTemplate(calendarId,
-					notificationType, templateType,
-					subject, body, notificationSettings);
-		}
-	}
-
-	public static Calendar getRootCalendar(CalendarBooking calendarBooking)
-		throws PortalException, SystemException {
-
-		long currertId = calendarBooking.getCalendarBookingId();
-		long parentId = calendarBooking.getParentCalendarBookingId();
-		Calendar calendar;
-
-		if (currertId == parentId || parentId == 0) {
-			calendar = calendarBooking.getCalendar();
-		}
-		else {
-			CalendarBooking parent = calendarBooking.getParentCalendarBooking();
-
-			calendar = getRootCalendar(parent);
-		}
-
-		return calendar;
 	}
 
 	private static final long _CHECK_INTERVAL =

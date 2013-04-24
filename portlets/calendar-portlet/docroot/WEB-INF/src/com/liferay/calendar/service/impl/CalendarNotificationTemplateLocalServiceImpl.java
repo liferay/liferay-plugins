@@ -14,82 +14,92 @@
 
 package com.liferay.calendar.service.impl;
 
+import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.notification.NotificationTemplateType;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.base.CalendarNotificationTemplateLocalServiceBaseImpl;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.ServiceContext;
+
+import java.util.Date;
 
 /**
- * The implementation of the calendar notification template local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.calendar.service.CalendarNotificationTemplateLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
- * @author Eduardo Lundgren
- * @see com.liferay.calendar.service.base.CalendarNotificationTemplateLocalServiceBaseImpl
- * @see com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil
+ * @author Adam Brandizzi
+ * @author Marcellus Tavares
  */
 public class CalendarNotificationTemplateLocalServiceImpl
 	extends CalendarNotificationTemplateLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil} to access the calendar notification template local service.
-	 */
 
-	public CalendarNotificationTemplate createCalendarNotificationTemplate(
-			long calendarId, NotificationType notificationType,
-			NotificationTemplateType notificationTemplateType,
-			String subject, String body, String notificationSettings) {
+	public CalendarNotificationTemplate addCalendarNotificationTemplate(
+			long userId, long calendarId, NotificationType notificationType,
+			NotificationTemplateType notificationTemplateType, String subject,
+			String body, String typeSettings, ServiceContext serviceContext)
+		throws PortalException, SystemException {
 
-		CalendarNotificationTemplate template =
-				calendarNotificationTemplateLocalService.
-				createCalendarNotificationTemplate(0);
+		User user = userPersistence.findByPrimaryKey(userId);
 
-		template.setCalendarId(calendarId);
-		template.setNotificationType(notificationType.getValue());
-		template.setNotificationTemplateType(notificationTemplateType.getValue());
-		template.setSubject(subject);
-		template.setBody(body);
-		template.setNotificationSettings(notificationSettings);
+		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
-		return template;
+		Date now = new Date();
+
+		long calendarNotificationTemplateId = counterLocalService.increment();
+
+		CalendarNotificationTemplate calendarNotificationTemplate =
+			calendarNotificationTemplatePersistence.create(
+				calendarNotificationTemplateId);
+
+		calendarNotificationTemplate.setUuid(serviceContext.getUuid());
+		calendarNotificationTemplate.setGroupId(calendar.getGroupId());
+		calendarNotificationTemplate.setCompanyId(user.getCompanyId());
+		calendarNotificationTemplate.setUserId(user.getUserId());
+		calendarNotificationTemplate.setUserName(user.getFullName());
+		calendarNotificationTemplate.setCreateDate(
+			serviceContext.getCreateDate(now));
+		calendarNotificationTemplate.setModifiedDate(
+			serviceContext.getModifiedDate(now));
+		calendarNotificationTemplate.setCalendarId(calendarId);
+		calendarNotificationTemplate.setNotificationType(
+			notificationType.getValue());
+		calendarNotificationTemplate.setNotificationTemplateType(
+			notificationTemplateType.getValue());
+		calendarNotificationTemplate.setSubject(subject);
+		calendarNotificationTemplate.setBody(body);
+		calendarNotificationTemplate.setTypeSettings(typeSettings);
+
+		return calendarNotificationTemplatePersistence.update(
+			calendarNotificationTemplate);
 	}
 
-	public CalendarNotificationTemplate getCalendarNotificationTemplate(
+	public CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 			long calendarId, NotificationType notificationType,
 			NotificationTemplateType notificationTemplateType)
 		throws SystemException {
 
 		return calendarNotificationTemplatePersistence.fetchByC_NT_NTT(
-				calendarId, notificationType.getValue(),
-				notificationTemplateType.getValue());
+			calendarId, notificationType.getValue(),
+			notificationTemplateType.getValue());
 	}
 
-	public CalendarNotificationTemplate addCalendarNotificationTemplate(
-			long calendarId, NotificationType notificationType,
-			NotificationTemplateType notificationTemplateType,
-			String subject, String body, String notificationSettings)
-		throws SystemException {
-
-		long calendarNotificationTemplateId = counterLocalService.increment();
+	public CalendarNotificationTemplate updateCalendarNotificationTemplate(
+			long calendarNotificationTemplateId, String subject, String body,
+			String typeSettings, ServiceContext serviceContext)
+		throws PortalException, SystemException {
 
 		CalendarNotificationTemplate calendarNotificationTemplate =
-				createCalendarNotificationTemplate(calendarId,
-						notificationType, notificationTemplateType,
-						subject, body, notificationSettings);
-
-		calendarNotificationTemplate.setCalendarNotificationTemplateId(
+			calendarNotificationTemplatePersistence.findByPrimaryKey(
 				calendarNotificationTemplateId);
-		addCalendarNotificationTemplate(calendarNotificationTemplate);
 
-		return calendarNotificationTemplate;
+		calendarNotificationTemplate.setModifiedDate(
+			serviceContext.getModifiedDate(null));
+		calendarNotificationTemplate.setSubject(subject);
+		calendarNotificationTemplate.setBody(body);
+		calendarNotificationTemplate.setTypeSettings(typeSettings);
 
+		return calendarNotificationTemplatePersistence.update(
+			calendarNotificationTemplate);
 	}
 
 }

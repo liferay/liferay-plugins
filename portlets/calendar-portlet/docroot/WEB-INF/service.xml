@@ -149,6 +149,41 @@
 		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
 		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
 	</entity>
+	<entity name="CalendarNotificationTemplate" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="calendarNotificationTemplateId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="calendarId" type="long" />
+		<column name="notificationType" type="String" />
+		<column name="notificationTemplateType" type="String" />
+		<column name="subject" type="String" />
+		<column name="body" type="String" />
+		<column name="typeSettings" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="C_NT_NTT" return-type="CalendarNotificationTemplate">
+			<finder-column name="calendarId" />
+			<finder-column name="notificationType" />
+			<finder-column name="notificationTemplateType" />
+		</finder>
+	</entity>
 	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
@@ -226,29 +261,6 @@
 		<!-- References -->
 
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
-	</entity>
-
-	<entity name="CalendarNotificationTemplate" uuid="true" local-service="true" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="calendarNotificationTemplateId" type="long" primary="true" />
-
-		<!-- Other fields -->
-		<column name="calendarId" type="long" />
-		<column name="notificationType" type="String" />
-		<column name="notificationTemplateType" type="String" />
-		<column name="body" type="String" />
-		<column name="subject" type="String" />
-		<column name="notificationSettings" type="String" />
-
-		<!-- Finder methods -->
-
-		<finder name="C_NT_NTT" return-type="CalendarNotificationTemplate">
-			<finder-column name="calendarId" />
-			<finder-column name="notificationType" />
-			<finder-column name="notificationTemplateType" />
-		</finder>
 	</entity>
 	<exceptions>
 		<exception>CalendarBookingDuration</exception>

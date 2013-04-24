@@ -23,8 +23,9 @@ import com.liferay.calendar.NoSuchResourceException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingConstants;
+import com.liferay.calendar.model.CalendarNotificationTemplate;
+import com.liferay.calendar.model.CalendarNotificationTemplateConstants;
 import com.liferay.calendar.model.CalendarResource;
-import com.liferay.calendar.notification.NotificationField;
 import com.liferay.calendar.notification.NotificationTemplateContextFactory;
 import com.liferay.calendar.notification.NotificationTemplateType;
 import com.liferay.calendar.notification.NotificationType;
@@ -34,6 +35,7 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
+import com.liferay.calendar.service.CalendarNotificationTemplateServiceUtil;
 import com.liferay.calendar.service.CalendarResourceServiceUtil;
 import com.liferay.calendar.service.CalendarServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
@@ -44,8 +46,6 @@ import com.liferay.calendar.util.CalendarDataHandlerFactory;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
-import com.liferay.calendar.util.NotificationUtil;
-import com.liferay.calendar.util.PortletPropsKeys;
 import com.liferay.calendar.util.RSSUtil;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
@@ -70,6 +70,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
@@ -91,8 +92,6 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -100,7 +99,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Properties;
 import java.util.TimeZone;
 
 import javax.portlet.ActionRequest;
@@ -211,18 +209,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 
-		String currentTab = ParamUtil.getString(actionRequest, "currentTab");
-
-		if (Validator.isNull(currentTab) || currentTab.equals("general")) {
-			updateCalendarGeneralConfigurations(actionRequest, calendarId);
-		} else if (currentTab.equals("templates")) {
-			updateCalendarTemplates(actionRequest, calendarId);
-		}
-	}
-
-	private void updateCalendarGeneralConfigurations(
-			ActionRequest actionRequest, long calendarId)
-			throws PortalException, SystemException {
 		long calendarResourceId = ParamUtil.getLong(
 			actionRequest, "calendarResourceId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
@@ -230,19 +216,9 @@ public class CalendarPortlet extends MVCPortlet {
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 		int color = ParamUtil.getInteger(actionRequest, "color");
-		String emailFromAddress = ParamUtil.getString(actionRequest, "emailFromAddress");
-		String emailFromName = ParamUtil.getString(actionRequest, "emailFromName");
 		boolean defaultCalendar = ParamUtil.getBoolean(
 			actionRequest, "defaultCalendar", false);
 
-		User user = PortalUtil.getUser(actionRequest);
-		if (!Validator.isEmailAddress(emailFromAddress)) {
-			emailFromAddress = user.getEmailAddress();
-		}
-
-		if (Validator.isNull(emailFromName)) {
-			emailFromName = user.getFullName();
-		}
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Calendar.class.getName(), actionRequest);
 
@@ -259,43 +235,6 @@ public class CalendarPortlet extends MVCPortlet {
 			CalendarServiceUtil.updateCalendar(
 				calendarId, nameMap, descriptionMap, color, defaultCalendar,
 				serviceContext);
-		}
-	}
-
-	public void updateCalendarTemplates(ActionRequest actionRequest,
-			long calendarId)
-		throws SystemException {
-
-		String notificationTypeString = ParamUtil.getString(
-			actionRequest, "notificationType");
-		String templateTypeString = ParamUtil.getString(
-			actionRequest, "notificationTemplateType");
-
-		if (Validator.isNull(notificationTypeString) ||
-				Validator.isNull(templateTypeString))
-			return;
-
-		NotificationType notificationType =
-				NotificationType.parse(notificationTypeString);
-		NotificationTemplateType templateType =
-				NotificationTemplateType.parse(templateTypeString);
-
-		String bodyParameterName = NotificationUtil.getPreferenceName(
-				notificationType, templateType, NotificationField.BODY);
-		String subjectParameterName = NotificationUtil.getPreferenceName(
-				notificationType, templateType, NotificationField.SUBJECT);
-		String body = ParamUtil.getString(actionRequest, bodyParameterName);
-		String subject = ParamUtil.getString(actionRequest, subjectParameterName);
-
-		String notificationSettings = getNotificationSettings(
-				notificationType, actionRequest);
-
-		if (validateTemplate(actionRequest, bodyParameterName, body)
-			&& validateTemplate(actionRequest, bodyParameterName, body)) {
-
-			NotificationUtil.saveNotificationTemplate(calendarId,
-					notificationType, templateType, subject, body,
-					notificationSettings);
 		}
 	}
 
@@ -378,6 +317,47 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
+	}
+
+	public void updateCalendarNotificationTemplate(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long calendarNotificationTemplateId = ParamUtil.getLong(
+			actionRequest, "calendarNotificationTemplateId");
+
+		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+		String notificationTypeString = ParamUtil.getString(
+			actionRequest, "notificationType");
+		String notificationTemplateTypeString = ParamUtil.getString(
+			actionRequest, "notificationTemplateType");
+		String subject = ParamUtil.getString(actionRequest, "subject");
+		String body = ParamUtil.getString(actionRequest, "body");
+
+		NotificationType notificationType = NotificationType.parse(
+			notificationTypeString);
+
+		NotificationTemplateType notificationTemplateType =
+			NotificationTemplateType.parse(notificationTemplateTypeString);
+
+		String typeSettings = getNotificationTemplateSettings(
+			actionRequest, notificationType);
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			CalendarNotificationTemplate.class.getName(), actionRequest);
+
+		if (calendarNotificationTemplateId <= 0) {
+			CalendarNotificationTemplateServiceUtil.
+				addCalendarNotificationTemplate(
+					calendarId, notificationType, notificationTemplateType,
+					subject, body, typeSettings, serviceContext);
+		}
+		else {
+			CalendarNotificationTemplateServiceUtil.
+				updateCalendarNotificationTemplate(
+					calendarNotificationTemplateId, subject, body, typeSettings,
+					serviceContext);
+		}
 	}
 
 	public void updateCalendarResource(
@@ -567,6 +547,27 @@ public class CalendarPortlet extends MVCPortlet {
 
 		return JCalendarUtil.getJCalendar(
 			year, month, day, hour, minute, 0, 0, getTimeZone(portletRequest));
+	}
+
+	protected String getNotificationTemplateSettings(
+			ActionRequest actionRequest, NotificationType notificationType) {
+
+		UnicodeProperties typeSettingsProperties = new UnicodeProperties(true);
+
+		if (notificationType == NotificationType.EMAIL) {
+			String fromAddress = ParamUtil.getString(
+				actionRequest, "fromAddress");
+			String fromName = ParamUtil.getString(actionRequest, "fromName");
+
+			typeSettingsProperties.put(
+				CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS,
+				fromAddress);
+			typeSettingsProperties.put(
+				CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME,
+				fromName);
+		}
+
+		return typeSettingsProperties.toString();
 	}
 
 	protected String getRecurrence(ActionRequest actionRequest) {
@@ -922,53 +923,6 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
-	}
-
-	protected String getNotificationSettings(
-			NotificationType templateType, PortletRequest request) {
-		Properties properties = new Properties();
-
-		switch (templateType) {
-
-		case EMAIL:
-			String emailAddress = ParamUtil.getString(request,
-					"notificationSenderEmailAddress");
-			String name = ParamUtil.getString(request, "notificationSenderName");
-
-			properties.setProperty(
-					PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_EMAIL,
-					emailAddress);
-			properties.setProperty(
-					PortletPropsKeys.CALENDAR_NOTIFICATION_SENDER_NAME,
-					name);
-			break;
-
-		default:
-			break;
-
-		}
-
-		Writer out = new StringWriter();
-		try {
-			properties.store(out, null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return out.toString();
-	}
-
-	protected boolean validateTemplate(PortletRequest request,
-			String templateName, String templateContent) {
-
-		boolean isValid = true;
-
-		if (Validator.isNull(templateContent)) {
-			SessionErrors.add(request, templateName);
-			isValid = false;
-		}
-
-		return isValid;
 	}
 
 	protected void subscribeToComments(

@@ -16,18 +16,22 @@ package com.liferay.calendar.notification;
 
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
+import com.liferay.calendar.model.CalendarNotificationTemplate;
+import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.calendar.util.PortletKeys;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
+
+import java.io.Serializable;
 
 import java.text.Format;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.portlet.PortletConfig;
 
@@ -37,41 +41,44 @@ import javax.portlet.PortletConfig;
 public class NotificationTemplateContextFactory {
 
 	public static NotificationTemplateContext getInstance(
-			CalendarBooking calendarBooking)
-		throws PortalException, SystemException {
-
-		User user = UserLocalServiceUtil.getUser(calendarBooking.getUserId());
-
-		return getInstance(calendarBooking, user);
-	}
-
-	public static NotificationTemplateContext getInstance(
+			NotificationType notificationType,
+			NotificationTemplateType notificationTemplateType,
 			CalendarBooking calendarBooking, User user)
-		throws PortalException, SystemException {
+		throws Exception {
 
-		Calendar calendar = NotificationUtil.getRootCalendar(calendarBooking);
+		CalendarBooking parentCalendarBooking =
+			calendarBooking.getParentCalendarBooking();
+
+		Calendar calendar = parentCalendarBooking.getCalendar();
 
 		NotificationTemplateContext notificationTemplateContext =
 			new NotificationTemplateContext();
+
+		notificationTemplateContext.setCompanyId(
+			calendarBooking.getCompanyId());
+		notificationTemplateContext.setGroupId(calendarBooking.getGroupId());
+		notificationTemplateContext.setCalendarId(calendar.getCalendarId());
+		notificationTemplateContext.setNotificationType(notificationType);
+
+		// Attributes
+
+		Map<String, Serializable> attributes =
+			new HashMap<String, Serializable>();
 
 		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
 			user.getLocale(), user.getTimeZone());
 
 		long endTime = calendarBooking.getEndTime();
 
-		notificationTemplateContext.setAttribute(
-			"endTime", dateFormatDateTime.format(endTime));
-
-		notificationTemplateContext.setAttribute(
-			"location", calendarBooking.getLocation());
+		attributes.put("endTime", dateFormatDateTime.format(endTime));
+		attributes.put("location", calendarBooking.getLocation());
 
 		Company company = CompanyLocalServiceUtil.getCompany(
 			calendarBooking.getCompanyId());
 
-		notificationTemplateContext.setAttribute(
+		attributes.put(
 			"portalUrl", company.getPortalURL(calendarBooking.getGroupId()));
-
-		notificationTemplateContext.setAttribute(
+		attributes.put(
 			"portletName",
 			LanguageUtil.get(
 				getPortletConfig(), user.getLocale(),
@@ -79,19 +86,41 @@ public class NotificationTemplateContextFactory {
 
 		long startTime = calendarBooking.getStartTime();
 
-		notificationTemplateContext.setAttribute(
-			"startTime", dateFormatDateTime.format(startTime));
+		attributes.put("startTime", dateFormatDateTime.format(startTime));
+		attributes.put("title", calendarBooking.getTitle(user.getLocale()));
+		attributes.put("toAddress", user.getEmailAddress());
+		attributes.put("toName", user.getFullName());
 
-		notificationTemplateContext.setAttribute(
-			"title", calendarBooking.getTitle(user.getLocale()));
-		notificationTemplateContext.setAttribute(
-			"toAddress", user.getEmailAddress());
-		notificationTemplateContext.setAttribute("toName", user.getFullName());
+		notificationTemplateContext.setAttributes(attributes);
 
-		notificationTemplateContext.setCompanyId(
-			calendarBooking.getCompanyId());
-		notificationTemplateContext.setGroupId(calendarBooking.getGroupId());
-		notificationTemplateContext.setCalendarId(calendar.getCalendarId());
+		// Content
+
+		CalendarNotificationTemplate calendarNotificationTemplate =
+			CalendarNotificationTemplateLocalServiceUtil.
+				fetchCalendarNotificationTemplate(
+					calendar.getCalendarId(), notificationType,
+					notificationTemplateType);
+
+		notificationTemplateContext.setCalendarNotificationTemplate(
+			calendarNotificationTemplate);
+
+		String templateSubject = NotificationUtil.getNotificationTemplate(
+			calendarNotificationTemplate, notificationType,
+			notificationTemplateType, NotificationField.SUBJECT);
+
+		String subject = NotificationUtil.processNotificationTemplate(
+			templateSubject, attributes);
+
+		notificationTemplateContext.setSubject(subject);
+
+		String templateBody = NotificationUtil.getNotificationTemplate(
+			calendarNotificationTemplate, notificationType,
+			notificationTemplateType, NotificationField.BODY);
+
+		String body = NotificationUtil.processNotificationTemplate(
+			templateBody, attributes);
+
+		notificationTemplateContext.setBody(body);
 
 		return notificationTemplateContext;
 	}

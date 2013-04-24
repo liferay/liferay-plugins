@@ -16,11 +16,12 @@ package com.liferay.calendar.notification;
 
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
+import com.liferay.calendar.model.CalendarNotificationTemplateConstants;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.User;
 
 import javax.mail.internet.InternetAddress;
 
@@ -31,29 +32,35 @@ public class EmailNotificationSender implements NotificationSender {
 
 	public void sendNotification(
 			NotificationRecipient notificationRecipient,
-			NotificationTemplateType notificationTemplateType,
 			NotificationTemplateContext notificationTemplateContext)
 		throws NotificationSenderException {
 
 		try {
-			Calendar calendar = CalendarLocalServiceUtil.getCalendar(
-					notificationTemplateContext.getCalendarId());
-			CalendarNotificationTemplate template = NotificationUtil
-					.getNotificationTemplate(
-							calendar, NotificationType.EMAIL,
-							notificationTemplateType);
+			CalendarNotificationTemplate calendarNotificationTemplate =
+				notificationTemplateContext.getCalendarNotificationTemplate();
 
-			String fromAddress = NotificationUtil
-					.getNotificationSenderEmailAddress(template);
-			String fromName = NotificationUtil
-					.getNotificationSenderName(template);
-			String subject = processNotificationTemplateContent(
-					template.getSubject(), notificationTemplateContext);
-			String body = processNotificationTemplateContent(
-					template.getBody(), notificationTemplateContext);
+			Calendar calendar = CalendarLocalServiceUtil.getCalendar(
+				notificationTemplateContext.getCalendarId());
+
+			User defaultSender = NotificationUtil.getDefaultNotificationSender(
+				calendar);
+
+			String fromAddress =
+				NotificationUtil.getNotificationTemplateProperty(
+					calendarNotificationTemplate,
+					CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS,
+					defaultSender.getEmailAddress());
+
+			String fromName =
+				NotificationUtil.getNotificationTemplateProperty(
+					calendarNotificationTemplate,
+					CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME,
+					defaultSender.getFullName());
 
 			sendNotification(
-				fromAddress, fromName, notificationRecipient, subject, body);
+				fromAddress, fromName, notificationRecipient,
+				notificationTemplateContext.getSubject(),
+				notificationTemplateContext.getBody());
 		}
 		catch (Exception e) {
 			throw new NotificationSenderException(e);
@@ -86,35 +93,6 @@ public class EmailNotificationSender implements NotificationSender {
 			throw new NotificationSenderException(
 				"Unable to send mail message", e);
 		}
-	}
-
-	protected String processNotificationTemplateContent(
-			String notificationTemplateContent,
-			NotificationTemplateContext notificationTemplateContext)
-		throws Exception {
-
-		notificationTemplateContent = StringUtil.replace(
-			notificationTemplateContent,
-			new String[] {
-				"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
-				"[$BOOKING_END_DATE$]", "[$BOOKING_TITLE$]", "[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]", "[$PORTAL_URL$]", "[$TO_ADDRESS$]",
-				"[$TO_NAME$]", "[$PORTLET_NAME$]"
-			},
-			new String[] {
-				notificationTemplateContext.getString("location"),
-				notificationTemplateContext.getString("startTime"),
-				notificationTemplateContext.getString("endTime"),
-				notificationTemplateContext.getString("title"),
-				notificationTemplateContext.getString("fromAddress"),
-				notificationTemplateContext.getString("fromName"),
-				notificationTemplateContext.getString("portalUrl"),
-				notificationTemplateContext.getString("toAddress"),
-				notificationTemplateContext.getString("toName"),
-				notificationTemplateContext.getString("portletName"),
-			});
-
-		return notificationTemplateContent;
 	}
 
 }
