@@ -20,7 +20,6 @@
 String tabs2 = ParamUtil.getString(request, "tabs2", "user-settings");
 
 String redirect = ParamUtil.getString(request, "redirect");
-
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
