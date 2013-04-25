@@ -106,6 +106,27 @@
 		</antcall>
 	</target>
 
+	<target name="compile-test-cmd">
+		<if>
+			<available file="test/${test.type}" type="dir" />
+			<then>
+				<mkdir dir="test-classes/${test.type}" />
+				<mkdir dir="test-results/${test.type}" />
+
+				<copy todir="test-classes/${test.type}">
+					<fileset dir="test" includes="*.properties" />
+					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
+				</copy>
+
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="osgi.plugin.test.classpath" />
+					<param name="javac.destdir" value="test-classes/${test.type}" />
+					<param name="javac.srcdir" value="test/${test.type}" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
 	<target name="deploy" depends="jar">
 		<copy failonerror="false" todir="${osgi.auto.deploy.dir}">
 			<fileset dir="lib" includes="*.jar" />
@@ -217,27 +238,6 @@
 						</manifest>
 					</then>
 				</if>
-			</then>
-		</if>
-	</target>
-
-	<target name="compile-test-cmd">
-		<if>
-			<available file="test/${test.type}" type="dir" />
-			<then>
-				<mkdir dir="test-classes/${test.type}" />
-				<mkdir dir="test-results/${test.type}" />
-
-				<copy todir="test-classes/${test.type}">
-					<fileset dir="test" includes="*.properties" />
-					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
-				</copy>
-
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="osgi.plugin.test.classpath" />
-					<param name="javac.destdir" value="test-classes/${test.type}" />
-					<param name="javac.srcdir" value="test/${test.type}" />
-				</antcall>
 			</then>
 		</if>
 	</target>
