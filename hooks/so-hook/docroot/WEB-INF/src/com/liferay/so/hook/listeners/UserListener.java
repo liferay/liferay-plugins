@@ -19,6 +19,7 @@ package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.NoSuchGroupException;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -112,6 +113,8 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
+			FinderCacheUtil.clearCache(_MAPPING_TABLE_USERS_ROLES_NAME);
+
 			if (UserLocalServiceUtil.hasRoleUser(
 					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER,
 					user.getUserId(), true)) {
@@ -198,5 +201,10 @@ public class UserListener extends BaseModelListener<User> {
 
 		SocialOfficeUtil.enableSocialOffice(group);
 	}
+
+	/**
+	 * {@link com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}
+	 */
+	private static final String _MAPPING_TABLE_USERS_ROLES_NAME = "Users_Roles";
 
 }
