@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -387,6 +388,12 @@ public class ShindigUtil {
 		_scheme.set(scheme);
 	}
 
+	public static String transformURL(String url) {
+		return StringUtil.replace(
+			url, new String[] {"%host%", "%scheme%"},
+			new String[] {getHost(), getScheme()});
+	}
+
 	public static void updateOAuthConsumers(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -454,7 +461,6 @@ public class ShindigUtil {
 	private static AutoResetThreadLocal<String> _host =
 		new AutoResetThreadLocal<String>(
 			ShindigUtil.class + "._host", StringPool.BLANK);
-
 	private static Set<String> _ignoreGadgetSpecCache =
 		new ConcurrentHashSet<String>();
 
