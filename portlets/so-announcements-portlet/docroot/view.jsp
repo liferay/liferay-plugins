@@ -18,5 +18,3 @@
 --%>
 
 <%@ include file="/init.jsp" %>
-
-This is the <b>Social Office Announcements</b> portlet.
