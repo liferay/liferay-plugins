@@ -143,7 +143,7 @@ public class StatusFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(userId);
-			qPos.add(groupNames);
+			qPos.add(StringUtil.merge(groupNames));
 			qPos.add(modifiedDate);
 			qPos.add(userId);
 
