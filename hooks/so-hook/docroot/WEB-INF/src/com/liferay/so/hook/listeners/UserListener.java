@@ -203,7 +203,8 @@ public class UserListener extends BaseModelListener<User> {
 	}
 
 	/**
-	 * {@link com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}
+	 * {@link
+	 * com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}
 	 */
 	private static final String _MAPPING_TABLE_USERS_ROLES_NAME = "Users_Roles";
 
