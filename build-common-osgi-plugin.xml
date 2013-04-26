@@ -20,22 +20,15 @@
 		</else>
 	</if>
 
+	<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
+
 	<path id="plugin-lib.classpath">
-		<fileset dir="lib" includes="**/*.jar" />
-	</path>
-
-	<path id="osgi.plugin.classpath">
 		<path refid="portal.classpath" />
-		<path refid="plugin.classpath" />
-		<fileset dir="lib" erroronmissingdir="false" includes="*.jar" />
 		<fileset dir="${project.dir}/lib" includes="bnd.jar" />
-		<pathelement location="${osgi.plugin.classes.dir}" />
+		<pathelement path="${plugin-lib.classpath.path}" />
 	</path>
 
-	<path id="osgi.plugin.test.classpath">
-		<path refid="osgi.plugin.classpath" />
-		<path refid="test.classpath" />
-	</path>
+	<var name="plugin-lib.classpath.path" unset="true" />
 
 	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 
@@ -45,22 +38,21 @@
 		<sequential>
 			<taskdef
 				classname="com.liferay.util.ant.ManifestHelperTask"
-				classpathref="osgi.plugin.classpath"
+				classpathref="plugin.classpath"
 				name="liferay-manifest-helper"
 			/>
 
 			<liferay-manifest-helper
 				analyze="@{analyze}"
-				classpathref="project.classpath"
+				classpathref="plugin.classpath"
 			/>
 		</sequential>
 	</macrodef>
 
 	<target name="clean">
 		<delete dir="${osgi.plugin.classes.dir}" />
-		<delete dir="test-classes" />
-		<delete dir="test-results" />
-		<delete file="${plugin.file}" failonerror="false" />
+
+		<antcall target="build-common-plugin.clean" />
 	</target>
 
 	<target name="compile">
@@ -70,65 +62,11 @@
 			<fileset dir="${osgi.plugin.source.dir}" excludes="**/*.java" />
 		</copy>
 
-		<for list="${import.shared}" param="import.shared.current">
-			<sequential>
-				<if>
-					<available file="${project.dir}/shared/@{import.shared.current}" />
-					<then>
-						<ant dir="${project.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
-
-						<for param="import.shared.full.path">
-							<path>
-								<fileset dir="${project.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
-							</path>
-
-							<sequential>
-								<copy
-									file="@{import.shared.full.path}"
-									tofile="lib/@{import.shared.current}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar"
-								/>
-							</sequential>
-						</for>
-
-						<if>
-							<available file="${project.dir}/shared/@{import.shared.current}/lib" />
-							<then>
-								<copy todir="lib/">
-									<fileset dir="${project.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
-								</copy>
-							</then>
-						</if>
-					</then>
-				</if>
-			</sequential>
-		</for>
-
 		<antcall target="compile-java">
-			<param name="javac.classpathref" value="osgi.plugin.classpath" />
+			<param name="javac.classpathref" value="plugin.classpath" />
 			<param name="javac.destdir" value="${osgi.plugin.classes.dir}" />
 			<param name="javac.srcdir" value="${osgi.plugin.source.dir}" />
 		</antcall>
-	</target>
-
-	<target name="compile-test-cmd">
-		<if>
-			<available file="test/${test.type}" type="dir" />
-			<then>
-				<mkdir dir="test-classes/${test.type}" />
-				<mkdir dir="test-results/${test.type}" />
-
-				<copy todir="test-classes/${test.type}">
-					<fileset dir="test" includes="*.properties" />
-					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
-				</copy>
-
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="osgi.plugin.test.classpath" />
-					<param name="javac.destdir" value="test-classes/${test.type}" />
-					<param name="javac.srcdir" value="test/${test.type}" />
-				</antcall>
-			</then>
-		</if>
 	</target>
 
 	<target name="deploy" depends="jar">
@@ -147,37 +85,23 @@
 				</uptodate>
 			</not>
 			<then>
-				<if>
-					<available file="bnd.bnd" />
-					<then>
-						<manifest-helper />
+				<manifest-helper />
 
-						<bndexpand propertyfile="${project.dir}/common.bnd" />
+				<bndexpand propertyfile="${project.dir}/common.bnd" />
 
-						<bnd
-							eclipse="false"
-							exceptions="true"
-							failok="false"
-							inherit="true"
-							output="${plugin.file}"
-							sourcepath="."
-						>
-							<bndfiles path="bnd.bnd" />
-							<classpath>
-								<pathelement location="${osgi.plugin.classes.dir}" />
-							</classpath>
-						</bnd>
-					</then>
-					<else>
-						<antcall target="manifest" />
-
-						<jar
-							basedir="${osgi.plugin.classes.dir}"
-							jarfile="${project.dir}/dist/${plugin.file}"
-							manifest="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF"
-						/>
-					</else>
-				</if>
+				<bnd
+					eclipse="false"
+					exceptions="true"
+					failok="false"
+					inherit="true"
+					output="${plugin.file}"
+					sourcepath="."
+				>
+					<bndfiles path="bnd.bnd" />
+					<classpath>
+						<pathelement location="${osgi.plugin.classes.dir}" />
+					</classpath>
+				</bnd>
 			</then>
 		</if>
 	</target>
@@ -207,16 +131,6 @@
 					<attribute name="Javac-Debug" value="${javac.debug}" />
 					<attribute name="Javac-Deprecation" value="${javac.deprecation}" />
 					<attribute name="Javac-Encoding" value="${javac.encoding}" />
-					<attribute name="Jsp-Precompile" value="${jsp.precompile}" />
-					<attribute name="Liferay-Portal-Build-Date" value="${release.info.build.date}" />
-					<attribute name="Liferay-Portal-Build-Number" value="${release.info.build.number}" />
-					<attribute name="Liferay-Portal-Build-Revision" value="${build.revision}" />
-					<attribute name="Liferay-Portal-Build-Time" value="${build.time}" />
-					<attribute name="Liferay-Portal-Code-Name" value="${release.info.code.name}" />
-					<attribute name="Liferay-Portal-Parent-Build-Number" value="${release.info.parent.build.number}" />
-					<attribute name="Liferay-Portal-Release-Info" value="${release.info.release.info}" />
-					<attribute name="Liferay-Portal-Server-Info" value="${release.info.server.info}" />
-					<attribute name="Liferay-Portal-Version" value="${release.info.version}" />
 				</manifest>
 
 				<if>
@@ -242,33 +156,6 @@
 						</manifest>
 					</then>
 				</if>
-			</then>
-		</if>
-	</target>
-
-	<target name="test-cmd">
-		<if>
-			<available file="test/${test.type}" type="dir" />
-			<then>
-				<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
-					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-					<jvmarg line="${junit.debug.jpda}" />
-					<jvmarg value="-Xmx${junit.java.mx}" />
-					<jvmarg value="-XX:MaxPermSize=${junit.java.maxpermsize}" />
-					<jvmarg value="-Dexternal-properties=${test.properties}" />
-					<jvmarg value="-Dfile.encoding=UTF-8" />
-					<jvmarg value="-Djava.net.preferIPv4Stack=true" />
-					<jvmarg value="-Duser.timezone=GMT" />
-					<classpath location="test-coverage" />
-					<classpath refid="osgi.plugin.test.classpath" />
-					<formatter type="brief" usefile="false" />
-					<formatter type="xml" />
-					<batchtest todir="test-results/${test.type}">
-						<fileset dir="test-classes/${test.type}" includes="**/${class}.class">
-							<filename regex="${junit.test.excludes}" negate="true" />
-						</fileset>
-					</batchtest>
-				</junit>
 			</then>
 		</if>
 	</target>

@@ -22,9 +22,7 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="lib/log-bridge-shared-6.2.0.1.jar" />
-	<classpathentry kind="lib" path="lib/portal-provided/axis.jar" />
-	<classpathentry kind="lib" path="lib/portal-provided/org.osgi.compendium.jar" />
-	<classpathentry kind="lib" path="lib/portal-provided/org.osgi.core.jar" />
+	<classpathentry kind="lib" path="lib/org.osgi.compendium.jar" />
+	<classpathentry kind="lib" path="lib/org.osgi.core.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

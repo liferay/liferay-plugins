@@ -1,13 +1,8 @@
 <ivy-module version="2.0">
 	<info organisation="com.liferay" module="http-service-shared" />
 
-	<configurations>
-		<conf name="portal-provided" description="This depenndecies will be provided by the portal" />
-	</configurations>
-
 	<dependencies>
-		<dependency name="axis" org="org.apache.axis" rev="1.4" conf="portal-provided->*" />
-		<dependency name="org.osgi.compendium" org="org.osgi" rev="4.3.1" conf="portal-provided->*"/>
-		<dependency name="org.osgi.core" org="org.osgi" rev="4.3.1" conf="portal-provided->*"/>
+		<dependency name="org.osgi.compendium" org="org.osgi" rev="4.3.1" />
+		<dependency name="org.osgi.core" org="org.osgi" rev="4.3.1" />
 	</dependencies>
 </ivy-module>
