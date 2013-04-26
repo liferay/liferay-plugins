@@ -147,6 +147,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 	}
 
+	public Portlet getPortlet() {
+		return portlet;
+	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
 	public ThemeDisplay getThemeDisplay() {
 		return themeDisplay;
 	}
