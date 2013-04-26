@@ -19,7 +19,6 @@ import com.liferay.httpservice.internal.http.FilterTracker;
 import com.liferay.httpservice.internal.http.HttpServiceFactory;
 import com.liferay.httpservice.internal.http.HttpSupport;
 import com.liferay.httpservice.internal.http.ServletTracker;
-import com.liferay.osgi.bootstrap.ServicePropsKeys;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.PortletServlet;
@@ -115,9 +114,9 @@ public class WebExtenderServlet extends PortletServlet implements StrutsAction {
 
 		Hashtable<String, Object> properties = new Hashtable<String, Object>();
 
-		properties.put(ServicePropsKeys.BEAN_ID, HttpService.class.getName());
-		properties.put(ServicePropsKeys.ORIGINAL_BEAN, Boolean.TRUE);
-		properties.put(ServicePropsKeys.VENDOR, ReleaseInfo.getVendor());
+		properties.put("bean.id", HttpService.class.getName());
+		properties.put("original.bean", Boolean.TRUE);
+		properties.put("service.vendor", ReleaseInfo.getVendor());
 
 		_httpServiceRegistration = _bundleContext.registerService(
 			new String[] {
@@ -126,7 +125,7 @@ public class WebExtenderServlet extends PortletServlet implements StrutsAction {
 			},
 			httpServiceFactory, properties);
 
-		properties.put(ServicePropsKeys.BEAN_ID, HttpServlet.class.getName());
+		properties.put("bean.id", HttpServlet.class.getName());
 
 		_httpServletRegistration = _bundleContext.registerService(
 			HttpServlet.class, this, properties);
