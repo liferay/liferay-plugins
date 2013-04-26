@@ -28,20 +28,12 @@
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<basename file="${project.dir}" property="project.dir.name" />
-
 	<for list="${basedir},${project.dir}" param="ivy.xml.dir">
 		<sequential>
 			<if>
 				<available file="@{ivy.xml.dir}/ivy.xml" />
 				<then>
-					<pathconvert property="ivy.md5.dir">
-						<map from="${project.dir}" to="${ivy.home}/${project.dir.name}" />
-
-						<path location="@{ivy.xml.dir}"/>
-					</pathconvert>
-
-					<checksum file="@{ivy.xml.dir}/ivy.xml" todir="${ivy.md5.dir}" verifyproperty="ivy.xml.unmodified" />
+					<checksum file="@{ivy.xml.dir}/ivy.xml" verifyproperty="ivy.xml.unmodified" />
 
 					<if>
 						<isfalse value="${ivy.xml.unmodified}" />
@@ -55,8 +47,8 @@
 
 							<if>
 								<or>
-									<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
 									<antelope:endswith string="${ant.project.name}" with="-shared" />
+									<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
 								</or>
 								<then>
 									<ivy:retrieve
@@ -74,11 +66,10 @@
 								</else>
 							</if>
 
-							<checksum file="@{ivy.xml.dir}/ivy.xml" todir="${ivy.md5.dir}" />
+							<checksum file="@{ivy.xml.dir}/ivy.xml" />
 						</then>
 					</if>
 
-					<var name="ivy.md5.dir" unset="true" />
 					<var name="ivy.xml.unmodified" unset="true" />
 				</then>
 			</if>

@@ -60,16 +60,10 @@
 			<replacefilter token="attrField.setXmlName(new javax.xml.namespace.QName(&quot;&quot;, &quot;lang&quot;))" value="attrField.setXmlName(new javax.xml.namespace.QName(&quot;http://www.w3.org/XML/1998/namespace&quot;, &quot;lang&quot;));" />
 		</replace>
 
-		<path id="plugin-lib.classpath">
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
-		</path>
-
 		<antcall target="compile-java">
 			<param name="javac.classpathref" value="plugin.classpath" />
 			<param name="javac.destdir" value="${tstamp.value}" />
 			<param name="javac.srcdir" value="${tstamp.value}" />
-			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
 		</antcall>
 
 		<jar

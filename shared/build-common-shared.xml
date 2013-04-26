@@ -4,55 +4,53 @@
 <project name="build-common-shared">
 	<import file="../build-common-plugin.xml" />
 
+	<if>
+		<available file="${project.dir}/shared/portal-compat-shared" />
+		<then>
+			<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
+
+			<path id="plugin-lib.classpath">
+				<pathelement path="${plugin-lib.classpath.path}" />
+				<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
+			</path>
+
+			<var name="plugin-lib.classpath.path" unset="true" />
+		</then>
+	</if>
+
 	<target name="clean">
 		<delete dir="classes" />
-		<delete file="${plugin.file}" />
+
+		<antcall target="build-common-plugin.clean" />
 	</target>
 
 	<target name="compile">
 		<if>
-			<not>
-				<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
-			</not>
+			<and>
+				<available file="${project.dir}/shared/portal-compat-shared" />
+				<not>
+					<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
+				</not>
+			</and>
 			<then>
 				<ant dir="${project.dir}/shared/portal-compat-shared" target="compile" inheritAll="false" />
 			</then>
 		</if>
 
-		<if>
-			<available file="src" />
-			<then>
-				<mkdir dir="classes" />
+		<mkdir dir="classes" />
 
-				<copy todir="classes">
-					<fileset dir="src" excludes="**/*.java" />
-				</copy>
+		<copy todir="classes">
+			<fileset dir="src" excludes="**/*.java" />
+		</copy>
 
-				<if>
-					<available file="lib" />
-					<then>
-						<path id="plugin-lib.classpath">
-							<fileset dir="lib" includes="*.jar" />
-							<pathelement location="classes" />
-							<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
-						</path>
-					</then>
-					<else>
-						<path id="plugin-lib.classpath">
-							<pathelement location="classes" />
-							<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
-						</path>
-					</else>
-				</if>
+		<antcall target="compile-java">
+			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.destdir" value="classes" />
+			<param name="javac.srcdir" value="src" />
+		</antcall>
+	</target>
 
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="plugin.classpath" />
-					<param name="javac.destdir" value="classes" />
-					<param name="javac.srcdir" value="src" />
-					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-				</antcall>
-			</then>
-		</if>
+	<target name="deploy" depends="jar">
 	</target>
 
 	<target name="jar" depends="compile">

@@ -29,6 +29,43 @@
 		</else>
 	</if>
 
+	<if>
+		<available file="src" />
+		<then>
+			<if>
+				<available file="lib" />
+				<then>
+					<path id="plugin-lib.classpath">
+						<fileset dir="lib" includes="*.jar" />
+						<pathelement location="classes" />
+					</path>
+				</then>
+				<else>
+					<path id="plugin-lib.classpath">
+						<pathelement location="classes" />
+					</path>
+				</else>
+			</if>
+		</then>
+		<elseif>
+			<available file="tmp" />
+			<then>
+				<path id="plugin-lib.classpath">
+					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/classes" />
+					<pathelement location="tmp/WEB-INF/classes" />
+				</path>
+			</then>
+		</elseif>
+		<else>
+			<path id="plugin-lib.classpath">
+				<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+				<pathelement location="docroot/WEB-INF/classes" />
+			</path>
+		</else>
+	</if>
+
 	<macrodef name="classpath-to-jar">
 		<attribute name="classpathref" />
 		<attribute name="jarfile" />
@@ -346,16 +383,10 @@
 					url="@{wsdl.full.path}"
 				/>
 
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-				</path>
-
 				<antcall target="compile-java">
 					<param name="javac.classpathref" value="plugin.classpath" />
 					<param name="javac.destdir" value="${tstamp.value}" />
 					<param name="javac.srcdir" value="${tstamp.value}" />
-					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
 				</antcall>
 
 				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.beginindex">
@@ -427,9 +458,7 @@
 		<delete dir="docroot/WEB-INF/classes" />
 
 		<if>
-			<and>
-				<available file="docroot/WEB-INF/.gitignore" />
-			</and>
+			<available file="docroot/WEB-INF/.gitignore" />
 			<then>
 				<loadfile property=".gitignore.content" srcFile="docroot/WEB-INF/.gitignore" />
 
@@ -460,7 +489,7 @@
 		<delete file="${plugin.file}" />
 		<delete file="${plugin.src.file}" />
 
-		<delete includeemptydirs="true">
+		<delete failonerror="false" includeemptydirs="true">
 			<fileset dir="docroot" includes="**/.sass-cache/**" />
 			<fileset dir="docroot" includes="**/.sprite.png" />
 			<fileset dir="docroot" includes="**/.sprite.properties" />
@@ -552,7 +581,7 @@
 						<if>
 							<available file="${project.dir}/shared/@{import.shared.current}/lib" />
 							<then>
-								<copy todir="docroot/WEB-INF/lib/">
+								<copy todir="docroot/WEB-INF/lib">
 									<fileset dir="${project.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
 								</copy>
 							</then>
@@ -618,24 +647,6 @@
 		<if>
 			<available file="docroot/WEB-INF/src" />
 			<then>
-				<if>
-					<available file="tmp" />
-					<then>
-						<path id="plugin-lib.classpath">
-							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-							<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-							<pathelement location="docroot/WEB-INF/classes" />
-							<pathelement location="tmp/WEB-INF/classes" />
-						</path>
-					</then>
-					<else>
-						<path id="plugin-lib.classpath">
-							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-							<pathelement location="docroot/WEB-INF/classes" />
-						</path>
-					</else>
-				</if>
-
 				<copy todir="docroot/WEB-INF/lib">
 					<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
 				</copy>
@@ -664,7 +675,6 @@ Please find a solution that does not require portal-impl.jar.
 					<param name="javac.classpathref" value="plugin.classpath" />
 					<param name="javac.destdir" value="docroot/WEB-INF/classes" />
 					<param name="javac.srcdir" value="docroot/WEB-INF/src" />
-					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
 				</antcall>
 			</then>
 		</if>
@@ -673,6 +683,8 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="compile-test">
+		<antcall target="compile" />
+
 		<antcall target="compile-test-integration" inheritall="false" />
 		<antcall target="compile-test-unit" inheritall="false" />
 	</target>
@@ -689,29 +701,10 @@ Please find a solution that does not require portal-impl.jar.
 					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 				</copy>
 
-				<if>
-					<available file="tmp" />
-					<then>
-						<path id="plugin-lib.classpath">
-							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-							<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-							<pathelement location="docroot/WEB-INF/classes" />
-							<pathelement location="tmp/WEB-INF/classes" />
-						</path>
-					</then>
-					<else>
-						<path id="plugin-lib.classpath">
-							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-							<pathelement location="docroot/WEB-INF/classes" />
-						</path>
-					</else>
-				</if>
-
 				<antcall target="compile-java">
 					<param name="javac.classpathref" value="test.classpath" />
 					<param name="javac.destdir" value="test-classes/${test.type}" />
 					<param name="javac.srcdir" value="test/${test.type}" />
-					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
 				</antcall>
 			</then>
 		</if>
@@ -1038,24 +1031,6 @@ Please find a solution that does not require portal-impl.jar.
 
 		<antcall target="compile" />
 		<antcall target="compile-test" />
-
-		<if>
-			<available file="tmp" />
-			<then>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-					<pathelement location="tmp/WEB-INF/classes" />
-				</path>
-			</then>
-			<else>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-				</path>
-			</else>
-		</if>
 
 		<antcall target="test-integration" inheritrefs="true" />
 		<antcall target="test-unit" inheritrefs="true" />
