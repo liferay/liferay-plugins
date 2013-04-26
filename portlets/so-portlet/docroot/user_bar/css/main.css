@@ -150,10 +150,6 @@ html > body.lfr-dockbar-pinned {
 			}
 		}
 
-		.has-submenu {
-			overflow: hidden;
-		}
-
 		.child-menu {
 			height: 0;
 			left: auto;
@@ -186,16 +182,6 @@ html > body.lfr-dockbar-pinned {
 			@include menu-mix;
 			@include transition-duration(.5s);
 			@include transition-property(height, opacity);
-		}
-
-		.hover {
-			overflow: visible;
-
-			.child-menu {
-				margin-top: 0;
-				height: auto;
-				opacity: 1;
-			}
 		}
 
 		.config-icon {
@@ -382,29 +368,6 @@ html > body.lfr-dockbar-pinned {
 			display: none;
 		}
 
-		.search-focus {
-			visibility: visible;
-
-			.search {
-				width: auto;
-
-				.search-input {
-					background: #FFF;
-					border: 1px solid $default-border-color;
-					color: $default-text-color;
-					cursor: text;
-					text-shadow: none;
-					width: 97%;
-
-					@include box-shadow(0 1px 2px rgba(0,0,0, 0) inset);
-				}
-			}
-
-			.sites-tabs, .sites-list-container, .control-container {
-				display: block;
-			}
-		}
-
 		.sites-tabs {
 			border-top: 1px solid rgba(0,0,0, .1);
 			float: none;
@@ -458,11 +421,43 @@ html > body.lfr-dockbar-pinned {
 			}
 		}
 	}
+
+	.menu-active {
+		overflow: visible;
+
+		.so-portlet-sites .portlet-body.search-focus {
+			visibility: visible;
+
+			.search {
+				width: auto;
+
+				.search-input {
+					background: #FFF;
+					border: 1px solid $default-border-color;
+					color: $default-text-color;
+					cursor: text;
+					text-shadow: none;
+					width: 97%;
+
+					@include box-shadow(0 1px 2px rgba(0,0,0, 0) inset);
+				}
+			}
+
+			.sites-tabs, .sites-list-container, .control-container {
+				display: block;
+			}
+		}
+
+		.child-menu {
+			margin-top: 0;
+			height: auto;
+			opacity: 1;
+		}
+	}
 }
 
 #dashboardNav {
 	position: relative;
-	z-index: 3;
 }
 
 @media (max-width:860px) {

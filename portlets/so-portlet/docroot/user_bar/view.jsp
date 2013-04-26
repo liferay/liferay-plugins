@@ -110,7 +110,7 @@ catch (NoSuchRoleException nsre) {
 						</c:if>
 					</ul>
 				</li>
-				<li class="has-submenu">
+				<li class="config-item has-submenu">
 					<a class="config-icon" href="javascript:;"><img alt="Configuration Icon" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" height="15" width="15" /><span class="aui-helper-hidden">Configuration</span></a>
 
 					<ul class="child-menu">
@@ -134,133 +134,182 @@ catch (NoSuchRoleException nsre) {
 		var body = A.one('body');
 
 		var userBar = A.one('#so-portlet-user-bar');
+		var userBar_Active = false;
 
 		var dashboardNav = userBar.one('#dashboardNav');
 		var notifications = userBar.one('.user-notification-events');
-		var notificationButton = userBar.one('.user-notification-events-icon');
-		var searchInput = userBar.one('.search input');
 		var sitesResultContainer = userBar.one('.so-portlet-sites .portlet-body');
 
-		var activateUserBar = function (event, active) {
-			var setActive = function (active) {
-				if (active && !userBar.hasClass('user-bar-active')) {
-					userBar.addClass('user-bar-active');
-				} else if (!active) {
-					userBar.removeClass('user-bar-active');
-				}
+		var userBarMenuManager = function (params) {
+			if (params.node != undefined) {
+				var node = params.node;
+			} else {
+				var node = userBar;
 			};
 
-			var target = event.currentTarget;
+			if (params.after != undefined) {
+				var after = params.after;
+			} else {
+				var after = null;
+			};
 
-			if (target == notificationButton && active) {
-				if (sitesResultContainer.hasClass('search-focus')) {
-					if (searchInput.get('value') == '') {
-						searchInput.set('value', defaultGoTo);
-					}
+			if (params.intent != undefined) {
+				var intent = params.intent;
+			} else {
+				var intent = 'normal';
+			};
 
-					sitesResultContainer.removeClass('search-focus');
-				}
+			if (params.trigger != undefined) {
+				var trigger = node.one(params.trigger.toString());
+			} else {
+				var trigger = node.one('a');
+			};
 
-				setActive(active);
-			}
-			else if (target == searchInput && active) {
-				if (!notifications.hasClass('aui-overlaycontext-hidden')) {
-					notifications.addClass('aui-overlaycontext-hidden');
-				}
+			if (params.target != undefined) {
+				var target = node.one(params.target);
+				node.setAttribute('target', params.target);
+			} else {
+				var target = node;
+			};
 
-				setActive(active);
-			}
-			else if (target.hasClass('hover') && active) {
-				if (!notifications.hasClass('aui-overlaycontext-hidden')) {
-					notifications.addClass('aui-overlaycontext-hidden');
-				}
+			if (params.changeClass != undefined) {
+				var changeClass = params.changeClass;
 
-				if (sitesResultContainer.hasClass('search-focus')) {
-					if (searchInput.get('value') == '') {
-						searchInput.set('value', defaultGoTo);
-					}
+				node.setAttribute('changeClass', changeClass);
+			} else {
+				var changeClass = 'menu-active';
+			};
 
-					sitesResultContainer.removeClass('search-focus');
-				}
+			if (params.eventType != undefined) {
+				var eventType = params.eventType;
+			} else {
+				var eventType = 'click';
+			};
 
-				if (event.type != 'mouseout') {
-					setActive(active);
-				} else {
-					setActive(false);
-				}
-			}
-			else if (target == body || (event == 'hideOtherMenus') && !active) {
-				if (sitesResultContainer.hasClass('search-focus') || userBar.hasClass('user-bar-active')) {
-					sitesResultContainer.removeClass('search-focus');
+			var closeAction = function () {
+				if (userBar_Active && userBar.one('.menu-active')) {
+					userBar.all('.menu-active').each(
+						function (node) {
+							if (node.hasAttribute('target')) {
+								var target = node.one(node.getAttribute('target'));
+							} else {
+								var target = node;
+							};
 
-					userBar.removeClass('user-bar-active');
+							if (node.hasAttribute('changeClass')) {
+								var changeClass = node.getAttribute('changeClass').toString();
+							} else {
+								var changeClass = 'menu-active';
+							};
 
-					dashboardNav.setStyle('position','relative');
-				}
+							if (!target.hasClass('changeClass')) {
+								target.addClass(changeClass);
+							} else {
+								target.removeClass(changeClass);
+							};
 
-				if (searchInput.get('value') == '') {
-					searchInput.set('value', defaultGoTo);
-				}
-
-				if (!notifications.hasClass('aui-overlaycontext-hidden')) {
-					notifications.addClass('aui-overlaycontext-hidden');
-				}
-
-				setActive(active);
-			}
-		};
-
-		userBar.on(
-			'click',
-			function (event) {
-				activateUserBar(event, true);
-			}
-		);
-
-		userBar.all('.has-submenu').each(
-			function (subMenu) {
-				if (subMenu.one('.child-menu')) {
-					subMenu.one('.child-menu').on('click', function(event){event.stopPropagation});
-
-					subMenu.on(
-						['mouseover','mouseout'],
-						function (event) {
-							event.currentTarget.toggleClass('hover');
-
-							activateUserBar(event, true);
+							node.removeClass('menu-active');
 						}
 					);
 				}
+			};
+
+			if (intent != 'close') {
+				node.on(
+					'click', function (event) {
+						event.stopPropagation();
+					}
+				);
+
+				trigger.on(
+					eventType,
+					function(event) {
+						event.preventDefault();
+						event.stopPropagation();
+
+						closeAction(intent);
+
+						if (intent == 'remove') {
+							target.removeClass(changeClass)
+						} else {
+							target.addClass(changeClass);
+						}
+
+						if (!userBar_Active) {
+							userBar_Active = true;
+							userBar.addClass('user-bar-active');
+						}
+
+						if (after != null) {
+							after;
+						}
+
+						node.addClass('menu-active');
+					}
+				);
+			} else {
+				node.on(
+					eventType,
+					function () {
+						if (userBar_Active) {
+							closeAction();
+
+							userBar_Active = false;
+							userBar.removeClass('user-bar-active');
+						}
+					}
+				);
+			};
+		};
+
+		new userBarMenuManager({
+			node: userBar.one('.go-to'),
+			trigger: '.search input',
+			target: '.portlet-body',
+			changeClass: 'search-focus',
+			eventType: 'focus',
+			after: function () {
+				// body...
+			}
+		});
+
+		new userBarMenuManager({
+			node: userBar.one('.notifications-menu'),
+			intent: 'remove',
+			trigger: '.user-notification-events-icon',
+			target: '.user-notification-events',
+			changeClass: 'aui-overlaycontext-hidden'
+		});
+
+		new userBarMenuManager({
+			node: userBar.one('.user-info')
+		});
+
+		new userBarMenuManager({
+			node: userBar.one('.config-item')
+		});
+
+		new userBarMenuManager({
+			node: A.one('html'),
+			intent: 'close'
+		});
+
+		var searchInput = userBar.one('.search input');
+
+		searchInput.set('value', defaultGoTo);
+
+		searchInput.on(
+			['focus', 'blur'],
+			function (event) {
+				var node = searchInput;
+
+				if (node.get('value') == defaultGoTo) {
+					node.set('value', '');
+				} else if (node.get('value') == '' || !userBar_Active) {
+					node.set('value', defaultGoTo);
+				}
 			}
 		);
-
-		if (notificationButton) {
-			notificationButton.on(
-				'click',
-				function (event) {
-					event.preventDefault();
-					event.stopPropagation();
-
-					activateUserBar(event, true);
-
-					notifications.toggleClass('aui-overlaycontext-hidden');
-				}
-			);
-
-			notifications.delegate(
-				'click',
-				function(event) {
-					event.stopPropagation();
-
-					var portletURL = event.currentTarget.getAttribute('data-portletUrl');
-
-					if (portletURL) {
-						window.location = portletURL;
-					}
-				},
-				'.user-notification-event-content'
-			);
-		}
 
 		var toggleDockbar = userBar.one("#toggleDockbar");
 
@@ -269,44 +318,11 @@ catch (NoSuchRoleException nsre) {
 				'click',
 				function (event) {
 					event.preventDefault();
-
-					activateUserBar(event, true);
+					event.stopPropagation();
 
 					body.toggleClass('show-dockbar');
 				}
 			)
 		};
-
-		searchInput.on(
-			'focus',
-			function (event) {
-				if (event.target.get('value') == defaultGoTo) {
-					event.target.set('value', '');
-				}
-
-				if (!sitesResultContainer.hasClass('search-focus')) {
-					sitesResultContainer.addClass('search-focus');
-					dashboardNav.setStyle('position','static');
-				}
-
-				activateUserBar(event, true);
-			}
-		);
-
-		sitesResultContainer.on(
-			'click',
-			function(event) {
-				event.stopPropagation();
-			}
-		);
-
-		body.on(
-			'click',
-			function (event) {
-				activateUserBar(event, false);
-			}
-		);
-
-		searchInput.set('value', defaultGoTo);
 	</aui:script>
 </c:if>
