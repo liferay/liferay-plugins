@@ -47,8 +47,8 @@
 
 							<if>
 								<or>
-									<antelope:endswith string="${ant.project.name}" with="-shared" />
 									<equals arg1="@{ivy.xml.dir}" arg2="${project.dir}" />
+									<antelope:endswith string="${ant.project.name}" with="-shared" />
 								</or>
 								<then>
 									<ivy:retrieve
