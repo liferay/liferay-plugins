@@ -171,6 +171,7 @@ loader.
 			<param name="javac.classpathref" value="plugin.classpath" />
 			<param name="javac.destdir" value="docroot/WEB-INF/ext-${module.name}/classes" />
 			<param name="javac.srcdir" value="docroot/WEB-INF/ext-${module.name}/src" />
+			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
 		</antcall>
 	</target>
 
@@ -191,6 +192,7 @@ loader.
 			<param name="javac.classpathref" value="plugin.classpath" />
 			<param name="javac.destdir" value="docroot/WEB-INF/ext-${module.name}/classes" />
 			<param name="javac.srcdir" value="docroot/WEB-INF/ext-${module.name}/src" />
+			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
 		</antcall>
 	</target>
 
