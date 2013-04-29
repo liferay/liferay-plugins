@@ -33,7 +33,8 @@ public class CalendarNotificationTemplateServiceImpl
 	public CalendarNotificationTemplate addCalendarNotificationTemplate(
 			long calendarId, NotificationType notificationType,
 			NotificationTemplateType notificationTemplateType, String subject,
-			String body, String typeSettings, ServiceContext serviceContext)
+			String body, String notificationTypeSettings,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarPermission.check(
@@ -42,13 +43,13 @@ public class CalendarNotificationTemplateServiceImpl
 		return calendarNotificationTemplateLocalService.
 			addCalendarNotificationTemplate(
 				getUserId(), calendarId, notificationType,
-				notificationTemplateType, subject, body, typeSettings,
-				serviceContext);
+				notificationTemplateType, subject, body,
+				notificationTypeSettings, serviceContext);
 	}
 
 	public CalendarNotificationTemplate updateCalendarNotificationTemplate(
 			long calendarNotificationTemplateId, String subject, String body,
-			String typeSettings, ServiceContext serviceContext)
+			String notificationTypeSettings, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarNotificationTemplate calendarNotificationTemplate =
@@ -61,8 +62,8 @@ public class CalendarNotificationTemplateServiceImpl
 
 		return calendarNotificationTemplateLocalService.
 			updateCalendarNotificationTemplate(
-				calendarNotificationTemplateId, subject, body, typeSettings,
-				serviceContext);
+				calendarNotificationTemplateId, subject, body,
+				notificationTypeSettings, serviceContext);
 	}
 
 }

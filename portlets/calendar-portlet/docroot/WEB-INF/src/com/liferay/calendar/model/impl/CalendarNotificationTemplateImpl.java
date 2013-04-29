@@ -30,48 +30,51 @@ public class CalendarNotificationTemplateImpl
 	}
 
 	@Override
-	public String getTypeSettings() {
-		if (_typeSettingsProperties == null) {
-			return super.getTypeSettings();
+	public String getNotificationTypeSettings() {
+		if (_notificationTypeSettingsProperties == null) {
+			return super.getNotificationTypeSettings();
 		}
 		else {
-			return _typeSettingsProperties.toString();
+			return _notificationTypeSettingsProperties.toString();
 		}
 	}
 
-	public UnicodeProperties getTypeSettingsProperties() {
-		if (_typeSettingsProperties == null) {
-			_typeSettingsProperties = new UnicodeProperties(true);
+	public UnicodeProperties getNotificationTypeSettingsProperties() {
+		if (_notificationTypeSettingsProperties == null) {
+			_notificationTypeSettingsProperties = new UnicodeProperties(true);
 
 			try {
-				_typeSettingsProperties.load(super.getTypeSettings());
+				_notificationTypeSettingsProperties.load(
+					super.getNotificationTypeSettings());
 			}
 			catch (IOException ioe) {
 				_log.error(ioe, ioe);
 			}
 		}
 
-		return _typeSettingsProperties;
+		return _notificationTypeSettingsProperties;
 	}
 
 	@Override
-	public void setTypeSettings(String typeSettings) {
-		_typeSettingsProperties = null;
+	public void setNotificationTypeSettings(String notificationTypeSettings) {
+		_notificationTypeSettingsProperties = null;
 
-		super.setTypeSettings(typeSettings);
+		super.setNotificationTypeSettings(notificationTypeSettings);
 	}
 
 	public void setTypeSettingsProperties(
-		UnicodeProperties typeSettingsProperties) {
+		UnicodeProperties notificationTypeSettingsProperties) {
 
-		_typeSettingsProperties = typeSettingsProperties;
+		_notificationTypeSettingsProperties =
+			notificationTypeSettingsProperties;
 
-		super.setTypeSettings(_typeSettingsProperties.toString());
+		super.setNotificationTypeSettings(
+			_notificationTypeSettingsProperties.toString());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		CalendarNotificationTemplateImpl.class);
 
-	private UnicodeProperties _typeSettingsProperties;
+	private UnicodeProperties _notificationTypeSettingsProperties;
 
 }

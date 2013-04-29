@@ -118,10 +118,11 @@ public class NotificationUtil {
 			return defaultValue;
 		}
 
-		UnicodeProperties typeSettingsProperties =
-			calendarNotificationTemplate.getTypeSettingsProperties();
+		UnicodeProperties notificationTypeSettingsProperties =
+			calendarNotificationTemplate.
+				getNotificationTypeSettingsProperties();
 
-		return typeSettingsProperties.get(propertyName);
+		return notificationTypeSettingsProperties.get(propertyName);
 	}
 
 	public static void notifyCalendarBookingInvites(
