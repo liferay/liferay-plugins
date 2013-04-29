@@ -42,20 +42,18 @@ public class EmailNotificationSender implements NotificationSender {
 			Calendar calendar = CalendarLocalServiceUtil.getCalendar(
 				notificationTemplateContext.getCalendarId());
 
-			User defaultSender = NotificationUtil.getDefaultNotificationSender(
+			User defaultSender = NotificationUtil.getDefaultSender(
 				calendar);
 
-			String fromAddress =
-				NotificationUtil.getNotificationTemplateProperty(
-					calendarNotificationTemplate,
-					CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS,
-					defaultSender.getEmailAddress());
+			String fromAddress = NotificationUtil.getTemplateProperty(
+				calendarNotificationTemplate,
+				CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS,
+				defaultSender.getEmailAddress());
 
-			String fromName =
-				NotificationUtil.getNotificationTemplateProperty(
-					calendarNotificationTemplate,
-					CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME,
-					defaultSender.getFullName());
+			String fromName = NotificationUtil.getTemplateProperty(
+				calendarNotificationTemplate,
+				CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME,
+				defaultSender.getFullName());
 
 			sendNotification(
 				fromAddress, fromName, notificationRecipient,

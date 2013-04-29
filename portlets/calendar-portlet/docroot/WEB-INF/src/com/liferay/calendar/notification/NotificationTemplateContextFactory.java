@@ -104,7 +104,7 @@ public class NotificationTemplateContextFactory {
 		notificationTemplateContext.setCalendarNotificationTemplate(
 			calendarNotificationTemplate);
 
-		String templateSubject = NotificationUtil.getNotificationTemplate(
+		String templateSubject = NotificationUtil.getTemplate(
 			calendarNotificationTemplate, notificationType,
 			notificationTemplateType, NotificationField.SUBJECT);
 
@@ -113,7 +113,7 @@ public class NotificationTemplateContextFactory {
 
 		notificationTemplateContext.setSubject(subject);
 
-		String templateBody = NotificationUtil.getNotificationTemplate(
+		String templateBody = NotificationUtil.getTemplate(
 			calendarNotificationTemplate, notificationType,
 			notificationTemplateType, NotificationField.BODY);
 

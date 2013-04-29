@@ -56,9 +56,7 @@ import java.util.Map;
  */
 public class NotificationUtil {
 
-	public static User getDefaultNotificationSender(Calendar calendar)
-		throws Exception {
-
+	public static User getDefaultSender(Calendar calendar) throws Exception {
 		CalendarResource calendarResource = calendar.getCalendarResource();
 
 		User user = UserLocalServiceUtil.getDefaultUser(
@@ -71,7 +69,7 @@ public class NotificationUtil {
 		return user;
 	}
 
-	public static String getDefaultNotificationTemplate(
+	public static String getDefaultTemplate(
 			NotificationType notificationType,
 			NotificationTemplateType notificationTemplateType,
 			NotificationField notificationField)
@@ -89,14 +87,14 @@ public class NotificationUtil {
 		return ContentUtil.get(templatePath);
 	}
 
-	public static String getNotificationTemplate(
+	public static String getTemplate(
 			CalendarNotificationTemplate calendarNotificationTemplate,
 			NotificationType notificationType,
 			NotificationTemplateType notificationTemplateType,
 			NotificationField notificationField)
 		throws Exception {
 
-		String defaultTemplate = getDefaultNotificationTemplate(
+		String defaultTemplate = getDefaultTemplate(
 			notificationType, notificationTemplateType, notificationField);
 
 		return BeanPropertiesUtil.getString(
@@ -104,15 +102,15 @@ public class NotificationUtil {
 			defaultTemplate);
 	}
 
-	public static String getNotificationTemplateProperty(
+	public static String getTemplateProperty(
 		CalendarNotificationTemplate calendarNotificationTemplate,
 		String propertyName) {
 
-		return getNotificationTemplateProperty(
+		return getTemplateProperty(
 			calendarNotificationTemplate, propertyName, StringPool.BLANK);
 	}
 
-	public static String getNotificationTemplateProperty(
+	public static String getTemplateProperty(
 		CalendarNotificationTemplate calendarNotificationTemplate,
 		String propertyName, String defaultValue) {
 
