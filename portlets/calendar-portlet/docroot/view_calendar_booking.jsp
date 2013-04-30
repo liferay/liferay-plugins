@@ -17,6 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String backURL = ParamUtil.getString(request, "backURL");
+
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
 long startTime = BeanParamUtil.getLong(calendarBooking, request, "startTime");
@@ -33,6 +35,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 %>
 
 <liferay-ui:header
+	backURL="<%= backURL %>"
 	title="<%= calendarBooking.getTitle(locale) %>"
 />
 

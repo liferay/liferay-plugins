@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.calendar.action.ConfigurationActionImpl</configuration-action-class>
 		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.calendar.messaging.CheckBookingsMessageListener</scheduler-event-listener-class>
@@ -15,6 +16,7 @@
 			</trigger>
 		</scheduler-entry>
 		<portlet-data-handler-class>com.liferay.calendar.lar.CalendarPortletDataHandler</portlet-data-handler-class>
+		<social-activity-interpreter-class>com.liferay.calendar.social.CalendarActivityInterpreter</social-activity-interpreter-class>
 		<asset-renderer-factory>com.liferay.calendar.asset.CalendarBookingAssetRendererFactory</asset-renderer-factory>
 		<custom-attributes-display>com.liferay.calendar.CalendarCustomAttributesDisplay</custom-attributes-display>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>

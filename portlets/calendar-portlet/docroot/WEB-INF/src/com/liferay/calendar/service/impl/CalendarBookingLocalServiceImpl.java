@@ -24,6 +24,7 @@ import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
+import com.liferay.calendar.social.CalendarActivityKeys;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.calendar.util.PortletPropsValues;
@@ -38,6 +39,8 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -160,6 +163,14 @@ public class CalendarBookingLocalServiceImpl
 			userId, calendarBooking, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames(),
 			serviceContext.getAssetLinkEntryIds());
+
+		// Social
+
+		socialActivityLocalService.addActivity(
+			userId, calendar.getResourceGroupId(),
+			CalendarBooking.class.getName(), calendarBookingId,
+			CalendarActivityKeys.ADD_CALENDAR_BOOKING,
+			getExtraDataJSON(calendarBooking, serviceContext), 0);
 
 		// Workflow
 
@@ -531,6 +542,7 @@ public class CalendarBookingLocalServiceImpl
 		User user = userPersistence.findByPrimaryKey(userId);
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+		Calendar calendar = calendarBooking.getCalendar();
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTime);
@@ -582,6 +594,14 @@ public class CalendarBookingLocalServiceImpl
 			userId, calendarBooking, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames(),
 			serviceContext.getAssetLinkEntryIds());
+
+		// Social
+
+		socialActivityLocalService.addActivity(
+			userId, calendar.getResourceGroupId(),
+			CalendarBooking.class.getName(), calendarBookingId,
+			CalendarActivityKeys.UPDATE_CALENDAR_BOOKING,
+			getExtraDataJSON(calendarBooking, serviceContext), 0);
 
 		// Workflow
 
@@ -781,6 +801,17 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		return childCalendarIds;
+	}
+
+	protected String getExtraDataJSON(
+		CalendarBooking calendarBooking, ServiceContext serviceContext) {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put(
+			"title", calendarBooking.getTitle(serviceContext.getLocale()));
+
+		return jsonObject.toString();
 	}
 
 	protected void validate(
