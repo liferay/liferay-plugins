@@ -28,8 +28,8 @@ long calendarNotificationTemplateId = BeanPropertiesUtil.getLong(calendarNotific
 
 User defaultSender = NotificationUtil.getDefaultSender(calendar);
 
-String fromAddress = NotificationUtil.getTemplateProperty(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS, defaultSender.getEmailAddress());
-String fromName = NotificationUtil.getTemplateProperty(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME, defaultSender.getFullName());
+String fromAddress = NotificationUtil.getTemplatePropertyValue(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS, defaultSender.getEmailAddress());
+String fromName = NotificationUtil.getTemplatePropertyValue(calendarNotificationTemplate, CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME, defaultSender.getFullName());
 
 String defaultTemplateSubject = NotificationUtil.getDefaultTemplate(notificationType, notificationTemplateType, NotificationField.SUBJECT);
 String notificationTemplateSubject = BeanPropertiesUtil.getString(calendarNotificationTemplate, "subject", defaultTemplateSubject);
@@ -96,10 +96,10 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 				<liferay-ui:message key="the-booking-title" />
 			</dd>
 			<dt>
-				[$PORTAL_URL$]
+				[$FROM_ADDRESS$]
 			</dt>
 			<dd>
-				<%= company.getVirtualHostname() %>
+				<%= HtmlUtil.escape(fromAddress) %>
 			</dd>
 			<dt>
 				[$FROM_NAME$]
@@ -108,22 +108,22 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 				<%= HtmlUtil.escape(fromName) %>
 			</dd>
 			<dt>
-				[$FROM_ADDRESS$]
+				[$PORTAL_URL$]
 			</dt>
 			<dd>
-				<%= HtmlUtil.escape(fromAddress) %>
-			</dd>
-			<dt>
-				[$TO_NAME$]
-			</dt>
-			<dd>
-				<liferay-ui:message key="the-name-of-the-email-recipient" />
+				<%= company.getVirtualHostname() %>
 			</dd>
 			<dt>
 				[$TO_ADDRESS$]
 			</dt>
 			<dd>
 				<liferay-ui:message key="the-address-of-the-email-recipient" />
+			</dd>
+			<dt>
+				[$TO_NAME$]
+			</dt>
+			<dd>
+				<liferay-ui:message key="the-name-of-the-email-recipient" />
 			</dd>
 		</dl>
 	</div>

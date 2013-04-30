@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
-
 String tabs1 = ParamUtil.getString(request, "tabs1", "general");
+
+String redirect = ParamUtil.getString(request, "redirect");
 
 Calendar calendar = (Calendar)request.getAttribute(WebKeys.CALENDAR);
 

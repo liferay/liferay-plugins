@@ -327,21 +327,13 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, "calendarNotificationTemplateId");
 
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
-		String notificationTypeString = ParamUtil.getString(
-			actionRequest, "notificationType");
-		String notificationTemplateTypeString = ParamUtil.getString(
-			actionRequest, "notificationTemplateType");
+		NotificationType notificationType = NotificationType.parse(
+			ParamUtil.getString(actionRequest, "notificationType"));
+		NotificationTemplateType notificationTemplateType =
+			NotificationTemplateType.parse(
+				ParamUtil.getString(actionRequest, "notificationTemplateType"));
 		String subject = ParamUtil.getString(actionRequest, "subject");
 		String body = ParamUtil.getString(actionRequest, "body");
-
-		NotificationType notificationType = NotificationType.parse(
-			notificationTypeString);
-
-		NotificationTemplateType notificationTemplateType =
-			NotificationTemplateType.parse(notificationTemplateTypeString);
-
-		String typeSettings = getNotificationTemplateSettings(
-			actionRequest, notificationType);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarNotificationTemplate.class.getName(), actionRequest);
@@ -349,14 +341,18 @@ public class CalendarPortlet extends MVCPortlet {
 		if (calendarNotificationTemplateId <= 0) {
 			CalendarNotificationTemplateServiceUtil.
 				addCalendarNotificationTemplate(
-					calendarId, notificationType, notificationTemplateType,
-					subject, body, typeSettings, serviceContext);
+					calendarId, notificationType,
+					getNotificationTypeSettings(
+						actionRequest, notificationType),
+					notificationTemplateType, subject, body, serviceContext);
 		}
 		else {
 			CalendarNotificationTemplateServiceUtil.
 				updateCalendarNotificationTemplate(
-					calendarNotificationTemplateId, subject, body, typeSettings,
-					serviceContext);
+					calendarNotificationTemplateId,
+					getNotificationTypeSettings(
+						actionRequest, notificationType),
+					subject, body, serviceContext);
 		}
 	}
 
@@ -549,25 +545,26 @@ public class CalendarPortlet extends MVCPortlet {
 			year, month, day, hour, minute, 0, 0, getTimeZone(portletRequest));
 	}
 
-	protected String getNotificationTemplateSettings(
-			ActionRequest actionRequest, NotificationType notificationType) {
+	protected String getNotificationTypeSettings(
+		ActionRequest actionRequest, NotificationType notificationType) {
 
-		UnicodeProperties typeSettingsProperties = new UnicodeProperties(true);
+		UnicodeProperties notificationTypeSettingsProperties =
+			new UnicodeProperties(true);
 
 		if (notificationType == NotificationType.EMAIL) {
 			String fromAddress = ParamUtil.getString(
 				actionRequest, "fromAddress");
 			String fromName = ParamUtil.getString(actionRequest, "fromName");
 
-			typeSettingsProperties.put(
+			notificationTypeSettingsProperties.put(
 				CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS,
 				fromAddress);
-			typeSettingsProperties.put(
+			notificationTypeSettingsProperties.put(
 				CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME,
 				fromName);
 		}
 
-		return typeSettingsProperties.toString();
+		return notificationTypeSettingsProperties.toString();
 	}
 
 	protected String getRecurrence(ActionRequest actionRequest) {

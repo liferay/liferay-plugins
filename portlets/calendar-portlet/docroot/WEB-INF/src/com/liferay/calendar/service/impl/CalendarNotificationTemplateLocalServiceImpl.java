@@ -35,15 +35,13 @@ public class CalendarNotificationTemplateLocalServiceImpl
 
 	public CalendarNotificationTemplate addCalendarNotificationTemplate(
 			long userId, long calendarId, NotificationType notificationType,
+			String notificationTypeSettings,
 			NotificationTemplateType notificationTemplateType, String subject,
-			String body, String notificationTypeSettings,
-			ServiceContext serviceContext)
+			String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
-
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
-
 		Date now = new Date();
 
 		long calendarNotificationTemplateId = counterLocalService.increment();
@@ -64,12 +62,12 @@ public class CalendarNotificationTemplateLocalServiceImpl
 		calendarNotificationTemplate.setCalendarId(calendarId);
 		calendarNotificationTemplate.setNotificationType(
 			notificationType.getValue());
+		calendarNotificationTemplate.setNotificationTypeSettings(
+			notificationTypeSettings);
 		calendarNotificationTemplate.setNotificationTemplateType(
 			notificationTemplateType.getValue());
 		calendarNotificationTemplate.setSubject(subject);
 		calendarNotificationTemplate.setBody(body);
-		calendarNotificationTemplate.setNotificationTypeSettings(
-			notificationTypeSettings);
 
 		return calendarNotificationTemplatePersistence.update(
 			calendarNotificationTemplate);
@@ -86,8 +84,9 @@ public class CalendarNotificationTemplateLocalServiceImpl
 	}
 
 	public CalendarNotificationTemplate updateCalendarNotificationTemplate(
-			long calendarNotificationTemplateId, String subject, String body,
-			String notificationTypeSettings, ServiceContext serviceContext)
+			long calendarNotificationTemplateId,
+			String notificationTypeSettings, String subject, String body,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarNotificationTemplate calendarNotificationTemplate =

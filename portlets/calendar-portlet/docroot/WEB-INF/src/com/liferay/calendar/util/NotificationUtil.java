@@ -56,7 +56,9 @@ import java.util.Map;
  */
 public class NotificationUtil {
 
-	public static User getDefaultSender(Calendar calendar) throws Exception {
+	public static User getDefaultSenderUser(Calendar calendar)
+		throws Exception {
+
 		CalendarResource calendarResource = calendar.getCalendarResource();
 
 		User user = UserLocalServiceUtil.getDefaultUser(
@@ -102,15 +104,15 @@ public class NotificationUtil {
 			defaultTemplate);
 	}
 
-	public static String getTemplateProperty(
+	public static String getTemplatePropertyValue(
 		CalendarNotificationTemplate calendarNotificationTemplate,
 		String propertyName) {
 
-		return getTemplateProperty(
+		return getTemplatePropertyValue(
 			calendarNotificationTemplate, propertyName, StringPool.BLANK);
 	}
 
-	public static String getTemplateProperty(
+	public static String getTemplatePropertyValue(
 		CalendarNotificationTemplate calendarNotificationTemplate,
 		String propertyName, String defaultValue) {
 
@@ -187,19 +189,21 @@ public class NotificationUtil {
 					calendarBooking.getSecondReminderNotificationType();
 			}
 
+			if (notificationType == null) {
+				continue;
+			}
+
+			NotificationSender notificationSender =
+				NotificationSenderFactory.getNotificationSender(
+					notificationType.toString());
+
 			NotificationTemplateContext notificationTemplateContext =
 				NotificationTemplateContextFactory.getInstance(
 					notificationType, NotificationTemplateType.REMINDER,
 					calendarBooking, user);
 
-			if (notificationType != null) {
-				NotificationSender notificationSender =
-					NotificationSenderFactory.getNotificationSender(
-						notificationType.toString());
-
-				notificationSender.sendNotification(
-					notificationRecipient, notificationTemplateContext);
-			}
+			notificationSender.sendNotification(
+				notificationRecipient, notificationTemplateContext);
 		}
 	}
 
@@ -211,22 +215,22 @@ public class NotificationUtil {
 		return StringUtil.replace(
 				notificationTemplate,
 			new String[] {
-				"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
-				"[$BOOKING_END_DATE$]", "[$BOOKING_TITLE$]", "[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]", "[$PORTAL_URL$]", "[$TO_ADDRESS$]",
-				"[$TO_NAME$]", "[$PORTLET_NAME$]"
+				"[$BOOKING_END_DATE$]", "[$BOOKING_LOCATION$]",
+				"[$BOOKING_START_DATE$]", "[$BOOKING_TITLE$]",
+				"[$FROM_ADDRESS$]", "[$FROM_NAME$]", "[$PORTAL_URL$]",
+				"[$PORTLET_NAME$]", "[$TO_ADDRESS$]", "[$TO_NAME$]"
 			},
 			new String[] {
+				GetterUtil.getString(notificationContext.get("endTime")),
 				GetterUtil.getString(notificationContext.get("location")),
 				GetterUtil.getString(notificationContext.get("startTime")),
-				GetterUtil.getString(notificationContext.get("endTime")),
 				GetterUtil.getString(notificationContext.get("title")),
 				GetterUtil.getString(notificationContext.get("fromAddress")),
 				GetterUtil.getString(notificationContext.get("fromName")),
 				GetterUtil.getString(notificationContext.get("portalUrl")),
-				GetterUtil.getString(notificationContext.get("toAddress")),
-				GetterUtil.getString(notificationContext.get("toName")),
 				GetterUtil.getString(notificationContext.get("portletName")),
+				GetterUtil.getString(notificationContext.get("toAddress")),
+				GetterUtil.getString(notificationContext.get("toName"))
 			});
 	}
 

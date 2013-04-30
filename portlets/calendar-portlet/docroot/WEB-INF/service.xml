@@ -171,10 +171,10 @@
 
 		<column name="calendarId" type="long" />
 		<column name="notificationType" type="String" />
+		<column name="notificationTypeSettings" type="String" />
 		<column name="notificationTemplateType" type="String" />
 		<column name="subject" type="String" />
 		<column name="body" type="String" />
-		<column name="notificationTypeSettings" type="String" />
 
 		<!-- Finder methods -->
 
