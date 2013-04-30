@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class SubscriptionManagerUtil {
 
-	public static List<MBCategory> getCategories(
+	public static List<MBCategory> getMBCategories(
 			long companyId, String name, int start, int end)
 		throws SystemException {
 
@@ -58,7 +58,7 @@ public class SubscriptionManagerUtil {
 			dynamicQuery, start, end);
 	}
 
-	public static int getCategoriesCount(long companyId, String name)
+	public static int getMBCategoriesCount(long companyId, String name)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(

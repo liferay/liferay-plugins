@@ -4,14 +4,10 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Message Boards Subscription Manager</display-name>
-		<portlet-class>com.liferay.mbsubscriptionmanager.admin.portlet.SubscriptionManagerPortlet</portlet-class>
-		<init-param>
-			<name>jsp-path</name>
-			<value>/admin/</value>
-		</init-param>
+		<portlet-class>com.liferay.mbsubscriptionmanager.portlet.SubscriptionManagerPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/admin/view.jsp</value>
+			<value>/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
