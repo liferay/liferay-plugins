@@ -8,12 +8,12 @@
 		</property>
 		<property name="placeholderPrefix" value="${jdbc." />
 	</bean>
-    <bean id="jiraDataSourceTarget" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.jira.driverClassName}" />
-        <property name="url" value="${jdbc.jira.url}" />
-        <property name="username" value="${jdbc.jira.username}" />
-        <property name="password" value="${jdbc.jira.password}" />
-    </bean>
+	<bean id="jiraDataSourceTarget" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.jira.driverClassName}" />
+		<property name="url" value="${jdbc.jira.url}" />
+		<property name="username" value="${jdbc.jira.username}" />
+		<property name="password" value="${jdbc.jira.password}" />
+	</bean>
 	<!--<bean id="jiraDataSourceTarget" class="com.liferay.portal.spring.jndi.JndiObjectFactoryBean" lazy-init="true">
 		<property name="jndiName">
 			<value>jdbc/JIRAPool</value>

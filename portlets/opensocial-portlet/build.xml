@@ -162,9 +162,9 @@
 			<replacetoken>"profile" : {</replacetoken>
 			<replacevalue><![CDATA[
 				"home" : {
-			      "isOnlyVisible" : true,
-			      "urlTemplate" : "%scheme%://%host%/opensocial-portlet/gadgets/home{var}"
-			    },
+					"isOnlyVisible" : true,
+					"urlTemplate" : "%scheme%://%host%/opensocial-portlet/gadgets/home{var}"
+				},
 				"profile" : {]]>
 			</replacevalue>
 		</replace>
