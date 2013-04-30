@@ -27,11 +27,11 @@ portletURL.setParameter("mbCategoryId", String.valueOf(mbCategoryId));
 
 request.setAttribute("edit_subscriptions.jsp-portletURL", portletURL);
 
-MBCategory category = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
+MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 %>
 
 <liferay-ui:header
-	title="<%= category.getName() %>"
+	title="<%= mbCategory.getName() %>"
 />
 
 <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
@@ -87,7 +87,6 @@ MBCategory category = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 					align="right"
 					path="/subscription_action.jsp"
 				/>
-
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator />
@@ -98,21 +97,6 @@ MBCategory category = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 <aui:script>
 	Liferay.provide(
 		window,
-		'<portlet:namespace />unsubscribeUsers',
-		function() {
-			var userIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-
-			if (userIds) {
-				document.<portlet:namespace />fm.<portlet:namespace />userIds.value = userIds;
-
-				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="unsubscribeUsers"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
-			}
-		},
-		['liferay-util-list-fields']
-	);
-
-	Liferay.provide(
-		window,
 		'<portlet:namespace />subscribeUsers',
 		function() {
 			var userIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
@@ -121,6 +105,21 @@ MBCategory category = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 				document.<portlet:namespace />fm.<portlet:namespace />userIds.value = userIds;
 
 				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="subscribeUsers"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
+			}
+		},
+		['liferay-util-list-fields']
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />unsubscribeUsers',
+		function() {
+			var userIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+
+			if (userIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />userIds.value = userIds;
+
+				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="unsubscribeUsers"><portlet:param name="redirect" value="<%= portletURL.toString() %>" /></portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']
