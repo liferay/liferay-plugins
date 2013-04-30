@@ -39,28 +39,28 @@ String keywords = ParamUtil.getString(request, "keywords");
 		className="com.liferay.portlet.messageboards.model.MBCategory"
 		escapedModel="<%= true %>"
 		keyProperty="categoryId"
-		modelVar="curCategory"
+		modelVar="mbCategory"
 	>
 		<liferay-portlet:renderURL var="editSubscriptionsURL">
 			<portlet:param name="mvcPath" value="/edit_subscriptions.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="mbCategoryId" value="<%= String.valueOf(curCategory.getCategoryId()) %>" />
+			<portlet:param name="mbCategoryId" value="<%= String.valueOf(mbCategory.getCategoryId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container-column-text
 			href="<%= editSubscriptionsURL %>"
 			name="category"
-			value="<%= curCategory.getName() %>"
+			value="<%= mbCategory.getName() %>"
 		/>
 
 		<liferay-ui:search-container-column-text
 			name="context"
-			value="<%= StringUtil.shorten(_getCategoryBreadcrumb(curCategory), 512) %>"
+			value="<%= StringUtil.shorten(_getCategoryBreadcrumb(mbCategory), 512) %>"
 		/>
 
 		<liferay-ui:search-container-column-text
 			name="subscribers"
-			value="<%= StringUtil.shorten(_getSubscribers(curCategory), 512) %>"
+			value="<%= StringUtil.shorten(_getSubscribers(mbCategory), 512) %>"
 		/>
 
 		<liferay-ui:search-container-column-jsp
@@ -73,14 +73,14 @@ String keywords = ParamUtil.getString(request, "keywords");
 </liferay-ui:search-container>
 
 <%!
-private String _getCategoryBreadcrumb(MBCategory category) throws Exception {
+private String _getCategoryBreadcrumb(MBCategory mbCategory) throws Exception {
 	StringBundler sb = new StringBundler();
 
-	List<MBCategory> ancestorCategories = category.getAncestors();
+	List<MBCategory> ancestorMBCategories = mbCategory.getAncestors();
 
-	Collections.reverse(ancestorCategories);
+	Collections.reverse(ancestorMBCategories);
 
-	Iterator itr = ancestorCategories.iterator();
+	Iterator itr = ancestorMBCategories.iterator();
 
 	while (itr.hasNext()) {
 		MBCategory mbCategory = (MBCategory)itr.next();
@@ -95,10 +95,10 @@ private String _getCategoryBreadcrumb(MBCategory category) throws Exception {
 	return sb.toString();
 }
 
-private String _getSubscribers(MBCategory category) throws Exception {
+private String _getSubscribers(MBCategory mbCategory) throws Exception {
 	StringBundler sb = new StringBundler();
 
-	List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(category.getCompanyId(), MBCategory.class.getName(), category.getCategoryId());
+	List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(mbCategory.getCompanyId(), MBCategory.class.getName(), mbCategory.getCategoryId());
 
 	Iterator itr = subscriptions.iterator();
 
