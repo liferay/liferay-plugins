@@ -21,7 +21,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 long mbCategoryId = ParamUtil.getLong(request, "mbCategoryId");
 
-portletURL.setParameter("mvcPath", "/admin/edit_subscriptions.jsp");
+portletURL.setParameter("mvcPath", "/edit_subscriptions.jsp");
 portletURL.setParameter("redirect", redirect);
 portletURL.setParameter("mbCategoryId", String.valueOf(mbCategoryId));
 
@@ -85,7 +85,7 @@ MBCategory category = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
-					path="/admin/subscription_action.jsp"
+					path="/subscription_action.jsp"
 				/>
 
 			</liferay-ui:search-container-row>

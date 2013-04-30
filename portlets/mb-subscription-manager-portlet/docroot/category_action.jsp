@@ -31,7 +31,7 @@ MBCategory category = (MBCategory)row.getObject();
 	<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= viewURL %>" />
 
 	<liferay-portlet:renderURL var="editSubscriptionsURL">
-		<portlet:param name="mvcPath" value="/admin/edit_subscriptions.jsp" />
+		<portlet:param name="mvcPath" value="/edit_subscriptions.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="mbCategoryId" value="<%= String.valueOf(category.getCategoryId()) %>" />
 	</liferay-portlet:renderURL>

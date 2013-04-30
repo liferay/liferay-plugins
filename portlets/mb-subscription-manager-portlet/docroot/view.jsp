@@ -31,8 +31,8 @@ String keywords = ParamUtil.getString(request, "keywords");
 	iteratorURL="<%= portletURL %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= SubscriptionManagerUtil.getCategories(themeDisplay.getCompanyId(), keywords, searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= SubscriptionManagerUtil.getCategoriesCount(themeDisplay.getCompanyId(), keywords) %>"
+		results="<%= SubscriptionManagerUtil.getMBCategories(themeDisplay.getCompanyId(), keywords, searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= SubscriptionManagerUtil.getMBCategoriesCount(themeDisplay.getCompanyId(), keywords) %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -42,7 +42,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 		modelVar="curCategory"
 	>
 		<liferay-portlet:renderURL var="editSubscriptionsURL">
-			<portlet:param name="mvcPath" value="/admin/edit_subscriptions.jsp" />
+			<portlet:param name="mvcPath" value="/edit_subscriptions.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="mbCategoryId" value="<%= String.valueOf(curCategory.getCategoryId()) %>" />
 		</liferay-portlet:renderURL>
@@ -65,7 +65,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
-			path="/admin/category_action.jsp"
+			path="/category_action.jsp"
 		/>
 	</liferay-ui:search-container-row>
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mbsubscriptionmanager.admin.portlet;
+package com.liferay.mbsubscriptionmanager.portlet;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
@@ -34,15 +34,15 @@ public class SubscriptionManagerPortlet extends MVCPortlet {
 
 		long mbCategoryId = ParamUtil.getLong(actionRequest, "mbCategoryId");
 
-		MBCategory category = MBCategoryLocalServiceUtil.getMBCategory(
+		MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(
 			mbCategoryId);
 
 		long[] userIds = ParamUtil.getLongValues(actionRequest, "userIds");
 
 		for (long userId : userIds) {
 			SubscriptionLocalServiceUtil.addSubscription(
-				userId, category.getGroupId(), MBCategory.class.getName(),
-				category.getCategoryId());
+				userId, mbCategory.getGroupId(), MBCategory.class.getName(),
+				mbCategory.getCategoryId());
 		}
 	}
 
@@ -52,15 +52,15 @@ public class SubscriptionManagerPortlet extends MVCPortlet {
 
 		long mbCategoryId = ParamUtil.getLong(actionRequest, "mbCategoryId");
 
-		MBCategory category = MBCategoryLocalServiceUtil.getMBCategory(
+		MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(
 			mbCategoryId);
 
 		long[] userIds = ParamUtil.getLongValues(actionRequest, "userIds");
 
 		for (long userId : userIds) {
 			if (!SubscriptionLocalServiceUtil.isSubscribed(
-					category.getCompanyId(), userId, MBCategory.class.getName(),
-					mbCategoryId)) {
+					mbCategory.getCompanyId(), userId,
+					MBCategory.class.getName(), mbCategoryId)) {
 
 				continue;
 			}
