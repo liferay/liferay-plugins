@@ -32,6 +32,10 @@ catch (NoSuchRoleException nsre) {
 <c:if test="<%= themeDisplay.isSignedIn() && socialOfficeUser %>">
 	<liferay-util:html-top>
 		<style type="text/css" media="screen">
+			.portlet-dockbar {
+				overflow: hidden;
+			}
+
 			#dockbar {
 				margin-top: -31px;
 				opacity: 0;
@@ -131,7 +135,8 @@ catch (NoSuchRoleException nsre) {
 	<aui:script use="aui-base, event">
 		var defaultGoTo = '<liferay-ui:message key="go-to" /> ' + '\u25BE';
 
-		var body = A.one('body');
+		var html = A.one('html');
+		var body = html.one('body');
 
 		var userBar = A.one('#so-portlet-user-bar');
 		var userBar_Active = false;
@@ -140,69 +145,53 @@ catch (NoSuchRoleException nsre) {
 		var notifications = userBar.one('.user-notification-events');
 		var sitesResultContainer = userBar.one('.so-portlet-sites .portlet-body');
 
-		var userBarMenuManager = function (params) {
-			if (params.node != undefined) {
-				var node = params.node;
+		var toggleUserBarMenus = function (params) {
+			var parentNode = params.node;
+
+			if (!params.changeClass) {
+				params.changeClass = 'menu-active';
 			} else {
-				var node = userBar;
+				parentNode.setAttribute('change-class', params.changeClass);
 			};
 
-			if (params.after != undefined) {
-				var after = params.after;
-			} else {
-				var after = null;
+			if (!params.eventType) {
+				params.eventType = 'click';
 			};
 
-			if (params.intent != undefined) {
-				var intent = params.intent;
-			} else {
-				var intent = 'normal';
+			if (!params.intent) {
+				params.intent = 'normal';
 			};
 
-			if (params.trigger != undefined) {
-				var trigger = node.one(params.trigger.toString());
+			if (!params.target) {
+				params.target = parentNode;
 			} else {
-				var trigger = node.one('a');
+				parentNode.setAttribute('target-menu', params.target);
+
+				params.target = parentNode.one(params.target);
 			};
 
-			if (params.target != undefined) {
-				var target = node.one(params.target);
-				node.setAttribute('target', params.target);
-			} else {
-				var target = node;
+			if (!params.trigger) {
+				params.trigger = 'a';
 			};
 
-			if (params.changeClass != undefined) {
-				var changeClass = params.changeClass;
-
-				node.setAttribute('changeClass', changeClass);
-			} else {
-				var changeClass = 'menu-active';
-			};
-
-			if (params.eventType != undefined) {
-				var eventType = params.eventType;
-			} else {
-				var eventType = 'click';
-			};
+			params.trigger = parentNode.one(params.trigger);
 
 			var closeAction = function () {
 				if (userBar_Active && userBar.one('.menu-active')) {
 					userBar.all('.menu-active').each(
 						function (node) {
-							if (node.hasAttribute('target')) {
-								var target = node.one(node.getAttribute('target'));
-							} else {
-								var target = node;
-							};
+							var target = node;
+							var changeClass = 'menu-active';
 
-							if (node.hasAttribute('changeClass')) {
-								var changeClass = node.getAttribute('changeClass').toString();
-							} else {
-								var changeClass = 'menu-active';
-							};
+							if (node.hasAttribute('target-menu')) {
+								var target = node.one(node.getAttribute('target-menu'));
+							}
 
-							if (!target.hasClass('changeClass')) {
+							if (node.hasAttribute('change-class')) {
+								var changeClass = node.getAttribute('change-class');
+							}
+
+							if (!target.hasClass(changeClass)) {
 								target.addClass(changeClass);
 							} else {
 								target.removeClass(changeClass);
@@ -214,42 +203,39 @@ catch (NoSuchRoleException nsre) {
 				}
 			};
 
-			if (intent != 'close') {
-				node.on(
+			if (params.intent != 'close') {
+				parentNode.on(
 					'click', function (event) {
 						event.stopPropagation();
 					}
 				);
 
-				trigger.on(
-					eventType,
+				params.trigger.on(
+					params.eventType,
 					function(event) {
 						event.preventDefault();
 						event.stopPropagation();
 
-						closeAction(intent);
+						closeAction();
 
-						if (intent == 'remove') {
-							target.removeClass(changeClass)
+						if (params.intent == 'remove') {
+							params.target.removeClass(params.changeClass)
 						} else {
-							target.addClass(changeClass);
+							params.target.addClass(params.changeClass);
 						}
 
 						if (!userBar_Active) {
 							userBar_Active = true;
+
 							userBar.addClass('user-bar-active');
 						}
 
-						if (after != null) {
-							after;
-						}
-
-						node.addClass('menu-active');
+						parentNode.addClass('menu-active');
 					}
 				);
 			} else {
-				node.on(
-					eventType,
+				parentNode.on(
+					params.eventType,
 					function () {
 						if (userBar_Active) {
 							closeAction();
@@ -262,51 +248,55 @@ catch (NoSuchRoleException nsre) {
 			};
 		};
 
-		new userBarMenuManager({
-			node: userBar.one('.go-to'),
-			trigger: '.search input',
-			target: '.portlet-body',
+		new toggleUserBarMenus({
 			changeClass: 'search-focus',
 			eventType: 'focus',
-			after: function () {
-				// body...
-			}
+			node: userBar.one('.go-to'),
+			target: '.portlet-body',
+			trigger: '.search input'
 		});
 
-		new userBarMenuManager({
-			node: userBar.one('.notifications-menu'),
+		new toggleUserBarMenus({
+			changeClass: 'aui-overlaycontext-hidden',
 			intent: 'remove',
-			trigger: '.user-notification-events-icon',
+			node: userBar.one('.notifications-menu'),
 			target: '.user-notification-events',
-			changeClass: 'aui-overlaycontext-hidden'
+			trigger: '.user-notification-events-icon'
 		});
 
-		new userBarMenuManager({
+		new toggleUserBarMenus({
 			node: userBar.one('.user-info')
 		});
 
-		new userBarMenuManager({
+		new toggleUserBarMenus({
 			node: userBar.one('.config-item')
 		});
 
-		new userBarMenuManager({
-			node: A.one('html'),
-			intent: 'close'
+		new toggleUserBarMenus({
+			intent: 'close',
+			node: html
 		});
 
 		var searchInput = userBar.one('.search input');
 
-		searchInput.set('value', defaultGoTo);
+		if (!userBar_Active) {
+			searchInput.set('value', defaultGoTo);
 
-		searchInput.on(
-			['focus', 'blur'],
+			html.on(
+				'click',
+				function (event) {
+					searchInput.set('value', defaultGoTo);
+				}
+			);
+		};
+
+		sitesResultContainer.on(
+			'click',
 			function (event) {
-				var node = searchInput;
-
-				if (node.get('value') == defaultGoTo) {
-					node.set('value', '');
-				} else if (node.get('value') == '' || !userBar_Active) {
-					node.set('value', defaultGoTo);
+				if (searchInput.get('value') == defaultGoTo && userBar_Active) {
+					searchInput.set('value', '');
+				} else if (searchInput.get('value') == '' && !userBar_Active) {
+					searchInput.set('value', defaultGoTo);
 				}
 			}
 		);
