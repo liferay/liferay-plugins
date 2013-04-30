@@ -542,7 +542,7 @@ public class CalendarBookingLocalServiceImpl
 		User user = userPersistence.findByPrimaryKey(userId);
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
-		Calendar calendar = calendarBooking.getCalendar();
+		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTime);

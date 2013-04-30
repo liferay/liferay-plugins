@@ -111,7 +111,7 @@ public class CalendarActivityInterpreter extends BaseSocialActivityInterpreter {
 			permissionChecker, calendarBooking.getCalendarId(), actionId);
 	}
 
-	private static final String[] _CLASS_NAMES = {
-		CalendarBooking.class.getName()};
+	private static final String[] _CLASS_NAMES =
+		{CalendarBooking.class.getName()};
 
 }
