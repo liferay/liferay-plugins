@@ -85,14 +85,14 @@ public abstract class SOSocialActivityInterpreter
 		long millisAgo = System.currentTimeMillis() - milliseconds;
 
 		if (millisAgo <= Time.MINUTE) {
-			return "about-a-minute-ago";
+			return LanguageUtil.get(locale, "about-a-minute-ago");
 		}
 		else if (millisAgo < Time.HOUR) {
 			return LanguageUtil.format(
 				locale, "x-minutes-ago", (millisAgo / Time.MINUTE));
 		}
 		else if ((millisAgo / Time.HOUR) == 1) {
-			return "about-an-hour-ago";
+			return LanguageUtil.get(locale, "about-an-hour-ago");
 		}
 		else if ((millisAgo < Time.DAY) || (daysBetween == 0)) {
 			return LanguageUtil.format(
