@@ -196,13 +196,17 @@ public abstract class SOSocialActivityInterpreter
 	protected String wrapLink(String link, String iconPath, String text) {
 		StringBundler sb = new StringBundler(5);
 
+		sb.append("<a href=\"");
+		sb.append(link);
+		sb.append("\">");
 		sb.append("<span><img class=\"icon\" src=\"");
 		sb.append(iconPath);
 		sb.append("\"></span><span>");
 		sb.append(text);
 		sb.append("</span>");
+		sb.append("</a>");
 
-		return wrapLink(link, sb.toString());
+		return sb.toString();
 	}
 
 	private static final String _SELECTOR = "SO";
