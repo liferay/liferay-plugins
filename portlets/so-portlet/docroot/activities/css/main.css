@@ -1,6 +1,8 @@
 .so-portlet-activities {
 	.activity-item {
+		border-bottom: 1px solid #E7E7E7;
 		min-height: 45px;
+		padding: 1em;
 	}
 
 	.user-portrait {
@@ -18,25 +20,137 @@
 				max-width: 45px;
 			}
 		}
-
-		.icon {
-			bottom: 0;
-			position: absolute;
-			right: 0;
-		}
 	}
 
 	.activity-data {
 		margin-left: 55px;
 	}
 
-	.activity-body a {
-		border-right: 1px solid #C7D0DA;
-		padding-right: 5px;
+	.activity-header {
+		margin-bottom: .4em;
 
-		&:last-child {
+		a {
+			font-weight: bold;
+		}
+	}
+
+	.activity-time {
+		color: #999;
+		float: right;
+		font-size: .9em;
+		line-height: .9em;
+		margin-left: 1em;
+	}
+
+	.activity-action {
+		color: #333333;
+	}
+
+	.activity-body {
+		border: 1px solid #E7E7E7;
+		margin: .8em 0 0;
+		padding: .6em .9em;
+
+		.icon {
+			height: 16px;
+			width: 16px;
+		}
+
+		.title {
 			border-right-width: 0;
+			display: block;
+			font-weight: bold;
+			overflow: hidden;
+			padding-bottom: .4em;
+
+			.event-title {
+				float: left;
+				line-height: 1.5em;
+			}
+
+			.date {
+				float: right;
+				line-height: 1.5em;
+				padding-right: 0;
+			}
+		}
+
+		span {
+			display: inline-block;
+			line-height: 1em;
+			padding-right: 10px;
+			vertical-align: middle;
+		}
+	}
+
+	.activity-body.document {
+		min-height: 75px;
+		padding: 0;
+		position: relative;
+
+		.document-thumbnail {
+			width: 75px;
+			overflow: hidden;
 			padding-right: 0;
+			position: absolute;
+
+			img {
+				height: 75px;
+			}
+		}
+
+		.document-container {
+			margin: .6em .9em .6em 85px;
+		}
+
+		.title {
+			float: left;
+		}
+
+		.version {
+			color: #8F0920;
+			float: right;
+		}
+
+		.document-content {
+			clear: both;
+		}
+	}
+
+	.tasks {
+		&.low {
+			border-left: 6px solid #E7E7E7;
+		}
+
+		&.normal {
+			border-left: 6px solid #008C00;
+		}
+
+		&.high {
+			border-left: 6px solid #B20000;
+		}
+
+		.activity-body {
+			border-left-width: 0;
+		}
+	}
+
+	.activity-footer-toolbar {
+		padding: .5em 1em;
+		background: #EAEAEA;
+
+		span {
+			border-left: 1px solid #2571AD;
+			padding: 0 .5em 0 .6em;
+
+			&:first-child {
+				border-left-width: 0;
+				padding-left: 0;
+			}
+		}
+
+		a {
+			font-size: .9em;
 		}
 	}
 }
