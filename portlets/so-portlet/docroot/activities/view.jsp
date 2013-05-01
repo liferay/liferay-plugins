@@ -27,37 +27,38 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
-
-List<SocialActivity> activities = null;
-int total = 0;
 %>
 
 <c:choose>
 	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK()) && !layout.isPublicLayout() %>">
 		<liferay-ui:tabs
-			names="connections,following,my-sites,me"
+			names="all,connections,following,my-sites"
 			url="<%= portletURL.toString() %>"
 			value="<%= tabs1 %>"
 		/>
 
 		<%
+		List<SocialActivitySet> results = null;
+		int total = 0;
+
 		if (tabs1.equals("connections")) {
-			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
 		}
 		else if (tabs1.equals("following")) {
-			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 		}
 		else if (tabs1.equals("my-sites")) {
-			activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(user.getUserId());
+			results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(themeDisplay.getUserId());
 		}
 		else {
-			activities = SocialActivityLocalServiceUtil.getUserActivities(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(user.getUserId());
+			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(themeDisplay.getUserId());
 		}
 
+		searchContainer.setResults(results);
 		searchContainer.setTotal(total);
 		%>
 
@@ -66,15 +67,10 @@ int total = 0;
 	<c:otherwise>
 
 		<%
-		if (group.isUser()) {
-			activities = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
-		}
-		else {
-			activities = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
-		}
+		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+		total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
 
+		searchContainer.setResults(results);
 		searchContainer.setTotal(total);
 		%>
 
@@ -82,7 +78,7 @@ int total = 0;
 	</c:otherwise>
 </c:choose>
 
-<c:if test="<%= (!activities.isEmpty()) %>">
+<c:if test="<%= (!results.isEmpty()) %>">
 	<liferay-ui:search-paginator
 		searchContainer="<%= searchContainer %>"
 		type="article"
