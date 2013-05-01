@@ -78,5 +78,19 @@ public class FooServiceSoap {
 		}
 	}
 
+	public static com.liferay.portal.model.Group[] getUserSites()
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.model.Group> returnValue = FooServiceUtil.getUserSites();
+
+			return returnValue.toArray(new com.liferay.portal.model.Group[returnValue.size()]);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(FooServiceSoap.class);
 }

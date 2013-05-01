@@ -61,6 +61,12 @@ public class FooServiceWrapper implements FooService,
 		return _fooService.getUser(userId);
 	}
 
+	public java.util.List<com.liferay.portal.model.Group> getUserSites()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _fooService.getUserSites();
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
