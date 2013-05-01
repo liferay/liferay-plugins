@@ -52,6 +52,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
 		<finder name="G_U_T" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="userId" />
