@@ -89,10 +89,10 @@
 		position: relative;
 
 		.document-thumbnail {
-			width: 75px;
 			overflow: hidden;
 			padding-right: 0;
 			position: absolute;
+			width: 75px;
 
 			img {
 				height: 75px;
@@ -136,8 +136,8 @@
 	}
 
 	.activity-footer-toolbar {
-		padding: .5em 1em;
 		background: #EAEAEA;
+		padding: .5em 1em;
 
 		span {
 			border-left: 1px solid #2571AD;
