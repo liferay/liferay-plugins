@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.countByRelation">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
+			FROM
+				SocialActivitySet
+			INNER JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				(SocialRelation.userId1 = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.countByRelationType">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
+			FROM
+				SocialActivitySet
+			INNER JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				(SocialRelation.userId1 = ?) AND
+				(SocialRelation.type_ = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.countByUser">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
+			FROM
+				SocialActivitySet
+			WHERE
+				(
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_Orgs
+						INNER JOIN
+							Users_Orgs ON
+								Users_Orgs.organizationId = Groups_Orgs.organizationId
+						WHERE
+							Users_Orgs.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_UserGroups
+						INNER JOIN
+							Users_UserGroups ON
+								Users_UserGroups.userGroupId = Groups_UserGroups.userGroupId
+						WHERE
+							Users_UserGroups.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Users_Groups
+						WHERE
+							userId = ?
+					) OR
+					activitySetId IN (
+						SELECT
+							activitySetId
+						FROM
+							SocialActivitySet
+						INNER JOIN
+							SocialRelation ON
+								(SocialRelation.userId2 = SocialActivitySet.userId)
+						WHERE
+							(SocialRelation.userId1 = ?)
+					) OR (
+						userId = ?
+					)
+				)
+		]]>
+	</sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.countByUserGroups">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT SocialActivitySet.activitySetId) AS COUNT_VALUE
+			FROM
+				SocialActivitySet
+			WHERE
+				(
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_Orgs
+						INNER JOIN
+							Users_Orgs ON
+								Users_Orgs.organizationId = Groups_Orgs.organizationId
+						WHERE
+							Users_Orgs.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_UserGroups
+						INNER JOIN
+							Users_UserGroups ON
+								Users_UserGroups.userGroupId = Groups_UserGroups.userGroupId
+						WHERE
+							Users_UserGroups.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Users_Groups
+						WHERE
+							userId = ?
+					)
+				)
+		]]>
+	</sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.findByRelation">
+		<![CDATA[
+			SELECT
+				DISTINCT {SocialActivitySet.*}
+			FROM
+				SocialActivitySet
+			INNER JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				(SocialRelation.userId1 = ?)
+			ORDER BY
+				SocialActivitySet.modifiedDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.findByRelationType">
+		<![CDATA[
+			SELECT
+				DISTINCT {SocialActivitySet.*}
+			FROM
+				SocialActivitySet
+			INNER JOIN
+				SocialRelation ON
+					(SocialRelation.userId2 = SocialActivitySet.userId)
+			WHERE
+				(SocialRelation.userId1 = ?) AND
+				(SocialRelation.type_ = ?)
+			ORDER BY
+				SocialActivitySet.modifiedDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.findByUser">
+		<![CDATA[
+			SELECT
+				DISTINCT {SocialActivitySet.*}
+			FROM
+				SocialActivitySet
+			WHERE
+				(
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_Orgs
+						INNER JOIN
+							Users_Orgs ON
+								Users_Orgs.organizationId = Groups_Orgs.organizationId
+						WHERE
+							Users_Orgs.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_UserGroups
+						INNER JOIN
+							Users_UserGroups ON
+								Users_UserGroups.userGroupId = Groups_UserGroups.userGroupId
+						WHERE
+							Users_UserGroups.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Users_Groups
+						WHERE
+							userId = ?
+					) OR
+					activitySetId IN (
+						SELECT
+							activitySetId
+						FROM
+							SocialActivitySet
+						INNER JOIN
+							SocialRelation ON
+								(SocialRelation.userId2 = SocialActivitySet.userId)
+						WHERE
+							(SocialRelation.userId1 = ?)
+					) OR (
+						userId = ?
+					)
+				)
+			ORDER BY
+				modifiedDate DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder.findByUserGroups">
+		<![CDATA[
+			SELECT
+				DISTINCT {SocialActivitySet.*}
+			FROM
+				SocialActivitySet
+			WHERE
+				(
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_Orgs
+						INNER JOIN
+							Users_Orgs ON
+								Users_Orgs.organizationId = Groups_Orgs.organizationId
+						WHERE
+							Users_Orgs.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Groups_UserGroups
+						INNER JOIN
+							Users_UserGroups ON
+								Users_UserGroups.userGroupId = Groups_UserGroups.userGroupId
+						WHERE
+							Users_UserGroups.userId = ?
+					) OR
+					groupId IN (
+						SELECT
+							groupId
+						FROM
+							Users_Groups
+						WHERE
+							userId = ?
+					)
+				)
+			ORDER BY
+				modifiedDate DESC
+		]]>
+	</sql>
+</custom-sql>
