@@ -27,6 +27,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
+
+List<SocialActivitySet> results = null;
+int total = 0;
 %>
 
 <c:choose>
@@ -38,9 +41,6 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 		/>
 
 		<%
-		List<SocialActivitySet> results = null;
-		int total = 0;
-
 		if (tabs1.equals("connections")) {
 			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
 			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
