@@ -83,9 +83,9 @@ private String _getCategoryBreadcrumb(MBCategory mbCategory) throws Exception {
 	Iterator itr = ancestorMBCategories.iterator();
 
 	while (itr.hasNext()) {
-		MBCategory mbCategory = (MBCategory)itr.next();
+		MBCategory ancestorMBCategory = (MBCategory)itr.next();
 
-		sb.append(mbCategory.getName());
+		sb.append(ancestorMBCategory.getName());
 
 		if (itr.hasNext()) {
 			sb.append(" &raquo; ");
