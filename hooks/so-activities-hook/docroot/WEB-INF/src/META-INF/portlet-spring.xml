@@ -6,4 +6,5 @@
 	<bean id="com.liferay.so.activities.service.SocialActivityInterpreterLocalService" class="com.liferay.so.activities.service.impl.SocialActivityInterpreterLocalServiceImpl" />
 	<bean id="com.liferay.so.activities.service.SocialActivitySetLocalService" class="com.liferay.so.activities.service.impl.SocialActivitySetLocalServiceImpl" />
 	<bean id="com.liferay.so.activities.service.persistence.SocialActivitySetPersistence" class="com.liferay.so.activities.service.persistence.SocialActivitySetPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.so.activities.service.persistence.SocialActivitySetFinder" class="com.liferay.so.activities.service.persistence.SocialActivitySetFinderImpl" parent="basePersistence" />
 </beans>

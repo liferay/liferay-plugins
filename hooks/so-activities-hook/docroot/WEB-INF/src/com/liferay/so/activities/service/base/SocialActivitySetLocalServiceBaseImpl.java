@@ -42,6 +42,7 @@ import com.liferay.so.activities.service.SocialActivityInterpreterLocalService;
 import com.liferay.so.activities.service.SocialActivityLocalService;
 import com.liferay.so.activities.service.SocialActivitySetLocalService;
 import com.liferay.so.activities.service.persistence.SocialActivityPersistence;
+import com.liferay.so.activities.service.persistence.SocialActivitySetFinder;
 import com.liferay.so.activities.service.persistence.SocialActivitySetPersistence;
 
 import java.io.Serializable;
@@ -372,6 +373,25 @@ public abstract class SocialActivitySetLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the social activity set finder.
+	 *
+	 * @return the social activity set finder
+	 */
+	public SocialActivitySetFinder getSocialActivitySetFinder() {
+		return socialActivitySetFinder;
+	}
+
+	/**
+	 * Sets the social activity set finder.
+	 *
+	 * @param socialActivitySetFinder the social activity set finder
+	 */
+	public void setSocialActivitySetFinder(
+		SocialActivitySetFinder socialActivitySetFinder) {
+		this.socialActivitySetFinder = socialActivitySetFinder;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -587,6 +607,8 @@ public abstract class SocialActivitySetLocalServiceBaseImpl
 	protected SocialActivitySetLocalService socialActivitySetLocalService;
 	@BeanReference(type = SocialActivitySetPersistence.class)
 	protected SocialActivitySetPersistence socialActivitySetPersistence;
+	@BeanReference(type = SocialActivitySetFinder.class)
+	protected SocialActivitySetFinder socialActivitySetFinder;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

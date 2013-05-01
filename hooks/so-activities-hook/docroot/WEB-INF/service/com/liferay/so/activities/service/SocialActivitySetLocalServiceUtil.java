@@ -300,10 +300,65 @@ public class SocialActivitySetLocalServiceUtil {
 				   .getClassActivitySet(userId, classNameId, classPK, type);
 	}
 
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> getGroupActivitySets(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGroupActivitySets(groupId, start, end);
+	}
+
+	public static int getGroupActivitySetsCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGroupActivitySetsCount(groupId);
+	}
+
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> getRelationActivitySets(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRelationActivitySets(userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> getRelationActivitySets(
+		long userId, int type, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRelationActivitySets(userId, type, start, end);
+	}
+
+	public static int getRelationActivitySetsCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRelationActivitySetsCount(userId);
+	}
+
+	public static int getRelationActivitySetsCount(long userId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRelationActivitySetsCount(userId, type);
+	}
+
 	public static com.liferay.so.activities.model.SocialActivitySet getUserActivitySet(
 		long groupId, long userId, int type)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUserActivitySet(groupId, userId, type);
+	}
+
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> getUserActivitySets(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserActivitySets(userId, start, end);
+	}
+
+	public static int getUserActivitySetsCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserActivitySetsCount(userId);
+	}
+
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> getUserGroupsActivitySets(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserGroupsActivitySets(userId, start, end);
+	}
+
+	public static int getUserGroupsActivitySetsCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserGroupsActivitySetsCount(userId);
 	}
 
 	public static void incrementActivityCount(long activitySetId,
