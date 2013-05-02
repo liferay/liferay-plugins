@@ -31,7 +31,7 @@
 
 		<copy todir="${hook.dir}">
 			<fileset
-				dir="${project.dir}/tools/hook_tmpl"
+				dir="${sdk.dir}/tools/hook_tmpl"
 			/>
 		</copy>
 

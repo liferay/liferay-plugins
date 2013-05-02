@@ -23,7 +23,7 @@
 			newenvironment="true"
 		>
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dplugins.dir=${project.dir}" />
+			<jvmarg value="-Dplugins.dir=${sdk.dir}" />
 		</java>
 
 		<java
@@ -33,9 +33,9 @@
 			newenvironment="true"
 		>
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg value="${project.dir}/summary.xml" />
-			<arg value="${project.dir}/summary.xsl" />
-			<arg value="${project.dir}/summary.html" />
+			<arg value="${sdk.dir}/summary.xml" />
+			<arg value="${sdk.dir}/summary.xsl" />
+			<arg value="${sdk.dir}/summary.html" />
 		</java>
 	</target>
 
@@ -77,7 +77,7 @@
 
 		<copy todir="dist" overwrite="yes">
 			<fileset
-				dir="${project.dir}/tools/ear_tmpl"
+				dir="${sdk.dir}/tools/ear_tmpl"
 			/>
 		</copy>
 

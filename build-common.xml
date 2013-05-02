@@ -2,12 +2,12 @@
 <!DOCTYPE project>
 
 <project name="build-common">
-	<dirname file="${ant.file.build-common}" property="project.dir" />
+	<dirname file="${ant.file.build-common}" property="sdk.dir" />
 
 	<property environment="env" />
 
 	<path id="lib.classpath">
-		<fileset dir="${project.dir}/lib" includes="*.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="*.jar" />
 	</path>
 
 	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
@@ -15,10 +15,10 @@
 
 	<import file="build-common-ivy.xml" />
 
-	<property file="${project.dir}/build.${user.name}.properties" />
-	<property file="${project.dir}/build.${env.COMPUTERNAME}.properties" />
-	<property file="${project.dir}/build.${env.HOST}.properties" />
-	<property file="${project.dir}/build.${env.HOSTNAME}.properties" />
+	<property file="${sdk.dir}/build.${user.name}.properties" />
+	<property file="${sdk.dir}/build.${env.COMPUTERNAME}.properties" />
+	<property file="${sdk.dir}/build.${env.HOST}.properties" />
+	<property file="${sdk.dir}/build.${env.HOSTNAME}.properties" />
 
 	<if>
 		<isset property="app.server.dir" />
@@ -35,7 +35,7 @@
 		</then>
 	</if>
 
-	<property file="${project.dir}/build.properties" />
+	<property file="${sdk.dir}/build.properties" />
 
 	<propertycopy from="app.server.${app.server.type}.dir" name="app.server.dir" />
 	<propertycopy from="app.server.${app.server.type}.deploy.dir" name="app.server.deploy.dir" />
@@ -49,20 +49,20 @@
 		<path refid="plugin-lib.classpath" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="annotations.jar,commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
-		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
 	</path>
 
 	<path id="portal.classpath">
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<fileset dir="${project.dir}/lib" includes="activation.jar,jargs.jar,jsp-api.jar,qdox.jar,servlet-api.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,jsp-api.jar,qdox.jar,servlet-api.jar" />
 	</path>
 
 	<path id="test.classpath">
 		<path refid="plugin.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="aspectj-weaver.jar,commons-io.jar,spring-*.jar" />
-		<fileset dir="${project.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
 		<pathelement location="test-classes/integration" />
 		<pathelement location="test-classes/unit" />
 	</path>
@@ -90,7 +90,7 @@
 			</not>
 		</and>
 		<then>
-			<copy file="${project.dir}/lib/ecj.jar" todir="${ant.home}/lib" />
+			<copy file="${sdk.dir}/lib/ecj.jar" todir="${ant.home}/lib" />
 
 			<fail>
 .
@@ -140,12 +140,12 @@ ECJ was automatically installed. Please rerun your task.
 			</or>
 			<then>
 				<subant target="create">
-					<fileset dir="${project.dir}/${plugin.type}s" includes="build.xml"/>
+					<fileset dir="${sdk.dir}/${plugin.type}s" includes="build.xml"/>
 				</subant>
 			</then>
 			<else>
 				<subant target="create">
-					<fileset dir="${project.dir}/${plugin.type}" includes="build.xml"/>
+					<fileset dir="${sdk.dir}/${plugin.type}" includes="build.xml"/>
 				</subant>
 			</else>
 		</if>
