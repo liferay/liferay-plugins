@@ -45,6 +45,10 @@
 
 		<aui:input disabled="<%= (calendar != null) ? calendar.isDefaultCalendar() : false %>" name="defaultCalendar" />
 
+		<aui:input name="enableComments" />
+
+		<aui:input name="enableRatings" />
+
 		<c:if test="<%= calendar == null %>">
 			<aui:field-wrapper label="permissions">
 				<liferay-ui:input-permissions modelName="<%= Calendar.class.getName() %>" />

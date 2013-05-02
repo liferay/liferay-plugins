@@ -21,6 +21,12 @@ String backURL = ParamUtil.getString(request, "backURL");
 
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
+Calendar calendar = calendarBooking.getCalendar();
+
+boolean enableRatings = calendar.getEnableRatings();
+
+boolean enableComments = calendar.getEnableComments();
+
 long startTime = BeanParamUtil.getLong(calendarBooking, request, "startTime");
 
 java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(startTime, userTimeZone);
@@ -121,29 +127,33 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 		/>
 	</div>
 
-	<div class="entry-ratings">
-		<liferay-ui:ratings
-			className="<%= CalendarBooking.class.getName() %>"
-			classPK="<%= calendarBooking.getCalendarBookingId() %>"
-		/>
-	</div>
-</aui:fieldset>
-
-<aui:fieldset>
-	<liferay-ui:panel-container extended="<%= false %>" id="calendarBookingPanelContainer" persistState="<%= true %>">
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingCommentsPanel" persistState="<%= true %>" title="comments">
-			<liferay-portlet:actionURL name="updateDiscussion" var="updateDiscussionURL" />
-
-			<liferay-ui:discussion
+	<c:if test="<%= enableRatings %>">
+		<div class="entry-ratings">
+			<liferay-ui:ratings
 				className="<%= CalendarBooking.class.getName() %>"
 				classPK="<%= calendarBooking.getCalendarBookingId() %>"
-				formAction="<%= updateDiscussionURL %>"
-				formName="fm2"
-				ratingsEnabled="true"
-				redirect="<%= currentURL %>"
-				subject="<%= calendarBooking.getTitle(locale) %>"
-				userId="<%= calendarBooking.getUserId() %>"
 			/>
-		</liferay-ui:panel>
-	</liferay-ui:panel-container>
+		</div>
+	</c:if>
 </aui:fieldset>
+
+<c:if test="<%= enableComments %>">
+	<aui:fieldset>
+		<liferay-ui:panel-container extended="<%= false %>" id="calendarBookingPanelContainer" persistState="<%= true %>">
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingCommentsPanel" persistState="<%= true %>" title="comments">
+				<liferay-portlet:actionURL name="updateDiscussion" var="updateDiscussionURL" />
+
+				<liferay-ui:discussion
+					className="<%= CalendarBooking.class.getName() %>"
+					classPK="<%= calendarBooking.getCalendarBookingId() %>"
+					formAction="<%= updateDiscussionURL %>"
+					formName="fm2"
+					ratingsEnabled="true"
+					redirect="<%= currentURL %>"
+					subject="<%= calendarBooking.getTitle(locale) %>"
+					userId="<%= calendarBooking.getUserId() %>"
+				/>
+			</liferay-ui:panel>
+		</liferay-ui:panel-container>
+	</aui:fieldset>
+</c:if>
