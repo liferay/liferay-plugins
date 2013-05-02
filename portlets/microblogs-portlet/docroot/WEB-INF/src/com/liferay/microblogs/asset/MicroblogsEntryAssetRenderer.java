@@ -18,12 +18,15 @@
 package com.liferay.microblogs.asset;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.microblogs.util.WebKeys;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -97,15 +100,14 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 
 			portletURL.setParameter("mvcPath", "/microblogs/view.jsp");
 
-			long displayMicroblogsEntryId = _entry.getMicroblogsEntryId();
+			long microblogsEntryId = _entry.getMicroblogsEntryId();
 
 			if (_entry.getReceiverMicroblogsEntryId() > 0) {
-				displayMicroblogsEntryId =_entry.getReceiverMicroblogsEntryId();
+				microblogsEntryId =_entry.getReceiverMicroblogsEntryId();
 			}
 
 			portletURL.setParameter(
-				"displayMicroblogsEntryId",
-				String.valueOf(displayMicroblogsEntryId));
+				"receiverMicroblogsEntryId", String.valueOf(microblogsEntryId));
 
 			return portletURL.toString();
 		}
@@ -127,11 +129,33 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 		return null;
 	}
 
+	@Override
+	public boolean hasViewPermission(PermissionChecker permissionChecker) {
+		try {
+			return MicroblogsEntryPermission.contains(
+				permissionChecker, _entry, ActionKeys.VIEW);
+		}
+		catch (Exception e) {
+		}
+
+		return false;
+	}
+
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse,
-		String template) {
+		String template)
+		throws Exception {
 
-		return null;
+		if (template.equals(TEMPLATE_ABSTRACT) ||
+			template.equals(TEMPLATE_FULL_CONTENT)) {
+
+			renderRequest.setAttribute(WebKeys.MICROBLOGS_ENTRY, _entry);
+
+			return "/microblogs/asset/" + template + ".jsp";
+		}
+		else {
+			return null;
+		}
 	}
 
 	private MicroblogsEntry _entry;
