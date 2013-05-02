@@ -314,7 +314,8 @@ public class LiferayPersonService implements PersonService {
 		if (fields.contains(Person.Field.GENDER.toString())) {
 			if (user.isFemale()) {
 				person.setGender(Gender.female);
-			} else {
+			}
+			else {
 				person.setGender(Gender.male);
 			}
 		}
