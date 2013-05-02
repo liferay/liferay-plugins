@@ -34,6 +34,10 @@ public class FooServiceClpInvoker {
 		_methodName40 = "getUser";
 
 		_methodParameterTypes40 = new String[] { "long" };
+
+		_methodName41 = "getUserSites";
+
+		_methodParameterTypes41 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -55,6 +59,11 @@ public class FooServiceClpInvoker {
 			return FooServiceUtil.getUser(((Long)arguments[0]).longValue());
 		}
 
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			return FooServiceUtil.getUserSites();
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -64,4 +73,6 @@ public class FooServiceClpInvoker {
 	private String[] _methodParameterTypes35;
 	private String _methodName40;
 	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
 }
