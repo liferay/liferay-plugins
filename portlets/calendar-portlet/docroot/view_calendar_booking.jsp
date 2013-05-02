@@ -23,10 +23,6 @@ CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.
 
 Calendar calendar = calendarBooking.getCalendar();
 
-boolean enableRatings = calendar.getEnableRatings();
-
-boolean enableComments = calendar.getEnableComments();
-
 long startTime = BeanParamUtil.getLong(calendarBooking, request, "startTime");
 
 java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(startTime, userTimeZone);
@@ -127,7 +123,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 		/>
 	</div>
 
-	<c:if test="<%= enableRatings %>">
+	<c:if test="<%= calendar.isEnableRatings() %>">
 		<div class="entry-ratings">
 			<liferay-ui:ratings
 				className="<%= CalendarBooking.class.getName() %>"
@@ -137,7 +133,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 	</c:if>
 </aui:fieldset>
 
-<c:if test="<%= enableComments %>">
+<c:if test="<%= calendar.isEnableComments() %>">
 	<aui:fieldset>
 		<liferay-ui:panel-container extended="<%= false %>" id="calendarBookingPanelContainer" persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingCommentsPanel" persistState="<%= true %>" title="comments">
