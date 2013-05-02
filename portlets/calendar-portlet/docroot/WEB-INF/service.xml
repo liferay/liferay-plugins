@@ -33,6 +33,8 @@
 		<column name="description" type="String" localized="true" />
 		<column name="color" type="int" />
 		<column name="defaultCalendar" type="boolean" />
+		<column name="enableComments" type="boolean" />
+		<column name="enableRatings" type="boolean" />
 
 		<!-- Order -->
 

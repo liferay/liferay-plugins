@@ -129,7 +129,8 @@ public class CalendarResourceLocalServiceImpl
 
 		calendarLocalService.addCalendar(
 			userId, groupId, calendarResourceId, nameMap, descriptionMap,
-			PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, serviceContext);
+			PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, false, false,
+			serviceContext);
 
 		// Asset
 

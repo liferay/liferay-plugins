@@ -217,7 +217,11 @@ public class CalendarPortlet extends MVCPortlet {
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 		int color = ParamUtil.getInteger(actionRequest, "color");
 		boolean defaultCalendar = ParamUtil.getBoolean(
-			actionRequest, "defaultCalendar", false);
+			actionRequest, "defaultCalendar");
+		boolean enableComments = ParamUtil.getBoolean(
+			actionRequest, "enableComments");
+		boolean enableRatings = ParamUtil.getBoolean(
+			actionRequest, "enableRatings");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Calendar.class.getName(), actionRequest);
@@ -229,12 +233,13 @@ public class CalendarPortlet extends MVCPortlet {
 
 			CalendarServiceUtil.addCalendar(
 				calendarResource.getGroupId(), calendarResourceId, nameMap,
-				descriptionMap, color, defaultCalendar, serviceContext);
+				descriptionMap, color, defaultCalendar, enableComments,
+				enableRatings, serviceContext);
 		}
 		else {
 			CalendarServiceUtil.updateCalendar(
 				calendarId, nameMap, descriptionMap, color, defaultCalendar,
-				serviceContext);
+				enableComments, enableRatings, serviceContext);
 		}
 	}
 

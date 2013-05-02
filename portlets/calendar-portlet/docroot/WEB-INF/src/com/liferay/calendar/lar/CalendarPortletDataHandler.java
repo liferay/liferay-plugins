@@ -361,13 +361,16 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 					importedCalendar = CalendarLocalServiceUtil.addCalendar(
 						userId, groupId, calendarResourceId,
 						calendar.getNameMap(), calendar.getDescriptionMap(),
-						calendar.getColor(), calendar.getDefaultCalendar(),
+						calendar.getColor(), calendar.isDefaultCalendar(),
+						calendar.isEnableComments(), calendar.isEnableRatings(),
 						serviceContext);
 				}
 				else {
 					importedCalendar = CalendarLocalServiceUtil.updateCalendar(
 						existingCalendar.getCalendarId(), calendar.getNameMap(),
 						calendar.getDescriptionMap(), calendar.getColor(),
+						calendar.isDefaultCalendar(),
+						calendar.isEnableComments(), calendar.isEnableRatings(),
 						serviceContext);
 				}
 			}
@@ -375,7 +378,8 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 				importedCalendar = CalendarLocalServiceUtil.addCalendar(
 					userId, groupId, calendarResourceId, calendar.getNameMap(),
 					calendar.getDescriptionMap(), calendar.getColor(),
-					calendar.getDefaultCalendar(), serviceContext);
+					calendar.isDefaultCalendar(), calendar.isEnableComments(),
+					calendar.isEnableRatings(), serviceContext);
 			}
 		}
 

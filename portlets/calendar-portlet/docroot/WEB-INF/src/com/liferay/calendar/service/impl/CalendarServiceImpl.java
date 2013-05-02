@@ -42,7 +42,8 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	public Calendar addCalendar(
 			long groupId, long calendarResourceId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, int color,
-			boolean defaultCalendar, ServiceContext serviceContext)
+			boolean defaultCalendar, boolean enableComments,
+			boolean enableRatings, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarResourcePermission.check(
@@ -51,7 +52,8 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 
 		return calendarLocalService.addCalendar(
 			getUserId(), groupId, calendarResourceId, nameMap, descriptionMap,
-			color, defaultCalendar, serviceContext);
+			color, defaultCalendar, enableComments, enableRatings,
+			serviceContext);
 	}
 
 	public Calendar deleteCalendar(long calendarId)
@@ -184,7 +186,8 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, int color,
-			boolean defaultCalendar, ServiceContext serviceContext)
+			boolean defaultCalendar, boolean enableComments,
+			boolean enableRatings, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarPermission.check(
@@ -192,7 +195,7 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 
 		return calendarLocalService.updateCalendar(
 			calendarId, nameMap, descriptionMap, color, defaultCalendar,
-			serviceContext);
+			enableComments, enableRatings, serviceContext);
 	}
 
 	public Calendar updateCalendar(

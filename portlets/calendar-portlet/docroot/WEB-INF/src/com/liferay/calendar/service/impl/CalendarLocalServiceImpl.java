@@ -43,7 +43,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	public Calendar addCalendar(
 			long userId, long groupId, long calendarResourceId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			int color, boolean defaultCalendar, ServiceContext serviceContext)
+			int color, boolean defaultCalendar, boolean enableComments,
+			boolean enableRatings, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar
@@ -74,6 +75,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setDescriptionMap(descriptionMap);
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
+		calendar.setEnableComments(enableComments);
+		calendar.setEnableRatings(enableRatings);
 
 		calendarPersistence.update(calendar);
 
@@ -205,7 +208,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, int color,
-			boolean defaultCalendar, ServiceContext serviceContext)
+			boolean defaultCalendar, boolean enableComments,
+			boolean enableRatings, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar
@@ -223,6 +227,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setDescriptionMap(descriptionMap);
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
+		calendar.setEnableComments(enableComments);
+		calendar.setEnableRatings(enableRatings);
 
 		calendarPersistence.update(calendar);
 
@@ -243,7 +249,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		return updateCalendar(
 			calendarId, nameMap, descriptionMap, color,
-			calendar.isDefaultCalendar(), serviceContext);
+			calendar.isDefaultCalendar(), calendar.isEnableComments(),
+			calendar.isEnableRatings(), serviceContext);
 	}
 
 	public Calendar updateColor(
