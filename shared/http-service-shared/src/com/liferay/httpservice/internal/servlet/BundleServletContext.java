@@ -1094,14 +1094,6 @@ public class BundleServletContext extends LiferayServletContext {
 
 		@Override
 		public boolean equals(Object object) {
-			if (this == object) {
-				return true;
-			}
-
-			if (!(object instanceof FilterServiceRanking)) {
-				return false;
-			}
-
 			FilterServiceRanking filterServiceRanking =
 				(FilterServiceRanking)object;
 
