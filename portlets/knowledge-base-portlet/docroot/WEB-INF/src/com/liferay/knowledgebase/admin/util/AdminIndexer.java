@@ -94,7 +94,10 @@ public class AdminIndexer extends BaseIndexer {
 		throws Exception {
 
 		addSearchTerm(searchQuery, searchContext, Field.CONTENT, true);
+		addSearchTerm(searchQuery, searchContext, Field.DESCRIPTION, true);
 		addSearchTerm(searchQuery, searchContext, Field.TITLE, true);
+		addSearchTerm(searchQuery, searchContext, Field.USER_NAME, true);
+
 	}
 
 	@Override
