@@ -456,6 +456,48 @@ public interface CalendarModel extends BaseModel<Calendar>, StagedGroupedModel {
 	 */
 	public void setDefaultCalendar(boolean defaultCalendar);
 
+	/**
+	 * Returns the enable comments of this calendar.
+	 *
+	 * @return the enable comments of this calendar
+	 */
+	public boolean getEnableComments();
+
+	/**
+	 * Returns <code>true</code> if this calendar is enable comments.
+	 *
+	 * @return <code>true</code> if this calendar is enable comments; <code>false</code> otherwise
+	 */
+	public boolean isEnableComments();
+
+	/**
+	 * Sets whether this calendar is enable comments.
+	 *
+	 * @param enableComments the enable comments of this calendar
+	 */
+	public void setEnableComments(boolean enableComments);
+
+	/**
+	 * Returns the enable ratings of this calendar.
+	 *
+	 * @return the enable ratings of this calendar
+	 */
+	public boolean getEnableRatings();
+
+	/**
+	 * Returns <code>true</code> if this calendar is enable ratings.
+	 *
+	 * @return <code>true</code> if this calendar is enable ratings; <code>false</code> otherwise
+	 */
+	public boolean isEnableRatings();
+
+	/**
+	 * Sets whether this calendar is enable ratings.
+	 *
+	 * @param enableRatings the enable ratings of this calendar
+	 */
+	public void setEnableRatings(boolean enableRatings);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

@@ -29,6 +29,8 @@
 			<basic name="description" />
 			<basic name="color" />
 			<basic name="defaultCalendar" />
+			<basic name="enableComments" />
+			<basic name="enableRatings" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
 			<transient name="modelAttributes" />

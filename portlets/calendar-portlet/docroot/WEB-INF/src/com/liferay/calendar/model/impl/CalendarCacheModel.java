@@ -37,7 +37,7 @@ import java.util.Date;
 public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -67,6 +67,10 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 		sb.append(color);
 		sb.append(", defaultCalendar=");
 		sb.append(defaultCalendar);
+		sb.append(", enableComments=");
+		sb.append(enableComments);
+		sb.append(", enableRatings=");
+		sb.append(enableRatings);
 		sb.append("}");
 
 		return sb.toString();
@@ -127,6 +131,8 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 
 		calendarImpl.setColor(color);
 		calendarImpl.setDefaultCalendar(defaultCalendar);
+		calendarImpl.setEnableComments(enableComments);
+		calendarImpl.setEnableRatings(enableRatings);
 
 		calendarImpl.resetOriginalValues();
 
@@ -148,6 +154,8 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 		description = objectInput.readUTF();
 		color = objectInput.readInt();
 		defaultCalendar = objectInput.readBoolean();
+		enableComments = objectInput.readBoolean();
+		enableRatings = objectInput.readBoolean();
 	}
 
 	public void writeExternal(ObjectOutput objectOutput)
@@ -192,6 +200,8 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 
 		objectOutput.writeInt(color);
 		objectOutput.writeBoolean(defaultCalendar);
+		objectOutput.writeBoolean(enableComments);
+		objectOutput.writeBoolean(enableRatings);
 	}
 
 	public String uuid;
@@ -208,4 +218,6 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 	public String description;
 	public int color;
 	public boolean defaultCalendar;
+	public boolean enableComments;
+	public boolean enableRatings;
 }

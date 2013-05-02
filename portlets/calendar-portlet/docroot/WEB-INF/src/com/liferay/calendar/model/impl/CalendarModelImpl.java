@@ -84,9 +84,11 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 			{ "name", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
 			{ "color", Types.INTEGER },
-			{ "defaultCalendar", Types.BOOLEAN }
+			{ "defaultCalendar", Types.BOOLEAN },
+			{ "enableComments", Types.BOOLEAN },
+			{ "enableRatings", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Calendar (uuid_ VARCHAR(75) null,calendarId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,calendarResourceId LONG,name STRING null,description STRING null,color INTEGER,defaultCalendar BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Calendar (uuid_ VARCHAR(75) null,calendarId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,calendarResourceId LONG,name STRING null,description STRING null,color INTEGER,defaultCalendar BOOLEAN,enableComments BOOLEAN,enableRatings BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Calendar";
 	public static final String ORDER_BY_JPQL = " ORDER BY calendar.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Calendar.name ASC";
@@ -137,6 +139,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		model.setDescription(soapModel.getDescription());
 		model.setColor(soapModel.getColor());
 		model.setDefaultCalendar(soapModel.getDefaultCalendar());
+		model.setEnableComments(soapModel.getEnableComments());
+		model.setEnableRatings(soapModel.getEnableRatings());
 
 		return model;
 	}
@@ -209,6 +213,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		attributes.put("description", getDescription());
 		attributes.put("color", getColor());
 		attributes.put("defaultCalendar", getDefaultCalendar());
+		attributes.put("enableComments", getEnableComments());
+		attributes.put("enableRatings", getEnableRatings());
 
 		return attributes;
 	}
@@ -297,6 +303,18 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 		if (defaultCalendar != null) {
 			setDefaultCalendar(defaultCalendar);
+		}
+
+		Boolean enableComments = (Boolean)attributes.get("enableComments");
+
+		if (enableComments != null) {
+			setEnableComments(enableComments);
+		}
+
+		Boolean enableRatings = (Boolean)attributes.get("enableRatings");
+
+		if (enableRatings != null) {
+			setEnableRatings(enableRatings);
 		}
 	}
 
@@ -674,6 +692,32 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		return _originalDefaultCalendar;
 	}
 
+	@JSON
+	public boolean getEnableComments() {
+		return _enableComments;
+	}
+
+	public boolean isEnableComments() {
+		return _enableComments;
+	}
+
+	public void setEnableComments(boolean enableComments) {
+		_enableComments = enableComments;
+	}
+
+	@JSON
+	public boolean getEnableRatings() {
+		return _enableRatings;
+	}
+
+	public boolean isEnableRatings() {
+		return _enableRatings;
+	}
+
+	public void setEnableRatings(boolean enableRatings) {
+		_enableRatings = enableRatings;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -728,6 +772,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		calendarImpl.setDescription(getDescription());
 		calendarImpl.setColor(getColor());
 		calendarImpl.setDefaultCalendar(getDefaultCalendar());
+		calendarImpl.setEnableComments(getEnableComments());
+		calendarImpl.setEnableRatings(getEnableRatings());
 
 		calendarImpl.resetOriginalValues();
 
@@ -875,12 +921,16 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 		calendarCacheModel.defaultCalendar = getDefaultCalendar();
 
+		calendarCacheModel.enableComments = getEnableComments();
+
+		calendarCacheModel.enableRatings = getEnableRatings();
+
 		return calendarCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -910,13 +960,17 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		sb.append(getColor());
 		sb.append(", defaultCalendar=");
 		sb.append(getDefaultCalendar());
+		sb.append(", enableComments=");
+		sb.append(getEnableComments());
+		sb.append(", enableRatings=");
+		sb.append(getEnableRatings());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.Calendar");
@@ -978,6 +1032,14 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 			"<column><column-name>defaultCalendar</column-name><column-value><![CDATA[");
 		sb.append(getDefaultCalendar());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>enableComments</column-name><column-value><![CDATA[");
+		sb.append(getEnableComments());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>enableRatings</column-name><column-value><![CDATA[");
+		sb.append(getEnableRatings());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -1016,6 +1078,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	private boolean _defaultCalendar;
 	private boolean _originalDefaultCalendar;
 	private boolean _setOriginalDefaultCalendar;
+	private boolean _enableComments;
+	private boolean _enableRatings;
 	private long _columnBitmask;
 	private Calendar _escapedModel;
 }

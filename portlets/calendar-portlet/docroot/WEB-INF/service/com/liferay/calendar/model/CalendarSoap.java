@@ -45,6 +45,8 @@ public class CalendarSoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setColor(model.getColor());
 		soapModel.setDefaultCalendar(model.getDefaultCalendar());
+		soapModel.setEnableComments(model.getEnableComments());
+		soapModel.setEnableRatings(model.getEnableRatings());
 
 		return soapModel;
 	}
@@ -213,6 +215,30 @@ public class CalendarSoap implements Serializable {
 		_defaultCalendar = defaultCalendar;
 	}
 
+	public boolean getEnableComments() {
+		return _enableComments;
+	}
+
+	public boolean isEnableComments() {
+		return _enableComments;
+	}
+
+	public void setEnableComments(boolean enableComments) {
+		_enableComments = enableComments;
+	}
+
+	public boolean getEnableRatings() {
+		return _enableRatings;
+	}
+
+	public boolean isEnableRatings() {
+		return _enableRatings;
+	}
+
+	public void setEnableRatings(boolean enableRatings) {
+		_enableRatings = enableRatings;
+	}
+
 	private String _uuid;
 	private long _calendarId;
 	private long _groupId;
@@ -227,4 +253,6 @@ public class CalendarSoap implements Serializable {
 	private String _description;
 	private int _color;
 	private boolean _defaultCalendar;
+	private boolean _enableComments;
+	private boolean _enableRatings;
 }

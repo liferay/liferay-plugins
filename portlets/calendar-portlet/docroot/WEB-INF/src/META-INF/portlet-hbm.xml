@@ -25,6 +25,8 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="color" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="defaultCalendar" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="enableComments" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="enableRatings" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.liferay.calendar.model.impl.CalendarBookingImpl" table="CalendarBooking">
 		<cache usage="read-write" />

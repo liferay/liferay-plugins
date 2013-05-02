@@ -12,7 +12,9 @@ create table Calendar (
 	name STRING null,
 	description STRING null,
 	color INTEGER,
-	defaultCalendar BOOLEAN
+	defaultCalendar BOOLEAN,
+	enableComments BOOLEAN,
+	enableRatings BOOLEAN
 );
 
 create table CalendarBooking (

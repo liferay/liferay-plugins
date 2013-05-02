@@ -114,7 +114,8 @@ public class CalendarLocalServiceClpInvoker {
 
 		_methodParameterTypes66 = new String[] {
 				"long", "long", "long", "java.util.Map", "java.util.Map", "int",
-				"boolean", "com.liferay.portal.service.ServiceContext"
+				"boolean", "boolean", "boolean",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName67 = "deleteCalendar";
@@ -179,6 +180,7 @@ public class CalendarLocalServiceClpInvoker {
 
 		_methodParameterTypes78 = new String[] {
 				"long", "java.util.Map", "java.util.Map", "int", "boolean",
+				"boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -306,7 +308,9 @@ public class CalendarLocalServiceClpInvoker {
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
 				((Integer)arguments[5]).intValue(),
 				((Boolean)arguments[6]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				((Boolean)arguments[7]).booleanValue(),
+				((Boolean)arguments[8]).booleanValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
 		if (_methodName67.equals(name) &&
@@ -395,7 +399,9 @@ public class CalendarLocalServiceClpInvoker {
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
 				((Integer)arguments[3]).intValue(),
 				((Boolean)arguments[4]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				((Boolean)arguments[5]).booleanValue(),
+				((Boolean)arguments[6]).booleanValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[7]);
 		}
 
 		if (_methodName79.equals(name) &&

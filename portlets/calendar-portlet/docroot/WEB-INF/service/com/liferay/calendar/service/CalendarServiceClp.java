@@ -35,7 +35,8 @@ public class CalendarServiceClp implements CalendarService {
 
 		_methodParameterTypes3 = new String[] {
 				"long", "long", "java.util.Map", "java.util.Map", "int",
-				"boolean", "com.liferay.portal.service.ServiceContext"
+				"boolean", "boolean", "boolean",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName4 = "deleteCalendar";
@@ -113,6 +114,7 @@ public class CalendarServiceClp implements CalendarService {
 
 		_methodParameterTypes15 = new String[] {
 				"long", "java.util.Map", "java.util.Map", "int", "boolean",
+				"boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -181,7 +183,8 @@ public class CalendarServiceClp implements CalendarService {
 		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar,
+		int color, boolean defaultCalendar, boolean enableComments,
+		boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -202,6 +205,10 @@ public class CalendarServiceClp implements CalendarService {
 					color,
 						
 					defaultCalendar,
+						
+					enableComments,
+						
+					enableRatings,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -737,7 +744,8 @@ public class CalendarServiceClp implements CalendarService {
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar,
+		int color, boolean defaultCalendar, boolean enableComments,
+		boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -756,6 +764,10 @@ public class CalendarServiceClp implements CalendarService {
 					color,
 						
 					defaultCalendar,
+						
+					enableComments,
+						
+					enableRatings,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});

@@ -4059,6 +4059,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		calendarImpl.setDescription(calendar.getDescription());
 		calendarImpl.setColor(calendar.getColor());
 		calendarImpl.setDefaultCalendar(calendar.isDefaultCalendar());
+		calendarImpl.setEnableComments(calendar.isEnableComments());
+		calendarImpl.setEnableRatings(calendar.isEnableRatings());
 
 		return calendarImpl;
 	}

@@ -88,6 +88,8 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		attributes.put("description", getDescription());
 		attributes.put("color", getColor());
 		attributes.put("defaultCalendar", getDefaultCalendar());
+		attributes.put("enableComments", getEnableComments());
+		attributes.put("enableRatings", getEnableRatings());
 
 		return attributes;
 	}
@@ -176,6 +178,18 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 		if (defaultCalendar != null) {
 			setDefaultCalendar(defaultCalendar);
+		}
+
+		Boolean enableComments = (Boolean)attributes.get("enableComments");
+
+		if (enableComments != null) {
+			setEnableComments(enableComments);
+		}
+
+		Boolean enableRatings = (Boolean)attributes.get("enableRatings");
+
+		if (enableRatings != null) {
+			setEnableRatings(enableRatings);
 		}
 	}
 
@@ -665,6 +679,58 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		}
 	}
 
+	public boolean getEnableComments() {
+		return _enableComments;
+	}
+
+	public boolean isEnableComments() {
+		return _enableComments;
+	}
+
+	public void setEnableComments(boolean enableComments) {
+		_enableComments = enableComments;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEnableComments",
+						boolean.class);
+
+				method.invoke(_calendarRemoteModel, enableComments);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	public boolean getEnableRatings() {
+		return _enableRatings;
+	}
+
+	public boolean isEnableRatings() {
+		return _enableRatings;
+	}
+
+	public void setEnableRatings(boolean enableRatings) {
+		_enableRatings = enableRatings;
+
+		if (_calendarRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEnableRatings",
+						boolean.class);
+
+				method.invoke(_calendarRemoteModel, enableRatings);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public long getResourceGroupId() {
 		try {
 			String methodName = "getResourceGroupId";
@@ -792,6 +858,8 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		clone.setDescription(getDescription());
 		clone.setColor(getColor());
 		clone.setDefaultCalendar(getDefaultCalendar());
+		clone.setEnableComments(getEnableComments());
+		clone.setEnableRatings(getEnableRatings());
 
 		return clone;
 	}
@@ -840,7 +908,7 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -870,13 +938,17 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		sb.append(getColor());
 		sb.append(", defaultCalendar=");
 		sb.append(getDefaultCalendar());
+		sb.append(", enableComments=");
+		sb.append(getEnableComments());
+		sb.append(", enableRatings=");
+		sb.append(getEnableRatings());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.Calendar");
@@ -938,6 +1010,14 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 			"<column><column-name>defaultCalendar</column-name><column-value><![CDATA[");
 		sb.append(getDefaultCalendar());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>enableComments</column-name><column-value><![CDATA[");
+		sb.append(getEnableComments());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>enableRatings</column-name><column-value><![CDATA[");
+		sb.append(getEnableRatings());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -961,5 +1041,7 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 	private String _descriptionCurrentLanguageId;
 	private int _color;
 	private boolean _defaultCalendar;
+	private boolean _enableComments;
+	private boolean _enableRatings;
 	private BaseModel<?> _calendarRemoteModel;
 }

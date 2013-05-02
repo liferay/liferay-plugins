@@ -18,6 +18,8 @@
 		</field>
 		<field name="color" type="int" />
 		<field name="defaultCalendar" type="boolean" />
+		<field name="enableComments" type="boolean" />
+		<field name="enableRatings" type="boolean" />
 	</model>
 	<model name="com.liferay.calendar.model.CalendarBooking">
 		<field name="uuid" type="String" />

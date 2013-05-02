@@ -281,13 +281,15 @@ public class CalendarLocalServiceUtil {
 		long groupId, long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar,
+		int color, boolean defaultCalendar, boolean enableComments,
+		boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addCalendar(userId, groupId, calendarResourceId, nameMap,
-			descriptionMap, color, defaultCalendar, serviceContext);
+			descriptionMap, color, defaultCalendar, enableComments,
+			enableRatings, serviceContext);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
@@ -354,13 +356,14 @@ public class CalendarLocalServiceUtil {
 		long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar,
+		int color, boolean defaultCalendar, boolean enableComments,
+		boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateCalendar(calendarId, nameMap, descriptionMap, color,
-			defaultCalendar, serviceContext);
+			defaultCalendar, enableComments, enableRatings, serviceContext);
 	}
 
 	public static com.liferay.calendar.model.Calendar updateCalendar(

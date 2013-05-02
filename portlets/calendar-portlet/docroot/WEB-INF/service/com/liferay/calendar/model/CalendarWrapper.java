@@ -59,6 +59,8 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		attributes.put("description", getDescription());
 		attributes.put("color", getColor());
 		attributes.put("defaultCalendar", getDefaultCalendar());
+		attributes.put("enableComments", getEnableComments());
+		attributes.put("enableRatings", getEnableRatings());
 
 		return attributes;
 	}
@@ -146,6 +148,18 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 
 		if (defaultCalendar != null) {
 			setDefaultCalendar(defaultCalendar);
+		}
+
+		Boolean enableComments = (Boolean)attributes.get("enableComments");
+
+		if (enableComments != null) {
+			setEnableComments(enableComments);
+		}
+
+		Boolean enableRatings = (Boolean)attributes.get("enableRatings");
+
+		if (enableRatings != null) {
+			setEnableRatings(enableRatings);
 		}
 	}
 
@@ -664,6 +678,60 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	*/
 	public void setDefaultCalendar(boolean defaultCalendar) {
 		_calendar.setDefaultCalendar(defaultCalendar);
+	}
+
+	/**
+	* Returns the enable comments of this calendar.
+	*
+	* @return the enable comments of this calendar
+	*/
+	public boolean getEnableComments() {
+		return _calendar.getEnableComments();
+	}
+
+	/**
+	* Returns <code>true</code> if this calendar is enable comments.
+	*
+	* @return <code>true</code> if this calendar is enable comments; <code>false</code> otherwise
+	*/
+	public boolean isEnableComments() {
+		return _calendar.isEnableComments();
+	}
+
+	/**
+	* Sets whether this calendar is enable comments.
+	*
+	* @param enableComments the enable comments of this calendar
+	*/
+	public void setEnableComments(boolean enableComments) {
+		_calendar.setEnableComments(enableComments);
+	}
+
+	/**
+	* Returns the enable ratings of this calendar.
+	*
+	* @return the enable ratings of this calendar
+	*/
+	public boolean getEnableRatings() {
+		return _calendar.getEnableRatings();
+	}
+
+	/**
+	* Returns <code>true</code> if this calendar is enable ratings.
+	*
+	* @return <code>true</code> if this calendar is enable ratings; <code>false</code> otherwise
+	*/
+	public boolean isEnableRatings() {
+		return _calendar.isEnableRatings();
+	}
+
+	/**
+	* Sets whether this calendar is enable ratings.
+	*
+	* @param enableRatings the enable ratings of this calendar
+	*/
+	public void setEnableRatings(boolean enableRatings) {
+		_calendar.setEnableRatings(enableRatings);
 	}
 
 	public boolean isNew() {
