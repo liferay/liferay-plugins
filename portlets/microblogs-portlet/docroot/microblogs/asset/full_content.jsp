@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
@@ -14,19 +15,12 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
+--%>
 
-package com.liferay.microblogs.util;
+<%@ include file="/init.jsp" %>
 
-/**
- * @author Jonathan Lee
- */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+<%
+MicroblogsEntry microblogsEntry = (MicroblogsEntry)request.getAttribute(WebKeys.MICROBLOGS_ENTRY);
+%>
 
-	public static final String MICROBLOGS_ENTRIES = "MICROBLOGS_ENTRIES";
-
-	public static final String MICROBLOGS_ENTRIES_URL =
-		"MICROBLOGS_ENTRIES_URL";
-
-	public static final String MICROBLOGS_ENTRY = "MICROBLOGS_ENTRY";
-
-}
+<%= HtmlUtil.stripHtml(microblogsEntry.getContent()) %>
