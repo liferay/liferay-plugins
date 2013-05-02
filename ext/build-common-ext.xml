@@ -307,7 +307,7 @@ loader.
 			<arg line="docroot/WEB-INF docroot/WEB-INF ${plugin.name}" />
 		</java>
 
-		<mkdir dir="${project.dir}/dist" />
+		<mkdir dir="${sdk.dir}/dist" />
 
 		<delete file="${plugin.file}" />
 

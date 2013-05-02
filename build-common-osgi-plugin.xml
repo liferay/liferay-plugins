@@ -24,7 +24,7 @@
 
 	<path id="plugin-lib.classpath">
 		<path refid="portal.classpath" />
-		<fileset dir="${project.dir}/lib" includes="bnd.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="bnd.jar" />
 		<pathelement path="${plugin-lib.classpath.path}" />
 	</path>
 
@@ -87,7 +87,7 @@
 			<then>
 				<manifest-helper />
 
-				<bndexpand propertyfile="${project.dir}/common.bnd" />
+				<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
 				<bnd
 					eclipse="false"

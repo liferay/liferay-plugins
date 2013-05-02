@@ -20,12 +20,12 @@
 	<if>
 		<antelope:endswith string="${plugin.name}" with="-shared" />
 		<then>
-			<var name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
-			<var name="plugin.src.file" value="${project.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
+			<var name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
+			<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
 		</then>
 		<else>
-			<var name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.war" />
-			<var name="plugin.src.file" value="${project.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
+			<var name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.war" />
+			<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
 		</else>
 	</if>
 
@@ -562,13 +562,13 @@
 		<for list="${import.shared}" param="import.shared.current">
 			<sequential>
 				<if>
-					<available file="${project.dir}/shared/@{import.shared.current}/src" />
+					<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
 					<then>
-						<ant dir="${project.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
+						<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
 
 						<for param="import.shared.full.path">
 							<path>
-								<fileset dir="${project.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
+								<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
 							</path>
 							<sequential>
 								<copy
@@ -579,10 +579,10 @@
 						</for>
 
 						<if>
-							<available file="${project.dir}/shared/@{import.shared.current}/lib" />
+							<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
 							<then>
 								<copy todir="docroot/WEB-INF/lib">
-									<fileset dir="${project.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
+									<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
 								</copy>
 							</then>
 						</if>
@@ -606,29 +606,29 @@
 				<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
 					<sequential>
 						<if>
-							<available file="${project.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+							<available file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
 							<then>
 								<copy
-									file="${project.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+									file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
 									todir="docroot/WEB-INF/lib"
 									overwrite="true"
 								/>
 							</then>
 							<elseif>
-								<available file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+								<available file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
 								<then>
 									<copy
-										file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+										file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
 										todir="docroot/WEB-INF/lib"
 										overwrite="true"
 									/>
 								</then>
 							</elseif>
 							<elseif>
-								<available file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+								<available file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
 								<then>
 									<copy
-										file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+										file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
 										todir="docroot/WEB-INF/lib"
 										overwrite="true"
 									/>
@@ -741,7 +741,7 @@ Please find a solution that does not require portal-impl.jar.
 
 					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 					<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-					<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+					<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
 					<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 					<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 					<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
@@ -772,7 +772,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
@@ -804,7 +804,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
@@ -832,7 +832,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.aui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/aui.tld" />
@@ -872,7 +872,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
@@ -906,7 +906,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 						<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
-						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
+						<jvmarg value="-Ddeployer.base.dir=${sdk.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
@@ -1080,7 +1080,7 @@ Please find a solution that does not require portal-impl.jar.
 		<if>
 			<available file="test/${test.type}" type="dir" />
 			<then>
-				<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+				<junit dir="${sdk.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
 					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx${junit.java.mx}" />
@@ -1120,7 +1120,7 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="war" depends="compile">
-		<mkdir dir="${project.dir}/dist" />
+		<mkdir dir="${sdk.dir}/dist" />
 
 		<if>
 			<available file="tmp" />

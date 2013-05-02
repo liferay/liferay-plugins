@@ -5,13 +5,13 @@
 	<import file="../build-common-plugin.xml" />
 
 	<if>
-		<available file="${project.dir}/shared/portal-compat-shared" />
+		<available file="${sdk.dir}/shared/portal-compat-shared" />
 		<then>
 			<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
 
 			<path id="plugin-lib.classpath">
 				<pathelement path="${plugin-lib.classpath.path}" />
-				<pathelement location="${project.dir}/shared/portal-compat-shared/classes" />
+				<pathelement location="${sdk.dir}/shared/portal-compat-shared/classes" />
 			</path>
 
 			<var name="plugin-lib.classpath.path" unset="true" />
@@ -27,13 +27,13 @@
 	<target name="compile">
 		<if>
 			<and>
-				<available file="${project.dir}/shared/portal-compat-shared" />
+				<available file="${sdk.dir}/shared/portal-compat-shared" />
 				<not>
 					<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
 				</not>
 			</and>
 			<then>
-				<ant dir="${project.dir}/shared/portal-compat-shared" target="compile" inheritAll="false" />
+				<ant dir="${sdk.dir}/shared/portal-compat-shared" target="compile" inheritAll="false" />
 			</then>
 		</if>
 
@@ -54,7 +54,7 @@
 	</target>
 
 	<target name="jar" depends="compile">
-		<mkdir dir="${project.dir}/dist" />
+		<mkdir dir="${sdk.dir}/dist" />
 
 		<jar
 			basedir="classes"
