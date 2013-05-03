@@ -206,19 +206,19 @@ else {
 						<a href="<%= publicLayoutsURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
 					</c:if>
 
-					<c:if test="<%= (group.hasPrivateLayouts() && member) %>">
-						<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="privateLayoutsURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-							<portlet:param name="struts_action" value="/my_sites/view" />
-							<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-							<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
-						</liferay-portlet:actionURL>
-
+					<c:if test="<%= (group.hasPrivateLayouts()) %>">
 						<c:choose>
-							<c:when test="<%= group.hasPublicLayouts() %>">
-								<a class="private-pages" href="<%= privateLayoutsURL %>"> (<liferay-ui:message key="private-pages" />)</a>
+							<c:when test="<%= member %>">
+								<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="privateLayoutsURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
+									<portlet:param name="struts_action" value="/my_sites/view" />
+									<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+									<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
+								</liferay-portlet:actionURL>
+
+								<a class="<%= group.hasPublicLayouts() ? "private-pages" : "" %>" href="<%= privateLayoutsURL %>"><%= group.hasPublicLayouts() ? "(" + LanguageUtil.get(locale, "private-pages") + ")" : HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
 							</c:when>
 							<c:otherwise>
-								<a href="<%= privateLayoutsURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
+								<%= group.hasPublicLayouts() ? "(" + LanguageUtil.get(locale, "private-pages") + ")" : HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 							</c:otherwise>
 						</c:choose>
 					</c:if>
