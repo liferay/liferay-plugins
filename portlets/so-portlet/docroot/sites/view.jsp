@@ -158,7 +158,7 @@ pageContext.setAttribute("portletURL", portletURL);
 								<a href="<%= publicLayoutsURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
 							</c:if>
 
-							<c:if test="<%= (group.hasPrivateLayouts()) %>">
+							<c:if test="<%= group.hasPrivateLayouts() %>">
 								<c:choose>
 									<c:when test="<%= member %>">
 										<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="privateLayoutsURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
