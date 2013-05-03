@@ -152,7 +152,6 @@
 		</antcall>
 
 		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
-			<replacefilter token="http:" value="" />
 			<replacefilter token="${SERVER_HOST}:${SERVER_PORT}" value="%host%" />
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
 			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
@@ -163,7 +162,7 @@
 			<replacevalue><![CDATA[
 				"home" : {
 					"isOnlyVisible" : true,
-					"urlTemplate" : "%scheme%://%host%/opensocial-portlet/gadgets/home{var}"
+					"urlTemplate" : "http://%host%/opensocial-portlet/gadgets/home{var}"
 				},
 				"profile" : {]]>
 			</replacevalue>
