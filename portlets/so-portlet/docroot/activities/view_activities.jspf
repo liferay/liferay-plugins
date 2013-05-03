@@ -31,16 +31,16 @@
 		<div class="activity-item">
 
 			<%
-			User curUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());;
+			User activitySetUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());
 
 			String userDisplayURL = StringPool.BLANK;
 			String userFullName = StringPool.BLANK;
 			String userPortraitURL = StringPool.BLANK;
 
-			if (curUser != null) {
-				userDisplayURL = curUser.getDisplayURL(themeDisplay);
-				userFullName = curUser.getFullName();
-				userPortraitURL = curUser.getPortraitURL(themeDisplay);
+			if (activitySetUser != null) {
+				userDisplayURL = activitySetUser.getDisplayURL(themeDisplay);
+				userFullName = activitySetUser.getFullName();
+				userPortraitURL = activitySetUser.getPortraitURL(themeDisplay);
 			}
 			%>
 
