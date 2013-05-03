@@ -20,8 +20,9 @@
 <%@ include file="/init.jsp" %>
 
 <%@ page import="com.liferay.portal.service.ServiceContextFactory" %><%@
-page import="com.liferay.portlet.social.model.SocialActivitySet" %><%@
-page import="com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil" %>
+page import="com.liferay.so.activities.model.SocialActivitySet" %><%@
+page import="com.liferay.so.activities.service.SocialActivityInterpreterLocalServiceUtil" %><%@
+page import="com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil" %>
 
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "all");
