@@ -6,7 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<icon>/microblogs/icon.png</icon>
 		<social-activity-interpreter-class>com.liferay.microblogs.microblogs.social.MicroblogsActivityInterpreter</social-activity-interpreter-class>
-		<asset-renderer-factory>com.liferay.microblogs.asset.MicroblogsEntryAssetRendererFactory</asset-renderer-factory>
+		<asset-renderer-factory>com.liferay.microblogs.microblogs.asset.MicroblogsEntryAssetRendererFactory</asset-renderer-factory>
 		<header-portlet-css>/microblogs/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/microblogs/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>microblogs-portlet</css-class-wrapper>

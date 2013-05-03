@@ -15,7 +15,7 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.microblogs.asset;
+package com.liferay.microblogs.microblogs.asset;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
@@ -142,8 +142,8 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 	}
 
 	public String render(
-		RenderRequest renderRequest, RenderResponse renderResponse,
-		String template)
+			RenderRequest renderRequest, RenderResponse renderResponse,
+			String template)
 		throws Exception {
 
 		if (template.equals(TEMPLATE_ABSTRACT) ||
