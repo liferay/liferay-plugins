@@ -19,14 +19,17 @@ package com.liferay.tasks.asset;
 
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.BaseAssetRenderer;
 import com.liferay.tasks.model.TasksEntry;
+import com.liferay.tasks.service.permission.TasksEntryPermission;
 import com.liferay.tasks.util.PortletKeys;
+import com.liferay.tasks.util.WebKeys;
 
 import java.util.Locale;
 
@@ -85,8 +88,6 @@ public class TasksEntryAssetRenderer extends BaseAssetRenderer {
 				PortletRequest.RENDER_PHASE);
 
 			portletURL.setParameter("mvcPath", "/tasks/view.jsp");
-			portletURL.setParameter(
-				"tasksEntryId", String.valueOf(_entry.getTasksEntryId()));
 
 			return portletURL.toString();
 		}
@@ -108,11 +109,26 @@ public class TasksEntryAssetRenderer extends BaseAssetRenderer {
 		return null;
 	}
 
+	@Override
+	public boolean hasViewPermission(PermissionChecker permissionChecker) {
+		return TasksEntryPermission.contains(
+			permissionChecker, _entry, ActionKeys.VIEW);
+	}
+
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse,
 		String template) {
 
-		return null;
+		if (template.equals(TEMPLATE_ABSTRACT) ||
+			template.equals(TEMPLATE_FULL_CONTENT)) {
+
+			renderRequest.setAttribute(WebKeys.TASKS_ENTRY, _entry);
+
+			return "/tasks/asset/" + template + ".jsp";
+		}
+		else {
+			return null;
+		}
 	}
 
 	private TasksEntry _entry;
