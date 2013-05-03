@@ -545,18 +545,15 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoInstanceToken)) {
 			return false;
 		}
 
-		KaleoInstanceToken kaleoInstanceToken = null;
-
-		try {
-			kaleoInstanceToken = (KaleoInstanceToken)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoInstanceToken kaleoInstanceToken = (KaleoInstanceToken)obj;
 
 		long primaryKey = kaleoInstanceToken.getPrimaryKey();
 

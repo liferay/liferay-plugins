@@ -462,18 +462,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAIssue)) {
 			return false;
 		}
 
-		JIRAIssue jiraIssue = null;
-
-		try {
-			jiraIssue = (JIRAIssue)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		JIRAIssue jiraIssue = (JIRAIssue)obj;
 
 		long primaryKey = jiraIssue.getPrimaryKey();
 

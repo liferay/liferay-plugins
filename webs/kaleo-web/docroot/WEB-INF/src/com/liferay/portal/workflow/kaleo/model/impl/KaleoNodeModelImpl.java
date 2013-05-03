@@ -485,18 +485,15 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoNode)) {
 			return false;
 		}
 
-		KaleoNode kaleoNode = null;
-
-		try {
-			kaleoNode = (KaleoNode)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoNode kaleoNode = (KaleoNode)obj;
 
 		long primaryKey = kaleoNode.getPrimaryKey();
 

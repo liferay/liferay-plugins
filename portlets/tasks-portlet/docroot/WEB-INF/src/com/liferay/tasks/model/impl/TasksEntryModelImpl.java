@@ -597,18 +597,15 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof TasksEntry)) {
 			return false;
 		}
 
-		TasksEntry tasksEntry = null;
-
-		try {
-			tasksEntry = (TasksEntry)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		TasksEntry tasksEntry = (TasksEntry)obj;
 
 		long primaryKey = tasksEntry.getPrimaryKey();
 

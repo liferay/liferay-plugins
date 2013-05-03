@@ -961,18 +961,15 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CalendarResourceClp)) {
 			return false;
 		}
 
-		CalendarResourceClp calendarResource = null;
-
-		try {
-			calendarResource = (CalendarResourceClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		CalendarResourceClp calendarResource = (CalendarResourceClp)obj;
 
 		long primaryKey = calendarResource.getPrimaryKey();
 

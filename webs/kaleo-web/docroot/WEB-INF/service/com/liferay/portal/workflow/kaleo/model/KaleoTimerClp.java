@@ -715,18 +715,15 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTimerClp)) {
 			return false;
 		}
 
-		KaleoTimerClp kaleoTimer = null;
-
-		try {
-			kaleoTimer = (KaleoTimerClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTimerClp kaleoTimer = (KaleoTimerClp)obj;
 
 		long primaryKey = kaleoTimer.getPrimaryKey();
 

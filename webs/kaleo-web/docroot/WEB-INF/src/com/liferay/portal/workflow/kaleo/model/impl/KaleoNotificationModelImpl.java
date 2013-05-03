@@ -583,18 +583,15 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoNotification)) {
 			return false;
 		}
 
-		KaleoNotification kaleoNotification = null;
-
-		try {
-			kaleoNotification = (KaleoNotification)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoNotification kaleoNotification = (KaleoNotification)obj;
 
 		long primaryKey = kaleoNotification.getPrimaryKey();
 

@@ -853,18 +853,15 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTimerInstanceTokenClp)) {
 			return false;
 		}
 
-		KaleoTimerInstanceTokenClp kaleoTimerInstanceToken = null;
-
-		try {
-			kaleoTimerInstanceToken = (KaleoTimerInstanceTokenClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTimerInstanceTokenClp kaleoTimerInstanceToken = (KaleoTimerInstanceTokenClp)obj;
 
 		long primaryKey = kaleoTimerInstanceToken.getPrimaryKey();
 

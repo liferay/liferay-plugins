@@ -273,18 +273,15 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FavoriteSite)) {
 			return false;
 		}
 
-		FavoriteSite favoriteSite = null;
-
-		try {
-			favoriteSite = (FavoriteSite)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		FavoriteSite favoriteSite = (FavoriteSite)obj;
 
 		long primaryKey = favoriteSite.getPrimaryKey();
 

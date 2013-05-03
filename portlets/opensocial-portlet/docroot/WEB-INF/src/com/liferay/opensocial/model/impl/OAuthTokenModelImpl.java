@@ -513,18 +513,15 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof OAuthToken)) {
 			return false;
 		}
 
-		OAuthToken oAuthToken = null;
-
-		try {
-			oAuthToken = (OAuthToken)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		OAuthToken oAuthToken = (OAuthToken)obj;
 
 		long primaryKey = oAuthToken.getPrimaryKey();
 

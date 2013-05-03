@@ -721,18 +721,15 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoInstanceClp)) {
 			return false;
 		}
 
-		KaleoInstanceClp kaleoInstance = null;
-
-		try {
-			kaleoInstance = (KaleoInstanceClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoInstanceClp kaleoInstance = (KaleoInstanceClp)obj;
 
 		long primaryKey = kaleoInstance.getPrimaryKey();
 

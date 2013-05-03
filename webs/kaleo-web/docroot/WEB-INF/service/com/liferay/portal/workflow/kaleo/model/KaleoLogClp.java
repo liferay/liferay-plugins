@@ -1072,18 +1072,15 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoLogClp)) {
 			return false;
 		}
 
-		KaleoLogClp kaleoLog = null;
-
-		try {
-			kaleoLog = (KaleoLogClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoLogClp kaleoLog = (KaleoLogClp)obj;
 
 		long primaryKey = kaleoLog.getPrimaryKey();
 

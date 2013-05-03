@@ -794,18 +794,15 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Calendar)) {
 			return false;
 		}
 
-		Calendar calendar = null;
-
-		try {
-			calendar = (Calendar)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Calendar calendar = (Calendar)obj;
 
 		long primaryKey = calendar.getPrimaryKey();
 

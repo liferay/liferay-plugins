@@ -442,18 +442,15 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FeedClp)) {
 			return false;
 		}
 
-		FeedClp feed = null;
-
-		try {
-			feed = (FeedClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		FeedClp feed = (FeedClp)obj;
 
 		long primaryKey = feed.getPrimaryKey();
 

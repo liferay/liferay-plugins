@@ -415,18 +415,15 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof StatusClp)) {
 			return false;
 		}
 
-		StatusClp status = null;
-
-		try {
-			status = (StatusClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		StatusClp status = (StatusClp)obj;
 
 		long primaryKey = status.getPrimaryKey();
 

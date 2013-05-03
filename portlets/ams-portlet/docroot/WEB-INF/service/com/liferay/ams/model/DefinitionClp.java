@@ -549,18 +549,15 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof DefinitionClp)) {
 			return false;
 		}
 
-		DefinitionClp definition = null;
-
-		try {
-			definition = (DefinitionClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		DefinitionClp definition = (DefinitionClp)obj;
 
 		long primaryKey = definition.getPrimaryKey();
 

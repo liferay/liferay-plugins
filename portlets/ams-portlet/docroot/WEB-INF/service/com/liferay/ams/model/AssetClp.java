@@ -465,18 +465,15 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AssetClp)) {
 			return false;
 		}
 
-		AssetClp asset = null;
-
-		try {
-			asset = (AssetClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		AssetClp asset = (AssetClp)obj;
 
 		long primaryKey = asset.getPrimaryKey();
 

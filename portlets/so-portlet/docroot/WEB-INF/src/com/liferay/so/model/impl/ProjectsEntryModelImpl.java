@@ -402,18 +402,15 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof ProjectsEntry)) {
 			return false;
 		}
 
-		ProjectsEntry projectsEntry = null;
-
-		try {
-			projectsEntry = (ProjectsEntry)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		ProjectsEntry projectsEntry = (ProjectsEntry)obj;
 
 		long primaryKey = projectsEntry.getPrimaryKey();
 

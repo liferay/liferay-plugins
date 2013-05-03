@@ -454,18 +454,15 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof PollsChoice)) {
 			return false;
 		}
 
-		PollsChoice pollsChoice = null;
-
-		try {
-			pollsChoice = (PollsChoice)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		PollsChoice pollsChoice = (PollsChoice)obj;
 
 		long primaryKey = pollsChoice.getPrimaryKey();
 

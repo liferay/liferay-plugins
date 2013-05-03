@@ -432,18 +432,15 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AttachmentClp)) {
 			return false;
 		}
 
-		AttachmentClp attachment = null;
-
-		try {
-			attachment = (AttachmentClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		AttachmentClp attachment = (AttachmentClp)obj;
 
 		long primaryKey = attachment.getPrimaryKey();
 

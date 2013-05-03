@@ -360,18 +360,15 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof EntryClp)) {
 			return false;
 		}
 
-		EntryClp entry = null;
-
-		try {
-			entry = (EntryClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		EntryClp entry = (EntryClp)obj;
 
 		long primaryKey = entry.getPrimaryKey();
 

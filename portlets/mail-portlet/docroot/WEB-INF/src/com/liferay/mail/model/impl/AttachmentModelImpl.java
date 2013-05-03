@@ -356,18 +356,15 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Attachment)) {
 			return false;
 		}
 
-		Attachment attachment = null;
-
-		try {
-			attachment = (Attachment)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Attachment attachment = (Attachment)obj;
 
 		long primaryKey = attachment.getPrimaryKey();
 

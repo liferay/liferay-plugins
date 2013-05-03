@@ -1424,18 +1424,15 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CalendarBookingClp)) {
 			return false;
 		}
 
-		CalendarBookingClp calendarBooking = null;
-
-		try {
-			calendarBooking = (CalendarBookingClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		CalendarBookingClp calendarBooking = (CalendarBookingClp)obj;
 
 		long primaryKey = calendarBooking.getPrimaryKey();
 

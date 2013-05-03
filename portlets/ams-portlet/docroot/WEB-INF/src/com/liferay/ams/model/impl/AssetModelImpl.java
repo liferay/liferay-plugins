@@ -357,18 +357,15 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Asset)) {
 			return false;
 		}
 
-		Asset asset = null;
-
-		try {
-			asset = (Asset)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Asset asset = (Asset)obj;
 
 		long primaryKey = asset.getPrimaryKey();
 

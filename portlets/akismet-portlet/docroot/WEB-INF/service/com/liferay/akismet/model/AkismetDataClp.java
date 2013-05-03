@@ -474,18 +474,15 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AkismetDataClp)) {
 			return false;
 		}
 
-		AkismetDataClp akismetData = null;
-
-		try {
-			akismetData = (AkismetDataClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		AkismetDataClp akismetData = (AkismetDataClp)obj;
 
 		long primaryKey = akismetData.getPrimaryKey();
 

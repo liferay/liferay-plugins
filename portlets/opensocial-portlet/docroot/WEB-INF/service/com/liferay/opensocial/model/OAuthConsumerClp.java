@@ -457,18 +457,15 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof OAuthConsumerClp)) {
 			return false;
 		}
 
-		OAuthConsumerClp oAuthConsumer = null;
-
-		try {
-			oAuthConsumer = (OAuthConsumerClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		OAuthConsumerClp oAuthConsumer = (OAuthConsumerClp)obj;
 
 		long primaryKey = oAuthConsumer.getPrimaryKey();
 

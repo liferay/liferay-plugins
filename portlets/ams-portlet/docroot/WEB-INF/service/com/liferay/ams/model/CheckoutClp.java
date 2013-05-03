@@ -463,18 +463,15 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CheckoutClp)) {
 			return false;
 		}
 
-		CheckoutClp checkout = null;
-
-		try {
-			checkout = (CheckoutClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		CheckoutClp checkout = (CheckoutClp)obj;
 
 		long primaryKey = checkout.getPrimaryKey();
 

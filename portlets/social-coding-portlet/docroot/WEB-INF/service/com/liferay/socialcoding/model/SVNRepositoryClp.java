@@ -284,18 +284,15 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SVNRepositoryClp)) {
 			return false;
 		}
 
-		SVNRepositoryClp svnRepository = null;
-
-		try {
-			svnRepository = (SVNRepositoryClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		SVNRepositoryClp svnRepository = (SVNRepositoryClp)obj;
 
 		long primaryKey = svnRepository.getPrimaryKey();
 

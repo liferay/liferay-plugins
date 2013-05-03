@@ -981,18 +981,15 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AccountClp)) {
 			return false;
 		}
 
-		AccountClp account = null;
-
-		try {
-			account = (AccountClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		AccountClp account = (AccountClp)obj;
 
 		long primaryKey = account.getPrimaryKey();
 

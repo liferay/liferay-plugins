@@ -366,18 +366,15 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAAction)) {
 			return false;
 		}
 
-		JIRAAction jiraAction = null;
-
-		try {
-			jiraAction = (JIRAAction)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		JIRAAction jiraAction = (JIRAAction)obj;
 
 		long primaryKey = jiraAction.getPrimaryKey();
 

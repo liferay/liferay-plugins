@@ -704,18 +704,15 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoActionClp)) {
 			return false;
 		}
 
-		KaleoActionClp kaleoAction = null;
-
-		try {
-			kaleoAction = (KaleoActionClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoActionClp kaleoAction = (KaleoActionClp)obj;
 
 		long primaryKey = kaleoAction.getPrimaryKey();
 

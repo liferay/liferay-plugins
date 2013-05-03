@@ -284,18 +284,15 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAChangeGroupClp)) {
 			return false;
 		}
 
-		JIRAChangeGroupClp jiraChangeGroup = null;
-
-		try {
-			jiraChangeGroup = (JIRAChangeGroupClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		JIRAChangeGroupClp jiraChangeGroup = (JIRAChangeGroupClp)obj;
 
 		long primaryKey = jiraChangeGroup.getPrimaryKey();
 

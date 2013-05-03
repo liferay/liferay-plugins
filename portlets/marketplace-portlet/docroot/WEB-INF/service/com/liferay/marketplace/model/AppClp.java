@@ -522,18 +522,15 @@ public class AppClp extends BaseModelImpl<App> implements App {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AppClp)) {
 			return false;
 		}
 
-		AppClp app = null;
-
-		try {
-			app = (AppClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		AppClp app = (AppClp)obj;
 
 		long primaryKey = app.getPrimaryKey();
 

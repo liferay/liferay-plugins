@@ -532,18 +532,15 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MemberRequestClp)) {
 			return false;
 		}
 
-		MemberRequestClp memberRequest = null;
-
-		try {
-			memberRequest = (MemberRequestClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		MemberRequestClp memberRequest = (MemberRequestClp)obj;
 
 		long primaryKey = memberRequest.getPrimaryKey();
 

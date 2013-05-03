@@ -410,18 +410,15 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Definition)) {
 			return false;
 		}
 
-		Definition definition = null;
-
-		try {
-			definition = (Definition)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Definition definition = (Definition)obj;
 
 		long primaryKey = definition.getPrimaryKey();
 

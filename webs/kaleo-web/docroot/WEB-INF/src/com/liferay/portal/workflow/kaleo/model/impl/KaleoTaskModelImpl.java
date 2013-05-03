@@ -429,18 +429,15 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTask)) {
 			return false;
 		}
 
-		KaleoTask kaleoTask = null;
-
-		try {
-			kaleoTask = (KaleoTask)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTask kaleoTask = (KaleoTask)obj;
 
 		long primaryKey = kaleoTask.getPrimaryKey();
 

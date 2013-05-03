@@ -603,18 +603,15 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CalendarNotificationTemplate)) {
 			return false;
 		}
 
-		CalendarNotificationTemplate calendarNotificationTemplate = null;
-
-		try {
-			calendarNotificationTemplate = (CalendarNotificationTemplate)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		CalendarNotificationTemplate calendarNotificationTemplate = (CalendarNotificationTemplate)obj;
 
 		long primaryKey = calendarNotificationTemplate.getPrimaryKey();
 

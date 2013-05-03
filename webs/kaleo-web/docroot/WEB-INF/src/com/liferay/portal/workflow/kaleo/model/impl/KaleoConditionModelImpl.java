@@ -452,18 +452,15 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoCondition)) {
 			return false;
 		}
 
-		KaleoCondition kaleoCondition = null;
-
-		try {
-			kaleoCondition = (KaleoCondition)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoCondition kaleoCondition = (KaleoCondition)obj;
 
 		long primaryKey = kaleoCondition.getPrimaryKey();
 

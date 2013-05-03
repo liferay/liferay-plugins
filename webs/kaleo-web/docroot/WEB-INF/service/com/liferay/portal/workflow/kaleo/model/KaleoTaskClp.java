@@ -533,18 +533,15 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTaskClp)) {
 			return false;
 		}
 
-		KaleoTaskClp kaleoTask = null;
-
-		try {
-			kaleoTask = (KaleoTaskClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTaskClp kaleoTask = (KaleoTaskClp)obj;
 
 		long primaryKey = kaleoTask.getPrimaryKey();
 

@@ -420,18 +420,15 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Gadget)) {
 			return false;
 		}
 
-		Gadget gadget = null;
-
-		try {
-			gadget = (Gadget)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Gadget gadget = (Gadget)obj;
 
 		long primaryKey = gadget.getPrimaryKey();
 

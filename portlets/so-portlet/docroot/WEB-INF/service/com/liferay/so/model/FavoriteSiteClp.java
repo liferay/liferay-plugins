@@ -287,18 +287,15 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FavoriteSiteClp)) {
 			return false;
 		}
 
-		FavoriteSiteClp favoriteSite = null;
-
-		try {
-			favoriteSite = (FavoriteSiteClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		FavoriteSiteClp favoriteSite = (FavoriteSiteClp)obj;
 
 		long primaryKey = favoriteSite.getPrimaryKey();
 

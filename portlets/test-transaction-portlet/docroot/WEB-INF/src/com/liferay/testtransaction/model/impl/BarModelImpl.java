@@ -216,18 +216,15 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Bar)) {
 			return false;
 		}
 
-		Bar bar = null;
-
-		try {
-			bar = (Bar)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Bar bar = (Bar)obj;
 
 		long primaryKey = bar.getPrimaryKey();
 

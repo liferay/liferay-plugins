@@ -865,18 +865,15 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoLog)) {
 			return false;
 		}
 
-		KaleoLog kaleoLog = null;
-
-		try {
-			kaleoLog = (KaleoLog)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoLog kaleoLog = (KaleoLog)obj;
 
 		long primaryKey = kaleoLog.getPrimaryKey();
 

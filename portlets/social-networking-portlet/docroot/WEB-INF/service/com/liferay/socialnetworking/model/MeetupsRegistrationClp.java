@@ -440,18 +440,15 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MeetupsRegistrationClp)) {
 			return false;
 		}
 
-		MeetupsRegistrationClp meetupsRegistration = null;
-
-		try {
-			meetupsRegistration = (MeetupsRegistrationClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		MeetupsRegistrationClp meetupsRegistration = (MeetupsRegistrationClp)obj;
 
 		long primaryKey = meetupsRegistration.getPrimaryKey();
 

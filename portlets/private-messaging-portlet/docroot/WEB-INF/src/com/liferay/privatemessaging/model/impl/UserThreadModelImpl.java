@@ -420,18 +420,15 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof UserThread)) {
 			return false;
 		}
 
-		UserThread userThread = null;
-
-		try {
-			userThread = (UserThread)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		UserThread userThread = (UserThread)obj;
 
 		long primaryKey = userThread.getPrimaryKey();
 

@@ -404,18 +404,15 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WallEntryClp)) {
 			return false;
 		}
 
-		WallEntryClp wallEntry = null;
-
-		try {
-			wallEntry = (WallEntryClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		WallEntryClp wallEntry = (WallEntryClp)obj;
 
 		long primaryKey = wallEntry.getPrimaryKey();
 

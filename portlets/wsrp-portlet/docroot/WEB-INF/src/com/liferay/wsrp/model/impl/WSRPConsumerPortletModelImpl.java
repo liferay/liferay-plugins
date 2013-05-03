@@ -369,18 +369,15 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPConsumerPortlet)) {
 			return false;
 		}
 
-		WSRPConsumerPortlet wsrpConsumerPortlet = null;
-
-		try {
-			wsrpConsumerPortlet = (WSRPConsumerPortlet)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)obj;
 
 		long primaryKey = wsrpConsumerPortlet.getPrimaryKey();
 

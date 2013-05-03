@@ -692,18 +692,15 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTransitionClp)) {
 			return false;
 		}
 
-		KaleoTransitionClp kaleoTransition = null;
-
-		try {
-			kaleoTransition = (KaleoTransitionClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTransitionClp kaleoTransition = (KaleoTransitionClp)obj;
 
 		long primaryKey = kaleoTransition.getPrimaryKey();
 

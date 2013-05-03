@@ -461,18 +461,15 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FolderClp)) {
 			return false;
 		}
 
-		FolderClp folder = null;
-
-		try {
-			folder = (FolderClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		FolderClp folder = (FolderClp)obj;
 
 		long primaryKey = folder.getPrimaryKey();
 

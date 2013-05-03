@@ -465,18 +465,15 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPConsumer)) {
 			return false;
 		}
 
-		WSRPConsumer wsrpConsumer = null;
-
-		try {
-			wsrpConsumer = (WSRPConsumer)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		WSRPConsumer wsrpConsumer = (WSRPConsumer)obj;
 
 		long primaryKey = wsrpConsumer.getPrimaryKey();
 

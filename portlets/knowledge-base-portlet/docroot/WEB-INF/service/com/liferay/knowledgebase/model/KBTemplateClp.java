@@ -464,18 +464,15 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBTemplateClp)) {
 			return false;
 		}
 
-		KBTemplateClp kbTemplate = null;
-
-		try {
-			kbTemplate = (KBTemplateClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KBTemplateClp kbTemplate = (KBTemplateClp)obj;
 
 		long primaryKey = kbTemplate.getPrimaryKey();
 

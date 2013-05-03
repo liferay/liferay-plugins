@@ -356,18 +356,15 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WallEntry)) {
 			return false;
 		}
 
-		WallEntry wallEntry = null;
-
-		try {
-			wallEntry = (WallEntry)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		WallEntry wallEntry = (WallEntry)obj;
 
 		long primaryKey = wallEntry.getPrimaryKey();
 

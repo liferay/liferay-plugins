@@ -377,18 +377,15 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Status)) {
 			return false;
 		}
 
-		Status status = null;
-
-		try {
-			status = (Status)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Status status = (Status)obj;
 
 		long primaryKey = status.getPrimaryKey();
 

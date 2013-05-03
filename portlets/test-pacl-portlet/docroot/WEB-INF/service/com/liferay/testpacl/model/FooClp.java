@@ -521,18 +521,15 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FooClp)) {
 			return false;
 		}
 
-		FooClp foo = null;
-
-		try {
-			foo = (FooClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		FooClp foo = (FooClp)obj;
 
 		long primaryKey = foo.getPrimaryKey();
 

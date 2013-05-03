@@ -511,18 +511,15 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MicroblogsEntryClp)) {
 			return false;
 		}
 
-		MicroblogsEntryClp microblogsEntry = null;
-
-		try {
-			microblogsEntry = (MicroblogsEntryClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		MicroblogsEntryClp microblogsEntry = (MicroblogsEntryClp)obj;
 
 		long primaryKey = microblogsEntry.getPrimaryKey();
 

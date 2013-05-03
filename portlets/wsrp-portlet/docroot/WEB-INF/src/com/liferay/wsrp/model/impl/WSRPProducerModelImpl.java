@@ -379,18 +379,15 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPProducer)) {
 			return false;
 		}
 
-		WSRPProducer wsrpProducer = null;
-
-		try {
-			wsrpProducer = (WSRPProducer)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		WSRPProducer wsrpProducer = (WSRPProducer)obj;
 
 		long primaryKey = wsrpProducer.getPrimaryKey();
 

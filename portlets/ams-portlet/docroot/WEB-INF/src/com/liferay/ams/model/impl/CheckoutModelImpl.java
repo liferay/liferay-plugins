@@ -349,18 +349,15 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Checkout)) {
 			return false;
 		}
 
-		Checkout checkout = null;
-
-		try {
-			checkout = (Checkout)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Checkout checkout = (Checkout)obj;
 
 		long primaryKey = checkout.getPrimaryKey();
 

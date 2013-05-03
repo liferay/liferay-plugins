@@ -545,18 +545,15 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBCommentClp)) {
 			return false;
 		}
 
-		KBCommentClp kbComment = null;
-
-		try {
-			kbComment = (KBCommentClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KBCommentClp kbComment = (KBCommentClp)obj;
 
 		long primaryKey = kbComment.getPrimaryKey();
 

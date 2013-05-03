@@ -234,18 +234,15 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SVNRepository)) {
 			return false;
 		}
 
-		SVNRepository svnRepository = null;
-
-		try {
-			svnRepository = (SVNRepository)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		SVNRepository svnRepository = (SVNRepository)obj;
 
 		long primaryKey = svnRepository.getPrimaryKey();
 

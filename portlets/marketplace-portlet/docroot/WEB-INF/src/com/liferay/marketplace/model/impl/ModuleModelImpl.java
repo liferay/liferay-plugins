@@ -281,18 +281,15 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Module)) {
 			return false;
 		}
 
-		Module module = null;
-
-		try {
-			module = (Module)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Module module = (Module)obj;
 
 		long primaryKey = module.getPrimaryKey();
 

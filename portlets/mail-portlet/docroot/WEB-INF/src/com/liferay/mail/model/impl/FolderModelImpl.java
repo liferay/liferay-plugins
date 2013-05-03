@@ -388,18 +388,15 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Folder)) {
 			return false;
 		}
 
-		Folder folder = null;
-
-		try {
-			folder = (Folder)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Folder folder = (Folder)obj;
 
 		long primaryKey = folder.getPrimaryKey();
 

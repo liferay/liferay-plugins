@@ -665,18 +665,15 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoNodeClp)) {
 			return false;
 		}
 
-		KaleoNodeClp kaleoNode = null;
-
-		try {
-			kaleoNode = (KaleoNodeClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoNodeClp kaleoNode = (KaleoNodeClp)obj;
 
 		long primaryKey = kaleoNode.getPrimaryKey();
 

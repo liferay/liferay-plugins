@@ -327,18 +327,15 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAChangeItem)) {
 			return false;
 		}
 
-		JIRAChangeItem jiraChangeItem = null;
-
-		try {
-			jiraChangeItem = (JIRAChangeItem)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		JIRAChangeItem jiraChangeItem = (JIRAChangeItem)obj;
 
 		long primaryKey = jiraChangeItem.getPrimaryKey();
 

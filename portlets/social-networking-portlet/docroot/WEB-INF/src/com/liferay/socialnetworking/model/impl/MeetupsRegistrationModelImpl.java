@@ -388,18 +388,15 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MeetupsRegistration)) {
 			return false;
 		}
 
-		MeetupsRegistration meetupsRegistration = null;
-
-		try {
-			meetupsRegistration = (MeetupsRegistration)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		MeetupsRegistration meetupsRegistration = (MeetupsRegistration)obj;
 
 		long primaryKey = meetupsRegistration.getPrimaryKey();
 

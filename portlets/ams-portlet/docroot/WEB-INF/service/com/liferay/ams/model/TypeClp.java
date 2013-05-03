@@ -246,18 +246,15 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof TypeClp)) {
 			return false;
 		}
 
-		TypeClp type = null;
-
-		try {
-			type = (TypeClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		TypeClp type = (TypeClp)obj;
 
 		long primaryKey = type.getPrimaryKey();
 

@@ -572,18 +572,15 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoNotificationRecipientClp)) {
 			return false;
 		}
 
-		KaleoNotificationRecipientClp kaleoNotificationRecipient = null;
-
-		try {
-			kaleoNotificationRecipient = (KaleoNotificationRecipientClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoNotificationRecipientClp kaleoNotificationRecipient = (KaleoNotificationRecipientClp)obj;
 
 		long primaryKey = kaleoNotificationRecipient.getPrimaryKey();
 

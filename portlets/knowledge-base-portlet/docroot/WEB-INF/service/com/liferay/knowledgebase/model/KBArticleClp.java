@@ -1114,18 +1114,15 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBArticleClp)) {
 			return false;
 		}
 
-		KBArticleClp kbArticle = null;
-
-		try {
-			kbArticle = (KBArticleClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KBArticleClp kbArticle = (KBArticleClp)obj;
 
 		long primaryKey = kbArticle.getPrimaryKey();
 

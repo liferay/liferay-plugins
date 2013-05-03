@@ -811,18 +811,15 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTaskInstanceTokenClp)) {
 			return false;
 		}
 
-		KaleoTaskInstanceTokenClp kaleoTaskInstanceToken = null;
-
-		try {
-			kaleoTaskInstanceToken = (KaleoTaskInstanceTokenClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTaskInstanceTokenClp kaleoTaskInstanceToken = (KaleoTaskInstanceTokenClp)obj;
 
 		long primaryKey = kaleoTaskInstanceToken.getPrimaryKey();
 

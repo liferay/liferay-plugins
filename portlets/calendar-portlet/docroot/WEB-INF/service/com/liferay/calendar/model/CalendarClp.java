@@ -878,18 +878,15 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CalendarClp)) {
 			return false;
 		}
 
-		CalendarClp calendar = null;
-
-		try {
-			calendar = (CalendarClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		CalendarClp calendar = (CalendarClp)obj;
 
 		long primaryKey = calendar.getPrimaryKey();
 

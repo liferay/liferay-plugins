@@ -589,18 +589,15 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Message)) {
 			return false;
 		}
 
-		Message message = null;
-
-		try {
-			message = (Message)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Message message = (Message)obj;
 
 		long primaryKey = message.getPrimaryKey();
 

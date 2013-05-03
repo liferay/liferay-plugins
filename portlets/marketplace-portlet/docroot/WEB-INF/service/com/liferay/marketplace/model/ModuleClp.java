@@ -277,18 +277,15 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof ModuleClp)) {
 			return false;
 		}
 
-		ModuleClp module = null;
-
-		try {
-			module = (ModuleClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		ModuleClp module = (ModuleClp)obj;
 
 		long primaryKey = module.getPrimaryKey();
 

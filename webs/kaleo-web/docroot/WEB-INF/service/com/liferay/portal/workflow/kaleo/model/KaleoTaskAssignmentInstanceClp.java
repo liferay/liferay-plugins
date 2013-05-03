@@ -698,18 +698,15 @@ public class KaleoTaskAssignmentInstanceClp extends BaseModelImpl<KaleoTaskAssig
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTaskAssignmentInstanceClp)) {
 			return false;
 		}
 
-		KaleoTaskAssignmentInstanceClp kaleoTaskAssignmentInstance = null;
-
-		try {
-			kaleoTaskAssignmentInstance = (KaleoTaskAssignmentInstanceClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTaskAssignmentInstanceClp kaleoTaskAssignmentInstance = (KaleoTaskAssignmentInstanceClp)obj;
 
 		long primaryKey = kaleoTaskAssignmentInstance.getPrimaryKey();
 

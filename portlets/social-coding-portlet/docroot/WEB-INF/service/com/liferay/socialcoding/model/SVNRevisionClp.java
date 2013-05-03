@@ -399,18 +399,15 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SVNRevisionClp)) {
 			return false;
 		}
 
-		SVNRevisionClp svnRevision = null;
-
-		try {
-			svnRevision = (SVNRevisionClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		SVNRevisionClp svnRevision = (SVNRevisionClp)obj;
 
 		long primaryKey = svnRevision.getPrimaryKey();
 
