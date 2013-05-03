@@ -69,7 +69,8 @@ page import="com.liferay.tasks.model.TasksEntryConstants" %><%@
 page import="com.liferay.tasks.service.TasksEntryLocalServiceUtil" %><%@
 page import="com.liferay.tasks.service.permission.TasksEntryPermission" %><%@
 page import="com.liferay.tasks.service.permission.TasksPermission" %><%@
-page import="com.liferay.tasks.util.PortletKeys" %>
+page import="com.liferay.tasks.util.PortletKeys" %><%@
+page import="com.liferay.tasks.util.WebKeys" %>
 
 <%@ page import="java.text.Format" %>
 
