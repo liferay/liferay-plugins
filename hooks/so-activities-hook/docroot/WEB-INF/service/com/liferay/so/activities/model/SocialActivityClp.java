@@ -442,18 +442,15 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SocialActivityClp)) {
 			return false;
 		}
 
-		SocialActivityClp socialActivity = null;
-
-		try {
-			socialActivity = (SocialActivityClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		SocialActivityClp socialActivity = (SocialActivityClp)obj;
 
 		long primaryKey = socialActivity.getPrimaryKey();
 

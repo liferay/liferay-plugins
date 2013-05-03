@@ -217,18 +217,15 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SocialActivity)) {
 			return false;
 		}
 
-		SocialActivity socialActivity = null;
-
-		try {
-			socialActivity = (SocialActivity)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		SocialActivity socialActivity = (SocialActivity)obj;
 
 		long primaryKey = socialActivity.getPrimaryKey();
 
