@@ -87,8 +87,10 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 				extraData);
 
 			body = extraDataJSONObject.getString("requestMessage");
+
 			if (!(body.equals(""))) {
 				body = StringUtil.quote(body);
+
 				body = HtmlUtil.escape(body);
 			}
 		}
