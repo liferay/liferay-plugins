@@ -23,19 +23,16 @@ import javax.servlet.http.HttpSession;
 public class CDICrossContextRequestImpl extends CDICrossContextRequest {
 
 	public CDICrossContextRequestImpl(HttpServletRequest httpServletRequest) {
-
 		super(httpServletRequest);
 	}
 
 	@Override
 	public HttpSession getSession(boolean create) {
-
 		if (_httpSession == null) {
+			HttpServletRequest httpServletRequest = getRequest();
 
-			HttpServletRequest wrappedHttpServletRequest = getRequest();
-			HttpSession wrappedHttpSession =
-				wrappedHttpServletRequest.getSession(create);
-			_httpSession = new CDICrossContextSessionImpl(wrappedHttpSession);
+			_httpSession = new CDICrossContextSessionImpl(
+				httpServletRequest.getSession(create));
 		}
 
 		return _httpSession;

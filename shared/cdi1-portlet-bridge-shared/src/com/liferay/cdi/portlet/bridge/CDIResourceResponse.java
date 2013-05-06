@@ -26,7 +26,6 @@ public abstract class CDIResourceResponse extends ResourceResponseWrapper
 	implements HttpServletResponse {
 
 	public CDIResourceResponse(ResourceResponse response) {
-
 		super(response);
 	}
 

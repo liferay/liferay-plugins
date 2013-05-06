@@ -33,7 +33,6 @@ import javax.servlet.AsyncContext;
 import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -49,516 +48,357 @@ public class HttpServletRequestAdapterImpl
 	implements HttpServletRequestAdapter {
 
 	public HttpServletRequestAdapterImpl(PortletRequest portletRequest) {
-
 		_portletRequest = portletRequest;
 	}
 
-	@Override
-	public boolean authenticate(HttpServletResponse httpServletResponse)
-		throws IOException, ServletException {
-
+	public boolean authenticate(HttpServletResponse httpServletResponse) {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public AsyncContext getAsyncContext() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public Object getAttribute(String name) {
-
-		return getPortletRequest().getAttribute(name);
+		return _portletRequest.getAttribute(name);
 	}
 
-	@Override
 	public Enumeration<String> getAttributeNames() {
-
-		return getPortletRequest().getAttributeNames();
+		return _portletRequest.getAttributeNames();
 	}
 
-	@Override
 	public String getAuthType() {
-
-		return getPortletRequest().getAuthType();
+		return _portletRequest.getAuthType();
 	}
 
-	@Override
 	public String getCharacterEncoding() {
-
-		PortletRequest wrappedPortletRequest = getPortletRequest();
-
-		if (wrappedPortletRequest instanceof ClientDataRequest) {
-
-			ClientDataRequest clientDataRequest =
-				(ClientDataRequest)wrappedPortletRequest;
-
-			return clientDataRequest.getCharacterEncoding();
-		}
-		else {
+		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
 		}
+
+		ClientDataRequest clientDataRequest =
+			(ClientDataRequest)_portletRequest;
+
+		return clientDataRequest.getCharacterEncoding();
 	}
 
-	@Override
 	public int getContentLength() {
-
-		PortletRequest wrappedPortletRequest = getPortletRequest();
-
-		if (wrappedPortletRequest instanceof ClientDataRequest) {
-
-			ClientDataRequest clientDataRequest =
-				(ClientDataRequest)wrappedPortletRequest;
-
-			return clientDataRequest.getContentLength();
-		}
-		else {
+		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
 		}
+
+		ClientDataRequest clientDataRequest =
+			(ClientDataRequest)_portletRequest;
+
+		return clientDataRequest.getContentLength();
 	}
 
-	@Override
 	public String getContentType() {
-
-		PortletRequest wrappedPortletRequest = getPortletRequest();
-
-		if (wrappedPortletRequest instanceof ClientDataRequest) {
-
-			ClientDataRequest clientDataRequest =
-				(ClientDataRequest)wrappedPortletRequest;
-
-			return clientDataRequest.getContentType();
-		}
-		else {
+		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
 		}
+
+		ClientDataRequest clientDataRequest =
+			(ClientDataRequest)_portletRequest;
+
+		return clientDataRequest.getContentType();
 	}
 
-	@Override
 	public String getContextPath() {
-
-		return getPortletRequest().getContextPath();
+		return _portletRequest.getContextPath();
 	}
 
-	@Override
 	public Cookie[] getCookies() {
-
-		return getPortletRequest().getCookies();
+		return _portletRequest.getCookies();
 	}
 
-	@Override
 	public long getDateHeader(String name) {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public DispatcherType getDispatcherType() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getHeader(String name) {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public Enumeration<String> getHeaderNames() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public Enumeration<String> getHeaders(String name) {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public ServletInputStream getInputStream() throws IOException {
-
 		if (_servletInputStream == null) {
-
-			PortletRequest wrappedPortletRequest = getPortletRequest();
-
-			if (wrappedPortletRequest instanceof ClientDataRequest) {
-				ClientDataRequest clientDataRequest =
-					(ClientDataRequest)wrappedPortletRequest;
-				_servletInputStream = new ServletInputStreamAdapter(
-					clientDataRequest);
-			}
-			else {
+			if (!(_portletRequest instanceof ClientDataRequest)) {
 				throw new UnsupportedOperationException();
 			}
+
+			ClientDataRequest clientDataRequest =
+				(ClientDataRequest)_portletRequest;
+
+			_servletInputStream = new ServletInputStreamAdapter(
+				clientDataRequest);
 		}
 
 		return _servletInputStream;
 	}
 
-	@Override
 	public int getIntHeader(String name) {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getLocalAddr() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public Locale getLocale() {
-
-		return getPortletRequest().getLocale();
+		return _portletRequest.getLocale();
 	}
 
-	@Override
 	public Enumeration<Locale> getLocales() {
-
-		return getPortletRequest().getLocales();
+		return _portletRequest.getLocales();
 	}
 
-	@Override
 	public String getLocalName() {
+		Locale locale = _portletRequest.getLocale();
 
-		return getPortletRequest().getLocale().getDisplayName();
+		return locale.getDisplayName();
 	}
 
-	@Override
 	public int getLocalPort() {
-
-		return getPortletRequest().getServerPort();
+		return _portletRequest.getServerPort();
 	}
 
-	@Override
 	public String getMethod() {
-
-		PortletRequest wrappedPortletRequest = getPortletRequest();
-
-		if (wrappedPortletRequest instanceof ClientDataRequest) {
-			ClientDataRequest clientDataRequest =
-				(ClientDataRequest)wrappedPortletRequest;
-
-			return clientDataRequest.getMethod();
-		}
-		else {
+		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
 		}
+
+		ClientDataRequest clientDataRequest =
+			(ClientDataRequest)_portletRequest;
+
+		return clientDataRequest.getMethod();
 	}
 
-	@Override
 	public String getParameter(String name) {
-
-		return getPortletRequest().getParameter(name);
+		return _portletRequest.getParameter(name);
 	}
 
-	@Override
 	public Map<String, String[]> getParameterMap() {
-
-		return getPortletRequest().getParameterMap();
+		return _portletRequest.getParameterMap();
 	}
 
-	@Override
 	public Enumeration<String> getParameterNames() {
-
-		return getPortletRequest().getParameterNames();
+		return _portletRequest.getParameterNames();
 	}
 
-	@Override
 	public String[] getParameterValues(String name) {
-
-		return getPortletRequest().getParameterValues(name);
+		return _portletRequest.getParameterValues(name);
 	}
 
-	@Override
-	public Part getPart(String name) throws IOException, ServletException {
+	public Part getPart(String name) {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public Collection<Part> getParts() throws IOException, ServletException {
+	public Collection<Part> getParts() {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getPathInfo() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getPathTranslated() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public PortletRequest getPortletRequest() {
-
 		return _portletRequest;
 	}
 
-	@Override
 	public String getProtocol() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getQueryString() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public BufferedReader getReader() throws IOException {
-		PortletRequest wrappedPortletRequest = getPortletRequest();
-
-		if (wrappedPortletRequest instanceof ClientDataRequest) {
-
-			ClientDataRequest clientDataRequest =
-				(ClientDataRequest)wrappedPortletRequest;
-
-			return clientDataRequest.getReader();
-		}
-		else {
+		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
 		}
+
+		ClientDataRequest clientDataRequest =
+			(ClientDataRequest)_portletRequest;
+
+		return clientDataRequest.getReader();
 	}
 
-	@Override
 	public String getRealPath(String path) {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getRemoteAddr() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getRemoteHost() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public int getRemotePort() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getRemoteUser() {
-
-		return getPortletRequest().getRemoteUser();
+		return _portletRequest.getRemoteUser();
 	}
 
-	@Override
 	public RequestDispatcher getRequestDispatcher(String path) {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getRequestedSessionId() {
-
-		return getPortletRequest().getRequestedSessionId();
+		return _portletRequest.getRequestedSessionId();
 	}
 
-	@Override
 	public String getRequestURI() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public StringBuffer getRequestURL() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getScheme() {
-
-		return getPortletRequest().getScheme();
+		return _portletRequest.getScheme();
 	}
 
-	@Override
 	public String getServerName() {
-
-		return getPortletRequest().getServerName();
+		return _portletRequest.getServerName();
 	}
 
-	@Override
 	public int getServerPort() {
-
-		return getPortletRequest().getServerPort();
+		return _portletRequest.getServerPort();
 	}
 
-	@Override
 	public ServletContext getServletContext() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public String getServletPath() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public HttpSession getSession(boolean create) {
-
-		if (_cdiSession == null) {
-			PortletSession portletSession =
-				getPortletRequest().getPortletSession(create);
+		if (_portletSession == null) {
+			PortletSession portletSession = _portletRequest.getPortletSession(
+				create);
 
 			if (portletSession != null) {
-				_cdiSession = new CDISessionImpl(portletSession);
+				_portletSession = new CDISessionImpl(portletSession);
 			}
 		}
 
-		return _cdiSession;
+		return _portletSession;
 	}
 
-	@Override
 	public HttpSession getSession() {
-
-		if (_cdiSession == null) {
-			PortletSession portletSession =
-				getPortletRequest().getPortletSession();
-			_cdiSession = new CDISessionImpl(portletSession);
+		if (_portletSession == null) {
+			_portletSession = new CDISessionImpl(
+				_portletRequest.getPortletSession());
 		}
 
-		return _cdiSession;
+		return _portletSession;
 	}
 
-	@Override
 	public Principal getUserPrincipal() {
-
-		return getPortletRequest().getUserPrincipal();
+		return _portletRequest.getUserPrincipal();
 	}
 
-	@Override
 	public boolean isAsyncStarted() {
-
 		return false;
 	}
 
-	@Override
 	public boolean isAsyncSupported() {
-
 		return false;
 	}
 
-	@Override
 	public boolean isRequestedSessionIdFromCookie() {
-
 		return false;
 	}
 
-	@Override
 	public boolean isRequestedSessionIdFromUrl() {
-
 		return false;
 	}
 
-	@Override
 	public boolean isRequestedSessionIdFromURL() {
-
 		return false;
 	}
 
-	@Override
 	public boolean isRequestedSessionIdValid() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public boolean isSecure() {
-
-		return getPortletRequest().isSecure();
+		return _portletRequest.isSecure();
 	}
 
-	@Override
 	public boolean isUserInRole(String role) {
-
-		return getPortletRequest().isUserInRole(role);
+		return _portletRequest.isUserInRole(role);
 	}
 
-	@Override
-	public void login(String username, String password)
-		throws ServletException {
-
+	public void login(String username, String password) {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public void logout() throws ServletException {
+	public void logout() {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public void removeAttribute(String name) {
-
-		getPortletRequest().removeAttribute(name);
+		_portletRequest.removeAttribute(name);
 	}
 
-	@Override
 	public void setAttribute(String name, Object value) {
-
-		getPortletRequest().setAttribute(name, value);
+		_portletRequest.setAttribute(name, value);
 	}
 
-	@Override
-	public void setCharacterEncoding(String enc)
+	public void setCharacterEncoding(String encoding)
 		throws UnsupportedEncodingException {
 
-		PortletRequest wrappedPortletRequest = getPortletRequest();
-
-		if (wrappedPortletRequest instanceof ClientDataRequest) {
-
-			ClientDataRequest clientDataRequest =
-				(ClientDataRequest)wrappedPortletRequest;
-
-			clientDataRequest.setCharacterEncoding(enc);
-		}
-		else {
+		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
 		}
 
+		ClientDataRequest clientDataRequest =
+			(ClientDataRequest)_portletRequest;
+
+		clientDataRequest.setCharacterEncoding(encoding);
 	}
 
-	@Override
 	public AsyncContext startAsync(
-		ServletRequest servletRequest, ServletResponse servletResponse)
-			throws IllegalStateException {
+		ServletRequest servletRequest, ServletResponse servletResponse) {
 
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public AsyncContext startAsync() throws IllegalStateException {
+	public AsyncContext startAsync() {
 		throw new UnsupportedOperationException();
 	}
 
 	public class ServletInputStreamAdapter extends ServletInputStream {
 
 		public ServletInputStreamAdapter(ClientDataRequest clientDataRequest) {
-
 			_clientDataRequest = clientDataRequest;
 		}
 
-		@Override
 		public int read() throws IOException {
 			return _clientDataRequest.getPortletInputStream().read();
 		}
@@ -567,8 +407,8 @@ public class HttpServletRequestAdapterImpl
 
 	}
 
-	private CDISession _cdiSession;
 	private PortletRequest _portletRequest;
+	private CDISession _portletSession;
 	private ServletInputStream _servletInputStream;
 
 }

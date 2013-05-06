@@ -26,7 +26,6 @@ public abstract class CDIEventRequest extends EventRequestWrapper
 	implements HttpServletRequest {
 
 	public CDIEventRequest(EventRequest eventRequest) {
-
 		super(eventRequest);
 	}
 

@@ -25,119 +25,83 @@ import javax.servlet.http.HttpSession;
 public class HttpSessionWrapper implements HttpSession {
 
 	public HttpSessionWrapper(HttpSession httpSession) {
-
-		_wrappedHttpSession = httpSession;
+		_httpSession = httpSession;
 	}
 
-	@Override
 	public Object getAttribute(String name) {
-
-		return getHttpSession().getAttribute(name);
+		return _httpSession.getAttribute(name);
 	}
 
-	@Override
 	public Enumeration<String> getAttributeNames() {
-
-		return getHttpSession().getAttributeNames();
+		return _httpSession.getAttributeNames();
 	}
 
-	@Override
 	public long getCreationTime() {
-
-		return getHttpSession().getCreationTime();
+		return _httpSession.getCreationTime();
 	}
 
 	public HttpSession getHttpSession() {
-
-		return _wrappedHttpSession;
+		return _httpSession;
 	}
 
-	@Override
 	public String getId() {
-
-		return getHttpSession().getId();
+		return _httpSession.getId();
 	}
 
-	@Override
 	public long getLastAccessedTime() {
-
-		return getHttpSession().getLastAccessedTime();
+		return _httpSession.getLastAccessedTime();
 	}
 
-	@Override
 	public int getMaxInactiveInterval() {
-
-		return getHttpSession().getMaxInactiveInterval();
+		return _httpSession.getMaxInactiveInterval();
 	}
 
-	@Override
 	public ServletContext getServletContext() {
-
-		return getHttpSession().getServletContext();
+		return _httpSession.getServletContext();
 	}
 
-	@Override
 	@SuppressWarnings("deprecation")
 	public javax.servlet.http.HttpSessionContext getSessionContext() {
-
-		return getHttpSession().getSessionContext();
+		return _httpSession.getSessionContext();
 	}
 
-	@Override
 	public Object getValue(String name) {
-
-		return getHttpSession().getAttribute(name);
+		return _httpSession.getAttribute(name);
 	}
 
-	@Override
 	@SuppressWarnings("deprecation")
 	public String[] getValueNames() {
-
-		return getHttpSession().getValueNames();
+		return _httpSession.getValueNames();
 	}
 
-	@Override
 	public void invalidate() {
-
-		getHttpSession().invalidate();
+		_httpSession.invalidate();
 	}
 
-	@Override
 	public boolean isNew() {
-
-		return getHttpSession().isNew();
+		return _httpSession.isNew();
 	}
 
-	@Override
 	public void putValue(String name, Object value) {
-
-		getHttpSession().setAttribute(name, value);
+		_httpSession.setAttribute(name, value);
 	}
 
-	@Override
 	public void removeAttribute(String name) {
-
-		getHttpSession().removeAttribute(name);
+		_httpSession.removeAttribute(name);
 	}
 
-	@Override
 	public void removeValue(String name) {
-
-		getHttpSession().removeAttribute(name);
+		_httpSession.removeAttribute(name);
 	}
 
-	@Override
 	public void setAttribute(String name, Object value) {
-
-		getHttpSession().setAttribute(name, value);
+		_httpSession.setAttribute(name, value);
 	}
 
-	@Override
 	public void setMaxInactiveInterval(int maxInactiveInterval) {
-
-		getHttpSession().setMaxInactiveInterval(maxInactiveInterval);
+		_httpSession.setMaxInactiveInterval(maxInactiveInterval);
 	}
 
-	private HttpSession _wrappedHttpSession;
+	private HttpSession _httpSession;
 
 }

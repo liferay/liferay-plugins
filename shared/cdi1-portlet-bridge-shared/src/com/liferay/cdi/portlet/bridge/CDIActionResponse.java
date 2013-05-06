@@ -26,7 +26,6 @@ public abstract class CDIActionResponse extends ActionResponseWrapper
 	implements HttpServletResponse {
 
 	public CDIActionResponse(ActionResponse actionResponse) {
-
 		super(actionResponse);
 	}
 

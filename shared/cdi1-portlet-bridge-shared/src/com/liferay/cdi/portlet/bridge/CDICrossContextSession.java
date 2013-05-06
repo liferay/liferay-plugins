@@ -22,7 +22,6 @@ import javax.servlet.http.HttpSession;
 public abstract class CDICrossContextSession extends HttpSessionWrapper {
 
 	public CDICrossContextSession(HttpSession httpSession) {
-
 		super(httpSession);
 	}
 

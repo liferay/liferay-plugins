@@ -26,9 +26,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CDIRequestFactoryImpl implements CDIRequestFactory {
 
-	@Override
 	public CDIActionRequest getCDIActionRequest(ActionRequest actionRequest) {
-
 		HttpServletRequestAdapter httpServletRequestAdapter =
 			new HttpServletRequestAdapterImpl(actionRequest);
 
@@ -36,25 +34,20 @@ public class CDIRequestFactoryImpl implements CDIRequestFactory {
 			actionRequest, httpServletRequestAdapter);
 	}
 
-	@Override
 	public CDICrossContextRequest getCDICrossContextRequest(
 		HttpServletRequest httpServletRequest) {
 
 		return new CDICrossContextRequestImpl(httpServletRequest);
 	}
 
-	@Override
 	public CDIEventRequest getCDIEventRequest(EventRequest eventRequest) {
-
 		HttpServletRequestAdapter httpServletRequestAdapter =
 			new HttpServletRequestAdapterImpl(eventRequest);
 
 		return new CDIEventRequestImpl(eventRequest, httpServletRequestAdapter);
 	}
 
-	@Override
 	public CDIRenderRequest getCDIRenderRequest(RenderRequest renderRequest) {
-
 		HttpServletRequestAdapter httpServletRequestAdapter =
 			new HttpServletRequestAdapterImpl(renderRequest);
 
@@ -62,7 +55,6 @@ public class CDIRequestFactoryImpl implements CDIRequestFactory {
 			renderRequest, httpServletRequestAdapter);
 	}
 
-	@Override
 	public CDIResourceRequest getCDIResourceRequest(
 		ResourceRequest resourceRequest) {
 

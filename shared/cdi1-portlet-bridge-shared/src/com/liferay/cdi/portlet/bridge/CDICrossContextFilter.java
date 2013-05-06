@@ -29,30 +29,25 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CDICrossContextFilter implements Filter {
 
-	@Override
 	public void destroy() {
-
 	}
 
-	@Override
 	public void doFilter(
-		ServletRequest servletRequest, ServletResponse servletResponse,
-		FilterChain filterChain) throws IOException, ServletException {
+			ServletRequest servletRequest, ServletResponse servletResponse,
+			FilterChain filterChain)
+		throws IOException, ServletException {
 
-		HttpServletRequest httpServletRequest = (HttpServletRequest)
-			servletRequest;
+		CDIRequestFactory cdiRequestFactory =
+			(CDIRequestFactory)CDIBeanManagerUtil.getManagedBeanReference(
+				CDIRequestFactory.class);
 
-		CDIRequestFactory cdiRequestFactory = (CDIRequestFactory)
-			CDIUtil.getManagedBeanReference(CDIRequestFactory.class);
+		servletRequest = cdiRequestFactory.getCDICrossContextRequest(
+			(HttpServletRequest)servletRequest);
 
-		CDICrossContextRequest cdiCrossContextRequest =
-			cdiRequestFactory.getCDICrossContextRequest(httpServletRequest);
-
-		filterChain.doFilter(cdiCrossContextRequest, servletResponse);
+		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
+	public void init(FilterConfig filterConfig) {
 	}
 
 }

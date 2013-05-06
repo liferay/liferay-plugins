@@ -26,7 +26,6 @@ public abstract class CDIResourceRequest extends ResourceRequestWrapper
 	implements HttpServletRequest {
 
 	public CDIResourceRequest(ResourceRequest request) {
-
 		super(request);
 	}
 
