@@ -26,12 +26,12 @@ public class TestComponent {
 
 	@Activate
 	public void activate() {
-		System.out.println("TestComponent activated!");
+		System.out.println("Activate TestComponent");
 	}
 
 	@Deactivate
 	public void deactivate() {
-		System.out.println("TestComponent is no longer activated!");
+		System.out.println("Deactivate TestComponent");
 	}
 
 }
