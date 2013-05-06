@@ -33,7 +33,7 @@
 			text-transform: uppercase;
 		}
 
-		.user-portrait {
+		.actions-container, .user-container {
 			float: left;
 		}
 
@@ -46,9 +46,14 @@
 			padding-left: 18px;
 		}
 
+		.actions-container {
+			margin: 5px 0 5px 10px;
+		}
+
 		.add-as-friend {
-			float: left;
-			margin: 34px 0 0 10px;
+			.aui-field-input {
+				width: 100%;
+			}
 
 			.aui-button-input-submit {
 				margin-top: 5px;
@@ -56,15 +61,6 @@
 
 			&.pending {
 				background-image: url(@theme_image_path@/common/time.png);
-			}
-		}
-
-		.add-as-friend, .friend-requests {
-			&.pending {
-				left: 102px;
-				margin-top: 37px;
-				position: absolute;
-				right: 0;
 			}
 		}
 
