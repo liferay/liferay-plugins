@@ -64,6 +64,7 @@ public class SODeployListenerMessageListener
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
+
 			// SOS-1574
 
 			//cleanUpSocialOffice(company.getCompanyId());
