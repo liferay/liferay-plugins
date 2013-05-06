@@ -45,6 +45,7 @@
 			<liferay-manifest-helper
 				analyze="@{analyze}"
 				classpathref="plugin.classpath"
+				projectDirPropertyName="sdk.dir"
 			/>
 		</sequential>
 	</macrodef>
