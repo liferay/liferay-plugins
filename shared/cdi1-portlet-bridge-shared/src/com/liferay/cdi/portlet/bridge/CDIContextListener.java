@@ -27,30 +27,22 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class CDIContextListener implements ServletContextListener {
 
-	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
 	}
 
-	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-
 		ServletContext servletContext = servletContextEvent.getServletContext();
 
-		BeanManager beanManager = (BeanManager)
-			servletContext.getAttribute(_BEAN_MANAGER_ATTR);
+		BeanManager beanManager = (BeanManager)servletContext.getAttribute(
+			BeanManager.class.getName());
 
 		if (beanManager == null) {
-			beanManager = (BeanManager)
-				servletContext.getAttribute(_BEAN_MANAGER_FQCN);
+			beanManager = (BeanManager)servletContext.getAttribute(
+				"org.jboss.weld.environment.servlet.javax.enterprise." +
+					"inject.spi.BeanManager");
 		}
 
-		CDIUtil.setBeanManager(beanManager);
+		CDIBeanManagerUtil.setBeanManager(beanManager);
 	}
-
-	private static final String _BEAN_MANAGER_ATTR =
-		"javax.enterprise.inject.spi.BeanManager";
-	private static final String _BEAN_MANAGER_FQCN =
-		"org.jboss.weld.environment.servlet.javax.enterprise.inject.spi.BeanManager";
 
 }

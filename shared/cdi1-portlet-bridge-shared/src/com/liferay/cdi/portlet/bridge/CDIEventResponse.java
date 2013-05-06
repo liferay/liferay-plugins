@@ -26,7 +26,6 @@ public abstract class CDIEventResponse extends EventResponseWrapper
 	implements HttpServletResponse {
 
 	public CDIEventResponse(EventResponse eventResponse) {
-
 		super(eventResponse);
 	}
 

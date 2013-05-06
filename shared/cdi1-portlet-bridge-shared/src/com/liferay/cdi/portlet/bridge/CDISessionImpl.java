@@ -29,60 +29,53 @@ import javax.servlet.ServletContext;
 public class CDISessionImpl extends CDISession {
 
 	public CDISessionImpl(PortletSession portletSession) {
-
 		super(portletSession);
 	}
 
-	@Override
 	public ServletContext getServletContext() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public javax.servlet.http.HttpSessionContext getSessionContext() {
-
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public Object getValue(String name) {
+		PortletSession portletSession = getPortletSession();
 
-		return getPortletSession().getAttribute(name);
+		return portletSession.getAttribute(name);
 	}
 
-	@Override
 	public String[] getValueNames() {
+		PortletSession portletSession = getPortletSession();
 
-		String[] valueNames = null;
-		Enumeration<String> attributeNames =
-			getPortletSession().getAttributeNames();
+		Enumeration<String> attributeNames = portletSession.getAttributeNames();
 
-		if (attributeNames != null) {
-			List<String> valueNameArray = new ArrayList<String>();
-
-			while (attributeNames.hasMoreElements()) {
-				String attributeName = attributeNames.nextElement();
-				valueNameArray.add(attributeName);
-			}
-
-			valueNames = valueNameArray.toArray(
-				new String[valueNameArray.size()]);
+		if (attributeNames == null) {
+			return null;
 		}
 
-		return valueNames;
+		List<String> valueNames = new ArrayList<String>();
+
+		while (attributeNames.hasMoreElements()) {
+			String attributeName = attributeNames.nextElement();
+
+			valueNames.add(attributeName);
+		}
+
+		return valueNames.toArray(new String[valueNames.size()]);
 	}
 
-	@Override
 	public void putValue(String name, Object value) {
+		PortletSession portletSession = getPortletSession();
 
-		getPortletSession().setAttribute(name, value);
+		portletSession.setAttribute(name, value);
 	}
 
-	@Override
 	public void removeValue(String name) {
+		PortletSession portletSession = getPortletSession();
 
-		getPortletSession().removeAttribute(name);
+		portletSession.removeAttribute(name);
 	}
 
 }

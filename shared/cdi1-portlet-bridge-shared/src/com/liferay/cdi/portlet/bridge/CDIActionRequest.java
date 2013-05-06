@@ -26,7 +26,6 @@ public abstract class CDIActionRequest extends ActionRequestWrapper
 	implements HttpServletRequest {
 
 	public CDIActionRequest(ActionRequest actionRequest) {
-
 		super(actionRequest);
 	}
 

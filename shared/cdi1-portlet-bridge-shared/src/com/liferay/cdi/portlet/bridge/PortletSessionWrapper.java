@@ -26,123 +26,85 @@ import javax.portlet.PortletSession;
 public class PortletSessionWrapper implements PortletSession {
 
 	public PortletSessionWrapper(PortletSession portletSession) {
-
-		_wrappedPortletSession = portletSession;
+		_portletSession = portletSession;
 	}
 
-	@Override
 	public Object getAttribute(String name) {
-
-		return getPortletSession().getAttribute(name);
+		return _portletSession.getAttribute(name);
 	}
 
-	@Override
 	public Object getAttribute(String name, int value) {
-
-		return getPortletSession().getAttribute(name, value);
+		return _portletSession.getAttribute(name, value);
 	}
 
-	@Override
 	public Map<String, Object> getAttributeMap() {
-
-		return getPortletSession().getAttributeMap();
+		return _portletSession.getAttributeMap();
 	}
 
-	@Override
 	public Map<String, Object> getAttributeMap(int scope) {
-
-		return getPortletSession().getAttributeMap(scope);
+		return _portletSession.getAttributeMap(scope);
 	}
 
-	@Override
 	public Enumeration<String> getAttributeNames() {
-
-		return getPortletSession().getAttributeNames();
+		return _portletSession.getAttributeNames();
 	}
 
-	@Override
 	public Enumeration<String> getAttributeNames(int scope) {
-
-		return getPortletSession().getAttributeNames(scope);
+		return _portletSession.getAttributeNames(scope);
 	}
 
-	@Override
 	public long getCreationTime() {
-
-		return getPortletSession().getCreationTime();
+		return _portletSession.getCreationTime();
 	}
 
-	@Override
 	public String getId() {
-
-		return getPortletSession().getId();
+		return _portletSession.getId();
 	}
 
-	@Override
 	public long getLastAccessedTime() {
-
-		return getPortletSession().getLastAccessedTime();
+		return _portletSession.getLastAccessedTime();
 	}
 
-	@Override
 	public int getMaxInactiveInterval() {
-
-		return getPortletSession().getMaxInactiveInterval();
+		return _portletSession.getMaxInactiveInterval();
 	}
 
-	@Override
 	public PortletContext getPortletContext() {
-
-		return getPortletSession().getPortletContext();
+		return _portletSession.getPortletContext();
 	}
 
 	public PortletSession getPortletSession() {
-
-		return _wrappedPortletSession;
+		return _portletSession;
 	}
 
-	@Override
 	public void invalidate() {
-
-		getPortletSession().invalidate();
+		_portletSession.invalidate();
 	}
 
-	@Override
 	public boolean isNew() {
-
-		return getPortletSession().isNew();
+		return _portletSession.isNew();
 	}
 
-	@Override
 	public void removeAttribute(String name) {
-
-		getPortletSession().removeAttribute(name);
+		_portletSession.removeAttribute(name);
 	}
 
-	@Override
 	public void removeAttribute(String name, int value) {
-
-		getPortletSession().removeAttribute(name, value);
+		_portletSession.removeAttribute(name, value);
 	}
 
-	@Override
 	public void setAttribute(String name, Object value) {
-
-		getPortletSession().setAttribute(name, value);
+		_portletSession.setAttribute(name, value);
 	}
 
-	@Override
 	public void setAttribute(String name, Object value, int scope) {
-
-		getPortletSession().setAttribute(name, value, scope);
+		_portletSession.setAttribute(name, value, scope);
 	}
 
-	@Override
 	public void setMaxInactiveInterval(int maxInactiveInterval) {
-
-		getPortletSession().setMaxInactiveInterval(maxInactiveInterval);
+		_portletSession.setMaxInactiveInterval(maxInactiveInterval);
 	}
 
-	private PortletSession _wrappedPortletSession;
+	private PortletSession _portletSession;
 
 }

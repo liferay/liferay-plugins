@@ -26,7 +26,6 @@ public abstract class CDIRenderRequest extends RenderRequestWrapper
 	implements HttpServletRequest {
 
 	public CDIRenderRequest(RenderRequest renderRequest) {
-
 		super(renderRequest);
 	}
 

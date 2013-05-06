@@ -26,7 +26,6 @@ public abstract class CDIRenderResponse extends RenderResponseWrapper
 	implements HttpServletResponse {
 
 	public CDIRenderResponse(RenderResponse renderResponse) {
-
 		super(renderResponse);
 	}
 

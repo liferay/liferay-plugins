@@ -16,8 +16,6 @@ package com.liferay.cdi.portlet.bridge;
 
 import java.io.IOException;
 
-import java.util.Locale;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
@@ -40,88 +38,86 @@ import javax.xml.stream.events.XMLEvent;
 public class CDIPortletFilter
 	implements ActionFilter, EventFilter, RenderFilter, ResourceFilter {
 
-	@Override
 	public boolean accept(XMLEvent xmlEvent) {
-
 		return false;
 	}
 
-	@Override
 	public void destroy() {
 	}
 
-	@Override
 	public void doFilter(
-		ActionRequest actionRequest, ActionResponse actionResponse,
-		FilterChain filterChain) throws IOException, PortletException {
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			FilterChain filterChain)
+		throws IOException, PortletException {
 
-		CDIActionRequest cdiActionRequest =
-			getCDIRequestFactory().getCDIActionRequest(actionRequest);
+		CDIRequestFactory cdiRequestFactory = getCDIRequestFactory();
 
-		CDIActionResponse cdiActionResponse =
-			getCDIResponseFactory().getCDIActionResponse(
-				actionResponse, actionRequest.getLocale());
+		actionRequest = cdiRequestFactory.getCDIActionRequest(actionRequest);
 
-		filterChain.doFilter(cdiActionRequest, cdiActionResponse);
+		CDIResponseFactory cdiResponseFactory = getCDIResponseFactory();
+
+		actionResponse = cdiResponseFactory.getCDIActionResponse(
+			actionResponse, actionRequest.getLocale());
+
+		filterChain.doFilter(actionRequest, actionResponse);
 	}
 
-	@Override
 	public void doFilter(
-		RenderRequest renderRequest, RenderResponse renderResponse,
-		FilterChain filterChain) throws IOException, PortletException {
+			RenderRequest renderRequest, RenderResponse renderResponse,
+			FilterChain filterChain)
+		throws IOException, PortletException {
 
-		CDIRenderRequest cdiRenderRequest =
-			getCDIRequestFactory().getCDIRenderRequest(renderRequest);
+		CDIRequestFactory cdiRequestFactory = getCDIRequestFactory();
 
-		Locale locale = renderRequest.getLocale();
+		renderRequest = cdiRequestFactory.getCDIRenderRequest(renderRequest);
 
-		CDIRenderResponse cdiRenderResponse =
-			getCDIResponseFactory().getCDIRenderResponse(renderResponse, locale);
+		CDIResponseFactory cdiResponseFactory = getCDIResponseFactory();
 
-		filterChain.doFilter(cdiRenderRequest, cdiRenderResponse);
+		renderResponse = cdiResponseFactory.getCDIRenderResponse(
+			renderResponse, renderRequest.getLocale());
+
+		filterChain.doFilter(renderRequest, renderResponse);
 	}
 
-	@Override
 	public void doFilter(
-		ResourceRequest resourceRequest, ResourceResponse resourceResponse,
-		FilterChain filterChain) throws IOException, PortletException {
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
+			FilterChain filterChain)
+		throws IOException, PortletException {
 
-		CDIResourceRequest cdiResourceRequest =
-			getCDIRequestFactory().getCDIResourceRequest(resourceRequest);
+		CDIRequestFactory cdiRequestFactory = getCDIRequestFactory();
 
-		Locale locale = resourceRequest.getLocale();
+		resourceRequest = cdiRequestFactory.getCDIResourceRequest(
+			resourceRequest);
 
-		CDIResourceResponse cdiResourceResponse =
-			getCDIResponseFactory().getCDIResourceResponse(
-				resourceResponse, locale);
+		CDIResponseFactory cdiResponseFactory = getCDIResponseFactory();
 
-		filterChain.doFilter(cdiResourceRequest, cdiResourceResponse);
+		resourceResponse = cdiResponseFactory.getCDIResourceResponse(
+			resourceResponse, resourceRequest.getLocale());
+
+		filterChain.doFilter(resourceRequest, resourceResponse);
+	}
+
+	public void init(FilterConfig filterConfig) {
 	}
 
 	protected CDIRequestFactory getCDIRequestFactory() {
-		
 		if (_cdiRequestFactory == null) {
-			_cdiRequestFactory = (CDIRequestFactory)
-				CDIUtil.getManagedBeanReference(CDIRequestFactory.class);
+			_cdiRequestFactory =
+				(CDIRequestFactory)CDIBeanManagerUtil.getManagedBeanReference(
+					CDIRequestFactory.class);
 		}
+
 		return _cdiRequestFactory;
 	}
 
 	protected CDIResponseFactory getCDIResponseFactory() {
-
 		if (_cdiResponseFactory == null) {
-			_cdiResponseFactory = (CDIResponseFactory)
-				CDIUtil.getManagedBeanReference(CDIResponseFactory.class);
+			_cdiResponseFactory =
+				(CDIResponseFactory)CDIBeanManagerUtil.getManagedBeanReference(
+					CDIResponseFactory.class);
 		}
-		return _cdiResponseFactory;
-	}
 
-	@Override
-	public void init(FilterConfig filterConfig) throws PortletException {
-		
-		// Unable to initialize _cdiRequestFactory and _cdiResponseFactory
-		// here because there is no guarantee that the CDIContextListener
-		// has been initialized at the time this method is called.
+		return _cdiResponseFactory;
 	}
 
 	private CDIRequestFactory _cdiRequestFactory;

@@ -23,13 +23,11 @@ import javax.servlet.http.HttpServletRequestWrapper;
 public class CDICrossContextRequest extends HttpServletRequestWrapper {
 
 	public CDICrossContextRequest(HttpServletRequest httpServletRequest) {
-
 		super(httpServletRequest);
 	}
 
 	@Override
 	public HttpServletRequest getRequest() {
-
 		return (HttpServletRequest)super.getRequest();
 	}
 

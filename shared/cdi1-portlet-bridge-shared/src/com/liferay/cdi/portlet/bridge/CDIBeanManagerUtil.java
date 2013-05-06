@@ -14,6 +14,9 @@
 
 package com.liferay.cdi.portlet.bridge;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
@@ -21,16 +24,19 @@ import javax.enterprise.inject.spi.BeanManager;
 /**
  * @author Neil Griffin
  */
-public class CDIUtil {
+public class CDIBeanManagerUtil {
 
 	public static BeanManager getBeanManager() {
-
 		return _beanManager;
 	}
 
 	public static Object getManagedBeanReference(Class<?> clazz) {
+		Set<Bean<?>> beans = _beanManager.getBeans(clazz);
 
-		Bean<?> bean = _beanManager.getBeans(clazz).iterator().next();
+		Iterator<Bean<?>> iterator = beans.iterator();
+
+		Bean<?> bean = iterator.next();
+
 		CreationalContext<?> creationalContext =
 			_beanManager.createCreationalContext(bean);
 
@@ -38,8 +44,7 @@ public class CDIUtil {
 	}
 
 	public static void setBeanManager(BeanManager beanManager) {
-
-		CDIUtil._beanManager = beanManager;
+		_beanManager = beanManager;
 	}
 
 	private static BeanManager _beanManager;

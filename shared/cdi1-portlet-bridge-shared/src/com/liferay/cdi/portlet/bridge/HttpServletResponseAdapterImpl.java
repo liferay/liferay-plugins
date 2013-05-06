@@ -15,11 +15,13 @@
 package com.liferay.cdi.portlet.bridge;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import java.util.Collection;
 import java.util.Locale;
 
+import javax.portlet.ClientDataRequest;
 import javax.portlet.MimeResponse;
 import javax.portlet.PortletResponse;
 import javax.portlet.ResourceResponse;
@@ -36,149 +38,113 @@ public class HttpServletResponseAdapterImpl
 	public HttpServletResponseAdapterImpl(
 		PortletResponse portletResponse, Locale locale) {
 
-		_portletResponse = portletResponse;
 		_locale = locale;
+		_portletResponse = portletResponse;
 	}
 
 	public void addCookie(Cookie cookie) {
-
-		getPortletResponse().addProperty(cookie);
+		_portletResponse.addProperty(cookie);
 	}
 
 	public void addDateHeader(String name, long value) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public void addHeader(String name, String value) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public void addIntHeader(String name, int value) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public boolean containsHeader(String name) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public String encodeRedirectUrl(String url) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public String encodeRedirectURL(String url) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public String encodeUrl(String url) {
-
 		return getPortletResponse().encodeURL(url);
 	}
 
 	public String encodeURL(String url) {
-
 		return getPortletResponse().encodeURL(url);
 	}
 
 	public void flushBuffer() throws IOException {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-			mimeResponse.flushBuffer();
-		}
-		else {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		mimeResponse.flushBuffer();
 	}
 
 	public int getBufferSize() {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-
-			return mimeResponse.getBufferSize();
-		}
-		else {
+		if (!(_portletResponse instanceof ClientDataRequest)) {
 			return 0;
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		return mimeResponse.getBufferSize();
 	}
 
 	public String getCharacterEncoding() {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-
-			return mimeResponse.getCharacterEncoding();
-		}
-		else {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			return null;
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		return mimeResponse.getCharacterEncoding();
 	}
 
 	public String getContentType() {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-
-			return mimeResponse.getContentType();
-		}
-		else {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			return null;
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		return mimeResponse.getContentType();
 	}
 
 	@Override
 	public String getHeader(String name) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public Collection<String> getHeaderNames() {
-
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public Collection<String> getHeaders(String name) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public Locale getLocale() {
-
 		return _locale;
 	}
 
 	public ServletOutputStream getOutputStream() throws IOException {
-
 		if (_servletOutputStream == null) {
-
-			PortletResponse wrappedPortletResponse = getPortletResponse();
-
-			if (wrappedPortletResponse instanceof MimeResponse) {
-
-				MimeResponse mimeResponse =
-					(MimeResponse)wrappedPortletResponse;
-				_servletOutputStream = new ServletOutputStreamAdapter(
-					mimeResponse);
-			}
-			else {
+			if (!(_portletResponse instanceof MimeResponse)) {
 				throw new UnsupportedOperationException();
 			}
+
+			_servletOutputStream = new ServletOutputStreamAdapter(
+				(MimeResponse)_portletResponse);
 		}
 
 		return _servletOutputStream;
@@ -186,75 +152,59 @@ public class HttpServletResponseAdapterImpl
 
 	@Override
 	public PortletResponse getPortletResponse() {
-
 		return _portletResponse;
 	}
 
 	@Override
 	public int getStatus() {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public PrintWriter getWriter() throws IOException {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-
-			return mimeResponse.getWriter();
-		}
-		else {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		return mimeResponse.getWriter();
 	}
 
 	public boolean isCommitted() {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-
-			return mimeResponse.isCommitted();
-		}
-		else {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			return true;
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		return mimeResponse.isCommitted();
 	}
 
 	public void reset() {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-			mimeResponse.reset();
-		}
-		else {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		mimeResponse.reset();
 	}
 
 	public void resetBuffer() {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-			mimeResponse.resetBuffer();
-		}
-		else {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		mimeResponse.resetBuffer();
 	}
 
-	public void sendError(int sc) throws IOException {
+	public void sendError(int status) throws IOException {
 		throw new UnsupportedOperationException();
 	}
 
-	public void sendError(int sc, String message) throws IOException {
+	public void sendError(int status, String msg) throws IOException {
 		throw new UnsupportedOperationException();
 	}
 
@@ -262,82 +212,69 @@ public class HttpServletResponseAdapterImpl
 		throw new UnsupportedOperationException();
 	}
 
-	public void setBufferSize(int size) {
-
+	public void setBufferSize(int bufferSize) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setCharacterEncoding(String charset) {
-
+	public void setCharacterEncoding(String encoding) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setContentLength(int len) {
-
+	public void setContentLength(int contentLength) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setContentType(String type) {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof MimeResponse) {
-
-			MimeResponse mimeResponse = (MimeResponse)wrappedPortletResponse;
-			mimeResponse.setContentType(type);
-		}
-		else {
+	public void setContentType(String contentType) {
+		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
 		}
+
+		MimeResponse mimeResponse = (MimeResponse)_portletResponse;
+
+		mimeResponse.setContentType(contentType);
 	}
 
 	public void setDateHeader(String name, long date) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public void setHeader(String name, String value) {
-
 		throw new UnsupportedOperationException();
 	}
 
 	public void setIntHeader(String name, int value) {
-
 		throw new UnsupportedOperationException();
 	}
 
-	public void setLocale(Locale loc) {
-
-		PortletResponse wrappedPortletResponse = getPortletResponse();
-
-		if (wrappedPortletResponse instanceof ResourceResponse) {
-			ResourceResponse resourceResponse =
-				(ResourceResponse)wrappedPortletResponse;
-
-			resourceResponse.setLocale(loc);
+	public void setLocale(Locale locale) {
+		if (!(_portletResponse instanceof MimeResponse)) {
+			return;
 		}
+
+		ResourceResponse resourceResponse = (ResourceResponse)_portletResponse;
+
+		resourceResponse.setLocale(locale);
 	}
 
-	public void setStatus(int sc) {
-
+	public void setStatus(int status) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setStatus(int sc, String sm) {
-
+	public void setStatus(int status, String msg) {
 		throw new UnsupportedOperationException();
 	}
 
 	protected class ServletOutputStreamAdapter extends ServletOutputStream {
 
 		public ServletOutputStreamAdapter(MimeResponse mimeResponse) {
-
 			_mimeResponse = mimeResponse;
 		}
 
 		@Override
 		public void write(int b) throws IOException {
-			_mimeResponse.getPortletOutputStream().write(b);
+			OutputStream outputStream = _mimeResponse.getPortletOutputStream();
+
+			outputStream.write(b);
 		}
 
 		private MimeResponse _mimeResponse;

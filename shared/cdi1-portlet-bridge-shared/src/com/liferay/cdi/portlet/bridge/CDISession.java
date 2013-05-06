@@ -25,7 +25,6 @@ public abstract class CDISession extends PortletSessionWrapper
 	implements HttpSession {
 
 	public CDISession(PortletSession portletSession) {
-
 		super(portletSession);
 	}
 
