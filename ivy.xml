@@ -9,6 +9,7 @@
 		<dependency name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
 		<dependency name="jalopy" org="jalopy" rev="1.5rc3" />
 		<dependency name="jargs" org="net.sf" rev="1.0" />
+		<dependency name="javax.servlet-api" org="javax.servlet" rev="3.0.1" />
 		<dependency name="jsp-api" org="javax.servlet.jsp" rev="2.1" />
 		<dependency name="junit" org="junit" rev="4.11" />
 		<dependency name="log4j" org="log4j" rev="1.2.16" />
@@ -24,7 +25,6 @@
 		<dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12.1" />
 		<dependency name="scala-compiler" org="org.scala-lang" rev="2.9.2" />
 		<dependency name="serializer" org="xalan" rev="2.7.1" />
-		<dependency name="servlet-api" org="javax.servlet" rev="2.5" />
 		<dependency name="spring-test" org="org.springframework" rev="3.0.7.RELEASE" />
 		<dependency name="xalan" org="xalan" rev="2.7.1" />
 		<dependency name="xercesImpl" org="xerces" rev="2.10.0" />
