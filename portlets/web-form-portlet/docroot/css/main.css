@@ -53,3 +53,11 @@
 		width: 200px;
 	}
 }
+
+.captcha-refresh img {
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    left: 160px;
+    margin-top: 9px;
+}

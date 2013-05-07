@@ -141,12 +141,14 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				<portlet:param name="<%= Constants.CMD %>" value="captcha" />
 			</portlet:resourceURL>
 
-			<liferay-ui:captcha url="<%= captchaURL %>" />
             <div class="captcha-refresh">
                 <a href='<%= "javascript:" + renderResponse.getNamespace() + "updateCaptchaImage();" %>'>
-                    <liferay-ui:message key="refresh" />
+                    <img src='<%= request.getContextPath() + "/image/refresh.png" %>'
+                         alt='<liferay-ui:message key="refresh" />'
+                         title='<liferay-ui:message key="refresh" />' />
                 </a>
             </div>
+            <liferay-ui:captcha url="<%= captchaURL %>" />
 		</c:if>
 
 		<aui:button onClick="" type="submit" value="send" />
