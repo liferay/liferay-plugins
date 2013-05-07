@@ -1072,6 +1072,7 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 
 		<ant target="test-cmd">
+			<property name="junit.forkmode" value="once" />
 			<property name="test.type" value="${test.type}" />
 		</ant>
 	</target>
@@ -1080,7 +1081,7 @@ Please find a solution that does not require portal-impl.jar.
 		<if>
 			<available file="test/${test.type}" type="dir" />
 			<then>
-				<junit dir="${sdk.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+				<junit dir="${sdk.dir}" fork="on" forkmode="${junit.forkmode}" outputtoformatters="false" printsummary="on" showoutput="true">
 					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx${junit.java.mx}" />
@@ -1107,6 +1108,7 @@ Please find a solution that does not require portal-impl.jar.
 		<property name="class" value="*Test" />
 
 		<ant target="test-cmd" inheritrefs="true">
+			<property name="junit.forkmode" value="once" />
 			<property name="test.type" value="integration" />
 		</ant>
 	</target>
@@ -1115,6 +1117,7 @@ Please find a solution that does not require portal-impl.jar.
 		<property name="class" value="*Test" />
 
 		<ant target="test-cmd" inheritrefs="true">
+			<property name="junit.forkmode" value="perTest" />
 			<property name="test.type" value="unit" />
 		</ant>
 	</target>
