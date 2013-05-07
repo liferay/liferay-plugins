@@ -22,6 +22,7 @@ import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.calendar.util.PortletKeys;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -66,12 +67,19 @@ public class NotificationTemplateContextFactory {
 		Map<String, Serializable> attributes =
 			new HashMap<String, Serializable>();
 
+		TimeZone userTimezone = user.getTimeZone();
+
 		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
-			user.getLocale(), user.getTimeZone());
+			user.getLocale(), userTimezone);
 
-		long endTime = calendarBooking.getEndTime();
+		String userTimezoneDisplayName = userTimezone.getDisplayName(
+			false, TimeZone.SHORT, user.getLocale());
 
-		attributes.put("endTime", dateFormatDateTime.format(endTime));
+		String endTime =
+			dateFormatDateTime.format(calendarBooking.getEndTime()) +
+			StringPool.SPACE + userTimezoneDisplayName;
+
+		attributes.put("endTime", endTime);
 		attributes.put("location", calendarBooking.getLocation());
 
 		Company company = CompanyLocalServiceUtil.getCompany(
@@ -85,13 +93,11 @@ public class NotificationTemplateContextFactory {
 				getPortletConfig(), user.getLocale(),
 				"javax.portlet.title.".concat(PortletKeys.CALENDAR)));
 
-		long startTime = calendarBooking.getStartTime();
-		String timezone = user.getTimeZone().getDisplayName(
-			false, TimeZone.SHORT, user.getLocale());
-		String formattedTime = dateFormatDateTime.format(startTime)
-			+ " " + timezone;
+		String startTime =
+			dateFormatDateTime.format(calendarBooking.getStartTime()) +
+			StringPool.SPACE + userTimezoneDisplayName;
 
-		attributes.put("startTime", formattedTime);
+		attributes.put("startTime", startTime);
 		attributes.put("title", calendarBooking.getTitle(user.getLocale()));
 		attributes.put("toAddress", user.getEmailAddress());
 		attributes.put("toName", user.getFullName());
