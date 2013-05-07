@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+	<info organisation="com.liferay" module="cdi-portlet-bridge-shared" />
+
+	<dependencies>
+		<dependency name="cdi-api" org="javax.enterprise" rev="1.0-SP4" />
+	</dependencies>
+</ivy-module>

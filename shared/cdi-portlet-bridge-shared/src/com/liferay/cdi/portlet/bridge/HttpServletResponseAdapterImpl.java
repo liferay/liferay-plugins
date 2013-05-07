@@ -118,17 +118,14 @@ public class HttpServletResponseAdapterImpl
 		return mimeResponse.getContentType();
 	}
 
-	@Override
 	public String getHeader(String name) {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public Collection<String> getHeaderNames() {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
 	public Collection<String> getHeaders(String name) {
 		throw new UnsupportedOperationException();
 	}
@@ -137,7 +134,7 @@ public class HttpServletResponseAdapterImpl
 		return _locale;
 	}
 
-	public ServletOutputStream getOutputStream() throws IOException {
+	public ServletOutputStream getOutputStream() {
 		if (_servletOutputStream == null) {
 			if (!(_portletResponse instanceof MimeResponse)) {
 				throw new UnsupportedOperationException();
@@ -150,12 +147,10 @@ public class HttpServletResponseAdapterImpl
 		return _servletOutputStream;
 	}
 
-	@Override
 	public PortletResponse getPortletResponse() {
 		return _portletResponse;
 	}
 
-	@Override
 	public int getStatus() {
 		throw new UnsupportedOperationException();
 	}
@@ -200,15 +195,15 @@ public class HttpServletResponseAdapterImpl
 		mimeResponse.resetBuffer();
 	}
 
-	public void sendError(int status) throws IOException {
+	public void sendError(int status) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void sendError(int status, String msg) throws IOException {
+	public void sendError(int status, String msg) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void sendRedirect(String location) throws IOException {
+	public void sendRedirect(String location) {
 		throw new UnsupportedOperationException();
 	}
 

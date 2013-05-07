@@ -132,7 +132,7 @@ public class HttpServletRequestAdapterImpl
 		throw new UnsupportedOperationException();
 	}
 
-	public ServletInputStream getInputStream() throws IOException {
+	public ServletInputStream getInputStream() {
 		if (_servletInputStream == null) {
 			if (!(_portletRequest instanceof ClientDataRequest)) {
 				throw new UnsupportedOperationException();
@@ -399,6 +399,7 @@ public class HttpServletRequestAdapterImpl
 			_clientDataRequest = clientDataRequest;
 		}
 
+		@Override
 		public int read() throws IOException {
 			return _clientDataRequest.getPortletInputStream().read();
 		}
