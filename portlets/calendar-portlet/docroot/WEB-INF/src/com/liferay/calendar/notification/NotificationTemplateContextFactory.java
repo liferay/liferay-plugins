@@ -77,9 +77,10 @@ public class NotificationTemplateContextFactory {
 
 		String endTime =
 			dateFormatDateTime.format(calendarBooking.getEndTime()) +
-			StringPool.SPACE + userTimezoneDisplayName;
+				StringPool.SPACE + userTimezoneDisplayName;
 
 		attributes.put("endTime", endTime);
+
 		attributes.put("location", calendarBooking.getLocation());
 
 		Company company = CompanyLocalServiceUtil.getCompany(
@@ -95,9 +96,10 @@ public class NotificationTemplateContextFactory {
 
 		String startTime =
 			dateFormatDateTime.format(calendarBooking.getStartTime()) +
-			StringPool.SPACE + userTimezoneDisplayName;
+				StringPool.SPACE + userTimezoneDisplayName;
 
 		attributes.put("startTime", startTime);
+
 		attributes.put("title", calendarBooking.getTitle(user.getLocale()));
 		attributes.put("toAddress", user.getEmailAddress());
 		attributes.put("toName", user.getFullName());
