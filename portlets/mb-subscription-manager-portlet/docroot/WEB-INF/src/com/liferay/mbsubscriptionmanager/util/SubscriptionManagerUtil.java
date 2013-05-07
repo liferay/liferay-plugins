@@ -34,15 +34,15 @@ import java.util.List;
 public class SubscriptionManagerUtil {
 
 	public static List<MBCategory> getMBCategories(
-			long companyId, String name, int start, int end)
+			long groupId, String name, int start, int end)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MBCategory.class, PortalClassLoaderUtil.getClassLoader());
 
-		Property property = PropertyFactoryUtil.forName("companyId");
+		Property property = PropertyFactoryUtil.forName("groupId");
 
-		dynamicQuery.add(property.eq(companyId));
+		dynamicQuery.add(property.eq(groupId));
 
 		if (Validator.isNotNull(name)) {
 			name = StringPool.PERCENT + name + StringPool.PERCENT;
@@ -58,15 +58,15 @@ public class SubscriptionManagerUtil {
 			dynamicQuery, start, end);
 	}
 
-	public static int getMBCategoriesCount(long companyId, String name)
+	public static int getMBCategoriesCount(long groupId, String name)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MBCategory.class, PortalClassLoaderUtil.getClassLoader());
 
-		Property property = PropertyFactoryUtil.forName("companyId");
+		Property property = PropertyFactoryUtil.forName("groupId");
 
-		dynamicQuery.add(property.eq(companyId));
+		dynamicQuery.add(property.eq(groupId));
 
 		if (Validator.isNotNull(name)) {
 			name = StringPool.PERCENT + name + StringPool.PERCENT;
