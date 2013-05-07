@@ -199,7 +199,7 @@ public class HttpServletResponseAdapterImpl
 		throw new UnsupportedOperationException();
 	}
 
-	public void sendError(int status, String msg) {
+	public void sendError(int status, String message) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,11 +255,15 @@ public class HttpServletResponseAdapterImpl
 		throw new UnsupportedOperationException();
 	}
 
-	public void setStatus(int status, String msg) {
+	public void setStatus(int status, String message) {
 		throw new UnsupportedOperationException();
 	}
 
-	protected class ServletOutputStreamAdapter extends ServletOutputStream {
+	private Locale _locale;
+	private PortletResponse _portletResponse;
+	private ServletOutputStream _servletOutputStream;
+
+	private class ServletOutputStreamAdapter extends ServletOutputStream {
 
 		public ServletOutputStreamAdapter(MimeResponse mimeResponse) {
 			_mimeResponse = mimeResponse;
@@ -275,9 +279,5 @@ public class HttpServletResponseAdapterImpl
 		private MimeResponse _mimeResponse;
 
 	}
-
-	private Locale _locale;
-	private PortletResponse _portletResponse;
-	private ServletOutputStream _servletOutputStream;
 
 }

@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Neil Griffin
  */
-public abstract class CDIRenderRequest extends RenderRequestWrapper
-	implements HttpServletRequest {
+public abstract class CDIRenderRequest
+	extends RenderRequestWrapper implements HttpServletRequest {
 
 	public CDIRenderRequest(RenderRequest renderRequest) {
 		super(renderRequest);

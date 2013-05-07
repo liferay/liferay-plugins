@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Neil Griffin
  */
-public abstract class CDIResourceRequest extends ResourceRequestWrapper
-	implements HttpServletRequest {
+public abstract class CDIResourceRequest
+	extends ResourceRequestWrapper implements HttpServletRequest {
 
-	public CDIResourceRequest(ResourceRequest request) {
-		super(request);
+	public CDIResourceRequest(ResourceRequest resourceRequest) {
+		super(resourceRequest);
 	}
 
 }

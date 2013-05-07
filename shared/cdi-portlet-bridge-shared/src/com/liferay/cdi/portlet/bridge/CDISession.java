@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
 /**
  * @author Neil Griffin
  */
-public abstract class CDISession extends PortletSessionWrapper
-	implements HttpSession {
+public abstract class CDISession
+	extends PortletSessionWrapper implements HttpSession {
 
 	public CDISession(PortletSession portletSession) {
 		super(portletSession);

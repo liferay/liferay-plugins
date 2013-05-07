@@ -133,8 +133,8 @@ public class CDIActionResponseImpl extends CDIActionResponse {
 		_httpServletResponseAdapter.sendError(status);
 	}
 
-	public void sendError(int status, String msg) throws IOException {
-		_httpServletResponseAdapter.sendError(status, msg);
+	public void sendError(int status, String message) throws IOException {
+		_httpServletResponseAdapter.sendError(status, message);
 	}
 
 	public void setBufferSize(int bufferSize) {
@@ -174,8 +174,8 @@ public class CDIActionResponseImpl extends CDIActionResponse {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void setStatus(int status, String msg) {
-		_httpServletResponseAdapter.setStatus(status, msg);
+	public void setStatus(int status, String message) {
+		_httpServletResponseAdapter.setStatus(status, message);
 	}
 
 	private HttpServletResponseAdapter _httpServletResponseAdapter;

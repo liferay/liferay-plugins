@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Neil Griffin
  */
-public abstract class CDIActionResponse extends ActionResponseWrapper
-	implements HttpServletResponse {
+public abstract class CDIActionResponse
+	extends ActionResponseWrapper implements HttpServletResponse {
 
 	public CDIActionResponse(ActionResponse actionResponse) {
 		super(actionResponse);
