@@ -19,7 +19,7 @@
 <%
 long mbCategoryId = ParamUtil.getLong(request, "mbCategoryId");
 
-portletURL = (PortletURL)request.getAttribute("edit_subscriptions.jsp-portletURL");
+portletURL = (PortletURL)request.getAttribute("manage_subscriptions.jsp-portletURL");
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 

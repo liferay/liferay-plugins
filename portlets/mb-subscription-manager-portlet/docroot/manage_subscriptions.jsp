@@ -21,11 +21,11 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 long mbCategoryId = ParamUtil.getLong(request, "mbCategoryId");
 
-portletURL.setParameter("mvcPath", "/edit_subscriptions.jsp");
+portletURL.setParameter("mvcPath", "/manage_subscriptions.jsp");
 portletURL.setParameter("redirect", redirect);
 portletURL.setParameter("mbCategoryId", String.valueOf(mbCategoryId));
 
-request.setAttribute("edit_subscriptions.jsp-portletURL", portletURL);
+request.setAttribute("manage_subscriptions.jsp-portletURL", portletURL);
 
 MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 %>
@@ -37,6 +37,8 @@ MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 	<aui:input name="mbCategoryId" type="hidden" value="<%= mbCategoryId %>" />
 	<aui:input name="userIds" type="hidden" />
+
+	<h3 class="lfr-panel-title"><span><liferay-ui:message key="users" /></span></h3>
 
 	<liferay-ui:user-search
 		portletURL="<%= portletURL %>"

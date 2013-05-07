@@ -20,6 +20,10 @@
 String keywords = ParamUtil.getString(request, "keywords");
 %>
 
+<liferay-ui:header
+	title="categories"
+/>
+
 <aui:form action="<%= portletURL %>" method="post" name="fm1">
 	<aui:input id="keywords" inlineField="<%= true %>" label="" name="keywords" size="30" type="text" />
 
@@ -31,8 +35,8 @@ String keywords = ParamUtil.getString(request, "keywords");
 	iteratorURL="<%= portletURL %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= SubscriptionManagerUtil.getMBCategories(themeDisplay.getCompanyId(), keywords, searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= SubscriptionManagerUtil.getMBCategoriesCount(themeDisplay.getCompanyId(), keywords) %>"
+		results="<%= SubscriptionManagerUtil.getMBCategories(scopeGroupId, keywords, searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= SubscriptionManagerUtil.getMBCategoriesCount(scopeGroupId, keywords) %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -42,7 +46,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 		modelVar="mbCategory"
 	>
 		<liferay-portlet:renderURL var="editSubscriptionsURL">
-			<portlet:param name="mvcPath" value="/edit_subscriptions.jsp" />
+			<portlet:param name="mvcPath" value="/manage_subscriptions.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="mbCategoryId" value="<%= String.valueOf(mbCategory.getCategoryId()) %>" />
 		</liferay-portlet:renderURL>
@@ -54,13 +58,13 @@ String keywords = ParamUtil.getString(request, "keywords");
 		/>
 
 		<liferay-ui:search-container-column-text
-			name="context"
-			value="<%= StringUtil.shorten(_getCategoryBreadcrumb(mbCategory), 512) %>"
+			name="path"
+			value="<%= _getCategoryBreadcrumb(mbCategory) %>"
 		/>
 
 		<liferay-ui:search-container-column-text
 			name="subscribers"
-			value="<%= StringUtil.shorten(_getSubscribers(mbCategory), 512) %>"
+			value="<%= _getSubscribers(pageContext, mbCategory) %>"
 		/>
 
 		<liferay-ui:search-container-column-jsp
@@ -95,10 +99,14 @@ private String _getCategoryBreadcrumb(MBCategory mbCategory) throws Exception {
 	return sb.toString();
 }
 
-private String _getSubscribers(MBCategory mbCategory) throws Exception {
+private String _getSubscribers(PageContext pageContext, MBCategory mbCategory) throws Exception {
 	StringBundler sb = new StringBundler();
 
 	List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(mbCategory.getCompanyId(), MBCategory.class.getName(), mbCategory.getCategoryId());
+
+	int count = subscriptions.size() - 3;
+
+	subscriptions = ListUtil.subList(subscriptions, 0, 3);
 
 	Iterator itr = subscriptions.iterator();
 
@@ -111,6 +119,27 @@ private String _getSubscribers(MBCategory mbCategory) throws Exception {
 			sb.append(StringPool.COMMA_AND_SPACE);
 		}
 	}
+
+	if (count <= 0) {
+		return sb.toString();
+	}
+
+	HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+
+	ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
+
+	PortletURL portletURL = PortletURLFactoryUtil.create(request, PortletKeys.MB_SUBSCRIPTION_MANAGER, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+	portletURL.setParameter("mvcPath", "/manage_subscriptions.jsp");
+	portletURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
+	portletURL.setParameter("mbCategoryId", String.valueOf(mbCategory.getCategoryId()));
+
+	sb.append(StringPool.SPACE);
+	sb.append("<a href=\"");
+	sb.append(HtmlUtil.escape(portletURL.toString()));
+	sb.append("\">");
+	sb.append(LanguageUtil.format(pageContext, "and-x-more", String.valueOf(count)));
+	sb.append("</a>");
 
 	return sb.toString();
 }
