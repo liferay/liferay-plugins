@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Neil Griffin
  */
-public abstract class CDIActionRequest extends ActionRequestWrapper
-	implements HttpServletRequest {
+public abstract class CDIActionRequest
+	extends ActionRequestWrapper implements HttpServletRequest {
 
 	public CDIActionRequest(ActionRequest actionRequest) {
 		super(actionRequest);

@@ -96,8 +96,8 @@ public class CDIRenderResponseImpl extends CDIRenderResponse {
 		_httpServletResponseAdapter.sendError(status);
 	}
 
-	public void sendError(int status, String msg) throws IOException {
-		_httpServletResponseAdapter.sendError(status, msg);
+	public void sendError(int status, String message) throws IOException {
+		_httpServletResponseAdapter.sendError(status, message);
 	}
 
 	public void sendRedirect(String location) throws IOException {
@@ -133,8 +133,8 @@ public class CDIRenderResponseImpl extends CDIRenderResponse {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void setStatus(int status, String msg) {
-		_httpServletResponseAdapter.setStatus(status, msg);
+	public void setStatus(int status, String message) {
+		_httpServletResponseAdapter.setStatus(status, message);
 	}
 
 	private HttpServletResponseAdapter _httpServletResponseAdapter;

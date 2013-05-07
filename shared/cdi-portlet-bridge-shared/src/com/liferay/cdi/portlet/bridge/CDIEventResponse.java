@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Neil Griffin
  */
-public abstract class CDIEventResponse extends EventResponseWrapper
-	implements HttpServletResponse {
+public abstract class CDIEventResponse
+	extends EventResponseWrapper implements HttpServletResponse {
 
 	public CDIEventResponse(EventResponse eventResponse) {
 		super(eventResponse);

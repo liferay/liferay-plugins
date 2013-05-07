@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Neil Griffin
  */
-public abstract class CDIResourceResponse extends ResourceResponseWrapper
-	implements HttpServletResponse {
+public abstract class CDIResourceResponse
+	extends ResourceResponseWrapper implements HttpServletResponse {
 
-	public CDIResourceResponse(ResourceResponse response) {
-		super(response);
+	public CDIResourceResponse(ResourceResponse resourceResponse) {
+		super(resourceResponse);
 	}
 
 }

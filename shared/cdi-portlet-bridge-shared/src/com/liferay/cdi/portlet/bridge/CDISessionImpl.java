@@ -25,7 +25,6 @@ import javax.servlet.ServletContext;
 /**
  * @author Neil Griffin
  */
-@SuppressWarnings("deprecation")
 public class CDISessionImpl extends CDISession {
 
 	public CDISessionImpl(PortletSession portletSession) {
@@ -36,6 +35,7 @@ public class CDISessionImpl extends CDISession {
 		throw new UnsupportedOperationException();
 	}
 
+	@SuppressWarnings("deprecation")
 	public javax.servlet.http.HttpSessionContext getSessionContext() {
 		throw new UnsupportedOperationException();
 	}

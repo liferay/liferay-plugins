@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Neil Griffin
  */
-public abstract class CDIRenderResponse extends RenderResponseWrapper
-	implements HttpServletResponse {
+public abstract class CDIRenderResponse
+	extends RenderResponseWrapper implements HttpServletResponse {
 
 	public CDIRenderResponse(RenderResponse renderResponse) {
 		super(renderResponse);

@@ -38,11 +38,14 @@ public class CDIContextListener implements ServletContextListener {
 
 		if (beanManager == null) {
 			beanManager = (BeanManager)servletContext.getAttribute(
-				"org.jboss.weld.environment.servlet.javax.enterprise." +
-					"inject.spi.BeanManager");
+				_ATTRIBUTE_NAME_BEAN_MANAGER);
 		}
 
 		CDIBeanManagerUtil.setBeanManager(beanManager);
 	}
+
+	private static final String _ATTRIBUTE_NAME_BEAN_MANAGER =
+		"org.jboss.weld.environment.servlet.javax.enterprise.inject.spi." +
+			"BeanManager";
 
 }

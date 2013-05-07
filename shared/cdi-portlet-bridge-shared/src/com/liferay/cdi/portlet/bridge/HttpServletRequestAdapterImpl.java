@@ -393,7 +393,11 @@ public class HttpServletRequestAdapterImpl
 		throw new UnsupportedOperationException();
 	}
 
-	public class ServletInputStreamAdapter extends ServletInputStream {
+	private PortletRequest _portletRequest;
+	private CDISession _portletSession;
+	private ServletInputStream _servletInputStream;
+
+	private class ServletInputStreamAdapter extends ServletInputStream {
 
 		public ServletInputStreamAdapter(ClientDataRequest clientDataRequest) {
 			_clientDataRequest = clientDataRequest;
@@ -407,9 +411,5 @@ public class HttpServletRequestAdapterImpl
 		private ClientDataRequest _clientDataRequest;
 
 	}
-
-	private PortletRequest _portletRequest;
-	private CDISession _portletSession;
-	private ServletInputStream _servletInputStream;
 
 }
