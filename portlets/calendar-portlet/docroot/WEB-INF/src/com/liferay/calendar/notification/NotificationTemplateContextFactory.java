@@ -32,6 +32,7 @@ import java.text.Format;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.portlet.PortletConfig;
 
@@ -85,8 +86,12 @@ public class NotificationTemplateContextFactory {
 				"javax.portlet.title.".concat(PortletKeys.CALENDAR)));
 
 		long startTime = calendarBooking.getStartTime();
+		String timezone = user.getTimeZone().getDisplayName(
+			false, TimeZone.SHORT, user.getLocale());
+		String formattedTime = dateFormatDateTime.format(startTime)
+			+ " " + timezone;
 
-		attributes.put("startTime", dateFormatDateTime.format(startTime));
+		attributes.put("startTime", formattedTime);
 		attributes.put("title", calendarBooking.getTitle(user.getLocale()));
 		attributes.put("toAddress", user.getEmailAddress());
 		attributes.put("toName", user.getFullName());
