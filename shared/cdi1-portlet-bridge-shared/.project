@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <projectDescription>
-	<name>cdi1-portlet-bridge-shared</name>
+	<name>cdi1-portlet-bridge-shared-master</name>
 	<comment></comment>
-	<projects>
-	</projects>
+	<projects></projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
+			<arguments></arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.apache.ivyde.eclipse.ivynature</nature>
 	</natures>
 </projectDescription>
