@@ -86,7 +86,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 														Liferay.ContactsCenter.showMessage(false);
 													},
 													success: function(event, id, obj) {
-														location.href = '<%= redirect %>';
+														location.href = '<%= HtmlUtil.escape(redirect) %>';
 													}
 												},
 												data: {
