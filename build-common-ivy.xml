@@ -3,7 +3,6 @@
 
 <project name="build-common-ivy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="ivy.home" value="${sdk.dir}/.ivy" />
-	<property name="ivy.install.version" value="2.3.0" />
 
 	<if>
 		<not>
@@ -14,7 +13,7 @@
 
 			<get
 				dest="${ivy.home}"
-				src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+				src="${ivy.jar.download.url}"
 			/>
 		</then>
 	</if>
@@ -38,7 +37,7 @@
 					<if>
 						<isfalse value="${ivy.xml.unmodified}" />
 						<then>
-							<ivy:settings file="${sdk.dir}/ivy-settings.xml" />
+							<ivy:settings file="${ivy.settings.file.path}" />
 
 							<ivy:resolve
 								file="@{ivy.xml.dir}/ivy.xml"
