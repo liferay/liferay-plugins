@@ -255,6 +255,21 @@ AUI.add(
 
 						A.Get.script(googleMapsURL);
 					},
+					
+					_isDirectionFilled: function() {
+						var instance = this;
+						
+						if (instance.get(STR_DIRECTION_ADDRESS)) {
+							
+							var directionsAddress = instance.byId(STR_DIRECTION_ADDRESS).val();
+							
+							if (directionsAddress) {
+								return true;
+							}
+						}
+						
+						return false;
+					},
 
 					_isGoogleMapLoaded: function() {
 						return (typeof google !== 'undefined' && A.Lang.isObject(google.maps));
@@ -313,8 +328,13 @@ AUI.add(
 						var instance = this;
 
 						event.preventDefault();
-
-						instance._getMap();
+						
+						if (instance._isDirectionFilled()) {
+							instance._getDirections();
+						}
+						else {
+							instance._getMap();
+						}
 					},
 
 					_onMarkerClick: function(event, marker, text) {
@@ -407,7 +427,7 @@ AUI.add(
 
 						instance._stepDisplay = new googleMaps.InfoWindow();
 
-						if (instance.get(STR_DIRECTION_ADDRESS)) {
+						if (instance._isDirectionFilled()) {
 							instance._getDirections();
 						}
 						else {
