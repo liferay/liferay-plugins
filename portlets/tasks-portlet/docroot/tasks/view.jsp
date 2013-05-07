@@ -80,7 +80,7 @@ portletURL.setParameter("tabs2", tabs2);
 		function() {
 			Liferay.Tasks.init(
 				{
-					currentTab: '<%= tabs1 %>',
+					currentTab: '<%= HtmlUtil.escape(tabs1) %>',
 					taskListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/view_tasks.jsp" /></portlet:renderURL>'
 				}
 			);
