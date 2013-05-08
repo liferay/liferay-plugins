@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <div class="loading-animation">
-	<iframe class="aui-helper-hidden-accessible" frameborder="0" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="about:blank"></iframe>
+	<iframe class="hide-accessible" frameborder="0" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="about:blank"></iframe>
 </div>
 
 <form action="<%= iFrameURL %>" id="<portlet:namespace />fm" method="post" target="<portlet:namespace />frame">
@@ -25,7 +25,7 @@
 <input name="mpClientURL" type="hidden" value="<%= themeDisplay.getPortalURL() + themeDisplay.getURLCurrent() %>" />
 </form>
 
-<div class="aui-helper-hidden time-out-message portlet-msg-error">
+<div class="alert alert-error hide time-out-message">
 	<liferay-ui:message key="could-not-connect-to-the-liferay-marketplace" />
 </div>
 
@@ -57,7 +57,7 @@
 			if (response.cmd == 'init') {
 				clearTimeout(timeout);
 
-				frame.removeClass('aui-helper-hidden-accessible');
+				frame.removeClass('hide-accessible');
 
 				frame.ancestor().removeClass('loading-animation');
 
