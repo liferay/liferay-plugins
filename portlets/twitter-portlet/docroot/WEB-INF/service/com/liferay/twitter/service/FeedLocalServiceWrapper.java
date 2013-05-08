@@ -17,9 +17,7 @@ package com.liferay.twitter.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link FeedLocalService}.
- * </p>
+ * Provides a wrapper for {@link FeedLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       FeedLocalService

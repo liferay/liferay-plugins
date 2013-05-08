@@ -17,9 +17,7 @@ package com.liferay.socialcoding.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link JIRAActionLocalService}.
- * </p>
+ * Provides a wrapper for {@link JIRAActionLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       JIRAActionLocalService

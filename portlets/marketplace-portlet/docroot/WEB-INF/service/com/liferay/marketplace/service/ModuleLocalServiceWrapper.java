@@ -17,9 +17,7 @@ package com.liferay.marketplace.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link ModuleLocalService}.
- * </p>
+ * Provides a wrapper for {@link ModuleLocalService}.
  *
  * @author    Ryan Park
  * @see       ModuleLocalService

@@ -17,9 +17,7 @@ package com.liferay.sampleservicebuilder.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link FooService}.
- * </p>
+ * Provides a wrapper for {@link FooService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       FooService

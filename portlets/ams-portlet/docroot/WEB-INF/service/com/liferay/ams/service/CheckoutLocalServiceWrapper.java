@@ -17,9 +17,7 @@ package com.liferay.ams.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link CheckoutLocalService}.
- * </p>
+ * Provides a wrapper for {@link CheckoutLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       CheckoutLocalService

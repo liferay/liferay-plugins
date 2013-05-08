@@ -19,11 +19,12 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the o auth consumer local service. This utility wraps {@link com.liferay.opensocial.service.impl.OAuthConsumerLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
+ * Provides the local service utility for OAuthConsumer. This utility wraps
+ * {@link com.liferay.opensocial.service.impl.OAuthConsumerLocalServiceImpl} and is the
+ * primary access point for service operations in application layer code running
+ * on the local server. Methods of this service will not have security checks
+ * based on the propagated JAAS credentials because this service can only be
+ * accessed from within the same VM.
  *
  * @author Brian Wing Shun Chan
  * @see OAuthConsumerLocalService

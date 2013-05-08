@@ -17,9 +17,7 @@ package com.liferay.mail.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link AccountLocalService}.
- * </p>
+ * Provides a wrapper for {@link AccountLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       AccountLocalService

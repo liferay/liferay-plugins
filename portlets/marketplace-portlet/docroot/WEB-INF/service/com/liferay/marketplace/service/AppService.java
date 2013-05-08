@@ -24,11 +24,9 @@ import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * The interface for the app remote service.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
+ * Provides the remote service interface for App. Methods of this
+ * service are expected to have security checks based on the propagated JAAS
+ * credentials because this service can be accessed remotely.
  *
  * @author Ryan Park
  * @see AppServiceUtil

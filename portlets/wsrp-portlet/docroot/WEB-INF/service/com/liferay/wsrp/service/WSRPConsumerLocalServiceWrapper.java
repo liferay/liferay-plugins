@@ -17,9 +17,7 @@ package com.liferay.wsrp.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link WSRPConsumerLocalService}.
- * </p>
+ * Provides a wrapper for {@link WSRPConsumerLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       WSRPConsumerLocalService

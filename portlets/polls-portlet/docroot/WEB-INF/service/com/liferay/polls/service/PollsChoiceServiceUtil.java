@@ -19,11 +19,12 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * The utility for the polls choice remote service. This utility wraps {@link com.liferay.polls.service.impl.PollsChoiceServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
+ * Provides the remote service utility for PollsChoice. This utility wraps
+ * {@link com.liferay.polls.service.impl.PollsChoiceServiceImpl} and is the
+ * primary access point for service operations in application layer code running
+ * on a remote server. Methods of this service are expected to have security
+ * checks based on the propagated JAAS credentials because this service can be
+ * accessed remotely.
  *
  * @author Juan Fern√°ndez
  * @see PollsChoiceService

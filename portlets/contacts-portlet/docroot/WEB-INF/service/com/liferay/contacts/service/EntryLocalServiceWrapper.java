@@ -17,9 +17,7 @@ package com.liferay.contacts.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link EntryLocalService}.
- * </p>
+ * Provides a wrapper for {@link EntryLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       EntryLocalService

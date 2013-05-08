@@ -17,9 +17,7 @@ package com.liferay.tasks.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link TasksEntryService}.
- * </p>
+ * Provides a wrapper for {@link TasksEntryService}.
  *
  * @author    Ryan Park
  * @see       TasksEntryService

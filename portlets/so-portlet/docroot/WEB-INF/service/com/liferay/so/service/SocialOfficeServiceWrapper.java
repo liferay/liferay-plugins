@@ -17,9 +17,7 @@ package com.liferay.so.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link SocialOfficeService}.
- * </p>
+ * Provides a wrapper for {@link SocialOfficeService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       SocialOfficeService

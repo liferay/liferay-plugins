@@ -17,9 +17,7 @@ package com.liferay.socialnetworking.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link MeetupsRegistrationLocalService}.
- * </p>
+ * Provides a wrapper for {@link MeetupsRegistrationLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       MeetupsRegistrationLocalService

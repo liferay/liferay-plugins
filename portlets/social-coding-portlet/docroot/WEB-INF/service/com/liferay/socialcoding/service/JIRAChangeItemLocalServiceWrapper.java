@@ -17,9 +17,7 @@ package com.liferay.socialcoding.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link JIRAChangeItemLocalService}.
- * </p>
+ * Provides a wrapper for {@link JIRAChangeItemLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       JIRAChangeItemLocalService

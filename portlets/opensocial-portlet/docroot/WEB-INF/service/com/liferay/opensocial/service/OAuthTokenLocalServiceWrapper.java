@@ -17,9 +17,7 @@ package com.liferay.opensocial.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link OAuthTokenLocalService}.
- * </p>
+ * Provides a wrapper for {@link OAuthTokenLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       OAuthTokenLocalService

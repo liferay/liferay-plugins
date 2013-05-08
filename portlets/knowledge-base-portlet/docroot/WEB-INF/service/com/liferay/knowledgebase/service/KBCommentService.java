@@ -24,11 +24,9 @@ import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * The interface for the k b comment remote service.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
+ * Provides the remote service interface for KBComment. Methods of this
+ * service are expected to have security checks based on the propagated JAAS
+ * credentials because this service can be accessed remotely.
  *
  * @author Brian Wing Shun Chan
  * @see KBCommentServiceUtil

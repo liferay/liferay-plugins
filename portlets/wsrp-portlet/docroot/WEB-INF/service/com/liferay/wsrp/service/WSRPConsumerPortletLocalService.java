@@ -24,11 +24,10 @@ import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
- * The interface for the w s r p consumer portlet local service.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
+ * Provides the local service interface for WSRPConsumerPortlet. Methods of this
+ * service will not have security checks based on the propagated JAAS
+ * credentials because this service can only be accessed from within the same
+ * VM.
  *
  * @author Brian Wing Shun Chan
  * @see WSRPConsumerPortletLocalServiceUtil

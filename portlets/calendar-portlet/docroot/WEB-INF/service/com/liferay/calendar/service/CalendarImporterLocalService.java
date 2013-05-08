@@ -22,11 +22,10 @@ import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The interface for the calendar importer local service.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
+ * Provides the local service interface for CalendarImporter. Methods of this
+ * service will not have security checks based on the propagated JAAS
+ * credentials because this service can only be accessed from within the same
+ * VM.
  *
  * @author Eduardo Lundgren
  * @see CalendarImporterLocalServiceUtil

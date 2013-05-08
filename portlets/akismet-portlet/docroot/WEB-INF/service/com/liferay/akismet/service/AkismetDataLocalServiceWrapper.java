@@ -17,9 +17,7 @@ package com.liferay.akismet.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link AkismetDataLocalService}.
- * </p>
+ * Provides a wrapper for {@link AkismetDataLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       AkismetDataLocalService

@@ -17,9 +17,7 @@ package com.liferay.ams.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link AssetLocalService}.
- * </p>
+ * Provides a wrapper for {@link AssetLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       AssetLocalService

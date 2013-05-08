@@ -17,9 +17,7 @@ package com.liferay.portal.workflow.kaleo.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link KaleoConditionLocalService}.
- * </p>
+ * Provides a wrapper for {@link KaleoConditionLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       KaleoConditionLocalService

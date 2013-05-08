@@ -17,9 +17,7 @@ package com.liferay.calendar.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link CalendarBookingLocalService}.
- * </p>
+ * Provides a wrapper for {@link CalendarBookingLocalService}.
  *
  * @author    Eduardo Lundgren
  * @see       CalendarBookingLocalService

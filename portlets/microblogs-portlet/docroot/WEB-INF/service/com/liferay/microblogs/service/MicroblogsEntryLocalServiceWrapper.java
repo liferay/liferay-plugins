@@ -17,9 +17,7 @@ package com.liferay.microblogs.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link MicroblogsEntryLocalService}.
- * </p>
+ * Provides a wrapper for {@link MicroblogsEntryLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       MicroblogsEntryLocalService

@@ -22,13 +22,11 @@ import com.liferay.sampleservicebuilder.service.FooServiceUtil;
 import java.rmi.RemoteException;
 
 /**
- * <p>
- * This class provides a SOAP utility for the
+ * Provides the SOAP utility for the
  * {@link com.liferay.sampleservicebuilder.service.FooServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
- * </p>
  *
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,

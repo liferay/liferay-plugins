@@ -19,11 +19,12 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * The utility for the calendar remote service. This utility wraps {@link com.liferay.calendar.service.impl.CalendarServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
+ * Provides the remote service utility for Calendar. This utility wraps
+ * {@link com.liferay.calendar.service.impl.CalendarServiceImpl} and is the
+ * primary access point for service operations in application layer code running
+ * on a remote server. Methods of this service are expected to have security
+ * checks based on the propagated JAAS credentials because this service can be
+ * accessed remotely.
  *
  * @author Eduardo Lundgren
  * @see CalendarService

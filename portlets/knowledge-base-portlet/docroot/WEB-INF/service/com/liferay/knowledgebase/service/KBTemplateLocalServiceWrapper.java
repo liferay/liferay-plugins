@@ -17,9 +17,7 @@ package com.liferay.knowledgebase.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link KBTemplateLocalService}.
- * </p>
+ * Provides a wrapper for {@link KBTemplateLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       KBTemplateLocalService

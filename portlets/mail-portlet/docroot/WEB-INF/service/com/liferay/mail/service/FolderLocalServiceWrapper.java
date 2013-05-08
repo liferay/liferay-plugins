@@ -17,9 +17,7 @@ package com.liferay.mail.service;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
- * <p>
- * This class is a wrapper for {@link FolderLocalService}.
- * </p>
+ * Provides a wrapper for {@link FolderLocalService}.
  *
  * @author    Brian Wing Shun Chan
  * @see       FolderLocalService
