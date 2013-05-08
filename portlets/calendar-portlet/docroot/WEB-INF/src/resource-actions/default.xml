@@ -73,6 +73,28 @@
 		</permissions>
 	</model-resource>
 	<model-resource>
+		<model-name>com.liferay.calendar.model.CalendarBooking</model-name>
+		<portlet-ref>
+			<portlet-name>1</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>ADD_DISCUSSION</action-key>
+				<action-key>DELETE_DISCUSSION</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>UPDATE_DISCUSSION</action-key>
+			</supports>
+			<site-member-defaults>
+				<action-key>ADD_DISCUSSION</action-key>
+			</site-member-defaults>
+			<guest-defaults />
+			<guest-unsupported>
+				<action-key>DELETE_DISCUSSION</action-key>
+				<action-key>UPDATE_DISCUSSION</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+	<model-resource>
 		<model-name>com.liferay.calendar.model.CalendarResource</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>

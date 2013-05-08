@@ -34,6 +34,10 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ResourceAction;
+import com.liferay.portal.model.ResourceBlockConstants;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.ResourcePermission;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -103,6 +107,10 @@ public class CalendarImporterLocalServiceImpl
 			endTime, calEvent.getAllDay(), recurrence,
 			calEvent.getFirstReminder(), NotificationType.EMAIL,
 			calEvent.getSecondReminder(), NotificationType.EMAIL);
+
+		// Resource permissions
+
+		importResourcePermissions(calEvent, calendarBookingId);
 
 		// Subscriptions
 
@@ -438,6 +446,42 @@ public class CalendarImporterLocalServiceImpl
 		subscriptionPersistence.update(subscription);
 	}
 
+	protected long getActionId(ResourceAction resourceAction)
+		throws SystemException {
+
+		ResourceAction calendarBookingResourceAction =
+			resourceActionPersistence.fetchByN_A(
+				CalendarBooking.class.getName(), resourceAction.getActionId());
+
+		if (calendarBookingResourceAction == null) {
+			return 0;
+		}
+
+		return calendarBookingResourceAction.getBitwiseValue();
+	}
+
+	protected long getActionIds(ResourcePermission resourcePermission)
+		throws PortalException, SystemException {
+
+		long actionIds = 0;
+
+		List<ResourceAction> resourceActions =
+			resourceActionPersistence.findByName(CalEvent.class.getName());
+
+		for (ResourceAction resourceAction : resourceActions) {
+			boolean hasActionId = resourcePermissionLocalService.hasActionId(
+				resourcePermission, resourceAction);
+
+			if (!hasActionId) {
+				continue;
+			}
+
+			actionIds = actionIds | getActionId(resourceAction);
+		}
+
+		return actionIds;
+	}
+
 	protected AssetCategory getAssetCategory(
 			long userId, long groupId, String name)
 		throws PortalException, SystemException {
@@ -771,6 +815,38 @@ public class CalendarImporterLocalServiceImpl
 			counterLocalService.increment(), classNameId, classPK,
 			ratingsStats.getTotalEntries(), ratingsStats.getTotalScore(),
 			ratingsStats.getAverageScore());
+	}
+
+	protected void importResourcePermission(
+			ResourcePermission resourcePermission, long calendarBookingId)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		long actionIds = getActionIds(resourcePermission);
+
+		resourceBlockLocalService.updateIndividualScopePermissions(
+			calendarBooking.getCompanyId(),
+			calendarBooking.getResourceGroupId(),
+			CalendarBooking.class.getName(), calendarBooking,
+			resourcePermission.getRoleId(), actionIds,
+			ResourceBlockConstants.OPERATOR_SET);
+	}
+
+	protected void importResourcePermissions(
+			CalEvent calEvent, long calendarBookingId)
+		throws PortalException, SystemException {
+
+		List<ResourcePermission> resourcePermissions =
+			resourcePermissionPersistence.findByC_N_S_P(
+				calEvent.getCompanyId(), CalEvent.class.getName(),
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				String.valueOf(calEvent.getEventId()));
+
+		for (ResourcePermission resourcePermission : resourcePermissions) {
+			importResourcePermission(resourcePermission, calendarBookingId);
+		}
 	}
 
 	protected void importSocialActivities(

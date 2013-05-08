@@ -50,6 +50,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -157,6 +158,10 @@ public class CalendarBookingLocalServiceImpl
 		addChildCalendarBookings(
 			calendarBooking, childCalendarIds, serviceContext);
 
+		// Resources
+
+		resourceLocalService.addModelResources(calendarBooking, serviceContext);
+
 		// Asset
 
 		updateAsset(
@@ -227,6 +232,11 @@ public class CalendarBookingLocalServiceImpl
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
 			deleteCalendarBooking(childCalendarBooking);
 		}
+
+		// Resources
+
+		resourceLocalService.deleteResource(
+			calendarBooking, ResourceConstants.SCOPE_INDIVIDUAL);
 
 		// Subscriptions
 

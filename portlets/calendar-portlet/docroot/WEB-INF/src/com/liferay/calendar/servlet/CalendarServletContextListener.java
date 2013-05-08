@@ -77,7 +77,7 @@ public class CalendarServletContextListener
 
 					sb.append("Calendar events synchronization takes ");
 					sb.append(stopWatch.getTime() + " ms. Set the property ");
-					sb.append("\"calendar.sync.calevents.on.startup \"");
+					sb.append("\"calendar.sync.calevents.on.startup\" ");
 					sb.append("to \"false\" to disable calendar events ");
 					sb.append("synchronization.");
 

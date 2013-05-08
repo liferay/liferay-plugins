@@ -78,6 +78,12 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 		return _recurrenceObj;
 	}
 
+	public long getResourceGroupId() throws PortalException, SystemException {
+		Calendar calendar = getCalendar();
+
+		return calendar.getResourceGroupId();
+	}
+
 	public NotificationType getSecondReminderNotificationType() {
 		return NotificationType.parse(getSecondReminderType());
 	}
