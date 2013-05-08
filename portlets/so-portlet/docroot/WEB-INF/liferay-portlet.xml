@@ -13,7 +13,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<header-portlet-css>/invite_members/css/main.css</header-portlet-css>
-		<header-portlet-javascript>/invite_members/js/main.js</header-portlet-javascript>
+		<footer-portlet-javascript>/invite_members/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>so-portlet-invite-members</css-class-wrapper>
 	</portlet>
 	<portlet>
@@ -23,10 +23,8 @@
 	<portlet>
 		<portlet-name>5</portlet-name>
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
-		<preferences-unique-per-layout>false</preferences-unique-per-layout>
-		<preferences-owned-by-group>true</preferences-owned-by-group>
 		<header-portlet-css>/sites/css/main.css</header-portlet-css>
-		<header-portlet-javascript>/sites/js/main.js</header-portlet-javascript>
+		<footer-portlet-javascript>/sites/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>so-portlet-sites</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
@@ -35,7 +33,6 @@
 		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
 		<css-class-wrapper>so-portlet-notifications</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
-		<system>true</system>
 	</portlet>
 	<portlet>
 		<portlet-name>7</portlet-name>
@@ -43,7 +40,6 @@
 		<header-portlet-css>/dockbar_notifications/css/main.css</header-portlet-css>
 		<css-class-wrapper>so-portlet-dockbar-notifications</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
-		<system>true</system>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
