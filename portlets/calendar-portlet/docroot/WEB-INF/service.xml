@@ -72,6 +72,10 @@
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
 
+		<!-- Permission fields -->
+
+		<column name="resourceBlockId" type="long" />
+
 		<!-- Other fields -->
 
 		<column name="calendarId" type="long" />
@@ -139,6 +143,9 @@
 		<!-- References -->
 
 		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="ResourceAction" />
+		<reference package-path="com.liferay.portal" entity="ResourceBlock" />
+		<reference package-path="com.liferay.portal" entity="ResourcePermission" />
 		<reference package-path="com.liferay.portal" entity="Subscription" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetCategory" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
