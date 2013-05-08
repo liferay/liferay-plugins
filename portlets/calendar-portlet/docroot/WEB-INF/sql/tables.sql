@@ -26,6 +26,7 @@ create table CalendarBooking (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
+	resourceBlockId LONG,
 	calendarId LONG,
 	calendarResourceId LONG,
 	parentCalendarBookingId LONG,

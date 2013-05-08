@@ -38,7 +38,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(53);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -56,6 +56,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
+		sb.append(", resourceBlockId=");
+		sb.append(resourceBlockId);
 		sb.append(", calendarId=");
 		sb.append(calendarId);
 		sb.append(", calendarResourceId=");
@@ -133,6 +135,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		calendarBookingImpl.setResourceBlockId(resourceBlockId);
 		calendarBookingImpl.setCalendarId(calendarId);
 		calendarBookingImpl.setCalendarResourceId(calendarResourceId);
 		calendarBookingImpl.setParentCalendarBookingId(parentCalendarBookingId);
@@ -218,6 +221,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+		resourceBlockId = objectInput.readLong();
 		calendarId = objectInput.readLong();
 		calendarResourceId = objectInput.readLong();
 		parentCalendarBookingId = objectInput.readLong();
@@ -261,6 +265,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(resourceBlockId);
 		objectOutput.writeLong(calendarId);
 		objectOutput.writeLong(calendarResourceId);
 		objectOutput.writeLong(parentCalendarBookingId);
@@ -336,6 +341,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
+	public long resourceBlockId;
 	public long calendarId;
 	public long calendarResourceId;
 	public long parentCalendarBookingId;

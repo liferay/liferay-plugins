@@ -57,6 +57,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="resourceBlockId" />
 			<basic name="calendarId" />
 			<basic name="calendarResourceId" />
 			<basic name="parentCalendarBookingId" />

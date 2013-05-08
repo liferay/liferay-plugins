@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
-import com.liferay.portal.service.PersistedModelLocalService;
+import com.liferay.portal.service.PermissionedModelLocalService;
 
 /**
  * Provides the local service interface for CalendarBooking. Methods of this
@@ -38,7 +38,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface CalendarBookingLocalService extends BaseLocalService,
-	InvokableLocalService, PersistedModelLocalService {
+	InvokableLocalService, PermissionedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

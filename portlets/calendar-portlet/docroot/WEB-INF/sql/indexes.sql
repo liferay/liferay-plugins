@@ -11,6 +11,7 @@ create index IX_B198FFC on CalendarBooking (calendarResourceId);
 create index IX_97B612E2 on CalendarBooking (calendarResourceId, status);
 create index IX_57EBF55B on CalendarBooking (parentCalendarBookingId);
 create index IX_F7B8A941 on CalendarBooking (parentCalendarBookingId, status);
+create index IX_22DFDB49 on CalendarBooking (resourceBlockId);
 create index IX_F6E8EE73 on CalendarBooking (uuid_);
 create index IX_A21D9FD5 on CalendarBooking (uuid_, companyId);
 create unique index IX_F4C61797 on CalendarBooking (uuid_, groupId);

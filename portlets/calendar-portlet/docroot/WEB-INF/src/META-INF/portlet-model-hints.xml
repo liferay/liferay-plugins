@@ -30,6 +30,7 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="resourceBlockId" type="long" />
 		<field name="calendarId" type="long" />
 		<field name="calendarResourceId" type="long" />
 		<field name="parentCalendarBookingId" type="long" />

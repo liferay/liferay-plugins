@@ -54,6 +54,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("resourceBlockId", getResourceBlockId());
 		attributes.put("calendarId", getCalendarId());
 		attributes.put("calendarResourceId", getCalendarResourceId());
 		attributes.put("parentCalendarBookingId", getParentCalendarBookingId());
@@ -123,6 +124,12 @@ public class CalendarBookingWrapper implements CalendarBooking,
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		Long resourceBlockId = (Long)attributes.get("resourceBlockId");
+
+		if (resourceBlockId != null) {
+			setResourceBlockId(resourceBlockId);
 		}
 
 		Long calendarId = (Long)attributes.get("calendarId");
@@ -415,6 +422,24 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_calendarBooking.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Returns the resource block ID of this calendar booking.
+	*
+	* @return the resource block ID of this calendar booking
+	*/
+	public long getResourceBlockId() {
+		return _calendarBooking.getResourceBlockId();
+	}
+
+	/**
+	* Sets the resource block ID of this calendar booking.
+	*
+	* @param resourceBlockId the resource block ID of this calendar booking
+	*/
+	public void setResourceBlockId(long resourceBlockId) {
+		_calendarBooking.setResourceBlockId(resourceBlockId);
 	}
 
 	/**
@@ -1203,6 +1228,12 @@ public class CalendarBookingWrapper implements CalendarBooking,
 
 	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
 		return _calendarBooking.getRecurrenceObj();
+	}
+
+	public long getResourceGroupId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getResourceGroupId();
 	}
 
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType() {

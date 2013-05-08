@@ -196,6 +196,20 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the resource block ID of this calendar booking.
+	 *
+	 * @return the resource block ID of this calendar booking
+	 */
+	public long getResourceBlockId();
+
+	/**
+	 * Sets the resource block ID of this calendar booking.
+	 *
+	 * @param resourceBlockId the resource block ID of this calendar booking
+	 */
+	public void setResourceBlockId(long resourceBlockId);
+
+	/**
 	 * Returns the calendar ID of this calendar booking.
 	 *
 	 * @return the calendar ID of this calendar booking
