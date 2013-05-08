@@ -38,11 +38,6 @@ String defaultTemplateBody = NotificationUtil.getDefaultTemplate(notificationTyp
 String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificationTemplate, "body", defaultTemplateBody);
 %>
 
-<liferay-ui:header
-	backURL="<%= backToURL %>"
-	title='<%= calendar.getName(locale) %>'
-/>
-
 <liferay-ui:tabs
 	names="invite-email,reminder-email"
 	param="tabs2"
@@ -56,7 +51,7 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 	<aui:input name="calendarNotificationTemplateId" type="hidden" value="<%= calendarNotificationTemplateId %>" />
 	<aui:input name="tabs1" type="hidden" value="<%= tabs1 %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="calendarId" type="hidden" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
 	<aui:input name="calendarResourceId" type="hidden" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
 	<aui:input name="notificationType" type="hidden" value="<%= notificationType.getValue() %>" />
@@ -136,7 +131,7 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 	<aui:button-row>
 		<aui:button type="submit" />
 
-		<aui:button href="<%= backToURL %>" type="cancel" />
+		<aui:button href="<%= redirect %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
 

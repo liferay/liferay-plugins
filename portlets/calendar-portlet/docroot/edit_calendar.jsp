@@ -19,7 +19,7 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "general");
 
-String backToURL = ParamUtil.getString(request, "backTo");
+String redirect = ParamUtil.getString(request, "redirect");
 
 Calendar calendar = (Calendar)request.getAttribute(WebKeys.CALENDAR);
 
@@ -29,7 +29,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 <liferay-portlet:renderURL var="portletURL">
 	<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
 	<portlet:param name="tabs1" value="<%= tabs1 %>" />
-	<portlet:param name="backTo" value="<%= backToURL %>" />
+	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="calendarId" value="<%= (calendar != null) ? String.valueOf(calendar.getCalendarId()) : StringPool.BLANK %>" />
 	<portlet:param name="calendarResourceId" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
 </liferay-portlet:renderURL>

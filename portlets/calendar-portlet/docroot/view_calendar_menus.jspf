@@ -31,7 +31,7 @@
 						if (calendarResourceId) {
 							<portlet:renderURL var="editCalendarURL">
 								<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
-								<portlet:param name="backTo" value="<%= currentURL %>" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
 							</portlet:renderURL>
 
@@ -104,7 +104,7 @@
 
 					<portlet:renderURL var="editCalendarURL">
 						<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
-						<portlet:param name="backTo" value="<%= currentURL %>" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="calendarId" value="{calendarId}" />
 					</portlet:renderURL>
 
