@@ -162,6 +162,14 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 						label="<%= true %>"
 					/>
 				</liferay-ui:custom-attributes-available>
+
+				<c:if test="<%= calendarBooking == null %>">
+					<aui:field-wrapper label="permissions">
+						<liferay-ui:input-permissions
+							modelName="<%= CalendarBooking.class.getName() %>"
+						/>
+					</aui:field-wrapper>
+				</c:if>
 			</liferay-ui:panel>
 
 			<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" id="calendarBookingReminderPanel" persistState="<%= true %>" title="reminders">

@@ -25,6 +25,7 @@ boolean hideAgendaView = ParamUtil.getBoolean(request, "hideAgendaView");
 boolean hideDayView = ParamUtil.getBoolean(request, "hideDayView");
 boolean hideMonthView = ParamUtil.getBoolean(request, "hideMonthView");
 boolean hideWeekView = ParamUtil.getBoolean(request, "hideWeekView");
+String permissionsCalendarBookingURL = ParamUtil.getString(request, "permissionsCalendarBookingURL");
 boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence");
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
@@ -91,6 +92,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 				color: '<%= ColorUtil.toHexString(userDefaultCalendar.getColor()) %>',
 				duration: <%= defaultDuration %>,
 				editCalendarBookingURL: '<%= HtmlUtil.escapeJS(editCalendarBookingURL) %>',
+				permissionsCalendarBookingURL: '<%= HtmlUtil.escapeJS(permissionsCalendarBookingURL) %>',
 				portletNamespace: '<portlet:namespace />',
 				template: new A.Template(A.one('#<portlet:namespace />eventRecorderTpl').text()),
 				viewCalendarBookingURL: '<%= HtmlUtil.escapeJS(viewCalendarBookingURL) %>'

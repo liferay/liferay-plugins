@@ -133,6 +133,17 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 			<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
 
+			<liferay-security:permissionsURL
+				modelResource="<%= CalendarBooking.class.getName() %>"
+				modelResourceDescription="{modelResourceDescription}"
+				resourceGroupId="{resourceGroupId}"
+				resourcePrimKey="{resourcePrimKey}"
+				var="permissionsCalendarBookingURL"
+				windowState="<%= LiferayWindowState.POP_UP.toString() %>"
+			/>
+
+			<liferay-util:param name="permissionsCalendarBookingURL" value="<%= permissionsCalendarBookingURL %>" />
+
 			<portlet:renderURL var="viewCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 				<portlet:param name="mvcPath" value="/view_calendar_booking.jsp" />
 				<portlet:param name="calendarBookingId" value="{calendarBookingId}" />

@@ -1519,6 +1519,12 @@ AUI.add(
 						value: STR_BLANK
 					},
 
+					permissionsCalendarBookingURL: {
+						setter: String,
+						validator: isValue,
+						value: STR_BLANK
+					},
+
 					portletNamespace: {
 						setter: String,
 						validator: isValue,
@@ -1671,6 +1677,47 @@ AUI.add(
 								refreshWindow: window,
 								title: Liferay.Language.get('edit'),
 								uri: Lang.sub(editCalendarBookingURL, data)
+							}
+						);
+
+						instance.hideOverlay();
+					},
+
+					_handlePermissionsEvent: function(event) {
+						var instance = this;
+
+						var scheduler = instance.get('scheduler');
+
+						var permissionsCalendarBookingURL = decodeURIComponent(instance.get('permissionsCalendarBookingURL'));
+
+						var data = instance.serializeForm();
+
+						var schedulerEvent = instance.get('event');
+
+						var calendarId = schedulerEvent.get('calendarId');
+
+						var calendar = CalendarUtil.visibleCalendars[calendarId];
+
+						data.resourcePrimKey = schedulerEvent.get('calendarBookingId');
+						data.resourceGroupId = calendar.get('resourceGroupId')
+
+						data.modelResourceDescription = encodeURIComponent(data.content);
+
+						Liferay.Util.openWindow(
+							{
+								dialog: {
+									after: {
+										destroy: function(event) {
+											scheduler.load();
+										}
+									},
+									destroyOnClose: true,
+									modal: true,
+									width: 915
+								},
+								refreshWindow: window,
+								title: Liferay.Language.get('permissions'),
+								uri: Lang.sub(permissionsCalendarBookingURL, data)
 							}
 						);
 
@@ -1857,10 +1904,10 @@ AUI.add(
 						else {
 							var schedulerEvent = instance.get('event');
 
-							var viewButtonEnabled = false;
+							var schedulerEventCreated = false;
 
 							if (schedulerEvent) {
-								viewButtonEnabled = true;
+								schedulerEventCreated = true;
 							}
 							else {
 								schedulerEvent = instance;
@@ -1902,12 +1949,22 @@ AUI.add(
 								}
 							);
 
-							if ((viewButtonEnabled === true) && permissions.VIEW_BOOKING_DETAILS) {
+							if ((schedulerEventCreated === true) && permissions.VIEW_BOOKING_DETAILS) {
 								toolbar.add(
 									{
 										handler: A.bind(instance._handleViewEvent, instance),
 										id: 'viewBtn',
 										label: Liferay.Language.get('view')
+									}
+								);
+							}
+
+							if ((schedulerEventCreated === true) && permissions.PERMISSIONS) {
+								toolbar.add(
+									{
+										handler: A.bind(instance._handlePermissionsEvent, instance),
+										id: 'permissionsBtn',
+										label: Liferay.Language.get('permissions')
 									}
 								);
 							}
