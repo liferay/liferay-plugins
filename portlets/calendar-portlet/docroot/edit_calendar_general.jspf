@@ -15,7 +15,7 @@
 --%>
 
 <liferay-ui:header
-	backURL="<%= redirect %>"
+	backURL="<%= backToURL %>"
 	title='<%= (calendar != null) ? calendar.getName(locale) : LanguageUtil.format(pageContext, "add-new-calendar-for-x", calendarResource.getName(locale)) %>'
 />
 
@@ -24,7 +24,7 @@
 <aui:form action="<%= updateCalendarURL %>" method="post" name="fm">
 	<aui:input name="mvcPath" type="hidden" value="/edit_calendar.jsp" />
 	<portlet:param name="tabs1" value="<%= tabs1 %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="redirect" type="hidden" value="<%= (calendar != null) ? currentURL : backToURL %>" />
 	<aui:input name="calendarId" type="hidden" value="<%= (calendar != null) ? String.valueOf(calendar.getCalendarId()) : StringPool.BLANK %>" />
 	<aui:input name="calendarResourceId" type="hidden" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
 
@@ -58,7 +58,7 @@
 		<aui:button-row>
 			<aui:button type="submit" />
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button href="<%= backToURL %>" type="cancel" />
 		</aui:button-row>
 	</aui:fieldset>
 
