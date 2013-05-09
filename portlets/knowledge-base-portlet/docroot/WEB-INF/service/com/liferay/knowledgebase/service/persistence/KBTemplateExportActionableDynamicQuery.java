@@ -41,7 +41,9 @@ public class KBTemplateExportActionableDynamicQuery
 	}
 
 	@Override
-	protected void performAction(Object object) throws PortalException {
+	@SuppressWarnings("unused")
+	protected void performAction(Object object)
+		throws PortalException, SystemException {
 		KBTemplate stagedModel = (KBTemplate)object;
 
 		StagedModelDataHandlerUtil.exportStagedModel(_portletDataContext,

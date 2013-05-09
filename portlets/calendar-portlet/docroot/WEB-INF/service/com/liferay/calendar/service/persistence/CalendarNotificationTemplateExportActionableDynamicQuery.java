@@ -41,7 +41,9 @@ public class CalendarNotificationTemplateExportActionableDynamicQuery
 	}
 
 	@Override
-	protected void performAction(Object object) throws PortalException {
+	@SuppressWarnings("unused")
+	protected void performAction(Object object)
+		throws PortalException, SystemException {
 		CalendarNotificationTemplate stagedModel = (CalendarNotificationTemplate)object;
 
 		StagedModelDataHandlerUtil.exportStagedModel(_portletDataContext,

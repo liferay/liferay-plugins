@@ -41,7 +41,9 @@ public class CalendarResourceExportActionableDynamicQuery
 	}
 
 	@Override
-	protected void performAction(Object object) throws PortalException {
+	@SuppressWarnings("unused")
+	protected void performAction(Object object)
+		throws PortalException, SystemException {
 		CalendarResource stagedModel = (CalendarResource)object;
 
 		StagedModelDataHandlerUtil.exportStagedModel(_portletDataContext,

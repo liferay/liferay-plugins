@@ -40,7 +40,9 @@ public class AppExportActionableDynamicQuery extends AppActionableDynamicQuery {
 	}
 
 	@Override
-	protected void performAction(Object object) throws PortalException {
+	@SuppressWarnings("unused")
+	protected void performAction(Object object)
+		throws PortalException, SystemException {
 		App stagedModel = (App)object;
 
 		StagedModelDataHandlerUtil.exportStagedModel(_portletDataContext,
