@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.scheduler.CronText;
 import com.liferay.portal.kernel.scheduler.CronTrigger;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.Trigger;
+import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
@@ -700,6 +701,15 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		searchContext.setEnd(searchContainer.getEnd());
+
+		Class<?> indexerClass = Class.forName(indexerClassName);
+
+		try {
+			indexerClass.getField(Field.GROUP_ID);
+		}
+		catch (Exception e) {
+			searchContext.setGroupIds(null);
+		}
 
 		if (Validator.isNotNull(keywords)) {
 			searchContext.setKeywords(keywords);
