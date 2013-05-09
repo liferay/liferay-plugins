@@ -76,14 +76,40 @@ MBCategory mbCategory = MBCategoryLocalServiceUtil.getMBCategory(mbCategoryId);
 				rowIdProperty="screenName"
 			>
 				<liferay-ui:search-container-column-text
-					name="name"
-					property="fullName"
+					name="first-name"
+					orderable="<%= true %>"
+					property="firstName"
+				/>
+
+				<liferay-ui:search-container-column-text
+					name="last-name"
+					orderable="<%= true %>"
+					property="lastName"
 				/>
 
 				<liferay-ui:search-container-column-text
 					name="screen-name"
+					orderable="<%= true %>"
 					property="screenName"
 				/>
+
+				<liferay-ui:search-container-column-text
+					name="job-title"
+					orderable="<%= true %>"
+					value="<%= user2.getJobTitle() %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					name="organizations"
+				>
+					<liferay-ui:write bean="<%= user2 %>" property="organizations" />
+				</liferay-ui:search-container-column-text>
+
+				<liferay-ui:search-container-column-text
+					name="user-groups"
+				>
+					<liferay-ui:write bean="<%= user2 %>" property="user-groups" />
+				</liferay-ui:search-container-column-text>
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
