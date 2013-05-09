@@ -74,6 +74,8 @@ public class CalendarImporterLocalServiceImpl
 	public void importCalEvent(CalEvent calEvent)
 		throws PortalException, SystemException {
 
+		// Calendar event
+
 		if (isImported(calEvent)) {
 			return;
 		}
@@ -108,9 +110,9 @@ public class CalendarImporterLocalServiceImpl
 			calEvent.getFirstReminder(), NotificationType.EMAIL,
 			calEvent.getSecondReminder(), NotificationType.EMAIL);
 
-		// Resource permissions
+		// Resources
 
-		importResourcePermissions(calEvent, calendarBookingId);
+		importCalendarBookingResourcePermissions(calEvent, calendarBookingId);
 
 		// Subscriptions
 
@@ -446,37 +448,40 @@ public class CalendarImporterLocalServiceImpl
 		subscriptionPersistence.update(subscription);
 	}
 
-	protected long getActionId(ResourceAction resourceAction)
+	protected long getActionId(
+			ResourceAction oldResourceAction, String newClassName)
 		throws SystemException {
 
-		ResourceAction calendarBookingResourceAction =
-			resourceActionPersistence.fetchByN_A(
-				CalendarBooking.class.getName(), resourceAction.getActionId());
+		ResourceAction newResourceAction = resourceActionPersistence.fetchByN_A(
+			newClassName, oldResourceAction.getActionId());
 
-		if (calendarBookingResourceAction == null) {
+		if (newResourceAction == null) {
 			return 0;
 		}
 
-		return calendarBookingResourceAction.getBitwiseValue();
+		return newResourceAction.getBitwiseValue();
 	}
 
-	protected long getActionIds(ResourcePermission resourcePermission)
-		throws PortalException, SystemException {
+	protected long getActionIds(
+			ResourcePermission resourcePermission, String oldClassName,
+			String newClassName)
+		throws SystemException {
 
 		long actionIds = 0;
 
-		List<ResourceAction> resourceActions =
-			resourceActionPersistence.findByName(CalEvent.class.getName());
+		List<ResourceAction> oldResourceActions =
+			resourceActionPersistence.findByName(oldClassName);
 
-		for (ResourceAction resourceAction : resourceActions) {
+		for (ResourceAction oldResourceAction : oldResourceActions) {
 			boolean hasActionId = resourcePermissionLocalService.hasActionId(
-				resourcePermission, resourceAction);
+				resourcePermission, oldResourceAction);
 
 			if (!hasActionId) {
 				continue;
 			}
 
-			actionIds = actionIds | getActionId(resourceAction);
+			actionIds = actionIds | getActionId(
+				oldResourceAction, newClassName);
 		}
 
 		return actionIds;
@@ -674,6 +679,41 @@ public class CalendarImporterLocalServiceImpl
 		}
 	}
 
+	protected void importCalendarBookingResourcePermission(
+			ResourcePermission resourcePermission, long calendarBookingId)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		long actionIds = getActionIds(
+			resourcePermission, CalEvent.class.getName(),
+			CalendarBooking.class.getName());
+
+		resourceBlockLocalService.updateIndividualScopePermissions(
+			calendarBooking.getCompanyId(),
+			calendarBooking.getResourceGroupId(),
+			CalendarBooking.class.getName(), calendarBooking,
+			resourcePermission.getRoleId(), actionIds,
+			ResourceBlockConstants.OPERATOR_SET);
+	}
+
+	protected void importCalendarBookingResourcePermissions(
+			CalEvent calEvent, long calendarBookingId)
+		throws PortalException, SystemException {
+
+		List<ResourcePermission> resourcePermissions =
+			resourcePermissionPersistence.findByC_N_S_P(
+				calEvent.getCompanyId(), CalEvent.class.getName(),
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				String.valueOf(calEvent.getEventId()));
+
+		for (ResourcePermission resourcePermission : resourcePermissions) {
+			importCalendarBookingResourcePermission(
+				resourcePermission, calendarBookingId);
+		}
+	}
+
 	protected void importMBDiscussion(CalEvent calEvent, long calendarBookingId)
 		throws PortalException, SystemException {
 
@@ -815,38 +855,6 @@ public class CalendarImporterLocalServiceImpl
 			counterLocalService.increment(), classNameId, classPK,
 			ratingsStats.getTotalEntries(), ratingsStats.getTotalScore(),
 			ratingsStats.getAverageScore());
-	}
-
-	protected void importResourcePermission(
-			ResourcePermission resourcePermission, long calendarBookingId)
-		throws PortalException, SystemException {
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
-
-		long actionIds = getActionIds(resourcePermission);
-
-		resourceBlockLocalService.updateIndividualScopePermissions(
-			calendarBooking.getCompanyId(),
-			calendarBooking.getResourceGroupId(),
-			CalendarBooking.class.getName(), calendarBooking,
-			resourcePermission.getRoleId(), actionIds,
-			ResourceBlockConstants.OPERATOR_SET);
-	}
-
-	protected void importResourcePermissions(
-			CalEvent calEvent, long calendarBookingId)
-		throws PortalException, SystemException {
-
-		List<ResourcePermission> resourcePermissions =
-			resourcePermissionPersistence.findByC_N_S_P(
-				calEvent.getCompanyId(), CalEvent.class.getName(),
-				ResourceConstants.SCOPE_INDIVIDUAL,
-				String.valueOf(calEvent.getEventId()));
-
-		for (ResourcePermission resourcePermission : resourcePermissions) {
-			importResourcePermission(resourcePermission, calendarBookingId);
-		}
 	}
 
 	protected void importSocialActivities(

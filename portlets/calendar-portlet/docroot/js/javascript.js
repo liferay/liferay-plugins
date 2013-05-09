@@ -1698,10 +1698,9 @@ AUI.add(
 
 						var calendar = CalendarUtil.visibleCalendars[calendarId];
 
-						data.resourcePrimKey = schedulerEvent.get('calendarBookingId');
-						data.resourceGroupId = calendar.get('resourceGroupId')
-
 						data.modelResourceDescription = encodeURIComponent(data.content);
+						data.resourceGroupId = calendar.get('resourceGroupId')
+						data.resourcePrimKey = schedulerEvent.get('calendarBookingId');
 
 						Liferay.Util.openWindow(
 							{
