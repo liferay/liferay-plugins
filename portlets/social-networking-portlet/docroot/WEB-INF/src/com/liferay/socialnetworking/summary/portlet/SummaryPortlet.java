@@ -70,12 +70,12 @@ public class SummaryPortlet extends MVCPortlet {
 
 		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
 
-		String requestMessage = ParamUtil.getString(
-			actionRequest, "requestMessage");
-
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		extraDataJSONObject.put("requestMessage", requestMessage);
+		String addFriendMessage = ParamUtil.getString(
+			actionRequest, "addFriendMessage");
+
+		extraDataJSONObject.put("addFriendMessage", addFriendMessage);
 
 		SocialRequestLocalServiceUtil.addRequest(
 			themeDisplay.getUserId(), 0, User.class.getName(),

@@ -84,11 +84,12 @@
 				addAsFriendURL.setParameter("redirect", currentURL);
 				%>
 
-				<aui:form action="<%= addAsFriendURL.toString() %>" method="post" name="fm" >
-					<p class="add-as-friend">
-						<aui:input label="send-a-massage" name="requestMessage" type="textarea" />
+				<aui:form action="<%= addAsFriendURL.toString() %>" method="post" name="fm">
+					<div class="add-as-friend">
+						<aui:input label="send-a-message" name="addFriendMessage" type="textarea" />
+
 						<aui:button type="submit" value="add-as-friend" />
-					</p>
+					</div>
 				</aui:form>
 			</c:when>
 		</c:choose>
