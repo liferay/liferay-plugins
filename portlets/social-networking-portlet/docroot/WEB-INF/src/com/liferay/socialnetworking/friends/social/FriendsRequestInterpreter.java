@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -86,11 +87,10 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
 				extraData);
 
-			body = extraDataJSONObject.getString("requestMessage");
+			body = extraDataJSONObject.getString("addFriendMessage");
 
-			if (!(body.equals(""))) {
+			if (Validator.isNotNull(body)) {
 				body = StringUtil.quote(body);
-
 				body = HtmlUtil.escape(body);
 			}
 		}
