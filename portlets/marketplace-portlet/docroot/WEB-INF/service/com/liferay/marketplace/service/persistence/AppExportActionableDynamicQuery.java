@@ -30,8 +30,6 @@ public class AppExportActionableDynamicQuery extends AppActionableDynamicQuery {
 	public AppExportActionableDynamicQuery(
 		PortletDataContext portletDataContext) throws SystemException {
 		_portletDataContext = portletDataContext;
-
-		setGroupId(_portletDataContext.getScopeGroupId());
 	}
 
 	@Override
