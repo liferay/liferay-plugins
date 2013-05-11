@@ -23,6 +23,8 @@ import com.liferay.portal.security.permission.PermissionChecker;
  */
 public class PollsPermission {
 
+	public static final String RESOURCE_NAME = "com.liferay.portlet.polls";
+
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, String actionId)
 		throws PortalException {
@@ -36,7 +38,7 @@ public class PollsPermission {
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, "com.liferay.polls", groupId, actionId);
+			groupId, RESOURCE_NAME, groupId, actionId);
 	}
 
 }

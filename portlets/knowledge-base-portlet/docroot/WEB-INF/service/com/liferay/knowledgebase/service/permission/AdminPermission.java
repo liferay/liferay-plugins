@@ -24,6 +24,9 @@ import com.liferay.portal.security.permission.PermissionChecker;
  */
 public class AdminPermission {
 
+	public static final String RESOURCE_NAME =
+		"com.liferay.knowledgebase.admin";
+
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, String actionId)
 		throws PortalException {
@@ -37,9 +40,7 @@ public class AdminPermission {
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, _NAME, groupId, actionId);
+			groupId, RESOURCE_NAME, groupId, actionId);
 	}
-
-	private static final String _NAME = "com.liferay.knowledgebase.admin";
 
 }

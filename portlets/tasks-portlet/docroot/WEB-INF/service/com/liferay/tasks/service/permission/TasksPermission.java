@@ -26,6 +26,8 @@ import com.liferay.portal.security.permission.PermissionChecker;
  */
 public class TasksPermission {
 
+	public static final String RESOURCE_NAME = "com.liferay.tasks";
+
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, String actionId)
 		throws PortalException {
@@ -39,9 +41,7 @@ public class TasksPermission {
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, _NAME, groupId, actionId);
+			groupId, RESOURCE_NAME, groupId, actionId);
 	}
-
-	private static final String _NAME = "com.liferay.tasks";
 
 }

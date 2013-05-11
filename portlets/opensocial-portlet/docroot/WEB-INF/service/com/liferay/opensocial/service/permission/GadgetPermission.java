@@ -24,6 +24,8 @@ import com.liferay.portal.security.permission.PermissionChecker;
  */
 public class GadgetPermission {
 
+	public static final String RESOURCE_NAME = "com.liferay.opensocial";
+
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, long gadgetId,
 			String actionId)
@@ -55,9 +57,7 @@ public class GadgetPermission {
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, _NAME, groupId, actionId);
+			groupId, RESOURCE_NAME, groupId, actionId);
 	}
-
-	private static final String _NAME = "com.liferay.opensocial";
 
 }
