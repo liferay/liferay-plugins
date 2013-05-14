@@ -65,7 +65,7 @@ public class PluginsSecurityManagerUtil {
 		}
 
 		for (Map.Entry<ClassLoader, Object> entry : paclPolicies.entrySet()) {
-			Object value = entry.getValue();
+			String value = String.valueOf(entry.getValue());
 
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.serialize(value));
