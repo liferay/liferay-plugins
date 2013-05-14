@@ -20,48 +20,75 @@
 <div class="portrait-social-activities">
 
 	<%
-	for (SocialActivitySet activitySet : results) {
-		SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret("SO", activitySet, ServiceContextFactory.getInstance(request));
+	Date now = new Date();
+
+	int daysBetween = -1;
+
+	for (SocialActivity activity : results) {
+		SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret(activity, themeDisplay);
 
 		if (activityFeedEntry == null) {
 			continue;
 		}
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), activityFeedEntry.getPortletId());
+
+		int curDaysBetween = DateUtil.getDaysBetween(new Date(activity.getCreateDate()), now, timeZone);
 	%>
+
+		<c:if test="<%= curDaysBetween > daysBetween %>">
+
+			<%
+			daysBetween = curDaysBetween;
+			String message = null;
+
+			if (curDaysBetween == 0) {
+				message = "today";
+			}
+			else if (curDaysBetween == 1) {
+				message = "yesterday";
+			}
+			else {
+				message = dateFormatDate.format(activity.getCreateDate());
+			}
+			%>
+
+			<h3><liferay-ui:message key="<%= message %>" /></h3>
+		</c:if>
 
 		<div class="activity-item">
 
 			<%
-			User activitySetUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());
+			User curUser = null;
 
-			String userDisplayURL = StringPool.BLANK;
-			String userFullName = StringPool.BLANK;
-			String userPortraitURL = StringPool.BLANK;
-
-			if (activitySetUser != null) {
-				userDisplayURL = activitySetUser.getDisplayURL(themeDisplay);
-				userFullName = activitySetUser.getFullName();
-				userPortraitURL = activitySetUser.getPortraitURL(themeDisplay);
+			try {
+				curUser = UserLocalServiceUtil.getUserById(activity.getUserId());
+			}
+			catch (Exception e) {
 			}
 			%>
 
 			<div class="user-portrait">
 				<span class="avatar">
-					<a href="<%= userDisplayURL %>">
-						<img alt="<%= userFullName %>" src="<%= userPortraitURL %>" />
-					</a>
+					<img alt="<%= HtmlUtil.escape(curUser.getFullName()) %>" src="<%= curUser.getPortraitURL(themeDisplay) %>" />
+				</span>
+
+				<span class="icon">
+					<liferay-portlet:icon-portlet portlet="<%= portlet %>" />
 				</span>
 			</div>
 
 			<div class="activity-data">
+				<div class="activity-title">
+					<%= activityFeedEntry.getTitle() %>
+				</div>
 
-				<%= activityFeedEntry.getTitle() %>
+				<div class="activity-body">
+					<span class="time">
+						<%= timeFormatDate.format(activity.getCreateDate()) %>
+					</span>
 
-				<%= activityFeedEntry.getBody() %>
-
-				<div class="activity-footer">
-					<div class="activity-footer-toolbar">
-						<span><%= activityFeedEntry.getLink() %></span>
-					</div>
+					<%= activityFeedEntry.getBody() %>
 				</div>
 			</div>
 		</div>
