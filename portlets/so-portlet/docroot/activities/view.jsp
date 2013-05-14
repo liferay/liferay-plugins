@@ -17,16 +17,23 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
-
-<%@ page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
-page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
-page import="com.liferay.portal.service.ServiceContextFactory" %><%@
-page import="com.liferay.portlet.social.model.SocialActivity" %><%@
-page import="com.liferay.portlet.social.model.SocialActivitySet" %><%@
-page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil" %>
+<%@ include file="/activities/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "all");
+Group group = themeDisplay.getScopeGroup();
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("tabs1", tabs1);
+
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 %>
+
+<c:choose>
+	<c:when test="<%= GetterUtil.getBoolean(PropsUtil.get(PropsKeys.SOCIAL_ACTIVITY_SETS_ENABLED)) %>">
+		<%@ include file="/activities/view_activity_sets.jspf" %>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="/activities/view_activities.jspf" %>
+	</c:otherwise>
+</c:choose>

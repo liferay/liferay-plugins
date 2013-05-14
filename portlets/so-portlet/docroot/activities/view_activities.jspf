@@ -17,18 +17,8 @@
  */
 --%>
 
-<%@ include file="/activities/init.jsp" %>
-
 <%
-Group group = themeDisplay.getScopeGroup();
-
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("tabs1", tabs1);
-
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
-
-List<SocialActivitySet> results = null;
+List<SocialActivity> results = null;
 int total = 0;
 %>
 
@@ -42,41 +32,46 @@ int total = 0;
 
 		<%
 		if (tabs1.equals("connections")) {
-			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+			results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
 		}
 		else if (tabs1.equals("following")) {
-			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+			results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 		}
 		else if (tabs1.equals("my-sites")) {
-			results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(themeDisplay.getUserId());
+			results = SocialActivityLocalServiceUtil.getUserGroupsActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(themeDisplay.getUserId());
 		}
 		else {
-			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(themeDisplay.getUserId());
+			results = SocialActivityLocalServiceUtil.getUserActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(themeDisplay.getUserId());
 		}
-
-		searchContainer.setResults(results);
-		searchContainer.setTotal(total);
 		%>
 
-		<%@ include file="/activities/view_activities.jspf" %>
 	</c:when>
 	<c:otherwise>
 
 		<%
-		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-		total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
-
-		searchContainer.setResults(results);
-		searchContainer.setTotal(total);
+		if (group.isUser()) {
+			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
+		}
+		else {
+			results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+		}
 		%>
 
-		<%@ include file="/activities/view_activities.jspf" %>
 	</c:otherwise>
 </c:choose>
+
+<%
+searchContainer.setResults(results);
+searchContainer.setTotal(total);
+%>
+
+<%@ include file="/activities/view_activities_feed.jspf" %>
 
 <c:if test="<%= (!results.isEmpty()) %>">
 	<liferay-ui:search-paginator
