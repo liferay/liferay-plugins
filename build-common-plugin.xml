@@ -60,8 +60,7 @@
 		</elseif>
 		<else>
 			<path id="plugin-lib.classpath">
-				<fileset dir="lib" erroronmissingdir="false" includes="*.jar" />
-				<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+				<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
 				<pathelement location="docroot/WEB-INF/classes" />
 			</path>
 		</else>

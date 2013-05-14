@@ -24,6 +24,7 @@
 
 	<path id="plugin-lib.classpath">
 		<path refid="portal.classpath" />
+		<fileset dir="lib" erroronmissingdir="false" includes="*.jar" />
 		<pathelement path="${plugin-lib.classpath.path}" />
 	</path>
 
