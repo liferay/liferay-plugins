@@ -1,0 +1,78 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ *
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
+ */
+--%>
+
+<div class="portrait-social-activities">
+
+	<%
+	for (SocialActivitySet activitySet : results) {
+		SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret("SO", activitySet, ServiceContextFactory.getInstance(request));
+
+		if (activityFeedEntry == null) {
+			continue;
+		}
+	%>
+
+		<div class="activity-item">
+
+			<%
+			User activitySetUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());
+
+			String userDisplayURL = StringPool.BLANK;
+			String userFullName = StringPool.BLANK;
+			String userPortraitURL = StringPool.BLANK;
+
+			if (activitySetUser != null) {
+				userDisplayURL = activitySetUser.getDisplayURL(themeDisplay);
+				userFullName = activitySetUser.getFullName();
+				userPortraitURL = activitySetUser.getPortraitURL(themeDisplay);
+			}
+			%>
+
+			<div class="user-portrait">
+				<span class="avatar">
+					<a href="<%= userDisplayURL %>">
+						<img alt="<%= userFullName %>" src="<%= userPortraitURL %>" />
+					</a>
+				</span>
+			</div>
+
+			<div class="activity-data">
+
+				<%= activityFeedEntry.getTitle() %>
+
+				<%= activityFeedEntry.getBody() %>
+
+				<div class="activity-footer">
+					<div class="activity-footer-toolbar">
+						<span><%= activityFeedEntry.getLink() %></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<%
+	}
+	%>
+
+	<c:if test="<%= results.size() <= 0 %>">
+		<div class="portlet-msg-info">
+			<liferay-ui:message key="there-are-no-recent-activities" />
+		</div>
+	</c:if>
+</div>
