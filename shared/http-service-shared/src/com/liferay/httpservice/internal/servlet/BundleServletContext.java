@@ -221,6 +221,7 @@ public class BundleServletContext extends LiferayServletContext {
 		return _bundle;
 	}
 
+	@Override
 	public ClassLoader getClassLoader() {
 		ClassLoader classLoader = (ClassLoader)_contextAttributes.get(
 			PluginContextListener.PLUGIN_CLASS_LOADER);
