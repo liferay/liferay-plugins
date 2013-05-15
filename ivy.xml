@@ -4,7 +4,6 @@
 	<dependencies>
 		<dependency name="activation" org="javax.activation" rev="1.1" />
 		<dependency name="antelopetasks" org="org.tigris.antelope" rev="3.2.10" />
-		<dependency name="bnd" org="biz.aQute" rev="1.50.0" />
 		<dependency name="ccpp" org="javax.ccpp" rev="1.0" />
 		<dependency name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
 		<dependency name="jalopy" org="jalopy" rev="1.5rc3" />

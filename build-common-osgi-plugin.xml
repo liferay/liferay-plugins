@@ -24,13 +24,12 @@
 
 	<path id="plugin-lib.classpath">
 		<path refid="portal.classpath" />
-		<fileset dir="${sdk.dir}/lib" includes="bnd.jar" />
 		<pathelement path="${plugin-lib.classpath.path}" />
 	</path>
 
 	<var name="plugin-lib.classpath.path" unset="true" />
 
-	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
+	<taskdef classpathref="portal.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 
 	<macrodef name="manifest-helper">
 		<attribute name="analyze" default="false" />
