@@ -65,6 +65,10 @@
 				<value>Suggestions</value>
 			</preference>
 			<preference>
+				<name>submitButtonValue</name>
+				<value>Send</value>
+			</preference>
+			<preference>
 				<name>title</name>
 				<value>Suggestions</value>
 			</preference>
