@@ -147,7 +147,7 @@ for (String importer : importers) {
 		JournalArticleLocalService#getArticlesCount=<%= _assertEquals(5, JournalArticleLocalServiceUtil.getArticlesCount(groupId)) %><br />
 
 		<%
-		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, "CHILD-STRUCTURE-1");
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, PortalUtil.getClassNameId(JournalArticle.class), "CHILD-STRUCTURE-1");
 
 		long parentStructureId = ddmStructure.getParentStructureId();
 
@@ -165,7 +165,7 @@ for (String importer : importers) {
 		DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(3, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
 
 		<%
-		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, "CHILD-TEMPLATE-1");
+		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1");
 
 		DDMStructure ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
 

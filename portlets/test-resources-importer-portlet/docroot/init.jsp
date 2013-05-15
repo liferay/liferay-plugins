@@ -35,6 +35,7 @@ page import="com.liferay.portal.model.Layout" %><%@
 page import="com.liferay.portal.model.LayoutTypePortletConstants" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.LayoutLocalServiceUtil" %><%@
+page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portlet.asset.service.AssetTagLocalServiceUtil" %><%@
 page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %><%@
 page import="com.liferay.portlet.documentlibrary.model.DLFolderConstants" %><%@
