@@ -51,8 +51,8 @@
 			<available file="tmp" />
 			<then>
 				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+					<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+					<fileset dir="tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
 					<pathelement location="docroot/WEB-INF/classes" />
 					<pathelement location="tmp/WEB-INF/classes" />
 				</path>
@@ -60,7 +60,7 @@
 		</elseif>
 		<else>
 			<path id="plugin-lib.classpath">
-				<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+				<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
 				<pathelement location="docroot/WEB-INF/classes" />
 			</path>
 		</else>
