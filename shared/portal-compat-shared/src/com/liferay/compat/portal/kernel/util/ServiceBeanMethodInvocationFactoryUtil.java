@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
  */
 public class ServiceBeanMethodInvocationFactoryUtil {
 
-	public static void proceed(
+	public static Object proceed(
 			Object target, Class<?> targetClass, Method method,
 			Object[] arguments, String[] methodInterceptorBeanIds)
 		throws Exception {
@@ -39,7 +39,7 @@ public class ServiceBeanMethodInvocationFactoryUtil {
 			"proceed", Object.class, Class.class, Method.class, Object[].class,
 			String[].class);
 
-		proceedMethod.invoke(
+		return proceedMethod.invoke(
 			null, target, targetClass, method, arguments,
 			methodInterceptorBeanIds);
 	}
