@@ -235,7 +235,7 @@ AUI.add(
 							var mapAddressNode = instance.byId(STR_MAP_ADDRESS);
 
 							var mapAddress = mapAddressNode.val();
-							
+
 							if (mapAddress) {
 								value = mapAddress;
 							}
