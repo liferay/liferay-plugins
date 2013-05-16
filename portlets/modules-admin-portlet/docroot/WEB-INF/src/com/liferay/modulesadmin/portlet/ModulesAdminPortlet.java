@@ -81,8 +81,6 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
-
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
 
@@ -206,8 +204,6 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
-
 		Bundle bundle = getBundle(actionRequest);
 
 		if (bundle != null) {
@@ -218,8 +214,6 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 	public void updateBundleFromLocalFile(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
-
-		checkPermissions(actionRequest);
 
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
@@ -249,8 +243,6 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
-
 		Bundle bundle = getBundle(actionRequest);
 
 		if (bundle != null) {
@@ -258,6 +250,7 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 		}
 	}
 
+	@Override
 	protected void checkPermissions(PortletRequest portletRequest)
 		throws Exception {
 
