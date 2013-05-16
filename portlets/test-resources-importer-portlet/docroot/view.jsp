@@ -36,6 +36,16 @@ for (String importer : importers) {
 	}
 
 	if (group != null) {
+		if (importer.equals("lar")) {
+			Map<String, String[]> parameters = new HashMap<String, String[]>();
+
+			parameters.put(PortletDataHandlerKeys.PORTLET_DATA_ALL, new String[] {Boolean.TRUE.toString()});
+
+			File file = LayoutLocalServiceUtil.exportLayoutsAsFile(group.getGroupId(), false, null, parameters, null, null);
+
+			FileUtil.copyFile(file, new File(application.getRealPath("/WEB-INF/classes/test/lar/archive.lar")));
+		}
+
 		GroupLocalServiceUtil.deleteGroup(group);
 	}
 
@@ -96,17 +106,21 @@ for (String importer : importers) {
 		}
 		%>
 
-		LayoutLocalServiceUtil#getLayoutsCount=<%= _assertEquals(5, LayoutLocalServiceUtil.getLayoutsCount(group, false)) %><br />
-
 		<%
 		Layout importedLayout = LayoutLocalServiceUtil.getLayout(groupId, false, 1);
+
+		Map<Locale, String> nameMap = importedLayout.getNameMap();
 
 		UnicodeProperties layoutTypeSettingsProperties = importedLayout.getTypeSettingsProperties();
 
 		String nestedColumnIds = layoutTypeSettingsProperties.get(LayoutTypePortletConstants.NESTED_COLUMN_IDS);
 		%>
 
-		LayoutTypePortletConstants#NESTED_COLUMN_IDS=<%= _assertTrue((nestedColumnIds != null) && nestedColumnIds.contains("column-1") && nestedColumnIds.contains("column-2")) %>
+		Layout#getNameMap=<%= _assertTrue(nameMap.containsValue("Bienvenue")) %><br />
+
+		LayoutLocalServiceUtil#getLayoutsCount=<%= _assertEquals(5, LayoutLocalServiceUtil.getLayoutsCount(group, false)) %><br />
+
+		LayoutTypePortletConstants#NESTED_COLUMN_IDS=<%= _assertTrue((nestedColumnIds != null) && nestedColumnIds.contains("column-1") && nestedColumnIds.contains("column-2")) %><br />
 	</p>
 
 	<p>
@@ -153,9 +167,9 @@ for (String importer : importers) {
 
 		String parentStructureKey = StringPool.BLANK;
 
-		if (parentStructureId > 0) {
-			DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.getStructure(parentStructureId);
+		DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.fetchStructure(parentStructureId);
 
+		if (parentDDMStructure != null) {
 			parentStructureKey = parentDDMStructure.getStructureKey();
 		}
 		%>

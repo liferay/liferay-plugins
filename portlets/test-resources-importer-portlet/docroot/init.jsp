@@ -21,7 +21,8 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.messaging.DestinationNames" %><%@
+<%@ page import="com.liferay.portal.kernel.lar.PortletDataHandlerKeys" %><%@
+page import="com.liferay.portal.kernel.messaging.DestinationNames" %><%@
 page import="com.liferay.portal.kernel.messaging.Message" %><%@
 page import="com.liferay.portal.kernel.messaging.MessageBusUtil" %><%@
 page import="com.liferay.portal.kernel.util.ArrayUtil" %><%@
@@ -47,7 +48,11 @@ page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServ
 page import="com.liferay.portlet.journal.model.JournalArticle" %><%@
 page import="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil" %>
 
-<%@ page import="java.util.Map" %>
+<%@ page import="java.io.File" %>
+
+<%@ page import="java.util.HashMap" %><%@
+page import="java.util.Locale" %><%@
+page import="java.util.Map" %>
 
 <portlet:defineObjects />
 

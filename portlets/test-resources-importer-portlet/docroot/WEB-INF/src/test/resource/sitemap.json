@@ -79,7 +79,10 @@
 				]
 			],
 			"friendlyURL": "/home",
-			"name": "Welcome",
+			"nameMap": {
+				"en_US": "Welcome",
+				"fr_CA": "Bienvenue"
+			},
 			"title": "Welcome"
 		},
 		{
