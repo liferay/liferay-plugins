@@ -23,6 +23,7 @@ String titleXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences
 String descriptionXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "description");
 boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
+String submitButtonValueXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "submitButtonValue");
 
 boolean sendAsEmail = GetterUtil.getBoolean(preferences.getValue("sendAsEmail", StringPool.BLANK));
 String emailFromName = WebFormUtil.getEmailFromName(preferences, company.getCompanyId());
@@ -55,6 +56,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="webFormGeneral" persistState="<%= true %>" title="form-information">
 			<aui:fieldset>
 				<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
+				<liferay-ui:error key="submitButtonValueRequired" message="please-enter-a-submit-button-display-text" />
 
 				<aui:field-wrapper cssClass="lfr-input-text-container" label="title">
 					<liferay-ui:input-localized name="title" xml="<%= titleXml %>" />
@@ -67,6 +69,10 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<aui:input name="preferences--requireCaptcha--" type="checkbox" value="<%= requireCaptcha %>" />
 
 				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
+
+				<aui:field-wrapper cssClass="lfr-input-text-container" label="submit-button-display-text">
+					<liferay-ui:input-localized name="submitButtonValue" xml="<%= submitButtonValueXml %>" />
+				</aui:field-wrapper>
 			</aui:fieldset>
 		</liferay-ui:panel>
 

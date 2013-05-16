@@ -81,6 +81,8 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			actionRequest, preferences, "title");
 		LocalizationUtil.setLocalizedPreferencesValues(
 			actionRequest, preferences, "description");
+		LocalizationUtil.setLocalizedPreferencesValues(
+			actionRequest, preferences, "submitButtonValue");
 
 		if (updateFields) {
 			int i = 1;
@@ -231,6 +233,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		String title = ParamUtil.getString(
 			actionRequest, "title" + StringPool.UNDERLINE + defaultLanguageId);
 
+		String submitButtonValue = ParamUtil.getString(
+			actionRequest, "submitButtonValue" + StringPool.UNDERLINE +
+			defaultLanguageId);
+
 		boolean sendAsEmail = GetterUtil.getBoolean(
 			getParameter(actionRequest, "sendAsEmail"));
 		String subject = getParameter(actionRequest, "subject");
@@ -243,6 +249,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		if (Validator.isNull(title)) {
 			SessionErrors.add(actionRequest, "titleRequired");
+		}
+
+		if (Validator.isNull(submitButtonValue)) {
+			SessionErrors.add(actionRequest, "submitButtonValueRequired");
 		}
 
 		if (!sendAsEmail && !saveToDatabase && !saveToFile) {

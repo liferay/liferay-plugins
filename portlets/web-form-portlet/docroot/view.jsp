@@ -21,6 +21,7 @@ String title = LocalizationUtil.getPreferencesValue(preferences, "title", themeD
 String description = LocalizationUtil.getPreferencesValue(preferences, "description", themeDisplay.getLanguageId());
 boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
+String submitButtonValue = LocalizationUtil.getPreferencesValue(preferences, "submitButtonValue", themeDisplay.getLanguageId());
 %>
 
 <portlet:actionURL var="saveDataURL">
@@ -144,7 +145,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			<liferay-ui:captcha url="<%= captchaURL %>" />
 		</c:if>
 
-		<aui:button onClick="" type="submit" value="send" />
+		<aui:button onClick="" type="submit" value="<%= HtmlUtil.escape(submitButtonValue) %>" />
 	</aui:fieldset>
 </aui:form>
 
