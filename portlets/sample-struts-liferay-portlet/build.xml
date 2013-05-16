@@ -5,6 +5,6 @@
 	<import file="../build-common-portlet.xml" />
 
 	<path id="plugin-lib.classpath">
-		<path refid="portal.classpath" />		
+		<path refid="portal.classpath" />
 	</path>
 </project>
