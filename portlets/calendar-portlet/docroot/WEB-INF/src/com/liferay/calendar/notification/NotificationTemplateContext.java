@@ -28,13 +28,13 @@ import java.util.Map;
  */
 public class NotificationTemplateContext implements Cloneable, Serializable {
 
-	public NotificationTemplateContext(NotificationType notificationType) {
-		_notificationType = notificationType;
-	}
-
 	public NotificationTemplateContext() {
 		_notificationType = NotificationType.parse(
 			PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
+	}
+
+	public NotificationTemplateContext(NotificationType notificationType) {
+		_notificationType = notificationType;
 	}
 
 	public Serializable getAttribute(String name) {

@@ -176,12 +176,12 @@ public class CDIEventRequestImpl extends CDIEventRequest {
 		return _httpServletRequestAdapter.getServletPath();
 	}
 
-	public HttpSession getSession(boolean create) {
-		return _httpServletRequestAdapter.getSession(create);
-	}
-
 	public HttpSession getSession() {
 		return _httpServletRequestAdapter.getSession();
+	}
+
+	public HttpSession getSession(boolean create) {
+		return _httpServletRequestAdapter.getSession(create);
 	}
 
 	public boolean isAsyncStarted() {
