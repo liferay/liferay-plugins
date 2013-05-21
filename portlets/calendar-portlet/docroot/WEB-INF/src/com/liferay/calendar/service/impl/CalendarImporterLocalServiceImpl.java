@@ -489,17 +489,17 @@ public class CalendarImporterLocalServiceImpl
 			long userId, long groupId, String name)
 		throws PortalException, SystemException {
 
+		AssetVocabulary assetVocabulary = assetVocabularyPersistence.fetchByG_N(
+			groupId, _ASSET_VOCABULARY_NAME);
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setScopeGroupId(groupId);
 		serviceContext.setUserId(userId);
 
-		AssetVocabulary assetVocabulary = assetVocabularyPersistence.fetchByG_N(
-			groupId, _CALENDAR_VOCABULARY_NAME);
-
 		if (assetVocabulary == null) {
 			assetVocabulary = assetVocabularyLocalService.addVocabulary(
-				userId, _CALENDAR_VOCABULARY_NAME, serviceContext);
+				userId, _ASSET_VOCABULARY_NAME, serviceContext);
 		}
 
 		AssetCategory assetCategory = assetCategoryPersistence.fetchByP_N_V(
@@ -938,8 +938,7 @@ public class CalendarImporterLocalServiceImpl
 		mbThreadPersistence.update(mbThread);
 	}
 
-	private static final String _CALENDAR_VOCABULARY_NAME =
-		"Calendar Event Types";
+	private static final String _ASSET_VOCABULARY_NAME = "Calendar Event Types";
 
 	private static Map<Integer, Frequency> _frequencyMap =
 		new HashMap<Integer, Frequency>();
