@@ -28,8 +28,6 @@ import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -491,11 +489,18 @@ public class CalendarImporterLocalServiceImpl
 			long userId, long groupId, String name)
 		throws PortalException, SystemException {
 
-		String assetVocabularyDefault = PropsUtil.get(
-			PropsKeys.ASSET_VOCABULARY_DEFAULT);
+		ServiceContext serviceContext = new ServiceContext();
 
-		AssetVocabulary assetVocabulary = assetVocabularyPersistence.findByG_N(
-			groupId, assetVocabularyDefault);
+		serviceContext.setScopeGroupId(groupId);
+		serviceContext.setUserId(userId);
+
+		AssetVocabulary assetVocabulary = assetVocabularyPersistence.fetchByG_N(
+			groupId, _CALENDAR_VOCABULARY_NAME);
+
+		if (assetVocabulary == null) {
+			assetVocabulary = assetVocabularyLocalService.addVocabulary(
+				userId, _CALENDAR_VOCABULARY_NAME, serviceContext);
+		}
 
 		AssetCategory assetCategory = assetCategoryPersistence.fetchByP_N_V(
 			AssetCategoryConstants.DEFAULT_PARENT_CATEGORY_ID, name,
@@ -504,11 +509,6 @@ public class CalendarImporterLocalServiceImpl
 		if (assetCategory != null) {
 			return assetCategory;
 		}
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setScopeGroupId(groupId);
-		serviceContext.setUserId(userId);
 
 		return assetCategoryLocalService.addCategory(
 			userId, name, assetVocabulary.getVocabularyId(), serviceContext);
@@ -937,6 +937,9 @@ public class CalendarImporterLocalServiceImpl
 
 		mbThreadPersistence.update(mbThread);
 	}
+
+	private static final String _CALENDAR_VOCABULARY_NAME =
+		"Calendar Event Types";
 
 	private static Map<Integer, Frequency> _frequencyMap =
 		new HashMap<Integer, Frequency>();
