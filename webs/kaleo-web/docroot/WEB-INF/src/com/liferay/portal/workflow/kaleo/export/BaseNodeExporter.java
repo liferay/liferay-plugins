@@ -96,7 +96,9 @@ public abstract class BaseNodeExporter implements NodeExporter {
 
 		Element childElement = element.addElement(elementName);
 
-		childElement.addText(text);
+		if (Validator.isNotNull(text)) {
+			childElement.addText(text);
+		}
 	}
 
 	protected abstract Element createNodeElement(
@@ -269,7 +271,10 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		for (Recipient recipient : recipients) {
 			RecipientType recipientType = recipient.getRecipientType();
 
-			if (recipientType.equals(RecipientType.ADDRESS)) {
+			if (recipientType.equals(RecipientType.ASSIGNEES)) {
+				addTextElement(recipientsElement, "assignees", null);
+			}
+			else if (recipientType.equals(RecipientType.ADDRESS)) {
 				AddressRecipient addressRecipient = (AddressRecipient)recipient;
 
 				addTextElement(

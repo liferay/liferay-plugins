@@ -28,6 +28,7 @@ import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.Action;
 import com.liferay.portal.workflow.kaleo.definition.AddressRecipient;
+import com.liferay.portal.workflow.kaleo.definition.AssigneesRecipient;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.AssignmentType;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
@@ -35,6 +36,7 @@ import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
+import com.liferay.portal.workflow.kaleo.definition.RecipientType;
 import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
@@ -104,7 +106,16 @@ public abstract class BaseNodeBuilder
 
 			Recipient recipient = null;
 
-			if (recipientClassName.equals(Role.class.getName())) {
+			if (recipientClassName.equals(RecipientType.ADDRESS.name())) {
+				recipient = new AddressRecipient(
+					kaleoNotificationRecipient.getAddress());
+			}
+			else if (recipientClassName.equals(
+						RecipientType.ASSIGNEES.name())) {
+
+				recipient = new AssigneesRecipient();
+			}
+			else if (recipientClassName.equals(Role.class.getName())) {
 				Role role = _roleLocalService.fetchRole(recipientClassPK);
 
 				recipient = new RoleRecipient(
@@ -122,10 +133,6 @@ public abstract class BaseNodeBuilder
 					recipient = new UserRecipient();
 				}
 
-			}
-			else {
-				recipient = new AddressRecipient(
-					kaleoNotificationRecipient.getAddress());
 			}
 
 			notification.addRecipients(recipient);
