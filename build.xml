@@ -43,6 +43,7 @@
 		<ant dir="hooks" target="clean" inheritAll="false" />
 		<ant dir="layouttpl" target="clean" inheritAll="false" />
 		<ant dir="portlets" target="clean" inheritAll="false" />
+		<ant dir="shared" target="clean" inheritAll="false" />
 		<ant dir="themes" target="clean" inheritAll="false" />
 		<ant dir="webs" target="clean" inheritAll="false" />
 	</target>
@@ -51,6 +52,7 @@
 		<ant dir="hooks" target="compile" inheritAll="false" />
 		<ant dir="layouttpl" target="compile" inheritAll="false" />
 		<ant dir="portlets" target="compile" inheritAll="false" />
+		<ant dir="shared" target="compile" inheritAll="false" />
 		<ant dir="themes" target="compile" inheritAll="false" />
 		<ant dir="webs" target="compile" inheritAll="false" />
 	</target>
@@ -59,6 +61,7 @@
 		<ant dir="hooks" target="deploy" inheritAll="false" />
 		<ant dir="layouttpl" target="deploy" inheritAll="false" />
 		<ant dir="portlets" target="deploy" inheritAll="false" />
+		<ant dir="shared" target="deploy" inheritAll="false" />
 		<ant dir="themes" target="deploy" inheritAll="false" />
 		<ant dir="webs" target="deploy" inheritAll="false" />
 	</target>
