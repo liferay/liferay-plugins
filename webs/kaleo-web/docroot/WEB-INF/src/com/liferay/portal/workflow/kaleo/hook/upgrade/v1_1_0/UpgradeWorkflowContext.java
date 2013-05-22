@@ -92,7 +92,7 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 		PreparedStatement ps = null;
 
 		try {
-			con = DataAccess.getConnection();
+			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
 				"update " + tableName + " set workflowContext = ? where " +
