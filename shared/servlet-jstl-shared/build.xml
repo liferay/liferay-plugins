@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<project name="servlet-jstl-shared" basedir="." default="compile">
+	<property name="plugin.version" value="1" />
+
+	<import file="../../build-common-osgi-plugin.xml" />
+
+	<property name="original.lib.name" value="org.apache.taglibs.standard.glassfish" />
+	<property name="original.lib.version" value="1.2.0.v201112081803" />
+	<property name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/orbit/" />
+
+	<target name="compile">
+		<if>
+			<not>
+				<available file="lib/${original.lib.name}.jar" />
+			</not>
+			<then>
+				<mkdir dir="lib" />
+
+				<get
+					dest="lib/${original.lib.name}.jar"
+					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar"
+				/>
+
+				<get
+					dest="lib/${original.lib.name}-sources.jar"
+					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}-sources.jar"
+				/>
+
+				<unjar
+					dest="src"
+					src="lib/${original.lib.name}-sources.jar"
+				>
+					<patternset>
+						<include name="org/apache/taglibs/standard/tlv/JstlBaseTLV.java" />
+					</patternset>
+				</unjar>
+
+				<delete file="lib/${original.lib.name}-sources.jar" />
+
+				<patch dir="src" patchfile="patches/LPS-35466.patch" strip="1" />
+			</then>
+		</if>
+
+		<antcall target="build-common-osgi-plugin.compile" />
+	</target>
+</project>

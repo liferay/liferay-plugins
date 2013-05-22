@@ -1,0 +1,21 @@
+diff --git a/org/apache/taglibs/standard/tlv/JstlBaseTLV.java b/org/apache/taglibs/standard/tlv/JstlBaseTLV.java
+index c7da406..51a9052 100644
+--- a/org/apache/taglibs/standard/tlv/JstlBaseTLV.java
++++ b/org/apache/taglibs/standard/tlv/JstlBaseTLV.java
+@@ -174,8 +174,14 @@ public abstract class JstlBaseTLV extends TagLibraryValidator {
+ 
+ 	    // parse parameters if necessary
+ 	    try {
+-		if (config == null)
+-		    configure((String) getInitParameters().get(EXP_ATT_PARAM));
++            if (config == null) {
++                String expressionAttributes = null;
++                Map<String, Object> initParameters = getInitParameters();
++                if (initParameters != null) {
++		            expressionAttributes = (String) initParameters.get(EXP_ATT_PARAM);
++                }
++                configure(expressionAttributes);
++            }
+ 	    } catch (NoSuchElementException ex) {
+ 		// parsing error
+ 	        return vmFromString(
