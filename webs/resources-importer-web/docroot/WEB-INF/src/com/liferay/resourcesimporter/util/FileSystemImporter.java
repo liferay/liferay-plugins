@@ -229,8 +229,6 @@ public class FileSystemImporter extends BaseImporter {
 	protected void addLayout(long parentLayoutId, JSONObject layoutJSONObject)
 		throws Exception {
 
-		Locale locale = LocaleUtil.getDefault();
-
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
 		JSONObject nameMapJSONObject = layoutJSONObject.getJSONObject(
@@ -243,7 +241,7 @@ public class FileSystemImporter extends BaseImporter {
 		else {
 			String name = layoutJSONObject.getString("name");
 
-			nameMap.put(locale, name);
+			nameMap.put(LocaleUtil.getDefault(), name);
 		}
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
@@ -258,7 +256,7 @@ public class FileSystemImporter extends BaseImporter {
 		else {
 			String title = layoutJSONObject.getString("title");
 
-			titleMap.put(locale, title);
+			titleMap.put(LocaleUtil.getDefault(), title);
 		}
 
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
@@ -677,9 +675,7 @@ public class FileSystemImporter extends BaseImporter {
 	protected Map<Locale, String> getMap(String value) {
 		Map<Locale, String> map = new HashMap<Locale, String>();
 
-		Locale locale = LocaleUtil.getDefault();
-
-		map.put(locale, value);
+		map.put(LocaleUtil.getDefault(), value);
 
 		return map;
 	}
