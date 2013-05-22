@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.log;
+package com.liferay.logbridge;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
