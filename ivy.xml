@@ -3,13 +3,8 @@
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
 	<info module="plugins" organisation="com.liferay" />
 
-	<configurations>
-		<conf name="default" />
-		<conf name="sources" />
-	</configurations>
-
-	<dependencies defaultconfmapping="default">
-		<dependency conf="default,sources" name="activation" org="javax.activation" rev="1.1" />
+	<dependencies>
+		<dependency name="activation" org="javax.activation" rev="1.1" />
 		<dependency name="antelopetasks" org="org.tigris.antelope" rev="3.2.10" />
 		<dependency name="ccpp" org="javax.ccpp" rev="1.0" />
 		<dependency name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />

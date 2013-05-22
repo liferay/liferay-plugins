@@ -42,7 +42,6 @@
 							<ivy:resolve
 								file="@{ivy.xml.dir}/ivy.xml"
 								log="download-only"
-								transitive="false"
 							/>
 
 							<if>
@@ -57,24 +56,12 @@
 										pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
 										type="jar"
 									/>
-
-									<ivy:retrieve
-										log="download-only"
-										pattern="@{ivy.xml.dir}/lib/[artifact]-[type]s.[ext]"
-										type="source"
-									/>
 								</then>
 								<else>
 									<ivy:retrieve
 										log="download-only"
 										pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
 										type="jar"
-									/>
-
-									<ivy:retrieve
-										log="download-only"
-										pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact]-[type]s.[ext]"
-										type="source"
 									/>
 								</else>
 							</if>
