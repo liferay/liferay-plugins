@@ -5,5 +5,6 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="org.osgi.core" org="org.osgi" rev="4.3.1" />
+		<dependency name="phidias" org="com.github.rotty3000" rev="0.2.1" />
 	</dependencies>
 </ivy-module>
