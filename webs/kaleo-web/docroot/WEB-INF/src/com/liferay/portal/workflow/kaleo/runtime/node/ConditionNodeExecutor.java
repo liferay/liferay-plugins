@@ -43,8 +43,10 @@ public class ConditionNodeExecutor extends BaseNodeExecutor {
 	}
 
 	@Override
-	protected void doEnter(
+	protected boolean doEnter(
 		KaleoNode currentKaleoNode, ExecutionContext executionContext) {
+
+		return true;
 	}
 
 	@Override

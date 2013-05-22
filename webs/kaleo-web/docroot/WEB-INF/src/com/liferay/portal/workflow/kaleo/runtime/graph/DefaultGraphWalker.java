@@ -58,10 +58,13 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
 				targetKaleoNode.getType());
 
-			nodeExecutor.enter(targetKaleoNode, executionContext);
+			boolean performExecute = nodeExecutor.enter(
+				targetKaleoNode, executionContext);
 
-			nodeExecutor.execute(
-				targetKaleoNode, executionContext, remainingPathElements);
+			if (performExecute) {
+				nodeExecutor.execute(
+					targetKaleoNode, executionContext, remainingPathElements);
+			}
 		}
 
 		ExecutionUtil.checkKaleoInstanceComplete(executionContext);

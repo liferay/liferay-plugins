@@ -27,7 +27,7 @@ import java.util.List;
  */
 public interface NodeExecutor {
 
-	public void enter(
+	public boolean enter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException;
 

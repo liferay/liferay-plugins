@@ -35,16 +35,17 @@ import java.util.Map;
 public class JoinNodeExecutor extends BaseNodeExecutor {
 
 	@Override
-	protected void doEnter(
+	protected boolean doEnter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		kaleoInstanceToken =
-			kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
-				kaleoInstanceToken.getKaleoInstanceTokenId());
+		kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
+			kaleoInstanceToken.getKaleoInstanceTokenId());
+
+		return true;
 	}
 
 	@Override

@@ -143,7 +143,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	}
 
 	@Override
-	protected void doEnter(
+	protected boolean doEnter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
@@ -176,6 +176,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
 			null, kaleoTaskInstanceToken, "Assigned initial task.",
 			workflowContext, serviceContext);
+
+		return true;
 	}
 
 	@Override

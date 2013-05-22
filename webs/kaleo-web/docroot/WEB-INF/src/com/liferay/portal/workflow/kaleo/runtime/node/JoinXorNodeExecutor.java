@@ -16,12 +16,18 @@ package com.liferay.portal.workflow.kaleo.runtime.node;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
+import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 
+import java.io.Serializable;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Michael C. Han
@@ -29,10 +35,45 @@ import java.util.List;
 public class JoinXorNodeExecutor extends BaseNodeExecutor {
 
 	@Override
-	protected void doEnter(
+	protected boolean doEnter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
+		KaleoInstanceToken kaleoInstanceToken =
+			executionContext.getKaleoInstanceToken();
+
+		kaleoInstanceToken =
+			kaleoInstanceTokenLocalService.getKaleoInstanceToken(
+				kaleoInstanceToken.getKaleoInstanceTokenId());
+
+		if (kaleoInstanceToken.isCompleted()) {
+			return false;
+		}
+
+		kaleoInstanceToken =
+			kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
+				kaleoInstanceToken.getKaleoInstanceTokenId());
+
+		KaleoInstanceToken parentKaleoInstanceToken =
+			kaleoInstanceToken.getParentKaleoInstanceToken();
+
+		if (!parentKaleoInstanceToken.
+				hasIncompleteChildrenKaleoInstanceToken()) {
+
+			return false;
+		}
+
+		List<KaleoInstanceToken> childrenKaleoInstanceTokens =
+			parentKaleoInstanceToken.getChildrenKaleoInstanceTokens();
+
+		for (KaleoInstanceToken childKaleoInstanceTokens :
+				childrenKaleoInstanceTokens) {
+
+			kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
+				childKaleoInstanceTokens.getKaleoInstanceTokenId());
+		}
+
+		return true;
 	}
 
 	@Override
@@ -41,6 +82,38 @@ public class JoinXorNodeExecutor extends BaseNodeExecutor {
 			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
+		Map<String, Serializable> workflowContext =
+			executionContext.getWorkflowContext();
+		ServiceContext serviceContext = executionContext.getServiceContext();
+
+		KaleoInstanceToken kaleoInstanceToken =
+			executionContext.getKaleoInstanceToken();
+
+		KaleoInstanceToken parentKaleoInstanceToken =
+			kaleoInstanceToken.getParentKaleoInstanceToken();
+
+		if (parentKaleoInstanceToken.getCurrentKaleoNodeId() ==
+				currentKaleoNode.getKaleoNodeId()) {
+
+			return;
+		}
+
+		parentKaleoInstanceToken =
+			kaleoInstanceTokenLocalService.updateKaleoInstanceToken(
+				parentKaleoInstanceToken.getKaleoInstanceTokenId(),
+				currentKaleoNode.getKaleoNodeId());
+
+		KaleoTransition kaleoTransition =
+			currentKaleoNode.getDefaultKaleoTransition();
+
+		ExecutionContext newExecutionContext = new ExecutionContext(
+			parentKaleoInstanceToken, workflowContext, serviceContext);
+
+		PathElement pathElement = new PathElement(
+			currentKaleoNode, kaleoTransition.getTargetKaleoNode(),
+			newExecutionContext);
+
+		remainingPathElements.add(pathElement);
 	}
 
 	@Override

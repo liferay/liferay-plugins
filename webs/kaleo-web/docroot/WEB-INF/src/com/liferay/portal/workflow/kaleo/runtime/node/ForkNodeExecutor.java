@@ -36,8 +36,10 @@ import java.util.Map;
 public class ForkNodeExecutor extends BaseNodeExecutor {
 
 	@Override
-	protected void doEnter(
+	protected boolean doEnter(
 		KaleoNode currentKaleoNode, ExecutionContext executionContext) {
+
+		return true;
 	}
 
 	@Override

@@ -37,8 +37,10 @@ import java.util.Map;
 public class StateNodeExecutor extends BaseNodeExecutor {
 
 	@Override
-	protected void doEnter(
+	protected boolean doEnter(
 		KaleoNode currentKaleoNode, ExecutionContext executionContext) {
+
+		return true;
 	}
 
 	@Override
