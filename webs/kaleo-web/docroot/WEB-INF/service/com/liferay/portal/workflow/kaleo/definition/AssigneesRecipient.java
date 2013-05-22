@@ -17,8 +17,10 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public enum RecipientType {
+public class AssigneesRecipient extends Recipient {
 
-	ADDRESS, ASSIGNEES, ROLE, USER
+	public AssigneesRecipient() {
+		super(RecipientType.ASSIGNEES);
+	}
 
 }

@@ -152,10 +152,15 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			}
 		}
 		else {
-			AddressRecipient addressRecipient = (AddressRecipient)recipient;
+			kaleoNotificationRecipient.setRecipientClassName(
+				recipientType.name());
 
-			kaleoNotificationRecipient.setAddress(
-				addressRecipient.getAddress());
+			if (recipientType.equals(RecipientType.ADDRESS)) {
+				AddressRecipient addressRecipient = (AddressRecipient)recipient;
+
+				kaleoNotificationRecipient.setAddress(
+					addressRecipient.getAddress());
+			}
 		}
 	}
 
