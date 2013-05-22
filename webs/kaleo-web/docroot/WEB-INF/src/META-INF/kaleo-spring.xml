@@ -44,6 +44,9 @@
 				<entry key="JOIN">
 					<bean class="com.liferay.portal.workflow.kaleo.export.builder.JoinNodeBuilder" />
 				</entry>
+				<entry key="JOIN_XOR">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.JoinXorNodeBuilder" />
+				</entry>
 				<entry key="STATE">
 					<bean class="com.liferay.portal.workflow.kaleo.export.builder.StateNodeBuilder" />
 				</entry>
@@ -64,6 +67,9 @@
 				</entry>
 				<entry key="JOIN">
 					<bean class="com.liferay.portal.workflow.kaleo.export.JoinNodeExporter" />
+				</entry>
+				<entry key="JOIN_XOR">
+					<bean class="com.liferay.portal.workflow.kaleo.export.JoinXorNodeExporter" />
 				</entry>
 				<entry key="STATE">
 					<bean class="com.liferay.portal.workflow.kaleo.export.StateNodeExporter" />
@@ -220,6 +226,9 @@
 				<entry key="JOIN">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.JoinNodeExecutor" />
 				</entry>
+				<entry key="JOIN_XOR">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.JoinXorNodeExecutor" />
+				</entry>
 				<entry key="STATE">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.StateNodeExecutor" />
 				</entry>
@@ -303,6 +312,9 @@
 				</entry>
 				<entry key="JOIN">
 					<bean class="com.liferay.portal.workflow.kaleo.parser.JoinNodeValidator" />
+				</entry>
+				<entry key="JOIN_XOR">
+					<bean class="com.liferay.portal.workflow.kaleo.parser.JoinXorNodeValidator" />
 				</entry>
 				<entry key="STATE">
 					<bean class="com.liferay.portal.workflow.kaleo.parser.StateNodeValidator" />

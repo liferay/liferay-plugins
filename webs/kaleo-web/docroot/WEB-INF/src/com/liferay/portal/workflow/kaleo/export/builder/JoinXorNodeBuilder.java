@@ -12,13 +12,20 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.export.builder;
+
+import com.liferay.portal.workflow.kaleo.definition.JoinXor;
+import com.liferay.portal.workflow.kaleo.definition.Node;
+import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 
 /**
  * @author Michael C. Han
  */
-public enum NodeType {
+public class JoinXorNodeBuilder extends BaseNodeBuilder implements NodeBuilder {
 
-	CONDITION, FORK, JOIN, JOIN_XOR, STATE, TASK
+	@Override
+	protected Node createNode(KaleoNode kaleoNode) {
+		return new JoinXor(kaleoNode.getName(), kaleoNode.getDescription());
+	}
 
 }

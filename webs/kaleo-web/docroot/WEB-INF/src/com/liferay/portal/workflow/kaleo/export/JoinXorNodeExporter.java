@@ -12,13 +12,27 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.export;
+
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.workflow.kaleo.definition.Node;
 
 /**
  * @author Michael C. Han
  */
-public enum NodeType {
+public class JoinXorNodeExporter extends BaseNodeExporter
+	implements NodeExporter {
 
-	CONDITION, FORK, JOIN, JOIN_XOR, STATE, TASK
+	@Override
+	protected Element createNodeElement(Element element, String namespace) {
+		return element.addElement("join-xor", namespace);
+	}
+
+	@Override
+	protected void exportAdditionalNodeElements(
+		Node node, Element nodeElement) {
+
+		exportTimersElement(node, nodeElement, "timers", "timer");
+	}
 
 }

@@ -17,8 +17,10 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public enum NodeType {
+public class JoinXor extends Node {
 
-	CONDITION, FORK, JOIN, JOIN_XOR, STATE, TASK
+	public JoinXor(String name, String description) {
+		super(NodeType.JOIN_XOR, name, description);
+	}
 
 }
