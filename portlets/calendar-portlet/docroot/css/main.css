@@ -33,21 +33,6 @@
 	}
 }
 
-.calendar-portlet-column-options {
-	margin-left: -235px;
-	width: 235px;
-}
-
-.calendar-portlet-column-parent {
-	.aui-fieldset-content {
-		padding-left: 235px;
-
-		.aui-fieldset-content {
-			padding-left: 0;
-		}
-	}
-}
-
 .calendar-portlet-event-recorder {
 	table td {
 		padding: 5px;
