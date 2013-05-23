@@ -19,12 +19,12 @@
 
 				<get
 					dest="lib/${original.lib.name}.jar"
-					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar"
+					src="${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar"
 				/>
 
 				<get
 					dest="lib/${original.lib.name}-sources.jar"
-					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}-sources.jar"
+					src="${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}-sources.jar"
 				/>
 
 				<unjar

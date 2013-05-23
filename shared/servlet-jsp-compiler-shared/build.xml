@@ -9,8 +9,8 @@
 	<property name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/orbit/" />
 	<property name="original.lib.version" value="2.1.0.v201110031002" />
 
-	<property name="validation.resources.folder" value="src/javax/servlet/jsp/resources" />
-	<property name="validation.resources.url" value="http://svn.apache.org/repos/asf/tomcat/trunk/java/javax/servlet/jsp/resources/" />
+	<property name="schemas.dir" value="src/javax/servlet/jsp/resources" />
+	<property name="schemas.url" value="http://svn.apache.org/repos/asf/tomcat/trunk/java/javax/servlet/jsp/resources" />
 
 	<target name="compile">
 		<if>
@@ -22,12 +22,12 @@
 
 				<get
 					dest="lib/${original.lib.name}.jar"
-					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar"
+					src="${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar"
 				/>
 
 				<get
 					dest="lib/${original.lib.name}-sources.jar"
-					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}-sources.jar"
+					src="${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}-sources.jar"
 				/>
 
 				<unjar
@@ -55,67 +55,63 @@
 
 		<if>
 			<not>
-				<available file="${validation.resources.folder}" />
+				<available file="${schemas.dir}" />
 			</not>
 			<then>
-				<antcall target="update-validation-schemas" />
+				<mkdir dir="${schemas.dir}" />
+
+				<get
+					dest="${schemas.dir}/jsp_2_0.xsd"
+					src="${schemas.url}/jsp_2_0.xsd"
+				/>
+
+				<get
+					dest="${schemas.dir}/jsp_2_1.xsd"
+					src="${schemas.url}/jsp_2_1.xsd"
+				/>
+
+				<get
+					dest="${schemas.dir}/jsp_2_2.xsd"
+					src="${schemas.url}/jsp_2_2.xsd"
+				/>
+
+				<get
+					dest="${schemas.dir}/jsp_2_3.xsd"
+					src="${schemas.url}/jsp_2_3.xsd"
+				/>
+
+				<get
+					dest="${schemas.dir}/jspxml.dtd"
+					src="${schemas.url}/jspxml.dtd"
+				/>
+
+				<get
+					dest="${schemas.dir}/jspmlx.xsd"
+					src="${schemas.url}/jspxml.xsd"
+				/>
+
+				<get
+					dest="${schemas.dir}/web-jsptaglibrary_1_1.dtd"
+					src="${schemas.url}/web-jsptaglibrary_1_1.dtd"
+				/>
+
+				<get
+					dest="${schemas.dir}/web-jsptaglibrary_1_2.dtd"
+					src="${schemas.url}/web-jsptaglibrary_1_2.dtd"
+				/>
+
+				<get
+					dest="${schemas.dir}/web-jsptaglibrary_2_0.xsd"
+					src="${schemas.url}/web-jsptaglibrary_2_0.xsd"
+				/>
+
+				<get
+					dest="${schemas.dir}/web-jsptaglibrary_2_1.xsd"
+					src="${schemas.url}/web-jsptaglibrary_2_1.xsd"
+				/>
 			</then>
 		</if>
 
 		<antcall target="build-common-osgi-plugin.compile" />
-	</target>
-
-	<target name="update-validation-schemas">
-		<mkdir dir="${validation.resources.folder}" />
-
-		<get
-			dest="${validation.resources.folder}/jsp_2_0.xsd"
-			src="${validation.resources.url}/jsp_2_0.xsd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/jsp_2_1.xsd"
-			src="${validation.resources.url}/jsp_2_1.xsd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/jsp_2_2.xsd"
-			src="${validation.resources.url}/jsp_2_2.xsd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/jsp_2_3.xsd"
-			src="${validation.resources.url}/jsp_2_3.xsd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/jspxml.dtd"
-			src="${validation.resources.url}/jspxml.dtd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/jspmlx.xsd"
-			src="${validation.resources.url}/jspxml.xsd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/web-jsptaglibrary_1_1.dtd"
-			src="${validation.resources.url}/web-jsptaglibrary_1_1.dtd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/web-jsptaglibrary_1_2.dtd"
-			src="${validation.resources.url}/web-jsptaglibrary_1_2.dtd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/web-jsptaglibrary_2_0.xsd"
-			src="${validation.resources.url}/web-jsptaglibrary_2_0.xsd"
-		/>
-
-		<get
-			dest="${validation.resources.folder}/web-jsptaglibrary_2_1.xsd"
-			src="${validation.resources.url}/web-jsptaglibrary_2_1.xsd"
-		/>
 	</target>
 </project>

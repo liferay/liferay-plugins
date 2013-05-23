@@ -10,7 +10,7 @@ Export-Package: \
 	org.apache.jasper.*;vendor=glassfish;version="6.0.0",\
 	org.glassfish.jsp.api;vendor=glassfish;version="6.0.0"
 Implementation-Title: ${original.lib.name}
-Implementation-URL: ${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar
+Implementation-URL: ${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar
 Implementation-Version: ${original.lib.version}
 Import-Package: \
 	com.liferay.osgi.bootstrap,\
