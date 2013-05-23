@@ -15,9 +15,9 @@
 --%>
 
 <div class="calendar-portlet-event-recorder">
-	<div class="aui-scheduler-event-recorder-overlay-arrow aui-scheduler-event-recorder-overlay-arrow-shadow"></div>
+	<div class="scheduler-event-recorder-overlay-arrow scheduler-event-recorder-overlay-arrow-shadow"></div>
 
-	<div class="aui-scheduler-event-recorder-overlay-arrow"></div>
+	<div class="scheduler-event-recorder-overlay-arrow"></div>
 
 	<input name="allDay" type="hidden" value="{allDay}" />
 	<input name="startTime" type="hidden" value="{startTime}" />
@@ -73,7 +73,7 @@
 				</tr>
 			</tpl>
 
-			<tr <tpl if="!values.editing">class="aui-helper-hidden"</tpl> id="<portlet:namespace />eventRecorderUsers">
+			<tr <tpl if="!values.editing">class="helper-hidden"</tpl> id="<portlet:namespace />eventRecorderUsers">
 				<td>
 					<liferay-ui:message key="users" />:
 				</td>
@@ -81,7 +81,7 @@
 					<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
 				</td>
 			</tr>
-			<tr <tpl if="!values.editing">class="aui-helper-hidden"</tpl> id="<portlet:namespace />eventRecorderResources">
+			<tr <tpl if="!values.editing">class="helper-hidden"</tpl> id="<portlet:namespace />eventRecorderResources">
 				<td>
 					<liferay-ui:message key="resources" />:
 				</td>

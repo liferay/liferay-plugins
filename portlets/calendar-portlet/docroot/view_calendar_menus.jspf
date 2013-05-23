@@ -309,6 +309,6 @@
 
 			event.stopImmediatePropagation();
 		},
-		'.aui-calendar-list-item-arrow'
+		'.calendar-list-item-arrow'
 	);
 </aui:script>

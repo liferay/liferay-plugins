@@ -72,19 +72,19 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	
 			<div id="<portlet:namespace />calendarListContainer">
 				<c:if test="<%= themeDisplay.isSignedIn() %>">
-					<a class="aui-toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
+					<a class="toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
 						<span class="calendar-portlet-list-arrow"></span>
 	
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="my-calendars" /></span>
 	
 						<c:if test="<%= userCalendarResource != null %>">
-							<span class="aui-calendar-list-item-arrow" data-calendarResourceId="<%= userCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
+							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= userCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 						</c:if>
 					</a>
 	
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />myCalendarList"></div>
 	
-					<a class="calendar-portlet-list-header aui-toggler-header-expanded" href="javascript:void(0);">
+					<a class="calendar-portlet-list-header toggler-header-expanded" href="javascript:void(0);">
 						<span class="calendar-portlet-list-arrow"></span>
 	
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="other-calendars" /></span>
@@ -96,13 +96,13 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				</c:if>
 	
 				<c:if test="<%= groupCalendarResource != null %>">
-					<a class="aui-toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
+					<a class="toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
 						<span class="calendar-portlet-list-arrow"></span>
 	
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="current-site-calendars" /></span>
 	
 						<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
-							<span class="aui-calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
+							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 						</c:if>
 					</a>
 	

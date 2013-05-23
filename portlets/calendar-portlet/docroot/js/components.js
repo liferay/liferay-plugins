@@ -202,7 +202,7 @@
 		},
 		'',
 		{
-			requires: ['aui-base', 'aui-template', 'widget-position', 'widget-position-align', 'widget-position-constrain', 'widget-stack', 'widget-stdmod']
+			requires: ['aui-base', 'aui-template-deprecated', 'widget-position', 'widget-position-align', 'widget-position-constrain', 'widget-stack', 'widget-stdmod']
 		}
 	);
 
@@ -594,7 +594,7 @@
 		},
 		'',
 		{
-			requires: ['aui-template', 'liferay-scheduler']
+			requires: ['aui-template-deprecated', 'liferay-scheduler']
 		}
 	);
 
@@ -710,7 +710,7 @@
 		},
 		'',
 		{
-			requires: ['aui-base', 'aui-template']
+			requires: ['aui-base', 'aui-template-deprecated']
 		}
 	);
 

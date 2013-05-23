@@ -73,16 +73,16 @@
 	width: 350px;
 }
 
-.calendar-booking-invitations .aui-calendar-list-empty-message {
+.calendar-booking-invitations .calendar-list-empty-message {
 	margin: 4px 0 0 4px;
 }
 
-.aui-calendar-list-empty-message {
+.calendar-list-empty-message {
 	color: #666;
 	margin-top: 4px;
 }
 
-.aui-calendar-list-item {
+.calendar-list-item {
 	color: #222;
 	cursor: pointer;
 	display: block;
@@ -95,21 +95,21 @@
 	white-space: nowrap;
 }
 
-.aui-calendar-list-item-hover, .aui-calendar-list-item-active {
+.calendar-list-item-hover, .calendar-list-item-active {
 	background-color: #DCE3EA;
 
 	@include force-wrap();
 
-	.aui-calendar-list-item-arrow {
+	.calendar-list-item-arrow {
 		display: block;
 	}
 }
 
-.aui-calendar-list-item-arrow:hover, .aui-calendar-list-item-active .aui-calendar-list-item-arrow {
+.calendar-list-item-arrow:hover, .calendar-list-item-active .calendar-list-item-arrow {
 	background-position: 0 -11px;
 }
 
-.aui-calendar-list-item-arrow {
+.calendar-list-item-arrow {
 	background: url(../images/arrow.png) no-repeat 0 0;
 	border: 1px solid #B5B5B5;
 	display: none;
@@ -123,7 +123,7 @@
 	width: 11px;
 }
 
-.aui-calendar-list-item-color {
+.calendar-list-item-color {
 	border: 1px solid #DCDCDC;
 	display: inline-block;
 	height: 11px;
@@ -133,11 +133,11 @@
 	width: 11px;
 }
 
-.aui-calendar-list-item-label {
+.calendar-list-item-label {
 	line-height: 13px;
 }
 
-.aui-calendar-list-item-hidden .aui-calendar-list-item-label {
+.calendar-list-item-hidden .calendar-list-item-label {
 	color: #555;
 }
 
@@ -153,7 +153,7 @@
 	position: relative;
 	text-decoration: none;
 
-	.aui-calendar-list-item-arrow {
+	.calendar-list-item-arrow {
 		display: block;
 		top: 7px;
 	}
@@ -190,19 +190,19 @@
 	padding: 1px;
 }
 
-.aui-toggler-header-expanded .calendar-portlet-list-arrow {
+.toggler-header-expanded .calendar-portlet-list-arrow {
 	background-position: -66px -18px;
 }
 
-.aui-simple-menu {
+.simple-menu {
 	position: absolute;
 }
 
-.aui-simple-menu-hidden {
+.simple-menu-hidden {
 	display: none;
 }
 
-.aui-simple-menu-content {
+.simple-menu .simple-menu-content {
 	background: none repeat scroll 0 0 #FFF;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	font-size: 13px;
@@ -211,7 +211,7 @@
 	padding: 6px 0;
 }
 
-.aui-simple-menu-item {
+.simple-menu-item {
 	color: #333;
 	cursor: pointer;
 	list-style-type: none;
@@ -229,22 +229,22 @@
 	}
 }
 
-.aui-simple-menu-separator {
+.simple-menu-separator {
 	border-top: 1px solid #EBEBEB;
 	font-size: 0;
 	height: 0;
 	margin: 6px 0;
 }
 
-.aui-simple-menu-item-hidden {
+.simple-menu-item-hidden {
 	display: none;
 }
 
-.aui-simple-color-picker {
+.simple-color-picker {
 	white-space: normal;
 }
 
-.aui-simple-color-picker-item {
+.simple-color-picker-item {
 	border: 1px solid;
 	cursor: pointer;
 	display: inline-block;
@@ -253,7 +253,7 @@
 	width: 14px;
 }
 
-.aui-simple-color-picker-item:hover, .aui-simple-color-picker-item-selected {
+.simple-color-picker-item:hover, .simple-color-picker-item-selected {
 	border-color: #000 !important;
 }
 
@@ -441,19 +441,19 @@
 	@include border-radius(5px);
 }
 
-.calendar-portlet-list-header .aui-calendar-list-item-arrow, .aui-calendar-list-item .aui-calendar-list-item-color, .aui-calendar-list-item .aui-calendar-list-item-arrow {
+.calendar-portlet-list-header .calendar-list-item-arrow, .calendar-list-item .calendar-list-item-color, .calendar-list-item .calendar-list-item-arrow {
 	@include border-radius(3px);
 }
 
-.aui-calendar-list-item-arrow, .aui-calendar-list-item-color, .aui-simple-color-picker-item {
+.calendar-list-item-arrow, .calendar-list-item-color, .simple-color-picker-item {
 	@include border-radius(1px);
 }
 
-.aui-simple-menu-content {
+.simple-menu-content {
 	@include box-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.aui-simple-menu-item {
+.simple-menu-item {
 	@include transition(background .13s);
 
 	&:hover {
@@ -461,10 +461,10 @@
 	}
 }
 
-.aui-simple-color-picker-item {
+.simple-color-picker-item {
 	@include transition(border-color .13s);
 }
 
-.aui-simple-color-picker-item:hover, .aui-simple-color-picker-item-selected {
+.simple-color-picker-item:hover, .simple-color-picker-item-selected {
 	@include transition(border-color 0s);
 }
