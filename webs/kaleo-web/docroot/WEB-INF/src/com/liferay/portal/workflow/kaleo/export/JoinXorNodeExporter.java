@@ -20,8 +20,8 @@ import com.liferay.portal.workflow.kaleo.definition.Node;
 /**
  * @author Michael C. Han
  */
-public class JoinXorNodeExporter extends BaseNodeExporter
-	implements NodeExporter {
+public class JoinXorNodeExporter
+	extends BaseNodeExporter implements NodeExporter {
 
 	@Override
 	protected Element createNodeElement(Element element, String namespace) {

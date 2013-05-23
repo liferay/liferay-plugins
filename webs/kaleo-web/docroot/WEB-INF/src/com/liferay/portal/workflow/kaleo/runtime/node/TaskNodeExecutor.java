@@ -209,10 +209,6 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
-		Map<String, Serializable> workflowContext =
-			executionContext.getWorkflowContext();
-		ServiceContext serviceContext = executionContext.getServiceContext();
-
 		String transitionName = executionContext.getTransitionName();
 
 		KaleoTransition kaleoTransition = null;
@@ -226,8 +222,9 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		}
 
 		ExecutionContext newExecutionContext = new ExecutionContext(
-			executionContext.getKaleoInstanceToken(), workflowContext,
-			serviceContext);
+			executionContext.getKaleoInstanceToken(),
+			executionContext.getWorkflowContext(),
+			executionContext.getServiceContext());
 
 		PathElement pathElement = new PathElement(
 			null, kaleoTransition.getTargetKaleoNode(), newExecutionContext);
