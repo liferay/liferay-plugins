@@ -1,0 +1,272 @@
+/* ---------- Browser normalization ---------- */
+
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+	display: block;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	clear: both;
+}
+
+fieldset, img {
+	border: 0;
+}
+
+address, caption, cite, code, dfn, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+caption, th {
+	text-align: left;
+}
+
+q:before, q:after {
+	content: '';
+}
+
+abbr, acronym {
+	border: 0;
+	border-bottom: 1px dotted #000;
+	cursor: help;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+html.aui-dialog-iframe-root-node {
+	overflow: auto;
+}
+
+body {
+	background: #FFF;
+	font: 62.5%/1.4 Arial, Helvetica, Verdana, sans-serif;
+}
+
+body.portal-popup {
+	background: none;
+	padding: 10px;
+}
+
+body.aui-dialog-iframe-popup {
+	padding-bottom: 0;
+}
+
+body.portal-iframe {
+	padding: 0;
+}
+
+blockquote, ul, ol, dl {
+	margin: 1em;
+}
+
+ol, ul, dl {
+	margin-left: 2em;
+}
+
+ol {
+	list-style: decimal outside;
+}
+
+ul {
+	list-style: disc outside;
+}
+
+ul ul {
+	list-style-type: circle;
+}
+
+ol ol {
+	list-style-type: upper-roman;
+}
+
+dl dd {
+	margin-left: 1em;
+}
+
+th {
+	font-weight: bold;
+}
+
+caption {
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+/* ---------- Links ---------- */
+
+a {
+}
+
+a:hover {
+}
+
+a:visited {
+}
+
+/* ---------- Headers ---------- */
+
+h1 {
+	font-size: 1.8em;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1.4em;
+}
+
+h1, h2, h3 {
+	margin: 1em 0;
+}
+
+h4, h5, h6 {
+	font-size: 1.1em;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+	font-weight: bold;
+}
+
+/* ---------- Logo ---------- */
+
+.logo {
+	display: inline-block;
+	line-height: 1;
+	vertical-align: middle;
+}
+
+/* ---------- HTML Editor ---------- */
+
+body.html-editor {
+	background: #FFF;
+	color: #000;
+}
+
+.html-editor.portlet-message-boards blockquote {
+	background: #EEF0F2 url(../images/message_boards/quoteleft.png) no-repeat 5px 5px;
+	border: 1px solid #777;
+	position: relative;
+	padding: 5px 45px;
+}
+
+.html-editor.portlet-message-boards blockquote:after {
+	background: url(../images/message_boards/quoteright.png) no-repeat 50%;
+	bottom: 5px;
+	content: '';
+	display: block;
+	height: 24px;
+	position: absolute;
+	right: 5px;
+	width: 31px;
+	z-index: 999;
+}
+
+.html-editor.portlet-message-boards blockquote cite {
+	display: block;
+	font-weight: bold;
+}
+
+.html-editor.portlet-message-boards pre {
+	background: #F9F9F9;
+	border: 1px solid #777;
+	padding: 0.5em;
+}
+
+/* ---------- Text formatting ---------- */
+
+b, strong {
+	font-weight: bold;
+}
+
+i, em {
+	font-style: italic;
+}
+
+code, pre {
+	font-family: "Courier New", Courier, monospace;
+	white-space: pre;
+}
+
+.important {
+	font-weight: bold;
+}
+
+/* ---------- Main content body ---------- */
+
+.portal-iframe #main-content {
+	width: 100%;
+}
+
+/* ---------- Alerts and popups ---------- */
+
+.alert-background {
+	background: #000;
+}
+
+.popup-alert-notice {
+	background-color: #FFC;
+	border-bottom-color: #FC0;
+}
+
+.popup-alert-warning {
+	background-color: #FDD;
+	border-bottom-color: #F00;
+}
+
+/* ---------- Portal add content ---------- */
+
+.portal-add-content {
+	background: #FFF;
+	text-align: left;
+	z-index: 20;
+}
+
+.portal-add-content a {
+	text-decoration: none;
+}
+
+/* ---------- Loading animation ---------- */
+
+.loading-animation {
+	background: url(../images/progress_bar/loading_animation.gif) no-repeat top center;
+	margin-top: 10px;
+	padding-top: 40px;
+	text-align: left;
+}
+
+/* ---------- Separator ---------- */
+
+hr, .separator {
+	border-top: 1px dotted #BFBFBF;
+}
+
+/* ---------- Update Manager ---------- */
+
+.update-available {
+	margin-top: 10px;
+	padding: 2px;
+	text-align: left;
+}
+
+/* ---------- Text highlighting ---------- */
+
+.highlight {
+	background: #FFC;
+	font-weight: bold;
+	margin: 0 1px;
+}

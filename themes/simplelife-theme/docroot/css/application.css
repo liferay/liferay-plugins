@@ -1,0 +1,737 @@
+/* ---------- Main ---------- */
+
+.aui-state-default {
+	background: #D4D4D4 url(../images/portlet/header_bg.png) repeat-x 0 0;
+	border: 1px solid;
+	border-color: #C8C9CA #9E9E9E #9E9E9E #C8C9CA;
+}
+
+.aui-state-hover {
+	background: #B9CED9 url(../images/application/state_hover_bg.png) repeat-x 0 0;
+	border-color: #627782;
+}
+
+.aui-state-active {
+	background: #EBEBEB url(../images/application/state_active_bg.png) repeat-x 0 0;
+	border-color: #555;
+}
+
+.results-grid {
+	background: #FFF;
+	border: solid #D7D7D7;
+	border-width: 0 1px;
+}
+
+.results-header {
+	background: #D1D6DC;
+
+	th {
+		background: #D9D9D9 url(../images/application/subheader_bg.png) 0 0 repeat-x;
+		border: 1px solid #ccc;
+
+		&.sort-column {
+			background: #EBEBEB url(../images/application/state_active_bg.png) 0 0 repeat-x;
+			border: 1px solid #ccc;
+			color: #1F1E1E;
+
+			.result-column-name {
+				background: url(../images/arrows/05_up.png) no-repeat 100% 50%;
+				display: inline-block;
+				font-style: italic;
+				padding-right: 15px;
+			}
+		}
+
+		&.first {
+			border-left-width: 0;
+		}
+
+		&.last {
+			border-right-width: 0;
+		}
+	}
+
+	th, td {
+		color: #7B7C7F;
+		padding: 5px 10px;
+		word-wrap: break-word;
+	}
+
+	th.sort-desc .result-column-name {
+		background: url(../images/arrows/05_down.png) no-repeat 100% 50%;
+		display: inline-block;
+		font-style: italic;
+		padding-right: 15px;
+	}
+
+	span, a {
+		display: block;
+	}
+
+	a {
+		color: #154B75;
+		text-decoration: none;
+
+		&:hover {
+			color: #336699;
+			text-decoration: underline;
+		}
+	}
+}
+
+.results-row {
+	td {
+		background: none;
+		border: 1px solid;
+		border-color: #D7D7D7 #E7E7E7;
+		padding: 5px 10px;
+
+		&.sort-column {
+			background: #E6ECEF;
+		}
+	}
+
+ 	&.selected td, &.selected.hover td {
+		background-color: #00A2EA;
+		border-color: #00A2EA #00A2EA #D7D7D7;
+		color: #FFF;
+
+		& a {
+			color: #FFF;
+		}
+	}
+
+	&.alt.selected td, &.alt.selected.hover td {
+		background-color: #00A2EA;
+	}
+
+	&.alt td {
+		background: #F5F8FB;
+	}
+
+	&.hover td {
+		background: #D3E8F1;
+		border-bottom-color: #D7D7D7;
+		border-left-color: transparent;
+		border-right-color: transparent;
+	}
+}
+
+.taglib-search-iterator .results-row {
+	td, th {
+		&.first {
+			border-left-width: 0;
+		}
+
+		&.last {
+			border-right-width: 0;
+		}
+	}
+}
+
+/* ---------- Dragging/sorting indicators ---------- */
+
+.portlet-layout.dragging {
+	border-collapse: separate;
+}
+
+.drop-area {
+	background-color: #D3DADD;
+}
+
+.active-area {
+	background: #FFC;
+}
+
+.portlet-boundary.yui3-dd-dragging {
+	opacity: .6;
+
+	.portlet {
+		border: 2px dashed #ccc;
+	}
+}
+
+.aui-portal-layout-proxy {
+	opacity: 1 !important;
+
+	.portlet-topper {
+		background-image: none;
+	}
+}
+
+.aui-proxy {
+	cursor: move;
+	opacity: 0.65;
+	position: absolute;
+
+	&.generic-portlet {
+		height: 200px;
+		width: 300px;
+
+		.portlet-title {
+			padding: 10px;
+		}
+	}
+
+	&.not-intersecting .forbidden-action {
+		background: url(../images/application/forbidden_action.png) no-repeat;
+		display: block;
+		height: 32px;
+		position: absolute;
+		right: -15px;
+		top: -15px;
+		width: 32px;
+	}
+}
+
+.aui-resizable-proxy {
+	border: 1px dashed #828F95;
+	position: absolute;
+	visibility: hidden;
+}
+
+.aui-sortable-proxy {
+	background: #727C81;
+	margin-top: 1px;
+}
+
+.lfr-freeform-layout-drag-indicator {
+	visibility: hidden;
+}
+
+.aui-portal-layout-drag-target-indicator {
+	margin: 2px 0;
+}
+
+/* ---------- Portal tool tips ---------- */
+
+.aui-tooltip {
+	max-width: 200px;
+}
+
+/* ---------- Tags ---------- */
+
+.aui-tagselector-content {
+	border-width: 0;
+	margin-bottom: 15px;
+	padding: 0;
+
+	.aui-textboxlistentry-holder {
+		background: #fff;
+		border: 1px solid;
+		border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
+		margin-bottom: 5px;
+		padding: 5px;
+		position: relative;
+		overflow: visible;
+	}
+}
+
+.aui-tagselector {
+	.lfr-tag-selector-input {
+		background: none;
+		padding: 0;
+		width: auto;
+	}
+
+	.aui-field .aui-field-content {
+		margin: 0;
+	}
+
+	.aui-toolbar {
+		margin-top: 5px;
+	}
+
+	.aui-textboxlist-input-container {
+		margin: 0;
+	}
+}
+
+.aui-tagselector-focused .aui-textboxlistentry-holder {
+	background: #FFC none;
+	border: 1px solid #FC0;
+}
+
+.aui-categoriesselector-content .aui-textboxlistentry-holder {
+	background-color: transparent;
+	border-width: 0;
+	padding: 0;
+}
+
+/* ---------- Tag cloud and tag list ---------- */
+
+.tag-items {
+	list-style: none;
+	margin: 0 1em 0 0;
+	padding: 0 1em 0.5em 1em;
+	white-space: normal;
+
+	li {
+		display: inline;
+		float: left;
+		margin: 0 1em 0 0;
+	}
+
+	a {
+		white-space: nowrap;
+	}
+}
+
+.tag-cloud {
+	line-height: 2.5em;
+
+	.tag-asset-count {
+		clip: rect(0 0 0 0);
+		position: absolute;
+	}
+}
+
+.tag-selected {
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.tag-cloud {
+	line-height: 2.5em;
+
+	.tag-asset-count {
+		clip: rect(0 0 0 0);
+		position: absolute;
+	}
+
+	$tag-popularity-font-size: 0.7em;
+
+	@for $i from 1 through 6 {
+		.tag-popularity-#{$i} {
+			font-size: $tag-popularity-font-size + ($i * 0.3);
+		}
+	}
+}
+
+/* ---------- Underlay ---------- */
+
+.aui-underlay {
+	clear: both;
+	top: 100%;
+
+	.yui3-widget-hd {
+		height: 38px;
+	}
+
+	.lfr-portlet-item {
+		border-width: 0;
+	}
+}
+
+.aui-underlay-hidden {
+	display: none;
+}
+
+.aui-underlay-content {
+	background: #F4F3F3 url(../images/common/message_panel_shadow.png) repeat-x 0 0;
+	border: 0 solid #AEAFB1;
+	border-width: 0 1px 1px;
+}
+
+.aui-underlay-close {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+/* ---------- Tabs ---------- */
+
+.aui-tab-active strong {
+	font-weight: normal;
+}
+
+.aui-tab-back {
+	float: right;
+}
+
+.aui-tab-back-content {
+	border-width: 0;
+	padding: 1px;
+}
+
+/* ---------- Misc. ---------- */
+
+.lfr-panel-container {
+	background: transparent;
+}
+
+.lfr-panel-container {
+	background: #FFF;
+}
+
+.lfr-panel-content {
+	padding: 5px 10px;
+}
+
+.lfr-panel-basic .lfr-panel-content {
+	padding-left: 15px;
+}
+
+.aui-dialog-bd {
+	min-height: 30px;
+}
+
+.aui-dialog-content {
+	border: 1px solid #C8C9CA;
+	padding: 5px;
+}
+
+.aui-panel-hd {
+	background: #C0C2C5 url(../images/application/panel_header_bg.png) repeat-x 0 0;
+	border: 1px solid;
+	border-color: #C8C9CA #AEB2B8 #AEB2B8 #C8C9CA;
+	padding-left: 10px;
+	text-shadow: 1px 1px #FFF;
+}
+
+/* ---------- Menus ---------- */
+
+.lfr-actions.portlet-options, .visible.portlet-options {
+	.lfr-trigger strong span {
+		background-image: url(../images/portlet/options.png);
+	}
+}
+
+.lfr-actions.portlet-options:hover {
+	&, ul {
+		background: transparent;
+	}
+}
+
+.lfr-menu-list {
+	z-index: 450;
+}
+
+.aui-menu {
+	position: absolute;
+	width: auto;
+
+	.notice-message {
+		background-image: none;
+		margin: 3px;
+		padding: 6px;
+	}
+}
+
+.aui-menu-content {
+	background: #FFF;
+	list-style: none;
+	min-width: 150px;
+
+	li {
+		margin: 0;
+		padding: 0;
+
+		.disabled {
+			color: #999;
+		}
+	}
+}
+
+.aui-menu-content, .lfr-menu-list ul {
+	background: #CCC9C9 url(../images/application/menu_bg.png) repeat-x 0 0;
+	border: 1px solid;
+	border-color: #AEAFB1 #777879 #777879 #AEAFB1;
+	padding: 2px 0;
+}
+
+.aui-menugroup-content .aui-menu-label {
+	background: #D2D6DE;
+	color: #5B677D;
+	display: block;
+	font-weight: bold;
+	padding: 5px 3px;
+	text-shadow: 1px 1px #FFF;
+}
+
+.aui-menugroup-content ul, .lfr-menu-list ul ul {
+	display: block;
+	min-width: 0;
+}
+
+.aui-menu-content li, .lfr-menu-list ul li {
+	border-bottom: 1px solid #BCBBBB;
+	border-top: 1px solid #EEE;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.aui-menu-content li.first, .lfr-menu-list ul li.first {
+	border-top-width: 0;
+}
+
+.aui-menu-content li.last, .lfr-menu-list ul li.last {
+	border-bottom-width: 0;
+}
+
+.aui-menu-content li a, .lfr-menu-list ul li .taglib-icon, .aui-menu-content li .disabled {
+	color: #2C2F34;
+	display: block;
+	padding: 4px 5px;
+	text-decoration: none;
+}
+
+.lfr-menu-list ul li.disabled .taglib-icon {
+	color: #666;
+}
+
+.aui-menu-content li a.aui-focus, .lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
+	background-color: #5B677D;
+	color: #FFF;
+	text-shadow: -1px -1px #2C2F34;
+}
+
+.aui-menu-content a, .lfr-menu-list li .taglib-icon, .aui-menu-content .disabled, .lfr-actions .lfr-trigger, .lfr-actions .lfr-trigger strong {
+	font-weight: bold;
+	text-shadow: 1px 1px 0 0 #FFF;
+}
+
+/* ---------- Toolbar ---------- */
+
+.aui-toolbar li {
+	display: inline-block;
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+	vertical-align: middle;
+}
+
+.aui-toolbar-separator {
+	background: url(../images/dockbar/separator.png) no-repeat 100% 50%;
+	border-width: 0;
+	cursor: default;
+	font-size: 1px;
+	height: 16px;
+	margin: 0 2px;
+	overflow: hidden;
+	vertical-align: middle;
+	width: 4px;
+}
+
+/* ---------- Loading Mask ---------- */
+
+.aui-loadingmask-content {
+	background: #CCC;
+}
+
+.aui-loadingmask-message {
+	background: #D4D4D4 url(../images/portlet/header_bg.png) repeat-x 0 0;
+}
+
+/* ---------- Tree View ---------- */
+
+.aui-tree-node-selected .aui-tree-label {
+	background-color: transparent;
+	font-weight: bold;
+}
+
+/* ---------- Page Customization ---------- */
+
+.aui-dragging .portlet-column.customizable {
+	background-color: #CFFCCF;
+	outline: 3px solid #9CC97B;
+}
+
+.customizable-layout-column-content {
+	background-color: #C92C3C;
+
+	&.yui3-widget-content-expanded {
+		border: 3px solid #333;
+		margin: 0.2em;
+	}
+}
+
+.customizable .customizable-layout-column-content {
+	background-color: #9CC97B;
+}
+
+.layout-customizable-controls {
+	background-color: #FFF;
+	font-size: 1.5em;
+	margin: 1em;
+	opacity: 0.9;
+	padding: 1em;
+	position: absolute;
+	z-index: 15;
+}
+
+/* ---------- Pagination ---------- */
+
+.aui-paginator-link {
+	background: #EEE url() no-repeat scroll 50% 1px;
+	border: 1px solid #F0F1F2;
+	border-color: #F0F1F2 #B2B2B2 #949494 #F0F1F1;
+	color: #1F1E1E;
+	display: inline-block;
+	height: 20px;
+	padding: 0;
+	text-indent: -9999px;
+	width: 20px;
+}
+
+.ie7 .aui-paginator-link {
+	color: transparent;
+	overflow: hidden;
+	text-indent: 0;
+}
+
+.aui-paginator-current-page {
+	background: #0083BD url(../images/application/paginator_link_current_bg.png) 0 0 repeat-x;
+	border-color: #38B6EF #006D9E #006D9E #46B4E6;
+	color: #FFF;
+	text-shadow: -1px -1px #003C57;
+}
+
+.ie7 .aui-paginator-current-page {
+	color: #FFF;
+}
+
+.aui-paginator-page-link {
+	text-indent: 0;
+	height: auto;
+}
+
+.ie7 .aui-paginator-page-link {
+	color: #1F1E1E;
+	font-size: 1em;
+	height: auto;
+	overflow: visible;
+	text-indent: 0;
+}
+
+.aui-paginator-first-link {
+	background-image: url(../images/arrows/paging_first.png);
+}
+
+.aui-paginator-prev-link {
+	background-image: url(../images/arrows/paging_previous.png);
+}
+
+.aui-paginator-last-link {
+	background-image: url(../images/arrows/paging_last.png);
+}
+
+.aui-paginator-next-link {
+	background-image: url(../images/arrows/paging_next.png);
+}
+
+.aui-paginator-current-page-report, .aui-paginator-total {
+	font-size: 0.9em;
+	color: #555;
+}
+
+.aui-paginator-current-page-report {
+	margin-left: 2em;
+}
+
+.taglib-page-iterator .search-pages .page-links {
+	padding: 0;
+}
+
+/* ---------- Application Column View ---------- */
+
+.lfr-app-column-view {
+	border: 1px solid #C9C9C9;
+
+	.aui-layout-content {
+		position: relative;
+	}
+
+	.aui-column:before {
+		border-right: 1px solid #C9C9C9;
+		bottom: 0;
+		content: "";
+		margin-left: -1px;
+		position: absolute;
+		top: 0;
+	}
+
+	.aui-column-content {
+		border-right: 1px solid transparent;
+
+		.lfr-message-response {
+			margin: 10px;
+		}
+	}
+}
+
+/* ---------- Header row ---------- */
+
+.lfr-header-row {
+	background: #8F8F8F url(../images/application/header_row_bg.png) 0 0 repeat-x;
+
+	.lfr-actions.show-arrow.direction-down .lfr-trigger strong a {
+		background: url(../images/arrows/08_down.png) 100% -5px no-repeat;
+	}
+
+	.aui-toolbar {
+		.aui-toolbar-content {
+			white-space: normal;
+			word-wrap: normal;
+		}
+
+		.aui-toolbar-item {
+			border-right-width: 0;
+		}
+
+		.aui-toolbar-last {
+			border-right-width: 1px;
+		}
+	}
+}
+
+.ie {
+	.portlet-boundary.yui3-dd-dragging {
+		-ms-filter: alpha(opacity=60);
+		filter: alpha(opacity=60);
+	}
+
+	.aui-proxy {
+		filter: alpha(opacity=65);
+	}
+
+	.aui-proxy.not-intersecting .forbidden-action {
+		right: 2px;
+		top: 2px;
+	}
+
+	.layout-customizable-controls {
+		-ms-filter: alpha(opacity=90);
+		filter: alpha(opacity=90);
+	}
+}
+
+.ie7 {
+	.aui-tabview-list {
+		overflow: hidden;
+	}
+
+	.aui-menu-content li {
+		z-index: 10;
+	}
+}
+
+.ie6, .ie7 {
+	.aui-toolbar li {
+		display: inline;
+	}
+
+	.lfr-header-row .aui-buttonitem-content {
+		white-space: normal;
+
+		.aui-buttonitem-label {
+			white-space: nowrap;
+		}
+	}
+
+	.results-row.hover td {
+		border-color: #D3E8F1;
+	}
+}

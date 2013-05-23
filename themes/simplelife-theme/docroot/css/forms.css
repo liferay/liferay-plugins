@@ -1,0 +1,235 @@
+@mixin input-field-default {
+	background-image: url(../images/forms/input_shadow.png);
+	background-repeat: no-repeat;
+	border: 1px solid;
+	border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
+	font: 1em Arial, Helvetica, Verdana, sans-serif;
+	padding: 5px 1px;
+}
+
+@mixin input-field-focus {
+	background: #FFC none;
+	border-color: #FC0;
+}
+
+@mixin button-default {
+	background: #D4D4D4 url(../images/portlet/header_bg.png) repeat-x 0 0;
+	border: 1px solid;
+	border-color: #C8C9CA #9E9E9E #9E9E9E #C8C9CA;
+	color: #34404F;
+	cursor: pointer;
+	font-weight: bold;
+	overflow: visible;
+	padding: 5px;
+	text-shadow: 1px 1px #FFF;
+	width: auto;
+}
+
+@mixin button-disabled {
+	background: #D4D4D4 url(../images/portlet/header_bg.png) repeat-x 0 0;
+	border-color: #C8C9CA #9E9E9E #9E9E9E #C8C9CA;
+	color: #555;
+	opacity: 0.5;
+}
+
+@mixin button-hover {
+	background: #B9CED9 url(../images/application/state_hover_bg.png) repeat-x 0 0;
+	border-color: #627782;
+	color: #369;
+}
+
+@mixin button-focus {
+	background: #EBEBEB url(../images/application/state_active_bg.png) repeat-x 0 0;
+	border-color: #555;
+}
+
+fieldset {
+	border: 1px solid #BFBFBF;
+	padding: 8px;
+}
+
+.aui-fieldset {
+	border-width: 0;
+	padding: 0;
+	position: relative;
+}
+
+.aui-dialog-iframe-popup .aui-fieldset {
+	margin-bottom: 0;
+}
+
+.aui-fieldset .aui-field-content, .aui-field-row, .aui-button-holder, .aui-field-wrapper-content {
+	margin: 10px 0;
+}
+
+.aui-field-inline, .aui-field-row {
+	.aui-field-content {
+		margin: 0;
+		margin-right: 5px;
+	}
+}
+
+.aui-search-bar {
+	.aui-field-content {
+		margin-right: 0;
+	}
+
+	.aui-field-content, .aui-button-content {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+.aui-field-choice .aui-field-label {
+	display: inline-block;
+}
+
+.aui-field-date .aui-field-content {
+	overflow: hidden;
+}
+
+.aui-text-placeholder {
+	color: #777;
+}
+
+legend {
+	font-weight: bold;
+	padding: 0 6px;
+}
+
+.aui-fieldset-legend {
+	color: #000;
+	font-size: 120%;
+	font-weight: bold;
+	padding: 0 0 1.5em;
+}
+
+.aui-legend {
+	border-bottom: 1px solid #CCC;
+	display: block;
+	position: absolute;
+	width: 90%;
+}
+
+input {
+	background: #FFF;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
+	@include input-field-default;
+}
+
+select {
+	padding: 1px;
+}
+
+input[type="image"] {
+	background: transparent none;
+	border: none;
+	padding: 0;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], button {
+	@include button-default;
+
+	&:hover {
+		@include button-hover;
+	}
+
+	&:focus {
+		@include button-focus;
+	}
+}
+
+input, textarea {
+	&.focus {
+		@include input-field-focus;
+	}
+}
+
+.lfr-actions.lfr-extended {
+	&, ul {
+		@include button-default;
+		padding: 0;
+	}
+
+	&:focus {
+		&, ul {
+			@include button-focus;
+		}
+	}
+
+	&.disabled, &.disabled:hover {
+		&, ul {
+			@include button-disabled;
+		}
+	}
+
+	&:hover {
+		&, ul {
+			@include button-hover;
+		}
+	}
+}
+
+.lfr-actions.disabled .taglib-text {
+	color: #A9A9A9;
+}
+
+.aui-button-disabled {
+	input[type], button {
+		&, &:hover, &:focus {
+			@include button-disabled;
+		}
+	}
+}
+
+.aui-buttonitem-disabled {
+	@include button-disabled;
+}
+
+input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
+	border-color: #900;
+	border-style: dotted;
+}
+
+/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+.ie {
+	fieldset {
+		padding-top: 0;
+	}
+
+	.aui-button-disabled input {
+		-ms-filter: alpha(opacity=50);
+		filter: alpha(opacity=50);
+	}
+}
+
+.ie7 {
+	.aui-fieldset {
+		zoom: 1;
+	}
+}
+
+.ie6 {
+	input.text, input.password, input.submit, input.file, input.button, button {
+		@include input-field-default;
+	}
+
+	input.submit, input.button, button, .aui-button-disabled input.submit, .aui-button-disabled input.button, .aui-button-disabled button {
+		@include button-default;
+	}
+
+	.aui-button-disabled {
+		input.submit, input.button, button {
+			color: #555;
+		}
+	}
+
+	input, textarea {
+		&.focus {
+			@include input-field-focus;
+		}
+	}
+}
