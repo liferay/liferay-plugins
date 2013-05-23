@@ -18,6 +18,6 @@
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="lib/org.apache.jasper.glassfish.jar" />
 	<classpathentry kind="lib" path="lib/org.osgi.core.jar" />
-	<classpathentry kind="lib" path="lib/org.phidias.compile.jar" />
+	<classpathentry kind="lib" path="lib/phidias.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
