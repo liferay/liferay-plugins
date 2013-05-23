@@ -1603,6 +1603,19 @@ AUI.add(
 
 					isMasterBooking: Lang.emptyFnFalse,
 
+					populateForm: function() {
+						var instance = this;
+
+						var template = instance.get('template');
+
+						if (A.instanceOf(template, A.Template)) {
+							instance.formNode.setContent(template.parse(instance.getTemplateData()));
+						}
+						else {
+							SchedulerEventRecorder.superclass.populateForm.apply(instance, arguments);
+						}
+					},
+
 					_handleEventAcceptResponse: function(event) {
 						var instance = this;
 
