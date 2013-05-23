@@ -23,6 +23,7 @@
 		<dependency name="powermock-core" org="org.powermock" rev="1.5" />
 		<dependency name="powermock-module-junit4" org="org.powermock" rev="1.5" />
 		<dependency name="powermock-module-junit4-common" org="org.powermock" rev="1.5" />
+		<dependency name="powermock-reflect" org="org.powermock" rev="1.5" />
 		<dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12.1" />
 		<dependency name="scala-compiler" org="org.scala-lang" rev="2.9.2" />
 		<dependency name="serializer" org="xalan" rev="2.7.1" />
