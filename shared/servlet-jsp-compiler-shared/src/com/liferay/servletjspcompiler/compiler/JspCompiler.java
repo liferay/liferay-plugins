@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.ClassLoaderUtil;
 import com.liferay.servletjspcompiler.compiler.internal.JspResolverFactory;
-import com.liferay.servletjspcompiler.compiler.internal.util.PortletPropsValues;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,12 +28,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import java.security.CodeSource;
 import java.security.ProtectionDomain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.servlet.ServletContext;
@@ -58,16 +59,15 @@ import org.phidias.compile.BundleJavaManager;
  */
 public class JspCompiler extends Jsr199JavaCompiler {
 
-	public static Log _log = LogFactoryUtil.getLog(JspCompiler.class);
-
 	@Override
 	public void init(
-		JspCompilationContext ctxt, ErrorDispatcher errDispatcher,
-		boolean suppressLogging) {
+		JspCompilationContext jspCompilationContext,
+		ErrorDispatcher errorDispatcher, boolean suppressLogging) {
 
-		super.init(ctxt, errDispatcher, suppressLogging);
+		super.init(jspCompilationContext, errorDispatcher, suppressLogging);
 
-		ServletContext servletContext = ctxt.getServletContext();
+		ServletContext servletContext =
+			jspCompilationContext.getServletContext();
 
 		_bundle = (Bundle)servletContext.getAttribute("osgi-bundle");
 
@@ -76,23 +76,22 @@ public class JspCompiler extends Jsr199JavaCompiler {
 	}
 
 	protected void addDependenciesToClassPath() {
-		for (String dependency : PortletPropsValues.JSP_COMPILER_DEPENDENCIES) {
-
-			File file = new File(dependency);
+		for (String className : _JSP_COMPILER_DEPENDENCIES) {
+			File file = new File(className);
 
 			if (file.exists() && file.canRead()) {
-				if (_classpath.contains(file)) {
-					_classpath.remove(file);
+				if (_classPath.contains(file)) {
+					_classPath.remove(file);
 				}
 
-				_classpath.add(0, file);
+				_classPath.add(0, file);
 
 				continue;
 			}
 
 			try {
 				Class<?> clazz = Class.forName(
-					dependency, true, ClassLoaderUtil.getPortalClassLoader());
+					className, true, ClassLoaderUtil.getPortalClassLoader());
 
 				addDependencyToClassPath(clazz);
 
@@ -103,7 +102,7 @@ public class JspCompiler extends Jsr199JavaCompiler {
 
 			if (_log.isErrorEnabled()) {
 				_log.error(
-					"Could not add depedency {" + dependency +
+					"Could not add depedency {" + className +
 						"} to the classpath");
 			}
 		}
@@ -116,20 +115,19 @@ public class JspCompiler extends Jsr199JavaCompiler {
 			return;
 		}
 
-		URL location = protectionDomain.getCodeSource().getLocation();
+		CodeSource codeSource = protectionDomain.getCodeSource();
+
+		URL url = codeSource.getLocation();
 
 		try {
-			File file = new File(processJarLocation(location));
+			File file = new File(toURI(url));
 
 			if (file.exists() && file.canRead()) {
-
-				// Make sure it's added at the beginning.
-
-				if (_classpath.contains(file)) {
-					_classpath.remove(file);
+				if (_classPath.contains(file)) {
+					_classPath.remove(file);
 				}
 
-				_classpath.add(0, file);
+				_classPath.add(0, file);
 			}
 		}
 		catch (Exception use) {
@@ -147,7 +145,7 @@ public class JspCompiler extends Jsr199JavaCompiler {
 
 			try {
 				standardJavaFileManager.setLocation(
-					StandardLocation.CLASS_PATH, _classpath);
+					StandardLocation.CLASS_PATH, _classPath);
 
 				BundleJavaManager bundleJavaManager = new BundleJavaManager(
 					_bundle, standardJavaFileManager, options, true);
@@ -157,8 +155,8 @@ public class JspCompiler extends Jsr199JavaCompiler {
 
 				javaFileManager = bundleJavaManager;
 			}
-			catch (IOException e) {
-				_log.error(e, e);
+			catch (IOException ioe) {
+				_log.error(ioe, ioe);
 			}
 		}
 
@@ -166,52 +164,52 @@ public class JspCompiler extends Jsr199JavaCompiler {
 	}
 
 	protected void initClassPath(ServletContext servletContext) {
-		_reentrantLock.lock();
+		_lock.lock();
 
 		try {
-			_classpath = (ArrayList<File>)servletContext.getAttribute(
-				_JSP_COMPILER_CLASSPATH);
+			_classPath = (ArrayList<File>)servletContext.getAttribute(
+				_JSP_COMPILER_CLASS_PATH);
 
-			if (_classpath != null) {
+			if (_classPath != null) {
 				return;
 			}
 
-			_classpath = new ArrayList<File>();
+			_classPath = new ArrayList<File>();
 
 			addDependenciesToClassPath();
 
-			servletContext.setAttribute(_JSP_COMPILER_CLASSPATH, _classpath);
+			servletContext.setAttribute(_JSP_COMPILER_CLASS_PATH, _classPath);
 		}
 		finally {
-			_reentrantLock.unlock();
+			_lock.unlock();
 		}
 	}
 
 	protected void initTLDMappings(ServletContext servletContext) {
-		Map<String, String[]> mappings =
+		Map<String, String[]> tldMappings =
 			(Map<String, String[]>)servletContext.getAttribute(
 				Constants.JSP_TLD_URI_TO_LOCATION_MAP);
 
-		if (mappings != null) {
+		if (tldMappings != null) {
 			return;
 		}
 
-		mappings = new HashMap<String, String[]>();
+		tldMappings = new HashMap<String, String[]>();
 
-		mappings.put(
+		tldMappings.put(
 			"http://java.sun.com/jsp/jstl/core",
 			new String[] {"/WEB-INF/tld/c.tld", null});
 
 		servletContext.setAttribute(
-			Constants.JSP_TLD_URI_TO_LOCATION_MAP, mappings);
+			Constants.JSP_TLD_URI_TO_LOCATION_MAP, tldMappings);
 	}
 
-	private URI processJarLocation(URL url)
+	protected URI toURI(URL url)
 		throws MalformedURLException, URISyntaxException {
 
 		String protocol = url.getProtocol();
 
-		if ("reference".equals(protocol)) {
+		if (protocol.equals("reference")) {
 			String file = url.getFile();
 
 			url = new URL(file);
@@ -219,24 +217,33 @@ public class JspCompiler extends Jsr199JavaCompiler {
 			protocol = url.getProtocol();
 		}
 
-		if ("file".equals(protocol)) {
+		if (protocol.equals("file")) {
 			return url.toURI();
 		}
-		else if ("jar".equals(protocol)) {
+		else if (protocol.equals("jar")) {
 			String file = url.getFile();
 
 			return new URI(StringUtil.extractFirst(file, "!/"));
 		}
 
 		throw new URISyntaxException(
-			url.toString(), "Unable to handle this URI");
+			url.toString(), "Unknown protocol " + protocol);
 	}
 
-	private static final String _JSP_COMPILER_CLASSPATH =
-		JspCompiler.class.getName().concat("_JSP_COMPILER_CLASSPATH");
+	private static final String _JSP_COMPILER_CLASS_PATH =
+		JspCompiler.class.getName() + "#JSP_COMPILER_CLASS_PATH";
+
+	private static final String[] _JSP_COMPILER_DEPENDENCIES = {
+		"com.liferay.portal.kernel.exception.PortalException",
+		"com.liferay.portal.util.PortalImpl", "javax.el.ELException",
+		"javax.portlet.PortletException", "javax.servlet.ServletException",
+		"javax.servlet.jsp.JspException"
+	};
+
+	private static Log _log = LogFactoryUtil.getLog(JspCompiler.class);
 
 	private Bundle _bundle;
-	private List<File> _classpath;
-	private ReentrantLock _reentrantLock = new ReentrantLock();
+	private List<File> _classPath;
+	private Lock _lock = new ReentrantLock();
 
 }
