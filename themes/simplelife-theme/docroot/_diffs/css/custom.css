@@ -1,0 +1,330 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700);
+
+/* Barebones Template */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+body {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+h1, h2, h3 {
+  margin: 0 0 .5em;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  margin: 0;
+}
+
+#skip-to-content, .page-title, #navigation h1, #breadcrumbs h1 {
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+#wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 90%;
+}
+
+#sign-in {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#heading {
+  border: 1px solid #ccc;
+}
+
+#navigation {
+  margin-bottom: 1em;
+}
+
+#navigation ul {
+  list-style: none;
+  margin: 0;
+  border: 1px solid #ccc;
+}
+
+#navigation li {
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+#breadcrumbs {
+  list-style: none;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+}
+
+#breadcrumbs li {
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.breadcrumbs {
+  margin: 0;
+}
+
+#content {
+  padding: 10px 10px 0 10px;
+  border: 1px solid #ccc;
+}
+
+.portlet {
+  margin-bottom: 1em;
+  padding: 0;
+  border: 1px solid #ccc;
+}
+
+.portlet-title {
+  padding: 10px;
+  font-size: 1em;
+  font-weight: normal;
+  background: #eee;
+}
+
+.portlet-topper-toolbar {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.portlet-content {
+  padding: 10px;
+}
+
+.portlet-content ul {
+  margin-left: 1em;
+}
+
+.portlet-column-content {
+  padding: 0 5px;
+}
+
+#footer {
+  padding: 10px 0;
+  text-align: right;
+}
+
+/* Portlets */
+
+.portlet .breadcrumbs {
+  margin-left: 0;
+}
+
+.portlet .breadcrumbs li:after {
+  content: " /";
+}
+
+.featured {
+  display: block;
+  background: url(../images/custom/tablet_man.jpg) no-repeat center top;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  padding: 75px 0;
+  margin-bottom: 1em;
+}
+.featured h1 {
+  margin: 0;
+  font-weight: 200;
+  font-size: 3em;
+}
+.featured p {
+  display: inline-block;
+  width: 80%;
+  color: #000;
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.7em;
+}
+
+.portlet-no-title .portlet {
+  border: 0;
+}
+.portlet-no-title .portlet-title {
+  display: none;
+}
+.portlet-no-title .portlet-content{
+padding: 0;
+}
+.taglib-ratings.stars .liferay-rating-score {
+padding-left: 0;
+}
+
+/* Simple Blue */
+body {
+  font-family:"Source Sans Pro", sans-serif;
+  background: #eee url(../images/custom/noise_lines.png) repeat ;
+}
+
+a {
+  color: #224465;
+}
+
+#wrapper {
+  width: 100%;
+}
+
+#sign-in {
+  border: 0;
+  background: rgba(0,0,0,.3);
+  color: #fff;
+  margin-right: 10px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+
+#banner {
+  position: relative;
+  border: 0;
+  background: #0d335a;
+  overflow: hidden;
+  border-bottom: 3px solid rgba(0,0,0,.2);
+}
+
+#heading {
+  border: 0;
+}
+
+.site-title {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.logo.custom-logo img {
+  height: 70%;
+  width: 70%;
+  margin: 5px 0 -3px 0;
+}
+
+#navigation {
+  position: absolute;
+  top: 0;
+  right: 15%;
+  font-weight: 300;
+}
+
+#navigation ul {
+  border: 0;
+}
+#navigation li {
+  border: 0;
+  font-size: 1.1em;
+  padding: 1.7em 1em 1.3em;
+}
+
+#navigation li a {
+  color: #fff;
+}
+
+#navigation li a:hover {
+  text-decoration: none;
+  color: #3cf;
+}
+
+#navigation li.selected {
+  background: rgba(0,0,0,.3);
+}
+
+#navigation li.selected a {
+  color: #fff;
+}
+
+#content {
+  border: 0;
+  border-radius: 5px;
+  margin: 10px auto 0;
+  width: 70%;
+  background: #fff;
+}
+
+#breadcrumbs {
+  display: none;
+}
+
+#breadcrumbs li {
+  padding: 5px 10px;
+}
+
+.portlet {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.portlet-title {
+  background: #F0F5F7;
+  border-radius: 5px 5px 0 0;
+}
+
+.portlet-title .icon {
+  /* display: none; */
+  margin-right: 5px;
+}
+
+#footer {
+  margin: 0 auto;
+  width: 70%;
+}
+
+@media screen and (max-width: 480px) {
+  #wrapper {
+    width: 100%;
+  }
+
+  #skip-to-content {
+    display: block;
+  }
+
+  #heading {
+    text-align: center;
+  }
+
+  #navigation {
+    position: relative;
+    right: 0;
+    margin: 0;
+  }
+
+  #navigation li {
+    display: block;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding: .7em 0;
+  }
+
+  #navigation li.selected {
+    border-radius: 0;
+  }
+
+  #breadcrumbs {
+    display: none;
+  }
+
+  #content {
+    width: 90%;
+  }
+
+  #footer {
+    text-align: center;
+  }
+}

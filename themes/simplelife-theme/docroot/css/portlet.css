@@ -1,0 +1,778 @@
+/* ---------- Portlet wrapper and icons ---------- */
+
+.freeform .portlet {
+	margin-bottom: 0;
+}
+
+body.portlet {
+	border: none;
+}
+
+.portlet-topper {
+	position: relative;
+}
+
+.portlet-title {
+	display: block;
+	font-size: 1em;
+	margin: 0;
+
+	img {
+		vertical-align: middle;
+	}
+}
+
+.portlet-title-text {
+	cursor: pointer;
+}
+
+.panel-page-content, .panel-page-body {
+	.portlet-title-text {
+		cursor: auto;
+	}
+}
+
+.portlet-topper-toolbar {
+	margin: 0;
+	padding: 2px;
+	position: absolute;
+	right: 3px;
+	text-align: right;
+	top: 3px;
+
+	.nobr {
+		display: block;
+		float: left;
+		padding: 1px;
+	}
+}
+
+.portlet-content, .portlet-minimized .portlet-content-container {
+	padding: 12px 10px 10px;
+}
+
+.portlet-minimized .portlet-content {
+	padding: 0;
+}
+
+.portlet-icon-back {
+	background: url(../images/arrows/01_left.png) no-repeat 0 50%;
+	font-weight: bold;
+	padding: 5px 5px 5px 18px;
+}
+
+.portlet-nested-portlets .portlet-boundary {
+	position: relative !important;
+	top: 0 !important;
+	left: 0 !important;
+}
+
+/* ---------- Borderless portlet ---------- */
+
+.portlet-borderless-container {
+	min-height: 2.5em;
+	position: relative;
+}
+
+.portlet-borderless-bar {
+	background: #333;
+	color: #FFF;
+	font-size: 10px;
+	opacity: 0.3;
+	padding: 2px 5px 1px;
+	position: absolute;
+	right: 0;
+	text-shadow: -1px -1px #000;
+	top: 0;
+	z-index: 200;
+
+	a {
+		background: url() no-repeat 0 50%;
+		color: #3AF;
+		display: inline-block;
+		height: 16px;
+		margin-left: 5px;
+		text-indent: -9999px;
+		vertical-align: top;
+		width: 16px;
+	}
+
+	.portlet-actions {
+		display: none;
+		float: left;
+		margin-right: 20px;
+	}
+
+	.portlet-title-default, .portlet-actions {
+		min-height: 20px;
+		vertical-align: top;
+	}
+
+	.portlet-action-separator {
+		display: none;
+	}
+
+	.portlet-back a {
+		height: auto;
+		text-indent: 0;
+		width: auto;
+	}
+
+	.portlet-close a {
+		background-image: url(../images/portlet/close_borderless.png);
+	}
+
+	.portlet-options li.lfr-trigger strong a {
+		background-image: url(../images/portlet/options_borderless.png);
+	}
+}
+
+.portlet-borderless-container:hover .portlet-borderless-bar {
+	opacity: 1;
+
+	.portlet-actions {
+		display: inline;
+	}
+}
+
+.portlet-title-default {
+	display: inline-block;
+	float: right;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.portlet-draggable {
+	.portlet-topper {
+		cursor: move;
+	}
+
+	.portlet-title-default {
+		background: url(../images/portlet/draggable_borderless.png) no-repeat 0 50%;
+		cursor: move;
+		padding-left: 20px;
+	}
+}
+
+/* ---------- Panel Page ---------- */
+
+.lfr-panel-page {
+	width: 100%;
+
+	.portlet-title {
+		font-size: 13px;
+	}
+
+	.lfr-add-content h2 span {
+		background-color: #D3DADD;
+	}
+}
+
+/* ---------- Standard styles defined in the JSR 168 ---------- */
+
+/* ---------- Fonts ---------- */
+
+/* ---------- Font attributes for the 'normal' fragment font ---------- */
+
+.portlet-font {
+}
+
+/* ---------- Font attributes similar to the .portlet-font but the color is lighter ---------- */
+
+.portlet-font-dim {
+}
+
+/* ---------- Messages ---------- */
+
+.portlet-msg {
+	background: #EEE none no-repeat 6px 50%;
+	border: 1px solid #555;
+	color: #34404F;
+	display: block;
+	font-weight: bold;
+	margin: 2px auto 14px;
+	padding: 6px 6px 6px 30px;
+	text-align: left;
+}
+
+/* ---------- Status of the current operation ---------- */
+
+.portlet-msg-status {
+}
+
+/* ---------- Help messages, general additional information, etc. ---------- */
+
+.portlet-msg-info, .lfr-message-info {
+	@extend .portlet-msg;
+	background-color: #DFF4FF;
+	background-image: url(../images/messages/info.png);
+	border-color: #A7CEDF;
+}
+
+.portlet-msg-help, .lfr-message-help {
+	@extend .portlet-msg-info;
+	background-image: url(../images/portlet/help.png);
+}
+
+.portlet-msg-progress, .lfr-message-progress {
+	@extend .portlet-msg-info;
+	background-image: url(../images/aui/loading_indicator.gif);
+}
+
+/* ---------- Error messages ---------- */
+
+.portlet-msg-error, .lfr-message-error {
+	@extend .portlet-msg;
+	background-color: #FDD;
+	background-image: url(../images/messages/error.png);
+	border-color: #F00;
+}
+
+/* ---------- Warning messages ---------- */
+
+.portlet-msg-alert, .lfr-message-alert {
+	@extend .portlet-msg;
+	background-color: #FFC;
+	background-image: url(../images/messages/alert.png);
+	background-position: 6px 20%;
+	border-color: #FC0;
+}
+
+/* ---------- Success messages ---------- */
+
+.portlet-msg-success, .lfr-message-success {
+	@extend .portlet-msg;
+	background-color: #F4FDEF;
+	background-image: url(../images/messages/success.png);
+	border-color: #ACDFA7;
+	color: #384F34;
+}
+
+/* ---------- Message labels ---------- */
+
+.portlet-msg-alert-label, .portlet-msg-error-label, .portlet-msg-info-label, .portlet-msg-progress-label, .portlet-msg-success-label {
+	background: none no-repeat 0 50%;
+	padding: 3px 3px 3px 20px;
+	font-weight: bold;
+}
+
+.portlet-msg-alert-label {
+	background-image: url(../images/messages/alert.png);
+	color: #663;
+}
+
+.portlet-msg-error-label {
+	background-image: url(../images/messages/error.png);
+	color: #900;
+}
+
+.portlet-msg-info-label, .portlet-msg-help-label, .portlet-msg-progress-label {
+	background-image: url(../images/messages/info.png);
+	color: #34404F;
+}
+
+.portlet-msg-help-label {
+	background-image: url(../images/portlet/help.png);
+}
+
+.portlet-msg-progress-label {
+	background-image: url(../images/aui/loading_indicator.gif);
+}
+
+.portlet-msg-success-label {
+	background-image: url(../images/messages/success.png);
+	color: #384F34;
+}
+
+/* ---------- Liferay Messages ---------- */
+
+.lfr-message-content, .lfr-message-info, .lfr-message-help, .lfr-message-error, .lfr-message-alert, .lfr-message-success {
+	border-left-width: 0;
+	border-right-width: 0;
+}
+
+.lfr-message {
+	position: relative;
+
+	.lfr-message-control {
+		background-color: #333;
+		display: inline-block;
+	}
+
+	.lfr-message-controls {
+		display: none;
+		left: 3px;
+		margin: -8px 8px 0 3px;
+		position: absolute;
+		top: 50%;
+		z-index: 10;
+	}
+
+	.lfr-message-close {
+		background-image: url(../images/portlet/close_borderless.png);
+		background-position: 0 0;
+		background-repeat: no-repeat;
+	}
+
+	.lfr-message-close-all {
+		color: #FFF;
+		display: none;
+		font-size: 0.8em;
+		margin-left: 10px;
+		padding: 1px 10px;
+		text-shadow: 1px 1px 0 #000;
+		vertical-align: top;
+
+		a {
+			color: #FFF;
+		}
+	}
+
+	.lfr-message-controls-hover .lfr-message-close-all {
+		display: inline-block;
+	}
+
+	&.pending {
+		background-image: url(../images/common/time.png);
+	}
+}
+
+.lfr-message-dismissible.lfr-message-hover {
+	.lfr-message-content {
+		background-image: none;
+	}
+
+	.lfr-message-controls {
+		display: block;
+	}
+}
+
+.lfr-message-trigger, .lfr-message-close {
+	cursor: pointer;
+}
+
+/* ---------- Sections ---------- */
+
+/* ---------- Table or section header ---------- */
+
+.portlet-section-header {
+}
+
+.portlet-section-header th {
+}
+
+/* ---------- Normal text in a table cell ---------- */
+
+.portlet-section-body {
+}
+
+.portlet-section-body td {
+}
+
+/* ---------- Text in every other row in the cell ---------- */
+
+.portlet-section-alternate {
+}
+
+.portlet-section-alternate td {
+}
+
+.portlet-section-alternate-hover td, .portlet-section-body-hover td {
+}
+
+.portlet-section-body td td, .portlet-section-body-hover td td {
+}
+
+.portlet-section-alternate td td, .portlet-section-alternate-hover td td {
+}
+
+/* ---------- Text in a selected cell range ---------- */
+
+.portlet-section-selected {
+	&, a {
+		background: #727C81;
+		color: #FFF;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	a:hover, a:focus {
+		background-color: #727C81;
+	}
+}
+
+/* ---------- Text of a subheading ---------- */
+
+.portlet-section-subheader {
+}
+
+/* ---------- Table or section footnote ---------- */
+
+.portlet-section-footer {
+}
+
+/* ---------- Text that belongs to the table but does not fall in one of the other categories (e.g. explanatory or help text that is associated with the section) ---------- */
+
+.portlet-section-text {
+}
+
+/* ---------- Forms ---------- */
+
+/* ---------- Text used for the descriptive label of the whole form (not the labels for fields) ---------- */
+
+.portlet-form-label {
+}
+
+/* ---------- Text of the user-input in an input field ---------- */
+
+.portlet-form-input-field {
+}
+
+/* ---------- Text on a button ---------- */
+
+.portlet-form-button {
+}
+
+/* ---------- Text that appears beside a context dependent action icon ---------- */
+
+.portlet-icon-label {
+}
+
+/* ---------- Text that appears beside a 'standard' icon (e.g. Ok, or Cancel) ---------- */
+
+.portlet-dlg-icon-label {
+}
+
+/* ---------- Text for a separator of fields (e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field-label {
+}
+
+/* ---------- Text for a field (not input field, e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field {
+}
+
+/* ---------- Menus ---------- */
+
+/* ---------- General menu settings such as background color, margins, etc. ---------- */
+
+.portlet-menu {
+}
+
+/* ---------- Normal, unselected menu item ---------- */
+
+.portlet-menu-item {
+}
+
+/* ---------- Selected menu item ---------- */
+
+.portlet-menu-item-selected {
+}
+
+/* ---------- Normal, unselected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover {
+}
+
+/* ---------- Selected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover-selected {
+}
+
+/* ---------- Normal, unselected menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item {
+}
+
+/* ---------- Selected sub-menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item-selected {
+}
+
+/* ---------- Descriptive text for the menu (e.g. in a help context below the menu) ---------- */
+
+.portlet-menu-description {
+}
+
+/* ---------- Menu caption ---------- */
+
+.portlet-menu-caption {
+}
+
+/* ---------- Miscellaneous portlet styles ---------- */
+
+.restricted {
+	&, & td {
+		background: #FDD;
+		border: none;
+	}
+
+	* {
+		color: #727C81;
+	}
+}
+
+.alt.restricted td {
+	background-color: #FFC0C0;
+}
+
+.hover.restricted td {
+	background-color: #D3BDC0;
+}
+
+.restricted, .alt.restricted {
+	td.col-1 {
+		background-image: url(../images/messages/error.png);
+		background-position: 5px 50%;
+		background-repeat: no-repeat;
+		padding-left: 28px;
+	}
+}
+
+/* ---------- Permissions ---------- */
+
+.results-row, .results-row.hover {
+	&.lfr-role .col-1 {
+		background-image: url();
+		background-position: 5px 50%;
+		background-repeat: no-repeat;
+		padding-left: 30px;
+	}
+
+	&.lfr-role-guest .col-1 {
+		background-image: url(../images/common/guest_icon.png);
+	}
+
+	&.lfr-role-regular .col-1 {
+		background-image: url(../images/common/user_icon.png);
+	}
+
+	&.lfr-role-site .col-1 {
+		background-image: url(../images/common/site_icon.png);
+	}
+
+	&.lfr-role-organization .col-1 {
+		background-image: url(../images/common/organization_icon.png);
+	}
+
+	&.lfr-role-team .col-1 {
+		background-image: url(../images/common/team_icon.png);
+	}
+}
+
+/* ---------- Miscellaneous component styles ---------- */
+
+/* ---------- Add content dialog ---------- */
+
+.lfr-portlet-item {
+	&, & p a {
+		font-size: 1em;
+	}
+}
+
+/* ---------- Actions button ---------- */
+
+.lfr-actions {
+	&.lfr-extended, &.lfr-extended ul {
+		background: #FFF url(../images/forms/button.png) repeat-x 0 100%;
+		border: 1px solid;
+		border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+	}
+
+	ul {
+		bottom: -1px;
+	}
+
+	.lfr-trigger {
+		&, & strong {
+			background: none;
+		}
+
+		li {
+			background: transparent;
+			border-bottom: 1px solid #DEDEDE;
+			padding: 2px;
+
+			a {
+				padding: 5px 10px 5px 25px;
+
+				&:hover {
+					background-color: #828F95;
+					color: #FFF;
+				}
+			}
+
+			img {
+				left: 3px;
+				position: absolute;
+			}
+
+			&.last {
+				border-bottom: none;
+			}
+		}
+	}
+
+	&.portlet-options {
+		background: none;
+		border: none;
+		float: left;
+
+		.lfr-trigger {
+			padding: 0;
+
+			strong {
+				min-width: 0;
+				padding: 1px;
+
+				a {
+					background-image: url(../images/portlet/options.png);
+					background-position: 0 0;
+					display: block;
+					font-size: 0;
+					height: 16px;
+					padding: 0;
+					text-indent: -9999px;
+					width: 16px;
+				}
+			}
+		}
+	}
+}
+
+.visible.portlet-options .lfr-trigger strong a {
+	background-image: url(../images/portlet/options_selected.png);
+}
+
+/*------ Breadcrumbs taglib ------*/
+
+.breadcrumbs {
+	&:before, &:after {
+		content: "\0020";
+		display: block;
+		height: 0;
+		visibility: hidden;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+.breadcrumbs-vertical {
+	display: inline-block;
+}
+
+.breadcrumbs-horizontal li {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/* ---------- Calendar taglib ---------- */
+
+.taglib-calendar {
+	tr {
+		&.portlet-section-header th, & td {
+			border: none;
+		}
+
+		td {
+			a {
+				background-color: #F0F5F7;
+				border: 1px solid #FFF;
+				border-bottom: none;
+				border-left: none;
+				display: block;
+				height: 15px;
+				padding: 5px 0;
+
+				&:hover {
+					background-color: #727C81;
+					color: #FFF;
+				}
+			}
+
+			&.calendar-inactive {
+				background-color: #FFF;
+				color: #B5BFC4;
+			}
+		}
+
+		th {
+			border-bottom-color: #D7D7D7;
+		}
+	}
+
+	table td {
+		border-width: 0;
+	}
+
+	.calendar-current-day {
+		&, & a {
+			background-color: #FFF;
+		}
+
+		a {
+			border: 1px solid #727C81;
+			color: #369;
+			text-decoration: underline;
+		}
+	}
+}
+
+.ie {
+	.portlet-borderless-bar {
+		-ms-filter: alpha(opacity=20);
+		filter: alpha(opacity=20);
+	}
+
+	.portlet-borderless-container:hover .portlet-borderless-bar {
+		-ms-filter: alpha(opacity=100);
+		filter: alpha(opacity=100);
+	}
+
+	.taglib-calendar tr td.first a {
+		border-right: none;
+	}
+}
+
+.ie6, .ie7 {
+	.portlet-borderless-bar .portlet-actions {
+		margin-right: 0;
+		margin-left: 20px;
+	}
+
+	.portlet-title-default {
+		float: left;
+	}
+
+	.breadcrumbs-vertical, .breadcrumbs-horizontal li {
+		display: inline;
+		zoom: 1;
+	}
+}
+
+.ie6 {
+	.portlet-topper-toolbar .icon {
+		height: 16px;
+		width: 16px;
+	}
+
+	.portlet-borderless-container {
+		height: 2.5em;
+	}
+
+	.portlet-borderless-bar {
+		filter: alpha(opacity=90);
+
+		.portlet-actions {
+			display: inline;
+			filter: alpha(opacity=90);
+		}
+	}
+
+	.breadcrumbs {
+		zoom: 1;
+	}
+}
