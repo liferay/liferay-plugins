@@ -14,8 +14,8 @@
 
 package com.liferay.cdi.portlet.bridge;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import javax.enterprise.inject.spi.BeanManager;
 
@@ -50,26 +50,25 @@ public class CDIContextListener implements ServletContextListener {
 		}
 
 		if (beanManager == null) {
-
 			try {
-				Context initialContext = new InitialContext();
+				Context context = new InitialContext();
 
 				try {
-					beanManager = (BeanManager)initialContext.lookup(
-						_BEAN_MANAGER_JNDI_NAME1);
+					beanManager = (BeanManager)context.lookup(
+						_BEAN_MANAGER_JNDI_NAME_1);
 				}
-				catch (NameNotFoundException e) {
-					beanManager = (BeanManager)initialContext.lookup(
-						_BEAN_MANAGER_JNDI_NAME2);
+				catch (NameNotFoundException nnfe) {
+					beanManager = (BeanManager)context.lookup(
+						_BEAN_MANAGER_JNDI_NAME_2);
 				}
 			}
-			catch (NamingException e) {
-				_log.log(Level.SEVERE, e.getMessage(), e);
+			catch (NamingException ne) {
+				_log.error(ne, ne);
 			}
 		}
 
 		if (beanManager == null) {
-			_log.log(Level.SEVERE, "Unable to get CDI BeanManager instance");
+			_log.error("Unable to get CDI bean manager");
 		}
 
 		CDIBeanManagerUtil.setBeanManager(beanManager);
@@ -79,13 +78,12 @@ public class CDIContextListener implements ServletContextListener {
 		"org.jboss.weld.environment.servlet.javax.enterprise.inject.spi." +
 			"BeanManager";
 
-	private static final String _BEAN_MANAGER_JNDI_NAME1 =
+	private static final String _BEAN_MANAGER_JNDI_NAME_1 =
 		"java:comp/BeanManager";
 
-	private static final String _BEAN_MANAGER_JNDI_NAME2 =
+	private static final String _BEAN_MANAGER_JNDI_NAME_2 =
 		"java:comp/env/BeanManager";
 
-	private static final Logger _log = Logger.getLogger(
-		CDIContextListener.class.getName());
+	private static Log _log = LogFactoryUtil.getLog(CDIContextListener.class);
 
 }
