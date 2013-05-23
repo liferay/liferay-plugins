@@ -401,15 +401,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Element assigneesRecipientElement = recipientsElement.element(
-			"assignees");
-
-		if (assigneesRecipientElement != null) {
-			AssigneesRecipient assigneesRecipient = new AssigneesRecipient();
-
-			notification.addRecipients(assigneesRecipient);
-		}
-
 		List<Element> addressRecipientElements = recipientsElement.elements(
 			"address");
 
@@ -418,6 +409,15 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 				addressRecipientElement.getText());
 
 			notification.addRecipients(addressRecipient);
+		}
+
+		Element assigneesRecipientElement = recipientsElement.element(
+			"assignees");
+
+		if (assigneesRecipientElement != null) {
+			AssigneesRecipient assigneesRecipient = new AssigneesRecipient();
+
+			notification.addRecipients(assigneesRecipient);
 		}
 
 		Element rolesElement = recipientsElement.element("roles");

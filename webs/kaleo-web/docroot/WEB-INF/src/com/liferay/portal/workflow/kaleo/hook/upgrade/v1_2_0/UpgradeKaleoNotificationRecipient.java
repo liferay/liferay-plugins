@@ -36,7 +36,7 @@ public class UpgradeKaleoNotificationRecipient extends UpgradeProcess {
 			ps = con.prepareStatement(
 				"update KaleoNotificationRecipient set recipientClassName = " +
 					"'ADDRESS' where recipientClassName is null or " +
-					"recipientClassName = ''");
+						"recipientClassName = ''");
 
 			ps.executeUpdate();
 		}

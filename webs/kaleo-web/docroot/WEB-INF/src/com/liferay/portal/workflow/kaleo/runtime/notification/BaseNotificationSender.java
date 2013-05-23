@@ -221,7 +221,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			else {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Unsupported recipient: " + kaleoNotificationRecipient);
+						"Unsupported recipient " + kaleoNotificationRecipient);
 				}
 			}
 		}
