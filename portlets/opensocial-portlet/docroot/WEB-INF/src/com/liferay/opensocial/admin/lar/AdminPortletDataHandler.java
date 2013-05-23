@@ -19,6 +19,7 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
+import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Element;
@@ -36,6 +37,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 	public static final String NAMESPACE = "opensocial";
 
 	public AdminPortletDataHandler() {
+		setDataLevel(DataLevel.SITE);
 		setPublishToLiveByDefault(true);
 	}
 

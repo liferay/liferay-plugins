@@ -15,6 +15,7 @@
 package com.liferay.samplelar.plugin;
 
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
+import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
@@ -36,6 +37,10 @@ import javax.portlet.PortletPreferences;
  * @author Raymond Augé
  */
 public class LARPlugin extends BasePortletDataHandler {
+
+	public LARPlugin() {
+		setDataLevel(DataLevel.PORTLET_INSTANCE);
+	}
 
 	@Override
 	public PortletPreferences deleteData(

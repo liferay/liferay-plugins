@@ -16,6 +16,7 @@ package com.liferay.wsrp.admin.lar;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
+import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
@@ -44,7 +45,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 	public static final String NAMESPACE = "wsrp";
 
 	public AdminPortletDataHandler() {
-		setAlwaysExportable(true);
+		setDataLevel(DataLevel.SITE);
 		setExportControls(
 			new PortletDataHandlerBoolean(NAMESPACE, "wsrp-producers", false),
 			new PortletDataHandlerBoolean(

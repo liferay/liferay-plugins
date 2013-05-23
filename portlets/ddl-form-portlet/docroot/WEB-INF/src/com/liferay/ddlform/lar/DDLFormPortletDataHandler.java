@@ -15,6 +15,7 @@
 package com.liferay.ddlform.lar;
 
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
+import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -36,7 +37,7 @@ import javax.portlet.PortletPreferences;
 public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 
 	public DDLFormPortletDataHandler() {
-		setAlwaysExportable(true);
+		setDataLevel(DataLevel.PORTLET_INSTANCE);
 	}
 
 	@Override
