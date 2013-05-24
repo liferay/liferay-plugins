@@ -245,6 +245,10 @@
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
 		</replace>
 
+		<replace file="tmp/WEB-INF/classes/shindig.properties">
+			<replacefilter token="shindig.signing.viewer-access-tokens-enabled=false" value="shindig.signing.viewer-access-tokens-enabled=true" />
+		</replace>
+
 		<!-- Fix canonicaldb.json -->
 
 		<tstamp>
