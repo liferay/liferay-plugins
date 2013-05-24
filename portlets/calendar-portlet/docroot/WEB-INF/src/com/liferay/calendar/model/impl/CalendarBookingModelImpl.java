@@ -198,26 +198,32 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public CalendarBookingModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _calendarBookingId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setCalendarBookingId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _calendarBookingId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return CalendarBooking.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return CalendarBooking.class.getName();
 	}
@@ -423,6 +429,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
@@ -433,6 +440,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -445,20 +453,24 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	@JSON
 	public long getCalendarBookingId() {
 		return _calendarBookingId;
 	}
 
+	@Override
 	public void setCalendarBookingId(long calendarBookingId) {
 		_calendarBookingId = calendarBookingId;
 	}
 
+	@Override
 	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_columnBitmask |= GROUPID_COLUMN_BITMASK;
 
@@ -475,11 +487,13 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalGroupId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -496,23 +510,28 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalCompanyId;
 	}
 
+	@Override
 	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	@JSON
 	public String getUserName() {
 		if (_userName == null) {
@@ -523,33 +542,40 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public long getResourceBlockId() {
 		return _resourceBlockId;
 	}
 
+	@Override
 	public void setResourceBlockId(long resourceBlockId) {
 		_columnBitmask |= RESOURCEBLOCKID_COLUMN_BITMASK;
 
@@ -566,11 +592,13 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalResourceBlockId;
 	}
 
+	@Override
 	@JSON
 	public long getCalendarId() {
 		return _calendarId;
 	}
 
+	@Override
 	public void setCalendarId(long calendarId) {
 		_columnBitmask |= CALENDARID_COLUMN_BITMASK;
 
@@ -587,11 +615,13 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalCalendarId;
 	}
 
+	@Override
 	@JSON
 	public long getCalendarResourceId() {
 		return _calendarResourceId;
 	}
 
+	@Override
 	public void setCalendarResourceId(long calendarResourceId) {
 		_columnBitmask |= CALENDARRESOURCEID_COLUMN_BITMASK;
 
@@ -608,11 +638,13 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalCalendarResourceId;
 	}
 
+	@Override
 	@JSON
 	public long getParentCalendarBookingId() {
 		return _parentCalendarBookingId;
 	}
 
+	@Override
 	public void setParentCalendarBookingId(long parentCalendarBookingId) {
 		_columnBitmask |= PARENTCALENDARBOOKINGID_COLUMN_BITMASK;
 
@@ -629,6 +661,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalParentCalendarBookingId;
 	}
 
+	@Override
 	@JSON
 	public String getTitle() {
 		if (_title == null) {
@@ -639,52 +672,62 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public String getTitle(Locale locale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getTitle(languageId);
 	}
 
+	@Override
 	public String getTitle(Locale locale, boolean useDefault) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getTitle(languageId, useDefault);
 	}
 
+	@Override
 	public String getTitle(String languageId) {
 		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}
 
+	@Override
 	public String getTitle(String languageId, boolean useDefault) {
 		return LocalizationUtil.getLocalization(getTitle(), languageId,
 			useDefault);
 	}
 
+	@Override
 	public String getTitleCurrentLanguageId() {
 		return _titleCurrentLanguageId;
 	}
 
 	@JSON
+	@Override
 	public String getTitleCurrentValue() {
 		Locale locale = getLocale(_titleCurrentLanguageId);
 
 		return getTitle(locale);
 	}
 
+	@Override
 	public Map<Locale, String> getTitleMap() {
 		return LocalizationUtil.getLocalizationMap(getTitle());
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_columnBitmask = -1L;
 
 		_title = title;
 	}
 
+	@Override
 	public void setTitle(String title, Locale locale) {
 		setTitle(title, locale, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setTitle(String title, Locale locale, Locale defaultLocale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
@@ -699,14 +742,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setTitleCurrentLanguageId(String languageId) {
 		_titleCurrentLanguageId = languageId;
 	}
 
+	@Override
 	public void setTitleMap(Map<Locale, String> titleMap) {
 		setTitleMap(titleMap, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale) {
 		if (titleMap == null) {
 			return;
@@ -716,6 +762,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 				"Title", LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
+	@Override
 	@JSON
 	public String getDescription() {
 		if (_description == null) {
@@ -726,50 +773,60 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public String getDescription(Locale locale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getDescription(languageId);
 	}
 
+	@Override
 	public String getDescription(Locale locale, boolean useDefault) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getDescription(languageId, useDefault);
 	}
 
+	@Override
 	public String getDescription(String languageId) {
 		return LocalizationUtil.getLocalization(getDescription(), languageId);
 	}
 
+	@Override
 	public String getDescription(String languageId, boolean useDefault) {
 		return LocalizationUtil.getLocalization(getDescription(), languageId,
 			useDefault);
 	}
 
+	@Override
 	public String getDescriptionCurrentLanguageId() {
 		return _descriptionCurrentLanguageId;
 	}
 
 	@JSON
+	@Override
 	public String getDescriptionCurrentValue() {
 		Locale locale = getLocale(_descriptionCurrentLanguageId);
 
 		return getDescription(locale);
 	}
 
+	@Override
 	public Map<Locale, String> getDescriptionMap() {
 		return LocalizationUtil.getLocalizationMap(getDescription());
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 	}
 
+	@Override
 	public void setDescription(String description, Locale locale) {
 		setDescription(description, locale, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setDescription(String description, Locale locale,
 		Locale defaultLocale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
@@ -786,14 +843,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setDescriptionCurrentLanguageId(String languageId) {
 		_descriptionCurrentLanguageId = languageId;
 	}
 
+	@Override
 	public void setDescriptionMap(Map<Locale, String> descriptionMap) {
 		setDescriptionMap(descriptionMap, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setDescriptionMap(Map<Locale, String> descriptionMap,
 		Locale defaultLocale) {
 		if (descriptionMap == null) {
@@ -805,6 +865,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
+	@Override
 	@JSON
 	public String getLocation() {
 		if (_location == null) {
@@ -815,43 +876,52 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setLocation(String location) {
 		_location = location;
 	}
 
+	@Override
 	@JSON
 	public long getStartTime() {
 		return _startTime;
 	}
 
+	@Override
 	public void setStartTime(long startTime) {
 		_columnBitmask = -1L;
 
 		_startTime = startTime;
 	}
 
+	@Override
 	@JSON
 	public long getEndTime() {
 		return _endTime;
 	}
 
+	@Override
 	public void setEndTime(long endTime) {
 		_endTime = endTime;
 	}
 
+	@Override
 	@JSON
 	public boolean getAllDay() {
 		return _allDay;
 	}
 
+	@Override
 	public boolean isAllDay() {
 		return _allDay;
 	}
 
+	@Override
 	public void setAllDay(boolean allDay) {
 		_allDay = allDay;
 	}
 
+	@Override
 	@JSON
 	public String getRecurrence() {
 		if (_recurrence == null) {
@@ -862,19 +932,23 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setRecurrence(String recurrence) {
 		_recurrence = recurrence;
 	}
 
+	@Override
 	@JSON
 	public long getFirstReminder() {
 		return _firstReminder;
 	}
 
+	@Override
 	public void setFirstReminder(long firstReminder) {
 		_firstReminder = firstReminder;
 	}
 
+	@Override
 	@JSON
 	public String getFirstReminderType() {
 		if (_firstReminderType == null) {
@@ -885,19 +959,23 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setFirstReminderType(String firstReminderType) {
 		_firstReminderType = firstReminderType;
 	}
 
+	@Override
 	@JSON
 	public long getSecondReminder() {
 		return _secondReminder;
 	}
 
+	@Override
 	public void setSecondReminder(long secondReminder) {
 		_secondReminder = secondReminder;
 	}
 
+	@Override
 	@JSON
 	public String getSecondReminderType() {
 		if (_secondReminderType == null) {
@@ -908,15 +986,18 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setSecondReminderType(String secondReminderType) {
 		_secondReminderType = secondReminderType;
 	}
 
+	@Override
 	@JSON
 	public int getStatus() {
 		return _status;
 	}
 
+	@Override
 	public void setStatus(int status) {
 		_columnBitmask |= STATUS_COLUMN_BITMASK;
 
@@ -933,24 +1014,29 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _originalStatus;
 	}
 
+	@Override
 	@JSON
 	public long getStatusByUserId() {
 		return _statusByUserId;
 	}
 
+	@Override
 	public void setStatusByUserId(long statusByUserId) {
 		_statusByUserId = statusByUserId;
 	}
 
+	@Override
 	public String getStatusByUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getStatusByUserId(), "uuid",
 			_statusByUserUuid);
 	}
 
+	@Override
 	public void setStatusByUserUuid(String statusByUserUuid) {
 		_statusByUserUuid = statusByUserUuid;
 	}
 
+	@Override
 	@JSON
 	public String getStatusByUserName() {
 		if (_statusByUserName == null) {
@@ -961,15 +1047,18 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public void setStatusByUserName(String statusByUserName) {
 		_statusByUserName = statusByUserName;
 	}
 
+	@Override
 	@JSON
 	public Date getStatusDate() {
 		return _statusDate;
 	}
 
+	@Override
 	public void setStatusDate(Date statusDate) {
 		_statusDate = statusDate;
 	}
@@ -977,10 +1066,12 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #isApproved}
 	 */
+	@Override
 	public boolean getApproved() {
 		return isApproved();
 	}
 
+	@Override
 	public boolean isApproved() {
 		if (getStatus() == WorkflowConstants.STATUS_APPROVED) {
 			return true;
@@ -990,6 +1081,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isDenied() {
 		if (getStatus() == WorkflowConstants.STATUS_DENIED) {
 			return true;
@@ -999,6 +1091,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isDraft() {
 		if (getStatus() == WorkflowConstants.STATUS_DRAFT) {
 			return true;
@@ -1008,6 +1101,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isExpired() {
 		if (getStatus() == WorkflowConstants.STATUS_EXPIRED) {
 			return true;
@@ -1017,6 +1111,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isInactive() {
 		if (getStatus() == WorkflowConstants.STATUS_INACTIVE) {
 			return true;
@@ -1026,6 +1121,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isIncomplete() {
 		if (getStatus() == WorkflowConstants.STATUS_INCOMPLETE) {
 			return true;
@@ -1035,6 +1131,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isInTrash() {
 		if (getStatus() == WorkflowConstants.STATUS_IN_TRASH) {
 			return true;
@@ -1044,6 +1141,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isPending() {
 		if (getStatus() == WorkflowConstants.STATUS_PENDING) {
 			return true;
@@ -1053,6 +1151,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
+	@Override
 	public boolean isScheduled() {
 		if (getStatus() == WorkflowConstants.STATUS_SCHEDULED) {
 			return true;
@@ -1079,6 +1178,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		expandoBridge.setAttributes(serviceContext);
 	}
 
+	@Override
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
@@ -1135,6 +1235,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return calendarBookingImpl;
 	}
 
+	@Override
 	public int compareTo(CalendarBooking calendarBooking) {
 		int value = 0;
 
@@ -1424,6 +1525,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(85);
 

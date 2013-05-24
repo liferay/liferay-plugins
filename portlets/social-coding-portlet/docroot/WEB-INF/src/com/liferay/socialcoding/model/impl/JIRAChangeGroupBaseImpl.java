@@ -38,6 +38,7 @@ public abstract class JIRAChangeGroupBaseImpl extends JIRAChangeGroupModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a j i r a change group model instance should use the {@link JIRAChangeGroup} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			JIRAChangeGroupLocalServiceUtil.addJIRAChangeGroup(this);

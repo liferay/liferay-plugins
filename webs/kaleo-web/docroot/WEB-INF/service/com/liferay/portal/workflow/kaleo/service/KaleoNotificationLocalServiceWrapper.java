@@ -38,6 +38,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the kaleo notification that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification addKaleoNotification(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -50,6 +51,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @param kaleoNotificationId the primary key for the new kaleo notification
 	* @return the new kaleo notification
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification createKaleoNotification(
 		long kaleoNotificationId) {
 		return _kaleoNotificationLocalService.createKaleoNotification(kaleoNotificationId);
@@ -63,6 +65,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @throws PortalException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
 		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -77,12 +80,14 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the kaleo notification that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoNotificationLocalService.deleteKaleoNotification(kaleoNotification);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _kaleoNotificationLocalService.dynamicQuery();
 	}
@@ -94,6 +99,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -114,6 +120,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -136,6 +143,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -153,12 +161,14 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoNotificationLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification fetchKaleoNotification(
 		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -173,6 +183,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @throws PortalException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification getKaleoNotification(
 		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -180,6 +191,7 @@ public class KaleoNotificationLocalServiceWrapper
 		return _kaleoNotificationLocalService.getKaleoNotification(kaleoNotificationId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -199,6 +211,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the range of kaleo notifications
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -211,6 +224,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the number of kaleo notifications
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getKaleoNotificationsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoNotificationLocalService.getKaleoNotificationsCount();
@@ -223,6 +237,7 @@ public class KaleoNotificationLocalServiceWrapper
 	* @return the kaleo notification that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification updateKaleoNotification(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -234,6 +249,7 @@ public class KaleoNotificationLocalServiceWrapper
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _kaleoNotificationLocalService.getBeanIdentifier();
 	}
@@ -243,10 +259,12 @@ public class KaleoNotificationLocalServiceWrapper
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoNotificationLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -254,6 +272,7 @@ public class KaleoNotificationLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification addKaleoNotification(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoDefinitionId, java.lang.String kaleoNodeName,
@@ -266,16 +285,19 @@ public class KaleoNotificationLocalServiceWrapper
 			serviceContext);
 	}
 
+	@Override
 	public void deleteCompanyKaleoNotifications(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoNotificationLocalService.deleteCompanyKaleoNotifications(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoNotifications(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoNotificationLocalService.deleteKaleoDefinitionKaleoNotifications(kaleoDefinitionId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
 		java.lang.String kaleoClassName, long kaleoClassPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -283,6 +305,7 @@ public class KaleoNotificationLocalServiceWrapper
 			kaleoClassPK);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		java.lang.String executionType)
@@ -306,10 +329,12 @@ public class KaleoNotificationLocalServiceWrapper
 		_kaleoNotificationLocalService = kaleoNotificationLocalService;
 	}
 
+	@Override
 	public KaleoNotificationLocalService getWrappedService() {
 		return _kaleoNotificationLocalService;
 	}
 
+	@Override
 	public void setWrappedService(
 		KaleoNotificationLocalService kaleoNotificationLocalService) {
 		_kaleoNotificationLocalService = kaleoNotificationLocalService;

@@ -35,14 +35,17 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 		_meetupsRegistration = meetupsRegistration;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MeetupsRegistration.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MeetupsRegistration.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -59,6 +62,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long meetupsRegistrationId = (Long)attributes.get(
 				"meetupsRegistrationId");
@@ -121,6 +125,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the primary key of this meetups registration
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _meetupsRegistration.getPrimaryKey();
 	}
@@ -130,6 +135,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param primaryKey the primary key of this meetups registration
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_meetupsRegistration.setPrimaryKey(primaryKey);
 	}
@@ -139,6 +145,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the meetups registration ID of this meetups registration
 	*/
+	@Override
 	public long getMeetupsRegistrationId() {
 		return _meetupsRegistration.getMeetupsRegistrationId();
 	}
@@ -148,6 +155,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param meetupsRegistrationId the meetups registration ID of this meetups registration
 	*/
+	@Override
 	public void setMeetupsRegistrationId(long meetupsRegistrationId) {
 		_meetupsRegistration.setMeetupsRegistrationId(meetupsRegistrationId);
 	}
@@ -157,6 +165,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the company ID of this meetups registration
 	*/
+	@Override
 	public long getCompanyId() {
 		return _meetupsRegistration.getCompanyId();
 	}
@@ -166,6 +175,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param companyId the company ID of this meetups registration
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_meetupsRegistration.setCompanyId(companyId);
 	}
@@ -175,6 +185,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the user ID of this meetups registration
 	*/
+	@Override
 	public long getUserId() {
 		return _meetupsRegistration.getUserId();
 	}
@@ -184,6 +195,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param userId the user ID of this meetups registration
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_meetupsRegistration.setUserId(userId);
 	}
@@ -194,6 +206,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	* @return the user uuid of this meetups registration
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _meetupsRegistration.getUserUuid();
@@ -204,6 +217,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param userUuid the user uuid of this meetups registration
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_meetupsRegistration.setUserUuid(userUuid);
 	}
@@ -213,6 +227,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the user name of this meetups registration
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _meetupsRegistration.getUserName();
 	}
@@ -222,6 +237,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param userName the user name of this meetups registration
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_meetupsRegistration.setUserName(userName);
 	}
@@ -231,6 +247,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the create date of this meetups registration
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _meetupsRegistration.getCreateDate();
 	}
@@ -240,6 +257,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param createDate the create date of this meetups registration
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_meetupsRegistration.setCreateDate(createDate);
 	}
@@ -249,6 +267,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the modified date of this meetups registration
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _meetupsRegistration.getModifiedDate();
 	}
@@ -258,6 +277,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param modifiedDate the modified date of this meetups registration
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_meetupsRegistration.setModifiedDate(modifiedDate);
 	}
@@ -267,6 +287,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the meetups entry ID of this meetups registration
 	*/
+	@Override
 	public long getMeetupsEntryId() {
 		return _meetupsRegistration.getMeetupsEntryId();
 	}
@@ -276,6 +297,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param meetupsEntryId the meetups entry ID of this meetups registration
 	*/
+	@Override
 	public void setMeetupsEntryId(long meetupsEntryId) {
 		_meetupsRegistration.setMeetupsEntryId(meetupsEntryId);
 	}
@@ -285,6 +307,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the status of this meetups registration
 	*/
+	@Override
 	public int getStatus() {
 		return _meetupsRegistration.getStatus();
 	}
@@ -294,6 +317,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param status the status of this meetups registration
 	*/
+	@Override
 	public void setStatus(int status) {
 		_meetupsRegistration.setStatus(status);
 	}
@@ -303,6 +327,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @return the comments of this meetups registration
 	*/
+	@Override
 	public java.lang.String getComments() {
 		return _meetupsRegistration.getComments();
 	}
@@ -312,52 +337,64 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	*
 	* @param comments the comments of this meetups registration
 	*/
+	@Override
 	public void setComments(java.lang.String comments) {
 		_meetupsRegistration.setComments(comments);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _meetupsRegistration.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_meetupsRegistration.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _meetupsRegistration.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_meetupsRegistration.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _meetupsRegistration.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _meetupsRegistration.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_meetupsRegistration.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _meetupsRegistration.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_meetupsRegistration.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_meetupsRegistration.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_meetupsRegistration.setExpandoBridgeAttributes(serviceContext);
@@ -368,6 +405,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 		return new MeetupsRegistrationWrapper((MeetupsRegistration)_meetupsRegistration.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
 		return _meetupsRegistration.compareTo(meetupsRegistration);
@@ -378,14 +416,17 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 		return _meetupsRegistration.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.socialnetworking.model.MeetupsRegistration> toCacheModel() {
 		return _meetupsRegistration.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration toEscapedModel() {
 		return new MeetupsRegistrationWrapper(_meetupsRegistration.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration toUnescapedModel() {
 		return new MeetupsRegistrationWrapper(_meetupsRegistration.toUnescapedModel());
 	}
@@ -395,10 +436,12 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 		return _meetupsRegistration.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _meetupsRegistration.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_meetupsRegistration.persist();
@@ -411,10 +454,12 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 		return _meetupsRegistration;
 	}
 
+	@Override
 	public MeetupsRegistration getWrappedModel() {
 		return _meetupsRegistration;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_meetupsRegistration.resetOriginalValues();
 	}

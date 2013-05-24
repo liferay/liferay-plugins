@@ -87,6 +87,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAChangeGroup addJIRAChangeGroup(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
 		jiraChangeGroup.setNew(true);
@@ -100,6 +101,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @param jiraChangeGroupId the primary key for the new j i r a change group
 	 * @return the new j i r a change group
 	 */
+	@Override
 	public JIRAChangeGroup createJIRAChangeGroup(long jiraChangeGroupId) {
 		return jiraChangeGroupPersistence.create(jiraChangeGroupId);
 	}
@@ -113,6 +115,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAChangeGroup deleteJIRAChangeGroup(long jiraChangeGroupId)
 		throws PortalException, SystemException {
 		return jiraChangeGroupPersistence.remove(jiraChangeGroupId);
@@ -126,11 +129,13 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAChangeGroup deleteJIRAChangeGroup(
 		JIRAChangeGroup jiraChangeGroup) throws SystemException {
 		return jiraChangeGroupPersistence.remove(jiraChangeGroup);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -145,6 +150,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -164,6 +170,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -185,6 +192,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -199,11 +207,13 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return jiraChangeGroupPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public JIRAChangeGroup fetchJIRAChangeGroup(long jiraChangeGroupId)
 		throws SystemException {
 		return jiraChangeGroupPersistence.fetchByPrimaryKey(jiraChangeGroupId);
@@ -217,11 +227,13 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @throws PortalException if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeGroup getJIRAChangeGroup(long jiraChangeGroupId)
 		throws PortalException, SystemException {
 		return jiraChangeGroupPersistence.findByPrimaryKey(jiraChangeGroupId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return jiraChangeGroupPersistence.findByPrimaryKey(primaryKeyObj);
@@ -239,6 +251,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the range of j i r a change groups
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<JIRAChangeGroup> getJIRAChangeGroups(int start, int end)
 		throws SystemException {
 		return jiraChangeGroupPersistence.findAll(start, end);
@@ -250,6 +263,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @return the number of j i r a change groups
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getJIRAChangeGroupsCount() throws SystemException {
 		return jiraChangeGroupPersistence.countAll();
 	}
@@ -262,6 +276,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAChangeGroup updateJIRAChangeGroup(
 		JIRAChangeGroup jiraChangeGroup) throws SystemException {
 		return jiraChangeGroupPersistence.update(jiraChangeGroup);
@@ -660,6 +675,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -669,10 +685,12 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

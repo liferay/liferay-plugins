@@ -38,6 +38,7 @@ public abstract class KaleoNotificationRecipientBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo notification recipient model instance should use the {@link KaleoNotificationRecipient} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoNotificationRecipientLocalServiceUtil.addKaleoNotificationRecipient(this);

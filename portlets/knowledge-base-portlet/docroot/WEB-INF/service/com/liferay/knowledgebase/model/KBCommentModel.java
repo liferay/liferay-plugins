@@ -69,6 +69,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 * @return the uuid of this k b comment
 	 */
 	@AutoEscape
+	@Override
 	public String getUuid();
 
 	/**
@@ -76,6 +77,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param uuid the uuid of this k b comment
 	 */
+	@Override
 	public void setUuid(String uuid);
 
 	/**
@@ -97,6 +99,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the group ID of this k b comment
 	 */
+	@Override
 	public long getGroupId();
 
 	/**
@@ -104,6 +107,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param groupId the group ID of this k b comment
 	 */
+	@Override
 	public void setGroupId(long groupId);
 
 	/**
@@ -111,6 +115,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the company ID of this k b comment
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -118,6 +123,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param companyId the company ID of this k b comment
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -125,6 +131,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the user ID of this k b comment
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -132,6 +139,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param userId the user ID of this k b comment
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -140,6 +148,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 * @return the user uuid of this k b comment
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -147,6 +156,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param userUuid the user uuid of this k b comment
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -155,6 +165,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 * @return the user name of this k b comment
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -162,6 +173,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param userName the user name of this k b comment
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -169,6 +181,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the create date of this k b comment
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -176,6 +189,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param createDate the create date of this k b comment
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -183,6 +197,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the modified date of this k b comment
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -190,6 +205,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param modifiedDate the modified date of this k b comment
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -197,6 +213,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the fully qualified class name of this k b comment
 	 */
+	@Override
 	public String getClassName();
 
 	public void setClassName(String className);
@@ -206,6 +223,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the class name ID of this k b comment
 	 */
+	@Override
 	public long getClassNameId();
 
 	/**
@@ -213,6 +231,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param classNameId the class name ID of this k b comment
 	 */
+	@Override
 	public void setClassNameId(long classNameId);
 
 	/**
@@ -220,6 +239,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the class p k of this k b comment
 	 */
+	@Override
 	public long getClassPK();
 
 	/**
@@ -227,6 +247,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param classPK the class p k of this k b comment
 	 */
+	@Override
 	public void setClassPK(long classPK);
 
 	/**
@@ -265,41 +286,60 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 */
 	public void setHelpful(boolean helpful);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(KBComment kbComment);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<KBComment> toCacheModel();
 
+	@Override
 	public KBComment toEscapedModel();
 
+	@Override
 	public KBComment toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

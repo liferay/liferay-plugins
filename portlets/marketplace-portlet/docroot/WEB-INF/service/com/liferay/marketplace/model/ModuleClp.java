@@ -38,26 +38,32 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	public ModuleClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Module.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Module.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _moduleId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setModuleId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _moduleId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -101,10 +107,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		}
 	}
 
+	@Override
 	public String getUuid() {
 		return _uuid;
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		_uuid = uuid;
 
@@ -122,10 +130,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		}
 	}
 
+	@Override
 	public long getModuleId() {
 		return _moduleId;
 	}
 
+	@Override
 	public void setModuleId(long moduleId) {
 		_moduleId = moduleId;
 
@@ -143,10 +153,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		}
 	}
 
+	@Override
 	public long getAppId() {
 		return _appId;
 	}
 
+	@Override
 	public void setAppId(long appId) {
 		_appId = appId;
 
@@ -164,10 +176,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		}
 	}
 
+	@Override
 	public String getContextName() {
 		return _contextName;
 	}
 
+	@Override
 	public void setContextName(String contextName) {
 		_contextName = contextName;
 
@@ -234,6 +248,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			ModuleLocalServiceUtil.addModule(this);
@@ -261,6 +276,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Module module) {
 		long primaryKey = module.getPrimaryKey();
 
@@ -319,6 +335,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(16);
 

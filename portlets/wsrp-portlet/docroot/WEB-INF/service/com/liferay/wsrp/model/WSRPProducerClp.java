@@ -40,26 +40,32 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	public WSRPProducerClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return WSRPProducer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return WSRPProducer.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _wsrpProducerId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setWsrpProducerId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _wsrpProducerId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -138,10 +144,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public String getUuid() {
 		return _uuid;
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		_uuid = uuid;
 
@@ -159,10 +167,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public long getWsrpProducerId() {
 		return _wsrpProducerId;
 	}
 
+	@Override
 	public void setWsrpProducerId(long wsrpProducerId) {
 		_wsrpProducerId = wsrpProducerId;
 
@@ -180,10 +190,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -201,10 +213,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -222,10 +236,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -243,10 +259,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -264,10 +282,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -285,10 +305,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public String getVersion() {
 		return _version;
 	}
 
+	@Override
 	public void setVersion(String version) {
 		_version = version;
 
@@ -306,10 +328,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public String getPortletIds() {
 		return _portletIds;
 	}
 
+	@Override
 	public void setPortletIds(String portletIds) {
 		_portletIds = portletIds;
 
@@ -327,6 +351,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	@Override
 	public java.lang.String getURL(java.lang.String portalURL) {
 		try {
 			String methodName = "getURL";
@@ -394,6 +419,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			WSRPProducerLocalServiceUtil.addWSRPProducer(this);
@@ -426,6 +452,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(WSRPProducer wsrpProducer) {
 		int value = 0;
 
@@ -492,6 +519,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

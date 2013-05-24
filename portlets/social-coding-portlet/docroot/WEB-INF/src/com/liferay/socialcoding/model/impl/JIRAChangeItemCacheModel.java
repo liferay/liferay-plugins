@@ -57,6 +57,7 @@ public class JIRAChangeItemCacheModel implements CacheModel<JIRAChangeItem>,
 		return sb.toString();
 	}
 
+	@Override
 	public JIRAChangeItem toEntityModel() {
 		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
 
@@ -103,6 +104,7 @@ public class JIRAChangeItemCacheModel implements CacheModel<JIRAChangeItem>,
 		return jiraChangeItemImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		jiraChangeItemId = objectInput.readLong();
 		jiraChangeGroupId = objectInput.readLong();
@@ -113,6 +115,7 @@ public class JIRAChangeItemCacheModel implements CacheModel<JIRAChangeItem>,
 		newString = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(jiraChangeItemId);

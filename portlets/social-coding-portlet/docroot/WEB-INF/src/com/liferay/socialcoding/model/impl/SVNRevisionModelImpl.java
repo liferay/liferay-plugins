@@ -91,26 +91,32 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	public SVNRevisionModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _svnRevisionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setSvnRevisionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _svnRevisionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return SVNRevision.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return SVNRevision.class.getName();
 	}
@@ -168,14 +174,17 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public long getSvnRevisionId() {
 		return _svnRevisionId;
 	}
 
+	@Override
 	public void setSvnRevisionId(long svnRevisionId) {
 		_svnRevisionId = svnRevisionId;
 	}
 
+	@Override
 	public String getSvnUserId() {
 		if (_svnUserId == null) {
 			return StringPool.BLANK;
@@ -185,6 +194,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public void setSvnUserId(String svnUserId) {
 		_columnBitmask |= SVNUSERID_COLUMN_BITMASK;
 
@@ -199,18 +209,22 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		return GetterUtil.getString(_originalSvnUserId);
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public long getSvnRepositoryId() {
 		return _svnRepositoryId;
 	}
 
+	@Override
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_columnBitmask |= SVNREPOSITORYID_COLUMN_BITMASK;
 
@@ -227,16 +241,19 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		return _originalSvnRepositoryId;
 	}
 
+	@Override
 	public long getRevisionNumber() {
 		return _revisionNumber;
 	}
 
+	@Override
 	public void setRevisionNumber(long revisionNumber) {
 		_columnBitmask = -1L;
 
 		_revisionNumber = revisionNumber;
 	}
 
+	@Override
 	public String getComments() {
 		if (_comments == null) {
 			return StringPool.BLANK;
@@ -246,6 +263,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public void setComments(String comments) {
 		_comments = comments;
 	}
@@ -293,6 +311,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		return svnRevisionImpl;
 	}
 
+	@Override
 	public int compareTo(SVNRevision svnRevision) {
 		int value = 0;
 
@@ -414,6 +433,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(22);
 

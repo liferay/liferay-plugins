@@ -93,6 +93,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		return sb.toString();
 	}
 
+	@Override
 	public KBArticle toEntityModel() {
 		KBArticleImpl kbArticleImpl = new KBArticleImpl();
 
@@ -189,6 +190,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		return kbArticleImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		kbArticleId = objectInput.readLong();
@@ -216,6 +218,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		statusDate = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

@@ -87,6 +87,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public SVNRevision addSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		svnRevision.setNew(true);
@@ -100,6 +101,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @param svnRevisionId the primary key for the new s v n revision
 	 * @return the new s v n revision
 	 */
+	@Override
 	public SVNRevision createSVNRevision(long svnRevisionId) {
 		return svnRevisionPersistence.create(svnRevisionId);
 	}
@@ -113,6 +115,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public SVNRevision deleteSVNRevision(long svnRevisionId)
 		throws PortalException, SystemException {
 		return svnRevisionPersistence.remove(svnRevisionId);
@@ -126,11 +129,13 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public SVNRevision deleteSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		return svnRevisionPersistence.remove(svnRevision);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -145,6 +150,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -164,6 +170,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -185,6 +192,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -199,11 +207,13 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return svnRevisionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public SVNRevision fetchSVNRevision(long svnRevisionId)
 		throws SystemException {
 		return svnRevisionPersistence.fetchByPrimaryKey(svnRevisionId);
@@ -217,11 +227,13 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @throws PortalException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRevision getSVNRevision(long svnRevisionId)
 		throws PortalException, SystemException {
 		return svnRevisionPersistence.findByPrimaryKey(svnRevisionId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return svnRevisionPersistence.findByPrimaryKey(primaryKeyObj);
@@ -239,6 +251,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the range of s v n revisions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<SVNRevision> getSVNRevisions(int start, int end)
 		throws SystemException {
 		return svnRevisionPersistence.findAll(start, end);
@@ -250,6 +263,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the number of s v n revisions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getSVNRevisionsCount() throws SystemException {
 		return svnRevisionPersistence.countAll();
 	}
@@ -262,6 +276,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public SVNRevision updateSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		return svnRevisionPersistence.update(svnRevision);
@@ -660,6 +675,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -669,10 +685,12 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

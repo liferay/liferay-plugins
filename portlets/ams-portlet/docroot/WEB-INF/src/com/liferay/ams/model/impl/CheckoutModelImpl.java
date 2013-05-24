@@ -92,26 +92,32 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	public CheckoutModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _checkoutId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setCheckoutId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _checkoutId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Checkout.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Checkout.class.getName();
 	}
@@ -197,38 +203,47 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		}
 	}
 
+	@Override
 	public long getCheckoutId() {
 		return _checkoutId;
 	}
 
+	@Override
 	public void setCheckoutId(long checkoutId) {
 		_checkoutId = checkoutId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -238,54 +253,67 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public long getAssetId() {
 		return _assetId;
 	}
 
+	@Override
 	public void setAssetId(long assetId) {
 		_assetId = assetId;
 	}
 
+	@Override
 	public Date getCheckOutDate() {
 		return _checkOutDate;
 	}
 
+	@Override
 	public void setCheckOutDate(Date checkOutDate) {
 		_checkOutDate = checkOutDate;
 	}
 
+	@Override
 	public Date getExpectedCheckInDate() {
 		return _expectedCheckInDate;
 	}
 
+	@Override
 	public void setExpectedCheckInDate(Date expectedCheckInDate) {
 		_expectedCheckInDate = expectedCheckInDate;
 	}
 
+	@Override
 	public Date getActualCheckInDate() {
 		return _actualCheckInDate;
 	}
 
+	@Override
 	public void setActualCheckInDate(Date actualCheckInDate) {
 		_actualCheckInDate = actualCheckInDate;
 	}
@@ -333,6 +361,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		return checkoutImpl;
 	}
 
+	@Override
 	public int compareTo(Checkout checkout) {
 		long primaryKey = checkout.getPrimaryKey();
 
@@ -475,6 +504,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

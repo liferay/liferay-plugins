@@ -71,6 +71,7 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 		return sb.toString();
 	}
 
+	@Override
 	public WSRPConsumer toEntityModel() {
 		WSRPConsumerImpl wsrpConsumerImpl = new WSRPConsumerImpl();
 
@@ -159,6 +160,7 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 		return wsrpConsumerImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		wsrpConsumerId = objectInput.readLong();
@@ -175,6 +177,7 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 		markupCharacterSets = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

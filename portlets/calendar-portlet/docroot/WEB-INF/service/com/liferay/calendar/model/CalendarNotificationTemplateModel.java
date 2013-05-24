@@ -68,6 +68,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 * @return the uuid of this calendar notification template
 	 */
 	@AutoEscape
+	@Override
 	public String getUuid();
 
 	/**
@@ -75,6 +76,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param uuid the uuid of this calendar notification template
 	 */
+	@Override
 	public void setUuid(String uuid);
 
 	/**
@@ -97,6 +99,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @return the group ID of this calendar notification template
 	 */
+	@Override
 	public long getGroupId();
 
 	/**
@@ -104,6 +107,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param groupId the group ID of this calendar notification template
 	 */
+	@Override
 	public void setGroupId(long groupId);
 
 	/**
@@ -111,6 +115,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @return the company ID of this calendar notification template
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -118,6 +123,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param companyId the company ID of this calendar notification template
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -125,6 +131,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @return the user ID of this calendar notification template
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -132,6 +139,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param userId the user ID of this calendar notification template
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -140,6 +148,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 * @return the user uuid of this calendar notification template
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -147,6 +156,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param userUuid the user uuid of this calendar notification template
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -155,6 +165,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 * @return the user name of this calendar notification template
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -162,6 +173,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param userName the user name of this calendar notification template
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -169,6 +181,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @return the create date of this calendar notification template
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -176,6 +189,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param createDate the create date of this calendar notification template
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -183,6 +197,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @return the modified date of this calendar notification template
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -190,6 +205,7 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 *
 	 * @param modifiedDate the modified date of this calendar notification template
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -281,42 +297,61 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 	 */
 	public void setBody(String body);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(
 		CalendarNotificationTemplate calendarNotificationTemplate);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<CalendarNotificationTemplate> toCacheModel();
 
+	@Override
 	public CalendarNotificationTemplate toEscapedModel();
 
+	@Override
 	public CalendarNotificationTemplate toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

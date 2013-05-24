@@ -81,6 +81,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public PollsVote addPollsVote(PollsVote pollsVote)
 		throws SystemException {
 		pollsVote.setNew(true);
@@ -94,6 +95,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param pollsVoteId the primary key for the new polls vote
 	 * @return the new polls vote
 	 */
+	@Override
 	public PollsVote createPollsVote(long pollsVoteId) {
 		return pollsVotePersistence.create(pollsVoteId);
 	}
@@ -107,6 +109,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public PollsVote deletePollsVote(long pollsVoteId)
 		throws PortalException, SystemException {
 		return pollsVotePersistence.remove(pollsVoteId);
@@ -120,11 +123,13 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public PollsVote deletePollsVote(PollsVote pollsVote)
 		throws SystemException {
 		return pollsVotePersistence.remove(pollsVote);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -139,6 +144,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -158,6 +164,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -179,6 +186,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -193,11 +201,13 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return pollsVotePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public PollsVote fetchPollsVote(long pollsVoteId) throws SystemException {
 		return pollsVotePersistence.fetchByPrimaryKey(pollsVoteId);
 	}
@@ -210,11 +220,13 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a polls vote with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public PollsVote getPollsVote(long pollsVoteId)
 		throws PortalException, SystemException {
 		return pollsVotePersistence.findByPrimaryKey(pollsVoteId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return pollsVotePersistence.findByPrimaryKey(primaryKeyObj);
@@ -232,6 +244,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of polls votes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<PollsVote> getPollsVotes(int start, int end)
 		throws SystemException {
 		return pollsVotePersistence.findAll(start, end);
@@ -243,6 +256,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of polls votes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getPollsVotesCount() throws SystemException {
 		return pollsVotePersistence.countAll();
 	}
@@ -255,6 +269,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public PollsVote updatePollsVote(PollsVote pollsVote)
 		throws SystemException {
 		return pollsVotePersistence.update(pollsVote);
@@ -557,6 +572,7 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -566,10 +582,12 @@ public abstract class PollsVoteLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

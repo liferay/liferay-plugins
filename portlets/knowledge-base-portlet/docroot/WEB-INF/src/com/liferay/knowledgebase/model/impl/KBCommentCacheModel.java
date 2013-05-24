@@ -69,6 +69,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		return sb.toString();
 	}
 
+	@Override
 	public KBComment toEntityModel() {
 		KBCommentImpl kbCommentImpl = new KBCommentImpl();
 
@@ -122,6 +123,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		return kbCommentImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		kbCommentId = objectInput.readLong();
@@ -137,6 +139,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		helpful = objectInput.readBoolean();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

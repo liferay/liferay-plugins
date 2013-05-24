@@ -34,14 +34,17 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		_oAuthToken = oAuthToken;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return OAuthToken.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return OAuthToken.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -63,6 +66,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long oAuthTokenId = (Long)attributes.get("oAuthTokenId");
 
@@ -154,6 +158,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the primary key of this o auth token
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _oAuthToken.getPrimaryKey();
 	}
@@ -163,6 +168,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param primaryKey the primary key of this o auth token
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_oAuthToken.setPrimaryKey(primaryKey);
 	}
@@ -172,6 +178,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the o auth token ID of this o auth token
 	*/
+	@Override
 	public long getOAuthTokenId() {
 		return _oAuthToken.getOAuthTokenId();
 	}
@@ -181,6 +188,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param oAuthTokenId the o auth token ID of this o auth token
 	*/
+	@Override
 	public void setOAuthTokenId(long oAuthTokenId) {
 		_oAuthToken.setOAuthTokenId(oAuthTokenId);
 	}
@@ -190,6 +198,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the company ID of this o auth token
 	*/
+	@Override
 	public long getCompanyId() {
 		return _oAuthToken.getCompanyId();
 	}
@@ -199,6 +208,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param companyId the company ID of this o auth token
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_oAuthToken.setCompanyId(companyId);
 	}
@@ -208,6 +218,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the user ID of this o auth token
 	*/
+	@Override
 	public long getUserId() {
 		return _oAuthToken.getUserId();
 	}
@@ -217,6 +228,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param userId the user ID of this o auth token
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_oAuthToken.setUserId(userId);
 	}
@@ -227,6 +239,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	* @return the user uuid of this o auth token
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthToken.getUserUuid();
@@ -237,6 +250,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param userUuid the user uuid of this o auth token
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_oAuthToken.setUserUuid(userUuid);
 	}
@@ -246,6 +260,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the user name of this o auth token
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _oAuthToken.getUserName();
 	}
@@ -255,6 +270,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param userName the user name of this o auth token
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_oAuthToken.setUserName(userName);
 	}
@@ -264,6 +280,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the create date of this o auth token
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _oAuthToken.getCreateDate();
 	}
@@ -273,6 +290,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param createDate the create date of this o auth token
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_oAuthToken.setCreateDate(createDate);
 	}
@@ -282,6 +300,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the modified date of this o auth token
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _oAuthToken.getModifiedDate();
 	}
@@ -291,6 +310,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param modifiedDate the modified date of this o auth token
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_oAuthToken.setModifiedDate(modifiedDate);
 	}
@@ -300,6 +320,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the gadget key of this o auth token
 	*/
+	@Override
 	public java.lang.String getGadgetKey() {
 		return _oAuthToken.getGadgetKey();
 	}
@@ -309,6 +330,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param gadgetKey the gadget key of this o auth token
 	*/
+	@Override
 	public void setGadgetKey(java.lang.String gadgetKey) {
 		_oAuthToken.setGadgetKey(gadgetKey);
 	}
@@ -318,6 +340,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the service name of this o auth token
 	*/
+	@Override
 	public java.lang.String getServiceName() {
 		return _oAuthToken.getServiceName();
 	}
@@ -327,6 +350,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param serviceName the service name of this o auth token
 	*/
+	@Override
 	public void setServiceName(java.lang.String serviceName) {
 		_oAuthToken.setServiceName(serviceName);
 	}
@@ -336,6 +360,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the module ID of this o auth token
 	*/
+	@Override
 	public long getModuleId() {
 		return _oAuthToken.getModuleId();
 	}
@@ -345,6 +370,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param moduleId the module ID of this o auth token
 	*/
+	@Override
 	public void setModuleId(long moduleId) {
 		_oAuthToken.setModuleId(moduleId);
 	}
@@ -354,6 +380,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the access token of this o auth token
 	*/
+	@Override
 	public java.lang.String getAccessToken() {
 		return _oAuthToken.getAccessToken();
 	}
@@ -363,6 +390,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param accessToken the access token of this o auth token
 	*/
+	@Override
 	public void setAccessToken(java.lang.String accessToken) {
 		_oAuthToken.setAccessToken(accessToken);
 	}
@@ -372,6 +400,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the token name of this o auth token
 	*/
+	@Override
 	public java.lang.String getTokenName() {
 		return _oAuthToken.getTokenName();
 	}
@@ -381,6 +410,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param tokenName the token name of this o auth token
 	*/
+	@Override
 	public void setTokenName(java.lang.String tokenName) {
 		_oAuthToken.setTokenName(tokenName);
 	}
@@ -390,6 +420,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the token secret of this o auth token
 	*/
+	@Override
 	public java.lang.String getTokenSecret() {
 		return _oAuthToken.getTokenSecret();
 	}
@@ -399,6 +430,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param tokenSecret the token secret of this o auth token
 	*/
+	@Override
 	public void setTokenSecret(java.lang.String tokenSecret) {
 		_oAuthToken.setTokenSecret(tokenSecret);
 	}
@@ -408,6 +440,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the session handle of this o auth token
 	*/
+	@Override
 	public java.lang.String getSessionHandle() {
 		return _oAuthToken.getSessionHandle();
 	}
@@ -417,6 +450,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param sessionHandle the session handle of this o auth token
 	*/
+	@Override
 	public void setSessionHandle(java.lang.String sessionHandle) {
 		_oAuthToken.setSessionHandle(sessionHandle);
 	}
@@ -426,6 +460,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @return the expiration of this o auth token
 	*/
+	@Override
 	public long getExpiration() {
 		return _oAuthToken.getExpiration();
 	}
@@ -435,52 +470,64 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	*
 	* @param expiration the expiration of this o auth token
 	*/
+	@Override
 	public void setExpiration(long expiration) {
 		_oAuthToken.setExpiration(expiration);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _oAuthToken.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_oAuthToken.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _oAuthToken.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_oAuthToken.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _oAuthToken.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _oAuthToken.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_oAuthToken.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _oAuthToken.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_oAuthToken.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_oAuthToken.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_oAuthToken.setExpandoBridgeAttributes(serviceContext);
@@ -491,6 +538,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		return new OAuthTokenWrapper((OAuthToken)_oAuthToken.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.opensocial.model.OAuthToken oAuthToken) {
 		return _oAuthToken.compareTo(oAuthToken);
 	}
@@ -500,14 +548,17 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		return _oAuthToken.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.opensocial.model.OAuthToken> toCacheModel() {
 		return _oAuthToken.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken toEscapedModel() {
 		return new OAuthTokenWrapper(_oAuthToken.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken toUnescapedModel() {
 		return new OAuthTokenWrapper(_oAuthToken.toUnescapedModel());
 	}
@@ -517,10 +568,12 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		return _oAuthToken.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _oAuthToken.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_oAuthToken.persist();
@@ -533,10 +586,12 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		return _oAuthToken;
 	}
 
+	@Override
 	public OAuthToken getWrappedModel() {
 		return _oAuthToken;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_oAuthToken.resetOriginalValues();
 	}

@@ -145,26 +145,32 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	public GadgetModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _gadgetId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setGadgetId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _gadgetId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Gadget.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Gadget.class.getName();
 	}
@@ -237,6 +243,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		}
 	}
 
+	@Override
 	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
@@ -247,6 +254,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -259,20 +267,24 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	@JSON
 	public long getGadgetId() {
 		return _gadgetId;
 	}
 
+	@Override
 	public void setGadgetId(long gadgetId) {
 		_gadgetId = gadgetId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -289,24 +301,29 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return _originalCompanyId;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public String getName() {
 		if (_name == null) {
@@ -317,12 +334,14 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		}
 	}
 
+	@Override
 	public void setName(String name) {
 		_columnBitmask = -1L;
 
 		_name = name;
 	}
 
+	@Override
 	@JSON
 	public String getUrl() {
 		if (_url == null) {
@@ -333,6 +352,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		}
 	}
 
+	@Override
 	public void setUrl(String url) {
 		_columnBitmask |= URL_COLUMN_BITMASK;
 
@@ -347,6 +367,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return GetterUtil.getString(_originalUrl);
 	}
 
+	@Override
 	@JSON
 	public String getPortletCategoryNames() {
 		if (_portletCategoryNames == null) {
@@ -357,6 +378,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		}
 	}
 
+	@Override
 	public void setPortletCategoryNames(String portletCategoryNames) {
 		_portletCategoryNames = portletCategoryNames;
 	}
@@ -406,6 +428,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return gadgetImpl;
 	}
 
+	@Override
 	public int compareTo(Gadget gadget) {
 		int value = 0;
 
@@ -547,6 +570,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(28);
 

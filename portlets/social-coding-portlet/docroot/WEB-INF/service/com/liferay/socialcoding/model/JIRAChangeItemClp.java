@@ -39,26 +39,32 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	public JIRAChangeItemClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return JIRAChangeItem.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return JIRAChangeItem.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _jiraChangeItemId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setJiraChangeItemId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _jiraChangeItemId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -123,10 +129,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public long getJiraChangeItemId() {
 		return _jiraChangeItemId;
 	}
 
+	@Override
 	public void setJiraChangeItemId(long jiraChangeItemId) {
 		_jiraChangeItemId = jiraChangeItemId;
 
@@ -145,10 +153,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public long getJiraChangeGroupId() {
 		return _jiraChangeGroupId;
 	}
 
+	@Override
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeGroupId = jiraChangeGroupId;
 
@@ -167,10 +177,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public String getField() {
 		return _field;
 	}
 
+	@Override
 	public void setField(String field) {
 		_field = field;
 
@@ -188,10 +200,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public String getOldValue() {
 		return _oldValue;
 	}
 
+	@Override
 	public void setOldValue(String oldValue) {
 		_oldValue = oldValue;
 
@@ -209,10 +223,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public String getOldString() {
 		return _oldString;
 	}
 
+	@Override
 	public void setOldString(String oldString) {
 		_oldString = oldString;
 
@@ -230,10 +246,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public String getNewValue() {
 		return _newValue;
 	}
 
+	@Override
 	public void setNewValue(String newValue) {
 		_newValue = newValue;
 
@@ -251,10 +269,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	@Override
 	public String getNewString() {
 		return _newString;
 	}
 
+	@Override
 	public void setNewString(String newString) {
 		_newString = newString;
 
@@ -322,6 +342,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			JIRAChangeItemLocalServiceUtil.addJIRAChangeItem(this);
@@ -353,6 +374,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(JIRAChangeItem jiraChangeItem) {
 		long primaryKey = jiraChangeItem.getPrimaryKey();
 
@@ -417,6 +439,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(25);
 

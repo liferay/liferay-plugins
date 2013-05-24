@@ -41,26 +41,32 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 	public CalendarNotificationTemplateClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return CalendarNotificationTemplate.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return CalendarNotificationTemplate.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _calendarNotificationTemplateId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setCalendarNotificationTemplateId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _calendarNotificationTemplateId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -178,10 +184,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public String getUuid() {
 		return _uuid;
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		_uuid = uuid;
 
@@ -199,10 +207,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public long getCalendarNotificationTemplateId() {
 		return _calendarNotificationTemplateId;
 	}
 
+	@Override
 	public void setCalendarNotificationTemplateId(
 		long calendarNotificationTemplateId) {
 		_calendarNotificationTemplateId = calendarNotificationTemplateId;
@@ -223,10 +233,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -244,10 +256,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -266,10 +280,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -287,18 +303,22 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -316,10 +336,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -338,10 +360,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -360,10 +384,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public long getCalendarId() {
 		return _calendarId;
 	}
 
+	@Override
 	public void setCalendarId(long calendarId) {
 		_calendarId = calendarId;
 
@@ -382,10 +408,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public String getNotificationType() {
 		return _notificationType;
 	}
 
+	@Override
 	public void setNotificationType(String notificationType) {
 		_notificationType = notificationType;
 
@@ -405,10 +433,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public String getNotificationTypeSettings() {
 		return _notificationTypeSettings;
 	}
 
+	@Override
 	public void setNotificationTypeSettings(String notificationTypeSettings) {
 		_notificationTypeSettings = notificationTypeSettings;
 
@@ -428,10 +458,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public String getNotificationTemplateType() {
 		return _notificationTemplateType;
 	}
 
+	@Override
 	public void setNotificationTemplateType(String notificationTemplateType) {
 		_notificationTemplateType = notificationTemplateType;
 
@@ -451,10 +483,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public String getSubject() {
 		return _subject;
 	}
 
+	@Override
 	public void setSubject(String subject) {
 		_subject = subject;
 
@@ -472,10 +506,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public String getBody() {
 		return _body;
 	}
 
+	@Override
 	public void setBody(String body) {
 		_body = body;
 
@@ -493,6 +529,7 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public void setTypeSettingsProperties(
 		com.liferay.portal.kernel.util.UnicodeProperties notificationTypeSettingsProperties) {
 		try {
@@ -513,6 +550,7 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		}
 	}
 
+	@Override
 	public com.liferay.portal.kernel.util.UnicodeProperties getNotificationTypeSettingsProperties() {
 		try {
 			String methodName = "getNotificationTypeSettingsProperties";
@@ -581,6 +619,7 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			CalendarNotificationTemplateLocalServiceUtil.addCalendarNotificationTemplate(this);
@@ -619,6 +658,7 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		return clone;
 	}
 
+	@Override
 	public int compareTo(
 		CalendarNotificationTemplate calendarNotificationTemplate) {
 		long primaryKey = calendarNotificationTemplate.getPrimaryKey();
@@ -698,6 +738,7 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

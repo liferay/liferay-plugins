@@ -129,6 +129,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		_methodParameterTypes21 = new String[] { "long" };
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -160,6 +161,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient createKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId) {
 		Object returnObj = null;
@@ -184,6 +186,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -218,6 +221,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -249,6 +253,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -271,6 +276,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -301,6 +307,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -337,6 +344,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -377,6 +385,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -406,6 +415,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -435,6 +445,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient getKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -469,6 +480,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -503,6 +515,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -531,6 +544,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKaleoNotificationRecipientsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -558,6 +572,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient updateKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -589,6 +604,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -611,6 +627,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -630,12 +647,14 @@ public class KaleoNotificationRecipientLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		long kaleoDefinitionId, long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,
@@ -680,6 +699,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteCompanyKaleoNotificationRecipients(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -703,6 +723,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		}
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoNotificationRecipients(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -727,6 +748,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
 		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.SystemException {

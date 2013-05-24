@@ -38,6 +38,7 @@ public abstract class PollsVoteBaseImpl extends PollsVoteModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a polls vote model instance should use the {@link PollsVote} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			PollsVoteLocalServiceUtil.addPollsVote(this);

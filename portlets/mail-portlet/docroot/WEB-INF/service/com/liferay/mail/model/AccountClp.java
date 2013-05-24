@@ -40,26 +40,32 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 	public AccountClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Account.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Account.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _accountId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setAccountId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _accountId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -257,10 +263,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public long getAccountId() {
 		return _accountId;
 	}
 
+	@Override
 	public void setAccountId(long accountId) {
 		_accountId = accountId;
 
@@ -278,10 +286,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -299,10 +309,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -320,18 +332,22 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -349,10 +365,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -370,10 +388,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -391,10 +411,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getAddress() {
 		return _address;
 	}
 
+	@Override
 	public void setAddress(String address) {
 		_address = address;
 
@@ -412,10 +434,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getPersonalName() {
 		return _personalName;
 	}
 
+	@Override
 	public void setPersonalName(String personalName) {
 		_personalName = personalName;
 
@@ -433,10 +457,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getProtocol() {
 		return _protocol;
 	}
 
+	@Override
 	public void setProtocol(String protocol) {
 		_protocol = protocol;
 
@@ -454,10 +480,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getIncomingHostName() {
 		return _incomingHostName;
 	}
 
+	@Override
 	public void setIncomingHostName(String incomingHostName) {
 		_incomingHostName = incomingHostName;
 
@@ -476,10 +504,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public int getIncomingPort() {
 		return _incomingPort;
 	}
 
+	@Override
 	public void setIncomingPort(int incomingPort) {
 		_incomingPort = incomingPort;
 
@@ -497,14 +527,17 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public boolean getIncomingSecure() {
 		return _incomingSecure;
 	}
 
+	@Override
 	public boolean isIncomingSecure() {
 		return _incomingSecure;
 	}
 
+	@Override
 	public void setIncomingSecure(boolean incomingSecure) {
 		_incomingSecure = incomingSecure;
 
@@ -523,10 +556,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getOutgoingHostName() {
 		return _outgoingHostName;
 	}
 
+	@Override
 	public void setOutgoingHostName(String outgoingHostName) {
 		_outgoingHostName = outgoingHostName;
 
@@ -545,10 +580,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public int getOutgoingPort() {
 		return _outgoingPort;
 	}
 
+	@Override
 	public void setOutgoingPort(int outgoingPort) {
 		_outgoingPort = outgoingPort;
 
@@ -566,14 +603,17 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public boolean getOutgoingSecure() {
 		return _outgoingSecure;
 	}
 
+	@Override
 	public boolean isOutgoingSecure() {
 		return _outgoingSecure;
 	}
 
+	@Override
 	public void setOutgoingSecure(boolean outgoingSecure) {
 		_outgoingSecure = outgoingSecure;
 
@@ -592,10 +632,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getLogin() {
 		return _login;
 	}
 
+	@Override
 	public void setLogin(String login) {
 		_login = login;
 
@@ -613,10 +655,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getPassword() {
 		return _password;
 	}
 
+	@Override
 	public void setPassword(String password) {
 		_password = password;
 
@@ -634,14 +678,17 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public boolean getSavePassword() {
 		return _savePassword;
 	}
 
+	@Override
 	public boolean isSavePassword() {
 		return _savePassword;
 	}
 
+	@Override
 	public void setSavePassword(boolean savePassword) {
 		_savePassword = savePassword;
 
@@ -659,10 +706,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getSignature() {
 		return _signature;
 	}
 
+	@Override
 	public void setSignature(String signature) {
 		_signature = signature;
 
@@ -680,14 +729,17 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public boolean getUseSignature() {
 		return _useSignature;
 	}
 
+	@Override
 	public boolean isUseSignature() {
 		return _useSignature;
 	}
 
+	@Override
 	public void setUseSignature(boolean useSignature) {
 		_useSignature = useSignature;
 
@@ -705,10 +757,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public String getFolderPrefix() {
 		return _folderPrefix;
 	}
 
+	@Override
 	public void setFolderPrefix(String folderPrefix) {
 		_folderPrefix = folderPrefix;
 
@@ -726,10 +780,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public long getInboxFolderId() {
 		return _inboxFolderId;
 	}
 
+	@Override
 	public void setInboxFolderId(long inboxFolderId) {
 		_inboxFolderId = inboxFolderId;
 
@@ -747,10 +803,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public long getDraftFolderId() {
 		return _draftFolderId;
 	}
 
+	@Override
 	public void setDraftFolderId(long draftFolderId) {
 		_draftFolderId = draftFolderId;
 
@@ -768,10 +826,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public long getSentFolderId() {
 		return _sentFolderId;
 	}
 
+	@Override
 	public void setSentFolderId(long sentFolderId) {
 		_sentFolderId = sentFolderId;
 
@@ -789,10 +849,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public long getTrashFolderId() {
 		return _trashFolderId;
 	}
 
+	@Override
 	public void setTrashFolderId(long trashFolderId) {
 		_trashFolderId = trashFolderId;
 
@@ -810,14 +872,17 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public boolean getDefaultSender() {
 		return _defaultSender;
 	}
 
+	@Override
 	public boolean isDefaultSender() {
 		return _defaultSender;
 	}
 
+	@Override
 	public void setDefaultSender(boolean defaultSender) {
 		_defaultSender = defaultSender;
 
@@ -836,6 +901,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public void setPasswordDecrypted(java.lang.String unencryptedPassword) {
 		try {
 			String methodName = "setPasswordDecrypted";
@@ -851,6 +917,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		}
 	}
 
+	@Override
 	public java.lang.String getPasswordDecrypted() {
 		try {
 			String methodName = "getPasswordDecrypted";
@@ -918,6 +985,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			AccountLocalServiceUtil.addAccount(this);
@@ -967,6 +1035,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Account account) {
 		int value = 0;
 
@@ -1067,6 +1136,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(82);
 

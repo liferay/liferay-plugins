@@ -86,6 +86,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public FavoriteSite addFavoriteSite(FavoriteSite favoriteSite)
 		throws SystemException {
 		favoriteSite.setNew(true);
@@ -99,6 +100,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param favoriteSiteId the primary key for the new favorite site
 	 * @return the new favorite site
 	 */
+	@Override
 	public FavoriteSite createFavoriteSite(long favoriteSiteId) {
 		return favoriteSitePersistence.create(favoriteSiteId);
 	}
@@ -112,6 +114,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public FavoriteSite deleteFavoriteSite(long favoriteSiteId)
 		throws PortalException, SystemException {
 		return favoriteSitePersistence.remove(favoriteSiteId);
@@ -125,11 +128,13 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public FavoriteSite deleteFavoriteSite(FavoriteSite favoriteSite)
 		throws SystemException {
 		return favoriteSitePersistence.remove(favoriteSite);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -144,6 +149,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -163,6 +169,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -184,6 +191,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -198,11 +206,13 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return favoriteSitePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public FavoriteSite fetchFavoriteSite(long favoriteSiteId)
 		throws SystemException {
 		return favoriteSitePersistence.fetchByPrimaryKey(favoriteSiteId);
@@ -216,11 +226,13 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @throws PortalException if a favorite site with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public FavoriteSite getFavoriteSite(long favoriteSiteId)
 		throws PortalException, SystemException {
 		return favoriteSitePersistence.findByPrimaryKey(favoriteSiteId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return favoriteSitePersistence.findByPrimaryKey(primaryKeyObj);
@@ -238,6 +250,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the range of favorite sites
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<FavoriteSite> getFavoriteSites(int start, int end)
 		throws SystemException {
 		return favoriteSitePersistence.findAll(start, end);
@@ -249,6 +262,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the number of favorite sites
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getFavoriteSitesCount() throws SystemException {
 		return favoriteSitePersistence.countAll();
 	}
@@ -261,6 +275,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public FavoriteSite updateFavoriteSite(FavoriteSite favoriteSite)
 		throws SystemException {
 		return favoriteSitePersistence.update(favoriteSite);
@@ -634,6 +649,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -643,10 +659,12 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

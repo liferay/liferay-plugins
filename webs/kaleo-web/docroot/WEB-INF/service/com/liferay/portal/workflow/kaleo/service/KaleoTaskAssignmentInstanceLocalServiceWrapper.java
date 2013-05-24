@@ -38,6 +38,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the kaleo task assignment instance that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance addKaleoTaskAssignmentInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -50,6 +51,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @param kaleoTaskAssignmentInstanceId the primary key for the new kaleo task assignment instance
 	* @return the new kaleo task assignment instance
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance createKaleoTaskAssignmentInstance(
 		long kaleoTaskAssignmentInstanceId) {
 		return _kaleoTaskAssignmentInstanceLocalService.createKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstanceId);
@@ -63,6 +65,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @throws PortalException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
 		long kaleoTaskAssignmentInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -77,12 +80,14 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the kaleo task assignment instance that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskAssignmentInstanceLocalService.deleteKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstance);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _kaleoTaskAssignmentInstanceLocalService.dynamicQuery();
 	}
@@ -94,6 +99,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -114,6 +120,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -136,6 +143,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -153,12 +161,14 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskAssignmentInstanceLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance fetchKaleoTaskAssignmentInstance(
 		long kaleoTaskAssignmentInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -173,6 +183,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @throws PortalException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance getKaleoTaskAssignmentInstance(
 		long kaleoTaskAssignmentInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -180,6 +191,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 		return _kaleoTaskAssignmentInstanceLocalService.getKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstanceId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -199,6 +211,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the range of kaleo task assignment instances
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -212,6 +225,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the number of kaleo task assignment instances
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getKaleoTaskAssignmentInstancesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskAssignmentInstanceLocalService.getKaleoTaskAssignmentInstancesCount();
@@ -224,6 +238,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	* @return the kaleo task assignment instance that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance updateKaleoTaskAssignmentInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -235,6 +250,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _kaleoTaskAssignmentInstanceLocalService.getBeanIdentifier();
 	}
@@ -244,10 +260,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoTaskAssignmentInstanceLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -255,6 +273,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance addKaleoTaskAssignmentInstance(
 		long groupId,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
@@ -267,6 +286,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 			serviceContext);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> addTaskAssignmentInstances(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.util.Collection<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> kaleoTaskAssignments,
@@ -278,6 +298,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 			kaleoTaskAssignments, workflowContext, serviceContext);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance assignKaleoTaskAssignmentInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.lang.String assigneeClassName, long assigneeClassPK,
@@ -288,6 +309,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 			assigneeClassName, assigneeClassPK, serviceContext);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance completeKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -297,29 +319,34 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 			serviceContext);
 	}
 
+	@Override
 	public void deleteCompanyKaleoTaskAssignmentInstances(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTaskAssignmentInstanceLocalService.deleteCompanyKaleoTaskAssignmentInstances(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoTaskAssignmentInstances(
 		long kaleoDefintionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTaskAssignmentInstanceLocalService.deleteKaleoDefinitionKaleoTaskAssignmentInstances(kaleoDefintionId);
 	}
 
+	@Override
 	public void deleteKaleoInstanceKaleoTaskAssignmentInstances(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTaskAssignmentInstanceLocalService.deleteKaleoInstanceKaleoTaskAssignmentInstances(kaleoInstanceId);
 	}
 
+	@Override
 	public void deleteKaleoTaskAssignmentInstances(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTaskAssignmentInstanceLocalService.deleteKaleoTaskAssignmentInstances(kaleoTaskInstanceToken);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
 		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -341,10 +368,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 		_kaleoTaskAssignmentInstanceLocalService = kaleoTaskAssignmentInstanceLocalService;
 	}
 
+	@Override
 	public KaleoTaskAssignmentInstanceLocalService getWrappedService() {
 		return _kaleoTaskAssignmentInstanceLocalService;
 	}
 
+	@Override
 	public void setWrappedService(
 		KaleoTaskAssignmentInstanceLocalService kaleoTaskAssignmentInstanceLocalService) {
 		_kaleoTaskAssignmentInstanceLocalService = kaleoTaskAssignmentInstanceLocalService;

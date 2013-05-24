@@ -79,6 +79,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Checkout addCheckout(Checkout checkout) throws SystemException {
 		checkout.setNew(true);
 
@@ -91,6 +92,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param checkoutId the primary key for the new checkout
 	 * @return the new checkout
 	 */
+	@Override
 	public Checkout createCheckout(long checkoutId) {
 		return checkoutPersistence.create(checkoutId);
 	}
@@ -104,6 +106,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Checkout deleteCheckout(long checkoutId)
 		throws PortalException, SystemException {
 		return checkoutPersistence.remove(checkoutId);
@@ -117,10 +120,12 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Checkout deleteCheckout(Checkout checkout) throws SystemException {
 		return checkoutPersistence.remove(checkout);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -135,6 +140,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -154,6 +160,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -174,6 +181,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -188,11 +196,13 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return checkoutPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Checkout fetchCheckout(long checkoutId) throws SystemException {
 		return checkoutPersistence.fetchByPrimaryKey(checkoutId);
 	}
@@ -205,11 +215,13 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout getCheckout(long checkoutId)
 		throws PortalException, SystemException {
 		return checkoutPersistence.findByPrimaryKey(checkoutId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return checkoutPersistence.findByPrimaryKey(primaryKeyObj);
@@ -227,6 +239,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Checkout> getCheckouts(int start, int end)
 		throws SystemException {
 		return checkoutPersistence.findAll(start, end);
@@ -238,6 +251,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getCheckoutsCount() throws SystemException {
 		return checkoutPersistence.countAll();
 	}
@@ -250,6 +264,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Checkout updateCheckout(Checkout checkout) throws SystemException {
 		return checkoutPersistence.update(checkout);
 	}
@@ -511,6 +526,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -520,10 +536,12 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

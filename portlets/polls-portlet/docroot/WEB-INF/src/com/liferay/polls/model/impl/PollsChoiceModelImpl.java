@@ -142,26 +142,32 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 	public PollsChoiceModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _pollsChoiceId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setPollsChoiceId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _pollsChoiceId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return PollsChoice.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return PollsChoice.class.getName();
 	}
@@ -212,6 +218,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
@@ -222,6 +229,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -234,20 +242,24 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	@JSON
 	public long getPollsChoiceId() {
 		return _pollsChoiceId;
 	}
 
+	@Override
 	public void setPollsChoiceId(long pollsChoiceId) {
 		_pollsChoiceId = pollsChoiceId;
 	}
 
+	@Override
 	@JSON
 	public long getPollsQuestionId() {
 		return _pollsQuestionId;
 	}
 
+	@Override
 	public void setPollsQuestionId(long pollsQuestionId) {
 		_columnBitmask = -1L;
 
@@ -264,6 +276,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		return _originalPollsQuestionId;
 	}
 
+	@Override
 	@JSON
 	public String getName() {
 		if (_name == null) {
@@ -274,6 +287,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public void setName(String name) {
 		_columnBitmask = -1L;
 
@@ -288,6 +302,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		return GetterUtil.getString(_originalName);
 	}
 
+	@Override
 	@JSON
 	public String getDescription() {
 		if (_description == null) {
@@ -298,50 +313,60 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public String getDescription(Locale locale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getDescription(languageId);
 	}
 
+	@Override
 	public String getDescription(Locale locale, boolean useDefault) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getDescription(languageId, useDefault);
 	}
 
+	@Override
 	public String getDescription(String languageId) {
 		return LocalizationUtil.getLocalization(getDescription(), languageId);
 	}
 
+	@Override
 	public String getDescription(String languageId, boolean useDefault) {
 		return LocalizationUtil.getLocalization(getDescription(), languageId,
 			useDefault);
 	}
 
+	@Override
 	public String getDescriptionCurrentLanguageId() {
 		return _descriptionCurrentLanguageId;
 	}
 
 	@JSON
+	@Override
 	public String getDescriptionCurrentValue() {
 		Locale locale = getLocale(_descriptionCurrentLanguageId);
 
 		return getDescription(locale);
 	}
 
+	@Override
 	public Map<Locale, String> getDescriptionMap() {
 		return LocalizationUtil.getLocalizationMap(getDescription());
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 	}
 
+	@Override
 	public void setDescription(String description, Locale locale) {
 		setDescription(description, locale, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setDescription(String description, Locale locale,
 		Locale defaultLocale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
@@ -358,14 +383,17 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public void setDescriptionCurrentLanguageId(String languageId) {
 		_descriptionCurrentLanguageId = languageId;
 	}
 
+	@Override
 	public void setDescriptionMap(Map<Locale, String> descriptionMap) {
 		setDescriptionMap(descriptionMap, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setDescriptionMap(Map<Locale, String> descriptionMap,
 		Locale defaultLocale) {
 		if (descriptionMap == null) {
@@ -394,6 +422,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		expandoBridge.setAttributes(serviceContext);
 	}
 
+	@Override
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
@@ -426,6 +455,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		return pollsChoiceImpl;
 	}
 
+	@Override
 	public int compareTo(PollsChoice pollsChoice) {
 		int value = 0;
 
@@ -548,6 +578,7 @@ public class PollsChoiceModelImpl extends BaseModelImpl<PollsChoice>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(19);
 

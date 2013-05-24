@@ -34,14 +34,17 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		_checkout = checkout;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Checkout.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Checkout.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -59,6 +62,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long checkoutId = (Long)attributes.get("checkoutId");
 
@@ -126,6 +130,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the primary key of this checkout
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _checkout.getPrimaryKey();
 	}
@@ -135,6 +140,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param primaryKey the primary key of this checkout
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_checkout.setPrimaryKey(primaryKey);
 	}
@@ -144,6 +150,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the checkout ID of this checkout
 	*/
+	@Override
 	public long getCheckoutId() {
 		return _checkout.getCheckoutId();
 	}
@@ -153,6 +160,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param checkoutId the checkout ID of this checkout
 	*/
+	@Override
 	public void setCheckoutId(long checkoutId) {
 		_checkout.setCheckoutId(checkoutId);
 	}
@@ -162,6 +170,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the company ID of this checkout
 	*/
+	@Override
 	public long getCompanyId() {
 		return _checkout.getCompanyId();
 	}
@@ -171,6 +180,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param companyId the company ID of this checkout
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_checkout.setCompanyId(companyId);
 	}
@@ -180,6 +190,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the user ID of this checkout
 	*/
+	@Override
 	public long getUserId() {
 		return _checkout.getUserId();
 	}
@@ -189,6 +200,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param userId the user ID of this checkout
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_checkout.setUserId(userId);
 	}
@@ -199,6 +211,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @return the user uuid of this checkout
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _checkout.getUserUuid();
@@ -209,6 +222,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param userUuid the user uuid of this checkout
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_checkout.setUserUuid(userUuid);
 	}
@@ -218,6 +232,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the user name of this checkout
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _checkout.getUserName();
 	}
@@ -227,6 +242,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param userName the user name of this checkout
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_checkout.setUserName(userName);
 	}
@@ -236,6 +252,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the create date of this checkout
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _checkout.getCreateDate();
 	}
@@ -245,6 +262,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param createDate the create date of this checkout
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_checkout.setCreateDate(createDate);
 	}
@@ -254,6 +272,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the modified date of this checkout
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _checkout.getModifiedDate();
 	}
@@ -263,6 +282,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param modifiedDate the modified date of this checkout
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_checkout.setModifiedDate(modifiedDate);
 	}
@@ -272,6 +292,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the asset ID of this checkout
 	*/
+	@Override
 	public long getAssetId() {
 		return _checkout.getAssetId();
 	}
@@ -281,6 +302,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param assetId the asset ID of this checkout
 	*/
+	@Override
 	public void setAssetId(long assetId) {
 		_checkout.setAssetId(assetId);
 	}
@@ -290,6 +312,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the check out date of this checkout
 	*/
+	@Override
 	public java.util.Date getCheckOutDate() {
 		return _checkout.getCheckOutDate();
 	}
@@ -299,6 +322,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param checkOutDate the check out date of this checkout
 	*/
+	@Override
 	public void setCheckOutDate(java.util.Date checkOutDate) {
 		_checkout.setCheckOutDate(checkOutDate);
 	}
@@ -308,6 +332,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the expected check in date of this checkout
 	*/
+	@Override
 	public java.util.Date getExpectedCheckInDate() {
 		return _checkout.getExpectedCheckInDate();
 	}
@@ -317,6 +342,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param expectedCheckInDate the expected check in date of this checkout
 	*/
+	@Override
 	public void setExpectedCheckInDate(java.util.Date expectedCheckInDate) {
 		_checkout.setExpectedCheckInDate(expectedCheckInDate);
 	}
@@ -326,6 +352,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @return the actual check in date of this checkout
 	*/
+	@Override
 	public java.util.Date getActualCheckInDate() {
 		return _checkout.getActualCheckInDate();
 	}
@@ -335,52 +362,64 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	*
 	* @param actualCheckInDate the actual check in date of this checkout
 	*/
+	@Override
 	public void setActualCheckInDate(java.util.Date actualCheckInDate) {
 		_checkout.setActualCheckInDate(actualCheckInDate);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _checkout.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_checkout.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _checkout.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_checkout.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _checkout.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _checkout.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_checkout.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _checkout.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_checkout.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_checkout.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_checkout.setExpandoBridgeAttributes(serviceContext);
@@ -391,6 +430,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return new CheckoutWrapper((Checkout)_checkout.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.ams.model.Checkout checkout) {
 		return _checkout.compareTo(checkout);
 	}
@@ -400,14 +440,17 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return _checkout.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Checkout> toCacheModel() {
 		return _checkout.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.ams.model.Checkout toEscapedModel() {
 		return new CheckoutWrapper(_checkout.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.ams.model.Checkout toUnescapedModel() {
 		return new CheckoutWrapper(_checkout.toUnescapedModel());
 	}
@@ -417,10 +460,12 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return _checkout.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _checkout.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_checkout.persist();
@@ -433,10 +478,12 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return _checkout;
 	}
 
+	@Override
 	public Checkout getWrappedModel() {
 		return _checkout;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_checkout.resetOriginalValues();
 	}

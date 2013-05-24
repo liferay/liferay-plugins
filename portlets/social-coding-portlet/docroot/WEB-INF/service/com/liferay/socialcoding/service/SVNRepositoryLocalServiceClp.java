@@ -116,6 +116,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		_methodParameterTypes19 = new String[] { "java.lang.String" };
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository addSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -145,6 +146,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository createSVNRepository(
 		long svnRepositoryId) {
 		Object returnObj = null;
@@ -168,6 +170,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -201,6 +204,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -230,6 +234,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -252,6 +257,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -282,6 +288,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -318,6 +325,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -358,6 +366,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -387,6 +396,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository fetchSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -415,6 +425,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository(
 		long svnRepositoryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -448,6 +459,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -482,6 +494,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.SVNRepository> getSVNRepositories(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -510,6 +523,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (java.util.List<com.liferay.socialcoding.model.SVNRepository>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getSVNRepositoriesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -537,6 +551,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository updateSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -566,6 +581,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -588,6 +604,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -607,12 +624,14 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -647,6 +666,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

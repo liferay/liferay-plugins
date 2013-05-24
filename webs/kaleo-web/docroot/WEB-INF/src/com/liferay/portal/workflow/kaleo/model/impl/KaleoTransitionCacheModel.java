@@ -76,6 +76,7 @@ public class KaleoTransitionCacheModel implements CacheModel<KaleoTransition>,
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoTransition toEntityModel() {
 		KaleoTransitionImpl kaleoTransitionImpl = new KaleoTransitionImpl();
 
@@ -147,6 +148,7 @@ public class KaleoTransitionCacheModel implements CacheModel<KaleoTransition>,
 		return kaleoTransitionImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoTransitionId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -166,6 +168,7 @@ public class KaleoTransitionCacheModel implements CacheModel<KaleoTransition>,
 		defaultTransition = objectInput.readBoolean();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoTransitionId);

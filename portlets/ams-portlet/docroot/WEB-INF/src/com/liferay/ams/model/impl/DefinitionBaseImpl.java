@@ -38,6 +38,7 @@ public abstract class DefinitionBaseImpl extends DefinitionModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a definition model instance should use the {@link Definition} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			DefinitionLocalServiceUtil.addDefinition(this);

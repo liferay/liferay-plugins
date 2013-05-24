@@ -128,6 +128,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 			};
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData addAkismetData(
 		com.liferay.akismet.model.AkismetData akismetData)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -157,6 +158,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData createAkismetData(
 		long akismetDataId) {
 		Object returnObj = null;
@@ -180,6 +182,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData deleteAkismetData(
 		long akismetDataId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -213,6 +216,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData deleteAkismetData(
 		com.liferay.akismet.model.AkismetData akismetData)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -242,6 +246,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -264,6 +269,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -294,6 +300,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -330,6 +337,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -370,6 +378,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -399,6 +408,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData fetchAkismetData(
 		long akismetDataId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -427,6 +437,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData getAkismetData(
 		long akismetDataId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -460,6 +471,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -494,6 +506,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.akismet.model.AkismetData> getAkismetDatas(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -522,6 +535,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (java.util.List<com.liferay.akismet.model.AkismetData>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getAkismetDatasCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -549,6 +563,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData updateAkismetData(
 		com.liferay.akismet.model.AkismetData akismetData)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -578,6 +593,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -600,6 +616,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -619,12 +636,14 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void deleteAkismetData(java.util.Date modifiedDate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -649,6 +668,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		}
 	}
 
+	@Override
 	public void deleteAkismetData(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -678,6 +698,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData fetchAkismetData(
 		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -711,6 +732,7 @@ public class AkismetDataLocalServiceClp implements AkismetDataLocalService {
 		return (com.liferay.akismet.model.AkismetData)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.akismet.model.AkismetData updateAkismetData(
 		java.lang.String className, long classPK, java.lang.String type,
 		java.lang.String permalink, java.lang.String referrer,

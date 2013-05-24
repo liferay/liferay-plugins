@@ -80,6 +80,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Attachment addAttachment(Attachment attachment)
 		throws SystemException {
 		attachment.setNew(true);
@@ -93,6 +94,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param attachmentId the primary key for the new attachment
 	 * @return the new attachment
 	 */
+	@Override
 	public Attachment createAttachment(long attachmentId) {
 		return attachmentPersistence.create(attachmentId);
 	}
@@ -106,6 +108,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Attachment deleteAttachment(long attachmentId)
 		throws PortalException, SystemException {
 		return attachmentPersistence.remove(attachmentId);
@@ -119,11 +122,13 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Attachment deleteAttachment(Attachment attachment)
 		throws SystemException {
 		return attachmentPersistence.remove(attachment);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -138,6 +143,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -157,6 +163,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -178,6 +185,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -192,11 +200,13 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return attachmentPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Attachment fetchAttachment(long attachmentId)
 		throws SystemException {
 		return attachmentPersistence.fetchByPrimaryKey(attachmentId);
@@ -210,11 +220,13 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @throws PortalException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Attachment getAttachment(long attachmentId)
 		throws PortalException, SystemException {
 		return attachmentPersistence.findByPrimaryKey(attachmentId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return attachmentPersistence.findByPrimaryKey(primaryKeyObj);
@@ -232,6 +244,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the range of attachments
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Attachment> getAttachments(int start, int end)
 		throws SystemException {
 		return attachmentPersistence.findAll(start, end);
@@ -243,6 +256,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the number of attachments
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getAttachmentsCount() throws SystemException {
 		return attachmentPersistence.countAll();
 	}
@@ -255,6 +269,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Attachment updateAttachment(Attachment attachment)
 		throws SystemException {
 		return attachmentPersistence.update(attachment);
@@ -516,6 +531,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -525,10 +541,12 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

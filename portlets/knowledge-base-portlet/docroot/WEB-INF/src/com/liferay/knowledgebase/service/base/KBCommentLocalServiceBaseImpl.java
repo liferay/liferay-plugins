@@ -83,6 +83,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KBComment addKBComment(KBComment kbComment)
 		throws SystemException {
 		kbComment.setNew(true);
@@ -96,6 +97,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbCommentId the primary key for the new k b comment
 	 * @return the new k b comment
 	 */
+	@Override
 	public KBComment createKBComment(long kbCommentId) {
 		return kbCommentPersistence.create(kbCommentId);
 	}
@@ -109,6 +111,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KBComment deleteKBComment(long kbCommentId)
 		throws PortalException, SystemException {
 		return kbCommentPersistence.remove(kbCommentId);
@@ -123,11 +126,13 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KBComment deleteKBComment(KBComment kbComment)
 		throws PortalException, SystemException {
 		return kbCommentPersistence.remove(kbComment);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -142,6 +147,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -161,6 +167,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -182,6 +189,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -196,11 +204,13 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kbCommentPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public KBComment fetchKBComment(long kbCommentId) throws SystemException {
 		return kbCommentPersistence.fetchByPrimaryKey(kbCommentId);
 	}
@@ -213,11 +223,13 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBComment getKBComment(long kbCommentId)
 		throws PortalException, SystemException {
 		return kbCommentPersistence.findByPrimaryKey(kbCommentId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kbCommentPersistence.findByPrimaryKey(primaryKeyObj);
@@ -232,6 +244,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a matching k b comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBComment getKBCommentByUuidAndGroupId(String uuid, long groupId)
 		throws PortalException, SystemException {
 		return kbCommentPersistence.findByUUID_G(uuid, groupId);
@@ -249,6 +262,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KBComment> getKBComments(int start, int end)
 		throws SystemException {
 		return kbCommentPersistence.findAll(start, end);
@@ -260,6 +274,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of k b comments
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getKBCommentsCount() throws SystemException {
 		return kbCommentPersistence.countAll();
 	}
@@ -272,6 +287,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KBComment updateKBComment(KBComment kbComment)
 		throws SystemException {
 		return kbCommentPersistence.update(kbComment);
@@ -593,6 +609,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -602,10 +619,12 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

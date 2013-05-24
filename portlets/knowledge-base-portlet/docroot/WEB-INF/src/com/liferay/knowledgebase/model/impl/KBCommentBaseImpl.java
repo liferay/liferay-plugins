@@ -38,6 +38,7 @@ public abstract class KBCommentBaseImpl extends KBCommentModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a k b comment model instance should use the {@link KBComment} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KBCommentLocalServiceUtil.addKBComment(this);

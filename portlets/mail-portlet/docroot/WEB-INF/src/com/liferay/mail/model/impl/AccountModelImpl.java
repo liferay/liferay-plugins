@@ -112,26 +112,32 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	public AccountModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _accountId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setAccountId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _accountId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Account.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Account.class.getName();
 	}
@@ -329,26 +335,32 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public long getAccountId() {
 		return _accountId;
 	}
 
+	@Override
 	public void setAccountId(long accountId) {
 		_accountId = accountId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
@@ -361,10 +373,12 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -373,6 +387,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return _originalUserId;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -382,26 +397,32 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public String getAddress() {
 		if (_address == null) {
 			return StringPool.BLANK;
@@ -411,6 +432,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setAddress(String address) {
 		_columnBitmask = -1L;
 
@@ -425,6 +447,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return GetterUtil.getString(_originalAddress);
 	}
 
+	@Override
 	public String getPersonalName() {
 		if (_personalName == null) {
 			return StringPool.BLANK;
@@ -434,10 +457,12 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setPersonalName(String personalName) {
 		_personalName = personalName;
 	}
 
+	@Override
 	public String getProtocol() {
 		if (_protocol == null) {
 			return StringPool.BLANK;
@@ -447,10 +472,12 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setProtocol(String protocol) {
 		_protocol = protocol;
 	}
 
+	@Override
 	public String getIncomingHostName() {
 		if (_incomingHostName == null) {
 			return StringPool.BLANK;
@@ -460,30 +487,37 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setIncomingHostName(String incomingHostName) {
 		_incomingHostName = incomingHostName;
 	}
 
+	@Override
 	public int getIncomingPort() {
 		return _incomingPort;
 	}
 
+	@Override
 	public void setIncomingPort(int incomingPort) {
 		_incomingPort = incomingPort;
 	}
 
+	@Override
 	public boolean getIncomingSecure() {
 		return _incomingSecure;
 	}
 
+	@Override
 	public boolean isIncomingSecure() {
 		return _incomingSecure;
 	}
 
+	@Override
 	public void setIncomingSecure(boolean incomingSecure) {
 		_incomingSecure = incomingSecure;
 	}
 
+	@Override
 	public String getOutgoingHostName() {
 		if (_outgoingHostName == null) {
 			return StringPool.BLANK;
@@ -493,30 +527,37 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setOutgoingHostName(String outgoingHostName) {
 		_outgoingHostName = outgoingHostName;
 	}
 
+	@Override
 	public int getOutgoingPort() {
 		return _outgoingPort;
 	}
 
+	@Override
 	public void setOutgoingPort(int outgoingPort) {
 		_outgoingPort = outgoingPort;
 	}
 
+	@Override
 	public boolean getOutgoingSecure() {
 		return _outgoingSecure;
 	}
 
+	@Override
 	public boolean isOutgoingSecure() {
 		return _outgoingSecure;
 	}
 
+	@Override
 	public void setOutgoingSecure(boolean outgoingSecure) {
 		_outgoingSecure = outgoingSecure;
 	}
 
+	@Override
 	public String getLogin() {
 		if (_login == null) {
 			return StringPool.BLANK;
@@ -526,10 +567,12 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setLogin(String login) {
 		_login = login;
 	}
 
+	@Override
 	public String getPassword() {
 		if (_password == null) {
 			return StringPool.BLANK;
@@ -539,22 +582,27 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setPassword(String password) {
 		_password = password;
 	}
 
+	@Override
 	public boolean getSavePassword() {
 		return _savePassword;
 	}
 
+	@Override
 	public boolean isSavePassword() {
 		return _savePassword;
 	}
 
+	@Override
 	public void setSavePassword(boolean savePassword) {
 		_savePassword = savePassword;
 	}
 
+	@Override
 	public String getSignature() {
 		if (_signature == null) {
 			return StringPool.BLANK;
@@ -564,22 +612,27 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setSignature(String signature) {
 		_signature = signature;
 	}
 
+	@Override
 	public boolean getUseSignature() {
 		return _useSignature;
 	}
 
+	@Override
 	public boolean isUseSignature() {
 		return _useSignature;
 	}
 
+	@Override
 	public void setUseSignature(boolean useSignature) {
 		_useSignature = useSignature;
 	}
 
+	@Override
 	public String getFolderPrefix() {
 		if (_folderPrefix == null) {
 			return StringPool.BLANK;
@@ -589,50 +642,62 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		}
 	}
 
+	@Override
 	public void setFolderPrefix(String folderPrefix) {
 		_folderPrefix = folderPrefix;
 	}
 
+	@Override
 	public long getInboxFolderId() {
 		return _inboxFolderId;
 	}
 
+	@Override
 	public void setInboxFolderId(long inboxFolderId) {
 		_inboxFolderId = inboxFolderId;
 	}
 
+	@Override
 	public long getDraftFolderId() {
 		return _draftFolderId;
 	}
 
+	@Override
 	public void setDraftFolderId(long draftFolderId) {
 		_draftFolderId = draftFolderId;
 	}
 
+	@Override
 	public long getSentFolderId() {
 		return _sentFolderId;
 	}
 
+	@Override
 	public void setSentFolderId(long sentFolderId) {
 		_sentFolderId = sentFolderId;
 	}
 
+	@Override
 	public long getTrashFolderId() {
 		return _trashFolderId;
 	}
 
+	@Override
 	public void setTrashFolderId(long trashFolderId) {
 		_trashFolderId = trashFolderId;
 	}
 
+	@Override
 	public boolean getDefaultSender() {
 		return _defaultSender;
 	}
 
+	@Override
 	public boolean isDefaultSender() {
 		return _defaultSender;
 	}
 
+	@Override
 	public void setDefaultSender(boolean defaultSender) {
 		_defaultSender = defaultSender;
 	}
@@ -700,6 +765,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return accountImpl;
 	}
 
+	@Override
 	public int compareTo(Account account) {
 		int value = 0;
 
@@ -946,6 +1012,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(82);
 

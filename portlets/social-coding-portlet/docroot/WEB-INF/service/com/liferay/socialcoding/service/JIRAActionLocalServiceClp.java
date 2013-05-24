@@ -108,6 +108,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		_methodParameterTypes16 = new String[] { "java.lang.String" };
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAAction addJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -137,6 +138,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAAction createJIRAAction(
 		long jiraActionId) {
 		Object returnObj = null;
@@ -160,6 +162,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -193,6 +196,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -222,6 +226,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -244,6 +249,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -274,6 +280,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -310,6 +317,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -350,6 +358,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -379,6 +388,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAAction fetchJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -407,6 +417,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAAction getJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -440,6 +451,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -474,6 +486,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> getJIRAActions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -502,6 +515,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (java.util.List<com.liferay.socialcoding.model.JIRAAction>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getJIRAActionsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -529,6 +543,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -558,6 +573,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (com.liferay.socialcoding.model.JIRAAction)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -580,6 +596,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -599,6 +616,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {

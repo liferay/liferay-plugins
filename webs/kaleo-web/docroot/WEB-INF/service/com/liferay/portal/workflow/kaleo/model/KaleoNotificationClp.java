@@ -40,26 +40,32 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	public KaleoNotificationClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoNotification.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoNotification.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoNotificationId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoNotificationId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoNotificationId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -194,10 +200,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public long getKaleoNotificationId() {
 		return _kaleoNotificationId;
 	}
 
+	@Override
 	public void setKaleoNotificationId(long kaleoNotificationId) {
 		_kaleoNotificationId = kaleoNotificationId;
 
@@ -216,10 +224,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -237,10 +247,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -258,10 +270,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -279,18 +293,22 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -308,10 +326,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -329,10 +349,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -350,10 +372,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getKaleoClassName() {
 		return _kaleoClassName;
 	}
 
+	@Override
 	public void setKaleoClassName(String kaleoClassName) {
 		_kaleoClassName = kaleoClassName;
 
@@ -372,10 +396,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public long getKaleoClassPK() {
 		return _kaleoClassPK;
 	}
 
+	@Override
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoClassPK = kaleoClassPK;
 
@@ -393,10 +419,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -415,10 +443,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getKaleoNodeName() {
 		return _kaleoNodeName;
 	}
 
+	@Override
 	public void setKaleoNodeName(String kaleoNodeName) {
 		_kaleoNodeName = kaleoNodeName;
 
@@ -436,10 +466,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -457,10 +489,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -478,10 +512,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getExecutionType() {
 		return _executionType;
 	}
 
+	@Override
 	public void setExecutionType(String executionType) {
 		_executionType = executionType;
 
@@ -499,10 +535,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getTemplate() {
 		return _template;
 	}
 
+	@Override
 	public void setTemplate(String template) {
 		_template = template;
 
@@ -520,10 +558,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getTemplateLanguage() {
 		return _templateLanguage;
 	}
 
+	@Override
 	public void setTemplateLanguage(String templateLanguage) {
 		_templateLanguage = templateLanguage;
 
@@ -542,10 +582,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	@Override
 	public String getNotificationTypes() {
 		return _notificationTypes;
 	}
 
+	@Override
 	public void setNotificationTypes(String notificationTypes) {
 		_notificationTypes = notificationTypes;
 
@@ -614,6 +656,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoNotificationLocalServiceUtil.addKaleoNotification(this);
@@ -655,6 +698,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoNotification kaleoNotification) {
 		int value = 0;
 
@@ -745,6 +789,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(55);
 

@@ -93,26 +93,32 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	public OAuthConsumerModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _oAuthConsumerId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setOAuthConsumerId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _oAuthConsumerId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return OAuthConsumer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return OAuthConsumer.class.getName();
 	}
@@ -191,38 +197,47 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public long getOAuthConsumerId() {
 		return _oAuthConsumerId;
 	}
 
+	@Override
 	public void setOAuthConsumerId(long oAuthConsumerId) {
 		_oAuthConsumerId = oAuthConsumerId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public String getGadgetKey() {
 		if (_gadgetKey == null) {
 			return StringPool.BLANK;
@@ -232,6 +247,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public void setGadgetKey(String gadgetKey) {
 		_columnBitmask |= GADGETKEY_COLUMN_BITMASK;
 
@@ -246,6 +262,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return GetterUtil.getString(_originalGadgetKey);
 	}
 
+	@Override
 	public String getServiceName() {
 		if (_serviceName == null) {
 			return StringPool.BLANK;
@@ -255,6 +272,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public void setServiceName(String serviceName) {
 		_columnBitmask = -1L;
 
@@ -269,6 +287,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return GetterUtil.getString(_originalServiceName);
 	}
 
+	@Override
 	public String getConsumerKey() {
 		if (_consumerKey == null) {
 			return StringPool.BLANK;
@@ -278,10 +297,12 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public void setConsumerKey(String consumerKey) {
 		_consumerKey = consumerKey;
 	}
 
+	@Override
 	public String getConsumerSecret() {
 		if (_consumerSecret == null) {
 			return StringPool.BLANK;
@@ -291,10 +312,12 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public void setConsumerSecret(String consumerSecret) {
 		_consumerSecret = consumerSecret;
 	}
 
+	@Override
 	public String getKeyType() {
 		if (_keyType == null) {
 			return StringPool.BLANK;
@@ -304,6 +327,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public void setKeyType(String keyType) {
 		_keyType = keyType;
 	}
@@ -354,6 +378,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return oAuthConsumerImpl;
 	}
 
+	@Override
 	public int compareTo(OAuthConsumer oAuthConsumer) {
 		int value = 0;
 
@@ -500,6 +525,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

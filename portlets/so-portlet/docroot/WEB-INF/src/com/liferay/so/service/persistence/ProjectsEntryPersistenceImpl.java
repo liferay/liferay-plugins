@@ -115,6 +115,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the matching projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<ProjectsEntry> findByUserId(long userId)
 		throws SystemException {
 		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -133,6 +134,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the range of matching projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<ProjectsEntry> findByUserId(long userId, int start, int end)
 		throws SystemException {
 		return findByUserId(userId, start, end, null);
@@ -152,6 +154,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the ordered range of matching projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<ProjectsEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -258,6 +261,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchProjectsEntryException, SystemException {
@@ -288,6 +292,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the first matching projects entry, or <code>null</code> if a matching projects entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry fetchByUserId_First(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<ProjectsEntry> list = findByUserId(userId, 0, 1, orderByComparator);
@@ -308,6 +313,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchProjectsEntryException, SystemException {
@@ -338,6 +344,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the last matching projects entry, or <code>null</code> if a matching projects entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry fetchByUserId_Last(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
@@ -362,6 +369,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry[] findByUserId_PrevAndNext(long projectsEntryId,
 		long userId, OrderByComparator orderByComparator)
 		throws NoSuchProjectsEntryException, SystemException {
@@ -503,6 +511,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByUserId(long userId) throws SystemException {
 		for (ProjectsEntry projectsEntry : findByUserId(userId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -517,6 +526,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the number of matching projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByUserId(long userId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
 
@@ -569,6 +579,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 *
 	 * @param projectsEntry the projects entry
 	 */
+	@Override
 	public void cacheResult(ProjectsEntry projectsEntry) {
 		EntityCacheUtil.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey(),
@@ -582,6 +593,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 *
 	 * @param projectsEntries the projects entries
 	 */
+	@Override
 	public void cacheResult(List<ProjectsEntry> projectsEntries) {
 		for (ProjectsEntry projectsEntry : projectsEntries) {
 			if (EntityCacheUtil.getResult(
@@ -648,6 +660,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @param projectsEntryId the primary key for the new projects entry
 	 * @return the new projects entry
 	 */
+	@Override
 	public ProjectsEntry create(long projectsEntryId) {
 		ProjectsEntry projectsEntry = new ProjectsEntryImpl();
 
@@ -665,6 +678,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry remove(long projectsEntryId)
 		throws NoSuchProjectsEntryException, SystemException {
 		return remove((Serializable)projectsEntryId);
@@ -865,6 +879,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry findByPrimaryKey(long projectsEntryId)
 		throws NoSuchProjectsEntryException, SystemException {
 		return findByPrimaryKey((Serializable)projectsEntryId);
@@ -925,6 +940,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry fetchByPrimaryKey(long projectsEntryId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)projectsEntryId);
@@ -936,6 +952,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<ProjectsEntry> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -952,6 +969,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the range of projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<ProjectsEntry> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -970,6 +988,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the ordered range of projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<ProjectsEntry> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1055,6 +1074,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (ProjectsEntry projectsEntry : findAll()) {
 			remove(projectsEntry);
@@ -1067,6 +1087,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * @return the number of projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -1161,6 +1182,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		};
 
 	private static CacheModel<ProjectsEntry> _nullProjectsEntryCacheModel = new CacheModel<ProjectsEntry>() {
+			@Override
 			public ProjectsEntry toEntityModel() {
 				return _nullProjectsEntry;
 			}

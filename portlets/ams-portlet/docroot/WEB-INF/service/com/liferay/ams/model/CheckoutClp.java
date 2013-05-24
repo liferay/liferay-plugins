@@ -40,26 +40,32 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 	public CheckoutClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Checkout.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Checkout.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _checkoutId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setCheckoutId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _checkoutId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -145,10 +151,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public long getCheckoutId() {
 		return _checkoutId;
 	}
 
+	@Override
 	public void setCheckoutId(long checkoutId) {
 		_checkoutId = checkoutId;
 
@@ -166,10 +174,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -187,10 +197,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -208,18 +220,22 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -237,10 +253,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -258,10 +276,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -279,10 +299,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public long getAssetId() {
 		return _assetId;
 	}
 
+	@Override
 	public void setAssetId(long assetId) {
 		_assetId = assetId;
 
@@ -300,10 +322,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public Date getCheckOutDate() {
 		return _checkOutDate;
 	}
 
+	@Override
 	public void setCheckOutDate(Date checkOutDate) {
 		_checkOutDate = checkOutDate;
 
@@ -321,10 +345,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public Date getExpectedCheckInDate() {
 		return _expectedCheckInDate;
 	}
 
+	@Override
 	public void setExpectedCheckInDate(Date expectedCheckInDate) {
 		_expectedCheckInDate = expectedCheckInDate;
 
@@ -343,10 +369,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	@Override
 	public Date getActualCheckInDate() {
 		return _actualCheckInDate;
 	}
 
+	@Override
 	public void setActualCheckInDate(Date actualCheckInDate) {
 		_actualCheckInDate = actualCheckInDate;
 
@@ -414,6 +442,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			CheckoutLocalServiceUtil.addCheckout(this);
@@ -447,6 +476,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Checkout checkout) {
 		long primaryKey = checkout.getPrimaryKey();
 
@@ -517,6 +547,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

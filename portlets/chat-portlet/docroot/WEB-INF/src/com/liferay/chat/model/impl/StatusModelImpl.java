@@ -95,26 +95,32 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	public StatusModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _statusId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setStatusId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _statusId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Status.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Status.class.getName();
 	}
@@ -186,18 +192,22 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		}
 	}
 
+	@Override
 	public long getStatusId() {
 		return _statusId;
 	}
 
+	@Override
 	public void setStatusId(long statusId) {
 		_statusId = statusId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
@@ -210,10 +220,12 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -222,10 +234,12 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return _originalUserId;
 	}
 
+	@Override
 	public long getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(long modifiedDate) {
 		_columnBitmask |= MODIFIEDDATE_COLUMN_BITMASK;
 
@@ -242,14 +256,17 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return _originalModifiedDate;
 	}
 
+	@Override
 	public boolean getOnline() {
 		return _online;
 	}
 
+	@Override
 	public boolean isOnline() {
 		return _online;
 	}
 
+	@Override
 	public void setOnline(boolean online) {
 		_columnBitmask |= ONLINE_COLUMN_BITMASK;
 
@@ -266,18 +283,22 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return _originalOnline;
 	}
 
+	@Override
 	public boolean getAwake() {
 		return _awake;
 	}
 
+	@Override
 	public boolean isAwake() {
 		return _awake;
 	}
 
+	@Override
 	public void setAwake(boolean awake) {
 		_awake = awake;
 	}
 
+	@Override
 	public String getActivePanelIds() {
 		if (_activePanelIds == null) {
 			return StringPool.BLANK;
@@ -287,10 +308,12 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		}
 	}
 
+	@Override
 	public void setActivePanelIds(String activePanelIds) {
 		_activePanelIds = activePanelIds;
 	}
 
+	@Override
 	public String getMessage() {
 		if (_message == null) {
 			return StringPool.BLANK;
@@ -300,18 +323,22 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		}
 	}
 
+	@Override
 	public void setMessage(String message) {
 		_message = message;
 	}
 
+	@Override
 	public boolean getPlaySound() {
 		return _playSound;
 	}
 
+	@Override
 	public boolean isPlaySound() {
 		return _playSound;
 	}
 
+	@Override
 	public void setPlaySound(boolean playSound) {
 		_playSound = playSound;
 	}
@@ -361,6 +388,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return statusImpl;
 	}
 
+	@Override
 	public int compareTo(Status status) {
 		long primaryKey = status.getPrimaryKey();
 
@@ -481,6 +509,7 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(28);
 

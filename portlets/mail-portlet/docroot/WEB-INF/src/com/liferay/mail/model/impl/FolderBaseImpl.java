@@ -37,6 +37,7 @@ public abstract class FolderBaseImpl extends FolderModelImpl implements Folder {
 	 *
 	 * Never modify or reference this class directly. All methods that expect a folder model instance should use the {@link Folder} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FolderLocalServiceUtil.addFolder(this);

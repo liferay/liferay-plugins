@@ -38,6 +38,7 @@ public abstract class CalendarBookingBaseImpl extends CalendarBookingModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a calendar booking model instance should use the {@link CalendarBooking} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			CalendarBookingLocalServiceUtil.addCalendarBooking(this);

@@ -50,6 +50,7 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 		return sb.toString();
 	}
 
+	@Override
 	public FavoriteSite toEntityModel() {
 		FavoriteSiteImpl favoriteSiteImpl = new FavoriteSiteImpl();
 
@@ -63,6 +64,7 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 		return favoriteSiteImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		favoriteSiteId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -70,6 +72,7 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 		userId = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(favoriteSiteId);

@@ -113,6 +113,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -132,6 +133,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the range of matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
@@ -151,6 +153,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the ordered range of matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -257,6 +260,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -286,6 +290,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the first matching message, or <code>null</code> if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<Message> list = findByCompanyId(companyId, 0, 1, orderByComparator);
@@ -306,6 +311,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -335,6 +341,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the last matching message, or <code>null</code> if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
@@ -359,6 +366,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message[] findByCompanyId_PrevAndNext(long messageId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -500,6 +508,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Message message : findByCompanyId(companyId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -514,6 +523,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the number of matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByCompanyId(long companyId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
@@ -588,6 +598,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findByFolderId(long folderId)
 		throws SystemException {
 		return findByFolderId(folderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -607,6 +618,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the range of matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findByFolderId(long folderId, int start, int end)
 		throws SystemException {
 		return findByFolderId(folderId, start, end, null);
@@ -626,6 +638,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the ordered range of matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findByFolderId(long folderId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -732,6 +745,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message findByFolderId_First(long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -761,6 +775,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the first matching message, or <code>null</code> if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByFolderId_First(long folderId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<Message> list = findByFolderId(folderId, 0, 1, orderByComparator);
@@ -781,6 +796,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message findByFolderId_Last(long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -810,6 +826,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the last matching message, or <code>null</code> if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByFolderId_Last(long folderId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByFolderId(folderId);
@@ -834,6 +851,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message[] findByFolderId_PrevAndNext(long messageId, long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -975,6 +993,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @param folderId the folder ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByFolderId(long folderId) throws SystemException {
 		for (Message message : findByFolderId(folderId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -989,6 +1008,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the number of matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByFolderId(long folderId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_FOLDERID;
 
@@ -1055,6 +1075,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message findByF_R(long folderId, long remoteMessageId)
 		throws NoSuchMessageException, SystemException {
 		Message message = fetchByF_R(folderId, remoteMessageId);
@@ -1090,6 +1111,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the matching message, or <code>null</code> if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByF_R(long folderId, long remoteMessageId)
 		throws SystemException {
 		return fetchByF_R(folderId, remoteMessageId, true);
@@ -1104,6 +1126,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the matching message, or <code>null</code> if a matching message could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByF_R(long folderId, long remoteMessageId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { folderId, remoteMessageId };
@@ -1202,6 +1225,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the message that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message removeByF_R(long folderId, long remoteMessageId)
 		throws NoSuchMessageException, SystemException {
 		Message message = findByF_R(folderId, remoteMessageId);
@@ -1217,6 +1241,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the number of matching messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByF_R(long folderId, long remoteMessageId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_F_R;
@@ -1275,6 +1300,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 *
 	 * @param message the message
 	 */
+	@Override
 	public void cacheResult(Message message) {
 		EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey(), message);
@@ -1291,6 +1317,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 *
 	 * @param messages the messages
 	 */
+	@Override
 	public void cacheResult(List<Message> messages) {
 		for (Message message : messages) {
 			if (EntityCacheUtil.getResult(
@@ -1410,6 +1437,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @param messageId the primary key for the new message
 	 * @return the new message
 	 */
+	@Override
 	public Message create(long messageId) {
 		Message message = new MessageImpl();
 
@@ -1427,6 +1455,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message remove(long messageId)
 		throws NoSuchMessageException, SystemException {
 		return remove((Serializable)messageId);
@@ -1653,6 +1682,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message findByPrimaryKey(long messageId)
 		throws NoSuchMessageException, SystemException {
 		return findByPrimaryKey((Serializable)messageId);
@@ -1712,6 +1742,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the message, or <code>null</code> if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message fetchByPrimaryKey(long messageId) throws SystemException {
 		return fetchByPrimaryKey((Serializable)messageId);
 	}
@@ -1722,6 +1753,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1738,6 +1770,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the range of messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
@@ -1755,6 +1788,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the ordered range of messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1840,6 +1874,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (Message message : findAll()) {
 			remove(message);
@@ -1852,6 +1887,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 * @return the number of messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -1946,6 +1982,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		};
 
 	private static CacheModel<Message> _nullMessageCacheModel = new CacheModel<Message>() {
+			@Override
 			public Message toEntityModel() {
 				return _nullMessage;
 			}

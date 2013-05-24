@@ -56,6 +56,7 @@ public class PollsQuestionServiceClp implements PollsQuestionService {
 			};
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -78,6 +79,7 @@ public class PollsQuestionServiceClp implements PollsQuestionService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableService.invokeMethod(_methodName1,
@@ -97,12 +99,14 @@ public class PollsQuestionServiceClp implements PollsQuestionService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion addPollsQuestion(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -162,6 +166,7 @@ public class PollsQuestionServiceClp implements PollsQuestionService {
 		return (com.liferay.polls.model.PollsQuestion)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion deletePollsQuestion(
 		long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -195,6 +200,7 @@ public class PollsQuestionServiceClp implements PollsQuestionService {
 		return (com.liferay.polls.model.PollsQuestion)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion getPollsQuestion(
 		long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -228,6 +234,7 @@ public class PollsQuestionServiceClp implements PollsQuestionService {
 		return (com.liferay.polls.model.PollsQuestion)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion updatePollsQuestion(
 		long pollsQuestionId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,

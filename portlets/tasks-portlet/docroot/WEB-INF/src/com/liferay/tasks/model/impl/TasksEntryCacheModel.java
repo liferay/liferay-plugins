@@ -73,6 +73,7 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry>,
 		return sb.toString();
 	}
 
+	@Override
 	public TasksEntry toEntityModel() {
 		TasksEntryImpl tasksEntryImpl = new TasksEntryImpl();
 
@@ -134,6 +135,7 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry>,
 		return tasksEntryImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		tasksEntryId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -151,6 +153,7 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry>,
 		status = objectInput.readInt();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(tasksEntryId);

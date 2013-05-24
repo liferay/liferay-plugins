@@ -62,6 +62,7 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Feed toEntityModel() {
 		FeedImpl feedImpl = new FeedImpl();
 
@@ -106,6 +107,7 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 		return feedImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		feedId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -118,6 +120,7 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 		lastStatusId = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(feedId);

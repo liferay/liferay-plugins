@@ -40,26 +40,32 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 	public PollsVoteClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return PollsVote.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return PollsVote.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _pollsVoteId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setPollsVoteId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _pollsVoteId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -138,10 +144,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public long getPollsVoteId() {
 		return _pollsVoteId;
 	}
 
+	@Override
 	public void setPollsVoteId(long pollsVoteId) {
 		_pollsVoteId = pollsVoteId;
 
@@ -159,10 +167,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -180,10 +190,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -201,18 +213,22 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -230,10 +246,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -251,10 +269,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -272,10 +292,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public long getPollsQuestionId() {
 		return _pollsQuestionId;
 	}
 
+	@Override
 	public void setPollsQuestionId(long pollsQuestionId) {
 		_pollsQuestionId = pollsQuestionId;
 
@@ -293,10 +315,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public long getPollsChoiceId() {
 		return _pollsChoiceId;
 	}
 
+	@Override
 	public void setPollsChoiceId(long pollsChoiceId) {
 		_pollsChoiceId = pollsChoiceId;
 
@@ -314,10 +338,12 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public Date getVoteDate() {
 		return _voteDate;
 	}
 
+	@Override
 	public void setVoteDate(Date voteDate) {
 		_voteDate = voteDate;
 
@@ -335,6 +361,7 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		}
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsChoice getPollsChoice() {
 		try {
 			String methodName = "getPollsChoice";
@@ -402,6 +429,7 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			PollsVoteLocalServiceUtil.addPollsVote(this);
@@ -434,6 +462,7 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		return clone;
 	}
 
+	@Override
 	public int compareTo(PollsVote pollsVote) {
 		long primaryKey = pollsVote.getPrimaryKey();
 
@@ -502,6 +531,7 @@ public class PollsVoteClp extends BaseModelImpl<PollsVote> implements PollsVote 
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

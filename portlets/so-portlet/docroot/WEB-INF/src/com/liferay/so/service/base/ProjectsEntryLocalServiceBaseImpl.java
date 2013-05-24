@@ -80,6 +80,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public ProjectsEntry addProjectsEntry(ProjectsEntry projectsEntry)
 		throws SystemException {
 		projectsEntry.setNew(true);
@@ -93,6 +94,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param projectsEntryId the primary key for the new projects entry
 	 * @return the new projects entry
 	 */
+	@Override
 	public ProjectsEntry createProjectsEntry(long projectsEntryId) {
 		return projectsEntryPersistence.create(projectsEntryId);
 	}
@@ -106,6 +108,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public ProjectsEntry deleteProjectsEntry(long projectsEntryId)
 		throws PortalException, SystemException {
 		return projectsEntryPersistence.remove(projectsEntryId);
@@ -119,11 +122,13 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public ProjectsEntry deleteProjectsEntry(ProjectsEntry projectsEntry)
 		throws SystemException {
 		return projectsEntryPersistence.remove(projectsEntry);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -138,6 +143,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -157,6 +163,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -178,6 +185,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -192,11 +200,13 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return projectsEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public ProjectsEntry fetchProjectsEntry(long projectsEntryId)
 		throws SystemException {
 		return projectsEntryPersistence.fetchByPrimaryKey(projectsEntryId);
@@ -210,11 +220,13 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @throws PortalException if a projects entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public ProjectsEntry getProjectsEntry(long projectsEntryId)
 		throws PortalException, SystemException {
 		return projectsEntryPersistence.findByPrimaryKey(projectsEntryId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return projectsEntryPersistence.findByPrimaryKey(primaryKeyObj);
@@ -232,6 +244,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @return the range of projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<ProjectsEntry> getProjectsEntries(int start, int end)
 		throws SystemException {
 		return projectsEntryPersistence.findAll(start, end);
@@ -243,6 +256,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @return the number of projects entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getProjectsEntriesCount() throws SystemException {
 		return projectsEntryPersistence.countAll();
 	}
@@ -255,6 +269,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public ProjectsEntry updateProjectsEntry(ProjectsEntry projectsEntry)
 		throws SystemException {
 		return projectsEntryPersistence.update(projectsEntry);
@@ -520,6 +535,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -529,10 +545,12 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

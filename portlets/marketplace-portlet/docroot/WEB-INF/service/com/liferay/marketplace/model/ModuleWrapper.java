@@ -33,14 +33,17 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		_module = module;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Module.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Module.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -52,6 +55,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -83,6 +87,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @return the primary key of this module
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _module.getPrimaryKey();
 	}
@@ -92,6 +97,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @param primaryKey the primary key of this module
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_module.setPrimaryKey(primaryKey);
 	}
@@ -101,6 +107,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @return the uuid of this module
 	*/
+	@Override
 	public java.lang.String getUuid() {
 		return _module.getUuid();
 	}
@@ -110,6 +117,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @param uuid the uuid of this module
 	*/
+	@Override
 	public void setUuid(java.lang.String uuid) {
 		_module.setUuid(uuid);
 	}
@@ -119,6 +127,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @return the module ID of this module
 	*/
+	@Override
 	public long getModuleId() {
 		return _module.getModuleId();
 	}
@@ -128,6 +137,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @param moduleId the module ID of this module
 	*/
+	@Override
 	public void setModuleId(long moduleId) {
 		_module.setModuleId(moduleId);
 	}
@@ -137,6 +147,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @return the app ID of this module
 	*/
+	@Override
 	public long getAppId() {
 		return _module.getAppId();
 	}
@@ -146,6 +157,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @param appId the app ID of this module
 	*/
+	@Override
 	public void setAppId(long appId) {
 		_module.setAppId(appId);
 	}
@@ -155,6 +167,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @return the context name of this module
 	*/
+	@Override
 	public java.lang.String getContextName() {
 		return _module.getContextName();
 	}
@@ -164,52 +177,64 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	*
 	* @param contextName the context name of this module
 	*/
+	@Override
 	public void setContextName(java.lang.String contextName) {
 		_module.setContextName(contextName);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _module.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_module.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _module.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_module.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _module.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _module.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_module.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _module.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_module.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_module.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_module.setExpandoBridgeAttributes(serviceContext);
@@ -220,6 +245,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		return new ModuleWrapper((Module)_module.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.marketplace.model.Module module) {
 		return _module.compareTo(module);
 	}
@@ -229,14 +255,17 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		return _module.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.marketplace.model.Module> toCacheModel() {
 		return _module.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.marketplace.model.Module toEscapedModel() {
 		return new ModuleWrapper(_module.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.marketplace.model.Module toUnescapedModel() {
 		return new ModuleWrapper(_module.toUnescapedModel());
 	}
@@ -246,10 +275,12 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		return _module.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _module.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_module.persist();
@@ -262,10 +293,12 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 		return _module;
 	}
 
+	@Override
 	public Module getWrappedModel() {
 		return _module;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_module.resetOriginalValues();
 	}

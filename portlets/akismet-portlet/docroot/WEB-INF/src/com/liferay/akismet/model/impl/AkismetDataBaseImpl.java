@@ -38,6 +38,7 @@ public abstract class AkismetDataBaseImpl extends AkismetDataModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a akismet data model instance should use the {@link AkismetData} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			AkismetDataLocalServiceUtil.addAkismetData(this);

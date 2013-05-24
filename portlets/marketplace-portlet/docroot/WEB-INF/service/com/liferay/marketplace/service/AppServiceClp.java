@@ -56,6 +56,7 @@ public class AppServiceClp implements AppService {
 			};
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -78,6 +79,7 @@ public class AppServiceClp implements AppService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableService.invokeMethod(_methodName1,
@@ -97,12 +99,14 @@ public class AppServiceClp implements AppService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App addApp(long remoteAppId,
 		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -143,6 +147,7 @@ public class AppServiceClp implements AppService {
 		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -175,6 +180,7 @@ public class AppServiceClp implements AppService {
 		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -203,6 +209,7 @@ public class AppServiceClp implements AppService {
 		}
 	}
 
+	@Override
 	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -231,6 +238,7 @@ public class AppServiceClp implements AppService {
 		}
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App updateApp(long appId,
 		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,

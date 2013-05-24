@@ -112,6 +112,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		_methodParameterTypes18 = new String[] { "long" };
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem addJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -141,6 +142,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem createJIRAChangeItem(
 		long jiraChangeItemId) {
 		Object returnObj = null;
@@ -164,6 +166,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -197,6 +200,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -226,6 +230,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -248,6 +253,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -278,6 +284,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -314,6 +321,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -354,6 +362,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -383,6 +392,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem fetchJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -411,6 +421,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -444,6 +455,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -478,6 +490,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -506,6 +519,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.util.List<com.liferay.socialcoding.model.JIRAChangeItem>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getJIRAChangeItemsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -533,6 +547,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -562,6 +577,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -584,6 +600,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -603,12 +620,14 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.SystemException {

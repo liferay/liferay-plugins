@@ -110,6 +110,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the matching akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<AkismetData> findByLtModifiedDate(Date modifiedDate)
 		throws SystemException {
 		return findByLtModifiedDate(modifiedDate, QueryUtil.ALL_POS,
@@ -129,6 +130,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the range of matching akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<AkismetData> findByLtModifiedDate(Date modifiedDate, int start,
 		int end) throws SystemException {
 		return findByLtModifiedDate(modifiedDate, start, end, null);
@@ -148,6 +150,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the ordered range of matching akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<AkismetData> findByLtModifiedDate(Date modifiedDate, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -258,6 +261,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData findByLtModifiedDate_First(Date modifiedDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchDataException, SystemException {
@@ -288,6 +292,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the first matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData fetchByLtModifiedDate_First(Date modifiedDate,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<AkismetData> list = findByLtModifiedDate(modifiedDate, 0, 1,
@@ -309,6 +314,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData findByLtModifiedDate_Last(Date modifiedDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchDataException, SystemException {
@@ -339,6 +345,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the last matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData fetchByLtModifiedDate_Last(Date modifiedDate,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByLtModifiedDate(modifiedDate);
@@ -363,6 +370,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData[] findByLtModifiedDate_PrevAndNext(long akismetDataId,
 		Date modifiedDate, OrderByComparator orderByComparator)
 		throws NoSuchDataException, SystemException {
@@ -515,6 +523,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @param modifiedDate the modified date
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByLtModifiedDate(Date modifiedDate)
 		throws SystemException {
 		for (AkismetData akismetData : findByLtModifiedDate(modifiedDate,
@@ -530,6 +539,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the number of matching akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByLtModifiedDate(Date modifiedDate)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_LTMODIFIEDDATE;
@@ -609,6 +619,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData findByC_C(long classNameId, long classPK)
 		throws NoSuchDataException, SystemException {
 		AkismetData akismetData = fetchByC_C(classNameId, classPK);
@@ -644,6 +655,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData fetchByC_C(long classNameId, long classPK)
 		throws SystemException {
 		return fetchByC_C(classNameId, classPK, true);
@@ -658,6 +670,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData fetchByC_C(long classNameId, long classPK,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { classNameId, classPK };
@@ -756,6 +769,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the akismet data that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData removeByC_C(long classNameId, long classPK)
 		throws NoSuchDataException, SystemException {
 		AkismetData akismetData = findByC_C(classNameId, classPK);
@@ -771,6 +785,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the number of matching akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByC_C(long classNameId, long classPK)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_C;
@@ -829,6 +844,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 *
 	 * @param akismetData the akismet data
 	 */
+	@Override
 	public void cacheResult(AkismetData akismetData) {
 		EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData);
@@ -845,6 +861,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 *
 	 * @param akismetDatas the akismet datas
 	 */
+	@Override
 	public void cacheResult(List<AkismetData> akismetDatas) {
 		for (AkismetData akismetData : akismetDatas) {
 			if (EntityCacheUtil.getResult(
@@ -965,6 +982,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @param akismetDataId the primary key for the new akismet data
 	 * @return the new akismet data
 	 */
+	@Override
 	public AkismetData create(long akismetDataId) {
 		AkismetData akismetData = new AkismetDataImpl();
 
@@ -982,6 +1000,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData remove(long akismetDataId)
 		throws NoSuchDataException, SystemException {
 		return remove((Serializable)akismetDataId);
@@ -1162,6 +1181,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData findByPrimaryKey(long akismetDataId)
 		throws NoSuchDataException, SystemException {
 		return findByPrimaryKey((Serializable)akismetDataId);
@@ -1222,6 +1242,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the akismet data, or <code>null</code> if a akismet data with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData fetchByPrimaryKey(long akismetDataId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)akismetDataId);
@@ -1233,6 +1254,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<AkismetData> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1249,6 +1271,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the range of akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<AkismetData> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -1267,6 +1290,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the ordered range of akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<AkismetData> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1352,6 +1376,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (AkismetData akismetData : findAll()) {
 			remove(akismetData);
@@ -1364,6 +1389,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * @return the number of akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -1458,6 +1484,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		};
 
 	private static CacheModel<AkismetData> _nullAkismetDataCacheModel = new CacheModel<AkismetData>() {
+			@Override
 			public AkismetData toEntityModel() {
 				return _nullAkismetData;
 			}

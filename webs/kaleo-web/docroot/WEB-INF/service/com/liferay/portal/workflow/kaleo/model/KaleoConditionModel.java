@@ -81,6 +81,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @return the group ID of this kaleo condition
 	 */
+	@Override
 	public long getGroupId();
 
 	/**
@@ -88,6 +89,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @param groupId the group ID of this kaleo condition
 	 */
+	@Override
 	public void setGroupId(long groupId);
 
 	/**
@@ -95,6 +97,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @return the company ID of this kaleo condition
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -102,6 +105,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @param companyId the company ID of this kaleo condition
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -109,6 +113,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @return the user ID of this kaleo condition
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -116,6 +121,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @param userId the user ID of this kaleo condition
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -124,6 +130,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 * @return the user uuid of this kaleo condition
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -131,6 +138,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @param userUuid the user uuid of this kaleo condition
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -139,6 +147,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 * @return the user name of this kaleo condition
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -146,6 +155,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @param userName the user name of this kaleo condition
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -153,6 +163,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @return the create date of this kaleo condition
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -160,6 +171,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @param createDate the create date of this kaleo condition
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -167,6 +179,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @return the modified date of this kaleo condition
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -174,6 +187,7 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 *
 	 * @param modifiedDate the modified date of this kaleo condition
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -249,41 +263,60 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 */
 	public void setScriptRequiredContexts(String scriptRequiredContexts);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(KaleoCondition kaleoCondition);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<KaleoCondition> toCacheModel();
 
+	@Override
 	public KaleoCondition toEscapedModel();
 
+	@Override
 	public KaleoCondition toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

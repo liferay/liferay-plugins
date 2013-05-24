@@ -95,26 +95,32 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	public JIRAActionModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _jiraActionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setJiraActionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _jiraActionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return JIRAAction.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return JIRAAction.class.getName();
 	}
@@ -186,14 +192,17 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public long getJiraActionId() {
 		return _jiraActionId;
 	}
 
+	@Override
 	public void setJiraActionId(long jiraActionId) {
 		_jiraActionId = jiraActionId;
 	}
 
+	@Override
 	public String getJiraUserId() {
 		if (_jiraUserId == null) {
 			return StringPool.BLANK;
@@ -203,6 +212,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public void setJiraUserId(String jiraUserId) {
 		_columnBitmask |= JIRAUSERID_COLUMN_BITMASK;
 
@@ -217,28 +227,34 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return GetterUtil.getString(_originalJiraUserId);
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public long getJiraIssueId() {
 		return _jiraIssueId;
 	}
 
+	@Override
 	public void setJiraIssueId(long jiraIssueId) {
 		_columnBitmask |= JIRAISSUEID_COLUMN_BITMASK;
 
@@ -255,6 +271,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return _originalJiraIssueId;
 	}
 
+	@Override
 	public String getType() {
 		if (_type == null) {
 			return StringPool.BLANK;
@@ -264,6 +281,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public void setType(String type) {
 		_columnBitmask |= TYPE_COLUMN_BITMASK;
 
@@ -278,6 +296,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return GetterUtil.getString(_originalType);
 	}
 
+	@Override
 	public String getBody() {
 		if (_body == null) {
 			return StringPool.BLANK;
@@ -287,10 +306,12 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public void setBody(String body) {
 		_body = body;
 	}
 
+	@Override
 	public String getJiraGroupName() {
 		if (_jiraGroupName == null) {
 			return StringPool.BLANK;
@@ -300,6 +321,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public void setJiraGroupName(String jiraGroupName) {
 		_jiraGroupName = jiraGroupName;
 	}
@@ -349,6 +371,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return jiraActionImpl;
 	}
 
+	@Override
 	public int compareTo(JIRAAction jiraAction) {
 		int value = 0;
 
@@ -492,6 +515,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(28);
 

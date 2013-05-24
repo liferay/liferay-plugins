@@ -145,6 +145,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		_methodParameterTypes25 = new String[] { "long", "java.lang.String" };
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment addKaleoTaskAssignment(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -176,6 +177,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment createKaleoTaskAssignment(
 		long kaleoTaskAssignmentId) {
 		Object returnObj = null;
@@ -200,6 +202,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment deleteKaleoTaskAssignment(
 		long kaleoTaskAssignmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -234,6 +237,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment deleteKaleoTaskAssignment(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -265,6 +269,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -287,6 +292,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -317,6 +323,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -353,6 +360,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -393,6 +401,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -422,6 +431,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment fetchKaleoTaskAssignment(
 		long kaleoTaskAssignmentId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -451,6 +461,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment getKaleoTaskAssignment(
 		long kaleoTaskAssignmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -485,6 +496,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -519,6 +531,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -547,6 +560,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKaleoTaskAssignmentsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -574,6 +588,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment updateKaleoTaskAssignment(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -605,6 +620,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -627,6 +643,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -646,12 +663,14 @@ public class KaleoTaskAssignmentLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment addKaleoTaskAssignment(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoDefinitionId,
@@ -699,6 +718,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteCompanyKaleoTaskAssignments(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -722,6 +742,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		}
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoTaskAssignments(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -746,6 +767,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -774,6 +796,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		long kaleoTaskId, java.lang.String assigneeClassName)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -807,6 +830,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		java.lang.String kaleoClassName, long kaleoClassPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -840,6 +864,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKaleoTaskAssignmentsCount(long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -867,6 +892,7 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public int getKaleoTaskAssignmentsCount(long kaleoTaskId,
 		java.lang.String assigneeClassName)
 		throws com.liferay.portal.kernel.exception.SystemException {

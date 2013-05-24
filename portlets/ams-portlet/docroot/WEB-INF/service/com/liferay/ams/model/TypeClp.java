@@ -38,26 +38,32 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	public TypeClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Type.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Type.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _typeId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setTypeId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _typeId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -94,10 +100,12 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		}
 	}
 
+	@Override
 	public long getTypeId() {
 		return _typeId;
 	}
 
+	@Override
 	public void setTypeId(long typeId) {
 		_typeId = typeId;
 
@@ -115,10 +123,12 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -136,10 +146,12 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -206,6 +218,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			TypeLocalServiceUtil.addType(this);
@@ -232,6 +245,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Type type) {
 		int value = 0;
 
@@ -286,6 +300,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(13);
 

@@ -78,6 +78,7 @@ public class KaleoTaskAssignmentInstanceCacheModel implements CacheModel<KaleoTa
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoTaskAssignmentInstance toEntityModel() {
 		KaleoTaskAssignmentInstanceImpl kaleoTaskAssignmentInstanceImpl = new KaleoTaskAssignmentInstanceImpl();
 
@@ -144,6 +145,7 @@ public class KaleoTaskAssignmentInstanceCacheModel implements CacheModel<KaleoTa
 		return kaleoTaskAssignmentInstanceImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoTaskAssignmentInstanceId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -164,6 +166,7 @@ public class KaleoTaskAssignmentInstanceCacheModel implements CacheModel<KaleoTa
 		completionDate = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoTaskAssignmentInstanceId);

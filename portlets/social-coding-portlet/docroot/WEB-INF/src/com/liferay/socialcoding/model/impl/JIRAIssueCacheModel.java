@@ -67,6 +67,7 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		return sb.toString();
 	}
 
+	@Override
 	public JIRAIssue toEntityModel() {
 		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
@@ -142,6 +143,7 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		return jiraIssueImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		jiraIssueId = objectInput.readLong();
 		createDate = objectInput.readLong();
@@ -156,6 +158,7 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		status = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(jiraIssueId);

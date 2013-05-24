@@ -127,6 +127,7 @@ public class MeetupsRegistrationLocalServiceClp
 			};
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration addMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -158,6 +159,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration createMeetupsRegistration(
 		long meetupsRegistrationId) {
 		Object returnObj = null;
@@ -182,6 +184,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
 		long meetupsRegistrationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -216,6 +219,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -247,6 +251,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -269,6 +274,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -299,6 +305,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -335,6 +342,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -375,6 +383,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -404,6 +413,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchMeetupsRegistration(
 		long meetupsRegistrationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -433,6 +443,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long meetupsRegistrationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -467,6 +478,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -501,6 +513,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -529,6 +542,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getMeetupsRegistrationsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -556,6 +570,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -587,6 +602,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -609,6 +625,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -628,12 +645,14 @@ public class MeetupsRegistrationLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -668,6 +687,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
 		long meetupsEntryId, int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -697,6 +717,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return (java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -725,6 +746,7 @@ public class MeetupsRegistrationLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
 		long userId, long meetupsEntryId, int status, java.lang.String comments)
 		throws com.liferay.portal.kernel.exception.PortalException,

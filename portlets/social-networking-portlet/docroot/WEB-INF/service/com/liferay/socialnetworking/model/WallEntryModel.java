@@ -80,6 +80,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @return the group ID of this wall entry
 	 */
+	@Override
 	public long getGroupId();
 
 	/**
@@ -87,6 +88,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @param groupId the group ID of this wall entry
 	 */
+	@Override
 	public void setGroupId(long groupId);
 
 	/**
@@ -94,6 +96,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @return the company ID of this wall entry
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -101,6 +104,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @param companyId the company ID of this wall entry
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -108,6 +112,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @return the user ID of this wall entry
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -115,6 +120,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @param userId the user ID of this wall entry
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -123,6 +129,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 * @return the user uuid of this wall entry
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -130,6 +137,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @param userUuid the user uuid of this wall entry
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -138,6 +146,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 * @return the user name of this wall entry
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -145,6 +154,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @param userName the user name of this wall entry
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -152,6 +162,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @return the create date of this wall entry
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -159,6 +170,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @param createDate the create date of this wall entry
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -166,6 +178,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @return the modified date of this wall entry
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -173,6 +186,7 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 *
 	 * @param modifiedDate the modified date of this wall entry
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -190,41 +204,60 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel {
 	 */
 	public void setComments(String comments);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(WallEntry wallEntry);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<WallEntry> toCacheModel();
 
+	@Override
 	public WallEntry toEscapedModel();
 
+	@Override
 	public WallEntry toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

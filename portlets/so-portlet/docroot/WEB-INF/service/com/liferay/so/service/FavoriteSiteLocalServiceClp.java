@@ -142,6 +142,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		_methodParameterTypes25 = new String[] { "long", "long" };
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite addFavoriteSite(
 		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -171,6 +172,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite createFavoriteSite(
 		long favoriteSiteId) {
 		Object returnObj = null;
@@ -194,6 +196,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
 		long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -227,6 +230,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
 		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -256,6 +260,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -278,6 +283,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -308,6 +314,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -344,6 +351,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -384,6 +392,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -413,6 +422,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite fetchFavoriteSite(
 		long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -441,6 +451,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite getFavoriteSite(
 		long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -474,6 +485,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -508,6 +520,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -536,6 +549,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (java.util.List<com.liferay.so.model.FavoriteSite>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getFavoriteSitesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -563,6 +577,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite updateFavoriteSite(
 		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -592,6 +607,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -614,6 +630,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -633,12 +650,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite addFavoriteSite(long userId,
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -672,6 +691,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteFavoriteSites(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -700,6 +720,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -728,6 +749,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (java.util.List<com.liferay.so.model.FavoriteSite>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<java.lang.Object[]> getFavoriteSites(long userId,
 		java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -765,6 +787,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (java.util.List<java.lang.Object[]>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getFavoriteSitesCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -792,6 +815,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public int getFavoriteSitesCount(long userId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -820,6 +844,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public boolean isFavoriteSite(long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -847,6 +872,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return ((Boolean)returnObj).booleanValue();
 	}
 
+	@Override
 	public boolean isFavoriteSite(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

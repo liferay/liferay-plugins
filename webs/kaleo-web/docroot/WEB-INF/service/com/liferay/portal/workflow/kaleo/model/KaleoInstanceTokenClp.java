@@ -40,26 +40,32 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	public KaleoInstanceTokenClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoInstanceToken.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoInstanceToken.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoInstanceTokenId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoInstanceTokenId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoInstanceTokenId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -190,10 +196,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getKaleoInstanceTokenId() {
 		return _kaleoInstanceTokenId;
 	}
 
+	@Override
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
 		_kaleoInstanceTokenId = kaleoInstanceTokenId;
 
@@ -213,10 +221,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -234,10 +244,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -255,10 +267,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -276,18 +290,22 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -305,10 +323,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -326,10 +346,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -347,10 +369,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -369,10 +393,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getKaleoInstanceId() {
 		return _kaleoInstanceId;
 	}
 
+	@Override
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoInstanceId = kaleoInstanceId;
 
@@ -390,10 +416,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getParentKaleoInstanceTokenId() {
 		return _parentKaleoInstanceTokenId;
 	}
 
+	@Override
 	public void setParentKaleoInstanceTokenId(long parentKaleoInstanceTokenId) {
 		_parentKaleoInstanceTokenId = parentKaleoInstanceTokenId;
 
@@ -413,10 +441,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getCurrentKaleoNodeId() {
 		return _currentKaleoNodeId;
 	}
 
+	@Override
 	public void setCurrentKaleoNodeId(long currentKaleoNodeId) {
 		_currentKaleoNodeId = currentKaleoNodeId;
 
@@ -435,10 +465,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public String getCurrentKaleoNodeName() {
 		return _currentKaleoNodeName;
 	}
 
+	@Override
 	public void setCurrentKaleoNodeName(String currentKaleoNodeName) {
 		_currentKaleoNodeName = currentKaleoNodeName;
 
@@ -458,10 +490,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public String getClassName() {
 		return _className;
 	}
 
+	@Override
 	public void setClassName(String className) {
 		_className = className;
 
@@ -479,10 +513,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public long getClassPK() {
 		return _classPK;
 	}
 
+	@Override
 	public void setClassPK(long classPK) {
 		_classPK = classPK;
 
@@ -500,14 +536,17 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public boolean getCompleted() {
 		return _completed;
 	}
 
+	@Override
 	public boolean isCompleted() {
 		return _completed;
 	}
 
+	@Override
 	public void setCompleted(boolean completed) {
 		_completed = completed;
 
@@ -525,10 +564,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public Date getCompletionDate() {
 		return _completionDate;
 	}
 
+	@Override
 	public void setCompletionDate(Date completionDate) {
 		_completionDate = completionDate;
 
@@ -546,6 +587,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public boolean hasIncompleteChildrenKaleoInstanceToken() {
 		try {
 			String methodName = "hasIncompleteChildrenKaleoInstanceToken";
@@ -564,6 +606,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getParentKaleoInstanceToken() {
 		try {
 			String methodName = "getParentKaleoInstanceToken";
@@ -583,6 +626,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public void setCurrentKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
 		try {
@@ -601,6 +645,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens() {
 		try {
 			String methodName = "getChildrenKaleoInstanceTokens";
@@ -620,6 +665,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance getKaleoInstance() {
 		try {
 			String methodName = "getKaleoInstance";
@@ -638,6 +684,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens() {
 		try {
 			String methodName = "getIncompleteChildrenKaleoInstanceTokens";
@@ -657,6 +704,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getCurrentKaleoNode() {
 		try {
 			String methodName = "getCurrentKaleoNode";
@@ -725,6 +773,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoInstanceTokenLocalServiceUtil.addKaleoInstanceToken(this);
@@ -765,6 +814,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoInstanceToken kaleoInstanceToken) {
 		int value = 0;
 
@@ -853,6 +903,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(52);
 

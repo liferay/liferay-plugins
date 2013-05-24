@@ -40,26 +40,32 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	public FeedClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Feed.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Feed.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _feedId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setFeedId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _feedId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -138,10 +144,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public long getFeedId() {
 		return _feedId;
 	}
 
+	@Override
 	public void setFeedId(long feedId) {
 		_feedId = feedId;
 
@@ -159,10 +167,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -180,10 +190,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -201,18 +213,22 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -230,10 +246,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -251,10 +269,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -272,10 +292,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public long getTwitterUserId() {
 		return _twitterUserId;
 	}
 
+	@Override
 	public void setTwitterUserId(long twitterUserId) {
 		_twitterUserId = twitterUserId;
 
@@ -293,19 +315,23 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public String getTwitterUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getTwitterUserId(), "uuid",
 			_twitterUserUuid);
 	}
 
+	@Override
 	public void setTwitterUserUuid(String twitterUserUuid) {
 		_twitterUserUuid = twitterUserUuid;
 	}
 
+	@Override
 	public String getTwitterScreenName() {
 		return _twitterScreenName;
 	}
 
+	@Override
 	public void setTwitterScreenName(String twitterScreenName) {
 		_twitterScreenName = twitterScreenName;
 
@@ -324,10 +350,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
 	public long getLastStatusId() {
 		return _lastStatusId;
 	}
 
+	@Override
 	public void setLastStatusId(long lastStatusId) {
 		_lastStatusId = lastStatusId;
 
@@ -394,6 +422,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FeedLocalServiceUtil.addFeed(this);
@@ -426,6 +455,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Feed feed) {
 		long primaryKey = feed.getPrimaryKey();
 
@@ -494,6 +524,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

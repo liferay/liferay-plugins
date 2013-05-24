@@ -115,6 +115,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
 		return findByMeetupsEntryId(meetupsEntryId, QueryUtil.ALL_POS,
@@ -134,6 +135,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the range of matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
 		int start, int end) throws SystemException {
 		return findByMeetupsEntryId(meetupsEntryId, start, end, null);
@@ -153,6 +155,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the ordered range of matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -264,6 +267,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration findByMeetupsEntryId_First(long meetupsEntryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -294,6 +298,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the first matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByMeetupsEntryId_First(
 		long meetupsEntryId, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -316,6 +321,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration findByMeetupsEntryId_Last(long meetupsEntryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -346,6 +352,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the last matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByMeetupsEntryId_Last(long meetupsEntryId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMeetupsEntryId(meetupsEntryId);
@@ -370,6 +377,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration[] findByMeetupsEntryId_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId,
 		OrderByComparator orderByComparator)
@@ -514,6 +522,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @param meetupsEntryId the meetups entry ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByMeetupsEntryId(
@@ -529,6 +538,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the number of matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_MEETUPSENTRYID;
@@ -597,6 +607,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration findByU_ME(long userId, long meetupsEntryId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = fetchByU_ME(userId,
@@ -633,6 +644,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId)
 		throws SystemException {
 		return fetchByU_ME(userId, meetupsEntryId, true);
@@ -647,6 +659,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { userId, meetupsEntryId };
@@ -745,6 +758,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the meetups registration that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration removeByU_ME(long userId, long meetupsEntryId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByU_ME(userId,
@@ -761,6 +775,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the number of matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByU_ME(long userId, long meetupsEntryId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_ME;
@@ -844,6 +859,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId, int status)
 		throws SystemException {
 		return findByME_S(meetupsEntryId, status, QueryUtil.ALL_POS,
@@ -864,6 +880,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the range of matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
 		int status, int start, int end) throws SystemException {
 		return findByME_S(meetupsEntryId, status, start, end, null);
@@ -884,6 +901,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the ordered range of matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
 		int status, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1001,6 +1019,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration findByME_S_First(long meetupsEntryId,
 		int status, OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -1035,6 +1054,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the first matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByME_S_First(long meetupsEntryId,
 		int status, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1058,6 +1078,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration findByME_S_Last(long meetupsEntryId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -1092,6 +1113,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the last matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByME_S_Last(long meetupsEntryId,
 		int status, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1118,6 +1140,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration[] findByME_S_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId, int status,
 		OrderByComparator orderByComparator)
@@ -1265,6 +1288,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @param status the status
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByME_S(long meetupsEntryId, int status)
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByME_S(
@@ -1282,6 +1306,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the number of matching meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByME_S(long meetupsEntryId, int status)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_ME_S;
@@ -1340,6 +1365,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 *
 	 * @param meetupsRegistration the meetups registration
 	 */
+	@Override
 	public void cacheResult(MeetupsRegistration meetupsRegistration) {
 		EntityCacheUtil.putResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey(),
@@ -1359,6 +1385,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 *
 	 * @param meetupsRegistrations the meetups registrations
 	 */
+	@Override
 	public void cacheResult(List<MeetupsRegistration> meetupsRegistrations) {
 		for (MeetupsRegistration meetupsRegistration : meetupsRegistrations) {
 			if (EntityCacheUtil.getResult(
@@ -1486,6 +1513,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @param meetupsRegistrationId the primary key for the new meetups registration
 	 * @return the new meetups registration
 	 */
+	@Override
 	public MeetupsRegistration create(long meetupsRegistrationId) {
 		MeetupsRegistration meetupsRegistration = new MeetupsRegistrationImpl();
 
@@ -1503,6 +1531,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration remove(long meetupsRegistrationId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		return remove((Serializable)meetupsRegistrationId);
@@ -1730,6 +1759,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration findByPrimaryKey(long meetupsRegistrationId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		return findByPrimaryKey((Serializable)meetupsRegistrationId);
@@ -1791,6 +1821,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the meetups registration, or <code>null</code> if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration fetchByPrimaryKey(long meetupsRegistrationId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)meetupsRegistrationId);
@@ -1802,6 +1833,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1818,6 +1850,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the range of meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -1836,6 +1869,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the ordered range of meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1921,6 +1955,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findAll()) {
 			remove(meetupsRegistration);
@@ -1933,6 +1968,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * @return the number of meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -2020,6 +2056,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	private static CacheModel<MeetupsRegistration> _nullMeetupsRegistrationCacheModel =
 		new CacheModel<MeetupsRegistration>() {
+			@Override
 			public MeetupsRegistration toEntityModel() {
 				return _nullMeetupsRegistration;
 			}

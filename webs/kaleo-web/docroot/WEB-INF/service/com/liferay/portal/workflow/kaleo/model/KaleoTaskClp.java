@@ -39,26 +39,32 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	public KaleoTaskClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoTask.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoTask.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoTaskId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoTaskId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoTaskId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -151,10 +157,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public long getKaleoTaskId() {
 		return _kaleoTaskId;
 	}
 
+	@Override
 	public void setKaleoTaskId(long kaleoTaskId) {
 		_kaleoTaskId = kaleoTaskId;
 
@@ -172,10 +180,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -193,10 +203,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -214,10 +226,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -235,18 +249,22 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -264,10 +282,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -285,10 +305,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -306,10 +328,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -328,10 +352,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public long getKaleoNodeId() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNodeId = kaleoNodeId;
 
@@ -349,10 +375,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -370,10 +398,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -391,6 +421,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments() {
 		try {
 			String methodName = "getKaleoTaskAssignments";
@@ -410,6 +441,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode() {
 		try {
 			String methodName = "getKaleoNode";
@@ -477,6 +509,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoTaskLocalServiceUtil.addKaleoTask(this);
@@ -511,6 +544,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoTask kaleoTask) {
 		int value = 0;
 
@@ -589,6 +623,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

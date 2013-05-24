@@ -111,6 +111,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findByKCN_KCPK(String kaleoClassName,
 		long kaleoClassPK) throws SystemException {
 		return findByKCN_KCPK(kaleoClassName, kaleoClassPK, QueryUtil.ALL_POS,
@@ -131,6 +132,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the range of matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findByKCN_KCPK(String kaleoClassName,
 		long kaleoClassPK, int start, int end) throws SystemException {
 		return findByKCN_KCPK(kaleoClassName, kaleoClassPK, start, end, null);
@@ -151,6 +153,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the ordered range of matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findByKCN_KCPK(String kaleoClassName,
 		long kaleoClassPK, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -283,6 +286,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer findByKCN_KCPK_First(String kaleoClassName,
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
@@ -317,6 +321,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the first matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer fetchByKCN_KCPK_First(String kaleoClassName,
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -340,6 +345,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer findByKCN_KCPK_Last(String kaleoClassName,
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
@@ -374,6 +380,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the last matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer fetchByKCN_KCPK_Last(String kaleoClassName,
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -400,6 +407,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer[] findByKCN_KCPK_PrevAndNext(long kaleoTimerId,
 		String kaleoClassName, long kaleoClassPK,
 		OrderByComparator orderByComparator)
@@ -561,6 +569,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @param kaleoClassPK the kaleo class p k
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
 		for (KaleoTimer kaleoTimer : findByKCN_KCPK(kaleoClassName,
@@ -577,6 +586,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the number of matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByKCN_KCPK(String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KCN_KCPK;
@@ -686,6 +696,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findByKCN_KCPK_Blocking(String kaleoClassName,
 		long kaleoClassPK, boolean blocking) throws SystemException {
 		return findByKCN_KCPK_Blocking(kaleoClassName, kaleoClassPK, blocking,
@@ -707,6 +718,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the range of matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findByKCN_KCPK_Blocking(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, int start, int end)
 		throws SystemException {
@@ -730,6 +742,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the ordered range of matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findByKCN_KCPK_Blocking(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -868,6 +881,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer findByKCN_KCPK_Blocking_First(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
@@ -906,6 +920,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the first matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer fetchByKCN_KCPK_Blocking_First(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -930,6 +945,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer findByKCN_KCPK_Blocking_Last(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
@@ -968,6 +984,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the last matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer fetchByKCN_KCPK_Blocking_Last(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -996,6 +1013,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer[] findByKCN_KCPK_Blocking_PrevAndNext(long kaleoTimerId,
 		String kaleoClassName, long kaleoClassPK, boolean blocking,
 		OrderByComparator orderByComparator)
@@ -1164,6 +1182,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @param blocking the blocking
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByKCN_KCPK_Blocking(String kaleoClassName,
 		long kaleoClassPK, boolean blocking) throws SystemException {
 		for (KaleoTimer kaleoTimer : findByKCN_KCPK_Blocking(kaleoClassName,
@@ -1182,6 +1201,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the number of matching kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByKCN_KCPK_Blocking(String kaleoClassName,
 		long kaleoClassPK, boolean blocking) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KCN_KCPK_BLOCKING;
@@ -1266,6 +1286,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 *
 	 * @param kaleoTimer the kaleo timer
 	 */
+	@Override
 	public void cacheResult(KaleoTimer kaleoTimer) {
 		EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), kaleoTimer);
@@ -1278,6 +1299,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 *
 	 * @param kaleoTimers the kaleo timers
 	 */
+	@Override
 	public void cacheResult(List<KaleoTimer> kaleoTimers) {
 		for (KaleoTimer kaleoTimer : kaleoTimers) {
 			if (EntityCacheUtil.getResult(
@@ -1344,6 +1366,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @param kaleoTimerId the primary key for the new kaleo timer
 	 * @return the new kaleo timer
 	 */
+	@Override
 	public KaleoTimer create(long kaleoTimerId) {
 		KaleoTimer kaleoTimer = new KaleoTimerImpl();
 
@@ -1361,6 +1384,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer remove(long kaleoTimerId)
 		throws NoSuchTimerException, SystemException {
 		return remove((Serializable)kaleoTimerId);
@@ -1595,6 +1619,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer findByPrimaryKey(long kaleoTimerId)
 		throws NoSuchTimerException, SystemException {
 		return findByPrimaryKey((Serializable)kaleoTimerId);
@@ -1655,6 +1680,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the kaleo timer, or <code>null</code> if a kaleo timer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimer fetchByPrimaryKey(long kaleoTimerId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)kaleoTimerId);
@@ -1666,6 +1692,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1682,6 +1709,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the range of kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -1700,6 +1728,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the ordered range of kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimer> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1785,6 +1814,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (KaleoTimer kaleoTimer : findAll()) {
 			remove(kaleoTimer);
@@ -1797,6 +1827,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	 * @return the number of kaleo timers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -1883,6 +1914,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		};
 
 	private static CacheModel<KaleoTimer> _nullKaleoTimerCacheModel = new CacheModel<KaleoTimer>() {
+			@Override
 			public KaleoTimer toEntityModel() {
 				return _nullKaleoTimer;
 			}

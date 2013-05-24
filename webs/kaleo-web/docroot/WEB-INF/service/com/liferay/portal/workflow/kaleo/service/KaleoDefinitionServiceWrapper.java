@@ -35,6 +35,7 @@ public class KaleoDefinitionServiceWrapper implements KaleoDefinitionService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _kaleoDefinitionService.getBeanIdentifier();
 	}
@@ -44,10 +45,12 @@ public class KaleoDefinitionServiceWrapper implements KaleoDefinitionService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoDefinitionService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -55,12 +58,14 @@ public class KaleoDefinitionServiceWrapper implements KaleoDefinitionService,
 			arguments);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinitionService.getKaleoDefinitions(start, end);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -82,10 +87,12 @@ public class KaleoDefinitionServiceWrapper implements KaleoDefinitionService,
 		_kaleoDefinitionService = kaleoDefinitionService;
 	}
 
+	@Override
 	public KaleoDefinitionService getWrappedService() {
 		return _kaleoDefinitionService;
 	}
 
+	@Override
 	public void setWrappedService(KaleoDefinitionService kaleoDefinitionService) {
 		_kaleoDefinitionService = kaleoDefinitionService;
 	}

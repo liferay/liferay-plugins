@@ -42,26 +42,32 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	public MeetupsRegistrationClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MeetupsRegistration.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MeetupsRegistration.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _meetupsRegistrationId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setMeetupsRegistrationId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _meetupsRegistrationId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -141,10 +147,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public long getMeetupsRegistrationId() {
 		return _meetupsRegistrationId;
 	}
 
+	@Override
 	public void setMeetupsRegistrationId(long meetupsRegistrationId) {
 		_meetupsRegistrationId = meetupsRegistrationId;
 
@@ -164,10 +172,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -185,10 +195,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -206,18 +218,22 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -235,10 +251,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -256,10 +274,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -277,10 +297,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public long getMeetupsEntryId() {
 		return _meetupsEntryId;
 	}
 
+	@Override
 	public void setMeetupsEntryId(long meetupsEntryId) {
 		_meetupsEntryId = meetupsEntryId;
 
@@ -298,10 +320,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public int getStatus() {
 		return _status;
 	}
 
+	@Override
 	public void setStatus(int status) {
 		_status = status;
 
@@ -319,10 +343,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	@Override
 	public String getComments() {
 		return _comments;
 	}
 
+	@Override
 	public void setComments(String comments) {
 		_comments = comments;
 
@@ -390,6 +416,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			MeetupsRegistrationLocalServiceUtil.addMeetupsRegistration(this);
@@ -423,6 +450,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(MeetupsRegistration meetupsRegistration) {
 		int value = 0;
 
@@ -492,6 +520,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

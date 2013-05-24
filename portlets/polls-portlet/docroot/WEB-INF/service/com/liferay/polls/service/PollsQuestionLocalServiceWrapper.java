@@ -38,6 +38,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the polls question that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.polls.model.PollsQuestion addPollsQuestion(
 		com.liferay.polls.model.PollsQuestion pollsQuestion)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -50,6 +51,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @param pollsQuestionId the primary key for the new polls question
 	* @return the new polls question
 	*/
+	@Override
 	public com.liferay.polls.model.PollsQuestion createPollsQuestion(
 		long pollsQuestionId) {
 		return _pollsQuestionLocalService.createPollsQuestion(pollsQuestionId);
@@ -63,6 +65,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @throws PortalException if a polls question with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.polls.model.PollsQuestion deletePollsQuestion(
 		long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -78,6 +81,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.polls.model.PollsQuestion deletePollsQuestion(
 		com.liferay.polls.model.PollsQuestion pollsQuestion)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -85,6 +89,7 @@ public class PollsQuestionLocalServiceWrapper
 		return _pollsQuestionLocalService.deletePollsQuestion(pollsQuestion);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _pollsQuestionLocalService.dynamicQuery();
 	}
@@ -96,6 +101,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -116,6 +122,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -137,6 +144,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -154,12 +162,14 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _pollsQuestionLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion fetchPollsQuestion(
 		long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -174,6 +184,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @throws PortalException if a polls question with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.polls.model.PollsQuestion getPollsQuestion(
 		long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -181,6 +192,7 @@ public class PollsQuestionLocalServiceWrapper
 		return _pollsQuestionLocalService.getPollsQuestion(pollsQuestionId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -197,6 +209,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @throws PortalException if a matching polls question could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.polls.model.PollsQuestion getPollsQuestionByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -217,6 +230,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the range of polls questions
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.polls.model.PollsQuestion> getPollsQuestions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -229,6 +243,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the number of polls questions
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getPollsQuestionsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _pollsQuestionLocalService.getPollsQuestionsCount();
@@ -241,6 +256,7 @@ public class PollsQuestionLocalServiceWrapper
 	* @return the polls question that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.polls.model.PollsQuestion updatePollsQuestion(
 		com.liferay.polls.model.PollsQuestion pollsQuestion)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -252,6 +268,7 @@ public class PollsQuestionLocalServiceWrapper
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _pollsQuestionLocalService.getBeanIdentifier();
 	}
@@ -261,10 +278,12 @@ public class PollsQuestionLocalServiceWrapper
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_pollsQuestionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -272,6 +291,7 @@ public class PollsQuestionLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion addPollsQuestion(long userId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -287,29 +307,34 @@ public class PollsQuestionLocalServiceWrapper
 			neverExpire, pollsChoices, serviceContext);
 	}
 
+	@Override
 	public void deletePollsQuestions(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_pollsQuestionLocalService.deletePollsQuestions(groupId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.polls.model.PollsQuestion> getPollsQuestions(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _pollsQuestionLocalService.getPollsQuestions(groupId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.polls.model.PollsQuestion> getPollsQuestions(
 		long groupId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _pollsQuestionLocalService.getPollsQuestions(groupId, start, end);
 	}
 
+	@Override
 	public int getPollsQuestionsCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _pollsQuestionLocalService.getPollsQuestionsCount(groupId);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion updatePollsQuestion(
 		long userId, long pollsQuestionId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -341,10 +366,12 @@ public class PollsQuestionLocalServiceWrapper
 		_pollsQuestionLocalService = pollsQuestionLocalService;
 	}
 
+	@Override
 	public PollsQuestionLocalService getWrappedService() {
 		return _pollsQuestionLocalService;
 	}
 
+	@Override
 	public void setWrappedService(
 		PollsQuestionLocalService pollsQuestionLocalService) {
 		_pollsQuestionLocalService = pollsQuestionLocalService;

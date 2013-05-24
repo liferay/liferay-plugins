@@ -40,26 +40,32 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	public KaleoConditionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoCondition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoCondition.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoConditionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoConditionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoConditionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -160,10 +166,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public long getKaleoConditionId() {
 		return _kaleoConditionId;
 	}
 
+	@Override
 	public void setKaleoConditionId(long kaleoConditionId) {
 		_kaleoConditionId = kaleoConditionId;
 
@@ -182,10 +190,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -203,10 +213,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -224,10 +236,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -245,18 +259,22 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -274,10 +292,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -295,10 +315,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -316,10 +338,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -338,10 +362,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public long getKaleoNodeId() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNodeId = kaleoNodeId;
 
@@ -359,10 +385,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public String getScript() {
 		return _script;
 	}
 
+	@Override
 	public void setScript(String script) {
 		_script = script;
 
@@ -380,10 +408,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public String getScriptLanguage() {
 		return _scriptLanguage;
 	}
 
+	@Override
 	public void setScriptLanguage(String scriptLanguage) {
 		_scriptLanguage = scriptLanguage;
 
@@ -402,10 +432,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	@Override
 	public String getScriptRequiredContexts() {
 		return _scriptRequiredContexts;
 	}
 
+	@Override
 	public void setScriptRequiredContexts(String scriptRequiredContexts) {
 		_scriptRequiredContexts = scriptRequiredContexts;
 
@@ -474,6 +506,7 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoConditionLocalServiceUtil.addKaleoCondition(this);
@@ -510,6 +543,7 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoCondition kaleoCondition) {
 		int value = 0;
 
@@ -590,6 +624,7 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(40);
 

@@ -81,6 +81,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @return the group ID of this member request
 	 */
+	@Override
 	public long getGroupId();
 
 	/**
@@ -88,6 +89,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @param groupId the group ID of this member request
 	 */
+	@Override
 	public void setGroupId(long groupId);
 
 	/**
@@ -95,6 +97,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @return the company ID of this member request
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -102,6 +105,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @param companyId the company ID of this member request
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -109,6 +113,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @return the user ID of this member request
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -116,6 +121,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @param userId the user ID of this member request
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -124,6 +130,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 * @return the user uuid of this member request
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -131,6 +138,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @param userUuid the user uuid of this member request
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -139,6 +147,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 * @return the user name of this member request
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -146,6 +155,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @param userName the user name of this member request
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -153,6 +163,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @return the create date of this member request
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -160,6 +171,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @param createDate the create date of this member request
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -167,6 +179,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @return the modified date of this member request
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -174,6 +187,7 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 *
 	 * @param modifiedDate the modified date of this member request
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -262,41 +276,60 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	 */
 	public void setStatus(int status);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(MemberRequest memberRequest);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<MemberRequest> toCacheModel();
 
+	@Override
 	public MemberRequest toEscapedModel();
 
+	@Override
 	public MemberRequest toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

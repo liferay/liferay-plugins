@@ -40,26 +40,32 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	public KaleoTimerClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoTimer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoTimer.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoTimerId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoTimerId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoTimerId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -194,10 +200,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public long getKaleoTimerId() {
 		return _kaleoTimerId;
 	}
 
+	@Override
 	public void setKaleoTimerId(long kaleoTimerId) {
 		_kaleoTimerId = kaleoTimerId;
 
@@ -215,10 +223,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -236,10 +246,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -257,10 +269,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -278,18 +292,22 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -307,10 +325,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -328,10 +348,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -349,10 +371,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public String getKaleoClassName() {
 		return _kaleoClassName;
 	}
 
+	@Override
 	public void setKaleoClassName(String kaleoClassName) {
 		_kaleoClassName = kaleoClassName;
 
@@ -371,10 +395,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public long getKaleoClassPK() {
 		return _kaleoClassPK;
 	}
 
+	@Override
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoClassPK = kaleoClassPK;
 
@@ -392,10 +418,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -414,10 +442,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -435,14 +465,17 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public boolean getBlocking() {
 		return _blocking;
 	}
 
+	@Override
 	public boolean isBlocking() {
 		return _blocking;
 	}
 
+	@Override
 	public void setBlocking(boolean blocking) {
 		_blocking = blocking;
 
@@ -460,10 +493,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -481,10 +516,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public double getDuration() {
 		return _duration;
 	}
 
+	@Override
 	public void setDuration(double duration) {
 		_duration = duration;
 
@@ -502,10 +539,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public String getScale() {
 		return _scale;
 	}
 
+	@Override
 	public void setScale(String scale) {
 		_scale = scale;
 
@@ -523,10 +562,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public double getRecurrenceDuration() {
 		return _recurrenceDuration;
 	}
 
+	@Override
 	public void setRecurrenceDuration(double recurrenceDuration) {
 		_recurrenceDuration = recurrenceDuration;
 
@@ -545,10 +586,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public String getRecurrenceScale() {
 		return _recurrenceScale;
 	}
 
+	@Override
 	public void setRecurrenceScale(String recurrenceScale) {
 		_recurrenceScale = recurrenceScale;
 
@@ -567,6 +610,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public boolean isRecurring() {
 		try {
 			String methodName = "isRecurring";
@@ -585,6 +629,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskReassignments() {
 		try {
 			String methodName = "getKaleoTaskReassignments";
@@ -653,6 +698,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoTimerLocalServiceUtil.addKaleoTimer(this);
@@ -693,6 +739,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoTimer kaleoTimer) {
 		int value = 0;
 
@@ -783,6 +830,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(55);
 

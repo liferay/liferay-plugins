@@ -41,26 +41,32 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	public JIRAActionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return JIRAAction.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return JIRAAction.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _jiraActionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setJiraActionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _jiraActionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -132,10 +138,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public long getJiraActionId() {
 		return _jiraActionId;
 	}
 
+	@Override
 	public void setJiraActionId(long jiraActionId) {
 		_jiraActionId = jiraActionId;
 
@@ -153,10 +161,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public String getJiraUserId() {
 		return _jiraUserId;
 	}
 
+	@Override
 	public void setJiraUserId(String jiraUserId) {
 		_jiraUserId = jiraUserId;
 
@@ -174,10 +184,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -195,10 +207,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -216,10 +230,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public long getJiraIssueId() {
 		return _jiraIssueId;
 	}
 
+	@Override
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssueId = jiraIssueId;
 
@@ -237,10 +253,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public String getType() {
 		return _type;
 	}
 
+	@Override
 	public void setType(String type) {
 		_type = type;
 
@@ -258,10 +276,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public String getBody() {
 		return _body;
 	}
 
+	@Override
 	public void setBody(String body) {
 		_body = body;
 
@@ -279,10 +299,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	@Override
 	public String getJiraGroupName() {
 		return _jiraGroupName;
 	}
 
+	@Override
 	public void setJiraGroupName(String jiraGroupName) {
 		_jiraGroupName = jiraGroupName;
 
@@ -349,6 +371,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			JIRAActionLocalServiceUtil.addJIRAAction(this);
@@ -380,6 +403,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(JIRAAction jiraAction) {
 		int value = 0;
 
@@ -447,6 +471,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(28);
 

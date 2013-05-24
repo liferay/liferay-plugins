@@ -34,14 +34,17 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		_feed = feed;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Feed.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Feed.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -58,6 +61,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long feedId = (Long)attributes.get("feedId");
 
@@ -119,6 +123,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the primary key of this feed
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _feed.getPrimaryKey();
 	}
@@ -128,6 +133,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param primaryKey the primary key of this feed
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_feed.setPrimaryKey(primaryKey);
 	}
@@ -137,6 +143,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the feed ID of this feed
 	*/
+	@Override
 	public long getFeedId() {
 		return _feed.getFeedId();
 	}
@@ -146,6 +153,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param feedId the feed ID of this feed
 	*/
+	@Override
 	public void setFeedId(long feedId) {
 		_feed.setFeedId(feedId);
 	}
@@ -155,6 +163,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the company ID of this feed
 	*/
+	@Override
 	public long getCompanyId() {
 		return _feed.getCompanyId();
 	}
@@ -164,6 +173,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param companyId the company ID of this feed
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_feed.setCompanyId(companyId);
 	}
@@ -173,6 +183,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the user ID of this feed
 	*/
+	@Override
 	public long getUserId() {
 		return _feed.getUserId();
 	}
@@ -182,6 +193,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param userId the user ID of this feed
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_feed.setUserId(userId);
 	}
@@ -192,6 +204,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* @return the user uuid of this feed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feed.getUserUuid();
@@ -202,6 +215,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param userUuid the user uuid of this feed
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_feed.setUserUuid(userUuid);
 	}
@@ -211,6 +225,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the user name of this feed
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _feed.getUserName();
 	}
@@ -220,6 +235,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param userName the user name of this feed
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_feed.setUserName(userName);
 	}
@@ -229,6 +245,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the create date of this feed
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _feed.getCreateDate();
 	}
@@ -238,6 +255,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param createDate the create date of this feed
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_feed.setCreateDate(createDate);
 	}
@@ -247,6 +265,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the modified date of this feed
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _feed.getModifiedDate();
 	}
@@ -256,6 +275,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param modifiedDate the modified date of this feed
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_feed.setModifiedDate(modifiedDate);
 	}
@@ -265,6 +285,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the twitter user ID of this feed
 	*/
+	@Override
 	public long getTwitterUserId() {
 		return _feed.getTwitterUserId();
 	}
@@ -274,6 +295,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param twitterUserId the twitter user ID of this feed
 	*/
+	@Override
 	public void setTwitterUserId(long twitterUserId) {
 		_feed.setTwitterUserId(twitterUserId);
 	}
@@ -284,6 +306,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* @return the twitter user uuid of this feed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getTwitterUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feed.getTwitterUserUuid();
@@ -294,6 +317,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param twitterUserUuid the twitter user uuid of this feed
 	*/
+	@Override
 	public void setTwitterUserUuid(java.lang.String twitterUserUuid) {
 		_feed.setTwitterUserUuid(twitterUserUuid);
 	}
@@ -303,6 +327,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the twitter screen name of this feed
 	*/
+	@Override
 	public java.lang.String getTwitterScreenName() {
 		return _feed.getTwitterScreenName();
 	}
@@ -312,6 +337,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param twitterScreenName the twitter screen name of this feed
 	*/
+	@Override
 	public void setTwitterScreenName(java.lang.String twitterScreenName) {
 		_feed.setTwitterScreenName(twitterScreenName);
 	}
@@ -321,6 +347,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @return the last status ID of this feed
 	*/
+	@Override
 	public long getLastStatusId() {
 		return _feed.getLastStatusId();
 	}
@@ -330,52 +357,64 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	*
 	* @param lastStatusId the last status ID of this feed
 	*/
+	@Override
 	public void setLastStatusId(long lastStatusId) {
 		_feed.setLastStatusId(lastStatusId);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _feed.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_feed.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _feed.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_feed.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _feed.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _feed.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_feed.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _feed.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_feed.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_feed.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_feed.setExpandoBridgeAttributes(serviceContext);
@@ -386,6 +425,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return new FeedWrapper((Feed)_feed.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.twitter.model.Feed feed) {
 		return _feed.compareTo(feed);
 	}
@@ -395,14 +435,17 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return _feed.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.twitter.model.Feed> toCacheModel() {
 		return _feed.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.twitter.model.Feed toEscapedModel() {
 		return new FeedWrapper(_feed.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.twitter.model.Feed toUnescapedModel() {
 		return new FeedWrapper(_feed.toUnescapedModel());
 	}
@@ -412,10 +455,12 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return _feed.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _feed.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_feed.persist();
@@ -428,10 +473,12 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return _feed;
 	}
 
+	@Override
 	public Feed getWrappedModel() {
 		return _feed;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_feed.resetOriginalValues();
 	}

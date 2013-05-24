@@ -38,6 +38,7 @@ public abstract class CheckoutBaseImpl extends CheckoutModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a checkout model instance should use the {@link Checkout} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			CheckoutLocalServiceUtil.addCheckout(this);

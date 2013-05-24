@@ -48,6 +48,7 @@ public class TypeCacheModel implements CacheModel<Type>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Type toEntityModel() {
 		TypeImpl typeImpl = new TypeImpl();
 
@@ -66,12 +67,14 @@ public class TypeCacheModel implements CacheModel<Type>, Externalizable {
 		return typeImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		typeId = objectInput.readLong();
 		groupId = objectInput.readLong();
 		name = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(typeId);

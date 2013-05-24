@@ -61,6 +61,7 @@ public class JIRAActionCacheModel implements CacheModel<JIRAAction>,
 		return sb.toString();
 	}
 
+	@Override
 	public JIRAAction toEntityModel() {
 		JIRAActionImpl jiraActionImpl = new JIRAActionImpl();
 
@@ -115,6 +116,7 @@ public class JIRAActionCacheModel implements CacheModel<JIRAAction>,
 		return jiraActionImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		jiraActionId = objectInput.readLong();
 		jiraUserId = objectInput.readUTF();
@@ -126,6 +128,7 @@ public class JIRAActionCacheModel implements CacheModel<JIRAAction>,
 		jiraGroupName = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(jiraActionId);

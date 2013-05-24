@@ -37,6 +37,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the k b comment that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBComment addKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -49,6 +50,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @param kbCommentId the primary key for the new k b comment
 	* @return the new k b comment
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBComment createKBComment(
 		long kbCommentId) {
 		return _kbCommentLocalService.createKBComment(kbCommentId);
@@ -62,6 +64,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @throws PortalException if a k b comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -77,6 +80,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -84,6 +88,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		return _kbCommentLocalService.deleteKBComment(kbComment);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _kbCommentLocalService.dynamicQuery();
 	}
@@ -95,6 +100,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -115,6 +121,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -136,6 +143,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -153,12 +161,14 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment fetchKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -173,6 +183,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @throws PortalException if a k b comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -180,6 +191,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		return _kbCommentLocalService.getKBComment(kbCommentId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -196,6 +208,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @throws PortalException if a matching k b comment could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBCommentByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -215,6 +228,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the range of k b comments
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -227,6 +241,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the number of k b comments
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getKBCommentsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.getKBCommentsCount();
@@ -239,6 +254,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	* @return the k b comment that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -250,6 +266,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _kbCommentLocalService.getBeanIdentifier();
 	}
@@ -259,10 +276,12 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kbCommentLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -270,6 +289,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 			arguments);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment addKBComment(long userId,
 		long classNameId, long classPK, java.lang.String content,
 		boolean helpful,
@@ -280,12 +300,14 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 			classPK, content, helpful, serviceContext);
 	}
 
+	@Override
 	public void deleteKBComments(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbCommentLocalService.deleteKBComments(className, classPK);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBComment(long userId,
 		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -293,6 +315,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		return _kbCommentLocalService.getKBComment(userId, className, classPK);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -301,11 +324,13 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 			end, orderByComparator);
 	}
 
+	@Override
 	public int getKBCommentsCount(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.getKBCommentsCount(className, classPK);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, boolean helpful,
@@ -331,10 +356,12 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		_kbCommentLocalService = kbCommentLocalService;
 	}
 
+	@Override
 	public KBCommentLocalService getWrappedService() {
 		return _kbCommentLocalService;
 	}
 
+	@Override
 	public void setWrappedService(KBCommentLocalService kbCommentLocalService) {
 		_kbCommentLocalService = kbCommentLocalService;
 	}

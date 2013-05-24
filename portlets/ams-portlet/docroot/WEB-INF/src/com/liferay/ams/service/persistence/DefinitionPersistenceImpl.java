@@ -86,6 +86,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param definition the definition
 	 */
+	@Override
 	public void cacheResult(Definition definition) {
 		EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey(), definition);
@@ -98,6 +99,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param definitions the definitions
 	 */
+	@Override
 	public void cacheResult(List<Definition> definitions) {
 		for (Definition definition : definitions) {
 			if (EntityCacheUtil.getResult(
@@ -164,6 +166,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @param definitionId the primary key for the new definition
 	 * @return the new definition
 	 */
+	@Override
 	public Definition create(long definitionId) {
 		Definition definition = new DefinitionImpl();
 
@@ -181,6 +184,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Definition remove(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
 		return remove((Serializable)definitionId);
@@ -360,6 +364,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Definition findByPrimaryKey(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
 		return findByPrimaryKey((Serializable)definitionId);
@@ -420,6 +425,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Definition fetchByPrimaryKey(long definitionId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)definitionId);
@@ -431,6 +437,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @return the definitions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Definition> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -447,6 +454,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @return the range of definitions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Definition> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -465,6 +473,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @return the ordered range of definitions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Definition> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -550,6 +559,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (Definition definition : findAll()) {
 			remove(definition);
@@ -562,6 +572,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * @return the number of definitions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -645,6 +656,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		};
 
 	private static CacheModel<Definition> _nullDefinitionCacheModel = new CacheModel<Definition>() {
+			@Override
 			public Definition toEntityModel() {
 				return _nullDefinition;
 			}

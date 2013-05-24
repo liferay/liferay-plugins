@@ -104,6 +104,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoLog addKaleoLog(KaleoLog kaleoLog) throws SystemException {
 		kaleoLog.setNew(true);
 
@@ -116,6 +117,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kaleoLogId the primary key for the new kaleo log
 	 * @return the new kaleo log
 	 */
+	@Override
 	public KaleoLog createKaleoLog(long kaleoLogId) {
 		return kaleoLogPersistence.create(kaleoLogId);
 	}
@@ -129,6 +131,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoLog deleteKaleoLog(long kaleoLogId)
 		throws PortalException, SystemException {
 		return kaleoLogPersistence.remove(kaleoLogId);
@@ -142,10 +145,12 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoLog deleteKaleoLog(KaleoLog kaleoLog) throws SystemException {
 		return kaleoLogPersistence.remove(kaleoLog);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -160,6 +165,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -179,6 +185,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -199,6 +206,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -213,11 +221,13 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoLogPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public KaleoLog fetchKaleoLog(long kaleoLogId) throws SystemException {
 		return kaleoLogPersistence.fetchByPrimaryKey(kaleoLogId);
 	}
@@ -230,11 +240,13 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a kaleo log with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoLog getKaleoLog(long kaleoLogId)
 		throws PortalException, SystemException {
 		return kaleoLogPersistence.findByPrimaryKey(kaleoLogId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kaleoLogPersistence.findByPrimaryKey(primaryKeyObj);
@@ -252,6 +264,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of kaleo logs
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoLog> getKaleoLogs(int start, int end)
 		throws SystemException {
 		return kaleoLogPersistence.findAll(start, end);
@@ -263,6 +276,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of kaleo logs
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getKaleoLogsCount() throws SystemException {
 		return kaleoLogPersistence.countAll();
 	}
@@ -275,6 +289,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoLog updateKaleoLog(KaleoLog kaleoLog) throws SystemException {
 		return kaleoLogPersistence.update(kaleoLog);
 	}
@@ -1034,6 +1049,7 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -1043,10 +1059,12 @@ public abstract class KaleoLogLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

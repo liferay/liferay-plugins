@@ -76,6 +76,7 @@ public class KaleoInstanceTokenCacheModel implements CacheModel<KaleoInstanceTok
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoInstanceToken toEntityModel() {
 		KaleoInstanceTokenImpl kaleoInstanceTokenImpl = new KaleoInstanceTokenImpl();
 
@@ -139,6 +140,7 @@ public class KaleoInstanceTokenCacheModel implements CacheModel<KaleoInstanceTok
 		return kaleoInstanceTokenImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoInstanceTokenId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -158,6 +160,7 @@ public class KaleoInstanceTokenCacheModel implements CacheModel<KaleoInstanceTok
 		completionDate = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoInstanceTokenId);

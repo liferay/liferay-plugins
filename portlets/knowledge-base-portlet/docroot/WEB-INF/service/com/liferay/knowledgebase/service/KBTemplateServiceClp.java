@@ -77,6 +77,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 			};
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -99,6 +100,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableService.invokeMethod(_methodName1,
@@ -118,12 +120,14 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		java.lang.String portletId, java.lang.String title,
 		java.lang.String content,
@@ -168,6 +172,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		return (com.liferay.knowledgebase.model.KBTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
 		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -201,6 +206,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		return (com.liferay.knowledgebase.model.KBTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -234,6 +240,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> getGroupKBTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -272,6 +279,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBTemplate>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getGroupKBTemplatesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -299,6 +307,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate getKBTemplate(
 		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -332,6 +341,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		return (com.liferay.knowledgebase.model.KBTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplateSearchDisplay getKBTemplateSearchDisplay(
 		long groupId, java.lang.String title, java.lang.String content,
 		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
@@ -389,6 +399,7 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		return (com.liferay.knowledgebase.model.KBTemplateSearchDisplay)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)

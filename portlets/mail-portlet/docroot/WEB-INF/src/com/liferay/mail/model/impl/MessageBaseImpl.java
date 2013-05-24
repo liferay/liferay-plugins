@@ -38,6 +38,7 @@ public abstract class MessageBaseImpl extends MessageModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a message model instance should use the {@link Message} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			MessageLocalServiceUtil.addMessage(this);

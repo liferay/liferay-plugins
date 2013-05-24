@@ -79,6 +79,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Folder addFolder(Folder folder) throws SystemException {
 		folder.setNew(true);
 
@@ -91,6 +92,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param folderId the primary key for the new folder
 	 * @return the new folder
 	 */
+	@Override
 	public Folder createFolder(long folderId) {
 		return folderPersistence.create(folderId);
 	}
@@ -104,6 +106,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Folder deleteFolder(long folderId)
 		throws PortalException, SystemException {
 		return folderPersistence.remove(folderId);
@@ -118,11 +121,13 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Folder deleteFolder(Folder folder)
 		throws PortalException, SystemException {
 		return folderPersistence.remove(folder);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -137,6 +142,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -156,6 +162,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -176,6 +183,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -190,11 +198,13 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return folderPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Folder fetchFolder(long folderId) throws SystemException {
 		return folderPersistence.fetchByPrimaryKey(folderId);
 	}
@@ -207,11 +217,13 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Folder getFolder(long folderId)
 		throws PortalException, SystemException {
 		return folderPersistence.findByPrimaryKey(folderId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return folderPersistence.findByPrimaryKey(primaryKeyObj);
@@ -229,6 +241,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of folders
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Folder> getFolders(int start, int end)
 		throws SystemException {
 		return folderPersistence.findAll(start, end);
@@ -240,6 +253,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of folders
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getFoldersCount() throws SystemException {
 		return folderPersistence.countAll();
 	}
@@ -252,6 +266,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Folder updateFolder(Folder folder) throws SystemException {
 		return folderPersistence.update(folder);
 	}
@@ -512,6 +527,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -521,10 +537,12 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

@@ -40,26 +40,32 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	public KaleoInstanceClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoInstance.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoInstance.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoInstanceId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoInstanceId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoInstanceId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -190,10 +196,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public long getKaleoInstanceId() {
 		return _kaleoInstanceId;
 	}
 
+	@Override
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoInstanceId = kaleoInstanceId;
 
@@ -211,10 +219,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -232,10 +242,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -253,10 +265,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -274,18 +288,22 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -303,10 +321,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -324,10 +344,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -345,10 +367,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -367,10 +391,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public String getKaleoDefinitionName() {
 		return _kaleoDefinitionName;
 	}
 
+	@Override
 	public void setKaleoDefinitionName(String kaleoDefinitionName) {
 		_kaleoDefinitionName = kaleoDefinitionName;
 
@@ -389,10 +415,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public int getKaleoDefinitionVersion() {
 		return _kaleoDefinitionVersion;
 	}
 
+	@Override
 	public void setKaleoDefinitionVersion(int kaleoDefinitionVersion) {
 		_kaleoDefinitionVersion = kaleoDefinitionVersion;
 
@@ -411,10 +439,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public long getRootKaleoInstanceTokenId() {
 		return _rootKaleoInstanceTokenId;
 	}
 
+	@Override
 	public void setRootKaleoInstanceTokenId(long rootKaleoInstanceTokenId) {
 		_rootKaleoInstanceTokenId = rootKaleoInstanceTokenId;
 
@@ -434,10 +464,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public String getClassName() {
 		return _className;
 	}
 
+	@Override
 	public void setClassName(String className) {
 		_className = className;
 
@@ -455,10 +487,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public long getClassPK() {
 		return _classPK;
 	}
 
+	@Override
 	public void setClassPK(long classPK) {
 		_classPK = classPK;
 
@@ -476,14 +510,17 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public boolean getCompleted() {
 		return _completed;
 	}
 
+	@Override
 	public boolean isCompleted() {
 		return _completed;
 	}
 
+	@Override
 	public void setCompleted(boolean completed) {
 		_completed = completed;
 
@@ -501,10 +538,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public Date getCompletionDate() {
 		return _completionDate;
 	}
 
+	@Override
 	public void setCompletionDate(Date completionDate) {
 		_completionDate = completionDate;
 
@@ -522,10 +561,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public String getWorkflowContext() {
 		return _workflowContext;
 	}
 
+	@Override
 	public void setWorkflowContext(String workflowContext) {
 		_workflowContext = workflowContext;
 
@@ -544,6 +585,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition() {
 		try {
 			String methodName = "getKaleoDefinition";
@@ -562,6 +604,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext) {
@@ -588,6 +631,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		try {
@@ -660,6 +704,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoInstanceLocalServiceUtil.addKaleoInstance(this);
@@ -699,6 +744,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoInstance kaleoInstance) {
 		int value = 0;
 
@@ -787,6 +833,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(52);
 

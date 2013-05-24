@@ -108,6 +108,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoTaskAssignment addKaleoTaskAssignment(
 		KaleoTaskAssignment kaleoTaskAssignment) throws SystemException {
 		kaleoTaskAssignment.setNew(true);
@@ -121,6 +122,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @param kaleoTaskAssignmentId the primary key for the new kaleo task assignment
 	 * @return the new kaleo task assignment
 	 */
+	@Override
 	public KaleoTaskAssignment createKaleoTaskAssignment(
 		long kaleoTaskAssignmentId) {
 		return kaleoTaskAssignmentPersistence.create(kaleoTaskAssignmentId);
@@ -135,6 +137,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoTaskAssignment deleteKaleoTaskAssignment(
 		long kaleoTaskAssignmentId) throws PortalException, SystemException {
 		return kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignmentId);
@@ -148,11 +151,13 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoTaskAssignment deleteKaleoTaskAssignment(
 		KaleoTaskAssignment kaleoTaskAssignment) throws SystemException {
 		return kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -167,6 +172,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -186,6 +192,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -207,6 +214,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -221,11 +229,13 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoTaskAssignmentPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public KaleoTaskAssignment fetchKaleoTaskAssignment(
 		long kaleoTaskAssignmentId) throws SystemException {
 		return kaleoTaskAssignmentPersistence.fetchByPrimaryKey(kaleoTaskAssignmentId);
@@ -239,11 +249,13 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @throws PortalException if a kaleo task assignment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTaskAssignment getKaleoTaskAssignment(
 		long kaleoTaskAssignmentId) throws PortalException, SystemException {
 		return kaleoTaskAssignmentPersistence.findByPrimaryKey(kaleoTaskAssignmentId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kaleoTaskAssignmentPersistence.findByPrimaryKey(primaryKeyObj);
@@ -261,6 +273,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @return the range of kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(int start, int end)
 		throws SystemException {
 		return kaleoTaskAssignmentPersistence.findAll(start, end);
@@ -272,6 +285,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @return the number of kaleo task assignments
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getKaleoTaskAssignmentsCount() throws SystemException {
 		return kaleoTaskAssignmentPersistence.countAll();
 	}
@@ -284,6 +298,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoTaskAssignment updateKaleoTaskAssignment(
 		KaleoTaskAssignment kaleoTaskAssignment) throws SystemException {
 		return kaleoTaskAssignmentPersistence.update(kaleoTaskAssignment);
@@ -1098,6 +1113,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -1107,10 +1123,12 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

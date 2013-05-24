@@ -36,6 +36,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the status that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.chat.model.Status addStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -48,6 +49,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @param statusId the primary key for the new status
 	* @return the new status
 	*/
+	@Override
 	public com.liferay.chat.model.Status createStatus(long statusId) {
 		return _statusLocalService.createStatus(statusId);
 	}
@@ -60,6 +62,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @throws PortalException if a status with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.chat.model.Status deleteStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -73,12 +76,14 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the status that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.chat.model.Status deleteStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.deleteStatus(status);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _statusLocalService.dynamicQuery();
 	}
@@ -90,6 +95,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -110,6 +116,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -131,6 +138,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -148,12 +156,14 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.chat.model.Status fetchStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.fetchStatus(statusId);
@@ -167,12 +177,14 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @throws PortalException if a status with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.chat.model.Status getStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getStatus(statusId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -192,6 +204,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the range of statuses
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.chat.model.Status> getStatuses(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -204,6 +217,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the number of statuses
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getStatusesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getStatusesCount();
@@ -216,6 +230,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @return the status that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -227,6 +242,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _statusLocalService.getBeanIdentifier();
 	}
@@ -236,16 +252,19 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_statusLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _statusLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	@Override
 	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
 		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -253,6 +272,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 			modifiedDate, start, end);
 	}
 
+	@Override
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
 		long modifiedDate, java.lang.String[] groupNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -260,6 +280,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 			groupNames, start, end);
 	}
 
+	@Override
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
 		int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -267,17 +288,20 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 			modifiedDate, start, end);
 	}
 
+	@Override
 	public com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getUserStatus(userId);
 	}
 
+	@Override
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.updateStatus(userId, modifiedDate);
 	}
 
+	@Override
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
 		java.lang.String activePanelIds, java.lang.String message, int playSound)
@@ -301,10 +325,12 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 		_statusLocalService = statusLocalService;
 	}
 
+	@Override
 	public StatusLocalService getWrappedService() {
 		return _statusLocalService;
 	}
 
+	@Override
 	public void setWrappedService(StatusLocalService statusLocalService) {
 		_statusLocalService = statusLocalService;
 	}

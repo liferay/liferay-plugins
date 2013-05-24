@@ -34,14 +34,17 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		_app = app;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return App.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return App.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -58,6 +61,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -119,6 +123,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the primary key of this app
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _app.getPrimaryKey();
 	}
@@ -128,6 +133,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param primaryKey the primary key of this app
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_app.setPrimaryKey(primaryKey);
 	}
@@ -137,6 +143,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the uuid of this app
 	*/
+	@Override
 	public java.lang.String getUuid() {
 		return _app.getUuid();
 	}
@@ -146,6 +153,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param uuid the uuid of this app
 	*/
+	@Override
 	public void setUuid(java.lang.String uuid) {
 		_app.setUuid(uuid);
 	}
@@ -155,6 +163,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the app ID of this app
 	*/
+	@Override
 	public long getAppId() {
 		return _app.getAppId();
 	}
@@ -164,6 +173,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param appId the app ID of this app
 	*/
+	@Override
 	public void setAppId(long appId) {
 		_app.setAppId(appId);
 	}
@@ -173,6 +183,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the company ID of this app
 	*/
+	@Override
 	public long getCompanyId() {
 		return _app.getCompanyId();
 	}
@@ -182,6 +193,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param companyId the company ID of this app
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_app.setCompanyId(companyId);
 	}
@@ -191,6 +203,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the user ID of this app
 	*/
+	@Override
 	public long getUserId() {
 		return _app.getUserId();
 	}
@@ -200,6 +213,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param userId the user ID of this app
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_app.setUserId(userId);
 	}
@@ -210,6 +224,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	* @return the user uuid of this app
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _app.getUserUuid();
@@ -220,6 +235,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param userUuid the user uuid of this app
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_app.setUserUuid(userUuid);
 	}
@@ -229,6 +245,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the user name of this app
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _app.getUserName();
 	}
@@ -238,6 +255,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param userName the user name of this app
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_app.setUserName(userName);
 	}
@@ -247,6 +265,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the create date of this app
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _app.getCreateDate();
 	}
@@ -256,6 +275,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param createDate the create date of this app
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_app.setCreateDate(createDate);
 	}
@@ -265,6 +285,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the modified date of this app
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _app.getModifiedDate();
 	}
@@ -274,6 +295,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param modifiedDate the modified date of this app
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_app.setModifiedDate(modifiedDate);
 	}
@@ -283,6 +305,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the remote app ID of this app
 	*/
+	@Override
 	public long getRemoteAppId() {
 		return _app.getRemoteAppId();
 	}
@@ -292,6 +315,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param remoteAppId the remote app ID of this app
 	*/
+	@Override
 	public void setRemoteAppId(long remoteAppId) {
 		_app.setRemoteAppId(remoteAppId);
 	}
@@ -301,6 +325,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @return the version of this app
 	*/
+	@Override
 	public java.lang.String getVersion() {
 		return _app.getVersion();
 	}
@@ -310,52 +335,64 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	*
 	* @param version the version of this app
 	*/
+	@Override
 	public void setVersion(java.lang.String version) {
 		_app.setVersion(version);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _app.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_app.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _app.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_app.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _app.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _app.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_app.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _app.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_app.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_app.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_app.setExpandoBridgeAttributes(serviceContext);
@@ -366,6 +403,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		return new AppWrapper((App)_app.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.marketplace.model.App app) {
 		return _app.compareTo(app);
 	}
@@ -375,14 +413,17 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		return _app.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.marketplace.model.App> toCacheModel() {
 		return _app.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App toEscapedModel() {
 		return new AppWrapper(_app.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App toUnescapedModel() {
 		return new AppWrapper(_app.toUnescapedModel());
 	}
@@ -392,33 +433,40 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		return _app.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _app.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_app.persist();
 	}
 
+	@Override
 	public java.lang.String getFileDir() {
 		return _app.getFileDir();
 	}
 
+	@Override
 	public java.lang.String getFileName() {
 		return _app.getFileName();
 	}
 
+	@Override
 	public java.lang.String getFilePath() {
 		return _app.getFilePath();
 	}
 
+	@Override
 	public boolean isDownloaded()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _app.isDownloaded();
 	}
 
+	@Override
 	public boolean isInstalled()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _app.isInstalled();
@@ -431,10 +479,12 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		return _app;
 	}
 
+	@Override
 	public App getWrappedModel() {
 		return _app;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_app.resetOriginalValues();
 	}

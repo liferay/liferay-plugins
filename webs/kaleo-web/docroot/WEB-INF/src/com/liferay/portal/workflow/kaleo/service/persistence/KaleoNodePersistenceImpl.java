@@ -111,6 +111,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -130,6 +131,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the range of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
@@ -149,6 +151,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -255,6 +258,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -285,6 +289,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoNode> list = findByCompanyId(companyId, 0, 1,
@@ -306,6 +311,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -335,6 +341,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
@@ -359,6 +366,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode[] findByCompanyId_PrevAndNext(long kaleoNodeId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -500,6 +508,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNode kaleoNode : findByCompanyId(companyId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -514,6 +523,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the number of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByCompanyId(long companyId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
@@ -588,6 +598,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, QueryUtil.ALL_POS,
@@ -607,6 +618,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the range of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByKaleoDefinitionId(long kaleoDefinitionId,
 		int start, int end) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, start, end, null);
@@ -626,6 +638,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByKaleoDefinitionId(long kaleoDefinitionId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -737,6 +750,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByKaleoDefinitionId_First(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -767,6 +781,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByKaleoDefinitionId_First(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoNode> list = findByKaleoDefinitionId(kaleoDefinitionId, 0, 1,
@@ -788,6 +803,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -818,6 +834,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
@@ -842,6 +859,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode[] findByKaleoDefinitionId_PrevAndNext(long kaleoNodeId,
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -983,6 +1001,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNode kaleoNode : findByKaleoDefinitionId(kaleoDefinitionId,
@@ -998,6 +1017,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the number of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KALEODEFINITIONID;
@@ -1074,6 +1094,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
 		return findByC_KDI(companyId, kaleoDefinitionId, QueryUtil.ALL_POS,
@@ -1094,6 +1115,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the range of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId,
 		int start, int end) throws SystemException {
 		return findByC_KDI(companyId, kaleoDefinitionId, start, end, null);
@@ -1114,6 +1136,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1231,6 +1254,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByC_KDI_First(long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -1265,6 +1289,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByC_KDI_First(long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoNode> list = findByC_KDI(companyId, kaleoDefinitionId, 0, 1,
@@ -1287,6 +1312,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByC_KDI_Last(long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -1321,6 +1347,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByC_KDI_Last(long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_KDI(companyId, kaleoDefinitionId);
@@ -1346,6 +1373,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode[] findByC_KDI_PrevAndNext(long kaleoNodeId,
 		long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
@@ -1493,6 +1521,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNode kaleoNode : findByC_KDI(companyId, kaleoDefinitionId,
@@ -1509,6 +1538,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the number of matching kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_KDI;
@@ -1567,6 +1597,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 *
 	 * @param kaleoNode the kaleo node
 	 */
+	@Override
 	public void cacheResult(KaleoNode kaleoNode) {
 		EntityCacheUtil.putResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNodeImpl.class, kaleoNode.getPrimaryKey(), kaleoNode);
@@ -1579,6 +1610,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 *
 	 * @param kaleoNodes the kaleo nodes
 	 */
+	@Override
 	public void cacheResult(List<KaleoNode> kaleoNodes) {
 		for (KaleoNode kaleoNode : kaleoNodes) {
 			if (EntityCacheUtil.getResult(
@@ -1645,6 +1677,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @param kaleoNodeId the primary key for the new kaleo node
 	 * @return the new kaleo node
 	 */
+	@Override
 	public KaleoNode create(long kaleoNodeId) {
 		KaleoNode kaleoNode = new KaleoNodeImpl();
 
@@ -1662,6 +1695,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode remove(long kaleoNodeId)
 		throws NoSuchNodeException, SystemException {
 		return remove((Serializable)kaleoNodeId);
@@ -1906,6 +1940,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode findByPrimaryKey(long kaleoNodeId)
 		throws NoSuchNodeException, SystemException {
 		return findByPrimaryKey((Serializable)kaleoNodeId);
@@ -1966,6 +2001,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the kaleo node, or <code>null</code> if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNode fetchByPrimaryKey(long kaleoNodeId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)kaleoNodeId);
@@ -1977,6 +2013,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1993,6 +2030,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the range of kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -2011,6 +2049,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNode> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -2096,6 +2135,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (KaleoNode kaleoNode : findAll()) {
 			remove(kaleoNode);
@@ -2108,6 +2148,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the number of kaleo nodes
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -2202,6 +2243,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		};
 
 	private static CacheModel<KaleoNode> _nullKaleoNodeCacheModel = new CacheModel<KaleoNode>() {
+			@Override
 			public KaleoNode toEntityModel() {
 				return _nullKaleoNode;
 			}

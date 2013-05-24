@@ -188,26 +188,32 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	public KBArticleModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kbArticleId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKbArticleId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kbArticleId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KBArticle.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KBArticle.class.getName();
 	}
@@ -392,6 +398,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
@@ -402,6 +409,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -414,20 +422,24 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	@JSON
 	public long getKbArticleId() {
 		return _kbArticleId;
 	}
 
+	@Override
 	public void setKbArticleId(long kbArticleId) {
 		_kbArticleId = kbArticleId;
 	}
 
+	@Override
 	@JSON
 	public long getResourcePrimKey() {
 		return _resourcePrimKey;
 	}
 
+	@Override
 	public void setResourcePrimKey(long resourcePrimKey) {
 		_columnBitmask |= RESOURCEPRIMKEY_COLUMN_BITMASK;
 
@@ -440,6 +452,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		_resourcePrimKey = resourcePrimKey;
 	}
 
+	@Override
 	public boolean isResourceMain() {
 		return true;
 	}
@@ -448,11 +461,13 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalResourcePrimKey;
 	}
 
+	@Override
 	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_columnBitmask |= GROUPID_COLUMN_BITMASK;
 
@@ -469,11 +484,13 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalGroupId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -490,23 +507,28 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalCompanyId;
 	}
 
+	@Override
 	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	@JSON
 	public String getUserName() {
 		if (_userName == null) {
@@ -517,44 +539,53 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public long getRootResourcePrimKey() {
 		return _rootResourcePrimKey;
 	}
 
+	@Override
 	public void setRootResourcePrimKey(long rootResourcePrimKey) {
 		_rootResourcePrimKey = rootResourcePrimKey;
 	}
 
+	@Override
 	@JSON
 	public long getParentResourcePrimKey() {
 		return _parentResourcePrimKey;
 	}
 
+	@Override
 	public void setParentResourcePrimKey(long parentResourcePrimKey) {
 		_columnBitmask |= PARENTRESOURCEPRIMKEY_COLUMN_BITMASK;
 
@@ -571,11 +602,13 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalParentResourcePrimKey;
 	}
 
+	@Override
 	@JSON
 	public int getVersion() {
 		return _version;
 	}
 
+	@Override
 	public void setVersion(int version) {
 		_columnBitmask |= VERSION_COLUMN_BITMASK;
 
@@ -592,6 +625,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalVersion;
 	}
 
+	@Override
 	@JSON
 	public String getTitle() {
 		if (_title == null) {
@@ -602,10 +636,12 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 	}
 
+	@Override
 	@JSON
 	public String getContent() {
 		if (_content == null) {
@@ -616,10 +652,12 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public void setContent(String content) {
 		_content = content;
 	}
 
+	@Override
 	@JSON
 	public String getDescription() {
 		if (_description == null) {
@@ -630,19 +668,23 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 	}
 
+	@Override
 	@JSON
 	public double getPriority() {
 		return _priority;
 	}
 
+	@Override
 	public void setPriority(double priority) {
 		_priority = priority;
 	}
 
+	@Override
 	@JSON
 	public String getSections() {
 		if (_sections == null) {
@@ -653,6 +695,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public void setSections(String sections) {
 		_columnBitmask |= SECTIONS_COLUMN_BITMASK;
 
@@ -667,24 +710,29 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return GetterUtil.getString(_originalSections);
 	}
 
+	@Override
 	@JSON
 	public int getViewCount() {
 		return _viewCount;
 	}
 
+	@Override
 	public void setViewCount(int viewCount) {
 		_viewCount = viewCount;
 	}
 
+	@Override
 	@JSON
 	public boolean getLatest() {
 		return _latest;
 	}
 
+	@Override
 	public boolean isLatest() {
 		return _latest;
 	}
 
+	@Override
 	public void setLatest(boolean latest) {
 		_columnBitmask |= LATEST_COLUMN_BITMASK;
 
@@ -701,15 +749,18 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalLatest;
 	}
 
+	@Override
 	@JSON
 	public boolean getMain() {
 		return _main;
 	}
 
+	@Override
 	public boolean isMain() {
 		return _main;
 	}
 
+	@Override
 	public void setMain(boolean main) {
 		_columnBitmask |= MAIN_COLUMN_BITMASK;
 
@@ -726,11 +777,13 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalMain;
 	}
 
+	@Override
 	@JSON
 	public int getStatus() {
 		return _status;
 	}
 
+	@Override
 	public void setStatus(int status) {
 		_columnBitmask |= STATUS_COLUMN_BITMASK;
 
@@ -747,24 +800,29 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _originalStatus;
 	}
 
+	@Override
 	@JSON
 	public long getStatusByUserId() {
 		return _statusByUserId;
 	}
 
+	@Override
 	public void setStatusByUserId(long statusByUserId) {
 		_statusByUserId = statusByUserId;
 	}
 
+	@Override
 	public String getStatusByUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getStatusByUserId(), "uuid",
 			_statusByUserUuid);
 	}
 
+	@Override
 	public void setStatusByUserUuid(String statusByUserUuid) {
 		_statusByUserUuid = statusByUserUuid;
 	}
 
+	@Override
 	@JSON
 	public String getStatusByUserName() {
 		if (_statusByUserName == null) {
@@ -775,15 +833,18 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public void setStatusByUserName(String statusByUserName) {
 		_statusByUserName = statusByUserName;
 	}
 
+	@Override
 	@JSON
 	public Date getStatusDate() {
 		return _statusDate;
 	}
 
+	@Override
 	public void setStatusDate(Date statusDate) {
 		_statusDate = statusDate;
 	}
@@ -791,10 +852,12 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #isApproved}
 	 */
+	@Override
 	public boolean getApproved() {
 		return isApproved();
 	}
 
+	@Override
 	public boolean isApproved() {
 		if (getStatus() == WorkflowConstants.STATUS_APPROVED) {
 			return true;
@@ -804,6 +867,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isDenied() {
 		if (getStatus() == WorkflowConstants.STATUS_DENIED) {
 			return true;
@@ -813,6 +877,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isDraft() {
 		if (getStatus() == WorkflowConstants.STATUS_DRAFT) {
 			return true;
@@ -822,6 +887,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isExpired() {
 		if (getStatus() == WorkflowConstants.STATUS_EXPIRED) {
 			return true;
@@ -831,6 +897,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isInactive() {
 		if (getStatus() == WorkflowConstants.STATUS_INACTIVE) {
 			return true;
@@ -840,6 +907,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isIncomplete() {
 		if (getStatus() == WorkflowConstants.STATUS_INCOMPLETE) {
 			return true;
@@ -849,6 +917,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isInTrash() {
 		if (getStatus() == WorkflowConstants.STATUS_IN_TRASH) {
 			return true;
@@ -858,6 +927,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isPending() {
 		if (getStatus() == WorkflowConstants.STATUS_PENDING) {
 			return true;
@@ -867,6 +937,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		}
 	}
 
+	@Override
 	public boolean isScheduled() {
 		if (getStatus() == WorkflowConstants.STATUS_SCHEDULED) {
 			return true;
@@ -937,6 +1008,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return kbArticleImpl;
 	}
 
+	@Override
 	public int compareTo(KBArticle kbArticle) {
 		int value = 0;
 
@@ -1197,6 +1269,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(76);
 

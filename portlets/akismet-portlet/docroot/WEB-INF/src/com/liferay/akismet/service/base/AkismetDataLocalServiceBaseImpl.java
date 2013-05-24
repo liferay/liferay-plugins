@@ -74,6 +74,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public AkismetData addAkismetData(AkismetData akismetData)
 		throws SystemException {
 		akismetData.setNew(true);
@@ -87,6 +88,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param akismetDataId the primary key for the new akismet data
 	 * @return the new akismet data
 	 */
+	@Override
 	public AkismetData createAkismetData(long akismetDataId) {
 		return akismetDataPersistence.create(akismetDataId);
 	}
@@ -100,6 +102,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public AkismetData deleteAkismetData(long akismetDataId)
 		throws PortalException, SystemException {
 		return akismetDataPersistence.remove(akismetDataId);
@@ -113,11 +116,13 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public AkismetData deleteAkismetData(AkismetData akismetData)
 		throws SystemException {
 		return akismetDataPersistence.remove(akismetData);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -132,6 +137,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -151,6 +157,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -172,6 +179,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -186,11 +194,13 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return akismetDataPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public AkismetData fetchAkismetData(long akismetDataId)
 		throws SystemException {
 		return akismetDataPersistence.fetchByPrimaryKey(akismetDataId);
@@ -204,11 +214,13 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @throws PortalException if a akismet data with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public AkismetData getAkismetData(long akismetDataId)
 		throws PortalException, SystemException {
 		return akismetDataPersistence.findByPrimaryKey(akismetDataId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return akismetDataPersistence.findByPrimaryKey(primaryKeyObj);
@@ -226,6 +238,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @return the range of akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<AkismetData> getAkismetDatas(int start, int end)
 		throws SystemException {
 		return akismetDataPersistence.findAll(start, end);
@@ -237,6 +250,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @return the number of akismet datas
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getAkismetDatasCount() throws SystemException {
 		return akismetDataPersistence.countAll();
 	}
@@ -249,6 +263,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public AkismetData updateAkismetData(AkismetData akismetData)
 		throws SystemException {
 		return akismetDataPersistence.update(akismetData);
@@ -402,6 +417,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -411,10 +427,12 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

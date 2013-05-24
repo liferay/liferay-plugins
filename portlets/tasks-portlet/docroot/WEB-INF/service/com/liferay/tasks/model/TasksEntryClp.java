@@ -42,26 +42,32 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 	public TasksEntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return TasksEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return TasksEntry.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _tasksEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setTasksEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _tasksEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -175,10 +181,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public long getTasksEntryId() {
 		return _tasksEntryId;
 	}
 
+	@Override
 	public void setTasksEntryId(long tasksEntryId) {
 		_tasksEntryId = tasksEntryId;
 
@@ -196,10 +204,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -217,10 +227,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -238,10 +250,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -259,18 +273,22 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -288,10 +306,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -309,10 +329,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -330,10 +352,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public String getTitle() {
 		return _title;
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 
@@ -351,10 +375,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public int getPriority() {
 		return _priority;
 	}
 
+	@Override
 	public void setPriority(int priority) {
 		_priority = priority;
 
@@ -372,10 +398,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public long getAssigneeUserId() {
 		return _assigneeUserId;
 	}
 
+	@Override
 	public void setAssigneeUserId(long assigneeUserId) {
 		_assigneeUserId = assigneeUserId;
 
@@ -393,19 +421,23 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public String getAssigneeUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getAssigneeUserId(), "uuid",
 			_assigneeUserUuid);
 	}
 
+	@Override
 	public void setAssigneeUserUuid(String assigneeUserUuid) {
 		_assigneeUserUuid = assigneeUserUuid;
 	}
 
+	@Override
 	public long getResolverUserId() {
 		return _resolverUserId;
 	}
 
+	@Override
 	public void setResolverUserId(long resolverUserId) {
 		_resolverUserId = resolverUserId;
 
@@ -423,19 +455,23 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public String getResolverUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getResolverUserId(), "uuid",
 			_resolverUserUuid);
 	}
 
+	@Override
 	public void setResolverUserUuid(String resolverUserUuid) {
 		_resolverUserUuid = resolverUserUuid;
 	}
 
+	@Override
 	public Date getDueDate() {
 		return _dueDate;
 	}
 
+	@Override
 	public void setDueDate(Date dueDate) {
 		_dueDate = dueDate;
 
@@ -453,10 +489,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public Date getFinishDate() {
 		return _finishDate;
 	}
 
+	@Override
 	public void setFinishDate(Date finishDate) {
 		_finishDate = finishDate;
 
@@ -474,10 +512,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public int getStatus() {
 		return _status;
 	}
 
+	@Override
 	public void setStatus(int status) {
 		_status = status;
 
@@ -495,6 +535,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public java.lang.String getReporterFullName() {
 		try {
 			String methodName = "getReporterFullName";
@@ -513,6 +554,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public java.lang.String getPriorityLabel() {
 		try {
 			String methodName = "getPriorityLabel";
@@ -531,6 +573,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public java.lang.String getStatusLabel() {
 		try {
 			String methodName = "getStatusLabel";
@@ -549,6 +592,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public java.lang.String getAssigneeFullName() {
 		try {
 			String methodName = "getAssigneeFullName";
@@ -616,6 +660,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			TasksEntryLocalServiceUtil.addTasksEntry(this);
@@ -653,6 +698,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(TasksEntry tasksEntry) {
 		int value = 0;
 
@@ -749,6 +795,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

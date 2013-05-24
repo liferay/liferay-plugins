@@ -76,6 +76,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Bar addBar(Bar bar) throws SystemException {
 		bar.setNew(true);
 
@@ -88,6 +89,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param barId the primary key for the new bar
 	 * @return the new bar
 	 */
+	@Override
 	public Bar createBar(long barId) {
 		return barPersistence.create(barId);
 	}
@@ -101,6 +103,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Bar deleteBar(long barId) throws PortalException, SystemException {
 		return barPersistence.remove(barId);
 	}
@@ -113,10 +116,12 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Bar deleteBar(Bar bar) throws SystemException {
 		return barPersistence.remove(bar);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -131,6 +136,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -150,6 +156,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -170,6 +177,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -184,11 +192,13 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return barPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Bar fetchBar(long barId) throws SystemException {
 		return barPersistence.fetchByPrimaryKey(barId);
 	}
@@ -201,10 +211,12 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Bar getBar(long barId) throws PortalException, SystemException {
 		return barPersistence.findByPrimaryKey(barId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return barPersistence.findByPrimaryKey(primaryKeyObj);
@@ -222,6 +234,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of bars
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Bar> getBars(int start, int end) throws SystemException {
 		return barPersistence.findAll(start, end);
 	}
@@ -232,6 +245,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of bars
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getBarsCount() throws SystemException {
 		return barPersistence.countAll();
 	}
@@ -244,6 +258,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Bar updateBar(Bar bar) throws SystemException {
 		return barPersistence.update(bar);
 	}
@@ -450,6 +465,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -459,10 +475,12 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

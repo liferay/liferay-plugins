@@ -79,6 +79,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Type addType(Type type) throws SystemException {
 		type.setNew(true);
 
@@ -91,6 +92,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param typeId the primary key for the new type
 	 * @return the new type
 	 */
+	@Override
 	public Type createType(long typeId) {
 		return typePersistence.create(typeId);
 	}
@@ -104,6 +106,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Type deleteType(long typeId) throws PortalException, SystemException {
 		return typePersistence.remove(typeId);
 	}
@@ -116,10 +119,12 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Type deleteType(Type type) throws SystemException {
 		return typePersistence.remove(type);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -134,6 +139,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -153,6 +159,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -173,6 +180,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -187,11 +195,13 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return typePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Type fetchType(long typeId) throws SystemException {
 		return typePersistence.fetchByPrimaryKey(typeId);
 	}
@@ -204,10 +214,12 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Type getType(long typeId) throws PortalException, SystemException {
 		return typePersistence.findByPrimaryKey(typeId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return typePersistence.findByPrimaryKey(primaryKeyObj);
@@ -225,6 +237,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of types
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Type> getTypes(int start, int end) throws SystemException {
 		return typePersistence.findAll(start, end);
 	}
@@ -235,6 +248,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of types
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getTypesCount() throws SystemException {
 		return typePersistence.countAll();
 	}
@@ -247,6 +261,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Type updateType(Type type) throws SystemException {
 		return typePersistence.update(type);
 	}
@@ -508,6 +523,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -517,10 +533,12 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

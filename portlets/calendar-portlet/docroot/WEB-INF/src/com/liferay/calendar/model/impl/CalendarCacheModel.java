@@ -76,6 +76,7 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 		return sb.toString();
 	}
 
+	@Override
 	public Calendar toEntityModel() {
 		CalendarImpl calendarImpl = new CalendarImpl();
 
@@ -139,6 +140,7 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 		return calendarImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		calendarId = objectInput.readLong();
@@ -158,6 +160,7 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable 
 		enableRatings = objectInput.readBoolean();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

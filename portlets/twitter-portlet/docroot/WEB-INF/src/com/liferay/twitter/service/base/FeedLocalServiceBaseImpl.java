@@ -73,6 +73,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Feed addFeed(Feed feed) throws SystemException {
 		feed.setNew(true);
 
@@ -85,6 +86,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param feedId the primary key for the new feed
 	 * @return the new feed
 	 */
+	@Override
 	public Feed createFeed(long feedId) {
 		return feedPersistence.create(feedId);
 	}
@@ -98,6 +100,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Feed deleteFeed(long feedId) throws PortalException, SystemException {
 		return feedPersistence.remove(feedId);
 	}
@@ -110,10 +113,12 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Feed deleteFeed(Feed feed) throws SystemException {
 		return feedPersistence.remove(feed);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -128,6 +133,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -147,6 +153,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -167,6 +174,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -181,11 +189,13 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return feedPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Feed fetchFeed(long feedId) throws SystemException {
 		return feedPersistence.fetchByPrimaryKey(feedId);
 	}
@@ -198,10 +208,12 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed getFeed(long feedId) throws PortalException, SystemException {
 		return feedPersistence.findByPrimaryKey(feedId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return feedPersistence.findByPrimaryKey(primaryKeyObj);
@@ -219,6 +231,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of feeds
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Feed> getFeeds(int start, int end) throws SystemException {
 		return feedPersistence.findAll(start, end);
 	}
@@ -229,6 +242,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of feeds
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getFeedsCount() throws SystemException {
 		return feedPersistence.countAll();
 	}
@@ -241,6 +255,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Feed updateFeed(Feed feed) throws SystemException {
 		return feedPersistence.update(feed);
 	}
@@ -391,6 +406,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -400,10 +416,12 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

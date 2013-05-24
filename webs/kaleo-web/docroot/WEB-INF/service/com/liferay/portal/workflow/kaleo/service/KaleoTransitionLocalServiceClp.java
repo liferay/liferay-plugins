@@ -147,6 +147,7 @@ public class KaleoTransitionLocalServiceClp
 		_methodParameterTypes25 = new String[] { "long" };
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition addKaleoTransition(
 		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -176,6 +177,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition createKaleoTransition(
 		long kaleoTransitionId) {
 		Object returnObj = null;
@@ -199,6 +201,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
 		long kaleoTransitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -232,6 +235,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
 		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -261,6 +265,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -283,6 +288,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -313,6 +319,7 @@ public class KaleoTransitionLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -349,6 +356,7 @@ public class KaleoTransitionLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -389,6 +397,7 @@ public class KaleoTransitionLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -418,6 +427,7 @@ public class KaleoTransitionLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchKaleoTransition(
 		long kaleoTransitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -446,6 +456,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
 		long kaleoTransitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -479,6 +490,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -513,6 +525,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -541,6 +554,7 @@ public class KaleoTransitionLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKaleoTransitionsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -568,6 +582,7 @@ public class KaleoTransitionLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition updateKaleoTransition(
 		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -597,6 +612,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -619,6 +635,7 @@ public class KaleoTransitionLocalServiceClp
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -638,12 +655,14 @@ public class KaleoTransitionLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition addKaleoTransition(
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Transition transition,
@@ -694,6 +713,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteCompanyKaleoTransitions(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -717,6 +737,7 @@ public class KaleoTransitionLocalServiceClp
 		}
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoTransitions(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -740,6 +761,7 @@ public class KaleoTransitionLocalServiceClp
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getDefaultKaleoTransition(
 		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -773,6 +795,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoDefinitionKaleoTransitions(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -801,6 +824,7 @@ public class KaleoTransitionLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
 		long kaleoNodeId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -836,6 +860,7 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions(
 		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -864,6 +889,7 @@ public class KaleoTransitionLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKaleoTransitionsCount(long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

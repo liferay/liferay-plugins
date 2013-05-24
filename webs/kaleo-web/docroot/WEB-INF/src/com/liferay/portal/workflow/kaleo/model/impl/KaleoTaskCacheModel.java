@@ -66,6 +66,7 @@ public class KaleoTaskCacheModel implements CacheModel<KaleoTask>,
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoTask toEntityModel() {
 		KaleoTaskImpl kaleoTaskImpl = new KaleoTaskImpl();
 
@@ -117,6 +118,7 @@ public class KaleoTaskCacheModel implements CacheModel<KaleoTask>,
 		return kaleoTaskImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoTaskId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -131,6 +133,7 @@ public class KaleoTaskCacheModel implements CacheModel<KaleoTask>,
 		description = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoTaskId);

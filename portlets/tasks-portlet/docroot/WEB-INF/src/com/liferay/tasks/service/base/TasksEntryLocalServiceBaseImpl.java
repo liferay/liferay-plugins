@@ -76,6 +76,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public TasksEntry addTasksEntry(TasksEntry tasksEntry)
 		throws SystemException {
 		tasksEntry.setNew(true);
@@ -89,6 +90,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @param tasksEntryId the primary key for the new tasks entry
 	 * @return the new tasks entry
 	 */
+	@Override
 	public TasksEntry createTasksEntry(long tasksEntryId) {
 		return tasksEntryPersistence.create(tasksEntryId);
 	}
@@ -102,6 +104,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public TasksEntry deleteTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
 		return tasksEntryPersistence.remove(tasksEntryId);
@@ -116,11 +119,13 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public TasksEntry deleteTasksEntry(TasksEntry tasksEntry)
 		throws PortalException, SystemException {
 		return tasksEntryPersistence.remove(tasksEntry);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -135,6 +140,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -154,6 +160,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -175,6 +182,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -189,11 +197,13 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return tasksEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public TasksEntry fetchTasksEntry(long tasksEntryId)
 		throws SystemException {
 		return tasksEntryPersistence.fetchByPrimaryKey(tasksEntryId);
@@ -207,11 +217,13 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @throws PortalException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public TasksEntry getTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
 		return tasksEntryPersistence.findByPrimaryKey(tasksEntryId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return tasksEntryPersistence.findByPrimaryKey(primaryKeyObj);
@@ -229,6 +241,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the range of tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<TasksEntry> getTasksEntries(int start, int end)
 		throws SystemException {
 		return tasksEntryPersistence.findAll(start, end);
@@ -240,6 +253,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @return the number of tasks entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getTasksEntriesCount() throws SystemException {
 		return tasksEntryPersistence.countAll();
 	}
@@ -252,6 +266,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public TasksEntry updateTasksEntry(TasksEntry tasksEntry)
 		throws SystemException {
 		return tasksEntryPersistence.update(tasksEntry);
@@ -441,6 +456,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -450,10 +466,12 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

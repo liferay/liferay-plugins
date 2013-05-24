@@ -33,14 +33,17 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		_attachment = attachment;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Attachment.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Attachment.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -57,6 +60,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long attachmentId = (Long)attributes.get("attachmentId");
 
@@ -118,6 +122,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the primary key of this attachment
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _attachment.getPrimaryKey();
 	}
@@ -127,6 +132,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param primaryKey the primary key of this attachment
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_attachment.setPrimaryKey(primaryKey);
 	}
@@ -136,6 +142,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the attachment ID of this attachment
 	*/
+	@Override
 	public long getAttachmentId() {
 		return _attachment.getAttachmentId();
 	}
@@ -145,6 +152,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param attachmentId the attachment ID of this attachment
 	*/
+	@Override
 	public void setAttachmentId(long attachmentId) {
 		_attachment.setAttachmentId(attachmentId);
 	}
@@ -154,6 +162,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the company ID of this attachment
 	*/
+	@Override
 	public long getCompanyId() {
 		return _attachment.getCompanyId();
 	}
@@ -163,6 +172,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param companyId the company ID of this attachment
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_attachment.setCompanyId(companyId);
 	}
@@ -172,6 +182,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the user ID of this attachment
 	*/
+	@Override
 	public long getUserId() {
 		return _attachment.getUserId();
 	}
@@ -181,6 +192,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param userId the user ID of this attachment
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_attachment.setUserId(userId);
 	}
@@ -191,6 +203,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	* @return the user uuid of this attachment
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _attachment.getUserUuid();
@@ -201,6 +214,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param userUuid the user uuid of this attachment
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_attachment.setUserUuid(userUuid);
 	}
@@ -210,6 +224,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the account ID of this attachment
 	*/
+	@Override
 	public long getAccountId() {
 		return _attachment.getAccountId();
 	}
@@ -219,6 +234,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param accountId the account ID of this attachment
 	*/
+	@Override
 	public void setAccountId(long accountId) {
 		_attachment.setAccountId(accountId);
 	}
@@ -228,6 +244,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the folder ID of this attachment
 	*/
+	@Override
 	public long getFolderId() {
 		return _attachment.getFolderId();
 	}
@@ -237,6 +254,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param folderId the folder ID of this attachment
 	*/
+	@Override
 	public void setFolderId(long folderId) {
 		_attachment.setFolderId(folderId);
 	}
@@ -246,6 +264,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the message ID of this attachment
 	*/
+	@Override
 	public long getMessageId() {
 		return _attachment.getMessageId();
 	}
@@ -255,6 +274,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param messageId the message ID of this attachment
 	*/
+	@Override
 	public void setMessageId(long messageId) {
 		_attachment.setMessageId(messageId);
 	}
@@ -264,6 +284,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the content path of this attachment
 	*/
+	@Override
 	public java.lang.String getContentPath() {
 		return _attachment.getContentPath();
 	}
@@ -273,6 +294,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param contentPath the content path of this attachment
 	*/
+	@Override
 	public void setContentPath(java.lang.String contentPath) {
 		_attachment.setContentPath(contentPath);
 	}
@@ -282,6 +304,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the file name of this attachment
 	*/
+	@Override
 	public java.lang.String getFileName() {
 		return _attachment.getFileName();
 	}
@@ -291,6 +314,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param fileName the file name of this attachment
 	*/
+	@Override
 	public void setFileName(java.lang.String fileName) {
 		_attachment.setFileName(fileName);
 	}
@@ -300,6 +324,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @return the size of this attachment
 	*/
+	@Override
 	public long getSize() {
 		return _attachment.getSize();
 	}
@@ -309,52 +334,64 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	*
 	* @param size the size of this attachment
 	*/
+	@Override
 	public void setSize(long size) {
 		_attachment.setSize(size);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _attachment.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_attachment.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _attachment.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_attachment.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _attachment.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _attachment.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_attachment.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _attachment.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_attachment.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_attachment.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_attachment.setExpandoBridgeAttributes(serviceContext);
@@ -365,6 +402,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		return new AttachmentWrapper((Attachment)_attachment.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.mail.model.Attachment attachment) {
 		return _attachment.compareTo(attachment);
 	}
@@ -374,14 +412,17 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		return _attachment.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.mail.model.Attachment> toCacheModel() {
 		return _attachment.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment toEscapedModel() {
 		return new AttachmentWrapper(_attachment.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment toUnescapedModel() {
 		return new AttachmentWrapper(_attachment.toUnescapedModel());
 	}
@@ -391,10 +432,12 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		return _attachment.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _attachment.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_attachment.persist();
@@ -407,10 +450,12 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		return _attachment;
 	}
 
+	@Override
 	public Attachment getWrappedModel() {
 		return _attachment;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_attachment.resetOriginalValues();
 	}

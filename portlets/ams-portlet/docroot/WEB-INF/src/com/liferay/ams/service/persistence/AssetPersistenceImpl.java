@@ -88,6 +88,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 *
 	 * @param asset the asset
 	 */
+	@Override
 	public void cacheResult(Asset asset) {
 		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey(), asset);
@@ -100,6 +101,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 *
 	 * @param assets the assets
 	 */
+	@Override
 	public void cacheResult(List<Asset> assets) {
 		for (Asset asset : assets) {
 			if (EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
@@ -165,6 +167,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @param assetId the primary key for the new asset
 	 * @return the new asset
 	 */
+	@Override
 	public Asset create(long assetId) {
 		Asset asset = new AssetImpl();
 
@@ -182,6 +185,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset remove(long assetId)
 		throws NoSuchAssetException, SystemException {
 		return remove((Serializable)assetId);
@@ -356,6 +360,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset findByPrimaryKey(long assetId)
 		throws NoSuchAssetException, SystemException {
 		return findByPrimaryKey((Serializable)assetId);
@@ -415,6 +420,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset fetchByPrimaryKey(long assetId) throws SystemException {
 		return fetchByPrimaryKey((Serializable)assetId);
 	}
@@ -425,6 +431,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @return the assets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Asset> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -441,6 +448,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @return the range of assets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Asset> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
@@ -458,6 +466,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @return the ordered range of assets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Asset> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -543,6 +552,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (Asset asset : findAll()) {
 			remove(asset);
@@ -555,6 +565,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * @return the number of assets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -646,6 +657,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		};
 
 	private static CacheModel<Asset> _nullAssetCacheModel = new CacheModel<Asset>() {
+			@Override
 			public Asset toEntityModel() {
 				return _nullAsset;
 			}

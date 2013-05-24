@@ -37,14 +37,17 @@ public class CalendarNotificationTemplateWrapper
 		_calendarNotificationTemplate = calendarNotificationTemplate;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return CalendarNotificationTemplate.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return CalendarNotificationTemplate.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -67,6 +70,7 @@ public class CalendarNotificationTemplateWrapper
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -161,6 +165,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the primary key of this calendar notification template
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _calendarNotificationTemplate.getPrimaryKey();
 	}
@@ -170,6 +175,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param primaryKey the primary key of this calendar notification template
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_calendarNotificationTemplate.setPrimaryKey(primaryKey);
 	}
@@ -179,6 +185,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the uuid of this calendar notification template
 	*/
+	@Override
 	public java.lang.String getUuid() {
 		return _calendarNotificationTemplate.getUuid();
 	}
@@ -188,6 +195,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param uuid the uuid of this calendar notification template
 	*/
+	@Override
 	public void setUuid(java.lang.String uuid) {
 		_calendarNotificationTemplate.setUuid(uuid);
 	}
@@ -197,6 +205,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the calendar notification template ID of this calendar notification template
 	*/
+	@Override
 	public long getCalendarNotificationTemplateId() {
 		return _calendarNotificationTemplate.getCalendarNotificationTemplateId();
 	}
@@ -206,6 +215,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param calendarNotificationTemplateId the calendar notification template ID of this calendar notification template
 	*/
+	@Override
 	public void setCalendarNotificationTemplateId(
 		long calendarNotificationTemplateId) {
 		_calendarNotificationTemplate.setCalendarNotificationTemplateId(calendarNotificationTemplateId);
@@ -216,6 +226,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the group ID of this calendar notification template
 	*/
+	@Override
 	public long getGroupId() {
 		return _calendarNotificationTemplate.getGroupId();
 	}
@@ -225,6 +236,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param groupId the group ID of this calendar notification template
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_calendarNotificationTemplate.setGroupId(groupId);
 	}
@@ -234,6 +246,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the company ID of this calendar notification template
 	*/
+	@Override
 	public long getCompanyId() {
 		return _calendarNotificationTemplate.getCompanyId();
 	}
@@ -243,6 +256,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param companyId the company ID of this calendar notification template
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_calendarNotificationTemplate.setCompanyId(companyId);
 	}
@@ -252,6 +266,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the user ID of this calendar notification template
 	*/
+	@Override
 	public long getUserId() {
 		return _calendarNotificationTemplate.getUserId();
 	}
@@ -261,6 +276,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param userId the user ID of this calendar notification template
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_calendarNotificationTemplate.setUserId(userId);
 	}
@@ -271,6 +287,7 @@ public class CalendarNotificationTemplateWrapper
 	* @return the user uuid of this calendar notification template
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarNotificationTemplate.getUserUuid();
@@ -281,6 +298,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param userUuid the user uuid of this calendar notification template
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_calendarNotificationTemplate.setUserUuid(userUuid);
 	}
@@ -290,6 +308,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the user name of this calendar notification template
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _calendarNotificationTemplate.getUserName();
 	}
@@ -299,6 +318,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param userName the user name of this calendar notification template
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_calendarNotificationTemplate.setUserName(userName);
 	}
@@ -308,6 +328,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the create date of this calendar notification template
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _calendarNotificationTemplate.getCreateDate();
 	}
@@ -317,6 +338,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param createDate the create date of this calendar notification template
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_calendarNotificationTemplate.setCreateDate(createDate);
 	}
@@ -326,6 +348,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the modified date of this calendar notification template
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _calendarNotificationTemplate.getModifiedDate();
 	}
@@ -335,6 +358,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param modifiedDate the modified date of this calendar notification template
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_calendarNotificationTemplate.setModifiedDate(modifiedDate);
 	}
@@ -344,6 +368,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the calendar ID of this calendar notification template
 	*/
+	@Override
 	public long getCalendarId() {
 		return _calendarNotificationTemplate.getCalendarId();
 	}
@@ -353,6 +378,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param calendarId the calendar ID of this calendar notification template
 	*/
+	@Override
 	public void setCalendarId(long calendarId) {
 		_calendarNotificationTemplate.setCalendarId(calendarId);
 	}
@@ -362,6 +388,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the notification type of this calendar notification template
 	*/
+	@Override
 	public java.lang.String getNotificationType() {
 		return _calendarNotificationTemplate.getNotificationType();
 	}
@@ -371,6 +398,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param notificationType the notification type of this calendar notification template
 	*/
+	@Override
 	public void setNotificationType(java.lang.String notificationType) {
 		_calendarNotificationTemplate.setNotificationType(notificationType);
 	}
@@ -380,6 +408,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the notification type settings of this calendar notification template
 	*/
+	@Override
 	public java.lang.String getNotificationTypeSettings() {
 		return _calendarNotificationTemplate.getNotificationTypeSettings();
 	}
@@ -389,6 +418,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param notificationTypeSettings the notification type settings of this calendar notification template
 	*/
+	@Override
 	public void setNotificationTypeSettings(
 		java.lang.String notificationTypeSettings) {
 		_calendarNotificationTemplate.setNotificationTypeSettings(notificationTypeSettings);
@@ -399,6 +429,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the notification template type of this calendar notification template
 	*/
+	@Override
 	public java.lang.String getNotificationTemplateType() {
 		return _calendarNotificationTemplate.getNotificationTemplateType();
 	}
@@ -408,6 +439,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param notificationTemplateType the notification template type of this calendar notification template
 	*/
+	@Override
 	public void setNotificationTemplateType(
 		java.lang.String notificationTemplateType) {
 		_calendarNotificationTemplate.setNotificationTemplateType(notificationTemplateType);
@@ -418,6 +450,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the subject of this calendar notification template
 	*/
+	@Override
 	public java.lang.String getSubject() {
 		return _calendarNotificationTemplate.getSubject();
 	}
@@ -427,6 +460,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param subject the subject of this calendar notification template
 	*/
+	@Override
 	public void setSubject(java.lang.String subject) {
 		_calendarNotificationTemplate.setSubject(subject);
 	}
@@ -436,6 +470,7 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @return the body of this calendar notification template
 	*/
+	@Override
 	public java.lang.String getBody() {
 		return _calendarNotificationTemplate.getBody();
 	}
@@ -445,52 +480,64 @@ public class CalendarNotificationTemplateWrapper
 	*
 	* @param body the body of this calendar notification template
 	*/
+	@Override
 	public void setBody(java.lang.String body) {
 		_calendarNotificationTemplate.setBody(body);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _calendarNotificationTemplate.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_calendarNotificationTemplate.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _calendarNotificationTemplate.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_calendarNotificationTemplate.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _calendarNotificationTemplate.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _calendarNotificationTemplate.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_calendarNotificationTemplate.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _calendarNotificationTemplate.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_calendarNotificationTemplate.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_calendarNotificationTemplate.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_calendarNotificationTemplate.setExpandoBridgeAttributes(serviceContext);
@@ -501,6 +548,7 @@ public class CalendarNotificationTemplateWrapper
 		return new CalendarNotificationTemplateWrapper((CalendarNotificationTemplate)_calendarNotificationTemplate.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate) {
 		return _calendarNotificationTemplate.compareTo(calendarNotificationTemplate);
@@ -511,14 +559,17 @@ public class CalendarNotificationTemplateWrapper
 		return _calendarNotificationTemplate.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.CalendarNotificationTemplate> toCacheModel() {
 		return _calendarNotificationTemplate.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate toEscapedModel() {
 		return new CalendarNotificationTemplateWrapper(_calendarNotificationTemplate.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate toUnescapedModel() {
 		return new CalendarNotificationTemplateWrapper(_calendarNotificationTemplate.toUnescapedModel());
 	}
@@ -528,19 +579,23 @@ public class CalendarNotificationTemplateWrapper
 		return _calendarNotificationTemplate.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _calendarNotificationTemplate.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_calendarNotificationTemplate.persist();
 	}
 
+	@Override
 	public com.liferay.portal.kernel.util.UnicodeProperties getNotificationTypeSettingsProperties() {
 		return _calendarNotificationTemplate.getNotificationTypeSettingsProperties();
 	}
 
+	@Override
 	public void setTypeSettingsProperties(
 		com.liferay.portal.kernel.util.UnicodeProperties notificationTypeSettingsProperties) {
 		_calendarNotificationTemplate.setTypeSettingsProperties(notificationTypeSettingsProperties);
@@ -553,10 +608,12 @@ public class CalendarNotificationTemplateWrapper
 		return _calendarNotificationTemplate;
 	}
 
+	@Override
 	public CalendarNotificationTemplate getWrappedModel() {
 		return _calendarNotificationTemplate;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_calendarNotificationTemplate.resetOriginalValues();
 	}

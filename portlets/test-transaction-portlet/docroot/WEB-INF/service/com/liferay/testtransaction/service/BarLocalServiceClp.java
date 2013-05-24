@@ -145,6 +145,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		_methodParameterTypes26 = new String[] { "java.lang.String" };
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar addBar(
 		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -174,6 +175,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar createBar(long barId) {
 		Object returnObj = null;
 
@@ -196,6 +198,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar deleteBar(long barId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -228,6 +231,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar deleteBar(
 		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -257,6 +261,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -279,6 +284,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -309,6 +315,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -345,6 +352,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -385,6 +393,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -414,6 +423,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar fetchBar(long barId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -441,6 +451,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar getBar(long barId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -473,6 +484,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -507,6 +519,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.testtransaction.model.Bar> getBars(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -535,6 +548,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (java.util.List<com.liferay.testtransaction.model.Bar>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getBarsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -562,6 +576,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar updateBar(
 		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -591,6 +606,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -613,6 +629,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -632,12 +649,14 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void addBar_Rollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -662,6 +681,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar addBar_Success(
 		java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -691,6 +711,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void addBarAndClassName_PortalRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -715,6 +736,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 	}
 
+	@Override
 	public void addBarAndClassName_PortletRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -739,6 +761,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 	}
 
+	@Override
 	public void deleteBarAndClassName(com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -768,6 +791,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar getBar(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -801,6 +825,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return (com.liferay.testtransaction.model.Bar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public boolean hasBar(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -829,6 +854,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return ((Boolean)returnObj).booleanValue();
 	}
 
+	@Override
 	public boolean hasClassName()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -856,6 +882,7 @@ public class BarLocalServiceClp implements BarLocalService {
 		return ((Boolean)returnObj).booleanValue();
 	}
 
+	@Override
 	public void testAddClassNameAndBar_Success(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {

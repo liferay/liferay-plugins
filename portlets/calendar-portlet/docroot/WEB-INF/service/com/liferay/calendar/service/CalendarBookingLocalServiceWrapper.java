@@ -38,6 +38,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the calendar booking that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -50,6 +51,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @param calendarBookingId the primary key for the new calendar booking
 	* @return the new calendar booking
 	*/
+	@Override
 	public com.liferay.calendar.model.CalendarBooking createCalendarBooking(
 		long calendarBookingId) {
 		return _calendarBookingLocalService.createCalendarBooking(calendarBookingId);
@@ -63,6 +65,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @throws PortalException if a calendar booking with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
 		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -78,6 +81,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -85,6 +89,7 @@ public class CalendarBookingLocalServiceWrapper
 		return _calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _calendarBookingLocalService.dynamicQuery();
 	}
@@ -96,6 +101,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -116,6 +122,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -138,6 +145,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -155,12 +163,14 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
 		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -175,6 +185,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @throws PortalException if a calendar booking with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.calendar.model.CalendarBooking getCalendarBooking(
 		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -182,6 +193,7 @@ public class CalendarBookingLocalServiceWrapper
 		return _calendarBookingLocalService.getCalendarBooking(calendarBookingId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -198,6 +210,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @throws PortalException if a matching calendar booking could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.calendar.model.CalendarBooking getCalendarBookingByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -218,6 +231,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the range of calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -230,6 +244,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the number of calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getCalendarBookingsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.getCalendarBookingsCount();
@@ -242,6 +257,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @return the calendar booking that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -253,6 +269,7 @@ public class CalendarBookingLocalServiceWrapper
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _calendarBookingLocalService.getBeanIdentifier();
 	}
@@ -262,10 +279,12 @@ public class CalendarBookingLocalServiceWrapper
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_calendarBookingLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -273,6 +292,7 @@ public class CalendarBookingLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
 		long userId, long calendarId, long[] childCalendarIds,
 		long parentCalendarBookingId,
@@ -292,12 +312,14 @@ public class CalendarBookingLocalServiceWrapper
 			secondReminderType, serviceContext);
 	}
 
+	@Override
 	public void checkCalendarBookings()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarBookingLocalService.checkCalendarBookings();
 	}
 
+	@Override
 	public void deleteCalendarBookingInstance(
 		com.liferay.calendar.model.CalendarBooking calendarBooking,
 		long startTime, boolean allFollowing)
@@ -307,6 +329,7 @@ public class CalendarBookingLocalServiceWrapper
 			startTime, allFollowing);
 	}
 
+	@Override
 	public void deleteCalendarBookingInstance(long calendarBookingId,
 		long startTime, boolean allFollowing)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -315,18 +338,21 @@ public class CalendarBookingLocalServiceWrapper
 			startTime, allFollowing);
 	}
 
+	@Override
 	public void deleteCalendarBookings(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarBookingLocalService.deleteCalendarBookings(calendarId);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.fetchCalendarBooking(uuid, groupId);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking getCalendarBooking(
 		long calendarId, long parentCalendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -335,12 +361,14 @@ public class CalendarBookingLocalServiceWrapper
 			parentCalendarBookingId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		long calendarId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.getCalendarBookings(calendarId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		long calendarId, long startTime, long endTime)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -348,6 +376,7 @@ public class CalendarBookingLocalServiceWrapper
 			startTime, endTime);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		long calendarId, long startTime, long endTime, int max)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -355,6 +384,7 @@ public class CalendarBookingLocalServiceWrapper
 			startTime, endTime, max);
 	}
 
+	@Override
 	public int getCalendarBookingsCount(long calendarId,
 		long parentCalendarBookingId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -362,12 +392,14 @@ public class CalendarBookingLocalServiceWrapper
 			parentCalendarBookingId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings(
 		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.getChildCalendarBookings(calendarBookingId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings(
 		long parentCalendarBookingId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -375,6 +407,7 @@ public class CalendarBookingLocalServiceWrapper
 			status);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
@@ -388,6 +421,7 @@ public class CalendarBookingLocalServiceWrapper
 			orderByComparator);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
@@ -403,6 +437,7 @@ public class CalendarBookingLocalServiceWrapper
 			andOperator, start, end, orderByComparator);
 	}
 
+	@Override
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String keywords, long startTime, long endTime, int[] statuses)
@@ -412,6 +447,7 @@ public class CalendarBookingLocalServiceWrapper
 			keywords, startTime, endTime, statuses);
 	}
 
+	@Override
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
@@ -423,6 +459,7 @@ public class CalendarBookingLocalServiceWrapper
 			description, location, startTime, endTime, statuses, andOperator);
 	}
 
+	@Override
 	public void updateAsset(long userId,
 		com.liferay.calendar.model.CalendarBooking calendarBooking,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames,
@@ -433,6 +470,7 @@ public class CalendarBookingLocalServiceWrapper
 			assetCategoryIds, assetTagNames, assetLinkEntryIds);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
 		long[] childCalendarIds,
@@ -452,6 +490,7 @@ public class CalendarBookingLocalServiceWrapper
 			secondReminderType, status, serviceContext);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -470,6 +509,7 @@ public class CalendarBookingLocalServiceWrapper
 			serviceContext);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingInstance(
 		long userId, long calendarBookingId, long calendarId,
 		long[] childCalendarIds,
@@ -489,6 +529,7 @@ public class CalendarBookingLocalServiceWrapper
 			secondReminderType, status, serviceContext);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingInstance(
 		long userId, long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -507,6 +548,7 @@ public class CalendarBookingLocalServiceWrapper
 			secondReminderType, status, serviceContext);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarBooking updateStatus(
 		long userId, long calendarBookingId, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -531,10 +573,12 @@ public class CalendarBookingLocalServiceWrapper
 		_calendarBookingLocalService = calendarBookingLocalService;
 	}
 
+	@Override
 	public CalendarBookingLocalService getWrappedService() {
 		return _calendarBookingLocalService;
 	}
 
+	@Override
 	public void setWrappedService(
 		CalendarBookingLocalService calendarBookingLocalService) {
 		_calendarBookingLocalService = calendarBookingLocalService;

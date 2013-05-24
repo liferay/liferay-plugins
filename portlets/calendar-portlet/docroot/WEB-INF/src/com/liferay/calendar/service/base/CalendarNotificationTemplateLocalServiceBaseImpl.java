@@ -88,6 +88,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CalendarNotificationTemplate addCalendarNotificationTemplate(
 		CalendarNotificationTemplate calendarNotificationTemplate)
 		throws SystemException {
@@ -102,6 +103,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @param calendarNotificationTemplateId the primary key for the new calendar notification template
 	 * @return the new calendar notification template
 	 */
+	@Override
 	public CalendarNotificationTemplate createCalendarNotificationTemplate(
 		long calendarNotificationTemplateId) {
 		return calendarNotificationTemplatePersistence.create(calendarNotificationTemplateId);
@@ -116,6 +118,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public CalendarNotificationTemplate deleteCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
 		throws PortalException, SystemException {
@@ -130,12 +133,14 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public CalendarNotificationTemplate deleteCalendarNotificationTemplate(
 		CalendarNotificationTemplate calendarNotificationTemplate)
 		throws SystemException {
 		return calendarNotificationTemplatePersistence.remove(calendarNotificationTemplate);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -150,6 +155,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -169,6 +175,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -190,6 +197,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -204,11 +212,13 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return calendarNotificationTemplatePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 		long calendarNotificationTemplateId) throws SystemException {
 		return calendarNotificationTemplatePersistence.fetchByPrimaryKey(calendarNotificationTemplateId);
@@ -222,12 +232,14 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @throws PortalException if a calendar notification template with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarNotificationTemplate getCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
 		throws PortalException, SystemException {
 		return calendarNotificationTemplatePersistence.findByPrimaryKey(calendarNotificationTemplateId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return calendarNotificationTemplatePersistence.findByPrimaryKey(primaryKeyObj);
@@ -242,6 +254,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @throws PortalException if a matching calendar notification template could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndGroupId(
 		String uuid, long groupId) throws PortalException, SystemException {
 		return calendarNotificationTemplatePersistence.findByUUID_G(uuid,
@@ -260,6 +273,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the range of calendar notification templates
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<CalendarNotificationTemplate> getCalendarNotificationTemplates(
 		int start, int end) throws SystemException {
 		return calendarNotificationTemplatePersistence.findAll(start, end);
@@ -271,6 +285,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the number of calendar notification templates
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getCalendarNotificationTemplatesCount()
 		throws SystemException {
 		return calendarNotificationTemplatePersistence.countAll();
@@ -284,6 +299,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CalendarNotificationTemplate updateCalendarNotificationTemplate(
 		CalendarNotificationTemplate calendarNotificationTemplate)
 		throws SystemException {
@@ -701,6 +717,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -710,10 +727,12 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

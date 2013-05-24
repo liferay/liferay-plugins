@@ -157,26 +157,32 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	public MicroblogsEntryModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _microblogsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setMicroblogsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _microblogsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MicroblogsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MicroblogsEntry.class.getName();
 	}
@@ -272,20 +278,24 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	@JSON
 	public long getMicroblogsEntryId() {
 		return _microblogsEntryId;
 	}
 
+	@Override
 	public void setMicroblogsEntryId(long microblogsEntryId) {
 		_microblogsEntryId = microblogsEntryId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -302,11 +312,13 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return _originalCompanyId;
 	}
 
+	@Override
 	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
@@ -319,10 +331,12 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -331,6 +345,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return _originalUserId;
 	}
 
+	@Override
 	@JSON
 	public String getUserName() {
 		if (_userName == null) {
@@ -341,30 +356,36 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_columnBitmask = -1L;
 
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public String getContent() {
 		if (_content == null) {
@@ -375,15 +396,18 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public void setContent(String content) {
 		_content = content;
 	}
 
+	@Override
 	@JSON
 	public int getType() {
 		return _type;
 	}
 
+	@Override
 	public void setType(int type) {
 		_columnBitmask |= TYPE_COLUMN_BITMASK;
 
@@ -400,11 +424,13 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return _originalType;
 	}
 
+	@Override
 	@JSON
 	public long getReceiverUserId() {
 		return _receiverUserId;
 	}
 
+	@Override
 	public void setReceiverUserId(long receiverUserId) {
 		_columnBitmask |= RECEIVERUSERID_COLUMN_BITMASK;
 
@@ -417,11 +443,13 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		_receiverUserId = receiverUserId;
 	}
 
+	@Override
 	public String getReceiverUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getReceiverUserId(), "uuid",
 			_receiverUserUuid);
 	}
 
+	@Override
 	public void setReceiverUserUuid(String receiverUserUuid) {
 		_receiverUserUuid = receiverUserUuid;
 	}
@@ -430,11 +458,13 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return _originalReceiverUserId;
 	}
 
+	@Override
 	@JSON
 	public long getReceiverMicroblogsEntryId() {
 		return _receiverMicroblogsEntryId;
 	}
 
+	@Override
 	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId) {
 		_columnBitmask |= RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK;
 
@@ -451,11 +481,13 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return _originalReceiverMicroblogsEntryId;
 	}
 
+	@Override
 	@JSON
 	public int getSocialRelationType() {
 		return _socialRelationType;
 	}
 
+	@Override
 	public void setSocialRelationType(int socialRelationType) {
 		_socialRelationType = socialRelationType;
 	}
@@ -508,6 +540,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return microblogsEntryImpl;
 	}
 
+	@Override
 	public int compareTo(MicroblogsEntry microblogsEntry) {
 		int value = 0;
 
@@ -663,6 +696,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

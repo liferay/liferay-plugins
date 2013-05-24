@@ -50,6 +50,7 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Module toEntityModel() {
 		ModuleImpl moduleImpl = new ModuleImpl();
 
@@ -75,6 +76,7 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 		return moduleImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		moduleId = objectInput.readLong();
@@ -82,6 +84,7 @@ public class ModuleCacheModel implements CacheModel<Module>, Externalizable {
 		contextName = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

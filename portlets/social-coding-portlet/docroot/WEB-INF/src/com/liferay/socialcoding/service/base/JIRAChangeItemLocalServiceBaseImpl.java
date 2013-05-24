@@ -87,6 +87,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAChangeItem addJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		jiraChangeItem.setNew(true);
@@ -100,6 +101,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @param jiraChangeItemId the primary key for the new j i r a change item
 	 * @return the new j i r a change item
 	 */
+	@Override
 	public JIRAChangeItem createJIRAChangeItem(long jiraChangeItemId) {
 		return jiraChangeItemPersistence.create(jiraChangeItemId);
 	}
@@ -113,6 +115,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAChangeItem deleteJIRAChangeItem(long jiraChangeItemId)
 		throws PortalException, SystemException {
 		return jiraChangeItemPersistence.remove(jiraChangeItemId);
@@ -126,11 +129,13 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAChangeItem deleteJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		return jiraChangeItemPersistence.remove(jiraChangeItem);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -145,6 +150,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -164,6 +170,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -185,6 +192,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -199,11 +207,13 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return jiraChangeItemPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public JIRAChangeItem fetchJIRAChangeItem(long jiraChangeItemId)
 		throws SystemException {
 		return jiraChangeItemPersistence.fetchByPrimaryKey(jiraChangeItemId);
@@ -217,11 +227,13 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @throws PortalException if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAChangeItem getJIRAChangeItem(long jiraChangeItemId)
 		throws PortalException, SystemException {
 		return jiraChangeItemPersistence.findByPrimaryKey(jiraChangeItemId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return jiraChangeItemPersistence.findByPrimaryKey(primaryKeyObj);
@@ -239,6 +251,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the range of j i r a change items
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<JIRAChangeItem> getJIRAChangeItems(int start, int end)
 		throws SystemException {
 		return jiraChangeItemPersistence.findAll(start, end);
@@ -250,6 +263,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the number of j i r a change items
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getJIRAChangeItemsCount() throws SystemException {
 		return jiraChangeItemPersistence.countAll();
 	}
@@ -262,6 +276,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		return jiraChangeItemPersistence.update(jiraChangeItem);
@@ -660,6 +675,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -669,10 +685,12 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

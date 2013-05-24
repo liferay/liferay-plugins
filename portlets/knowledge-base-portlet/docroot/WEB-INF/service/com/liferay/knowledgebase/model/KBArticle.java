@@ -49,7 +49,5 @@ public interface KBArticle extends KBArticleModel, PersistedModel {
 
 	public boolean isFirstVersion();
 
-	public boolean isResourceMain();
-
 	public boolean isRoot();
 }

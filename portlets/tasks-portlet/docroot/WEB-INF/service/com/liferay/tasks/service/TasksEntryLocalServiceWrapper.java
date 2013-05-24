@@ -37,6 +37,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the tasks entry that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.tasks.model.TasksEntry addTasksEntry(
 		com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -49,6 +50,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param tasksEntryId the primary key for the new tasks entry
 	* @return the new tasks entry
 	*/
+	@Override
 	public com.liferay.tasks.model.TasksEntry createTasksEntry(
 		long tasksEntryId) {
 		return _tasksEntryLocalService.createTasksEntry(tasksEntryId);
@@ -62,6 +64,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @throws PortalException if a tasks entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
 		long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -77,6 +80,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
 		com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -84,6 +88,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 		return _tasksEntryLocalService.deleteTasksEntry(tasksEntry);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _tasksEntryLocalService.dynamicQuery();
 	}
@@ -95,6 +100,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -115,6 +121,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -136,6 +143,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -153,12 +161,14 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.tasks.model.TasksEntry fetchTasksEntry(long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.fetchTasksEntry(tasksEntryId);
@@ -172,12 +182,14 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @throws PortalException if a tasks entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getTasksEntry(tasksEntryId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -197,6 +209,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the range of tasks entries
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -209,6 +222,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the number of tasks entries
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getTasksEntriesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getTasksEntriesCount();
@@ -221,6 +235,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @return the tasks entry that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.tasks.model.TasksEntry updateTasksEntry(
 		com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -232,6 +247,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _tasksEntryLocalService.getBeanIdentifier();
 	}
@@ -241,10 +257,12 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_tasksEntryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -252,6 +270,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			arguments);
 	}
 
+	@Override
 	public com.liferay.tasks.model.TasksEntry addTasksEntry(long userId,
 		java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
@@ -264,6 +283,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			dueDateMinute, addDueDate, serviceContext);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -271,11 +291,13 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			end);
 	}
 
+	@Override
 	public int getAssigneeTasksEntriesCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getAssigneeTasksEntriesCount(userId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupAssigneeTasksEntries(
 		long groupId, long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -283,12 +305,14 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			userId, start, end);
 	}
 
+	@Override
 	public int getGroupAssigneeTasksEntriesCount(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getGroupAssigneeTasksEntriesCount(groupId,
 			userId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupResolverTasksEntries(
 		long groupId, long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -296,12 +320,14 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			userId, start, end);
 	}
 
+	@Override
 	public int getGroupResolverTasksEntriesCount(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getGroupResolverTasksEntriesCount(groupId,
 			userId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupUserTasksEntries(
 		long groupId, long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -309,12 +335,14 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			userId, start, end);
 	}
 
+	@Override
 	public int getGroupUserTasksEntriesCount(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getGroupUserTasksEntriesCount(groupId,
 			userId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getResolverTasksEntries(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -322,17 +350,20 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			end);
 	}
 
+	@Override
 	public int getResolverTasksEntriesCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getResolverTasksEntriesCount(userId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getTasksEntries(groupId, start, end);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
 		long groupId, int priority, long assigneeUserId, long reporterUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
@@ -342,11 +373,13 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			notAssetTagIds, start, end);
 	}
 
+	@Override
 	public int getTasksEntriesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getTasksEntriesCount(groupId);
 	}
 
+	@Override
 	public int getTasksEntriesCount(long groupId, int priority,
 		long assigneeUserId, long reporterUserId, int status,
 		long[] tagsEntryIds, long[] notTagsEntryIds)
@@ -356,17 +389,20 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			notTagsEntryIds);
 	}
 
+	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getUserTasksEntries(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getUserTasksEntries(userId, start, end);
 	}
 
+	@Override
 	public int getUserTasksEntriesCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getUserTasksEntriesCount(userId);
 	}
 
+	@Override
 	public void updateAsset(long userId,
 		com.liferay.tasks.model.TasksEntry tasksEntry, long[] assetCategoryIds,
 		java.lang.String[] assetTagNames)
@@ -376,6 +412,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			assetCategoryIds, assetTagNames);
 	}
 
+	@Override
 	public com.liferay.tasks.model.TasksEntry updateTasksEntry(
 		long tasksEntryId, java.lang.String title, int priority,
 		long assigneeUserId, long resolverUserId, int dueDateMonth,
@@ -390,6 +427,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 			serviceContext);
 	}
 
+	@Override
 	public com.liferay.tasks.model.TasksEntry updateTasksEntryStatus(
 		long tasksEntryId, long resolverUserId, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -414,10 +452,12 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 		_tasksEntryLocalService = tasksEntryLocalService;
 	}
 
+	@Override
 	public TasksEntryLocalService getWrappedService() {
 		return _tasksEntryLocalService;
 	}
 
+	@Override
 	public void setWrappedService(TasksEntryLocalService tasksEntryLocalService) {
 		_tasksEntryLocalService = tasksEntryLocalService;
 	}

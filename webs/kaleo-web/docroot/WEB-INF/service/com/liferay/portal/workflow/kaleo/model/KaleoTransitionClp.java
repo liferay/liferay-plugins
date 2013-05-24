@@ -40,26 +40,32 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	public KaleoTransitionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoTransition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoTransition.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoTransitionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoTransitionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoTransitionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -189,10 +195,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getKaleoTransitionId() {
 		return _kaleoTransitionId;
 	}
 
+	@Override
 	public void setKaleoTransitionId(long kaleoTransitionId) {
 		_kaleoTransitionId = kaleoTransitionId;
 
@@ -211,10 +219,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -232,10 +242,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -253,10 +265,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -274,18 +288,22 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -303,10 +321,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -324,10 +344,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -345,10 +367,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -367,10 +391,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getKaleoNodeId() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNodeId = kaleoNodeId;
 
@@ -388,10 +414,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -409,10 +437,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -430,10 +460,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getSourceKaleoNodeId() {
 		return _sourceKaleoNodeId;
 	}
 
+	@Override
 	public void setSourceKaleoNodeId(long sourceKaleoNodeId) {
 		_sourceKaleoNodeId = sourceKaleoNodeId;
 
@@ -452,10 +484,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public String getSourceKaleoNodeName() {
 		return _sourceKaleoNodeName;
 	}
 
+	@Override
 	public void setSourceKaleoNodeName(String sourceKaleoNodeName) {
 		_sourceKaleoNodeName = sourceKaleoNodeName;
 
@@ -474,10 +508,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public long getTargetKaleoNodeId() {
 		return _targetKaleoNodeId;
 	}
 
+	@Override
 	public void setTargetKaleoNodeId(long targetKaleoNodeId) {
 		_targetKaleoNodeId = targetKaleoNodeId;
 
@@ -496,10 +532,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public String getTargetKaleoNodeName() {
 		return _targetKaleoNodeName;
 	}
 
+	@Override
 	public void setTargetKaleoNodeName(String targetKaleoNodeName) {
 		_targetKaleoNodeName = targetKaleoNodeName;
 
@@ -518,14 +556,17 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public boolean getDefaultTransition() {
 		return _defaultTransition;
 	}
 
+	@Override
 	public boolean isDefaultTransition() {
 		return _defaultTransition;
 	}
 
+	@Override
 	public void setDefaultTransition(boolean defaultTransition) {
 		_defaultTransition = defaultTransition;
 
@@ -544,6 +585,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getTargetKaleoNode() {
 		try {
 			String methodName = "getTargetKaleoNode";
@@ -562,6 +604,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getSourceKaleoNode() {
 		try {
 			String methodName = "getSourceKaleoNode";
@@ -630,6 +673,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoTransitionLocalServiceUtil.addKaleoTransition(this);
@@ -670,6 +714,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoTransition kaleoTransition) {
 		int value = 0;
 
@@ -758,6 +803,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(52);
 

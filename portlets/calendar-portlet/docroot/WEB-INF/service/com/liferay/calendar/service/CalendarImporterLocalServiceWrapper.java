@@ -36,6 +36,7 @@ public class CalendarImporterLocalServiceWrapper
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _calendarImporterLocalService.getBeanIdentifier();
 	}
@@ -45,10 +46,12 @@ public class CalendarImporterLocalServiceWrapper
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_calendarImporterLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -56,6 +59,7 @@ public class CalendarImporterLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
 	public void importCalEvent(
 		com.liferay.portlet.calendar.model.CalEvent calEvent)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -63,6 +67,7 @@ public class CalendarImporterLocalServiceWrapper
 		_calendarImporterLocalService.importCalEvent(calEvent);
 	}
 
+	@Override
 	public void importCalEvents()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -84,10 +89,12 @@ public class CalendarImporterLocalServiceWrapper
 		_calendarImporterLocalService = calendarImporterLocalService;
 	}
 
+	@Override
 	public CalendarImporterLocalService getWrappedService() {
 		return _calendarImporterLocalService;
 	}
 
+	@Override
 	public void setWrappedService(
 		CalendarImporterLocalService calendarImporterLocalService) {
 		_calendarImporterLocalService = calendarImporterLocalService;

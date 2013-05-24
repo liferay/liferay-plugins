@@ -40,26 +40,32 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	public FolderClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Folder.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Folder.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _folderId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setFolderId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _folderId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -146,10 +152,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public long getFolderId() {
 		return _folderId;
 	}
 
+	@Override
 	public void setFolderId(long folderId) {
 		_folderId = folderId;
 
@@ -167,10 +175,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -188,10 +198,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -209,18 +221,22 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -238,10 +254,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -259,10 +277,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -280,10 +300,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public long getAccountId() {
 		return _accountId;
 	}
 
+	@Override
 	public void setAccountId(long accountId) {
 		_accountId = accountId;
 
@@ -301,10 +323,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public String getFullName() {
 		return _fullName;
 	}
 
+	@Override
 	public void setFullName(String fullName) {
 		_fullName = fullName;
 
@@ -322,10 +346,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public String getDisplayName() {
 		return _displayName;
 	}
 
+	@Override
 	public void setDisplayName(String displayName) {
 		_displayName = displayName;
 
@@ -343,10 +369,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		}
 	}
 
+	@Override
 	public int getRemoteMessageCount() {
 		return _remoteMessageCount;
 	}
 
+	@Override
 	public void setRemoteMessageCount(int remoteMessageCount) {
 		_remoteMessageCount = remoteMessageCount;
 
@@ -414,6 +442,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FolderLocalServiceUtil.addFolder(this);
@@ -447,6 +476,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Folder folder) {
 		int value = 0;
 
@@ -515,6 +545,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

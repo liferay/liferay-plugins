@@ -34,14 +34,17 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		_definition = definition;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Definition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Definition.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -62,6 +65,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long definitionId = (Long)attributes.get("definitionId");
 
@@ -147,6 +151,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the primary key of this definition
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _definition.getPrimaryKey();
 	}
@@ -156,6 +161,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param primaryKey the primary key of this definition
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_definition.setPrimaryKey(primaryKey);
 	}
@@ -165,6 +171,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the definition ID of this definition
 	*/
+	@Override
 	public long getDefinitionId() {
 		return _definition.getDefinitionId();
 	}
@@ -174,6 +181,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param definitionId the definition ID of this definition
 	*/
+	@Override
 	public void setDefinitionId(long definitionId) {
 		_definition.setDefinitionId(definitionId);
 	}
@@ -183,6 +191,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the group ID of this definition
 	*/
+	@Override
 	public long getGroupId() {
 		return _definition.getGroupId();
 	}
@@ -192,6 +201,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param groupId the group ID of this definition
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_definition.setGroupId(groupId);
 	}
@@ -201,6 +211,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the company ID of this definition
 	*/
+	@Override
 	public long getCompanyId() {
 		return _definition.getCompanyId();
 	}
@@ -210,6 +221,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param companyId the company ID of this definition
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_definition.setCompanyId(companyId);
 	}
@@ -219,6 +231,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the user ID of this definition
 	*/
+	@Override
 	public long getUserId() {
 		return _definition.getUserId();
 	}
@@ -228,6 +241,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param userId the user ID of this definition
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_definition.setUserId(userId);
 	}
@@ -238,6 +252,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	* @return the user uuid of this definition
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _definition.getUserUuid();
@@ -248,6 +263,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param userUuid the user uuid of this definition
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_definition.setUserUuid(userUuid);
 	}
@@ -257,6 +273,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the user name of this definition
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _definition.getUserName();
 	}
@@ -266,6 +283,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param userName the user name of this definition
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_definition.setUserName(userName);
 	}
@@ -275,6 +293,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the create date of this definition
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _definition.getCreateDate();
 	}
@@ -284,6 +303,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param createDate the create date of this definition
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_definition.setCreateDate(createDate);
 	}
@@ -293,6 +313,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the modified date of this definition
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _definition.getModifiedDate();
 	}
@@ -302,6 +323,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param modifiedDate the modified date of this definition
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_definition.setModifiedDate(modifiedDate);
 	}
@@ -311,6 +333,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the type ID of this definition
 	*/
+	@Override
 	public long getTypeId() {
 		return _definition.getTypeId();
 	}
@@ -320,6 +343,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param typeId the type ID of this definition
 	*/
+	@Override
 	public void setTypeId(long typeId) {
 		_definition.setTypeId(typeId);
 	}
@@ -329,6 +353,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the manufacturer of this definition
 	*/
+	@Override
 	public java.lang.String getManufacturer() {
 		return _definition.getManufacturer();
 	}
@@ -338,6 +363,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param manufacturer the manufacturer of this definition
 	*/
+	@Override
 	public void setManufacturer(java.lang.String manufacturer) {
 		_definition.setManufacturer(manufacturer);
 	}
@@ -347,6 +373,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the model of this definition
 	*/
+	@Override
 	public java.lang.String getModel() {
 		return _definition.getModel();
 	}
@@ -356,6 +383,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param model the model of this definition
 	*/
+	@Override
 	public void setModel(java.lang.String model) {
 		_definition.setModel(model);
 	}
@@ -365,6 +393,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the order date of this definition
 	*/
+	@Override
 	public java.util.Date getOrderDate() {
 		return _definition.getOrderDate();
 	}
@@ -374,6 +403,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param orderDate the order date of this definition
 	*/
+	@Override
 	public void setOrderDate(java.util.Date orderDate) {
 		_definition.setOrderDate(orderDate);
 	}
@@ -383,6 +413,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the quantity of this definition
 	*/
+	@Override
 	public int getQuantity() {
 		return _definition.getQuantity();
 	}
@@ -392,6 +423,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param quantity the quantity of this definition
 	*/
+	@Override
 	public void setQuantity(int quantity) {
 		_definition.setQuantity(quantity);
 	}
@@ -401,6 +433,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @return the price of this definition
 	*/
+	@Override
 	public double getPrice() {
 		return _definition.getPrice();
 	}
@@ -410,52 +443,64 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	*
 	* @param price the price of this definition
 	*/
+	@Override
 	public void setPrice(double price) {
 		_definition.setPrice(price);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _definition.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_definition.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _definition.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_definition.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _definition.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _definition.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_definition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _definition.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_definition.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_definition.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_definition.setExpandoBridgeAttributes(serviceContext);
@@ -466,6 +511,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return new DefinitionWrapper((Definition)_definition.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.ams.model.Definition definition) {
 		return _definition.compareTo(definition);
 	}
@@ -475,14 +521,17 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return _definition.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Definition> toCacheModel() {
 		return _definition.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.ams.model.Definition toEscapedModel() {
 		return new DefinitionWrapper(_definition.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.ams.model.Definition toUnescapedModel() {
 		return new DefinitionWrapper(_definition.toUnescapedModel());
 	}
@@ -492,10 +541,12 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return _definition.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _definition.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_definition.persist();
@@ -508,10 +559,12 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return _definition;
 	}
 
+	@Override
 	public Definition getWrappedModel() {
 		return _definition;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_definition.resetOriginalValues();
 	}

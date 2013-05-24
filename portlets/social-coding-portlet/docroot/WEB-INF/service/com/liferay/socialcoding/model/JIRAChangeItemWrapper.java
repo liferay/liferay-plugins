@@ -34,14 +34,17 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		_jiraChangeItem = jiraChangeItem;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return JIRAChangeItem.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return JIRAChangeItem.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -56,6 +59,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long jiraChangeItemId = (Long)attributes.get("jiraChangeItemId");
 
@@ -105,6 +109,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the primary key of this j i r a change item
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _jiraChangeItem.getPrimaryKey();
 	}
@@ -114,6 +119,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param primaryKey the primary key of this j i r a change item
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_jiraChangeItem.setPrimaryKey(primaryKey);
 	}
@@ -123,6 +129,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the jira change item ID of this j i r a change item
 	*/
+	@Override
 	public long getJiraChangeItemId() {
 		return _jiraChangeItem.getJiraChangeItemId();
 	}
@@ -132,6 +139,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param jiraChangeItemId the jira change item ID of this j i r a change item
 	*/
+	@Override
 	public void setJiraChangeItemId(long jiraChangeItemId) {
 		_jiraChangeItem.setJiraChangeItemId(jiraChangeItemId);
 	}
@@ -141,6 +149,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the jira change group ID of this j i r a change item
 	*/
+	@Override
 	public long getJiraChangeGroupId() {
 		return _jiraChangeItem.getJiraChangeGroupId();
 	}
@@ -150,6 +159,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param jiraChangeGroupId the jira change group ID of this j i r a change item
 	*/
+	@Override
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeItem.setJiraChangeGroupId(jiraChangeGroupId);
 	}
@@ -159,6 +169,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the field of this j i r a change item
 	*/
+	@Override
 	public java.lang.String getField() {
 		return _jiraChangeItem.getField();
 	}
@@ -168,6 +179,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param field the field of this j i r a change item
 	*/
+	@Override
 	public void setField(java.lang.String field) {
 		_jiraChangeItem.setField(field);
 	}
@@ -177,6 +189,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the old value of this j i r a change item
 	*/
+	@Override
 	public java.lang.String getOldValue() {
 		return _jiraChangeItem.getOldValue();
 	}
@@ -186,6 +199,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param oldValue the old value of this j i r a change item
 	*/
+	@Override
 	public void setOldValue(java.lang.String oldValue) {
 		_jiraChangeItem.setOldValue(oldValue);
 	}
@@ -195,6 +209,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the old string of this j i r a change item
 	*/
+	@Override
 	public java.lang.String getOldString() {
 		return _jiraChangeItem.getOldString();
 	}
@@ -204,6 +219,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param oldString the old string of this j i r a change item
 	*/
+	@Override
 	public void setOldString(java.lang.String oldString) {
 		_jiraChangeItem.setOldString(oldString);
 	}
@@ -213,6 +229,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the new value of this j i r a change item
 	*/
+	@Override
 	public java.lang.String getNewValue() {
 		return _jiraChangeItem.getNewValue();
 	}
@@ -222,6 +239,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param newValue the new value of this j i r a change item
 	*/
+	@Override
 	public void setNewValue(java.lang.String newValue) {
 		_jiraChangeItem.setNewValue(newValue);
 	}
@@ -231,6 +249,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @return the new string of this j i r a change item
 	*/
+	@Override
 	public java.lang.String getNewString() {
 		return _jiraChangeItem.getNewString();
 	}
@@ -240,52 +259,64 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	*
 	* @param newString the new string of this j i r a change item
 	*/
+	@Override
 	public void setNewString(java.lang.String newString) {
 		_jiraChangeItem.setNewString(newString);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _jiraChangeItem.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_jiraChangeItem.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _jiraChangeItem.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_jiraChangeItem.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _jiraChangeItem.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _jiraChangeItem.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_jiraChangeItem.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _jiraChangeItem.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_jiraChangeItem.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_jiraChangeItem.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_jiraChangeItem.setExpandoBridgeAttributes(serviceContext);
@@ -296,6 +327,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		return new JIRAChangeItemWrapper((JIRAChangeItem)_jiraChangeItem.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
 		return _jiraChangeItem.compareTo(jiraChangeItem);
@@ -306,14 +338,17 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		return _jiraChangeItem.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.socialcoding.model.JIRAChangeItem> toCacheModel() {
 		return _jiraChangeItem.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem toEscapedModel() {
 		return new JIRAChangeItemWrapper(_jiraChangeItem.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem toUnescapedModel() {
 		return new JIRAChangeItemWrapper(_jiraChangeItem.toUnescapedModel());
 	}
@@ -323,10 +358,12 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		return _jiraChangeItem.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _jiraChangeItem.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_jiraChangeItem.persist();
@@ -339,10 +376,12 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		return _jiraChangeItem;
 	}
 
+	@Override
 	public JIRAChangeItem getWrappedModel() {
 		return _jiraChangeItem;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_jiraChangeItem.resetOriginalValues();
 	}

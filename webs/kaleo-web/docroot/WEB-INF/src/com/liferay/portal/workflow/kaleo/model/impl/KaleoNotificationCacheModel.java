@@ -78,6 +78,7 @@ public class KaleoNotificationCacheModel implements CacheModel<KaleoNotification
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoNotification toEntityModel() {
 		KaleoNotificationImpl kaleoNotificationImpl = new KaleoNotificationImpl();
 
@@ -171,6 +172,7 @@ public class KaleoNotificationCacheModel implements CacheModel<KaleoNotification
 		return kaleoNotificationImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoNotificationId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -191,6 +193,7 @@ public class KaleoNotificationCacheModel implements CacheModel<KaleoNotification
 		notificationTypes = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoNotificationId);

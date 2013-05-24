@@ -80,6 +80,7 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction>,
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoAction toEntityModel() {
 		KaleoActionImpl kaleoActionImpl = new KaleoActionImpl();
 
@@ -175,6 +176,7 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction>,
 		return kaleoActionImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoActionId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -196,6 +198,7 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction>,
 		priority = objectInput.readInt();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoActionId);

@@ -38,6 +38,7 @@ public abstract class SVNRepositoryBaseImpl extends SVNRepositoryModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a s v n repository model instance should use the {@link SVNRepository} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			SVNRepositoryLocalServiceUtil.addSVNRepository(this);

@@ -81,6 +81,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Foo addFoo(Foo foo) throws SystemException {
 		foo.setNew(true);
 
@@ -93,6 +94,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param fooId the primary key for the new foo
 	 * @return the new foo
 	 */
+	@Override
 	public Foo createFoo(long fooId) {
 		return fooPersistence.create(fooId);
 	}
@@ -106,6 +108,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Foo deleteFoo(long fooId) throws PortalException, SystemException {
 		return fooPersistence.remove(fooId);
 	}
@@ -118,10 +121,12 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Foo deleteFoo(Foo foo) throws SystemException {
 		return fooPersistence.remove(foo);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -136,6 +141,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -155,6 +161,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -175,6 +182,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -189,11 +197,13 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return fooPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Foo fetchFoo(long fooId) throws SystemException {
 		return fooPersistence.fetchByPrimaryKey(fooId);
 	}
@@ -206,10 +216,12 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Foo getFoo(long fooId) throws PortalException, SystemException {
 		return fooPersistence.findByPrimaryKey(fooId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return fooPersistence.findByPrimaryKey(primaryKeyObj);
@@ -227,6 +239,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of foos
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Foo> getFoos(int start, int end) throws SystemException {
 		return fooPersistence.findAll(start, end);
 	}
@@ -237,6 +250,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of foos
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getFoosCount() throws SystemException {
 		return fooPersistence.countAll();
 	}
@@ -249,6 +263,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Foo updateFoo(Foo foo) throws SystemException {
 		return fooPersistence.update(foo);
 	}
@@ -543,6 +558,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -552,10 +568,12 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

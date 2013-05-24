@@ -92,6 +92,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CalendarResource addCalendarResource(
 		CalendarResource calendarResource) throws SystemException {
 		calendarResource.setNew(true);
@@ -105,6 +106,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @param calendarResourceId the primary key for the new calendar resource
 	 * @return the new calendar resource
 	 */
+	@Override
 	public CalendarResource createCalendarResource(long calendarResourceId) {
 		return calendarResourcePersistence.create(calendarResourceId);
 	}
@@ -118,6 +120,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public CalendarResource deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 		return calendarResourcePersistence.remove(calendarResourceId);
@@ -132,12 +135,14 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public CalendarResource deleteCalendarResource(
 		CalendarResource calendarResource)
 		throws PortalException, SystemException {
 		return calendarResourcePersistence.remove(calendarResource);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -152,6 +157,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -171,6 +177,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -192,6 +199,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -206,11 +214,13 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return calendarResourcePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public CalendarResource fetchCalendarResource(long calendarResourceId)
 		throws SystemException {
 		return calendarResourcePersistence.fetchByPrimaryKey(calendarResourceId);
@@ -224,11 +234,13 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @throws PortalException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarResource getCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 		return calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return calendarResourcePersistence.findByPrimaryKey(primaryKeyObj);
@@ -243,6 +255,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @throws PortalException if a matching calendar resource could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarResource getCalendarResourceByUuidAndGroupId(String uuid,
 		long groupId) throws PortalException, SystemException {
 		return calendarResourcePersistence.findByUUID_G(uuid, groupId);
@@ -260,6 +273,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the range of calendar resources
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<CalendarResource> getCalendarResources(int start, int end)
 		throws SystemException {
 		return calendarResourcePersistence.findAll(start, end);
@@ -271,6 +285,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the number of calendar resources
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getCalendarResourcesCount() throws SystemException {
 		return calendarResourcePersistence.countAll();
 	}
@@ -283,6 +298,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CalendarResource updateCalendarResource(
 		CalendarResource calendarResource) throws SystemException {
 		return calendarResourcePersistence.update(calendarResource);
@@ -755,6 +771,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -764,10 +781,12 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

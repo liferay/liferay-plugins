@@ -105,6 +105,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoNotification addKaleoNotification(
 		KaleoNotification kaleoNotification) throws SystemException {
 		kaleoNotification.setNew(true);
@@ -118,6 +119,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @param kaleoNotificationId the primary key for the new kaleo notification
 	 * @return the new kaleo notification
 	 */
+	@Override
 	public KaleoNotification createKaleoNotification(long kaleoNotificationId) {
 		return kaleoNotificationPersistence.create(kaleoNotificationId);
 	}
@@ -131,6 +133,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoNotification deleteKaleoNotification(long kaleoNotificationId)
 		throws PortalException, SystemException {
 		return kaleoNotificationPersistence.remove(kaleoNotificationId);
@@ -144,11 +147,13 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoNotification deleteKaleoNotification(
 		KaleoNotification kaleoNotification) throws SystemException {
 		return kaleoNotificationPersistence.remove(kaleoNotification);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -163,6 +168,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -182,6 +188,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -203,6 +210,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -217,11 +225,13 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoNotificationPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public KaleoNotification fetchKaleoNotification(long kaleoNotificationId)
 		throws SystemException {
 		return kaleoNotificationPersistence.fetchByPrimaryKey(kaleoNotificationId);
@@ -235,11 +245,13 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @throws PortalException if a kaleo notification with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotification getKaleoNotification(long kaleoNotificationId)
 		throws PortalException, SystemException {
 		return kaleoNotificationPersistence.findByPrimaryKey(kaleoNotificationId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kaleoNotificationPersistence.findByPrimaryKey(primaryKeyObj);
@@ -257,6 +269,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @return the range of kaleo notifications
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotification> getKaleoNotifications(int start, int end)
 		throws SystemException {
 		return kaleoNotificationPersistence.findAll(start, end);
@@ -268,6 +281,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @return the number of kaleo notifications
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getKaleoNotificationsCount() throws SystemException {
 		return kaleoNotificationPersistence.countAll();
 	}
@@ -280,6 +294,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoNotification updateKaleoNotification(
 		KaleoNotification kaleoNotification) throws SystemException {
 		return kaleoNotificationPersistence.update(kaleoNotification);
@@ -1040,6 +1055,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -1049,10 +1065,12 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

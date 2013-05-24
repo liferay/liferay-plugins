@@ -138,6 +138,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 			};
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate addCalendarNotificationTemplate(
 		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -170,6 +171,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate createCalendarNotificationTemplate(
 		long calendarNotificationTemplateId) {
 		Object returnObj = null;
@@ -194,6 +196,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -228,6 +231,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
 		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -260,6 +264,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -282,6 +287,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -312,6 +318,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -348,6 +355,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -388,6 +396,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -417,6 +426,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -446,6 +456,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -480,6 +491,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -514,6 +526,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -548,6 +561,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -576,6 +590,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getCalendarNotificationTemplatesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -603,6 +618,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate updateCalendarNotificationTemplate(
 		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -635,6 +651,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -657,6 +674,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName17,
@@ -676,12 +694,14 @@ public class CalendarNotificationTemplateLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate addCalendarNotificationTemplate(
 		long userId, long calendarId,
 		com.liferay.calendar.notification.NotificationType notificationType,
@@ -737,6 +757,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 		long calendarId,
 		com.liferay.calendar.notification.NotificationType notificationType,
@@ -774,6 +795,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		return (com.liferay.calendar.model.CalendarNotificationTemplate)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate updateCalendarNotificationTemplate(
 		long calendarNotificationTemplateId,
 		java.lang.String notificationTypeSettings, java.lang.String subject,

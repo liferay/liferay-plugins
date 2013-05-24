@@ -61,6 +61,7 @@ public class WallEntryCacheModel implements CacheModel<WallEntry>,
 		return sb.toString();
 	}
 
+	@Override
 	public WallEntry toEntityModel() {
 		WallEntryImpl wallEntryImpl = new WallEntryImpl();
 
@@ -102,6 +103,7 @@ public class WallEntryCacheModel implements CacheModel<WallEntry>,
 		return wallEntryImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		wallEntryId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -113,6 +115,7 @@ public class WallEntryCacheModel implements CacheModel<WallEntry>,
 		comments = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(wallEntryId);

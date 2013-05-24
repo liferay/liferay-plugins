@@ -95,26 +95,32 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public FeedModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _feedId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setFeedId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _feedId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Feed.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Feed.class.getName();
 	}
@@ -193,26 +199,32 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		}
 	}
 
+	@Override
 	public long getFeedId() {
 		return _feedId;
 	}
 
+	@Override
 	public void setFeedId(long feedId) {
 		_feedId = feedId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
@@ -225,10 +237,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -237,6 +251,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return _originalUserId;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -246,43 +261,53 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public long getTwitterUserId() {
 		return _twitterUserId;
 	}
 
+	@Override
 	public void setTwitterUserId(long twitterUserId) {
 		_twitterUserId = twitterUserId;
 	}
 
+	@Override
 	public String getTwitterUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getTwitterUserId(), "uuid",
 			_twitterUserUuid);
 	}
 
+	@Override
 	public void setTwitterUserUuid(String twitterUserUuid) {
 		_twitterUserUuid = twitterUserUuid;
 	}
 
+	@Override
 	public String getTwitterScreenName() {
 		if (_twitterScreenName == null) {
 			return StringPool.BLANK;
@@ -292,6 +317,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		}
 	}
 
+	@Override
 	public void setTwitterScreenName(String twitterScreenName) {
 		_columnBitmask |= TWITTERSCREENNAME_COLUMN_BITMASK;
 
@@ -306,10 +332,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return GetterUtil.getString(_originalTwitterScreenName);
 	}
 
+	@Override
 	public long getLastStatusId() {
 		return _lastStatusId;
 	}
 
+	@Override
 	public void setLastStatusId(long lastStatusId) {
 		_lastStatusId = lastStatusId;
 	}
@@ -360,6 +388,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return feedImpl;
 	}
 
+	@Override
 	public int compareTo(Feed feed) {
 		long primaryKey = feed.getPrimaryKey();
 
@@ -492,6 +521,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

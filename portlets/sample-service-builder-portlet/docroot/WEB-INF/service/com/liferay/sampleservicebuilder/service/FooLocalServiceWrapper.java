@@ -36,6 +36,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the foo that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo addFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -48,6 +49,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param fooId the primary key for the new foo
 	* @return the new foo
 	*/
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo createFoo(long fooId) {
 		return _fooLocalService.createFoo(fooId);
 	}
@@ -60,6 +62,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @throws PortalException if a foo with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -73,12 +76,14 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the foo that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.deleteFoo(foo);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _fooLocalService.dynamicQuery();
 	}
@@ -90,6 +95,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -110,6 +116,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -131,6 +138,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -148,12 +156,14 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo fetchFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.fetchFoo(fooId);
@@ -167,12 +177,14 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @throws PortalException if a foo with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoo(fooId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -189,6 +201,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @throws PortalException if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -208,6 +221,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the range of foos
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -220,6 +234,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the number of foos
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getFoosCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoosCount();
@@ -232,6 +247,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @return the foo that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -243,6 +259,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _fooLocalService.getBeanIdentifier();
 	}
@@ -252,16 +269,19 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_fooLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _fooLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	@Override
 	public void addFoo(java.lang.String field1, boolean field2, int field3,
 		java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -271,22 +291,26 @@ public class FooLocalServiceWrapper implements FooLocalService,
 			serviceContext);
 	}
 
+	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoos(start, end, obc);
 	}
 
+	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoos(obc);
 	}
 
+	@Override
 	public java.lang.Object getLocalObject() throws java.lang.Exception {
 		return _fooLocalService.getLocalObject();
 	}
 
+	@Override
 	public void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
@@ -296,6 +320,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 			assetTagNames);
 	}
 
+	@Override
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -319,10 +344,12 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		_fooLocalService = fooLocalService;
 	}
 
+	@Override
 	public FooLocalService getWrappedService() {
 		return _fooLocalService;
 	}
 
+	@Override
 	public void setWrappedService(FooLocalService fooLocalService) {
 		_fooLocalService = fooLocalService;
 	}

@@ -42,26 +42,32 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	public ProjectsEntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return ProjectsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return ProjectsEntry.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _projectsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setProjectsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _projectsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -154,10 +160,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public long getProjectsEntryId() {
 		return _projectsEntryId;
 	}
 
+	@Override
 	public void setProjectsEntryId(long projectsEntryId) {
 		_projectsEntryId = projectsEntryId;
 
@@ -175,10 +183,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -196,10 +206,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -217,18 +229,22 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -246,10 +262,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -267,10 +285,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -288,10 +308,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public String getTitle() {
 		return _title;
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 
@@ -309,10 +331,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -330,10 +354,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public Date getStartDate() {
 		return _startDate;
 	}
 
+	@Override
 	public void setStartDate(Date startDate) {
 		_startDate = startDate;
 
@@ -351,10 +377,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public Date getEndDate() {
 		return _endDate;
 	}
 
+	@Override
 	public void setEndDate(Date endDate) {
 		_endDate = endDate;
 
@@ -372,10 +400,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public String getData() {
 		return _data;
 	}
 
+	@Override
 	public void setData(String data) {
 		_data = data;
 
@@ -443,6 +473,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			ProjectsEntryLocalServiceUtil.addProjectsEntry(this);
@@ -477,6 +508,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(ProjectsEntry projectsEntry) {
 		int value = 0;
 
@@ -547,6 +579,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

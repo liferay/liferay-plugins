@@ -74,6 +74,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Entry addEntry(Entry entry) throws SystemException {
 		entry.setNew(true);
 
@@ -86,6 +87,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param entryId the primary key for the new entry
 	 * @return the new entry
 	 */
+	@Override
 	public Entry createEntry(long entryId) {
 		return entryPersistence.create(entryId);
 	}
@@ -99,6 +101,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Entry deleteEntry(long entryId)
 		throws PortalException, SystemException {
 		return entryPersistence.remove(entryId);
@@ -112,10 +115,12 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Entry deleteEntry(Entry entry) throws SystemException {
 		return entryPersistence.remove(entry);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -130,6 +135,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -149,6 +155,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -169,6 +176,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -183,11 +191,13 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return entryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Entry fetchEntry(long entryId) throws SystemException {
 		return entryPersistence.fetchByPrimaryKey(entryId);
 	}
@@ -200,10 +210,12 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Entry getEntry(long entryId) throws PortalException, SystemException {
 		return entryPersistence.findByPrimaryKey(entryId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return entryPersistence.findByPrimaryKey(primaryKeyObj);
@@ -221,6 +233,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Entry> getEntries(int start, int end) throws SystemException {
 		return entryPersistence.findAll(start, end);
 	}
@@ -231,6 +244,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getEntriesCount() throws SystemException {
 		return entryPersistence.countAll();
 	}
@@ -243,6 +257,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Entry updateEntry(Entry entry) throws SystemException {
 		return entryPersistence.update(entry);
 	}
@@ -411,6 +426,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -420,10 +436,12 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

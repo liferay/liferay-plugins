@@ -34,14 +34,17 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		_wallEntry = wallEntry;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return WallEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return WallEntry.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -57,6 +60,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long wallEntryId = (Long)attributes.get("wallEntryId");
 
@@ -112,6 +116,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the primary key of this wall entry
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _wallEntry.getPrimaryKey();
 	}
@@ -121,6 +126,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param primaryKey the primary key of this wall entry
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_wallEntry.setPrimaryKey(primaryKey);
 	}
@@ -130,6 +136,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the wall entry ID of this wall entry
 	*/
+	@Override
 	public long getWallEntryId() {
 		return _wallEntry.getWallEntryId();
 	}
@@ -139,6 +146,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param wallEntryId the wall entry ID of this wall entry
 	*/
+	@Override
 	public void setWallEntryId(long wallEntryId) {
 		_wallEntry.setWallEntryId(wallEntryId);
 	}
@@ -148,6 +156,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the group ID of this wall entry
 	*/
+	@Override
 	public long getGroupId() {
 		return _wallEntry.getGroupId();
 	}
@@ -157,6 +166,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param groupId the group ID of this wall entry
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_wallEntry.setGroupId(groupId);
 	}
@@ -166,6 +176,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the company ID of this wall entry
 	*/
+	@Override
 	public long getCompanyId() {
 		return _wallEntry.getCompanyId();
 	}
@@ -175,6 +186,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param companyId the company ID of this wall entry
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_wallEntry.setCompanyId(companyId);
 	}
@@ -184,6 +196,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the user ID of this wall entry
 	*/
+	@Override
 	public long getUserId() {
 		return _wallEntry.getUserId();
 	}
@@ -193,6 +206,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param userId the user ID of this wall entry
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_wallEntry.setUserId(userId);
 	}
@@ -203,6 +217,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	* @return the user uuid of this wall entry
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wallEntry.getUserUuid();
@@ -213,6 +228,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param userUuid the user uuid of this wall entry
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_wallEntry.setUserUuid(userUuid);
 	}
@@ -222,6 +238,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the user name of this wall entry
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _wallEntry.getUserName();
 	}
@@ -231,6 +248,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param userName the user name of this wall entry
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_wallEntry.setUserName(userName);
 	}
@@ -240,6 +258,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the create date of this wall entry
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _wallEntry.getCreateDate();
 	}
@@ -249,6 +268,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param createDate the create date of this wall entry
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_wallEntry.setCreateDate(createDate);
 	}
@@ -258,6 +278,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the modified date of this wall entry
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _wallEntry.getModifiedDate();
 	}
@@ -267,6 +288,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param modifiedDate the modified date of this wall entry
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_wallEntry.setModifiedDate(modifiedDate);
 	}
@@ -276,6 +298,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @return the comments of this wall entry
 	*/
+	@Override
 	public java.lang.String getComments() {
 		return _wallEntry.getComments();
 	}
@@ -285,52 +308,64 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	*
 	* @param comments the comments of this wall entry
 	*/
+	@Override
 	public void setComments(java.lang.String comments) {
 		_wallEntry.setComments(comments);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _wallEntry.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_wallEntry.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _wallEntry.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_wallEntry.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _wallEntry.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _wallEntry.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_wallEntry.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _wallEntry.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_wallEntry.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_wallEntry.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_wallEntry.setExpandoBridgeAttributes(serviceContext);
@@ -341,6 +376,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		return new WallEntryWrapper((WallEntry)_wallEntry.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.socialnetworking.model.WallEntry wallEntry) {
 		return _wallEntry.compareTo(wallEntry);
 	}
@@ -350,14 +386,17 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		return _wallEntry.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.socialnetworking.model.WallEntry> toCacheModel() {
 		return _wallEntry.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry toEscapedModel() {
 		return new WallEntryWrapper(_wallEntry.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry toUnescapedModel() {
 		return new WallEntryWrapper(_wallEntry.toUnescapedModel());
 	}
@@ -367,10 +406,12 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		return _wallEntry.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _wallEntry.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_wallEntry.persist();
@@ -383,10 +424,12 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 		return _wallEntry;
 	}
 
+	@Override
 	public WallEntry getWrappedModel() {
 		return _wallEntry;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_wallEntry.resetOriginalValues();
 	}

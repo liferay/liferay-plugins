@@ -41,26 +41,32 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 	public WallEntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return WallEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return WallEntry.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _wallEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setWallEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _wallEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -132,10 +138,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public long getWallEntryId() {
 		return _wallEntryId;
 	}
 
+	@Override
 	public void setWallEntryId(long wallEntryId) {
 		_wallEntryId = wallEntryId;
 
@@ -153,10 +161,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -174,10 +184,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -195,10 +207,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -216,18 +230,22 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -245,10 +263,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -266,10 +286,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -287,10 +309,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	@Override
 	public String getComments() {
 		return _comments;
 	}
 
+	@Override
 	public void setComments(String comments) {
 		_comments = comments;
 
@@ -357,6 +381,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			WallEntryLocalServiceUtil.addWallEntry(this);
@@ -388,6 +413,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		return clone;
 	}
 
+	@Override
 	public int compareTo(WallEntry wallEntry) {
 		int value = 0;
 
@@ -454,6 +480,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(28);
 

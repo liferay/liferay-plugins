@@ -43,26 +43,32 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 	public AkismetDataClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return AkismetData.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return AkismetData.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _akismetDataId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setAkismetDataId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _akismetDataId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -148,10 +154,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public long getAkismetDataId() {
 		return _akismetDataId;
 	}
 
+	@Override
 	public void setAkismetDataId(long akismetDataId) {
 		_akismetDataId = akismetDataId;
 
@@ -169,10 +177,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -190,6 +200,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public String getClassName() {
 		if (getClassNameId() <= 0) {
 			return StringPool.BLANK;
@@ -198,6 +209,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		return PortalUtil.getClassName(getClassNameId());
 	}
 
+	@Override
 	public void setClassName(String className) {
 		long classNameId = 0;
 
@@ -208,10 +220,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		setClassNameId(classNameId);
 	}
 
+	@Override
 	public long getClassNameId() {
 		return _classNameId;
 	}
 
+	@Override
 	public void setClassNameId(long classNameId) {
 		_classNameId = classNameId;
 
@@ -229,10 +243,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public long getClassPK() {
 		return _classPK;
 	}
 
+	@Override
 	public void setClassPK(long classPK) {
 		_classPK = classPK;
 
@@ -250,10 +266,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public String getType() {
 		return _type;
 	}
 
+	@Override
 	public void setType(String type) {
 		_type = type;
 
@@ -271,10 +289,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public String getPermalink() {
 		return _permalink;
 	}
 
+	@Override
 	public void setPermalink(String permalink) {
 		_permalink = permalink;
 
@@ -292,10 +312,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public String getReferrer() {
 		return _referrer;
 	}
 
+	@Override
 	public void setReferrer(String referrer) {
 		_referrer = referrer;
 
@@ -313,10 +335,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public String getUserAgent() {
 		return _userAgent;
 	}
 
+	@Override
 	public void setUserAgent(String userAgent) {
 		_userAgent = userAgent;
 
@@ -334,10 +358,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public String getUserIP() {
 		return _userIP;
 	}
 
+	@Override
 	public void setUserIP(String userIP) {
 		_userIP = userIP;
 
@@ -355,10 +381,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		}
 	}
 
+	@Override
 	public String getUserURL() {
 		return _userURL;
 	}
 
+	@Override
 	public void setUserURL(String userURL) {
 		_userURL = userURL;
 
@@ -425,6 +453,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			AkismetDataLocalServiceUtil.addAkismetData(this);
@@ -458,6 +487,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(AkismetData akismetData) {
 		long primaryKey = akismetData.getPrimaryKey();
 
@@ -528,6 +558,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

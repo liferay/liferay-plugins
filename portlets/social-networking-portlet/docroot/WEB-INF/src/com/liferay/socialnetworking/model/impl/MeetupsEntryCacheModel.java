@@ -73,6 +73,7 @@ public class MeetupsEntryCacheModel implements CacheModel<MeetupsEntry>,
 		return sb.toString();
 	}
 
+	@Override
 	public MeetupsEntry toEntityModel() {
 		MeetupsEntryImpl meetupsEntryImpl = new MeetupsEntryImpl();
 
@@ -139,6 +140,7 @@ public class MeetupsEntryCacheModel implements CacheModel<MeetupsEntry>,
 		return meetupsEntryImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		meetupsEntryId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -156,6 +158,7 @@ public class MeetupsEntryCacheModel implements CacheModel<MeetupsEntry>,
 		thumbnailId = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(meetupsEntryId);

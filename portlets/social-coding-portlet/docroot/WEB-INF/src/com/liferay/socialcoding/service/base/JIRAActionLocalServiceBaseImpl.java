@@ -87,6 +87,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAAction addJIRAAction(JIRAAction jiraAction)
 		throws SystemException {
 		jiraAction.setNew(true);
@@ -100,6 +101,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @param jiraActionId the primary key for the new j i r a action
 	 * @return the new j i r a action
 	 */
+	@Override
 	public JIRAAction createJIRAAction(long jiraActionId) {
 		return jiraActionPersistence.create(jiraActionId);
 	}
@@ -113,6 +115,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAAction deleteJIRAAction(long jiraActionId)
 		throws PortalException, SystemException {
 		return jiraActionPersistence.remove(jiraActionId);
@@ -126,11 +129,13 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAAction deleteJIRAAction(JIRAAction jiraAction)
 		throws SystemException {
 		return jiraActionPersistence.remove(jiraAction);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -145,6 +150,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -164,6 +170,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -185,6 +192,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -199,11 +207,13 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return jiraActionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public JIRAAction fetchJIRAAction(long jiraActionId)
 		throws SystemException {
 		return jiraActionPersistence.fetchByPrimaryKey(jiraActionId);
@@ -217,11 +227,13 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @throws PortalException if a j i r a action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAAction getJIRAAction(long jiraActionId)
 		throws PortalException, SystemException {
 		return jiraActionPersistence.findByPrimaryKey(jiraActionId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return jiraActionPersistence.findByPrimaryKey(primaryKeyObj);
@@ -239,6 +251,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @return the range of j i r a actions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<JIRAAction> getJIRAActions(int start, int end)
 		throws SystemException {
 		return jiraActionPersistence.findAll(start, end);
@@ -250,6 +263,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @return the number of j i r a actions
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getJIRAActionsCount() throws SystemException {
 		return jiraActionPersistence.countAll();
 	}
@@ -262,6 +276,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAAction updateJIRAAction(JIRAAction jiraAction)
 		throws SystemException {
 		return jiraActionPersistence.update(jiraAction);
@@ -660,6 +675,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -669,10 +685,12 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

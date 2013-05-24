@@ -98,26 +98,32 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	public ProjectsEntryModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _projectsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setProjectsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _projectsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return ProjectsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return ProjectsEntry.class.getName();
 	}
@@ -210,26 +216,32 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public long getProjectsEntryId() {
 		return _projectsEntryId;
 	}
 
+	@Override
 	public void setProjectsEntryId(long projectsEntryId) {
 		_projectsEntryId = projectsEntryId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
@@ -242,10 +254,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -254,6 +268,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		return _originalUserId;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -263,26 +278,32 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -292,10 +313,12 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 	}
 
+	@Override
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -305,28 +328,34 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 	}
 
+	@Override
 	public Date getStartDate() {
 		return _startDate;
 	}
 
+	@Override
 	public void setStartDate(Date startDate) {
 		_startDate = startDate;
 	}
 
+	@Override
 	public Date getEndDate() {
 		return _endDate;
 	}
 
+	@Override
 	public void setEndDate(Date endDate) {
 		_columnBitmask = -1L;
 
 		_endDate = endDate;
 	}
 
+	@Override
 	public String getData() {
 		if (_data == null) {
 			return StringPool.BLANK;
@@ -336,6 +365,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	@Override
 	public void setData(String data) {
 		_data = data;
 	}
@@ -388,6 +418,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		return projectsEntryImpl;
 	}
 
+	@Override
 	public int compareTo(ProjectsEntry projectsEntry) {
 		int value = 0;
 
@@ -550,6 +581,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

@@ -64,6 +64,7 @@ public class CheckoutCacheModel implements CacheModel<Checkout>, Externalizable 
 		return sb.toString();
 	}
 
+	@Override
 	public Checkout toEntityModel() {
 		CheckoutImpl checkoutImpl = new CheckoutImpl();
 
@@ -120,6 +121,7 @@ public class CheckoutCacheModel implements CacheModel<Checkout>, Externalizable 
 		return checkoutImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		checkoutId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -133,6 +135,7 @@ public class CheckoutCacheModel implements CacheModel<Checkout>, Externalizable 
 		actualCheckInDate = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(checkoutId);

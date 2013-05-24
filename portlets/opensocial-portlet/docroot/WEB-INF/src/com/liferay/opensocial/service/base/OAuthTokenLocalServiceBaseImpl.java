@@ -79,6 +79,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public OAuthToken addOAuthToken(OAuthToken oAuthToken)
 		throws SystemException {
 		oAuthToken.setNew(true);
@@ -92,6 +93,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @param oAuthTokenId the primary key for the new o auth token
 	 * @return the new o auth token
 	 */
+	@Override
 	public OAuthToken createOAuthToken(long oAuthTokenId) {
 		return oAuthTokenPersistence.create(oAuthTokenId);
 	}
@@ -105,6 +107,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public OAuthToken deleteOAuthToken(long oAuthTokenId)
 		throws PortalException, SystemException {
 		return oAuthTokenPersistence.remove(oAuthTokenId);
@@ -118,11 +121,13 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public OAuthToken deleteOAuthToken(OAuthToken oAuthToken)
 		throws SystemException {
 		return oAuthTokenPersistence.remove(oAuthToken);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -137,6 +142,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -156,6 +162,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -177,6 +184,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -191,11 +199,13 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return oAuthTokenPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public OAuthToken fetchOAuthToken(long oAuthTokenId)
 		throws SystemException {
 		return oAuthTokenPersistence.fetchByPrimaryKey(oAuthTokenId);
@@ -209,11 +219,13 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @throws PortalException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken getOAuthToken(long oAuthTokenId)
 		throws PortalException, SystemException {
 		return oAuthTokenPersistence.findByPrimaryKey(oAuthTokenId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return oAuthTokenPersistence.findByPrimaryKey(primaryKeyObj);
@@ -231,6 +243,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @return the range of o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthToken> getOAuthTokens(int start, int end)
 		throws SystemException {
 		return oAuthTokenPersistence.findAll(start, end);
@@ -242,6 +255,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @return the number of o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getOAuthTokensCount() throws SystemException {
 		return oAuthTokenPersistence.countAll();
 	}
@@ -254,6 +268,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public OAuthToken updateOAuthToken(OAuthToken oAuthToken)
 		throws SystemException {
 		return oAuthTokenPersistence.update(oAuthToken);
@@ -499,6 +514,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -508,10 +524,12 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

@@ -45,26 +45,32 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 	public PollsChoiceClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return PollsChoice.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return PollsChoice.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _pollsChoiceId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setPollsChoiceId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _pollsChoiceId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -115,10 +121,12 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public String getUuid() {
 		return _uuid;
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		_uuid = uuid;
 
@@ -136,10 +144,12 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public long getPollsChoiceId() {
 		return _pollsChoiceId;
 	}
 
+	@Override
 	public void setPollsChoiceId(long pollsChoiceId) {
 		_pollsChoiceId = pollsChoiceId;
 
@@ -157,10 +167,12 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public long getPollsQuestionId() {
 		return _pollsQuestionId;
 	}
 
+	@Override
 	public void setPollsQuestionId(long pollsQuestionId) {
 		_pollsQuestionId = pollsQuestionId;
 
@@ -178,10 +190,12 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -199,45 +213,54 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public String getDescription(Locale locale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getDescription(languageId);
 	}
 
+	@Override
 	public String getDescription(Locale locale, boolean useDefault) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getDescription(languageId, useDefault);
 	}
 
+	@Override
 	public String getDescription(String languageId) {
 		return LocalizationUtil.getLocalization(getDescription(), languageId);
 	}
 
+	@Override
 	public String getDescription(String languageId, boolean useDefault) {
 		return LocalizationUtil.getLocalization(getDescription(), languageId,
 			useDefault);
 	}
 
+	@Override
 	public String getDescriptionCurrentLanguageId() {
 		return _descriptionCurrentLanguageId;
 	}
 
+	@Override
 	public String getDescriptionCurrentValue() {
 		Locale locale = getLocale(_descriptionCurrentLanguageId);
 
 		return getDescription(locale);
 	}
 
+	@Override
 	public Map<Locale, String> getDescriptionMap() {
 		return LocalizationUtil.getLocalizationMap(getDescription());
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -255,10 +278,12 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public void setDescription(String description, Locale locale) {
 		setDescription(description, locale, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setDescription(String description, Locale locale,
 		Locale defaultLocale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
@@ -275,14 +300,17 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public void setDescriptionCurrentLanguageId(String languageId) {
 		_descriptionCurrentLanguageId = languageId;
 	}
 
+	@Override
 	public void setDescriptionMap(Map<Locale, String> descriptionMap) {
 		setDescriptionMap(descriptionMap, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setDescriptionMap(Map<Locale, String> descriptionMap,
 		Locale defaultLocale) {
 		if (descriptionMap == null) {
@@ -311,6 +339,7 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	public int getPollsVotesCount() {
 		try {
 			String methodName = "getPollsVotesCount";
@@ -378,6 +407,7 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			PollsChoiceLocalServiceUtil.addPollsChoice(this);
@@ -387,6 +417,7 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
@@ -413,6 +444,7 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(PollsChoice pollsChoice) {
 		int value = 0;
 
@@ -485,6 +517,7 @@ public class PollsChoiceClp extends BaseModelImpl<PollsChoice>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(19);
 

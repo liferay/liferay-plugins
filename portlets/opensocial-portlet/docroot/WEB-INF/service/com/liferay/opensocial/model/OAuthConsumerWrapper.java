@@ -35,14 +35,17 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		_oAuthConsumer = oAuthConsumer;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return OAuthConsumer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return OAuthConsumer.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -59,6 +62,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long oAuthConsumerId = (Long)attributes.get("oAuthConsumerId");
 
@@ -120,6 +124,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the primary key of this o auth consumer
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _oAuthConsumer.getPrimaryKey();
 	}
@@ -129,6 +134,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param primaryKey the primary key of this o auth consumer
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_oAuthConsumer.setPrimaryKey(primaryKey);
 	}
@@ -138,6 +144,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the o auth consumer ID of this o auth consumer
 	*/
+	@Override
 	public long getOAuthConsumerId() {
 		return _oAuthConsumer.getOAuthConsumerId();
 	}
@@ -147,6 +154,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param oAuthConsumerId the o auth consumer ID of this o auth consumer
 	*/
+	@Override
 	public void setOAuthConsumerId(long oAuthConsumerId) {
 		_oAuthConsumer.setOAuthConsumerId(oAuthConsumerId);
 	}
@@ -156,6 +164,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the company ID of this o auth consumer
 	*/
+	@Override
 	public long getCompanyId() {
 		return _oAuthConsumer.getCompanyId();
 	}
@@ -165,6 +174,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param companyId the company ID of this o auth consumer
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_oAuthConsumer.setCompanyId(companyId);
 	}
@@ -174,6 +184,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the create date of this o auth consumer
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _oAuthConsumer.getCreateDate();
 	}
@@ -183,6 +194,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param createDate the create date of this o auth consumer
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_oAuthConsumer.setCreateDate(createDate);
 	}
@@ -192,6 +204,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the modified date of this o auth consumer
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _oAuthConsumer.getModifiedDate();
 	}
@@ -201,6 +214,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param modifiedDate the modified date of this o auth consumer
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_oAuthConsumer.setModifiedDate(modifiedDate);
 	}
@@ -210,6 +224,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the gadget key of this o auth consumer
 	*/
+	@Override
 	public java.lang.String getGadgetKey() {
 		return _oAuthConsumer.getGadgetKey();
 	}
@@ -219,6 +234,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param gadgetKey the gadget key of this o auth consumer
 	*/
+	@Override
 	public void setGadgetKey(java.lang.String gadgetKey) {
 		_oAuthConsumer.setGadgetKey(gadgetKey);
 	}
@@ -228,6 +244,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the service name of this o auth consumer
 	*/
+	@Override
 	public java.lang.String getServiceName() {
 		return _oAuthConsumer.getServiceName();
 	}
@@ -237,6 +254,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param serviceName the service name of this o auth consumer
 	*/
+	@Override
 	public void setServiceName(java.lang.String serviceName) {
 		_oAuthConsumer.setServiceName(serviceName);
 	}
@@ -246,6 +264,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the consumer key of this o auth consumer
 	*/
+	@Override
 	public java.lang.String getConsumerKey() {
 		return _oAuthConsumer.getConsumerKey();
 	}
@@ -255,6 +274,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param consumerKey the consumer key of this o auth consumer
 	*/
+	@Override
 	public void setConsumerKey(java.lang.String consumerKey) {
 		_oAuthConsumer.setConsumerKey(consumerKey);
 	}
@@ -264,6 +284,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the consumer secret of this o auth consumer
 	*/
+	@Override
 	public java.lang.String getConsumerSecret() {
 		return _oAuthConsumer.getConsumerSecret();
 	}
@@ -273,6 +294,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param consumerSecret the consumer secret of this o auth consumer
 	*/
+	@Override
 	public void setConsumerSecret(java.lang.String consumerSecret) {
 		_oAuthConsumer.setConsumerSecret(consumerSecret);
 	}
@@ -282,6 +304,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @return the key type of this o auth consumer
 	*/
+	@Override
 	public java.lang.String getKeyType() {
 		return _oAuthConsumer.getKeyType();
 	}
@@ -291,52 +314,64 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	*
 	* @param keyType the key type of this o auth consumer
 	*/
+	@Override
 	public void setKeyType(java.lang.String keyType) {
 		_oAuthConsumer.setKeyType(keyType);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _oAuthConsumer.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_oAuthConsumer.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _oAuthConsumer.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_oAuthConsumer.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _oAuthConsumer.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _oAuthConsumer.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_oAuthConsumer.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _oAuthConsumer.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_oAuthConsumer.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_oAuthConsumer.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_oAuthConsumer.setExpandoBridgeAttributes(serviceContext);
@@ -347,6 +382,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		return new OAuthConsumerWrapper((OAuthConsumer)_oAuthConsumer.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
 		return _oAuthConsumer.compareTo(oAuthConsumer);
@@ -357,14 +393,17 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		return _oAuthConsumer.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.opensocial.model.OAuthConsumer> toCacheModel() {
 		return _oAuthConsumer.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthConsumer toEscapedModel() {
 		return new OAuthConsumerWrapper(_oAuthConsumer.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthConsumer toUnescapedModel() {
 		return new OAuthConsumerWrapper(_oAuthConsumer.toUnescapedModel());
 	}
@@ -374,19 +413,23 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		return _oAuthConsumer.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _oAuthConsumer.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_oAuthConsumer.persist();
 	}
 
+	@Override
 	public java.lang.String getKeyName() {
 		return _oAuthConsumer.getKeyName();
 	}
 
+	@Override
 	public void setKeyName(java.lang.String keyName) {
 		_oAuthConsumer.setKeyName(keyName);
 	}
@@ -398,10 +441,12 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		return _oAuthConsumer;
 	}
 
+	@Override
 	public OAuthConsumer getWrappedModel() {
 		return _oAuthConsumer;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_oAuthConsumer.resetOriginalValues();
 	}

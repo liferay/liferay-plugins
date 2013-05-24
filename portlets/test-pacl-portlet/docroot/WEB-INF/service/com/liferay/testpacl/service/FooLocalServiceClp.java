@@ -169,6 +169,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		_methodParameterTypes34 = new String[] { "long" };
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo addFoo(
 		com.liferay.testpacl.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -198,6 +199,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.testpacl.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo createFoo(long fooId) {
 		Object returnObj = null;
 
@@ -220,6 +222,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.testpacl.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo deleteFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -252,6 +255,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.testpacl.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo deleteFoo(
 		com.liferay.testpacl.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -281,6 +285,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.testpacl.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -303,6 +308,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -333,6 +339,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -369,6 +376,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -409,6 +417,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -438,6 +447,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo fetchFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -465,6 +475,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.testpacl.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo getFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -497,6 +508,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.testpacl.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -531,6 +543,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.testpacl.model.Foo> getFoos(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -558,6 +571,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List<com.liferay.testpacl.model.Foo>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getFoosCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -585,6 +599,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo updateFoo(
 		com.liferay.testpacl.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -614,6 +629,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.testpacl.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -636,6 +652,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -655,12 +672,14 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -694,6 +713,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.portal.model.Company)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -727,6 +747,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.portal.model.Company)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -755,6 +776,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
 		long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -788,6 +810,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -821,6 +844,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.portal.model.Group)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -854,6 +878,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.portal.model.Group)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getPortalService_GetBuildNumber() {
 		Object returnObj = null;
 
@@ -876,6 +901,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public int getPortalService_TestGetBuildNumber() {
 		Object returnObj = null;
 
@@ -898,6 +924,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public boolean getPortalService_TestHasClassName()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -925,6 +952,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Boolean)returnObj).booleanValue();
 	}
 
+	@Override
 	public int getPortalServiceUtil_GetBuildNumber() {
 		Object returnObj = null;
 
@@ -947,6 +975,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public int getPortalServiceUtil_TestGetBuildNumber() {
 		Object returnObj = null;
 
@@ -969,6 +998,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public boolean getPortalServiceUtil_TestHasClassName()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -996,6 +1026,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Boolean)returnObj).booleanValue();
 	}
 
+	@Override
 	public int getReleaseInfo_GetBuildNumber() {
 		Object returnObj = null;
 
@@ -1018,6 +1049,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
 		long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1051,6 +1083,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.chat.model.Status)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -1079,6 +1112,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List<com.liferay.chat.model.Status>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
 		long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1112,6 +1146,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.portal.model.User)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
 		long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,

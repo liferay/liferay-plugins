@@ -78,6 +78,7 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer>,
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoTimer toEntityModel() {
 		KaleoTimerImpl kaleoTimerImpl = new KaleoTimerImpl();
 
@@ -156,6 +157,7 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer>,
 		return kaleoTimerImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoTimerId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -176,6 +178,7 @@ public class KaleoTimerCacheModel implements CacheModel<KaleoTimer>,
 		recurrenceScale = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoTimerId);

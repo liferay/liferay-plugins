@@ -67,6 +67,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		return sb.toString();
 	}
 
+	@Override
 	public MicroblogsEntry toEntityModel() {
 		MicroblogsEntryImpl microblogsEntryImpl = new MicroblogsEntryImpl();
 
@@ -112,6 +113,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		return microblogsEntryImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		microblogsEntryId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -126,6 +128,7 @@ public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 		socialRelationType = objectInput.readInt();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(microblogsEntryId);

@@ -62,6 +62,7 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public App toEntityModel() {
 		AppImpl appImpl = new AppImpl();
 
@@ -111,6 +112,7 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 		return appImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		appId = objectInput.readLong();
@@ -123,6 +125,7 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 		version = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

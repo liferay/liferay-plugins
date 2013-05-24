@@ -184,6 +184,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 			};
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -213,6 +214,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance createKaleoInstance(
 		long kaleoInstanceId) {
 		Object returnObj = null;
@@ -236,6 +238,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -269,6 +272,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -298,6 +302,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -320,6 +325,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -350,6 +356,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -386,6 +393,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -426,6 +434,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -455,6 +464,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchKaleoInstance(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -483,6 +493,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance getKaleoInstance(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -516,6 +527,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -550,6 +562,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -578,6 +591,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKaleoInstancesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -605,6 +619,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -634,6 +649,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -656,6 +672,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -675,12 +692,14 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
 		long kaleoDefinitionId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion,
@@ -728,6 +747,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance completeKaleoInstance(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -761,6 +781,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoInstance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteCompanyKaleoInstances(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -784,6 +805,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		}
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoInstances(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -807,6 +829,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.Long userId, java.lang.String assetClassName,
 		java.lang.Long assetClassPK, java.lang.Boolean completed, int start,
@@ -856,6 +879,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.Long userId, java.lang.String[] assetClassNames,
 		java.lang.Boolean completed, int start, int end,
@@ -902,6 +926,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
 		boolean completed, int start, int end,
@@ -948,6 +973,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -976,6 +1002,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public int getKaleoInstancesCount(java.lang.Long userId,
 		java.lang.String assetClassName, java.lang.Long assetClassPK,
 		java.lang.Boolean completed,
@@ -1017,6 +1044,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public int getKaleoInstancesCount(java.lang.Long userId,
 		java.lang.String[] assetClassNames, java.lang.Boolean completed,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -1055,6 +1083,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public int getKaleoInstancesCount(java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion, boolean completed,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -1093,6 +1122,7 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
 		long kaleoInstanceId,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,

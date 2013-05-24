@@ -148,26 +148,32 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public AppModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _appId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setAppId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _appId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return App.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return App.class.getName();
 	}
@@ -246,6 +252,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		}
 	}
 
+	@Override
 	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
@@ -256,6 +263,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -268,20 +276,24 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	@JSON
 	public long getAppId() {
 		return _appId;
 	}
 
+	@Override
 	public void setAppId(long appId) {
 		_appId = appId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -298,23 +310,28 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return _originalCompanyId;
 	}
 
+	@Override
 	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	@JSON
 	public String getUserName() {
 		if (_userName == null) {
@@ -325,33 +342,40 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public long getRemoteAppId() {
 		return _remoteAppId;
 	}
 
+	@Override
 	public void setRemoteAppId(long remoteAppId) {
 		_columnBitmask |= REMOTEAPPID_COLUMN_BITMASK;
 
@@ -368,6 +392,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return _originalRemoteAppId;
 	}
 
+	@Override
 	@JSON
 	public String getVersion() {
 		if (_version == null) {
@@ -378,6 +403,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		}
 	}
 
+	@Override
 	public void setVersion(String version) {
 		_version = version;
 	}
@@ -428,6 +454,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return appImpl;
 	}
 
+	@Override
 	public int compareTo(App app) {
 		long primaryKey = app.getPrimaryKey();
 
@@ -570,6 +597,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

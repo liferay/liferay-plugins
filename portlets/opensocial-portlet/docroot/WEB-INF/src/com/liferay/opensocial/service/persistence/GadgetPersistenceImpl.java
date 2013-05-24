@@ -115,6 +115,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByUuid(String uuid) throws SystemException {
 		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -132,6 +133,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the range of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByUuid(String uuid, int start, int end)
 		throws SystemException {
 		return findByUuid(uuid, start, end, null);
@@ -151,6 +153,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the ordered range of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -271,6 +274,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByUuid_First(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -300,6 +304,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the first matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByUuid_First(String uuid,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<Gadget> list = findByUuid(uuid, 0, 1, orderByComparator);
@@ -320,6 +325,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByUuid_Last(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -349,6 +355,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the last matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByUuid_Last(String uuid,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
@@ -372,6 +379,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget[] findByUuid_PrevAndNext(long gadgetId, String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -527,6 +535,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByUuid(String uuid) throws SystemException {
 		return filterFindByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -544,6 +553,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the range of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByUuid(String uuid, int start, int end)
 		throws SystemException {
 		return filterFindByUuid(uuid, start, end, null);
@@ -563,6 +573,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the ordered range of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
@@ -666,6 +677,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget[] filterFindByUuid_PrevAndNext(long gadgetId, String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -859,6 +871,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @param uuid the uuid
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Gadget gadget : findByUuid(uuid, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -873,6 +886,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByUuid(String uuid) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
@@ -939,6 +953,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int filterCountByUuid(String uuid) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByUuid(uuid);
@@ -1029,6 +1044,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByUuid_C(String uuid, long companyId)
 		throws SystemException {
 		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
@@ -1049,6 +1065,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the range of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByUuid_C(String uuid, long companyId, int start,
 		int end) throws SystemException {
 		return findByUuid_C(uuid, companyId, start, end, null);
@@ -1069,6 +1086,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the ordered range of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1199,6 +1217,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByUuid_C_First(String uuid, long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -1232,6 +1251,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the first matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByUuid_C_First(String uuid, long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<Gadget> list = findByUuid_C(uuid, companyId, 0, 1,
@@ -1254,6 +1274,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByUuid_C_Last(String uuid, long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -1287,6 +1308,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the last matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByUuid_C_Last(String uuid, long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
@@ -1312,6 +1334,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget[] findByUuid_C_PrevAndNext(long gadgetId, String uuid,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -1473,6 +1496,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByUuid_C(String uuid, long companyId)
 		throws SystemException {
 		return filterFindByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
@@ -1493,6 +1517,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the range of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByUuid_C(String uuid, long companyId,
 		int start, int end) throws SystemException {
 		return filterFindByUuid_C(uuid, companyId, start, end, null);
@@ -1513,6 +1538,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the ordered range of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByUuid_C(String uuid, long companyId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1622,6 +1648,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget[] filterFindByUuid_C_PrevAndNext(long gadgetId, String uuid,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -1821,6 +1848,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByUuid_C(String uuid, long companyId)
 		throws SystemException {
 		for (Gadget gadget : findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
@@ -1837,6 +1865,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByUuid_C(String uuid, long companyId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
@@ -1909,6 +1938,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int filterCountByUuid_C(String uuid, long companyId)
 		throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
@@ -2004,6 +2034,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -2023,6 +2054,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the range of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
@@ -2042,6 +2074,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the ordered range of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -2148,6 +2181,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -2177,6 +2211,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the first matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<Gadget> list = findByCompanyId(companyId, 0, 1, orderByComparator);
@@ -2197,6 +2232,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -2226,6 +2262,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the last matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
@@ -2250,6 +2287,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget[] findByCompanyId_PrevAndNext(long gadgetId, long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -2391,6 +2429,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByCompanyId(long companyId)
 		throws SystemException {
 		return filterFindByCompanyId(companyId, QueryUtil.ALL_POS,
@@ -2410,6 +2449,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the range of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return filterFindByCompanyId(companyId, start, end, null);
@@ -2429,6 +2469,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the ordered range of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> filterFindByCompanyId(long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
@@ -2518,6 +2559,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget[] filterFindByCompanyId_PrevAndNext(long gadgetId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchGadgetException, SystemException {
@@ -2698,6 +2740,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Gadget gadget : findByCompanyId(companyId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -2712,6 +2755,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByCompanyId(long companyId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
@@ -2764,6 +2808,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of matching gadgets that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int filterCountByCompanyId(long companyId) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByCompanyId(companyId);
@@ -2825,6 +2870,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByC_U(long companyId, String url)
 		throws NoSuchGadgetException, SystemException {
 		Gadget gadget = fetchByC_U(companyId, url);
@@ -2860,6 +2906,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByC_U(long companyId, String url)
 		throws SystemException {
 		return fetchByC_U(companyId, url, true);
@@ -2874,6 +2921,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByC_U(long companyId, String url,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { companyId, url };
@@ -2980,6 +3028,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the gadget that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget removeByC_U(long companyId, String url)
 		throws NoSuchGadgetException, SystemException {
 		Gadget gadget = findByC_U(companyId, url);
@@ -2995,6 +3044,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of matching gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByC_U(long companyId, String url) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_U;
 
@@ -3068,6 +3118,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 *
 	 * @param gadget the gadget
 	 */
+	@Override
 	public void cacheResult(Gadget gadget) {
 		EntityCacheUtil.putResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetImpl.class, gadget.getPrimaryKey(), gadget);
@@ -3083,6 +3134,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 *
 	 * @param gadgets the gadgets
 	 */
+	@Override
 	public void cacheResult(List<Gadget> gadgets) {
 		for (Gadget gadget : gadgets) {
 			if (EntityCacheUtil.getResult(
@@ -3197,6 +3249,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @param gadgetId the primary key for the new gadget
 	 * @return the new gadget
 	 */
+	@Override
 	public Gadget create(long gadgetId) {
 		Gadget gadget = new GadgetImpl();
 
@@ -3218,6 +3271,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget remove(long gadgetId)
 		throws NoSuchGadgetException, SystemException {
 		return remove((Serializable)gadgetId);
@@ -3458,6 +3512,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget findByPrimaryKey(long gadgetId)
 		throws NoSuchGadgetException, SystemException {
 		return findByPrimaryKey((Serializable)gadgetId);
@@ -3517,6 +3572,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the gadget, or <code>null</code> if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget fetchByPrimaryKey(long gadgetId) throws SystemException {
 		return fetchByPrimaryKey((Serializable)gadgetId);
 	}
@@ -3527,6 +3583,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -3543,6 +3600,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the range of gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
@@ -3560,6 +3618,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the ordered range of gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -3645,6 +3704,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (Gadget gadget : findAll()) {
 			remove(gadget);
@@ -3657,6 +3717,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 * @return the number of gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -3761,6 +3822,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		};
 
 	private static CacheModel<Gadget> _nullGadgetCacheModel = new CacheModel<Gadget>() {
+			@Override
 			public Gadget toEntityModel() {
 				return _nullGadget;
 			}

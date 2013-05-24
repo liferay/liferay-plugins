@@ -79,6 +79,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Asset addAsset(Asset asset) throws SystemException {
 		asset.setNew(true);
 
@@ -91,6 +92,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param assetId the primary key for the new asset
 	 * @return the new asset
 	 */
+	@Override
 	public Asset createAsset(long assetId) {
 		return assetPersistence.create(assetId);
 	}
@@ -104,6 +106,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Asset deleteAsset(long assetId)
 		throws PortalException, SystemException {
 		return assetPersistence.remove(assetId);
@@ -117,10 +120,12 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Asset deleteAsset(Asset asset) throws SystemException {
 		return assetPersistence.remove(asset);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -135,6 +140,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -154,6 +160,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -174,6 +181,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -188,11 +196,13 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return assetPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Asset fetchAsset(long assetId) throws SystemException {
 		return assetPersistence.fetchByPrimaryKey(assetId);
 	}
@@ -205,10 +215,12 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Asset getAsset(long assetId) throws PortalException, SystemException {
 		return assetPersistence.findByPrimaryKey(assetId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return assetPersistence.findByPrimaryKey(primaryKeyObj);
@@ -226,6 +238,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of assets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Asset> getAssets(int start, int end) throws SystemException {
 		return assetPersistence.findAll(start, end);
 	}
@@ -236,6 +249,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of assets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getAssetsCount() throws SystemException {
 		return assetPersistence.countAll();
 	}
@@ -248,6 +262,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Asset updateAsset(Asset asset) throws SystemException {
 		return assetPersistence.update(asset);
 	}
@@ -509,6 +524,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -518,10 +534,12 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

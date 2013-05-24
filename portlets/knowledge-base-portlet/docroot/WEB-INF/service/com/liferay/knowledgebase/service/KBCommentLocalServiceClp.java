@@ -146,6 +146,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 			};
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment addKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -175,6 +176,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment createKBComment(
 		long kbCommentId) {
 		Object returnObj = null;
@@ -198,6 +200,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -231,6 +234,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -265,6 +269,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -287,6 +292,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -317,6 +323,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -353,6 +360,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -393,6 +401,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -422,6 +431,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment fetchKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -450,6 +460,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -483,6 +494,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -517,6 +529,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBCommentByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -551,6 +564,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -579,6 +593,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBComment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKBCommentsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -606,6 +621,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -635,6 +651,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -657,6 +674,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName17,
@@ -676,12 +694,14 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment addKBComment(long userId,
 		long classNameId, long classPK, java.lang.String content,
 		boolean helpful,
@@ -730,6 +750,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteKBComments(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -759,6 +780,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBComment(long userId,
 		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -799,6 +821,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
 		java.lang.String className, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -839,6 +862,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBComment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKBCommentsCount(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -871,6 +895,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, boolean helpful,

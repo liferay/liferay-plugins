@@ -98,26 +98,32 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	public WSRPConsumerModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _wsrpConsumerId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setWsrpConsumerId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _wsrpConsumerId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return WSRPConsumer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return WSRPConsumer.class.getName();
 	}
@@ -229,6 +235,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -238,6 +245,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -250,18 +258,22 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	public long getWsrpConsumerId() {
 		return _wsrpConsumerId;
 	}
 
+	@Override
 	public void setWsrpConsumerId(long wsrpConsumerId) {
 		_wsrpConsumerId = wsrpConsumerId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -278,22 +290,27 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return _originalCompanyId;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public String getName() {
 		if (_name == null) {
 			return StringPool.BLANK;
@@ -303,12 +320,14 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setName(String name) {
 		_columnBitmask = -1L;
 
 		_name = name;
 	}
 
+	@Override
 	public String getUrl() {
 		if (_url == null) {
 			return StringPool.BLANK;
@@ -318,10 +337,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setUrl(String url) {
 		_url = url;
 	}
 
+	@Override
 	public String getWsdl() {
 		if (_wsdl == null) {
 			return StringPool.BLANK;
@@ -331,10 +352,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setWsdl(String wsdl) {
 		_wsdl = wsdl;
 	}
 
+	@Override
 	public String getRegistrationContextString() {
 		if (_registrationContextString == null) {
 			return StringPool.BLANK;
@@ -344,10 +367,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setRegistrationContextString(String registrationContextString) {
 		_registrationContextString = registrationContextString;
 	}
 
+	@Override
 	public String getRegistrationPropertiesString() {
 		if (_registrationPropertiesString == null) {
 			return StringPool.BLANK;
@@ -357,11 +382,13 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setRegistrationPropertiesString(
 		String registrationPropertiesString) {
 		_registrationPropertiesString = registrationPropertiesString;
 	}
 
+	@Override
 	public String getForwardCookies() {
 		if (_forwardCookies == null) {
 			return StringPool.BLANK;
@@ -371,10 +398,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setForwardCookies(String forwardCookies) {
 		_forwardCookies = forwardCookies;
 	}
 
+	@Override
 	public String getForwardHeaders() {
 		if (_forwardHeaders == null) {
 			return StringPool.BLANK;
@@ -384,10 +413,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setForwardHeaders(String forwardHeaders) {
 		_forwardHeaders = forwardHeaders;
 	}
 
+	@Override
 	public String getMarkupCharacterSets() {
 		if (_markupCharacterSets == null) {
 			return StringPool.BLANK;
@@ -397,6 +428,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	@Override
 	public void setMarkupCharacterSets(String markupCharacterSets) {
 		_markupCharacterSets = markupCharacterSets;
 	}
@@ -451,6 +483,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return wsrpConsumerImpl;
 	}
 
+	@Override
 	public int compareTo(WSRPConsumer wsrpConsumer) {
 		int value = 0;
 
@@ -642,6 +675,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(43);
 

@@ -58,6 +58,7 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Status toEntityModel() {
 		StatusImpl statusImpl = new StatusImpl();
 
@@ -88,6 +89,7 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 		return statusImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		statusId = objectInput.readLong();
 		userId = objectInput.readLong();
@@ -99,6 +101,7 @@ public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 		playSound = objectInput.readBoolean();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(statusId);

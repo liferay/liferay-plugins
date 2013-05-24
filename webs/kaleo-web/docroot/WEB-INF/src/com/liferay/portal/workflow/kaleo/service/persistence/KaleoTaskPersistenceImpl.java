@@ -109,6 +109,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -128,6 +129,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
@@ -147,6 +149,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the ordered range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -253,6 +256,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTaskException, SystemException {
@@ -283,6 +287,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the first matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoTask> list = findByCompanyId(companyId, 0, 1,
@@ -304,6 +309,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTaskException, SystemException {
@@ -333,6 +339,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the last matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
@@ -357,6 +364,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask[] findByCompanyId_PrevAndNext(long kaleoTaskId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchTaskException, SystemException {
@@ -498,6 +506,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTask kaleoTask : findByCompanyId(companyId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -512,6 +521,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the number of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByCompanyId(long companyId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
@@ -586,6 +596,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, QueryUtil.ALL_POS,
@@ -605,6 +616,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findByKaleoDefinitionId(long kaleoDefinitionId,
 		int start, int end) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, start, end, null);
@@ -624,6 +636,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the ordered range of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findByKaleoDefinitionId(long kaleoDefinitionId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -735,6 +748,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask findByKaleoDefinitionId_First(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTaskException, SystemException {
@@ -765,6 +779,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the first matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByKaleoDefinitionId_First(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoTask> list = findByKaleoDefinitionId(kaleoDefinitionId, 0, 1,
@@ -786,6 +801,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask findByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTaskException, SystemException {
@@ -816,6 +832,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the last matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
@@ -840,6 +857,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask[] findByKaleoDefinitionId_PrevAndNext(long kaleoTaskId,
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchTaskException, SystemException {
@@ -981,6 +999,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoTask kaleoTask : findByKaleoDefinitionId(kaleoDefinitionId,
@@ -996,6 +1015,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the number of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KALEODEFINITIONID;
@@ -1062,6 +1082,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask findByKaleoNodeId(long kaleoNodeId)
 		throws NoSuchTaskException, SystemException {
 		KaleoTask kaleoTask = fetchByKaleoNodeId(kaleoNodeId);
@@ -1093,6 +1114,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByKaleoNodeId(long kaleoNodeId)
 		throws SystemException {
 		return fetchByKaleoNodeId(kaleoNodeId, true);
@@ -1106,6 +1128,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByKaleoNodeId(long kaleoNodeId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoNodeId };
@@ -1197,6 +1220,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the kaleo task that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask removeByKaleoNodeId(long kaleoNodeId)
 		throws NoSuchTaskException, SystemException {
 		KaleoTask kaleoTask = findByKaleoNodeId(kaleoNodeId);
@@ -1211,6 +1235,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the number of matching kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByKaleoNodeId(long kaleoNodeId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KALEONODEID;
 
@@ -1263,6 +1288,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 *
 	 * @param kaleoTask the kaleo task
 	 */
+	@Override
 	public void cacheResult(KaleoTask kaleoTask) {
 		EntityCacheUtil.putResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskImpl.class, kaleoTask.getPrimaryKey(), kaleoTask);
@@ -1278,6 +1304,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 *
 	 * @param kaleoTasks the kaleo tasks
 	 */
+	@Override
 	public void cacheResult(List<KaleoTask> kaleoTasks) {
 		for (KaleoTask kaleoTask : kaleoTasks) {
 			if (EntityCacheUtil.getResult(
@@ -1389,6 +1416,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @param kaleoTaskId the primary key for the new kaleo task
 	 * @return the new kaleo task
 	 */
+	@Override
 	public KaleoTask create(long kaleoTaskId) {
 		KaleoTask kaleoTask = new KaleoTaskImpl();
 
@@ -1406,6 +1434,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask remove(long kaleoTaskId)
 		throws NoSuchTaskException, SystemException {
 		return remove((Serializable)kaleoTaskId);
@@ -1629,6 +1658,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask findByPrimaryKey(long kaleoTaskId)
 		throws NoSuchTaskException, SystemException {
 		return findByPrimaryKey((Serializable)kaleoTaskId);
@@ -1689,6 +1719,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTask fetchByPrimaryKey(long kaleoTaskId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)kaleoTaskId);
@@ -1700,6 +1731,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1716,6 +1748,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the range of kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -1734,6 +1767,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the ordered range of kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTask> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1819,6 +1853,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (KaleoTask kaleoTask : findAll()) {
 			remove(kaleoTask);
@@ -1831,6 +1866,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * @return the number of kaleo tasks
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -1917,6 +1953,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		};
 
 	private static CacheModel<KaleoTask> _nullKaleoTaskCacheModel = new CacheModel<KaleoTask>() {
+			@Override
 			public KaleoTask toEntityModel() {
 				return _nullKaleoTask;
 			}

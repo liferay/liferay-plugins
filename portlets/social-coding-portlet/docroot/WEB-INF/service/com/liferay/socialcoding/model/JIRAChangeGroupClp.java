@@ -41,26 +41,32 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	public JIRAChangeGroupClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return JIRAChangeGroup.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return JIRAChangeGroup.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _jiraChangeGroupId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setJiraChangeGroupId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _jiraChangeGroupId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -104,10 +110,12 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public long getJiraChangeGroupId() {
 		return _jiraChangeGroupId;
 	}
 
+	@Override
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeGroupId = jiraChangeGroupId;
 
@@ -126,10 +134,12 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public String getJiraUserId() {
 		return _jiraUserId;
 	}
 
+	@Override
 	public void setJiraUserId(String jiraUserId) {
 		_jiraUserId = jiraUserId;
 
@@ -147,10 +157,12 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -168,10 +180,12 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public long getJiraIssueId() {
 		return _jiraIssueId;
 	}
 
+	@Override
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssueId = jiraIssueId;
 
@@ -239,6 +253,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			JIRAChangeGroupLocalServiceUtil.addJIRAChangeGroup(this);
@@ -267,6 +282,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(JIRAChangeGroup jiraChangeGroup) {
 		int value = 0;
 
@@ -326,6 +342,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(16);
 

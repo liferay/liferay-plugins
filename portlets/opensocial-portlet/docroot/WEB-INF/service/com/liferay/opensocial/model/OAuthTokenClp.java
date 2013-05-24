@@ -41,26 +41,32 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	public OAuthTokenClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return OAuthToken.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return OAuthToken.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _oAuthTokenId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setOAuthTokenId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _oAuthTokenId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -174,10 +180,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public long getOAuthTokenId() {
 		return _oAuthTokenId;
 	}
 
+	@Override
 	public void setOAuthTokenId(long oAuthTokenId) {
 		_oAuthTokenId = oAuthTokenId;
 
@@ -195,10 +203,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -216,10 +226,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -237,18 +249,22 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -266,10 +282,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -287,10 +305,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -308,10 +328,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public String getGadgetKey() {
 		return _gadgetKey;
 	}
 
+	@Override
 	public void setGadgetKey(String gadgetKey) {
 		_gadgetKey = gadgetKey;
 
@@ -329,10 +351,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public String getServiceName() {
 		return _serviceName;
 	}
 
+	@Override
 	public void setServiceName(String serviceName) {
 		_serviceName = serviceName;
 
@@ -350,10 +374,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public long getModuleId() {
 		return _moduleId;
 	}
 
+	@Override
 	public void setModuleId(long moduleId) {
 		_moduleId = moduleId;
 
@@ -371,10 +397,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public String getAccessToken() {
 		return _accessToken;
 	}
 
+	@Override
 	public void setAccessToken(String accessToken) {
 		_accessToken = accessToken;
 
@@ -392,10 +420,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public String getTokenName() {
 		return _tokenName;
 	}
 
+	@Override
 	public void setTokenName(String tokenName) {
 		_tokenName = tokenName;
 
@@ -413,10 +443,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public String getTokenSecret() {
 		return _tokenSecret;
 	}
 
+	@Override
 	public void setTokenSecret(String tokenSecret) {
 		_tokenSecret = tokenSecret;
 
@@ -434,10 +466,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public String getSessionHandle() {
 		return _sessionHandle;
 	}
 
+	@Override
 	public void setSessionHandle(String sessionHandle) {
 		_sessionHandle = sessionHandle;
 
@@ -455,10 +489,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		}
 	}
 
+	@Override
 	public long getExpiration() {
 		return _expiration;
 	}
 
+	@Override
 	public void setExpiration(long expiration) {
 		_expiration = expiration;
 
@@ -525,6 +561,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			OAuthTokenLocalServiceUtil.addOAuthToken(this);
@@ -562,6 +599,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(OAuthToken oAuthToken) {
 		long primaryKey = oAuthToken.getPrimaryKey();
 
@@ -640,6 +678,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

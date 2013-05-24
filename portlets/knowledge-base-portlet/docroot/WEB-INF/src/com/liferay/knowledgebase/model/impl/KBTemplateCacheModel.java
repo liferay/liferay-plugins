@@ -65,6 +65,7 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate>,
 		return sb.toString();
 	}
 
+	@Override
 	public KBTemplate toEntityModel() {
 		KBTemplateImpl kbTemplateImpl = new KBTemplateImpl();
 
@@ -120,6 +121,7 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate>,
 		return kbTemplateImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		kbTemplateId = objectInput.readLong();
@@ -133,6 +135,7 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate>,
 		content = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

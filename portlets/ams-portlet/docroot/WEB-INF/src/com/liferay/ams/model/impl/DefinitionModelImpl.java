@@ -95,26 +95,32 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	public DefinitionModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _definitionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setDefinitionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _definitionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Definition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Definition.class.getName();
 	}
@@ -221,46 +227,57 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public long getDefinitionId() {
 		return _definitionId;
 	}
 
+	@Override
 	public void setDefinitionId(long definitionId) {
 		_definitionId = definitionId;
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -270,34 +287,42 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public long getTypeId() {
 		return _typeId;
 	}
 
+	@Override
 	public void setTypeId(long typeId) {
 		_typeId = typeId;
 	}
 
+	@Override
 	public String getManufacturer() {
 		if (_manufacturer == null) {
 			return StringPool.BLANK;
@@ -307,10 +332,12 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public void setManufacturer(String manufacturer) {
 		_manufacturer = manufacturer;
 	}
 
+	@Override
 	public String getModel() {
 		if (_model == null) {
 			return StringPool.BLANK;
@@ -320,30 +347,37 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public void setModel(String model) {
 		_model = model;
 	}
 
+	@Override
 	public Date getOrderDate() {
 		return _orderDate;
 	}
 
+	@Override
 	public void setOrderDate(Date orderDate) {
 		_orderDate = orderDate;
 	}
 
+	@Override
 	public int getQuantity() {
 		return _quantity;
 	}
 
+	@Override
 	public void setQuantity(int quantity) {
 		_quantity = quantity;
 	}
 
+	@Override
 	public double getPrice() {
 		return _price;
 	}
 
+	@Override
 	public void setPrice(double price) {
 		_price = price;
 	}
@@ -394,6 +428,7 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		return definitionImpl;
 	}
 
+	@Override
 	public int compareTo(Definition definition) {
 		long primaryKey = definition.getPrimaryKey();
 
@@ -546,6 +581,7 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(43);
 

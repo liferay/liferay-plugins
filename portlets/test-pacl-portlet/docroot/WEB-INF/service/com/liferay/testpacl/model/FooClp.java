@@ -40,26 +40,32 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	public FooClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Foo.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Foo.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _fooId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setFooId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _fooId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -159,10 +165,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public long getFooId() {
 		return _fooId;
 	}
 
+	@Override
 	public void setFooId(long fooId) {
 		_fooId = fooId;
 
@@ -180,10 +188,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -201,10 +211,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -222,10 +234,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -243,18 +257,22 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -272,10 +290,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -293,10 +313,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -314,10 +336,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public String getField1() {
 		return _field1;
 	}
 
+	@Override
 	public void setField1(String field1) {
 		_field1 = field1;
 
@@ -335,14 +359,17 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public boolean getField2() {
 		return _field2;
 	}
 
+	@Override
 	public boolean isField2() {
 		return _field2;
 	}
 
+	@Override
 	public void setField2(boolean field2) {
 		_field2 = field2;
 
@@ -360,10 +387,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public int getField3() {
 		return _field3;
 	}
 
+	@Override
 	public void setField3(int field3) {
 		_field3 = field3;
 
@@ -381,10 +410,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public Date getField4() {
 		return _field4;
 	}
 
+	@Override
 	public void setField4(Date field4) {
 		_field4 = field4;
 
@@ -402,10 +433,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	@Override
 	public String getField5() {
 		return _field5;
 	}
 
+	@Override
 	public void setField5(String field5) {
 		_field5 = field5;
 
@@ -472,6 +505,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FooLocalServiceUtil.addFoo(this);
@@ -507,6 +541,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Foo foo) {
 		int value = 0;
 
@@ -579,6 +614,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(40);
 

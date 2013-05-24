@@ -79,6 +79,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public MeetupsRegistration addMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		meetupsRegistration.setNew(true);
@@ -92,6 +93,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param meetupsRegistrationId the primary key for the new meetups registration
 	 * @return the new meetups registration
 	 */
+	@Override
 	public MeetupsRegistration createMeetupsRegistration(
 		long meetupsRegistrationId) {
 		return meetupsRegistrationPersistence.create(meetupsRegistrationId);
@@ -106,6 +108,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public MeetupsRegistration deleteMeetupsRegistration(
 		long meetupsRegistrationId) throws PortalException, SystemException {
 		return meetupsRegistrationPersistence.remove(meetupsRegistrationId);
@@ -119,11 +122,13 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public MeetupsRegistration deleteMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		return meetupsRegistrationPersistence.remove(meetupsRegistration);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -138,6 +143,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -157,6 +163,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -178,6 +185,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -192,11 +200,13 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return meetupsRegistrationPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public MeetupsRegistration fetchMeetupsRegistration(
 		long meetupsRegistrationId) throws SystemException {
 		return meetupsRegistrationPersistence.fetchByPrimaryKey(meetupsRegistrationId);
@@ -210,11 +220,13 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @throws PortalException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MeetupsRegistration getMeetupsRegistration(
 		long meetupsRegistrationId) throws PortalException, SystemException {
 		return meetupsRegistrationPersistence.findByPrimaryKey(meetupsRegistrationId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return meetupsRegistrationPersistence.findByPrimaryKey(primaryKeyObj);
@@ -232,6 +244,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the range of meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MeetupsRegistration> getMeetupsRegistrations(int start, int end)
 		throws SystemException {
 		return meetupsRegistrationPersistence.findAll(start, end);
@@ -243,6 +256,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the number of meetups registrations
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getMeetupsRegistrationsCount() throws SystemException {
 		return meetupsRegistrationPersistence.countAll();
 	}
@@ -255,6 +269,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public MeetupsRegistration updateMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		return meetupsRegistrationPersistence.update(meetupsRegistration);
@@ -502,6 +517,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -511,10 +527,12 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

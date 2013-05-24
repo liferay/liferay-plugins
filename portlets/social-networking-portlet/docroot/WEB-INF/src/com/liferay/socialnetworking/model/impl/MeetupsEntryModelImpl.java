@@ -102,26 +102,32 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	public MeetupsEntryModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _meetupsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setMeetupsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _meetupsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MeetupsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MeetupsEntry.class.getName();
 	}
@@ -235,18 +241,22 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public long getMeetupsEntryId() {
 		return _meetupsEntryId;
 	}
 
+	@Override
 	public void setMeetupsEntryId(long meetupsEntryId) {
 		_meetupsEntryId = meetupsEntryId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -263,10 +273,12 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return _originalCompanyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
@@ -279,10 +291,12 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -291,6 +305,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return _originalUserId;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -300,26 +315,32 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -329,10 +350,12 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 	}
 
+	@Override
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -342,56 +365,69 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 	}
 
+	@Override
 	public Date getStartDate() {
 		return _startDate;
 	}
 
+	@Override
 	public void setStartDate(Date startDate) {
 		_columnBitmask = -1L;
 
 		_startDate = startDate;
 	}
 
+	@Override
 	public Date getEndDate() {
 		return _endDate;
 	}
 
+	@Override
 	public void setEndDate(Date endDate) {
 		_endDate = endDate;
 	}
 
+	@Override
 	public int getTotalAttendees() {
 		return _totalAttendees;
 	}
 
+	@Override
 	public void setTotalAttendees(int totalAttendees) {
 		_totalAttendees = totalAttendees;
 	}
 
+	@Override
 	public int getMaxAttendees() {
 		return _maxAttendees;
 	}
 
+	@Override
 	public void setMaxAttendees(int maxAttendees) {
 		_maxAttendees = maxAttendees;
 	}
 
+	@Override
 	public double getPrice() {
 		return _price;
 	}
 
+	@Override
 	public void setPrice(double price) {
 		_price = price;
 	}
 
+	@Override
 	public long getThumbnailId() {
 		return _thumbnailId;
 	}
 
+	@Override
 	public void setThumbnailId(long thumbnailId) {
 		_thumbnailId = thumbnailId;
 	}
@@ -447,6 +483,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return meetupsEntryImpl;
 	}
 
+	@Override
 	public int compareTo(MeetupsEntry meetupsEntry) {
 		int value = 0;
 
@@ -621,6 +658,7 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

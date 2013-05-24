@@ -77,6 +77,7 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		return sb.toString();
 	}
 
+	@Override
 	public CalendarResource toEntityModel() {
 		CalendarResourceImpl calendarResourceImpl = new CalendarResourceImpl();
 
@@ -152,6 +153,7 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		return calendarResourceImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		calendarResourceId = objectInput.readLong();
@@ -171,6 +173,7 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		active = objectInput.readBoolean();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

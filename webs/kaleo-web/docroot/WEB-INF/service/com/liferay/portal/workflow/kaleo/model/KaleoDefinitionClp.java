@@ -46,26 +46,32 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	public KaleoDefinitionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoDefinition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoDefinition.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoDefinitionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -179,10 +185,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -201,10 +209,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -222,10 +232,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -243,10 +255,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -264,18 +278,22 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -293,10 +311,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -314,10 +334,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -335,10 +357,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -356,45 +380,54 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public String getTitle() {
 		return _title;
 	}
 
+	@Override
 	public String getTitle(Locale locale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getTitle(languageId);
 	}
 
+	@Override
 	public String getTitle(Locale locale, boolean useDefault) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		return getTitle(languageId, useDefault);
 	}
 
+	@Override
 	public String getTitle(String languageId) {
 		return LocalizationUtil.getLocalization(getTitle(), languageId);
 	}
 
+	@Override
 	public String getTitle(String languageId, boolean useDefault) {
 		return LocalizationUtil.getLocalization(getTitle(), languageId,
 			useDefault);
 	}
 
+	@Override
 	public String getTitleCurrentLanguageId() {
 		return _titleCurrentLanguageId;
 	}
 
+	@Override
 	public String getTitleCurrentValue() {
 		Locale locale = getLocale(_titleCurrentLanguageId);
 
 		return getTitle(locale);
 	}
 
+	@Override
 	public Map<Locale, String> getTitleMap() {
 		return LocalizationUtil.getLocalizationMap(getTitle());
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 
@@ -412,10 +445,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public void setTitle(String title, Locale locale) {
 		setTitle(title, locale, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setTitle(String title, Locale locale, Locale defaultLocale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
@@ -430,14 +465,17 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public void setTitleCurrentLanguageId(String languageId) {
 		_titleCurrentLanguageId = languageId;
 	}
 
+	@Override
 	public void setTitleMap(Map<Locale, String> titleMap) {
 		setTitleMap(titleMap, LocaleUtil.getDefault());
 	}
 
+	@Override
 	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale) {
 		if (titleMap == null) {
 			return;
@@ -464,10 +502,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -485,10 +525,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public String getContent() {
 		return _content;
 	}
 
+	@Override
 	public void setContent(String content) {
 		_content = content;
 
@@ -506,10 +548,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public int getVersion() {
 		return _version;
 	}
 
+	@Override
 	public void setVersion(int version) {
 		_version = version;
 
@@ -527,14 +571,17 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public boolean getActive() {
 		return _active;
 	}
 
+	@Override
 	public boolean isActive() {
 		return _active;
 	}
 
+	@Override
 	public void setActive(boolean active) {
 		_active = active;
 
@@ -552,10 +599,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public long getStartKaleoNodeId() {
 		return _startKaleoNodeId;
 	}
 
+	@Override
 	public void setStartKaleoNodeId(long startKaleoNodeId) {
 		_startKaleoNodeId = startKaleoNodeId;
 
@@ -574,6 +623,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public boolean hasIncompleteKaleoInstances() {
 		try {
 			String methodName = "hasIncompleteKaleoInstances";
@@ -592,6 +642,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode() {
 		try {
 			String methodName = "getKaleoStartNode";
@@ -660,6 +711,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoDefinitionLocalServiceUtil.addKaleoDefinition(this);
@@ -669,6 +721,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
@@ -705,6 +758,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoDefinition kaleoDefinition) {
 		int value = 0;
 
@@ -791,6 +845,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

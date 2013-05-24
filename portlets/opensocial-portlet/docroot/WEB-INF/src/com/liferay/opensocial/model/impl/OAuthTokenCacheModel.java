@@ -73,6 +73,7 @@ public class OAuthTokenCacheModel implements CacheModel<OAuthToken>,
 		return sb.toString();
 	}
 
+	@Override
 	public OAuthToken toEntityModel() {
 		OAuthTokenImpl oAuthTokenImpl = new OAuthTokenImpl();
 
@@ -152,6 +153,7 @@ public class OAuthTokenCacheModel implements CacheModel<OAuthToken>,
 		return oAuthTokenImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		oAuthTokenId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -169,6 +171,7 @@ public class OAuthTokenCacheModel implements CacheModel<OAuthToken>,
 		expiration = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(oAuthTokenId);

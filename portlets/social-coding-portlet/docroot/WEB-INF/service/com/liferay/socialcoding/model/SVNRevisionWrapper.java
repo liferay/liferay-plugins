@@ -35,14 +35,17 @@ public class SVNRevisionWrapper implements SVNRevision,
 		_svnRevision = svnRevision;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return SVNRevision.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return SVNRevision.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -56,6 +59,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long svnRevisionId = (Long)attributes.get("svnRevisionId");
 
@@ -99,6 +103,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @return the primary key of this s v n revision
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _svnRevision.getPrimaryKey();
 	}
@@ -108,6 +113,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @param primaryKey the primary key of this s v n revision
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_svnRevision.setPrimaryKey(primaryKey);
 	}
@@ -117,6 +123,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @return the svn revision ID of this s v n revision
 	*/
+	@Override
 	public long getSvnRevisionId() {
 		return _svnRevision.getSvnRevisionId();
 	}
@@ -126,6 +133,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @param svnRevisionId the svn revision ID of this s v n revision
 	*/
+	@Override
 	public void setSvnRevisionId(long svnRevisionId) {
 		_svnRevision.setSvnRevisionId(svnRevisionId);
 	}
@@ -135,6 +143,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @return the svn user ID of this s v n revision
 	*/
+	@Override
 	public java.lang.String getSvnUserId() {
 		return _svnRevision.getSvnUserId();
 	}
@@ -144,6 +153,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @param svnUserId the svn user ID of this s v n revision
 	*/
+	@Override
 	public void setSvnUserId(java.lang.String svnUserId) {
 		_svnRevision.setSvnUserId(svnUserId);
 	}
@@ -153,6 +163,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @return the create date of this s v n revision
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _svnRevision.getCreateDate();
 	}
@@ -162,6 +173,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @param createDate the create date of this s v n revision
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_svnRevision.setCreateDate(createDate);
 	}
@@ -171,6 +183,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @return the svn repository ID of this s v n revision
 	*/
+	@Override
 	public long getSvnRepositoryId() {
 		return _svnRevision.getSvnRepositoryId();
 	}
@@ -180,6 +193,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @param svnRepositoryId the svn repository ID of this s v n revision
 	*/
+	@Override
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRevision.setSvnRepositoryId(svnRepositoryId);
 	}
@@ -189,6 +203,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @return the revision number of this s v n revision
 	*/
+	@Override
 	public long getRevisionNumber() {
 		return _svnRevision.getRevisionNumber();
 	}
@@ -198,6 +213,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @param revisionNumber the revision number of this s v n revision
 	*/
+	@Override
 	public void setRevisionNumber(long revisionNumber) {
 		_svnRevision.setRevisionNumber(revisionNumber);
 	}
@@ -207,6 +223,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @return the comments of this s v n revision
 	*/
+	@Override
 	public java.lang.String getComments() {
 		return _svnRevision.getComments();
 	}
@@ -216,52 +233,64 @@ public class SVNRevisionWrapper implements SVNRevision,
 	*
 	* @param comments the comments of this s v n revision
 	*/
+	@Override
 	public void setComments(java.lang.String comments) {
 		_svnRevision.setComments(comments);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _svnRevision.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_svnRevision.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _svnRevision.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_svnRevision.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _svnRevision.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _svnRevision.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_svnRevision.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _svnRevision.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_svnRevision.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_svnRevision.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_svnRevision.setExpandoBridgeAttributes(serviceContext);
@@ -272,6 +301,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 		return new SVNRevisionWrapper((SVNRevision)_svnRevision.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.socialcoding.model.SVNRevision svnRevision) {
 		return _svnRevision.compareTo(svnRevision);
 	}
@@ -281,14 +311,17 @@ public class SVNRevisionWrapper implements SVNRevision,
 		return _svnRevision.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.socialcoding.model.SVNRevision> toCacheModel() {
 		return _svnRevision.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRevision toEscapedModel() {
 		return new SVNRevisionWrapper(_svnRevision.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRevision toUnescapedModel() {
 		return new SVNRevisionWrapper(_svnRevision.toUnescapedModel());
 	}
@@ -298,23 +331,28 @@ public class SVNRevisionWrapper implements SVNRevision,
 		return _svnRevision.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _svnRevision.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_svnRevision.persist();
 	}
 
+	@Override
 	public java.lang.Object[] getJIRAIssueAndComments() {
 		return _svnRevision.getJIRAIssueAndComments();
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
 		return _svnRevision.getSVNRepository();
 	}
 
+	@Override
 	public java.lang.String getWebRevisionNumberURL() {
 		return _svnRevision.getWebRevisionNumberURL();
 	}
@@ -326,10 +364,12 @@ public class SVNRevisionWrapper implements SVNRevision,
 		return _svnRevision;
 	}
 
+	@Override
 	public SVNRevision getWrappedModel() {
 		return _svnRevision;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_svnRevision.resetOriginalValues();
 	}

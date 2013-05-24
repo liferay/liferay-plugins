@@ -163,26 +163,32 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	public TasksEntryModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _tasksEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setTasksEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _tasksEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return TasksEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return TasksEntry.class.getName();
 	}
@@ -296,20 +302,24 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	@JSON
 	public long getTasksEntryId() {
 		return _tasksEntryId;
 	}
 
+	@Override
 	public void setTasksEntryId(long tasksEntryId) {
 		_tasksEntryId = tasksEntryId;
 	}
 
+	@Override
 	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_columnBitmask |= GROUPID_COLUMN_BITMASK;
 
@@ -326,20 +336,24 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalGroupId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 	}
 
+	@Override
 	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_columnBitmask |= USERID_COLUMN_BITMASK;
 
@@ -352,10 +366,12 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -364,6 +380,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalUserId;
 	}
 
+	@Override
 	@JSON
 	public String getUserName() {
 		if (_userName == null) {
@@ -374,30 +391,36 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_columnBitmask = -1L;
 
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public String getTitle() {
 		if (_title == null) {
@@ -408,26 +431,31 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 	}
 
+	@Override
 	@JSON
 	public int getPriority() {
 		return _priority;
 	}
 
+	@Override
 	public void setPriority(int priority) {
 		_columnBitmask = -1L;
 
 		_priority = priority;
 	}
 
+	@Override
 	@JSON
 	public long getAssigneeUserId() {
 		return _assigneeUserId;
 	}
 
+	@Override
 	public void setAssigneeUserId(long assigneeUserId) {
 		_columnBitmask |= ASSIGNEEUSERID_COLUMN_BITMASK;
 
@@ -440,11 +468,13 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_assigneeUserId = assigneeUserId;
 	}
 
+	@Override
 	public String getAssigneeUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getAssigneeUserId(), "uuid",
 			_assigneeUserUuid);
 	}
 
+	@Override
 	public void setAssigneeUserUuid(String assigneeUserUuid) {
 		_assigneeUserUuid = assigneeUserUuid;
 	}
@@ -453,11 +483,13 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalAssigneeUserId;
 	}
 
+	@Override
 	@JSON
 	public long getResolverUserId() {
 		return _resolverUserId;
 	}
 
+	@Override
 	public void setResolverUserId(long resolverUserId) {
 		_columnBitmask |= RESOLVERUSERID_COLUMN_BITMASK;
 
@@ -470,11 +502,13 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_resolverUserId = resolverUserId;
 	}
 
+	@Override
 	public String getResolverUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getResolverUserId(), "uuid",
 			_resolverUserUuid);
 	}
 
+	@Override
 	public void setResolverUserUuid(String resolverUserUuid) {
 		_resolverUserUuid = resolverUserUuid;
 	}
@@ -483,31 +517,37 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalResolverUserId;
 	}
 
+	@Override
 	@JSON
 	public Date getDueDate() {
 		return _dueDate;
 	}
 
+	@Override
 	public void setDueDate(Date dueDate) {
 		_columnBitmask = -1L;
 
 		_dueDate = dueDate;
 	}
 
+	@Override
 	@JSON
 	public Date getFinishDate() {
 		return _finishDate;
 	}
 
+	@Override
 	public void setFinishDate(Date finishDate) {
 		_finishDate = finishDate;
 	}
 
+	@Override
 	@JSON
 	public int getStatus() {
 		return _status;
 	}
 
+	@Override
 	public void setStatus(int status) {
 		_status = status;
 	}
@@ -563,6 +603,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return tasksEntryImpl;
 	}
 
+	@Override
 	public int compareTo(TasksEntry tasksEntry) {
 		int value = 0;
 
@@ -757,6 +798,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

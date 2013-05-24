@@ -37,6 +37,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the j i r a issue that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue addJIRAIssue(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -49,6 +50,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @param jiraIssueId the primary key for the new j i r a issue
 	* @return the new j i r a issue
 	*/
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue createJIRAIssue(
 		long jiraIssueId) {
 		return _jiraIssueLocalService.createJIRAIssue(jiraIssueId);
@@ -62,6 +64,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @throws PortalException if a j i r a issue with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
 		long jiraIssueId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -76,12 +79,14 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the j i r a issue that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraIssueLocalService.deleteJIRAIssue(jiraIssue);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _jiraIssueLocalService.dynamicQuery();
 	}
@@ -93,6 +98,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -113,6 +119,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -134,6 +141,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -151,12 +159,14 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraIssueLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
 		long jiraIssueId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -171,6 +181,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @throws PortalException if a j i r a issue with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
 		long jiraIssueId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -178,6 +189,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 		return _jiraIssueLocalService.getJIRAIssue(jiraIssueId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -197,6 +209,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the range of j i r a issues
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getJIRAIssues(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -209,6 +222,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the number of j i r a issues
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getJIRAIssuesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraIssueLocalService.getJIRAIssuesCount();
@@ -221,6 +235,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @return the j i r a issue that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue updateJIRAIssue(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -232,6 +247,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _jiraIssueLocalService.getBeanIdentifier();
 	}
@@ -241,10 +257,12 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_jiraIssueLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -252,6 +270,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			arguments);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId, int start, int end)
@@ -260,6 +279,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			projectId, assigneeJiraUserId, start, end);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -267,6 +287,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			assigneeJiraUserId, start, end);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId,
 		java.lang.String status, int start, int end)
@@ -275,6 +296,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			assigneeJiraUserId, status, start, end);
 	}
 
+	@Override
 	public int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -282,6 +304,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			projectId, assigneeJiraUserId);
 	}
 
+	@Override
 	public int getAssigneeJIRAIssuesCount(long projectId,
 		java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -289,6 +312,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			assigneeJiraUserId);
 	}
 
+	@Override
 	public int getAssigneeJIRAIssuesCount(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -296,6 +320,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			assigneeJiraUserId, status);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue getFirstAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -304,6 +329,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			assigneeJiraUserId);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue getFirstReporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -312,6 +338,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
 		java.lang.String key)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -319,6 +346,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 		return _jiraIssueLocalService.getJIRAIssue(key);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue getLastAssigneeJIRAIssue(
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -327,6 +355,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			assigneeJiraUserId);
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.JIRAIssue getLastreporterJIRAIssue(
 		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -335,6 +364,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId, int start, int end)
@@ -343,6 +373,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			projectId, reporterJiraUserId, start, end);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
 		long projectId, java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -350,6 +381,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId, start, end);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
 		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status, int start, int end)
@@ -358,6 +390,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId, status, start, end);
 	}
 
+	@Override
 	public int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
 		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -365,6 +398,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			projectId, reporterJiraUserId);
 	}
 
+	@Override
 	public int getReporterJIRAIssuesCount(long projectId,
 		java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -372,6 +406,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId);
 	}
 
+	@Override
 	public int getReporterJIRAIssuesCount(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -379,6 +414,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId, status);
 	}
 
+	@Override
 	public void updateJIRAIssues(long projectId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -400,10 +436,12 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 		_jiraIssueLocalService = jiraIssueLocalService;
 	}
 
+	@Override
 	public JIRAIssueLocalService getWrappedService() {
 		return _jiraIssueLocalService;
 	}
 
+	@Override
 	public void setWrappedService(JIRAIssueLocalService jiraIssueLocalService) {
 		_jiraIssueLocalService = jiraIssueLocalService;
 	}

@@ -37,6 +37,7 @@ public abstract class EntryBaseImpl extends EntryModelImpl implements Entry {
 	 *
 	 * Never modify or reference this class directly. All methods that expect a entry model instance should use the {@link Entry} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			EntryLocalServiceUtil.addEntry(this);

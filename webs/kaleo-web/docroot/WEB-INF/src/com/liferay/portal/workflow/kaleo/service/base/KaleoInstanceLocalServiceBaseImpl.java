@@ -105,6 +105,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoInstance addKaleoInstance(KaleoInstance kaleoInstance)
 		throws SystemException {
 		kaleoInstance.setNew(true);
@@ -118,6 +119,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @param kaleoInstanceId the primary key for the new kaleo instance
 	 * @return the new kaleo instance
 	 */
+	@Override
 	public KaleoInstance createKaleoInstance(long kaleoInstanceId) {
 		return kaleoInstancePersistence.create(kaleoInstanceId);
 	}
@@ -131,6 +133,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoInstance deleteKaleoInstance(long kaleoInstanceId)
 		throws PortalException, SystemException {
 		return kaleoInstancePersistence.remove(kaleoInstanceId);
@@ -144,11 +147,13 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoInstance deleteKaleoInstance(KaleoInstance kaleoInstance)
 		throws SystemException {
 		return kaleoInstancePersistence.remove(kaleoInstance);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -163,6 +168,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -182,6 +188,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -203,6 +210,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -217,11 +225,13 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoInstancePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public KaleoInstance fetchKaleoInstance(long kaleoInstanceId)
 		throws SystemException {
 		return kaleoInstancePersistence.fetchByPrimaryKey(kaleoInstanceId);
@@ -235,11 +245,13 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @throws PortalException if a kaleo instance with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoInstance getKaleoInstance(long kaleoInstanceId)
 		throws PortalException, SystemException {
 		return kaleoInstancePersistence.findByPrimaryKey(kaleoInstanceId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kaleoInstancePersistence.findByPrimaryKey(primaryKeyObj);
@@ -257,6 +269,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @return the range of kaleo instances
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoInstance> getKaleoInstances(int start, int end)
 		throws SystemException {
 		return kaleoInstancePersistence.findAll(start, end);
@@ -268,6 +281,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @return the number of kaleo instances
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getKaleoInstancesCount() throws SystemException {
 		return kaleoInstancePersistence.countAll();
 	}
@@ -280,6 +294,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoInstance updateKaleoInstance(KaleoInstance kaleoInstance)
 		throws SystemException {
 		return kaleoInstancePersistence.update(kaleoInstance);
@@ -1040,6 +1055,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -1049,10 +1065,12 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

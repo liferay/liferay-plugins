@@ -49,6 +49,7 @@ public class KBCommentServiceClp implements KBCommentService {
 			};
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -71,6 +72,7 @@ public class KBCommentServiceClp implements KBCommentService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableService.invokeMethod(_methodName1,
@@ -90,12 +92,14 @@ public class KBCommentServiceClp implements KBCommentService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -130,6 +134,7 @@ public class KBCommentServiceClp implements KBCommentService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -163,6 +168,7 @@ public class KBCommentServiceClp implements KBCommentService {
 		return (com.liferay.knowledgebase.model.KBComment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, boolean helpful,

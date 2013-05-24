@@ -40,26 +40,32 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	public JIRAIssueClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return JIRAIssue.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return JIRAIssue.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _jiraIssueId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setJiraIssueId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _jiraIssueId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -152,10 +158,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public long getJiraIssueId() {
 		return _jiraIssueId;
 	}
 
+	@Override
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssueId = jiraIssueId;
 
@@ -173,10 +181,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -194,10 +204,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -215,10 +227,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public long getProjectId() {
 		return _projectId;
 	}
 
+	@Override
 	public void setProjectId(long projectId) {
 		_projectId = projectId;
 
@@ -236,10 +250,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public String getKey() {
 		return _key;
 	}
 
+	@Override
 	public void setKey(String key) {
 		_key = key;
 
@@ -257,10 +273,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public String getSummary() {
 		return _summary;
 	}
 
+	@Override
 	public void setSummary(String summary) {
 		_summary = summary;
 
@@ -278,10 +296,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -299,10 +319,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public String getReporterJiraUserId() {
 		return _reporterJiraUserId;
 	}
 
+	@Override
 	public void setReporterJiraUserId(String reporterJiraUserId) {
 		_reporterJiraUserId = reporterJiraUserId;
 
@@ -321,10 +343,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public String getAssigneeJiraUserId() {
 		return _assigneeJiraUserId;
 	}
 
+	@Override
 	public void setAssigneeJiraUserId(String assigneeJiraUserId) {
 		_assigneeJiraUserId = assigneeJiraUserId;
 
@@ -343,10 +367,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public String getResolution() {
 		return _resolution;
 	}
 
+	@Override
 	public void setResolution(String resolution) {
 		_resolution = resolution;
 
@@ -364,10 +390,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		}
 	}
 
+	@Override
 	public String getStatus() {
 		return _status;
 	}
 
+	@Override
 	public void setStatus(String status) {
 		_status = status;
 
@@ -434,6 +462,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			JIRAIssueLocalServiceUtil.addJIRAIssue(this);
@@ -468,6 +497,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		return clone;
 	}
 
+	@Override
 	public int compareTo(JIRAIssue jiraIssue) {
 		int value = 0;
 
@@ -541,6 +571,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

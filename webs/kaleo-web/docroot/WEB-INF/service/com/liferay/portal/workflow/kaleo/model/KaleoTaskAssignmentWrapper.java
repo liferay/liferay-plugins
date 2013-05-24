@@ -35,14 +35,17 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		_kaleoTaskAssignment = kaleoTaskAssignment;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoTaskAssignment.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoTaskAssignment.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -68,6 +71,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoTaskAssignmentId = (Long)attributes.get(
 				"kaleoTaskAssignmentId");
@@ -180,6 +184,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the primary key of this kaleo task assignment
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoTaskAssignment.getPrimaryKey();
 	}
@@ -189,6 +194,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param primaryKey the primary key of this kaleo task assignment
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_kaleoTaskAssignment.setPrimaryKey(primaryKey);
 	}
@@ -198,6 +204,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the kaleo task assignment ID of this kaleo task assignment
 	*/
+	@Override
 	public long getKaleoTaskAssignmentId() {
 		return _kaleoTaskAssignment.getKaleoTaskAssignmentId();
 	}
@@ -207,6 +214,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param kaleoTaskAssignmentId the kaleo task assignment ID of this kaleo task assignment
 	*/
+	@Override
 	public void setKaleoTaskAssignmentId(long kaleoTaskAssignmentId) {
 		_kaleoTaskAssignment.setKaleoTaskAssignmentId(kaleoTaskAssignmentId);
 	}
@@ -216,6 +224,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the group ID of this kaleo task assignment
 	*/
+	@Override
 	public long getGroupId() {
 		return _kaleoTaskAssignment.getGroupId();
 	}
@@ -225,6 +234,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param groupId the group ID of this kaleo task assignment
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_kaleoTaskAssignment.setGroupId(groupId);
 	}
@@ -234,6 +244,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the company ID of this kaleo task assignment
 	*/
+	@Override
 	public long getCompanyId() {
 		return _kaleoTaskAssignment.getCompanyId();
 	}
@@ -243,6 +254,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param companyId the company ID of this kaleo task assignment
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_kaleoTaskAssignment.setCompanyId(companyId);
 	}
@@ -252,6 +264,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the user ID of this kaleo task assignment
 	*/
+	@Override
 	public long getUserId() {
 		return _kaleoTaskAssignment.getUserId();
 	}
@@ -261,6 +274,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param userId the user ID of this kaleo task assignment
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_kaleoTaskAssignment.setUserId(userId);
 	}
@@ -271,6 +285,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	* @return the user uuid of this kaleo task assignment
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskAssignment.getUserUuid();
@@ -281,6 +296,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param userUuid the user uuid of this kaleo task assignment
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_kaleoTaskAssignment.setUserUuid(userUuid);
 	}
@@ -290,6 +306,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the user name of this kaleo task assignment
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _kaleoTaskAssignment.getUserName();
 	}
@@ -299,6 +316,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param userName the user name of this kaleo task assignment
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_kaleoTaskAssignment.setUserName(userName);
 	}
@@ -308,6 +326,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the create date of this kaleo task assignment
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _kaleoTaskAssignment.getCreateDate();
 	}
@@ -317,6 +336,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param createDate the create date of this kaleo task assignment
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_kaleoTaskAssignment.setCreateDate(createDate);
 	}
@@ -326,6 +346,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the modified date of this kaleo task assignment
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _kaleoTaskAssignment.getModifiedDate();
 	}
@@ -335,6 +356,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param modifiedDate the modified date of this kaleo task assignment
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_kaleoTaskAssignment.setModifiedDate(modifiedDate);
 	}
@@ -344,6 +366,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the kaleo class name of this kaleo task assignment
 	*/
+	@Override
 	public java.lang.String getKaleoClassName() {
 		return _kaleoTaskAssignment.getKaleoClassName();
 	}
@@ -353,6 +376,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param kaleoClassName the kaleo class name of this kaleo task assignment
 	*/
+	@Override
 	public void setKaleoClassName(java.lang.String kaleoClassName) {
 		_kaleoTaskAssignment.setKaleoClassName(kaleoClassName);
 	}
@@ -362,6 +386,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the kaleo class p k of this kaleo task assignment
 	*/
+	@Override
 	public long getKaleoClassPK() {
 		return _kaleoTaskAssignment.getKaleoClassPK();
 	}
@@ -371,6 +396,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param kaleoClassPK the kaleo class p k of this kaleo task assignment
 	*/
+	@Override
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoTaskAssignment.setKaleoClassPK(kaleoClassPK);
 	}
@@ -380,6 +406,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the kaleo definition ID of this kaleo task assignment
 	*/
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoTaskAssignment.getKaleoDefinitionId();
 	}
@@ -389,6 +416,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param kaleoDefinitionId the kaleo definition ID of this kaleo task assignment
 	*/
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoTaskAssignment.setKaleoDefinitionId(kaleoDefinitionId);
 	}
@@ -398,6 +426,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the kaleo node ID of this kaleo task assignment
 	*/
+	@Override
 	public long getKaleoNodeId() {
 		return _kaleoTaskAssignment.getKaleoNodeId();
 	}
@@ -407,6 +436,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param kaleoNodeId the kaleo node ID of this kaleo task assignment
 	*/
+	@Override
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoTaskAssignment.setKaleoNodeId(kaleoNodeId);
 	}
@@ -416,6 +446,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the assignee class name of this kaleo task assignment
 	*/
+	@Override
 	public java.lang.String getAssigneeClassName() {
 		return _kaleoTaskAssignment.getAssigneeClassName();
 	}
@@ -425,6 +456,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param assigneeClassName the assignee class name of this kaleo task assignment
 	*/
+	@Override
 	public void setAssigneeClassName(java.lang.String assigneeClassName) {
 		_kaleoTaskAssignment.setAssigneeClassName(assigneeClassName);
 	}
@@ -434,6 +466,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the assignee class p k of this kaleo task assignment
 	*/
+	@Override
 	public long getAssigneeClassPK() {
 		return _kaleoTaskAssignment.getAssigneeClassPK();
 	}
@@ -443,6 +476,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param assigneeClassPK the assignee class p k of this kaleo task assignment
 	*/
+	@Override
 	public void setAssigneeClassPK(long assigneeClassPK) {
 		_kaleoTaskAssignment.setAssigneeClassPK(assigneeClassPK);
 	}
@@ -452,6 +486,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the assignee action ID of this kaleo task assignment
 	*/
+	@Override
 	public java.lang.String getAssigneeActionId() {
 		return _kaleoTaskAssignment.getAssigneeActionId();
 	}
@@ -461,6 +496,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param assigneeActionId the assignee action ID of this kaleo task assignment
 	*/
+	@Override
 	public void setAssigneeActionId(java.lang.String assigneeActionId) {
 		_kaleoTaskAssignment.setAssigneeActionId(assigneeActionId);
 	}
@@ -470,6 +506,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the assignee script of this kaleo task assignment
 	*/
+	@Override
 	public java.lang.String getAssigneeScript() {
 		return _kaleoTaskAssignment.getAssigneeScript();
 	}
@@ -479,6 +516,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param assigneeScript the assignee script of this kaleo task assignment
 	*/
+	@Override
 	public void setAssigneeScript(java.lang.String assigneeScript) {
 		_kaleoTaskAssignment.setAssigneeScript(assigneeScript);
 	}
@@ -488,6 +526,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the assignee script language of this kaleo task assignment
 	*/
+	@Override
 	public java.lang.String getAssigneeScriptLanguage() {
 		return _kaleoTaskAssignment.getAssigneeScriptLanguage();
 	}
@@ -497,6 +536,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param assigneeScriptLanguage the assignee script language of this kaleo task assignment
 	*/
+	@Override
 	public void setAssigneeScriptLanguage(
 		java.lang.String assigneeScriptLanguage) {
 		_kaleoTaskAssignment.setAssigneeScriptLanguage(assigneeScriptLanguage);
@@ -507,6 +547,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @return the assignee script required contexts of this kaleo task assignment
 	*/
+	@Override
 	public java.lang.String getAssigneeScriptRequiredContexts() {
 		return _kaleoTaskAssignment.getAssigneeScriptRequiredContexts();
 	}
@@ -516,53 +557,65 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	*
 	* @param assigneeScriptRequiredContexts the assignee script required contexts of this kaleo task assignment
 	*/
+	@Override
 	public void setAssigneeScriptRequiredContexts(
 		java.lang.String assigneeScriptRequiredContexts) {
 		_kaleoTaskAssignment.setAssigneeScriptRequiredContexts(assigneeScriptRequiredContexts);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _kaleoTaskAssignment.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_kaleoTaskAssignment.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _kaleoTaskAssignment.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_kaleoTaskAssignment.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _kaleoTaskAssignment.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoTaskAssignment.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_kaleoTaskAssignment.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _kaleoTaskAssignment.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_kaleoTaskAssignment.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_kaleoTaskAssignment.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_kaleoTaskAssignment.setExpandoBridgeAttributes(serviceContext);
@@ -573,6 +626,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		return new KaleoTaskAssignmentWrapper((KaleoTaskAssignment)_kaleoTaskAssignment.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment) {
 		return _kaleoTaskAssignment.compareTo(kaleoTaskAssignment);
@@ -583,14 +637,17 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		return _kaleoTaskAssignment.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> toCacheModel() {
 		return _kaleoTaskAssignment.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toEscapedModel() {
 		return new KaleoTaskAssignmentWrapper(_kaleoTaskAssignment.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toUnescapedModel() {
 		return new KaleoTaskAssignmentWrapper(_kaleoTaskAssignment.toUnescapedModel());
 	}
@@ -600,10 +657,12 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		return _kaleoTaskAssignment.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _kaleoTaskAssignment.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTaskAssignment.persist();
@@ -616,10 +675,12 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		return _kaleoTaskAssignment;
 	}
 
+	@Override
 	public KaleoTaskAssignment getWrappedModel() {
 		return _kaleoTaskAssignment;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_kaleoTaskAssignment.resetOriginalValues();
 	}

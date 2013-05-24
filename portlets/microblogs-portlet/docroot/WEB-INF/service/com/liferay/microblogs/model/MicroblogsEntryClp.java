@@ -42,26 +42,32 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	public MicroblogsEntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MicroblogsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MicroblogsEntry.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _microblogsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setMicroblogsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _microblogsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -157,10 +163,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public long getMicroblogsEntryId() {
 		return _microblogsEntryId;
 	}
 
+	@Override
 	public void setMicroblogsEntryId(long microblogsEntryId) {
 		_microblogsEntryId = microblogsEntryId;
 
@@ -179,10 +187,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -200,10 +210,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -221,18 +233,22 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -250,10 +266,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -271,10 +289,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -292,10 +312,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public String getContent() {
 		return _content;
 	}
 
+	@Override
 	public void setContent(String content) {
 		_content = content;
 
@@ -313,10 +335,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public int getType() {
 		return _type;
 	}
 
+	@Override
 	public void setType(int type) {
 		_type = type;
 
@@ -334,10 +358,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public long getReceiverUserId() {
 		return _receiverUserId;
 	}
 
+	@Override
 	public void setReceiverUserId(long receiverUserId) {
 		_receiverUserId = receiverUserId;
 
@@ -355,19 +381,23 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public String getReceiverUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getReceiverUserId(), "uuid",
 			_receiverUserUuid);
 	}
 
+	@Override
 	public void setReceiverUserUuid(String receiverUserUuid) {
 		_receiverUserUuid = receiverUserUuid;
 	}
 
+	@Override
 	public long getReceiverMicroblogsEntryId() {
 		return _receiverMicroblogsEntryId;
 	}
 
+	@Override
 	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId) {
 		_receiverMicroblogsEntryId = receiverMicroblogsEntryId;
 
@@ -387,10 +417,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	@Override
 	public int getSocialRelationType() {
 		return _socialRelationType;
 	}
 
+	@Override
 	public void setSocialRelationType(int socialRelationType) {
 		_socialRelationType = socialRelationType;
 
@@ -459,6 +491,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			MicroblogsEntryLocalServiceUtil.addMicroblogsEntry(this);
@@ -494,6 +527,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(MicroblogsEntry microblogsEntry) {
 		int value = 0;
 
@@ -567,6 +601,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

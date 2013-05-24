@@ -71,6 +71,7 @@ public class DefinitionCacheModel implements CacheModel<Definition>,
 		return sb.toString();
 	}
 
+	@Override
 	public Definition toEntityModel() {
 		DefinitionImpl definitionImpl = new DefinitionImpl();
 
@@ -131,6 +132,7 @@ public class DefinitionCacheModel implements CacheModel<Definition>,
 		return definitionImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		definitionId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -147,6 +149,7 @@ public class DefinitionCacheModel implements CacheModel<Definition>,
 		price = objectInput.readDouble();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(definitionId);

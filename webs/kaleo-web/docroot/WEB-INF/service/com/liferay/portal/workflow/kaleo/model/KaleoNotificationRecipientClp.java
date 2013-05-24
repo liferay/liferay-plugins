@@ -40,26 +40,32 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	public KaleoNotificationRecipientClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoNotificationRecipient.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoNotificationRecipient.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoNotificationRecipientId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoNotificationRecipientId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoNotificationRecipientId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -168,10 +174,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public long getKaleoNotificationRecipientId() {
 		return _kaleoNotificationRecipientId;
 	}
 
+	@Override
 	public void setKaleoNotificationRecipientId(
 		long kaleoNotificationRecipientId) {
 		_kaleoNotificationRecipientId = kaleoNotificationRecipientId;
@@ -192,10 +200,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -213,10 +223,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -234,10 +246,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -255,18 +269,22 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -284,10 +302,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -305,10 +325,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -327,10 +349,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -350,10 +374,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public long getKaleoNotificationId() {
 		return _kaleoNotificationId;
 	}
 
+	@Override
 	public void setKaleoNotificationId(long kaleoNotificationId) {
 		_kaleoNotificationId = kaleoNotificationId;
 
@@ -373,10 +399,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public String getRecipientClassName() {
 		return _recipientClassName;
 	}
 
+	@Override
 	public void setRecipientClassName(String recipientClassName) {
 		_recipientClassName = recipientClassName;
 
@@ -396,10 +424,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public long getRecipientClassPK() {
 		return _recipientClassPK;
 	}
 
+	@Override
 	public void setRecipientClassPK(long recipientClassPK) {
 		_recipientClassPK = recipientClassPK;
 
@@ -419,10 +449,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public int getRecipientRoleType() {
 		return _recipientRoleType;
 	}
 
+	@Override
 	public void setRecipientRoleType(int recipientRoleType) {
 		_recipientRoleType = recipientRoleType;
 
@@ -442,10 +474,12 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	@Override
 	public String getAddress() {
 		return _address;
 	}
 
+	@Override
 	public void setAddress(String address) {
 		_address = address;
 
@@ -513,6 +547,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoNotificationRecipientLocalServiceUtil.addKaleoNotificationRecipient(this);
@@ -550,6 +585,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoNotificationRecipient kaleoNotificationRecipient) {
 		int value = 0;
 
@@ -632,6 +668,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(43);
 

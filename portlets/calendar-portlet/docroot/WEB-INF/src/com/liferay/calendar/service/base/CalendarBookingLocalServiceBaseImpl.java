@@ -105,6 +105,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CalendarBooking addCalendarBooking(CalendarBooking calendarBooking)
 		throws SystemException {
 		calendarBooking.setNew(true);
@@ -118,6 +119,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @param calendarBookingId the primary key for the new calendar booking
 	 * @return the new calendar booking
 	 */
+	@Override
 	public CalendarBooking createCalendarBooking(long calendarBookingId) {
 		return calendarBookingPersistence.create(calendarBookingId);
 	}
@@ -131,6 +133,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public CalendarBooking deleteCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 		return calendarBookingPersistence.remove(calendarBookingId);
@@ -145,12 +148,14 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public CalendarBooking deleteCalendarBooking(
 		CalendarBooking calendarBooking)
 		throws PortalException, SystemException {
 		return calendarBookingPersistence.remove(calendarBooking);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -165,6 +170,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -184,6 +190,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -205,6 +212,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -219,11 +227,13 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return calendarBookingPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public CalendarBooking fetchCalendarBooking(long calendarBookingId)
 		throws SystemException {
 		return calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
@@ -237,11 +247,13 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @throws PortalException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 		return calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return calendarBookingPersistence.findByPrimaryKey(primaryKeyObj);
@@ -256,6 +268,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @throws PortalException if a matching calendar booking could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public CalendarBooking getCalendarBookingByUuidAndGroupId(String uuid,
 		long groupId) throws PortalException, SystemException {
 		return calendarBookingPersistence.findByUUID_G(uuid, groupId);
@@ -273,6 +286,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the range of calendar bookings
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<CalendarBooking> getCalendarBookings(int start, int end)
 		throws SystemException {
 		return calendarBookingPersistence.findAll(start, end);
@@ -284,6 +298,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the number of calendar bookings
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getCalendarBookingsCount() throws SystemException {
 		return calendarBookingPersistence.countAll();
 	}
@@ -296,6 +311,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public CalendarBooking updateCalendarBooking(
 		CalendarBooking calendarBooking) throws SystemException {
 		return calendarBookingPersistence.update(calendarBooking);
@@ -994,6 +1010,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -1003,10 +1020,12 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

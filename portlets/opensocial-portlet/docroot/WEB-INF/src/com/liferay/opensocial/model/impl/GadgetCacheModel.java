@@ -60,6 +60,7 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Gadget toEntityModel() {
 		GadgetImpl gadgetImpl = new GadgetImpl();
 
@@ -113,6 +114,7 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 		return gadgetImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		gadgetId = objectInput.readLong();
@@ -124,6 +126,7 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 		portletCategoryNames = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

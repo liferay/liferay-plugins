@@ -115,6 +115,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -134,6 +135,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the range of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByCompanyId(long companyId,
 		int start, int end) throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
@@ -153,6 +155,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the ordered range of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByCompanyId(long companyId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -260,6 +263,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
@@ -290,6 +294,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the first matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoNotificationRecipient> list = findByCompanyId(companyId, 0,
@@ -311,6 +316,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
@@ -341,6 +347,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the last matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
@@ -365,6 +372,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient[] findByCompanyId_PrevAndNext(
 		long kaleoNotificationRecipientId, long companyId,
 		OrderByComparator orderByComparator)
@@ -509,6 +517,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @param companyId the company ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByCompanyId(
 				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -523,6 +532,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the number of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByCompanyId(long companyId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
@@ -599,6 +609,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByKaleoDefinitionId(
 		long kaleoDefinitionId) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, QueryUtil.ALL_POS,
@@ -618,6 +629,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the range of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, start, end, null);
@@ -637,6 +649,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the ordered range of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -748,6 +761,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByKaleoDefinitionId_First(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
@@ -778,6 +792,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the first matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -800,6 +815,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
@@ -830,6 +846,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the last matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -855,6 +872,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoNotificationRecipientId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
@@ -1000,6 +1018,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKaleoDefinitionId(
@@ -1015,6 +1034,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the number of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KALEODEFINITIONID;
@@ -1094,6 +1114,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId) throws SystemException {
 		return findByKaleoNotificationId(kaleoNotificationId,
@@ -1113,6 +1134,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the range of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end) throws SystemException {
 		return findByKaleoNotificationId(kaleoNotificationId, start, end, null);
@@ -1132,6 +1154,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the ordered range of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -1243,6 +1266,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByKaleoNotificationId_First(
 		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
@@ -1273,6 +1297,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the first matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByKaleoNotificationId_First(
 		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1295,6 +1320,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByKaleoNotificationId_Last(
 		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
@@ -1325,6 +1351,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the last matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByKaleoNotificationId_Last(
 		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1350,6 +1377,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient[] findByKaleoNotificationId_PrevAndNext(
 		long kaleoNotificationRecipientId, long kaleoNotificationId,
 		OrderByComparator orderByComparator)
@@ -1495,6 +1523,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @param kaleoNotificationId the kaleo notification ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByKaleoNotificationId(long kaleoNotificationId)
 		throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKaleoNotificationId(
@@ -1510,6 +1539,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the number of matching kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByKaleoNotificationId(long kaleoNotificationId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KALEONOTIFICATIONID;
@@ -1564,6 +1594,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 *
 	 * @param kaleoNotificationRecipient the kaleo notification recipient
 	 */
+	@Override
 	public void cacheResult(
 		KaleoNotificationRecipient kaleoNotificationRecipient) {
 		EntityCacheUtil.putResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
@@ -1579,6 +1610,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 *
 	 * @param kaleoNotificationRecipients the kaleo notification recipients
 	 */
+	@Override
 	public void cacheResult(
 		List<KaleoNotificationRecipient> kaleoNotificationRecipients) {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : kaleoNotificationRecipients) {
@@ -1651,6 +1683,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @param kaleoNotificationRecipientId the primary key for the new kaleo notification recipient
 	 * @return the new kaleo notification recipient
 	 */
+	@Override
 	public KaleoNotificationRecipient create(long kaleoNotificationRecipientId) {
 		KaleoNotificationRecipient kaleoNotificationRecipient = new KaleoNotificationRecipientImpl();
 
@@ -1668,6 +1701,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient remove(long kaleoNotificationRecipientId)
 		throws NoSuchNotificationRecipientException, SystemException {
 		return remove((Serializable)kaleoNotificationRecipientId);
@@ -1920,6 +1954,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient findByPrimaryKey(
 		long kaleoNotificationRecipientId)
 		throws NoSuchNotificationRecipientException, SystemException {
@@ -1982,6 +2017,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the kaleo notification recipient, or <code>null</code> if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoNotificationRecipient fetchByPrimaryKey(
 		long kaleoNotificationRecipientId) throws SystemException {
 		return fetchByPrimaryKey((Serializable)kaleoNotificationRecipientId);
@@ -1993,6 +2029,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -2009,6 +2046,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the range of kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -2027,6 +2065,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the ordered range of kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoNotificationRecipient> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -2112,6 +2151,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findAll()) {
 			remove(kaleoNotificationRecipient);
@@ -2124,6 +2164,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 * @return the number of kaleo notification recipients
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -2211,6 +2252,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 	private static CacheModel<KaleoNotificationRecipient> _nullKaleoNotificationRecipientCacheModel =
 		new CacheModel<KaleoNotificationRecipient>() {
+			@Override
 			public KaleoNotificationRecipient toEntityModel() {
 				return _nullKaleoNotificationRecipient;
 			}

@@ -73,6 +73,7 @@ public class CalendarNotificationTemplateCacheModel implements CacheModel<Calend
 		return sb.toString();
 	}
 
+	@Override
 	public CalendarNotificationTemplate toEntityModel() {
 		CalendarNotificationTemplateImpl calendarNotificationTemplateImpl = new CalendarNotificationTemplateImpl();
 
@@ -152,6 +153,7 @@ public class CalendarNotificationTemplateCacheModel implements CacheModel<Calend
 		return calendarNotificationTemplateImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		calendarNotificationTemplateId = objectInput.readLong();
@@ -169,6 +171,7 @@ public class CalendarNotificationTemplateCacheModel implements CacheModel<Calend
 		body = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

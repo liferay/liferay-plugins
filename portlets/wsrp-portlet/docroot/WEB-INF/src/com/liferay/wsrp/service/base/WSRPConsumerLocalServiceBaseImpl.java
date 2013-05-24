@@ -78,6 +78,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public WSRPConsumer addWSRPConsumer(WSRPConsumer wsrpConsumer)
 		throws SystemException {
 		wsrpConsumer.setNew(true);
@@ -91,6 +92,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @param wsrpConsumerId the primary key for the new w s r p consumer
 	 * @return the new w s r p consumer
 	 */
+	@Override
 	public WSRPConsumer createWSRPConsumer(long wsrpConsumerId) {
 		return wsrpConsumerPersistence.create(wsrpConsumerId);
 	}
@@ -104,6 +106,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public WSRPConsumer deleteWSRPConsumer(long wsrpConsumerId)
 		throws PortalException, SystemException {
 		return wsrpConsumerPersistence.remove(wsrpConsumerId);
@@ -118,11 +121,13 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public WSRPConsumer deleteWSRPConsumer(WSRPConsumer wsrpConsumer)
 		throws PortalException, SystemException {
 		return wsrpConsumerPersistence.remove(wsrpConsumer);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -137,6 +142,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -156,6 +162,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -177,6 +184,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -191,11 +199,13 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return wsrpConsumerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public WSRPConsumer fetchWSRPConsumer(long wsrpConsumerId)
 		throws SystemException {
 		return wsrpConsumerPersistence.fetchByPrimaryKey(wsrpConsumerId);
@@ -209,11 +219,13 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @throws PortalException if a w s r p consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPConsumer getWSRPConsumer(long wsrpConsumerId)
 		throws PortalException, SystemException {
 		return wsrpConsumerPersistence.findByPrimaryKey(wsrpConsumerId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return wsrpConsumerPersistence.findByPrimaryKey(primaryKeyObj);
@@ -231,6 +243,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the range of w s r p consumers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WSRPConsumer> getWSRPConsumers(int start, int end)
 		throws SystemException {
 		return wsrpConsumerPersistence.findAll(start, end);
@@ -242,6 +255,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @return the number of w s r p consumers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getWSRPConsumersCount() throws SystemException {
 		return wsrpConsumerPersistence.countAll();
 	}
@@ -254,6 +268,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public WSRPConsumer updateWSRPConsumer(WSRPConsumer wsrpConsumer)
 		throws SystemException {
 		return wsrpConsumerPersistence.update(wsrpConsumer);
@@ -483,6 +498,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -492,10 +508,12 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

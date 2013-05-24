@@ -106,26 +106,32 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	public KaleoTaskAssignmentModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoTaskAssignmentId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoTaskAssignmentId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoTaskAssignmentId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoTaskAssignment.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoTaskAssignment.class.getName();
 	}
@@ -264,28 +270,34 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public long getKaleoTaskAssignmentId() {
 		return _kaleoTaskAssignmentId;
 	}
 
+	@Override
 	public void setKaleoTaskAssignmentId(long kaleoTaskAssignmentId) {
 		_columnBitmask = -1L;
 
 		_kaleoTaskAssignmentId = kaleoTaskAssignmentId;
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -302,22 +314,27 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		return _originalCompanyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -327,26 +344,32 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public String getKaleoClassName() {
 		if (_kaleoClassName == null) {
 			return StringPool.BLANK;
@@ -356,6 +379,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public void setKaleoClassName(String kaleoClassName) {
 		_columnBitmask |= KALEOCLASSNAME_COLUMN_BITMASK;
 
@@ -370,10 +394,12 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		return GetterUtil.getString(_originalKaleoClassName);
 	}
 
+	@Override
 	public long getKaleoClassPK() {
 		return _kaleoClassPK;
 	}
 
+	@Override
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_columnBitmask |= KALEOCLASSPK_COLUMN_BITMASK;
 
@@ -390,10 +416,12 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		return _originalKaleoClassPK;
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_columnBitmask |= KALEODEFINITIONID_COLUMN_BITMASK;
 
@@ -410,14 +438,17 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		return _originalKaleoDefinitionId;
 	}
 
+	@Override
 	public long getKaleoNodeId() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNodeId = kaleoNodeId;
 	}
 
+	@Override
 	public String getAssigneeClassName() {
 		if (_assigneeClassName == null) {
 			return StringPool.BLANK;
@@ -427,6 +458,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public void setAssigneeClassName(String assigneeClassName) {
 		_columnBitmask |= ASSIGNEECLASSNAME_COLUMN_BITMASK;
 
@@ -441,14 +473,17 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		return GetterUtil.getString(_originalAssigneeClassName);
 	}
 
+	@Override
 	public long getAssigneeClassPK() {
 		return _assigneeClassPK;
 	}
 
+	@Override
 	public void setAssigneeClassPK(long assigneeClassPK) {
 		_assigneeClassPK = assigneeClassPK;
 	}
 
+	@Override
 	public String getAssigneeActionId() {
 		if (_assigneeActionId == null) {
 			return StringPool.BLANK;
@@ -458,10 +493,12 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public void setAssigneeActionId(String assigneeActionId) {
 		_assigneeActionId = assigneeActionId;
 	}
 
+	@Override
 	public String getAssigneeScript() {
 		if (_assigneeScript == null) {
 			return StringPool.BLANK;
@@ -471,10 +508,12 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public void setAssigneeScript(String assigneeScript) {
 		_assigneeScript = assigneeScript;
 	}
 
+	@Override
 	public String getAssigneeScriptLanguage() {
 		if (_assigneeScriptLanguage == null) {
 			return StringPool.BLANK;
@@ -484,10 +523,12 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public void setAssigneeScriptLanguage(String assigneeScriptLanguage) {
 		_assigneeScriptLanguage = assigneeScriptLanguage;
 	}
 
+	@Override
 	public String getAssigneeScriptRequiredContexts() {
 		if (_assigneeScriptRequiredContexts == null) {
 			return StringPool.BLANK;
@@ -497,6 +538,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		}
 	}
 
+	@Override
 	public void setAssigneeScriptRequiredContexts(
 		String assigneeScriptRequiredContexts) {
 		_assigneeScriptRequiredContexts = assigneeScriptRequiredContexts;
@@ -556,6 +598,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		return kaleoTaskAssignmentImpl;
 	}
 
+	@Override
 	public int compareTo(KaleoTaskAssignment kaleoTaskAssignment) {
 		int value = 0;
 
@@ -768,6 +811,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(55);
 

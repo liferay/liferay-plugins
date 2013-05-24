@@ -149,6 +149,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 			};
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken addOAuthToken(
 		com.liferay.opensocial.model.OAuthToken oAuthToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -178,6 +179,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken createOAuthToken(
 		long oAuthTokenId) {
 		Object returnObj = null;
@@ -201,6 +203,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken deleteOAuthToken(
 		long oAuthTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -234,6 +237,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken deleteOAuthToken(
 		com.liferay.opensocial.model.OAuthToken oAuthToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -263,6 +267,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -285,6 +290,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -315,6 +321,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -351,6 +358,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -391,6 +399,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -420,6 +429,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
 		long oAuthTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -448,6 +458,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(
 		long oAuthTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -481,6 +492,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -515,6 +527,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -543,6 +556,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (java.util.List<com.liferay.opensocial.model.OAuthToken>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getOAuthTokensCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -570,6 +584,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken updateOAuthToken(
 		com.liferay.opensocial.model.OAuthToken oAuthToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -599,6 +614,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -621,6 +637,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -640,12 +657,14 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken addOAuthToken(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String accessToken,
@@ -701,6 +720,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteOAuthToken(long userId, java.lang.String gadgetKey,
 		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -741,6 +761,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		}
 	}
 
+	@Override
 	public void deleteOAuthTokens(java.lang.String gadgetKey,
 		java.lang.String serviceName)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -770,6 +791,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
@@ -810,6 +832,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
@@ -855,6 +878,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
 		java.lang.String gadgetKey, java.lang.String serviceName)
 		throws com.liferay.portal.kernel.exception.SystemException {

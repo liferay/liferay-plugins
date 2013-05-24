@@ -38,6 +38,7 @@ public abstract class MicroblogsEntryBaseImpl extends MicroblogsEntryModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a microblogs entry model instance should use the {@link MicroblogsEntry} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			MicroblogsEntryLocalServiceUtil.addMicroblogsEntry(this);

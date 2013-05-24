@@ -82,6 +82,7 @@ public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskIns
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoTaskInstanceToken toEntityModel() {
 		KaleoTaskInstanceTokenImpl kaleoTaskInstanceTokenImpl = new KaleoTaskInstanceTokenImpl();
 
@@ -161,6 +162,7 @@ public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskIns
 		return kaleoTaskInstanceTokenImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoTaskInstanceTokenId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -183,6 +185,7 @@ public class KaleoTaskInstanceTokenCacheModel implements CacheModel<KaleoTaskIns
 		workflowContext = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoTaskInstanceTokenId);

@@ -79,6 +79,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public OAuthConsumer addOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 		oAuthConsumer.setNew(true);
@@ -92,6 +93,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param oAuthConsumerId the primary key for the new o auth consumer
 	 * @return the new o auth consumer
 	 */
+	@Override
 	public OAuthConsumer createOAuthConsumer(long oAuthConsumerId) {
 		return oAuthConsumerPersistence.create(oAuthConsumerId);
 	}
@@ -105,6 +107,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public OAuthConsumer deleteOAuthConsumer(long oAuthConsumerId)
 		throws PortalException, SystemException {
 		return oAuthConsumerPersistence.remove(oAuthConsumerId);
@@ -118,11 +121,13 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public OAuthConsumer deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 		return oAuthConsumerPersistence.remove(oAuthConsumer);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -137,6 +142,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -156,6 +162,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -177,6 +184,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -191,11 +199,13 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return oAuthConsumerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public OAuthConsumer fetchOAuthConsumer(long oAuthConsumerId)
 		throws SystemException {
 		return oAuthConsumerPersistence.fetchByPrimaryKey(oAuthConsumerId);
@@ -209,11 +219,13 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @throws PortalException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthConsumer getOAuthConsumer(long oAuthConsumerId)
 		throws PortalException, SystemException {
 		return oAuthConsumerPersistence.findByPrimaryKey(oAuthConsumerId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return oAuthConsumerPersistence.findByPrimaryKey(primaryKeyObj);
@@ -231,6 +243,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the range of o auth consumers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthConsumer> getOAuthConsumers(int start, int end)
 		throws SystemException {
 		return oAuthConsumerPersistence.findAll(start, end);
@@ -242,6 +255,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the number of o auth consumers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getOAuthConsumersCount() throws SystemException {
 		return oAuthConsumerPersistence.countAll();
 	}
@@ -254,6 +268,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public OAuthConsumer updateOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 		return oAuthConsumerPersistence.update(oAuthConsumer);
@@ -499,6 +514,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -508,10 +524,12 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

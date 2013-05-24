@@ -38,26 +38,32 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	public BarClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Bar.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Bar.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _barId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setBarId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _barId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -87,10 +93,12 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		}
 	}
 
+	@Override
 	public long getBarId() {
 		return _barId;
 	}
 
+	@Override
 	public void setBarId(long barId) {
 		_barId = barId;
 
@@ -108,10 +116,12 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		}
 	}
 
+	@Override
 	public String getText() {
 		return _text;
 	}
 
+	@Override
 	public void setText(String text) {
 		_text = text;
 
@@ -178,6 +188,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			BarLocalServiceUtil.addBar(this);
@@ -203,6 +214,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Bar bar) {
 		int value = 0;
 
@@ -255,6 +267,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(10);
 

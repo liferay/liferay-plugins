@@ -35,14 +35,17 @@ public class CalendarResourceWrapper implements CalendarResource,
 		_calendarResource = calendarResource;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return CalendarResource.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return CalendarResource.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -66,6 +69,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -169,6 +173,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the primary key of this calendar resource
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _calendarResource.getPrimaryKey();
 	}
@@ -178,6 +183,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param primaryKey the primary key of this calendar resource
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_calendarResource.setPrimaryKey(primaryKey);
 	}
@@ -187,6 +193,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the uuid of this calendar resource
 	*/
+	@Override
 	public java.lang.String getUuid() {
 		return _calendarResource.getUuid();
 	}
@@ -196,6 +203,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param uuid the uuid of this calendar resource
 	*/
+	@Override
 	public void setUuid(java.lang.String uuid) {
 		_calendarResource.setUuid(uuid);
 	}
@@ -205,6 +213,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the calendar resource ID of this calendar resource
 	*/
+	@Override
 	public long getCalendarResourceId() {
 		return _calendarResource.getCalendarResourceId();
 	}
@@ -214,6 +223,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param calendarResourceId the calendar resource ID of this calendar resource
 	*/
+	@Override
 	public void setCalendarResourceId(long calendarResourceId) {
 		_calendarResource.setCalendarResourceId(calendarResourceId);
 	}
@@ -223,6 +233,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the group ID of this calendar resource
 	*/
+	@Override
 	public long getGroupId() {
 		return _calendarResource.getGroupId();
 	}
@@ -232,6 +243,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param groupId the group ID of this calendar resource
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_calendarResource.setGroupId(groupId);
 	}
@@ -241,6 +253,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the company ID of this calendar resource
 	*/
+	@Override
 	public long getCompanyId() {
 		return _calendarResource.getCompanyId();
 	}
@@ -250,6 +263,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param companyId the company ID of this calendar resource
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_calendarResource.setCompanyId(companyId);
 	}
@@ -259,6 +273,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the user ID of this calendar resource
 	*/
+	@Override
 	public long getUserId() {
 		return _calendarResource.getUserId();
 	}
@@ -268,6 +283,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param userId the user ID of this calendar resource
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_calendarResource.setUserId(userId);
 	}
@@ -278,6 +294,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @return the user uuid of this calendar resource
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResource.getUserUuid();
@@ -288,6 +305,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param userUuid the user uuid of this calendar resource
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_calendarResource.setUserUuid(userUuid);
 	}
@@ -297,6 +315,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the user name of this calendar resource
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _calendarResource.getUserName();
 	}
@@ -306,6 +325,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param userName the user name of this calendar resource
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_calendarResource.setUserName(userName);
 	}
@@ -315,6 +335,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the create date of this calendar resource
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _calendarResource.getCreateDate();
 	}
@@ -324,6 +345,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param createDate the create date of this calendar resource
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_calendarResource.setCreateDate(createDate);
 	}
@@ -333,6 +355,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the modified date of this calendar resource
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _calendarResource.getModifiedDate();
 	}
@@ -342,6 +365,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param modifiedDate the modified date of this calendar resource
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_calendarResource.setModifiedDate(modifiedDate);
 	}
@@ -351,6 +375,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the resource block ID of this calendar resource
 	*/
+	@Override
 	public long getResourceBlockId() {
 		return _calendarResource.getResourceBlockId();
 	}
@@ -360,6 +385,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param resourceBlockId the resource block ID of this calendar resource
 	*/
+	@Override
 	public void setResourceBlockId(long resourceBlockId) {
 		_calendarResource.setResourceBlockId(resourceBlockId);
 	}
@@ -369,10 +395,12 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the fully qualified class name of this calendar resource
 	*/
+	@Override
 	public java.lang.String getClassName() {
 		return _calendarResource.getClassName();
 	}
 
+	@Override
 	public void setClassName(java.lang.String className) {
 		_calendarResource.setClassName(className);
 	}
@@ -382,6 +410,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the class name ID of this calendar resource
 	*/
+	@Override
 	public long getClassNameId() {
 		return _calendarResource.getClassNameId();
 	}
@@ -391,6 +420,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param classNameId the class name ID of this calendar resource
 	*/
+	@Override
 	public void setClassNameId(long classNameId) {
 		_calendarResource.setClassNameId(classNameId);
 	}
@@ -400,6 +430,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the class p k of this calendar resource
 	*/
+	@Override
 	public long getClassPK() {
 		return _calendarResource.getClassPK();
 	}
@@ -409,6 +440,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param classPK the class p k of this calendar resource
 	*/
+	@Override
 	public void setClassPK(long classPK) {
 		_calendarResource.setClassPK(classPK);
 	}
@@ -418,6 +450,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the class uuid of this calendar resource
 	*/
+	@Override
 	public java.lang.String getClassUuid() {
 		return _calendarResource.getClassUuid();
 	}
@@ -427,6 +460,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param classUuid the class uuid of this calendar resource
 	*/
+	@Override
 	public void setClassUuid(java.lang.String classUuid) {
 		_calendarResource.setClassUuid(classUuid);
 	}
@@ -436,6 +470,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the code of this calendar resource
 	*/
+	@Override
 	public java.lang.String getCode() {
 		return _calendarResource.getCode();
 	}
@@ -445,6 +480,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param code the code of this calendar resource
 	*/
+	@Override
 	public void setCode(java.lang.String code) {
 		_calendarResource.setCode(code);
 	}
@@ -454,6 +490,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the name of this calendar resource
 	*/
+	@Override
 	public java.lang.String getName() {
 		return _calendarResource.getName();
 	}
@@ -464,6 +501,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param locale the locale of the language
 	* @return the localized name of this calendar resource
 	*/
+	@Override
 	public java.lang.String getName(java.util.Locale locale) {
 		return _calendarResource.getName(locale);
 	}
@@ -475,6 +513,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized name of this calendar resource. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
+	@Override
 	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
 		return _calendarResource.getName(locale, useDefault);
 	}
@@ -485,6 +524,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param languageId the ID of the language
 	* @return the localized name of this calendar resource
 	*/
+	@Override
 	public java.lang.String getName(java.lang.String languageId) {
 		return _calendarResource.getName(languageId);
 	}
@@ -496,15 +536,18 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized name of this calendar resource
 	*/
+	@Override
 	public java.lang.String getName(java.lang.String languageId,
 		boolean useDefault) {
 		return _calendarResource.getName(languageId, useDefault);
 	}
 
+	@Override
 	public java.lang.String getNameCurrentLanguageId() {
 		return _calendarResource.getNameCurrentLanguageId();
 	}
 
+	@Override
 	public java.lang.String getNameCurrentValue() {
 		return _calendarResource.getNameCurrentValue();
 	}
@@ -514,6 +557,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the locales and localized names of this calendar resource
 	*/
+	@Override
 	public java.util.Map<java.util.Locale, java.lang.String> getNameMap() {
 		return _calendarResource.getNameMap();
 	}
@@ -523,6 +567,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param name the name of this calendar resource
 	*/
+	@Override
 	public void setName(java.lang.String name) {
 		_calendarResource.setName(name);
 	}
@@ -533,6 +578,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param name the localized name of this calendar resource
 	* @param locale the locale of the language
 	*/
+	@Override
 	public void setName(java.lang.String name, java.util.Locale locale) {
 		_calendarResource.setName(name, locale);
 	}
@@ -544,11 +590,13 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param locale the locale of the language
 	* @param defaultLocale the default locale
 	*/
+	@Override
 	public void setName(java.lang.String name, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendarResource.setName(name, locale, defaultLocale);
 	}
 
+	@Override
 	public void setNameCurrentLanguageId(java.lang.String languageId) {
 		_calendarResource.setNameCurrentLanguageId(languageId);
 	}
@@ -558,6 +606,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param nameMap the locales and localized names of this calendar resource
 	*/
+	@Override
 	public void setNameMap(
 		java.util.Map<java.util.Locale, java.lang.String> nameMap) {
 		_calendarResource.setNameMap(nameMap);
@@ -569,6 +618,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param nameMap the locales and localized names of this calendar resource
 	* @param defaultLocale the default locale
 	*/
+	@Override
 	public void setNameMap(
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Locale defaultLocale) {
@@ -580,6 +630,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the description of this calendar resource
 	*/
+	@Override
 	public java.lang.String getDescription() {
 		return _calendarResource.getDescription();
 	}
@@ -590,6 +641,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param locale the locale of the language
 	* @return the localized description of this calendar resource
 	*/
+	@Override
 	public java.lang.String getDescription(java.util.Locale locale) {
 		return _calendarResource.getDescription(locale);
 	}
@@ -601,6 +653,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized description of this calendar resource. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
+	@Override
 	public java.lang.String getDescription(java.util.Locale locale,
 		boolean useDefault) {
 		return _calendarResource.getDescription(locale, useDefault);
@@ -612,6 +665,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param languageId the ID of the language
 	* @return the localized description of this calendar resource
 	*/
+	@Override
 	public java.lang.String getDescription(java.lang.String languageId) {
 		return _calendarResource.getDescription(languageId);
 	}
@@ -623,15 +677,18 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized description of this calendar resource
 	*/
+	@Override
 	public java.lang.String getDescription(java.lang.String languageId,
 		boolean useDefault) {
 		return _calendarResource.getDescription(languageId, useDefault);
 	}
 
+	@Override
 	public java.lang.String getDescriptionCurrentLanguageId() {
 		return _calendarResource.getDescriptionCurrentLanguageId();
 	}
 
+	@Override
 	public java.lang.String getDescriptionCurrentValue() {
 		return _calendarResource.getDescriptionCurrentValue();
 	}
@@ -641,6 +698,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the locales and localized descriptions of this calendar resource
 	*/
+	@Override
 	public java.util.Map<java.util.Locale, java.lang.String> getDescriptionMap() {
 		return _calendarResource.getDescriptionMap();
 	}
@@ -650,6 +708,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param description the description of this calendar resource
 	*/
+	@Override
 	public void setDescription(java.lang.String description) {
 		_calendarResource.setDescription(description);
 	}
@@ -660,6 +719,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param description the localized description of this calendar resource
 	* @param locale the locale of the language
 	*/
+	@Override
 	public void setDescription(java.lang.String description,
 		java.util.Locale locale) {
 		_calendarResource.setDescription(description, locale);
@@ -672,11 +732,13 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param locale the locale of the language
 	* @param defaultLocale the default locale
 	*/
+	@Override
 	public void setDescription(java.lang.String description,
 		java.util.Locale locale, java.util.Locale defaultLocale) {
 		_calendarResource.setDescription(description, locale, defaultLocale);
 	}
 
+	@Override
 	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
 		_calendarResource.setDescriptionCurrentLanguageId(languageId);
 	}
@@ -686,6 +748,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param descriptionMap the locales and localized descriptions of this calendar resource
 	*/
+	@Override
 	public void setDescriptionMap(
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap) {
 		_calendarResource.setDescriptionMap(descriptionMap);
@@ -697,6 +760,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* @param descriptionMap the locales and localized descriptions of this calendar resource
 	* @param defaultLocale the default locale
 	*/
+	@Override
 	public void setDescriptionMap(
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.util.Locale defaultLocale) {
@@ -708,6 +772,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return the active of this calendar resource
 	*/
+	@Override
 	public boolean getActive() {
 		return _calendarResource.getActive();
 	}
@@ -717,6 +782,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @return <code>true</code> if this calendar resource is active; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isActive() {
 		return _calendarResource.isActive();
 	}
@@ -726,57 +792,70 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*
 	* @param active the active of this calendar resource
 	*/
+	@Override
 	public void setActive(boolean active) {
 		_calendarResource.setActive(active);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _calendarResource.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_calendarResource.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _calendarResource.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_calendarResource.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _calendarResource.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _calendarResource.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_calendarResource.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _calendarResource.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_calendarResource.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_calendarResource.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_calendarResource.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public void prepareLocalizedFieldsForImport(
 		java.util.Locale defaultImportLocale)
 		throws com.liferay.portal.LocaleException {
@@ -788,6 +867,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return new CalendarResourceWrapper((CalendarResource)_calendarResource.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.calendar.model.CalendarResource calendarResource) {
 		return _calendarResource.compareTo(calendarResource);
@@ -798,14 +878,17 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return _calendarResource.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.CalendarResource> toCacheModel() {
 		return _calendarResource.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarResource toEscapedModel() {
 		return new CalendarResourceWrapper(_calendarResource.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.calendar.model.CalendarResource toUnescapedModel() {
 		return new CalendarResourceWrapper(_calendarResource.toUnescapedModel());
 	}
@@ -815,38 +898,46 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return _calendarResource.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _calendarResource.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_calendarResource.persist();
 	}
 
+	@Override
 	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResource.getCalendars();
 	}
 
+	@Override
 	public com.liferay.calendar.model.Calendar getDefaultCalendar()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResource.getDefaultCalendar();
 	}
 
+	@Override
 	public long getDefaultCalendarId()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResource.getDefaultCalendarId();
 	}
 
+	@Override
 	public boolean isGlobal() {
 		return _calendarResource.isGlobal();
 	}
 
+	@Override
 	public boolean isGroup() {
 		return _calendarResource.isGroup();
 	}
 
+	@Override
 	public boolean isUser() {
 		return _calendarResource.isUser();
 	}
@@ -858,10 +949,12 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return _calendarResource;
 	}
 
+	@Override
 	public CalendarResource getWrappedModel() {
 		return _calendarResource;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_calendarResource.resetOriginalValues();
 	}

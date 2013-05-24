@@ -84,6 +84,7 @@ public class KaleoTimerInstanceTokenCacheModel implements CacheModel<KaleoTimerI
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoTimerInstanceToken toEntityModel() {
 		KaleoTimerInstanceTokenImpl kaleoTimerInstanceTokenImpl = new KaleoTimerInstanceTokenImpl();
 
@@ -158,6 +159,7 @@ public class KaleoTimerInstanceTokenCacheModel implements CacheModel<KaleoTimerI
 		return kaleoTimerInstanceTokenImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoTimerInstanceTokenId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -181,6 +183,7 @@ public class KaleoTimerInstanceTokenCacheModel implements CacheModel<KaleoTimerI
 		workflowContext = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoTimerInstanceTokenId);

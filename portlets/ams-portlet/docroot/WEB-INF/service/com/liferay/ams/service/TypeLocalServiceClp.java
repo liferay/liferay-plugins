@@ -101,6 +101,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		_methodParameterTypes16 = new String[] { "java.lang.String" };
 	}
 
+	@Override
 	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -129,6 +130,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.ams.model.Type createType(long typeId) {
 		Object returnObj = null;
 
@@ -151,6 +153,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.ams.model.Type deleteType(long typeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -183,6 +186,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.ams.model.Type deleteType(
 		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -212,6 +216,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -234,6 +239,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -264,6 +270,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -300,6 +307,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -340,6 +348,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -369,6 +378,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.ams.model.Type fetchType(long typeId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -396,6 +406,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.ams.model.Type getType(long typeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -428,6 +439,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -462,6 +474,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.ams.model.Type> getTypes(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -489,6 +502,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (java.util.List<com.liferay.ams.model.Type>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getTypesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -516,6 +530,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.ams.model.Type updateType(
 		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -545,6 +560,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -567,6 +583,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -586,6 +603,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {

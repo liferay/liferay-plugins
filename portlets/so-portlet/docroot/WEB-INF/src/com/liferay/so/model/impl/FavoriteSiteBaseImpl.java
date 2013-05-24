@@ -38,6 +38,7 @@ public abstract class FavoriteSiteBaseImpl extends FavoriteSiteModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a favorite site model instance should use the {@link FavoriteSite} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FavoriteSiteLocalServiceUtil.addFavoriteSite(this);

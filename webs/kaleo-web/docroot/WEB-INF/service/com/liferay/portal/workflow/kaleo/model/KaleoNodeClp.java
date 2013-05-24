@@ -39,26 +39,32 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 	public KaleoNodeClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoNode.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoNode.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoNodeId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -172,10 +178,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public long getKaleoNodeId() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNodeId = kaleoNodeId;
 
@@ -193,10 +201,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -214,10 +224,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -235,10 +247,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -256,18 +270,22 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -285,10 +303,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -306,10 +326,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -327,10 +349,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -349,10 +373,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -370,10 +396,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public String getMetadata() {
 		return _metadata;
 	}
 
+	@Override
 	public void setMetadata(String metadata) {
 		_metadata = metadata;
 
@@ -391,10 +419,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -412,10 +442,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public String getType() {
 		return _type;
 	}
 
+	@Override
 	public void setType(String type) {
 		_type = type;
 
@@ -433,14 +465,17 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public boolean getInitial() {
 		return _initial;
 	}
 
+	@Override
 	public boolean isInitial() {
 		return _initial;
 	}
 
+	@Override
 	public void setInitial(boolean initial) {
 		_initial = initial;
 
@@ -458,14 +493,17 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public boolean getTerminal() {
 		return _terminal;
 	}
 
+	@Override
 	public boolean isTerminal() {
 		return _terminal;
 	}
 
+	@Override
 	public void setTerminal(boolean terminal) {
 		_terminal = terminal;
 
@@ -483,6 +521,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getKaleoTransition(
 		java.lang.String name) {
 		try {
@@ -502,6 +541,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition getDefaultKaleoTransition() {
 		try {
 			String methodName = "getDefaultKaleoTransition";
@@ -520,6 +560,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public boolean hasKaleoTransition() {
 		try {
 			String methodName = "hasKaleoTransition";
@@ -538,6 +579,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> getKaleoTransitions() {
 		try {
 			String methodName = "getKaleoTransitions";
@@ -606,6 +648,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoNodeLocalServiceUtil.addKaleoNode(this);
@@ -643,6 +686,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoNode kaleoNode) {
 		int value = 0;
 
@@ -727,6 +771,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

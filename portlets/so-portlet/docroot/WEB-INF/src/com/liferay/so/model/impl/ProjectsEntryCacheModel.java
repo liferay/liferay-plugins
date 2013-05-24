@@ -67,6 +67,7 @@ public class ProjectsEntryCacheModel implements CacheModel<ProjectsEntry>,
 		return sb.toString();
 	}
 
+	@Override
 	public ProjectsEntry toEntityModel() {
 		ProjectsEntryImpl projectsEntryImpl = new ProjectsEntryImpl();
 
@@ -135,6 +136,7 @@ public class ProjectsEntryCacheModel implements CacheModel<ProjectsEntry>,
 		return projectsEntryImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		projectsEntryId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -149,6 +151,7 @@ public class ProjectsEntryCacheModel implements CacheModel<ProjectsEntry>,
 		data = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(projectsEntryId);

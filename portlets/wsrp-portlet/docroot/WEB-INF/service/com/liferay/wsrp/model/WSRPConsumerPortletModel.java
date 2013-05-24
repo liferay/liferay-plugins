@@ -174,41 +174,60 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	 */
 	public void setPortletHandle(String portletHandle);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(WSRPConsumerPortlet wsrpConsumerPortlet);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<WSRPConsumerPortlet> toCacheModel();
 
+	@Override
 	public WSRPConsumerPortlet toEscapedModel();
 
+	@Override
 	public WSRPConsumerPortlet toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

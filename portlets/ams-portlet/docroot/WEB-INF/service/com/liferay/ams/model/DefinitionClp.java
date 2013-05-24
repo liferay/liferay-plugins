@@ -41,26 +41,32 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 	public DefinitionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Definition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Definition.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _definitionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setDefinitionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _definitionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -167,10 +173,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public long getDefinitionId() {
 		return _definitionId;
 	}
 
+	@Override
 	public void setDefinitionId(long definitionId) {
 		_definitionId = definitionId;
 
@@ -188,10 +196,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -209,10 +219,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -230,10 +242,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -251,18 +265,22 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -280,10 +298,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -301,10 +321,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -322,10 +344,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public long getTypeId() {
 		return _typeId;
 	}
 
+	@Override
 	public void setTypeId(long typeId) {
 		_typeId = typeId;
 
@@ -343,10 +367,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public String getManufacturer() {
 		return _manufacturer;
 	}
 
+	@Override
 	public void setManufacturer(String manufacturer) {
 		_manufacturer = manufacturer;
 
@@ -364,10 +390,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public String getModel() {
 		return _model;
 	}
 
+	@Override
 	public void setModel(String model) {
 		_model = model;
 
@@ -385,10 +413,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public Date getOrderDate() {
 		return _orderDate;
 	}
 
+	@Override
 	public void setOrderDate(Date orderDate) {
 		_orderDate = orderDate;
 
@@ -406,10 +436,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public int getQuantity() {
 		return _quantity;
 	}
 
+	@Override
 	public void setQuantity(int quantity) {
 		_quantity = quantity;
 
@@ -427,10 +459,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	@Override
 	public double getPrice() {
 		return _price;
 	}
 
+	@Override
 	public void setPrice(double price) {
 		_price = price;
 
@@ -497,6 +531,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			DefinitionLocalServiceUtil.addDefinition(this);
@@ -533,6 +568,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Definition definition) {
 		long primaryKey = definition.getPrimaryKey();
 
@@ -609,6 +645,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(43);
 

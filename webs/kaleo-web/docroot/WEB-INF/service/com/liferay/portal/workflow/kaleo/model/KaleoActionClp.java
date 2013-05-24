@@ -40,26 +40,32 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	public KaleoActionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoAction.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoAction.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoActionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoActionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoActionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -202,10 +208,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public long getKaleoActionId() {
 		return _kaleoActionId;
 	}
 
+	@Override
 	public void setKaleoActionId(long kaleoActionId) {
 		_kaleoActionId = kaleoActionId;
 
@@ -223,10 +231,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -244,10 +254,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -265,10 +277,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -286,18 +300,22 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -315,10 +333,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -336,10 +356,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -357,10 +379,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getKaleoClassName() {
 		return _kaleoClassName;
 	}
 
+	@Override
 	public void setKaleoClassName(String kaleoClassName) {
 		_kaleoClassName = kaleoClassName;
 
@@ -379,10 +403,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public long getKaleoClassPK() {
 		return _kaleoClassPK;
 	}
 
+	@Override
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoClassPK = kaleoClassPK;
 
@@ -400,10 +426,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
 
@@ -422,10 +450,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getKaleoNodeName() {
 		return _kaleoNodeName;
 	}
 
+	@Override
 	public void setKaleoNodeName(String kaleoNodeName) {
 		_kaleoNodeName = kaleoNodeName;
 
@@ -443,10 +473,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getName() {
 		return _name;
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 
@@ -464,10 +496,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -485,10 +519,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getExecutionType() {
 		return _executionType;
 	}
 
+	@Override
 	public void setExecutionType(String executionType) {
 		_executionType = executionType;
 
@@ -506,10 +542,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getScript() {
 		return _script;
 	}
 
+	@Override
 	public void setScript(String script) {
 		_script = script;
 
@@ -527,10 +565,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getScriptLanguage() {
 		return _scriptLanguage;
 	}
 
+	@Override
 	public void setScriptLanguage(String scriptLanguage) {
 		_scriptLanguage = scriptLanguage;
 
@@ -549,10 +589,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public String getScriptRequiredContexts() {
 		return _scriptRequiredContexts;
 	}
 
+	@Override
 	public void setScriptRequiredContexts(String scriptRequiredContexts) {
 		_scriptRequiredContexts = scriptRequiredContexts;
 
@@ -571,10 +613,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	@Override
 	public int getPriority() {
 		return _priority;
 	}
 
+	@Override
 	public void setPriority(int priority) {
 		_priority = priority;
 
@@ -641,6 +685,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoActionLocalServiceUtil.addKaleoAction(this);
@@ -682,6 +727,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(KaleoAction kaleoAction) {
 		int value = 0;
 
@@ -774,6 +820,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(58);
 

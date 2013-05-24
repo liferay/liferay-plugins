@@ -35,6 +35,7 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _pollsQuestionService.getBeanIdentifier();
 	}
@@ -44,10 +45,12 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_pollsQuestionService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -55,6 +58,7 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 			arguments);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion addPollsQuestion(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -70,6 +74,7 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 			pollsChoices, serviceContext);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion deletePollsQuestion(
 		long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -77,6 +82,7 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 		return _pollsQuestionService.deletePollsQuestion(pollsQuestionId);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion getPollsQuestion(
 		long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -84,6 +90,7 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 		return _pollsQuestionService.getPollsQuestion(pollsQuestionId);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsQuestion updatePollsQuestion(
 		long pollsQuestionId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -115,10 +122,12 @@ public class PollsQuestionServiceWrapper implements PollsQuestionService,
 		_pollsQuestionService = pollsQuestionService;
 	}
 
+	@Override
 	public PollsQuestionService getWrappedService() {
 		return _pollsQuestionService;
 	}
 
+	@Override
 	public void setWrappedService(PollsQuestionService pollsQuestionService) {
 		_pollsQuestionService = pollsQuestionService;
 	}

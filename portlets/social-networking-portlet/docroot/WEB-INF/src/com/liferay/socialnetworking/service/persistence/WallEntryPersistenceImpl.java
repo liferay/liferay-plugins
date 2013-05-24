@@ -110,6 +110,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByGroupId(long groupId)
 		throws SystemException {
 		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -128,6 +129,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByGroupId(long groupId, int start, int end)
 		throws SystemException {
 		return findByGroupId(groupId, start, end, null);
@@ -147,6 +149,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the ordered range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByGroupId(long groupId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -253,6 +256,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByGroupId_First(long groupId,
 		OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -282,6 +286,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByGroupId_First(long groupId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<WallEntry> list = findByGroupId(groupId, 0, 1, orderByComparator);
@@ -302,6 +307,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByGroupId_Last(long groupId,
 		OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -331,6 +337,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByGroupId_Last(long groupId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGroupId(groupId);
@@ -355,6 +362,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry[] findByGroupId_PrevAndNext(long wallEntryId,
 		long groupId, OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -496,6 +504,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param groupId the group ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (WallEntry wallEntry : findByGroupId(groupId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -510,6 +519,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the number of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByGroupId(long groupId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_GROUPID;
 
@@ -584,6 +594,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByUserId(long userId) throws SystemException {
 		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -601,6 +612,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByUserId(long userId, int start, int end)
 		throws SystemException {
 		return findByUserId(userId, start, end, null);
@@ -620,6 +632,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the ordered range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -726,6 +739,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -755,6 +769,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByUserId_First(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<WallEntry> list = findByUserId(userId, 0, 1, orderByComparator);
@@ -775,6 +790,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -804,6 +820,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByUserId_Last(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
@@ -828,6 +845,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry[] findByUserId_PrevAndNext(long wallEntryId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -969,6 +987,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByUserId(long userId) throws SystemException {
 		for (WallEntry wallEntry : findByUserId(userId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -983,6 +1002,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the number of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByUserId(long userId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
 
@@ -1058,6 +1078,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByG_U(long groupId, long userId)
 		throws SystemException {
 		return findByG_U(groupId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -1078,6 +1099,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByG_U(long groupId, long userId, int start,
 		int end) throws SystemException {
 		return findByG_U(groupId, userId, start, end, null);
@@ -1098,6 +1120,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the ordered range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findByG_U(long groupId, long userId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1214,6 +1237,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByG_U_First(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -1248,6 +1272,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByG_U_First(long groupId, long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<WallEntry> list = findByG_U(groupId, userId, 0, 1,
@@ -1270,6 +1295,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByG_U_Last(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -1303,6 +1329,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByG_U_Last(long groupId, long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_U(groupId, userId);
@@ -1328,6 +1355,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry[] findByG_U_PrevAndNext(long wallEntryId, long groupId,
 		long userId, OrderByComparator orderByComparator)
 		throws NoSuchWallEntryException, SystemException {
@@ -1474,6 +1502,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByG_U(long groupId, long userId)
 		throws SystemException {
 		for (WallEntry wallEntry : findByG_U(groupId, userId,
@@ -1490,6 +1519,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the number of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByG_U(long groupId, long userId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_U;
 
@@ -1547,6 +1577,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param wallEntry the wall entry
 	 */
+	@Override
 	public void cacheResult(WallEntry wallEntry) {
 		EntityCacheUtil.putResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
 			WallEntryImpl.class, wallEntry.getPrimaryKey(), wallEntry);
@@ -1559,6 +1590,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param wallEntries the wall entries
 	 */
+	@Override
 	public void cacheResult(List<WallEntry> wallEntries) {
 		for (WallEntry wallEntry : wallEntries) {
 			if (EntityCacheUtil.getResult(
@@ -1625,6 +1657,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param wallEntryId the primary key for the new wall entry
 	 * @return the new wall entry
 	 */
+	@Override
 	public WallEntry create(long wallEntryId) {
 		WallEntry wallEntry = new WallEntryImpl();
 
@@ -1642,6 +1675,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry remove(long wallEntryId)
 		throws NoSuchWallEntryException, SystemException {
 		return remove((Serializable)wallEntryId);
@@ -1876,6 +1910,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry findByPrimaryKey(long wallEntryId)
 		throws NoSuchWallEntryException, SystemException {
 		return findByPrimaryKey((Serializable)wallEntryId);
@@ -1936,6 +1971,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the wall entry, or <code>null</code> if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WallEntry fetchByPrimaryKey(long wallEntryId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)wallEntryId);
@@ -1947,6 +1983,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1963,6 +2000,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the range of wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -1981,6 +2019,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the ordered range of wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WallEntry> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -2066,6 +2105,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (WallEntry wallEntry : findAll()) {
 			remove(wallEntry);
@@ -2078,6 +2118,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @return the number of wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -2164,6 +2205,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		};
 
 	private static CacheModel<WallEntry> _nullWallEntryCacheModel = new CacheModel<WallEntry>() {
+			@Override
 			public WallEntry toEntityModel() {
 				return _nullWallEntry;
 			}

@@ -113,6 +113,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByMBThreadId(long mbThreadId)
 		throws SystemException {
 		return findByMBThreadId(mbThreadId, QueryUtil.ALL_POS,
@@ -132,6 +133,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByMBThreadId(long mbThreadId, int start, int end)
 		throws SystemException {
 		return findByMBThreadId(mbThreadId, start, end, null);
@@ -151,6 +153,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the ordered range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByMBThreadId(long mbThreadId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -257,6 +260,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByMBThreadId_First(long mbThreadId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -287,6 +291,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByMBThreadId_First(long mbThreadId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<UserThread> list = findByMBThreadId(mbThreadId, 0, 1,
@@ -308,6 +313,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByMBThreadId_Last(long mbThreadId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -338,6 +344,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByMBThreadId_Last(long mbThreadId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMBThreadId(mbThreadId);
@@ -362,6 +369,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread[] findByMBThreadId_PrevAndNext(long userThreadId,
 		long mbThreadId, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -503,6 +511,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @param mbThreadId the mb thread ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByMBThreadId(long mbThreadId) throws SystemException {
 		for (UserThread userThread : findByMBThreadId(mbThreadId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
@@ -517,6 +526,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the number of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByMBThreadId(long mbThreadId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_MBTHREADID;
 
@@ -591,6 +601,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByUserId(long userId) throws SystemException {
 		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -608,6 +619,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByUserId(long userId, int start, int end)
 		throws SystemException {
 		return findByUserId(userId, start, end, null);
@@ -627,6 +639,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the ordered range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -733,6 +746,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -762,6 +776,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByUserId_First(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<UserThread> list = findByUserId(userId, 0, 1, orderByComparator);
@@ -782,6 +797,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -811,6 +827,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByUserId_Last(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
@@ -835,6 +852,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread[] findByUserId_PrevAndNext(long userThreadId,
 		long userId, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -976,6 +994,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByUserId(long userId) throws SystemException {
 		for (UserThread userThread : findByUserId(userId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -990,6 +1009,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the number of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByUserId(long userId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
 
@@ -1056,6 +1076,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByU_M(long userId, long mbThreadId)
 		throws NoSuchUserThreadException, SystemException {
 		UserThread userThread = fetchByU_M(userId, mbThreadId);
@@ -1091,6 +1112,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByU_M(long userId, long mbThreadId)
 		throws SystemException {
 		return fetchByU_M(userId, mbThreadId, true);
@@ -1105,6 +1127,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByU_M(long userId, long mbThreadId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { userId, mbThreadId };
@@ -1203,6 +1226,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the user thread that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread removeByU_M(long userId, long mbThreadId)
 		throws NoSuchUserThreadException, SystemException {
 		UserThread userThread = findByU_M(userId, mbThreadId);
@@ -1218,6 +1242,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the number of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByU_M(long userId, long mbThreadId)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_M;
@@ -1299,6 +1324,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByU_D(long userId, boolean deleted)
 		throws SystemException {
 		return findByU_D(userId, deleted, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -1319,6 +1345,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByU_D(long userId, boolean deleted, int start,
 		int end) throws SystemException {
 		return findByU_D(userId, deleted, start, end, null);
@@ -1339,6 +1366,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the ordered range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByU_D(long userId, boolean deleted, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1455,6 +1483,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByU_D_First(long userId, boolean deleted,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -1489,6 +1518,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByU_D_First(long userId, boolean deleted,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<UserThread> list = findByU_D(userId, deleted, 0, 1,
@@ -1511,6 +1541,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByU_D_Last(long userId, boolean deleted,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -1545,6 +1576,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByU_D_Last(long userId, boolean deleted,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByU_D(userId, deleted);
@@ -1570,6 +1602,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread[] findByU_D_PrevAndNext(long userThreadId, long userId,
 		boolean deleted, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -1716,6 +1749,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @param deleted the deleted
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByU_D(long userId, boolean deleted)
 		throws SystemException {
 		for (UserThread userThread : findByU_D(userId, deleted,
@@ -1732,6 +1766,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the number of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByU_D(long userId, boolean deleted)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_D;
@@ -1822,6 +1857,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByU_R_D(long userId, boolean read,
 		boolean deleted) throws SystemException {
 		return findByU_R_D(userId, read, deleted, QueryUtil.ALL_POS,
@@ -1843,6 +1879,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByU_R_D(long userId, boolean read,
 		boolean deleted, int start, int end) throws SystemException {
 		return findByU_R_D(userId, read, deleted, start, end, null);
@@ -1864,6 +1901,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the ordered range of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findByU_R_D(long userId, boolean read,
 		boolean deleted, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1987,6 +2025,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByU_R_D_First(long userId, boolean read,
 		boolean deleted, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -2025,6 +2064,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByU_R_D_First(long userId, boolean read,
 		boolean deleted, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -2049,6 +2089,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByU_R_D_Last(long userId, boolean read,
 		boolean deleted, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -2087,6 +2128,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByU_R_D_Last(long userId, boolean read,
 		boolean deleted, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -2114,6 +2156,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread[] findByU_R_D_PrevAndNext(long userThreadId, long userId,
 		boolean read, boolean deleted, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
@@ -2265,6 +2308,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @param deleted the deleted
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByU_R_D(long userId, boolean read, boolean deleted)
 		throws SystemException {
 		for (UserThread userThread : findByU_R_D(userId, read, deleted,
@@ -2282,6 +2326,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the number of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByU_R_D(long userId, boolean read, boolean deleted)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_R_D;
@@ -2345,6 +2390,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @param userThread the user thread
 	 */
+	@Override
 	public void cacheResult(UserThread userThread) {
 		EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey(), userThread);
@@ -2361,6 +2407,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @param userThreads the user threads
 	 */
+	@Override
 	public void cacheResult(List<UserThread> userThreads) {
 		for (UserThread userThread : userThreads) {
 			if (EntityCacheUtil.getResult(
@@ -2480,6 +2527,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @param userThreadId the primary key for the new user thread
 	 * @return the new user thread
 	 */
+	@Override
 	public UserThread create(long userThreadId) {
 		UserThread userThread = new UserThreadImpl();
 
@@ -2497,6 +2545,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread remove(long userThreadId)
 		throws NoSuchUserThreadException, SystemException {
 		return remove((Serializable)userThreadId);
@@ -2761,6 +2810,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread findByPrimaryKey(long userThreadId)
 		throws NoSuchUserThreadException, SystemException {
 		return findByPrimaryKey((Serializable)userThreadId);
@@ -2821,6 +2871,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the user thread, or <code>null</code> if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread fetchByPrimaryKey(long userThreadId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)userThreadId);
@@ -2832,6 +2883,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -2848,6 +2900,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the range of user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -2866,6 +2919,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the ordered range of user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -2951,6 +3005,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (UserThread userThread : findAll()) {
 			remove(userThread);
@@ -2963,6 +3018,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * @return the number of user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -3057,6 +3113,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		};
 
 	private static CacheModel<UserThread> _nullUserThreadCacheModel = new CacheModel<UserThread>() {
+			@Override
 			public UserThread toEntityModel() {
 				return _nullUserThread;
 			}

@@ -40,26 +40,32 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	public AppClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return App.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return App.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _appId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setAppId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _appId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -138,10 +144,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public String getUuid() {
 		return _uuid;
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		_uuid = uuid;
 
@@ -159,10 +167,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public long getAppId() {
 		return _appId;
 	}
 
+	@Override
 	public void setAppId(long appId) {
 		_appId = appId;
 
@@ -180,10 +190,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -201,10 +213,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -222,18 +236,22 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -251,10 +269,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -272,10 +292,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -293,10 +315,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public long getRemoteAppId() {
 		return _remoteAppId;
 	}
 
+	@Override
 	public void setRemoteAppId(long remoteAppId) {
 		_remoteAppId = remoteAppId;
 
@@ -314,10 +338,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public String getVersion() {
 		return _version;
 	}
 
+	@Override
 	public void setVersion(String version) {
 		_version = version;
 
@@ -335,6 +361,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public boolean isDownloaded() {
 		try {
 			String methodName = "isDownloaded";
@@ -353,6 +380,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public java.lang.String getFileDir() {
 		try {
 			String methodName = "getFileDir";
@@ -371,6 +399,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public java.lang.String getFileName() {
 		try {
 			String methodName = "getFileName";
@@ -389,6 +418,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public boolean isInstalled() {
 		try {
 			String methodName = "isInstalled";
@@ -407,6 +437,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		}
 	}
 
+	@Override
 	public java.lang.String getFilePath() {
 		try {
 			String methodName = "getFilePath";
@@ -474,6 +505,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			AppLocalServiceUtil.addApp(this);
@@ -506,6 +538,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(App app) {
 		long primaryKey = app.getPrimaryKey();
 
@@ -574,6 +607,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

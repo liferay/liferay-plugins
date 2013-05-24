@@ -34,6 +34,7 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _socialOfficeService.getBeanIdentifier();
 	}
@@ -43,22 +44,26 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_socialOfficeService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _socialOfficeService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	@Override
 	public long[] getUserSocialOfficeGroupIds()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _socialOfficeService.getUserSocialOfficeGroupIds();
 	}
 
+	@Override
 	public boolean isSocialOfficeGroup(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -80,10 +85,12 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 		_socialOfficeService = socialOfficeService;
 	}
 
+	@Override
 	public SocialOfficeService getWrappedService() {
 		return _socialOfficeService;
 	}
 
+	@Override
 	public void setWrappedService(SocialOfficeService socialOfficeService) {
 		_socialOfficeService = socialOfficeService;
 	}

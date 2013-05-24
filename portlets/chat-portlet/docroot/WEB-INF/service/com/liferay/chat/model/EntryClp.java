@@ -39,26 +39,32 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	public EntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Entry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Entry.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _entryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _entryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -116,10 +122,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public long getEntryId() {
 		return _entryId;
 	}
 
+	@Override
 	public void setEntryId(long entryId) {
 		_entryId = entryId;
 
@@ -137,10 +145,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public long getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(long createDate) {
 		_createDate = createDate;
 
@@ -158,10 +168,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public long getFromUserId() {
 		return _fromUserId;
 	}
 
+	@Override
 	public void setFromUserId(long fromUserId) {
 		_fromUserId = fromUserId;
 
@@ -179,18 +191,22 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public String getFromUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getFromUserId(), "uuid", _fromUserUuid);
 	}
 
+	@Override
 	public void setFromUserUuid(String fromUserUuid) {
 		_fromUserUuid = fromUserUuid;
 	}
 
+	@Override
 	public long getToUserId() {
 		return _toUserId;
 	}
 
+	@Override
 	public void setToUserId(long toUserId) {
 		_toUserId = toUserId;
 
@@ -208,18 +224,22 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public String getToUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getToUserId(), "uuid", _toUserUuid);
 	}
 
+	@Override
 	public void setToUserUuid(String toUserUuid) {
 		_toUserUuid = toUserUuid;
 	}
 
+	@Override
 	public String getContent() {
 		return _content;
 	}
 
+	@Override
 	public void setContent(String content) {
 		_content = content;
 
@@ -237,10 +257,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	@Override
 	public int getFlag() {
 		return _flag;
 	}
 
+	@Override
 	public void setFlag(int flag) {
 		_flag = flag;
 
@@ -307,6 +329,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			EntryLocalServiceUtil.addEntry(this);
@@ -336,6 +359,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Entry entry) {
 		int value = 0;
 
@@ -406,6 +430,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(22);
 

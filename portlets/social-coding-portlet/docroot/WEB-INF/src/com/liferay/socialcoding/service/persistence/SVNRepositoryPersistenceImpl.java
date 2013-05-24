@@ -103,6 +103,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a matching s v n repository could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository findByUrl(String url)
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = fetchByUrl(url);
@@ -134,6 +135,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository fetchByUrl(String url) throws SystemException {
 		return fetchByUrl(url, true);
 	}
@@ -146,6 +148,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository fetchByUrl(String url, boolean retrieveFromCache)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { url };
@@ -252,6 +255,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the s v n repository that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository removeByUrl(String url)
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = findByUrl(url);
@@ -266,6 +270,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the number of matching s v n repositories
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByUrl(String url) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_URL;
 
@@ -334,6 +339,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 *
 	 * @param svnRepository the s v n repository
 	 */
+	@Override
 	public void cacheResult(SVNRepository svnRepository) {
 		EntityCacheUtil.putResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey(),
@@ -350,6 +356,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 *
 	 * @param svnRepositories the s v n repositories
 	 */
+	@Override
 	public void cacheResult(List<SVNRepository> svnRepositories) {
 		for (SVNRepository svnRepository : svnRepositories) {
 			if (EntityCacheUtil.getResult(
@@ -461,6 +468,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @param svnRepositoryId the primary key for the new s v n repository
 	 * @return the new s v n repository
 	 */
+	@Override
 	public SVNRepository create(long svnRepositoryId) {
 		SVNRepository svnRepository = new SVNRepositoryImpl();
 
@@ -478,6 +486,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository remove(long svnRepositoryId)
 		throws NoSuchSVNRepositoryException, SystemException {
 		return remove((Serializable)svnRepositoryId);
@@ -652,6 +661,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository findByPrimaryKey(long svnRepositoryId)
 		throws NoSuchSVNRepositoryException, SystemException {
 		return findByPrimaryKey((Serializable)svnRepositoryId);
@@ -712,6 +722,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the s v n repository, or <code>null</code> if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public SVNRepository fetchByPrimaryKey(long svnRepositoryId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)svnRepositoryId);
@@ -723,6 +734,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the s v n repositories
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<SVNRepository> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -739,6 +751,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the range of s v n repositories
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<SVNRepository> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -757,6 +770,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the ordered range of s v n repositories
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<SVNRepository> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -842,6 +856,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (SVNRepository svnRepository : findAll()) {
 			remove(svnRepository);
@@ -854,6 +869,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * @return the number of s v n repositories
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -940,6 +956,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		};
 
 	private static CacheModel<SVNRepository> _nullSVNRepositoryCacheModel = new CacheModel<SVNRepository>() {
+			@Override
 			public SVNRepository toEntityModel() {
 				return _nullSVNRepository;
 			}

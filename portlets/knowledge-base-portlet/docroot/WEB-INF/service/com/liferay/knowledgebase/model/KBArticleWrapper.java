@@ -34,14 +34,17 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		_kbArticle = kbArticle;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KBArticle.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KBArticle.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -73,6 +76,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -225,6 +229,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the primary key of this k b article
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _kbArticle.getPrimaryKey();
 	}
@@ -234,6 +239,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param primaryKey the primary key of this k b article
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_kbArticle.setPrimaryKey(primaryKey);
 	}
@@ -243,6 +249,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the uuid of this k b article
 	*/
+	@Override
 	public java.lang.String getUuid() {
 		return _kbArticle.getUuid();
 	}
@@ -252,6 +259,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param uuid the uuid of this k b article
 	*/
+	@Override
 	public void setUuid(java.lang.String uuid) {
 		_kbArticle.setUuid(uuid);
 	}
@@ -261,6 +269,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the kb article ID of this k b article
 	*/
+	@Override
 	public long getKbArticleId() {
 		return _kbArticle.getKbArticleId();
 	}
@@ -270,6 +279,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param kbArticleId the kb article ID of this k b article
 	*/
+	@Override
 	public void setKbArticleId(long kbArticleId) {
 		_kbArticle.setKbArticleId(kbArticleId);
 	}
@@ -279,6 +289,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the resource prim key of this k b article
 	*/
+	@Override
 	public long getResourcePrimKey() {
 		return _kbArticle.getResourcePrimKey();
 	}
@@ -288,10 +299,12 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param resourcePrimKey the resource prim key of this k b article
 	*/
+	@Override
 	public void setResourcePrimKey(long resourcePrimKey) {
 		_kbArticle.setResourcePrimKey(resourcePrimKey);
 	}
 
+	@Override
 	public boolean isResourceMain() {
 		return _kbArticle.isResourceMain();
 	}
@@ -301,6 +314,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the group ID of this k b article
 	*/
+	@Override
 	public long getGroupId() {
 		return _kbArticle.getGroupId();
 	}
@@ -310,6 +324,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param groupId the group ID of this k b article
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_kbArticle.setGroupId(groupId);
 	}
@@ -319,6 +334,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the company ID of this k b article
 	*/
+	@Override
 	public long getCompanyId() {
 		return _kbArticle.getCompanyId();
 	}
@@ -328,6 +344,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param companyId the company ID of this k b article
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_kbArticle.setCompanyId(companyId);
 	}
@@ -337,6 +354,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the user ID of this k b article
 	*/
+	@Override
 	public long getUserId() {
 		return _kbArticle.getUserId();
 	}
@@ -346,6 +364,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param userId the user ID of this k b article
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_kbArticle.setUserId(userId);
 	}
@@ -356,6 +375,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	* @return the user uuid of this k b article
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticle.getUserUuid();
@@ -366,6 +386,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param userUuid the user uuid of this k b article
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_kbArticle.setUserUuid(userUuid);
 	}
@@ -375,6 +396,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the user name of this k b article
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _kbArticle.getUserName();
 	}
@@ -384,6 +406,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param userName the user name of this k b article
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_kbArticle.setUserName(userName);
 	}
@@ -393,6 +416,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the create date of this k b article
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _kbArticle.getCreateDate();
 	}
@@ -402,6 +426,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param createDate the create date of this k b article
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_kbArticle.setCreateDate(createDate);
 	}
@@ -411,6 +436,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the modified date of this k b article
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _kbArticle.getModifiedDate();
 	}
@@ -420,6 +446,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param modifiedDate the modified date of this k b article
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_kbArticle.setModifiedDate(modifiedDate);
 	}
@@ -429,6 +456,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the root resource prim key of this k b article
 	*/
+	@Override
 	public long getRootResourcePrimKey() {
 		return _kbArticle.getRootResourcePrimKey();
 	}
@@ -438,6 +466,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param rootResourcePrimKey the root resource prim key of this k b article
 	*/
+	@Override
 	public void setRootResourcePrimKey(long rootResourcePrimKey) {
 		_kbArticle.setRootResourcePrimKey(rootResourcePrimKey);
 	}
@@ -447,6 +476,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the parent resource prim key of this k b article
 	*/
+	@Override
 	public long getParentResourcePrimKey() {
 		return _kbArticle.getParentResourcePrimKey();
 	}
@@ -456,6 +486,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param parentResourcePrimKey the parent resource prim key of this k b article
 	*/
+	@Override
 	public void setParentResourcePrimKey(long parentResourcePrimKey) {
 		_kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
 	}
@@ -465,6 +496,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the version of this k b article
 	*/
+	@Override
 	public int getVersion() {
 		return _kbArticle.getVersion();
 	}
@@ -474,6 +506,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param version the version of this k b article
 	*/
+	@Override
 	public void setVersion(int version) {
 		_kbArticle.setVersion(version);
 	}
@@ -483,6 +516,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the title of this k b article
 	*/
+	@Override
 	public java.lang.String getTitle() {
 		return _kbArticle.getTitle();
 	}
@@ -492,6 +526,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param title the title of this k b article
 	*/
+	@Override
 	public void setTitle(java.lang.String title) {
 		_kbArticle.setTitle(title);
 	}
@@ -501,6 +536,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the content of this k b article
 	*/
+	@Override
 	public java.lang.String getContent() {
 		return _kbArticle.getContent();
 	}
@@ -510,6 +546,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param content the content of this k b article
 	*/
+	@Override
 	public void setContent(java.lang.String content) {
 		_kbArticle.setContent(content);
 	}
@@ -519,6 +556,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the description of this k b article
 	*/
+	@Override
 	public java.lang.String getDescription() {
 		return _kbArticle.getDescription();
 	}
@@ -528,6 +566,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param description the description of this k b article
 	*/
+	@Override
 	public void setDescription(java.lang.String description) {
 		_kbArticle.setDescription(description);
 	}
@@ -537,6 +576,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the priority of this k b article
 	*/
+	@Override
 	public double getPriority() {
 		return _kbArticle.getPriority();
 	}
@@ -546,6 +586,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param priority the priority of this k b article
 	*/
+	@Override
 	public void setPriority(double priority) {
 		_kbArticle.setPriority(priority);
 	}
@@ -555,6 +596,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the sections of this k b article
 	*/
+	@Override
 	public java.lang.String getSections() {
 		return _kbArticle.getSections();
 	}
@@ -564,6 +606,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param sections the sections of this k b article
 	*/
+	@Override
 	public void setSections(java.lang.String sections) {
 		_kbArticle.setSections(sections);
 	}
@@ -573,6 +616,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the view count of this k b article
 	*/
+	@Override
 	public int getViewCount() {
 		return _kbArticle.getViewCount();
 	}
@@ -582,6 +626,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param viewCount the view count of this k b article
 	*/
+	@Override
 	public void setViewCount(int viewCount) {
 		_kbArticle.setViewCount(viewCount);
 	}
@@ -591,6 +636,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the latest of this k b article
 	*/
+	@Override
 	public boolean getLatest() {
 		return _kbArticle.getLatest();
 	}
@@ -600,6 +646,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is latest; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isLatest() {
 		return _kbArticle.isLatest();
 	}
@@ -609,6 +656,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param latest the latest of this k b article
 	*/
+	@Override
 	public void setLatest(boolean latest) {
 		_kbArticle.setLatest(latest);
 	}
@@ -618,6 +666,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the main of this k b article
 	*/
+	@Override
 	public boolean getMain() {
 		return _kbArticle.getMain();
 	}
@@ -627,6 +676,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is main; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isMain() {
 		return _kbArticle.isMain();
 	}
@@ -636,6 +686,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param main the main of this k b article
 	*/
+	@Override
 	public void setMain(boolean main) {
 		_kbArticle.setMain(main);
 	}
@@ -645,6 +696,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the status of this k b article
 	*/
+	@Override
 	public int getStatus() {
 		return _kbArticle.getStatus();
 	}
@@ -654,6 +706,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param status the status of this k b article
 	*/
+	@Override
 	public void setStatus(int status) {
 		_kbArticle.setStatus(status);
 	}
@@ -663,6 +716,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the status by user ID of this k b article
 	*/
+	@Override
 	public long getStatusByUserId() {
 		return _kbArticle.getStatusByUserId();
 	}
@@ -672,6 +726,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param statusByUserId the status by user ID of this k b article
 	*/
+	@Override
 	public void setStatusByUserId(long statusByUserId) {
 		_kbArticle.setStatusByUserId(statusByUserId);
 	}
@@ -682,6 +737,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	* @return the status by user uuid of this k b article
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getStatusByUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticle.getStatusByUserUuid();
@@ -692,6 +748,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param statusByUserUuid the status by user uuid of this k b article
 	*/
+	@Override
 	public void setStatusByUserUuid(java.lang.String statusByUserUuid) {
 		_kbArticle.setStatusByUserUuid(statusByUserUuid);
 	}
@@ -701,6 +758,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the status by user name of this k b article
 	*/
+	@Override
 	public java.lang.String getStatusByUserName() {
 		return _kbArticle.getStatusByUserName();
 	}
@@ -710,6 +768,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param statusByUserName the status by user name of this k b article
 	*/
+	@Override
 	public void setStatusByUserName(java.lang.String statusByUserName) {
 		_kbArticle.setStatusByUserName(statusByUserName);
 	}
@@ -719,6 +778,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return the status date of this k b article
 	*/
+	@Override
 	public java.util.Date getStatusDate() {
 		return _kbArticle.getStatusDate();
 	}
@@ -728,6 +788,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @param statusDate the status date of this k b article
 	*/
+	@Override
 	public void setStatusDate(java.util.Date statusDate) {
 		_kbArticle.setStatusDate(statusDate);
 	}
@@ -735,6 +796,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	/**
 	* @deprecated As of 6.1.0, replaced by {@link #isApproved()}
 	*/
+	@Override
 	public boolean getApproved() {
 		return _kbArticle.getApproved();
 	}
@@ -744,6 +806,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is approved; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isApproved() {
 		return _kbArticle.isApproved();
 	}
@@ -753,6 +816,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is denied; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isDenied() {
 		return _kbArticle.isDenied();
 	}
@@ -762,6 +826,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is a draft; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isDraft() {
 		return _kbArticle.isDraft();
 	}
@@ -771,6 +836,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is expired; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isExpired() {
 		return _kbArticle.isExpired();
 	}
@@ -780,6 +846,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is inactive; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isInactive() {
 		return _kbArticle.isInactive();
 	}
@@ -789,6 +856,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is incomplete; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isIncomplete() {
 		return _kbArticle.isIncomplete();
 	}
@@ -798,6 +866,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is in the Recycle Bin; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isInTrash() {
 		return _kbArticle.isInTrash();
 	}
@@ -807,6 +876,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is pending; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isPending() {
 		return _kbArticle.isPending();
 	}
@@ -816,52 +886,64 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	*
 	* @return <code>true</code> if this k b article is scheduled; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isScheduled() {
 		return _kbArticle.isScheduled();
 	}
 
+	@Override
 	public boolean isNew() {
 		return _kbArticle.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_kbArticle.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _kbArticle.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_kbArticle.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _kbArticle.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kbArticle.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_kbArticle.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _kbArticle.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_kbArticle.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_kbArticle.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_kbArticle.setExpandoBridgeAttributes(serviceContext);
@@ -872,6 +954,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return new KBArticleWrapper((KBArticle)_kbArticle.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.knowledgebase.model.KBArticle kbArticle) {
 		return _kbArticle.compareTo(kbArticle);
 	}
@@ -881,14 +964,17 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return _kbArticle.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.knowledgebase.model.KBArticle> toCacheModel() {
 		return _kbArticle.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle toEscapedModel() {
 		return new KBArticleWrapper(_kbArticle.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle toUnescapedModel() {
 		return new KBArticleWrapper(_kbArticle.toUnescapedModel());
 	}
@@ -898,45 +984,54 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return _kbArticle.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _kbArticle.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kbArticle.persist();
 	}
 
+	@Override
 	public java.lang.String getAttachmentsDirName() {
 		return _kbArticle.getAttachmentsDirName();
 	}
 
+	@Override
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getAttachmentsFileEntries()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticle.getAttachmentsFileEntries();
 	}
 
+	@Override
 	public java.lang.String[] getAttachmentsFileNames()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticle.getAttachmentsFileNames();
 	}
 
+	@Override
 	public long getAttachmentsFolderId()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticle.getAttachmentsFolderId();
 	}
 
+	@Override
 	public long getClassPK() {
 		return _kbArticle.getClassPK();
 	}
 
+	@Override
 	public boolean isFirstVersion() {
 		return _kbArticle.isFirstVersion();
 	}
 
+	@Override
 	public boolean isRoot() {
 		return _kbArticle.isRoot();
 	}
@@ -948,10 +1043,12 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		return _kbArticle;
 	}
 
+	@Override
 	public KBArticle getWrappedModel() {
 		return _kbArticle;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_kbArticle.resetOriginalValues();
 	}

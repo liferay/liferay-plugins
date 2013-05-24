@@ -79,6 +79,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Message addMessage(Message message) throws SystemException {
 		message.setNew(true);
 
@@ -91,6 +92,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param messageId the primary key for the new message
 	 * @return the new message
 	 */
+	@Override
 	public Message createMessage(long messageId) {
 		return messagePersistence.create(messageId);
 	}
@@ -104,6 +106,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Message deleteMessage(long messageId)
 		throws PortalException, SystemException {
 		return messagePersistence.remove(messageId);
@@ -118,11 +121,13 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Message deleteMessage(Message message)
 		throws PortalException, SystemException {
 		return messagePersistence.remove(message);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -137,6 +142,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -156,6 +162,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -176,6 +183,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -190,11 +198,13 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return messagePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Message fetchMessage(long messageId) throws SystemException {
 		return messagePersistence.fetchByPrimaryKey(messageId);
 	}
@@ -207,11 +217,13 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a message with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Message getMessage(long messageId)
 		throws PortalException, SystemException {
 		return messagePersistence.findByPrimaryKey(messageId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return messagePersistence.findByPrimaryKey(primaryKeyObj);
@@ -229,6 +241,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Message> getMessages(int start, int end)
 		throws SystemException {
 		return messagePersistence.findAll(start, end);
@@ -240,6 +253,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of messages
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getMessagesCount() throws SystemException {
 		return messagePersistence.countAll();
 	}
@@ -252,6 +266,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Message updateMessage(Message message) throws SystemException {
 		return messagePersistence.update(message);
 	}
@@ -512,6 +527,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -521,10 +537,12 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

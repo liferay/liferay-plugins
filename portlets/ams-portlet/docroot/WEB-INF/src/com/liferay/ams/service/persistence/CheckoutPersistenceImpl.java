@@ -86,6 +86,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 *
 	 * @param checkout the checkout
 	 */
+	@Override
 	public void cacheResult(Checkout checkout) {
 		EntityCacheUtil.putResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
 			CheckoutImpl.class, checkout.getPrimaryKey(), checkout);
@@ -98,6 +99,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 *
 	 * @param checkouts the checkouts
 	 */
+	@Override
 	public void cacheResult(List<Checkout> checkouts) {
 		for (Checkout checkout : checkouts) {
 			if (EntityCacheUtil.getResult(
@@ -164,6 +166,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @param checkoutId the primary key for the new checkout
 	 * @return the new checkout
 	 */
+	@Override
 	public Checkout create(long checkoutId) {
 		Checkout checkout = new CheckoutImpl();
 
@@ -181,6 +184,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout remove(long checkoutId)
 		throws NoSuchCheckoutException, SystemException {
 		return remove((Serializable)checkoutId);
@@ -356,6 +360,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout findByPrimaryKey(long checkoutId)
 		throws NoSuchCheckoutException, SystemException {
 		return findByPrimaryKey((Serializable)checkoutId);
@@ -415,6 +420,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Checkout fetchByPrimaryKey(long checkoutId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)checkoutId);
@@ -426,6 +432,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @return the checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Checkout> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -442,6 +449,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @return the range of checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Checkout> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
@@ -459,6 +467,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @return the ordered range of checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Checkout> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -544,6 +553,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (Checkout checkout : findAll()) {
 			remove(checkout);
@@ -556,6 +566,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 * @return the number of checkouts
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -639,6 +650,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		};
 
 	private static CacheModel<Checkout> _nullCheckoutCacheModel = new CacheModel<Checkout>() {
+			@Override
 			public Checkout toEntityModel() {
 				return _nullCheckout;
 			}

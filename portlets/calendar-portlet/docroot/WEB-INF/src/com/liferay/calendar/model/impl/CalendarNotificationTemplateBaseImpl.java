@@ -39,6 +39,7 @@ public abstract class CalendarNotificationTemplateBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a calendar notification template model instance should use the {@link CalendarNotificationTemplate} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			CalendarNotificationTemplateLocalServiceUtil.addCalendarNotificationTemplate(this);

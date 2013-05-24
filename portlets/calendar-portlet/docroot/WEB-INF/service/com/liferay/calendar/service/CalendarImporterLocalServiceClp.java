@@ -44,6 +44,7 @@ public class CalendarImporterLocalServiceClp
 		_methodParameterTypes4 = new String[] {  };
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -66,6 +67,7 @@ public class CalendarImporterLocalServiceClp
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName1,
@@ -85,12 +87,14 @@ public class CalendarImporterLocalServiceClp
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void importCalEvent(
 		com.liferay.portlet.calendar.model.CalEvent calEvent)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -121,6 +125,7 @@ public class CalendarImporterLocalServiceClp
 		}
 	}
 
+	@Override
 	public void importCalEvents()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

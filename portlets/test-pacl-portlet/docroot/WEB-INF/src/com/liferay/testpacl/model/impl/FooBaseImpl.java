@@ -37,6 +37,7 @@ public abstract class FooBaseImpl extends FooModelImpl implements Foo {
 	 *
 	 * Never modify or reference this class directly. All methods that expect a foo model instance should use the {@link Foo} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FooLocalServiceUtil.addFoo(this);

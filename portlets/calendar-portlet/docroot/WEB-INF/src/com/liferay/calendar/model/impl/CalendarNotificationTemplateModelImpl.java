@@ -164,26 +164,32 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 	public CalendarNotificationTemplateModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _calendarNotificationTemplateId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setCalendarNotificationTemplateId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _calendarNotificationTemplateId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return CalendarNotificationTemplate.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return CalendarNotificationTemplate.class.getName();
 	}
@@ -301,6 +307,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
@@ -311,6 +318,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -323,21 +331,25 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	@JSON
 	public long getCalendarNotificationTemplateId() {
 		return _calendarNotificationTemplateId;
 	}
 
+	@Override
 	public void setCalendarNotificationTemplateId(
 		long calendarNotificationTemplateId) {
 		_calendarNotificationTemplateId = calendarNotificationTemplateId;
 	}
 
+	@Override
 	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_columnBitmask |= GROUPID_COLUMN_BITMASK;
 
@@ -354,11 +366,13 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return _originalGroupId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -375,23 +389,28 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return _originalCompanyId;
 	}
 
+	@Override
 	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	@JSON
 	public String getUserName() {
 		if (_userName == null) {
@@ -402,33 +421,40 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public long getCalendarId() {
 		return _calendarId;
 	}
 
+	@Override
 	public void setCalendarId(long calendarId) {
 		_columnBitmask |= CALENDARID_COLUMN_BITMASK;
 
@@ -445,6 +471,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return _originalCalendarId;
 	}
 
+	@Override
 	@JSON
 	public String getNotificationType() {
 		if (_notificationType == null) {
@@ -455,6 +482,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	public void setNotificationType(String notificationType) {
 		_columnBitmask |= NOTIFICATIONTYPE_COLUMN_BITMASK;
 
@@ -469,6 +497,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return GetterUtil.getString(_originalNotificationType);
 	}
 
+	@Override
 	@JSON
 	public String getNotificationTypeSettings() {
 		if (_notificationTypeSettings == null) {
@@ -479,10 +508,12 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	public void setNotificationTypeSettings(String notificationTypeSettings) {
 		_notificationTypeSettings = notificationTypeSettings;
 	}
 
+	@Override
 	@JSON
 	public String getNotificationTemplateType() {
 		if (_notificationTemplateType == null) {
@@ -493,6 +524,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	public void setNotificationTemplateType(String notificationTemplateType) {
 		_columnBitmask |= NOTIFICATIONTEMPLATETYPE_COLUMN_BITMASK;
 
@@ -507,6 +539,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return GetterUtil.getString(_originalNotificationTemplateType);
 	}
 
+	@Override
 	@JSON
 	public String getSubject() {
 		if (_subject == null) {
@@ -517,10 +550,12 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	public void setSubject(String subject) {
 		_subject = subject;
 	}
 
+	@Override
 	@JSON
 	public String getBody() {
 		if (_body == null) {
@@ -531,6 +566,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
+	@Override
 	public void setBody(String body) {
 		_body = body;
 	}
@@ -586,6 +622,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return calendarNotificationTemplateImpl;
 	}
 
+	@Override
 	public int compareTo(
 		CalendarNotificationTemplate calendarNotificationTemplate) {
 		long primaryKey = calendarNotificationTemplate.getPrimaryKey();
@@ -785,6 +822,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

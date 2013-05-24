@@ -134,6 +134,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		_methodParameterTypes23 = new String[] { "long", "long" };
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote addPollsVote(
 		com.liferay.polls.model.PollsVote pollsVote)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -163,6 +164,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote createPollsVote(long pollsVoteId) {
 		Object returnObj = null;
 
@@ -185,6 +187,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote deletePollsVote(long pollsVoteId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -217,6 +220,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote deletePollsVote(
 		com.liferay.polls.model.PollsVote pollsVote)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -246,6 +250,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -268,6 +273,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -298,6 +304,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -334,6 +341,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -374,6 +382,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -403,6 +412,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote fetchPollsVote(long pollsVoteId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -430,6 +440,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote getPollsVote(long pollsVoteId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -462,6 +473,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -496,6 +508,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.polls.model.PollsVote> getPollsVotes(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -524,6 +537,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (java.util.List<com.liferay.polls.model.PollsVote>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getPollsVotesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -551,6 +565,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote updatePollsVote(
 		com.liferay.polls.model.PollsVote pollsVote)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -580,6 +595,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -602,6 +618,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -621,12 +638,14 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote addPollsVote(long userId,
 		long pollsQuestionId, long pollsChoiceId,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -670,6 +689,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (com.liferay.polls.model.PollsVote)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.polls.model.PollsVote> getPollsChoicePollsVotes(
 		long pollsChoiceId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -699,6 +719,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (java.util.List<com.liferay.polls.model.PollsVote>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getPollsChoicePollsVotesCount(long pollsChoiceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -726,6 +747,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public java.util.List<com.liferay.polls.model.PollsVote> getPollsQuestionPollsVotes(
 		long pollsQuestionId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -755,6 +777,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return (java.util.List<com.liferay.polls.model.PollsVote>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getPollsQuestionPollsVotesCount(long pollsQuestionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -782,6 +805,7 @@ public class PollsVoteLocalServiceClp implements PollsVoteLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.polls.model.PollsVote getPollsVote(
 		long pollsQuestionId, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,

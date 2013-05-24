@@ -72,6 +72,7 @@ public class KaleoNodeCacheModel implements CacheModel<KaleoNode>,
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoNode toEntityModel() {
 		KaleoNodeImpl kaleoNodeImpl = new KaleoNodeImpl();
 
@@ -139,6 +140,7 @@ public class KaleoNodeCacheModel implements CacheModel<KaleoNode>,
 		return kaleoNodeImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoNodeId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -156,6 +158,7 @@ public class KaleoNodeCacheModel implements CacheModel<KaleoNode>,
 		terminal = objectInput.readBoolean();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoNodeId);

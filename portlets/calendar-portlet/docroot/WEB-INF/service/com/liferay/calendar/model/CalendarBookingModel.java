@@ -72,6 +72,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @return the uuid of this calendar booking
 	 */
 	@AutoEscape
+	@Override
 	public String getUuid();
 
 	/**
@@ -79,6 +80,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param uuid the uuid of this calendar booking
 	 */
+	@Override
 	public void setUuid(String uuid);
 
 	/**
@@ -100,6 +102,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the group ID of this calendar booking
 	 */
+	@Override
 	public long getGroupId();
 
 	/**
@@ -107,6 +110,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param groupId the group ID of this calendar booking
 	 */
+	@Override
 	public void setGroupId(long groupId);
 
 	/**
@@ -114,6 +118,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the company ID of this calendar booking
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -121,6 +126,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param companyId the company ID of this calendar booking
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -128,6 +134,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the user ID of this calendar booking
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -135,6 +142,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param userId the user ID of this calendar booking
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -143,6 +151,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @return the user uuid of this calendar booking
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -150,6 +159,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param userUuid the user uuid of this calendar booking
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -158,6 +168,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @return the user name of this calendar booking
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -165,6 +176,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param userName the user name of this calendar booking
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -172,6 +184,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the create date of this calendar booking
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -179,6 +192,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param createDate the create date of this calendar booking
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -186,6 +200,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the modified date of this calendar booking
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -193,6 +208,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param modifiedDate the modified date of this calendar booking
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -593,6 +609,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the status of this calendar booking
 	 */
+	@Override
 	public int getStatus();
 
 	/**
@@ -600,6 +617,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param status the status of this calendar booking
 	 */
+	@Override
 	public void setStatus(int status);
 
 	/**
@@ -607,6 +625,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the status by user ID of this calendar booking
 	 */
+	@Override
 	public long getStatusByUserId();
 
 	/**
@@ -614,6 +633,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param statusByUserId the status by user ID of this calendar booking
 	 */
+	@Override
 	public void setStatusByUserId(long statusByUserId);
 
 	/**
@@ -622,6 +642,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @return the status by user uuid of this calendar booking
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getStatusByUserUuid() throws SystemException;
 
 	/**
@@ -629,6 +650,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param statusByUserUuid the status by user uuid of this calendar booking
 	 */
+	@Override
 	public void setStatusByUserUuid(String statusByUserUuid);
 
 	/**
@@ -637,6 +659,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @return the status by user name of this calendar booking
 	 */
 	@AutoEscape
+	@Override
 	public String getStatusByUserName();
 
 	/**
@@ -644,6 +667,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param statusByUserName the status by user name of this calendar booking
 	 */
+	@Override
 	public void setStatusByUserName(String statusByUserName);
 
 	/**
@@ -651,6 +675,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the status date of this calendar booking
 	 */
+	@Override
 	public Date getStatusDate();
 
 	/**
@@ -658,11 +683,13 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @param statusDate the status date of this calendar booking
 	 */
+	@Override
 	public void setStatusDate(Date statusDate);
 
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #isApproved()}
 	 */
+	@Override
 	public boolean getApproved();
 
 	/**
@@ -670,6 +697,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is approved; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isApproved();
 
 	/**
@@ -677,6 +705,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is denied; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isDenied();
 
 	/**
@@ -684,6 +713,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isDraft();
 
 	/**
@@ -691,6 +721,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is expired; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isExpired();
 
 	/**
@@ -698,6 +729,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is inactive; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isInactive();
 
 	/**
@@ -705,6 +737,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is incomplete; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isIncomplete();
 
 	/**
@@ -712,6 +745,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is in the Recycle Bin; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isInTrash();
 
 	/**
@@ -719,6 +753,7 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isPending();
 
 	/**
@@ -726,46 +761,66 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return <code>true</code> if this calendar booking is scheduled; <code>false</code> otherwise
 	 */
+	@Override
 	public boolean isScheduled();
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException;
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(CalendarBooking calendarBooking);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<CalendarBooking> toCacheModel();
 
+	@Override
 	public CalendarBooking toEscapedModel();
 
+	@Override
 	public CalendarBooking toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

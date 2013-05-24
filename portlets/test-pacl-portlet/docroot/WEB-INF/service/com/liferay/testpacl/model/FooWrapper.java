@@ -34,14 +34,17 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		_foo = foo;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Foo.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Foo.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -61,6 +64,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long fooId = (Long)attributes.get("fooId");
 
@@ -140,6 +144,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the primary key of this foo
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _foo.getPrimaryKey();
 	}
@@ -149,6 +154,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param primaryKey the primary key of this foo
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_foo.setPrimaryKey(primaryKey);
 	}
@@ -158,6 +164,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the foo ID of this foo
 	*/
+	@Override
 	public long getFooId() {
 		return _foo.getFooId();
 	}
@@ -167,6 +174,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param fooId the foo ID of this foo
 	*/
+	@Override
 	public void setFooId(long fooId) {
 		_foo.setFooId(fooId);
 	}
@@ -176,6 +184,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the group ID of this foo
 	*/
+	@Override
 	public long getGroupId() {
 		return _foo.getGroupId();
 	}
@@ -185,6 +194,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param groupId the group ID of this foo
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_foo.setGroupId(groupId);
 	}
@@ -194,6 +204,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the company ID of this foo
 	*/
+	@Override
 	public long getCompanyId() {
 		return _foo.getCompanyId();
 	}
@@ -203,6 +214,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param companyId the company ID of this foo
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_foo.setCompanyId(companyId);
 	}
@@ -212,6 +224,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the user ID of this foo
 	*/
+	@Override
 	public long getUserId() {
 		return _foo.getUserId();
 	}
@@ -221,6 +234,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param userId the user ID of this foo
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_foo.setUserId(userId);
 	}
@@ -231,6 +245,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* @return the user uuid of this foo
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _foo.getUserUuid();
@@ -241,6 +256,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param userUuid the user uuid of this foo
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_foo.setUserUuid(userUuid);
 	}
@@ -250,6 +266,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the user name of this foo
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _foo.getUserName();
 	}
@@ -259,6 +276,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param userName the user name of this foo
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_foo.setUserName(userName);
 	}
@@ -268,6 +286,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the create date of this foo
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _foo.getCreateDate();
 	}
@@ -277,6 +296,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param createDate the create date of this foo
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_foo.setCreateDate(createDate);
 	}
@@ -286,6 +306,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the modified date of this foo
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _foo.getModifiedDate();
 	}
@@ -295,6 +316,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param modifiedDate the modified date of this foo
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_foo.setModifiedDate(modifiedDate);
 	}
@@ -304,6 +326,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the field1 of this foo
 	*/
+	@Override
 	public java.lang.String getField1() {
 		return _foo.getField1();
 	}
@@ -313,6 +336,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param field1 the field1 of this foo
 	*/
+	@Override
 	public void setField1(java.lang.String field1) {
 		_foo.setField1(field1);
 	}
@@ -322,6 +346,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the field2 of this foo
 	*/
+	@Override
 	public boolean getField2() {
 		return _foo.getField2();
 	}
@@ -331,6 +356,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return <code>true</code> if this foo is field2; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isField2() {
 		return _foo.isField2();
 	}
@@ -340,6 +366,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param field2 the field2 of this foo
 	*/
+	@Override
 	public void setField2(boolean field2) {
 		_foo.setField2(field2);
 	}
@@ -349,6 +376,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the field3 of this foo
 	*/
+	@Override
 	public int getField3() {
 		return _foo.getField3();
 	}
@@ -358,6 +386,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param field3 the field3 of this foo
 	*/
+	@Override
 	public void setField3(int field3) {
 		_foo.setField3(field3);
 	}
@@ -367,6 +396,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the field4 of this foo
 	*/
+	@Override
 	public java.util.Date getField4() {
 		return _foo.getField4();
 	}
@@ -376,6 +406,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param field4 the field4 of this foo
 	*/
+	@Override
 	public void setField4(java.util.Date field4) {
 		_foo.setField4(field4);
 	}
@@ -385,6 +416,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @return the field5 of this foo
 	*/
+	@Override
 	public java.lang.String getField5() {
 		return _foo.getField5();
 	}
@@ -394,52 +426,64 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	*
 	* @param field5 the field5 of this foo
 	*/
+	@Override
 	public void setField5(java.lang.String field5) {
 		_foo.setField5(field5);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _foo.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_foo.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _foo.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_foo.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _foo.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _foo.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_foo.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _foo.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_foo.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_foo.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_foo.setExpandoBridgeAttributes(serviceContext);
@@ -450,6 +494,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return new FooWrapper((Foo)_foo.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.testpacl.model.Foo foo) {
 		return _foo.compareTo(foo);
 	}
@@ -459,14 +504,17 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return _foo.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.testpacl.model.Foo> toCacheModel() {
 		return _foo.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo toEscapedModel() {
 		return new FooWrapper(_foo.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.testpacl.model.Foo toUnescapedModel() {
 		return new FooWrapper(_foo.toUnescapedModel());
 	}
@@ -476,10 +524,12 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return _foo.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _foo.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_foo.persist();
@@ -492,10 +542,12 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return _foo;
 	}
 
+	@Override
 	public Foo getWrappedModel() {
 		return _foo;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_foo.resetOriginalValues();
 	}

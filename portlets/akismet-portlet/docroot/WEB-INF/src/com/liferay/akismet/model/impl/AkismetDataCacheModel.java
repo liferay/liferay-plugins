@@ -65,6 +65,7 @@ public class AkismetDataCacheModel implements CacheModel<AkismetData>,
 		return sb.toString();
 	}
 
+	@Override
 	public AkismetData toEntityModel() {
 		AkismetDataImpl akismetDataImpl = new AkismetDataImpl();
 
@@ -127,6 +128,7 @@ public class AkismetDataCacheModel implements CacheModel<AkismetData>,
 		return akismetDataImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		akismetDataId = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
@@ -140,6 +142,7 @@ public class AkismetDataCacheModel implements CacheModel<AkismetData>,
 		userURL = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(akismetDataId);

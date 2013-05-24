@@ -35,14 +35,17 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		_kaleoDefinition = kaleoDefinition;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoDefinition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoDefinition.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -64,6 +67,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
 
@@ -155,6 +159,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the primary key of this kaleo definition
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoDefinition.getPrimaryKey();
 	}
@@ -164,6 +169,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param primaryKey the primary key of this kaleo definition
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_kaleoDefinition.setPrimaryKey(primaryKey);
 	}
@@ -173,6 +179,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the kaleo definition ID of this kaleo definition
 	*/
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinition.getKaleoDefinitionId();
 	}
@@ -182,6 +189,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param kaleoDefinitionId the kaleo definition ID of this kaleo definition
 	*/
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinition.setKaleoDefinitionId(kaleoDefinitionId);
 	}
@@ -191,6 +199,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the group ID of this kaleo definition
 	*/
+	@Override
 	public long getGroupId() {
 		return _kaleoDefinition.getGroupId();
 	}
@@ -200,6 +209,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param groupId the group ID of this kaleo definition
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_kaleoDefinition.setGroupId(groupId);
 	}
@@ -209,6 +219,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the company ID of this kaleo definition
 	*/
+	@Override
 	public long getCompanyId() {
 		return _kaleoDefinition.getCompanyId();
 	}
@@ -218,6 +229,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param companyId the company ID of this kaleo definition
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_kaleoDefinition.setCompanyId(companyId);
 	}
@@ -227,6 +239,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the user ID of this kaleo definition
 	*/
+	@Override
 	public long getUserId() {
 		return _kaleoDefinition.getUserId();
 	}
@@ -236,6 +249,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param userId the user ID of this kaleo definition
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_kaleoDefinition.setUserId(userId);
 	}
@@ -246,6 +260,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @return the user uuid of this kaleo definition
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinition.getUserUuid();
@@ -256,6 +271,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param userUuid the user uuid of this kaleo definition
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_kaleoDefinition.setUserUuid(userUuid);
 	}
@@ -265,6 +281,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the user name of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _kaleoDefinition.getUserName();
 	}
@@ -274,6 +291,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param userName the user name of this kaleo definition
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_kaleoDefinition.setUserName(userName);
 	}
@@ -283,6 +301,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the create date of this kaleo definition
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _kaleoDefinition.getCreateDate();
 	}
@@ -292,6 +311,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param createDate the create date of this kaleo definition
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_kaleoDefinition.setCreateDate(createDate);
 	}
@@ -301,6 +321,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the modified date of this kaleo definition
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _kaleoDefinition.getModifiedDate();
 	}
@@ -310,6 +331,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param modifiedDate the modified date of this kaleo definition
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_kaleoDefinition.setModifiedDate(modifiedDate);
 	}
@@ -319,6 +341,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the name of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getName() {
 		return _kaleoDefinition.getName();
 	}
@@ -328,6 +351,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param name the name of this kaleo definition
 	*/
+	@Override
 	public void setName(java.lang.String name) {
 		_kaleoDefinition.setName(name);
 	}
@@ -337,6 +361,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the title of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getTitle() {
 		return _kaleoDefinition.getTitle();
 	}
@@ -347,6 +372,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param locale the locale of the language
 	* @return the localized title of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getTitle(java.util.Locale locale) {
 		return _kaleoDefinition.getTitle(locale);
 	}
@@ -358,6 +384,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this kaleo definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
+	@Override
 	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
 		return _kaleoDefinition.getTitle(locale, useDefault);
 	}
@@ -368,6 +395,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param languageId the ID of the language
 	* @return the localized title of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getTitle(java.lang.String languageId) {
 		return _kaleoDefinition.getTitle(languageId);
 	}
@@ -379,15 +407,18 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param useDefault whether to use the default language if no localization exists for the requested language
 	* @return the localized title of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getTitle(java.lang.String languageId,
 		boolean useDefault) {
 		return _kaleoDefinition.getTitle(languageId, useDefault);
 	}
 
+	@Override
 	public java.lang.String getTitleCurrentLanguageId() {
 		return _kaleoDefinition.getTitleCurrentLanguageId();
 	}
 
+	@Override
 	public java.lang.String getTitleCurrentValue() {
 		return _kaleoDefinition.getTitleCurrentValue();
 	}
@@ -397,6 +428,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the locales and localized titles of this kaleo definition
 	*/
+	@Override
 	public java.util.Map<java.util.Locale, java.lang.String> getTitleMap() {
 		return _kaleoDefinition.getTitleMap();
 	}
@@ -406,6 +438,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param title the title of this kaleo definition
 	*/
+	@Override
 	public void setTitle(java.lang.String title) {
 		_kaleoDefinition.setTitle(title);
 	}
@@ -416,6 +449,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param title the localized title of this kaleo definition
 	* @param locale the locale of the language
 	*/
+	@Override
 	public void setTitle(java.lang.String title, java.util.Locale locale) {
 		_kaleoDefinition.setTitle(title, locale);
 	}
@@ -427,11 +461,13 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param locale the locale of the language
 	* @param defaultLocale the default locale
 	*/
+	@Override
 	public void setTitle(java.lang.String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_kaleoDefinition.setTitle(title, locale, defaultLocale);
 	}
 
+	@Override
 	public void setTitleCurrentLanguageId(java.lang.String languageId) {
 		_kaleoDefinition.setTitleCurrentLanguageId(languageId);
 	}
@@ -441,6 +477,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param titleMap the locales and localized titles of this kaleo definition
 	*/
+	@Override
 	public void setTitleMap(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap) {
 		_kaleoDefinition.setTitleMap(titleMap);
@@ -452,6 +489,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param titleMap the locales and localized titles of this kaleo definition
 	* @param defaultLocale the default locale
 	*/
+	@Override
 	public void setTitleMap(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Locale defaultLocale) {
@@ -463,6 +501,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the description of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getDescription() {
 		return _kaleoDefinition.getDescription();
 	}
@@ -472,6 +511,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param description the description of this kaleo definition
 	*/
+	@Override
 	public void setDescription(java.lang.String description) {
 		_kaleoDefinition.setDescription(description);
 	}
@@ -481,6 +521,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the content of this kaleo definition
 	*/
+	@Override
 	public java.lang.String getContent() {
 		return _kaleoDefinition.getContent();
 	}
@@ -490,6 +531,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param content the content of this kaleo definition
 	*/
+	@Override
 	public void setContent(java.lang.String content) {
 		_kaleoDefinition.setContent(content);
 	}
@@ -499,6 +541,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the version of this kaleo definition
 	*/
+	@Override
 	public int getVersion() {
 		return _kaleoDefinition.getVersion();
 	}
@@ -508,6 +551,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param version the version of this kaleo definition
 	*/
+	@Override
 	public void setVersion(int version) {
 		_kaleoDefinition.setVersion(version);
 	}
@@ -517,6 +561,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the active of this kaleo definition
 	*/
+	@Override
 	public boolean getActive() {
 		return _kaleoDefinition.getActive();
 	}
@@ -526,6 +571,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return <code>true</code> if this kaleo definition is active; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isActive() {
 		return _kaleoDefinition.isActive();
 	}
@@ -535,6 +581,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param active the active of this kaleo definition
 	*/
+	@Override
 	public void setActive(boolean active) {
 		_kaleoDefinition.setActive(active);
 	}
@@ -544,6 +591,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @return the start kaleo node ID of this kaleo definition
 	*/
+	@Override
 	public long getStartKaleoNodeId() {
 		return _kaleoDefinition.getStartKaleoNodeId();
 	}
@@ -553,57 +601,70 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	*
 	* @param startKaleoNodeId the start kaleo node ID of this kaleo definition
 	*/
+	@Override
 	public void setStartKaleoNodeId(long startKaleoNodeId) {
 		_kaleoDefinition.setStartKaleoNodeId(startKaleoNodeId);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _kaleoDefinition.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_kaleoDefinition.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _kaleoDefinition.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_kaleoDefinition.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _kaleoDefinition.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoDefinition.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_kaleoDefinition.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _kaleoDefinition.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_kaleoDefinition.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_kaleoDefinition.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_kaleoDefinition.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	@Override
 	public void prepareLocalizedFieldsForImport(
 		java.util.Locale defaultImportLocale)
 		throws com.liferay.portal.LocaleException {
@@ -615,6 +676,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		return new KaleoDefinitionWrapper((KaleoDefinition)_kaleoDefinition.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition) {
 		return _kaleoDefinition.compareTo(kaleoDefinition);
@@ -625,14 +687,17 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		return _kaleoDefinition.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> toCacheModel() {
 		return _kaleoDefinition.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toEscapedModel() {
 		return new KaleoDefinitionWrapper(_kaleoDefinition.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toUnescapedModel() {
 		return new KaleoDefinitionWrapper(_kaleoDefinition.toUnescapedModel());
 	}
@@ -642,21 +707,25 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		return _kaleoDefinition.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _kaleoDefinition.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoDefinition.persist();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinition.getKaleoStartNode();
 	}
 
+	@Override
 	public boolean hasIncompleteKaleoInstances()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinition.hasIncompleteKaleoInstances();
@@ -669,10 +738,12 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		return _kaleoDefinition;
 	}
 
+	@Override
 	public KaleoDefinition getWrappedModel() {
 		return _kaleoDefinition;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_kaleoDefinition.resetOriginalValues();
 	}

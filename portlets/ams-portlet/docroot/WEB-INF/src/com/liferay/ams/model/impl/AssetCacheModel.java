@@ -64,6 +64,7 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Asset toEntityModel() {
 		AssetImpl assetImpl = new AssetImpl();
 
@@ -115,6 +116,7 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 		return assetImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		assetId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -128,6 +130,7 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 		active = objectInput.readBoolean();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(assetId);

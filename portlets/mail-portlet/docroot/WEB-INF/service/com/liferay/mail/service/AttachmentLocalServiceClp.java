@@ -131,6 +131,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		_methodParameterTypes22 = new String[] { "long" };
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment addAttachment(
 		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -160,6 +161,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment createAttachment(long attachmentId) {
 		Object returnObj = null;
 
@@ -182,6 +184,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment deleteAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -214,6 +217,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment deleteAttachment(
 		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -243,6 +247,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -265,6 +270,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -295,6 +301,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -331,6 +338,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -371,6 +379,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -400,6 +409,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment fetchAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -427,6 +437,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment getAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -459,6 +470,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -493,6 +505,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -521,6 +534,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.util.List<com.liferay.mail.model.Attachment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getAttachmentsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -548,6 +562,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment updateAttachment(
 		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -577,6 +592,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -599,6 +615,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -618,12 +635,14 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.mail.model.Attachment addAttachment(long userId,
 		long messageId, java.lang.String contentPath,
 		java.lang.String fileName, long size, java.io.File file)
@@ -671,6 +690,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (com.liferay.mail.model.Attachment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void deleteAttachments(long companyId, long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -699,6 +719,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
 		long messageId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -727,6 +748,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.util.List<com.liferay.mail.model.Attachment>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.io.File getFile(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -759,6 +781,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.io.File)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.io.InputStream getInputStream(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

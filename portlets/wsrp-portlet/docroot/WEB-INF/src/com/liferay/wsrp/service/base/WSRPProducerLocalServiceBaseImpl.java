@@ -84,6 +84,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public WSRPProducer addWSRPProducer(WSRPProducer wsrpProducer)
 		throws SystemException {
 		wsrpProducer.setNew(true);
@@ -97,6 +98,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @param wsrpProducerId the primary key for the new w s r p producer
 	 * @return the new w s r p producer
 	 */
+	@Override
 	public WSRPProducer createWSRPProducer(long wsrpProducerId) {
 		return wsrpProducerPersistence.create(wsrpProducerId);
 	}
@@ -110,6 +112,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public WSRPProducer deleteWSRPProducer(long wsrpProducerId)
 		throws PortalException, SystemException {
 		return wsrpProducerPersistence.remove(wsrpProducerId);
@@ -124,11 +127,13 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public WSRPProducer deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException, SystemException {
 		return wsrpProducerPersistence.remove(wsrpProducer);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -143,6 +148,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -162,6 +168,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -183,6 +190,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -197,11 +205,13 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return wsrpProducerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public WSRPProducer fetchWSRPProducer(long wsrpProducerId)
 		throws SystemException {
 		return wsrpProducerPersistence.fetchByPrimaryKey(wsrpProducerId);
@@ -215,11 +225,13 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @throws PortalException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPProducer getWSRPProducer(long wsrpProducerId)
 		throws PortalException, SystemException {
 		return wsrpProducerPersistence.findByPrimaryKey(wsrpProducerId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return wsrpProducerPersistence.findByPrimaryKey(primaryKeyObj);
@@ -234,6 +246,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @throws PortalException if a matching w s r p producer could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public WSRPProducer getWSRPProducerByUuidAndGroupId(String uuid,
 		long groupId) throws PortalException, SystemException {
 		return wsrpProducerPersistence.findByUUID_G(uuid, groupId);
@@ -251,6 +264,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the range of w s r p producers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<WSRPProducer> getWSRPProducers(int start, int end)
 		throws SystemException {
 		return wsrpProducerPersistence.findAll(start, end);
@@ -262,6 +276,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the number of w s r p producers
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getWSRPProducersCount() throws SystemException {
 		return wsrpProducerPersistence.countAll();
 	}
@@ -274,6 +289,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer)
 		throws SystemException {
 		return wsrpProducerPersistence.update(wsrpProducer);
@@ -611,6 +627,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -620,10 +637,12 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

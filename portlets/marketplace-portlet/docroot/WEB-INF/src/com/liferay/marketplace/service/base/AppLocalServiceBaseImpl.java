@@ -76,6 +76,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public App addApp(App app) throws SystemException {
 		app.setNew(true);
 
@@ -88,6 +89,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param appId the primary key for the new app
 	 * @return the new app
 	 */
+	@Override
 	public App createApp(long appId) {
 		return appPersistence.create(appId);
 	}
@@ -101,6 +103,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public App deleteApp(long appId) throws PortalException, SystemException {
 		return appPersistence.remove(appId);
 	}
@@ -113,10 +116,12 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public App deleteApp(App app) throws SystemException {
 		return appPersistence.remove(app);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -131,6 +136,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -150,6 +156,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -170,6 +177,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -184,11 +192,13 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return appPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public App fetchApp(long appId) throws SystemException {
 		return appPersistence.fetchByPrimaryKey(appId);
 	}
@@ -201,10 +211,12 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a app with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public App getApp(long appId) throws PortalException, SystemException {
 		return appPersistence.findByPrimaryKey(appId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return appPersistence.findByPrimaryKey(primaryKeyObj);
@@ -222,6 +234,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of apps
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<App> getApps(int start, int end) throws SystemException {
 		return appPersistence.findAll(start, end);
 	}
@@ -232,6 +245,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of apps
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getAppsCount() throws SystemException {
 		return appPersistence.countAll();
 	}
@@ -244,6 +258,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public App updateApp(App app) throws SystemException {
 		return appPersistence.update(app);
 	}
@@ -448,6 +463,7 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -457,10 +473,12 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

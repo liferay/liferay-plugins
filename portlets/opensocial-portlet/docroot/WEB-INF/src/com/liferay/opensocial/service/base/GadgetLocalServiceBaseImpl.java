@@ -78,6 +78,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Gadget addGadget(Gadget gadget) throws SystemException {
 		gadget.setNew(true);
 
@@ -90,6 +91,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param gadgetId the primary key for the new gadget
 	 * @return the new gadget
 	 */
+	@Override
 	public Gadget createGadget(long gadgetId) {
 		return gadgetPersistence.create(gadgetId);
 	}
@@ -103,6 +105,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Gadget deleteGadget(long gadgetId)
 		throws PortalException, SystemException {
 		return gadgetPersistence.remove(gadgetId);
@@ -116,10 +119,12 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Gadget deleteGadget(Gadget gadget) throws SystemException {
 		return gadgetPersistence.remove(gadget);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -134,6 +139,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -153,6 +159,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -173,6 +180,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -187,11 +195,13 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return gadgetPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Gadget fetchGadget(long gadgetId) throws SystemException {
 		return gadgetPersistence.fetchByPrimaryKey(gadgetId);
 	}
@@ -204,11 +214,13 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Gadget getGadget(long gadgetId)
 		throws PortalException, SystemException {
 		return gadgetPersistence.findByPrimaryKey(gadgetId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return gadgetPersistence.findByPrimaryKey(primaryKeyObj);
@@ -226,6 +238,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Gadget> getGadgets(int start, int end)
 		throws SystemException {
 		return gadgetPersistence.findAll(start, end);
@@ -237,6 +250,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of gadgets
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getGadgetsCount() throws SystemException {
 		return gadgetPersistence.countAll();
 	}
@@ -249,6 +263,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Gadget updateGadget(Gadget gadget) throws SystemException {
 		return gadgetPersistence.update(gadget);
 	}
@@ -493,6 +508,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -502,10 +518,12 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

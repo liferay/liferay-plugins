@@ -64,6 +64,7 @@ public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Folder toEntityModel() {
 		FolderImpl folderImpl = new FolderImpl();
 
@@ -115,6 +116,7 @@ public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 		return folderImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		folderId = objectInput.readLong();
 		companyId = objectInput.readLong();
@@ -128,6 +130,7 @@ public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 		remoteMessageCount = objectInput.readInt();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(folderId);

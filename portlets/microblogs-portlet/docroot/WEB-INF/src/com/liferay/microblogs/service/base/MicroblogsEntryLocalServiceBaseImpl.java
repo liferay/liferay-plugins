@@ -76,6 +76,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public MicroblogsEntry addMicroblogsEntry(MicroblogsEntry microblogsEntry)
 		throws SystemException {
 		microblogsEntry.setNew(true);
@@ -89,6 +90,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @param microblogsEntryId the primary key for the new microblogs entry
 	 * @return the new microblogs entry
 	 */
+	@Override
 	public MicroblogsEntry createMicroblogsEntry(long microblogsEntryId) {
 		return microblogsEntryPersistence.create(microblogsEntryId);
 	}
@@ -102,6 +104,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 		return microblogsEntryPersistence.remove(microblogsEntryId);
@@ -116,12 +119,14 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public MicroblogsEntry deleteMicroblogsEntry(
 		MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 		return microblogsEntryPersistence.remove(microblogsEntry);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -136,6 +141,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -155,6 +161,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -176,6 +183,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -190,11 +198,13 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return microblogsEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public MicroblogsEntry fetchMicroblogsEntry(long microblogsEntryId)
 		throws SystemException {
 		return microblogsEntryPersistence.fetchByPrimaryKey(microblogsEntryId);
@@ -208,11 +218,13 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @throws PortalException if a microblogs entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 		return microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return microblogsEntryPersistence.findByPrimaryKey(primaryKeyObj);
@@ -230,6 +242,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the range of microblogs entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MicroblogsEntry> getMicroblogsEntries(int start, int end)
 		throws SystemException {
 		return microblogsEntryPersistence.findAll(start, end);
@@ -241,6 +254,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @return the number of microblogs entries
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getMicroblogsEntriesCount() throws SystemException {
 		return microblogsEntryPersistence.countAll();
 	}
@@ -253,6 +267,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public MicroblogsEntry updateMicroblogsEntry(
 		MicroblogsEntry microblogsEntry) throws SystemException {
 		return microblogsEntryPersistence.update(microblogsEntry);
@@ -444,6 +459,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -453,10 +469,12 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

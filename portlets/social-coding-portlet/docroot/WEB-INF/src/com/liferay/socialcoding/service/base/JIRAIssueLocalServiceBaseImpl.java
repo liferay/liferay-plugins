@@ -86,6 +86,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAIssue addJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
 		jiraIssue.setNew(true);
@@ -99,6 +100,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param jiraIssueId the primary key for the new j i r a issue
 	 * @return the new j i r a issue
 	 */
+	@Override
 	public JIRAIssue createJIRAIssue(long jiraIssueId) {
 		return jiraIssuePersistence.create(jiraIssueId);
 	}
@@ -112,6 +114,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAIssue deleteJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
 		return jiraIssuePersistence.remove(jiraIssueId);
@@ -125,11 +128,13 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public JIRAIssue deleteJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
 		return jiraIssuePersistence.remove(jiraIssue);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -144,6 +149,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -163,6 +169,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -184,6 +191,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -198,11 +206,13 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return jiraIssuePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public JIRAIssue fetchJIRAIssue(long jiraIssueId) throws SystemException {
 		return jiraIssuePersistence.fetchByPrimaryKey(jiraIssueId);
 	}
@@ -215,11 +225,13 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public JIRAIssue getJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
 		return jiraIssuePersistence.findByPrimaryKey(jiraIssueId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return jiraIssuePersistence.findByPrimaryKey(primaryKeyObj);
@@ -237,6 +249,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of j i r a issues
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<JIRAIssue> getJIRAIssues(int start, int end)
 		throws SystemException {
 		return jiraIssuePersistence.findAll(start, end);
@@ -248,6 +261,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of j i r a issues
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getJIRAIssuesCount() throws SystemException {
 		return jiraIssuePersistence.countAll();
 	}
@@ -260,6 +274,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
 		return jiraIssuePersistence.update(jiraIssue);
@@ -658,6 +673,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -667,10 +683,12 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

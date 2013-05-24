@@ -37,6 +37,7 @@ public abstract class KaleoTimerInstanceTokenBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo timer instance token model instance should use the {@link KaleoTimerInstanceToken} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoTimerInstanceTokenLocalServiceUtil.addKaleoTimerInstanceToken(this);

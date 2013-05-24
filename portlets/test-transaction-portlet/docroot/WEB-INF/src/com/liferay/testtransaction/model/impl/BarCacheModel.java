@@ -46,6 +46,7 @@ public class BarCacheModel implements CacheModel<Bar>, Externalizable {
 		return sb.toString();
 	}
 
+	@Override
 	public Bar toEntityModel() {
 		BarImpl barImpl = new BarImpl();
 
@@ -63,11 +64,13 @@ public class BarCacheModel implements CacheModel<Bar>, Externalizable {
 		return barImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		barId = objectInput.readLong();
 		text = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(barId);

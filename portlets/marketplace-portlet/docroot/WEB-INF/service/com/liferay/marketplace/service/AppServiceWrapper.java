@@ -34,6 +34,7 @@ public class AppServiceWrapper implements AppService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _appService.getBeanIdentifier();
 	}
@@ -43,16 +44,19 @@ public class AppServiceWrapper implements AppService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_appService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _appService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App addApp(long remoteAppId,
 		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -60,24 +64,28 @@ public class AppServiceWrapper implements AppService,
 		return _appService.addApp(remoteAppId, version, file);
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _appService.deleteApp(appId);
 	}
 
+	@Override
 	public void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_appService.installApp(remoteAppId);
 	}
 
+	@Override
 	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_appService.uninstallApp(remoteAppId);
 	}
 
+	@Override
 	public com.liferay.marketplace.model.App updateApp(long appId,
 		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -99,10 +107,12 @@ public class AppServiceWrapper implements AppService,
 		_appService = appService;
 	}
 
+	@Override
 	public AppService getWrappedService() {
 		return _appService;
 	}
 
+	@Override
 	public void setWrappedService(AppService appService) {
 		_appService = appService;
 	}

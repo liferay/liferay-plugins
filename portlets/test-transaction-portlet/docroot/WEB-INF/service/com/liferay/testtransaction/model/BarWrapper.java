@@ -33,14 +33,17 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		_bar = bar;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Bar.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Bar.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -50,6 +53,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long barId = (Long)attributes.get("barId");
 
@@ -69,6 +73,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	*
 	* @return the primary key of this bar
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _bar.getPrimaryKey();
 	}
@@ -78,6 +83,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	*
 	* @param primaryKey the primary key of this bar
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_bar.setPrimaryKey(primaryKey);
 	}
@@ -87,6 +93,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	*
 	* @return the bar ID of this bar
 	*/
+	@Override
 	public long getBarId() {
 		return _bar.getBarId();
 	}
@@ -96,6 +103,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	*
 	* @param barId the bar ID of this bar
 	*/
+	@Override
 	public void setBarId(long barId) {
 		_bar.setBarId(barId);
 	}
@@ -105,6 +113,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	*
 	* @return the text of this bar
 	*/
+	@Override
 	public java.lang.String getText() {
 		return _bar.getText();
 	}
@@ -114,52 +123,64 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	*
 	* @param text the text of this bar
 	*/
+	@Override
 	public void setText(java.lang.String text) {
 		_bar.setText(text);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _bar.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_bar.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _bar.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_bar.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _bar.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _bar.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_bar.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _bar.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_bar.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_bar.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_bar.setExpandoBridgeAttributes(serviceContext);
@@ -170,6 +191,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return new BarWrapper((Bar)_bar.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.testtransaction.model.Bar bar) {
 		return _bar.compareTo(bar);
 	}
@@ -179,14 +201,17 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return _bar.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
 		return _bar.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar toEscapedModel() {
 		return new BarWrapper(_bar.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.testtransaction.model.Bar toUnescapedModel() {
 		return new BarWrapper(_bar.toUnescapedModel());
 	}
@@ -196,10 +221,12 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return _bar.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _bar.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_bar.persist();
@@ -212,10 +239,12 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return _bar;
 	}
 
+	@Override
 	public Bar getWrappedModel() {
 		return _bar;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_bar.resetOriginalValues();
 	}

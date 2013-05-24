@@ -317,6 +317,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		_methodParameterTypes55 = new String[] { "long", "long", "int" };
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -346,6 +347,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle createKBArticle(
 		long kbArticleId) {
 		Object returnObj = null;
@@ -369,6 +371,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
 		long kbArticleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -402,6 +405,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -436,6 +440,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -458,6 +463,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -488,6 +494,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -524,6 +531,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -564,6 +572,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -593,6 +602,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
 		long kbArticleId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -621,6 +631,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticle(
 		long kbArticleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -654,6 +665,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -688,6 +700,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -722,6 +735,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -750,6 +764,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKBArticlesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -777,6 +792,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -806,6 +822,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -828,6 +845,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName17,
@@ -847,12 +865,14 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void addAttachment(java.lang.String dirName,
 		java.lang.String shortFileName, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -892,6 +912,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(long userId,
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
@@ -945,6 +966,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void addKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		boolean addGroupPermissions, boolean addGuestPermissions)
@@ -982,6 +1004,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void addKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
@@ -1019,6 +1042,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void addKBArticleResources(long kbArticleId,
 		boolean addGroupPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1055,6 +1079,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void addKBArticleResources(long kbArticleId,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1091,6 +1116,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void checkAttachments()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1119,6 +1145,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1148,6 +1175,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void deleteGroupKBArticles(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1176,6 +1204,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void deleteKBArticles(long[] resourcePrimKeys)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1205,6 +1234,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getCompanyKBArticles(
 		long companyId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -1245,6 +1275,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getCompanyKBArticlesCount(long companyId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1272,6 +1303,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -1312,6 +1344,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getGroupKBArticlesCount(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1339,6 +1372,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticle(
 		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1373,6 +1407,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendants(
 		long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -1409,6 +1444,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -1445,6 +1481,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleVersions(
 		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -1485,6 +1522,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getKBArticleVersionsCount(long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1513,6 +1551,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
 		long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1547,6 +1586,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(
 		long groupId, java.lang.String[] sections, int status, int start,
 		int end,
@@ -1590,6 +1630,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getSectionsKBArticlesCount(long groupId,
 		java.lang.String[] sections, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -1625,6 +1666,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end,
@@ -1668,6 +1710,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getSiblingKBArticlesCount(long groupId,
 		long parentResourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -1697,6 +1740,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public void moveKBArticle(long userId, long resourcePrimKey,
 		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1735,6 +1779,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> search(
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,
@@ -1787,6 +1832,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void subscribeGroupKBArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1815,6 +1861,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void subscribeKBArticle(long userId, long groupId,
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1845,6 +1892,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void unsubscribeGroupKBArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1873,6 +1921,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void unsubscribeKBArticle(long userId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1902,6 +1951,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.String updateAttachments(long resourcePrimKey,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -1943,6 +1993,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
 		long userId, long resourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description,
@@ -1996,6 +2047,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void updateKBArticleAsset(long userId,
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
@@ -2035,6 +2087,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void updateKBArticleResources(
 		com.liferay.knowledgebase.model.KBArticle kbArticle,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
@@ -2072,6 +2125,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public void updateKBArticlesPriorities(
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -2104,6 +2158,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateStatus(long userId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -2147,6 +2202,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void updateViewCount(long userId, long resourcePrimKey, int viewCount)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

@@ -87,6 +87,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KBTemplate addKBTemplate(KBTemplate kbTemplate)
 		throws SystemException {
 		kbTemplate.setNew(true);
@@ -100,6 +101,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @param kbTemplateId the primary key for the new k b template
 	 * @return the new k b template
 	 */
+	@Override
 	public KBTemplate createKBTemplate(long kbTemplateId) {
 		return kbTemplatePersistence.create(kbTemplateId);
 	}
@@ -113,6 +115,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KBTemplate deleteKBTemplate(long kbTemplateId)
 		throws PortalException, SystemException {
 		return kbTemplatePersistence.remove(kbTemplateId);
@@ -127,11 +130,13 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KBTemplate deleteKBTemplate(KBTemplate kbTemplate)
 		throws PortalException, SystemException {
 		return kbTemplatePersistence.remove(kbTemplate);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -146,6 +151,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -165,6 +171,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -186,6 +193,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -200,11 +208,13 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kbTemplatePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public KBTemplate fetchKBTemplate(long kbTemplateId)
 		throws SystemException {
 		return kbTemplatePersistence.fetchByPrimaryKey(kbTemplateId);
@@ -218,11 +228,13 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @throws PortalException if a k b template with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBTemplate getKBTemplate(long kbTemplateId)
 		throws PortalException, SystemException {
 		return kbTemplatePersistence.findByPrimaryKey(kbTemplateId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kbTemplatePersistence.findByPrimaryKey(primaryKeyObj);
@@ -237,6 +249,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @throws PortalException if a matching k b template could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KBTemplate getKBTemplateByUuidAndGroupId(String uuid, long groupId)
 		throws PortalException, SystemException {
 		return kbTemplatePersistence.findByUUID_G(uuid, groupId);
@@ -254,6 +267,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the range of k b templates
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KBTemplate> getKBTemplates(int start, int end)
 		throws SystemException {
 		return kbTemplatePersistence.findAll(start, end);
@@ -265,6 +279,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @return the number of k b templates
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getKBTemplatesCount() throws SystemException {
 		return kbTemplatePersistence.countAll();
 	}
@@ -277,6 +292,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KBTemplate updateKBTemplate(KBTemplate kbTemplate)
 		throws SystemException {
 		return kbTemplatePersistence.update(kbTemplate);
@@ -654,6 +670,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -663,10 +680,12 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

@@ -36,6 +36,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the gadget that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.opensocial.model.Gadget addGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -48,6 +49,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param gadgetId the primary key for the new gadget
 	* @return the new gadget
 	*/
+	@Override
 	public com.liferay.opensocial.model.Gadget createGadget(long gadgetId) {
 		return _gadgetLocalService.createGadget(gadgetId);
 	}
@@ -60,6 +62,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @throws PortalException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -73,12 +76,14 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the gadget that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.deleteGadget(gadget);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _gadgetLocalService.dynamicQuery();
 	}
@@ -90,6 +95,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -110,6 +116,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -131,6 +138,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -148,12 +156,14 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.fetchGadget(gadgetId);
@@ -167,12 +177,14 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @throws PortalException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.getGadget(gadgetId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -192,6 +204,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the range of gadgets
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -204,6 +217,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the number of gadgets
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getGadgetsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.getGadgetsCount();
@@ -216,6 +230,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @return the gadget that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.opensocial.model.Gadget updateGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -227,6 +242,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _gadgetLocalService.getBeanIdentifier();
 	}
@@ -236,16 +252,19 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_gadgetLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _gadgetLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -255,22 +274,26 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 			portletCategoryNames, serviceContext);
 	}
 
+	@Override
 	public void destroyGadget(java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_gadgetLocalService.destroyGadget(uuid, companyId);
 	}
 
+	@Override
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_gadgetLocalService.destroyGadgets();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget fetchGadget(long companyId,
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.fetchGadget(companyId, url);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(long companyId,
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -278,6 +301,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		return _gadgetLocalService.getGadget(companyId, url);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(
 		java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -285,17 +309,20 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		return _gadgetLocalService.getGadget(uuid, companyId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.getGadgets(companyId, start, end);
 	}
 
+	@Override
 	public int getGadgetsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.getGadgetsCount(companyId);
 	}
 
+	@Override
 	public void initGadget(java.lang.String uuid, long companyId,
 		long gadgetId, java.lang.String name,
 		java.lang.String portletCategoryNames)
@@ -305,12 +332,14 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 			portletCategoryNames);
 	}
 
+	@Override
 	public void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_gadgetLocalService.initGadgets();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -333,10 +362,12 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		_gadgetLocalService = gadgetLocalService;
 	}
 
+	@Override
 	public GadgetLocalService getWrappedService() {
 		return _gadgetLocalService;
 	}
 
+	@Override
 	public void setWrappedService(GadgetLocalService gadgetLocalService) {
 		_gadgetLocalService = gadgetLocalService;
 	}

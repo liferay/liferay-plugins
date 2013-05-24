@@ -37,6 +37,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the checkout that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.ams.model.Checkout addCheckout(
 		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -49,6 +50,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @param checkoutId the primary key for the new checkout
 	* @return the new checkout
 	*/
+	@Override
 	public com.liferay.ams.model.Checkout createCheckout(long checkoutId) {
 		return _checkoutLocalService.createCheckout(checkoutId);
 	}
@@ -61,6 +63,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @throws PortalException if a checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.ams.model.Checkout deleteCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -74,12 +77,14 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the checkout that was removed
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.ams.model.Checkout deleteCheckout(
 		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _checkoutLocalService.deleteCheckout(checkout);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _checkoutLocalService.dynamicQuery();
 	}
@@ -91,6 +96,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -111,6 +117,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -132,6 +139,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -149,12 +157,14 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _checkoutLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.ams.model.Checkout fetchCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _checkoutLocalService.fetchCheckout(checkoutId);
@@ -168,12 +178,14 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @throws PortalException if a checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _checkoutLocalService.getCheckout(checkoutId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -193,6 +205,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the range of checkouts
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.ams.model.Checkout> getCheckouts(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -205,6 +218,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the number of checkouts
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getCheckoutsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _checkoutLocalService.getCheckoutsCount();
@@ -217,6 +231,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	* @return the checkout that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.ams.model.Checkout updateCheckout(
 		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -228,6 +243,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _checkoutLocalService.getBeanIdentifier();
 	}
@@ -237,10 +253,12 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_checkoutLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -263,10 +281,12 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		_checkoutLocalService = checkoutLocalService;
 	}
 
+	@Override
 	public CheckoutLocalService getWrappedService() {
 		return _checkoutLocalService;
 	}
 
+	@Override
 	public void setWrappedService(CheckoutLocalService checkoutLocalService) {
 		_checkoutLocalService = checkoutLocalService;
 	}

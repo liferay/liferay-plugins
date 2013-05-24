@@ -89,6 +89,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public MemberRequest addMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
 		memberRequest.setNew(true);
@@ -102,6 +103,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @param memberRequestId the primary key for the new member request
 	 * @return the new member request
 	 */
+	@Override
 	public MemberRequest createMemberRequest(long memberRequestId) {
 		return memberRequestPersistence.create(memberRequestId);
 	}
@@ -115,6 +117,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public MemberRequest deleteMemberRequest(long memberRequestId)
 		throws PortalException, SystemException {
 		return memberRequestPersistence.remove(memberRequestId);
@@ -128,11 +131,13 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public MemberRequest deleteMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
 		return memberRequestPersistence.remove(memberRequest);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -147,6 +152,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -166,6 +172,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -187,6 +194,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -201,11 +209,13 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return memberRequestPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public MemberRequest fetchMemberRequest(long memberRequestId)
 		throws SystemException {
 		return memberRequestPersistence.fetchByPrimaryKey(memberRequestId);
@@ -219,11 +229,13 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @throws PortalException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public MemberRequest getMemberRequest(long memberRequestId)
 		throws PortalException, SystemException {
 		return memberRequestPersistence.findByPrimaryKey(memberRequestId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return memberRequestPersistence.findByPrimaryKey(primaryKeyObj);
@@ -241,6 +253,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the range of member requests
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<MemberRequest> getMemberRequests(int start, int end)
 		throws SystemException {
 		return memberRequestPersistence.findAll(start, end);
@@ -252,6 +265,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the number of member requests
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getMemberRequestsCount() throws SystemException {
 		return memberRequestPersistence.countAll();
 	}
@@ -264,6 +278,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public MemberRequest updateMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
 		return memberRequestPersistence.update(memberRequest);
@@ -694,6 +709,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -703,10 +719,12 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

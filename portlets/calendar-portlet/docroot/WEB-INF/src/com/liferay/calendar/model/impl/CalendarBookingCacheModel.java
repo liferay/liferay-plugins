@@ -99,6 +99,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		return sb.toString();
 	}
 
+	@Override
 	public CalendarBooking toEntityModel() {
 		CalendarBookingImpl calendarBookingImpl = new CalendarBookingImpl();
 
@@ -212,6 +213,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		return calendarBookingImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 		calendarBookingId = objectInput.readLong();
@@ -242,6 +244,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		statusDate = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		if (uuid == null) {

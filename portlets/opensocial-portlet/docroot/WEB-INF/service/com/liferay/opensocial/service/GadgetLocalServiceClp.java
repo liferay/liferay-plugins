@@ -157,6 +157,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		_methodParameterTypes28 = new String[] { "long", "java.lang.String" };
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget addGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -186,6 +187,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget createGadget(long gadgetId) {
 		Object returnObj = null;
 
@@ -208,6 +210,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -240,6 +243,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -269,6 +273,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		Object returnObj = null;
 
@@ -291,6 +296,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -321,6 +327,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -357,6 +364,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -397,6 +405,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -426,6 +435,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -453,6 +463,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -485,6 +496,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -519,6 +531,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -547,6 +560,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.util.List<com.liferay.opensocial.model.Gadget>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getGadgetsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -574,6 +588,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget updateGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -603,6 +618,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -625,6 +641,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName16,
@@ -644,12 +661,14 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -693,6 +712,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void destroyGadget(java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -717,6 +737,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
+	@Override
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -740,6 +761,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget fetchGadget(long companyId,
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -769,6 +791,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(long companyId,
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -803,6 +826,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(
 		java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -837,6 +861,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -866,6 +891,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.util.List<com.liferay.opensocial.model.Gadget>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public int getGadgetsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -893,6 +919,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	@Override
 	public void initGadget(java.lang.String uuid, long companyId,
 		long gadgetId, java.lang.String name,
 		java.lang.String portletCategoryNames)
@@ -934,6 +961,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
+	@Override
 	public void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -962,6 +990,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames)
 		throws com.liferay.portal.kernel.exception.PortalException,

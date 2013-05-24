@@ -90,26 +90,32 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	public JIRAChangeGroupModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _jiraChangeGroupId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setJiraChangeGroupId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _jiraChangeGroupId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return JIRAChangeGroup.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return JIRAChangeGroup.class.getName();
 	}
@@ -153,14 +159,17 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public long getJiraChangeGroupId() {
 		return _jiraChangeGroupId;
 	}
 
+	@Override
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeGroupId = jiraChangeGroupId;
 	}
 
+	@Override
 	public String getJiraUserId() {
 		if (_jiraUserId == null) {
 			return StringPool.BLANK;
@@ -170,6 +179,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	@Override
 	public void setJiraUserId(String jiraUserId) {
 		_columnBitmask |= JIRAUSERID_COLUMN_BITMASK;
 
@@ -184,20 +194,24 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		return GetterUtil.getString(_originalJiraUserId);
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_columnBitmask = -1L;
 
 		_createDate = createDate;
 	}
 
+	@Override
 	public long getJiraIssueId() {
 		return _jiraIssueId;
 	}
 
+	@Override
 	public void setJiraIssueId(long jiraIssueId) {
 		_columnBitmask |= JIRAISSUEID_COLUMN_BITMASK;
 
@@ -255,6 +269,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		return jiraChangeGroupImpl;
 	}
 
+	@Override
 	public int compareTo(JIRAChangeGroup jiraChangeGroup) {
 		int value = 0;
 
@@ -355,6 +370,7 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(16);
 

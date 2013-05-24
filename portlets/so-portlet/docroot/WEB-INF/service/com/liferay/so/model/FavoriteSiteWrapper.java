@@ -34,14 +34,17 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		_favoriteSite = favoriteSite;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return FavoriteSite.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return FavoriteSite.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -53,6 +56,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long favoriteSiteId = (Long)attributes.get("favoriteSiteId");
 
@@ -84,6 +88,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @return the primary key of this favorite site
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _favoriteSite.getPrimaryKey();
 	}
@@ -93,6 +98,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @param primaryKey the primary key of this favorite site
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_favoriteSite.setPrimaryKey(primaryKey);
 	}
@@ -102,6 +108,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @return the favorite site ID of this favorite site
 	*/
+	@Override
 	public long getFavoriteSiteId() {
 		return _favoriteSite.getFavoriteSiteId();
 	}
@@ -111,6 +118,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @param favoriteSiteId the favorite site ID of this favorite site
 	*/
+	@Override
 	public void setFavoriteSiteId(long favoriteSiteId) {
 		_favoriteSite.setFavoriteSiteId(favoriteSiteId);
 	}
@@ -120,6 +128,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @return the group ID of this favorite site
 	*/
+	@Override
 	public long getGroupId() {
 		return _favoriteSite.getGroupId();
 	}
@@ -129,6 +138,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @param groupId the group ID of this favorite site
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_favoriteSite.setGroupId(groupId);
 	}
@@ -138,6 +148,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @return the company ID of this favorite site
 	*/
+	@Override
 	public long getCompanyId() {
 		return _favoriteSite.getCompanyId();
 	}
@@ -147,6 +158,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @param companyId the company ID of this favorite site
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_favoriteSite.setCompanyId(companyId);
 	}
@@ -156,6 +168,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @return the user ID of this favorite site
 	*/
+	@Override
 	public long getUserId() {
 		return _favoriteSite.getUserId();
 	}
@@ -165,6 +178,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @param userId the user ID of this favorite site
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_favoriteSite.setUserId(userId);
 	}
@@ -175,6 +189,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	* @return the user uuid of this favorite site
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _favoriteSite.getUserUuid();
@@ -185,52 +200,64 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*
 	* @param userUuid the user uuid of this favorite site
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_favoriteSite.setUserUuid(userUuid);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _favoriteSite.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_favoriteSite.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _favoriteSite.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_favoriteSite.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _favoriteSite.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _favoriteSite.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_favoriteSite.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _favoriteSite.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_favoriteSite.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_favoriteSite.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_favoriteSite.setExpandoBridgeAttributes(serviceContext);
@@ -241,6 +268,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		return new FavoriteSiteWrapper((FavoriteSite)_favoriteSite.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.so.model.FavoriteSite favoriteSite) {
 		return _favoriteSite.compareTo(favoriteSite);
 	}
@@ -250,14 +278,17 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		return _favoriteSite.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.so.model.FavoriteSite> toCacheModel() {
 		return _favoriteSite.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite toEscapedModel() {
 		return new FavoriteSiteWrapper(_favoriteSite.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.so.model.FavoriteSite toUnescapedModel() {
 		return new FavoriteSiteWrapper(_favoriteSite.toUnescapedModel());
 	}
@@ -267,10 +298,12 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		return _favoriteSite.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _favoriteSite.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_favoriteSite.persist();
@@ -283,10 +316,12 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		return _favoriteSite;
 	}
 
+	@Override
 	public FavoriteSite getWrappedModel() {
 		return _favoriteSite;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_favoriteSite.resetOriginalValues();
 	}

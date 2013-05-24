@@ -81,6 +81,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @return the group ID of this kaleo task instance token
 	 */
+	@Override
 	public long getGroupId();
 
 	/**
@@ -88,6 +89,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @param groupId the group ID of this kaleo task instance token
 	 */
+	@Override
 	public void setGroupId(long groupId);
 
 	/**
@@ -95,6 +97,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @return the company ID of this kaleo task instance token
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -102,6 +105,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @param companyId the company ID of this kaleo task instance token
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -109,6 +113,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @return the user ID of this kaleo task instance token
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -116,6 +121,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @param userId the user ID of this kaleo task instance token
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -124,6 +130,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 * @return the user uuid of this kaleo task instance token
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -131,6 +138,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @param userUuid the user uuid of this kaleo task instance token
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -139,6 +147,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 * @return the user name of this kaleo task instance token
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -146,6 +155,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @param userName the user name of this kaleo task instance token
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -153,6 +163,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @return the create date of this kaleo task instance token
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -160,6 +171,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @param createDate the create date of this kaleo task instance token
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -167,6 +179,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @return the modified date of this kaleo task instance token
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -174,6 +187,7 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 *
 	 * @param modifiedDate the modified date of this kaleo task instance token
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -369,41 +383,60 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 */
 	public void setWorkflowContext(String workflowContext);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(KaleoTaskInstanceToken kaleoTaskInstanceToken);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<KaleoTaskInstanceToken> toCacheModel();
 
+	@Override
 	public KaleoTaskInstanceToken toEscapedModel();
 
+	@Override
 	public KaleoTaskInstanceToken toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

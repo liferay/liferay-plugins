@@ -74,6 +74,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public UserThread addUserThread(UserThread userThread)
 		throws SystemException {
 		userThread.setNew(true);
@@ -87,6 +88,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @param userThreadId the primary key for the new user thread
 	 * @return the new user thread
 	 */
+	@Override
 	public UserThread createUserThread(long userThreadId) {
 		return userThreadPersistence.create(userThreadId);
 	}
@@ -100,6 +102,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public UserThread deleteUserThread(long userThreadId)
 		throws PortalException, SystemException {
 		return userThreadPersistence.remove(userThreadId);
@@ -113,11 +116,13 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public UserThread deleteUserThread(UserThread userThread)
 		throws SystemException {
 		return userThreadPersistence.remove(userThread);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -132,6 +137,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -151,6 +157,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -172,6 +179,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -186,11 +194,13 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return userThreadPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public UserThread fetchUserThread(long userThreadId)
 		throws SystemException {
 		return userThreadPersistence.fetchByPrimaryKey(userThreadId);
@@ -204,11 +214,13 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @throws PortalException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public UserThread getUserThread(long userThreadId)
 		throws PortalException, SystemException {
 		return userThreadPersistence.findByPrimaryKey(userThreadId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return userThreadPersistence.findByPrimaryKey(primaryKeyObj);
@@ -226,6 +238,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @return the range of user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<UserThread> getUserThreads(int start, int end)
 		throws SystemException {
 		return userThreadPersistence.findAll(start, end);
@@ -237,6 +250,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @return the number of user threads
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getUserThreadsCount() throws SystemException {
 		return userThreadPersistence.countAll();
 	}
@@ -249,6 +263,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public UserThread updateUserThread(UserThread userThread)
 		throws SystemException {
 		return userThreadPersistence.update(userThread);
@@ -402,6 +417,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -411,10 +427,12 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

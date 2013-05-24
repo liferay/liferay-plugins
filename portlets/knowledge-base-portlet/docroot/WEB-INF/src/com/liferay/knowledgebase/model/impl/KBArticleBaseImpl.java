@@ -38,6 +38,7 @@ public abstract class KBArticleBaseImpl extends KBArticleModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a k b article model instance should use the {@link KBArticle} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KBArticleLocalServiceUtil.addKBArticle(this);

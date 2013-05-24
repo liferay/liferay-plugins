@@ -49,6 +49,7 @@ public class SVNRepositoryCacheModel implements CacheModel<SVNRepository>,
 		return sb.toString();
 	}
 
+	@Override
 	public SVNRepository toEntityModel() {
 		SVNRepositoryImpl svnRepositoryImpl = new SVNRepositoryImpl();
 
@@ -68,12 +69,14 @@ public class SVNRepositoryCacheModel implements CacheModel<SVNRepository>,
 		return svnRepositoryImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		svnRepositoryId = objectInput.readLong();
 		url = objectInput.readUTF();
 		revisionNumber = objectInput.readLong();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(svnRepositoryId);

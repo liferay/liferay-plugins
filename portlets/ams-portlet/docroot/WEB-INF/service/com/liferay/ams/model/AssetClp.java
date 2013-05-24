@@ -40,26 +40,32 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	public AssetClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Asset.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Asset.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _assetId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setAssetId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _assetId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -145,10 +151,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public long getAssetId() {
 		return _assetId;
 	}
 
+	@Override
 	public void setAssetId(long assetId) {
 		_assetId = assetId;
 
@@ -166,10 +174,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -187,10 +197,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -208,18 +220,22 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -237,10 +253,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -258,10 +276,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -279,10 +299,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public long getDefinitionId() {
 		return _definitionId;
 	}
 
+	@Override
 	public void setDefinitionId(long definitionId) {
 		_definitionId = definitionId;
 
@@ -300,10 +322,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public String getSerialNumber() {
 		return _serialNumber;
 	}
 
+	@Override
 	public void setSerialNumber(String serialNumber) {
 		_serialNumber = serialNumber;
 
@@ -321,10 +345,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public Date getInactiveDate() {
 		return _inactiveDate;
 	}
 
+	@Override
 	public void setInactiveDate(Date inactiveDate) {
 		_inactiveDate = inactiveDate;
 
@@ -342,14 +368,17 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	@Override
 	public boolean getActive() {
 		return _active;
 	}
 
+	@Override
 	public boolean isActive() {
 		return _active;
 	}
 
+	@Override
 	public void setActive(boolean active) {
 		_active = active;
 
@@ -416,6 +445,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			AssetLocalServiceUtil.addAsset(this);
@@ -449,6 +479,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Asset asset) {
 		long primaryKey = asset.getPrimaryKey();
 
@@ -519,6 +550,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

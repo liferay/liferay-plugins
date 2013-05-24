@@ -80,6 +80,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @return the company ID of this user thread
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -87,6 +88,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @param companyId the company ID of this user thread
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -94,6 +96,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @return the user ID of this user thread
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -101,6 +104,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @param userId the user ID of this user thread
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -109,6 +113,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 * @return the user uuid of this user thread
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -116,6 +121,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @param userUuid the user uuid of this user thread
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -124,6 +130,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 * @return the user name of this user thread
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -131,6 +138,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @param userName the user name of this user thread
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -138,6 +146,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @return the create date of this user thread
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -145,6 +154,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @param createDate the create date of this user thread
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -152,6 +162,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @return the modified date of this user thread
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -159,6 +170,7 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 *
 	 * @param modifiedDate the modified date of this user thread
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -231,41 +243,60 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 */
 	public void setDeleted(boolean deleted);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(UserThread userThread);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<UserThread> toCacheModel();
 
+	@Override
 	public UserThread toEscapedModel();
 
+	@Override
 	public UserThread toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

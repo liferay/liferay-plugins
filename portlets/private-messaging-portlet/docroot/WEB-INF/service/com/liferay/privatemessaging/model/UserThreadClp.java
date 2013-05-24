@@ -42,26 +42,32 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	public UserThreadClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return UserThread.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return UserThread.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _userThreadId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setUserThreadId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _userThreadId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -147,10 +153,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public long getUserThreadId() {
 		return _userThreadId;
 	}
 
+	@Override
 	public void setUserThreadId(long userThreadId) {
 		_userThreadId = userThreadId;
 
@@ -168,10 +176,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -189,10 +199,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -210,18 +222,22 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -239,10 +255,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -260,10 +278,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -281,10 +301,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public long getMbThreadId() {
 		return _mbThreadId;
 	}
 
+	@Override
 	public void setMbThreadId(long mbThreadId) {
 		_mbThreadId = mbThreadId;
 
@@ -302,10 +324,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public long getTopMBMessageId() {
 		return _topMBMessageId;
 	}
 
+	@Override
 	public void setTopMBMessageId(long topMBMessageId) {
 		_topMBMessageId = topMBMessageId;
 
@@ -323,14 +347,17 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public boolean getRead() {
 		return _read;
 	}
 
+	@Override
 	public boolean isRead() {
 		return _read;
 	}
 
+	@Override
 	public void setRead(boolean read) {
 		_read = read;
 
@@ -348,14 +375,17 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	@Override
 	public boolean getDeleted() {
 		return _deleted;
 	}
 
+	@Override
 	public boolean isDeleted() {
 		return _deleted;
 	}
 
+	@Override
 	public void setDeleted(boolean deleted) {
 		_deleted = deleted;
 
@@ -422,6 +452,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			UserThreadLocalServiceUtil.addUserThread(this);
@@ -455,6 +486,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(UserThread userThread) {
 		int value = 0;
 
@@ -526,6 +558,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

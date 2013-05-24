@@ -34,14 +34,17 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		_gadget = gadget;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Gadget.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Gadget.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -57,6 +60,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -113,6 +117,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the primary key of this gadget
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _gadget.getPrimaryKey();
 	}
@@ -122,6 +127,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param primaryKey the primary key of this gadget
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_gadget.setPrimaryKey(primaryKey);
 	}
@@ -131,6 +137,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the uuid of this gadget
 	*/
+	@Override
 	public java.lang.String getUuid() {
 		return _gadget.getUuid();
 	}
@@ -140,6 +147,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param uuid the uuid of this gadget
 	*/
+	@Override
 	public void setUuid(java.lang.String uuid) {
 		_gadget.setUuid(uuid);
 	}
@@ -149,6 +157,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the gadget ID of this gadget
 	*/
+	@Override
 	public long getGadgetId() {
 		return _gadget.getGadgetId();
 	}
@@ -158,6 +167,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param gadgetId the gadget ID of this gadget
 	*/
+	@Override
 	public void setGadgetId(long gadgetId) {
 		_gadget.setGadgetId(gadgetId);
 	}
@@ -167,6 +177,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the company ID of this gadget
 	*/
+	@Override
 	public long getCompanyId() {
 		return _gadget.getCompanyId();
 	}
@@ -176,6 +187,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param companyId the company ID of this gadget
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_gadget.setCompanyId(companyId);
 	}
@@ -185,6 +197,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the create date of this gadget
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _gadget.getCreateDate();
 	}
@@ -194,6 +207,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param createDate the create date of this gadget
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_gadget.setCreateDate(createDate);
 	}
@@ -203,6 +217,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the modified date of this gadget
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _gadget.getModifiedDate();
 	}
@@ -212,6 +227,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param modifiedDate the modified date of this gadget
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_gadget.setModifiedDate(modifiedDate);
 	}
@@ -221,6 +237,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the name of this gadget
 	*/
+	@Override
 	public java.lang.String getName() {
 		return _gadget.getName();
 	}
@@ -230,6 +247,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param name the name of this gadget
 	*/
+	@Override
 	public void setName(java.lang.String name) {
 		_gadget.setName(name);
 	}
@@ -239,6 +257,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the url of this gadget
 	*/
+	@Override
 	public java.lang.String getUrl() {
 		return _gadget.getUrl();
 	}
@@ -248,6 +267,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param url the url of this gadget
 	*/
+	@Override
 	public void setUrl(java.lang.String url) {
 		_gadget.setUrl(url);
 	}
@@ -257,6 +277,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @return the portlet category names of this gadget
 	*/
+	@Override
 	public java.lang.String getPortletCategoryNames() {
 		return _gadget.getPortletCategoryNames();
 	}
@@ -266,52 +287,64 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	*
 	* @param portletCategoryNames the portlet category names of this gadget
 	*/
+	@Override
 	public void setPortletCategoryNames(java.lang.String portletCategoryNames) {
 		_gadget.setPortletCategoryNames(portletCategoryNames);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _gadget.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_gadget.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _gadget.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_gadget.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _gadget.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _gadget.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_gadget.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _gadget.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_gadget.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_gadget.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_gadget.setExpandoBridgeAttributes(serviceContext);
@@ -322,6 +355,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		return new GadgetWrapper((Gadget)_gadget.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.opensocial.model.Gadget gadget) {
 		return _gadget.compareTo(gadget);
 	}
@@ -331,14 +365,17 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		return _gadget.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.opensocial.model.Gadget> toCacheModel() {
 		return _gadget.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget toEscapedModel() {
 		return new GadgetWrapper(_gadget.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.opensocial.model.Gadget toUnescapedModel() {
 		return new GadgetWrapper(_gadget.toUnescapedModel());
 	}
@@ -348,10 +385,12 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		return _gadget.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _gadget.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_gadget.persist();
@@ -364,10 +403,12 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		return _gadget;
 	}
 
+	@Override
 	public Gadget getWrappedModel() {
 		return _gadget;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_gadget.resetOriginalValues();
 	}

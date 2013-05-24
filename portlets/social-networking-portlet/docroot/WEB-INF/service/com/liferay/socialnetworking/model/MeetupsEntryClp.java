@@ -42,26 +42,32 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	public MeetupsEntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MeetupsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MeetupsEntry.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _meetupsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setMeetupsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _meetupsEntryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -175,10 +181,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public long getMeetupsEntryId() {
 		return _meetupsEntryId;
 	}
 
+	@Override
 	public void setMeetupsEntryId(long meetupsEntryId) {
 		_meetupsEntryId = meetupsEntryId;
 
@@ -196,10 +204,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -217,10 +227,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -238,18 +250,22 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -267,10 +283,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -288,10 +306,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -309,10 +329,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public String getTitle() {
 		return _title;
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 
@@ -330,10 +352,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public String getDescription() {
 		return _description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 
@@ -351,10 +375,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public Date getStartDate() {
 		return _startDate;
 	}
 
+	@Override
 	public void setStartDate(Date startDate) {
 		_startDate = startDate;
 
@@ -372,10 +398,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public Date getEndDate() {
 		return _endDate;
 	}
 
+	@Override
 	public void setEndDate(Date endDate) {
 		_endDate = endDate;
 
@@ -393,10 +421,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public int getTotalAttendees() {
 		return _totalAttendees;
 	}
 
+	@Override
 	public void setTotalAttendees(int totalAttendees) {
 		_totalAttendees = totalAttendees;
 
@@ -414,10 +444,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public int getMaxAttendees() {
 		return _maxAttendees;
 	}
 
+	@Override
 	public void setMaxAttendees(int maxAttendees) {
 		_maxAttendees = maxAttendees;
 
@@ -435,10 +467,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public double getPrice() {
 		return _price;
 	}
 
+	@Override
 	public void setPrice(double price) {
 		_price = price;
 
@@ -456,10 +490,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		}
 	}
 
+	@Override
 	public long getThumbnailId() {
 		return _thumbnailId;
 	}
 
+	@Override
 	public void setThumbnailId(long thumbnailId) {
 		_thumbnailId = thumbnailId;
 
@@ -526,6 +562,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			MeetupsEntryLocalServiceUtil.addMeetupsEntry(this);
@@ -563,6 +600,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(MeetupsEntry meetupsEntry) {
 		int value = 0;
 
@@ -641,6 +679,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

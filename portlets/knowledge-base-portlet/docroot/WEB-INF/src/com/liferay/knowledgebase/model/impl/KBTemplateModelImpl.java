@@ -152,26 +152,32 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	public KBTemplateModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kbTemplateId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKbTemplateId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kbTemplateId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KBTemplate.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KBTemplate.class.getName();
 	}
@@ -257,6 +263,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	@Override
 	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
@@ -267,6 +274,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	@Override
 	public void setUuid(String uuid) {
 		if (_originalUuid == null) {
 			_originalUuid = _uuid;
@@ -279,20 +287,24 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@Override
 	@JSON
 	public long getKbTemplateId() {
 		return _kbTemplateId;
 	}
 
+	@Override
 	public void setKbTemplateId(long kbTemplateId) {
 		_kbTemplateId = kbTemplateId;
 	}
 
+	@Override
 	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_columnBitmask |= GROUPID_COLUMN_BITMASK;
 
@@ -309,11 +321,13 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _originalGroupId;
 	}
 
+	@Override
 	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -330,23 +344,28 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _originalCompanyId;
 	}
 
+	@Override
 	@JSON
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	@JSON
 	public String getUserName() {
 		if (_userName == null) {
@@ -357,30 +376,36 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	@JSON
 	public String getTitle() {
 		if (_title == null) {
@@ -391,10 +416,12 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	@Override
 	public void setTitle(String title) {
 		_title = title;
 	}
 
+	@Override
 	@JSON
 	public String getContent() {
 		if (_content == null) {
@@ -405,6 +432,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
+	@Override
 	public void setContent(String content) {
 		_content = content;
 	}
@@ -456,6 +484,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return kbTemplateImpl;
 	}
 
+	@Override
 	public int compareTo(KBTemplate kbTemplate) {
 		int value = 0;
 
@@ -609,6 +638,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

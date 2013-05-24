@@ -39,26 +39,32 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	public SVNRepositoryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return SVNRepository.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return SVNRepository.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _svnRepositoryId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setSvnRepositoryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _svnRepositoryId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -95,10 +101,12 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public long getSvnRepositoryId() {
 		return _svnRepositoryId;
 	}
 
+	@Override
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRepositoryId = svnRepositoryId;
 
@@ -116,10 +124,12 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public String getUrl() {
 		return _url;
 	}
 
+	@Override
 	public void setUrl(String url) {
 		_url = url;
 
@@ -137,10 +147,12 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public long getRevisionNumber() {
 		return _revisionNumber;
 	}
 
+	@Override
 	public void setRevisionNumber(long revisionNumber) {
 		_revisionNumber = revisionNumber;
 
@@ -158,6 +170,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public java.lang.String getName() {
 		try {
 			String methodName = "getName";
@@ -176,6 +189,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		}
 	}
 
+	@Override
 	public java.lang.String getShortURL() {
 		try {
 			String methodName = "getShortURL";
@@ -244,6 +258,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			SVNRepositoryLocalServiceUtil.addSVNRepository(this);
@@ -270,6 +285,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(SVNRepository svnRepository) {
 		int value = 0;
 
@@ -324,6 +340,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(13);
 

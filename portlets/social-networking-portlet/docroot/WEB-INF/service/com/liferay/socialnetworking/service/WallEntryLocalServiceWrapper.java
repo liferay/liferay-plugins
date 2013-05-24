@@ -37,6 +37,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the wall entry that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -49,6 +50,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @param wallEntryId the primary key for the new wall entry
 	* @return the new wall entry
 	*/
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry createWallEntry(
 		long wallEntryId) {
 		return _wallEntryLocalService.createWallEntry(wallEntryId);
@@ -62,6 +64,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @throws PortalException if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -77,6 +80,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -84,6 +88,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		return _wallEntryLocalService.deleteWallEntry(wallEntry);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _wallEntryLocalService.dynamicQuery();
 	}
@@ -95,6 +100,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -115,6 +121,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -136,6 +143,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -153,12 +161,14 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wallEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry fetchWallEntry(
 		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -173,6 +183,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @throws PortalException if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry getWallEntry(
 		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -180,6 +191,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		return _wallEntryLocalService.getWallEntry(wallEntryId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -199,6 +211,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the range of wall entries
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -211,6 +224,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the number of wall entries
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getWallEntriesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wallEntryLocalService.getWallEntriesCount();
@@ -223,6 +237,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* @return the wall entry that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -234,6 +249,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _wallEntryLocalService.getBeanIdentifier();
 	}
@@ -243,10 +259,12 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_wallEntryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -254,6 +272,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 			arguments);
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
 		long groupId, long userId, java.lang.String comments,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
@@ -263,23 +282,27 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 			themeDisplay);
 	}
 
+	@Override
 	public void deleteWallEntries(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_wallEntryLocalService.deleteWallEntries(groupId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wallEntryLocalService.getWallEntries(groupId, start, end);
 	}
 
+	@Override
 	public int getWallEntriesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wallEntryLocalService.getWallEntriesCount(groupId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallToWallEntries(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
@@ -287,6 +310,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 			userId1, userId2, start, end);
 	}
 
+	@Override
 	public int getWallToWallEntriesCount(long groupId1, long groupId2,
 		long userId1, long userId2)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -294,6 +318,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 			groupId2, userId1, userId2);
 	}
 
+	@Override
 	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
 		long wallEntryId, java.lang.String comments)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -316,10 +341,12 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 		_wallEntryLocalService = wallEntryLocalService;
 	}
 
+	@Override
 	public WallEntryLocalService getWrappedService() {
 		return _wallEntryLocalService;
 	}
 
+	@Override
 	public void setWrappedService(WallEntryLocalService wallEntryLocalService) {
 		_wallEntryLocalService = wallEntryLocalService;
 	}

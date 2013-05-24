@@ -38,6 +38,7 @@ public abstract class AttachmentBaseImpl extends AttachmentModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a attachment model instance should use the {@link Attachment} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			AttachmentLocalServiceUtil.addAttachment(this);

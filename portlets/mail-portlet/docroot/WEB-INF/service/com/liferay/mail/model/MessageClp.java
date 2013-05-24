@@ -41,26 +41,32 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	public MessageClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Message.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Message.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _messageId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setMessageId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _messageId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -209,10 +215,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getMessageId() {
 		return _messageId;
 	}
 
+	@Override
 	public void setMessageId(long messageId) {
 		_messageId = messageId;
 
@@ -230,10 +238,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -251,10 +261,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -272,18 +284,22 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		return _userName;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 
@@ -301,10 +317,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -322,10 +340,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -343,10 +363,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getAccountId() {
 		return _accountId;
 	}
 
+	@Override
 	public void setAccountId(long accountId) {
 		_accountId = accountId;
 
@@ -364,10 +386,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getFolderId() {
 		return _folderId;
 	}
 
+	@Override
 	public void setFolderId(long folderId) {
 		_folderId = folderId;
 
@@ -385,10 +409,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getSender() {
 		return _sender;
 	}
 
+	@Override
 	public void setSender(String sender) {
 		_sender = sender;
 
@@ -406,10 +432,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getTo() {
 		return _to;
 	}
 
+	@Override
 	public void setTo(String to) {
 		_to = to;
 
@@ -427,10 +455,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getCc() {
 		return _cc;
 	}
 
+	@Override
 	public void setCc(String cc) {
 		_cc = cc;
 
@@ -448,10 +478,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getBcc() {
 		return _bcc;
 	}
 
+	@Override
 	public void setBcc(String bcc) {
 		_bcc = bcc;
 
@@ -469,10 +501,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public Date getSentDate() {
 		return _sentDate;
 	}
 
+	@Override
 	public void setSentDate(Date sentDate) {
 		_sentDate = sentDate;
 
@@ -490,10 +524,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getSubject() {
 		return _subject;
 	}
 
+	@Override
 	public void setSubject(String subject) {
 		_subject = subject;
 
@@ -511,10 +547,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getPreview() {
 		return _preview;
 	}
 
+	@Override
 	public void setPreview(String preview) {
 		_preview = preview;
 
@@ -532,10 +570,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getBody() {
 		return _body;
 	}
 
+	@Override
 	public void setBody(String body) {
 		_body = body;
 
@@ -553,10 +593,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public String getFlags() {
 		return _flags;
 	}
 
+	@Override
 	public void setFlags(String flags) {
 		_flags = flags;
 
@@ -574,10 +616,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getSize() {
 		return _size;
 	}
 
+	@Override
 	public void setSize(long size) {
 		_size = size;
 
@@ -595,10 +639,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getRemoteMessageId() {
 		return _remoteMessageId;
 	}
 
+	@Override
 	public void setRemoteMessageId(long remoteMessageId) {
 		_remoteMessageId = remoteMessageId;
 
@@ -616,6 +662,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public boolean hasFlag(int flag) {
 		try {
 			String methodName = "hasFlag";
@@ -634,6 +681,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		try {
 			String methodName = "getGroupId";
@@ -701,6 +749,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			MessageLocalServiceUtil.addMessage(this);
@@ -743,6 +792,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		return clone;
 	}
 
+	@Override
 	public int compareTo(Message message) {
 		int value = 0;
 
@@ -829,6 +879,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(61);
 

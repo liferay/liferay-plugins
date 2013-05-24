@@ -37,6 +37,7 @@ public abstract class KaleoTaskInstanceTokenBaseImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo task instance token model instance should use the {@link KaleoTaskInstanceToken} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoTaskInstanceTokenLocalServiceUtil.addKaleoTaskInstanceToken(this);

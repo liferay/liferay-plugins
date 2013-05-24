@@ -40,26 +40,32 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	public FavoriteSiteClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return FavoriteSite.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return FavoriteSite.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _favoriteSiteId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setFavoriteSiteId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _favoriteSiteId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -103,10 +109,12 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		}
 	}
 
+	@Override
 	public long getFavoriteSiteId() {
 		return _favoriteSiteId;
 	}
 
+	@Override
 	public void setFavoriteSiteId(long favoriteSiteId) {
 		_favoriteSiteId = favoriteSiteId;
 
@@ -124,10 +132,12 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		}
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 
@@ -145,10 +155,12 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -166,10 +178,12 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		}
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 
@@ -187,10 +201,12 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		}
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
@@ -244,6 +260,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FavoriteSiteLocalServiceUtil.addFavoriteSite(this);
@@ -271,6 +288,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(FavoriteSite favoriteSite) {
 		long primaryKey = favoriteSite.getPrimaryKey();
 
@@ -329,6 +347,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(16);
 

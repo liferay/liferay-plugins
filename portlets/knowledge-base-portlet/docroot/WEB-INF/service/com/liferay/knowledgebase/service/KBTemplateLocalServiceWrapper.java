@@ -37,6 +37,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the k b template that was added
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -49,6 +50,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @param kbTemplateId the primary key for the new k b template
 	* @return the new k b template
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate createKBTemplate(
 		long kbTemplateId) {
 		return _kbTemplateLocalService.createKBTemplate(kbTemplateId);
@@ -62,6 +64,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @throws PortalException if a k b template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
 		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -77,6 +80,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -84,6 +88,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		return _kbTemplateLocalService.deleteKBTemplate(kbTemplate);
 	}
 
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _kbTemplateLocalService.dynamicQuery();
 	}
@@ -95,6 +100,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -115,6 +121,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -136,6 +143,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -153,12 +161,14 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the number of rows that match the dynamic query
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate fetchKBTemplate(
 		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -173,6 +183,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @throws PortalException if a k b template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate getKBTemplate(
 		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -180,6 +191,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		return _kbTemplateLocalService.getKBTemplate(kbTemplateId);
 	}
 
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -196,6 +208,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @throws PortalException if a matching k b template could not be found
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate getKBTemplateByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -216,6 +229,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the range of k b templates
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> getKBTemplates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -228,6 +242,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the number of k b templates
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public int getKBTemplatesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateLocalService.getKBTemplatesCount();
@@ -240,6 +255,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @return the k b template that was updated
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -251,6 +267,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	*
 	* @return the Spring bean ID for this bean
 	*/
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		return _kbTemplateLocalService.getBeanIdentifier();
 	}
@@ -260,10 +277,12 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	*
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kbTemplateLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
@@ -271,6 +290,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 			arguments);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		long userId, java.lang.String title, java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -280,18 +300,21 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 			serviceContext);
 	}
 
+	@Override
 	public void deleteGroupKBTemplates(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbTemplateLocalService.deleteGroupKBTemplates(groupId);
 	}
 
+	@Override
 	public void deleteKBTemplates(long[] kbTemplateIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kbTemplateLocalService.deleteKBTemplates(kbTemplateIds);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> getGroupKBTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -300,11 +323,13 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 			orderByComparator);
 	}
 
+	@Override
 	public int getGroupKBTemplatesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbTemplateLocalService.getGroupKBTemplatesCount(groupId);
 	}
 
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> search(
 		long groupId, java.lang.String title, java.lang.String content,
 		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
@@ -315,6 +340,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 			startDate, endDate, andOperator, start, end, orderByComparator);
 	}
 
+	@Override
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -324,6 +350,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 			content, serviceContext);
 	}
 
+	@Override
 	public void updateKBTemplateResources(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
@@ -348,10 +375,12 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		_kbTemplateLocalService = kbTemplateLocalService;
 	}
 
+	@Override
 	public KBTemplateLocalService getWrappedService() {
 		return _kbTemplateLocalService;
 	}
 
+	@Override
 	public void setWrappedService(KBTemplateLocalService kbTemplateLocalService) {
 		_kbTemplateLocalService = kbTemplateLocalService;
 	}

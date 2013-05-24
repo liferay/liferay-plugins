@@ -67,6 +67,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 * @return the uuid of this app
 	 */
 	@AutoEscape
+	@Override
 	public String getUuid();
 
 	/**
@@ -74,6 +75,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @param uuid the uuid of this app
 	 */
+	@Override
 	public void setUuid(String uuid);
 
 	/**
@@ -95,6 +97,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @return the company ID of this app
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -102,6 +105,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @param companyId the company ID of this app
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -109,6 +113,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @return the user ID of this app
 	 */
+	@Override
 	public long getUserId();
 
 	/**
@@ -116,6 +121,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @param userId the user ID of this app
 	 */
+	@Override
 	public void setUserId(long userId);
 
 	/**
@@ -124,6 +130,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 * @return the user uuid of this app
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public String getUserUuid() throws SystemException;
 
 	/**
@@ -131,6 +138,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @param userUuid the user uuid of this app
 	 */
+	@Override
 	public void setUserUuid(String userUuid);
 
 	/**
@@ -139,6 +147,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 * @return the user name of this app
 	 */
 	@AutoEscape
+	@Override
 	public String getUserName();
 
 	/**
@@ -146,6 +155,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @param userName the user name of this app
 	 */
+	@Override
 	public void setUserName(String userName);
 
 	/**
@@ -153,6 +163,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @return the create date of this app
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -160,6 +171,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @param createDate the create date of this app
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -167,6 +179,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @return the modified date of this app
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -174,6 +187,7 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 *
 	 * @param modifiedDate the modified date of this app
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
@@ -205,41 +219,60 @@ public interface AppModel extends BaseModel<App>, StagedModel {
 	 */
 	public void setVersion(String version);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
 	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
+	@Override
 	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
+	@Override
 	public int compareTo(App app);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public CacheModel<App> toCacheModel();
 
+	@Override
 	public App toEscapedModel();
 
+	@Override
 	public App toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

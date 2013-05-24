@@ -76,6 +76,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Module addModule(Module module) throws SystemException {
 		module.setNew(true);
 
@@ -88,6 +89,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param moduleId the primary key for the new module
 	 * @return the new module
 	 */
+	@Override
 	public Module createModule(long moduleId) {
 		return modulePersistence.create(moduleId);
 	}
@@ -101,6 +103,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Module deleteModule(long moduleId)
 		throws PortalException, SystemException {
 		return modulePersistence.remove(moduleId);
@@ -114,10 +117,12 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Module deleteModule(Module module) throws SystemException {
 		return modulePersistence.remove(module);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -132,6 +137,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -151,6 +157,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -171,6 +178,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -185,11 +193,13 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return modulePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Module fetchModule(long moduleId) throws SystemException {
 		return modulePersistence.fetchByPrimaryKey(moduleId);
 	}
@@ -202,11 +212,13 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a module with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Module getModule(long moduleId)
 		throws PortalException, SystemException {
 		return modulePersistence.findByPrimaryKey(moduleId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return modulePersistence.findByPrimaryKey(primaryKeyObj);
@@ -224,6 +236,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of modules
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Module> getModules(int start, int end)
 		throws SystemException {
 		return modulePersistence.findAll(start, end);
@@ -235,6 +248,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of modules
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getModulesCount() throws SystemException {
 		return modulePersistence.countAll();
 	}
@@ -247,6 +261,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Module updateModule(Module module) throws SystemException {
 		return modulePersistence.update(module);
 	}
@@ -451,6 +466,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -460,10 +476,12 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

@@ -57,6 +57,7 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		return sb.toString();
 	}
 
+	@Override
 	public SVNRevision toEntityModel() {
 		SVNRevisionImpl svnRevisionImpl = new SVNRevisionImpl();
 
@@ -91,6 +92,7 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		return svnRevisionImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		svnRevisionId = objectInput.readLong();
 		svnUserId = objectInput.readUTF();
@@ -100,6 +102,7 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		comments = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(svnRevisionId);

@@ -68,6 +68,7 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition>,
 		return sb.toString();
 	}
 
+	@Override
 	public KaleoCondition toEntityModel() {
 		KaleoConditionImpl kaleoConditionImpl = new KaleoConditionImpl();
 
@@ -126,6 +127,7 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition>,
 		return kaleoConditionImpl;
 	}
 
+	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		kaleoConditionId = objectInput.readLong();
 		groupId = objectInput.readLong();
@@ -141,6 +143,7 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition>,
 		scriptRequiredContexts = objectInput.readUTF();
 	}
 
+	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(kaleoConditionId);

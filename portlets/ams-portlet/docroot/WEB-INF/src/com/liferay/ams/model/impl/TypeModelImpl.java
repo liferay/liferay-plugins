@@ -81,26 +81,32 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	public TypeModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _typeId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setTypeId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _typeId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Type.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Type.class.getName();
 	}
@@ -137,22 +143,27 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		}
 	}
 
+	@Override
 	public long getTypeId() {
 		return _typeId;
 	}
 
+	@Override
 	public void setTypeId(long typeId) {
 		_typeId = typeId;
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}
 
+	@Override
 	public String getName() {
 		if (_name == null) {
 			return StringPool.BLANK;
@@ -162,6 +173,7 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		}
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 	}
@@ -202,6 +214,7 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		return typeImpl;
 	}
 
+	@Override
 	public int compareTo(Type type) {
 		int value = 0;
 
@@ -279,6 +292,7 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(13);
 

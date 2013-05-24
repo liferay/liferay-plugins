@@ -111,6 +111,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the matching o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthToken> findByG_S(String gadgetKey, String serviceName)
 		throws SystemException {
 		return findByG_S(gadgetKey, serviceName, QueryUtil.ALL_POS,
@@ -131,6 +132,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the range of matching o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthToken> findByG_S(String gadgetKey, String serviceName,
 		int start, int end) throws SystemException {
 		return findByG_S(gadgetKey, serviceName, start, end, null);
@@ -151,6 +153,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the ordered range of matching o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthToken> findByG_S(String gadgetKey, String serviceName,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -297,6 +300,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken findByG_S_First(String gadgetKey, String serviceName,
 		OrderByComparator orderByComparator)
 		throws NoSuchOAuthTokenException, SystemException {
@@ -331,6 +335,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the first matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken fetchByG_S_First(String gadgetKey, String serviceName,
 		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthToken> list = findByG_S(gadgetKey, serviceName, 0, 1,
@@ -353,6 +358,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken findByG_S_Last(String gadgetKey, String serviceName,
 		OrderByComparator orderByComparator)
 		throws NoSuchOAuthTokenException, SystemException {
@@ -387,6 +393,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the last matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken fetchByG_S_Last(String gadgetKey, String serviceName,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_S(gadgetKey, serviceName);
@@ -412,6 +419,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken[] findByG_S_PrevAndNext(long oAuthTokenId,
 		String gadgetKey, String serviceName,
 		OrderByComparator orderByComparator)
@@ -587,6 +595,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @param serviceName the service name
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeByG_S(String gadgetKey, String serviceName)
 		throws SystemException {
 		for (OAuthToken oAuthToken : findByG_S(gadgetKey, serviceName,
@@ -603,6 +612,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the number of matching o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByG_S(String gadgetKey, String serviceName)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_S;
@@ -721,6 +731,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken findByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName)
 		throws NoSuchOAuthTokenException, SystemException {
@@ -770,6 +781,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken fetchByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName)
 		throws SystemException {
@@ -789,6 +801,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken fetchByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName,
 		boolean retrieveFromCache) throws SystemException {
@@ -956,6 +969,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the o auth token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken removeByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName)
 		throws NoSuchOAuthTokenException, SystemException {
@@ -976,6 +990,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the number of matching o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName)
 		throws SystemException {
@@ -1100,6 +1115,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 *
 	 * @param oAuthToken the o auth token
 	 */
+	@Override
 	public void cacheResult(OAuthToken oAuthToken) {
 		EntityCacheUtil.putResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenImpl.class, oAuthToken.getPrimaryKey(), oAuthToken);
@@ -1119,6 +1135,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 *
 	 * @param oAuthTokens the o auth tokens
 	 */
+	@Override
 	public void cacheResult(List<OAuthToken> oAuthTokens) {
 		for (OAuthToken oAuthToken : oAuthTokens) {
 			if (EntityCacheUtil.getResult(
@@ -1248,6 +1265,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @param oAuthTokenId the primary key for the new o auth token
 	 * @return the new o auth token
 	 */
+	@Override
 	public OAuthToken create(long oAuthTokenId) {
 		OAuthToken oAuthToken = new OAuthTokenImpl();
 
@@ -1265,6 +1283,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken remove(long oAuthTokenId)
 		throws NoSuchOAuthTokenException, SystemException {
 		return remove((Serializable)oAuthTokenId);
@@ -1474,6 +1493,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken findByPrimaryKey(long oAuthTokenId)
 		throws NoSuchOAuthTokenException, SystemException {
 		return findByPrimaryKey((Serializable)oAuthTokenId);
@@ -1534,6 +1554,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public OAuthToken fetchByPrimaryKey(long oAuthTokenId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)oAuthTokenId);
@@ -1545,6 +1566,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthToken> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -1561,6 +1583,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the range of o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthToken> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
@@ -1579,6 +1602,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the ordered range of o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<OAuthToken> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -1664,6 +1688,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (OAuthToken oAuthToken : findAll()) {
 			remove(oAuthToken);
@@ -1676,6 +1701,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @return the number of o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -1762,6 +1788,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		};
 
 	private static CacheModel<OAuthToken> _nullOAuthTokenCacheModel = new CacheModel<OAuthToken>() {
+			@Override
 			public OAuthToken toEntityModel() {
 				return _nullOAuthToken;
 			}

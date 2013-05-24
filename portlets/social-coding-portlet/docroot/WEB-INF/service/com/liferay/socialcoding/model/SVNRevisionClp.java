@@ -40,26 +40,32 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 	public SVNRevisionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return SVNRevision.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return SVNRevision.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _svnRevisionId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setSvnRevisionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _svnRevisionId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -117,10 +123,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public long getSvnRevisionId() {
 		return _svnRevisionId;
 	}
 
+	@Override
 	public void setSvnRevisionId(long svnRevisionId) {
 		_svnRevisionId = svnRevisionId;
 
@@ -138,10 +146,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public String getSvnUserId() {
 		return _svnUserId;
 	}
 
+	@Override
 	public void setSvnUserId(String svnUserId) {
 		_svnUserId = svnUserId;
 
@@ -159,10 +169,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -180,10 +192,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public long getSvnRepositoryId() {
 		return _svnRepositoryId;
 	}
 
+	@Override
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRepositoryId = svnRepositoryId;
 
@@ -201,10 +215,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public long getRevisionNumber() {
 		return _revisionNumber;
 	}
 
+	@Override
 	public void setRevisionNumber(long revisionNumber) {
 		_revisionNumber = revisionNumber;
 
@@ -222,10 +238,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public String getComments() {
 		return _comments;
 	}
 
+	@Override
 	public void setComments(String comments) {
 		_comments = comments;
 
@@ -243,6 +261,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public java.lang.Object[] getJIRAIssueAndComments() {
 		try {
 			String methodName = "getJIRAIssueAndComments";
@@ -261,6 +280,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public java.lang.String getWebRevisionNumberURL() {
 		try {
 			String methodName = "getWebRevisionNumberURL";
@@ -279,6 +299,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	@Override
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
 		try {
 			String methodName = "getSVNRepository";
@@ -346,6 +367,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			SVNRevisionLocalServiceUtil.addSVNRevision(this);
@@ -375,6 +397,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(SVNRevision svnRevision) {
 		int value = 0;
 
@@ -445,6 +468,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(22);
 

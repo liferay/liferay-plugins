@@ -37,6 +37,7 @@ public abstract class AssetBaseImpl extends AssetModelImpl implements Asset {
 	 *
 	 * Never modify or reference this class directly. All methods that expect a asset model instance should use the {@link Asset} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			AssetLocalServiceUtil.addAsset(this);

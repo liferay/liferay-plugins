@@ -103,6 +103,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed findByU_TSN(long userId, String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = fetchByU_TSN(userId, twitterScreenName);
@@ -138,6 +139,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed fetchByU_TSN(long userId, String twitterScreenName)
 		throws SystemException {
 		return fetchByU_TSN(userId, twitterScreenName, true);
@@ -152,6 +154,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed fetchByU_TSN(long userId, String twitterScreenName,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { userId, twitterScreenName };
@@ -267,6 +270,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the feed that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed removeByU_TSN(long userId, String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByU_TSN(userId, twitterScreenName);
@@ -282,6 +286,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the number of matching feeds
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countByU_TSN(long userId, String twitterScreenName)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_TSN;
@@ -356,6 +361,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param feed the feed
 	 */
+	@Override
 	public void cacheResult(Feed feed) {
 		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
@@ -371,6 +377,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param feeds the feeds
 	 */
+	@Override
 	public void cacheResult(List<Feed> feeds) {
 		for (Feed feed : feeds) {
 			if (EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
@@ -488,6 +495,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @param feedId the primary key for the new feed
 	 * @return the new feed
 	 */
+	@Override
 	public Feed create(long feedId) {
 		Feed feed = new FeedImpl();
 
@@ -505,6 +513,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
 		return remove((Serializable)feedId);
 	}
@@ -679,6 +688,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed findByPrimaryKey(long feedId)
 		throws NoSuchFeedException, SystemException {
 		return findByPrimaryKey((Serializable)feedId);
@@ -738,6 +748,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the feed, or <code>null</code> if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Feed fetchByPrimaryKey(long feedId) throws SystemException {
 		return fetchByPrimaryKey((Serializable)feedId);
 	}
@@ -748,6 +759,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the feeds
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Feed> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -764,6 +776,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the range of feeds
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Feed> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
@@ -781,6 +794,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the ordered range of feeds
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Feed> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -866,6 +880,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public void removeAll() throws SystemException {
 		for (Feed feed : findAll()) {
 			remove(feed);
@@ -878,6 +893,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * @return the number of feeds
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int countAll() throws SystemException {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
@@ -964,6 +980,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		};
 
 	private static CacheModel<Feed> _nullFeedCacheModel = new CacheModel<Feed>() {
+			@Override
 			public Feed toEntityModel() {
 				return _nullFeed;
 			}

@@ -40,26 +40,32 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	public OAuthConsumerClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return OAuthConsumer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return OAuthConsumer.class.getName();
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _oAuthConsumerId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setOAuthConsumerId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _oAuthConsumerId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -138,10 +144,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public long getOAuthConsumerId() {
 		return _oAuthConsumerId;
 	}
 
+	@Override
 	public void setOAuthConsumerId(long oAuthConsumerId) {
 		_oAuthConsumerId = oAuthConsumerId;
 
@@ -159,10 +167,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
 
@@ -180,10 +190,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 
@@ -201,10 +213,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 
@@ -222,10 +236,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public String getGadgetKey() {
 		return _gadgetKey;
 	}
 
+	@Override
 	public void setGadgetKey(String gadgetKey) {
 		_gadgetKey = gadgetKey;
 
@@ -243,10 +259,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public String getServiceName() {
 		return _serviceName;
 	}
 
+	@Override
 	public void setServiceName(String serviceName) {
 		_serviceName = serviceName;
 
@@ -264,10 +282,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public String getConsumerKey() {
 		return _consumerKey;
 	}
 
+	@Override
 	public void setConsumerKey(String consumerKey) {
 		_consumerKey = consumerKey;
 
@@ -285,10 +305,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public String getConsumerSecret() {
 		return _consumerSecret;
 	}
 
+	@Override
 	public void setConsumerSecret(String consumerSecret) {
 		_consumerSecret = consumerSecret;
 
@@ -307,10 +329,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public String getKeyType() {
 		return _keyType;
 	}
 
+	@Override
 	public void setKeyType(String keyType) {
 		_keyType = keyType;
 
@@ -328,6 +352,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public void setKeyName(java.lang.String keyName) {
 		try {
 			String methodName = "setKeyName";
@@ -343,6 +368,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		}
 	}
 
+	@Override
 	public java.lang.String getKeyName() {
 		try {
 			String methodName = "getKeyName";
@@ -411,6 +437,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		return returnValue;
 	}
 
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			OAuthConsumerLocalServiceUtil.addOAuthConsumer(this);
@@ -443,6 +470,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		return clone;
 	}
 
+	@Override
 	public int compareTo(OAuthConsumer oAuthConsumer) {
 		int value = 0;
 
@@ -509,6 +537,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

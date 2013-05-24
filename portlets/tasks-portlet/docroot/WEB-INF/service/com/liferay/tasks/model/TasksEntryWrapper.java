@@ -34,14 +34,17 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		_tasksEntry = tasksEntry;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return TasksEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return TasksEntry.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -63,6 +66,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long tasksEntryId = (Long)attributes.get("tasksEntryId");
 
@@ -154,6 +158,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the primary key of this tasks entry
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _tasksEntry.getPrimaryKey();
 	}
@@ -163,6 +168,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param primaryKey the primary key of this tasks entry
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_tasksEntry.setPrimaryKey(primaryKey);
 	}
@@ -172,6 +178,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the tasks entry ID of this tasks entry
 	*/
+	@Override
 	public long getTasksEntryId() {
 		return _tasksEntry.getTasksEntryId();
 	}
@@ -181,6 +188,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param tasksEntryId the tasks entry ID of this tasks entry
 	*/
+	@Override
 	public void setTasksEntryId(long tasksEntryId) {
 		_tasksEntry.setTasksEntryId(tasksEntryId);
 	}
@@ -190,6 +198,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the group ID of this tasks entry
 	*/
+	@Override
 	public long getGroupId() {
 		return _tasksEntry.getGroupId();
 	}
@@ -199,6 +208,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param groupId the group ID of this tasks entry
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_tasksEntry.setGroupId(groupId);
 	}
@@ -208,6 +218,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the company ID of this tasks entry
 	*/
+	@Override
 	public long getCompanyId() {
 		return _tasksEntry.getCompanyId();
 	}
@@ -217,6 +228,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param companyId the company ID of this tasks entry
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_tasksEntry.setCompanyId(companyId);
 	}
@@ -226,6 +238,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the user ID of this tasks entry
 	*/
+	@Override
 	public long getUserId() {
 		return _tasksEntry.getUserId();
 	}
@@ -235,6 +248,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param userId the user ID of this tasks entry
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_tasksEntry.setUserId(userId);
 	}
@@ -245,6 +259,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @return the user uuid of this tasks entry
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntry.getUserUuid();
@@ -255,6 +270,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param userUuid the user uuid of this tasks entry
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_tasksEntry.setUserUuid(userUuid);
 	}
@@ -264,6 +280,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the user name of this tasks entry
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _tasksEntry.getUserName();
 	}
@@ -273,6 +290,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param userName the user name of this tasks entry
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_tasksEntry.setUserName(userName);
 	}
@@ -282,6 +300,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the create date of this tasks entry
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _tasksEntry.getCreateDate();
 	}
@@ -291,6 +310,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param createDate the create date of this tasks entry
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_tasksEntry.setCreateDate(createDate);
 	}
@@ -300,6 +320,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the modified date of this tasks entry
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _tasksEntry.getModifiedDate();
 	}
@@ -309,6 +330,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param modifiedDate the modified date of this tasks entry
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_tasksEntry.setModifiedDate(modifiedDate);
 	}
@@ -318,6 +340,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the title of this tasks entry
 	*/
+	@Override
 	public java.lang.String getTitle() {
 		return _tasksEntry.getTitle();
 	}
@@ -327,6 +350,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param title the title of this tasks entry
 	*/
+	@Override
 	public void setTitle(java.lang.String title) {
 		_tasksEntry.setTitle(title);
 	}
@@ -336,6 +360,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the priority of this tasks entry
 	*/
+	@Override
 	public int getPriority() {
 		return _tasksEntry.getPriority();
 	}
@@ -345,6 +370,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param priority the priority of this tasks entry
 	*/
+	@Override
 	public void setPriority(int priority) {
 		_tasksEntry.setPriority(priority);
 	}
@@ -354,6 +380,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the assignee user ID of this tasks entry
 	*/
+	@Override
 	public long getAssigneeUserId() {
 		return _tasksEntry.getAssigneeUserId();
 	}
@@ -363,6 +390,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param assigneeUserId the assignee user ID of this tasks entry
 	*/
+	@Override
 	public void setAssigneeUserId(long assigneeUserId) {
 		_tasksEntry.setAssigneeUserId(assigneeUserId);
 	}
@@ -373,6 +401,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @return the assignee user uuid of this tasks entry
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getAssigneeUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntry.getAssigneeUserUuid();
@@ -383,6 +412,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param assigneeUserUuid the assignee user uuid of this tasks entry
 	*/
+	@Override
 	public void setAssigneeUserUuid(java.lang.String assigneeUserUuid) {
 		_tasksEntry.setAssigneeUserUuid(assigneeUserUuid);
 	}
@@ -392,6 +422,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the resolver user ID of this tasks entry
 	*/
+	@Override
 	public long getResolverUserId() {
 		return _tasksEntry.getResolverUserId();
 	}
@@ -401,6 +432,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param resolverUserId the resolver user ID of this tasks entry
 	*/
+	@Override
 	public void setResolverUserId(long resolverUserId) {
 		_tasksEntry.setResolverUserId(resolverUserId);
 	}
@@ -411,6 +443,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @return the resolver user uuid of this tasks entry
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getResolverUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntry.getResolverUserUuid();
@@ -421,6 +454,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param resolverUserUuid the resolver user uuid of this tasks entry
 	*/
+	@Override
 	public void setResolverUserUuid(java.lang.String resolverUserUuid) {
 		_tasksEntry.setResolverUserUuid(resolverUserUuid);
 	}
@@ -430,6 +464,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the due date of this tasks entry
 	*/
+	@Override
 	public java.util.Date getDueDate() {
 		return _tasksEntry.getDueDate();
 	}
@@ -439,6 +474,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param dueDate the due date of this tasks entry
 	*/
+	@Override
 	public void setDueDate(java.util.Date dueDate) {
 		_tasksEntry.setDueDate(dueDate);
 	}
@@ -448,6 +484,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the finish date of this tasks entry
 	*/
+	@Override
 	public java.util.Date getFinishDate() {
 		return _tasksEntry.getFinishDate();
 	}
@@ -457,6 +494,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param finishDate the finish date of this tasks entry
 	*/
+	@Override
 	public void setFinishDate(java.util.Date finishDate) {
 		_tasksEntry.setFinishDate(finishDate);
 	}
@@ -466,6 +504,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @return the status of this tasks entry
 	*/
+	@Override
 	public int getStatus() {
 		return _tasksEntry.getStatus();
 	}
@@ -475,52 +514,64 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	*
 	* @param status the status of this tasks entry
 	*/
+	@Override
 	public void setStatus(int status) {
 		_tasksEntry.setStatus(status);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _tasksEntry.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_tasksEntry.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _tasksEntry.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_tasksEntry.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _tasksEntry.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _tasksEntry.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_tasksEntry.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _tasksEntry.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_tasksEntry.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_tasksEntry.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_tasksEntry.setExpandoBridgeAttributes(serviceContext);
@@ -531,6 +582,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		return new TasksEntryWrapper((TasksEntry)_tasksEntry.clone());
 	}
 
+	@Override
 	public int compareTo(com.liferay.tasks.model.TasksEntry tasksEntry) {
 		return _tasksEntry.compareTo(tasksEntry);
 	}
@@ -540,14 +592,17 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		return _tasksEntry.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.tasks.model.TasksEntry> toCacheModel() {
 		return _tasksEntry.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.tasks.model.TasksEntry toEscapedModel() {
 		return new TasksEntryWrapper(_tasksEntry.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.tasks.model.TasksEntry toUnescapedModel() {
 		return new TasksEntryWrapper(_tasksEntry.toUnescapedModel());
 	}
@@ -557,27 +612,33 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		return _tasksEntry.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _tasksEntry.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_tasksEntry.persist();
 	}
 
+	@Override
 	public java.lang.String getAssigneeFullName() {
 		return _tasksEntry.getAssigneeFullName();
 	}
 
+	@Override
 	public java.lang.String getPriorityLabel() {
 		return _tasksEntry.getPriorityLabel();
 	}
 
+	@Override
 	public java.lang.String getReporterFullName() {
 		return _tasksEntry.getReporterFullName();
 	}
 
+	@Override
 	public java.lang.String getStatusLabel() {
 		return _tasksEntry.getStatusLabel();
 	}
@@ -589,10 +650,12 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		return _tasksEntry;
 	}
 
+	@Override
 	public TasksEntry getWrappedModel() {
 		return _tasksEntry;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_tasksEntry.resetOriginalValues();
 	}

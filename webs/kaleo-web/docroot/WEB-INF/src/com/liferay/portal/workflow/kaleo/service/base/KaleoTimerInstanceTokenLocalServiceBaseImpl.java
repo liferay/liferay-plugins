@@ -105,6 +105,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoTimerInstanceToken addKaleoTimerInstanceToken(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws SystemException {
@@ -119,6 +120,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @param kaleoTimerInstanceTokenId the primary key for the new kaleo timer instance token
 	 * @return the new kaleo timer instance token
 	 */
+	@Override
 	public KaleoTimerInstanceToken createKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId) {
 		return kaleoTimerInstanceTokenPersistence.create(kaleoTimerInstanceTokenId);
@@ -133,6 +135,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId) throws PortalException, SystemException {
 		return kaleoTimerInstanceTokenPersistence.remove(kaleoTimerInstanceTokenId);
@@ -146,12 +149,14 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws SystemException {
 		return kaleoTimerInstanceTokenPersistence.remove(kaleoTimerInstanceToken);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -166,6 +171,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -185,6 +191,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -206,6 +213,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -220,11 +228,13 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoTimerInstanceTokenPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public KaleoTimerInstanceToken fetchKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId) throws SystemException {
 		return kaleoTimerInstanceTokenPersistence.fetchByPrimaryKey(kaleoTimerInstanceTokenId);
@@ -238,11 +248,13 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @throws PortalException if a kaleo timer instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public KaleoTimerInstanceToken getKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId) throws PortalException, SystemException {
 		return kaleoTimerInstanceTokenPersistence.findByPrimaryKey(kaleoTimerInstanceTokenId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kaleoTimerInstanceTokenPersistence.findByPrimaryKey(primaryKeyObj);
@@ -260,6 +272,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @return the range of kaleo timer instance tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
 		int start, int end) throws SystemException {
 		return kaleoTimerInstanceTokenPersistence.findAll(start, end);
@@ -271,6 +284,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @return the number of kaleo timer instance tokens
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getKaleoTimerInstanceTokensCount() throws SystemException {
 		return kaleoTimerInstanceTokenPersistence.countAll();
 	}
@@ -283,6 +297,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public KaleoTimerInstanceToken updateKaleoTimerInstanceToken(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws SystemException {
@@ -1044,6 +1059,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -1053,10 +1069,12 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

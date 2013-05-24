@@ -34,14 +34,17 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		_kaleoLog = kaleoLog;
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoLog.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoLog.class.getName();
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -80,6 +83,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoLogId = (Long)attributes.get("kaleoLogId");
 
@@ -274,6 +278,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the primary key of this kaleo log
 	*/
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoLog.getPrimaryKey();
 	}
@@ -283,6 +288,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param primaryKey the primary key of this kaleo log
 	*/
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_kaleoLog.setPrimaryKey(primaryKey);
 	}
@@ -292,6 +298,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo log ID of this kaleo log
 	*/
+	@Override
 	public long getKaleoLogId() {
 		return _kaleoLog.getKaleoLogId();
 	}
@@ -301,6 +308,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoLogId the kaleo log ID of this kaleo log
 	*/
+	@Override
 	public void setKaleoLogId(long kaleoLogId) {
 		_kaleoLog.setKaleoLogId(kaleoLogId);
 	}
@@ -310,6 +318,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the group ID of this kaleo log
 	*/
+	@Override
 	public long getGroupId() {
 		return _kaleoLog.getGroupId();
 	}
@@ -319,6 +328,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param groupId the group ID of this kaleo log
 	*/
+	@Override
 	public void setGroupId(long groupId) {
 		_kaleoLog.setGroupId(groupId);
 	}
@@ -328,6 +338,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the company ID of this kaleo log
 	*/
+	@Override
 	public long getCompanyId() {
 		return _kaleoLog.getCompanyId();
 	}
@@ -337,6 +348,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param companyId the company ID of this kaleo log
 	*/
+	@Override
 	public void setCompanyId(long companyId) {
 		_kaleoLog.setCompanyId(companyId);
 	}
@@ -346,6 +358,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the user ID of this kaleo log
 	*/
+	@Override
 	public long getUserId() {
 		return _kaleoLog.getUserId();
 	}
@@ -355,6 +368,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param userId the user ID of this kaleo log
 	*/
+	@Override
 	public void setUserId(long userId) {
 		_kaleoLog.setUserId(userId);
 	}
@@ -365,6 +379,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @return the user uuid of this kaleo log
 	* @throws SystemException if a system exception occurred
 	*/
+	@Override
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoLog.getUserUuid();
@@ -375,6 +390,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param userUuid the user uuid of this kaleo log
 	*/
+	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_kaleoLog.setUserUuid(userUuid);
 	}
@@ -384,6 +400,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the user name of this kaleo log
 	*/
+	@Override
 	public java.lang.String getUserName() {
 		return _kaleoLog.getUserName();
 	}
@@ -393,6 +410,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param userName the user name of this kaleo log
 	*/
+	@Override
 	public void setUserName(java.lang.String userName) {
 		_kaleoLog.setUserName(userName);
 	}
@@ -402,6 +420,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the create date of this kaleo log
 	*/
+	@Override
 	public java.util.Date getCreateDate() {
 		return _kaleoLog.getCreateDate();
 	}
@@ -411,6 +430,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param createDate the create date of this kaleo log
 	*/
+	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_kaleoLog.setCreateDate(createDate);
 	}
@@ -420,6 +440,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the modified date of this kaleo log
 	*/
+	@Override
 	public java.util.Date getModifiedDate() {
 		return _kaleoLog.getModifiedDate();
 	}
@@ -429,6 +450,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param modifiedDate the modified date of this kaleo log
 	*/
+	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_kaleoLog.setModifiedDate(modifiedDate);
 	}
@@ -438,6 +460,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo class name of this kaleo log
 	*/
+	@Override
 	public java.lang.String getKaleoClassName() {
 		return _kaleoLog.getKaleoClassName();
 	}
@@ -447,6 +470,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoClassName the kaleo class name of this kaleo log
 	*/
+	@Override
 	public void setKaleoClassName(java.lang.String kaleoClassName) {
 		_kaleoLog.setKaleoClassName(kaleoClassName);
 	}
@@ -456,6 +480,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo class p k of this kaleo log
 	*/
+	@Override
 	public long getKaleoClassPK() {
 		return _kaleoLog.getKaleoClassPK();
 	}
@@ -465,6 +490,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoClassPK the kaleo class p k of this kaleo log
 	*/
+	@Override
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoLog.setKaleoClassPK(kaleoClassPK);
 	}
@@ -474,6 +500,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo definition ID of this kaleo log
 	*/
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoLog.getKaleoDefinitionId();
 	}
@@ -483,6 +510,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoDefinitionId the kaleo definition ID of this kaleo log
 	*/
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoLog.setKaleoDefinitionId(kaleoDefinitionId);
 	}
@@ -492,6 +520,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo instance ID of this kaleo log
 	*/
+	@Override
 	public long getKaleoInstanceId() {
 		return _kaleoLog.getKaleoInstanceId();
 	}
@@ -501,6 +530,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoInstanceId the kaleo instance ID of this kaleo log
 	*/
+	@Override
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoLog.setKaleoInstanceId(kaleoInstanceId);
 	}
@@ -510,6 +540,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo instance token ID of this kaleo log
 	*/
+	@Override
 	public long getKaleoInstanceTokenId() {
 		return _kaleoLog.getKaleoInstanceTokenId();
 	}
@@ -519,6 +550,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoInstanceTokenId the kaleo instance token ID of this kaleo log
 	*/
+	@Override
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
 		_kaleoLog.setKaleoInstanceTokenId(kaleoInstanceTokenId);
 	}
@@ -528,6 +560,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo task instance token ID of this kaleo log
 	*/
+	@Override
 	public long getKaleoTaskInstanceTokenId() {
 		return _kaleoLog.getKaleoTaskInstanceTokenId();
 	}
@@ -537,6 +570,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID of this kaleo log
 	*/
+	@Override
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
 		_kaleoLog.setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 	}
@@ -546,6 +580,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo node name of this kaleo log
 	*/
+	@Override
 	public java.lang.String getKaleoNodeName() {
 		return _kaleoLog.getKaleoNodeName();
 	}
@@ -555,6 +590,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoNodeName the kaleo node name of this kaleo log
 	*/
+	@Override
 	public void setKaleoNodeName(java.lang.String kaleoNodeName) {
 		_kaleoLog.setKaleoNodeName(kaleoNodeName);
 	}
@@ -564,6 +600,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the terminal kaleo node of this kaleo log
 	*/
+	@Override
 	public boolean getTerminalKaleoNode() {
 		return _kaleoLog.getTerminalKaleoNode();
 	}
@@ -573,6 +610,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return <code>true</code> if this kaleo log is terminal kaleo node; <code>false</code> otherwise
 	*/
+	@Override
 	public boolean isTerminalKaleoNode() {
 		return _kaleoLog.isTerminalKaleoNode();
 	}
@@ -582,6 +620,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param terminalKaleoNode the terminal kaleo node of this kaleo log
 	*/
+	@Override
 	public void setTerminalKaleoNode(boolean terminalKaleoNode) {
 		_kaleoLog.setTerminalKaleoNode(terminalKaleoNode);
 	}
@@ -591,6 +630,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo action ID of this kaleo log
 	*/
+	@Override
 	public long getKaleoActionId() {
 		return _kaleoLog.getKaleoActionId();
 	}
@@ -600,6 +640,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoActionId the kaleo action ID of this kaleo log
 	*/
+	@Override
 	public void setKaleoActionId(long kaleoActionId) {
 		_kaleoLog.setKaleoActionId(kaleoActionId);
 	}
@@ -609,6 +650,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo action name of this kaleo log
 	*/
+	@Override
 	public java.lang.String getKaleoActionName() {
 		return _kaleoLog.getKaleoActionName();
 	}
@@ -618,6 +660,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoActionName the kaleo action name of this kaleo log
 	*/
+	@Override
 	public void setKaleoActionName(java.lang.String kaleoActionName) {
 		_kaleoLog.setKaleoActionName(kaleoActionName);
 	}
@@ -627,6 +670,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the kaleo action description of this kaleo log
 	*/
+	@Override
 	public java.lang.String getKaleoActionDescription() {
 		return _kaleoLog.getKaleoActionDescription();
 	}
@@ -636,6 +680,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param kaleoActionDescription the kaleo action description of this kaleo log
 	*/
+	@Override
 	public void setKaleoActionDescription(
 		java.lang.String kaleoActionDescription) {
 		_kaleoLog.setKaleoActionDescription(kaleoActionDescription);
@@ -646,6 +691,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the previous kaleo node ID of this kaleo log
 	*/
+	@Override
 	public long getPreviousKaleoNodeId() {
 		return _kaleoLog.getPreviousKaleoNodeId();
 	}
@@ -655,6 +701,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param previousKaleoNodeId the previous kaleo node ID of this kaleo log
 	*/
+	@Override
 	public void setPreviousKaleoNodeId(long previousKaleoNodeId) {
 		_kaleoLog.setPreviousKaleoNodeId(previousKaleoNodeId);
 	}
@@ -664,6 +711,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the previous kaleo node name of this kaleo log
 	*/
+	@Override
 	public java.lang.String getPreviousKaleoNodeName() {
 		return _kaleoLog.getPreviousKaleoNodeName();
 	}
@@ -673,6 +721,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param previousKaleoNodeName the previous kaleo node name of this kaleo log
 	*/
+	@Override
 	public void setPreviousKaleoNodeName(java.lang.String previousKaleoNodeName) {
 		_kaleoLog.setPreviousKaleoNodeName(previousKaleoNodeName);
 	}
@@ -682,6 +731,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the previous assignee class name of this kaleo log
 	*/
+	@Override
 	public java.lang.String getPreviousAssigneeClassName() {
 		return _kaleoLog.getPreviousAssigneeClassName();
 	}
@@ -691,6 +741,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param previousAssigneeClassName the previous assignee class name of this kaleo log
 	*/
+	@Override
 	public void setPreviousAssigneeClassName(
 		java.lang.String previousAssigneeClassName) {
 		_kaleoLog.setPreviousAssigneeClassName(previousAssigneeClassName);
@@ -701,6 +752,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the previous assignee class p k of this kaleo log
 	*/
+	@Override
 	public long getPreviousAssigneeClassPK() {
 		return _kaleoLog.getPreviousAssigneeClassPK();
 	}
@@ -710,6 +762,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param previousAssigneeClassPK the previous assignee class p k of this kaleo log
 	*/
+	@Override
 	public void setPreviousAssigneeClassPK(long previousAssigneeClassPK) {
 		_kaleoLog.setPreviousAssigneeClassPK(previousAssigneeClassPK);
 	}
@@ -719,6 +772,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the current assignee class name of this kaleo log
 	*/
+	@Override
 	public java.lang.String getCurrentAssigneeClassName() {
 		return _kaleoLog.getCurrentAssigneeClassName();
 	}
@@ -728,6 +782,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param currentAssigneeClassName the current assignee class name of this kaleo log
 	*/
+	@Override
 	public void setCurrentAssigneeClassName(
 		java.lang.String currentAssigneeClassName) {
 		_kaleoLog.setCurrentAssigneeClassName(currentAssigneeClassName);
@@ -738,6 +793,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the current assignee class p k of this kaleo log
 	*/
+	@Override
 	public long getCurrentAssigneeClassPK() {
 		return _kaleoLog.getCurrentAssigneeClassPK();
 	}
@@ -747,6 +803,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param currentAssigneeClassPK the current assignee class p k of this kaleo log
 	*/
+	@Override
 	public void setCurrentAssigneeClassPK(long currentAssigneeClassPK) {
 		_kaleoLog.setCurrentAssigneeClassPK(currentAssigneeClassPK);
 	}
@@ -756,6 +813,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the type of this kaleo log
 	*/
+	@Override
 	public java.lang.String getType() {
 		return _kaleoLog.getType();
 	}
@@ -765,6 +823,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param type the type of this kaleo log
 	*/
+	@Override
 	public void setType(java.lang.String type) {
 		_kaleoLog.setType(type);
 	}
@@ -774,6 +833,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the comment of this kaleo log
 	*/
+	@Override
 	public java.lang.String getComment() {
 		return _kaleoLog.getComment();
 	}
@@ -783,6 +843,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param comment the comment of this kaleo log
 	*/
+	@Override
 	public void setComment(java.lang.String comment) {
 		_kaleoLog.setComment(comment);
 	}
@@ -792,6 +853,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the start date of this kaleo log
 	*/
+	@Override
 	public java.util.Date getStartDate() {
 		return _kaleoLog.getStartDate();
 	}
@@ -801,6 +863,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param startDate the start date of this kaleo log
 	*/
+	@Override
 	public void setStartDate(java.util.Date startDate) {
 		_kaleoLog.setStartDate(startDate);
 	}
@@ -810,6 +873,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the end date of this kaleo log
 	*/
+	@Override
 	public java.util.Date getEndDate() {
 		return _kaleoLog.getEndDate();
 	}
@@ -819,6 +883,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param endDate the end date of this kaleo log
 	*/
+	@Override
 	public void setEndDate(java.util.Date endDate) {
 		_kaleoLog.setEndDate(endDate);
 	}
@@ -828,6 +893,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the duration of this kaleo log
 	*/
+	@Override
 	public long getDuration() {
 		return _kaleoLog.getDuration();
 	}
@@ -837,6 +903,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param duration the duration of this kaleo log
 	*/
+	@Override
 	public void setDuration(long duration) {
 		_kaleoLog.setDuration(duration);
 	}
@@ -846,6 +913,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @return the workflow context of this kaleo log
 	*/
+	@Override
 	public java.lang.String getWorkflowContext() {
 		return _kaleoLog.getWorkflowContext();
 	}
@@ -855,52 +923,64 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	*
 	* @param workflowContext the workflow context of this kaleo log
 	*/
+	@Override
 	public void setWorkflowContext(java.lang.String workflowContext) {
 		_kaleoLog.setWorkflowContext(workflowContext);
 	}
 
+	@Override
 	public boolean isNew() {
 		return _kaleoLog.isNew();
 	}
 
+	@Override
 	public void setNew(boolean n) {
 		_kaleoLog.setNew(n);
 	}
 
+	@Override
 	public boolean isCachedModel() {
 		return _kaleoLog.isCachedModel();
 	}
 
+	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_kaleoLog.setCachedModel(cachedModel);
 	}
 
+	@Override
 	public boolean isEscapedModel() {
 		return _kaleoLog.isEscapedModel();
 	}
 
+	@Override
 	public java.io.Serializable getPrimaryKeyObj() {
 		return _kaleoLog.getPrimaryKeyObj();
 	}
 
+	@Override
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_kaleoLog.setPrimaryKeyObj(primaryKeyObj);
 	}
 
+	@Override
 	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _kaleoLog.getExpandoBridge();
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.model.BaseModel<?> baseModel) {
 		_kaleoLog.setExpandoBridgeAttributes(baseModel);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_kaleoLog.setExpandoBridgeAttributes(expandoBridge);
 	}
 
+	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_kaleoLog.setExpandoBridgeAttributes(serviceContext);
@@ -911,6 +991,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		return new KaleoLogWrapper((KaleoLog)_kaleoLog.clone());
 	}
 
+	@Override
 	public int compareTo(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog) {
 		return _kaleoLog.compareTo(kaleoLog);
@@ -921,14 +1002,17 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		return _kaleoLog.hashCode();
 	}
 
+	@Override
 	public com.liferay.portal.model.CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoLog> toCacheModel() {
 		return _kaleoLog.toCacheModel();
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog toEscapedModel() {
 		return new KaleoLogWrapper(_kaleoLog.toEscapedModel());
 	}
 
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog toUnescapedModel() {
 		return new KaleoLogWrapper(_kaleoLog.toUnescapedModel());
 	}
@@ -938,10 +1022,12 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		return _kaleoLog.toString();
 	}
 
+	@Override
 	public java.lang.String toXmlString() {
 		return _kaleoLog.toXmlString();
 	}
 
+	@Override
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoLog.persist();
@@ -954,10 +1040,12 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		return _kaleoLog;
 	}
 
+	@Override
 	public KaleoLog getWrappedModel() {
 		return _kaleoLog;
 	}
 
+	@Override
 	public void resetOriginalValues() {
 		_kaleoLog.resetOriginalValues();
 	}

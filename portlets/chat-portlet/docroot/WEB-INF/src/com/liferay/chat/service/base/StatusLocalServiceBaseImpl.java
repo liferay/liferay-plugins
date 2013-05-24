@@ -77,6 +77,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Status addStatus(Status status) throws SystemException {
 		status.setNew(true);
 
@@ -89,6 +90,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param statusId the primary key for the new status
 	 * @return the new status
 	 */
+	@Override
 	public Status createStatus(long statusId) {
 		return statusPersistence.create(statusId);
 	}
@@ -102,6 +104,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Status deleteStatus(long statusId)
 		throws PortalException, SystemException {
 		return statusPersistence.remove(statusId);
@@ -115,10 +118,12 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@Override
 	public Status deleteStatus(Status status) throws SystemException {
 		return statusPersistence.remove(status);
 	}
 
+	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
@@ -133,6 +138,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
@@ -152,6 +158,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
@@ -172,6 +179,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -186,11 +194,13 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of rows that match the dynamic query
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return statusPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
+	@Override
 	public Status fetchStatus(long statusId) throws SystemException {
 		return statusPersistence.fetchByPrimaryKey(statusId);
 	}
@@ -203,11 +213,13 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws PortalException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public Status getStatus(long statusId)
 		throws PortalException, SystemException {
 		return statusPersistence.findByPrimaryKey(statusId);
 	}
 
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return statusPersistence.findByPrimaryKey(primaryKeyObj);
@@ -225,6 +237,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of statuses
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public List<Status> getStatuses(int start, int end)
 		throws SystemException {
 		return statusPersistence.findAll(start, end);
@@ -236,6 +249,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the number of statuses
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Override
 	public int getStatusesCount() throws SystemException {
 		return statusPersistence.countAll();
 	}
@@ -248,6 +262,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public Status updateStatus(Status status) throws SystemException {
 		return statusPersistence.update(status);
 	}
@@ -470,6 +485,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the Spring bean ID for this bean
 	 */
+	@Override
 	public String getBeanIdentifier() {
 		return _beanIdentifier;
 	}
@@ -479,10 +495,12 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param beanIdentifier the Spring bean ID for this bean
 	 */
+	@Override
 	public void setBeanIdentifier(String beanIdentifier) {
 		_beanIdentifier = beanIdentifier;
 	}
 
+	@Override
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		Thread currentThread = Thread.currentThread();

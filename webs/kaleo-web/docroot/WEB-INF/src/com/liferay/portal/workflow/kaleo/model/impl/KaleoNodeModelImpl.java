@@ -100,26 +100,32 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	public KaleoNodeModelImpl() {
 	}
 
+	@Override
 	public long getPrimaryKey() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setPrimaryKey(long primaryKey) {
 		setKaleoNodeId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoNode.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoNode.class.getName();
 	}
@@ -233,28 +239,34 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public long getKaleoNodeId() {
 		return _kaleoNodeId;
 	}
 
+	@Override
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_columnBitmask = -1L;
 
 		_kaleoNodeId = kaleoNodeId;
 	}
 
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}
 
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
 
+	@Override
 	public void setCompanyId(long companyId) {
 		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
 
@@ -271,22 +283,27 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		return _originalCompanyId;
 	}
 
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
 
+	@Override
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	@Override
 	public String getUserUuid() throws SystemException {
 		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
+	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
 	}
 
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -296,30 +313,37 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
 
+	@Override
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
 	}
 
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
 
+	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
 	}
 
+	@Override
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinitionId;
 	}
 
+	@Override
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_columnBitmask |= KALEODEFINITIONID_COLUMN_BITMASK;
 
@@ -336,6 +360,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		return _originalKaleoDefinitionId;
 	}
 
+	@Override
 	public String getName() {
 		if (_name == null) {
 			return StringPool.BLANK;
@@ -345,10 +370,12 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public void setName(String name) {
 		_name = name;
 	}
 
+	@Override
 	public String getMetadata() {
 		if (_metadata == null) {
 			return StringPool.BLANK;
@@ -358,10 +385,12 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public void setMetadata(String metadata) {
 		_metadata = metadata;
 	}
 
+	@Override
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -371,10 +400,12 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public void setDescription(String description) {
 		_description = description;
 	}
 
+	@Override
 	public String getType() {
 		if (_type == null) {
 			return StringPool.BLANK;
@@ -384,30 +415,37 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		}
 	}
 
+	@Override
 	public void setType(String type) {
 		_type = type;
 	}
 
+	@Override
 	public boolean getInitial() {
 		return _initial;
 	}
 
+	@Override
 	public boolean isInitial() {
 		return _initial;
 	}
 
+	@Override
 	public void setInitial(boolean initial) {
 		_initial = initial;
 	}
 
+	@Override
 	public boolean getTerminal() {
 		return _terminal;
 	}
 
+	@Override
 	public boolean isTerminal() {
 		return _terminal;
 	}
 
+	@Override
 	public void setTerminal(boolean terminal) {
 		_terminal = terminal;
 	}
@@ -463,6 +501,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		return kaleoNodeImpl;
 	}
 
+	@Override
 	public int compareTo(KaleoNode kaleoNode) {
 		int value = 0;
 
@@ -641,6 +680,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 
