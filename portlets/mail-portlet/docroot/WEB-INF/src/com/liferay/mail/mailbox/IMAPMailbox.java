@@ -49,6 +49,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -510,6 +511,10 @@ public class IMAPMailbox extends BaseMailbox {
 			sentFolderId = getFolderId("sent");
 		}
 
+		if (sentFolderId <= 0) {
+			sentFolderId = getFolderId("sent-mail");
+		}
+
 		if (trashFolderId <= 0) {
 			trashFolderId = getFolderId("trash");
 		}
@@ -536,18 +541,22 @@ public class IMAPMailbox extends BaseMailbox {
 
 		String[] names = new String[locales.length];
 
+		List<String> words = new ArrayList<String>();
+
 		for (int i = 0; i < locales.length; i++) {
 			names[i] = LanguageUtil.get(locales[i], type).toLowerCase();
+
+			words.addAll(Arrays.asList(names[i].split("\\s+")));
 		}
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(
 			account.getAccountId());
 
-		for (Folder folder : folders) {
-			String folderName = folder.getDisplayName().toLowerCase();
+		for (String word : words) {
+			for (Folder folder : folders) {
+				String folderName = folder.getDisplayName().toLowerCase();
 
-			for (String name : names) {
-				if (folderName.contains(name)) {
+				if (folderName.contains(word)) {
 					return folder.getFolderId();
 				}
 			}
