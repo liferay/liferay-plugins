@@ -1,6 +1,10 @@
 @import "compass";
 
 .so-announcements-portlet {
+	.admin-actions {
+		margin-bottom: 1em;
+	}
+
 	.entry-item {
 		border-bottom: 1px solid #C8C9CA;
 		min-height: 45px;
@@ -140,6 +144,34 @@
 	.entry-scope {
 		color: #555;
 		display: block;
+	}
+}
+
+.aui-dialog-iframe-popup {
+	select {
+		margin: 0;
+	}
+	.display-date, .distribution-scope, .expiration-date, .priority, .type, .title, .url {
+		.aui-field-content {
+			display: inline-block;
+		}
+	}
+
+	.distribution-scope, .type, .title, .display-date {
+		.aui-field-content {
+			margin-right: 1em;
+		}
+	}
+
+	.title, .url {
+		.aui-field-input-text {
+			width: 350px;
+		}
+	}
+
+	.entry {
+		margin: 0;
+		padding: 0;
 	}
 }
 

@@ -19,6 +19,23 @@
 
 <div class="entry-footer-toolbar">
 	<div class="edit-actions">
+		<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.UPDATE) %>">
+			<span class="action edit-entry">
+				<portlet:renderURL var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+					<portlet:param name="mvcPath" value="/edit_entry.jsp" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
+				</portlet:renderURL>
+
+				<a href="<%= "javascript:" + renderResponse.getNamespace() + "editEntry('" + editURL.toString() + "');" %>">
+					<liferay-ui:icon
+						image="edit"
+						label="<%= true %>"
+						/>
+				</a>
+			</span>
+		</c:if>
+
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<span class="action control-entry">
 				<a href='<%= "javascript:" + renderResponse.getNamespace() + "handleEntry(" + entry.getEntryId() + ");" %>'>

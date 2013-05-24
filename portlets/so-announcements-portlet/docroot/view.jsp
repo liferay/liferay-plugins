@@ -45,6 +45,16 @@ List<AnnouncementsEntry> results = null;
 int total = 0;
 %>
 
+<liferay-ui:success key="announcementAdded" message="the-announcement-was-successfully-added" />
+<liferay-ui:success key="announcementDeleted" message="the-announcement-was-successfully-deleted" />
+<liferay-ui:success key="announcementUpdated" message="the-announcement-was-successfully-updated" />
+
+<c:if test="<%= permissionChecker.isGroupAdmin(layout.getGroupId()) || permissionChecker.isGroupOwner(layout.getGroupId()) %>">
+	<div class="admin-actions">
+		<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
+	</div>
+</c:if>
+
 <div class="unread-entries" id="unreadEntries">
 	<%@ include file="/entry_iterator.jspf" %>
 </div>
@@ -143,5 +153,31 @@ results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes
 		Liferay.Service.Announcements.AnnouncementsFlag.deleteFlag({flag: flag.flagId});
 
 		Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
+	}
+
+	function <portlet:namespace />addEntry() {
+		<portlet:renderURL var="addEntryURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>
+
+		<portlet:namespace />openWindow('<%= addEntryURL %>', '<%= LanguageUtil.get(pageContext, "add-entry") %>', true, 800);
+	}
+
+	function <portlet:namespace />editEntry(uri) {
+		<portlet:namespace />openWindow(uri, '<%= LanguageUtil.get(pageContext, "edit-entry") %>', true, 800);
+	}
+
+	function <portlet:namespace />openWindow(url, title, modal, width) {
+		Liferay.Util.openWindow(
+			{
+				dialog: {
+					align: Liferay.Util.Window.ALIGN_CENTER,
+					modal: modal,
+					width: width
+				},
+				cache: false,
+				id: '<portlet:namespace />Dialog',
+				title: title,
+				uri: url
+			}
+		);
 	}
 </aui:script>
