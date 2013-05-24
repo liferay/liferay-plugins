@@ -4,6 +4,8 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<css-class-wrapper>so-announcements-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
