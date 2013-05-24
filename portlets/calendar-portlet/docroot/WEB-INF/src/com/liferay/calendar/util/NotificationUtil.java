@@ -128,6 +128,32 @@ public class NotificationUtil {
 		return notificationTypeSettingsProperties.get(propertyName);
 	}
 
+	public static void notifyCalendarBookingMovedToTrash(
+			CalendarBooking calendarBooking, NotificationType notificationType)
+		throws Exception {
+
+		NotificationSender notificationSender =
+			NotificationSenderFactory.getNotificationSender(
+				notificationType.toString());
+
+		List<NotificationRecipient> notificationRecipients =
+			_getNotificationRecipients(calendarBooking);
+
+		for (NotificationRecipient notificationRecipient :
+				notificationRecipients) {
+
+			User user = notificationRecipient.getUser();
+
+			NotificationTemplateContext notificationTemplateContext =
+				NotificationTemplateContextFactory.getInstance(
+					notificationType, NotificationTemplateType.MOVED_TO_TRASH,
+					calendarBooking, user);
+
+			notificationSender.sendNotification(
+				notificationRecipient, notificationTemplateContext);
+		}
+	}
+
 	public static void notifyCalendarBookingInvites(
 			CalendarBooking calendarBooking, NotificationType notificationType,
 			ServiceContext serviceContext)

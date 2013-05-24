@@ -54,6 +54,7 @@ import java.util.Map;
  * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  * @author Bruno Basto
+ * @author Pier Paolo Ramon
  */
 public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
@@ -222,6 +223,34 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		calendarBookingApprovalWorkflow.invokeTransition(
 			getUserId(), calendarBookingId, transitionName, serviceContext);
+	}
+
+	public void moveCalendarBookingToTrash(long calendarBookingId)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarBooking.getCalendarId(),
+			ActionKeys.MANAGE_BOOKINGS);
+
+		calendarBookingLocalService.moveCalendarBookingToTrash(
+			getUserId(), calendarBooking.getCalendarBookingId());
+	}
+
+	public void restoreCalendarBookingFromTrash(long calendarBookingId)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarBooking.getCalendarId(),
+			ActionKeys.MANAGE_BOOKINGS);
+
+		calendarBookingLocalService.restoreCalendarBookingFromTrash(
+			getUserId(), calendarBooking.getCalendarBookingId());
 	}
 
 	@AccessControlled(guestAccessEnabled = true)

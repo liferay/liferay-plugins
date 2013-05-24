@@ -28,7 +28,7 @@ public class CalendarBookingWorkflowConstants extends WorkflowConstants {
 
 	public static final String LABEL_MAYBE = "maybe";
 
-	public static final int STATUS_MAYBE = 8;
+	public static final int STATUS_MAYBE = 9;
 
 	public static String toLabel(int status) {
 		if (status == STATUS_APPROVED) {

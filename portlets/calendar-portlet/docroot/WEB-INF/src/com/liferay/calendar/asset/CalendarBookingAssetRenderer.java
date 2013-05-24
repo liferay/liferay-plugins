@@ -24,8 +24,10 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.trash.TrashRenderer;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.asset.model.BaseAssetRenderer;
 
 import java.util.Locale;
@@ -38,8 +40,10 @@ import javax.portlet.RenderResponse;
 /**
  * @author Fabio Pezzutto
  * @author Eduardo Lundgren
+ * @author Pier Paolo Ramon
  */
-public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
+public class CalendarBookingAssetRenderer
+	extends BaseAssetRenderer implements TrashRenderer {
 
 	public CalendarBookingAssetRenderer(CalendarBooking calendarBooking) {
 		_calendarBooking = calendarBooking;
@@ -66,6 +70,13 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 	}
 
 	@Override
+	public String getPortletId() {
+		AssetRendererFactory assetRendererFactory = getAssetRendererFactory();
+
+		return assetRendererFactory.getPortletId();
+	}
+
+	@Override
 	public String getSummary(Locale locale) {
 		return _calendarBooking.getDescription(locale);
 	}
@@ -73,6 +84,11 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 	@Override
 	public String getTitle(Locale locale) {
 		return _calendarBooking.getTitle(locale);
+	}
+
+	@Override
+	public String getType() {
+		return CalendarBookingAssetRendererFactory.TYPE;
 	}
 
 	@Override
