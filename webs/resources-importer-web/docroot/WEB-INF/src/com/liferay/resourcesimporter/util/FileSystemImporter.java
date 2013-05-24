@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -219,8 +220,36 @@ public class FileSystemImporter extends BaseImporter {
 	protected void addLayout(long parentLayoutId, JSONObject layoutJSONObject)
 		throws Exception {
 
-		String name = layoutJSONObject.getString("name");
-		String title = layoutJSONObject.getString("title");
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+		JSONObject nameMapJSONObject = layoutJSONObject.getJSONObject(
+			"nameMap");
+
+		if (nameMapJSONObject != null) {
+			nameMap = (Map<Locale, String>)LocalizationUtil.deserialize(
+				nameMapJSONObject);
+		}
+		else {
+			String name = layoutJSONObject.getString("name");
+
+			nameMap.put(LocaleUtil.getDefault(), name);
+		}
+
+		Map<Locale, String> titleMap = new HashMap<Locale, String>();
+
+		JSONObject titleMapJSONObject = layoutJSONObject.getJSONObject(
+			"nameMap");
+
+		if (titleMapJSONObject != null) {
+			titleMap = (Map<Locale, String>)LocalizationUtil.deserialize(
+				titleMapJSONObject);
+		}
+		else {
+			String title = layoutJSONObject.getString("title");
+
+			titleMap.put(LocaleUtil.getDefault(), title);
+		}
+
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
 
 		String friendlyURL = layoutJSONObject.getString("friendlyURL");
@@ -232,8 +261,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
-			userId, groupId, privateLayout, parentLayoutId, name, title,
-			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, hidden, friendlyURL,
+			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
+			null, null, null, LayoutConstants.TYPE_PORTLET, hidden, friendlyURL,
 			serviceContext);
 
 		String typeSettings = layoutJSONObject.getString("typeSettings");
@@ -609,9 +638,7 @@ public class FileSystemImporter extends BaseImporter {
 	protected Map<Locale, String> getMap(String value) {
 		Map<Locale, String> map = new HashMap<Locale, String>();
 
-		Locale locale = LocaleUtil.getDefault();
-
-		map.put(locale, value);
+		map.put(LocaleUtil.getDefault(), value);
 
 		return map;
 	}
