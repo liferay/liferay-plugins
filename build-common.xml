@@ -170,7 +170,7 @@ ECJ was automatically installed. Please rerun your task.
 
 	<target name="format-source">
 		<java
-			classname="com.liferay.portal.tools.SourceFormatter"
+			classname="com.liferay.portal.tools.sourceformatter.SourceFormatter"
 			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"
