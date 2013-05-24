@@ -6,52 +6,20 @@
 	<import file="../../build-common-osgi-plugin.xml" />
 
 	<property name="original.lib.name" value="org.apache.jasper.glassfish" />
-	<property name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/orbit/" />
+	<property name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/orbit" />
 	<property name="original.lib.version" value="2.1.0.v201110031002" />
 
 	<property name="schemas.dir" value="src/javax/servlet/jsp/resources" />
 	<property name="schemas.url" value="http://svn.apache.org/repos/asf/tomcat/trunk/java/javax/servlet/jsp/resources" />
 
 	<target name="compile">
-		<if>
-			<not>
-				<available file="lib/${original.lib.name}.jar" />
-			</not>
-			<then>
-				<mkdir dir="lib" />
-
-				<get
-					dest="lib/${original.lib.name}.jar"
-					src="${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar"
-				/>
-
-				<get
-					dest="lib/${original.lib.name}-sources.jar"
-					src="${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}-sources.jar"
-				/>
-
-				<unjar
-					dest="src"
-					src="lib/${original.lib.name}-sources.jar"
-				>
-					<patternset>
-						<include name="org/apache/jasper/EmbeddedServletOptions.java" />
-						<include name="org/apache/jasper/JspC.java" />
-						<include name="org/apache/jasper/Options.java" />
-						<include name="org/apache/jasper/compiler/Compiler.java" />
-						<include name="org/apache/jasper/compiler/Generator.java" />
-						<include name="org/apache/jasper/compiler/Jsr199JavaCompiler.java" />
-						<include name="org/apache/jasper/compiler/JspRuntimeContext.java" />
-						<include name="org/apache/jasper/compiler/TldLocationsCache.java" />
-						<include name="org/apache/jasper/runtime/PageContextImpl.java" />
-					</patternset>
-				</unjar>
-
-				<delete file="lib/${original.lib.name}-sources.jar" />
-
-				<patch dir="src" patchfile="patches/LPS-35513.patch" strip="1" />
-			</then>
-		</if>
+		<antcall target="patch">
+			<param name="patch.destination" value="org/apache/jasper/EmbeddedServletOptions.java,org/apache/jasper/JspC.java,org/apache/jasper/Options.java,org/apache/jasper/compiler/Compiler.java,org/apache/jasper/compiler/Generator.java,org/apache/jasper/compiler/Jsr199JavaCompiler.java,org/apache/jasper/compiler/JspRuntimeContext.java,org/apache/jasper/compiler/TldLocationsCache.java,org/apache/jasper/runtime/PageContextImpl.java" />
+			<param name="patch.original.lib.name" value="${original.lib.name}" />
+			<param name="patch.original.lib.version" value="${original.lib.version}" />
+			<param name="patch.original.lib.url" value="${original.lib.url}" />
+			<param name="patch.source" value="patches/LPS-35513.patch" />
+		</antcall>
 
 		<if>
 			<not>

@@ -326,35 +326,32 @@
 
 		<!-- LPS-14616 -->
 
-		<antcall target="patch-shindig">
-			<param name="original.lib.name" value="shindig-social-api" />
-			<param name="original.lib.version" value="2.0.2" />
-			<param name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig/" />
-
-			<param name="files.to.patch" value="org/apache/shindig/social/opensocial/model/MediaItem.java" />
-			<param name="patch.file" value="patches/LPS-14616.patch" />
+		<antcall target="patch">
+			<param name="patch.destination" value="org/apache/shindig/social/opensocial/model/MediaItem.java" />
+			<param name="patch.original.lib.name" value="shindig-social-api" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-14616.patch" />
 		</antcall>
 
 		<!-- LPS-15003 -->
 
-		<antcall target="patch-shindig">
-			<param name="original.lib.name" value="shindig-features" />
-			<param name="original.lib.version" value="2.0.2" />
-			<param name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig/" />
-
-			<param name="files.to.patch" value="features/rpc/rpc.js" />
-			<param name="patch.file" value="patches/LPS-15003.patch" />
+		<antcall target="patch">
+			<param name="patch.destination" value="features/rpc/rpc.js" />
+			<param name="patch.original.lib.name" value="shindig-features" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-15003.patch" />
 		</antcall>
 
 		<!-- LPS-21488 -->
 
-		<antcall target="patch-shindig">
-			<param name="original.lib.name" value="shindig-gadgets" />
-			<param name="original.lib.version" value="2.0.2" />
-			<param name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig/" />
-
-			<param name="files.to.patch" value="org/apache/shindig/gadgets/oauth/OAuthRequest.java" />
-			<param name="patch.file" value="patches/LPS-21488.patch" />
+		<antcall target="patch">
+			<param name="patch.destination" value="org/apache/shindig/gadgets/oauth/OAuthRequest.java" />
+			<param name="patch.original.lib.name" value="shindig-gadgets" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-21488.patch" />
 		</antcall>
 	</target>
 
@@ -423,38 +420,6 @@
 			<replacetoken><![CDATA[if (stream.eat("[")) {]]></replacetoken>
 			<replacevalue><![CDATA[if (false && stream.eat("[")) {]]></replacevalue>
 		</replace>
-	</target>
-
-	<target name="patch-shindig">
-		<if>
-			<not>
-				<available file="docroot/WEB-INF/lib/${original.lib.name}.jar" />
-			</not>
-			<then>
-				<mkdir dir="docroot/WEB-INF/lib" />
-
-				<get
-					dest="docroot/WEB-INF/lib/${original.lib.name}.jar"
-					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar"
-				/>
-
-				<get
-					dest="docroot/WEB-INF/lib/${original.lib.name}-sources.jar"
-					src="${original.lib.url}${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}-sources.jar"
-				/>
-
-				<unjar
-					dest="docroot/WEB-INF/src"
-					src="docroot/WEB-INF/lib/${original.lib.name}-sources.jar"
-				>
-					<patternset includes="${files.to.patch}" />
-				</unjar>
-
-				<delete file="docroot/WEB-INF/lib/${original.lib.name}-sources.jar" />
-
-				<patch dir="docroot/WEB-INF/src" patchfile="${patch.file}" strip="1" />
-			</then>
-		</if>
 	</target>
 
 	<target name="strip-comments">

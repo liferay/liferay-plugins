@@ -1002,6 +1002,55 @@ Please find a solution that does not require portal-impl.jar.
 		<unzip dest="tmp" src="${original.war.file}" />
 	</target>
 
+	<target name="patch">
+		<if>
+			<available file="src" />
+			<then>
+				<var name="patch.source.dir" value="src" />
+			</then>
+			<else>
+				<var name="patch.source.dir" value="docroot/WEB-INF/src" />
+			</else>
+		</if>
+
+		<var name="patched.file.available" value="false" />
+
+		<for param="patched.file">
+			<path>
+				<fileset
+					dir="${patch.source.dir}"
+					includes="${patch.destination}"
+				/>
+			</path>
+			<sequential>
+				<var name="patched.file.available" value="true" />
+			</sequential>
+		</for>
+
+		<if>
+			<equals arg1="${patched.file.available}" arg2="false" />
+			<then>
+				<get
+					dest="${patch.original.lib.name}-sources.jar"
+					src="${patch.original.lib.url}/${patch.original.lib.name}/${patch.original.lib.version}/${patch.original.lib.name}-${patch.original.lib.version}-sources.jar"
+				/>
+
+				<unjar
+					dest="${patch.source.dir}"
+					src="${patch.original.lib.name}-sources.jar"
+				>
+					<patternset includes="${patch.destination}" />
+				</unjar>
+
+				<delete file="${patch.original.lib.name}-sources.jar" />
+
+				<patch dir="${patch.source.dir}" patchfile="${patch.source}" strip="1" />
+			</then>
+		</if>
+
+		<var name="patched.file.available" unset="true" />
+	</target>
+
 	<target name="shrink-zip-cmd">
 		<tstamp>
 			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
