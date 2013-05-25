@@ -36,6 +36,44 @@
 				<ant dir="${sdk.dir}/shared/portal-compat-shared" target="compile" inheritAll="false" />
 			</then>
 		</if>
+		<!-- imports for shared -->
+		<if>
+			<isset property="import.shared" />
+			<then>
+				<echo>import ${import.shared}</echo>
+				<for list="${import.shared}" param="import.shared.current">
+					<sequential>
+						<if>
+							<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
+							<then>
+								<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
+
+								<for param="import.shared.full.path">
+									<path>
+										<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
+									</path>
+									<sequential>
+										<copy
+											file="@{import.shared.full.path}"
+											tofile="lib/@{import.shared.current}.jar"
+										/>
+									</sequential>
+								</for>
+
+								<if>
+									<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
+									<then>
+										<copy todir="lib">
+											<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
+										</copy>
+									</then>
+								</if>
+							</then>
+						</if>
+					</sequential>
+				</for>
+			</then>
+		</if>
 
 		<mkdir dir="classes" />
 

@@ -564,6 +564,8 @@
 				<if>
 					<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
 					<then>
+						<var name="import.shared" unset="true" />
+
 						<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
 
 						<for param="import.shared.full.path">
