@@ -212,8 +212,8 @@
 	var widthNode = A.one('#<portlet:namespace />width');
 
 	var imageURL = '<%= imageURL %>';
-	var swfURL = '<%= _SWF_URL %>';
-	var watchURL = '<%= _WATCH_URL %>';
+	var swfURL = '<%= swfURL %>';
+	var watchURL = '<%= watchURL %>';
 
 	A.on(
 		'change',

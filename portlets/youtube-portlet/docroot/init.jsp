@@ -26,6 +26,7 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
@@ -72,10 +73,8 @@ String borderColorHex = "0x" + borderColor.replaceAll("#", "").replaceAll("^(.)(
 String playerColorHex = "0x" + playerColor.replaceAll("#", "").replaceAll("^(.)(.)(.)$", "$1$1$2$2$3$3").toLowerCase();
 
 String presetSize = width + "x" + height;
-%>
 
-<%!
-private static final String _SWF_URL = "http://www.youtube.com/v/";
+String swfURL = HttpUtil.getProtocol(request) + "://www.youtube.com/v/";
 
-private static final String _WATCH_URL = "http://www.youtube.com/watch?v=";
+String watchURL = HttpUtil.getProtocol(request) + "://www.youtube.com/watch?v=";
 %>
