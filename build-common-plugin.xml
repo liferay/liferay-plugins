@@ -32,6 +32,10 @@
 	<if>
 		<available file="src" />
 		<then>
+			<property name="plugin.classes.dir" value="classes" />
+			<property name="plugin.lib.dir" value="lib" />
+			<property name="plugin.source.dir" value="src" />
+
 			<if>
 				<available file="lib" />
 				<then>
@@ -47,22 +51,28 @@
 				</else>
 			</if>
 		</then>
-		<elseif>
-			<available file="tmp" />
-			<then>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
-					<fileset dir="tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-					<pathelement location="tmp/WEB-INF/classes" />
-				</path>
-			</then>
-		</elseif>
 		<else>
-			<path id="plugin-lib.classpath">
-				<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
-				<pathelement location="docroot/WEB-INF/classes" />
-			</path>
+			<property name="plugin.classes.dir" value="docroot/WEB-INF/classes" />
+			<property name="plugin.lib.dir" value="docroot/WEB-INF/lib" />
+			<property name="plugin.source.dir" value="docroot/WEB-INF/src" />
+
+			<if>
+				<available file="tmp" />
+				<then>
+					<path id="plugin-lib.classpath">
+						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<fileset dir="tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement location="docroot/WEB-INF/classes" />
+						<pathelement location="tmp/WEB-INF/classes" />
+					</path>
+				</then>
+				<else>
+					<path id="plugin-lib.classpath">
+						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement location="docroot/WEB-INF/classes" />
+					</path>
+				</else>
+			</if>
 		</else>
 	</if>
 
@@ -542,56 +552,14 @@
 	<target name="compile">
 		<antcall target="merge" />
 
+		<antcall target="compile-import-shared" />
+
 		<mkdir dir="docroot/WEB-INF/classes" />
 		<mkdir dir="docroot/WEB-INF/lib" />
 
 		<copy todir="docroot/WEB-INF/lib">
 			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
 		</copy>
-
-		<if>
-			<isset property="import.shared" />
-			<then>
-				<var name="import.shared" value="portal-compat-shared,${import.shared}" />
-			</then>
-			<else>
-				<var name="import.shared" value="portal-compat-shared" />
-			</else>
-		</if>
-
-		<for list="${import.shared}" param="import.shared.current">
-			<sequential>
-				<if>
-					<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
-					<then>
-						<var name="import.shared" unset="true" />
-
-						<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
-
-						<for param="import.shared.full.path">
-							<path>
-								<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
-							</path>
-							<sequential>
-								<copy
-									file="@{import.shared.full.path}"
-									tofile="docroot/WEB-INF/lib/@{import.shared.current}.jar"
-								/>
-							</sequential>
-						</for>
-
-						<if>
-							<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
-							<then>
-								<copy todir="docroot/WEB-INF/lib">
-									<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
-								</copy>
-							</then>
-						</if>
-					</then>
-				</if>
-			</sequential>
-		</for>
 
 		<if>
 			<available file="overwrite" />
@@ -682,6 +650,66 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 
 		<antcall target="merge" />
+	</target>
+
+	<target name="compile-import-shared">
+		<if>
+			<not>
+				<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
+			</not>
+			<then>
+				<if>
+					<isset property="import.shared" />
+					<then>
+						<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+					</then>
+					<else>
+						<var name="import.shared" value="portal-compat-shared" />
+					</else>
+				</if>
+			</then>
+		</if>
+
+		<if>
+			<isset property="import.shared" />
+			<then>
+				<var name="import.shared.list" value="${import.shared}" />
+
+				<var name="import.shared" unset="true" />
+
+				<for list="${import.shared.list}" param="import.shared.current">
+					<sequential>
+						<if>
+							<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
+							<then>
+								<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
+
+								<for param="import.shared.full.path">
+									<path>
+										<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
+									</path>
+									<sequential>
+										<copy
+											file="@{import.shared.full.path}"
+											tofile="${plugin.lib.dir}/@{import.shared.current}.jar"
+										/>
+									</sequential>
+								</for>
+
+								<if>
+									<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
+									<then>
+										<copy todir="${plugin.lib.dir}">
+											<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
+										</copy>
+									</then>
+								</if>
+							</then>
+						</if>
+					</sequential>
+				</for>
+			</then>
+		</if>
 	</target>
 
 	<target name="compile-test">
@@ -1005,22 +1033,12 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="patch">
-		<if>
-			<available file="src" />
-			<then>
-				<var name="patch.source.dir" value="src" />
-			</then>
-			<else>
-				<var name="patch.source.dir" value="docroot/WEB-INF/src" />
-			</else>
-		</if>
-
 		<var name="patched.file.available" value="false" />
 
 		<for param="patched.file">
 			<path>
 				<fileset
-					dir="${patch.source.dir}"
+					dir="${plugin.source.dir}"
 					includes="${patch.destination}"
 				/>
 			</path>
@@ -1038,7 +1056,7 @@ Please find a solution that does not require portal-impl.jar.
 				/>
 
 				<unjar
-					dest="${patch.source.dir}"
+					dest="${plugin.source.dir}"
 					src="${patch.original.lib.name}-sources.jar"
 				>
 					<patternset includes="${patch.destination}" />
@@ -1046,7 +1064,7 @@ Please find a solution that does not require portal-impl.jar.
 
 				<delete file="${patch.original.lib.name}-sources.jar" />
 
-				<patch dir="${patch.source.dir}" patchfile="${patch.source}" strip="1" />
+				<patch dir="${plugin.source.dir}" patchfile="${patch.source}" strip="1" />
 			</then>
 		</if>
 
