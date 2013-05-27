@@ -74,8 +74,6 @@ String playerColorHex = "0x" + playerColor.replaceAll("#", "").replaceAll("^(.)(
 String presetSize = width + "x" + height;
 
 String imageURL = HttpUtil.getProtocol(request) + "://img.youtube.com/vi/" + id + "/0.jpg";
-
 String swfURL = HttpUtil.getProtocol(request) + "://www.youtube.com/v/";
-
 String watchURL = HttpUtil.getProtocol(request) + "://www.youtube.com/watch?v=";
 %>
