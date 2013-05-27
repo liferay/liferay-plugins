@@ -27,7 +27,7 @@ http://git.eclipse.org/c/jetty/org.eclipse.jetty.project.git/tree/jetty-webapp/s
 		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
 		<init-param>
 			<param-name>compilerClassName</param-name>
-			<param-value>com.liferay.jsp.compiler.JspCompiler</param-value>
+			<param-value>com.liferay.servletjspcompiler.compiler.JspCompiler</param-value>
 		</init-param>
 		<init-param>
 			<param-name>httpMethods</param-name>
