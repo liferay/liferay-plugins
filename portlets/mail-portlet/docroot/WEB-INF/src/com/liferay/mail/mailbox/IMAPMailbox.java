@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -49,7 +50,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -539,14 +539,12 @@ public class IMAPMailbox extends BaseMailbox {
 	protected long getFolderId(String type) throws SystemException {
 		Locale[] locales = LanguageUtil.getAvailableLocales();
 
-		String[] names = new String[locales.length];
-
 		List<String> words = new ArrayList<String>();
 
-		for (int i = 0; i < locales.length; i++) {
-			names[i] = LanguageUtil.get(locales[i], type).toLowerCase();
+		for (Locale locale : locales) {
+			String translation = LanguageUtil.get(locale, type).toLowerCase();
 
-			words.addAll(Arrays.asList(names[i].split("\\s+")));
+			words.addAll(ListUtil.toList(translation.split(StringPool.SPACE)));
 		}
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(
