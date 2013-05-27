@@ -67,12 +67,13 @@ String url = preferences.getValue("url", StringPool.BLANK);
 String width = preferences.getValue("width", "480");
 
 String id = url.replaceAll("^.*?v=([a-zA-Z0-9_-]+).*$", "$1");
-String imageURL = "http://img.youtube.com/vi/" + id + "/0.jpg";
 
 String borderColorHex = "0x" + borderColor.replaceAll("#", "").replaceAll("^(.)(.)(.)$", "$1$1$2$2$3$3").toLowerCase();
 String playerColorHex = "0x" + playerColor.replaceAll("#", "").replaceAll("^(.)(.)(.)$", "$1$1$2$2$3$3").toLowerCase();
 
 String presetSize = width + "x" + height;
+
+String imageURL = HttpUtil.getProtocol(request) + "://img.youtube.com/vi/" + id + "/0.jpg";
 
 String swfURL = HttpUtil.getProtocol(request) + "://www.youtube.com/v/";
 
