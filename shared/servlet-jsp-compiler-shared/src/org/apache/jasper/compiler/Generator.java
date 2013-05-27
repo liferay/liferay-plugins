@@ -407,7 +407,7 @@ class Generator {
      * (shared by servlet and tag handler preamble generation)
      */
     private void genPreambleStaticInitializers() throws JasperException {
-        out.printil("private final JspFactory _jspxFactory = com.liferay.jsp.JspFactoryFactory.getJspFactory();");
+        out.printil("private final JspFactory _jspxFactory = com.liferay.servletjspcompiler.jsp.JspFactoryFactory.getJspFactory();");
         out.println();
 
         // Static data for getDependants()
