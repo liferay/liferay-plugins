@@ -1047,43 +1047,66 @@
 					var confirmationPanel = instance.confirmationPanel;
 
 					if (!confirmationPanel) {
-						confirmationPanel = new A.Dialog(
+						var buttons = [
 							{
-								bodyContent: content.join(''),
-								buttons: [
-									{
-										handler: function(event, buttonItem) {
-											this.onlyThisInstanceFn.apply(this, arguments);
-										},
-										label: Liferay.Language.get('only-this-instance')
-									},
-									{
-										handler: function(event, buttonItem) {
-											this.allFollowingFn.apply(this, arguments);
-										},
-										label: Liferay.Language.get('all-following')
-									},
-									{
-										handler: function(event, buttonItem) {
-											this.allEventsInFn.apply(this, arguments);
-										},
-										label: Liferay.Language.get('all-events-in-the-series')
-									},
-									{
-										handler: function(event, buttonItem) {
-											this.cancelFn.apply(this, arguments);
-										},
-										label: Liferay.Language.get('cancel-this-change')
+								on: {
+
+									click: function(event, buttonItem)  {
+
+										confirmationPanel.onlyThisInstanceFn.apply(confirmationPanel, arguments);
+
 									}
-								],
-								centered: true,
-								close: false,
-								modal: true,
-								resizable: false,
-								title: titleText,
-								visible: false,
-								width: 550,
-								zIndex: 1000
+
+								},
+								label: Liferay.Language.get('only-this-instance')
+							},
+							{
+								on: {
+
+									click: function(event, buttonItem)  {
+
+										confirmationPanel.allFollowingFn.apply(confirmationPanel, arguments);
+
+									}
+
+								},
+								label: Liferay.Language.get('all-following')
+							},
+							{
+								on: {
+
+									click: function(event, buttonItem)  {
+
+										confirmationPanel.allEventsInFn.apply(confirmationPanel, arguments);
+
+									}
+
+								},
+								label: Liferay.Language.get('all-events-in-the-series')
+							},
+							{
+								on: {
+
+									click: function(event, buttonItem)  {
+
+										confirmationPanel.cancelFn.apply(confirmationPanel, arguments);
+
+									}
+
+								},
+								label: Liferay.Language.get('cancel-this-change')
+							}
+						];
+
+						confirmationPanel = Liferay.Util.Window.getWindow(
+							{
+								dialog:	{
+									bodyContent: content.join(''),
+									toolbars: {
+										footer: buttons
+									},
+								},
+								title: titleText
 							}
 						);
 
@@ -1093,7 +1116,7 @@
 					confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
 					confirmationPanel.allFollowingFn = allFollowingFn;
 					confirmationPanel.allEventsInFn = allEventsInFn;
-					confirmationPanel.cancelFn = cancelFn || confirmationPanel.close;
+					confirmationPanel.cancelFn = cancelFn || confirmationPanel.hide;
 
 					confirmationPanel.render().show();
 				}
@@ -1101,7 +1124,7 @@
 		},
 		'',
 		{
-			requires: ['aui-base']
+			requires: ['aui-base', 'liferay-util-window']
 		}
 	);
 
@@ -1117,31 +1140,34 @@
 					var confirmationPanel = instance.confirmationPanel;
 
 					if (!confirmationPanel) {
-						confirmationPanel = new A.Dialog(
+						var buttons = [
 							{
-								bodyContent: message,
-								buttons: [
-									{
-										handler: function(event, buttonItem) {
-											this.yesFn.apply(this, arguments);
-										},
-										label: yesButtonLabel
-									},
-									{
-										handler: function(event, buttonItem) {
-											this.noFn.apply(this, arguments);
-										},
-										label: noButtonLabel
+								on: {
+									click: function(event, buttonItem) {
+										confirmationPanel.yesFn.apply(confirmationPanel, arguments);
 									}
-								],
-								centered: true,
-								close: false,
-								modal: true,
-								resizable: false,
-								title: Liferay.Language.get('are-you-sure'),
-								visible: false,
-								width: 350,
-								zIndex: 1000
+								},
+								label: yesButtonLabel
+							},
+							{
+								on: {
+									click: function(event, buttonItem) {
+										confirmationPanel.noFn.apply(confirmationPanel, arguments);
+									}
+								},
+								label: noButtonLabel
+							}
+						];
+
+						confirmationPanel = Liferay.Util.Window.getWindow(
+							{
+								dialog : {
+									bodyContent: message,
+									toolbars: {
+										footer: buttons
+									},
+								},
+								title: Liferay.Language.get('are-you-sure')
 							}
 						);
 
@@ -1157,7 +1183,7 @@
 		},
 		'',
 		{
-			requires: ['aui-dialog']
+			requires: ['liferay-util-window']
 		}
 	);
 }());
