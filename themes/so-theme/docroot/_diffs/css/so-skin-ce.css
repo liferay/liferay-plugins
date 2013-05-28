@@ -907,6 +907,42 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
+/* Announcements */
+
+.so-announcements-portlet {
+	.entry-header .scope {
+		color: #8D071F;
+	}
+
+	.entry-body, .entry-footer-toolbar {
+			border-color: #F4A425;
+	}
+
+	.entry .title {
+		background: #F4A425;
+		color: #FFF;
+
+		a {
+			color: #FFF;
+			text-decoration: underline;
+		}
+	}
+
+	.entry-footer-toolbar {
+		background: #E7E7E7;
+	}
+
+	.important-entry {
+		.entry-body, .entry-footer-toolbar {
+			border-color: #B20000;
+		}
+
+		.title {
+			background: #B20000;
+		}
+	}
+}
+
 /* Blogs */
 
 .portlet-blogs {

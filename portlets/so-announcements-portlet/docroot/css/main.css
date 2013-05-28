@@ -1,0 +1,209 @@
+@import "compass";
+
+.so-announcements-portlet {
+	.back-link {
+		float: right;
+		font-weight: bold;
+	}
+
+	.admin-actions {
+		margin-bottom: 1em;
+	}
+
+	.entry-item {
+		border-bottom: 1px solid #C8C9CA;
+		min-height: 45px;
+		padding: 1em;
+	}
+
+	.user-portrait {
+		float: left;
+		height: 45px;
+		width: 45px;
+
+		.avatar {
+			display: block;
+			height: 45px;
+			overflow: hidden;
+
+			img {
+				max-width: 45px;
+			}
+		}
+	}
+
+	.entry-data {
+		margin-left: 55px;
+		overflow: hidden;
+	}
+
+	.entry-header {
+		margin-bottom: .4em;
+
+		a {
+			font-weight: bold;
+		}
+	}
+
+	.entry-time {
+		float: right;
+		font-size: .9em;
+		line-height: .9em;
+		margin-left: 1em;
+	}
+
+	.entry-body {
+		border: 1px solid #C8C9CA;
+
+		.icon {
+			height: 16px;
+			width: 16px;
+		}
+
+		.title {
+			border-right-width: 0;
+			display: block;
+			font-weight: bold;
+			overflow: hidden;
+			padding: .4em .9em;
+
+			.event-title {
+				float: left;
+				line-height: 1.5em;
+			}
+
+			.date {
+				float: right;
+				line-height: 1.5em;
+				padding-right: 0;
+			}
+		}
+	}
+
+	.entry-content-container {
+		max-height: 75px;
+		overflow: hidden;
+		padding: .5em .9em;
+	}
+
+	.entry-content {
+		overflow: hidden;
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.entry-footer-toolbar {
+		background: #DDD;
+		border: 1px solid #C8C9CA;
+		border-top-width: 0;
+		margin-top: -1px;
+		padding: .4em 1em .5em;
+
+		.action {
+			border-left: 1px solid #2571AD;
+			display: inline-block;
+			height: 16px;
+			padding: 0 .6em 0 .5em;
+			vertical-align: middle;
+
+			&:first-child {
+				border-left-width: 0;
+				padding-left: 0;
+			}
+
+			img {
+				height: 16px;
+			}
+		}
+
+		a {
+			font-size: .9em;
+		}
+	}
+
+	.read-entries {
+		margin-top: 1em;
+
+		.header {
+			border: 1px solid #C8C9CA;
+			cursor: pointer;
+			padding: .2em .5em;
+		}
+
+		.aui-toggler-header-collapsed {
+			background: url(@theme_image_path@/portlet/maximize.png) no-repeat 99% 50%;
+		}
+
+		.aui-toggler-header-expanded {
+			background: url(@theme_image_path@/portlet/minimize.png) no-repeat 99% 50%;
+		}
+
+		.aui-toggler-content-collapsed {
+			display: block;
+			height: 0;
+			overflow: hidden;
+		}
+	}
+
+	.entry {
+		margin: 1.2em 0;
+		padding-bottom: 0.5em;
+	}
+
+	.entry-scope {
+		color: #555;
+		display: block;
+	}
+}
+
+.aui-dialog-iframe-popup {
+	select {
+		margin: 0;
+	}
+	.display-date, .distribution-scope, .expiration-date, .priority, .type, .title, .url {
+		.aui-field-content {
+			display: inline-block;
+		}
+	}
+
+	.distribution-scope, .type, .title, .display-date {
+		.aui-field-content {
+			margin-right: 1em;
+		}
+	}
+
+	.title, .url {
+		.aui-field-input-text {
+			width: 350px;
+		}
+	}
+
+	.distribution-scope-container {
+		display: inline;
+	}
+
+	#_1_WAR_soannouncementsportlet_ocerSearchContainerSearchContainer td.last {
+		white-space: nowrap;
+	}
+
+	.entry {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+/* ---------- Internet Explorer ---------- */
+
+.ie6, .ie7 {
+	.so-announcements-portlet .entry-content-container {
+		height: 75px;
+	}
+}
+
+/* ---------- Extras ---------- */
+
+.so-announcements-portlet .entry-footer-toolbar {
+	@include box-shadow(0 0 9px 0 #999);
+}
