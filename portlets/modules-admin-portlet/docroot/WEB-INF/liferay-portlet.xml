@@ -6,7 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<struts-path>o/${Bundle-SymbolicName}</struts-path>
-		<control-panel-entry-category>server</control-panel-entry-category>
+		<control-panel-entry-category>apps</control-panel-entry-category>
 		<control-panel-entry-weight>23.0</control-panel-entry-weight>
 		<control-panel-entry-class>com.liferay.portlet.OmniadminControlPanelEntry</control-panel-entry-class>
 		<use-default-template>false</use-default-template>
