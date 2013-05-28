@@ -37,78 +37,93 @@ import java.util.List;
  */
 public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
+	@Override
 	public Company getCompanyPersistence_FindByPrimaryKey(long companyId)
 		throws PortalException, SystemException {
 
 		return companyPersistence.findByPrimaryKey(companyId);
 	}
 
+	@Override
 	public Company getCompanyUtil_FindByPrimaryKey(long companyId)
 		throws PortalException, SystemException {
 
 		return CompanyUtil.findByPrimaryKey(companyId);
 	}
 
+	@Override
 	public List<Entry> getEntryLocalServiceUtil_GetEntries(int start, int end)
 		throws SystemException {
 
 		return EntryLocalServiceUtil.getEntries(start, end);
 	}
 
+	@Override
 	public Entry getEntryLocalServiceUtil_GetEntry(long entryId)
 		throws PortalException, SystemException {
 
 		return EntryLocalServiceUtil.getEntry(entryId);
 	}
 
+	@Override
 	public Group getGroupPersistence_FindByPrimaryKey(long groupId)
 		throws PortalException, SystemException {
 
 		return groupPersistence.findByPrimaryKey(groupId);
 	}
 
+	@Override
 	public Group getGroupUtil_FindByPrimaryKey(long groupId)
 		throws PortalException, SystemException {
 
 		return GroupUtil.findByPrimaryKey(groupId);
 	}
 
+	@Override
 	public int getPortalService_GetBuildNumber() {
 		return portalService.getBuildNumber();
 	}
 
+	@Override
 	public int getPortalService_TestGetBuildNumber() {
 		return portalService.testGetBuildNumber();
 	}
 
+	@Override
 	public boolean getPortalService_TestHasClassName() throws SystemException {
 		return portalService.testHasClassName();
 	}
 
+	@Override
 	public int getPortalServiceUtil_GetBuildNumber() {
 		return PortalServiceUtil.getBuildNumber();
 	}
 
+	@Override
 	public int getPortalServiceUtil_TestGetBuildNumber() {
 		return PortalServiceUtil.testGetBuildNumber();
 	}
 
+	@Override
 	public boolean getPortalServiceUtil_TestHasClassName()
 		throws SystemException {
 
 		return PortalServiceUtil.testHasClassName();
 	}
 
+	@Override
 	public int getReleaseInfo_GetBuildNumber() {
 		return ReleaseInfo.getBuildNumber();
 	}
 
+	@Override
 	public Status getStatusLocalServiceUtil_GetStatus(long statusId)
 		throws PortalException, SystemException {
 
 		return StatusLocalServiceUtil.getStatus(statusId);
 	}
 
+	@Override
 	public List<Status> getStatusLocalServiceUtil_GetStatuses(
 			int start, int end)
 		throws SystemException {
@@ -116,12 +131,14 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		return StatusLocalServiceUtil.getStatuses(start, end);
 	}
 
+	@Override
 	public User getUserPersistence_FindByPrimaryKey(long userId)
 		throws PortalException, SystemException {
 
 		return userPersistence.findByPrimaryKey(userId);
 	}
 
+	@Override
 	public User getUserUtil_FindByPrimaryKey(long userId)
 		throws PortalException, SystemException {
 

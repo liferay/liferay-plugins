@@ -21,14 +21,17 @@ import com.liferay.portal.kernel.format.PhoneNumberFormat;
  */
 public class TestPhoneNumberFormatImpl implements PhoneNumberFormat {
 
+	@Override
 	public String format(String phoneNumber) {
 		return "(TEST) " + phoneNumber;
 	}
 
+	@Override
 	public String strip(String phoneNumber) {
 		return phoneNumber;
 	}
 
+	@Override
 	public boolean validate(String phoneNumber) {
 		return true;
 	}
