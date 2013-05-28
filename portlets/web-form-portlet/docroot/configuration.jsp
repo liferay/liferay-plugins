@@ -21,22 +21,27 @@ String redirect = ParamUtil.getString(renderRequest, "redirect");
 
 String titleXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "title");
 String descriptionXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "description");
-boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
-String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
-boolean sendAsEmail = GetterUtil.getBoolean(preferences.getValue("sendAsEmail", StringPool.BLANK));
-String emailFromName = WebFormUtil.getEmailFromName(preferences, company.getCompanyId());
-String emailFromAddress = WebFormUtil.getEmailFromAddress(preferences, company.getCompanyId());
-String emailAddress = preferences.getValue("emailAddress", StringPool.BLANK);
-String subject = preferences.getValue("subject", StringPool.BLANK);
-
-boolean saveToDatabase = GetterUtil.getBoolean(preferences.getValue("saveToDatabase", StringPool.BLANK));
-String databaseTableName = preferences.getValue("databaseTableName", StringPool.BLANK);
-
-boolean saveToFile = GetterUtil.getBoolean(preferences.getValue("saveToFile", StringPool.BLANK));
-String fileName = preferences.getValue("fileName", StringPool.BLANK);
+String emailFromName = ParamUtil.getString(request, "preferences--emailFromName--", WebFormUtil.getEmailFromName(preferences, company.getCompanyId()));
+String emailFromAddress = ParamUtil.getString(request, "preferences--emailFromAddress--", WebFormUtil.getEmailFromAddress(preferences, company.getCompanyId()));
 
 boolean fieldsEditingDisabled = false;
+boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("preferences--requireCaptcha--", StringPool.BLANK));
+boolean saveToDatabase = GetterUtil.getBoolean(preferences.getValue("preferences--saveToDatabase--", StringPool.BLANK));
+boolean saveToFile = GetterUtil.getBoolean(preferences.getValue("preferences--saveToFile--", StringPool.BLANK));
+boolean sendAsEmail = GetterUtil.getBoolean(preferences.getValue("preferences--sendAsEmail--", StringPool.BLANK));
+
+String emailAddressParam = "emailAddress";
+String fileNameParam = "fileName";
+String subjectParam = "subject";
+String successURLParam = "successURL";
+
+String emailAddress = ParamUtil.getString(request, emailAddressParam, StringPool.BLANK );
+String fileName = ParamUtil.getString(request, fileNameParam, StringPool.BLANK);
+String emailSubject = ParamUtil.getString(request, subjectParam, StringPool.BLANK );
+String successURL = ParamUtil.getString(request, successURLParam, StringPool.BLANK);
+
+String databaseTableName = ParamUtil.getString(request, "databaseTableName", StringPool.BLANK);
 
 if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0) {
 	fieldsEditingDisabled = true;
@@ -66,7 +71,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 				<aui:input name="preferences--requireCaptcha--" type="checkbox" value="<%= requireCaptcha %>" />
 
-				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
+				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name='<%= "preferences--" + successURLParam +"--" %> value="<%= HtmlUtil.toInputSafe(successURL) %>" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 
@@ -86,9 +91,9 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					<aui:input cssClass="lfr-input-text-container" label="address-from" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" />
 				</aui:fieldset>
 
-				<aui:input cssClass="lfr-input-text-container" helpMessage="add-email-addresses-separated-by-commas" label="addresses-to" name="preferences--emailAddress--" value="<%= emailAddress %>" />
+				<aui:input cssClass="lfr-input-text-container" helpMessage="add-email-addresses-separated-by-commas" label="addresses-to" name='<%= "preferences--" + emailAddressParam + "--" %>' value="<%= emailAddress %>" />
 
-				<aui:input cssClass="lfr-input-text-container" name="preferences--subject--" value="<%= subject %>" />
+				<aui:input cssClass="lfr-input-text-container" name='<%= "preferences--" + subjectParam + "--" %>' value="<%= emailSubject %>" />
 
 			</aui:fieldset>
 
@@ -99,7 +104,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			<aui:fieldset cssClass="handle-data" label="file">
 				<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
 
-				<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="preferences--fileName--" value="<%= fileName %>" />
+				<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name='<%= "preferences--" + fileNameParam + "--" %>' value="<%= fileName %>" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 
