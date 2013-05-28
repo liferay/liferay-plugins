@@ -49,6 +49,19 @@ import javax.portlet.PortletURL;
  */
 public class AnnouncementsPortlet extends MVCPortlet {
 
+	public void deleteEntry(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long entryId = ParamUtil.getLong(actionRequest, "entryId");
+
+		AnnouncementsEntryServiceUtil.deleteEntry(entryId);
+
+		SessionMessages.add(actionRequest, "announcementDeleted");
+
+		sendRedirect(actionRequest, actionResponse);
+	}
+
 	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -58,7 +71,10 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			String actionName = ParamUtil.getString(
 				actionRequest, ActionRequest.ACTION_NAME);
 
-			if (actionName.equals("saveEntry")) {
+			if (actionName.equals("deleteEntry")) {
+				deleteEntry(actionRequest, actionResponse);
+			}
+			else if (actionName.equals("saveEntry")) {
 				saveEntry(actionRequest, actionResponse);
 			}
 			else {
