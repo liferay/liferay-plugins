@@ -14,7 +14,7 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-		<control-panel-entry-category>portal</control-panel-entry-category>
+		<control-panel-entry-category>users</control-panel-entry-category>
 		<preferences-company-wide>true</preferences-company-wide>
 		<css-class-wrapper>akismet-portlet-akismet</css-class-wrapper>
 	</portlet>
