@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<control-panel-entry-category>server</control-panel-entry-category>
+		<control-panel-entry-category>apps</control-panel-entry-category>
 		<control-panel-entry-weight>2.5</control-panel-entry-weight>
 		<control-panel-entry-class>com.liferay.portlet.OmniadminControlPanelEntry</control-panel-entry-class>
 		<css-class-wrapper>security-manager-portlet</css-class-wrapper>
