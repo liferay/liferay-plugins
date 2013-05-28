@@ -29,11 +29,4 @@ portletURL.setParameter("tabs1", tabs1);
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 %>
 
-<c:choose>
-	<c:when test="<%= GetterUtil.getBoolean(PropsUtil.get(PropsKeys.SOCIAL_ACTIVITY_SETS_ENABLED)) %>">
-		<%@ include file="/activities/view_activity_sets.jspf" %>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="/activities/view_activities.jspf" %>
-	</c:otherwise>
-</c:choose>
+<%@ include file="/activities/view_activity_sets.jspf" %>

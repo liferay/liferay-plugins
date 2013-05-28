@@ -19,13 +19,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
-page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
-page import="com.liferay.portal.service.ServiceContextFactory" %><%@
-page import="com.liferay.so.activities.model.SocialActivity" %><%@
+<%@ page import="com.liferay.portal.service.ServiceContextFactory" %><%@
 page import="com.liferay.so.activities.model.SocialActivitySet" %><%@
-page import="com.liferay.so.activities.service.SocialActivityInterpreterLocalServiceUtil" %><%@
-page import="com.liferay.so.activities.service.SocialActivityLocalServiceUtil" %><%@
 page import="com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil" %>
 
 <%
