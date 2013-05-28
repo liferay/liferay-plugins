@@ -50,7 +50,7 @@ public class WSRPServletContextListener
 	@Override
 	protected void doPortalInit() {
 		_hotDeployMessageListener = new HotDeployMessageListener(
-			SERVLET_CONTEXT_NAMES) {
+			ClpSerializer.getServletContextName()) {
 
 			@Override
 			protected void onDeploy(Message message) throws Exception {
@@ -73,10 +73,6 @@ public class WSRPServletContextListener
 		MessageBusUtil.registerMessageListener(
 			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
 	}
-
-	protected static final String[] SERVLET_CONTEXT_NAMES = {
-		ClpSerializer.getServletContextName()
-	};
 
 	private MessageListener _hotDeployMessageListener;
 

@@ -49,7 +49,7 @@ public class ChatServletContextListener
 	@Override
 	protected void doPortalInit() {
 		_hotDeployMessageListener = new HotDeployMessageListener(
-			SERVLET_CONTEXT_NAMES) {
+			ClpSerializer.getServletContextName(), "contacts-portlet") {
 
 			@Override
 			protected void onUndeploy(Message message) throws Exception {
@@ -62,10 +62,6 @@ public class ChatServletContextListener
 		MessageBusUtil.registerMessageListener(
 			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
 	}
-
-	protected static final String[] SERVLET_CONTEXT_NAMES = {
-		ClpSerializer.getServletContextName(), "contacts-portlet"
-	};
 
 	private MessageListener _hotDeployMessageListener;
 

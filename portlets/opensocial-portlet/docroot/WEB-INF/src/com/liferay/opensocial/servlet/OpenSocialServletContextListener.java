@@ -92,7 +92,7 @@ public class OpenSocialServletContextListener
 	@Override
 	protected void doPortalInit() throws Exception {
 		_hotDeployMessageListener = new HotDeployMessageListener(
-			SERVLET_CONTEXT_NAMES) {
+			ClpSerializer.getServletContextName()) {
 
 			@Override
 			protected void onDeploy(Message message) throws Exception {
@@ -131,10 +131,6 @@ public class OpenSocialServletContextListener
 			}
 		}
 	}
-
-	protected static final String[] SERVLET_CONTEXT_NAMES = {
-		ClpSerializer.getServletContextName()
-	};
 
 	private static final String _GADGETS_CATEGORY = "category.gadgets";
 

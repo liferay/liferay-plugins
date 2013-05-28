@@ -77,8 +77,7 @@ public class ResourcesImporterServletContextListener
 
 	@Override
 	protected void doPortalInit() {
-		_hotDeployMessageListener = new HotDeployMessageListener(
-			SERVLET_CONTEXT_NAMES) {
+		_hotDeployMessageListener = new HotDeployMessageListener() {
 
 			@Override
 			protected void onDeploy(Message message) throws Exception {
@@ -283,8 +282,6 @@ public class ResourcesImporterServletContextListener
 			}
 		}
 	}
-
-	protected static final String[] SERVLET_CONTEXT_NAMES = null;
 
 	private static final String _RESOURCES_DIR =
 		"/WEB-INF/classes/resources-importer/";

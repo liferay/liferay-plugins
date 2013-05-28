@@ -55,7 +55,7 @@ public class ContactsServletContextListener
 	@Override
 	protected void doPortalInit() {
 		_hotDeployMessageListener = new HotDeployMessageListener(
-			SERVLET_CONTEXT_NAMES) {
+			ClpSerializer.getServletContextName(), "chat-portlet") {
 
 			@Override
 			protected void onDeploy(Message message) throws Exception {
@@ -92,10 +92,6 @@ public class ContactsServletContextListener
 			false, "1_WAR_chatportlet", _registerMethodKey,
 			ClpSerializer.getServletContextName(), "/chat/view.jsp");
 	}
-
-	protected static final String[] SERVLET_CONTEXT_NAMES = {
-		ClpSerializer.getServletContextName(), "chat-portlet"
-	};
 
 	private MessageListener _hotDeployMessageListener;
 	private MethodKey _registerMethodKey;

@@ -55,7 +55,7 @@ public class SOServletContextListener
 	@Override
 	protected void doPortalInit() {
 		_hotDeployMessageListener = new HotDeployMessageListener(
-			SERVLET_CONTEXT_NAMES) {
+			ClpSerializer.getServletContextName(), "contacts-portlet") {
 
 			@Override
 			protected void onDeploy(Message message) throws Exception {
@@ -79,10 +79,6 @@ public class SOServletContextListener
 			false, "1_WAR_contactsportlet", _registerMethodKey,
 			ClpSerializer.getServletContextName(), "/contacts/projects.jsp");
 	}
-
-	protected static final String[] SERVLET_CONTEXT_NAMES = {
-		ClpSerializer.getServletContextName(), "contacts-portlet"
-	};
 
 	private MessageListener _hotDeployMessageListener;
 	private MethodKey _registerMethodKey = new MethodKey(
