@@ -126,6 +126,8 @@ User currentUser = UserLocalServiceUtil.getUserById(themeDisplay.getUserId());
 	<aui:button-row>
 		<aui:button type="submit" />
 
+		<aui:button onClick='<%= renderResponse.getNamespace() + "previewEntry();" %>' value="preview" />
+
 		<aui:button onClick='<%= renderResponse.getNamespace() + "closeEntry();" %>' value="cancel" />
 	</aui:button-row>
 </aui:form>
@@ -142,6 +144,91 @@ User currentUser = UserLocalServiceUtil.getUserById(themeDisplay.getUserId());
 
 	function <portlet:namespace />closeEntry() {
 		Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+	}
+
+	function <portlet:namespace />previewEntry() {
+		var A = AUI();
+
+		var preview = document.getElementById('<portlet:namespace />preview');
+		var priority = A.one('#priority')._node.selectedIndex;
+
+		if (priority == 1) {
+			preview.className = 'important-entry';
+		}
+
+		if (<%= entry != null %>) {
+			var scope = A.one('#scope').get('value');;
+		}
+		else {
+			var optValue = A.one('select[name="distributionScope"]').get('value');
+			var scope = A.one('option[value=' + optValue + ']').get('text');
+		}
+
+		var url = A.one('#url').get('value');
+
+		if (url.length != 0) {
+			var title = '<a href="' + url + '">' + A.one('#title').get('value') + '</a>';
+		}
+		else {
+			var title = A.one('#title').get('value');
+		}
+
+		var content = window.editor.getHTML();
+
+		preview.innerHTML="<div class='user-portrait'>"
+				+ "<span class='avatar'>"
+					+ "<a href='<%= currentUser.getDisplayURL(themeDisplay) %>'>"
+						+ "<img alt='<%= currentUser.getFullName() %>' src='<%= currentUser.getPortraitURL(themeDisplay) %>' />"
+					+ "</a>"
+				+ "</span>"
+			+ "</div>"
+		+ "<div class='entry-data'>"
+			+ "<div class='entry-header'>"
+				+ "<div class='entry-time'>"
+					+ Liferay.Language.get('about-a-minute-ago')
+				+ "</div>"
+				+ "<div class='entry-user-name'>"
+					+ "<a href='<%= currentUser.getDisplayURL(themeDisplay) %>'>" + themeDisplay.getUserName() + "</a> to <span class='scope'>" + scope + "</span>"
+				+ "</div>"
+			+ "</div>"
+			+ "<div class='entry-body'>"
+				+ "<div class='title'>"
+					+ title
+				+ "</div>"
+				+ "<div class='entry-content-container' id='previewEntryContentContainer'>"
+					+ "<div class='entry-content'>"
+							+ content
+					+ "</div>"
+				+ "</div>"
+			+ "</div>"
+			+ "<div class='entry-footer'>"
+				+ "<div class='entry-footer-toolbar'>"
+					+ "<div class='edit-actions'>"
+						+ "<span class='action' id='toggle-entryPreview'></span>"
+					+ "</div>"
+				+ "</div>"
+			+ "</div>"
+		+ "</div>";
+
+		var previewContent = A.one('#<portlet:namespace />preview .entry-content');
+		var toggle = document.getElementById('toggle-entryPreview');
+
+		if (previewContent.height() > 75) {
+			toggle.innerHTML='<a class="toggle-entry" data-entryId="preview" href="javascript:;"><liferay-ui:message key='view-more' /></a>';
+			toggle.className = 'action';
+		}
+		else {
+			var contentContainer = document.getElementById('previewEntryContentContainer');
+			contentContainer.style.height = 'auto';
+			toggle.parentNode.removeChild(toggle);
+		}
+
+		var editActions = A.one('#<portlet:namespace />preview .edit-actions');
+
+		if (editActions._node.children.length == 0) {
+			var footer = A.one('#<portlet:namespace />preview .entry-footer');
+			footer.empty();
+		}
 	}
 
 	function <portlet:namespace />saveEntry() {
@@ -190,4 +277,16 @@ User currentUser = UserLocalServiceUtil.getUserById(themeDisplay.getUserId());
 			}
 		);
 	}
+</aui:script>
+
+<aui:script use="aui-base">
+	var announcementEntries = A.one('#main-content');
+
+	announcementEntries.delegate(
+		'click',
+		function(event) {
+			Liferay.Announcements.toggleEntry(event,'<portlet:namespace />');
+		},
+		'.toggle-entry'
+	);
 </aui:script>
