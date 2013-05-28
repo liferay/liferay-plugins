@@ -12,25 +12,24 @@
  * details.
  */
 
-package com.liferay.wsrp.servlet;
+package com.liferay.chat.servlet;
 
+import com.liferay.chat.service.ClpSerializer;
+import com.liferay.chat.util.ChatExtensionsUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
-import com.liferay.wsrp.service.ClpSerializer;
-import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
-import com.liferay.wsrp.util.ExtensionHelperUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Ryan Park
  */
-public class WSRPServletContextListener
+public class ChatServletContextListener
 	extends BasePortalLifecycle implements ServletContextListener {
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
@@ -53,19 +52,9 @@ public class WSRPServletContextListener
 			SERVLET_CONTEXT_NAMES) {
 
 			@Override
-			protected void onDeploy(Message message) throws Exception {
-				ExtensionHelperUtil.initialize();
-
-				WSRPConsumerPortletLocalServiceUtil.
-					destroyWSRPConsumerPortlets();
-
-				WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
-			}
-
-			@Override
 			protected void onUndeploy(Message message) throws Exception {
-				WSRPConsumerPortletLocalServiceUtil.
-					destroyWSRPConsumerPortlets();
+				ChatExtensionsUtil.unregister(
+					message.getString("servletContextName"));
 			}
 
 		};
@@ -75,7 +64,7 @@ public class WSRPServletContextListener
 	}
 
 	protected static final String[] SERVLET_CONTEXT_NAMES = {
-		ClpSerializer.getServletContextName()
+		ClpSerializer.getServletContextName(), "contacts-portlet"
 	};
 
 	private MessageListener _hotDeployMessageListener;

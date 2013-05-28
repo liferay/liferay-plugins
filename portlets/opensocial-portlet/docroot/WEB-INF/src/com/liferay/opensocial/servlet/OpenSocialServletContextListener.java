@@ -21,6 +21,7 @@ import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
+import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
@@ -91,10 +92,10 @@ public class OpenSocialServletContextListener
 	@Override
 	protected void doPortalInit() throws Exception {
 		_hotDeployMessageListener = new HotDeployMessageListener(
-			ClpSerializer.getServletContextName()) {
+			SERVLET_CONTEXT_NAMES) {
 
 			@Override
-			protected void onDeploy() throws Exception {
+			protected void onDeploy(Message message) throws Exception {
 				verifyGadgets();
 
 				List<Company> companies =
@@ -130,6 +131,10 @@ public class OpenSocialServletContextListener
 			}
 		}
 	}
+
+	protected static final String[] SERVLET_CONTEXT_NAMES = {
+		ClpSerializer.getServletContextName()
+	};
 
 	private static final String _GADGETS_CATEGORY = "category.gadgets";
 
