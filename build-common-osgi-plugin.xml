@@ -70,12 +70,14 @@
 		</antcall>
 	</target>
 
-	<target name="deploy" depends="jar">
-		<copy failonerror="false" todir="${osgi.auto.deploy.dir}">
-			<fileset dir="lib" includes="*.jar" />
-		</copy>
+	<target name="deploy" depends="jar,deploy-dependencies">		
+		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+	</target>
 
-		<copy file="${plugin.file}" todir="${osgi.auto.deploy.dir}" />
+	<target name="deploy-dependencies">
+		<copy failonerror="false" todir="${auto.deploy.dir}">
+			<fileset dir="lib" includes="${module.dependencies}" />
+		</copy>
 	</target>
 
 	<target name="jar" depends="compile">
