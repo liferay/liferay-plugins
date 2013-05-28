@@ -21,8 +21,9 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/chat-portlet-service.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-core.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-mapper.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-core-asl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-mapper-asl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/sample-service-builder-portlet-service.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
