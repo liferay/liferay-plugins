@@ -6,7 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<portlet-data-handler-class>com.liferay.opensocial.admin.lar.AdminPortletDataHandler</portlet-data-handler-class>
-		<control-panel-entry-category>users</control-panel-entry-category>
+		<control-panel-entry-category>apps</control-panel-entry-category>
 		<header-portlet-css>/admin/css/main.css</header-portlet-css>
 		<css-class-wrapper>opensocial-portlet-admin</css-class-wrapper>
 	</portlet>
@@ -33,7 +33,7 @@
 	<portlet>
 		<portlet-name>4</portlet-name>
 		<icon>/editor.png</icon>
-		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
+		<control-panel-entry-category>site_administration.configuration</control-panel-entry-category>
 		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/lib/codemirror.css</header-portlet-css>
 		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/mode/css/css.css</header-portlet-css>
 		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/mode/javascript/javascript.css</header-portlet-css>

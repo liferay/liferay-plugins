@@ -14,7 +14,7 @@
 			</trigger>
 		</scheduler-entry>
 		<portlet-data-handler-class>com.liferay.wsrp.admin.lar.AdminPortletDataHandler</portlet-data-handler-class>
-		<control-panel-entry-category>users</control-panel-entry-category>
+		<control-panel-entry-category>apps</control-panel-entry-category>
 		<css-class-wrapper>wsrp-portlet-admin</css-class-wrapper>
 	</portlet>
 	<portlet>
