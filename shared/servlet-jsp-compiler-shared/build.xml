@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 
 <project name="servlet-jsp-compiler-shared" basedir="." default="compile">
+	<property name="module.dependencies" value="phidias.jar" />
 	<property name="plugin.version" value="1" />
 
 	<import file="../../build-common-osgi-plugin.xml" />
