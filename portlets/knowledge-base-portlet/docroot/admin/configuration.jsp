@@ -20,28 +20,32 @@
 String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 
-String emailFromName = ParamUtil.getString(request, "emailFromName", AdminUtil.getEmailFromName(preferences, company.getCompanyId()));
-String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", AdminUtil.getEmailFromAddress(preferences, company.getCompanyId()));
+String emailFromName = ParamUtil.getString(request, "preferences--emailFromName--", AdminUtil.getEmailFromName(preferences, company.getCompanyId()));
+String emailFromAddress = ParamUtil.getString(request, "preferences--emailFromAddress--", AdminUtil.getEmailFromAddress(preferences, company.getCompanyId()));
 
-boolean emailKBArticleAddedEnabled = ParamUtil.getBoolean(request, "emailKBArticleAddedEnabled", AdminUtil.getEmailKBArticleAddedEnabled(preferences));
-String emailKBArticleAddedSubject = ParamUtil.getString(request, "emailKBArticleAddedSubject", AdminUtil.getEmailKBArticleAddedSubject(preferences));
-String emailKBArticleAddedBody = ParamUtil.getString(request, "emailKBArticleAddedBody", AdminUtil.getEmailKBArticleAddedBody(preferences));
+boolean emailKBArticleAddedEnabled = ParamUtil.getBoolean(request, "preferences--emailKBArticleAddedEnabled--", AdminUtil.getEmailKBArticleAddedEnabled(preferences));
+boolean emailKBArticleUpdatedEnabled = ParamUtil.getBoolean(request, "preferences--emailKBArticleUpdatedEnabled--", AdminUtil.getEmailKBArticleUpdatedEnabled(preferences));
 
-boolean emailKBArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailKBArticleUpdatedEnabled", AdminUtil.getEmailKBArticleUpdatedEnabled(preferences));
-String emailKBArticleUpdatedSubject = ParamUtil.getString(request, "emailKBArticleUpdatedSubject", AdminUtil.getEmailKBArticleUpdatedSubject(preferences));
-String emailKBArticleUpdatedBody = ParamUtil.getString(request, "emailKBArticleUpdatedBody", AdminUtil.getEmailKBArticleUpdatedBody(preferences));
-
-String editorParam = StringPool.BLANK;
-String editorBody = StringPool.BLANK;
+String emailParam = StringPool.BLANK;
+String defaultEmailSubject = StringPool.BLANK;
+String defaultEmailBody = StringPool.BLANK;
 
 if (tabs2.equals("article-added-email")) {
-	editorParam = "emailKBArticleAddedBody";
-	editorBody = emailKBArticleAddedBody;
+	emailParam = "emailKBArticleAdded";
+	defaultEmailSubject = AdminUtil.getEmailKBArticleAddedSubject(preferences);
+	defaultEmailBody = AdminUtil.getEmailKBArticleAddedBody(preferences);
 }
 else if (tabs2.equals("article-updated-email")) {
-	editorParam = "emailKBArticleUpdatedBody";
-	editorBody = emailKBArticleUpdatedBody;
+	emailParam = "emailKBArticleUpdated";
+	defaultEmailSubject = AdminUtil.getEmailKBArticleUpdatedSubject(preferences);
+	defaultEmailBody = AdminUtil.getEmailKBArticleUpdatedBody(preferences);
 }
+
+String emailSubjectParam = emailParam + "Subject";
+String emailBodyParam = emailParam + "Body";
+
+String emailSubject = ParamUtil.getString(request, emailSubjectParam, defaultEmailSubject);
+String emailBody = ParamUtil.getString(request, emailBodyParam, defaultEmailBody);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -155,16 +159,9 @@ else if (tabs2.equals("article-updated-email")) {
 					</c:when>
 				</c:choose>
 
-				<c:choose>
-					<c:when test='<%= tabs2.equals("article-added-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleAddedSubject--" value="<%= emailKBArticleAddedSubject %>" />
-					</c:when>
-					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailKBArticleUpdatedSubject--" value="<%= emailKBArticleUpdatedSubject %>" />
-					</c:when>
-				</c:choose>
+				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + emailSubjectParam + "--" %>' value="<%= emailSubject %>" />
 
-				<aui:input cssClass="lfr-textarea-container" label="body" name='<%= "preferences--".concat(editorParam).concat("--") %>' type="textarea" value="<%= editorBody %>" />
+				<aui:input cssClass="lfr-textarea-container" label="body" name='<%= "preferences--" + emailBodyParam + "--" %>' type="textarea" value="<%= emailBody %>" />
 
 				<div class="definition-of-terms">
 					<h4><liferay-ui:message key="definition-of-terms" /></h4>
