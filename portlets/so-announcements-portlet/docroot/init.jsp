@@ -21,6 +21,7 @@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
+page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
@@ -33,12 +34,14 @@ page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.UnicodeFormatter" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
+page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.Organization" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.Role" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.model.UserGroup" %><%@
+page import="com.liferay.portal.security.auth.PrincipalException" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %><%@
@@ -51,6 +54,7 @@ page import="com.liferay.portal.service.permission.RolePermissionUtil" %><%@
 page import="com.liferay.portal.service.permission.UserGroupPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
+page import="com.liferay.portlet.PortletURLUtil" %><%@
 page import="com.liferay.portlet.announcements.NoSuchFlagException" %><%@
 page import="com.liferay.portlet.announcements.model.AnnouncementsEntry" %><%@
 page import="com.liferay.portlet.announcements.model.AnnouncementsEntryConstants" %><%@
@@ -63,7 +67,8 @@ page import="com.liferay.so.announcements.util.PortletKeys" %>
 
 <%@ page import="java.text.Format" %>
 
-<%@ page import="java.util.LinkedHashMap" %><%@
+<%@ page import="java.util.ArrayList" %><%@
+page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %><%@

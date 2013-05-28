@@ -1,6 +1,11 @@
 @import "compass";
 
 .so-announcements-portlet {
+	.back-link {
+		float: right;
+		font-weight: bold;
+	}
+
 	.admin-actions {
 		margin-bottom: 1em;
 	}
@@ -167,6 +172,14 @@
 		.aui-field-input-text {
 			width: 350px;
 		}
+	}
+
+	.distribution-scope-container {
+		display: inline;
+	}
+
+	#_1_WAR_soannouncementsportlet_ocerSearchContainerSearchContainer td.last {
+		white-space: nowrap;
 	}
 
 	.entry {

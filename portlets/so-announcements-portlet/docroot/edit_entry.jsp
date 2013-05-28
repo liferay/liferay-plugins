@@ -43,6 +43,12 @@ User currentUser = UserLocalServiceUtil.getUserById(themeDisplay.getUserId());
 	<aui:model-context bean="<%= entry %>" model="<%= AnnouncementsEntry.class %>" />
 
 	<aui:fieldset>
+		<c:if test="<%= Validator.isNotNull(fromManageEntries) %>">
+			<aui:input name="fromManageEntries" type="hidden" value="<%= fromManageEntries %>" />
+
+			<span class="back-link"><a href="<%= redirect %>">&laquo; Back</a></span>
+		</c:if>
+
 		<c:choose>
 			<c:when test="<%= entry != null %>">
 
