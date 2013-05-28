@@ -33,7 +33,7 @@
 	<portlet>
 		<portlet-name>4</portlet-name>
 		<icon>/editor.png</icon>
-		<control-panel-entry-category>content</control-panel-entry-category>
+		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
 		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/lib/codemirror.css</header-portlet-css>
 		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/mode/css/css.css</header-portlet-css>
 		<header-portlet-css>/editor/CodeMirror_2.0_52_g68d004c/mode/javascript/javascript.css</header-portlet-css>

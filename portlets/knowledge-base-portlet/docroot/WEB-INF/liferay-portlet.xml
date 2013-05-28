@@ -22,7 +22,7 @@
 		<friendly-url-routes>com/liferay/knowledgebase/admin/portlet/admin-friendly-url-routes.xml</friendly-url-routes>
 		<portlet-data-handler-class>com.liferay.knowledgebase.admin.lar.AdminPortletDataHandler</portlet-data-handler-class>
 		<social-activity-interpreter-class>com.liferay.knowledgebase.admin.social.AdminActivityInterpreter</social-activity-interpreter-class>
-		<control-panel-entry-category>content</control-panel-entry-category>
+		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
 		<control-panel-entry-weight>17.5</control-panel-entry-weight>
 		<asset-renderer-factory>com.liferay.knowledgebase.admin.asset.KBArticleAssetRendererFactory</asset-renderer-factory>
 		<workflow-handler>com.liferay.knowledgebase.admin.workflow.KBArticleWorkflowHandler</workflow-handler>

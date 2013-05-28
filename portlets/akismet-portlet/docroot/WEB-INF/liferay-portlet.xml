@@ -39,7 +39,7 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-		<control-panel-entry-category>content</control-panel-entry-category>
+		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
 		<scopeable>true</scopeable>
 		<css-class-wrapper>akismet-portlet-moderation</css-class-wrapper>
 	</portlet>
