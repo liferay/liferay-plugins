@@ -7,6 +7,7 @@
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portal-javascript>/html/js/editor/ckeditor/ckeditor.js</footer-portal-javascript>
 		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>so-announcements-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

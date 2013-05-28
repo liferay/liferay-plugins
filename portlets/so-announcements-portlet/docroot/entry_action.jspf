@@ -63,5 +63,30 @@
 				</a>
 			</span>
 		</c:if>
+
+		<span id="toggleEntry<%= entry.getEntryId() %>"></span>
 	</div>
 </div>
+
+<aui:script use="aui-base">
+	var entry = A.one('#<portlet:namespace /><%= entry.getEntryId() %>');
+	var content = entry.one('.entry-content');
+	var toggle = document.getElementById('toggleEntry<%= entry.getEntryId() %>');
+
+	if (content.height() > 75) {
+		toggle.innerHTML='<a class="toggle-entry" data-entryId="<%= entry.getEntryId() %>" href="javascript:;"><span><liferay-ui:message key='view-more' /></span></a>';
+		toggle.className = 'action';
+	}
+	else {
+		var contentContainer = document.getElementById('entryContentContainer<%= entry.getEntryId() %>');
+		contentContainer.style.height = 'auto';
+		toggle.parentNode.removeChild(toggle);
+	}
+
+	var editActions = entry.one('.edit-actions');
+
+	if (editActions._node.children.length == 0) {
+		var footer = entry.one('.entry-footer');
+		footer.empty();
+	}
+</aui:script>

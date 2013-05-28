@@ -118,6 +118,18 @@ results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes
 	</aui:script>
 </c:if>
 
+<aui:script use="aui-base">
+	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
+
+	announcementEntries.delegate(
+		'click',
+		function(event) {
+			Liferay.Announcements.toggleEntry(event,'<portlet:namespace />');
+		},
+		'.toggle-entry'
+	);
+</aui:script>
+
 <aui:script>
 	function <portlet:namespace />handleEntry(entryId) {
 		var A = AUI();

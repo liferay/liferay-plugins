@@ -81,11 +81,17 @@
 	}
 
 	.entry-content-container {
+		max-height: 75px;
+		overflow: hidden;
 		padding: .5em .9em;
 	}
 
-	.entry-content p:last-child {
-		margin-bottom: 0;
+	.entry-content {
+		overflow: hidden;
+
+		p:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	.entry-footer-toolbar {
@@ -185,6 +191,14 @@
 	.entry {
 		margin: 0;
 		padding: 0;
+	}
+}
+
+/* ---------- Internet Explorer ---------- */
+
+.ie6, .ie7 {
+	.so-announcements-portlet .entry-content-container {
+		height: 75px;
 	}
 }
 
