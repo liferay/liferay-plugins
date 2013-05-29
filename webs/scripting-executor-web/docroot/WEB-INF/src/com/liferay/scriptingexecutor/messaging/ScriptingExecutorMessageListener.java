@@ -42,7 +42,7 @@ import javax.servlet.ServletContext;
 /**
  * @author Michael C. Han
  */
-public class HotDeployMessageListener extends BaseMessageListener {
+public class ScriptingExecutorMessageListener extends BaseMessageListener {
 
 	protected void doDeploy(ServletContext servletContext) throws Exception {
 		URL scriptsDirURL = servletContext.getResource(_SCRIPTS_DIR);
@@ -62,7 +62,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		if (!supportedLanguages.contains(scriptLanguage)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Script Executor does not support language: " +
+					"Script executor does not support language: " +
 					scriptLanguage + ". Supported languages are: " +
 					StringUtil.merge(supportedLanguages, StringPool.COMMA));
 			}
@@ -71,7 +71,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		}
 
 		String requiredDeploymentContexts = pluginPackageProperties.getProperty(
-			_REQUIRED_DEPLOYMENT_CONTEXTS);
+			"required-deployment-contexts");
 
 		if (Validator.isNull(requiredDeploymentContexts)) {
 			return;
@@ -186,12 +186,9 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		}
 	}
 
-	private static final String _REQUIRED_DEPLOYMENT_CONTEXTS =
-		"required-deployment-contexts";
-
 	private static final String _SCRIPTS_DIR = "/WEB-INF/classes/scripts/";
 
 	private static Log _log = LogFactoryUtil.getLog(
-		HotDeployMessageListener.class);
+		ScriptingExecutorMessageListener.class);
 
 }
