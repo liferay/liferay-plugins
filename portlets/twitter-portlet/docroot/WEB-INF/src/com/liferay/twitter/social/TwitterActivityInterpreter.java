@@ -32,6 +32,7 @@ import com.liferay.twitter.model.Feed;
  */
 public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

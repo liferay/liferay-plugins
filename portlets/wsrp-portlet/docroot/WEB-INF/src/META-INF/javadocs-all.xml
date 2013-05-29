@@ -2,6 +2,356 @@
 
 <javadocs>
 	<javadoc>
+		<name>AdminPortletDataHandler</name>
+		<type>com.liferay.wsrp.admin.lar.AdminPortletDataHandler</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>AdminPortletDataHandler</name>
+		</method>
+		<method>
+			<name>doDeleteData</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doExportData</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doImportData</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>data</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>exportWSRPConsumer</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumersElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>exportWSRPConsumerPortlet</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumerPortletsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumerPortlet</name>
+				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>exportWSRPProducer</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpProducersElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpProducer</name>
+				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getWSRPConsumerPath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getWSRPConsumerPortletsPath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumerPortlet</name>
+				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getWSRPProducerPath</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpProducer</name>
+				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>importWSRPConsumer</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumerElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importWSRPConsumerPortlet</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumerPortletElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumerPortlet</name>
+				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importWSRPConsumerPortlets</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumerPortletsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importWSRPConsumers</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumersElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importWSRPProducer</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpProducerElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpProducer</name>
+				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importWSRPProducers</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpProducersElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>NAMESPACE</name>
+		</field>
+		<field>
+			<name>_PORTLET_ID</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>AdminPortletDataHandlerImpl</name>
 		<type>com.liferay.wsrp.admin.lar.AdminPortletDataHandlerImpl</type>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -309,10 +659,12 @@
 			<param>
 				<name>message</name>
 				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -325,14 +677,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -340,14 +695,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -355,14 +713,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -370,14 +731,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -385,14 +749,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -400,14 +767,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -415,14 +785,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -430,14 +803,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -445,14 +821,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -460,10 +839,12 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -471,14 +852,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -486,14 +870,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -501,14 +888,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -516,14 +906,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -531,14 +924,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -546,14 +942,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -563,15 +962,22 @@
 		<author><![CDATA[Michael Young]]></author>
 		<method>
 			<name>getCurrentCookie</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getCurrentRequest</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setCurrentRequest</name>
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -579,6 +985,12 @@
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -586,17 +998,46 @@
 			<param>
 				<name>messageContext</name>
 				<type>org.apache.axis.MessageContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>AxisFault</name>
 				<type>org.apache.axis.AxisFault</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>_registerCurrentCookie</name>
+			<name>addForwardCookies</name>
 			<param>
 				<name>messageContext</name>
 				<type>org.apache.axis.MessageContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>addForwardHeaders</name>
+			<param>
+				<name>messageContext</name>
+				<type>org.apache.axis.MessageContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>registerCurrentCookie</name>
+			<param>
+				<name>messageContext</name>
+				<type>org.apache.axis.MessageContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -611,6 +1052,9 @@
 		<field>
 			<name>_forwardCookies</name>
 		</field>
+		<field>
+			<name>_forwardHeaders</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>BaseServiceImpl</name>
@@ -621,20 +1065,32 @@
 			<param>
 				<name>value</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLocalizedStrings</name>
 			<param>
 				<name>values</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWSRPProducer</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -647,10 +1103,15 @@
 			<param>
 				<name>v1GetMarkup</name>
 				<type>oasis.names.tc.wsrp.v1.types.GetMarkup</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -658,10 +1119,15 @@
 			<param>
 				<name>v1InitCookie</name>
 				<type>oasis.names.tc.wsrp.v1.types.InitCookie</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -669,10 +1135,15 @@
 			<param>
 				<name>v1PerformBlockingInteraction</name>
 				<type>oasis.names.tc.wsrp.v1.types.PerformBlockingInteraction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -680,10 +1151,15 @@
 			<param>
 				<name>v1ReleaseSessions</name>
 				<type>oasis.names.tc.wsrp.v1.types.ReleaseSessions</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -691,10 +1167,15 @@
 			<param>
 				<name>v1GetMarkup</name>
 				<type>oasis.names.tc.wsrp.v1.types.GetMarkup</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -702,10 +1183,15 @@
 			<param>
 				<name>v1InitCookie</name>
 				<type>oasis.names.tc.wsrp.v1.types.InitCookie</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -713,10 +1199,15 @@
 			<param>
 				<name>v1PerformBlockingInteraction</name>
 				<type>oasis.names.tc.wsrp.v1.types.PerformBlockingInteraction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -724,10 +1215,15 @@
 			<param>
 				<name>v1ReleaseSessions</name>
 				<type>oasis.names.tc.wsrp.v1.types.ReleaseSessions</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -746,10 +1242,15 @@
 			<param>
 				<name>v1GetServiceDescription</name>
 				<type>oasis.names.tc.wsrp.v1.types.GetServiceDescription</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -757,10 +1258,15 @@
 			<param>
 				<name>v1GetServiceDescription</name>
 				<type>oasis.names.tc.wsrp.v1.types.GetServiceDescription</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -780,10 +1286,15 @@
 			<param>
 				<name>getMarkup</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetMarkup</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -791,10 +1302,15 @@
 			<param>
 				<name>getResource</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetResource</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -802,10 +1318,15 @@
 			<param>
 				<name>handleEvents</name>
 				<type>oasis.names.tc.wsrp.v2.types.HandleEvents</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -813,10 +1334,15 @@
 			<param>
 				<name>initCookie</name>
 				<type>oasis.names.tc.wsrp.v2.types.InitCookie</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -824,10 +1350,15 @@
 			<param>
 				<name>performBlockingInteraction</name>
 				<type>oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -835,10 +1366,15 @@
 			<param>
 				<name>releaseSessions</name>
 				<type>oasis.names.tc.wsrp.v2.types.ReleaseSessions</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -846,10 +1382,12 @@
 			<param>
 				<name>mimeRequest</name>
 				<type>oasis.names.tc.wsrp.v2.types.MimeRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>httpOptions</name>
 				<type>com.liferay.portal.kernel.util.Http.Options</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -857,10 +1395,15 @@
 			<param>
 				<name>getMarkup</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetMarkup</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -868,10 +1411,15 @@
 			<param>
 				<name>getResource</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetResource</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -879,10 +1427,15 @@
 			<param>
 				<name>handleEvents</name>
 				<type>oasis.names.tc.wsrp.v2.types.HandleEvents</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -890,10 +1443,15 @@
 			<param>
 				<name>initCookie</name>
 				<type>oasis.names.tc.wsrp.v2.types.InitCookie</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -901,10 +1459,15 @@
 			<param>
 				<name>performBlockingInteraction</name>
 				<type>oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -912,10 +1475,15 @@
 			<param>
 				<name>releaseSessions</name>
 				<type>oasis.names.tc.wsrp.v2.types.ReleaseSessions</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -923,10 +1491,15 @@
 			<param>
 				<name>httpOptions</name>
 				<type>com.liferay.portal.kernel.util.Http.Options</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -934,14 +1507,20 @@
 			<param>
 				<name>rawContent</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>windowState</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -949,14 +1528,20 @@
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -964,10 +1549,15 @@
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -975,14 +1565,20 @@
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>navigationalContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.NavigationalContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -990,10 +1586,15 @@
 			<param>
 				<name>mimeRequest</name>
 				<type>oasis.names.tc.wsrp.v2.types.MimeRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1001,10 +1602,15 @@
 			<param>
 				<name>httpOptions</name>
 				<type>com.liferay.portal.kernel.util.Http.Options</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1012,14 +1618,20 @@
 			<param>
 				<name>getMarkup</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetMarkup</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1027,14 +1639,20 @@
 			<param>
 				<name>getResource</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetResource</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1042,14 +1660,20 @@
 			<param>
 				<name>performBlockingInteraction</name>
 				<type>oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1057,47 +1681,68 @@
 			<param>
 				<name>lifecycle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>mimeRequest</name>
 				<type>oasis.names.tc.wsrp.v2.types.MimeRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getWidgetPath</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWidgetPath</name>
 			<param>
 				<name>languageId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWindowState</name>
 			<param>
 				<name>mimeRequest</name>
 				<type>oasis.names.tc.wsrp.v2.types.MimeRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1105,10 +1750,12 @@
 			<param>
 				<name>uploadContexts</name>
 				<type>oasis.names.tc.wsrp.v2.types.UploadContext[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>httpOptions</name>
 				<type>com.liferay.portal.kernel.util.Http.Options</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -1130,10 +1777,15 @@
 			<param>
 				<name>getServiceDescription</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetServiceDescription</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>RemoteException</name>
 				<type>java.rmi.RemoteException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1141,10 +1793,15 @@
 			<param>
 				<name>getServiceDescription</name>
 				<type>oasis.names.tc.wsrp.v2.types.GetServiceDescription</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1152,46 +1809,66 @@
 			<param>
 				<name>portlet</name>
 				<type>com.liferay.portal.model.Portlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPortletDescription</name>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portlet</name>
 				<type>com.liferay.portal.model.Portlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPortletDescriptions</name>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWSRPKeys</name>
 			<param>
 				<name>keys</name>
 				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setExtensions</name>
 			<param>
 				<name>portletDescription</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletDescription</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portlet</name>
 				<type>com.liferay.portal.model.Portlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -1210,6 +1887,7 @@
 			<param>
 				<name>callbacks</name>
 				<type>javax.security.auth.callback.Callback[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>
@@ -1222,27 +1900,40 @@
 			<param>
 				<name>liferayPortletURL</name>
 				<type>com.liferay.portal.kernel.portlet.LiferayPortletURL</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getMapping</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPortletId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>populateParams</name>
 			<param>
 				<name>friendlyURLPath</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parameterMap</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>requestContext</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -1250,14 +1941,17 @@
 			<param>
 				<name>parameterMap</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>value</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -1265,10 +1959,12 @@
 			<param>
 				<name>sb</name>
 				<type>java.lang.StringBuilder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>value</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -1288,18 +1984,22 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1307,18 +2007,22 @@
 			<param>
 				<name>eventRequest</name>
 				<type>javax.portlet.EventRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>eventResponse</name>
 				<type>javax.portlet.EventResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1326,18 +2030,22 @@
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1345,18 +2053,22 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1364,14 +2076,17 @@
 			<param>
 				<name>formParameters</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>values</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -1379,14 +2094,20 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1394,14 +2115,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1409,14 +2133,17 @@
 			<param>
 				<name>eventRequest</name>
 				<type>javax.portlet.EventRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>eventResponse</name>
 				<type>javax.portlet.EventResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1424,14 +2151,17 @@
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1439,14 +2169,17 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1454,14 +2187,20 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpAuth</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1469,10 +2208,15 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1480,21 +2224,31 @@
 			<param>
 				<name>contentType</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getContact</name>
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>listTypeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1502,10 +2256,15 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1513,14 +2272,20 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1528,14 +2293,20 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>listTypeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1543,14 +2314,20 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>listTypeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1558,14 +2335,20 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>listTypeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1573,10 +2356,15 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1584,21 +2372,31 @@
 			<param>
 				<name>portletMode</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPostal</name>
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>listTypeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1606,14 +2404,17 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1621,18 +2422,25 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumer</name>
 				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1640,29 +2448,41 @@
 			<param>
 				<name>baseKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumer</name>
 				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTelecom</name>
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>listTypeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1670,14 +2490,20 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>listTypeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1685,10 +2511,15 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1696,13 +2527,21 @@
 			<param>
 				<name>windowState</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWSRPConsumerPortlet</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1710,63 +2549,90 @@
 			<param>
 				<name>key</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWSRPMode</name>
 			<param>
 				<name>portletMode</name>
 				<type>javax.portlet.PortletMode</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWSRPWindowState</name>
 			<param>
 				<name>windowState</name>
 				<type>javax.portlet.WindowState</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>initContexts</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortlet</name>
 				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>interactionParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.InteractionParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>markupParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.MarkupParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>runtimeContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RuntimeContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.UserContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1774,42 +2640,57 @@
 			<param>
 				<name>eventRequest</name>
 				<type>javax.portlet.EventRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>eventResponse</name>
 				<type>javax.portlet.EventResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortlet</name>
 				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>eventParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.EventParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>markupParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.MarkupParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>runtimeContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RuntimeContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.UserContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1817,38 +2698,52 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortlet</name>
 				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>mimeRequest</name>
 				<type>oasis.names.tc.wsrp.v2.types.MimeRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>runtimeContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RuntimeContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.UserContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1856,38 +2751,52 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>wsrpConsumer</name>
+				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortlet</name>
 				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.ResourceParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>runtimeContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RuntimeContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.UserContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1895,33 +2804,43 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>processBlockingInteractionResponse</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceHolder</name>
 				<type>com.liferay.wsrp.servlet.ServiceHolder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>blockingInteractionResponse</name>
 				<type>oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1929,14 +2848,17 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>interactionParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.InteractionParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -1944,25 +2866,33 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>processFormParameters</name>
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>mimeRequest</name>
 				<type>oasis.names.tc.wsrp.v2.types.MimeRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -1970,14 +2900,17 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.ResourceParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -1985,26 +2918,32 @@
 			<param>
 				<name>eventRequest</name>
 				<type>javax.portlet.EventRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>eventResponse</name>
 				<type>javax.portlet.EventResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceHolder</name>
 				<type>com.liferay.wsrp.servlet.ServiceHolder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>handleEventsResponse</name>
 				<type>oasis.names.tc.wsrp.v2.types.HandleEventsResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2012,18 +2951,22 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceHolder</name>
 				<type>com.liferay.wsrp.servlet.ServiceHolder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>markupResponse</name>
 				<type>oasis.names.tc.wsrp.v2.types.MarkupResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -2031,18 +2974,22 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>jxMimeResponse</name>
 				<type>javax.portlet.MimeResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>mimeResponse</name>
 				<type>oasis.names.tc.wsrp.v2.types.MimeResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2050,18 +2997,22 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>interactionParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.InteractionParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2069,14 +3020,20 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2084,18 +3041,22 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceParams</name>
 				<type>oasis.names.tc.wsrp.v2.types.ResourceParams</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2103,26 +3064,32 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceHolder</name>
 				<type>com.liferay.wsrp.servlet.ServiceHolder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpResourceResponse</name>
 				<type>oasis.names.tc.wsrp.v2.types.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2130,26 +3097,32 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>stateAwareResponse</name>
 				<type>javax.portlet.StateAwareResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerManager</name>
 				<type>com.liferay.wsrp.util.WSRPConsumerManager</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceHolder</name>
 				<type>com.liferay.wsrp.servlet.ServiceHolder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>updateResponse</name>
 				<type>oasis.names.tc.wsrp.v2.types.UpdateResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2157,18 +3130,22 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2176,18 +3153,25 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parameterMap</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2195,18 +3179,25 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>content</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2214,18 +3205,22 @@
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>liferayPortletURL</name>
 				<type>com.liferay.portal.kernel.portlet.LiferayPortletURL</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parameterMap</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2233,18 +3228,22 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>redirectURL</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2252,14 +3251,17 @@
 			<param>
 				<name>portletSession</name>
 				<type>javax.portlet.PortletSession</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceHolder</name>
 				<type>com.liferay.wsrp.servlet.ServiceHolder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sessionContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.SessionContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -2299,12 +3301,16 @@
 		<author><![CDATA[Michael Young]]></author>
 		<method>
 			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -2314,12 +3320,16 @@
 		<author><![CDATA[Michael Young]]></author>
 		<method>
 			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -2332,6 +3342,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -2344,6 +3355,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -2356,6 +3368,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -2368,6 +3381,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2375,14 +3389,17 @@
 			<param>
 				<name>plid</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>typeSettings</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2390,14 +3407,17 @@
 			<param>
 				<name>oldPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>newPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2405,14 +3425,17 @@
 			<param>
 				<name>oldPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>newPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2420,18 +3443,22 @@
 			<param>
 				<name>resourcePermissionId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>primKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2439,14 +3466,17 @@
 			<param>
 				<name>oldPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>newPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -2475,15 +3505,22 @@
 		</method>
 		<method>
 			<name>getRegistrationContext</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getRegistrationProperties</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setRegistrationContext</name>
 			<param>
 				<name>registrationContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RegistrationContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -2491,6 +3528,7 @@
 			<param>
 				<name>registrationProperties</name>
 				<type>com.liferay.portal.kernel.util.UnicodeProperties</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -2523,7 +3561,11 @@
 			<param>
 				<name>portalURL</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -2535,6 +3577,7 @@
 			<param>
 				<name>markupService</name>
 				<type>oasis.names.tc.wsrp.v1.bind.WSRP_v1_Markup_Binding_SOAPStub</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -2542,18 +3585,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2561,18 +3611,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -2591,6 +3648,7 @@
 			<param>
 				<name>portletManagementService</name>
 				<type>oasis.names.tc.wsrp.v1.bind.WSRP_v1_PortletManagement_Binding_SOAPStub</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -2598,18 +3656,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2617,18 +3682,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -2647,6 +3719,7 @@
 			<param>
 				<name>registrationDescriptionService</name>
 				<type>oasis.names.tc.wsrp.v1.bind.WSRP_v1_Registration_Binding_SOAPStub</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -2654,18 +3727,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2673,18 +3753,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -2703,6 +3790,7 @@
 			<param>
 				<name>serviceDescriptionService</name>
 				<type>oasis.names.tc.wsrp.v1.bind.WSRP_v1_ServiceDescription_Binding_SOAPStub</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -2710,18 +3798,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2729,18 +3824,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -2759,14 +3861,22 @@
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userToken</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>v2</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -2774,18 +3884,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2793,18 +3910,25 @@
 			<param>
 				<name>proxy</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>method</name>
 				<type>java.lang.reflect.Method</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>args</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2812,14 +3936,27 @@
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userToken</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getService</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_OASIS_PACKAGE</name>
@@ -2841,6 +3978,23 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>Stub</name>
+		<type>com.liferay.wsrp.proxy.Stub</type>
+		<comment><![CDATA[Emulates interface for org.apache.axis.client.Stub for proxy use.]]></comment>
+		<author><![CDATA[Michael Young]]></author>
+		<method>
+			<name>_createCall</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>ServiceException</name>
+				<type>javax.xml.rpc.ServiceException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>TypeConvertorUtil</name>
 		<type>com.liferay.wsrp.proxy.TypeConvertorUtil</type>
 		<author><![CDATA[Michael Young]]></author>
@@ -2849,14 +4003,20 @@
 			<param>
 				<name>source</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sourceVersion</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -2864,30 +4024,37 @@
 			<param>
 				<name>sourceVersion</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sourcePackage</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sourceClass</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sourceChild</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sourceChildName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>destination</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -2901,6 +4068,50 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>WSRP_v2_Markup_Binding_SOAPStub</name>
+		<type>com.liferay.wsrp.proxy.WSRP_v2_Markup_Binding_SOAPStub</type>
+		<author><![CDATA[Michael Young]]></author>
+		<method>
+			<name>WSRP_v2_Markup_Binding_SOAPStub</name>
+			<throws>
+				<name>AxisFault</name>
+				<type>org.apache.axis.AxisFault</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>WSRP_v2_Markup_Binding_SOAPStub</name>
+			<param>
+				<name>service</name>
+				<type>javax.xml.rpc.Service</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>AxisFault</name>
+				<type>org.apache.axis.AxisFault</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>WSRP_v2_Markup_Binding_SOAPStub</name>
+			<param>
+				<name>endpointURL</name>
+				<type>java.net.URL</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>service</name>
+				<type>javax.xml.rpc.Service</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>AxisFault</name>
+				<type>org.apache.axis.AxisFault</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>WSRPConsumerLocalServiceClpInvoker</name>
 		<type>com.liferay.wsrp.service.base.WSRPConsumerLocalServiceClpInvoker</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -2912,18 +4123,25 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parameterTypes</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -3017,10 +4235,10 @@
 			<name>_methodParameterTypes14</name>
 		</field>
 		<field>
-			<name>_methodName15</name>
+			<name>_methodName39</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes15</name>
+			<name>_methodParameterTypes39</name>
 		</field>
 		<field>
 			<name>_methodName40</name>
@@ -3029,10 +4247,10 @@
 			<name>_methodParameterTypes40</name>
 		</field>
 		<field>
-			<name>_methodName41</name>
+			<name>_methodName45</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes41</name>
+			<name>_methodParameterTypes45</name>
 		</field>
 		<field>
 			<name>_methodName46</name>
@@ -3088,12 +4306,6 @@
 		<field>
 			<name>_methodParameterTypes54</name>
 		</field>
-		<field>
-			<name>_methodName55</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes55</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>WSRPConsumerPortletLocalServiceClpInvoker</name>
@@ -3107,18 +4319,25 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parameterTypes</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -3212,10 +4431,10 @@
 			<name>_methodParameterTypes14</name>
 		</field>
 		<field>
-			<name>_methodName15</name>
+			<name>_methodName39</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes15</name>
+			<name>_methodParameterTypes39</name>
 		</field>
 		<field>
 			<name>_methodName40</name>
@@ -3224,10 +4443,10 @@
 			<name>_methodParameterTypes40</name>
 		</field>
 		<field>
-			<name>_methodName41</name>
+			<name>_methodName45</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes41</name>
+			<name>_methodParameterTypes45</name>
 		</field>
 		<field>
 			<name>_methodName46</name>
@@ -3319,12 +4538,6 @@
 		<field>
 			<name>_methodParameterTypes60</name>
 		</field>
-		<field>
-			<name>_methodName61</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes61</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>WSRPProducerLocalServiceClpInvoker</name>
@@ -3338,18 +4551,25 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parameterTypes</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -3449,10 +4669,10 @@
 			<name>_methodParameterTypes15</name>
 		</field>
 		<field>
-			<name>_methodName16</name>
+			<name>_methodName52</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes16</name>
+			<name>_methodParameterTypes52</name>
 		</field>
 		<field>
 			<name>_methodName53</name>
@@ -3461,10 +4681,10 @@
 			<name>_methodParameterTypes53</name>
 		</field>
 		<field>
-			<name>_methodName54</name>
+			<name>_methodName58</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes54</name>
+			<name>_methodParameterTypes58</name>
 		</field>
 		<field>
 			<name>_methodName59</name>
@@ -3508,12 +4728,6 @@
 		<field>
 			<name>_methodParameterTypes65</name>
 		</field>
-		<field>
-			<name>_methodName66</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes66</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>WSRPConsumerLocalServiceImpl</name>
@@ -3524,34 +4738,55 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>adminPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>markupCharacterSets</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceContext</name>
 				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3559,14 +4794,20 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3574,14 +4815,20 @@
 			<param>
 				<name>wsrpConsumer</name>
 				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3589,14 +4836,20 @@
 			<param>
 				<name>wsrpConsumerUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3604,18 +4857,25 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>start</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>end</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3623,10 +4883,15 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3634,26 +4899,35 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>adminPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>registrationProperties</name>
 				<type>com.liferay.portal.kernel.util.UnicodeProperties</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>registrationHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3661,14 +4935,17 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3676,14 +4953,17 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3691,30 +4971,50 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>adminPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>markupCharacterSets</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3722,14 +5022,25 @@
 			<param>
 				<name>wsrpConsumer</name>
 				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3737,18 +5048,25 @@
 			<param>
 				<name>wsrpConsumer</name>
 				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>adminPortletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>registrationProperties</name>
 				<type>com.liferay.portal.kernel.util.UnicodeProperties</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3756,10 +5074,12 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -3772,26 +5092,35 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceContext</name>
 				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3799,26 +5128,35 @@
 			<param>
 				<name>wsrpConsumerUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceContext</name>
 				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3826,14 +5164,20 @@
 			<param>
 				<name>wsrpConsumerPortletId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3841,14 +5185,17 @@
 			<param>
 				<name>wsrpConsumerPortletUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3856,14 +5203,20 @@
 			<param>
 				<name>wsrpConsumerPortlet</name>
 				<type>com.liferay.wsrp.model.WSRPConsumerPortlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3871,14 +5224,17 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3886,14 +5242,17 @@
 			<param>
 				<name>wsrpConsumerPortletId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortletUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -3901,10 +5260,12 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3912,18 +5273,25 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3931,14 +5299,20 @@
 			<param>
 				<name>wsrpConsumerPortletUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3946,18 +5320,25 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>start</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>end</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3965,10 +5346,15 @@
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -3979,34 +5365,42 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortletId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortletUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4014,6 +5408,7 @@
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4021,18 +5416,25 @@
 			<param>
 				<name>wsrpConsumerPortletId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4040,18 +5442,22 @@
 			<param>
 				<name>portlet</name>
 				<type>com.liferay.portal.model.Portlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletApp</name>
 				<type>com.liferay.portal.model.PortletApp</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletDescription</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletDescription</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>title</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4059,10 +5465,15 @@
 			<param>
 				<name>portlet</name>
 				<type>com.liferay.portal.model.Portlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4070,51 +5481,81 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>wsrpConsumerPortletUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getPortletId</name>
+			<param>
+				<name>wsrpConsumerPortletUuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getProxyURL</name>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getQName</name>
 			<param>
 				<name>qName</name>
 				<type>javax.xml.namespace.QName</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setExtension</name>
 			<param>
 				<name>portlet</name>
 				<type>com.liferay.portal.model.Portlet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>messageElement</name>
 				<type>org.apache.axis.message.MessageElement</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4122,10 +5563,12 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4133,14 +5576,17 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -4174,34 +5620,45 @@
 			<param>
 				<name>userId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>groupId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>version</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletIds</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceContext</name>
 				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4209,30 +5666,40 @@
 			<param>
 				<name>userId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>version</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletIds</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>serviceContext</name>
 				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4240,14 +5707,20 @@
 			<param>
 				<name>wsrpProducerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4255,14 +5728,20 @@
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4270,14 +5749,20 @@
 			<param>
 				<name>wsrpProducerUuid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4285,18 +5770,25 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>start</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>end</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4304,10 +5796,15 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4315,26 +5812,35 @@
 			<param>
 				<name>wsrpProducerId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>version</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletIds</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4342,22 +5848,32 @@
 			<param>
 				<name>userId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getFullInstanceSeparator</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<see><![CDATA[com.liferay.portal.model.impl.LayoutTypePortletImpl]]></see>
 		</method>
 		<method>
@@ -4365,32 +5881,44 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>transformPortletIds</name>
 			<param>
 				<name>portletIds</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>updateGroup</name>
 			<param>
 				<name>wsrpProducer</name>
 				<type>com.liferay.wsrp.model.WSRPProducer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4398,10 +5926,12 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -4417,25 +5947,33 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>isAllowedURL</name>
 			<param>
 				<name>url</name>
-				<type>java.net.URL</type>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4443,18 +5981,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.net.URL</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -4470,18 +6012,28 @@
 		<author><![CDATA[Michael Young]]></author>
 		<method>
 			<name>getMarkupService</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getRegistrationContext</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getSessionContext</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setMarkupService</name>
 			<param>
 				<name>markupService</name>
 				<type>oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4489,6 +6041,7 @@
 			<param>
 				<name>registrationContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RegistrationContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4496,6 +6049,7 @@
 			<param>
 				<name>sessionContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.SessionContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -4517,14 +6071,17 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4532,10 +6089,15 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4543,24 +6105,33 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>replaceLocations</name>
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>content</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
-			<name>_PATHS</name>
+			<name>_log</name>
 		</field>
 		<field>
-			<name>_log</name>
+			<name>_paths</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -4572,6 +6143,7 @@
 			<param>
 				<name>servletContextEvent</name>
 				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4579,6 +6151,7 @@
 			<param>
 				<name>servletContextEvent</name>
 				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4586,13 +6159,14 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>doPortalInit</name>
 		</method>
 		<field>
-			<name>_log</name>
+			<name>_hotDeployMessageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -4604,6 +6178,7 @@
 			<param>
 				<name>httpSessionEvent</name>
 				<type>javax.servlet.http.HttpSessionEvent</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4611,6 +6186,7 @@
 			<param>
 				<name>httpSessionEvent</name>
 				<type>javax.servlet.http.HttpSessionEvent</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4618,6 +6194,7 @@
 			<param>
 				<name>value</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -4636,22 +6213,27 @@
 			<param>
 				<name>servletRequest</name>
 				<type>javax.servlet.ServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>servletResponse</name>
 				<type>javax.servlet.ServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>filterChain</name>
 				<type>javax.servlet.FilterChain</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>ServletException</name>
 				<type>javax.servlet.ServletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4659,7 +6241,88 @@
 			<param>
 				<name>filterConfig</name>
 				<type>javax.servlet.FilterConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>AttributeExtensionHelper</name>
+		<type>com.liferay.wsrp.util.AttributeExtensionHelper</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>addMessageElement</name>
+			<param>
+				<name>messageElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>getNameAttribute</name>
+			<param>
+				<name>messageElement</name>
+				<type>org.apache.axis.message.MessageElement</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>BaseExtensionHelper</name>
+		<type>com.liferay.wsrp.util.BaseExtensionHelper</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>getExtensions</name>
+			<param>
+				<name>messageElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getExtensions</name>
+			<param>
+				<name>localPart</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getMessageElements</name>
+			<param>
+				<name>extensions</name>
+				<type>oasis.names.tc.wsrp.v2.types.Extension[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -4682,6 +6345,7 @@
 			<param>
 				<name>messageElements</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4689,10 +6353,12 @@
 			<param>
 				<name>userProfile</name>
 				<type>oasis.names.tc.wsrp.v2.types.UserProfile</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>
@@ -4705,6 +6371,7 @@
 			<param>
 				<name>clientAttributes</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4712,10 +6379,12 @@
 			<param>
 				<name>userProfile</name>
 				<type>oasis.names.tc.wsrp.v2.types.UserProfile</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4726,6 +6395,7 @@
 			<param>
 				<name>clientAttributes</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4733,10 +6403,12 @@
 			<param>
 				<name>userProfile</name>
 				<type>oasis.names.tc.wsrp.v2.types.UserProfile</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4744,6 +6416,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -4757,47 +6430,25 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>ExtensionUtil</name>
-		<type>com.liferay.wsrp.util.ExtensionHelperUtil</type>
-		<author><![CDATA[Michael Young]]></author>
+		<name>ElementExtensionHelper</name>
+		<type>com.liferay.wsrp.util.ElementExtensionHelper</type>
+		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>addMessageElement</name>
 			<param>
 				<name>messageElements</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>name</name>
+				<name>localPart</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>value</name>
 				<type>java.lang.String</type>
-			</param>
-		</method>
-		<method>
-			<name>getExtensions</name>
-			<param>
-				<name>messageElements</name>
-				<type>java.util.List</type>
-			</param>
-		</method>
-		<method>
-			<name>getExtensions</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>value</name>
-				<type>java.lang.String</type>
-			</param>
-		</method>
-		<method>
-			<name>getMessageElements</name>
-			<param>
-				<name>extensions</name>
-				<type>oasis.names.tc.wsrp.v2.types.Extension[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -4805,13 +6456,164 @@
 			<param>
 				<name>messageElement</name>
 				<type>org.apache.axis.message.MessageElement</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>ExtensionHelper</name>
+		<type>com.liferay.wsrp.util.ExtensionHelper</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>addMessageElement</name>
+			<param>
+				<name>messageElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
-		<field>
-			<name>NAME</name>
-		</field>
+		<method>
+			<name>getExtensions</name>
+			<param>
+				<name>messageElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getExtensions</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getMessageElements</name>
+			<param>
+				<name>extensions</name>
+				<type>oasis.names.tc.wsrp.v2.types.Extension[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getNameAttribute</name>
+			<param>
+				<name>messageElement</name>
+				<type>org.apache.axis.message.MessageElement</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>ExtensionHelperUtil</name>
+		<type>com.liferay.wsrp.util.ExtensionHelperUtil</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>addMessageElement</name>
+			<param>
+				<name>messageElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>getExtensions</name>
+			<param>
+				<name>messageElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getExtensions</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getMessageElements</name>
+			<param>
+				<name>extensions</name>
+				<type>oasis.names.tc.wsrp.v2.types.Extension[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getNameAttribute</name>
+			<param>
+				<name>messageElement</name>
+				<type>org.apache.axis.message.MessageElement</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>initialize</name>
+		</method>
 		<field>
 			<name>_log</name>
+		</field>
+		<field>
+			<name>_extensionHelper</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -4823,36 +6625,70 @@
 			<param>
 				<name>localizedString</name>
 				<type>oasis.names.tc.wsrp.v2.types.LocalizedString</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLocalizedStringValue</name>
 			<param>
 				<name>localizedString</name>
 				<type>oasis.names.tc.wsrp.v2.types.LocalizedString</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>defaultValue</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLocalizedStringValues</name>
 			<param>
 				<name>localizedStrings</name>
 				<type>oasis.names.tc.wsrp.v2.types.LocalizedString[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLocalizedStringValues</name>
 			<param>
 				<name>localizedStrings</name>
 				<type>oasis.names.tc.wsrp.v2.types.LocalizedString[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>defaultValue</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>MarkupCharacterSetsUtil</name>
+		<type>com.liferay.wsrp.util.MarkupCharacterSetsUtil</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>getSupportedMarkupCharacterSets</name>
+			<param>
+				<name>markupCharacterSets</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -4861,6 +6697,9 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<field>
 			<name>CONSUMER_REQUEST_EXTENSIONS</name>
+		</field>
+		<field>
+			<name>EXTENSION_HELPER_IMPL</name>
 		</field>
 		<field>
 			<name>PROXY_URL_IPS_ALLOWED</name>
@@ -4881,6 +6720,9 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<field>
 			<name>CONSUMER_REQUEST_EXTENSIONS</name>
+		</field>
+		<field>
+			<name>EXTENSION_HELPER_IMPL</name>
 		</field>
 		<field>
 			<name>PROXY_URL_IPS_ALLOWED</name>
@@ -4904,22 +6746,32 @@
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>registrationContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RegistrationContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userToken</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4927,20 +6779,32 @@
 			<param>
 				<name>portletDescription</name>
 				<type>oasis.names.tc.wsrp.v2.types.PortletDescription</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getEventQName</name>
 			<param>
 				<name>qName</name>
 				<type>javax.xml.namespace.QName</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getMarkupService</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4948,39 +6812,64 @@
 			<param>
 				<name>portletHandle</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPortletManagementService</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPropertyDescription</name>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPropertyDescriptions</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getRegistrationService</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getServiceDescription</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWsdl</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>updateServiceDescription</name>
 			<param>
 				<name>registrationContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RegistrationContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -4988,31 +6877,45 @@
 			<param>
 				<name>element</name>
 				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>_getWsdlQName</name>
 			<param>
 				<name>localName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>_isV2</name>
 			<param>
 				<name>serviceElements</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>_readBindingElement</name>
 			<param>
 				<name>bindingElement</name>
 				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -5020,10 +6923,12 @@
 			<param>
 				<name>serviceElements</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -5099,20 +7004,29 @@
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getSession</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWSRPConsumerManager</name>
 			<param>
 				<name>wsrpConsumer</name>
 				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -5120,6 +7034,7 @@
 			<param>
 				<name>session</name>
 				<type>javax.servlet.http.HttpSession</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -5127,13 +7042,21 @@
 			<param>
 				<name>wsrpConsumer</name>
 				<type>com.liferay.wsrp.model.WSRPConsumer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>_getUserToken</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -5141,18 +7064,30 @@
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>registrationContext</name>
 				<type>oasis.names.tc.wsrp.v2.types.RegistrationContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>forwardCookies</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>forwardHeaders</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>

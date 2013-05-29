@@ -37,6 +37,7 @@ public class MicroblogsEntryAssetRendererFactory
 
 	public static final String TYPE = "microblogs";
 
+	@Override
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
 
@@ -46,10 +47,12 @@ public class MicroblogsEntryAssetRendererFactory
 		return new MicroblogsEntryAssetRenderer(microblogsEntry);
 	}
 
+	@Override
 	public String getClassName() {
 		return CLASS_NAME;
 	}
 
+	@Override
 	public String getType() {
 		return TYPE;
 	}

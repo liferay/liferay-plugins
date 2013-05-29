@@ -163,6 +163,7 @@ public class ServiceHandler implements InvocationHandler {
 			new Class[] {proxyInterface, Stub.class}, invocationHandler);
 	}
 
+	@Override
 	public Object invoke(Object proxy, Method method, Object[] args)
 		throws Throwable {
 

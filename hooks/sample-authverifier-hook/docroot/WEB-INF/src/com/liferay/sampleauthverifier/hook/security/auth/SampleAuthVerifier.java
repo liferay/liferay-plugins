@@ -35,10 +35,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SampleAuthVerifier implements AuthVerifier {
 
+	@Override
 	public String getAuthType() {
 		return SampleAuthVerifier.class.getSimpleName();
 	}
 
+	@Override
 	public AuthVerifierResult verify(
 			AccessControlContext accessControlContext, Properties properties)
 		throws AuthException {

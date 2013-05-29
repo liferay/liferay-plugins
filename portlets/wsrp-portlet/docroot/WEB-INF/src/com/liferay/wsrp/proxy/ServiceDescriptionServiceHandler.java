@@ -53,6 +53,7 @@ public class ServiceDescriptionServiceHandler implements InvocationHandler {
 		return v2Bean;
 	}
 
+	@Override
 	public Object invoke(Object proxy, Method method, Object[] args)
 		throws Throwable {
 

@@ -25,6 +25,7 @@ import com.liferay.portlet.expando.model.BaseCustomAttributesDisplay;
 public class CalendarCustomAttributesDisplay
 	extends BaseCustomAttributesDisplay {
 
+	@Override
 	public String getClassName() {
 		return CalendarBooking.class.getName();
 	}

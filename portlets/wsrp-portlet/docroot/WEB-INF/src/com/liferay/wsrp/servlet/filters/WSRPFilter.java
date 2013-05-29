@@ -33,9 +33,11 @@ import javax.servlet.http.HttpSession;
  */
 public class WSRPFilter implements Filter {
 
+	@Override
 	public void destroy() {
 	}
 
+	@Override
 	public void doFilter(
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain filterChain)
@@ -52,6 +54,7 @@ public class WSRPFilter implements Filter {
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
+	@Override
 	public void init(FilterConfig filterConfig) {
 	}
 

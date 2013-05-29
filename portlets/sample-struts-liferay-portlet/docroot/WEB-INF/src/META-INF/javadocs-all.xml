@@ -13,6 +13,7 @@
 			<param>
 				<name>msg</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -20,10 +21,12 @@
 			<param>
 				<name>msg</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>cause</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -31,6 +34,7 @@
 			<param>
 				<name>cause</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>
@@ -43,18 +47,22 @@
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -64,17 +72,25 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>clone</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getValue</name>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>userInfo</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -86,14 +102,17 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -106,22 +125,27 @@
 			<param>
 				<name>uri</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>ServletException</name>
 				<type>javax.servlet.ServletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -134,26 +158,32 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -161,26 +191,35 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -196,26 +235,32 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -223,26 +268,35 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -258,26 +312,32 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -285,26 +345,35 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -320,26 +389,32 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -347,26 +422,35 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -382,22 +466,30 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -405,17 +497,26 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>attrName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>_getDataset</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -431,26 +532,32 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -458,26 +565,35 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -493,26 +609,35 @@
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>form</name>
 				<type>org.apache.struts.action.ActionForm</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -525,22 +650,33 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>getEmailAddress</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getFirstName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLastName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>reset</name>
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>req</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -548,6 +684,7 @@
 			<param>
 				<name>emailAddress</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -555,6 +692,7 @@
 			<param>
 				<name>firstName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -562,21 +700,30 @@
 			<param>
 				<name>lastName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>toString</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>validate</name>
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>req</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_emailAddress</name>
@@ -594,22 +741,33 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>getEmailAddress</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getFirstName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLastName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>reset</name>
 			<param>
 				<name>mapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>req</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -617,6 +775,7 @@
 			<param>
 				<name>emailAddress</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -624,6 +783,7 @@
 			<param>
 				<name>firstName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -631,10 +791,14 @@
 			<param>
 				<name>lastName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>toString</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_emailAddress</name>

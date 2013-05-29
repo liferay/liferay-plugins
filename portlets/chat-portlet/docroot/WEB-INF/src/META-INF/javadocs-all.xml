@@ -435,10 +435,13 @@
 			<name>_log</name>
 		</field>
 		<field>
+			<name>_connectionConfiguration</name>
+		</field>
+		<field>
 			<name>_connections</name>
 		</field>
 		<field>
-			<name>_connectionConfiguration</name>
+			<name>_onlineUserIds</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -628,6 +631,17 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+	</javadoc>
+	<javadoc>
+		<name>EntryConstants</name>
+		<type>com.liferay.chat.model.EntryConstants</type>
+		<author><![CDATA[Shinn Lok]]></author>
+		<field>
+			<name>FLAG_READ</name>
+		</field>
+		<field>
+			<name>FLAG_UNREAD</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>EntryImpl</name>
@@ -1385,7 +1399,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>activePanelId</name>
+				<name>activePanelIds</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -1512,6 +1526,12 @@
 		</field>
 		<field>
 			<name>FIND_BY_OLD</name>
+		</field>
+		<field>
+			<name>_CREATE_DATE_SQL</name>
+		</field>
+		<field>
+			<name>_FLAG_SQL</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1645,6 +1665,41 @@
 		</field>
 		<field>
 			<name>FIND_BY_USERS_GROUPS</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>ChatServletContextListener</name>
+		<type>com.liferay.chat.servlet.ChatServletContextListener</type>
+		<author><![CDATA[Ryan Park]]></author>
+		<method>
+			<name>contextDestroyed</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>contextInitialized</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>doPortalDestroy</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doPortalInit</name>
+		</method>
+		<field>
+			<name>_hotDeployMessageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>

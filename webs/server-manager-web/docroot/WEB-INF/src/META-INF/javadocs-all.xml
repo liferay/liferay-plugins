@@ -14,18 +14,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -33,18 +37,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -52,18 +60,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -71,18 +83,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -90,13 +106,23 @@
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getNextExecutors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>initNextExecutors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_nextExecutors</name>
@@ -112,18 +138,24 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getDebugPort</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_pattern</name>
@@ -136,6 +168,9 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>getLogFile</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -148,18 +183,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -167,18 +206,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -186,18 +229,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -205,18 +252,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -224,10 +275,17 @@
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getNextExecutors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -237,6 +295,9 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>initNextExecutors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -249,28 +310,41 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getLiferayDateString</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLogFile</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTomcatDateString</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_simpleDateFormat</name>
@@ -286,18 +360,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -305,18 +383,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -324,14 +406,17 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -339,18 +424,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -358,10 +447,15 @@
 			<param>
 				<name>context</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -369,11 +463,16 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_log</name>
@@ -389,18 +488,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -408,14 +511,17 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -423,7 +529,11 @@
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_pluginExecutor</name>
@@ -436,6 +546,9 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>initNextExecutors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -445,6 +558,9 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>initNextExecutors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -457,14 +573,17 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>
@@ -477,18 +596,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -496,21 +619,28 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>service</name>
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -530,10 +660,15 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>FileUploadException</name>
 				<type>org.apache.commons.fileupload.FileUploadException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -541,10 +676,15 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>FileUploadException</name>
 				<type>org.apache.commons.fileupload.FileUploadException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -552,10 +692,15 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>

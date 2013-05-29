@@ -30,6 +30,7 @@ import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
  */
 public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

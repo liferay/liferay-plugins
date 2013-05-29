@@ -40,16 +40,19 @@ public class SolrFacetQueryCollector implements FacetCollector {
 		}
 	}
 
+	@Override
 	public String getFieldName() {
 		return _fieldName;
 	}
 
+	@Override
 	public TermCollector getTermCollector(String term) {
 		Integer count = _counts.get(term);
 
 		return new SolrTermCollector(term, count.intValue());
 	}
 
+	@Override
 	public List<TermCollector> getTermCollectors() {
 		if (_termCollectors != null) {
 			return _termCollectors;

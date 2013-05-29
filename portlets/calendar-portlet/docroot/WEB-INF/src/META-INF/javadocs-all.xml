@@ -70,32 +70,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<method>
-			<name>validateEmailFrom</name>
-			<param>
-				<name>actionRequest</name>
-				<type>javax.portlet.ActionRequest</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>validateTemplate</name>
-			<param>
-				<name>actionRequest</name>
-				<type>javax.portlet.ActionRequest</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
 	</javadoc>
 	<javadoc>
 		<name>CalendarBookingAssetRenderer</name>
@@ -389,6 +363,24 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>ModelListenerException</name>
+				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UserModelListener</name>
+		<type>com.liferay.calendar.hook.listeners.UserModelListener</type>
+		<author><![CDATA[Antonio Junior]]></author>
+		<method>
+			<name>onAfterUpdate</name>
+			<param>
+				<name>user</name>
+				<type>com.liferay.portal.model.User</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -1130,6 +1122,22 @@
 			</return>
 		</method>
 		<method>
+			<name>getResourceGroupId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getSecondReminderNotificationType</name>
 			<return>
 				<comment><![CDATA[]]></comment>
@@ -1174,6 +1182,57 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>getResourceGroupId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarNotificationTemplateImpl</name>
+		<type>com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl</type>
+		<author><![CDATA[Adam Brandizzi]]></author>
+		<method>
+			<name>CalendarNotificationTemplateImpl</name>
+		</method>
+		<method>
+			<name>getNotificationTypeSettings</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getNotificationTypeSettingsProperties</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>setNotificationTypeSettings</name>
+			<param>
+				<name>notificationTypeSettings</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setTypeSettingsProperties</name>
+			<param>
+				<name>notificationTypeSettingsProperties</name>
+				<type>com.liferay.portal.kernel.util.UnicodeProperties</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+		<field>
+			<name>_notificationTypeSettingsProperties</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>CalendarResourceImpl</name>
@@ -1244,11 +1303,6 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>notificationTemplateType</name>
-				<type>NotificationTemplateType</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
 				<name>notificationTemplateContext</name>
 				<type>NotificationTemplateContext</type>
 				<comment><![CDATA[]]></comment>
@@ -1292,69 +1346,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<method>
-			<name>getBody</name>
-			<param>
-				<name>notificationTemplateType</name>
-				<type>NotificationTemplateType</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationTemplateContext</name>
-				<type>NotificationTemplateContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>getSubject</name>
-			<param>
-				<name>notificationTemplateType</name>
-				<type>NotificationTemplateType</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationTemplateContext</name>
-				<type>NotificationTemplateContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>processNotificationTemplateContent</name>
-			<param>
-				<name>notificationTemplateContent</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationTemplateContext</name>
-				<type>NotificationTemplateContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
 	</javadoc>
 	<javadoc>
 		<name>IMNotificationSender</name>
@@ -1365,11 +1356,6 @@
 			<param>
 				<name>notificationRecipient</name>
 				<type>NotificationRecipient</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationTemplateType</name>
-				<type>NotificationTemplateType</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -1531,11 +1517,6 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>notificationTemplateType</name>
-				<type>NotificationTemplateType</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
 				<name>notificationTemplateContext</name>
 				<type>NotificationTemplateContext</type>
 				<comment><![CDATA[]]></comment>
@@ -1682,6 +1663,24 @@
 			</return>
 		</method>
 		<method>
+			<name>getBody</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getCalendarId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getCalendarNotificationTemplate</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getCompanyId</name>
 			<return>
 				<comment><![CDATA[]]></comment>
@@ -1711,6 +1710,12 @@
 			</return>
 		</method>
 		<method>
+			<name>getSubject</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>setAttribute</name>
 			<param>
 				<name>name</name>
@@ -1728,6 +1733,30 @@
 			<param>
 				<name>attributes</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setBody</name>
+			<param>
+				<name>body</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setCalendarId</name>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setCalendarNotificationTemplate</name>
+			<param>
+				<name>calendarNotificationTemplate</name>
+				<type>com.liferay.calendar.model.CalendarNotificationTemplate</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
@@ -1755,8 +1784,25 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
+		<method>
+			<name>setSubject</name>
+			<param>
+				<name>subject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
 		<field>
 			<name>_attributes</name>
+		</field>
+		<field>
+			<name>_body</name>
+		</field>
+		<field>
+			<name>_calendarId</name>
+		</field>
+		<field>
+			<name>_calendarNotificationTemplate</name>
 		</field>
 		<field>
 			<name>_companyId</name>
@@ -1767,6 +1813,9 @@
 		<field>
 			<name>_notificationType</name>
 		</field>
+		<field>
+			<name>_subject</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>NotificationTemplateContextFactory</name>
@@ -1775,26 +1824,15 @@
 		<method>
 			<name>getInstance</name>
 			<param>
-				<name>calendarBooking</name>
-				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<name>notificationType</name>
+				<type>NotificationType</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<return>
+			<param>
+				<name>notificationTemplateType</name>
+				<type>NotificationTemplateType</type>
 				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>getInstance</name>
+			</param>
 			<param>
 				<name>calendarBooking</name>
 				<type>com.liferay.calendar.model.CalendarBooking</type>
@@ -1809,13 +1847,8 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1967,7 +2000,43 @@
 			</throws>
 		</method>
 		<method>
+			<name>updateCalendarNotificationTemplate</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>updateCalendarResource</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateDiscussion</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
@@ -2014,6 +2083,19 @@
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>deleteMessage</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -2066,6 +2148,22 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getNotificationTypeSettings</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationType</name>
+				<type>com.liferay.calendar.notification.NotificationType</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -2229,6 +2327,40 @@
 				<type>javax.portlet.ResourceResponse</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>subscribeToComments</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>subscribe</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateMessage</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -2490,41 +2622,207 @@
 			<name>_methodParameterTypes15</name>
 		</field>
 		<field>
-			<name>_methodName64</name>
+			<name>_methodName90</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes64</name>
+			<name>_methodParameterTypes90</name>
 		</field>
 		<field>
-			<name>_methodName65</name>
+			<name>_methodName91</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes65</name>
+			<name>_methodParameterTypes91</name>
 		</field>
 		<field>
-			<name>_methodName70</name>
+			<name>_methodName96</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes70</name>
+			<name>_methodParameterTypes96</name>
 		</field>
 		<field>
-			<name>_methodName71</name>
+			<name>_methodName97</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes71</name>
+			<name>_methodParameterTypes97</name>
 		</field>
 		<field>
-			<name>_methodName72</name>
+			<name>_methodName98</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes72</name>
+			<name>_methodParameterTypes98</name>
 		</field>
 		<field>
-			<name>_methodName73</name>
+			<name>_methodName99</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes73</name>
+			<name>_methodParameterTypes99</name>
 		</field>
+		<field>
+			<name>_methodName100</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes100</name>
+		</field>
+		<field>
+			<name>_methodName101</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes101</name>
+		</field>
+		<field>
+			<name>_methodName102</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes102</name>
+		</field>
+		<field>
+			<name>_methodName103</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes103</name>
+		</field>
+		<field>
+			<name>_methodName104</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes104</name>
+		</field>
+		<field>
+			<name>_methodName105</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes105</name>
+		</field>
+		<field>
+			<name>_methodName106</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes106</name>
+		</field>
+		<field>
+			<name>_methodName107</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes107</name>
+		</field>
+		<field>
+			<name>_methodName108</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes108</name>
+		</field>
+		<field>
+			<name>_methodName109</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes109</name>
+		</field>
+		<field>
+			<name>_methodName110</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes110</name>
+		</field>
+		<field>
+			<name>_methodName111</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes111</name>
+		</field>
+		<field>
+			<name>_methodName112</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes112</name>
+		</field>
+		<field>
+			<name>_methodName113</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes113</name>
+		</field>
+		<field>
+			<name>_methodName114</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes114</name>
+		</field>
+		<field>
+			<name>_methodName115</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes115</name>
+		</field>
+		<field>
+			<name>_methodName116</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes116</name>
+		</field>
+		<field>
+			<name>_methodName117</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes117</name>
+		</field>
+		<field>
+			<name>_methodName118</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes118</name>
+		</field>
+		<field>
+			<name>_methodName119</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes119</name>
+		</field>
+		<field>
+			<name>_methodName120</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes120</name>
+		</field>
+		<field>
+			<name>_methodName121</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes121</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarBookingServiceClpInvoker</name>
+		<type>com.liferay.calendar.service.base.CalendarBookingServiceClpInvoker</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>CalendarBookingServiceClpInvoker</name>
+		</method>
+		<method>
+			<name>invokeMethod</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>parameterTypes</name>
+				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>arguments</name>
+				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Throwable</name>
+				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_methodName74</name>
 		</field>
@@ -2536,30 +2834,6 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes75</name>
-		</field>
-		<field>
-			<name>_methodName76</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes76</name>
-		</field>
-		<field>
-			<name>_methodName77</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes77</name>
-		</field>
-		<field>
-			<name>_methodName78</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes78</name>
-		</field>
-		<field>
-			<name>_methodName79</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes79</name>
 		</field>
 		<field>
 			<name>_methodName80</name>
@@ -2651,13 +2925,43 @@
 		<field>
 			<name>_methodParameterTypes94</name>
 		</field>
+		<field>
+			<name>_methodName95</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes95</name>
+		</field>
+		<field>
+			<name>_methodName96</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes96</name>
+		</field>
+		<field>
+			<name>_methodName97</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes97</name>
+		</field>
+		<field>
+			<name>_methodName98</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes98</name>
+		</field>
+		<field>
+			<name>_methodName99</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes99</name>
+		</field>
 	</javadoc>
 	<javadoc>
-		<name>CalendarBookingServiceClpInvoker</name>
-		<type>com.liferay.calendar.service.base.CalendarBookingServiceClpInvoker</type>
+		<name>CalendarImporterLocalServiceClpInvoker</name>
+		<type>com.liferay.calendar.service.base.CalendarImporterLocalServiceClpInvoker</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
-			<name>CalendarBookingServiceClpInvoker</name>
+			<name>CalendarImporterLocalServiceClpInvoker</name>
 		</method>
 		<method>
 			<name>invokeMethod</name>
@@ -2686,136 +2990,28 @@
 			</throws>
 		</method>
 		<field>
-			<name>_methodName48</name>
+			<name>_methodName128</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes48</name>
+			<name>_methodParameterTypes128</name>
 		</field>
 		<field>
-			<name>_methodName49</name>
+			<name>_methodName129</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes49</name>
+			<name>_methodParameterTypes129</name>
 		</field>
 		<field>
-			<name>_methodName54</name>
+			<name>_methodName132</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes54</name>
+			<name>_methodParameterTypes132</name>
 		</field>
 		<field>
-			<name>_methodName55</name>
+			<name>_methodName133</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes55</name>
-		</field>
-		<field>
-			<name>_methodName56</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes56</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName59</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes59</name>
-		</field>
-		<field>
-			<name>_methodName60</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes60</name>
-		</field>
-		<field>
-			<name>_methodName61</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes61</name>
-		</field>
-		<field>
-			<name>_methodName62</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes62</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-		<field>
-			<name>_methodName65</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes65</name>
-		</field>
-		<field>
-			<name>_methodName66</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes66</name>
-		</field>
-		<field>
-			<name>_methodName67</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes67</name>
-		</field>
-		<field>
-			<name>_methodName68</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes68</name>
-		</field>
-		<field>
-			<name>_methodName69</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes69</name>
-		</field>
-		<field>
-			<name>_methodName70</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes70</name>
-		</field>
-		<field>
-			<name>_methodName71</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes71</name>
-		</field>
-		<field>
-			<name>_methodName72</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes72</name>
-		</field>
-		<field>
-			<name>_methodName73</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes73</name>
+			<name>_methodParameterTypes133</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -2948,30 +3144,6 @@
 			<name>_methodParameterTypes15</name>
 		</field>
 		<field>
-			<name>_methodName52</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes52</name>
-		</field>
-		<field>
-			<name>_methodName53</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes53</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName59</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes59</name>
-		</field>
-		<field>
 			<name>_methodName60</name>
 		</field>
 		<field>
@@ -2982,30 +3154,6 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes61</name>
-		</field>
-		<field>
-			<name>_methodName62</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes62</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-		<field>
-			<name>_methodName65</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes65</name>
 		</field>
 		<field>
 			<name>_methodName66</name>
@@ -3048,6 +3196,272 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes72</name>
+		</field>
+		<field>
+			<name>_methodName73</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes73</name>
+		</field>
+		<field>
+			<name>_methodName74</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes74</name>
+		</field>
+		<field>
+			<name>_methodName75</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes75</name>
+		</field>
+		<field>
+			<name>_methodName76</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes76</name>
+		</field>
+		<field>
+			<name>_methodName77</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes77</name>
+		</field>
+		<field>
+			<name>_methodName78</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes78</name>
+		</field>
+		<field>
+			<name>_methodName79</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes79</name>
+		</field>
+		<field>
+			<name>_methodName80</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes80</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarNotificationTemplateLocalServiceClpInvoker</name>
+		<type>com.liferay.calendar.service.base.CalendarNotificationTemplateLocalServiceClpInvoker</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>CalendarNotificationTemplateLocalServiceClpInvoker</name>
+		</method>
+		<method>
+			<name>invokeMethod</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>parameterTypes</name>
+				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>arguments</name>
+				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Throwable</name>
+				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_methodName0</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes0</name>
+		</field>
+		<field>
+			<name>_methodName1</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes1</name>
+		</field>
+		<field>
+			<name>_methodName2</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes2</name>
+		</field>
+		<field>
+			<name>_methodName3</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes3</name>
+		</field>
+		<field>
+			<name>_methodName4</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes4</name>
+		</field>
+		<field>
+			<name>_methodName5</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes5</name>
+		</field>
+		<field>
+			<name>_methodName6</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes6</name>
+		</field>
+		<field>
+			<name>_methodName7</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes7</name>
+		</field>
+		<field>
+			<name>_methodName8</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes8</name>
+		</field>
+		<field>
+			<name>_methodName9</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes9</name>
+		</field>
+		<field>
+			<name>_methodName10</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes10</name>
+		</field>
+		<field>
+			<name>_methodName11</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes11</name>
+		</field>
+		<field>
+			<name>_methodName12</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes12</name>
+		</field>
+		<field>
+			<name>_methodName13</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes13</name>
+		</field>
+		<field>
+			<name>_methodName14</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes14</name>
+		</field>
+		<field>
+			<name>_methodName15</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes15</name>
+		</field>
+		<field>
+			<name>_methodName60</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes60</name>
+		</field>
+		<field>
+			<name>_methodName61</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes61</name>
+		</field>
+		<field>
+			<name>_methodName66</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes66</name>
+		</field>
+		<field>
+			<name>_methodName67</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes67</name>
+		</field>
+		<field>
+			<name>_methodName68</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes68</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarNotificationTemplateServiceClpInvoker</name>
+		<type>com.liferay.calendar.service.base.CalendarNotificationTemplateServiceClpInvoker</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>CalendarNotificationTemplateServiceClpInvoker</name>
+		</method>
+		<method>
+			<name>invokeMethod</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>parameterTypes</name>
+				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>arguments</name>
+				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Throwable</name>
+				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_methodName44</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes44</name>
+		</field>
+		<field>
+			<name>_methodName45</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes45</name>
+		</field>
+		<field>
+			<name>_methodName50</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes50</name>
+		</field>
+		<field>
+			<name>_methodName51</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes51</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -3180,30 +3594,6 @@
 			<name>_methodParameterTypes15</name>
 		</field>
 		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName59</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes59</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-		<field>
-			<name>_methodName65</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes65</name>
-		</field>
-		<field>
 			<name>_methodName66</name>
 		</field>
 		<field>
@@ -3214,30 +3604,6 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes67</name>
-		</field>
-		<field>
-			<name>_methodName68</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes68</name>
-		</field>
-		<field>
-			<name>_methodName69</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes69</name>
-		</field>
-		<field>
-			<name>_methodName70</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes70</name>
-		</field>
-		<field>
-			<name>_methodName71</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes71</name>
 		</field>
 		<field>
 			<name>_methodName72</name>
@@ -3268,6 +3634,54 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes76</name>
+		</field>
+		<field>
+			<name>_methodName77</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes77</name>
+		</field>
+		<field>
+			<name>_methodName78</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes78</name>
+		</field>
+		<field>
+			<name>_methodName79</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes79</name>
+		</field>
+		<field>
+			<name>_methodName80</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes80</name>
+		</field>
+		<field>
+			<name>_methodName81</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes81</name>
+		</field>
+		<field>
+			<name>_methodName82</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes82</name>
+		</field>
+		<field>
+			<name>_methodName83</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes83</name>
+		</field>
+		<field>
+			<name>_methodName84</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes84</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -3304,30 +3718,6 @@
 			</throws>
 		</method>
 		<field>
-			<name>_methodName42</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes42</name>
-		</field>
-		<field>
-			<name>_methodName43</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes43</name>
-		</field>
-		<field>
-			<name>_methodName48</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes48</name>
-		</field>
-		<field>
-			<name>_methodName49</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes49</name>
-		</field>
-		<field>
 			<name>_methodName50</name>
 		</field>
 		<field>
@@ -3340,34 +3730,58 @@
 			<name>_methodParameterTypes51</name>
 		</field>
 		<field>
-			<name>_methodName52</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes52</name>
-		</field>
-		<field>
-			<name>_methodName53</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes53</name>
-		</field>
-		<field>
-			<name>_methodName54</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes54</name>
-		</field>
-		<field>
-			<name>_methodName55</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes55</name>
-		</field>
-		<field>
 			<name>_methodName56</name>
 		</field>
 		<field>
 			<name>_methodParameterTypes56</name>
+		</field>
+		<field>
+			<name>_methodName57</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes57</name>
+		</field>
+		<field>
+			<name>_methodName58</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes58</name>
+		</field>
+		<field>
+			<name>_methodName59</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes59</name>
+		</field>
+		<field>
+			<name>_methodName60</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes60</name>
+		</field>
+		<field>
+			<name>_methodName61</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes61</name>
+		</field>
+		<field>
+			<name>_methodName62</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes62</name>
+		</field>
+		<field>
+			<name>_methodName63</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes63</name>
+		</field>
+		<field>
+			<name>_methodName64</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes64</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -3404,30 +3818,6 @@
 			</throws>
 		</method>
 		<field>
-			<name>_methodName36</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes36</name>
-		</field>
-		<field>
-			<name>_methodName37</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes37</name>
-		</field>
-		<field>
-			<name>_methodName42</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes42</name>
-		</field>
-		<field>
-			<name>_methodName43</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes43</name>
-		</field>
-		<field>
 			<name>_methodName44</name>
 		</field>
 		<field>
@@ -3438,30 +3828,6 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes45</name>
-		</field>
-		<field>
-			<name>_methodName46</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes46</name>
-		</field>
-		<field>
-			<name>_methodName47</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes47</name>
-		</field>
-		<field>
-			<name>_methodName48</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes48</name>
-		</field>
-		<field>
-			<name>_methodName49</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes49</name>
 		</field>
 		<field>
 			<name>_methodName50</name>
@@ -3504,6 +3870,54 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes56</name>
+		</field>
+		<field>
+			<name>_methodName57</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes57</name>
+		</field>
+		<field>
+			<name>_methodName58</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes58</name>
+		</field>
+		<field>
+			<name>_methodName59</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes59</name>
+		</field>
+		<field>
+			<name>_methodName60</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes60</name>
+		</field>
+		<field>
+			<name>_methodName61</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes61</name>
+		</field>
+		<field>
+			<name>_methodName62</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes62</name>
+		</field>
+		<field>
+			<name>_methodName63</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes63</name>
+		</field>
+		<field>
+			<name>_methodName64</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes64</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -3652,6 +4066,34 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>deleteCalendarBookingInstance</name>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>allFollowing</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
@@ -4733,6 +5175,22 @@
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getExtraDataJSON</name>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>validate</name>
@@ -5984,6 +6442,1380 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>CalendarImporterLocalServiceImpl</name>
+		<type>com.liferay.calendar.service.impl.CalendarImporterLocalServiceImpl</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>importCalEvent</name>
+			<param>
+				<name>calEvent</name>
+				<type>com.liferay.portlet.calendar.model.CalEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importCalEvents</name>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addAssetEntry</name>
+			<param>
+				<name>entryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classUuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>visible</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>startDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>endDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>publishDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>expirationDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mimeType</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>description</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>summary</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>url</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>layoutUuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>height</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>width</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>priority</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>viewCount</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addAssetLink</name>
+			<param>
+				<name>linkId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>entryId1</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>entryId2</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>type</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>weight</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addCalendarBooking</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarResourceId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>description</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>location</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>startTime</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>endTime</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>allDay</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>recurrence</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>firstReminder</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>firstReminderType</name>
+				<type>com.liferay.calendar.notification.NotificationType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>secondReminder</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>secondReminderType</name>
+				<type>com.liferay.calendar.notification.NotificationType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addMBDiscussion</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>discussionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>threadId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addMBMessage</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>messageId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>categoryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>threadId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>rootMessageId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>parentMessageId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>subject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>body</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>format</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>anonymous</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>priority</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>allowPingbacks</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>answer</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>statusByUserId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>statusByUserName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>statusDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mbMessageIds</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addMBThread</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>threadId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>categoryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>rootMessageId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>rootMessageUserId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>messageCount</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>viewCount</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>lastPostByUserId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>lastPostDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>priority</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>question</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>statusByUserId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>statusByUserName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>statusDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addRatingsEntry</name>
+			<param>
+				<name>entryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>score</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addRatingsStats</name>
+			<param>
+				<name>statsId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>totalEntries</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>totalScore</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>averageScore</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addSocialActivity</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mirrorActivityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>type</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>receiverUserId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addSubscription</name>
+			<param>
+				<name>subscriptionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>modifiedDate</name>
+				<type>java.util.Date</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>frequency</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getActionId</name>
+			<param>
+				<name>oldResourceAction</name>
+				<type>com.liferay.portal.model.ResourceAction</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>newClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getActionIds</name>
+			<param>
+				<name>resourcePermission</name>
+				<type>com.liferay.portal.model.ResourcePermission</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>oldClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>newClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getAssetCategory</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getCalendarResource</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getRecurrence</name>
+			<param>
+				<name>tzsRecurrence</name>
+				<type>com.liferay.portal.kernel.cal.TZSRecurrence</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>importAssetLink</name>
+			<param>
+				<name>assetLink</name>
+				<type>com.liferay.portlet.asset.model.AssetLink</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>entryId1</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importAssets</name>
+			<param>
+				<name>calEvent</name>
+				<type>com.liferay.portlet.calendar.model.CalEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importCalendarBookingResourcePermission</name>
+			<param>
+				<name>resourcePermission</name>
+				<type>com.liferay.portal.model.ResourcePermission</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importCalendarBookingResourcePermissions</name>
+			<param>
+				<name>calEvent</name>
+				<type>com.liferay.portlet.calendar.model.CalEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importMBDiscussion</name>
+			<param>
+				<name>calEvent</name>
+				<type>com.liferay.portlet.calendar.model.CalEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importMBMessage</name>
+			<param>
+				<name>messageId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>threadId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mbMessageIds</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importMBMessage</name>
+			<param>
+				<name>mbMessage</name>
+				<type>com.liferay.portlet.messageboards.model.MBMessage</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>threadId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mbMessageIds</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importMBThread</name>
+			<param>
+				<name>threadId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importMBThread</name>
+			<param>
+				<name>mbThread</name>
+				<type>com.liferay.portlet.messageboards.model.MBThread</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importRatings</name>
+			<param>
+				<name>oldClassNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>oldClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importSocialActivities</name>
+			<param>
+				<name>calEvent</name>
+				<type>com.liferay.portlet.calendar.model.CalEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importSocialActivity</name>
+			<param>
+				<name>socialActivity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importSubscription</name>
+			<param>
+				<name>subscription</name>
+				<type>com.liferay.portal.model.Subscription</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>importSubscriptions</name>
+			<param>
+				<name>calEvent</name>
+				<type>com.liferay.portlet.calendar.model.CalEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBookingId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>isImported</name>
+			<param>
+				<name>calEvent</name>
+				<type>com.liferay.portlet.calendar.model.CalEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateMBThreadRootMessageId</name>
+			<param>
+				<name>threadId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>rootMessageId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_ASSET_VOCABULARY_NAME</name>
+		</field>
+		<field>
+			<name>_frequencyMap</name>
+		</field>
+		<field>
+			<name>_weekdayMap</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>CalendarLocalServiceImpl</name>
 		<type>com.liferay.calendar.service.impl.CalendarLocalServiceImpl</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>
@@ -6023,6 +7855,16 @@
 			</param>
 			<param>
 				<name>defaultCalendar</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>enableComments</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>enableRatings</name>
 				<type>boolean</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -6406,6 +8248,16 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>enableComments</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>enableRatings</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>serviceContext</name>
 				<type>com.liferay.portal.service.ServiceContext</type>
 				<comment><![CDATA[]]></comment>
@@ -6524,6 +8376,232 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>CalendarNotificationTemplateLocalServiceImpl</name>
+		<type>com.liferay.calendar.service.impl.CalendarNotificationTemplateLocalServiceImpl</type>
+		<author><![CDATA[Adam Brandizzi]]></author>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>addCalendarNotificationTemplate</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationType</name>
+				<type>com.liferay.calendar.notification.NotificationType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationTypeSettings</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationTemplateType</name>
+				<type>com.liferay.calendar.notification.NotificationTemplateType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>subject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>body</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>fetchCalendarNotificationTemplate</name>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationType</name>
+				<type>com.liferay.calendar.notification.NotificationType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationTemplateType</name>
+				<type>com.liferay.calendar.notification.NotificationTemplateType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateCalendarNotificationTemplate</name>
+			<param>
+				<name>calendarNotificationTemplateId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationTypeSettings</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>subject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>body</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>CalendarNotificationTemplateServiceImpl</name>
+		<type>com.liferay.calendar.service.impl.CalendarNotificationTemplateServiceImpl</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>addCalendarNotificationTemplate</name>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationType</name>
+				<type>com.liferay.calendar.notification.NotificationType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationTypeSettings</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationTemplateType</name>
+				<type>com.liferay.calendar.notification.NotificationTemplateType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>subject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>body</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateCalendarNotificationTemplate</name>
+			<param>
+				<name>calendarNotificationTemplateId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationTypeSettings</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>subject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>body</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -7537,6 +9615,16 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>enableComments</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>enableRatings</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>serviceContext</name>
 				<type>com.liferay.portal.service.ServiceContext</type>
 				<comment><![CDATA[]]></comment>
@@ -8070,6 +10158,16 @@
 			</param>
 			<param>
 				<name>defaultCalendar</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>enableComments</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>enableRatings</name>
 				<type>boolean</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -9314,20 +11412,10 @@
 			</return>
 		</method>
 		<method>
-			<name>getDateRange</name>
+			<name>getGroupIds</name>
 			<param>
-				<name>startTime</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>endTime</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>recurring</name>
-				<type>boolean</type>
+				<name>groupIds</name>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -9335,10 +11423,10 @@
 			</return>
 		</method>
 		<method>
-			<name>getGroupIds</name>
+			<name>getRecurrence</name>
 			<param>
-				<name>groupIds</name>
-				<type>long[]</type>
+				<name>recurring</name>
+				<type>boolean</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -10853,6 +12941,163 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>CalendarServletContextListener</name>
+		<type>com.liferay.calendar.servlet.CalendarServletContextListener</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>contextDestroyed</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>contextInitialized</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>doPortalDestroy</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doPortalInit</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+		<field>
+			<name>_hotDeployMessageListener</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarActivityInterpreter</name>
+		<type>com.liferay.calendar.social.CalendarActivityInterpreter</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getEntryTitle</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getPath</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>hasPermissions</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarActivityKeys</name>
+		<type>com.liferay.calendar.social.CalendarActivityKeys</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<field>
+			<name>ADD_CALENDAR_BOOKING</name>
+		</field>
+		<field>
+			<name>UPDATE_CALENDAR_BOOKING</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>ActionKeys</name>
 		<type>com.liferay.calendar.util.ActionKeys</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>
@@ -11104,6 +13349,7 @@
 		<type>com.liferay.calendar.util.CalendarResourceUtil</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>
 		<author><![CDATA[Fabio Pezzutto]]></author>
+		<author><![CDATA[Marcellus Tavares]]></author>
 		<method>
 			<name>getCalendarResource</name>
 			<param>
@@ -11119,6 +13365,32 @@
 			<param>
 				<name>classPK</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getGroupCalendarResource</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -11278,6 +13550,27 @@
 			</throws>
 		</method>
 		<method>
+			<name>getCalendarResources</name>
+			<param>
+				<name>calendarBookings</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getOrderByComparator</name>
 			<param>
 				<name>orderByCol</name>
@@ -11350,6 +13643,22 @@
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>toCalendarResourceJSONObject</name>
+			<param>
+				<name>themeDisplay</name>
+				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>toCalendarsJSONArray</name>
@@ -11558,53 +13867,54 @@
 		<name>NotificationUtil</name>
 		<type>com.liferay.calendar.util.NotificationUtil</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>
+		<author><![CDATA[Marcellus Tavares]]></author>
 		<method>
-			<name>getEmailFromAddress</name>
+			<name>getDefaultSenderUser</name>
 			<param>
-				<name>preferences</name>
-				<type>javax.portlet.PortletPreferences</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
+				<name>calendar</name>
+				<type>com.liferay.calendar.model.Calendar</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>getEmailFromName</name>
+			<name>getDefaultTemplate</name>
 			<param>
-				<name>preferences</name>
-				<type>javax.portlet.PortletPreferences</type>
+				<name>notificationType</name>
+				<type>com.liferay.calendar.notification.NotificationType</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>companyId</name>
-				<type>long</type>
+				<name>notificationTemplateType</name>
+				<type>com.liferay.calendar.notification.NotificationTemplateType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationField</name>
+				<type>com.liferay.calendar.notification.NotificationField</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>getNotificationTemplateContent</name>
+			<name>getTemplate</name>
 			<param>
-				<name>propertyName</name>
-				<type>java.lang.String</type>
+				<name>calendarNotificationTemplate</name>
+				<type>com.liferay.calendar.model.CalendarNotificationTemplate</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -11615,6 +13925,32 @@
 			<param>
 				<name>notificationTemplateType</name>
 				<type>com.liferay.calendar.notification.NotificationTemplateType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationField</name>
+				<type>com.liferay.calendar.notification.NotificationField</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTemplatePropertyValue</name>
+			<param>
+				<name>calendarNotificationTemplate</name>
+				<type>com.liferay.calendar.model.CalendarNotificationTemplate</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>propertyName</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -11622,46 +13958,20 @@
 			</return>
 		</method>
 		<method>
-			<name>getNotificationTemplateContent</name>
+			<name>getTemplatePropertyValue</name>
+			<param>
+				<name>calendarNotificationTemplate</name>
+				<type>com.liferay.calendar.model.CalendarNotificationTemplate</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>propertyName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>notificationType</name>
-				<type>com.liferay.calendar.notification.NotificationType</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationTemplateType</name>
-				<type>com.liferay.calendar.notification.NotificationTemplateType</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationTemplateContext</name>
-				<type>com.liferay.calendar.notification.NotificationTemplateContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getPreferenceName</name>
-			<param>
-				<name>propertyName</name>
+				<name>defaultValue</name>
 				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationType</name>
-				<type>com.liferay.calendar.notification.NotificationType</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>notificationTemplateType</name>
-				<type>com.liferay.calendar.notification.NotificationTemplateType</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -11698,6 +14008,27 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>processNotificationTemplate</name>
+			<param>
+				<name>notificationTemplate</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationContext</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -11743,9 +14074,6 @@
 			<name>CALENDAR_COLOR_DEFAULT</name>
 		</field>
 		<field>
-			<name>CALENDAR_NOTIFICATION_BODY</name>
-		</field>
-		<field>
 			<name>CALENDAR_NOTIFICATION_CHECK_INTERVAL</name>
 		</field>
 		<field>
@@ -11755,19 +14083,16 @@
 			<name>CALENDAR_NOTIFICATION_ENABLED</name>
 		</field>
 		<field>
-			<name>CALENDAR_NOTIFICATION_FROM_ADDRESS</name>
-		</field>
-		<field>
-			<name>CALENDAR_NOTIFICATION_FROM_NAME</name>
-		</field>
-		<field>
-			<name>CALENDAR_NOTIFICATION_SUBJECT</name>
+			<name>CALENDAR_NOTIFICATION_PREFIX</name>
 		</field>
 		<field>
 			<name>CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE</name>
 		</field>
 		<field>
 			<name>CALENDAR_RSS_TEMPLATE</name>
+		</field>
+		<field>
+			<name>CALENDAR_SYNC_CALEVENTS_ON_STARTUP</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -11787,13 +14112,10 @@
 			<name>CALENDAR_NOTIFICATION_DEFAULT_TYPE</name>
 		</field>
 		<field>
-			<name>CALENDAR_NOTIFICATION_FROM_ADDRESS</name>
-		</field>
-		<field>
-			<name>CALENDAR_NOTIFICATION_FROM_NAME</name>
-		</field>
-		<field>
 			<name>CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE</name>
+		</field>
+		<field>
+			<name>CALENDAR_SYNC_CALEVENTS_ON_STARTUP</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -11896,6 +14218,27 @@
 			<param>
 				<name>maxSize</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getIndexOfInstance</name>
+			<param>
+				<name>recurrence</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>recurrenceStartTime</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>instanceStartTime</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>

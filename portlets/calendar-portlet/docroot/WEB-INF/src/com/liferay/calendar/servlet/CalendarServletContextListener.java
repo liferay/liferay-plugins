@@ -37,10 +37,12 @@ import org.apache.commons.lang.time.StopWatch;
 public class CalendarServletContextListener
 	extends BasePortalLifecycle implements ServletContextListener {
 
+	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		portalDestroy();
 	}
 
+	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		registerPortalLifecycle();
 	}

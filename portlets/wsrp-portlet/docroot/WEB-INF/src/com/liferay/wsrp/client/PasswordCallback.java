@@ -22,6 +22,7 @@ import javax.security.auth.callback.CallbackHandler;
  */
 public class PasswordCallback implements CallbackHandler {
 
+	@Override
 	public void handle(Callback[] callbacks) {
 	}
 

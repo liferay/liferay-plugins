@@ -28,10 +28,12 @@ import javax.servlet.ServletContextListener;
 public class DeployListenerServletContextListener
 	extends BasePortalLifecycle implements ServletContextListener {
 
+	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		portalDestroy();
 	}
 
+	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		registerPortalLifecycle();
 	}

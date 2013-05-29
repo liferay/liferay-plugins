@@ -45,14 +45,17 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 		_calendarBooking = calendarBooking;
 	}
 
+	@Override
 	public String getClassName() {
 		return CalendarBooking.class.getName();
 	}
 
+	@Override
 	public long getClassPK() {
 		return _calendarBooking.getCalendarBookingId();
 	}
 
+	@Override
 	public long getGroupId() {
 		return _calendarBooking.getGroupId();
 	}
@@ -62,10 +65,12 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 		return themeDisplay.getPathThemeImages() + "/common/date.png";
 	}
 
+	@Override
 	public String getSummary(Locale locale) {
 		return _calendarBooking.getDescription(locale);
 	}
 
+	@Override
 	public String getTitle(Locale locale) {
 		return _calendarBooking.getTitle(locale);
 	}
@@ -88,14 +93,17 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 		return portletURL;
 	}
 
+	@Override
 	public long getUserId() {
 		return _calendarBooking.getUserId();
 	}
 
+	@Override
 	public String getUserName() {
 		return _calendarBooking.getUserName();
 	}
 
+	@Override
 	public String getUuid() {
 		return _calendarBooking.getUuid();
 	}
@@ -135,6 +143,7 @@ public class CalendarBookingAssetRenderer extends BaseAssetRenderer {
 		return true;
 	}
 
+	@Override
 	public String render(
 			RenderRequest renderRequest, RenderResponse renderResponse,
 			String template)

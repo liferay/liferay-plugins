@@ -10,10 +10,12 @@
 			<param>
 				<name>message</name>
 				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -37,18 +39,25 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parameterTypes</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>arguments</name>
 				<type>java.lang.Object[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Throwable</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -142,10 +151,10 @@
 			<name>_methodParameterTypes14</name>
 		</field>
 		<field>
-			<name>_methodName15</name>
+			<name>_methodName31</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes15</name>
+			<name>_methodParameterTypes31</name>
 		</field>
 		<field>
 			<name>_methodName32</name>
@@ -154,10 +163,10 @@
 			<name>_methodParameterTypes32</name>
 		</field>
 		<field>
-			<name>_methodName33</name>
+			<name>_methodName37</name>
 		</field>
 		<field>
-			<name>_methodParameterTypes33</name>
+			<name>_methodParameterTypes37</name>
 		</field>
 		<field>
 			<name>_methodName38</name>
@@ -171,41 +180,36 @@
 		<field>
 			<name>_methodParameterTypes39</name>
 		</field>
-		<field>
-			<name>_methodName40</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes40</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>FeedLocalServiceImpl</name>
 		<type>com.liferay.twitter.service.impl.FeedLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Zsolt Berentey]]></author>
 		<method>
 			<name>updateFeed</name>
 			<param>
 				<name>userId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>updateFeeds</name>
 			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -213,45 +217,32 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
-		</method>
-		<method>
-			<name>getUserTimelineJSONArray</name>
-			<param>
-				<name>twitterScreenName</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>sinceId</name>
-				<type>long</type>
-			</param>
 		</method>
 		<method>
 			<name>updateFeed</name>
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_URL</name>
-		</field>
 		<field>
 			<name>_log</name>
 		</field>
@@ -260,23 +251,127 @@
 		<name>TwitterActivityInterpreter</name>
 		<type>com.liferay.twitter.social.TwitterActivityInterpreter</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Zsolt Berentey]]></author>
 		<method>
 			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
-			<name>doInterpret</name>
+			<name>getBody</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getTitleArguments</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>link</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>hasPermissions</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_CLASS_NAMES</name>
@@ -288,6 +383,166 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<field>
 			<name>ADD_STATUS</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>APITimelineProcessor</name>
+		<type>com.liferay.twitter.util.APITimelineProcessor</type>
+		<author><![CDATA[Shinn Lok]]></author>
+		<method>
+			<name>getUserTimelineJSONArray</name>
+			<param>
+				<name>twitterScreenName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sinceId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_URL</name>
+		</field>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>HttpTimelineProcessor</name>
+		<type>com.liferay.twitter.util.HttpTimelineProcessor</type>
+		<author><![CDATA[Shinn Lok]]></author>
+		<method>
+			<name>getUserTimelineJSONArray</name>
+			<param>
+				<name>twitterScreenName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sinceId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getUserAgent</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getUserTimelineJSONArray</name>
+			<param>
+				<name>html</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sinceId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>jsonArray</name>
+				<type>com.liferay.portal.kernel.json.JSONArray</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_URL</name>
+		</field>
+		<field>
+			<name>_USER_AGENTS</name>
+		</field>
+		<field>
+			<name>_log</name>
+		</field>
+		<field>
+			<name>_dateFormat</name>
+		</field>
+		<field>
+			<name>_pattern</name>
+		</field>
+		<field>
+			<name>_random</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.twitter.util.PortletPropsKeys</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<field>
+			<name>TWITTER_USERS_TIMELINE_PROCESSOR</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.twitter.util.PortletPropsValues</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<field>
+			<name>TWITTER_USERS_TIMELINE_PROCESSOR</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>TimelineProcessor</name>
+		<type>com.liferay.twitter.util.TimelineProcessor</type>
+		<author><![CDATA[Shinn Lok]]></author>
+		<method>
+			<name>getUserTimelineJSONArray</name>
+			<param>
+				<name>twitterScreenName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sinceId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>TimelineProcessorUtil</name>
+		<type>com.liferay.twitter.util.TimelineProcessorUtil</type>
+		<author><![CDATA[Shinn Lok]]></author>
+		<method>
+			<name>getInstance</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getUserTimelineJSONArray</name>
+			<param>
+				<name>twitterScreenName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sinceId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_timelineProcessor</name>
 		</field>
 	</javadoc>
 </javadocs>

@@ -31,6 +31,7 @@ public class BuddyComparator implements Comparator<Object[]> {
 		_asc = asc;
 	}
 
+	@Override
 	public int compare(Object[] buddy1, Object[] buddy2) {
 		long userId1 = (Long)buddy1[0];
 		String firstName1 = (String)buddy1[2];

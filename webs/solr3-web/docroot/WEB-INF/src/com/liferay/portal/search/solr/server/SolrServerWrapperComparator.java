@@ -22,6 +22,7 @@ import java.util.Comparator;
 public class SolrServerWrapperComparator
 	implements Comparator<SolrServerWrapper> {
 
+	@Override
 	public int compare(
 		SolrServerWrapper solrServerWrapper1,
 		SolrServerWrapper solrServerWrapper2) {

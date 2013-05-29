@@ -12,14 +12,20 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>query</name>
 				<type>com.liferay.portal.kernel.search.Query</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -27,30 +33,40 @@
 			<param>
 				<name>searchEngineId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>query</name>
 				<type>com.liferay.portal.kernel.search.Query</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sorts</name>
 				<type>com.liferay.portal.kernel.search.Sort[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>start</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>end</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -58,6 +74,7 @@
 			<param>
 				<name>solrServer</name>
 				<type>org.apache.solr.client.solrj.SolrServer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -65,6 +82,7 @@
 			<param>
 				<name>swallowException</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -72,14 +90,20 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>query</name>
 				<type>com.liferay.portal.kernel.search.Query</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -87,49 +111,66 @@
 			<param>
 				<name>solrDocument</name>
 				<type>org.apache.solr.common.SolrDocument</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>queryConfig</name>
 				<type>com.liferay.portal.kernel.search.QueryConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>queryTerms</name>
 				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>highlights</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>field</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>subset</name>
 			<param>
 				<name>solrQuery</name>
 				<type>org.apache.solr.client.solrj.SolrQuery</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>query</name>
 				<type>com.liferay.portal.kernel.search.Query</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>queryConfig</name>
 				<type>com.liferay.portal.kernel.search.QueryConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>queryResponse</name>
 				<type>org.apache.solr.client.solrj.response.QueryResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>allResults</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -137,26 +178,35 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>query</name>
 				<type>com.liferay.portal.kernel.search.Query</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>sorts</name>
 				<type>com.liferay.portal.kernel.search.Sort[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>start</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>end</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -178,14 +228,17 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>document</name>
 				<type>com.liferay.portal.kernel.search.Document</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -193,14 +246,17 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>documents</name>
 				<type>java.util.Collection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -208,14 +264,17 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>uid</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -223,14 +282,17 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>uids</name>
 				<type>java.util.Collection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -238,14 +300,17 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -253,6 +318,7 @@
 			<param>
 				<name>commit</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -260,6 +326,7 @@
 			<param>
 				<name>solrServer</name>
 				<type>org.apache.solr.client.solrj.SolrServer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -267,14 +334,17 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>document</name>
 				<type>com.liferay.portal.kernel.search.Document</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -282,14 +352,17 @@
 			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>documents</name>
 				<type>java.util.Collection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SearchException</name>
 				<type>com.liferay.portal.kernel.search.SearchException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -297,14 +370,22 @@
 			<param>
 				<name>document</name>
 				<type>com.liferay.portal.kernel.search.Document</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getSolrInputDocuments</name>
 			<param>
 				<name>documents</name>
 				<type>java.util.Collection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_log</name>
@@ -325,24 +406,36 @@
 			<param>
 				<name>fieldName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>facetField</name>
 				<type>org.apache.solr.client.solrj.response.FacetField</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getFieldName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTermCollector</name>
 			<param>
 				<name>term</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTermCollectors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_counts</name>
@@ -363,31 +456,47 @@
 			<param>
 				<name>fieldName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>facetQueries</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getFieldName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTermCollector</name>
 			<param>
 				<name>term</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTermCollectors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>_getTerm</name>
 			<param>
 				<name>term</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_counts</name>
@@ -408,17 +517,25 @@
 			<param>
 				<name>term</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>frequency</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getFrequency</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTerm</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_frequency</name>
@@ -436,6 +553,7 @@
 			<param>
 				<name>solrServerFactory</name>
 				<type>SolrServerFactory</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -454,18 +572,22 @@
 			<param>
 				<name>authScope</name>
 				<type>org.apache.http.auth.AuthScope</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>username</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>password</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -473,6 +595,7 @@
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -480,41 +603,62 @@
 			<param>
 				<name>username</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>password</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getBaseURL</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getHttpClient</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getInvariantParams</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getParser</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>request</name>
 			<param>
 				<name>solrRequest</name>
 				<type>org.apache.solr.client.solrj.SolrRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>org.apache.solr.client.solrj.SolrServerException</name>
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -522,18 +666,25 @@
 			<param>
 				<name>solrRequest</name>
 				<type>org.apache.solr.client.solrj.SolrRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>responseParser</name>
 				<type>org.apache.solr.client.solrj.ResponseParser</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>org.apache.solr.client.solrj.SolrServerException</name>
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -541,6 +692,7 @@
 			<param>
 				<name>compression</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -548,6 +700,7 @@
 			<param>
 				<name>baseURL</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -555,6 +708,7 @@
 			<param>
 				<name>connectionTimeout</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -562,6 +716,7 @@
 			<param>
 				<name>maxConnectionsPerHost</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -569,6 +724,7 @@
 			<param>
 				<name>followRedirects</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -576,6 +732,7 @@
 			<param>
 				<name>maxRetries</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -583,6 +740,7 @@
 			<param>
 				<name>maxTotalConnections</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -590,6 +748,7 @@
 			<param>
 				<name>responseParser</name>
 				<type>org.apache.solr.client.solrj.ResponseParser</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -597,6 +756,7 @@
 			<param>
 				<name>soTimeout</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -630,6 +790,7 @@
 			<param>
 				<name>solrServerFactory</name>
 				<type>SolrServerFactory</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -637,10 +798,15 @@
 			<param>
 				<name>solrRequest</name>
 				<type>org.apache.solr.client.solrj.SolrRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>org.apache.solr.client.solrj.SolrServerException</name>
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -657,10 +823,12 @@
 			<param>
 				<name>solrServerFactory</name>
 				<type>SolrServerFactory</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>delay</name>
 				<type>java.lang.Long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -685,7 +853,11 @@
 			<param>
 				<name>solrServerWrappers</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -697,6 +869,7 @@
 			<param>
 				<name>solrServerFactory</name>
 				<type>SolrServerFactory</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -704,10 +877,15 @@
 			<param>
 				<name>solrRequest</name>
 				<type>org.apache.solr.client.solrj.SolrRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>org.apache.solr.client.solrj.SolrServerException</name>
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -720,26 +898,38 @@
 			<param>
 				<name>solrServers</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getDeadServers</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getLiveServer</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>org.apache.solr.client.solrj.SolrServerException</name>
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getLiveServers</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>killServer</name>
 			<param>
 				<name>solrServerWrapper</name>
 				<type>SolrServerWrapper</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -747,6 +937,7 @@
 			<param>
 				<name>solrServerSelector</name>
 				<type>SolrServerSelector</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -754,6 +945,7 @@
 			<param>
 				<name>solrServerWrapper</name>
 				<type>SolrServerWrapper</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -775,7 +967,11 @@
 			<param>
 				<name>solrServerWrappers</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -787,33 +983,52 @@
 			<param>
 				<name>id</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>solrServer</name>
 				<type>org.apache.solr.client.solrj.SolrServer</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getInvocationCount</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getServer</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>incrementInvocationCount</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>ping</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>org.apache.solr.client.solrj.SolrServerException</name>
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -821,14 +1036,20 @@
 			<param>
 				<name>solrRequest</name>
 				<type>org.apache.solr.client.solrj.SolrRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>org.apache.solr.client.solrj.SolrServerException</name>
 				<type>org.apache.solr.client.solrj.SolrServerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -839,6 +1060,7 @@
 			<param>
 				<name>solrServerFactory</name>
 				<type>SolrServerFactory</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -863,11 +1085,16 @@
 			<param>
 				<name>solrServerWrapper1</name>
 				<type>SolrServerWrapper</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>solrServerWrapper2</name>
 				<type>SolrServerWrapper</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -879,6 +1106,7 @@
 			<param>
 				<name>liveServerChecker</name>
 				<type>com.liferay.portal.search.solr.server.LiveServerChecker</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -886,6 +1114,7 @@
 			<param>
 				<name>servletContextEvent</name>
 				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -893,6 +1122,7 @@
 			<param>
 				<name>servletContextEvent</name>
 				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -900,6 +1130,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>

@@ -35,14 +35,17 @@ import java.util.Map;
  */
 public class KBArticleWorkflowHandler extends BaseWorkflowHandler {
 
+	@Override
 	public String getClassName() {
 		return KBArticle.class.getName();
 	}
 
+	@Override
 	public String getType(Locale locale) {
 		return ResourceActionsUtil.getModelResource(locale, getClassName());
 	}
 
+	@Override
 	public KBArticle updateStatus(
 			int status, Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {

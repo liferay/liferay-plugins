@@ -24,10 +24,16 @@
 			<name>kaleoLogLocalService</name>
 		</field>
 		<field>
+			<name>kaleoNodeLocalService</name>
+		</field>
+		<field>
 			<name>kaleoNotificationLocalService</name>
 		</field>
 		<field>
 			<name>kaleoNotificationRecipientLocalService</name>
+		</field>
+		<field>
+			<name>kaleoTaskAssignmentLocalService</name>
 		</field>
 		<field>
 			<name>kaleoTaskInstanceTokenLocalService</name>
@@ -40,6 +46,9 @@
 		</field>
 		<field>
 			<name>kaleoTimerLocalService</name>
+		</field>
+		<field>
+			<name>kaleoTransitionLocalService</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -65,6 +74,9 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
+		<field>
+			<name>_log</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>WorkflowDefinitionManagerImpl</name>
@@ -2809,6 +2821,1275 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>BaseNodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.BaseNodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>exportNode</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>addCDataElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>elementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>text</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>addDelayDuration</name>
+			<param>
+				<name>timerElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>elementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>delayDuration</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.DelayDuration</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>addTextElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>elementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>text</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>createNodeElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>exportActionElement</name>
+			<param>
+				<name>actionElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>action</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Action</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>exportActionsElement</name>
+			<param>
+				<name>actions</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notifications</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionsElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionElementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationElementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>exportAdditionalNodeElements</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>exportAssignmentsElement</name>
+			<param>
+				<name>assignments</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>parentElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>assignmentsElementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>exportNotificationElement</name>
+			<param>
+				<name>notificationElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notification</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Notification</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>exportRecipientsElement</name>
+			<param>
+				<name>notificationElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>recipients</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>exportTimersElement</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>timersElementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>timerElementName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>exportTransitionsElement</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>populateRoleElement</name>
+			<param>
+				<name>roleElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>roleId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>roleType</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>roleName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>autoCreate</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>populateScriptingElement</name>
+			<param>
+				<name>scriptingElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>script</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>scriptLanguage</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>scriptRequiredContexts</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>populateUserElement</name>
+			<param>
+				<name>userElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>emailAddress</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>screenName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>ConditionNodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.ConditionNodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNodeElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>exportAdditionalNodeElements</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>DefinitionExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.DefinitionExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>export</name>
+			<param>
+				<name>kaleoDefinitionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>export</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>DefinitionExporterUtil</name>
+		<type>com.liferay.portal.workflow.kaleo.export.DefinitionExporterUtil</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>export</name>
+			<param>
+				<name>kaleoDefinitionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>export</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getDefinitionExporter</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>setDefinitionExporter</name>
+			<param>
+				<name>definitionExporter</name>
+				<type>DefinitionExporter</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<field>
+			<name>_definitionExporter</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>ForkNodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.ForkNodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNodeElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>exportAdditionalNodeElements</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>JoinNodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.JoinNodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNodeElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>exportAdditionalNodeElements</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>JoinXorNodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.JoinXorNodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNodeElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>exportAdditionalNodeElements</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>NodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.NodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>exportNode</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>NodeExporterRegistry</name>
+		<type>com.liferay.portal.workflow.kaleo.export.NodeExporterRegistry</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>getNodeExporter</name>
+			<param>
+				<name>nodeType</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.NodeType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>setNodeExporter</name>
+			<param>
+				<name>nodeExporters</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<field>
+			<name>_nodeExporters</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>StateNodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.StateNodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNodeElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>exportAdditionalNodeElements</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>TaskNodeExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.TaskNodeExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNodeElement</name>
+			<param>
+				<name>element</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>namespace</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>exportAdditionalNodeElements</name>
+			<param>
+				<name>node</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Node</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>nodeElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>XMLDefinitionExporter</name>
+		<type>com.liferay.portal.workflow.kaleo.export.XMLDefinitionExporter</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>afterPropertiesSet</name>
+		</method>
+		<method>
+			<name>export</name>
+			<param>
+				<name>kaleoDefinitionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>export</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>setDefinitionBuilder</name>
+			<param>
+				<name>definitionBuilder</name>
+				<type>com.liferay.portal.workflow.kaleo.export.builder.DefinitionBuilder</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setVersion</name>
+			<param>
+				<name>version</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>doExport</name>
+			<param>
+				<name>definition</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Definition</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_definitionBuilder</name>
+		</field>
+		<field>
+			<name>_namespace</name>
+		</field>
+		<field>
+			<name>_schemaVersion</name>
+		</field>
+		<field>
+			<name>_version</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>BaseNodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.BaseNodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>buildNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addNotificationRecipients</name>
+			<param>
+				<name>kaleoNotification</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNotification</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notification</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Notification</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>buildActions</name>
+			<param>
+				<name>kaleoClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kaleoClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>buildAssigments</name>
+			<param>
+				<name>kaleoClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kaleoClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>buildNotifications</name>
+			<param>
+				<name>kaleoClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kaleoClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>buildTimers</name>
+			<param>
+				<name>kaleoClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kaleoClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>createNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_roleLocalService</name>
+		</field>
+		<field>
+			<name>_userLocalService</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>ConditionNodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.ConditionNodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>DefaultDefinitionBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.DefaultDefinitionBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>buildDefinition</name>
+			<param>
+				<name>kaleoDefinitionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>buildDefinition</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doBuildDefinition</name>
+			<param>
+				<name>kaleoDefinition</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoDefinition</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>DefinitionBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.DefinitionBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>buildDefinition</name>
+			<param>
+				<name>kaleoDefinitionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>buildDefinition</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>ForkNodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.ForkNodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>JoinNodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.JoinNodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>JoinXorNodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.JoinXorNodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>NodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.NodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>buildNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>NodeBuilderRegistry</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.NodeBuilderRegistry</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>getNodeBuilder</name>
+			<param>
+				<name>nodeTypeString</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>setNodeBuilders</name>
+			<param>
+				<name>nodeBuilders</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<field>
+			<name>_nodeBuilders</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>StateNodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.StateNodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>TaskNodeBuilder</name>
+		<type>com.liferay.portal.workflow.kaleo.export.builder.TaskNodeBuilder</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>createNode</name>
+			<param>
+				<name>kaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>CompanyModelListener</name>
 		<type>com.liferay.portal.workflow.kaleo.hook.listeners.CompanyModelListener</type>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -2893,6 +4174,25 @@
 		<name>UpgradeProcess_1_1_0</name>
 		<type>com.liferay.portal.workflow.kaleo.hook.upgrade.UpgradeProcess_1_1_0</type>
 		<author><![CDATA[Jang Kim]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_1_2_0</name>
+		<type>com.liferay.portal.workflow.kaleo.hook.upgrade.UpgradeProcess_1_2_0</type>
+		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>getThreshold</name>
 			<return>
@@ -3000,6 +4300,19 @@
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeKaleoNotificationRecipient</name>
+		<type>com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0.UpgradeKaleoNotificationRecipient</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -4416,11 +5729,34 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>JoinXorNodeValidator</name>
+		<type>com.liferay.portal.workflow.kaleo.parser.JoinXorNodeValidator</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>doValidate</name>
+			<param>
+				<name>definition</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Definition</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>joinXor</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.JoinXor</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>WorkflowException</name>
+				<type>com.liferay.portal.kernel.workflow.WorkflowException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>NodeValidatorRegistry</name>
 		<type>com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
-			<name>getValidator</name>
+			<name>getNodeValidator</name>
 			<param>
 				<name>nodeType</name>
 				<type>com.liferay.portal.workflow.kaleo.definition.NodeType</type>
@@ -7640,6 +8976,9 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
@@ -7742,6 +9081,9 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
@@ -7862,6 +9204,9 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doExecute</name>
@@ -7947,6 +9292,9 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doExecute</name>
@@ -8029,6 +9377,104 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doExecute</name>
+			<param>
+				<name>currentKaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>remainingPathElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doExecuteTimer</name>
+			<param>
+				<name>currentKaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kaleoTimer</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoTimer</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>doExit</name>
+			<param>
+				<name>currentKaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>remainingPathElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>JoinXorNodeExecutor</name>
+		<type>com.liferay.portal.workflow.kaleo.runtime.node.JoinXorNodeExecutor</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>doEnter</name>
+			<param>
+				<name>currentKaleoNode</name>
+				<type>com.liferay.portal.workflow.kaleo.model.KaleoNode</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
@@ -8121,6 +9567,9 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
@@ -8226,11 +9675,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>WorkflowException</name>
-				<type>com.liferay.portal.kernel.workflow.WorkflowException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>setNodeExectors</name>
@@ -8260,6 +9704,9 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doExecute</name>
@@ -8420,6 +9867,9 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
@@ -8539,8 +9989,8 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>EmailNotificationSender</name>
-		<type>com.liferay.portal.workflow.kaleo.runtime.notification.EmailNotificationSender</type>
+		<name>BaseNotificationSender</name>
+		<type>com.liferay.portal.workflow.kaleo.runtime.notification.BaseNotificationSender</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>sendNotification</name>
@@ -8571,25 +10021,9 @@
 			</throws>
 		</method>
 		<method>
-			<name>setFromAddress</name>
+			<name>addAssignedRecipients</name>
 			<param>
-				<name>fromAddress</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>setFromName</name>
-			<param>
-				<name>fromName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>getAssignedRecipients</name>
-			<param>
-				<name>internetAddresses</name>
+				<name>notificationRecipients</name>
 				<type>java.util.Set</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -8605,7 +10039,86 @@
 			</throws>
 		</method>
 		<method>
-			<name>getRecipients</name>
+			<name>addRoleRecipientAddresses</name>
+			<param>
+				<name>notificationRecipients</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>roleId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>roleType</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addUserNotificationRecipient</name>
+			<param>
+				<name>notificationRecipients</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doSendNotification</name>
+			<param>
+				<name>notificationRecipients</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>defaultSubject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationMessage</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getNotificationRecipients</name>
 			<param>
 				<name>kaleoNotificationRecipients</name>
 				<type>java.util.List</type>
@@ -8625,21 +10138,45 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>EmailNotificationSender</name>
+		<type>com.liferay.portal.workflow.kaleo.runtime.notification.EmailNotificationSender</type>
+		<author><![CDATA[Michael C. Han]]></author>
 		<method>
-			<name>getRoleRecipientAddresses</name>
+			<name>setFromAddress</name>
 			<param>
-				<name>roleId</name>
-				<type>long</type>
+				<name>fromAddress</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+		</method>
+		<method>
+			<name>setFromName</name>
 			<param>
-				<name>roleType</name>
-				<type>int</type>
+				<name>fromName</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+		</method>
+		<method>
+			<name>doSendNotification</name>
 			<param>
-				<name>internetAddresses</name>
+				<name>notificationRecipients</name>
 				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>defaultSubject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationMessage</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -8654,25 +10191,23 @@
 			</throws>
 		</method>
 		<method>
-			<name>getUserEmailAddress</name>
+			<name>getInternetAddresses</name>
 			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>internetAddresses</name>
+				<name>notificationRecipients</name>
 				<type>java.util.Set</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>executionContext</name>
-				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+			<return>
 				<comment><![CDATA[]]></comment>
-			</param>
+			</return>
 			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<name>AddressException</name>
+				<type>javax.mail.internet.AddressException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>UnsupportedEncodingException</name>
+				<type>java.io.UnsupportedEncodingException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -8688,14 +10223,14 @@
 		<type>com.liferay.portal.workflow.kaleo.runtime.notification.IMNotificationSender</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
-			<name>sendNotification</name>
+			<name>doSendNotification</name>
 			<param>
 				<name>notificationRecipients</name>
-				<type>java.util.List</type>
+				<type>java.util.Set</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>subject</name>
+				<name>defaultSubject</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -8709,6 +10244,11 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -8864,6 +10404,105 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>NotificationRecipient</name>
+		<type>com.liferay.portal.workflow.kaleo.runtime.notification.NotificationRecipient</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>NotificationRecipient</name>
+			<param>
+				<name>emailAddress</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>NotificationRecipient</name>
+			<param>
+				<name>user</name>
+				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>equals</name>
+			<param>
+				<name>obj</name>
+				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getCompanyId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getEmailAddress</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getFullName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getInternetAddress</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>AddressException</name>
+				<type>javax.mail.internet.AddressException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>UnsupportedEncodingException</name>
+				<type>java.io.UnsupportedEncodingException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getScreenName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getUserId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>hashCode</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_companyId</name>
+		</field>
+		<field>
+			<name>_emailAddress</name>
+		</field>
+		<field>
+			<name>_fullName</name>
+		</field>
+		<field>
+			<name>_screenName</name>
+		</field>
+		<field>
+			<name>_userId</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>NotificationSender</name>
 		<type>com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSender</type>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -8994,14 +10633,14 @@
 		<type>com.liferay.portal.workflow.kaleo.runtime.notification.PrivateMessageNotificationSender</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
-			<name>sendNotification</name>
+			<name>doSendNotification</name>
 			<param>
 				<name>notificationRecipients</name>
-				<type>java.util.List</type>
+				<type>java.util.Set</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>subject</name>
+				<name>defaultSubject</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -9015,6 +10654,11 @@
 				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -9132,6 +10776,39 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UserNotificationMessageSender</name>
+		<type>com.liferay.portal.workflow.kaleo.runtime.notification.UserNotificationMessageSender</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>doSendNotification</name>
+			<param>
+				<name>notificationRecipients</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>defaultSubject</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>notificationMessage</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -9577,6 +11254,12 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes104</name>
+		</field>
+		<field>
+			<name>_methodName105</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes105</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -10842,6 +12525,12 @@
 		<field>
 			<name>_methodParameterTypes103</name>
 		</field>
+		<field>
+			<name>_methodName104</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes104</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>KaleoNotificationLocalServiceClpInvoker</name>
@@ -11001,6 +12690,12 @@
 		</field>
 		<field>
 			<name>_methodParameterTypes104</name>
+		</field>
+		<field>
+			<name>_methodName105</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes105</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -12528,6 +14223,12 @@
 		<field>
 			<name>_methodParameterTypes107</name>
 		</field>
+		<field>
+			<name>_methodName108</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes108</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>KaleoActionLocalServiceImpl</name>
@@ -12599,6 +14300,27 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getKaleoActions</name>
+			<param>
+				<name>kaleoClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kaleoClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -14711,6 +16433,22 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>getKaleoDefinitionKaleoNodes</name>
+			<param>
+				<name>kaleoDefinitionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 	</javadoc>
 	<javadoc>
 		<name>KaleoNotificationLocalServiceImpl</name>
@@ -14782,6 +16520,27 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getKaleoNotifications</name>
+			<param>
+				<name>kaleoClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kaleoClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -16810,17 +18569,6 @@
 			</return>
 		</method>
 		<method>
-			<name>registerMessageListener</name>
-			<param>
-				<name>groupName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
 			<name>scheduleTimer</name>
 			<param>
 				<name>kaleoTimerInstanceToken</name>
@@ -16838,9 +18586,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>timerMessageListener</name>
-		</field>
 		<field>
 			<name>_log</name>
 		</field>
@@ -17029,6 +18774,22 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getKaleoDefinitionKaleoTransitions</name>
+			<param>
+				<name>kaleoDefinitionId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -17552,6 +19313,44 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>NodeTypeDependentObjectRegistry</name>
+		<type>com.liferay.portal.workflow.kaleo.util.NodeTypeDependentObjectRegistry</type>
+		<author><![CDATA[Michael C. Han]]></author>
+		<method>
+			<name>getNodeTypeDependentObjects</name>
+			<param>
+				<name>nodeType</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.NodeType</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getNodeTypeDependentObjects</name>
+			<param>
+				<name>nodeTypeString</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>setNodeTypeDependentObjects</name>
+			<param>
+				<name>nodeTypeDependentObjects</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<field>
+			<name>_nodeTypeDependentObjects</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>RoleUtil</name>
 		<type>com.liferay.portal.workflow.kaleo.util.RoleUtil</type>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -17637,6 +19436,9 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
+		<field>
+			<name>WORKFLOW_TIMER_DESTINATION_NAME</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>WorkflowContextUtil</name>

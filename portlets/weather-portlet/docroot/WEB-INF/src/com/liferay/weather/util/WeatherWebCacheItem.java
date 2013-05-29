@@ -41,6 +41,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		}
 	}
 
+	@Override
 	public Object convert(String key) throws WebCacheException {
 		Weather weather = null;
 
@@ -54,6 +55,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		return weather;
 	}
 
+	@Override
 	public long getRefreshTime() {
 		return _REFRESH_TIME;
 	}

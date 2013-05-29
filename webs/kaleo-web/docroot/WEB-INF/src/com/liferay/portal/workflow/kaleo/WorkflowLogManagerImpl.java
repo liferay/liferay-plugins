@@ -29,6 +29,7 @@ import java.util.List;
  */
 public class WorkflowLogManagerImpl implements WorkflowLogManager {
 
+	@Override
 	public int getWorkflowLogCountByWorkflowInstance(
 			long companyId, long workflowInstanceId, List<Integer> logTypes)
 		throws WorkflowException {
@@ -42,6 +43,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
+	@Override
 	public int getWorkflowLogCountByWorkflowTask(
 			long companyId, long workflowTaskId, List<Integer> logTypes)
 		throws WorkflowException {
@@ -56,6 +58,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
+	@Override
 	public List<WorkflowLog> getWorkflowLogsByWorkflowInstance(
 			long companyId, long workflowInstanceId, List<Integer> logTypes,
 			int start, int end, OrderByComparator orderByComparator)
@@ -74,6 +77,7 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		}
 	}
 
+	@Override
 	public List<WorkflowLog> getWorkflowLogsByWorkflowTask(
 			long companyId, long workflowTaskId, List<Integer> logTypes,
 			int start, int end, OrderByComparator orderByComparator)

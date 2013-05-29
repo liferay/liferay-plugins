@@ -41,6 +41,90 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>ResourcesImporterServletContextListener</name>
+		<type>com.liferay.resourcesimporter.servlet.ResourcesImporterServletContextListener</type>
+		<author><![CDATA[Ryan Park]]></author>
+		<author><![CDATA[Raymond Augé]]></author>
+		<method>
+			<name>contextDestroyed</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>contextInitialized</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>doPortalDestroy</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doPortalInit</name>
+		</method>
+		<method>
+			<name>getFileSystemImporter</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getLARImporter</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getPluginPackageProperties</name>
+			<param>
+				<name>servletContext</name>
+				<type>javax.servlet.ServletContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getResourceImporter</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>initialize</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_RESOURCES_DIR</name>
+		</field>
+		<field>
+			<name>_log</name>
+		</field>
+		<field>
+			<name>_hotDeployMessageListener</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>BaseImporter</name>
 		<type>com.liferay.resourcesimporter.util.BaseImporter</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -50,22 +134,39 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getGroupId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTargetClassPK</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTargetValueMap</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>isExisting</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setCompanyId</name>
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -73,6 +174,7 @@
 			<param>
 				<name>resourcesDir</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -80,6 +182,7 @@
 			<param>
 				<name>servletContext</name>
 				<type>javax.servlet.ServletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -87,6 +190,7 @@
 			<param>
 				<name>servletContextName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -94,6 +198,7 @@
 			<param>
 				<name>targetClassName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -101,40 +206,35 @@
 			<param>
 				<name>targetValue</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
-			<name>hasGroup</name>
+			<name>getLayoutSetPrototype</name>
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>hasLayoutSetPrototype</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-			</param>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
 			<name>companyId</name>
+		</field>
+		<field>
+			<name>existing</name>
 		</field>
 		<field>
 			<name>groupId</name>
@@ -174,62 +274,79 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDMStructures</name>
+			<param>
+				<name>parentDDMStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>structuresDirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDMTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>templatesDirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>addDLFileEntries</name>
 			<param>
-				<name>fileEntriesDir</name>
+				<name>fileEntriesDirName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>addJournalArticles</name>
 			<param>
-				<name>journalStructureId</name>
+				<name>ddmStructureKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>journalTemplateId</name>
+				<name>ddmTemplateKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>articlesDirName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>addJournalStructures</name>
-			<param>
-				<name>structuresDirName</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>addJournalTemplates</name>
-			<param>
-				<name>journalStructureId</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>templatesDirName</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -237,14 +354,17 @@
 			<param>
 				<name>parentLayoutId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>layoutJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -252,18 +372,22 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>columnId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>columnJSONArray</name>
 				<type>com.liferay.portal.kernel.json.JSONArray</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -271,18 +395,22 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>columnId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -290,14 +418,22 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>columnPrefix</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>columnsJSONArray</name>
 				<type>com.liferay.portal.kernel.json.JSONArray</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -305,151 +441,230 @@
 			<param>
 				<name>parentLayoutId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>layoutsJSONArray</name>
 				<type>com.liferay.portal.kernel.json.JSONArray</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>addLayouts</name>
+			<name>doAddDDMStructures</name>
 			<param>
-				<name>siteMapName</name>
+				<name>parentDDMStructureKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doAddDDMTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>doAddDLFileEntries</name>
 			<param>
-				<name>name</name>
+				<name>fileName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>inputStream</name>
 				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>length</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>doAddJournalArticles</name>
 			<param>
-				<name>journalStructureId</name>
+				<name>ddmStructureKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>journalTemplateId</name>
+				<name>ddmTemplateKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>name</name>
+				<name>fileName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>inputStream</name>
 				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>doAddJournalStructures</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-			</param>
+			<name>doImportResources</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>doAddJournalTemplates</name>
+			<name>getDDMTemplateLanguage</name>
 			<param>
-				<name>journalStructureId</name>
+				<name>fileName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>doAddLayouts</name>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getDefaultPortletJSONObject</name>
 			<param>
-				<name>articleId</name>
+				<name>journalArticleId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
-			<name>getJournalArticleId</name>
+			<name>getInputStream</name>
 			<param>
 				<name>fileName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
-		</method>
-		<method>
-			<name>getName</name>
-			<param>
-				<name>fileName</name>
-				<type>java.lang.String</type>
-			</param>
-		</method>
-		<method>
-			<name>getNameMap</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-			</param>
-		</method>
-		<method>
-			<name>getSitemapJSON</name>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getJournalId</name>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getJSONArrayAsStringArray</name>
+			<param>
+				<name>jsonObject</name>
+				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>key</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getJSONObject</name>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getMap</name>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>isJournalStructureXSD</name>
+			<param>
+				<name>xsd</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -457,17 +672,97 @@
 			<param>
 				<name>dir</name>
 				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>processJournalArticleContent</name>
 			<param>
 				<name>content</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>replaceFileEntryURL</name>
+			<param>
+				<name>content</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>setServiceContext</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setupAssets</name>
+			<param>
+				<name>assetsJSONArray</name>
+				<type>com.liferay.portal.kernel.json.JSONArray</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setupAssets</name>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>setupSettings</name>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>setupSitemap</name>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -475,12 +770,32 @@
 			<param>
 				<name>sitemapJSONObject</name>
 				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>serviceContext</name>
+		</field>
+		<field>
+			<name>_DL_DOCUMENTS_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_JOURNAL_ARTICLES_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_JOURNAL_DDM_STRUCTURES_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_JOURNAL_DDM_TEMPLATES_DIR_NAME</name>
+		</field>
+		<field>
+			<name>_assetJSONObjectMap</name>
+		</field>
 		<field>
 			<name>_defaultLayoutTemplateId</name>
 		</field>
@@ -504,26 +819,41 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getGroupId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTargetClassPK</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>importResources</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>isExisting</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setCompanyId</name>
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -531,6 +861,7 @@
 			<param>
 				<name>resourcesDir</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -538,6 +869,7 @@
 			<param>
 				<name>servletContext</name>
 				<type>javax.servlet.ServletContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -545,6 +877,7 @@
 			<param>
 				<name>servletContextName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -552,6 +885,7 @@
 			<param>
 				<name>className</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -559,6 +893,7 @@
 			<param>
 				<name>targetValue</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>
@@ -574,6 +909,7 @@
 			<param>
 				<name>msg</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -581,10 +917,12 @@
 			<param>
 				<name>msg</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>cause</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -592,6 +930,7 @@
 			<param>
 				<name>cause</name>
 				<type>java.lang.Throwable</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>
@@ -605,6 +944,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -612,6 +952,7 @@
 			<param>
 				<name>larFile</name>
 				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -619,10 +960,14 @@
 			<param>
 				<name>larInputStream</name>
 				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getParameterMap</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_log</name>
@@ -635,78 +980,101 @@
 		<name>ResourceImporter</name>
 		<type>com.liferay.resourcesimporter.util.ResourceImporter</type>
 		<author><![CDATA[Raymond Augé]]></author>
+		<author><![CDATA[Ryan Park]]></author>
 		<method>
 			<name>importResources</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDMStructures</name>
+			<param>
+				<name>parentStructureId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>structuresDirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDDMTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>templatesDirName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>addDLFileEntries</name>
 			<param>
-				<name>fileEntriesDir</name>
+				<name>fileEntriesDirName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>addJournalArticles</name>
 			<param>
-				<name>journalStructureId</name>
+				<name>ddmStructureKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>journalTemplateId</name>
+				<name>ddmTemplateKey</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>articlesDirName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>addJournalStructures</name>
+			<name>getInputStream</name>
 			<param>
-				<name>structuresDirName</name>
+				<name>fileName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>addJournalTemplates</name>
-			<param>
-				<name>journalStructureId</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>templatesDirName</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>addLayouts</name>
-			<param>
-				<name>siteMapName</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>

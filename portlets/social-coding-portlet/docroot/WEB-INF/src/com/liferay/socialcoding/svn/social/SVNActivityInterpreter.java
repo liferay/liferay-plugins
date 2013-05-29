@@ -29,6 +29,7 @@ import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
  */
 public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

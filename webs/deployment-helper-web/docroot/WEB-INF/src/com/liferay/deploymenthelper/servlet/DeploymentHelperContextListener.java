@@ -28,9 +28,11 @@ import javax.servlet.ServletContextListener;
  */
 public class DeploymentHelperContextListener implements ServletContextListener {
 
+	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 	}
 
+	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext servletContext = servletContextEvent.getServletContext();
 

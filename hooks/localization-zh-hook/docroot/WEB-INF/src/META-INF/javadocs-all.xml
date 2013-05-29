@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>ChineseFullNameGenerator</name>
+		<type>com.liferay.localization.zh.hook.security.auth.ChineseFullNameGenerator</type>
+		<author><![CDATA[Andrew Yang]]></author>
+		<author><![CDATA[Samuel Kong]]></author>
+		<method>
+			<name>splitFullName</name>
+			<param>
+				<name>fullName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>buildFullName</name>
+			<param>
+				<name>firstName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>middleName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>lastName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>useInitials</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+</javadocs>

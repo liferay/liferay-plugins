@@ -22,6 +22,7 @@ import com.liferay.sampleservicebuilder.model.Foo;
  */
 public class FooCustomAttributesDisplay extends BaseCustomAttributesDisplay {
 
+	@Override
 	public String getClassName() {
 		return Foo.class.getName();
 	}

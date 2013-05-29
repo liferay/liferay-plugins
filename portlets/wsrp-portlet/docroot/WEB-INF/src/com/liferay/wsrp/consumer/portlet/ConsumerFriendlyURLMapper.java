@@ -33,6 +33,7 @@ import javax.portlet.WindowState;
  */
 public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 
+	@Override
 	public String buildPath(LiferayPortletURL liferayPortletURL) {
 		StringBuilder sb = new StringBuilder();
 
@@ -94,6 +95,7 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 		return null;
 	}
 
+	@Override
 	public void populateParams(
 		String friendlyURLPath, Map<String, String[]> parameterMap,
 		Map<String, Object> requestContext) {

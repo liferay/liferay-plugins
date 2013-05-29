@@ -33,6 +33,7 @@ import com.liferay.socialnetworking.util.WallUtil;
  */
 public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

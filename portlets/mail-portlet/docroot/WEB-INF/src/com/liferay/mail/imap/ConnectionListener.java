@@ -28,6 +28,7 @@ public class ConnectionListener implements javax.mail.event.ConnectionListener {
 		_service = service;
 	}
 
+	@Override
 	public void closed(ConnectionEvent connectionEvent) {
 		if (_log.isDebugEnabled()) {
 			long uptime = (System.currentTimeMillis() - _startTime) / 1000;
@@ -36,6 +37,7 @@ public class ConnectionListener implements javax.mail.event.ConnectionListener {
 		}
 	}
 
+	@Override
 	public void disconnected(ConnectionEvent connectionEvent) {
 		if (_log.isDebugEnabled()) {
 			long uptime = (System.currentTimeMillis() - _startTime) / 1000;
@@ -45,6 +47,7 @@ public class ConnectionListener implements javax.mail.event.ConnectionListener {
 		}
 	}
 
+	@Override
 	public void opened(ConnectionEvent connectionEvent) {
 		_startTime = System.currentTimeMillis();
 

@@ -38,6 +38,7 @@ public class DeployListenerDeployManagerImpl
 		_deployManager = deployManager;
 	}
 
+	@Override
 	public void deploy(AutoDeploymentContext autoDeploymentContext)
 		throws Exception {
 
@@ -53,18 +54,22 @@ public class DeployListenerDeployManagerImpl
 			autoDeploymentContext.getContext(), COMMAND_ON_AFTER_DEPLOY);
 	}
 
+	@Override
 	public String getDeployDir() throws Exception {
 		return _deployManager.getDeployDir();
 	}
 
+	@Override
 	public String getInstalledDir() throws Exception {
 		return _deployManager.getInstalledDir();
 	}
 
+	@Override
 	public PluginPackage getInstalledPluginPackage(String context) {
 		return _deployManager.getInstalledPluginPackage(context);
 	}
 
+	@Override
 	public List<PluginPackage> getInstalledPluginPackages() {
 		return _deployManager.getInstalledPluginPackages();
 	}
@@ -73,10 +78,12 @@ public class DeployListenerDeployManagerImpl
 		return _deployManager;
 	}
 
+	@Override
 	public boolean isDeployed(String context) {
 		return _deployManager.isDeployed(context);
 	}
 
+	@Override
 	public PluginPackage readPluginPackageProperties(
 		String displayName, Properties properties) {
 
@@ -84,10 +91,12 @@ public class DeployListenerDeployManagerImpl
 			displayName, properties);
 	}
 
+	@Override
 	public PluginPackage readPluginPackageXml(String xml) throws Exception {
 		return _deployManager.readPluginPackageXml(xml);
 	}
 
+	@Override
 	public void redeploy(String context) throws Exception {
 		if (!sendMesssage(context, COMMAND_ON_BEFORE_REDEPLOY)) {
 			return;
@@ -98,6 +107,7 @@ public class DeployListenerDeployManagerImpl
 		sendMesssage(context, COMMAND_ON_AFTER_REDEPLOY);
 	}
 
+	@Override
 	public void undeploy(String context) throws Exception {
 		if (!isAllowUndeploy(context)) {
 			return;

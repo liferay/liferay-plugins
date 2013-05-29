@@ -20,6 +20,31 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>SampleWrapperUserImpl</name>
+		<type>com.liferay.samplewrapper.hook.model.impl.SampleWrapperUserImpl</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>SampleWrapperUserImpl</name>
+			<param>
+				<name>user</name>
+				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>getFavoriteColor</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getFirstName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>SampleUserLocalServiceImpl</name>
 		<type>com.liferay.samplewrapper.hook.service.impl.SampleUserLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -43,6 +68,40 @@
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>SampleWrapperUserLocalServiceImpl</name>
+		<type>com.liferay.samplewrapper.hook.service.impl.SampleWrapperUserLocalServiceImpl</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>SampleWrapperUserLocalServiceImpl</name>
+			<param>
+				<name>userLocalService</name>
+				<type>com.liferay.portal.service.UserLocalService</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>getUserById</name>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>

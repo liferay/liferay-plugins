@@ -29,6 +29,7 @@ public class SampleUserAttributes implements CustomUserAttributes {
 		return new SampleUserAttributes();
 	}
 
+	@Override
 	public String getValue(String name, Map userInfo) {
 		if (name == null) {
 			return null;

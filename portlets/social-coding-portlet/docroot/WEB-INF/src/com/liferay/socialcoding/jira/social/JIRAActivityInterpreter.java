@@ -37,6 +37,7 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
  */
 public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

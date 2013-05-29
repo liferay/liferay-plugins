@@ -10,22 +10,27 @@
 			<param>
 				<name>originalStrutsPortletAction</name>
 				<type>com.liferay.portal.kernel.struts.StrutsPortletAction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -33,10 +38,12 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -51,10 +58,12 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -62,14 +71,17 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -86,10 +98,12 @@
 			<param>
 				<name>ids</name>
 				<type>java.lang.String[]</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>ActionException</name>
 				<type>com.liferay.portal.kernel.events.ActionException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -97,10 +111,12 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -113,10 +129,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>ModelListenerException</name>
 				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -124,10 +142,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>ModelListenerException</name>
 				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -135,10 +155,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -146,10 +168,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -162,18 +186,22 @@
 			<param>
 				<name>classPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>ModelListenerException</name>
 				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -181,20 +209,28 @@
 			<param>
 				<name>classPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>ModelListenerException</name>
 				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>_MAPPING_TABLE_USERS_ROLES_NAME</name>
+			<comment><![CDATA[{@link com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}]]></comment>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>UserListener</name>
@@ -206,18 +242,22 @@
 			<param>
 				<name>classPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>ModelListenerException</name>
 				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -225,18 +265,22 @@
 			<param>
 				<name>classPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>associationClassPK</name>
 				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>ModelListenerException</name>
 				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -244,10 +288,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -255,19 +301,18 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<method>
-			<name>initInstance</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-			</param>
-		</method>
+		<field>
+			<name>_MAPPING_TABLE_USERS_ROLES_NAME</name>
+			<comment><![CDATA[{@link com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}]]></comment>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>SOAnnouncementsEntryServiceImpl</name>
@@ -278,6 +323,7 @@
 			<param>
 				<name>announcementsEntryService</name>
 				<type>com.liferay.portlet.announcements.service.AnnouncementsEntryService</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -285,86 +331,110 @@
 			<param>
 				<name>plid</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>classNameId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>classPK</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>title</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>content</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>url</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>type</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>displayDateMonth</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>displayDateDay</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>displayDateYear</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>displayDateHour</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>displayDateMinute</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>expirationDateMonth</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>expirationDateDay</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>expirationDateYear</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>expirationDateHour</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>expirationDateMinute</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>priority</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>alert</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -372,14 +442,51 @@
 			<param>
 				<name>announcementEntry</name>
 				<type>com.liferay.portlet.announcements.model.AnnouncementsEntry</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>SOCompanyLocalServiceImpl</name>
+		<type>com.liferay.so.hook.service.impl.SOCompanyLocalServiceImpl</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>SOCompanyLocalServiceImpl</name>
+			<param>
+				<name>companyLocalService</name>
+				<type>com.liferay.portal.service.CompanyLocalService</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>checkCompany</name>
+			<param>
+				<name>webId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -389,12 +496,16 @@
 		<author><![CDATA[Ryan Park]]></author>
 		<method>
 			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -404,12 +515,16 @@
 		<author><![CDATA[Ryan Park]]></author>
 		<method>
 			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -434,12 +549,35 @@
 		<author><![CDATA[Jonathan Lee]]></author>
 		<method>
 			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_2_0_3</name>
+		<type>com.liferay.so.hook.upgrade.UpgradeProcess_2_0_3</type>
+		<author><![CDATA[Evan Thibodeau]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -449,9 +587,13 @@
 		<author><![CDATA[Ryan Park]]></author>
 		<method>
 			<name>isFirstRun</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -464,6 +606,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -471,10 +614,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -482,14 +627,17 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -502,10 +650,12 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -513,6 +663,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -525,6 +676,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -532,14 +684,17 @@
 			<param>
 				<name>groupId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>rootFolderId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -552,6 +707,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -576,6 +732,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -583,18 +740,67 @@
 		<name>UpgradeGroup</name>
 		<type>com.liferay.so.hook.upgrade.v2_0_2.UpgradeGroup</type>
 		<author><![CDATA[Jonathan Lee]]></author>
+		<author><![CDATA[Josef Sustacek]]></author>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getPortletPreferences</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>privateLayout</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updatePortletPreferences</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>privateLayout</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
-			<name>_CLASS_NAME</name>
+			<name>_NEW_WELCOME_PORTLET_ID</name>
 		</field>
 		<field>
-			<name>_mergeLayoutSetProtypeLayoutsMethodKey</name>
+			<name>_OLD_WELCOME_PORTLET_ID</name>
+		</field>
+		<field>
+			<name>_mergeLayoutSetPrototypeLayoutsMethodKey</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -606,6 +812,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -618,6 +825,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -625,10 +833,12 @@
 			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -636,17 +846,131 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
-			<name>_CLASS_NAME</name>
+			<name>_mergeLayoutSetPrototypeLayoutsMethodKey</name>
 		</field>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeBookmarks</name>
+		<type>com.liferay.so.hook.upgrade.v2_0_3.UpgradeBookmarks</type>
+		<author><![CDATA[Evan Thibodeau]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>SODeployListenerMessageListener</name>
+		<type>com.liferay.so.messaging.SODeployListenerMessageListener</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>onBeforeUndeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>cleanUpSocialOffice</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>deleteSocialOfficeLayoutSetPrototypes</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>deleteSocialOfficeUserRole</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateGroups</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateLayoutSetPrototype</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>privateLayout</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
-			<name>_mergeLayoutSetProtypeLayoutsMethodKey</name>
+			<name>_log</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -660,6 +984,7 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -667,10 +992,12 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -678,6 +1005,7 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -685,21 +1013,49 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>setInitialized</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>initialized</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>addLayoutSetPrototype</name>
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -707,28 +1063,23 @@
 			<param>
 				<name>key</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
-		</method>
-		<method>
-			<name>setInitialized</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setupExpando</name>
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -736,10 +1087,12 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -747,10 +1100,12 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -758,10 +1113,12 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -769,10 +1126,12 @@
 			<param>
 				<name>companyId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -780,10 +1139,12 @@
 			<param>
 				<name>expandoColumn</name>
 				<type>com.liferay.portlet.expando.model.ExpandoColumn</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -869,30 +1230,40 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>privateLayout</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parentLayoutId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>nameMap</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>friendlyURL</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>layoutTemplateId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -900,30 +1271,40 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>privateLayout</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>parentLayoutId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>friendlyURL</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>layoutTemplateId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -931,22 +1312,27 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>keyPrefix</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -954,14 +1340,17 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -969,10 +1358,12 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -980,10 +1371,12 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -991,10 +1384,12 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1002,14 +1397,17 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1017,10 +1415,12 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1028,14 +1428,17 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1043,14 +1446,17 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>addDefaultActionIds</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1058,20 +1464,32 @@
 			<param>
 				<name>layout</name>
 				<type>com.liferay.portal.model.Layout</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>title</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+	</javadoc>
+	<javadoc>
+		<name>PortletKeys</name>
+		<type>com.liferay.so.util.PortletKeys</type>
+		<author><![CDATA[Evan Thibodeau]]></author>
+		<field>
+			<name>BREADCRUMB</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>PortletPropsKeys</name>
@@ -1139,10 +1557,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -1150,10 +1570,12 @@
 			<param>
 				<name>group</name>
 				<type>com.liferay.portal.model.Group</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>

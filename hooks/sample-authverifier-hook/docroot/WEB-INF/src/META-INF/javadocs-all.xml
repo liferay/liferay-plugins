@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>SampleAuthVerifier</name>
+		<type>com.liferay.sampleauthverifier.hook.security.auth.SampleAuthVerifier</type>
+		<author><![CDATA[Tomas Polesovsky]]></author>
+		<method>
+			<name>getAuthType</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>verify</name>
+			<param>
+				<name>accessControlContext</name>
+				<type>com.liferay.portal.security.auth.AccessControlContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>properties</name>
+				<type>java.util.Properties</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>AuthException</name>
+				<type>com.liferay.portal.security.auth.AuthException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+</javadocs>

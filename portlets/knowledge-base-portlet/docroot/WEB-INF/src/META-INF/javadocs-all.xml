@@ -2261,15 +2261,15 @@
 			</return>
 		</method>
 		<method>
-			<name>doInterpret</name>
+			<name>getEntryTitle</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -2282,15 +2282,15 @@
 			</throws>
 		</method>
 		<method>
-			<name>doInterpretKBArticle</name>
+			<name>getLink</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -2303,36 +2303,41 @@
 			</throws>
 		</method>
 		<method>
-			<name>doInterpretKBComment</name>
+			<name>getTitlePattern</name>
 			<param>
-				<name>activity</name>
-				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<name>groupName</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
-			<name>doInterpretKBTemplate</name>
+			<name>hasPermissions</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
+				<name>actionId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>

@@ -45,6 +45,7 @@ public class CalendarBookingAssetRendererFactory
 
 	public static final String TYPE = "calendar";
 
+	@Override
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
 
@@ -59,10 +60,12 @@ public class CalendarBookingAssetRendererFactory
 		return calendarBookingAssetRenderer;
 	}
 
+	@Override
 	public String getClassName() {
 		return CalendarBooking.class.getName();
 	}
 
+	@Override
 	public String getType() {
 		return TYPE;
 	}

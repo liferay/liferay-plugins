@@ -38,6 +38,7 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
  */
 public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

@@ -32,6 +32,7 @@ import com.liferay.portlet.social.model.SocialActivity;
  */
 public class MembersActivityInterpreter extends BaseSocialActivityInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

@@ -34,6 +34,7 @@ import net.sourceforge.wurfl.core.WURFLManager;
 public class WURFLDeviceRecognitionProvider
 	implements DeviceRecognitionProvider {
 
+	@Override
 	public Device detectDevice(HttpServletRequest request) {
 		WURFLManager wurflManager = _wurflHolderImpl.getWURFLManager();
 
@@ -64,16 +65,19 @@ public class WURFLDeviceRecognitionProvider
 		return device;
 	}
 
+	@Override
 	public KnownDevices getKnownDevices() {
 		return _knownDevices;
 	}
 
+	@Override
 	public void reload() throws Exception {
 		_wurflHolderImpl.reload();
 
 		_knownDevices.reload();
 	}
 
+	@Override
 	public void setDeviceCapabilityFilter(
 		DeviceCapabilityFilter deviceCapabilityFilter) {
 

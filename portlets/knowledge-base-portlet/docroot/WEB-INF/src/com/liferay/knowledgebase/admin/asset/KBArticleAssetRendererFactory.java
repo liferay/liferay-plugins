@@ -43,6 +43,7 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 
 	public static final String TYPE = "article";
 
+	@Override
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
 
@@ -70,6 +71,7 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 		return kbArticleAssetRenderer;
 	}
 
+	@Override
 	public String getClassName() {
 		return KBArticle.class.getName();
 	}
@@ -79,6 +81,7 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 		return PortletKeys.KNOWLEDGE_BASE_DISPLAY;
 	}
 
+	@Override
 	public String getType() {
 		return TYPE;
 	}

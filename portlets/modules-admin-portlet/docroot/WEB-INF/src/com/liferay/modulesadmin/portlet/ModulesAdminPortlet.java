@@ -266,8 +266,7 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 	}
 
 	/**
-	 * @see {@link
-	 *      com.liferay.osgi.bootstrap.ModuleFrameworkImpl#getBundle(
+	 * @see {@link com.liferay.osgi.bootstrap.ModuleFrameworkImpl#getBundle(
 	 *      BundleContext, InputStream)}
 	 */
 	protected Bundle getBundle(

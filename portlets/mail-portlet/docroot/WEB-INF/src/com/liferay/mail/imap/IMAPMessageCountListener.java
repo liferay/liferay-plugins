@@ -39,6 +39,7 @@ public class IMAPMessageCountListener implements MessageCountListener {
 		_imapAccessor = new IMAPAccessor(user, account, password);
 	}
 
+	@Override
 	public void messagesAdded(MessageCountEvent messageCountEvent) {
 		Message[] jxMessages = messageCountEvent.getMessages();
 
@@ -67,6 +68,7 @@ public class IMAPMessageCountListener implements MessageCountListener {
 		}
 	}
 
+	@Override
 	public void messagesRemoved(MessageCountEvent messageCountEvent) {
 		Message[] jxMessages = messageCountEvent.getMessages();
 

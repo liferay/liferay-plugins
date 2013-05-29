@@ -35,6 +35,7 @@ import javax.portlet.PortletURL;
  */
 public class CalendarActivityInterpreter extends BaseSocialActivityInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

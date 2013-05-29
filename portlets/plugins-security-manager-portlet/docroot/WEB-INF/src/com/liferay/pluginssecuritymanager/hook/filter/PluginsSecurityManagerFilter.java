@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PluginsSecurityManagerFilter
 	extends BaseFilter implements TryFilter {
 
+	@Override
 	public Object doFilterTry(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {

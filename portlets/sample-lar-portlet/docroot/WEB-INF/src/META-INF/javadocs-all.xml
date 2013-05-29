@@ -6,22 +6,32 @@
 		<type>com.liferay.samplelar.plugin.LARPlugin</type>
 		<author><![CDATA[Raymond Augé]]></author>
 		<method>
+			<name>LARPlugin</name>
+		</method>
+		<method>
 			<name>deleteData</name>
 			<param>
 				<name>context</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>preferences</name>
 				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortletDataException</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -29,51 +39,75 @@
 			<param>
 				<name>context</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>preferences</name>
 				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortletDataException</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getExportControls</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getImportControls</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>importData</name>
 			<param>
 				<name>context</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletId</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>preferences</name>
 				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>data</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortletDataException</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>isPublishToLiveByDefault</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_NAMESPACE</name>
