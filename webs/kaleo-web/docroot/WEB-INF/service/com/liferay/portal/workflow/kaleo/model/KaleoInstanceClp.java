@@ -675,6 +675,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 			new Class[] { KaleoInstance.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoInstance toUnescapedModel() {
 		return this;
 	}

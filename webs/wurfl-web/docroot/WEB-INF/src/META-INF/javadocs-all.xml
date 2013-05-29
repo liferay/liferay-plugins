@@ -53,47 +53,101 @@
 			<param>
 				<name>capabilities</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>deviceCapabilityFilter</name>
+				<type>com.liferay.portal.kernel.mobile.device.DeviceCapabilityFilter</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getBrand</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getBrowser</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getBrowserVersion</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getCapabilities</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getCapability</name>
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getModel</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getOS</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getOSVersion</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPointingMethod</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getScreenSize</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>hasQwertyKeyboard</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>isTablet</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getValue</name>
+			<param>
+				<name>name</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_capabilities</name>
@@ -109,23 +163,40 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getKnownDevices</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>reload</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>setDeviceCapabilityFilter</name>
+			<param>
+				<name>deviceCapabilityFilter</name>
+				<type>com.liferay.portal.kernel.mobile.device.DeviceCapabilityFilter</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 		</method>
 		<method>
 			<name>setKnownDevices</name>
 			<param>
 				<name>knownDevices</name>
 				<type>com.liferay.portal.kernel.mobile.device.KnownDevices</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -133,10 +204,14 @@
 			<param>
 				<name>wurflHolderImpl</name>
 				<type>WURFLHolderImpl</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
 			<name>_log</name>
+		</field>
+		<field>
+			<name>_deviceCapabilityFilter</name>
 		</field>
 		<field>
 			<name>_knownDevices</name>
@@ -152,15 +227,22 @@
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>getWURFLManager</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getWURFLUtils</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>initialize</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -168,6 +250,7 @@
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -175,10 +258,15 @@
 			<param>
 				<name>inputStreams</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -186,10 +274,15 @@
 			<param>
 				<name>inputStreams</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>FileNotFoundException</name>
 				<type>java.io.FileNotFoundException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -206,18 +299,33 @@
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>getBrands</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getBrowsers</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getDeviceIds</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getOperatingSystems</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPointingMethods</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>initialize</name>
@@ -230,6 +338,7 @@
 			<param>
 				<name>wurflHolder</name>
 				<type>net.sourceforge.wurfl.core.WURFLHolder</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -240,14 +349,17 @@
 			<param>
 				<name>device</name>
 				<type>net.sourceforge.wurfl.core.Device</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>capabilityValues</name>
 				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>capabilityName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -255,10 +367,12 @@
 			<param>
 				<name>device</name>
 				<type>net.sourceforge.wurfl.core.Device</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>capabilityNames</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -266,22 +380,27 @@
 			<param>
 				<name>device</name>
 				<type>net.sourceforge.wurfl.core.Device</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>capabilities</name>
 				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>capabilityName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>capabilityVersionAttributeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>capabilitySubversionAttributeName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -318,6 +437,7 @@
 			<param>
 				<name>servletContextName</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -325,6 +445,7 @@
 			<param>
 				<name>wurflHolderImpl</name>
 				<type>com.liferay.portal.mobile.device.wurfl.WURFLHolderImpl</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -332,6 +453,7 @@
 			<param>
 				<name>wurflKnownDevices</name>
 				<type>com.liferay.portal.mobile.device.wurfl.WURFLKnownDevices</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -339,10 +461,12 @@
 			<param>
 				<name>message</name>
 				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>

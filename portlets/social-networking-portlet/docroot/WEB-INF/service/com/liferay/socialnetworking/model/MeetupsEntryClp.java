@@ -541,6 +541,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 			new Class[] { MeetupsEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public MeetupsEntry toUnescapedModel() {
 		return this;
 	}

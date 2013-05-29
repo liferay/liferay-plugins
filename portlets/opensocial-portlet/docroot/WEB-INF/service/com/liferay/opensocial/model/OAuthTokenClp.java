@@ -540,6 +540,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 			new Class[] { OAuthToken.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public OAuthToken toUnescapedModel() {
 		return this;
 	}

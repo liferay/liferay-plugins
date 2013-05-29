@@ -406,6 +406,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public MeetupsRegistration toUnescapedModel() {
 		return this;
 	}

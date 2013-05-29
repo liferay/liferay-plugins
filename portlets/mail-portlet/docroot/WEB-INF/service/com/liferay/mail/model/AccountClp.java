@@ -933,6 +933,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 			new Class[] { Account.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Account toUnescapedModel() {
 		return this;
 	}

@@ -364,6 +364,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 			new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Gadget toUnescapedModel() {
 		return this;
 	}

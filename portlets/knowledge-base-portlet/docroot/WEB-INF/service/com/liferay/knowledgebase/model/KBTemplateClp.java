@@ -429,6 +429,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 			new Class[] { KBTemplate.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KBTemplate toUnescapedModel() {
 		return this;
 	}

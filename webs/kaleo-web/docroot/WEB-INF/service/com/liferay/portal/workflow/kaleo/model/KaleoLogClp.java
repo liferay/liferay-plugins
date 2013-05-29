@@ -1012,6 +1012,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 			new Class[] { KaleoLog.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoLog toUnescapedModel() {
 		return this;
 	}

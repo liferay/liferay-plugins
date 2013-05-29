@@ -489,6 +489,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 			new Class[] { App.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public App toUnescapedModel() {
 		return this;
 	}

@@ -427,6 +427,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 			new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Entry toUnescapedModel() {
 		return this;
 	}

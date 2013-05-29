@@ -221,6 +221,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 			new Class[] { Type.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Type toUnescapedModel() {
 		return this;
 	}

@@ -762,6 +762,7 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoTaskInstanceToken toUnescapedModel() {
 		return this;
 	}

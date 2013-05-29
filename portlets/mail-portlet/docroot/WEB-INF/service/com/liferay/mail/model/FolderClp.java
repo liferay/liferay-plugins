@@ -429,6 +429,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 			new Class[] { Folder.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Folder toUnescapedModel() {
 		return this;
 	}

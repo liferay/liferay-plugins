@@ -803,6 +803,7 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoTimerInstanceToken toUnescapedModel() {
 		return this;
 	}

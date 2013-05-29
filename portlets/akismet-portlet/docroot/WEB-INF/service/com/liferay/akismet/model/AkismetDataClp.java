@@ -440,6 +440,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 			new Class[] { AkismetData.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public AkismetData toUnescapedModel() {
 		return this;
 	}

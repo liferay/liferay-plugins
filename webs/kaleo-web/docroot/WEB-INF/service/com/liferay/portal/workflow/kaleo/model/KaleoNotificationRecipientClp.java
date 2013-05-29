@@ -529,6 +529,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoNotificationRecipient toUnescapedModel() {
 		return this;
 	}

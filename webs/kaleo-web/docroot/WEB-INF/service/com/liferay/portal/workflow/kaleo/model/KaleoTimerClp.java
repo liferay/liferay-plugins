@@ -668,6 +668,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 			new Class[] { KaleoTimer.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoTimer toUnescapedModel() {
 		return this;
 	}

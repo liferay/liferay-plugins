@@ -255,6 +255,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public JIRAChangeGroup toUnescapedModel() {
 		return this;
 	}

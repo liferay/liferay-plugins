@@ -10,17 +10,25 @@
 			<param>
 				<name>year</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>description</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getDescription</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getYear</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_description</name>
@@ -38,14 +46,22 @@
 			<param>
 				<name>key</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>WebCacheException</name>
 				<type>com.liferay.portal.kernel.webcache.WebCacheException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getRefreshTime</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_REFRESH_TIME</name>
@@ -57,6 +73,9 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>getEvents</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 </javadocs>

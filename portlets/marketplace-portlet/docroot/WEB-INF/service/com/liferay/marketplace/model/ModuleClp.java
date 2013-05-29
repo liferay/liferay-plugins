@@ -249,6 +249,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 			new Class[] { Module.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Module toUnescapedModel() {
 		return this;
 	}

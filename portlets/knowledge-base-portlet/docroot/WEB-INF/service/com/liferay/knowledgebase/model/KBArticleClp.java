@@ -1019,6 +1019,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 			new Class[] { KBArticle.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KBArticle toUnescapedModel() {
 		return this;
 	}

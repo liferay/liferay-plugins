@@ -193,6 +193,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 			new Class[] { Bar.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Bar toUnescapedModel() {
 		return this;
 	}

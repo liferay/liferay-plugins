@@ -10,10 +10,15 @@
 			<param>
 				<name>foodItemId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -21,14 +26,22 @@
 			<param>
 				<name>list</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>process</name>
 			<param>
 				<name>req</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<field>
 			<name>_log</name>
@@ -40,18 +53,28 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>getFoodItemId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPoints</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setFoodItemId</name>
 			<param>
 				<name>foodItemId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -59,6 +82,7 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -66,6 +90,7 @@
 			<param>
 				<name>points</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -90,18 +115,22 @@
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -109,10 +138,12 @@
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -120,18 +151,22 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -147,18 +182,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>ServletException</name>
 				<type>javax.servlet.ServletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -174,10 +213,12 @@
 			<param>
 				<name>foodItem</name>
 				<type>com.liferay.samplehibernate.model.FoodItem</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -185,10 +226,12 @@
 			<param>
 				<name>foodItemId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -196,17 +239,26 @@
 			<param>
 				<name>foodItemId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getFoodItems</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -214,10 +266,12 @@
 			<param>
 				<name>foodItem</name>
 				<type>com.liferay.samplehibernate.model.FoodItem</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -233,19 +287,30 @@
 			<param>
 				<name>session</name>
 				<type>org.hibernate.Session</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getCountColumnName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getSessionFactory</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>openSession</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>HibernateException</name>
 				<type>org.hibernate.HibernateException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -253,10 +318,15 @@
 			<param>
 				<name>sessionFactory</name>
 				<type>org.hibernate.SessionFactory</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>HibernateException</name>
 				<type>org.hibernate.HibernateException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>

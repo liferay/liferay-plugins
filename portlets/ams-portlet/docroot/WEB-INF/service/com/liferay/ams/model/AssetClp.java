@@ -431,6 +431,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 			new Class[] { Asset.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Asset toUnescapedModel() {
 		return this;
 	}

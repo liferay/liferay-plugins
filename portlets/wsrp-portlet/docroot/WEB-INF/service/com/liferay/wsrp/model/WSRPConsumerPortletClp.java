@@ -368,6 +368,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public WSRPConsumerPortlet toUnescapedModel() {
 		return this;
 	}

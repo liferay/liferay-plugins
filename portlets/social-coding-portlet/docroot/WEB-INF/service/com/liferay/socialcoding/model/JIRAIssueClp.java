@@ -449,6 +449,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 			new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public JIRAIssue toUnescapedModel() {
 		return this;
 	}

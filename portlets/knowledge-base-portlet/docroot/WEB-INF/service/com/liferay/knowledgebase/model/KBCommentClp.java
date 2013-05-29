@@ -508,6 +508,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 			new Class[] { KBComment.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KBComment toUnescapedModel() {
 		return this;
 	}

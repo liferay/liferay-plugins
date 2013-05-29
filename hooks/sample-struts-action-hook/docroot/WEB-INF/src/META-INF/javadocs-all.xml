@@ -10,14 +10,20 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>response</name>
 				<type>javax.servlet.http.HttpServletResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -30,22 +36,27 @@
 			<param>
 				<name>originalStrutsPortletAction</name>
 				<type>com.liferay.portal.kernel.struts.StrutsPortletAction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -53,22 +64,30 @@
 			<param>
 				<name>originalStrutsPortletAction</name>
 				<type>com.liferay.portal.kernel.struts.StrutsPortletAction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -76,22 +95,27 @@
 			<param>
 				<name>originalStrutsPortletAction</name>
 				<type>com.liferay.portal.kernel.struts.StrutsPortletAction</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
