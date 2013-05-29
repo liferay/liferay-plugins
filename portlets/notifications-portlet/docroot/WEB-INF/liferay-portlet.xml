@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
+		<poller-processor-class>com.liferay.notifications.poller.NotificationsPollerProcessor</poller-processor-class>
 		<use-default-template>false</use-default-template>
 		<css-class-wrapper>notifications-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>

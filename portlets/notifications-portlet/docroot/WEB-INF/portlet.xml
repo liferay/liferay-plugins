@@ -4,6 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Notifications</display-name>
+		<portlet-class>com.liferay.notifications.portlet.NotificationsPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/view.jsp</value>
