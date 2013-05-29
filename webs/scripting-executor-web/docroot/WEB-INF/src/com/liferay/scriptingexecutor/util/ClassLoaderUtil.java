@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.scripting.executor.util;
+package com.liferay.scriptingexecutor.util;
 
 import com.liferay.portal.kernel.servlet.PluginContextListener;
 import com.liferay.portal.kernel.servlet.ServletContextPool;

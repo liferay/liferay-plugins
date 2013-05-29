@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.scripting.executor.messaging;
+package com.liferay.scriptingexecutor.messaging;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.scripting.executor.util.ClassLoaderUtil;
+import com.liferay.scriptingexecutor.util.ClassLoaderUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
