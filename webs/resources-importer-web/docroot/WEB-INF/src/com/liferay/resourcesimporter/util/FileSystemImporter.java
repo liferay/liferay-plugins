@@ -90,6 +90,7 @@ import javax.portlet.PortletPreferences;
  */
 public class FileSystemImporter extends BaseImporter {
 
+	@Override
 	public void importResources() throws Exception {
 		_resourcesDir = new File(resourcesDir);
 
@@ -261,6 +262,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
 
+		Map<Locale, String> friendlyURLMap = new HashMap<Locale, String>();
+
 		String friendlyURL = layoutJSONObject.getString("friendlyURL");
 
 		if (Validator.isNotNull(friendlyURL) &&
@@ -269,10 +272,12 @@ public class FileSystemImporter extends BaseImporter {
 			friendlyURL = StringPool.SLASH + friendlyURL;
 		}
 
+		friendlyURLMap.put(LocaleUtil.getDefault(), friendlyURL);
+
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
-			null, null, null, LayoutConstants.TYPE_PORTLET, hidden, friendlyURL,
-			serviceContext);
+			null, null, null, LayoutConstants.TYPE_PORTLET, hidden,
+			friendlyURLMap, serviceContext);
 
 		String typeSettings = layoutJSONObject.getString("typeSettings");
 
