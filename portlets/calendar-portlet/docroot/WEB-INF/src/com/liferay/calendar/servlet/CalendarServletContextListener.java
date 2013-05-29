@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
+import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
@@ -59,7 +60,7 @@ public class CalendarServletContextListener
 			ClpSerializer.getServletContextName()) {
 
 			@Override
-			protected void onDeploy() throws Exception {
+			protected void onDeploy(Message message) throws Exception {
 				if (!PortletPropsValues.CALENDAR_SYNC_CALEVENTS_ON_STARTUP) {
 					return;
 				}
