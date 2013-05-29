@@ -472,3 +472,9 @@
 .simple-color-picker-item:hover, .simple-color-picker-item-selected {
 	@include transition(border-color 0s);
 }
+
+.calendar-booking-reminders .reminder-type {
+	display: inline-block;
+	margin-bottom: 11px;
+	padding: 4px 6px;
+}

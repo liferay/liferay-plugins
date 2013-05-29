@@ -728,9 +728,7 @@
 					'<option value="86400" <tpl if="time.desc == \'days\'">selected="selected"</tpl>>{days}</option>' +
 					'<option value="604800" <tpl if="time.desc == \'weeks\'">selected="selected"</tpl>>{weeks}</option>' +
 				'</select>' +
-				'<select name="{portletNamespace}reminderType{i}" <tpl if="disabled">disabled="disabled"</tpl>>' +
-					'<option value="email">{email}</option>' +
-				'</select>' +
+				'<label class="reminder-type" for="{portletNamespace}reminder{i}">{email}</label>' +
 			'</div>';
 
 			var Reminders = A.Component.create(
