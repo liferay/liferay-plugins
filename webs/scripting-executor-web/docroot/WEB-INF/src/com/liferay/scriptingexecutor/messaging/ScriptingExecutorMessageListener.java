@@ -33,7 +33,6 @@ import java.io.InputStream;
 import java.net.URL;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -44,27 +43,23 @@ import javax.servlet.ServletContext;
  */
 public class ScriptingExecutorMessageListener extends BaseMessageListener {
 
-	protected void doDeploy(ServletContext servletContext) throws Exception {
-		URL scriptsDirURL = servletContext.getResource(_SCRIPTS_DIR);
+	protected void deploy(ServletContext servletContext) throws Exception {
+		URL url = servletContext.getResource(_SCRIPTS_DIR);
 
-		if (scriptsDirURL == null) {
+		if (url == null) {
 			return;
 		}
+
+		Set<String> supportedLanguages = ScriptingUtil.getSupportedLanguages();
 
 		Properties pluginPackageProperties = getPluginPackageProperties(
 			servletContext);
 
-		String scriptLanguage = pluginPackageProperties.getProperty(
-			"script-language");
+		String language = getLanguage(pluginPackageProperties);
 
-		Set<String> supportedLanguages = ScriptingUtil.getSupportedLanguages();
-
-		if (!supportedLanguages.contains(scriptLanguage)) {
+		if (!supportedLanguages.contains(language)) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Script executor does not support language: " +
-					scriptLanguage + ". Supported languages are: " +
-					StringUtil.merge(supportedLanguages, StringPool.COMMA));
+				_log.warn("Unsupported language " + language);
 			}
 
 			return;
@@ -77,18 +72,18 @@ public class ScriptingExecutorMessageListener extends BaseMessageListener {
 			return;
 		}
 
-		ClassLoader aggregatedClassLoader =
+		ClassLoader classLoader =
 			ClassLoaderUtil.getAggregatePluginsClassLoader(
 				StringUtil.split(requiredDeploymentContexts), false);
 
-		executeScripts(servletContext, scriptLanguage, aggregatedClassLoader);
+		executeScripts(servletContext, language, classLoader);
 	}
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
 
-		if (!command.equals("undeploy") && !command.equals("deploy")) {
+		if (!command.equals("deploy") && !command.equals("undeploy")) {
 			return;
 		}
 
@@ -98,42 +93,42 @@ public class ScriptingExecutorMessageListener extends BaseMessageListener {
 			servletContextName);
 
 		if (command.equals("deploy")) {
-			doDeploy(servletContext);
+			deploy(servletContext);
 		}
 		else if (command.equals("undeploy")) {
-			doUndeploy(servletContext);
+			undeploy(servletContext);
 		}
 	}
 
 	protected void executeScripts(
-			ServletContext servletContext, String scriptLanguage,
-			ClassLoader aggregatedClassLoader) {
+		ServletContext servletContext, String language,
+		ClassLoader classLoader) {
 
-		Map<String, Object> inputObjects = new HashMap<String, Object>();
+		InputStream inputStream = null;
 
-		Set<String> scriptFilePaths = servletContext.getResourcePaths(
+		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_SCRIPTS_DIR);
 
-		InputStream in = null;
-
-		for (String scriptFilePath : scriptFilePaths) {
+		for (String resourcePath : resourcePaths) {
 			try {
-				in = servletContext.getResourceAsStream(scriptFilePath);
+				inputStream = servletContext.getResourceAsStream(resourcePath);
 
 				ScriptingUtil.exec(
-					null, inputObjects, scriptLanguage, StringUtil.read(in),
-					aggregatedClassLoader);
+					null, new HashMap<String, Object>(), language,
+					StringUtil.read(inputStream), classLoader);
 			}
 			catch (Exception e) {
-				if (_log.isErrorEnabled()) {
-					_log.error(
-						"Unable to execute script: " + scriptFilePath, e);
-				}
+				_log.error("Unable to execute script " + resourcePath, e);
 			}
 			finally {
-				StreamUtil.cleanUp(in);
+				StreamUtil.cleanUp(inputStream);
 			}
 		}
+	}
+
+	protected String getLanguage(Properties pluginPackageProperties) {
+		return pluginPackageProperties.getProperty(
+			"scripting-executor-language");
 	}
 
 	protected Properties getPluginPackageProperties(
@@ -146,35 +141,35 @@ public class ScriptingExecutorMessageListener extends BaseMessageListener {
 				servletContext.getResourceAsStream(
 					"/WEB-INF/liferay-plugin-package.properties"));
 
-			if (propertiesString != null) {
-				String contextPath = servletContext.getRealPath(
-					StringPool.SLASH);
-
-				contextPath = StringUtil.replace(
-					contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
-
-				propertiesString = propertiesString.replace(
-					"${context.path}", contextPath);
-
-				PropertiesUtil.load(properties, propertiesString);
+			if (propertiesString == null) {
+				return properties;
 			}
+
+			String contextPath = servletContext.getRealPath(StringPool.SLASH);
+
+			contextPath = StringUtil.replace(
+				contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
+
+			propertiesString = propertiesString.replace(
+				"${context.path}", contextPath);
+
+			PropertiesUtil.load(properties, propertiesString);
 		}
-		catch (IOException e) {
-			_log.error(e, e);
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
 		}
 
 		return properties;
 	}
 
-	private void doUndeploy(ServletContext servletContext) throws Exception {
+	protected void undeploy(ServletContext servletContext) throws Exception {
 		if (servletContext != null) {
 			Properties pluginPackageProperties = getPluginPackageProperties(
 				servletContext);
 
-			String scriptLanguage = pluginPackageProperties.getProperty(
-				"script-language");
+			String language = getLanguage(pluginPackageProperties);
 
-			ScriptingUtil.clearCache(scriptLanguage);
+			ScriptingUtil.clearCache(language);
 		}
 		else {
 			Set<String> supportedLanguages =
