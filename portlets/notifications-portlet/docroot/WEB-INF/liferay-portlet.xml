@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<poller-processor-class>com.liferay.notifications.poller.NotificationsPollerProcessor</poller-processor-class>
 		<use-default-template>false</use-default-template>
+		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>notifications-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>

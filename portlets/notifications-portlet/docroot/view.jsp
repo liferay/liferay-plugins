@@ -14,18 +14,114 @@
  */
 --%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="/init.jsp" %>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<li class="dropdown toggle-controls" id="userNotifications">
+	<a class="dropdown-toggle user-notification-link" href="javascript:;">
+		<i class="icon-white icon-globe"></i>
 
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+		<span class="new-user-notifications-count hide" id="newUserNotificationsCount"></span>
+	</a>
 
-<portlet:defineObjects />
+	<ul class="dropdown-menu user-notifications-container"></ul>
 
-<liferay-theme:defineObjects />
+	<aui:script use="aui-base,aui-io-plugin-deprecated,liferay-poller">
+			var userNotifications = A.one('#userNotifications');
 
-This is the Notifications Portlet.
+			var newNotificationsCount = userNotifications.one('#newUserNotificationsCount');
+
+			var onPollerUpdate = function(response, chunkId) {
+				var count = Number(response.count);
+
+				if (newNotificationsCount) {
+					if (count > 0) {
+						newNotificationsCount.removeClass("hide");
+						newNotificationsCount.setHTML(count);
+					}
+					else {
+						newNotificationsCount.addClass("hide");
+						newNotificationsCount.setHTML(count);
+					}
+				}
+			}
+
+			Liferay.Poller.addListener('1_WAR_notificationsportlet', onPollerUpdate, this);
+
+			userNotifications.delegate(
+				'click',
+				function(event) {
+					event.preventDefault();
+
+					var uri = event.currentTarget.get('href');
+
+					var markAsReadURL = event.currentTarget.getAttribute('data-markAsReadURL');
+
+					var userNotification = event.currentTarget.ancestor('.user-notification');
+
+					if (markAsReadURL) {
+						A.io.request(
+							markAsReadURL,
+							{
+								dataType: 'json',
+								after: {
+									success: function(event, id, obj) {
+										var responseData = this.get('responseData');
+
+										if (responseData.success) {
+											userNotification.removeClass ('unread');
+										}
+									}
+								}
+							}
+						);
+					}
+
+					if (uri != "") {
+						userNotifications.toggleClass('open')
+
+						Liferay.Util.openWindow(
+							{
+								id: 'notificationsWindow',
+								uri: uri
+							}
+						);
+					}
+
+				},
+				'.user-notification a'
+			);
+
+			userNotifications.on(
+				'click',
+				function(event) {
+					if (!event.target.ancestor('.user-notification')) {
+						event.currentTarget.toggleClass('open');
+
+						if (event.currentTarget.hasClass('open')) {
+							var userNotificationsContainer = userNotifications.one('.user-notifications-container');
+
+							if (!userNotificationsContainer.io) {
+								userNotificationsContainer.plug(
+									A.Plugin.IO,
+									{
+										autoLoad: false,
+										method: 'POST'
+									}
+								);
+							}
+
+							userNotificationsContainer.io.set('uri', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/view_entries.jsp" /></portlet:renderURL>');
+
+							userNotificationsContainer.io.start();
+
+							A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
+						}
+
+					}
+					else {
+						event.halt();
+					}
+				}
+			);
+	</aui:script>
+</li>

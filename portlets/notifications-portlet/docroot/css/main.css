@@ -1,0 +1,86 @@
+#userNotifications {
+	margin: 0 -10px;
+
+	.new-user-notifications-count {
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		background-color: #F03D25;
+		border: 1px solid #F83722;
+		border-bottom: 1px solid #C0311E;
+		border-radius: 2px;
+		border-top: 1px solid #E23923;
+		font-size: 9px;
+		font-weight: bold;
+		left: 55%;
+		line-height: 12px;
+		overflow: hidden;
+		padding: 0 2px;
+		position: absolute;
+		top: 55%;
+	}
+
+	.user-notifications-container {
+		width: 350px;
+
+		.user-notification {
+			a {
+				white-space: normal;
+			}
+
+			.icon-remove-circle {
+				left: 330px;
+				position: relative;
+				top: 20px;
+			}
+
+			.sender {
+				float: left;
+				position: relative;
+
+				.thumbnail {
+					height: 45px;
+					overflow: hidden;
+					width: 45px;
+
+					img {
+						width: 45px;
+					}
+				}
+
+				.portlet-icon {
+					bottom: 0;
+					left: 0;
+					position: absolute;
+				}
+			}
+
+			.read {
+				color: #999;
+				float: right;
+				font-size: 9px;
+			}
+
+			&.unread {
+				background: #EFF1F7
+			}
+
+			.timestamp {
+				color: #999;
+				display: inline;
+				font-size: 10px;
+			}
+
+			a:hover .read {
+				color: #FFF;
+			}
+
+			a:hover .timestamp {
+				color: #FFF;
+			}
+
+			.content {
+				margin-left: 65px;
+			}
+		}
+	}
+}
