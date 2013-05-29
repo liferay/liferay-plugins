@@ -110,21 +110,22 @@ public class ResourcesImporterServletContextListener
 				servletContext.getResourceAsStream(
 					"/WEB-INF/liferay-plugin-package.properties"));
 
-			if (propertiesString != null) {
-				String contextPath = servletContext.getRealPath(
-					StringPool.SLASH);
-
-				contextPath = StringUtil.replace(
-					contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
-
-				propertiesString = propertiesString.replace(
-					"${context.path}", contextPath);
-
-				PropertiesUtil.load(properties, propertiesString);
+			if (propertiesString == null) {
+				return properties;
 			}
+
+			String contextPath = servletContext.getRealPath(StringPool.SLASH);
+
+			contextPath = StringUtil.replace(
+				contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
+
+			propertiesString = propertiesString.replace(
+				"${context.path}", contextPath);
+
+			PropertiesUtil.load(properties, propertiesString);
 		}
-		catch (IOException e) {
-			_log.error(e, e);
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
 		}
 
 		return properties;
@@ -140,9 +141,9 @@ public class ResourcesImporterServletContextListener
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
-		URL resourcesDirURL = servletContext.getResource(_RESOURCES_DIR);
+		URL url = servletContext.getResource(_RESOURCES_DIR);
 
-		if (resourcesDirURL == null) {
+		if (url == null) {
 			return;
 		}
 
