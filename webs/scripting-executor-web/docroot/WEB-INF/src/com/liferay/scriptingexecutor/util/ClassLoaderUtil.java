@@ -26,6 +26,7 @@ import javax.servlet.ServletContext;
 
 /**
  * @author Michael C. Han
+ * @see    com.liferay.portal.util.ClassLoaderUtil
  */
 public class ClassLoaderUtil {
 
@@ -50,10 +51,10 @@ public class ClassLoaderUtil {
 			classLoaders.add(pluginClassLoader);
 		}
 
-		if (!PortalClassLoaderUtil.getClassLoader().equals(
-				contextClassLoader)) {
+		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
 
-			classLoaders.add(PortalClassLoaderUtil.getClassLoader());
+		if (!portalClassLoader.equals(contextClassLoader)) {
+			classLoaders.add(portalClassLoader);
 		}
 
 		ClassLoader[] classloaders = classLoaders.toArray(
