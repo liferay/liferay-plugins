@@ -22,7 +22,7 @@ List<UserNotificationEvent> notificationEvents = UserNotificationEventLocalServi
 
 <c:if test="<%= notificationEvents.isEmpty() %>">
 	<li class="user-notification">
-		<a><liferay-ui:message key="you-do-not-have-any-user-notification" /></a>
+		<a href="javascript:;"><liferay-ui:message key="you-do-not-have-any-notifications" /></a>
 	</li>
 </c:if>
 
@@ -78,7 +78,9 @@ for (UserNotificationEvent userNotificationEvent : notificationEvents) {
 					<%= simpleDateFormat.format(userNotificationEvent.getTimestamp()) %>
 				</div>
 
-				<div class="read"><liferay-ui:message key='<%= read ? "read" : "unread" %>' /></div>
+				<div class="read">
+					<liferay-ui:message key='<%= read ? "read" : "unread" %>' />
+				</div>
 			</div>
 		</a>
 	</li>

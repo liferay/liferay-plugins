@@ -16,32 +16,27 @@
 
 <%@ include file="/init.jsp" %>
 
-<li class="dropdown toggle-controls" id="userNotifications">
+<li class="dropdown toggle-controls user-notifications" id="userNotifications">
 	<a class="dropdown-toggle user-notification-link" href="javascript:;">
-		<i class="icon-white icon-globe"></i>
+		<i class="icon-globe icon-white"></i>
 
-		<span class="new-user-notifications-count hide" id="newUserNotificationsCount"></span>
+		<span class="hide user-notifications-count" id="userNotificationsCount"></span>
 	</a>
 
-	<ul class="dropdown-menu user-notifications-container"></ul>
+	<ul class="dropdown-menu user-notifications-list"></ul>
 
 	<aui:script use="aui-base,aui-io-plugin-deprecated,liferay-poller">
 			var userNotifications = A.one('#userNotifications');
 
-			var newNotificationsCount = userNotifications.one('#newUserNotificationsCount');
+			var userNotificationsCount = userNotifications.one('#userNotificationsCount');
 
 			var onPollerUpdate = function(response, chunkId) {
 				var count = Number(response.count);
 
-				if (newNotificationsCount) {
-					if (count > 0) {
-						newNotificationsCount.removeClass("hide");
-						newNotificationsCount.setHTML(count);
-					}
-					else {
-						newNotificationsCount.addClass("hide");
-						newNotificationsCount.setHTML(count);
-					}
+				if (userNotificationsCount) {
+					userNotificationsCount.toggleClass('hide', (count == 0));
+
+					userNotificationsCount.setHTML(count);
 				}
 			}
 
@@ -52,32 +47,35 @@
 				function(event) {
 					event.preventDefault();
 
-					var uri = event.currentTarget.get('href');
+					var currentTarget = event.currentTarget;
 
-					var markAsReadURL = event.currentTarget.getAttribute('data-markAsReadURL');
-
-					var userNotification = event.currentTarget.ancestor('.user-notification');
+					var markAsReadURL = currentTarget.attr('data-markAsReadURL');
+					var uri = currentTarget.attr('href');
 
 					if (markAsReadURL) {
 						A.io.request(
 							markAsReadURL,
 							{
-								dataType: 'json',
 								after: {
 									success: function(event, id, obj) {
 										var responseData = this.get('responseData');
 
 										if (responseData.success) {
-											userNotification.removeClass ('unread');
+											var userNotification = currentTarget.ancestor('.user-notification');
+
+											if (userNotification) {
+												userNotification.removeClass('unread');
+											}
 										}
 									}
-								}
+								},
+								dataType: 'json'
 							}
 						);
 					}
 
-					if (uri != "") {
-						userNotifications.toggleClass('open')
+					if (uri) {
+						userNotifications.toggleClass('open');
 
 						Liferay.Util.openWindow(
 							{
@@ -86,33 +84,35 @@
 							}
 						);
 					}
-
 				},
 				'.user-notification a'
 			);
 
+			var userNotificationsList = userNotifications.one('.user-notifications-list');
+
+			if (!userNotificationsList.io) {
+				userNotificationsList.plug(
+					A.Plugin.IO,
+					{
+						autoLoad: false
+					}
+				);
+			}
+
 			userNotifications.on(
 				'click',
 				function(event) {
-					if (!event.target.ancestor('.user-notification')) {
-						event.currentTarget.toggleClass('open');
+					var target = event.target;
 
-						if (event.currentTarget.hasClass('open')) {
-							var userNotificationsContainer = userNotifications.one('.user-notifications-container');
+					if (!target.hasClass('user-notification') && !target.ancestor('.user-notification')) {
+						var currentTarget = event.currentTarget;
 
-							if (!userNotificationsContainer.io) {
-								userNotificationsContainer.plug(
-									A.Plugin.IO,
-									{
-										autoLoad: false,
-										method: 'POST'
-									}
-								);
-							}
+						currentTarget.toggleClass('open');
 
-							userNotificationsContainer.io.set('uri', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/view_entries.jsp" /></portlet:renderURL>');
+						if (currentTarget.hasClass('open')) {
+							userNotificationsList.io.set('uri', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/view_entries.jsp" /></portlet:renderURL>');
 
-							userNotificationsContainer.io.start();
+							userNotificationsList.io.start();
 
 							A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
 						}

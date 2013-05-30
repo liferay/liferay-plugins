@@ -1,14 +1,13 @@
-#userNotifications {
+@import "compass";
+
+.user-notifications {
 	margin: 0 -10px;
 
-	.new-user-notifications-count {
-		-moz-border-radius: 2px;
-		-webkit-border-radius: 2px;
+	.user-notifications-count {
 		background-color: #F03D25;
 		border: 1px solid #F83722;
-		border-bottom: 1px solid #C0311E;
-		border-radius: 2px;
-		border-top: 1px solid #E23923;
+		border-bottom-color: #C0311E;
+		border-top-color: #E23923;
 		font-size: 9px;
 		font-weight: bold;
 		left: 55%;
@@ -19,7 +18,7 @@
 		top: 55%;
 	}
 
-	.user-notifications-container {
+	.user-notifications-list {
 		width: 350px;
 
 		.user-notification {
@@ -82,5 +81,13 @@
 				margin-left: 65px;
 			}
 		}
+	}
+}
+
+/* ---------- Extras ---------- */
+
+.user-notifications {
+	.user-notifications-count {
+		@include border-radius(2px);
 	}
 }
