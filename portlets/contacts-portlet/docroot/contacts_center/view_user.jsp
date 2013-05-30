@@ -157,7 +157,7 @@ request.setAttribute("view_user.jsp-user", user2);
 					<c:if test="<%= showUsersInformation %>">
 						<aui:column columnWidth="<%= showSites ? 80 : 100 %>" cssClass="user-information-column-1">
 							<div class="user-information-title">
-								<liferay-ui:message key="about" />
+								<liferay-ui:message key="about-me" />
 							</div>
 
 							<div class="lfr-user-info-container">
