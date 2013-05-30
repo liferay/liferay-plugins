@@ -14,6 +14,11 @@
  */
 --%>
 
+<%
+String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
+String backURL = PortalUtil.getCurrentURL(request);
+%>
+
 <aui:script use="liferay-calendar-simple-menu,liferay-calendar-simple-color-picker">
 	window.<portlet:namespace />calendarListsMenu = new Liferay.SimpleMenu(
 		{
@@ -78,6 +83,46 @@
 
 	window.<portlet:namespace />calendarsMenu = {
 		items: [
+			{
+				caption: '<liferay-ui:message key="add-event" />',
+				fn: function(event) {
+					var instance = this;
+
+					var calendarList = instance.get('host');
+
+					var activeCalendar = calendarList.activeItem;
+
+					<portlet:renderURL var="addCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+						<portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
+						<portlet:param name="backURL" value="<%= backURL %>" />
+						<portlet:param name="calendarId" value="{calendarId}" />
+					</portlet:renderURL>
+
+					Liferay.Util.openWindow(
+						{
+							dialog: {
+								after: {
+									destroy: function(event) {
+										scheduler.load();
+									}
+								},
+								destroyOnClose: true,
+								modal: true,
+								width: 915
+							},
+							refreshWindow: window,
+							title: Liferay.Language.get('add-event'),
+							uri: A.Lang.sub(
+								decodeURIComponent('<%= addCalendarBookingURL %>'),
+								{
+									calendarId: activeCalendar.get('calendarId'),
+								}
+							)
+						}
+					);
+				},
+				id: 'addEvent'
+			},
 			{
 				caption: '<liferay-ui:message key="hide-this-calendar-from-the-list" />',
 				fn: function(event) {
@@ -220,7 +265,7 @@
 
 				var calendarList = instance.get('host');
 
-				var calendar = calendarList.activeItem
+				var calendar = calendarList.activeItem;
 
 				if (calendar && event.newVal) {
 					var permissions = calendar.get('permissions');

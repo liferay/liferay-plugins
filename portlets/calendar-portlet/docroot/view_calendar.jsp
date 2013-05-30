@@ -112,23 +112,23 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	
 			<div id="<portlet:namespace />message"></div>
 		</aui:col>
+
+		<portlet:renderURL var="editCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+			<portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
+			<portlet:param name="activeView" value="{activeView}" />
+			<portlet:param name="allDay" value="{allDay}" />
+			<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
+			<portlet:param name="calendarId" value="{calendarId}" />
+			<portlet:param name="date" value="{date}" />
+			<portlet:param name="endTime" value="{endTime}" />
+			<portlet:param name="startTime" value="{startTime}" />
+			<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
+		</portlet:renderURL>
 	
 		<aui:col cssClass="calendar-portlet-column-grid" span="<%= 9 %>">
 			<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
 				<liferay-util:param name="activeView" value="<%= activeView %>" />
 				<liferay-util:param name="date" value="<%= String.valueOf(date) %>" />
-	
-				<portlet:renderURL var="editCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
-					<portlet:param name="activeView" value="{activeView}" />
-					<portlet:param name="allDay" value="{allDay}" />
-					<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
-					<portlet:param name="calendarId" value="{calendarId}" />
-					<portlet:param name="date" value="{date}" />
-					<portlet:param name="endTime" value="{endTime}" />
-					<portlet:param name="startTime" value="{startTime}" />
-					<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
-				</portlet:renderURL>
 	
 				<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
 	
