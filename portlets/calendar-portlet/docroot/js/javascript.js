@@ -37,6 +37,14 @@ AUI.add(
 
 		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
 
+		var CREATE_EVENT = "createEvent";
+
+		var CONTROLS_NODE = "controlsNode";
+
+		var ICON_CREATE_EVENT_NODE = "iconCreateEventNode";
+
+		var TPL_ICON_CREATE_EVENT_NODE = '<button type="button" class="calendar-create-event-btn btn btn-primary"><i class="icon-plus icon-white"></i> New Event</button>';
+
 		var COMPANY_GROUP_ID = toInt(themeDisplay.getCompanyGroupId());
 
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
@@ -1194,6 +1202,12 @@ AUI.add(
 		var Scheduler = A.Component.create(
 			{
 				ATTRS: {
+					iconCreateEventNode: {
+						valueFn: function() {
+							return A.Node.create(TPL_ICON_CREATE_EVENT_NODE);
+						}
+					},
+
 					filterCalendarBookings: {
 						validator: isFunction
 					},
@@ -1300,6 +1314,14 @@ AUI.add(
 						var events = instance._events;
 
 						return events.sync.apply(events, arguments);
+					},
+
+					addCreateEventButton: function() {
+						var instance = this;
+
+						instance[ICON_CREATE_EVENT_NODE] = instance.get(ICON_CREATE_EVENT_NODE);
+						instance[CONTROLS_NODE].prepend(instance[ICON_CREATE_EVENT_NODE]);
+						instance[CONTROLS_NODE].delegate('click', instance._onClickCreateEvent, '.calendar-create-event-btn', instance);
 					},
 
 					_afterActiveViewChange: function(event) {
@@ -1455,6 +1477,38 @@ AUI.add(
 								}
 							}
 						}
+					},
+
+					_onClickCreateEvent: function(event) {
+						var instance = this;
+
+						var recorder = instance.get('eventRecorder');
+
+						var activeViewName = instance.get('activeView').get('name');
+
+						var editCalendarBookingURL = decodeURIComponent(recorder.get('editCalendarBookingURL'));
+
+						Liferay.Util.openWindow(
+							{
+								dialog: {
+									after: {
+										destroy: function(event) {
+											scheduler.load();
+										}
+									},
+									destroyOnClose: true,
+									modal: true,
+									width: 915
+								},
+								refreshWindow: window,
+								title: Liferay.Language.get('add-event'),
+								uri: Lang.sub(editCalendarBookingURL, {
+									activeView: activeViewName
+								})
+							}
+						);
+
+						instance.load();
 					},
 
 					_onDeleteEvent: function(event) {

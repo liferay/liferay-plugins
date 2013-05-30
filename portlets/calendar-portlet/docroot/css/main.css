@@ -478,3 +478,7 @@
 	margin-bottom: 11px;
 	padding: 4px 6px;
 }
+
+.scheduler-base-controls .calendar-create-event-btn {
+	margin-right: 3px;
+}

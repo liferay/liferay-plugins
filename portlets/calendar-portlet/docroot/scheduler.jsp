@@ -139,4 +139,8 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			]
 		}
 	);
+
+	<c:if test="<%= !readOnly && (userDefaultCalendar != null) %>">
+		window.<portlet:namespace />scheduler.addCreateEventButton();
+	</c:if>
 </aui:script>
