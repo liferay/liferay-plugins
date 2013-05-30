@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="lib/cdi-api.jar" />
+	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
