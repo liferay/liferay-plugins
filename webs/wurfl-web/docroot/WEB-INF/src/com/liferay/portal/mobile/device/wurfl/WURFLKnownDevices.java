@@ -42,6 +42,7 @@ public class WURFLKnownDevices implements KnownDevices {
 
 	@Override
 	public Set<VersionableName> getBrands() {
+
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
 
@@ -53,6 +54,7 @@ public class WURFLKnownDevices implements KnownDevices {
 
 	@Override
 	public Set<VersionableName> getBrowsers() {
+
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
 
@@ -64,11 +66,13 @@ public class WURFLKnownDevices implements KnownDevices {
 
 	@Override
 	public Map<Capability, Set<String>> getDeviceIds() {
+
 		return _devicesIds;
 	}
 
 	@Override
 	public Set<Dimensions> getDisplaySizes() {
+
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
 
@@ -80,6 +84,7 @@ public class WURFLKnownDevices implements KnownDevices {
 
 	@Override
 	public Set<VersionableName> getOperatingSystems() {
+
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
 
@@ -91,6 +96,7 @@ public class WURFLKnownDevices implements KnownDevices {
 
 	@Override
 	public Set<String> getPointingMethods() {
+
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
 
@@ -102,6 +108,7 @@ public class WURFLKnownDevices implements KnownDevices {
 
 	@Override
 	public Set<Dimensions> getScreenResolutions() {
+
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
 
@@ -111,23 +118,26 @@ public class WURFLKnownDevices implements KnownDevices {
 		return _screenResolutins;
 	}
 
-	
 	public synchronized void initialize() {
+
 		loadWURFLDevices();
 	}
 
 	@Override
 	public synchronized void reload() {
+
 		_initialized = false;
 
 		loadWURFLDevices();
 	}
 
 	public void setWurflHolder(WURFLHolder wurflHolder) {
+
 		_wurflHolder = wurflHolder;
 	}
 
 	protected void loadWURFLDevices() {
+
 		if (_initialized) {
 			return;
 		}
@@ -158,7 +168,7 @@ public class WURFLKnownDevices implements KnownDevices {
 			new HashMap<String, VersionableName>();
 
 		for (Object deviceIdObject : wurflUtils.getAllDevicesId()) {
-			String deviceId = (String)deviceIdObject;
+			String deviceId = (String) deviceIdObject;
 
 			Device device = wurflUtils.getDeviceById(deviceId);
 
@@ -178,18 +188,20 @@ public class WURFLKnownDevices implements KnownDevices {
 				device, _pointingMethods, WURFLConstants.POINTING_METHOD);
 
 			updateCapability(
-				device, _displaySizes, WURFLConstants.DISPLAY_HEIGHT, WURFLConstants.DISPLAY_WIDTH);
+				device, _displaySizes, WURFLConstants.DISPLAY_HEIGHT,
+				WURFLConstants.DISPLAY_WIDTH);
 
 			updateCapability(
-				device, _screenResolutins, WURFLConstants.RESOLUTION_HEIGHT, WURFLConstants.RESOLUTION_WIDTH);
+				device, _screenResolutins, WURFLConstants.RESOLUTION_HEIGHT,
+				WURFLConstants.RESOLUTION_WIDTH);
 
 			updateDevicesIds(device, WURFLConstants.DEVICE_OS);
 		}
 
 		_brands = new TreeSet<VersionableName>(brands.values());
 		_browsers = new TreeSet<VersionableName>(browsers.values());
-		_operatingSystems = new TreeSet<VersionableName>(
-			operatingSystems.values());
+		_operatingSystems =
+			new TreeSet<VersionableName>(operatingSystems.values());
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Loaded database in " + stopWatch.getTime() + " ms");
@@ -209,17 +221,27 @@ public class WURFLKnownDevices implements KnownDevices {
 	}
 
 	protected void updateCapability(
-		Device device, Set<Dimensions> capabilityValues, String capabilityHeight, String capabilityWidth) {
+		Device device, Set<Dimensions> capabilityValues,
+		String capabilityHeight, String capabilityWidth) {
 
-		int heightValue = GetterUtil.getInteger(device.getCapability(capabilityHeight));
-		int widthValue = GetterUtil.getInteger(device.getCapability(capabilityWidth));
-		
+		int heightValue =
+			GetterUtil.getInteger(device.getCapability(capabilityHeight));
+		int widthValue =
+			GetterUtil.getInteger(device.getCapability(capabilityWidth));
+
 		if (heightValue > 0 && widthValue > 0) {
-			capabilityValues.add(new Dimensions(heightValue, widthValue));
+			if (GetterUtil.getBoolean(device.getCapability(WURFLConstants.DUAL_ORIENTATION)) &&
+				heightValue < widthValue) {
+				capabilityValues.add(new Dimensions(widthValue, heightValue));
+			}
+			else {
+				capabilityValues.add(new Dimensions(heightValue, widthValue));
+			}
 		}
 	}
 
 	protected void updateDevicesIds(Device device, String... capabilityNames) {
+
 		if ((capabilityNames == null) || (capabilityNames.length == 0)) {
 			return;
 		}
@@ -231,8 +253,8 @@ public class WURFLKnownDevices implements KnownDevices {
 				continue;
 			}
 
-			Capability capability = new Capability(
-				capabilityName, capabilityValue);
+			Capability capability =
+				new Capability(capabilityName, capabilityValue);
 
 			Set<String> deviceIds = _devicesIds.get(capability);
 
@@ -257,8 +279,8 @@ public class WURFLKnownDevices implements KnownDevices {
 			return;
 		}
 
-		VersionableName versionableCapability = capabilities.get(
-			capabilityValue);
+		VersionableName versionableCapability =
+			capabilities.get(capabilityValue);
 
 		if (versionableCapability == null) {
 			versionableCapability = new VersionableName(capabilityValue);
@@ -269,12 +291,12 @@ public class WURFLKnownDevices implements KnownDevices {
 		String capabilitySubversionValue = null;
 
 		if (Validator.isNotNull(capabilitySubversionAttributeName)) {
-			capabilitySubversionValue = device.getCapability(
-				capabilitySubversionAttributeName);
+			capabilitySubversionValue =
+				device.getCapability(capabilitySubversionAttributeName);
 		}
 
-		String capabilityVersionValue = device.getCapability(
-			capabilityVersionAttributeName);
+		String capabilityVersionValue =
+			device.getCapability(capabilityVersionAttributeName);
 
 		if (Validator.isNotNull(capabilityVersionValue)) {
 			if (Validator.isNotNull(capabilitySubversionValue)) {

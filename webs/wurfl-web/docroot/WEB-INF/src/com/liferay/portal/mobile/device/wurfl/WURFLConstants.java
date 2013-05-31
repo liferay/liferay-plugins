@@ -28,6 +28,8 @@ public class WURFLConstants {
 	public static final String DISPLAY_HEIGHT = "physical_screen_height";
 
 	public static final String DISPLAY_WIDTH = "physical_screen_width";
+	
+	public static final String DUAL_ORIENTATION = "dual_orientation";
 
 	public static final String HAS_QWERTY_KEYBOARD = "has_qwerty_keyboard";
 

@@ -50,26 +50,31 @@ public class WURFLDevice extends AbstractDevice {
 
 	@Override
 	public String getBrand() {
+
 		return getValue(WURFLConstants.BRAND_NAME);
 	}
 
 	@Override
 	public String getBrowser() {
+
 		return getValue(WURFLConstants.MOBILE_BROWSER);
 	}
 
 	@Override
 	public String getBrowserVersion() {
+
 		return getValue(WURFLConstants.MOBILE_BROWSER_VERSION);
 	}
 
 	@Override
 	public Map<String, Capability> getCapabilities() {
+
 		return _capabilities;
 	}
 
 	@Override
 	public String getCapability(String name) {
+
 		Capability capability = _capabilities.get(name);
 
 		if (capability == null) {
@@ -81,37 +86,31 @@ public class WURFLDevice extends AbstractDevice {
 
 	@Override
 	public Dimensions getDisplaySize() {
-		Capability heightCapability = _capabilities.get(
-			WURFLConstants.DISPLAY_HEIGHT);
-		Capability widthCapability = _capabilities.get(
-			WURFLConstants.DISPLAY_WIDTH);
 
-		if ((heightCapability == null) || (widthCapability == null)) {
-			return Dimensions.UNKNOWN;
-		}
-
-		int height = GetterUtil.getInteger(heightCapability.getValue());
-		int width = GetterUtil.getInteger(widthCapability.getValue());
-
-		return new Dimensions(height, width);
+		return getDimensions(
+			WURFLConstants.DISPLAY_HEIGHT, WURFLConstants.DISPLAY_WIDTH);
 	}
 
 	public String getModel() {
+
 		return getValue(WURFLConstants.MODEL_NAME);
 	}
 
 	@Override
 	public String getOS() {
+
 		return getValue(WURFLConstants.DEVICE_OS);
 	}
 
 	@Override
 	public String getOSVersion() {
+
 		return getValue(WURFLConstants.DEVICE_OS_VERSION);
 	}
 
 	@Override
 	public String getPointingMethod() {
+
 		return getValue(WURFLConstants.POINTING_METHOD);
 	}
 
@@ -121,40 +120,38 @@ public class WURFLDevice extends AbstractDevice {
 	@Deprecated
 	@Override
 	public Dimensions getScreenSize() {
+
 		return getResolution();
 	}
 
+	@Override
 	public Dimensions getResolution() {
-		Capability heightCapability = _capabilities.get(
-			WURFLConstants.RESOLUTION_HEIGHT);
-		Capability widthCapability = _capabilities.get(
-			WURFLConstants.RESOLUTION_WIDTH);
 
-		if ((heightCapability == null) || (widthCapability == null)) {
-			return Dimensions.UNKNOWN;
-		}
-
-		int height = GetterUtil.getInteger(heightCapability.getValue());
-		int width = GetterUtil.getInteger(widthCapability.getValue());
-
-		return new Dimensions(height, width);
+		return getDimensions(
+			WURFLConstants.RESOLUTION_HEIGHT, WURFLConstants.RESOLUTION_WIDTH);
 	}
 
 	@Override
 	public boolean hasQwertyKeyboard() {
-		Capability capability = _capabilities.get(
-			WURFLConstants.HAS_QWERTY_KEYBOARD);
 
-		if (capability == null) {
-			return false;
-		}
-
-		return GetterUtil.getBoolean(capability.getValue(), false);
+		return getBoolean(WURFLConstants.HAS_QWERTY_KEYBOARD);
 	}
 
 	@Override
 	public boolean isTablet() {
-		Capability capability = _capabilities.get(WURFLConstants.IS_TABLET);
+
+		return getBoolean(WURFLConstants.IS_TABLET);
+	}
+
+	@Override
+	public boolean supportsDualOrientation() {
+
+		return getBoolean(WURFLConstants.DUAL_ORIENTATION);
+	}
+
+	protected boolean getBoolean(String name) {
+
+		Capability capability = _capabilities.get(name);
 
 		if (capability == null) {
 			return false;
@@ -163,7 +160,29 @@ public class WURFLDevice extends AbstractDevice {
 		return GetterUtil.getBoolean(capability.getValue(), false);
 	}
 
+	protected Dimensions getDimensions(
+		String heightCapability, String widthCapability) {
+
+		Capability h = _capabilities.get(heightCapability);
+		Capability w = _capabilities.get(widthCapability);
+
+		if ((h == null) || (w == null)) {
+			return Dimensions.UNKNOWN;
+		}
+
+		int height = GetterUtil.getInteger(h.getValue());
+		int width = GetterUtil.getInteger(w.getValue());
+
+		if (supportsDualOrientation() && height < width) {
+			return new Dimensions(width, height);
+		}
+		else {
+			return new Dimensions(height, width);
+		}
+	}
+
 	protected String getValue(String name) {
+
 		Capability capability = _capabilities.get(name);
 
 		if (capability == null) {
