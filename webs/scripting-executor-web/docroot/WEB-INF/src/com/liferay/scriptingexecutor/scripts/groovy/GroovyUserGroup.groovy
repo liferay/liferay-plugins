@@ -11,26 +11,29 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-package com.liferay.scriptingexecutor.scripts.groovy
 
-import com.liferay.portal.NoSuchUserGroupException
-import com.liferay.portal.model.UserGroup
-import com.liferay.portal.service.UserGroupLocalServiceUtil
+package com.liferay.scriptingexecutor.scripts.groovy;
+
+import com.liferay.portal.NoSuchUserGroupException;
+import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
 
 /**
  * @author Michael C. Han
  */
 class GroovyUserGroup {
+
 	static UserGroup fetchUserGroup(
-		GroovyScriptingContext scriptingContext, String userGroupName) {
+		GroovyScriptingContext scriptingContext, String name) {
 
 		try {
 			return UserGroupLocalServiceUtil.getUserGroup(
-				scriptingContext.companyId, userGroupName);
+				scriptingContext.companyId, name);
 		}
 		catch (NoSuchUserGroupException nsuge) {
 		}
 
 		return null;
 	}
+
 }

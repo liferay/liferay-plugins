@@ -12,29 +12,34 @@
  * details.
  */
 
-package com.liferay.scriptingexecutor.scripts.groovy
+package com.liferay.scriptingexecutor.scripts.groovy;
 
-import com.liferay.portal.kernel.util.LocaleUtil
-import com.liferay.portal.service.ServiceContext
-import com.liferay.portal.service.UserLocalServiceUtil
-import com.liferay.portal.util.PortalUtil
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Michael C. Han
  */
 class GroovyScriptingContext {
-	static Map<Locale, String> getLocalizedMap(String value) {
-		def localizedMap = new HashMap<Locale, String>();
 
-		localizedMap.put(LocaleUtil.getDefault(), value);
+	static Map<Locale, String> getLocalizationMap(String value) {
+		Map<Locale, String> localizationMap = new HashMap<Locale, String>();
 
-		return localizedMap;
+		localizationMap.put(LocaleUtil.getDefault(), value);
+
+		return localizationMap;
 	}
 
 	GroovyScriptingContext() {
-		def defaultCompanyId = PortalUtil.getDefaultCompanyId();
-
 		serviceContext = new ServiceContext();
+
+		long defaultCompanyId = PortalUtil.getDefaultCompanyId();
 
 		serviceContext.setCompanyId(defaultCompanyId);
 
@@ -42,7 +47,6 @@ class GroovyScriptingContext {
 	}
 
 	GroovyScriptingContext(long companyId) {
-
 		serviceContext = new ServiceContext();
 
 		serviceContext.setCompanyId(companyId);

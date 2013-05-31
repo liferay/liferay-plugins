@@ -12,13 +12,13 @@
  * details.
  */
 
-package com.liferay.scriptingexecutor.scripts.groovy
+package com.liferay.scriptingexecutor.scripts.groovy;
 
-import com.liferay.portal.NoSuchOrganizationException
-import com.liferay.portal.kernel.util.Validator
-import com.liferay.portal.model.Organization
-import com.liferay.portal.model.OrganizationConstants
-import com.liferay.portal.service.OrganizationLocalServiceUtil
+import com.liferay.portal.NoSuchOrganizationException;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.OrganizationConstants;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
 
 /**
  * @author Michael C. Han
@@ -38,29 +38,28 @@ class GroovyOrganization {
 		return null;
 	}
 
-	GroovyOrganization(String organizationName) {
-		name = organizationName;
+	GroovyOrganization(String name_) {
+		name = name_;
 	}
 
-	GroovyOrganization(String organizationName, String parentOrgName) {
-		name = organizationName;
-		parentOrganizationName = parentOrgName;
+	GroovyOrganization(String name_, String parentOrganizationName_) {
+		name = name_;
+		parentOrganizationName = parentOrganizationName_;
 	}
 
 	void create(GroovyScriptingContext scriptingContext) {
-
 		organization = fetchOrganization(scriptingContext, name);
 
 		if (organization != null) {
 			return;
 		}
 
-		def parentOrganizationId =
+		long parentOrganizationId =
 			OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID;
 
 		if (Validator.isNotNull(parentOrganizationName)) {
-			def parentOrganization = fetchOrganization(
-					scriptingContext, parentOrganizationName);
+			Organization parentOrganization = fetchOrganization(
+				scriptingContext, parentOrganizationName);
 
 			if (parentOrganization != null) {
 				parentOrganizationId = parentOrganization.getOrganizationId();
@@ -68,8 +67,7 @@ class GroovyOrganization {
 		}
 
 		organization = OrganizationLocalServiceUtil.addOrganization(
-			scriptingContext.defaultUserId, parentOrganizationId, name,
-			false);
+			scriptingContext.defaultUserId, parentOrganizationId, name, false);
 	}
 
 	String name;
