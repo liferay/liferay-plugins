@@ -12,14 +12,18 @@
  * details.
  */
 
-package com.liferay.scriptingexecutor.scripts.groovy
+package com.liferay.scriptingexecutor.scripts.groovy;
 
-import com.liferay.portal.NoSuchTeamException
-import com.liferay.portal.model.Group
-import com.liferay.portal.model.GroupConstants
-import com.liferay.portal.service.GroupLocalServiceUtil
-import com.liferay.portal.service.TeamLocalServiceUtil
-import com.liferay.portal.service.UserLocalServiceUtil
+import com.liferay.portal.NoSuchTeamException;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Team;
+import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.TeamLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 /**
  * @author Michael C. Han
@@ -27,7 +31,7 @@ import com.liferay.portal.service.UserLocalServiceUtil
 class GroovySite {
 
 	static GroovySite openSite(String name, String description) {
-		def groovySite = new GroovySite();
+		GroovySite groovySite = new GroovySite();
 
 		groovySite.name = name;
 		groovySite.description = description;
@@ -37,7 +41,7 @@ class GroovySite {
 	}
 
 	static GroovySite privateSite(String name, String description) {
-		def groovySite = new GroovySite();
+		GroovySite groovySite = new GroovySite();
 
 		groovySite.name = name;
 		groovySite.description = description;
@@ -47,7 +51,7 @@ class GroovySite {
 	}
 
 	static GroovySite restrictedSite(String name, String description) {
-		def groovySite = new GroovySite();
+		GroovySite groovySite = new GroovySite();
 
 		groovySite.name = name;
 		groovySite.description = description;
@@ -60,8 +64,8 @@ class GroovySite {
 		GroovyScriptingContext scriptingContext, String... organizationNames) {
 
 		for (String organizationName : organizationNames) {
-			def organization = GroovyOrganization.fetchOrganization(
-					scriptingContext, organizationName);
+			Organization organization = GroovyOrganization.fetchOrganization(
+				scriptingContext, organizationName);
 
 			if (organization != null) {
 				GroupLocalServiceUtil.addOrganizationGroup(
@@ -74,20 +78,19 @@ class GroovySite {
 		GroovyScriptingContext scriptingContext, String teamName,
 		String... userGroupNames) {
 
-		def team = null;
+		Team team = null;
 
 		try {
-			team = TeamLocalServiceUtil.getTeam(
-				site.getGroupId(), teamName);
+			team = TeamLocalServiceUtil.getTeam(site.getGroupId(), teamName);
 		}
 		catch (NoSuchTeamException nste) {
 			team = TeamLocalServiceUtil.addTeam(
-				scriptingContext.defaultUserId, site.getGroupId(),
-				teamName, null);
+				scriptingContext.defaultUserId, site.getGroupId(), teamName,
+				null);
 		}
 
 		for (String userGroupName : userGroupNames) {
-			def userGroup = GroovyUserGroup.fetchUserGroup(
+			UserGroup userGroup = GroovyUserGroup.fetchUserGroup(
 				scriptingContext, userGroupName);
 
 			if (userGroup != null) {
@@ -101,20 +104,19 @@ class GroovySite {
 		GroovyScriptingContext scriptingContext, String teamName,
 		String... screenNames) {
 
-		def team = null;
+		Team team = null;
 
 		try {
-			team = TeamLocalServiceUtil.getTeam(
-				site.getGroupId(), teamName);
+			team = TeamLocalServiceUtil.getTeam(site.getGroupId(), teamName);
 		}
 		catch (NoSuchTeamException nste) {
 			team = TeamLocalServiceUtil.addTeam(
-				scriptingContext.defaultUserId, site.getGroupId(),
-				teamName, null);
+				scriptingContext.defaultUserId, site.getGroupId(), teamName,
+				null);
 		}
 
 		for (String screenName : screenNames) {
-			def user = UserLocalServiceUtil.fetchUserByScreenName(
+			User user = UserLocalServiceUtil.fetchUserByScreenName(
 				scriptingContext.companyId, screenName);
 
 			if (user != null) {
@@ -131,19 +133,14 @@ class GroovySite {
 			return;
 		}
 
-		site = _addSite(scriptingContext)
-	}
-
-	private Group _addSite(GroovyScriptingContext scriptingContext) {
-
-		return GroupLocalServiceUtil.addGroup(
+		site = GroupLocalServiceUtil.addGroup(
 			scriptingContext.defaultUserId, null, 0, 0, name, description, type,
 			null, true, true, scriptingContext.serviceContext);
 	}
 
 	String description;
-	Group site;
 	String name;
+	Group site;
 	int type;
 
 }

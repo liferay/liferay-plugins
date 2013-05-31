@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.scriptingexecutor.scripts.groovy
+package com.liferay.scriptingexecutor.scripts.groovy;
 
-import com.liferay.portal.model.Role
-import com.liferay.portal.model.RoleConstants
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 
 /**
@@ -23,30 +23,30 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
  */
 class GroovyRole {
 
-	static GroovyRole organizationRole(String roleName, String description) {
-		def groovyRole = new GroovyRole();
+	static GroovyRole organizationRole(String name, String description) {
+		GroovyRole groovyRole = new GroovyRole();
 
-		groovyRole.name = roleName;
+		groovyRole.name = name;
 		groovyRole.description = description;
 		groovyRole.type = RoleConstants.TYPE_ORGANIZATION;
 
 		return groovyRole;
 	}
 
-	static GroovyRole portalRole(String roleName, String description) {
-		def groovyRole = new GroovyRole();
+	static GroovyRole portalRole(String name, String description) {
+		GroovyRole groovyRole = new GroovyRole();
 
-		groovyRole.name = roleName;
+		groovyRole.name = name;
 		groovyRole.description = description;
 		groovyRole.type = RoleConstants.TYPE_REGULAR;
 
 		return groovyRole;
 	}
 
-	static GroovyRole siteRole(String roleName, String description) {
-		def groovyRole = new GroovyRole();
+	static GroovyRole siteRole(String name, String description) {
+		GroovyRole groovyRole = new GroovyRole();
 
-		groovyRole.name = roleName;
+		groovyRole.name = name;
 		groovyRole.description = description;
 		groovyRole.type = RoleConstants.TYPE_SITE;
 
@@ -54,22 +54,15 @@ class GroovyRole {
 	}
 
 	void create(GroovyScriptingContext scriptingContext) {
-
-		role = RoleLocalServiceUtil.fetchRole(
-			scriptingContext.companyId, name);
+		role = RoleLocalServiceUtil.fetchRole(scriptingContext.companyId, name);
 
 		if (role != null) {
 			return;
 		}
 
-		role = _addRole(scriptingContext)
-	}
-
-	private Role _addRole(GroovyScriptingContext scriptingContext) {
-
-		return RoleLocalServiceUtil.addRole(
-			scriptingContext.defaultUserId, scriptingContext.companyId,
-			name, GroovyScriptingContext.getLocalizedMap(name),
+		role = RoleLocalServiceUtil.addRole(
+			scriptingContext.defaultUserId, scriptingContext.companyId, name,
+			GroovyScriptingContext.getLocalizedMap(name),
 			GroovyScriptingContext.getLocalizedMap(description), type);
 	}
 

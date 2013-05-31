@@ -14,30 +14,38 @@
 
 package com.liferay.scriptingexecutor.scripts.groovy;
 
-import com.liferay.portal.kernel.util.LocaleUtil
-import com.liferay.portal.model.Role
-import com.liferay.portal.model.User
-import com.liferay.portal.service.GroupLocalServiceUtil
-import com.liferay.portal.service.RoleLocalServiceUtil
-import com.liferay.portal.service.UserLocalServiceUtil
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Michael C. Han
+ */
 class GroovyUser {
 
 	GroovyUser(
-		String firstName_, String lastName_, String jobTitle_, String email_,
-		String password_) {
+		String emailAddress_, String password_, String firstName_,
+		String lastName_, String jobTitle_) {
 
+		emailAddress = emailAddress_;
+		password = password_;
 		firstName = firstName_;
 		lastName = lastName_;
 		jobTitle = jobTitle_;
-		email = email_;
-		password = password_;
 	}
 
 	void addRoles(
 		GroovyScriptingContext scriptingContext, String... roleNames) {
 
-		def roles = new ArrayList<Role>(roleNames.length);
+		List<Role> roles = new ArrayList<Role>(roleNames.length);
 
 		for (String roleName : roleNames) {
 			Role role = RoleLocalServiceUtil.fetchRole(
@@ -49,30 +57,27 @@ class GroovyUser {
 		RoleLocalServiceUtil.addUserRoles(user.getUserId(), roles);
 	}
 
-	void create(
-		GroovyScriptingContext scriptingContext) {
-
+	void create(GroovyScriptingContext scriptingContext) {
 		user = UserLocalServiceUtil.fetchUserByEmailAddress(
-			scriptingContext.companyId, email);
+			scriptingContext.companyId, emailAddress);
 
 		if (user != null) {
 			return;
 		}
 
 		user = UserLocalServiceUtil.addUser(
-			scriptingContext.defaultUserId,
-			scriptingContext.companyId, false, password, password, true,
-			null, email, 0, null, LocaleUtil.getDefault(), firstName, null,
-			lastName, -1, -1, true, 1, 1, 1977, jobTitle, new long[0],
-			new long[0], new long[0], new long[0], false,
-			scriptingContext.serviceContext);
+			scriptingContext.defaultUserId, scriptingContext.companyId, false,
+			password, password, true, null, emailAddress, 0, null,
+			LocaleUtil.getDefault(), firstName, null, lastName, -1, -1, true, 1,
+			1, 1977, jobTitle, new long[0], new long[0], new long[0],
+			new long[0], false, scriptingContext.serviceContext);
 	}
 
 	void joinOrganizations(
 		GroovyScriptingContext scriptingContext, String... organizationNames) {
 
 		for (String organizationName : organizationNames) {
-			def organization = GroovyOrganization.fetchOrganization(
+			Organization organization = GroovyOrganization.fetchOrganization(
 					scriptingContext, organizationName);
 
 			if (organization != null) {
@@ -86,7 +91,7 @@ class GroovyUser {
 		GroovyScriptingContext liferayScriptingContext, String... siteNames) {
 
 		for (String siteName : siteNames) {
-			def group = GroupLocalServiceUtil.fetchGroup(
+			Group group = GroupLocalServiceUtil.fetchGroup(
 				liferayScriptingContext.companyId, siteName);
 
 			UserLocalServiceUtil.addGroupUser(
@@ -94,7 +99,7 @@ class GroovyUser {
 		}
 	}
 
-	String email;
+	String emailAddress;
 	String firstName;
 	String jobTitle;
 	String lastName;
