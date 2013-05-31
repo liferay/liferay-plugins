@@ -891,6 +891,36 @@
 		}
 
 	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testReadWithFile(System.getenv("JAVA_HOME"));
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testReadWithFile(System.getenv("JAVA_HOME") + "/bin");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			String javaCommand = "java";
+
+			if (OSDetector.isWindows()) {
+				javaCommand = "java.exe";
+			}
+
+			testReadWithFile(System.getenv("JAVA_HOME") + "/bin/" + javaCommand);
+		}
+
+	};
 	%>
 
 </p>
