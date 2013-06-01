@@ -44,6 +44,6 @@ public class UploadSuccessAction extends Action {
 			"portlet.sample_struts_portlet.upload_success");
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UploadAction.class);
+	private static Log _log = LogFactoryUtil.getLog(UploadSuccessAction.class);
 
 }
