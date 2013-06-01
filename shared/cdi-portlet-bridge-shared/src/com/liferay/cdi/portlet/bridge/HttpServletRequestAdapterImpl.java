@@ -296,6 +296,15 @@ public class HttpServletRequestAdapterImpl
 		throw new UnsupportedOperationException();
 	}
 
+	public HttpSession getSession() {
+		if (_portletSession == null) {
+			_portletSession = new CDISessionImpl(
+				_portletRequest.getPortletSession());
+		}
+
+		return _portletSession;
+	}
+
 	public HttpSession getSession(boolean create) {
 		if (_portletSession == null) {
 			PortletSession portletSession = _portletRequest.getPortletSession(
@@ -304,15 +313,6 @@ public class HttpServletRequestAdapterImpl
 			if (portletSession != null) {
 				_portletSession = new CDISessionImpl(portletSession);
 			}
-		}
-
-		return _portletSession;
-	}
-
-	public HttpSession getSession() {
-		if (_portletSession == null) {
-			_portletSession = new CDISessionImpl(
-				_portletRequest.getPortletSession());
 		}
 
 		return _portletSession;
@@ -383,13 +383,13 @@ public class HttpServletRequestAdapterImpl
 		clientDataRequest.setCharacterEncoding(encoding);
 	}
 
-	public AsyncContext startAsync(
-		ServletRequest servletRequest, ServletResponse servletResponse) {
-
+	public AsyncContext startAsync() {
 		throw new UnsupportedOperationException();
 	}
 
-	public AsyncContext startAsync() {
+	public AsyncContext startAsync(
+		ServletRequest servletRequest, ServletResponse servletResponse) {
+
 		throw new UnsupportedOperationException();
 	}
 

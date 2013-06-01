@@ -58,6 +58,6 @@ public class UploadSuccessAction extends PortletAction {
 			"portlet.sample_struts_liferay_portlet.upload_success");
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UploadAction.class);
+	private static Log _log = LogFactoryUtil.getLog(UploadSuccessAction.class);
 
 }
