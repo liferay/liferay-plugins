@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 
 <project name="servlet-jsp-compiler-shared" basedir="." default="compile">
-	<property name="module.dependencies" value="phidias.jar" />
 	<property name="plugin.version" value="1" />
 
 	<import file="../../build-common-osgi-plugin.xml" />
@@ -9,6 +8,8 @@
 	<property name="original.lib.name" value="org.apache.jasper.glassfish" />
 	<property name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/orbit" />
 	<property name="original.lib.version" value="2.1.0.v201110031002" />
+
+	<property name="osgi.dependencies" value="phidias.jar" />
 
 	<property name="schemas.dir" value="src/javax/servlet/jsp/resources" />
 	<property name="schemas.url" value="http://svn.apache.org/repos/asf/tomcat/trunk/java/javax/servlet/jsp/resources" />

@@ -76,7 +76,7 @@
 
 	<target name="deploy-dependencies">
 		<copy failonerror="false" todir="${auto.deploy.dir}">
-			<fileset dir="lib" includes="${module.dependencies}" />
+			<fileset dir="lib" includes="${osgi.dependencies}" />
 		</copy>
 	</target>
 
