@@ -74,12 +74,12 @@ public class ResourcesImporterServletContextListener
 	@Override
 	protected void doPortalDestroy() throws Exception {
 		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
+			DestinationNames.HOT_DEPLOY, _messageListener);
 	}
 
 	@Override
 	protected void doPortalInit() {
-		_hotDeployMessageListener = new HotDeployMessageListener() {
+		_messageListener = new HotDeployMessageListener() {
 
 			@Override
 			protected void onDeploy(Message message) throws Exception {
@@ -89,7 +89,7 @@ public class ResourcesImporterServletContextListener
 		};
 
 		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
+			DestinationNames.HOT_DEPLOY, _messageListener);
 	}
 
 	protected FileSystemImporter getFileSystemImporter() {
@@ -292,6 +292,6 @@ public class ResourcesImporterServletContextListener
 	private static Log _log = LogFactoryUtil.getLog(
 		ResourcesImporterServletContextListener.class);
 
-	private MessageListener _hotDeployMessageListener;
+	private MessageListener _messageListener;
 
 }

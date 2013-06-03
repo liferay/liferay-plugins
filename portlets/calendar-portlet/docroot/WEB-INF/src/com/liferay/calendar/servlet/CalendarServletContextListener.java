@@ -51,12 +51,12 @@ public class CalendarServletContextListener
 	@Override
 	protected void doPortalDestroy() throws Exception {
 		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
+			DestinationNames.HOT_DEPLOY, _messageListener);
 	}
 
 	@Override
 	protected void doPortalInit() throws Exception {
-		_hotDeployMessageListener = new HotDeployMessageListener(
+		_messageListener = new HotDeployMessageListener(
 			ClpSerializer.getServletContextName()) {
 
 			@Override
@@ -91,12 +91,12 @@ public class CalendarServletContextListener
 		};
 
 		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
+			DestinationNames.HOT_DEPLOY, _messageListener);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		CalendarServletContextListener.class);
 
-	private MessageListener _hotDeployMessageListener;
+	private MessageListener _messageListener;
 
 }

@@ -63,12 +63,12 @@ public class ScriptingExecutorServletContextListener
 	@Override
 	protected void doPortalDestroy() throws Exception {
 		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
+			DestinationNames.HOT_DEPLOY, _messageListener);
 	}
 
 	@Override
 	protected void doPortalInit() {
-		_hotDeployMessageListener = new HotDeployMessageListener() {
+		_messageListener = new HotDeployMessageListener() {
 
 			@Override
 			protected void onDeploy(Message message) throws Exception {
@@ -138,7 +138,7 @@ public class ScriptingExecutorServletContextListener
 		};
 
 		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _hotDeployMessageListener);
+			DestinationNames.HOT_DEPLOY, _messageListener);
 	}
 
 	protected void executeScripts(
@@ -208,6 +208,6 @@ public class ScriptingExecutorServletContextListener
 	private static Log _log = LogFactoryUtil.getLog(
 		ScriptingExecutorServletContextListener.class);
 
-	private MessageListener _hotDeployMessageListener;
+	private MessageListener _messageListener;
 
 }
