@@ -129,11 +129,11 @@ public class HttpServiceActivator
 	public void stop(BundleContext bundleContext) throws Exception {
 		_servletContextTracker.close();
 
-		_bundleContext = null;
-
 		_servletContextTracker = null;
 
 		EventUtil.close();
+
+		_bundleContext = null;
 	}
 
 	protected void checkStartableBundles() {
