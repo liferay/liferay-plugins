@@ -127,9 +127,9 @@ public class HttpServiceActivator
 	}
 
 	public void stop(BundleContext bundleContext) throws Exception {
-		_bundleContext = null;
-
 		_servletContextTracker.close();
+
+		_bundleContext = null;
 
 		_servletContextTracker = null;
 
