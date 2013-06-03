@@ -60,6 +60,10 @@
 	border-color: #FC0;
 }
 
+.scheduler-event-past {
+	opacity: 0.4;
+}
+
 .calendar-portlet-event-loading {
 	@include opacity(0.5);
 }
