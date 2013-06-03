@@ -15,6 +15,8 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
@@ -198,6 +200,7 @@ public abstract class BaseImporter implements Importer {
 		return null;
 	}
 
+	protected Log _log = LogFactoryUtil.getLog(getClass());
 	protected long companyId;
 	protected boolean existing;
 	protected long groupId;
