@@ -176,6 +176,20 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 	}
 
 	@Override
+	public void moveCalendarBookingToTrash(long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarBookingService.moveCalendarBookingToTrash(calendarBookingId);
+	}
+
+	@Override
+	public void restoreCalendarBookingFromTrash(long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarBookingService.restoreCalendarBookingFromTrash(calendarBookingId);
+	}
+
+	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,

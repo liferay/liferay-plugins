@@ -380,6 +380,20 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		long parentCalendarBookingId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void moveCalendarBookingToTrash(long userId,
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void restoreCalendarBookingFromTrash(long userId,
+		long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
