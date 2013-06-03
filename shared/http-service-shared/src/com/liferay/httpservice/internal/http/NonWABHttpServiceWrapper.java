@@ -81,6 +81,9 @@ public class NonWABHttpServiceWrapper extends HttpServiceWrapper {
 			HttpContext httpContext)
 		throws NamespaceException, ServletException {
 
+		// This method is not called by Liferay directly, but is made available
+		// for other OSGi modules that depend on the HTTP service
+
 		super.registerServlet(urlPattern, servlet, initParameters, httpContext);
 
 		_registrations.add(urlPattern);

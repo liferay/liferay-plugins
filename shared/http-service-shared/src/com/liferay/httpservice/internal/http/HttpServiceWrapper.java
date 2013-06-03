@@ -92,9 +92,12 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 			HttpContext httpContext)
 		throws NamespaceException, ServletException {
 
+		// This method is not called by Liferay directly, but is made available
+		// for other OSGi modules that depend on the HTTP service
+
 		bundleServletContext.registerServlet(
 			urlPattern, Arrays.asList(urlPattern), servlet,
-			convertDictionaryToMap(initParameters), httpContext);
+			toMap(initParameters), httpContext);
 	}
 
 	public void unregister(String servletName) {
@@ -113,11 +116,10 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 		bundleServletContext.unregisterServlet(servletName);
 	}
 
-	protected <K, V> Map<K, V> convertDictionaryToMap(
-		Dictionary<K, V> dictionary) {
+	protected <K, V> Map<K, V> toMap(Dictionary<K, V> dictionary) {
+		Map<K, V> map = new HashMap<K, V>();
 
 		Enumeration<K> keys = dictionary.keys();
-		Map<K, V> map = new HashMap<K, V>();
 
 		while (keys.hasMoreElements()) {
 			K key = keys.nextElement();
