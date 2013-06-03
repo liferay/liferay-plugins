@@ -29,10 +29,12 @@ public class AxisConfigurationFactory implements EngineConfigurationFactory {
 			EngineConfigurationFactoryDefault.newFactory(null);
 	}
 
+	@Override
 	public EngineConfiguration getClientEngineConfig() {
 		return _engineConfigurationFactory.getClientEngineConfig();
 	}
 
+	@Override
 	public EngineConfiguration getServerEngineConfig() {
 		return _engineConfigurationFactory.getServerEngineConfig();
 	}

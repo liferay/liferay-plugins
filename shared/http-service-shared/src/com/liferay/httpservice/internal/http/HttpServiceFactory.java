@@ -34,6 +34,7 @@ public class HttpServiceFactory implements ServiceFactory<HttpService> {
 		_httpSupport = httpSupport;
 	}
 
+	@Override
 	public HttpService getService(
 		Bundle bundle, ServiceRegistration<HttpService> serviceRegistration) {
 
@@ -60,6 +61,7 @@ public class HttpServiceFactory implements ServiceFactory<HttpService> {
 		}
 	}
 
+	@Override
 	public void ungetService(
 		Bundle bundle, ServiceRegistration<HttpService> serviceRegistration,
 		HttpService httpService) {

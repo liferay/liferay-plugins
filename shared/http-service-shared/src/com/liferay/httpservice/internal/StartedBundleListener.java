@@ -33,6 +33,7 @@ public class StartedBundleListener implements BundleListener {
 		_webBundleDeployer = webBundleDeployer;
 	}
 
+	@Override
 	public void bundleChanged(BundleEvent bundleEvent) {
 		int type = bundleEvent.getType();
 

@@ -37,10 +37,12 @@ public class DefaultHttpContext implements HttpContext {
 		_bundle = bundle;
 	}
 
+	@Override
 	public String getMimeType(String name) {
 		return MimeTypesUtil.getContentType(name);
 	}
 
+	@Override
 	public URL getResource(String path) {
 		if (!path.startsWith(StringPool.SLASH)) {
 			path = StringPool.SLASH.concat(path);
@@ -82,6 +84,7 @@ public class DefaultHttpContext implements HttpContext {
 		return null;
 	}
 
+	@Override
 	public boolean handleSecurity(
 		HttpServletRequest request, HttpServletResponse response) {
 

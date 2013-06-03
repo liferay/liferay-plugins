@@ -42,6 +42,7 @@ public class BundleFilterChain implements FilterChain {
 		_filters.add(filter);
 	}
 
+	@Override
 	public void doFilter(
 			ServletRequest servletRequest, ServletResponse servletResponse)
 		throws IOException, ServletException {

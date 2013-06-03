@@ -41,10 +41,12 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 		this.bundleServletContext = bundleServletContext;
 	}
 
+	@Override
 	public HttpContext createDefaultHttpContext() {
 		return bundleServletContext.getHttpContext();
 	}
 
+	@Override
 	public void registerFilter(
 			String filterName, List<String> urlPatterns, Filter filter,
 			Map<String, String> initParameters, HttpContext httpContext)
@@ -58,6 +60,7 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 			filterName, urlPatterns, filter, initParameters, httpContext);
 	}
 
+	@Override
 	public void registerListener(
 		Object listener, Map<String, String> initParameters,
 		HttpContext httpContext) {
@@ -66,6 +69,7 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 			listener, initParameters, httpContext);
 	}
 
+	@Override
 	public void registerResources(
 			String alias, String name, HttpContext httpContext)
 		throws NamespaceException {
@@ -73,6 +77,7 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 		bundleServletContext.registerResources(alias, name, httpContext);
 	}
 
+	@Override
 	public void registerServlet(
 			String servletName, List<String> urlPatterns, Servlet servlet,
 			Map<String, String> initParameters, HttpContext httpContext)
@@ -86,6 +91,7 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 			servletName, urlPatterns, servlet, initParameters, httpContext);
 	}
 
+	@Override
 	public void registerServlet(
 			String urlPattern, Servlet servlet,
 			@SuppressWarnings("rawtypes") Dictionary initParameters,
@@ -100,18 +106,22 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 			toMap(initParameters), httpContext);
 	}
 
+	@Override
 	public void unregister(String servletName) {
 		unregisterServlet(servletName);
 	}
 
+	@Override
 	public void unregisterFilter(String filterName) {
 		bundleServletContext.unregisterFilter(filterName);
 	}
 
+	@Override
 	public void unregisterListener(Object listener) {
 		bundleServletContext.unregisterListener(listener);
 	}
 
+	@Override
 	public void unregisterServlet(String servletName) {
 		bundleServletContext.unregisterServlet(servletName);
 	}

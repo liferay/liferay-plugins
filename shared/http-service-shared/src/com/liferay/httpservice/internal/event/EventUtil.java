@@ -81,6 +81,7 @@ public class EventUtil
 		_webExtenderBundle = null;
 	}
 
+	@Override
 	public EventAdmin addingService(
 		ServiceReference<EventAdmin> serviceReference) {
 
@@ -89,10 +90,12 @@ public class EventUtil
 		return _eventAdmin;
 	}
 
+	@Override
 	public void modifiedService(
 		ServiceReference<EventAdmin> serviceReference, EventAdmin eventAdmin) {
 	}
 
+	@Override
 	public void removedService(
 		ServiceReference<EventAdmin> serviceReference, EventAdmin eventAdmin) {
 

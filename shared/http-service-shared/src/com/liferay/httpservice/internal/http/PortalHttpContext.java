@@ -37,6 +37,7 @@ public class PortalHttpContext implements HttpContext {
 		_servletContext = servletContext;
 	}
 
+	@Override
 	public String getMimeType(String name) {
 		String mimeType = _servletContext.getMimeType(name);
 
@@ -47,6 +48,7 @@ public class PortalHttpContext implements HttpContext {
 		return mimeType;
 	}
 
+	@Override
 	public URL getResource(String path) {
 		try {
 			return _servletContext.getResource(path);
@@ -58,6 +60,7 @@ public class PortalHttpContext implements HttpContext {
 		return null;
 	}
 
+	@Override
 	public boolean handleSecurity(
 		HttpServletRequest request, HttpServletResponse response) {
 

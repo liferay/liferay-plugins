@@ -42,6 +42,7 @@ public class HttpServiceActivator
 	implements BundleActivator,
 			   ServiceTrackerCustomizer<ServletContext, ServletContext> {
 
+	@Override
 	public ServletContext addingService(
 		ServiceReference<ServletContext> serviceReference) {
 
@@ -84,11 +85,13 @@ public class HttpServiceActivator
 		return _bundleContext;
 	}
 
+	@Override
 	public void modifiedService(
 		ServiceReference<ServletContext> serviceReference,
 		ServletContext servletContext) {
 	}
 
+	@Override
 	public void removedService(
 		ServiceReference<ServletContext> serviceReference,
 		ServletContext servletContext) {
@@ -110,6 +113,7 @@ public class HttpServiceActivator
 		_stoppedBundleListener = null;
 	}
 
+	@Override
 	public void start(BundleContext bundleContext) throws Exception {
 		_bundleContext = bundleContext;
 
@@ -126,6 +130,7 @@ public class HttpServiceActivator
 		_servletContextTracker.open();
 	}
 
+	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
 		_servletContextTracker.close();
 

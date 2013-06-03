@@ -39,6 +39,7 @@ public class BundleFilterConfig implements FilterConfig {
 		_httpContext = httpContext;
 	}
 
+	@Override
 	public String getFilterName() {
 		return _filterName;
 	}
@@ -47,14 +48,17 @@ public class BundleFilterConfig implements FilterConfig {
 		return _httpContext;
 	}
 
+	@Override
 	public String getInitParameter(String parameter) {
 		return _initParameters.get(parameter);
 	}
 
+	@Override
 	public Enumeration<String> getInitParameterNames() {
 		return Collections.enumeration(_initParameters.keySet());
 	}
 
+	@Override
 	public ServletContext getServletContext() {
 		return _servletContext;
 	}

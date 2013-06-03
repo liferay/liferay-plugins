@@ -33,6 +33,7 @@ public class StoppedBundleListener implements SynchronousBundleListener {
 		_webBundleDeployer = webBundleDeployer;
 	}
 
+	@Override
 	public void bundleChanged(BundleEvent bundleEvent) {
 		int type = bundleEvent.getType();
 

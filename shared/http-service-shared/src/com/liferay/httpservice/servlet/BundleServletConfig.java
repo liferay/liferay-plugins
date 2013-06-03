@@ -49,10 +49,12 @@ public class BundleServletConfig implements ServletConfig {
 		return _httpContext;
 	}
 
+	@Override
 	public String getInitParameter(String name) {
 		return _initParameters.get(name);
 	}
 
+	@Override
 	public Enumeration<String> getInitParameterNames() {
 		return Collections.enumeration(_initParameters.keySet());
 	}
@@ -61,10 +63,12 @@ public class BundleServletConfig implements ServletConfig {
 		return _initParameters;
 	}
 
+	@Override
 	public ServletContext getServletContext() {
 		return _servletContext;
 	}
 
+	@Override
 	public String getServletName() {
 		return _servletName;
 	}

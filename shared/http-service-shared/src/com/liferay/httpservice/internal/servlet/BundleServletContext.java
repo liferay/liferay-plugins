@@ -1147,6 +1147,7 @@ public class BundleServletContext extends LiferayServletContext {
 	private class FilterServiceRankingComparator
 		implements Comparator<FilterServiceRanking> {
 
+		@Override
 		public int compare(
 			FilterServiceRanking filterServiceRanking1,
 			FilterServiceRanking filterServiceRanking2) {
