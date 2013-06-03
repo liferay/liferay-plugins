@@ -227,7 +227,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addLayout(long parentLayoutId, JSONObject layoutJSONObject)
+	protected void addLayout(
+		long parentLayoutId, JSONObject layoutJSONObject, boolean privateLayout)
 		throws Exception {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
@@ -303,7 +304,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		JSONArray layoutsJSONArray = layoutJSONObject.getJSONArray("layouts");
 
-		addLayouts(layout.getLayoutId(), layoutsJSONArray);
+		addLayouts(layout.getLayoutId(), layoutsJSONArray, privateLayout);
 	}
 
 	protected void addLayoutColumn(
@@ -409,6 +410,13 @@ public class FileSystemImporter extends BaseImporter {
 	protected void addLayouts(long parentLayoutId, JSONArray layoutsJSONArray)
 		throws Exception {
 
+		addLayouts(parentLayoutId, layoutsJSONArray, false);
+	}
+	
+	protected void addLayouts(
+		long parentLayoutId, JSONArray layoutsJSONArray, boolean privateLayout)
+		throws Exception {
+	
 		if (layoutsJSONArray == null) {
 			return;
 		}
@@ -416,7 +424,7 @@ public class FileSystemImporter extends BaseImporter {
 		for (int i = 0; i < layoutsJSONArray.length(); i++) {
 			JSONObject layoutJSONObject = layoutsJSONArray.getJSONObject(i);
 
-			addLayout(parentLayoutId, layoutJSONObject);
+			addLayout(parentLayoutId, layoutJSONObject, privateLayout);
 		}
 	}
 
@@ -869,7 +877,44 @@ public class FileSystemImporter extends BaseImporter {
 
 		JSONArray layoutsJSONArray = jsonObject.getJSONArray("layouts");
 
-		addLayouts(LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, layoutsJSONArray);
+		if (layoutsJSONArray != null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("WARNING : Your sitemap.json file in " +
+					servletContextName + "should " + "be upgraded to use : " +
+					"{sitePages:{publicPages:[],privatePages:[]}");
+			}
+
+			addLayouts(
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, layoutsJSONArray);
+		}
+		else {
+			JSONObject sitePages = jsonObject.getJSONObject("sitePages");
+			JSONArray publicPages = sitePages.getJSONArray("publicPages");
+
+			if (publicPages != null) {
+				if (_log.isTraceEnabled()) {
+					_log.trace("Importing :" + publicPages.length() +
+						" Public Pages for :" + groupId);
+				}
+
+				addLayouts(
+					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, publicPages,
+					false);
+			}
+
+			JSONArray privatePages = sitePages.getJSONArray("privatePages");
+
+			if (privatePages != null) {
+				if (_log.isTraceEnabled()) {
+					_log.trace("Importing :" + privatePages.length() +
+						" Private Pages for :" + groupId);
+				}
+
+				addLayouts(
+					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, privatePages,
+					true);
+			}
+		}
 	}
 
 	protected void updateLayoutSetThemeId(JSONObject sitemapJSONObject)

@@ -15,6 +15,8 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
@@ -103,6 +105,24 @@ public abstract class BaseImporter implements Importer {
 			else {
 				group = GroupLocalServiceUtil.fetchGroup(
 					companyId, targetValue);
+
+				if (group != null && deleteExistingGroupBeforeImport) {
+					long existingGroupId = group.getGroupId();
+
+					if (_log.isTraceEnabled()) {
+						_log.trace("deleteExistingGroupBeforeImport=" +
+							deleteExistingGroupBeforeImport);
+						_log.trace("Deleting group :" + existingGroupId);
+					}
+
+					GroupLocalServiceUtil.deleteGroup(existingGroupId);
+
+					if (_log.isTraceEnabled()) {
+						_log.trace("Deleted group :" + existingGroupId);
+					}
+
+					group = null;
+				}
 
 				if (group != null) {
 					existing = true;
@@ -200,7 +220,21 @@ public abstract class BaseImporter implements Importer {
 		return null;
 	}
 
+	protected boolean isDeleteExistingGroupBeforeImport() {
+
+		return deleteExistingGroupBeforeImport;
+	}
+
+	protected void setDeleteExistingGroupBeforeImport(
+		boolean deleteExistingGroupBeforeImport) {
+
+		this.deleteExistingGroupBeforeImport = deleteExistingGroupBeforeImport;
+	}
+
+	protected static Log _log = LogFactoryUtil.getLog(BaseImporter.class);
+
 	protected long companyId;
+	protected boolean deleteExistingGroupBeforeImport = false;
 	protected boolean existing;
 	protected long groupId;
 	protected boolean privateLayout;
