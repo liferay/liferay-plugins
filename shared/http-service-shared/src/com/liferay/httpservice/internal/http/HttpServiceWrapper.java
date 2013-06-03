@@ -16,7 +16,10 @@ package com.liferay.httpservice.internal.http;
 
 import com.liferay.httpservice.internal.servlet.BundleServletContext;
 
+import java.util.Arrays;
 import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -83,15 +86,15 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 			servletName, urlPatterns, servlet, initParameters, httpContext);
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
 	public void registerServlet(
-		String urlPattern, Servlet servlet,
-		@SuppressWarnings("rawtypes") Dictionary initParameters,
-		HttpContext httpContext) {
+			String urlPattern, Servlet servlet,
+			@SuppressWarnings("rawtypes") Dictionary initParameters,
+			HttpContext httpContext)
+		throws NamespaceException, ServletException {
 
-		throw new UnsupportedOperationException();
+		bundleServletContext.registerServlet(
+			urlPattern, Arrays.asList(urlPattern), servlet,
+			convertDictionaryToMap(initParameters), httpContext);
 	}
 
 	public void unregister(String servletName) {
@@ -108,6 +111,21 @@ public class HttpServiceWrapper implements ExtendedHttpService, HttpService {
 
 	public void unregisterServlet(String servletName) {
 		bundleServletContext.unregisterServlet(servletName);
+	}
+
+	protected <K, V> Map<K, V> convertDictionaryToMap(
+		Dictionary<K, V> dictionary) {
+
+		Enumeration<K> keys = dictionary.keys();
+		Map<K, V> map = new HashMap<K, V>();
+
+		while (keys.hasMoreElements()) {
+			K key = keys.nextElement();
+
+			map.put(key, dictionary.get(key));
+		}
+
+		return map;
 	}
 
 	protected BundleServletContext bundleServletContext;
