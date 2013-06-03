@@ -37,6 +37,14 @@
 						<constructor-arg value="com.liferay.portal.security.ac.AccessControlAdvisorImpl" />
 					</bean>
 				</entry>
+				<entry key="nextMethodInterceptor" value-ref="portalResiliencyAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="portalResiliencyAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.resiliency.service.PortalResiliencyAdvice" />
+		<constructor-arg>
+			<map>
 				<entry key="nextMethodInterceptor" value-ref="serviceMonitorAdvice" />
 			</map>
 		</constructor-arg>
