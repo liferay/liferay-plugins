@@ -16,6 +16,12 @@
 
 <%@ include file="/init.jsp" %>
 
+<h3>Portal Message</h3>
+
+<p>
+	<a href="<portlet:actionURL name="addPortalMessage" />">Add Portal Message</a>
+</p>
+
 <h3>Portlet Request</h3>
 
 <p>
