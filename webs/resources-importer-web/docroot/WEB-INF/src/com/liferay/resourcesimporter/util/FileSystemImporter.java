@@ -17,6 +17,8 @@ package com.liferay.resourcesimporter.util;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -219,7 +221,8 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void addLayout(
-		long parentLayoutId, JSONObject layoutJSONObject, boolean privateLayout)
+			long parentLayoutId, JSONObject layoutJSONObject,
+			boolean privateLayout)
 		throws Exception {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
@@ -401,11 +404,12 @@ public class FileSystemImporter extends BaseImporter {
 
 		addLayouts(parentLayoutId, layoutsJSONArray, false);
 	}
-	
+
 	protected void addLayouts(
-		long parentLayoutId, JSONArray layoutsJSONArray, boolean privateLayout)
+			long parentLayoutId, JSONArray layoutsJSONArray,
+			boolean privateLayout)
 		throws Exception {
-	
+
 		if (layoutsJSONArray == null) {
 			return;
 		}
@@ -825,9 +829,10 @@ public class FileSystemImporter extends BaseImporter {
 
 		if (layoutsJSONArray != null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("WARNING : Your sitemap.json file in " +
-					servletContextName + "should " + "be upgraded to use : " +
-					"{sitePages:{publicPages:[],privatePages:[]}");
+				_log.warn(
+					"WARNING : Your sitemap.json file in " +
+						servletContextName + " should be upgraded to use: " +
+						"{sitePages:{publicPages:[],privatePages:[]}");
 			}
 
 			addLayouts(
@@ -839,8 +844,9 @@ public class FileSystemImporter extends BaseImporter {
 
 			if (publicPages != null) {
 				if (_log.isTraceEnabled()) {
-					_log.trace("Importing :" + publicPages.length() +
-						" Public Pages for :" + groupId);
+					_log.trace(
+						"Importing :" + publicPages.length() +
+							" public pages for :" + groupId);
 				}
 
 				addLayouts(
@@ -852,8 +858,9 @@ public class FileSystemImporter extends BaseImporter {
 
 			if (privatePages != null) {
 				if (_log.isTraceEnabled()) {
-					_log.trace("Importing :" + privatePages.length() +
-						" Private Pages for :" + groupId);
+					_log.trace(
+						"Importing :" + privatePages.length() +
+							" private pages for :" + groupId);
 				}
 
 				addLayouts(
@@ -914,6 +921,8 @@ public class FileSystemImporter extends BaseImporter {
 
 	private static final String _JOURNAL_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
+
+	private static Log _log = LogFactoryUtil.getLog(FileSystemImporter.class);
 
 	private Map<String, JSONObject> _assetJSONObjectMap =
 		new HashMap<String, JSONObject>();
