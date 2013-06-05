@@ -14,8 +14,6 @@
 
 package com.liferay.so.activities.hook.social;
 
-import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Time;
@@ -74,41 +72,6 @@ public abstract class SOSocialActivityInterpreter
 			serviceContext.getLiferayPortletResponse(), null);
 	}
 
-	protected String getRelativeTimeDescription(
-		long milliseconds, Locale locale, TimeZone timeZone) {
-
-		Format timeFormat = FastDateFormatFactoryUtil.getTime(locale, timeZone);
-
-		int daysBetween = DateUtil.getDaysBetween(
-			new Date(milliseconds), new Date(), timeZone);
-
-		long millisAgo = System.currentTimeMillis() - milliseconds;
-
-		if (millisAgo <= Time.MINUTE) {
-			return LanguageUtil.get(locale, "about-a-minute-ago");
-		}
-		else if (millisAgo < Time.HOUR) {
-			return LanguageUtil.format(
-				locale, "x-minutes-ago", (millisAgo / Time.MINUTE));
-		}
-		else if ((millisAgo / Time.HOUR) == 1) {
-			return LanguageUtil.get(locale, "about-an-hour-ago");
-		}
-		else if ((millisAgo < Time.DAY) || (daysBetween == 0)) {
-			return LanguageUtil.format(
-				locale, "x-hours-ago", (millisAgo / Time.HOUR));
-		}
-		else if (daysBetween == 1) {
-			return LanguageUtil.format(
-				locale, "yesterday-at-x", timeFormat.format(milliseconds));
-		}
-
-		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"EEEE, MMMMM dd, yyyy", locale, timeZone);
-
-		return dateFormat.format(milliseconds);
-	}
-
 	@Override
 	protected String getTitle(
 			SocialActivity activity, ServiceContext serviceContext)
@@ -128,7 +91,7 @@ public abstract class SOSocialActivityInterpreter
 
 		sb.append("\">");
 
-		String relativeTimeDescription = getRelativeTimeDescription(
+		String relativeTimeDescription = Time.getRelativeTimeDescription(
 			activity.getCreateDate(), serviceContext.getLocale(),
 			serviceContext.getTimeZone());
 
