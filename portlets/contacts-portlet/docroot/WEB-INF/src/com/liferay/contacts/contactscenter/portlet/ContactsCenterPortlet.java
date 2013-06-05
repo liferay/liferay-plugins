@@ -226,7 +226,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("success", true);
+		jsonObject.put("success", Boolean.TRUE);
 
 		JSONObject userJSONObject = getUserJSONObject(
 			resourceResponse, themeDisplay, userId);
@@ -264,7 +264,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			try {
 				JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-				userJSONObject.put("success", true);
+				userJSONObject.put("success", Boolean.TRUE);
 				userJSONObject.put(
 					"user",
 					getUserJSONObject(resourceResponse, themeDisplay, userId));
@@ -451,7 +451,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			jsonObject.put("contactList", contactsJSONObject);
 
-			jsonObject.put("success", true);
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
 			if (e instanceof ContactFullNameException) {
@@ -468,7 +468,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					"an-error-occurred-while-processing-the-requested-resource";
 			}
 
-			jsonObject.put("success", false);
+			jsonObject.put("success", Boolean.FALSE);
 		}
 
 		jsonObject.put("message", translate(actionRequest, message));
@@ -514,7 +514,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			jsonObject.put("redirect", redirect);
 
-			jsonObject.put("success", true);
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
 			ThemeDisplay themeDisplay =
@@ -579,7 +579,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			jsonObject.put("message", translate(actionRequest, message));
 
-			jsonObject.put("success", false);
+			jsonObject.put("success", Boolean.FALSE);
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -661,7 +661,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		for (long userId : userIds) {
 			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-			userJSONObject.put("success", true);
+			userJSONObject.put("success", Boolean.TRUE);
 			userJSONObject.put(
 				"user",
 				getUserJSONObject(actionResponse, themeDisplay, userId));
