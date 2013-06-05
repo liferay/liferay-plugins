@@ -4,10 +4,15 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<icon>/icon.png</icon>
-		<poller-processor-class>com.liferay.notifications.poller.NotificationsPollerProcessor</poller-processor-class>
+		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
+		<css-class-wrapper>notifications-portlet</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<poller-processor-class>com.liferay.notifications.dockbarnotifications.poller.DockbarNotificationsPollerProcessor</poller-processor-class>
 		<use-default-template>false</use-default-template>
-		<header-portlet-css>/css/main.css</header-portlet-css>
+		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
 		<css-class-wrapper>notifications-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>

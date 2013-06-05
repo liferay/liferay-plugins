@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.notifications.portlet;
+package com.liferay.notifications.notifications.portlet;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -34,8 +34,9 @@ import javax.portlet.PortletException;
  */
 public class NotificationsPortlet extends MVCPortlet {
 
-	public JSONObject markAsRead(
-			ActionRequest actionRequest, ActionResponse actionResponse) {
+	public void markAsRead(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
 
 		long userNotificationEventId = ParamUtil.getLong(
 			actionRequest, "userNotificationEventId");
@@ -52,13 +53,13 @@ public class NotificationsPortlet extends MVCPortlet {
 			UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
 				userNotificationEvent);
 
-			jsonObject.put("success", true);
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
-			jsonObject.put("success", false);
+			jsonObject.put("success", Boolean.FALSE);
 		}
 
-		return jsonObject;
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	public void processAction(
@@ -77,16 +78,10 @@ public class NotificationsPortlet extends MVCPortlet {
 				actionRequest, ActionRequest.ACTION_NAME);
 
 			if (actionName.equals("markAsRead")) {
-				JSONObject jsonObject = markAsRead(
-					actionRequest, actionResponse);
-
-				writeJSON(actionRequest, actionResponse, jsonObject);
+				markAsRead(actionRequest, actionResponse);
 			}
 			else if (actionName.equals("setDelivered")) {
-				JSONObject jsonObject = setDelivered(
-					actionRequest, actionResponse);
-
-				writeJSON(actionRequest, actionResponse, jsonObject);
+				setDelivered(actionRequest, actionResponse);
 			}
 			else {
 				super.processAction(actionRequest, actionResponse);
@@ -97,8 +92,9 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 	}
 
-	public JSONObject setDelivered(
-		ActionRequest actionRequest, ActionResponse actionResponse) {
+	public void setDelivered(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -108,7 +104,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		try {
 			List<UserNotificationEvent> userNotificationEvents =
 				UserNotificationEventLocalServiceUtil.
-					getUserNotificationEventsByDelivered(
+					getDeliveredUserNotificationEvents(
 						themeDisplay.getUserId(), false);
 
 			for (UserNotificationEvent userNotificationEvent :
@@ -120,13 +116,13 @@ public class NotificationsPortlet extends MVCPortlet {
 					updateUserNotificationEvent(userNotificationEvent);
 			}
 
-			jsonObject.put("success", true);
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
-			jsonObject.put("success", false);
+			jsonObject.put("success", Boolean.FALSE);
 		}
 
-		return jsonObject;
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 }

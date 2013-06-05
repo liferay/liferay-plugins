@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.notifications.poller;
+package com.liferay.notifications.dockbarnotifications.poller;
 
 import com.liferay.portal.kernel.poller.BasePollerProcessor;
 import com.liferay.portal.kernel.poller.PollerRequest;
@@ -22,27 +22,27 @@ import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 /**
  * @author Jonathan Lee
  */
-public class NotificationsPollerProcessor extends BasePollerProcessor {
+public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 
 	@Override
 	protected void doReceive(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		getNewUserNotificationsCount(pollerRequest, pollerResponse);
+		setNewUserNotificationsCount(pollerRequest, pollerResponse);
 	}
 
 	@Override
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
 	}
 
-	protected void getNewUserNotificationsCount(
+	protected void setNewUserNotificationsCount(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
 		int count =
 			UserNotificationEventLocalServiceUtil.
-				getUserNotificationEventsByDeliveredCount(
+				getDeliveredUserNotificationEventsCount(
 					pollerRequest.getUserId(), false);
 
 		pollerResponse.setParameter("count", String.valueOf(count));

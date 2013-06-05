@@ -4,10 +4,10 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Notifications</display-name>
-		<portlet-class>com.liferay.notifications.portlet.NotificationsPortlet</portlet-class>
+		<portlet-class>com.liferay.notifications.notifications.portlet.NotificationsPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/view.jsp</value>
+			<value>/notifications/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -18,6 +18,37 @@
 			<title>Notifications</title>
 			<short-title>Notifications</short-title>
 			<keywords>Notifications</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<display-name>Dockbar Notifications</display-name>
+		<portlet-class>com.liferay.notifications.notifications.portlet.NotificationsPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/dockbar_notifications/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Dockbar Notifications</title>
+			<short-title>Dockbar Notifications</short-title>
+			<keywords>Dockbar Notifications</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

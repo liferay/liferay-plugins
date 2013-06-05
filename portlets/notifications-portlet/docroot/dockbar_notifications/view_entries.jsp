@@ -17,17 +17,17 @@
 <%@ include file="/init.jsp" %>
 
 <%
-List<UserNotificationEvent> notificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), 0, 8);
+List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), 0, 8);
 %>
 
-<c:if test="<%= notificationEvents.isEmpty() %>">
+<c:if test="<%= userNotificationEvents.isEmpty() %>">
 	<li class="user-notification">
 		<a href="javascript:;"><liferay-ui:message key="you-do-not-have-any-notifications" /></a>
 	</li>
 </c:if>
 
 <%
-for (UserNotificationEvent userNotificationEvent : notificationEvents) {
+for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 	JSONObject userNotificationEventJSONObject = JSONFactoryUtil.createJSONObject(userNotificationEvent.getPayload());
 
 	long userId = userNotificationEventJSONObject.getLong("userId");
@@ -72,7 +72,9 @@ for (UserNotificationEvent userNotificationEvent : notificationEvents) {
 
 				<div class="timestamp">
 					<span class="portlet-icon">
-						<liferay-portlet:icon-portlet portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), userNotificationEvent.getType()) %>" />
+						<liferay-portlet:icon-portlet
+							portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), userNotificationEvent.getType()) %>"
+						/>
 					</span>
 
 					<%= simpleDateFormat.format(userNotificationEvent.getTimestamp()) %>
