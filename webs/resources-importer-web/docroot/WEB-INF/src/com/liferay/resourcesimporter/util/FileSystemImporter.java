@@ -17,8 +17,6 @@ package com.liferay.resourcesimporter.util;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -230,8 +228,8 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void addLayout(
-			long parentLayoutId, JSONObject layoutJSONObject,
-			boolean privateLayout)
+			boolean privateLayout, long parentLayoutId,
+			JSONObject layoutJSONObject)
 		throws Exception {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
@@ -307,7 +305,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		JSONArray layoutsJSONArray = layoutJSONObject.getJSONArray("layouts");
 
-		addLayouts(layout.getLayoutId(), layoutsJSONArray, privateLayout);
+		addLayouts(privateLayout, layout.getLayoutId(), layoutsJSONArray);
 	}
 
 	protected void addLayoutColumn(
@@ -410,15 +408,9 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addLayouts(long parentLayoutId, JSONArray layoutsJSONArray)
-		throws Exception {
-
-		addLayouts(parentLayoutId, layoutsJSONArray, false);
-	}
-
 	protected void addLayouts(
-			long parentLayoutId, JSONArray layoutsJSONArray,
-			boolean privateLayout)
+			boolean privateLayout, long parentLayoutId,
+			JSONArray layoutsJSONArray)
 		throws Exception {
 
 		if (layoutsJSONArray == null) {
@@ -428,7 +420,7 @@ public class FileSystemImporter extends BaseImporter {
 		for (int i = 0; i < layoutsJSONArray.length(); i++) {
 			JSONObject layoutJSONObject = layoutsJSONArray.getJSONObject(i);
 
-			addLayout(parentLayoutId, layoutJSONObject, privateLayout);
+			addLayout(privateLayout, parentLayoutId, layoutJSONObject);
 		}
 	}
 
@@ -882,44 +874,27 @@ public class FileSystemImporter extends BaseImporter {
 		JSONArray layoutsJSONArray = jsonObject.getJSONArray("layouts");
 
 		if (layoutsJSONArray != null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"WARNING : Your sitemap.json file in " +
-						servletContextName + " should be upgraded to use: " +
-						"{sitePages:{publicPages:[],privatePages:[]}");
-			}
-
 			addLayouts(
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, layoutsJSONArray);
+				false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+				layoutsJSONArray);
 		}
 		else {
-			JSONObject sitePages = jsonObject.getJSONObject("sitePages");
-			JSONArray publicPages = sitePages.getJSONArray("publicPages");
+			JSONArray publicPagesJSONArray = jsonObject.getJSONArray(
+				"publicPages");
 
-			if (publicPages != null) {
-				if (_log.isTraceEnabled()) {
-					_log.trace(
-						"Importing :" + publicPages.length() +
-							" public pages for :" + groupId);
-				}
-
+			if (publicPagesJSONArray != null) {
 				addLayouts(
-					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, publicPages,
-					false);
+					false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+					publicPagesJSONArray);
 			}
 
-			JSONArray privatePages = sitePages.getJSONArray("privatePages");
+			JSONArray privatePagesJSONArray = jsonObject.getJSONArray(
+				"privatePages");
 
-			if (privatePages != null) {
-				if (_log.isTraceEnabled()) {
-					_log.trace(
-						"Importing :" + privatePages.length() +
-							" private pages for :" + groupId);
-				}
-
+			if (privatePagesJSONArray != null) {
 				addLayouts(
-					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, privatePages,
-					true);
+					true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+					privatePagesJSONArray);
 			}
 		}
 	}
@@ -975,8 +950,6 @@ public class FileSystemImporter extends BaseImporter {
 
 	private static final String _JOURNAL_DDM_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
-
-	private static Log _log = LogFactoryUtil.getLog(FileSystemImporter.class);
 
 	private Map<String, JSONObject> _assetJSONObjectMap =
 		new HashMap<String, JSONObject>();
