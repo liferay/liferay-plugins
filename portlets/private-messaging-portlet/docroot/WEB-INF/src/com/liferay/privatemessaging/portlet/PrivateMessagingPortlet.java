@@ -303,11 +303,11 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				validateAttachment(fileName, inputStream);
 			}
 
-			jsonObject.put("success", true);
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
 			jsonObject.put("message", getMessage(resourceRequest, e));
-			jsonObject.put("success", false);
+			jsonObject.put("success", Boolean.FALSE);
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
