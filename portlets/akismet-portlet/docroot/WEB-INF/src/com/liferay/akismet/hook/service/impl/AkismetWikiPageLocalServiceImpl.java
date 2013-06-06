@@ -55,6 +55,14 @@ public class AkismetWikiPageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		int workflowAction = serviceContext.getWorkflowAction();
+
+		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
+			return super.addPage(
+				userId, nodeId, redirectTitle, content, summary, minorEdit,
+				serviceContext);
+		}
+
 		boolean enabled = isWikiEnabled(userId, nodeId, serviceContext);
 
 		if (enabled) {
@@ -74,14 +82,24 @@ public class AkismetWikiPageLocalServiceImpl
 
 		String akismetContent = page.getTitle() + "\n\n" + page.getContent();
 
-		int status = WorkflowConstants.STATUS_APPROVED;
-
-		if (AkismetUtil.isSpam(userId, akismetContent, akismetData)) {
-			status = WorkflowConstants.STATUS_DENIED;
+		if (!AkismetUtil.isSpam(userId, akismetContent, akismetData)) {
+			return super.updateStatus(
+				userId, page.getResourcePrimKey(),
+				WorkflowConstants.STATUS_APPROVED, serviceContext);
 		}
 
-		return super.updateStatus(
-			userId, page.getResourcePrimKey(), status, serviceContext);
+		page.setStatus(WorkflowConstants.STATUS_APPROVED);
+		page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
+
+		page = super.updateWikiPage(page);
+
+		ServiceContext newServiceContext = new ServiceContext();
+
+		newServiceContext.setFormDate(page.getModifiedDate());
+
+		return super.updatePage(
+			userId, nodeId, title, page.getVersion(), null, StringPool.BLANK,
+			true, format, parentTitle, redirectTitle, newServiceContext);
 	}
 
 	@Override
@@ -91,6 +109,14 @@ public class AkismetWikiPageLocalServiceImpl
 			String parentTitle, String redirectTitle,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		int workflowAction = serviceContext.getWorkflowAction();
+
+		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
+			return super.updatePage(
+				userId, nodeId, title, version, content, summary, minorEdit,
+				format, parentTitle, redirectTitle, serviceContext);
+		}
 
 		boolean enabled = isWikiEnabled(userId, nodeId, serviceContext);
 
@@ -111,14 +137,35 @@ public class AkismetWikiPageLocalServiceImpl
 
 		String akismetContent = page.getTitle() + "\n\n" + page.getContent();
 
-		int status = WorkflowConstants.STATUS_APPROVED;
-
-		if (AkismetUtil.isSpam(userId, akismetContent, akismetData)) {
-			status = WorkflowConstants.STATUS_DENIED;
+		if (!AkismetUtil.isSpam(userId, akismetContent, akismetData)) {
+			return super.updateStatus(
+				userId, page.getResourcePrimKey(),
+				WorkflowConstants.STATUS_APPROVED, serviceContext);
 		}
 
-		return super.updateStatus(
-			userId, page.getResourcePrimKey(), status, serviceContext);
+		page.setStatus(WorkflowConstants.STATUS_APPROVED);
+		page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
+
+		page = super.updateWikiPage(page);
+
+		WikiPage previousPage = AkismetUtil.getWikiPage(
+			page.getNodeId(), page.getTitle(), page.getVersion(), true);
+
+		ServiceContext newServiceContext = new ServiceContext();
+
+		newServiceContext.setFormDate(page.getModifiedDate());
+
+		if (previousPage != null) {
+			return super.revertPage(
+				userId, nodeId, title, previousPage.getVersion(),
+				newServiceContext);
+		}
+		else {
+			return super.updatePage(
+				userId, nodeId, title, page.getVersion(), null,
+				StringPool.BLANK, true, format, parentTitle, redirectTitle,
+				newServiceContext);
+		}
 	}
 
 	protected String getPermalink(
