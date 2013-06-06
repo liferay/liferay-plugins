@@ -114,7 +114,9 @@ for (String importer : importers) {
 
 		Layout#getNameMap=<%= _assertTrue(nameMap.containsValue("Bienvenue")) %><br />
 
-		LayoutLocalServiceUtil#getLayoutsCount=<%= _assertEquals(5, LayoutLocalServiceUtil.getLayoutsCount(group, false)) %><br />
+		LayoutLocalServiceUtil#getPublicLayoutsCount=<%= _assertEquals(5, LayoutLocalServiceUtil.getLayoutsCount(group, false)) %><br />
+
+		LayoutLocalServiceUtil#getPrivateLayoutsCount=<%= _assertEquals(1, LayoutLocalServiceUtil.getLayoutsCount(group, true)) %><br />
 
 		<%
 		UnicodeProperties layoutTypeSettingsProperties = importedLayout.getTypeSettingsProperties();
