@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KaleoInstanceTokenLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoInstanceTokenLocalService
+ * @author Brian Wing Shun Chan
+ * @see KaleoInstanceTokenLocalService
  * @generated
  */
 public class KaleoInstanceTokenLocalServiceWrapper

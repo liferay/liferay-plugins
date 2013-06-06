@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MicroblogsEntryLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       MicroblogsEntryLocalService
+ * @author Brian Wing Shun Chan
+ * @see MicroblogsEntryLocalService
  * @generated
  */
 public class MicroblogsEntryLocalServiceWrapper

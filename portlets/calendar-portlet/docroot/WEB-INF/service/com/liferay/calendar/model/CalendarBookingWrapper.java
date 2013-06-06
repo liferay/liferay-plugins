@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link CalendarBooking}.
  * </p>
  *
- * @author    Eduardo Lundgren
- * @see       CalendarBooking
+ * @author Eduardo Lundgren
+ * @see CalendarBooking
  * @generated
  */
 public class CalendarBookingWrapper implements CalendarBooking,

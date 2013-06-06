@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link WallEntry}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       WallEntry
+ * @author Brian Wing Shun Chan
+ * @see WallEntry
  * @generated
  */
 public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {

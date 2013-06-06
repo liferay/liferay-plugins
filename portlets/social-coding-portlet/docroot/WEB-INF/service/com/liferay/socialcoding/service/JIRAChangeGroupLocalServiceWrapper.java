@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link JIRAChangeGroupLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAChangeGroupLocalService
+ * @author Brian Wing Shun Chan
+ * @see JIRAChangeGroupLocalService
  * @generated
  */
 public class JIRAChangeGroupLocalServiceWrapper

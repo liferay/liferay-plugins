@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoTaskAssignment}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoTaskAssignment
+ * @author Brian Wing Shun Chan
+ * @see KaleoTaskAssignment
  * @generated
  */
 public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,

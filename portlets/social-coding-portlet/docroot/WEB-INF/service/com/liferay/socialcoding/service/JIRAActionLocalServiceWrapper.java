@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link JIRAActionLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAActionLocalService
+ * @author Brian Wing Shun Chan
+ * @see JIRAActionLocalService
  * @generated
  */
 public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,

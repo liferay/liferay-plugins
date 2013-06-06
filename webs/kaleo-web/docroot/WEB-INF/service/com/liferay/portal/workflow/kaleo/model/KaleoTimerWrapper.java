@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoTimer}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoTimer
+ * @author Brian Wing Shun Chan
+ * @see KaleoTimer
  * @generated
  */
 public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {

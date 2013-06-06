@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link DefinitionLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       DefinitionLocalService
+ * @author Brian Wing Shun Chan
+ * @see DefinitionLocalService
  * @generated
  */
 public class DefinitionLocalServiceWrapper implements DefinitionLocalService,

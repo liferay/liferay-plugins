@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link BarLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       BarLocalService
+ * @author Brian Wing Shun Chan
+ * @see BarLocalService
  * @generated
  */
 public class BarLocalServiceWrapper implements BarLocalService,

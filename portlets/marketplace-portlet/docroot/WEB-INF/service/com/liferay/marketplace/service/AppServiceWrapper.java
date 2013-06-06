@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link AppService}.
  *
- * @author    Ryan Park
- * @see       AppService
+ * @author Ryan Park
+ * @see AppService
  * @generated
  */
 public class AppServiceWrapper implements AppService,

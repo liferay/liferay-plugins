@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link TasksEntry}.
  * </p>
  *
- * @author    Ryan Park
- * @see       TasksEntry
+ * @author Ryan Park
+ * @see TasksEntry
  * @generated
  */
 public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {

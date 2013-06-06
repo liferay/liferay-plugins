@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Eduardo Lundgren
+ * @generated
  */
 public class CalendarServiceClp implements CalendarService {
 	public CalendarServiceClp(InvokableService invokableService) {

@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link UserThread}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       UserThread
+ * @author Brian Wing Shun Chan
+ * @see UserThread
  * @generated
  */
 public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {

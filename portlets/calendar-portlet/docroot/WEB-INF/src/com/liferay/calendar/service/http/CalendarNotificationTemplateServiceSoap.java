@@ -55,10 +55,10 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    Eduardo Lundgren
- * @see       CalendarNotificationTemplateServiceHttp
- * @see       com.liferay.calendar.model.CalendarNotificationTemplateSoap
- * @see       com.liferay.calendar.service.CalendarNotificationTemplateServiceUtil
+ * @author Eduardo Lundgren
+ * @see CalendarNotificationTemplateServiceHttp
+ * @see com.liferay.calendar.model.CalendarNotificationTemplateSoap
+ * @see com.liferay.calendar.service.CalendarNotificationTemplateServiceUtil
  * @generated
  */
 public class CalendarNotificationTemplateServiceSoap {

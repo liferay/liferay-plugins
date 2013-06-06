@@ -59,10 +59,10 @@ import java.util.Map;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    Eduardo Lundgren
- * @see       CalendarBookingServiceHttp
- * @see       com.liferay.calendar.model.CalendarBookingSoap
- * @see       com.liferay.calendar.service.CalendarBookingServiceUtil
+ * @author Eduardo Lundgren
+ * @see CalendarBookingServiceHttp
+ * @see com.liferay.calendar.model.CalendarBookingSoap
+ * @see com.liferay.calendar.service.CalendarBookingServiceUtil
  * @generated
  */
 public class CalendarBookingServiceSoap {

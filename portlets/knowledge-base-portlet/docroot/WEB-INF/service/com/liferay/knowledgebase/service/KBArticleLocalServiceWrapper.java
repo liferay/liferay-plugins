@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KBArticleLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KBArticleLocalService
+ * @author Brian Wing Shun Chan
+ * @see KBArticleLocalService
  * @generated
  */
 public class KBArticleLocalServiceWrapper implements KBArticleLocalService,

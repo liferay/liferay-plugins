@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link JIRAChangeItem}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAChangeItem
+ * @author Brian Wing Shun Chan
+ * @see JIRAChangeItem
  * @generated
  */
 public class JIRAChangeItemWrapper implements JIRAChangeItem,

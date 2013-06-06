@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KBTemplateService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KBTemplateService
+ * @author Brian Wing Shun Chan
+ * @see KBTemplateService
  * @generated
  */
 public class KBTemplateServiceWrapper implements KBTemplateService,

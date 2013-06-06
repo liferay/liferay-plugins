@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link OAuthToken}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       OAuthToken
+ * @author Brian Wing Shun Chan
+ * @see OAuthToken
  * @generated
  */
 public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {

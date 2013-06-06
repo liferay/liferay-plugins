@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link TasksEntryLocalService}.
  *
- * @author    Ryan Park
- * @see       TasksEntryLocalService
+ * @author Ryan Park
+ * @see TasksEntryLocalService
  * @generated
  */
 public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,

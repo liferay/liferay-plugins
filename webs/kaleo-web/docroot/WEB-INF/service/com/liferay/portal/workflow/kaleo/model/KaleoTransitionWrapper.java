@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoTransition}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoTransition
+ * @author Brian Wing Shun Chan
+ * @see KaleoTransition
  * @generated
  */
 public class KaleoTransitionWrapper implements KaleoTransition,

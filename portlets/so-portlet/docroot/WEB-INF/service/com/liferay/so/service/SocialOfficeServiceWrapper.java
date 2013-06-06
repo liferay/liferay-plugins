@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link SocialOfficeService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       SocialOfficeService
+ * @author Brian Wing Shun Chan
+ * @see SocialOfficeService
  * @generated
  */
 public class SocialOfficeServiceWrapper implements SocialOfficeService,

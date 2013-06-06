@@ -20,6 +20,7 @@ import java.util.Arrays;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
 public class KaleoNotificationRecipientLocalServiceClpInvoker {
 	public KaleoNotificationRecipientLocalServiceClpInvoker() {

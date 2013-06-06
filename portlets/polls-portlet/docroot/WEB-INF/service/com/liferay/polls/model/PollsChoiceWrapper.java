@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link PollsChoice}.
  * </p>
  *
- * @author    Juan Fern√°ndez
- * @see       PollsChoice
+ * @author Juan Fern√°ndez
+ * @see PollsChoice
  * @generated
  */
 public class PollsChoiceWrapper implements PollsChoice,

@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services, specifically {@link com.liferay.knowledgebase.service.http.KBArticleServiceSoap}.
  *
- * @author    Brian Wing Shun Chan
- * @see       com.liferay.knowledgebase.service.http.KBArticleServiceSoap
+ * @author Brian Wing Shun Chan
+ * @see com.liferay.knowledgebase.service.http.KBArticleServiceSoap
  * @generated
  */
 public class KBArticleSoap implements Serializable {

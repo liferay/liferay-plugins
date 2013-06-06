@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link WSRPConsumer}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       WSRPConsumer
+ * @author Brian Wing Shun Chan
+ * @see WSRPConsumer
  * @generated
  */
 public class WSRPConsumerWrapper implements WSRPConsumer,

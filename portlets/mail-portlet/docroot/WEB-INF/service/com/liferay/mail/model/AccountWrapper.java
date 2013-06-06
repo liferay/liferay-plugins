@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Account}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Account
+ * @author Brian Wing Shun Chan
+ * @see Account
  * @generated
  */
 public class AccountWrapper implements Account, ModelWrapper<Account> {

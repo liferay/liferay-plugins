@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services, specifically {@link com.liferay.calendar.service.http.CalendarBookingServiceSoap}.
  *
- * @author    Eduardo Lundgren
- * @see       com.liferay.calendar.service.http.CalendarBookingServiceSoap
+ * @author Eduardo Lundgren
+ * @see com.liferay.calendar.service.http.CalendarBookingServiceSoap
  * @generated
  */
 public class CalendarBookingSoap implements Serializable {

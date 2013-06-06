@@ -19,7 +19,8 @@ import com.liferay.marketplace.service.ModuleLocalServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Ryan Park
+ * @generated
  */
 public class ModuleLocalServiceClpInvoker {
 	public ModuleLocalServiceClpInvoker() {

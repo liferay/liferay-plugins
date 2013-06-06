@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link GadgetLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       GadgetLocalService
+ * @author Brian Wing Shun Chan
+ * @see GadgetLocalService
  * @generated
  */
 public class GadgetLocalServiceWrapper implements GadgetLocalService,

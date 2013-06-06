@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Gadget}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Gadget
+ * @author Brian Wing Shun Chan
+ * @see Gadget
  * @generated
  */
 public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {

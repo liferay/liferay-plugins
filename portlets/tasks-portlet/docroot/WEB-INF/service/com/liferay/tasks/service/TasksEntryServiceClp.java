@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Ryan Park
+ * @generated
  */
 public class TasksEntryServiceClp implements TasksEntryService {
 	public TasksEntryServiceClp(InvokableService invokableService) {

@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KBComment}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KBComment
+ * @author Brian Wing Shun Chan
+ * @see KBComment
  * @generated
  */
 public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {

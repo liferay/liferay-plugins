@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Bar}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Bar
+ * @author Brian Wing Shun Chan
+ * @see Bar
  * @generated
  */
 public class BarWrapper implements Bar, ModelWrapper<Bar> {

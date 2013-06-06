@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services.
  *
- * @author    Ryan Park
+ * @author Ryan Park
  * @generated
  */
 public class ModuleSoap implements Serializable {

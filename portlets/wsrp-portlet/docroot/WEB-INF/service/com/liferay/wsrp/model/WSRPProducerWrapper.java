@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link WSRPProducer}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       WSRPProducer
+ * @author Brian Wing Shun Chan
+ * @see WSRPProducer
  * @generated
  */
 public class WSRPProducerWrapper implements WSRPProducer,

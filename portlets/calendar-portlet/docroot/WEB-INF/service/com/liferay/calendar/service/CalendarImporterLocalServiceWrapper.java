@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link CalendarImporterLocalService}.
  *
- * @author    Eduardo Lundgren
- * @see       CalendarImporterLocalService
+ * @author Eduardo Lundgren
+ * @see CalendarImporterLocalService
  * @generated
  */
 public class CalendarImporterLocalServiceWrapper

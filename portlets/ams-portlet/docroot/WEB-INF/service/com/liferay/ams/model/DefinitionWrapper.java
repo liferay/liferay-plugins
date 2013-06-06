@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Definition}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Definition
+ * @author Brian Wing Shun Chan
+ * @see Definition
  * @generated
  */
 public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {

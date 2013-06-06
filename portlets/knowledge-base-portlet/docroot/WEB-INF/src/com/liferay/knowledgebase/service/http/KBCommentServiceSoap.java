@@ -55,10 +55,10 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KBCommentServiceHttp
- * @see       com.liferay.knowledgebase.model.KBCommentSoap
- * @see       com.liferay.knowledgebase.service.KBCommentServiceUtil
+ * @author Brian Wing Shun Chan
+ * @see KBCommentServiceHttp
+ * @see com.liferay.knowledgebase.model.KBCommentSoap
+ * @see com.liferay.knowledgebase.service.KBCommentServiceUtil
  * @generated
  */
 public class KBCommentServiceSoap {

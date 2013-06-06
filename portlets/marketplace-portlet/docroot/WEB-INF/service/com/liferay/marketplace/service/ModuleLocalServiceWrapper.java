@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link ModuleLocalService}.
  *
- * @author    Ryan Park
- * @see       ModuleLocalService
+ * @author Ryan Park
+ * @see ModuleLocalService
  * @generated
  */
 public class ModuleLocalServiceWrapper implements ModuleLocalService,

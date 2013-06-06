@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link StatusLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       StatusLocalService
+ * @author Brian Wing Shun Chan
+ * @see StatusLocalService
  * @generated
  */
 public class StatusLocalServiceWrapper implements StatusLocalService,

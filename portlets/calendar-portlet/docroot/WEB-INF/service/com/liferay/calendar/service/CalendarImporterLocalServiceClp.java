@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Eduardo Lundgren
+ * @generated
  */
 public class CalendarImporterLocalServiceClp
 	implements CalendarImporterLocalService {

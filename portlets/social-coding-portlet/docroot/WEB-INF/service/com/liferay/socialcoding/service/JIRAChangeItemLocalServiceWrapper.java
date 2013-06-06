@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link JIRAChangeItemLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAChangeItemLocalService
+ * @author Brian Wing Shun Chan
+ * @see JIRAChangeItemLocalService
  * @generated
  */
 public class JIRAChangeItemLocalServiceWrapper

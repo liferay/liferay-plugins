@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link PollsVoteLocalService}.
  *
- * @author    Juan Fern√°ndez
- * @see       PollsVoteLocalService
+ * @author Juan Fern√°ndez
+ * @see PollsVoteLocalService
  * @generated
  */
 public class PollsVoteLocalServiceWrapper implements PollsVoteLocalService,

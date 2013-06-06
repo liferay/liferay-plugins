@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
 public class FooServiceClp implements FooService {
 	public FooServiceClp(InvokableService invokableService) {

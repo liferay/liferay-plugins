@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link AkismetDataLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       AkismetDataLocalService
+ * @author Brian Wing Shun Chan
+ * @see AkismetDataLocalService
  * @generated
  */
 public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,

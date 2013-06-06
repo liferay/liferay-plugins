@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link CalendarNotificationTemplateLocalService}.
  *
- * @author    Eduardo Lundgren
- * @see       CalendarNotificationTemplateLocalService
+ * @author Eduardo Lundgren
+ * @see CalendarNotificationTemplateLocalService
  * @generated
  */
 public class CalendarNotificationTemplateLocalServiceWrapper

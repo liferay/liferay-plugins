@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
 public class GadgetLocalServiceClp implements GadgetLocalService {
 	public GadgetLocalServiceClp(InvokableLocalService invokableLocalService) {

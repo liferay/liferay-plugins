@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link FavoriteSite}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       FavoriteSite
+ * @author Brian Wing Shun Chan
+ * @see FavoriteSite
  * @generated
  */
 public class FavoriteSiteWrapper implements FavoriteSite,

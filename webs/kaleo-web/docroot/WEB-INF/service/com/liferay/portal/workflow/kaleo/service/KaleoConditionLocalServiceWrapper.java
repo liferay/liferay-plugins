@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KaleoConditionLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoConditionLocalService
+ * @author Brian Wing Shun Chan
+ * @see KaleoConditionLocalService
  * @generated
  */
 public class KaleoConditionLocalServiceWrapper

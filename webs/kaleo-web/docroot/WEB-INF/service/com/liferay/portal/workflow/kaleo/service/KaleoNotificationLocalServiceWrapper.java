@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KaleoNotificationLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoNotificationLocalService
+ * @author Brian Wing Shun Chan
+ * @see KaleoNotificationLocalService
  * @generated
  */
 public class KaleoNotificationLocalServiceWrapper

@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link AssetLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       AssetLocalService
+ * @author Brian Wing Shun Chan
+ * @see AssetLocalService
  * @generated
  */
 public class AssetLocalServiceWrapper implements AssetLocalService,

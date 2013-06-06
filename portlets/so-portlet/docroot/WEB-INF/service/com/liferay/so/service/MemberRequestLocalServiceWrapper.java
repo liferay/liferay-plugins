@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MemberRequestLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       MemberRequestLocalService
+ * @author Brian Wing Shun Chan
+ * @see MemberRequestLocalService
  * @generated
  */
 public class MemberRequestLocalServiceWrapper

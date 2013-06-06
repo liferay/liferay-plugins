@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Status}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Status
+ * @author Brian Wing Shun Chan
+ * @see Status
  * @generated
  */
 public class StatusWrapper implements Status, ModelWrapper<Status> {

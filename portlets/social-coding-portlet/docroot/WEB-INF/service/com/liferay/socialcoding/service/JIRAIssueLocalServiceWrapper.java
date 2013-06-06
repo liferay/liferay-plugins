@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link JIRAIssueLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAIssueLocalService
+ * @author Brian Wing Shun Chan
+ * @see JIRAIssueLocalService
  * @generated
  */
 public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,

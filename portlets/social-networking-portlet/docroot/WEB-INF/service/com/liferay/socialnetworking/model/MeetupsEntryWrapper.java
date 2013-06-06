@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link MeetupsEntry}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       MeetupsEntry
+ * @author Brian Wing Shun Chan
+ * @see MeetupsEntry
  * @generated
  */
 public class MeetupsEntryWrapper implements MeetupsEntry,

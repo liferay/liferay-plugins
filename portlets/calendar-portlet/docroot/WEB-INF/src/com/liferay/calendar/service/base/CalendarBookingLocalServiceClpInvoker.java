@@ -19,7 +19,8 @@ import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Eduardo Lundgren
+ * @generated
  */
 public class CalendarBookingLocalServiceClpInvoker {
 	public CalendarBookingLocalServiceClpInvoker() {

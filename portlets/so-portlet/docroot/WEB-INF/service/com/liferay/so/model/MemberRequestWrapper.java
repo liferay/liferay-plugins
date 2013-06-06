@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link MemberRequest}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       MemberRequest
+ * @author Brian Wing Shun Chan
+ * @see MemberRequest
  * @generated
  */
 public class MemberRequestWrapper implements MemberRequest,

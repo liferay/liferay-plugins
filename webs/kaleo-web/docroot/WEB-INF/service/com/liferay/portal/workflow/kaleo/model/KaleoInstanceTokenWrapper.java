@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoInstanceToken}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoInstanceToken
+ * @author Brian Wing Shun Chan
+ * @see KaleoInstanceToken
  * @generated
  */
 public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,

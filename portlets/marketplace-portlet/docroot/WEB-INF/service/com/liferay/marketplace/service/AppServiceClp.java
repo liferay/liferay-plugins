@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Ryan Park
+ * @generated
  */
 public class AppServiceClp implements AppService {
 	public AppServiceClp(InvokableService invokableService) {

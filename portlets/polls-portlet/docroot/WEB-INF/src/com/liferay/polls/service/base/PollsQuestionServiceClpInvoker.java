@@ -19,7 +19,8 @@ import com.liferay.polls.service.PollsQuestionServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Juan Fern√°ndez
+ * @generated
  */
 public class PollsQuestionServiceClpInvoker {
 	public PollsQuestionServiceClpInvoker() {

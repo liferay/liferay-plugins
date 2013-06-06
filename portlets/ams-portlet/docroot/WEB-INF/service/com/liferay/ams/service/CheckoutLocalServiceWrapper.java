@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link CheckoutLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       CheckoutLocalService
+ * @author Brian Wing Shun Chan
+ * @see CheckoutLocalService
  * @generated
  */
 public class CheckoutLocalServiceWrapper implements CheckoutLocalService,

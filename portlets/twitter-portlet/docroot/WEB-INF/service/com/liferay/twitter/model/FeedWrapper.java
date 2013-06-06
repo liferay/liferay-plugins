@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Feed}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Feed
+ * @author Brian Wing Shun Chan
+ * @see Feed
  * @generated
  */
 public class FeedWrapper implements Feed, ModelWrapper<Feed> {

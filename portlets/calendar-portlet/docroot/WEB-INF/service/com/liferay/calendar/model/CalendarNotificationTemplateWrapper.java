@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link CalendarNotificationTemplate}.
  * </p>
  *
- * @author    Eduardo Lundgren
- * @see       CalendarNotificationTemplate
+ * @author Eduardo Lundgren
+ * @see CalendarNotificationTemplate
  * @generated
  */
 public class CalendarNotificationTemplateWrapper

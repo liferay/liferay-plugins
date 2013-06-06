@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Eduardo Lundgren
  */
 public class ClpSerializer {
 	public static String getServletContextName() {

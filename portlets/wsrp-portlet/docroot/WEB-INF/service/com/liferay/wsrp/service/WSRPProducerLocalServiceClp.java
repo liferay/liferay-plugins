@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
 public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public WSRPProducerLocalServiceClp(

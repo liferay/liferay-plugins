@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Folder}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Folder
+ * @author Brian Wing Shun Chan
+ * @see Folder
  * @generated
  */
 public class FolderWrapper implements Folder, ModelWrapper<Folder> {

@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KBCommentService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KBCommentService
+ * @author Brian Wing Shun Chan
+ * @see KBCommentService
  * @generated
  */
 public class KBCommentServiceWrapper implements KBCommentService,

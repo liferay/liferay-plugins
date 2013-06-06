@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link OAuthTokenLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       OAuthTokenLocalService
+ * @author Brian Wing Shun Chan
+ * @see OAuthTokenLocalService
  * @generated
  */
 public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,

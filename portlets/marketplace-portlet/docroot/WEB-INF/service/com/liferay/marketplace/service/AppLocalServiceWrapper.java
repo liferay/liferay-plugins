@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link AppLocalService}.
  *
- * @author    Ryan Park
- * @see       AppLocalService
+ * @author Ryan Park
+ * @see AppLocalService
  * @generated
  */
 public class AppLocalServiceWrapper implements AppLocalService,

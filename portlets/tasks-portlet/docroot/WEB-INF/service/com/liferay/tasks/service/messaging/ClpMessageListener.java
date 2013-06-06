@@ -22,7 +22,7 @@ import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 import com.liferay.tasks.service.TasksEntryServiceUtil;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Ryan Park
  */
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {

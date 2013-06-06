@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link WSRPConsumerPortletLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       WSRPConsumerPortletLocalService
+ * @author Brian Wing Shun Chan
+ * @see WSRPConsumerPortletLocalService
  * @generated
  */
 public class WSRPConsumerPortletLocalServiceWrapper

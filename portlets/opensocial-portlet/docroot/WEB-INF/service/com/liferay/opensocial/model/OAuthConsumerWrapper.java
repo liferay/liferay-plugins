@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link OAuthConsumer}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       OAuthConsumer
+ * @author Brian Wing Shun Chan
+ * @see OAuthConsumer
  * @generated
  */
 public class OAuthConsumerWrapper implements OAuthConsumer,

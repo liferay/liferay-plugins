@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link OAuthConsumerLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       OAuthConsumerLocalService
+ * @author Brian Wing Shun Chan
+ * @see OAuthConsumerLocalService
  * @generated
  */
 public class OAuthConsumerLocalServiceWrapper

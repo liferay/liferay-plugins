@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link FolderLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       FolderLocalService
+ * @author Brian Wing Shun Chan
+ * @see FolderLocalService
  * @generated
  */
 public class FolderLocalServiceWrapper implements FolderLocalService,

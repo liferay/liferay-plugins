@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link JIRAIssue}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAIssue
+ * @author Brian Wing Shun Chan
+ * @see JIRAIssue
  * @generated
  */
 public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {

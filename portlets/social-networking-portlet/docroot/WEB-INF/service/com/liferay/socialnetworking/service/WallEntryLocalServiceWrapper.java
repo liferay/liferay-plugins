@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link WallEntryLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       WallEntryLocalService
+ * @author Brian Wing Shun Chan
+ * @see WallEntryLocalService
  * @generated
  */
 public class WallEntryLocalServiceWrapper implements WallEntryLocalService,

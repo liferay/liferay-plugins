@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link MicroblogsEntry}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       MicroblogsEntry
+ * @author Brian Wing Shun Chan
+ * @see MicroblogsEntry
  * @generated
  */
 public class MicroblogsEntryWrapper implements MicroblogsEntry,

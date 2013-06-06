@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KBTemplate}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KBTemplate
+ * @author Brian Wing Shun Chan
+ * @see KBTemplate
  * @generated
  */
 public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {

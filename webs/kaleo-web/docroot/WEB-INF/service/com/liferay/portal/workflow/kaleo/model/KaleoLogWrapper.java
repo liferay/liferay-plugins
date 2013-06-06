@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoLog}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoLog
+ * @author Brian Wing Shun Chan
+ * @see KaleoLog
  * @generated
  */
 public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {

@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link SVNRepository}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       SVNRepository
+ * @author Brian Wing Shun Chan
+ * @see SVNRepository
  * @generated
  */
 public class SVNRepositoryWrapper implements SVNRepository,

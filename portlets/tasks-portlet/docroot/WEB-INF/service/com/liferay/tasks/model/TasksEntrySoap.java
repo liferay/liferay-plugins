@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services, specifically {@link com.liferay.tasks.service.http.TasksEntryServiceSoap}.
  *
- * @author    Ryan Park
- * @see       com.liferay.tasks.service.http.TasksEntryServiceSoap
+ * @author Ryan Park
+ * @see com.liferay.tasks.service.http.TasksEntryServiceSoap
  * @generated
  */
 public class TasksEntrySoap implements Serializable {

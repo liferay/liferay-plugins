@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link TypeLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       TypeLocalService
+ * @author Brian Wing Shun Chan
+ * @see TypeLocalService
  * @generated
  */
 public class TypeLocalServiceWrapper implements TypeLocalService,

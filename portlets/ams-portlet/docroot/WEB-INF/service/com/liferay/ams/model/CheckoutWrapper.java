@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Checkout}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Checkout
+ * @author Brian Wing Shun Chan
+ * @see Checkout
  * @generated
  */
 public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {

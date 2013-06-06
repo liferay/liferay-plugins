@@ -19,7 +19,8 @@ import com.liferay.tasks.service.TasksEntryServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Ryan Park
+ * @generated
  */
 public class TasksEntryServiceClpInvoker {
 	public TasksEntryServiceClpInvoker() {

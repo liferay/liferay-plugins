@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link FooLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       FooLocalService
+ * @author Brian Wing Shun Chan
+ * @see FooLocalService
  * @generated
  */
 public class FooLocalServiceWrapper implements FooLocalService,

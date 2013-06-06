@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KaleoLogLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoLogLocalService
+ * @author Brian Wing Shun Chan
+ * @see KaleoLogLocalService
  * @generated
  */
 public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,

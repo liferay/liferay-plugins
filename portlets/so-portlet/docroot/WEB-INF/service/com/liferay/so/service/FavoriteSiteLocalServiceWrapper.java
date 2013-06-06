@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link FavoriteSiteLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       FavoriteSiteLocalService
+ * @author Brian Wing Shun Chan
+ * @see FavoriteSiteLocalService
  * @generated
  */
 public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService,

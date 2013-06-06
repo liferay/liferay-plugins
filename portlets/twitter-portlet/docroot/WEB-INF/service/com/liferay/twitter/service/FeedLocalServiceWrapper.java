@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link FeedLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       FeedLocalService
+ * @author Brian Wing Shun Chan
+ * @see FeedLocalService
  * @generated
  */
 public class FeedLocalServiceWrapper implements FeedLocalService,

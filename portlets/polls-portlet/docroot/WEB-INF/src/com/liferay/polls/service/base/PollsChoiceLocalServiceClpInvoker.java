@@ -19,7 +19,8 @@ import com.liferay.polls.service.PollsChoiceLocalServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Juan Fern√°ndez
+ * @generated
  */
 public class PollsChoiceLocalServiceClpInvoker {
 	public PollsChoiceLocalServiceClpInvoker() {

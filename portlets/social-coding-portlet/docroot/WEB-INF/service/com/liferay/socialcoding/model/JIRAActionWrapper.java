@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link JIRAAction}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAAction
+ * @author Brian Wing Shun Chan
+ * @see JIRAAction
  * @generated
  */
 public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {

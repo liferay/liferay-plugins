@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link AttachmentLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       AttachmentLocalService
+ * @author Brian Wing Shun Chan
+ * @see AttachmentLocalService
  * @generated
  */
 public class AttachmentLocalServiceWrapper implements AttachmentLocalService,

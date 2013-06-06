@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link App}.
  * </p>
  *
- * @author    Ryan Park
- * @see       App
+ * @author Ryan Park
+ * @see App
  * @generated
  */
 public class AppWrapper implements App, ModelWrapper<App> {

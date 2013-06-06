@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoDefinition}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoDefinition
+ * @author Brian Wing Shun Chan
+ * @see KaleoDefinition
  * @generated
  */
 public class KaleoDefinitionWrapper implements KaleoDefinition,

@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KBArticle}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KBArticle
+ * @author Brian Wing Shun Chan
+ * @see KBArticle
  * @generated
  */
 public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {

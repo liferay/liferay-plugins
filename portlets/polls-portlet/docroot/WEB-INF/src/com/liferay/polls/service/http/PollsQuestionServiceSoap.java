@@ -59,10 +59,10 @@ import java.util.Map;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    Juan Fern√°ndez
- * @see       PollsQuestionServiceHttp
- * @see       com.liferay.polls.model.PollsQuestionSoap
- * @see       com.liferay.polls.service.PollsQuestionServiceUtil
+ * @author Juan Fern√°ndez
+ * @see PollsQuestionServiceHttp
+ * @see com.liferay.polls.model.PollsQuestionSoap
+ * @see com.liferay.polls.service.PollsQuestionServiceUtil
  * @generated
  */
 public class PollsQuestionServiceSoap {

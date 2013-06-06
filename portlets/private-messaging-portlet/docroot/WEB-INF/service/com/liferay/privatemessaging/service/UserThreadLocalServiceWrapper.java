@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link UserThreadLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       UserThreadLocalService
+ * @author Brian Wing Shun Chan
+ * @see UserThreadLocalService
  * @generated
  */
 public class UserThreadLocalServiceWrapper implements UserThreadLocalService,

@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Asset}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Asset
+ * @author Brian Wing Shun Chan
+ * @see Asset
  * @generated
  */
 public class AssetWrapper implements Asset, ModelWrapper<Asset> {

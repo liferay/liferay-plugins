@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link SVNRepositoryLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       SVNRepositoryLocalService
+ * @author Brian Wing Shun Chan
+ * @see SVNRepositoryLocalService
  * @generated
  */
 public class SVNRepositoryLocalServiceWrapper

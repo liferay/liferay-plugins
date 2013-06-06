@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link KaleoTaskAssignmentLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoTaskAssignmentLocalService
+ * @author Brian Wing Shun Chan
+ * @see KaleoTaskAssignmentLocalService
  * @generated
  */
 public class KaleoTaskAssignmentLocalServiceWrapper

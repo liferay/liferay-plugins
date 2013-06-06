@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link AkismetData}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       AkismetData
+ * @author Brian Wing Shun Chan
+ * @see AkismetData
  * @generated
  */
 public class AkismetDataWrapper implements AkismetData,

@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MessageLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       MessageLocalService
+ * @author Brian Wing Shun Chan
+ * @see MessageLocalService
  * @generated
  */
 public class MessageLocalServiceWrapper implements MessageLocalService,

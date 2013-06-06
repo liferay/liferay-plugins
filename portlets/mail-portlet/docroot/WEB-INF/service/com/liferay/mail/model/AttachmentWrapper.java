@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Attachment}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Attachment
+ * @author Brian Wing Shun Chan
+ * @see Attachment
  * @generated
  */
 public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {

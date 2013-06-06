@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link JIRAChangeGroup}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAChangeGroup
+ * @author Brian Wing Shun Chan
+ * @see JIRAChangeGroup
  * @generated
  */
 public class JIRAChangeGroupWrapper implements JIRAChangeGroup,

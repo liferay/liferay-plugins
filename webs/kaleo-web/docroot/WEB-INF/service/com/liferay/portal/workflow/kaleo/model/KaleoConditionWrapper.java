@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoCondition}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoCondition
+ * @author Brian Wing Shun Chan
+ * @see KaleoCondition
  * @generated
  */
 public class KaleoConditionWrapper implements KaleoCondition,

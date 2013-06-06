@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Ryan Park
+ * @generated
  */
 public class ModuleLocalServiceClp implements ModuleLocalService {
 	public ModuleLocalServiceClp(InvokableLocalService invokableLocalService) {

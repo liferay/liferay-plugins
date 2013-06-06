@@ -55,10 +55,10 @@ import java.rmi.RemoteException;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       FooServiceHttp
- * @see       com.liferay.sampleservicebuilder.model.FooSoap
- * @see       com.liferay.sampleservicebuilder.service.FooServiceUtil
+ * @author Brian Wing Shun Chan
+ * @see FooServiceHttp
+ * @see com.liferay.sampleservicebuilder.model.FooSoap
+ * @see com.liferay.sampleservicebuilder.service.FooServiceUtil
  * @generated
  */
 public class FooServiceSoap {

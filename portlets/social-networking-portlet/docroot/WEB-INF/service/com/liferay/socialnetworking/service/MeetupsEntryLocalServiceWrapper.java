@@ -19,8 +19,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MeetupsEntryLocalService}.
  *
- * @author    Brian Wing Shun Chan
- * @see       MeetupsEntryLocalService
+ * @author Brian Wing Shun Chan
+ * @see MeetupsEntryLocalService
  * @generated
  */
 public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService,

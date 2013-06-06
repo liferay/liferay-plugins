@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link KaleoNotificationRecipient}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoNotificationRecipient
+ * @author Brian Wing Shun Chan
+ * @see KaleoNotificationRecipient
  * @generated
  */
 public class KaleoNotificationRecipientWrapper

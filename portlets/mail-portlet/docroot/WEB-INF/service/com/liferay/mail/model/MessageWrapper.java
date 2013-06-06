@@ -25,8 +25,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Message}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Message
+ * @author Brian Wing Shun Chan
+ * @see Message
  * @generated
  */
 public class MessageWrapper implements Message, ModelWrapper<Message> {

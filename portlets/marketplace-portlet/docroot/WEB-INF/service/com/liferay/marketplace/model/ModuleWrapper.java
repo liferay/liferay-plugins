@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Module}.
  * </p>
  *
- * @author    Ryan Park
- * @see       Module
+ * @author Ryan Park
+ * @see Module
  * @generated
  */
 public class ModuleWrapper implements Module, ModelWrapper<Module> {

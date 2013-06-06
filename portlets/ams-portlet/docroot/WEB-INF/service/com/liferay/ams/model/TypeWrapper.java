@@ -24,8 +24,8 @@ import java.util.Map;
  * This class is a wrapper for {@link Type}.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       Type
+ * @author Brian Wing Shun Chan
+ * @see Type
  * @generated
  */
 public class TypeWrapper implements Type, ModelWrapper<Type> {
