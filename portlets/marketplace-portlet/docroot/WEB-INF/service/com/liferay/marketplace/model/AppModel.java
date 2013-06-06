@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
-import com.liferay.portal.model.StagedModel;
+import com.liferay.portal.model.StagedAuditedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -40,7 +40,7 @@ import java.util.Date;
  * @see com.liferay.marketplace.model.impl.AppModelImpl
  * @generated
  */
-public interface AppModel extends BaseModel<App>, StagedModel {
+public interface AppModel extends BaseModel<App>, StagedAuditedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

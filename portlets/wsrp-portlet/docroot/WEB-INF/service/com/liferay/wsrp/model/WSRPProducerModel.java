@@ -17,6 +17,7 @@ package com.liferay.wsrp.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -38,7 +39,7 @@ import java.util.Date;
  * @see com.liferay.wsrp.model.impl.WSRPProducerModelImpl
  * @generated
  */
-public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
+public interface WSRPProducerModel extends BaseModel<WSRPProducer>, StagedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -65,6 +66,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 * @return the uuid of this w s r p producer
 	 */
 	@AutoEscape
+	@Override
 	public String getUuid();
 
 	/**
@@ -72,6 +74,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 *
 	 * @param uuid the uuid of this w s r p producer
 	 */
+	@Override
 	public void setUuid(String uuid);
 
 	/**
@@ -107,6 +110,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 *
 	 * @return the company ID of this w s r p producer
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -114,6 +118,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 *
 	 * @param companyId the company ID of this w s r p producer
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**
@@ -121,6 +126,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 *
 	 * @return the create date of this w s r p producer
 	 */
+	@Override
 	public Date getCreateDate();
 
 	/**
@@ -128,6 +134,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 *
 	 * @param createDate the create date of this w s r p producer
 	 */
+	@Override
 	public void setCreateDate(Date createDate);
 
 	/**
@@ -135,6 +142,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 *
 	 * @return the modified date of this w s r p producer
 	 */
+	@Override
 	public Date getModifiedDate();
 
 	/**
@@ -142,6 +150,7 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 *
 	 * @param modifiedDate the modified date of this w s r p producer
 	 */
+	@Override
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
