@@ -23,6 +23,7 @@ import com.liferay.akismet.util.PrefsPortletPropsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.util.NotificationThreadLocal;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -88,18 +89,30 @@ public class AkismetWikiPageLocalServiceImpl
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 		}
 
-		page.setStatus(WorkflowConstants.STATUS_APPROVED);
-		page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
+		boolean notificationEnabled = false;
 
-		page = super.updateWikiPage(page);
+		try {
+			notificationEnabled = NotificationThreadLocal.isEnabled();
 
-		ServiceContext newServiceContext = new ServiceContext();
+			NotificationThreadLocal.setEnabled(false);
 
-		newServiceContext.setFormDate(page.getModifiedDate());
+			page.setStatus(WorkflowConstants.STATUS_APPROVED);
+			page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
 
-		return super.updatePage(
-			userId, nodeId, title, page.getVersion(), null, StringPool.BLANK,
-			true, format, parentTitle, redirectTitle, newServiceContext);
+			page = super.updateWikiPage(page);
+
+			ServiceContext newServiceContext = new ServiceContext();
+
+			newServiceContext.setFormDate(page.getModifiedDate());
+
+			return super.updatePage(
+				userId, nodeId, title, page.getVersion(), null,
+				StringPool.BLANK, true, format, parentTitle, redirectTitle,
+				newServiceContext);
+		}
+		finally {
+			NotificationThreadLocal.setEnabled(notificationEnabled);
+		}
 	}
 
 	@Override
@@ -143,28 +156,39 @@ public class AkismetWikiPageLocalServiceImpl
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 		}
 
-		page.setStatus(WorkflowConstants.STATUS_APPROVED);
-		page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
+		boolean notificationEnabled = false;
 
-		page = super.updateWikiPage(page);
+		try {
+			notificationEnabled = NotificationThreadLocal.isEnabled();
 
-		WikiPage previousPage = AkismetUtil.getWikiPage(
-			page.getNodeId(), page.getTitle(), page.getVersion(), true);
+			NotificationThreadLocal.setEnabled(false);
 
-		ServiceContext newServiceContext = new ServiceContext();
+			page.setStatus(WorkflowConstants.STATUS_APPROVED);
+			page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
 
-		newServiceContext.setFormDate(page.getModifiedDate());
+			page = super.updateWikiPage(page);
 
-		if (previousPage != null) {
-			return super.revertPage(
-				userId, nodeId, title, previousPage.getVersion(),
-				newServiceContext);
+			WikiPage previousPage = AkismetUtil.getWikiPage(
+				page.getNodeId(), page.getTitle(), page.getVersion(), true);
+
+			ServiceContext newServiceContext = new ServiceContext();
+
+			newServiceContext.setFormDate(page.getModifiedDate());
+
+			if (previousPage != null) {
+				return super.revertPage(
+					userId, nodeId, title, previousPage.getVersion(),
+					newServiceContext);
+			}
+			else {
+				return super.updatePage(
+					userId, nodeId, title, page.getVersion(), null,
+					StringPool.BLANK, true, format, parentTitle, redirectTitle,
+					newServiceContext);
+			}
 		}
-		else {
-			return super.updatePage(
-				userId, nodeId, title, page.getVersion(), null,
-				StringPool.BLANK, true, format, parentTitle, redirectTitle,
-				newServiceContext);
+		finally {
+			NotificationThreadLocal.setEnabled(notificationEnabled);
 		}
 	}
 
