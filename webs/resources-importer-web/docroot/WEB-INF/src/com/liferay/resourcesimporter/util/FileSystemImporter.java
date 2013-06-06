@@ -274,14 +274,12 @@ public class FileSystemImporter extends BaseImporter {
 
 		friendlyURLMap.put(LocaleUtil.getDefault(), friendlyURL);
 
-		Layout layout = LayoutLocalServiceUtil.addLayout(
-			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
-			null, null, null, LayoutConstants.TYPE_PORTLET, hidden,
-			friendlyURLMap, serviceContext);
-
 		String typeSettings = layoutJSONObject.getString("typeSettings");
 
-		layout.setTypeSettings(typeSettings);
+		Layout layout = LayoutLocalServiceUtil.addLayout(
+			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,
+			null, null, null, LayoutConstants.TYPE_PORTLET, typeSettings,
+			hidden, friendlyURLMap, serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
