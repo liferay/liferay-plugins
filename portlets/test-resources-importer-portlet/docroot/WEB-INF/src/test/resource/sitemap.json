@@ -1,5 +1,5 @@
 {
-	"layouts": [
+	"publicPages": [
 		{
 			"columns": [
 				[
@@ -121,5 +121,13 @@
 			"hidden": "true"
 		}
 	],
+	"privatePages": 
+		[
+		{
+			"friendlyURL": "/private-page",
+			"name": "Private Page",
+			"title": "Private Page"
+		}
+		],
 	"layoutTemplateId": "2_columns_ii"
 }
