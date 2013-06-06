@@ -80,6 +80,13 @@ public class AkismetUtil {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			WikiPage.class);
 
+		Property summaryProperty = PropertyFactoryUtil.forName("summary");
+
+		dynamicQuery.add(
+			summaryProperty.ne(AkismetConstants.WIKI_PAGE_MARKED_AS_SPAM));
+		dynamicQuery.add(
+			summaryProperty.ne(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
+
 		Property nodeIdProperty = PropertyFactoryUtil.forName("nodeId");
 
 		dynamicQuery.add(nodeIdProperty.eq(nodeId));

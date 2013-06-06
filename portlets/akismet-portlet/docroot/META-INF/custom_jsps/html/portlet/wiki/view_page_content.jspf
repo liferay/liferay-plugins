@@ -14,20 +14,18 @@
  */
 --%>
 
-<c:if test="<%= (wikiPage != null) && (wikiPage.getStatus() == WorkflowConstants.STATUS_DENIED) %>">
-	<c:choose>
-		<c:when test="<%= Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_SPAM) %>">
-			<div class="portlet-msg-error">
-				<liferay-ui:message key="this-version-has-been-flagged-as-spam" />
-			</div>
-		</c:when>
-		<c:otherwise>
-			<div class="portlet-msg-error">
-				<liferay-ui:message key="this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible" />
-			</div>
-		</c:otherwise>
-	</c:choose>
-</c:if>
+<c:choose>
+	<c:when test="<%= _isSpam(wikiPage) %>">
+		<div class="portlet-msg-error">
+			<liferay-ui:message key="this-version-has-been-flagged-as-spam" />
+		</div>
+	</c:when>
+	<c:when test="<%= _isPendingApproval(wikiPage) %>">
+		<div class="portlet-msg-error">
+			<liferay-ui:message key="this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible" />
+		</div>
+	</c:when>
+</c:choose>
 
 <c:if test='<%= SessionMessages.contains(portletSession, "anotherUserHasMadeChanges") %>'>
 	<div class="portlet-msg-info">
@@ -36,7 +34,3 @@
 </c:if>
 
 <%@ include file="/html/portlet/wiki/view_page_content.portal.jspf" %>
-
-<%!
-private static final String _AKISMET_CONSTANTS_WIKI_PAGE_SPAM = "Spam";
-%>

@@ -27,10 +27,10 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 <c:if test="<%= (wikiPage != null) && WikiPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_NODE) %>">
 	<liferay-util:buffer var="customHTML">
 		<c:choose>
-			<c:when test="<%= wikiPage.getStatus() == WorkflowConstants.STATUS_DENIED %>">
+			<c:when test="<%= _isSpam(wikiPage) %>">
 				<portlet:actionURL var="notSpamURL">
 					<portlet:param name="struts_action" value="/wiki/edit_page" />
-					<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
+					<portlet:param name="<%= Constants.CMD %>" value="updateSummary" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="pageId" value="<%= String.valueOf(wikiPage.getPageId()) %>" />
 					<portlet:param name="spam" value="<%= String.valueOf(Boolean.FALSE) %>" />
@@ -43,10 +43,10 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 					url="<%= notSpamURL %>"
 				/>
 			</c:when>
-			<c:otherwise>
+			<c:when test="<%= !_isPendingApproval(wikiPage) %>">
 				<portlet:actionURL var="markAsSpamURL">
 					<portlet:param name="struts_action" value="/wiki/edit_page" />
-					<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
+					<portlet:param name="<%= Constants.CMD %>" value="updateSummary" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="pageId" value="<%= String.valueOf(wikiPage.getPageId()) %>" />
 					<portlet:param name="spam" value="<%= String.valueOf(Boolean.TRUE) %>" />
@@ -58,7 +58,7 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 					message="mark-as-spam"
 					url="<%= markAsSpamURL %>"
 				/>
-			</c:otherwise>
+			</c:when>
 		</c:choose>
 	</liferay-util:buffer>
 

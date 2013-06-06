@@ -61,9 +61,9 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		if (cmd.equals("updateStatus")) {
+		if (cmd.equals("updateSummary")) {
 			try {
-				updateStatus(actionRequest, actionResponse);
+				updateSummary(actionRequest, actionResponse);
 
 				String redirect = PortalUtil.escapeRedirect(
 					ParamUtil.getString(actionRequest, "redirect"));
@@ -117,7 +117,7 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 		}
 	}
 
-	protected void updateStatus(
+	protected void updateSummary(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException, SystemException {
 
@@ -161,12 +161,11 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 			actionRequest);
 
 		if (spam) {
+			pattern = "version-x-was-marked-as-spam";
 
 			// Latest version
 
-			if ((wikiPage.getVersion() >= latestVersion) &&
-				wikiPage.isApproved()) {
-
+			if (wikiPage.getVersion() >= latestVersion) {
 				if (previousVersionWikiPage != null) {
 					WikiPageLocalServiceUtil.revertPage(
 						themeDisplay.getUserId(), wikiPage.getNodeId(),
@@ -184,20 +183,19 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 
 			// Selected version
 
-			wikiPage.setStatus(WorkflowConstants.STATUS_DENIED);
+			wikiPage.setStatus(WorkflowConstants.STATUS_APPROVED);
 			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
 
 			wikiPage = WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 
 			// Akismet
 
-			pattern = "version-x-was-marked-as-spam";
-
 			if (AkismetUtil.isWikiEnabled(themeDisplay.getCompanyId())) {
 				AkismetUtil.submitSpam(wikiPage);
 			}
 		}
 		else {
+			pattern = "version-x-was-marked-as-not-spam";
 
 			// Latest version
 
@@ -220,8 +218,6 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 			wikiPage = WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 
 			// Akismet
-
-			pattern = "version-x-was-marked-as-not-spam";
 
 			if (AkismetUtil.isWikiEnabled(themeDisplay.getCompanyId())) {
 				AkismetUtil.submitHam(wikiPage);

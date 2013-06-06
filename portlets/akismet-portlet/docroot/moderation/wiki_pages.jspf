@@ -37,10 +37,6 @@
 
 			wikiPageDynamicQuery.add(summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
 
-			Property statusProperty = PropertyFactoryUtil.forName("status");
-
-			wikiPageDynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_DENIED));
-
 			results = WikiPageLocalServiceUtil.dynamicQuery(wikiPageDynamicQuery, searchContainer.getStart(), searchContainer.getEnd());
 			total = (int)WikiPageLocalServiceUtil.dynamicQueryCount(wikiPageDynamicQuery);
 

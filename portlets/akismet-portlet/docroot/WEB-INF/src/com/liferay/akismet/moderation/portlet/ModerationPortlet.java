@@ -131,9 +131,6 @@ public class ModerationPortlet extends MVCPortlet {
 
 		List<String> wikiPageLinks = new ArrayList<String>();
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			actionRequest);
-
 		for (long wikiPageId : wikiPageIds) {
 			WikiPage wikiPage = WikiPageLocalServiceUtil.getPageByPageId(
 				wikiPageId);
@@ -162,6 +159,9 @@ public class ModerationPortlet extends MVCPortlet {
 
 			if ((latestContent != null) && (previousContent != null) &&
 				latestContent.equals(previousContent)) {
+
+				ServiceContext serviceContext =
+					ServiceContextFactory.getInstance(actionRequest);
 
 				WikiPageLocalServiceUtil.revertPage(
 					themeDisplay.getUserId(), wikiPage.getNodeId(),
@@ -235,8 +235,7 @@ public class ModerationPortlet extends MVCPortlet {
 			WikiPage wikiPage = WikiPageLocalServiceUtil.getPageByPageId(
 				wikiPageId);
 
-			wikiPage.setStatus(WorkflowConstants.STATUS_DENIED);
-			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_SPAM);
+			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_MARKED_AS_SPAM);
 
 			WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 		}
