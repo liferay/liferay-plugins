@@ -155,6 +155,7 @@
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="${basedir}/dist/modules/META-INF/application.xml" />
 			<arg value="${ear.modules.converted}" />
+			<arg value="${plugins.ear.portal.context.path}" />
 		</java>
 
 		<ear
