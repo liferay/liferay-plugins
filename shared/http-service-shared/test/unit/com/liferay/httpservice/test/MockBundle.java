@@ -17,7 +17,6 @@ package com.liferay.httpservice.test;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.URL;
@@ -34,7 +33,6 @@ import java.util.Map;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 
@@ -44,17 +42,19 @@ import org.osgi.framework.Version;
 public class MockBundle implements Bundle {
 
 	@Override
-	public <A> A adapt(Class<A> aClass) {
+	public <A> A adapt(Class<A> clazz) {
 		return null;
 	}
 
 	@Override
-	public int compareTo(Bundle o) {
+	public int compareTo(Bundle bundle) {
 		return 0;
 	}
 
 	@Override
-	public Enumeration<URL> findEntries(String s, String s2, boolean b) {
+	public Enumeration<URL> findEntries(
+		String path, String filePattern, boolean recurse) {
+
 		return Collections.enumeration(new ArrayList<URL>());
 	}
 
@@ -69,17 +69,17 @@ public class MockBundle implements Bundle {
 	}
 
 	@Override
-	public File getDataFile(String s) {
+	public File getDataFile(String fileName) {
 		return null;
 	}
 
 	@Override
-	public URL getEntry(String s) {
+	public URL getEntry(String path) {
 		return null;
 	}
 
 	@Override
-	public Enumeration<String> getEntryPaths(String s) {
+	public Enumeration<String> getEntryPaths(String path) {
 		return Collections.enumeration(new ArrayList<String>());
 	}
 
@@ -89,7 +89,7 @@ public class MockBundle implements Bundle {
 	}
 
 	@Override
-	public Dictionary<String, String> getHeaders(String s) {
+	public Dictionary<String, String> getHeaders(String locale) {
 		return new Hashtable<String, String>();
 	}
 
@@ -109,12 +109,12 @@ public class MockBundle implements Bundle {
 	}
 
 	@Override
-	public URL getResource(String s) {
+	public URL getResource(String name) {
 		return null;
 	}
 
 	@Override
-	public Enumeration<URL> getResources(String s) throws IOException {
+	public Enumeration<URL> getResources(String name) {
 		return Collections.enumeration(new ArrayList<URL>());
 	}
 
@@ -125,7 +125,7 @@ public class MockBundle implements Bundle {
 
 	@Override
 	public Map<X509Certificate, List<X509Certificate>> getSignerCertificates(
-		int i) {
+		int signersType) {
 
 		return Collections.emptyMap();
 	}
@@ -146,44 +146,46 @@ public class MockBundle implements Bundle {
 	}
 
 	@Override
-	public boolean hasPermission(Object o) {
+	public boolean hasPermission(Object permission) {
 		return false;
 	}
 
 	@Override
-	public Class<?> loadClass(String s) throws ClassNotFoundException {
-		return _classLoader.loadClass(s);
+	public Class<?> loadClass(String className) throws ClassNotFoundException {
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
+
+		return classLoader.loadClass(className);
 	}
 
 	@Override
-	public void start() throws BundleException {
+	public void start() {
 		start(0);
 	}
 
 	@Override
-	public void start(int i) throws BundleException {
+	public void start(int options) {
 	}
 
 	@Override
-	public void stop() throws BundleException {
+	public void stop() {
 	}
 
 	@Override
-	public void stop(int i) throws BundleException {
+	public void stop(int options) {
 	}
 
 	@Override
-	public void uninstall() throws BundleException {
+	public void uninstall() {
 	}
 
 	@Override
-	public void update() throws BundleException {
+	public void update() {
 	}
 
 	@Override
-	public void update(InputStream inputStream) throws BundleException {
+	public void update(InputStream inputStream) {
 	}
-
-	private ClassLoader _classLoader = getClass().getClassLoader();
 
 }
