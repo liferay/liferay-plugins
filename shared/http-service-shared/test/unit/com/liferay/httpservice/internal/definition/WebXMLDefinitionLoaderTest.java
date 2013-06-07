@@ -14,7 +14,7 @@
 
 package com.liferay.httpservice.internal.definition;
 
-import com.liferay.http.service.test.MockBundle;
+import com.liferay.httpservice.test.MockBundle;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
