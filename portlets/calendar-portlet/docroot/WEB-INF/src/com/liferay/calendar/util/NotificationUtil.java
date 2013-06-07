@@ -34,12 +34,14 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.portlet.PortletProps;
@@ -47,6 +49,8 @@ import com.liferay.util.portlet.PortletProps;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -128,7 +132,8 @@ public class NotificationUtil {
 	}
 
 	public static void notifyCalendarBookingInvites(
-			CalendarBooking calendarBooking, NotificationType notificationType)
+			CalendarBooking calendarBooking, NotificationType notificationType,
+			ServiceContext serviceContext)
 		throws Exception {
 
 		NotificationSender notificationSender =
@@ -146,7 +151,7 @@ public class NotificationUtil {
 			NotificationTemplateContext notificationTemplateContext =
 				NotificationTemplateContextFactory.getInstance(
 					notificationType, NotificationTemplateType.INVITE,
-					calendarBooking, user);
+					calendarBooking, user, serviceContext);
 
 			notificationSender.sendNotification(
 				notificationRecipient, notificationTemplateContext);
@@ -212,26 +217,39 @@ public class NotificationUtil {
 			Map<String, Serializable> notificationContext)
 		throws Exception {
 
-		return StringUtil.replace(
-				notificationTemplate,
-			new String[] {
-				"[$BOOKING_END_DATE$]", "[$BOOKING_LOCATION$]",
-				"[$BOOKING_START_DATE$]", "[$BOOKING_TITLE$]",
-				"[$FROM_ADDRESS$]", "[$FROM_NAME$]", "[$PORTAL_URL$]",
-				"[$PORTLET_NAME$]", "[$TO_ADDRESS$]", "[$TO_NAME$]"
-			},
-			new String[] {
-				GetterUtil.getString(notificationContext.get("endTime")),
-				GetterUtil.getString(notificationContext.get("location")),
-				GetterUtil.getString(notificationContext.get("startTime")),
-				GetterUtil.getString(notificationContext.get("title")),
-				GetterUtil.getString(notificationContext.get("fromAddress")),
-				GetterUtil.getString(notificationContext.get("fromName")),
-				GetterUtil.getString(notificationContext.get("portalUrl")),
-				GetterUtil.getString(notificationContext.get("portletName")),
-				GetterUtil.getString(notificationContext.get("toAddress")),
-				GetterUtil.getString(notificationContext.get("toName"))
-			});
+		List<String> keys = new ArrayList<String>();
+		Collections.addAll(keys,
+			"[$BOOKING_END_DATE$]", "[$BOOKING_LOCATION$]",
+			"[$BOOKING_START_DATE$]", "[$BOOKING_TITLE$]",
+			"[$FROM_ADDRESS$]", "[$FROM_NAME$]", "[$PORTAL_URL$]",
+			"[$PORTLET_NAME$]", "[$TO_ADDRESS$]", "[$TO_NAME$]"
+		);
+		List<String> values = new ArrayList<String>();
+		Collections.addAll(values,
+			GetterUtil.getString(notificationContext.get("endTime")),
+			GetterUtil.getString(notificationContext.get("location")),
+			GetterUtil.getString(notificationContext.get("startTime")),
+			GetterUtil.getString(notificationContext.get("title")),
+			GetterUtil.getString(notificationContext.get("fromAddress")),
+			GetterUtil.getString(notificationContext.get("fromName")),
+			GetterUtil.getString(notificationContext.get("portalUrl")),
+			GetterUtil.getString(notificationContext.get("portletName")),
+			GetterUtil.getString(notificationContext.get("toAddress")),
+			GetterUtil.getString(notificationContext.get("toName"))
+		);
+
+		String bookingURL = GetterUtil.getString(
+			notificationContext.get("bookingURL"));
+
+		if (Validator.isNotNull(bookingURL)) {
+			keys.add("[$BOOKING_URL$]");
+			values.add(bookingURL);
+		}
+
+		String[] keysArray = keys.toArray(new String[keys.size()]);
+		String[] valuesArray = values.toArray(new String[values.size()]);
+
+		return StringUtil.replace(notificationTemplate, keysArray, valuesArray);
 	}
 
 	private static List<NotificationRecipient> _getNotificationRecipients(
