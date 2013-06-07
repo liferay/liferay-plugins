@@ -44,7 +44,9 @@ public class WebXMLDefinitionLoaderTest {
 
 	@BeforeClass
 	public static void setUp() {
-		new SAXReaderUtil().setSAXReader(SAXReaderImpl.getInstance());
+		SAXReaderUtil saxReaderUtil = new SAXReaderUtil();
+
+		saxReaderUtil.setSAXReader(SAXReaderImpl.getInstance());
 	}
 
 	public WebXMLDefinitionLoaderTest() throws DocumentException {
@@ -60,7 +62,7 @@ public class WebXMLDefinitionLoaderTest {
 			webXMLDefinition.getListenerDefinitions();
 
 		Assert.assertEquals(
-			_LISTENER_DEFAULT_CLASSES.length, listenerDefinitions.size());
+			_LISTENER_DEFAULT_CLASS_NAMES.length, listenerDefinitions.size());
 
 		for (ListenerDefinition listenerDefinition : listenerDefinitions) {
 			Object listener = listenerDefinition.getListener();
@@ -69,12 +71,12 @@ public class WebXMLDefinitionLoaderTest {
 		}
 	}
 
-	private static final String[] _LISTENER_DEFAULT_CLASSES = {
+	private static final String[] _LISTENER_DEFAULT_CLASS_NAMES = {
 		"org.eclipse.jetty.servlet.listener.ELContextCleaner",
 		"org.eclipse.jetty.servlet.listener.IntrospectorCleaner"
 	};
 
-	private static final String[] _SERVLET_DEFAULT_CLASSES = {
+	private static final String[] _SERVLET_DEFAULT_CLASSE_NAMES = {
 		"com.liferay.httpservice.servlet.ResourceServlet",
 		"org.apache.jasper.servlet.JspServlet"
 	};
@@ -92,15 +94,19 @@ public class WebXMLDefinitionLoaderTest {
 	private class CustomClassLoaderMockBundle extends MockBundle {
 
 		@Override
-		public Class<?> loadClass(String s) throws ClassNotFoundException {
-			if (ArrayUtil.contains(_LISTENER_DEFAULT_CLASSES, s)) {
+		public Class<?> loadClass(String className)
+			throws ClassNotFoundException {
+
+			if (ArrayUtil.contains(_LISTENER_DEFAULT_CLASS_NAMES, className)) {
 				return _servletContextListener.getClass();
 			}
-			else if (ArrayUtil.contains(_SERVLET_DEFAULT_CLASSES, s)) {
+			else if (ArrayUtil.contains(
+						_SERVLET_DEFAULT_CLASSE_NAMES, className)) {
+
 				return _servlet.getClass();
 			}
 			else {
-				return super.loadClass(s);
+				return super.loadClass(className);
 			}
 		}
 
