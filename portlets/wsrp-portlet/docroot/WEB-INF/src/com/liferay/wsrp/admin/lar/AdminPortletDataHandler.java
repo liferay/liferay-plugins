@@ -46,6 +46,9 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 	public AdminPortletDataHandler() {
 		setDataLevel(DataLevel.SITE);
+		setDeletionEventClassNames(
+			WSRPConsumer.class.getName(), WSRPConsumerPortlet.class.getName(),
+			WSRPProducer.class.getName());
 		setExportControls(
 			new PortletDataHandlerBoolean(NAMESPACE, "wsrp-producers", false),
 			new PortletDataHandlerBoolean(

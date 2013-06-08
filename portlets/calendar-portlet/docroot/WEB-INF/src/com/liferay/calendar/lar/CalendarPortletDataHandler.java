@@ -49,6 +49,9 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 	public CalendarPortletDataHandler() {
 		setDataLevel(DataLevel.SITE);
 		setDataLocalized(true);
+		setDeletionEventClassNames(
+			Calendar.class.getName(), CalendarBooking.class.getName(),
+			CalendarResource.class.getName());
 		setDataPortletPreferences(
 			"calendarNotificationBodyEmailInvite",
 			"calendarNotificationBodyEmailReminder",

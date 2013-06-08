@@ -38,6 +38,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 	public AdminPortletDataHandler() {
 		setDataLevel(DataLevel.SITE);
+		setDeletionEventClassNames(Gadget.class.getName());
 		setPublishToLiveByDefault(true);
 	}
 
