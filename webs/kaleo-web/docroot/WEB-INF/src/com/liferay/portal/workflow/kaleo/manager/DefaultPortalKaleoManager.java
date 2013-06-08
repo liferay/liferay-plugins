@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.kaleo.manager;
 
 import com.liferay.portal.NoSuchRoleException;
+import com.liferay.portal.NoSuchWorkflowDefinitionLinkException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -37,6 +38,9 @@ import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.comparator.WorkflowDefinitionNameComparator;
 
 import java.io.InputStream;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.List;
@@ -233,9 +237,7 @@ public class DefaultPortalKaleoManager
 		throws PortalException, SystemException {
 
 		WorkflowDefinitionLink workflowDefinitionLink =
-			WorkflowDefinitionLinkLocalServiceUtil.
-				fetchDefaultWorkflowDefinitionLink(
-					company.getCompanyId(), assetClassName, 0, 0);
+			getWorkflowDefinitionLink(company.getCompanyId(), assetClassName);
 
 		if (workflowDefinitionLink != null) {
 			return;
@@ -262,6 +264,44 @@ public class DefaultPortalKaleoManager
 			defaultUser.getUserId(), company.getCompanyId(),
 			companyGroup.getGroupId(), assetClassName, 0, 0,
 			workflowDefinition.getName(), workflowDefinition.getVersion());
+	}
+
+	protected WorkflowDefinitionLink getWorkflowDefinitionLink(
+			long companyId, String assetClassName)
+		throws PortalException, SystemException {
+
+		try {
+			Method method =
+				WorkflowDefinitionLinkLocalServiceUtil.class.getMethod(
+					"fetchDefaultWorkflowDefinitionLink", long.class,
+					String.class, int.class, int.class);
+
+			return (WorkflowDefinitionLink)method.invoke(
+				null, companyId, assetClassName, 0, 0);
+		}
+		catch (IllegalAccessException iae) {
+		}
+		catch (InvocationTargetException ite) {
+			Throwable throwable = ite.getTargetException();
+
+			if (throwable instanceof PortalException) {
+				throw (PortalException)throwable;
+			}
+			else if (throwable instanceof SystemException) {
+				throw (SystemException)throwable;
+			}
+		}
+		catch (NoSuchMethodException nsme) {
+		}
+
+		try {
+			return WorkflowDefinitionLinkLocalServiceUtil.
+				getDefaultWorkflowDefinitionLink(
+					companyId, assetClassName, 0, 0);
+		}
+		catch (NoSuchWorkflowDefinitionLinkException nswdle) {
+			return null;
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
