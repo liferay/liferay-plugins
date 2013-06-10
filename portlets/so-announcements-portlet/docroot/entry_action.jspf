@@ -2,58 +2,35 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 --%>
 
-<div class="edit-actions">
-	<table class="lfr-table">
-	<tr>
-		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
-			<td class="edit-entry">
-				<portlet:renderURL var="editURL">
-					<portlet:param name="struts_action" value="/announcements/edit_entry" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-				</portlet:renderURL>
+<div class="entry-footer-toolbar">
+	<div class="edit-actions">
+		<c:if test="<%= themeDisplay.isSignedIn() %>">
+			<span class="action control-entry">
+				<a href='<%= "javascript:" + renderResponse.getNamespace() + "handleEntry(" + entry.getEntryId() + ");" %>'>
+					<liferay-ui:icon
+						image='<%= ((flagValue == AnnouncementsFlagConstants.HIDDEN) ? "checked" : "unchecked") %>'
+						label="<%= false %>"
+						message=""
+					/>
 
-				<liferay-ui:icon
-					image="edit"
-					label="<%= true %>"
-					url="<%= editURL %>"
-				/>
-			</td>
+					<liferay-ui:message key='<%= ((flagValue == AnnouncementsFlagConstants.HIDDEN) ? "mark-as-unread" : "mark-as-read") %>' />
+				</a>
+			</span>
 		</c:if>
-
-		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
-			<td class="delete-entry">
-				<portlet:actionURL var="deleteURL">
-					<portlet:param name="struts_action" value="/announcements/edit_entry" />
-					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-				</portlet:actionURL>
-
-				<liferay-ui:icon-delete
-					label="<%= true %>"
-					url="<%= deleteURL %>"
-				/>
-			</td>
-		</c:if>
-
-		<td class="control-entry">
-			<c:if test='<%= tabs1.equals("entries") && themeDisplay.isSignedIn() %>'>
-				<a href="<%= "javascript:" + renderResponse.getNamespace() + "handleEntry(" + entry.getEntryId() + ");" %>"><liferay-ui:message key='<%= ((flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) ? "mark-as-read" : "show") %>' /></a>
-			</c:if>
-		</td>
-	</tr>
-	</table>
+	</div>
 </div>

@@ -2,24 +2,27 @@
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 --%>
 
+<%@ include file="/entry_scope.jspf" %>
+
 <%
-boolean hiddenEntry = false;
 boolean readEntry = false;
 
-if (flagValue == AnnouncementsFlagConstants.HIDDEN) {
-	hiddenEntry = true;
+if (flagValue == AnnouncementsFlagConstants.READ) {
 	readEntry = true;
 }
 else {
@@ -38,33 +41,65 @@ if (readEntry) {
 }
 
 if (entry.getPriority() > 0) {
-	className += " important";
+	className += " important-entry";
 }
+
+User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
+
+StringBundler entryUserLink = new StringBundler(5);
+
+entryUserLink.append("<a href=\"");
+entryUserLink.append(entryUser.getDisplayURL(themeDisplay));
+entryUserLink.append("\">");
+entryUserLink.append(entryUser.getFullName());
+entryUserLink.append("</a>");
+
+String scopeNameSpan = "<span class=\"scope\">" + scopeName + "</span>";
+
+Object[] titleArguments = new Object[] {entryUserLink.toString(), scopeNameSpan};
 %>
 
 <div class="entry<%= className %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
-	<h3 class="entry-title">
-		<c:choose>
-			<c:when test="<%= Validator.isNotNull(entry.getUrl()) %>">
-				<a class="entry-url" href="<%= entry.getUrl() %>"><%= HtmlUtil.escape(entry.getTitle()) %></a>
-			</c:when>
-			<c:when test="<%= Validator.isNull(entry.getUrl()) %>">
-				<%= HtmlUtil.escape(entry.getTitle()) %>
-			</c:when>
-		</c:choose>
+	<div class="user-portrait">
+		<span class="avatar">
+			<a href="<%= entryUser.getDisplayURL(themeDisplay) %>">
+				<img alt="<%= entryUser.getFullName() %>" src="<%= entryUser.getPortraitURL(themeDisplay) %>" />
+			</a>
+		</span>
+	</div>
 
-		<c:if test='<%= !tabs1.equals("preview") %>'>
-			<%@ include file="/html/portlet/announcements/entry_action.jspf" %>
-		</c:if>
-	</h3>
+	<div class="entry-data">
+		<div class="entry-header">
+			<div class="entry-time">
+				<%= Time.getRelativeTimeDescription(entry.getDisplayDate().getTime(), locale, themeDisplay.getTimeZone()) %>
+			</div>
 
-	<%
-	boolean showScopeName = false;
-	%>
+			<div class="entry-action">
+				<%= LanguageUtil.format(pageContext, "x-to-x", titleArguments) %>
+			</div>
+		</div>
 
-	<div class="<%= hiddenEntry ? "aui-helper-hidden" : "" %> entry-content entry-type-<%= entry.getType() %>">
-		<%@ include file="/html/portlet/announcements/entry_scope.jspf" %>
+		<div class="entry-body">
+			<div class="title">
+				<c:choose>
+					<c:when test="<%= Validator.isNotNull(entry.getUrl()) %>">
+						<a class="entry-url" href="<%= entry.getUrl() %>"><%= HtmlUtil.escape(entry.getTitle()) %></a>
+					</c:when>
+					<c:otherwise>
+						<%= HtmlUtil.escape(entry.getTitle()) %>
+					</c:otherwise>
+				</c:choose>
+			</div>
 
-		<%= entry.getContent() %>
+			<div class="entry-content-container" id="entryContentContainer<%= entry.getEntryId() %>">
+				<div class="entry-content">
+					<%= entry.getContent() %>
+				</div>
+			</div>
+		</div>
+
+		<div class="entry-footer">
+			<%@ include file="/entry_action.jspf" %>
+		</div>
 	</div>
 </div>
