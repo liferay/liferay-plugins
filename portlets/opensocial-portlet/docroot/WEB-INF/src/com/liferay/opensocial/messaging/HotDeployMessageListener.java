@@ -68,7 +68,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	protected void doReceive(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
-		if (!servletContextName.equals("opensocial")) {
+		if (!servletContextName.equals("opensocial-portlet")) {
 			return;
 		}
 
