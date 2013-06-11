@@ -196,19 +196,6 @@ public class MessageIndexer extends BaseIndexer {
 			new MessageActionableDynamicQuery() {
 
 			@Override
-			protected void addCriteria(DynamicQuery dynamicQuery) {
-				Property displayDateProperty = PropertyFactoryUtil.forName(
-					"displayDate");
-
-				dynamicQuery.add(displayDateProperty.lt(new Date()));
-
-				Property statusProperty = PropertyFactoryUtil.forName("status");
-
-				dynamicQuery.add(
-					statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
-			}
-
-			@Override
 			protected void performAction(Object object) throws PortalException {
 				Message message = (Message)object;
 
