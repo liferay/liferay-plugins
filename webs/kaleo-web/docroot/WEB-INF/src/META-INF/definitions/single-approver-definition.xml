@@ -40,9 +40,10 @@
 			</action>
 			<notification>
 				<name>Creator Modification Notification</name>
-				<template>Your submission was rejected by a reviewer, please modify and resubmit.</template>
-				<template-language>text</template-language>
+				<template>Your submission was rejected by ${userName}, please modify and resubmit.</template>
+				<template-language>freemarker</template-language>
 				<notification-type>email</notification-type>
+				<notification-type>user-notification</notification-type>
 				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
@@ -64,9 +65,10 @@
 		<actions>
 			<notification>
 				<name>Review Notification</name>
-				<template>You have a new submission waiting for your review in the workflow.</template>
-				<template-language>text</template-language>
+				<template>${userName} sent you a ${entryType} for review in the workflow.</template>
+				<template-language>freemarker</template-language>
 				<notification-type>email</notification-type>
+				<notification-type>user-notification</notification-type>
 				<execution-type>onAssignment</execution-type>
 			</notification>
 			<notification>

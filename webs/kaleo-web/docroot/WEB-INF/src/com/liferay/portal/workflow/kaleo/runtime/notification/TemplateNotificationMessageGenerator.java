@@ -118,6 +118,8 @@ public class TemplateNotificationMessageGenerator
 
 			template.put("userId", kaleoTaskInstanceToken.getUserId());
 
+			template.put("userName", kaleoTaskInstanceToken.getUserName());
+
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
 					kaleoTaskInstanceToken);
@@ -129,6 +131,8 @@ public class TemplateNotificationMessageGenerator
 				executionContext.getKaleoInstanceToken();
 
 			template.put("userId", kaleoInstanceToken.getUserId());
+
+			template.put("userName", kaleoInstanceToken.getUserName());
 		}
 	}
 

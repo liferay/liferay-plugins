@@ -93,6 +93,7 @@
 				<template>Your submission was rejected by a reviewer, please modify and resubmit.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<notification-type>user-notification</notification-type>
 				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
@@ -118,6 +119,7 @@
 				<template>You have a new submission waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<notification-type>user-notification</notification-type>
 				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
@@ -199,6 +201,7 @@
 				<template>You have a new submission waiting for your review in the workflow.</template>
 				<template-language>text</template-language>
 				<notification-type>email</notification-type>
+				<notification-type>user-notification</notification-type>
 				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
