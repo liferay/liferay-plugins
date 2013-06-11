@@ -97,10 +97,12 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("\"></span>");
 		sb.append("<div class=\"document-container\"><div class=\"title\">");
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
 
 		String pageTitle = wrapLink(
-			getLinkURL(activity, serviceContext),
+			getLinkURL(
+				activity.getClassName(), activity.getClassPK(), serviceContext),
 			HtmlUtil.escape(
 				assetRenderer.getTitle(serviceContext.getLocale())));
 
@@ -127,7 +129,8 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("<span>");
 
 		String documentLink = wrapLink(
-			getLinkURL(activity, serviceContext),
+			getLinkURL(
+				activity.getClassName(), activity.getClassPK(), serviceContext),
 			serviceContext.translate("view-document"));
 
 		sb.append(documentLink);

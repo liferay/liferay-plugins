@@ -16,6 +16,7 @@ package com.liferay.so.activities.hook.social;
 
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -46,14 +47,14 @@ public abstract class SOSocialActivityInterpreter
 		return _SELECTOR;
 	}
 
-	protected AssetRenderer getAssetRenderer(SocialActivity activity)
+	protected AssetRenderer getAssetRenderer(String className, long classPK)
 		throws Exception {
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				activity.getClassName());
+				className);
 
-		return assetRendererFactory.getAssetRenderer(activity.getClassPK());
+		return assetRendererFactory.getAssetRenderer(classPK);
 	}
 
 	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {
@@ -62,22 +63,22 @@ public abstract class SOSocialActivityInterpreter
 	}
 
 	protected String getLinkURL(
-			SocialActivity activity, ServiceContext serviceContext)
+			String className, long classPK, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
 
 		return assetRenderer.getURLViewInContext(
 			serviceContext.getLiferayPortletRequest(),
 			serviceContext.getLiferayPortletResponse(), null);
 	}
 
-	@Override
 	protected String getTitle(
-			SocialActivity activity, ServiceContext serviceContext)
+			long groupId, long userId, long createDate,
+			ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(10);
+		StringBundler sb = new StringBundler(8);
 
 		sb.append("<div class=\"activity-header\">");
 		sb.append("<div class=\"activity-time\" title=\"");
@@ -85,25 +86,24 @@ public abstract class SOSocialActivityInterpreter
 		Format dateFormatDate = getFormatDateTime(
 			serviceContext.getLocale(), serviceContext.getTimeZone());
 
-		Date activityDate = new Date(activity.getCreateDate());
+		Date activityDate = new Date(createDate);
 
 		sb.append(dateFormatDate.format(activityDate));
 
 		sb.append("\">");
 
 		String relativeTimeDescription = Time.getRelativeTimeDescription(
-			activity.getCreateDate(), serviceContext.getLocale(),
+			createDate, serviceContext.getLocale(),
 			serviceContext.getTimeZone());
 
 		sb.append(relativeTimeDescription);
 
 		sb.append("</div><div class=\"activity-user-name\">");
 
-		String userName = getUserName(activity.getUserId(), serviceContext);
+		String userName = getUserName(userId, serviceContext);
 
-		if (activity.getGroupId() != serviceContext.getScopeGroupId()) {
-			String groupName = getGroupName(
-				activity.getGroupId(), serviceContext);
+		if (groupId != serviceContext.getScopeGroupId()) {
+			String groupName = getGroupName(groupId, serviceContext);
 
 			Object[] userArguments = new Object[] {userName, groupName};
 
@@ -113,12 +113,52 @@ public abstract class SOSocialActivityInterpreter
 			sb.append(userName);
 		}
 
-		sb.append("</div></div><div class=\"activity-action\">");
+		sb.append("</div></div>");
+
+		return sb.toString();
+	}
+
+	@Override
+	protected String getTitle(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(
+			getTitle(
+				activity.getGroupId(), activity.getUserId(),
+				activity.getCreateDate(), serviceContext));
+		sb.append("<div class=\"activity-action\">");
 
 		String titlePattern = getTitlePattern(null, activity);
 
 		Object[] titleArguments = getTitleArguments(
 			null, activity, null, null, serviceContext);
+
+		sb.append(serviceContext.translate(titlePattern, titleArguments));
+
+		sb.append("</div>");
+
+		return sb.toString();
+	}
+
+	protected String getTitle(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(
+			getTitle(
+				activitySet.getGroupId(), activitySet.getUserId(),
+				activitySet.getCreateDate(), serviceContext));
+		sb.append("<div class=\"activity-action\">");
+
+		String titlePattern = getTitlePattern(null, activitySet);
+
+		Object[] titleArguments = getTitleArguments(
+			null, activitySet, null, null, serviceContext);
 
 		sb.append(serviceContext.translate(titlePattern, titleArguments));
 
@@ -134,6 +174,21 @@ public abstract class SOSocialActivityInterpreter
 		throws Exception {
 
 		return null;
+	}
+
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivitySet activitySet, String link,
+			String title, ServiceContext serviceContext)
+		throws Exception {
+
+		return new Object[] {activitySet.getActivityCount()};
+	}
+
+	protected String getTitlePattern(
+			String groupName, SocialActivitySet activitySet)
+		throws Exception {
+
+		return StringPool.BLANK;
 	}
 
 	@Override
