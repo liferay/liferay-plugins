@@ -45,7 +45,7 @@ public class NotificationMessageGeneratorFactory {
 		_notificationMessageGenerators = notificationMessageGenerators;
 	}
 
-	public static Map<String, NotificationMessageGenerator>
+	private static Map<String, NotificationMessageGenerator>
 		_notificationMessageGenerators;
 
 }
