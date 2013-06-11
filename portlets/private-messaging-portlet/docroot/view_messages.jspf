@@ -17,21 +17,27 @@
  */
 --%>
 
-<aui:layout cssClass="controls">
-	<aui:column columnWidth="85" cssClass="col-1">
-		<aui:button cssClass="check-all" name="checkAll" type="checkbox" />
+<aui:nav-bar>
+	<aui:nav cssClass="controls">
+		<aui:nav-item>
+			<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(pageContext, "check-all-messages") %>' type="checkbox" />
+		</aui:nav-item>
 
-		<aui:button cssClass="mark-messages-as-unread" name="markAsUnread" value="mark-as-unread" />
+		<aui:nav-item id="markMessagesAsUnread" label="mark-as-unread" />
 
-		<aui:button cssClass="mark-messages-as-read" name="markAsRead" value="mark-as-read" />
+		<aui:nav-item id="markMessagesAsRead" label="mark-as-read" />
 
-		<aui:button cssClass="delete-messages" name="deleteMessage" value="delete" />
-	</aui:column>
+		<aui:nav-item id="deleteMessages" label="delete" />
+	</aui:nav>
 
-	<aui:column columnWidth="15" cssClass="col-2">
-		<aui:button cssClass="new-message" name="newMessage" value="new-message" />
-	</aui:column>
-</aui:layout>
+	<aui:nav cssClass="pull-right">
+		<aui:nav-item id="newMessage" label="new-message" />
+	</aui:nav>
+</aui:nav-bar>
+
+<%
+int idIndex = 0;
+%>
 
 <liferay-ui:search-container
 	delta="10"
@@ -61,7 +67,7 @@
 		%>
 
 		<liferay-ui:search-container-column-text align="center">
-			<aui:input data-mbThreadId="<%= userThread.getMbThreadId() %>" label="" name="mbThread" type="checkbox" />
+			<aui:input data-mbThreadId="<%= userThread.getMbThreadId() %>" id='<%= "mbThread" + idIndex++ %>' label="" name="mbThread" type="checkbox" />
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text valign="top">

@@ -78,13 +78,13 @@ to = sb.toString() + to;
 
 		<aui:input cssClass="message-subject" name="subject" value="<%= subject %>" />
 
-		<label class="aui-field-label">
+		<label class="field-label">
 			<liferay-ui:message key="message" />
 		</label>
 
 		<textarea class="message-body" id="<portlet:namespace />body" name="<portlet:namespace />body"></textarea>
 
-		<label class="aui-field-label">
+		<label class="field-label">
 			<liferay-ui:message key="attachments" />
 		</label>
 
@@ -112,7 +112,7 @@ to = sb.toString() + to;
 	}
 </aui:script>
 
-<aui:script use="aui-button-item,aui-io-request,aui-loading-mask,autocomplete,json-parse,io-upload-iframe">
+<aui:script use="aui-io-request,aui-loading-mask,autocomplete,json-parse,io-upload-iframe">
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.on(
@@ -197,18 +197,4 @@ to = sb.toString() + to;
 			to.ac.sendRequest('');
 		}
 	);
-
-	var autocompleteButton = new A.ButtonItem(
-		{
-			cssClass: 'autocomplete-button',
-			icon: 'circle-triangle-b',
-			on: {
-				click: function() {
-					to.focus();
-				}
-			}
-		}
-	);
-
-	autocompleteButton.render(to.ancestor('.aui-field-element'));
 </aui:script>

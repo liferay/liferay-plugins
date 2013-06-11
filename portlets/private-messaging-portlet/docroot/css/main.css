@@ -1,45 +1,21 @@
 @import "compass";
 
 .private-messaging-portlet {
-	.aui-dialog-content .aui-panel-bd {
-		padding: 0;
-	}
-
-	.header-title {
-		font-weight: normal;
-		margin: 0;
-		padding: 10px;
+	.column-content {
+		.check-all {
+			margin: 0 20px 0 5px;
+		}
 	}
 
 	img.avatar {
 		width: 50px;
 	}
 
-	.check-all {
-		margin: 0 20px 0 5px;
-	}
 
 	.controls {
-		background-color: #EEE;
-		border: 1px solid #CCC;
-		margin-bottom: -1px;
-		padding: 5px;
-		width: auto;
-
-		.controls-content {
-			line-height: 2em;
-		}
-
-		.aui-column-content {
-			padding: 0;
-		}
-
-		.col-1 {
-			text-align: left;
-		}
-
-		.col-2 {
-			text-align: right;
+		.check-all {
+			margin-left: -10px;
+			margin-top: 13px;
 		}
 
 		.back-button {

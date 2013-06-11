@@ -1,224 +1,386 @@
 AUI.add(
 	'liferay-plugin-privatemessaging',
 	function(A) {
-		Liferay.PrivateMessaging = {
-			init: function(params) {
-				var instance = this;
+		var Lang = A.Lang;
 
-				instance.namespace = params.namespace;
+		var APluginIO = A.Plugin.IO;
 
-				instance.checkAll = A.one('#' + instance.namespace + 'checkAll');
-				instance.userThreadsSearchContainer = A.one('#' + instance.namespace + 'userThreadsSearchContainer');
+		var STR_CLICK = 'click';
 
-				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .private-messaging-container');
+		var STR_JSON = 'json';
 
-				if (instance.privateMessagingContainer) {
-					instance._assignEvents();
-				}
-			},
+		var STR_POST = 'POST';
 
-			deleteMessages: function(mbThreadIds) {
-				var instance = this;
+		var PrivateMessaging = A.Component.create(
+			{
+				ATTRS: {
+					baseActionURL: {
+						validator: Lang.isString
+					},
 
-				A.io.request(
-					instance._getActionURL('deleteMessages').toString(),
-					{
-						data: {
-							mbThreadIds: mbThreadIds
-						},
-						dataType: 'json',
-						method: 'POST',
-						on: {
-							success: function(event, id, obj) {
-								window.location = themeDisplay.getLayoutURL();
-							}
+					portletId: {
+						validator: Lang.isString
+					}
+				},
+
+				AUGMENTS: [Liferay.PortletBase],
+
+				EXTENDS: A.Base,
+
+				prototype: {
+					initializer: function(config) {
+						var instance = this;
+
+						instance._userThreadsContainer = instance.byId('userThreadsSearchContainer');
+
+						instance._privateMessagingContainer = instance.byId('privateMessagingContainer');
+
+						instance._eventHandles = [];
+
+						instance._bindUI();
+					},
+
+					destructor: function() {
+						var instance = this;
+
+						(new A.EventHandle(instance._eventHandles)).detach();
+					},
+
+					deleteMessages: function(mbThreadIds) {
+						var instance = this;
+
+						instance._sendRequest(instance._getActionURL('deleteMessages').toString(), mbThreadIds);
+					},
+
+					markMessagesAsRead: function(mbThreadIds) {
+						var instance = this;
+
+						instance._sendRequest(instance._getActionURL('markMessagesAsRead').toString(), mbThreadIds);
+					},
+
+					markMessagesAsUnread: function(mbThreadIds) {
+						var instance = this;
+
+						instance._sendRequest(instance._getActionURL('markMessagesAsUnread').toString(), mbThreadIds);
+					},
+
+					_bindCheckAllMessages: function() {
+						var instance = this;
+
+						var checkAllNode = instance._privateMessagingContainer.one('.check-all');
+
+						if (checkAllNode) {
+							instance._eventHandles.push(
+								checkAllNode.on(
+									STR_CLICK,
+									function(event) {
+										var checkBox = event.target;
+
+										var privateMessages = instance._privateMessagingContainer.all('input[type=checkbox]');
+
+										privateMessages.set('checked', checkBox.get('checked'));
+									},
+									instance
+								)
+							);
 						}
-					}
-				);
-			},
 
-			markMessagesAsRead: function(mbThreadIds) {
-				var instance = this;
+						if (instance._userThreadsContainer) {
+							instance._eventHandles.push(
+								instance._userThreadsContainer.delegate(
+									STR_CLICK,
+									function(event) {
+										var checkBox = event.target;
 
-				A.io.request(
-					instance._getActionURL('markMessagesAsRead').toString(),
-					{
-						data: {
-							mbThreadIds: mbThreadIds
-						},
-						dataType: 'json',
-						method: 'POST',
-						on: {
-							success: function(event, id, obj) {
-								window.location = themeDisplay.getLayoutURL();
-							}
+										Liferay.Util.updateCheckboxValue(checkBox);
+
+										Liferay.Util.checkAllBox(
+											instance._userThreadsContainer,
+											instance.get('namespace') + 'mbThreadCheckbox',
+											'.check-all'
+										);
+									},
+									'input[type=checkbox]'
+								)
+							);
 						}
-					}
-				);
-			},
+					},
 
-			markMessagesAsUnread: function(mbThreadIds) {
-				var instance = this;
+					_bindCreateMessage: function() {
+						var instance = this;
 
-				A.io.request(
-					instance._getActionURL('markMessagesAsUnread').toString(),
-					{
-						data: {
-							mbThreadIds: mbThreadIds
-						},
-						dataType: 'json',
-						method: 'POST',
-						on: {
-							success: function(event, id, obj) {
-								window.location = themeDisplay.getLayoutURL();
-							}
+						var newMessageNode = instance.byId('newMessage');
+
+						if (newMessageNode) {
+							instance._eventHandles.push(
+								newMessageNode.on(
+									STR_CLICK,
+									function() {
+										instance._newMessage();
+									},
+									instance
+								)
+							);
 						}
-					}
-				);
-			},
-
-			newMessage: function(mbThreadId) {
-				var instance = this;
-
-				var redirectURL = new Liferay.PortletURL.createRenderURL();
-
-				redirectURL.setWindowState('NORMAL');
-
-				var portletURL = new Liferay.PortletURL.createResourceURL();
-
-				portletURL.setPortletId('1_WAR_privatemessagingportlet');
-				portletURL.setWindowState('EXCLUSIVE');
-
-				portletURL.setParameter('mvcPath', '/new_message.jsp');
-				portletURL.setParameter('redirect', redirectURL.toString());
-
-				new A.Dialog(
-					{
-						align: Liferay.Util.Window.ALIGN_CENTER,
-						cssClass: 'private-messaging-portlet',
-						destroyOnClose: true,
-						modal: true,
-						title: Liferay.Language.get('new-message'),
-						width: 600
-					}
-				).plug(
-					A.Plugin.IO,
-					{
-						data: {mbThreadId: mbThreadId},
-						uri: portletURL.toString()
-					}
-				).render();
-			},
-
-			_assignEvents: function() {
-				var instance = this;
-
-				instance.privateMessagingContainer.delegate(
-					'click',
-					function(event) {
-						instance.newMessage();
 					},
-					'.new-message'
-				);
 
-				instance.privateMessagingContainer.delegate(
-					'click',
-					function(event) {
-						var mbThreadIds = instance._getSelectedMessageIds();
+					_bindDeleteMessage: function() {
+						var instance = this;
 
-						instance.deleteMessages(mbThreadIds);
+						var deleteMessageNode = instance.byId('deleteMessage');
+
+						if (deleteMessageNode) {
+							instance._eventHandles.push(
+								deleteMessageNode.on(
+									STR_CLICK,
+									function(event) {
+										if (!confirm(Liferay.Language.get('are-your-sure-you-want-to-delete-the-message'))) {
+											event.preventDefault();
+										}
+									},
+									instance
+								)
+							);
+						}
 					},
-					'.delete-messages'
-				);
 
-				instance.privateMessagingContainer.delegate(
-					'click',
-					function(event) {
-						var mbThreadIds = instance._getSelectedMessageIds();
+					_bindDeleteMessages: function() {
+						var instance = this;
 
-						instance.markMessagesAsRead(mbThreadIds);
+						var deleteMessagesNode = instance.byId('deleteMessages');
+
+						if (deleteMessagesNode) {
+							instance._eventHandles.push(
+								deleteMessagesNode.on(
+									STR_CLICK,
+									function(event) {
+										var mbThreadIds = instance._getSelectedMessageIds();
+
+										if (mbThreadIds.length) {
+											if (confirm(Liferay.Language.get('are-your-sure-you-want-to-delete-the-selected-messages'))) {
+												instance.deleteMessages(mbThreadIds);
+											}
+										}
+									},
+									instance
+								)
+							);
+						}
 					},
-					'.mark-messages-as-read'
-				);
 
-				instance.privateMessagingContainer.delegate(
-					'click',
-					function(event) {
-						var mbThreadIds = instance._getSelectedMessageIds();
+					_bindMarkMessageRead: function() {
+						var instance = this;
 
-						instance.markMessagesAsUnread(mbThreadIds);
+						var markMessageReadNode = instance.byId('markMessageAsRead');
+
+						if (markMessageReadNode) {
+							instance._eventHandles.push(
+								markMessageReadNode.on(
+									STR_CLICK,
+									function(event) {
+										if (confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-message-as-read'))) {
+											event.preventDefault();
+										}
+									},
+									instance
+								)
+							);
+						}
 					},
-					'.mark-messages-as-unread'
-				);
 
-				instance.privateMessagingContainer.delegate(
-					'click',
-					function(event) {
-						var checkBox = event.target;
+					_bindMarkMessagesRead: function() {
+						var instance = this;
 
-						var  privateMessages = instance.privateMessagingContainer.all('input[type=checkbox]');
+						var markMessagesReadNode = instance.byId('markMessagesAsRead');
 
-						privateMessages.set('checked', checkBox.get('checked'));
+						if (markMessagesReadNode) {
+							instance._eventHandles.push(
+								markMessagesReadNode.on(
+									STR_CLICK,
+									function(event) {
+										event.preventDefault();
+
+										var mbThreadIds = instance._getSelectedMessageIds();
+
+										if (mbThreadIds.length) {
+											if (confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-selected-messages-as-read'))) {
+												instance.markMessagesAsRead(mbThreadIds);
+											}
+										}
+									},
+									instance
+								)
+							);
+						}
 					},
-					'.check-all'
-				);
 
-				instance.privateMessagingContainer.delegate(
-					'click',
-					function(event) {
-						var checkBox = event.target;
+					_bindMarkMessageUnread: function() {
+						var instance = this;
 
-						Liferay.Util.updateCheckboxValue(checkBox);
+						var markMessageUnread = instance.byId('markMessageAsUnread');
 
-						Liferay.Util.checkAllBox(
-							instance.userThreadsSearchContainer,
-							instance.namespace + 'mbThreadCheckbox',
-							instance.checkAll
+						if (markMessageUnread) {
+							instance._eventHandles.push(
+								markMessageUnread.on(
+									STR_CLICK,
+									function(event) {
+										if (!confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-message-as-unread'))) {
+											event.preventDefault();
+										}
+									},
+									instance
+								)
+							);
+						}
+					},
+
+					_bindMarkMessagesUnread: function() {
+						var instance = this;
+
+						var markMessagesUnread = instance.byId('markMessagesAsUnread');
+
+						if (markMessagesUnread) {
+							instance._eventHandles.push(
+								markMessagesUnread.on(
+									STR_CLICK,
+									function(event) {
+										event.preventDefault();
+
+										var mbThreadIds = instance._getSelectedMessageIds();
+
+										if (mbThreadIds.length) {
+											if (confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-selected-messages-as-unread'))) {
+												instance.markMessagesAsUnread(mbThreadIds);
+											}
+										}
+									},
+									instance
+								)
+							);
+						}
+					},
+
+					_bindUI: function() {
+						var instance = this;
+
+						if (instance._privateMessagingContainer) {
+							instance._bindCreateMessage();
+
+							instance._bindDeleteMessages();
+
+							instance._bindDeleteMessage();
+
+							instance._bindMarkMessageRead();
+
+							instance._bindMarkMessagesRead();
+
+							instance._bindMarkMessageUnread();
+
+							instance._bindMarkMessagesUnread();
+
+							instance._bindCheckAllMessages();
+						}
+					},
+
+					_getActionURL: function(name) {
+						var instance = this;
+
+						var windowState = 'NORMAL';
+
+						if (themeDisplay.isStateMaximized()) {
+							windowState = 'MAXIMIZED';
+						}
+
+						var portletURL = new Liferay.PortletURL.createURL(instance.get('baseActionURL'));
+
+						portletURL.setParameter('javax.portlet.action', name);
+						portletURL.setPortletId(instance.get('portletId'));
+						portletURL.setWindowState(windowState);
+
+						return portletURL;
+					},
+
+					_getSelectedMessageIds: function() {
+						var instance = this;
+
+						var mbThreadIds = [];
+
+						instance._userThreadsContainer.all('input[type=checkbox]:checked').each(
+							function(item, index, collection) {
+								var mbThreadId = item.getAttribute('data-mbThreadId');
+
+								if (mbThreadId) {
+									mbThreadIds.push(mbThreadId);
+								}
+							}
 						);
+
+						return mbThreadIds;
 					},
-					'.results-row input[type=checkbox]'
-				);
-			},
 
-			_getActionURL: function(name) {
-				var instance = this;
+					_newMessage: function(mbThreadId) {
+						var instance = this;
 
-				var windowState = 'NORMAL';
+						var redirectURL = new Liferay.PortletURL.createRenderURL();
 
-				if (themeDisplay.isStateMaximized()) {
-					windowState = 'MAXIMIZED';
-				}
+						redirectURL.setWindowState('NORMAL');
 
-				var portletURL = new Liferay.PortletURL.createActionURL();
+						var portletURL = new Liferay.PortletURL.createResourceURL();
 
-				portletURL.setParameter('javax.portlet.action', name);
-				portletURL.setPortletId('1_WAR_privatemessagingportlet');
-				portletURL.setWindowState(windowState);
+						portletURL.setPortletId(instance.get('portletId'));
+						portletURL.setWindowState('EXCLUSIVE');
 
-				return portletURL;
-			},
+						portletURL.setParameter('mvcPath', '/new_message.jsp');
+						portletURL.setParameter('redirect', redirectURL.toString());
 
-			_getSelectedMessageIds: function() {
-				var instance = this;
+						var messageDialog = new A.Modal(
+							{
+								centered: true,
+								constrain: true,
+								cssClass: 'private-messaging-portlet',
+								destroyOnHide: true,
+								headerContent: Liferay.Language.get('new-message'),
+								height: 600,
+								modal: true,
+								plugins: [Liferay.WidgetZIndex],
+								width: 600
+							}
+						).plug(
+							APluginIO,
+							{
+								data: {
+									mbThreadId: mbThreadId
+								},
+								uri: portletURL.toString()
+							}
+						).render();
+					},
 
-				var mbThreadIds = [];
+					_sendRequest: function(request, mbThreadIds) {
+						var instance = this;
 
-				instance.privateMessagingContainer.all('input[type=checkbox]').each(
-					function(item, index, collection) {
-						var mbThreadId = item.getAttribute('data-mbThreadId');
-
-						if (mbThreadId && item.get('checked')) {
-							mbThreadIds.push(mbThreadId);
-						}
+						A.io.request(
+							request,
+							{
+								data: {
+									mbThreadIds: mbThreadIds
+								},
+								on: {
+									success: function(event, id, obj) {
+										A.config.win.location = themeDisplay.getLayoutURL();
+									}
+								}
+							}
+						);
 					}
-				);
-
-				return mbThreadIds;
+				}
 			}
-		};
+		);
+
+		Liferay.PrivateMessaging = PrivateMessaging;
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-datatype', 'aui-dialog', 'aui-io', 'liferay-portlet-url']
+		requires: ['aui-base', 'aui-modal', 'aui-io-deprecated', 'liferay-node', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-widget-zindex']
 	}
 );

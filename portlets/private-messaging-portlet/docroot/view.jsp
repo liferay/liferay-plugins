@@ -23,7 +23,7 @@
 long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 %>
 
-<div class="private-messaging-container">
+<div class="private-messaging-container" id="<portlet:namespace/>privateMessagingContainer">
 	<c:choose>
 		<c:when test="<%= !themeDisplay.isSignedIn() %>">
 			<liferay-ui:message key="please-sign-in-to-use-the-private-messaging-portlet" />
@@ -42,9 +42,11 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 </div>
 
 <aui:script use="liferay-plugin-privatemessaging">
-	Liferay.PrivateMessaging.init(
+	new Liferay.PrivateMessaging(
 		{
-			namespace: '<portlet:namespace />'
+			baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+			namespace: '<portlet:namespace />',
+			portletId: '<%= portletDisplay.getId() %>'
 		}
 	);
 </aui:script>

@@ -25,19 +25,22 @@ boolean hasExistingRecipients = false;
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
-<aui:layout cssClass="controls">
-	<liferay-portlet:actionURL name="markMessagesAsUnread" var="markAsUnreadURL">
-		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
-	</liferay-portlet:actionURL>
 
-	<aui:button href="<%= markAsUnreadURL %>" name="markAsUnread" value="mark-as-unread" />
+<aui:nav-bar>
+	<aui:nav cssClass="controls">
+		<liferay-portlet:actionURL name="markMessagesAsUnread" var="markAsUnreadURL">
+			<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
+		</liferay-portlet:actionURL>
 
-	<liferay-portlet:actionURL name="deleteMessages" var="deleteMessageURL">
-		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
-	</liferay-portlet:actionURL>
+		<aui:nav-item href="<%= markAsUnreadURL %>" id="markMessageAsUnread" label="mark-as-unread" />
 
-	<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
-</aui:layout>
+		<liferay-portlet:actionURL name="deleteMessages" var="deleteMessageURL">
+			<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
+		</liferay-portlet:actionURL>
+
+		<aui:nav-item href="<%= deleteMessageURL %>" id="deleteMessage" label="delete" />
+	</aui:nav>
+</aui:nav-bar>
 
 <%
 String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
