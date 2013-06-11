@@ -79,7 +79,7 @@
 								</else>
 							</if>
 
-							<checksum file="@{ivy.xml.dir}/ivy.xml" />
+							<checksum file="@{ivy.xml.dir}/ivy.xml" forceoverwrite="true" />
 						</then>
 					</if>
 
