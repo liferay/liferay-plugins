@@ -1721,12 +1721,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 			border-bottom-width: 0;
 			padding: 1.75em 0 0;
 			position: relative;
-
-			.edit-controls {
-				position: absolute;
-				right: -5px;
-				top: 0;
-			}
 		}
 
 		.results-row {
@@ -1750,6 +1744,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		.thread-bottom {
 			.taglib-flags, .taglib-ratings.thumbs {
 				margin-top: 1.5em;
+			}
+
+			.edit-controls {
+				margin-right: 5px;
 			}
 		}
 	}
