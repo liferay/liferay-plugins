@@ -16,7 +16,10 @@ package com.liferay.calendar.service.persistence;
 
 import com.liferay.calendar.model.CalendarResource;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.ManifestSummary;
@@ -24,6 +27,11 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandler;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerRegistryUtil;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.model.SystemEventConstants;
+import com.liferay.portal.service.persistence.SystemEventActionableDynamicQuery;
+import com.liferay.portal.util.PortalUtil;
+
+import java.util.Date;
 
 /**
  * @author Eduardo Lundgren
@@ -40,18 +48,71 @@ public class CalendarResourceExportActionableDynamicQuery
 
 	@Override
 	public long performCount() throws PortalException, SystemException {
-		long count = super.performCount();
-
 		ManifestSummary manifestSummary = _portletDataContext.getManifestSummary();
 
-		manifestSummary.addModelCount(getManifestSummaryKey(), count);
+		long modelAdditionCount = super.performCount();
 
-		return count;
+		manifestSummary.addModelAdditionCount(getManifestSummaryKey(),
+			modelAdditionCount);
+
+		long modelDeletionCount = getModelDeletionCount();
+
+		manifestSummary.addModelDeletionCount(getManifestSummaryKey(),
+			modelDeletionCount);
+
+		return modelAdditionCount;
 	}
 
 	@Override
 	protected void addCriteria(DynamicQuery dynamicQuery) {
 		_portletDataContext.addDateRangeCriteria(dynamicQuery, "modifiedDate");
+	}
+
+	protected long getModelDeletionCount()
+		throws PortalException, SystemException {
+		ActionableDynamicQuery actionableDynamicQuery = new SystemEventActionableDynamicQuery() {
+				@Override
+				protected void addCriteria(DynamicQuery dynamicQuery) {
+					Property classNameIdProperty = PropertyFactoryUtil.forName(
+							"classNameId");
+
+					dynamicQuery.add(classNameIdProperty.eq(
+							PortalUtil.getClassNameId(
+								CalendarResource.class.getName())));
+
+					Property typeProperty = PropertyFactoryUtil.forName("type");
+
+					dynamicQuery.add(typeProperty.eq(
+							SystemEventConstants.TYPE_DELETE));
+
+					_addCreateDateProperty(dynamicQuery);
+				}
+
+				@Override
+				protected void performAction(Object object) {
+				}
+
+				private void _addCreateDateProperty(DynamicQuery dynamicQuery) {
+					if (!_portletDataContext.hasDateRange()) {
+						return;
+					}
+
+					Property createDateProperty = PropertyFactoryUtil.forName(
+							"createDate");
+
+					Date startDate = _portletDataContext.getStartDate();
+
+					dynamicQuery.add(createDateProperty.ge(startDate));
+
+					Date endDate = _portletDataContext.getEndDate();
+
+					dynamicQuery.add(createDateProperty.le(endDate));
+				}
+			};
+
+		actionableDynamicQuery.setGroupId(_portletDataContext.getScopeGroupId());
+
+		return actionableDynamicQuery.performCount();
 	}
 
 	protected String getManifestSummaryKey() {
