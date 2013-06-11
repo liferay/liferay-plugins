@@ -55,23 +55,23 @@
 		</metadata>
 		<actions>
 			<notification>
-				<name>Review Notification</name>
-				<template>${userName} sent you a ${entryType} for review in the workflow.</template>
-				<template-language>freemarker</template-language>
-				<notification-type>email</notification-type>
-				<notification-type>user-notification</notification-type>
-				<execution-type>onAssignment</execution-type>
-			</notification>
-			<notification>
 				<name>Review Completion Notification</name>
 				<template>
-					Your submission has been reviewed and the reviewer has applied the following ${taskComments}.</template>
+					Your submission was reviewed and the reviewer has applied the following ${taskComments}.</template>
 				<template-language>freemarker</template-language>
 				<notification-type>email</notification-type>
 				<recipients>
 					<user />
 				</recipients>
 				<execution-type>onExit</execution-type>
+			</notification>
+			<notification>
+				<name>Review Notification</name>
+				<template>${userName} sent you a ${entryType} for review in the workflow.</template>
+				<template-language>freemarker</template-language>
+				<notification-type>email</notification-type>
+				<notification-type>user-notification</notification-type>
+				<execution-type>onAssignment</execution-type>
 			</notification>
 		</actions>
 		<assignments>
