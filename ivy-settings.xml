@@ -33,6 +33,6 @@
 	</resolvers>
 
 	<signers>
-		<pgp keyid="${pgp.keyname}" name="${pgp.generator}" password="${pgp.passphrase}" />
+		<pgp keyId="${pgp.keyname}" name="${pgp.generator}" password="${pgp.passphrase}" />
 	</signers>
 </ivysettings>
