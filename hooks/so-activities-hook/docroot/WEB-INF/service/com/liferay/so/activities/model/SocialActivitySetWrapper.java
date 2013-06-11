@@ -54,6 +54,7 @@ public class SocialActivitySetWrapper implements SocialActivitySet,
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("type", getType());
+		attributes.put("extraData", getExtraData());
 		attributes.put("activityCount", getActivityCount());
 
 		return attributes;
@@ -112,6 +113,12 @@ public class SocialActivitySetWrapper implements SocialActivitySet,
 
 		if (type != null) {
 			setType(type);
+		}
+
+		String extraData = (String)attributes.get("extraData");
+
+		if (extraData != null) {
+			setExtraData(extraData);
 		}
 
 		Integer activityCount = (Integer)attributes.get("activityCount");
@@ -332,6 +339,24 @@ public class SocialActivitySetWrapper implements SocialActivitySet,
 	*/
 	public void setType(int type) {
 		_socialActivitySet.setType(type);
+	}
+
+	/**
+	* Returns the extra data of this social activity set.
+	*
+	* @return the extra data of this social activity set
+	*/
+	public java.lang.String getExtraData() {
+		return _socialActivitySet.getExtraData();
+	}
+
+	/**
+	* Sets the extra data of this social activity set.
+	*
+	* @param extraData the extra data of this social activity set
+	*/
+	public void setExtraData(java.lang.String extraData) {
+		_socialActivitySet.setExtraData(extraData);
 	}
 
 	/**

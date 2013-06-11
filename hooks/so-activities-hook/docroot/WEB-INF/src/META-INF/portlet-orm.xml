@@ -29,6 +29,7 @@
 			<basic name="type">
 				<column name="TYPE_" />
 			</basic>
+			<basic name="extraData" />
 			<basic name="activityCount" />
 			<transient name="className" />
 			<transient name="modelAttributes" />

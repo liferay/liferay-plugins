@@ -158,25 +158,29 @@ public class SocialActivitySetLocalServiceClp
 
 		_methodParameterTypes29 = new String[] { "long", "long", "int" };
 
-		_methodName30 = "getUserActivitySets";
+		_methodName30 = "getUserActivitySet";
 
-		_methodParameterTypes30 = new String[] { "long", "int", "int" };
+		_methodParameterTypes30 = new String[] { "long", "long", "long", "int" };
 
-		_methodName31 = "getUserActivitySetsCount";
+		_methodName31 = "getUserActivitySets";
 
-		_methodParameterTypes31 = new String[] { "long" };
+		_methodParameterTypes31 = new String[] { "long", "int", "int" };
 
-		_methodName32 = "getUserGroupsActivitySets";
+		_methodName32 = "getUserActivitySetsCount";
 
-		_methodParameterTypes32 = new String[] { "long", "int", "int" };
+		_methodParameterTypes32 = new String[] { "long" };
 
-		_methodName33 = "getUserGroupsActivitySetsCount";
+		_methodName33 = "getUserGroupsActivitySets";
 
-		_methodParameterTypes33 = new String[] { "long" };
+		_methodParameterTypes33 = new String[] { "long", "int", "int" };
 
-		_methodName34 = "incrementActivityCount";
+		_methodName34 = "getUserGroupsActivitySetsCount";
 
-		_methodParameterTypes34 = new String[] { "long", "long" };
+		_methodParameterTypes34 = new String[] { "long" };
+
+		_methodName35 = "incrementActivityCount";
+
+		_methodParameterTypes35 = new String[] { "long", "long" };
 	}
 
 	public com.liferay.so.activities.model.SocialActivitySet addSocialActivitySet(
@@ -1028,14 +1032,43 @@ public class SocialActivitySetLocalServiceClp
 		return (com.liferay.so.activities.model.SocialActivitySet)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.so.activities.model.SocialActivitySet getUserActivitySet(
+		long groupId, long userId, long classNameId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
+					new Object[] { groupId, userId, classNameId, type });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.so.activities.model.SocialActivitySet)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.so.activities.model.SocialActivitySet> getUserActivitySets(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31, new Object[] { userId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1061,8 +1094,8 @@ public class SocialActivitySetLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1089,8 +1122,8 @@ public class SocialActivitySetLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName33,
+					_methodParameterTypes33, new Object[] { userId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1116,8 +1149,8 @@ public class SocialActivitySetLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName33,
-					_methodParameterTypes33, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName34,
+					_methodParameterTypes34, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1142,8 +1175,8 @@ public class SocialActivitySetLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName34,
-				_methodParameterTypes34,
+			_invokableLocalService.invokeMethod(_methodName35,
+				_methodParameterTypes35,
 				new Object[] { activitySetId, activityId });
 		}
 		catch (Throwable t) {
@@ -1236,4 +1269,6 @@ public class SocialActivitySetLocalServiceClp
 	private String[] _methodParameterTypes33;
 	private String _methodName34;
 	private String[] _methodParameterTypes34;
+	private String _methodName35;
+	private String[] _methodParameterTypes35;
 }
