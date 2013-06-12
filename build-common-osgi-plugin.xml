@@ -70,7 +70,7 @@
 		</antcall>
 	</target>
 
-	<target name="deploy" depends="jar,deploy-dependencies">		
+	<target name="deploy" depends="jar,deploy-dependencies">
 		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 	</target>
 

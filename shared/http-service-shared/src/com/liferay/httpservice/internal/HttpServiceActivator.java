@@ -162,11 +162,11 @@ public class HttpServiceActivator
 	private static Log _log = LogFactoryUtil.getLog(HttpServiceActivator.class);
 
 	private BundleContext _bundleContext;
+	private ServiceTracker<ServletContext, ServletContext>
+		_servletContextTracker;
 	private StartedBundleListener _startedBundleListener;
 	private StoppedBundleListener _stoppedBundleListener;
 	private WebBundleDeployer _webBundleDeployer;
 	private WebExtenderServlet _webExtenderServlet;
-	private ServiceTracker<ServletContext, ServletContext>
-		_servletContextTracker;
 
 }
