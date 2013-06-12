@@ -49,6 +49,28 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		return _CLASS_NAMES;
 	}
 
+	protected String appendNodeTitlePattern(String titlePattern, long classPK) {
+		try {
+			WikiPageResource pageResource =
+				WikiPageResourceLocalServiceUtil.fetchWikiPageResource(classPK);
+
+			if (pageResource == null) {
+				return titlePattern;
+			}
+
+			WikiNode node = WikiNodeLocalServiceUtil.fetchWikiNode(
+				pageResource.getNodeId());
+
+			if (Validator.isNotNull(node)) {
+				titlePattern = titlePattern.concat("-in-the-x-wiki");
+			}
+		}
+		catch (Exception e) {
+		}
+
+		return titlePattern;
+	}
+
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
@@ -240,18 +262,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		WikiPageResource pageResource =
-			WikiPageResourceLocalServiceUtil.getPageResource(
-				activity.getClassPK());
-
-		WikiNode node = WikiNodeLocalServiceUtil.getNode(
-			pageResource.getNodeId());
-
-		if (Validator.isNotNull(node)) {
-			titlePattern = titlePattern.concat("-in-the-x-wiki");
-		}
-
-		return titlePattern;
+		return appendNodeTitlePattern(titlePattern, activity.getClassPK());
 	}
 
 	/**
