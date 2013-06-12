@@ -44,4 +44,9 @@ public class WURFLConstants {
 
 	public static final String RESOLUTION_WIDTH = "resolution_width";
 
+	public static final String SCREEN_PHYSICAL_HEIGHT =
+		"physical_screen_height";
+
+	public static final String SCREEN_PHYSICAL_WIDTH = "physical_screen_width";
+
 }

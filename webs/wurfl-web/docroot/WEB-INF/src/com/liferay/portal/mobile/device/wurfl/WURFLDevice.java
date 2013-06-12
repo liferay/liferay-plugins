@@ -100,7 +100,24 @@ public class WURFLDevice extends AbstractDevice {
 	}
 
 	@Override
-	public Dimensions getScreenSize() {
+	public Dimensions getScreenPhysicalSize() {
+		Capability heightCapability = _capabilities.get(
+			WURFLConstants.SCREEN_PHYSICAL_HEIGHT);
+		Capability widthCapability = _capabilities.get(
+			WURFLConstants.SCREEN_PHYSICAL_WIDTH);
+
+		if ((heightCapability == null) || (widthCapability == null)) {
+			return Dimensions.UNKNOWN;
+		}
+
+		int height = GetterUtil.getInteger(heightCapability.getValue());
+		int width = GetterUtil.getInteger(widthCapability.getValue());
+
+		return new Dimensions(height, width);
+	}
+
+	@Override
+	public Dimensions getScreenResolution() {
 		Capability heightCapability = _capabilities.get(
 			WURFLConstants.RESOLUTION_HEIGHT);
 		Capability widthCapability = _capabilities.get(
