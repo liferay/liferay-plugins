@@ -89,17 +89,34 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+			return getBody(
+				activitySet.getClassName(), activitySet.getClassPK(),
+				serviceContext);
+		}
+
+		return super.getBody(activitySet, serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(5);
 
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
-
-		sb.append(
-			getPageTitle(
-				activity.getClassName(), activity.getClassPK(),
-				serviceContext));
+		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"wiki-page-content\">");
 		sb.append(
 			StringUtil.shorten(
