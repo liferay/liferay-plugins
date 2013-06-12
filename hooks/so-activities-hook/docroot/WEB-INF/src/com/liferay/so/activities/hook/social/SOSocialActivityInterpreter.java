@@ -14,23 +14,29 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
 import java.text.Format;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -47,6 +53,40 @@ public abstract class SOSocialActivityInterpreter
 		return _SELECTOR;
 	}
 
+	@Override
+	protected SocialActivityFeedEntry doInterpret(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getActivityCount() == 1) {
+			List<SocialActivity> activities =
+				SocialActivityLocalServiceUtil.getActivitySetActivities(
+					activitySet.getActivitySetId(), 0, 1);
+
+			if (!activities.isEmpty()) {
+				SocialActivity activity = activities.get(0);
+
+				return doInterpret(activity, serviceContext);
+			}
+		}
+
+		String link = getLink(activitySet, serviceContext);
+
+		String title = getTitle(activitySet, serviceContext);
+
+		if (Validator.isNull(title)) {
+			return null;
+		}
+
+		String body = getBody(activitySet, serviceContext);
+
+		if (Validator.isNull(body)) {
+			return null;
+		}
+
+		return new SocialActivityFeedEntry(link, title, body);
+	}
+
 	protected AssetRenderer getAssetRenderer(String className, long classPK)
 		throws Exception {
 
@@ -57,9 +97,71 @@ public abstract class SOSocialActivityInterpreter
 		return assetRendererFactory.getAssetRenderer(classPK);
 	}
 
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		StringBundler sb = new StringBundler();
+
+		sb.append("<div class=\"activity-body\">");
+
+		int viewableActivities = 0;
+
+		List<SocialActivity> activities =
+			SocialActivityLocalServiceUtil.getActivitySetActivities(
+				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
+
+		for (SocialActivity activity :activities) {
+			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+			PermissionChecker permissionChecker =
+				themeDisplay.getPermissionChecker();
+
+			if (!hasPermissions(
+				permissionChecker, activity, ActionKeys.VIEW,
+				serviceContext)) {
+
+				continue;
+			}
+
+			SocialActivityFeedEntry subFeedEntry = getSubFeedEntry(
+				activity, serviceContext);
+
+			if (subFeedEntry == null) {
+				continue;
+			}
+
+			sb.append("<div class=\"activity-subentry\">");
+			sb.append("<span class=\"activity-subentry-title\">");
+			sb.append(subFeedEntry.getTitle());
+			sb.append("</span><span class=\"activity-subentry-body\">");
+			sb.append(subFeedEntry.getBody());
+			sb.append("</span></div>");
+
+			viewableActivities++;
+		}
+
+		if (viewableActivities == 0) {
+			return null;
+		}
+
+		sb.append("</div>");
+
+		return sb.toString();
+
+	}
+
 	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {
 		return FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"EEEE, MMMMM dd, yyyy 'at' h:mm a", locale, timezone);
+	}
+
+	protected String getLink(
+		SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		return null;
 	}
 
 	protected String getLinkURL(
@@ -71,6 +173,13 @@ public abstract class SOSocialActivityInterpreter
 		return assetRenderer.getURLViewInContext(
 			serviceContext.getLiferayPortletRequest(),
 			serviceContext.getLiferayPortletResponse(), null);
+	}
+
+	protected SocialActivityFeedEntry getSubFeedEntry(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		return null;
 	}
 
 	protected String getTitle(
