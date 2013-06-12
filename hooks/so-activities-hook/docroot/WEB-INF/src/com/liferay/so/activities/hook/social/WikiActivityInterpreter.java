@@ -93,34 +93,13 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 
-		String pageTitle = StringPool.BLANK;
-
-		String linkURL = getLinkURL(
-			activity.getClassName(), activity.getClassPK(), serviceContext);
-
 		AssetRenderer assetRenderer = getAssetRenderer(
 			activity.getClassName(), activity.getClassPK());
 
-		LiferayPortletRequest liferayPortletRequest =
-			serviceContext.getLiferayPortletRequest();
-
-		if (Validator.isNotNull(
-				assetRenderer.getIconPath(liferayPortletRequest))) {
-
-			pageTitle = wrapLink(
-				linkURL, assetRenderer.getIconPath(liferayPortletRequest),
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-		else {
-			pageTitle = wrapLink(
-				linkURL,
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-
-		sb.append(pageTitle);
-
+		sb.append(
+			getPageTitle(
+				activity.getClassName(), activity.getClassPK(),
+				serviceContext));
 		sb.append("</div><div class=\"wiki-page-content\">");
 		sb.append(
 			StringUtil.shorten(
@@ -139,6 +118,32 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			getLinkURL(
 				activity.getClassName(), activity.getClassPK(), serviceContext),
 			serviceContext.translate("view-wiki"));
+	}
+
+	protected String getPageTitle(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
+		String linkURL = getLinkURL(className, classPK, serviceContext);
+
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+
+		LiferayPortletRequest liferayPortletRequest =
+			serviceContext.getLiferayPortletRequest();
+
+		if (Validator.isNotNull(
+			assetRenderer.getIconPath(liferayPortletRequest))) {
+
+			return wrapLink(
+				linkURL, assetRenderer.getIconPath(liferayPortletRequest),
+				HtmlUtil.escape(
+					assetRenderer.getTitle(serviceContext.getLocale())));
+		}
+
+		return wrapLink(
+			linkURL,
+			HtmlUtil.escape(
+				assetRenderer.getTitle(serviceContext.getLocale())));
 	}
 
 	@Override
