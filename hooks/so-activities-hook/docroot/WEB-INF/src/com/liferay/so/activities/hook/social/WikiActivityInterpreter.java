@@ -263,13 +263,61 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 	@Override
 	protected String getLink(
-			SocialActivity activity, ServiceContext serviceContext)
+		SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		return wrapLink(
-			getLinkURL(
-				activity.getClassName(), activity.getClassPK(), serviceContext),
-			serviceContext.translate("view-wiki"));
+		String sourceVersion = null;
+		String targetVersion = null;
+
+		if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+			SocialActivity socialActiivty =
+				SocialActivityLocalServiceUtil.fetchSocialActivity(
+					activity.getActivityId());
+
+			SocialActivitySet activitySet =
+				SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
+					socialActiivty.getActivitySetId());
+
+			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+				activitySet.getExtraData());
+
+			sourceVersion = extraDataJSONObject.getString("sourceVersion");
+			targetVersion = extraDataJSONObject.getString("targetVersion");
+		}
+
+		return getLink(
+			activity.getGroupId(), activity.getClassName(),
+			activity.getClassPK(), activity.getType(), sourceVersion,
+			targetVersion, serviceContext);
+	}
+
+	protected String getLink(
+			long groupId, String className, long classPK, int type,
+			String sourceVersion, String targetVersion,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append("<span>");
+		sb.append(
+			wrapLink(
+				getLinkURL(className, classPK, serviceContext),
+				serviceContext.translate("view-wiki")));
+		sb.append("</span>");
+
+		if (type == _ACTIVITY_KEY_UPDATE_PAGE) {
+			sb.append("<span>");
+			sb.append(
+				wrapLink(
+					getDiffsURL(
+						classPK, groupId, sourceVersion, targetVersion,
+						serviceContext),
+					serviceContext.translate("view-changes")));
+			sb.append("</span>");
+		}
+
+		return sb.toString();
 	}
 
 	@Override
@@ -278,11 +326,18 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		throws Exception {
 
 		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
-			return wrapLink(
-				getLinkURL(
-					activitySet.getClassName(), activitySet.getClassPK(),
-					serviceContext),
-				serviceContext.translate("view-wiki"));
+			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+				activitySet.getExtraData());
+
+			String sourceVersion = extraDataJSONObject.getString(
+				"sourceVersion");
+			String targetVersion = extraDataJSONObject.getString(
+				"targetVersion");
+
+			return getLink(
+				activitySet.getGroupId(), activitySet.getClassName(),
+				activitySet.getClassPK(), activitySet.getType(), sourceVersion,
+				targetVersion, serviceContext);
 		}
 
 		return null;
