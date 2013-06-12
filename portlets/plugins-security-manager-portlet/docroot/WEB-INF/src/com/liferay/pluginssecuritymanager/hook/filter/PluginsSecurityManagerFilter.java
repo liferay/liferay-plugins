@@ -44,6 +44,6 @@ public class PluginsSecurityManagerFilter
 		return _log;
 	}
 
-	private Log _log = LogFactoryUtil.getLog(getClass());
+	private static Log _log = LogFactoryUtil.getLog(getClass());
 
 }
