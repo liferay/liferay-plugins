@@ -249,6 +249,20 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivitySet activitySet, String link,
+			String title, ServiceContext serviceContext)
+		throws Exception {
+
+		int activityCount = activitySet.getActivityCount();
+
+		String nodeTitle = getNodeTitle(
+			activitySet.getClassPK(), activitySet.getGroupId(), serviceContext);
+
+		return new Object[] {activityCount, nodeTitle};
+	}
+
+	@Override
 	protected String getTitlePattern(String groupName, SocialActivity activity)
 		throws Exception {
 
@@ -270,6 +284,32 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 
 		return appendNodeTitlePattern(titlePattern, activity.getClassPK());
+	}
+
+	@Override
+	protected String getTitlePattern(
+			String groupName, SocialActivitySet activitySet)
+		throws Exception {
+
+		String titlePattern = null;
+
+		if ((activitySet.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+			(activitySet.getType() ==
+				SocialActivityConstants.TYPE_ADD_COMMENT)) {
+
+			titlePattern = "commented-on-x-wiki-pages";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_ADD_PAGE) {
+			titlePattern = "created-x-new-wiki-pages";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+			titlePattern = "made-x-updates-to-a-wiki-page";
+		}
+		else {
+			return StringPool.BLANK;
+		}
+
+		return appendNodeTitlePattern(titlePattern, activitySet.getClassPK());
 	}
 
 	/**
