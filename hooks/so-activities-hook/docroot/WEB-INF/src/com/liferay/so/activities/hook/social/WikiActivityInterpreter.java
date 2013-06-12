@@ -61,8 +61,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	public void updateActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		SocialActivity activity =
-			SocialActivityUtil.fetchByPrimaryKey(activityId);
+		SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
+			activityId);
 
 		if ((activity == null) || (activity.getActivitySetId() > 0)) {
 			return;
@@ -247,8 +247,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 
 		PortletURL diffsURL = PortletURLFactoryUtil.create(
-			serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI,
-			plid, PortletRequest.RENDER_PHASE);
+			serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI, plid,
+			PortletRequest.RENDER_PHASE);
 
 		diffsURL.setParameter("struts_action", "/wiki/compare_versions");
 		diffsURL.setParameter(
@@ -259,36 +259,6 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		diffsURL.setParameter("type", "html");
 
 		return diffsURL.toString();
-	}
-
-	@Override
-	protected String getLink(
-		SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
-
-		String sourceVersion = null;
-		String targetVersion = null;
-
-		if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
-			SocialActivity socialActiivty =
-				SocialActivityLocalServiceUtil.fetchSocialActivity(
-					activity.getActivityId());
-
-			SocialActivitySet activitySet =
-				SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
-					socialActiivty.getActivitySetId());
-
-			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
-				activitySet.getExtraData());
-
-			sourceVersion = extraDataJSONObject.getString("sourceVersion");
-			targetVersion = extraDataJSONObject.getString("targetVersion");
-		}
-
-		return getLink(
-			activity.getGroupId(), activity.getClassName(),
-			activity.getClassPK(), activity.getType(), sourceVersion,
-			targetVersion, serviceContext);
 	}
 
 	protected String getLink(
@@ -318,6 +288,36 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 
 		return sb.toString();
+	}
+
+	@Override
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		String sourceVersion = null;
+		String targetVersion = null;
+
+		if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+			SocialActivity socialActiivty =
+				SocialActivityLocalServiceUtil.fetchSocialActivity(
+					activity.getActivityId());
+
+			SocialActivitySet activitySet =
+				SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
+					socialActiivty.getActivitySetId());
+
+			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+				activitySet.getExtraData());
+
+			sourceVersion = extraDataJSONObject.getString("sourceVersion");
+			targetVersion = extraDataJSONObject.getString("targetVersion");
+		}
+
+		return getLink(
+			activity.getGroupId(), activity.getClassName(),
+			activity.getClassPK(), activity.getType(), sourceVersion,
+			targetVersion, serviceContext);
 	}
 
 	@Override
@@ -390,7 +390,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			serviceContext.getLiferayPortletRequest();
 
 		if (Validator.isNotNull(
-			assetRenderer.getIconPath(liferayPortletRequest))) {
+				assetRenderer.getIconPath(liferayPortletRequest))) {
 
 			return wrapLink(
 				linkURL, assetRenderer.getIconPath(liferayPortletRequest),

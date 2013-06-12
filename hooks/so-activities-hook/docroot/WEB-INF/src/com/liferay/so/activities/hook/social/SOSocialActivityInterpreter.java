@@ -119,8 +119,8 @@ public abstract class SOSocialActivityInterpreter
 				themeDisplay.getPermissionChecker();
 
 			if (!hasPermissions(
-				permissionChecker, activity, ActionKeys.VIEW,
-				serviceContext)) {
+					permissionChecker, activity, ActionKeys.VIEW,
+					serviceContext)) {
 
 				continue;
 			}
@@ -158,7 +158,7 @@ public abstract class SOSocialActivityInterpreter
 	}
 
 	protected String getLink(
-		SocialActivitySet activitySet, ServiceContext serviceContext)
+			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
 		return null;
