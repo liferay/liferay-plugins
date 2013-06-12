@@ -175,6 +175,41 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		return null;
 	}
 
+	protected String getNodeTitle(
+			long classPK, long groupId, ServiceContext serviceContext)
+		throws Exception {
+
+		WikiPageResource pageResource =
+			WikiPageResourceLocalServiceUtil.fetchWikiPageResource(classPK);
+
+		if (pageResource == null) {
+			return null;
+		}
+
+		WikiNode node = WikiNodeLocalServiceUtil.fetchWikiNode(
+			pageResource.getNodeId());
+
+		if (node == null) {
+			return null;
+		}
+
+		long plid = PortalUtil.getPlidFromPortletId(
+			groupId, false, PortletKeys.WIKI);
+
+		if (plid <= 0) {
+			return HtmlUtil.escape(node.getName());
+		}
+
+		PortletURL nodeURL = PortletURLFactoryUtil.create(
+			serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI, plid,
+			PortletRequest.RENDER_PHASE);
+
+		nodeURL.setParameter("struts_action", "/wiki/view");
+		nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
+
+		return wrapLink(nodeURL.toString(), HtmlUtil.escape(node.getName()));
+	}
+
 	protected String getPageTitle(
 			String className, long classPK, ServiceContext serviceContext)
 		throws Exception {
@@ -207,36 +242,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		WikiPageResource pageResource =
-			WikiPageResourceLocalServiceUtil.getPageResource(
-				activity.getClassPK());
-
-		WikiNode node = WikiNodeLocalServiceUtil.getNode(
-			pageResource.getNodeId());
-
-		if (node == null) {
-			return null;
-		}
-
-		String nodeTitle = null;
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			activity.getGroupId(), false, PortletKeys.WIKI);
-
-		if (plid > 0) {
-			PortletURL nodeURL = PortletURLFactoryUtil.create(
-				serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI,
-				plid, PortletRequest.RENDER_PHASE);
-
-			nodeURL.setParameter("struts_action", "/wiki/view");
-			nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-
-			nodeTitle = wrapLink(
-				nodeURL.toString(), HtmlUtil.escape(node.getName()));
-		}
-		else {
-			nodeTitle = HtmlUtil.escape(node.getName());
-		}
+		String nodeTitle = getNodeTitle(
+			activity.getClassPK(),activity.getGroupId(), serviceContext);
 
 		return new Object[] {nodeTitle};
 	}
