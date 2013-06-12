@@ -55,25 +55,27 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
-				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.getClassActivitySet(
-						activity.getClassNameId(), activity.getClassPK(),
-						activity.getType());
+			SocialActivitySet activitySet = null;
 
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+			if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+				(activity.getType() == _ACTIVITY_KEY_ADD_PAGE) ||
+				(activity.getType() ==
+					SocialActivityConstants.TYPE_ADD_COMMENT)) {
+
+				activitySet =
+					SocialActivitySetLocalServiceUtil.getUserActivitySet(
+						activity.getGroupId(), activity.getUserId(),
+						activity.getClassNameId(), activity.getType());
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
-				SocialActivitySet activitySet =
+				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
+			}
 
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
 			}
 		}
 		catch (Exception e) {
