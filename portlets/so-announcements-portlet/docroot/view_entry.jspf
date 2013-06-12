@@ -43,25 +43,16 @@ if (readEntry) {
 if (entry.getPriority() > 0) {
 	className += " important-entry";
 }
-
-User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
-
-StringBundler entryUserLink = new StringBundler(5);
-
-entryUserLink.append("<a href=\"");
-entryUserLink.append(entryUser.getDisplayURL(themeDisplay));
-entryUserLink.append("\">");
-entryUserLink.append(entryUser.getFullName());
-entryUserLink.append("</a>");
-
-String scopeNameSpan = "<span class=\"scope\">" + scopeName + "</span>";
-
-Object[] titleArguments = new Object[] {entryUserLink.toString(), scopeNameSpan};
 %>
 
 <div class="entry<%= className %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
 	<div class="user-portrait">
 		<span class="avatar">
+
+			<%
+			User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
+			%>
+
 			<a href="<%= entryUser.getDisplayURL(themeDisplay) %>">
 				<img alt="<%= entryUser.getFullName() %>" src="<%= entryUser.getPortraitURL(themeDisplay) %>" />
 			</a>
@@ -75,7 +66,7 @@ Object[] titleArguments = new Object[] {entryUserLink.toString(), scopeNameSpan}
 			</div>
 
 			<div class="entry-action">
-				<%= LanguageUtil.format(pageContext, "x-to-x", titleArguments) %>
+				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + entryUser.getFullName() + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}) %>
 			</div>
 		</div>
 
