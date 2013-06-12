@@ -73,7 +73,5 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-int pageDelta = GetterUtil.getInteger(String.valueOf(SearchContainer.DEFAULT_DELTA));
-
 Format dateFormatDate = FastDateFormatFactoryUtil.getSimpleDateFormat("MMM d, yyyy", locale, timeZone);
 %>

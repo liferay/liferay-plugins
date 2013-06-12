@@ -21,14 +21,14 @@
 	<div class="edit-actions">
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<span class="action control-entry">
-				<a href='<%= "javascript:" + renderResponse.getNamespace() + "handleEntry(" + entry.getEntryId() + ");" %>'>
+				<a href="javascript:<%= renderResponse.getNamespace() %>handleEntry(<%= entry.getEntryId() %>);">
 					<liferay-ui:icon
-						image='<%= ((flagValue == AnnouncementsFlagConstants.HIDDEN) ? "checked" : "unchecked") %>'
+						image='<%= (flagValue == AnnouncementsFlagConstants.HIDDEN) ? "checked" : "unchecked" %>'
 						label="<%= false %>"
 						message=""
 					/>
 
-					<liferay-ui:message key='<%= ((flagValue == AnnouncementsFlagConstants.HIDDEN) ? "mark-as-unread" : "mark-as-read") %>' />
+					<liferay-ui:message key='<%= (flagValue == AnnouncementsFlagConstants.HIDDEN) ? "mark-as-unread" : "mark-as-read" %>' />
 				</a>
 			</span>
 		</c:if>

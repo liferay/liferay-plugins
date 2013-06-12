@@ -30,7 +30,7 @@ scopes.put(new Long(0), new long[] {0});
 
 int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", pageDelta, portletURL, null, "there-are-currently-no-unread-entries");
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-currently-no-unread-entries");
 
 List<AnnouncementsEntry> results = null;
 
