@@ -27,6 +27,7 @@ import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
+import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
@@ -237,13 +238,30 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
+	protected SocialActivityFeedEntry getSubFeedEntry(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		String title = getPageTitle(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
+
+		String body = StringUtil.shorten(
+			assetRenderer.getSummary(serviceContext.getLocale()), 200);
+
+		return new SocialActivityFeedEntry(title, body);
+	}
+
+	@Override
 	protected Object[] getTitleArguments(
 			String groupName, SocialActivity activity, String link,
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
 		String nodeTitle = getNodeTitle(
-			activity.getClassPK(),activity.getGroupId(), serviceContext);
+			activity.getClassPK(), activity.getGroupId(), serviceContext);
 
 		return new Object[] {nodeTitle};
 	}
