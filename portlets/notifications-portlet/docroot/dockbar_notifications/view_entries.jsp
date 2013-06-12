@@ -28,6 +28,8 @@ List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalS
 
 <%
 for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
+	UserNotificationFeedEntry userNotificationFeedEntry = UserNotificationInterpreterLocalServiceUtil.interpret(StringPool.BLANK, userNotificationEvent, ServiceContextFactory.getInstance(request));
+
 	JSONObject userNotificationEventJSONObject = JSONFactoryUtil.createJSONObject(userNotificationEvent.getPayload());
 
 	long userId = userNotificationEventJSONObject.getLong("userId");
@@ -42,20 +44,18 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 		userPortaitURL = curUser.getPortraitURL(themeDisplay);
 	}
 
-	String url = userNotificationEventJSONObject.getString("url");
-
 	boolean read = userNotificationEvent.isArchived();
 %>
 
 	<li class="user-notification<%= read ? "" : " unread" %>">
 		<c:choose>
 			<c:when test="<%= read %>">
-				<a href="<%= url %>">
+				<a href="<%= userNotificationFeedEntry.getLink() %>">
 			</c:when>
 			<c:otherwise>
 				<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
 
-				<a data-markAsReadURL="<%= markAsReadURL %>" href="<%= url %>">
+				<a data-markAsReadURL="<%= markAsReadURL %>" href="<%= userNotificationFeedEntry.getLink() %>">
 			</c:otherwise>
 		</c:choose>
 
@@ -67,7 +67,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 
 			<div class="content">
 				<div class="body">
-					<%= HtmlUtil.escape(userNotificationEventJSONObject.getString("notificationMessage")) %>
+					<%= userNotificationFeedEntry.getBody() %>
 				</div>
 
 				<div class="timestamp">
