@@ -149,6 +149,40 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		return sb.toString();
 	}
 
+	protected String getDiffsURL(
+			long classPK, long groupId, String sourceVersion,
+			String targetVersion, ServiceContext serviceContext)
+		throws Exception {
+
+		WikiPageResource pageResource =
+			WikiPageResourceLocalServiceUtil.fetchWikiPageResource(classPK);
+
+		if (pageResource == null) {
+			return null;
+		}
+
+		long plid = PortalUtil.getPlidFromPortletId(
+			groupId, false, PortletKeys.WIKI);
+
+		if (plid <= 0) {
+			return null;
+		}
+
+		PortletURL diffsURL = PortletURLFactoryUtil.create(
+			serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI,
+			plid, PortletRequest.RENDER_PHASE);
+
+		diffsURL.setParameter("struts_action", "/wiki/compare_versions");
+		diffsURL.setParameter(
+			"nodeId", String.valueOf(pageResource.getNodeId()));
+		diffsURL.setParameter("title", pageResource.getTitle());
+		diffsURL.setParameter("sourceVersion", sourceVersion);
+		diffsURL.setParameter("targetVersion", targetVersion);
+		diffsURL.setParameter("type", "html");
+
+		return diffsURL.toString();
+	}
+
 	@Override
 	protected String getLink(
 			SocialActivity activity, ServiceContext serviceContext)
