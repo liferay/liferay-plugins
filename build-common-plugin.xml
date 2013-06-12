@@ -493,7 +493,7 @@
 				<not>
 					<available file="docroot/WEB-INF/lib/.svn" />
 				</not>
-				<length when="equal" length="0">
+				<length length="0" when="equal">
 					<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" />
 				</length>
 			</and>
