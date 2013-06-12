@@ -40,7 +40,12 @@
 			}
 		}
 
-		Liferay.Poller.addListener('1_WAR_notificationsportlet', onPollerUpdate, this);
+		A.on(
+			'domready',
+			function() {
+				Liferay.Poller.addListener('<%= portletDisplay.getId() %>', onPollerUpdate, this);
+			}
+		);
 
 		userNotifications.delegate(
 			'click',
@@ -110,7 +115,7 @@
 					currentTarget.toggleClass('open');
 
 					if (currentTarget.hasClass('open')) {
-						userNotificationsList.io.set('uri', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/view_entries.jsp" /></portlet:renderURL>');
+						userNotificationsList.io.set('uri', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/dockbar_notifications/view_entries.jsp" /></portlet:renderURL>');
 
 						userNotificationsList.io.start();
 
