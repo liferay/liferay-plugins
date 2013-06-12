@@ -137,6 +137,22 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			serviceContext.translate("view-wiki"));
 	}
 
+	@Override
+	protected String getLink(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+			return wrapLink(
+				getLinkURL(
+					activitySet.getClassName(), activitySet.getClassPK(),
+					serviceContext),
+				serviceContext.translate("view-wiki"));
+		}
+
+		return null;
+	}
+
 	protected String getPageTitle(
 			String className, long classPK, ServiceContext serviceContext)
 		throws Exception {
