@@ -1,5 +1,6 @@
 AUI().use(
 	'aui-base',
+	'transition',
 	function(A) {
 		Liferay.namespace('SO');
 
@@ -9,20 +10,33 @@ AUI().use(
 
 				var entry = A.one('#' + portletNamespace + entryId);
 
+				var body = entry.one('.grouped-activity-body');
 				var bodyContainer = entry.one('.grouped-activity-body-container');
 				var subentryHeight = entry.one('.activity-subentry').outerHeight();
 
 				var minHeight = (subentryHeight * 3) + 'px';
+
+				var bodyHeight = minHeight;
 
 				if (entry.hasClass('toggler-content-collapsed')) {
 					entry.removeClass('toggler-content-collapsed');
 
 					bodyContainer.setStyle('height', minHeight);
 					bodyContainer.setStyle('max-height', 'none');
+
+					bodyHeight = body.height() + 'px';
 				}
 				else {
 					entry.addClass('toggler-content-collapsed');
 				}
+
+				bodyContainer.transition(
+					{
+						duration: 0.5,
+						easing: 'ease-in-out',
+						height: bodyHeight
+					}
+				);
 			}
 		};
 	}
