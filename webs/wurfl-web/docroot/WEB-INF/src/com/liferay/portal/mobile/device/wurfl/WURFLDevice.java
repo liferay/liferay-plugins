@@ -138,9 +138,6 @@ public class WURFLDevice extends AbstractDevice {
 	protected Dimensions getDimensions(
 		String heightCapabilityName, String widthCapabilityName) {
 
-		Capability dualOrientationCapability = _capabilities.get(
-			WURFLConstants.DUAL_ORIENTATION);
-
 		Capability heightCapability = _capabilities.get(heightCapabilityName);
 		Capability widthCapability = _capabilities.get(widthCapabilityName);
 
@@ -149,6 +146,9 @@ public class WURFLDevice extends AbstractDevice {
 		}
 
 		boolean dualOrientation = false;
+
+		Capability dualOrientationCapability = _capabilities.get(
+			WURFLConstants.DUAL_ORIENTATION);
 
 		if (dualOrientationCapability != null) {
 			dualOrientation = GetterUtil.getBoolean(
@@ -161,9 +161,8 @@ public class WURFLDevice extends AbstractDevice {
 		if (dualOrientation && (height < width)) {
 			return new Dimensions(width, height);
 		}
-		else {
-			return new Dimensions(height, width);
-		}
+
+		return new Dimensions(height, width);
 	}
 
 	protected String getValue(String name) {
