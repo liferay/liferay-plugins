@@ -28,7 +28,7 @@
 		}
 	%>
 
-		<div class="activity-item">
+		<div class="activity-item" id="<portlet:namespace /><%= activitySet.getActivitySetId() %>">
 
 			<%
 			User activitySetUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());
