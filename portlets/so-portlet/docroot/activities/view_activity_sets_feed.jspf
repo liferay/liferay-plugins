@@ -60,7 +60,9 @@
 
 				<div class="activity-footer">
 					<div class="activity-footer-toolbar">
+						<c:if test="<%= !activityFeedEntry.getLink().isEmpty() %>">
 						<span><%= activityFeedEntry.getLink() %></span>
+						</c:if>
 					</div>
 				</div>
 			</div>
