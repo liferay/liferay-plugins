@@ -44,6 +44,11 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 		return _VERSION;
 	}
 
+	@Override
+	public boolean isDeployed() {
+		return true;
+	}
+
 	private static final String _KEY = "liferay";
 
 	private static final String _NAME = "Liferay Kaleo Workflow Engine";
