@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <projectDescription>
-	<name>cdi-portlet-bridge-shared-master</name>
+	<name>cdi-portlet-bridge-shared-6.1.x</name>
 	<comment></comment>
 	<projects></projects>
 	<buildSpec>
