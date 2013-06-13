@@ -8,6 +8,7 @@
 		<friendly-url-mapping>user_activities</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/portal/kernel/portlet/rss-friendly-url-routes.xml</friendly-url-routes>
 		<header-portlet-css>/activities/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/activities/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>so-portlet-activities</css-class-wrapper>
 	</portlet>
 	<portlet>
