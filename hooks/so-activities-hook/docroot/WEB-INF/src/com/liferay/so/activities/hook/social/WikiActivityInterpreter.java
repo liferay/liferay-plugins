@@ -34,7 +34,6 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
@@ -61,8 +60,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	public void updateActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		SocialActivity activity = SocialActivityUtil.fetchByPrimaryKey(
-			activityId);
+		SocialActivity activity =
+			SocialActivityLocalServiceUtil.fetchSocialActivity(activityId);
 
 		if ((activity == null) || (activity.getActivitySetId() > 0)) {
 			return;
