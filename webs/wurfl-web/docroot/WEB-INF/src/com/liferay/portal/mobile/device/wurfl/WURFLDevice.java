@@ -140,6 +140,7 @@ public class WURFLDevice extends AbstractDevice {
 
 		Capability dualOrientationCapability = _capabilities.get(
 			WURFLConstants.DUAL_ORIENTATION);
+
 		Capability heightCapability = _capabilities.get(heightCapabilityName);
 		Capability widthCapability = _capabilities.get(widthCapabilityName);
 
@@ -148,13 +149,14 @@ public class WURFLDevice extends AbstractDevice {
 		}
 
 		boolean dualOrientation = false;
-		float height = GetterUtil.getFloat(heightCapability.getValue());
-		float width = GetterUtil.getFloat(widthCapability.getValue());
 
 		if (dualOrientationCapability != null) {
 			dualOrientation = GetterUtil.getBoolean(
 				dualOrientationCapability.getValue());
 		}
+
+		float height = GetterUtil.getFloat(heightCapability.getValue());
+		float width = GetterUtil.getFloat(widthCapability.getValue());
 
 		if (dualOrientation && (height < width)) {
 			return new Dimensions(width, height);
