@@ -12,6 +12,7 @@ AUI().use(
 
 				var body = entry.one('.grouped-activity-body');
 				var bodyContainer = entry.one('.grouped-activity-body-container');
+				var control = entry.one('.toggle-entry');
 				var subentryHeight = entry.one('.activity-subentry').outerHeight();
 
 				var minHeight = (subentryHeight * 3) + 'px';
@@ -25,9 +26,17 @@ AUI().use(
 					bodyContainer.setStyle('max-height', 'none');
 
 					bodyHeight = body.height() + 'px';
+
+					if (control) {
+						control.html(Liferay.Language.get('view-less'));
+					}
 				}
 				else {
 					entry.addClass('toggler-content-collapsed');
+
+					if (control) {
+						control.html(Liferay.Language.get('view-more'));
+					}
 				}
 
 				bodyContainer.transition(
