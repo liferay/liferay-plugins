@@ -1212,7 +1212,22 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 			</elseif>
 			<else>
-				<var name="test.type" value="" />
+				<if>
+					<not>
+						<isset property="class" />
+					</not>
+					<then>
+						<fail>Missing class argument. Use "ant test-class -Dclass=TestClassName".</fail>
+					</then>
+					<elseif>
+						<not>
+							<isset property="test.type" />
+						</not>
+						<then>
+							<fail>Class ${class} cannot be found.</fail>
+						</then>
+					</elseif>
+				</if>
 			</else>
 		</if>
 
