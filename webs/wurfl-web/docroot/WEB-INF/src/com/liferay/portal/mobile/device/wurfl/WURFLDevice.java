@@ -101,36 +101,15 @@ public class WURFLDevice extends AbstractDevice {
 
 	@Override
 	public Dimensions getScreenPhysicalSize() {
-		Capability heightCapability = _capabilities.get(
-			WURFLConstants.SCREEN_PHYSICAL_HEIGHT);
-		Capability widthCapability = _capabilities.get(
+		return getDimensions(
+			WURFLConstants.SCREEN_PHYSICAL_HEIGHT,
 			WURFLConstants.SCREEN_PHYSICAL_WIDTH);
-
-		if ((heightCapability == null) || (widthCapability == null)) {
-			return Dimensions.UNKNOWN;
-		}
-
-		int height = GetterUtil.getInteger(heightCapability.getValue());
-		int width = GetterUtil.getInteger(widthCapability.getValue());
-
-		return new Dimensions(height, width);
 	}
 
 	@Override
 	public Dimensions getScreenResolution() {
-		Capability heightCapability = _capabilities.get(
-			WURFLConstants.RESOLUTION_HEIGHT);
-		Capability widthCapability = _capabilities.get(
-			WURFLConstants.RESOLUTION_WIDTH);
-
-		if ((heightCapability == null) || (widthCapability == null)) {
-			return Dimensions.UNKNOWN;
-		}
-
-		float height = GetterUtil.getFloat(heightCapability.getValue());
-		float width = GetterUtil.getFloat(widthCapability.getValue());
-
-		return new Dimensions(height, width);
+		return getDimensions(
+			WURFLConstants.RESOLUTION_HEIGHT, WURFLConstants.RESOLUTION_WIDTH);
 	}
 
 	@Override
@@ -154,6 +133,35 @@ public class WURFLDevice extends AbstractDevice {
 		}
 
 		return GetterUtil.getBoolean(capability.getValue(), false);
+	}
+
+	protected Dimensions getDimensions(
+		String heightCapabilityName, String widthCapabilityName) {
+
+		Capability dualOrientationCapability = _capabilities.get(
+			WURFLConstants.DUAL_ORIENTATION);
+		Capability heightCapability = _capabilities.get(heightCapabilityName);
+		Capability widthCapability = _capabilities.get(widthCapabilityName);
+
+		if ((heightCapability == null) || (widthCapability == null)) {
+			return Dimensions.UNKNOWN;
+		}
+
+		boolean dualOrientation = false;
+		float height = GetterUtil.getFloat(heightCapability.getValue());
+		float width = GetterUtil.getFloat(widthCapability.getValue());
+
+		if (dualOrientationCapability != null) {
+			dualOrientation = GetterUtil.getBoolean(
+				dualOrientationCapability.getValue());
+		}
+
+		if (dualOrientation && (height < width)) {
+			return new Dimensions(width, height);
+		}
+		else {
+			return new Dimensions(height, width);
+		}
 	}
 
 	protected String getValue(String name) {
