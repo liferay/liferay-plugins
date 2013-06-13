@@ -214,14 +214,16 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 		StringBundler sb = new StringBundler(5);
 
-		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
-
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
 		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"wiki-page-content\">");
+
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+
 		sb.append(
 			StringUtil.shorten(
 				assetRenderer.getSummary(serviceContext.getLocale()), 200));
+
 		sb.append("</div></div>");
 
 		return sb.toString();
@@ -440,7 +442,6 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		throws Exception {
 
 		int activityCount = activitySet.getActivityCount();
-
 		String nodeTitle = getNodeTitle(
 			activitySet.getClassPK(), activitySet.getGroupId(), serviceContext);
 
