@@ -29,8 +29,8 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 
 import java.text.Format;
 
@@ -58,14 +58,16 @@ public abstract class SOSocialActivityInterpreter
 		throws Exception {
 
 		if (activitySet.getActivityCount() == 1) {
-			List<SocialActivity> activities =
+			List<com.liferay.so.activities.model.SocialActivity> activities =
 				SocialActivityLocalServiceUtil.getActivitySetActivities(
 					activitySet.getActivitySetId(), 0, 1);
 
 			if (!activities.isEmpty()) {
-				SocialActivity activity = activities.get(0);
+				com.liferay.so.activities.model.SocialActivity activity =
+					activities.get(0);
 
-				return doInterpret(activity, serviceContext);
+				return doInterpret(
+					activity.getPortalSocialActivity(), serviceContext);
 			}
 		}
 
@@ -106,26 +108,28 @@ public abstract class SOSocialActivityInterpreter
 
 		int viewableActivities = 0;
 
-		List<SocialActivity> activities =
+		List<com.liferay.so.activities.model.SocialActivity> activities =
 			SocialActivityLocalServiceUtil.getActivitySetActivities(
 				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		for (SocialActivity activity :activities) {
+		for (com.liferay.so.activities.model.SocialActivity activity :
+				activities) {
+
 			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
 			PermissionChecker permissionChecker =
 				themeDisplay.getPermissionChecker();
 
 			if (!hasPermissions(
-					permissionChecker, activity, ActionKeys.VIEW,
-					serviceContext)) {
+					permissionChecker, activity.getPortalSocialActivity(),
+					ActionKeys.VIEW, serviceContext)) {
 
 				continue;
 			}
 
 			SocialActivityFeedEntry subfeedEntry = getSubfeedEntry(
-				activity, serviceContext);
+				activity.getPortalSocialActivity(), serviceContext);
 
 			if (subfeedEntry == null) {
 				continue;

@@ -33,7 +33,6 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
@@ -41,6 +40,7 @@ import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
 
 import javax.portlet.PortletRequest;
@@ -60,7 +60,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	public void updateActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		SocialActivity activity =
+		com.liferay.so.activities.model.SocialActivity activity =
 			SocialActivityLocalServiceUtil.fetchSocialActivity(activityId);
 
 		if ((activity == null) || (activity.getActivitySetId() > 0)) {
@@ -152,7 +152,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
-			SocialActivity activity =
+			com.liferay.so.activities.model.SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
 			SocialActivitySet activitySet = null;
@@ -300,7 +300,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		String targetVersion = null;
 
 		if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
-			SocialActivity socialActiivty =
+			com.liferay.so.activities.model.SocialActivity socialActiivty =
 				SocialActivityLocalServiceUtil.fetchSocialActivity(
 					activity.getActivityId());
 
