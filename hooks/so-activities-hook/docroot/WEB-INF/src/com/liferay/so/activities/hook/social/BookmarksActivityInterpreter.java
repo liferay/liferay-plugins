@@ -85,7 +85,8 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 
 		String faviconUrl = HttpUtil.getDomain(entry.getUrl()) + "/favicon.ico";
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
@@ -97,7 +98,9 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 					assetRenderer.getIconPath(liferayPortletRequest))) {
 
 			link = wrapLink(
-				getLinkURL(activity, serviceContext),
+				getLinkURL(
+					activity.getClassName(), activity.getClassPK(),
+					serviceContext),
 				assetRenderer.getIconPath(liferayPortletRequest),
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
@@ -121,7 +124,8 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 		throws Exception {
 
 		return wrapLink(
-			getLinkURL(activity, serviceContext),
+			getLinkURL(
+				activity.getClassName(), activity.getClassPK(), serviceContext),
 			serviceContext.translate("view-bookmarks"));
 	}
 

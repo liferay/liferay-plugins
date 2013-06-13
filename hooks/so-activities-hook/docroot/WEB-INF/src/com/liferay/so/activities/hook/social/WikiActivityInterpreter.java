@@ -93,9 +93,11 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 		String pageTitle = StringPool.BLANK;
 
-		String linkURL = getLinkURL(activity, serviceContext);
+		String linkURL = getLinkURL(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
@@ -132,7 +134,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		throws Exception {
 
 		return wrapLink(
-			getLinkURL(activity, serviceContext),
+			getLinkURL(
+				activity.getClassName(), activity.getClassPK(), serviceContext),
 			serviceContext.translate("view-wiki"));
 	}
 

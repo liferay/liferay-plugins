@@ -75,7 +75,8 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 
 		String pageTitle = StringPool.BLANK;
 
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
@@ -84,14 +85,18 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 				assetRenderer.getIconPath(liferayPortletRequest))) {
 
 			pageTitle = wrapLink(
-				getLinkURL(activity, serviceContext),
+				getLinkURL(
+					activity.getClassName(), activity.getClassPK(),
+					serviceContext),
 				assetRenderer.getIconPath(liferayPortletRequest),
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
 		else {
 			pageTitle = wrapLink(
-				getLinkURL(activity, serviceContext),
+				getLinkURL(
+					activity.getClassName(), activity.getClassPK(),
+					serviceContext),
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
@@ -131,7 +136,8 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		throws Exception {
 
 		return wrapLink(
-			getLinkURL(activity, serviceContext),
+			getLinkURL(
+				activity.getClassName(), activity.getClassPK(), serviceContext),
 			serviceContext.translate("view-calendar"));
 	}
 
