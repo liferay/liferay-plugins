@@ -152,7 +152,6 @@ public abstract class SOSocialActivityInterpreter
 		sb.append("</div>");
 
 		return sb.toString();
-
 	}
 
 	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {
