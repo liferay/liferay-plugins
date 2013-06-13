@@ -1,3 +1,5 @@
+@import "compass";
+
 .so-portlet-activities {
 	.activity-item {
 		border-bottom: 1px solid #E7E7E7;
@@ -24,6 +26,7 @@
 
 	.activity-data {
 		margin-left: 55px;
+		overflow: hidden;
 	}
 
 	.activity-header {
@@ -46,10 +49,15 @@
 		color: #333333;
 	}
 
-	.activity-body {
+	.activity-body, .grouped-activity-body-container {
 		border: 1px solid #E7E7E7;
-		margin: .8em 0 0;
-		padding: .6em .9em;
+
+		span {
+			display: inline-block;
+			line-height: 1em;
+			padding-right: 10px;
+			vertical-align: middle;
+		}
 
 		.icon {
 			height: 16px;
@@ -74,48 +82,70 @@
 				padding-right: 0;
 			}
 		}
+	}
 
-		span {
-			display: inline-block;
-			line-height: 1em;
-			padding-right: 10px;
-			vertical-align: middle;
+	.activity-body {
+		margin: .8em 0 0;
+		padding: .6em .9em;
+
+		&.document {
+			min-height: 75px;
+			padding: 0;
+			position: relative;
+
+			.document-thumbnail {
+				overflow: hidden;
+				padding-right: 0;
+				position: absolute;
+				width: 75px;
+
+				img {
+					height: 75px;
+				}
+			}
+
+			.document-container {
+				margin: .6em .9em .6em 85px;
+			}
+
+			.title {
+				float: left;
+			}
+
+			.version {
+				color: #8F0920;
+				float: right;
+			}
+
+			.document-content {
+				clear: both;
+			}
 		}
 	}
 
-	.activity-body.document {
-		min-height: 75px;
-		padding: 0;
-		position: relative;
+	.grouped-activity-body-container {
+		max-height: 93px;
+		overflow: hidden;
 
-		.document-thumbnail {
+		.activity-subentry {
+			border-bottom: 1px solid #E7E7E7;
+			height: 2.5em;
+			line-height: 2.5em;
 			overflow: hidden;
-			padding-right: 0;
-			position: absolute;
-			width: 75px;
+			padding: 0 .9em;
 
-			img {
-				height: 75px;
+			&:last-child {
+				border-bottom-width: 0;
 			}
 		}
 
-		.document-container {
-			margin: .6em .9em .6em 85px;
-		}
-
-		.title {
-			float: left;
-		}
-
-		.version {
-			color: #8F0920;
-			float: right;
-		}
-
-		.document-content {
-			clear: both;
+		.activity-subentry-body, .activity-subentry-title {
+			display: inline;
+			line-height: 2.5em;
+			overflow: hidden;
 		}
 	}
+
 
 	.tasks {
 		&.low {
@@ -137,10 +167,11 @@
 
 	.activity-footer-toolbar {
 		background: #EAEAEA;
-		padding: .5em 1em;
+		padding: 0 1em;
 
 		span {
 			border-left: 1px solid #2571AD;
+			line-height: 2.5em;
 			padding: 0 .5em 0 .6em;
 
 			&:first-child {
@@ -153,4 +184,22 @@
 			font-size: .9em;
 		}
 	}
+
+	.toggler-content-collapsed .activity-footer-toolbar {
+		border-top: 1px solid #EFEFEF;
+		margin-top: -2px;
+	}
+}
+
+/* ---------- Internet Explorer ---------- */
+
+.ie7 .so-portlet-activities .grouped-activity-body-container .activity-subentry-title {
+	float: left;
+	margin: 7px 0;
+}
+
+/* ---------- Extras ---------- */
+
+.so-portlet-activities .toggler-content-collapsed .activity-footer-toolbar {
+	@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, .8));
 }
