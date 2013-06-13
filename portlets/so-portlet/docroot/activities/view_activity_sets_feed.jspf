@@ -88,6 +88,11 @@
 					toggle.removeClass('aui-helper-hidden');
 					entry.addClass('toggler-content-collapsed')
 				}
+				else {
+					var bodyContainer = entry.one('.grouped-activity-body-container');
+
+					bodyContainer.setStyle('height', 'auto');
+				}
 			}
 		</aui:script>
 
