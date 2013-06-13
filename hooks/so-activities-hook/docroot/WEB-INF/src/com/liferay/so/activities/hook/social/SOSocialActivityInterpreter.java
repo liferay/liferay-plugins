@@ -106,7 +106,8 @@ public abstract class SOSocialActivityInterpreter
 
 		StringBundler sb = new StringBundler();
 
-		sb.append("<div class=\"activity-body\">");
+		sb.append("<div class=\"grouped-activity-body-container\">");
+		sb.append("<div class=\"grouped-activity-body\">");
 
 		int viewableActivities = 0;
 
@@ -149,7 +150,7 @@ public abstract class SOSocialActivityInterpreter
 			return null;
 		}
 
-		sb.append("</div>");
+		sb.append("</div></div>");
 
 		return sb.toString();
 	}
