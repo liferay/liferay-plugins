@@ -124,18 +124,18 @@ public abstract class SOSocialActivityInterpreter
 				continue;
 			}
 
-			SocialActivityFeedEntry subFeedEntry = getSubFeedEntry(
+			SocialActivityFeedEntry subfeedEntry = getSubfeedEntry(
 				activity, serviceContext);
 
-			if (subFeedEntry == null) {
+			if (subfeedEntry == null) {
 				continue;
 			}
 
 			sb.append("<div class=\"activity-subentry\">");
 			sb.append("<span class=\"activity-subentry-title\">");
-			sb.append(subFeedEntry.getTitle());
+			sb.append(subfeedEntry.getTitle());
 			sb.append("</span><span class=\"activity-subentry-body\">");
-			sb.append(subFeedEntry.getBody());
+			sb.append(subfeedEntry.getBody());
 			sb.append("</span></div>");
 
 			viewableActivities++;
@@ -174,7 +174,7 @@ public abstract class SOSocialActivityInterpreter
 			serviceContext.getLiferayPortletResponse(), null);
 	}
 
-	protected SocialActivityFeedEntry getSubFeedEntry(
+	protected SocialActivityFeedEntry getSubfeedEntry(
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 

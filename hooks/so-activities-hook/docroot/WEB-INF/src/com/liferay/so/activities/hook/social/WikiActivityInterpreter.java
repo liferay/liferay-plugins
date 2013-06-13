@@ -405,7 +405,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry getSubFeedEntry(
+	protected SocialActivityFeedEntry getSubfeedEntry(
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
