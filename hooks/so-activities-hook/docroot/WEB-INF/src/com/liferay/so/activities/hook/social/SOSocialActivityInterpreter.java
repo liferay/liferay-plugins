@@ -112,7 +112,7 @@ public abstract class SOSocialActivityInterpreter
 				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		for (SocialActivity activity :activities) {
+		for (SocialActivity activity : activities) {
 			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
 			PermissionChecker permissionChecker =
@@ -149,7 +149,6 @@ public abstract class SOSocialActivityInterpreter
 		sb.append("</div>");
 
 		return sb.toString();
-
 	}
 
 	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {

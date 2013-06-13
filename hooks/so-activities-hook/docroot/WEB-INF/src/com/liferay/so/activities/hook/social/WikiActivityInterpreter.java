@@ -300,13 +300,13 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		String targetVersion = null;
 
 		if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
-			SocialActivity socialActiivty =
+			SocialActivity socialActivity =
 				SocialActivityLocalServiceUtil.fetchSocialActivity(
 					activity.getActivityId());
 
 			SocialActivitySet activitySet =
 				SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
-					socialActiivty.getActivitySetId());
+					socialActivity.getActivitySetId());
 
 			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
 				activitySet.getExtraData());
