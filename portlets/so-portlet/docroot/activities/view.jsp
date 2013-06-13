@@ -44,6 +44,7 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 	announcementEntries.delegate(
 		'click',
 		function(event) {
+			Liferay.SO.Activities.toggleEntry(event,'<portlet:namespace />');
 		},
 		'.toggle-entry'
 	);
