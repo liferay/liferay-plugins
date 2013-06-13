@@ -15,8 +15,13 @@
 package com.liferay.so.activities.hook.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -29,10 +34,12 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
+import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
@@ -48,6 +55,77 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
+	}
+
+	@Override
+	public void updateActivitySet(long activityId)
+		throws PortalException, SystemException {
+
+		SocialActivity activity =
+			SocialActivityUtil.fetchByPrimaryKey(activityId);
+
+		if ((activity == null) || (activity.getActivitySetId() > 0)) {
+			return;
+		}
+
+		long activitySetId = getActivitySetId(activityId);
+
+		if (activitySetId > 0) {
+			SocialActivitySetLocalServiceUtil.incrementActivityCount(
+				activitySetId, activityId);
+
+			if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+				SocialActivitySet activitySet =
+					SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
+						activitySetId);
+
+				WikiPageResource pageResource =
+					WikiPageResourceLocalServiceUtil.fetchWikiPageResource(
+						activity.getClassPK());
+
+				WikiPage wikiPage = WikiPageLocalServiceUtil.getPage(
+					pageResource.getResourcePrimKey());
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject(
+						activitySet.getExtraData());
+
+				extraDataJSONObject.put(
+					"targetVersion",
+					MathUtil.format(wikiPage.getVersion() + 0.1, 1, 1));
+
+				activitySet.setExtraData(extraDataJSONObject.toString());
+
+				SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
+					activitySet);
+			}
+		}
+		else {
+			SocialActivitySet activitySet =
+				SocialActivitySetLocalServiceUtil.addActivitySet(activityId);
+
+			if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+				WikiPageResource pageResource =
+					WikiPageResourceLocalServiceUtil.fetchWikiPageResource(
+						activity.getClassPK());
+
+				WikiPage wikiPage = WikiPageLocalServiceUtil.getPage(
+					pageResource.getResourcePrimKey());
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				extraDataJSONObject.put("sourceVersion", wikiPage.getVersion());
+				extraDataJSONObject.put(
+					"targetVersion",
+					MathUtil.format(wikiPage.getVersion() + 0.1, 1, 1));
+
+				activitySet.setExtraData(extraDataJSONObject.toString());
+
+				SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
+					activitySet);
+			}
+		}
 	}
 
 	protected String appendNodeTitlePattern(String titlePattern, long classPK) {
