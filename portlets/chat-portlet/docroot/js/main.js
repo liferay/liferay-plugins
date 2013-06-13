@@ -36,7 +36,7 @@ AUI().use(
 					if (bgColorNode) {
 						defaultColor = bgColorNode.getStyle('backgroundColor');
 
-						while (defaultColor == 'transparent') {
+						while (defaultColor.toLowerCase() == 'transparent') {
 							defaultColor = bgColorNode.getStyle('backgroundColor');
 
 							bgColorNode = bgColorNode.ancestor();
