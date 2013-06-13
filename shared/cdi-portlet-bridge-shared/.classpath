@@ -18,6 +18,7 @@
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="lib/cdi-api.jar" />
 	<classpathentry kind="lib" path="lib/javax.servlet-api.jar" />
+	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="lib/portlet-api.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
