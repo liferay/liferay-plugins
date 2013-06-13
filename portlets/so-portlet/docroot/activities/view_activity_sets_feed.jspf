@@ -63,10 +63,32 @@
 						<c:if test="<%= !activityFeedEntry.getLink().isEmpty() %>">
 							<span><%= activityFeedEntry.getLink() %></span>
 						</c:if>
+
+						<span class="toggle-action aui-helper-hidden">
+							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
+								<span><liferay-ui:message key='view-more' /></span>
+							</a>
+						</span>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<aui:script use="aui-base">
+			var entry = A.one('#<portlet:namespace /><%= activitySet.getActivitySetId() %>');
+
+			var subentry = entry.one('.activity-subentry');
+
+			if (subentry != null) {
+				var body = entry.one('.grouped-activity-body');
+
+				if (body.outerHeight() > (subentry.outerHeight() * 3)) {
+					var toggle = entry.one('.toggle-action');
+
+					toggle.removeClass('aui-helper-hidden');
+				}
+			}
+		</aui:script>
 
 	<%
 	}
