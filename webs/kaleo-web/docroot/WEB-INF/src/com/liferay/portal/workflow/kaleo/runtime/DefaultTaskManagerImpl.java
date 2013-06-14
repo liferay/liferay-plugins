@@ -27,7 +27,7 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
-import com.liferay.portal.workflow.kaleo.WorkflowTaskAdapter;
+import com.liferay.portal.workflow.kaleo.WorkflowModelConverterUtil;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
@@ -130,7 +130,7 @@ public class DefaultTaskManagerImpl
 				kaleoTaskInstanceToken, comment, workflowContext,
 				serviceContext);
 
-			return new WorkflowTaskAdapter(
+			return WorkflowModelConverterUtil.toWorkflowTask(
 				kaleoTaskInstanceToken, workflowContext);
 		}
 		catch (Exception e) {
@@ -191,7 +191,8 @@ public class DefaultTaskManagerImpl
 			previousTaskAssignmentInstances, kaleoTaskInstanceToken, comment,
 			workflowContext, serviceContext);
 
-		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, workflowContext);
+		return WorkflowModelConverterUtil.toWorkflowTask(
+			kaleoTaskInstanceToken, workflowContext);
 	}
 
 	protected WorkflowTask doCompleteWorkflowTask(
@@ -236,7 +237,8 @@ public class DefaultTaskManagerImpl
 		kaleoLogLocalService.addTaskCompletionKaleoLog(
 			kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
 
-		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, workflowContext);
+		return WorkflowModelConverterUtil.toWorkflowTask(
+			kaleoTaskInstanceToken, workflowContext);
 	}
 
 	protected Map<String, Serializable> updateWorkflowContext(

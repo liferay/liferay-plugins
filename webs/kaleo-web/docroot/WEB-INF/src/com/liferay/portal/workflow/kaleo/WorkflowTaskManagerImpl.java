@@ -102,14 +102,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
 
-		WorkflowTaskAdapter workflowTaskAdapter =
-			(WorkflowTaskAdapter)_taskManager.completeWorkflowTask(
-				workflowTaskInstanceId, transitionName, comment,
-				workflowContext, serviceContext);
+		WorkflowTask workflowTask = _taskManager.completeWorkflowTask(
+			workflowTaskInstanceId, transitionName, comment, workflowContext,
+			serviceContext);
 
 		try {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				workflowTaskAdapter.getKaleoTaskInstanceToken();
+				KaleoTaskInstanceTokenLocalServiceUtil.getKaleoTaskInstanceToken(
+					workflowTask.getWorkflowTaskId());
 
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoTaskInstanceToken.getKaleoInstanceToken();
@@ -133,7 +133,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			throw new WorkflowException("Unable to complete task", e);
 		}
 
-		return workflowTaskAdapter;
+		return workflowTask;
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskInstanceTokenLocalServiceUtil.
 					getKaleoTaskInstanceToken(workflowTaskInstanceId);
 
-			return new WorkflowTaskAdapter(
+			return WorkflowModelConverterUtil.toWorkflowTask(
 				kaleoTaskInstanceToken,
 				WorkflowContextUtil.convert(
 					kaleoTaskInstanceToken.getWorkflowContext()));
@@ -678,12 +678,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken :
 				kaleoTaskInstanceTokens) {
 
-			WorkflowTask workflowTask = new WorkflowTaskAdapter(
-				kaleoTaskInstanceToken,
-				WorkflowContextUtil.convert(
-					kaleoTaskInstanceToken.getWorkflowContext()));
-
-			workflowTasks.add(workflowTask);
+			workflowTasks.add(
+				WorkflowModelConverterUtil.toWorkflowTask(
+					kaleoTaskInstanceToken,
+					WorkflowContextUtil.convert(
+						kaleoTaskInstanceToken.getWorkflowContext())));
 		}
 
 		return workflowTasks;

@@ -148,7 +148,8 @@ public class WorkflowDefinitionManagerImpl
 				KaleoDefinitionLocalServiceUtil.getLatestKaleoDefinition(
 					name, serviceContext);
 
-			return new WorkflowDefinitionAdapter(kaleoDefinition);
+			return WorkflowModelConverterUtil.toWorkflowDefinition(
+				kaleoDefinition);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -169,7 +170,8 @@ public class WorkflowDefinitionManagerImpl
 				KaleoDefinitionLocalServiceUtil.getKaleoDefinition(
 					name, version, serviceContext);
 
-			return new WorkflowDefinitionAdapter(kaleoDefinition);
+			return WorkflowModelConverterUtil.toWorkflowDefinition(
+				kaleoDefinition);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -320,7 +322,8 @@ public class WorkflowDefinitionManagerImpl
 				KaleoDefinitionLocalServiceUtil.updateTitle(
 					name, version, title, serviceContext);
 
-			return new WorkflowDefinitionAdapter(kaleoDefinition);
+			return WorkflowModelConverterUtil.toWorkflowDefinition(
+				kaleoDefinition);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -342,7 +345,8 @@ public class WorkflowDefinitionManagerImpl
 
 		for (KaleoDefinition kaleoDefinition : kaleoDefinitions) {
 			workflowDefinitions.add(
-				new WorkflowDefinitionAdapter(kaleoDefinition));
+				WorkflowModelConverterUtil.toWorkflowDefinition(
+					kaleoDefinition));
 		}
 
 		return workflowDefinitions;

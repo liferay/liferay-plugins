@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
-import com.liferay.portal.workflow.kaleo.WorkflowDefinitionAdapter;
+import com.liferay.portal.workflow.kaleo.WorkflowModelConverterUtil;
 import com.liferay.portal.workflow.kaleo.definition.Condition;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.Node;
@@ -136,7 +136,7 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 		KaleoDefinitionLocalServiceUtil.activateKaleoDefinition(
 			kaleoDefinitionId, kaleoNode.getKaleoNodeId(), serviceContext);
 
-		return new WorkflowDefinitionAdapter(kaleoDefinition);
+		return WorkflowModelConverterUtil.toWorkflowDefinition(kaleoDefinition);
 	}
 
 }

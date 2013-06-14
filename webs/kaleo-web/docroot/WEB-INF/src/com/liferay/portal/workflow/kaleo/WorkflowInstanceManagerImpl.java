@@ -183,12 +183,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
 
-		WorkflowInstanceAdapter workflowInstanceAdapter =
-			(WorkflowInstanceAdapter)_workflowEngine.signalWorkflowInstance(
-				workflowInstanceId, transitionName, workflowContext,
-				serviceContext);
-
-		return workflowInstanceAdapter;
+		return _workflowEngine.signalWorkflowInstance(
+			workflowInstanceId, transitionName, workflowContext,
+			serviceContext);
 	}
 
 	@Override
@@ -205,12 +202,9 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setScopeGroupId(groupId);
 		serviceContext.setUserId(userId);
 
-		WorkflowInstanceAdapter workflowInstanceAdapter =
-			(WorkflowInstanceAdapter)_workflowEngine.startWorkflowInstance(
-				workflowDefinitionName, workflowDefinitionVersion,
-				transitionName, workflowContext, serviceContext);
-
-		return workflowInstanceAdapter;
+		return _workflowEngine.startWorkflowInstance(
+			workflowDefinitionName, workflowDefinitionVersion, transitionName,
+			workflowContext, serviceContext);
 	}
 
 	@Override

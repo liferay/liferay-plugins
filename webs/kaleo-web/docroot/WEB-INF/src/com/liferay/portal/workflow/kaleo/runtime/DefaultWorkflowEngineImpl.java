@@ -30,7 +30,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
-import com.liferay.portal.workflow.kaleo.WorkflowInstanceAdapter;
+import com.liferay.portal.workflow.kaleo.WorkflowModelConverterUtil;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
@@ -192,7 +192,7 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
-			return new WorkflowInstanceAdapter(
+			return WorkflowModelConverterUtil.toWorkflowInstance(
 				kaleoInstance, rootKaleoInstanceToken);
 		}
 		catch (Exception e) {
@@ -367,7 +367,7 @@ public class DefaultWorkflowEngineImpl
 				}
 			);
 
-			return new WorkflowInstanceAdapter(
+			return WorkflowModelConverterUtil.toWorkflowInstance(
 				kaleoInstance, kaleoInstanceToken, workflowContext);
 		}
 		catch (Exception e) {
@@ -455,7 +455,7 @@ public class DefaultWorkflowEngineImpl
 				}
 			);
 
-			return new WorkflowInstanceAdapter(
+			return WorkflowModelConverterUtil.toWorkflowInstance(
 				kaleoInstance, rootKaleoInstanceToken, workflowContext);
 		}
 		catch (Exception e) {
@@ -475,7 +475,7 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
-			return new WorkflowInstanceAdapter(
+			return WorkflowModelConverterUtil.toWorkflowInstance(
 				kaleoInstance, rootKaleoInstanceToken);
 		}
 		catch (Exception e) {
@@ -545,11 +545,9 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
-			WorkflowInstanceAdapter workflowInstanceAdapter =
-				new WorkflowInstanceAdapter(
-					kaleoInstance, rootKaleoInstanceToken);
-
-			workflowInstances.add(workflowInstanceAdapter);
+			workflowInstances.add(
+				WorkflowModelConverterUtil.toWorkflowInstance(
+					kaleoInstance, rootKaleoInstanceToken));
 		}
 
 		return workflowInstances;

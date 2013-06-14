@@ -100,7 +100,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 			kaleoLogs.size());
 
 		for (KaleoLog kaleoLog : kaleoLogs) {
-			workflowLogs.add(new WorkflowLogAdapter(kaleoLog));
+			workflowLogs.add(
+				WorkflowModelConverterUtil.toWorkflowLog(kaleoLog));
 		}
 
 		return workflowLogs;
