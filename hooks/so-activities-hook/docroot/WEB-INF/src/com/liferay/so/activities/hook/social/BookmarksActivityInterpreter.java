@@ -85,45 +85,49 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-
-		String link = StringPool.BLANK;
+		sb.append(
+			getBookmarkLink(
+				activity.getClassName(), activity.getClassPK(),
+				serviceContext));
+		sb.append("</div><div class=\"bookmarks-page-content\">");
 
 		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(
 			activity.getClassPK());
 
+		sb.append(entry.getDescription());
+
+		sb.append("</div></div>");
+
+		return sb.toString();
+	}
+
+	protected String getBookmarkLink(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
+		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(classPK);
+
 		String faviconUrl = HttpUtil.getDomain(entry.getUrl()) + "/favicon.ico";
 
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
 
 		LiferayPortletRequest liferayPortletRequest =
 			serviceContext.getLiferayPortletRequest();
 
 		if (ping(faviconUrl)) {
-			link = wrapLink(entry.getUrl(), faviconUrl, entry.getName());
+			return wrapLink(entry.getUrl(), faviconUrl, entry.getName());
 		}
 		else if (Validator.isNotNull(
 					assetRenderer.getIconPath(liferayPortletRequest))) {
 
-			link = wrapLink(
-				getLinkURL(
-					activity.getClassName(), activity.getClassPK(),
-					serviceContext),
+			return wrapLink(
+				getLinkURL(className, classPK, serviceContext),
 				assetRenderer.getIconPath(liferayPortletRequest),
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
 		}
-		else {
-			link = wrapLink(entry.getUrl(), entry.getName());
-		}
 
-		sb.append(link);
-
-		sb.append("</div><div class=\"bookmarks-page-content\">");
-		sb.append(entry.getDescription());
-		sb.append("</div></div>");
-
-		return sb.toString();
+		return wrapLink(entry.getUrl(), entry.getName());
 	}
 
 	@Override
