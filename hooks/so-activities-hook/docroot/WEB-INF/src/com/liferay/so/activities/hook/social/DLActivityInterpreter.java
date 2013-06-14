@@ -124,42 +124,26 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(8);
 
-		sb.append("<span>");
-
-		String documentLink = wrapLink(
-			getLinkURL(
-				activity.getClassName(), activity.getClassPK(), serviceContext),
-			serviceContext.translate("view-document"));
-
-		sb.append(documentLink);
-
-		sb.append("</span><span>");
-
-		StringBundler downloadLink = new StringBundler(8);
-
-		downloadLink.append(serviceContext.getPortalURL());
-		downloadLink.append(serviceContext.getPathMain());
-		downloadLink.append("/document_library/get_file?groupId=");
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathMain());
+		sb.append("/document_library/get_file?groupId=");
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
 			activity.getClassPK());
 
-		downloadLink.append(fileEntry.getRepositoryId());
+		sb.append(fileEntry.getRepositoryId());
 
-		downloadLink.append("&folderId=");
-		downloadLink.append(fileEntry.getFolderId());
-		downloadLink.append("&title=");
-		downloadLink.append(HttpUtil.encodeURL(fileEntry.getTitle()));
+		sb.append("&folderId=");
+		sb.append(fileEntry.getFolderId());
+		sb.append("&title=");
+		sb.append(HttpUtil.encodeURL(fileEntry.getTitle()));
 
-		sb.append(
-			wrapLink(
-				downloadLink.toString(), serviceContext.translate("download")));
+		String downloadLink = wrapLink(
+			sb.toString(), serviceContext.translate("download"));
 
-		sb.append("</span>");
-
-		return sb.toString();
+		return "<span>" + downloadLink + "</span>";
 	}
 
 	@Override
