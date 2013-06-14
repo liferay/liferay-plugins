@@ -14,8 +14,6 @@
 
 package com.liferay.twitter.service.base;
 
-import com.liferay.counter.service.CounterLocalService;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
@@ -30,9 +28,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
-import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.twitter.model.Feed;
@@ -265,7 +260,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the feed local service
 	 */
-	public FeedLocalService getFeedLocalService() {
+	public com.liferay.twitter.service.FeedLocalService getFeedLocalService() {
 		return feedLocalService;
 	}
 
@@ -274,7 +269,8 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param feedLocalService the feed local service
 	 */
-	public void setFeedLocalService(FeedLocalService feedLocalService) {
+	public void setFeedLocalService(
+		com.liferay.twitter.service.FeedLocalService feedLocalService) {
 		this.feedLocalService = feedLocalService;
 	}
 
@@ -301,7 +297,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the counter local service
 	 */
-	public CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
 		return counterLocalService;
 	}
 
@@ -310,7 +306,8 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param counterLocalService the counter local service
 	 */
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
+	public void setCounterLocalService(
+		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -319,7 +316,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the resource local service
 	 */
-	public ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
 
@@ -329,7 +326,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		ResourceLocalService resourceLocalService) {
+		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -338,7 +335,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the user local service
 	 */
-	public UserLocalService getUserLocalService() {
+	public com.liferay.portal.service.UserLocalService getUserLocalService() {
 		return userLocalService;
 	}
 
@@ -347,7 +344,8 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param userLocalService the user local service
 	 */
-	public void setUserLocalService(UserLocalService userLocalService) {
+	public void setUserLocalService(
+		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
 	}
 
@@ -356,7 +354,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the user remote service
 	 */
-	public UserService getUserService() {
+	public com.liferay.portal.service.UserService getUserService() {
 		return userService;
 	}
 
@@ -365,7 +363,8 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param userService the user remote service
 	 */
-	public void setUserService(UserService userService) {
+	public void setUserService(
+		com.liferay.portal.service.UserService userService) {
 		this.userService = userService;
 	}
 
@@ -469,18 +468,18 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = FeedLocalService.class)
-	protected FeedLocalService feedLocalService;
+	@BeanReference(type = com.liferay.twitter.service.FeedLocalService.class)
+	protected com.liferay.twitter.service.FeedLocalService feedLocalService;
 	@BeanReference(type = FeedPersistence.class)
 	protected FeedPersistence feedPersistence;
-	@BeanReference(type = CounterLocalService.class)
-	protected CounterLocalService counterLocalService;
-	@BeanReference(type = ResourceLocalService.class)
-	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = UserLocalService.class)
-	protected UserLocalService userLocalService;
-	@BeanReference(type = UserService.class)
-	protected UserService userService;
+	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
+	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
+	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
+	protected com.liferay.portal.service.UserLocalService userLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserService.class)
+	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;

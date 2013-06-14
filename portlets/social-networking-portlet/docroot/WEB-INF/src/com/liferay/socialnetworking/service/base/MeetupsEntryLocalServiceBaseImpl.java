@@ -14,8 +14,6 @@
 
 package com.liferay.socialnetworking.service.base;
 
-import com.liferay.counter.service.CounterLocalService;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
@@ -30,15 +28,10 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
-import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.socialnetworking.model.MeetupsEntry;
 import com.liferay.socialnetworking.service.MeetupsEntryLocalService;
-import com.liferay.socialnetworking.service.MeetupsRegistrationLocalService;
-import com.liferay.socialnetworking.service.WallEntryLocalService;
 import com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence;
 import com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence;
 import com.liferay.socialnetworking.service.persistence.WallEntryFinder;
@@ -279,7 +272,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @return the meetups entry local service
 	 */
-	public MeetupsEntryLocalService getMeetupsEntryLocalService() {
+	public com.liferay.socialnetworking.service.MeetupsEntryLocalService getMeetupsEntryLocalService() {
 		return meetupsEntryLocalService;
 	}
 
@@ -289,7 +282,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param meetupsEntryLocalService the meetups entry local service
 	 */
 	public void setMeetupsEntryLocalService(
-		MeetupsEntryLocalService meetupsEntryLocalService) {
+		com.liferay.socialnetworking.service.MeetupsEntryLocalService meetupsEntryLocalService) {
 		this.meetupsEntryLocalService = meetupsEntryLocalService;
 	}
 
@@ -317,7 +310,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @return the meetups registration local service
 	 */
-	public MeetupsRegistrationLocalService getMeetupsRegistrationLocalService() {
+	public com.liferay.socialnetworking.service.MeetupsRegistrationLocalService getMeetupsRegistrationLocalService() {
 		return meetupsRegistrationLocalService;
 	}
 
@@ -327,7 +320,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param meetupsRegistrationLocalService the meetups registration local service
 	 */
 	public void setMeetupsRegistrationLocalService(
-		MeetupsRegistrationLocalService meetupsRegistrationLocalService) {
+		com.liferay.socialnetworking.service.MeetupsRegistrationLocalService meetupsRegistrationLocalService) {
 		this.meetupsRegistrationLocalService = meetupsRegistrationLocalService;
 	}
 
@@ -355,7 +348,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @return the wall entry local service
 	 */
-	public WallEntryLocalService getWallEntryLocalService() {
+	public com.liferay.socialnetworking.service.WallEntryLocalService getWallEntryLocalService() {
 		return wallEntryLocalService;
 	}
 
@@ -365,7 +358,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param wallEntryLocalService the wall entry local service
 	 */
 	public void setWallEntryLocalService(
-		WallEntryLocalService wallEntryLocalService) {
+		com.liferay.socialnetworking.service.WallEntryLocalService wallEntryLocalService) {
 		this.wallEntryLocalService = wallEntryLocalService;
 	}
 
@@ -411,7 +404,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
 		return counterLocalService;
 	}
 
@@ -420,7 +413,8 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param counterLocalService the counter local service
 	 */
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
+	public void setCounterLocalService(
+		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -429,7 +423,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
 
@@ -439,7 +433,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		ResourceLocalService resourceLocalService) {
+		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -448,7 +442,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public UserLocalService getUserLocalService() {
+	public com.liferay.portal.service.UserLocalService getUserLocalService() {
 		return userLocalService;
 	}
 
@@ -457,7 +451,8 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param userLocalService the user local service
 	 */
-	public void setUserLocalService(UserLocalService userLocalService) {
+	public void setUserLocalService(
+		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
 	}
 
@@ -466,7 +461,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @return the user remote service
 	 */
-	public UserService getUserService() {
+	public com.liferay.portal.service.UserService getUserService() {
 		return userService;
 	}
 
@@ -475,7 +470,8 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param userService the user remote service
 	 */
-	public void setUserService(UserService userService) {
+	public void setUserService(
+		com.liferay.portal.service.UserService userService) {
 		this.userService = userService;
 	}
 
@@ -579,28 +575,28 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = MeetupsEntryLocalService.class)
-	protected MeetupsEntryLocalService meetupsEntryLocalService;
+	@BeanReference(type = com.liferay.socialnetworking.service.MeetupsEntryLocalService.class)
+	protected com.liferay.socialnetworking.service.MeetupsEntryLocalService meetupsEntryLocalService;
 	@BeanReference(type = MeetupsEntryPersistence.class)
 	protected MeetupsEntryPersistence meetupsEntryPersistence;
-	@BeanReference(type = MeetupsRegistrationLocalService.class)
-	protected MeetupsRegistrationLocalService meetupsRegistrationLocalService;
+	@BeanReference(type = com.liferay.socialnetworking.service.MeetupsRegistrationLocalService.class)
+	protected com.liferay.socialnetworking.service.MeetupsRegistrationLocalService meetupsRegistrationLocalService;
 	@BeanReference(type = MeetupsRegistrationPersistence.class)
 	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
-	@BeanReference(type = WallEntryLocalService.class)
-	protected WallEntryLocalService wallEntryLocalService;
+	@BeanReference(type = com.liferay.socialnetworking.service.WallEntryLocalService.class)
+	protected com.liferay.socialnetworking.service.WallEntryLocalService wallEntryLocalService;
 	@BeanReference(type = WallEntryPersistence.class)
 	protected WallEntryPersistence wallEntryPersistence;
 	@BeanReference(type = WallEntryFinder.class)
 	protected WallEntryFinder wallEntryFinder;
-	@BeanReference(type = CounterLocalService.class)
-	protected CounterLocalService counterLocalService;
-	@BeanReference(type = ResourceLocalService.class)
-	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = UserLocalService.class)
-	protected UserLocalService userLocalService;
-	@BeanReference(type = UserService.class)
-	protected UserService userService;
+	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
+	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
+	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
+	protected com.liferay.portal.service.UserLocalService userLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserService.class)
+	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;

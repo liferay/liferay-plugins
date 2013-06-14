@@ -16,15 +16,10 @@ package com.liferay.ams.service.base;
 
 import com.liferay.ams.model.Asset;
 import com.liferay.ams.service.AssetLocalService;
-import com.liferay.ams.service.CheckoutLocalService;
-import com.liferay.ams.service.DefinitionLocalService;
-import com.liferay.ams.service.TypeLocalService;
 import com.liferay.ams.service.persistence.AssetPersistence;
 import com.liferay.ams.service.persistence.CheckoutPersistence;
 import com.liferay.ams.service.persistence.DefinitionPersistence;
 import com.liferay.ams.service.persistence.TypePersistence;
-
-import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
@@ -40,9 +35,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
-import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -272,7 +264,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the asset local service
 	 */
-	public AssetLocalService getAssetLocalService() {
+	public com.liferay.ams.service.AssetLocalService getAssetLocalService() {
 		return assetLocalService;
 	}
 
@@ -281,7 +273,8 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param assetLocalService the asset local service
 	 */
-	public void setAssetLocalService(AssetLocalService assetLocalService) {
+	public void setAssetLocalService(
+		com.liferay.ams.service.AssetLocalService assetLocalService) {
 		this.assetLocalService = assetLocalService;
 	}
 
@@ -308,7 +301,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the checkout local service
 	 */
-	public CheckoutLocalService getCheckoutLocalService() {
+	public com.liferay.ams.service.CheckoutLocalService getCheckoutLocalService() {
 		return checkoutLocalService;
 	}
 
@@ -318,7 +311,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param checkoutLocalService the checkout local service
 	 */
 	public void setCheckoutLocalService(
-		CheckoutLocalService checkoutLocalService) {
+		com.liferay.ams.service.CheckoutLocalService checkoutLocalService) {
 		this.checkoutLocalService = checkoutLocalService;
 	}
 
@@ -345,7 +338,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the definition local service
 	 */
-	public DefinitionLocalService getDefinitionLocalService() {
+	public com.liferay.ams.service.DefinitionLocalService getDefinitionLocalService() {
 		return definitionLocalService;
 	}
 
@@ -355,7 +348,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param definitionLocalService the definition local service
 	 */
 	public void setDefinitionLocalService(
-		DefinitionLocalService definitionLocalService) {
+		com.liferay.ams.service.DefinitionLocalService definitionLocalService) {
 		this.definitionLocalService = definitionLocalService;
 	}
 
@@ -383,7 +376,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the type local service
 	 */
-	public TypeLocalService getTypeLocalService() {
+	public com.liferay.ams.service.TypeLocalService getTypeLocalService() {
 		return typeLocalService;
 	}
 
@@ -392,7 +385,8 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param typeLocalService the type local service
 	 */
-	public void setTypeLocalService(TypeLocalService typeLocalService) {
+	public void setTypeLocalService(
+		com.liferay.ams.service.TypeLocalService typeLocalService) {
 		this.typeLocalService = typeLocalService;
 	}
 
@@ -419,7 +413,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the counter local service
 	 */
-	public CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
 		return counterLocalService;
 	}
 
@@ -428,7 +422,8 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param counterLocalService the counter local service
 	 */
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
+	public void setCounterLocalService(
+		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -437,7 +432,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the resource local service
 	 */
-	public ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
 
@@ -447,7 +442,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		ResourceLocalService resourceLocalService) {
+		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -456,7 +451,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the user local service
 	 */
-	public UserLocalService getUserLocalService() {
+	public com.liferay.portal.service.UserLocalService getUserLocalService() {
 		return userLocalService;
 	}
 
@@ -465,7 +460,8 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param userLocalService the user local service
 	 */
-	public void setUserLocalService(UserLocalService userLocalService) {
+	public void setUserLocalService(
+		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
 	}
 
@@ -474,7 +470,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the user remote service
 	 */
-	public UserService getUserService() {
+	public com.liferay.portal.service.UserService getUserService() {
 		return userService;
 	}
 
@@ -483,7 +479,8 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param userService the user remote service
 	 */
-	public void setUserService(UserService userService) {
+	public void setUserService(
+		com.liferay.portal.service.UserService userService) {
 		this.userService = userService;
 	}
 
@@ -587,30 +584,30 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = AssetLocalService.class)
-	protected AssetLocalService assetLocalService;
+	@BeanReference(type = com.liferay.ams.service.AssetLocalService.class)
+	protected com.liferay.ams.service.AssetLocalService assetLocalService;
 	@BeanReference(type = AssetPersistence.class)
 	protected AssetPersistence assetPersistence;
-	@BeanReference(type = CheckoutLocalService.class)
-	protected CheckoutLocalService checkoutLocalService;
+	@BeanReference(type = com.liferay.ams.service.CheckoutLocalService.class)
+	protected com.liferay.ams.service.CheckoutLocalService checkoutLocalService;
 	@BeanReference(type = CheckoutPersistence.class)
 	protected CheckoutPersistence checkoutPersistence;
-	@BeanReference(type = DefinitionLocalService.class)
-	protected DefinitionLocalService definitionLocalService;
+	@BeanReference(type = com.liferay.ams.service.DefinitionLocalService.class)
+	protected com.liferay.ams.service.DefinitionLocalService definitionLocalService;
 	@BeanReference(type = DefinitionPersistence.class)
 	protected DefinitionPersistence definitionPersistence;
-	@BeanReference(type = TypeLocalService.class)
-	protected TypeLocalService typeLocalService;
+	@BeanReference(type = com.liferay.ams.service.TypeLocalService.class)
+	protected com.liferay.ams.service.TypeLocalService typeLocalService;
 	@BeanReference(type = TypePersistence.class)
 	protected TypePersistence typePersistence;
-	@BeanReference(type = CounterLocalService.class)
-	protected CounterLocalService counterLocalService;
-	@BeanReference(type = ResourceLocalService.class)
-	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = UserLocalService.class)
-	protected UserLocalService userLocalService;
-	@BeanReference(type = UserService.class)
-	protected UserService userService;
+	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
+	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
+	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
+	protected com.liferay.portal.service.UserLocalService userLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserService.class)
+	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;

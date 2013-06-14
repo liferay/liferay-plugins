@@ -14,8 +14,6 @@
 
 package com.liferay.so.service.base;
 
-import com.liferay.counter.service.CounterLocalService;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
@@ -29,23 +27,13 @@ import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalServiceImpl;
-import com.liferay.portal.service.CompanyLocalService;
-import com.liferay.portal.service.CompanyService;
-import com.liferay.portal.service.GroupLocalService;
-import com.liferay.portal.service.GroupService;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
-import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.CompanyPersistence;
 import com.liferay.portal.service.persistence.GroupPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.so.model.FavoriteSite;
 import com.liferay.so.service.FavoriteSiteLocalService;
-import com.liferay.so.service.MemberRequestLocalService;
-import com.liferay.so.service.ProjectsEntryLocalService;
-import com.liferay.so.service.SocialOfficeService;
 import com.liferay.so.service.persistence.FavoriteSiteFinder;
 import com.liferay.so.service.persistence.FavoriteSitePersistence;
 import com.liferay.so.service.persistence.MemberRequestPersistence;
@@ -286,7 +274,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the favorite site local service
 	 */
-	public FavoriteSiteLocalService getFavoriteSiteLocalService() {
+	public com.liferay.so.service.FavoriteSiteLocalService getFavoriteSiteLocalService() {
 		return favoriteSiteLocalService;
 	}
 
@@ -296,7 +284,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param favoriteSiteLocalService the favorite site local service
 	 */
 	public void setFavoriteSiteLocalService(
-		FavoriteSiteLocalService favoriteSiteLocalService) {
+		com.liferay.so.service.FavoriteSiteLocalService favoriteSiteLocalService) {
 		this.favoriteSiteLocalService = favoriteSiteLocalService;
 	}
 
@@ -342,7 +330,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the member request local service
 	 */
-	public MemberRequestLocalService getMemberRequestLocalService() {
+	public com.liferay.so.service.MemberRequestLocalService getMemberRequestLocalService() {
 		return memberRequestLocalService;
 	}
 
@@ -352,7 +340,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param memberRequestLocalService the member request local service
 	 */
 	public void setMemberRequestLocalService(
-		MemberRequestLocalService memberRequestLocalService) {
+		com.liferay.so.service.MemberRequestLocalService memberRequestLocalService) {
 		this.memberRequestLocalService = memberRequestLocalService;
 	}
 
@@ -380,7 +368,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the projects entry local service
 	 */
-	public ProjectsEntryLocalService getProjectsEntryLocalService() {
+	public com.liferay.so.service.ProjectsEntryLocalService getProjectsEntryLocalService() {
 		return projectsEntryLocalService;
 	}
 
@@ -390,7 +378,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param projectsEntryLocalService the projects entry local service
 	 */
 	public void setProjectsEntryLocalService(
-		ProjectsEntryLocalService projectsEntryLocalService) {
+		com.liferay.so.service.ProjectsEntryLocalService projectsEntryLocalService) {
 		this.projectsEntryLocalService = projectsEntryLocalService;
 	}
 
@@ -418,7 +406,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the social office remote service
 	 */
-	public SocialOfficeService getSocialOfficeService() {
+	public com.liferay.so.service.SocialOfficeService getSocialOfficeService() {
 		return socialOfficeService;
 	}
 
@@ -427,7 +415,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param socialOfficeService the social office remote service
 	 */
-	public void setSocialOfficeService(SocialOfficeService socialOfficeService) {
+	public void setSocialOfficeService(
+		com.liferay.so.service.SocialOfficeService socialOfficeService) {
 		this.socialOfficeService = socialOfficeService;
 	}
 
@@ -436,7 +425,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
 		return counterLocalService;
 	}
 
@@ -445,7 +434,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param counterLocalService the counter local service
 	 */
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
+	public void setCounterLocalService(
+		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -454,7 +444,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the company local service
 	 */
-	public CompanyLocalService getCompanyLocalService() {
+	public com.liferay.portal.service.CompanyLocalService getCompanyLocalService() {
 		return companyLocalService;
 	}
 
@@ -463,7 +453,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param companyLocalService the company local service
 	 */
-	public void setCompanyLocalService(CompanyLocalService companyLocalService) {
+	public void setCompanyLocalService(
+		com.liferay.portal.service.CompanyLocalService companyLocalService) {
 		this.companyLocalService = companyLocalService;
 	}
 
@@ -472,7 +463,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the company remote service
 	 */
-	public CompanyService getCompanyService() {
+	public com.liferay.portal.service.CompanyService getCompanyService() {
 		return companyService;
 	}
 
@@ -481,7 +472,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param companyService the company remote service
 	 */
-	public void setCompanyService(CompanyService companyService) {
+	public void setCompanyService(
+		com.liferay.portal.service.CompanyService companyService) {
 		this.companyService = companyService;
 	}
 
@@ -508,7 +500,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the group local service
 	 */
-	public GroupLocalService getGroupLocalService() {
+	public com.liferay.portal.service.GroupLocalService getGroupLocalService() {
 		return groupLocalService;
 	}
 
@@ -517,7 +509,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param groupLocalService the group local service
 	 */
-	public void setGroupLocalService(GroupLocalService groupLocalService) {
+	public void setGroupLocalService(
+		com.liferay.portal.service.GroupLocalService groupLocalService) {
 		this.groupLocalService = groupLocalService;
 	}
 
@@ -526,7 +519,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the group remote service
 	 */
-	public GroupService getGroupService() {
+	public com.liferay.portal.service.GroupService getGroupService() {
 		return groupService;
 	}
 
@@ -535,7 +528,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param groupService the group remote service
 	 */
-	public void setGroupService(GroupService groupService) {
+	public void setGroupService(
+		com.liferay.portal.service.GroupService groupService) {
 		this.groupService = groupService;
 	}
 
@@ -562,7 +556,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
 
@@ -572,7 +566,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		ResourceLocalService resourceLocalService) {
+		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -581,7 +575,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public UserLocalService getUserLocalService() {
+	public com.liferay.portal.service.UserLocalService getUserLocalService() {
 		return userLocalService;
 	}
 
@@ -590,7 +584,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param userLocalService the user local service
 	 */
-	public void setUserLocalService(UserLocalService userLocalService) {
+	public void setUserLocalService(
+		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
 	}
 
@@ -599,7 +594,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the user remote service
 	 */
-	public UserService getUserService() {
+	public com.liferay.portal.service.UserService getUserService() {
 		return userService;
 	}
 
@@ -608,7 +603,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param userService the user remote service
 	 */
-	public void setUserService(UserService userService) {
+	public void setUserService(
+		com.liferay.portal.service.UserService userService) {
 		this.userService = userService;
 	}
 
@@ -712,42 +708,42 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = FavoriteSiteLocalService.class)
-	protected FavoriteSiteLocalService favoriteSiteLocalService;
+	@BeanReference(type = com.liferay.so.service.FavoriteSiteLocalService.class)
+	protected com.liferay.so.service.FavoriteSiteLocalService favoriteSiteLocalService;
 	@BeanReference(type = FavoriteSitePersistence.class)
 	protected FavoriteSitePersistence favoriteSitePersistence;
 	@BeanReference(type = FavoriteSiteFinder.class)
 	protected FavoriteSiteFinder favoriteSiteFinder;
-	@BeanReference(type = MemberRequestLocalService.class)
-	protected MemberRequestLocalService memberRequestLocalService;
+	@BeanReference(type = com.liferay.so.service.MemberRequestLocalService.class)
+	protected com.liferay.so.service.MemberRequestLocalService memberRequestLocalService;
 	@BeanReference(type = MemberRequestPersistence.class)
 	protected MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(type = ProjectsEntryLocalService.class)
-	protected ProjectsEntryLocalService projectsEntryLocalService;
+	@BeanReference(type = com.liferay.so.service.ProjectsEntryLocalService.class)
+	protected com.liferay.so.service.ProjectsEntryLocalService projectsEntryLocalService;
 	@BeanReference(type = ProjectsEntryPersistence.class)
 	protected ProjectsEntryPersistence projectsEntryPersistence;
-	@BeanReference(type = SocialOfficeService.class)
-	protected SocialOfficeService socialOfficeService;
-	@BeanReference(type = CounterLocalService.class)
-	protected CounterLocalService counterLocalService;
-	@BeanReference(type = CompanyLocalService.class)
-	protected CompanyLocalService companyLocalService;
-	@BeanReference(type = CompanyService.class)
-	protected CompanyService companyService;
+	@BeanReference(type = com.liferay.so.service.SocialOfficeService.class)
+	protected com.liferay.so.service.SocialOfficeService socialOfficeService;
+	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
+	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.CompanyLocalService.class)
+	protected com.liferay.portal.service.CompanyLocalService companyLocalService;
+	@BeanReference(type = com.liferay.portal.service.CompanyService.class)
+	protected com.liferay.portal.service.CompanyService companyService;
 	@BeanReference(type = CompanyPersistence.class)
 	protected CompanyPersistence companyPersistence;
-	@BeanReference(type = GroupLocalService.class)
-	protected GroupLocalService groupLocalService;
-	@BeanReference(type = GroupService.class)
-	protected GroupService groupService;
+	@BeanReference(type = com.liferay.portal.service.GroupLocalService.class)
+	protected com.liferay.portal.service.GroupLocalService groupLocalService;
+	@BeanReference(type = com.liferay.portal.service.GroupService.class)
+	protected com.liferay.portal.service.GroupService groupService;
 	@BeanReference(type = GroupPersistence.class)
 	protected GroupPersistence groupPersistence;
-	@BeanReference(type = ResourceLocalService.class)
-	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = UserLocalService.class)
-	protected UserLocalService userLocalService;
-	@BeanReference(type = UserService.class)
-	protected UserService userService;
+	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
+	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
+	protected com.liferay.portal.service.UserLocalService userLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserService.class)
+	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;

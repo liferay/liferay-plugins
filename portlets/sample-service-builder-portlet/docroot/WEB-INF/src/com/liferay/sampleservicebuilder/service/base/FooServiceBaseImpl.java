@@ -14,28 +14,18 @@
 
 package com.liferay.sampleservicebuilder.service.base;
 
-import com.liferay.counter.service.CounterLocalService;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.BaseServiceImpl;
-import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.UserPersistence;
 
-import com.liferay.portlet.asset.service.AssetEntryLocalService;
-import com.liferay.portlet.asset.service.AssetEntryService;
-import com.liferay.portlet.asset.service.AssetTagLocalService;
-import com.liferay.portlet.asset.service.AssetTagService;
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 import com.liferay.portlet.asset.service.persistence.AssetTagPersistence;
 
 import com.liferay.sampleservicebuilder.model.Foo;
-import com.liferay.sampleservicebuilder.service.FooLocalService;
 import com.liferay.sampleservicebuilder.service.FooService;
 import com.liferay.sampleservicebuilder.service.persistence.FooPersistence;
 
@@ -66,7 +56,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the foo local service
 	 */
-	public FooLocalService getFooLocalService() {
+	public com.liferay.sampleservicebuilder.service.FooLocalService getFooLocalService() {
 		return fooLocalService;
 	}
 
@@ -75,7 +65,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param fooLocalService the foo local service
 	 */
-	public void setFooLocalService(FooLocalService fooLocalService) {
+	public void setFooLocalService(
+		com.liferay.sampleservicebuilder.service.FooLocalService fooLocalService) {
 		this.fooLocalService = fooLocalService;
 	}
 
@@ -84,7 +75,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the foo remote service
 	 */
-	public FooService getFooService() {
+	public com.liferay.sampleservicebuilder.service.FooService getFooService() {
 		return fooService;
 	}
 
@@ -93,7 +84,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param fooService the foo remote service
 	 */
-	public void setFooService(FooService fooService) {
+	public void setFooService(
+		com.liferay.sampleservicebuilder.service.FooService fooService) {
 		this.fooService = fooService;
 	}
 
@@ -120,7 +112,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the counter local service
 	 */
-	public CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
 		return counterLocalService;
 	}
 
@@ -129,7 +121,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param counterLocalService the counter local service
 	 */
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
+	public void setCounterLocalService(
+		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -138,7 +131,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the resource local service
 	 */
-	public ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
 
@@ -148,7 +141,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		ResourceLocalService resourceLocalService) {
+		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -157,7 +150,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user local service
 	 */
-	public UserLocalService getUserLocalService() {
+	public com.liferay.portal.service.UserLocalService getUserLocalService() {
 		return userLocalService;
 	}
 
@@ -166,7 +159,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param userLocalService the user local service
 	 */
-	public void setUserLocalService(UserLocalService userLocalService) {
+	public void setUserLocalService(
+		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
 	}
 
@@ -175,7 +169,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user remote service
 	 */
-	public UserService getUserService() {
+	public com.liferay.portal.service.UserService getUserService() {
 		return userService;
 	}
 
@@ -184,7 +178,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param userService the user remote service
 	 */
-	public void setUserService(UserService userService) {
+	public void setUserService(
+		com.liferay.portal.service.UserService userService) {
 		this.userService = userService;
 	}
 
@@ -211,7 +206,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the asset entry local service
 	 */
-	public AssetEntryLocalService getAssetEntryLocalService() {
+	public com.liferay.portlet.asset.service.AssetEntryLocalService getAssetEntryLocalService() {
 		return assetEntryLocalService;
 	}
 
@@ -221,7 +216,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 * @param assetEntryLocalService the asset entry local service
 	 */
 	public void setAssetEntryLocalService(
-		AssetEntryLocalService assetEntryLocalService) {
+		com.liferay.portlet.asset.service.AssetEntryLocalService assetEntryLocalService) {
 		this.assetEntryLocalService = assetEntryLocalService;
 	}
 
@@ -230,7 +225,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the asset entry remote service
 	 */
-	public AssetEntryService getAssetEntryService() {
+	public com.liferay.portlet.asset.service.AssetEntryService getAssetEntryService() {
 		return assetEntryService;
 	}
 
@@ -239,7 +234,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param assetEntryService the asset entry remote service
 	 */
-	public void setAssetEntryService(AssetEntryService assetEntryService) {
+	public void setAssetEntryService(
+		com.liferay.portlet.asset.service.AssetEntryService assetEntryService) {
 		this.assetEntryService = assetEntryService;
 	}
 
@@ -267,7 +263,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the asset tag local service
 	 */
-	public AssetTagLocalService getAssetTagLocalService() {
+	public com.liferay.portlet.asset.service.AssetTagLocalService getAssetTagLocalService() {
 		return assetTagLocalService;
 	}
 
@@ -277,7 +273,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 * @param assetTagLocalService the asset tag local service
 	 */
 	public void setAssetTagLocalService(
-		AssetTagLocalService assetTagLocalService) {
+		com.liferay.portlet.asset.service.AssetTagLocalService assetTagLocalService) {
 		this.assetTagLocalService = assetTagLocalService;
 	}
 
@@ -286,7 +282,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the asset tag remote service
 	 */
-	public AssetTagService getAssetTagService() {
+	public com.liferay.portlet.asset.service.AssetTagService getAssetTagService() {
 		return assetTagService;
 	}
 
@@ -295,7 +291,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param assetTagService the asset tag remote service
 	 */
-	public void setAssetTagService(AssetTagService assetTagService) {
+	public void setAssetTagService(
+		com.liferay.portlet.asset.service.AssetTagService assetTagService) {
 		this.assetTagService = assetTagService;
 	}
 
@@ -394,32 +391,32 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = FooLocalService.class)
-	protected FooLocalService fooLocalService;
-	@BeanReference(type = FooService.class)
-	protected FooService fooService;
+	@BeanReference(type = com.liferay.sampleservicebuilder.service.FooLocalService.class)
+	protected com.liferay.sampleservicebuilder.service.FooLocalService fooLocalService;
+	@BeanReference(type = com.liferay.sampleservicebuilder.service.FooService.class)
+	protected com.liferay.sampleservicebuilder.service.FooService fooService;
 	@BeanReference(type = FooPersistence.class)
 	protected FooPersistence fooPersistence;
-	@BeanReference(type = CounterLocalService.class)
-	protected CounterLocalService counterLocalService;
-	@BeanReference(type = ResourceLocalService.class)
-	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = UserLocalService.class)
-	protected UserLocalService userLocalService;
-	@BeanReference(type = UserService.class)
-	protected UserService userService;
+	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
+	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
+	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
+	protected com.liferay.portal.service.UserLocalService userLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserService.class)
+	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = AssetEntryLocalService.class)
-	protected AssetEntryLocalService assetEntryLocalService;
-	@BeanReference(type = AssetEntryService.class)
-	protected AssetEntryService assetEntryService;
+	@BeanReference(type = com.liferay.portlet.asset.service.AssetEntryLocalService.class)
+	protected com.liferay.portlet.asset.service.AssetEntryLocalService assetEntryLocalService;
+	@BeanReference(type = com.liferay.portlet.asset.service.AssetEntryService.class)
+	protected com.liferay.portlet.asset.service.AssetEntryService assetEntryService;
 	@BeanReference(type = AssetEntryPersistence.class)
 	protected AssetEntryPersistence assetEntryPersistence;
-	@BeanReference(type = AssetTagLocalService.class)
-	protected AssetTagLocalService assetTagLocalService;
-	@BeanReference(type = AssetTagService.class)
-	protected AssetTagService assetTagService;
+	@BeanReference(type = com.liferay.portlet.asset.service.AssetTagLocalService.class)
+	protected com.liferay.portlet.asset.service.AssetTagLocalService assetTagLocalService;
+	@BeanReference(type = com.liferay.portlet.asset.service.AssetTagService.class)
+	protected com.liferay.portlet.asset.service.AssetTagService assetTagService;
 	@BeanReference(type = AssetTagPersistence.class)
 	protected AssetTagPersistence assetTagPersistence;
 	private String _beanIdentifier;

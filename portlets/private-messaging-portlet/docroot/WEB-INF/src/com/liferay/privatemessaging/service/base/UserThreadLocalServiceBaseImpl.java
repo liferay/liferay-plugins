@@ -14,8 +14,6 @@
 
 package com.liferay.privatemessaging.service.base;
 
-import com.liferay.counter.service.CounterLocalService;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
@@ -30,9 +28,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
-import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.privatemessaging.model.UserThread;
@@ -274,7 +269,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @return the user thread local service
 	 */
-	public UserThreadLocalService getUserThreadLocalService() {
+	public com.liferay.privatemessaging.service.UserThreadLocalService getUserThreadLocalService() {
 		return userThreadLocalService;
 	}
 
@@ -284,7 +279,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @param userThreadLocalService the user thread local service
 	 */
 	public void setUserThreadLocalService(
-		UserThreadLocalService userThreadLocalService) {
+		com.liferay.privatemessaging.service.UserThreadLocalService userThreadLocalService) {
 		this.userThreadLocalService = userThreadLocalService;
 	}
 
@@ -312,7 +307,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
 		return counterLocalService;
 	}
 
@@ -321,7 +316,8 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @param counterLocalService the counter local service
 	 */
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
+	public void setCounterLocalService(
+		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -330,7 +326,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
 
@@ -340,7 +336,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		ResourceLocalService resourceLocalService) {
+		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -349,7 +345,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public UserLocalService getUserLocalService() {
+	public com.liferay.portal.service.UserLocalService getUserLocalService() {
 		return userLocalService;
 	}
 
@@ -358,7 +354,8 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @param userLocalService the user local service
 	 */
-	public void setUserLocalService(UserLocalService userLocalService) {
+	public void setUserLocalService(
+		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
 	}
 
@@ -367,7 +364,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @return the user remote service
 	 */
-	public UserService getUserService() {
+	public com.liferay.portal.service.UserService getUserService() {
 		return userService;
 	}
 
@@ -376,7 +373,8 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @param userService the user remote service
 	 */
-	public void setUserService(UserService userService) {
+	public void setUserService(
+		com.liferay.portal.service.UserService userService) {
 		this.userService = userService;
 	}
 
@@ -480,18 +478,18 @@ public abstract class UserThreadLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = UserThreadLocalService.class)
-	protected UserThreadLocalService userThreadLocalService;
+	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadLocalService.class)
+	protected com.liferay.privatemessaging.service.UserThreadLocalService userThreadLocalService;
 	@BeanReference(type = UserThreadPersistence.class)
 	protected UserThreadPersistence userThreadPersistence;
-	@BeanReference(type = CounterLocalService.class)
-	protected CounterLocalService counterLocalService;
-	@BeanReference(type = ResourceLocalService.class)
-	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = UserLocalService.class)
-	protected UserLocalService userLocalService;
-	@BeanReference(type = UserService.class)
-	protected UserService userService;
+	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
+	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
+	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
+	protected com.liferay.portal.service.UserLocalService userLocalService;
+	@BeanReference(type = com.liferay.portal.service.UserService.class)
+	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;
