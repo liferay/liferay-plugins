@@ -46,28 +46,27 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
+			SocialActivitySet activitySet = null;
+
 			if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+				(activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) ||
 				(activity.getType() ==
 					SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
-				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.getClassActivitySet(
-						activity.getClassNameId(), activity.getClassPK(),
-						activity.getType());
-
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+				activitySet =
+					SocialActivitySetLocalServiceUtil.getUserActivitySet(
+						activity.getGroupId(), activity.getUserId(),
+						activity.getClassNameId(), activity.getType());
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
-				SocialActivitySet activitySet =
+				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
+			}
 
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
 			}
 		}
 		catch (Exception e) {

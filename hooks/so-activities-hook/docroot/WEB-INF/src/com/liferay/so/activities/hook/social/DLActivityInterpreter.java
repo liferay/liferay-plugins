@@ -48,25 +48,23 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
+			SocialActivitySet activitySet = null;
+
 			if (activity.getType() == _ACTIVITY_KEY_ADD_FILE_ENTRY) {
-				SocialActivitySet activitySet =
+				activitySet =
 					SocialActivitySetLocalServiceUtil.getUserActivitySet(
 						activity.getGroupId(), activity.getUserId(),
-						activity.getType());
-
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+						activity.getClassNameId(), activity.getType());
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
-				SocialActivitySet activitySet =
+				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
+			}
 
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
 			}
 		}
 		catch (Exception e) {

@@ -45,18 +45,27 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (((activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) &&
-				 (activity.getReceiverUserId() > 0)) ||
-				(activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE)) {
+			int activityType = activity.getType();
 
-				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.getClassActivitySet(
-						activity.getUserId(), activity.getClassNameId(),
-						activity.getClassPK(), activity.getType());
+			if ((activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) &&
+				(activity.getReceiverUserId() > 0)) {
 
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+				activityType = _ACTIVITY_KEY_REPLY_MESSAGE;
+			}
+
+			SocialActivitySet activitySet = null;
+
+			if ((activityType == _ACTIVITY_KEY_ADD_MESSAGE) ||
+				(activityType == _ACTIVITY_KEY_REPLY_MESSAGE)) {
+
+				activitySet =
+					SocialActivitySetLocalServiceUtil.getUserActivitySet(
+						activity.getGroupId(), activity.getUserId(),
+						activity.getClassNameId(), activityType);
+			}
+
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
 			}
 		}
 		catch (Exception e) {
