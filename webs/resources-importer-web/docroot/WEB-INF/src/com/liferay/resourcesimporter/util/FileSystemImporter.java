@@ -223,6 +223,10 @@ public class FileSystemImporter extends BaseImporter {
 			JSONObject layoutJSONObject)
 		throws Exception {
 
+		if (targetClassName.equals(LayoutSetPrototype.class.getName())) {
+			privateLayout = true;
+		}
+
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
 		JSONObject nameMapJSONObject = layoutJSONObject.getJSONObject(
@@ -554,11 +558,7 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(true);
-
-		if (!privateLayout) {
-			serviceContext.setAddGuestPermissions(true);
-		}
-
+		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(groupId);
 
 		setupAssets("assets.json");
@@ -804,7 +804,10 @@ public class FileSystemImporter extends BaseImporter {
 
 	protected void setupSitemap(String fileName) throws Exception {
 		LayoutLocalServiceUtil.deleteLayouts(
-			groupId, privateLayout, new ServiceContext());
+			groupId, true, new ServiceContext());
+
+		LayoutLocalServiceUtil.deleteLayouts(
+			groupId, false, new ServiceContext());
 
 		JSONObject jsonObject = getJSONObject(fileName);
 
@@ -879,7 +882,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		if (Validator.isNotNull(themeId)) {
 			LayoutSetLocalServiceUtil.updateLookAndFeel(
-				groupId, privateLayout, themeId, null, null, false);
+				groupId, themeId, null, null, false);
 		}
 	}
 
