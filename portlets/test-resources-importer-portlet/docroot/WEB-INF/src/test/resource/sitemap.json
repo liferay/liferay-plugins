@@ -1,4 +1,5 @@
 {
+	"layoutTemplateId": "2_columns_ii",
 	"privatePages": [
 		{
 			"friendlyURL": "/private-page",
@@ -127,6 +128,5 @@
 			"title": "Hidden Page",
 			"hidden": "true"
 		}
-	],
-	"layoutTemplateId": "2_columns_ii"
+	]
 }

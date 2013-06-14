@@ -1,4 +1,5 @@
 {
+	"layoutTemplateId": "1_column",
 	"publicPages": [
 		{
 			"columns": [
@@ -30,6 +31,5 @@
 			"name": "Liferay Benefits",
 			"title": "Liferay Benefits"
 		}
-	],
-	"layoutTemplateId": "1_column"
+	]
 }

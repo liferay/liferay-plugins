@@ -67,7 +67,6 @@ public abstract class BaseImporter implements Importer {
 
 			group = layoutSetPrototype.getGroup();
 
-			privateLayout = true;
 			targetClassPK = layoutSetPrototype.getLayoutSetPrototypeId();
 		}
 		else if (targetClassName.equals(Group.class.getName())) {
@@ -117,7 +116,6 @@ public abstract class BaseImporter implements Importer {
 				}
 			}
 
-			privateLayout = false;
 			targetClassPK = group.getGroupId();
 		}
 
@@ -203,7 +201,6 @@ public abstract class BaseImporter implements Importer {
 	protected long companyId;
 	protected boolean existing;
 	protected long groupId;
-	protected boolean privateLayout;
 	protected String resourcesDir;
 	protected ServletContext servletContext;
 	protected String servletContextName;
