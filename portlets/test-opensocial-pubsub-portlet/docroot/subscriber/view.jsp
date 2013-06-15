@@ -51,7 +51,7 @@
 
 	A.one('#<portlet:namespace />subscribe').on(
 		'click',
-		function () {
+		function() {
 			var subscribeTopic = 'gadget:org.apache.shindig.random-number';
 
 			var topicType = A.one('#<portlet:namespace />subscribeTopic').val();
@@ -66,7 +66,7 @@
 
 	A.one('#<portlet:namespace />unsubscribe').on(
 		'click',
-		function () {
+		function() {
 			var lfrDetach = false;
 
 			var unsubscribeFn;
