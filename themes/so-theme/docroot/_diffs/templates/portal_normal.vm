@@ -189,7 +189,7 @@ $theme.include($bottom_include)
 					}
 				);
 
-				window['_2_changeLogo'] = function (logoURL) {
+				window['_2_changeLogo'] = function(logoURL) {
 					var avatarDialog = A.one('#_SO_THEME_avatar');
 
 					if (avatarDialog) {

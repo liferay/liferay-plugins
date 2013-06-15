@@ -193,7 +193,7 @@ to = sb.toString() + to;
 
 	to.on(
 		'focus',
-		function () {
+		function() {
 			to.ac.sendRequest('');
 		}
 	);

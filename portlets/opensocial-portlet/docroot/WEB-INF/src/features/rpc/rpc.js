@@ -762,7 +762,7 @@ if (!gadgets.rpc) { // make lib resilient to double-inclusion
      * @param {string} targetId Module Id of the RPC service provider.
      *                          Empty if calling the parent container.
      * @param {string} serviceName Service name to call.
-     * @param {function()|null} callback Callback function (if any) to process
+     * @param {function()|null} callback Callback function(if any) to process
      *                                 the return value of the RPC request.
      * @param {*} var_args Parameters for the RPC request.
      *

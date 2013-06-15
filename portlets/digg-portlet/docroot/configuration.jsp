@@ -295,7 +295,7 @@
 <aui:script use="node">
 	allFlds = A.all('div.fld');
 
-	allFlds.on('click', function (e) {
+	allFlds.on('click', function(e) {
 		var currentTarget = e.currentTarget;
 
 		allFlds.removeClass('selected');

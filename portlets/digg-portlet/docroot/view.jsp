@@ -19,7 +19,7 @@
 <div id="twitter_widget<portlet:namespace />node"></div>
 
 <aui:script>
-	digg_widget<portlet:namespace />options = (function (newsType) {
+	digg_widget<portlet:namespace />options = (function(newsType) {
 		var options = {
 			fallback: '<%= LanguageUtil.get(pageContext, "no-results") %>',
 			name: 'digg_widget<portlet:namespace />',

@@ -667,7 +667,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 	allDayCheckbox.after(
 		'click',
-		function () {
+		function() {
 			var endDateContainer = A.one('#<portlet:namespace />endDateContainer');
 			var startDateContainer = A.one('#<portlet:namespace />startDateContainer');
 
