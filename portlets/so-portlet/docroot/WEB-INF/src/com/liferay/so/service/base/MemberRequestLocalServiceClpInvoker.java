@@ -73,92 +73,99 @@ public class MemberRequestLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchMemberRequest";
+		_methodName9 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
+				"com.liferay.portal.kernel.dao.orm.Projection"
+			};
 
-		_methodName10 = "getMemberRequest";
+		_methodName10 = "fetchMemberRequest";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getPersistedModel";
+		_methodName11 = "getMemberRequest";
 
-		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getMemberRequests";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "int", "int" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getMemberRequestsCount";
+		_methodName13 = "getMemberRequests";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "updateMemberRequest";
+		_methodName14 = "getMemberRequestsCount";
 
-		_methodParameterTypes14 = new String[] {
+		_methodParameterTypes14 = new String[] {  };
+
+		_methodName15 = "updateMemberRequest";
+
+		_methodParameterTypes15 = new String[] {
 				"com.liferay.so.model.MemberRequest"
 			};
 
-		_methodName61 = "getBeanIdentifier";
+		_methodName62 = "getBeanIdentifier";
 
-		_methodParameterTypes61 = new String[] {  };
+		_methodParameterTypes62 = new String[] {  };
 
-		_methodName62 = "setBeanIdentifier";
+		_methodName63 = "setBeanIdentifier";
 
-		_methodParameterTypes62 = new String[] { "java.lang.String" };
+		_methodParameterTypes63 = new String[] { "java.lang.String" };
 
-		_methodName67 = "addMemberRequest";
-
-		_methodParameterTypes67 = new String[] {
-				"long", "long", "long", "java.lang.String", "long", "long",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName68 = "addMemberRequests";
+		_methodName68 = "addMemberRequest";
 
 		_methodParameterTypes68 = new String[] {
-				"long", "long", "long[][]", "long", "long",
+				"long", "long", "long", "java.lang.String", "long", "long",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName69 = "addMemberRequests";
 
 		_methodParameterTypes69 = new String[] {
+				"long", "long", "long[][]", "long", "long",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName70 = "addMemberRequests";
+
+		_methodParameterTypes70 = new String[] {
 				"long", "long", "java.lang.String[][]", "long", "long",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName70 = "getMemberRequest";
+		_methodName71 = "getMemberRequest";
 
-		_methodParameterTypes70 = new String[] { "long", "long", "int" };
+		_methodParameterTypes71 = new String[] { "long", "long", "int" };
 
-		_methodName71 = "getReceiverMemberRequest";
+		_methodName72 = "getReceiverMemberRequest";
 
-		_methodParameterTypes71 = new String[] { "long", "int", "int" };
+		_methodParameterTypes72 = new String[] { "long", "int", "int" };
 
-		_methodName72 = "getReceiverMemberRequestCount";
+		_methodName73 = "getReceiverMemberRequestCount";
 
-		_methodParameterTypes72 = new String[] { "long" };
+		_methodParameterTypes73 = new String[] { "long" };
 
-		_methodName73 = "getReceiverStatusMemberRequest";
+		_methodName74 = "getReceiverStatusMemberRequest";
 
-		_methodParameterTypes73 = new String[] { "long", "int", "int", "int" };
+		_methodParameterTypes74 = new String[] { "long", "int", "int", "int" };
 
-		_methodName74 = "getReceiverStatusMemberRequestCount";
+		_methodName75 = "getReceiverStatusMemberRequestCount";
 
-		_methodParameterTypes74 = new String[] { "long", "int" };
+		_methodParameterTypes75 = new String[] { "long", "int" };
 
-		_methodName75 = "hasPendingMemberRequest";
+		_methodName76 = "hasPendingMemberRequest";
 
-		_methodParameterTypes75 = new String[] { "long", "long" };
-
-		_methodName76 = "updateMemberRequest";
-
-		_methodParameterTypes76 = new String[] { "long", "long", "int" };
+		_methodParameterTypes76 = new String[] { "long", "long" };
 
 		_methodName77 = "updateMemberRequest";
 
-		_methodParameterTypes77 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes77 = new String[] { "long", "long", "int" };
+
+		_methodName78 = "updateMemberRequest";
+
+		_methodParameterTypes78 = new String[] { "java.lang.String", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -215,49 +222,55 @@ public class MemberRequestLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.fetchMemberRequest(((Long)arguments[0]).longValue());
+			return MemberRequestLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.getMemberRequest(((Long)arguments[0]).longValue());
+			return MemberRequestLocalServiceUtil.fetchMemberRequest(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return MemberRequestLocalServiceUtil.getMemberRequest(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.getMemberRequests(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return MemberRequestLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.getMemberRequestsCount();
+			return MemberRequestLocalServiceUtil.getMemberRequests(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.updateMemberRequest((com.liferay.so.model.MemberRequest)arguments[0]);
+			return MemberRequestLocalServiceUtil.getMemberRequestsCount();
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.getBeanIdentifier();
+		if (_methodName15.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return MemberRequestLocalServiceUtil.updateMemberRequest((com.liferay.so.model.MemberRequest)arguments[0]);
 		}
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+			return MemberRequestLocalServiceUtil.getBeanIdentifier();
+		}
+
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			MemberRequestLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.addMemberRequest(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -267,8 +280,8 @@ public class MemberRequestLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			MemberRequestLocalServiceUtil.addMemberRequests(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (long[])arguments[2],
 				((Long)arguments[3]).longValue(),
@@ -278,8 +291,8 @@ public class MemberRequestLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			MemberRequestLocalServiceUtil.addMemberRequests(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String[])arguments[2],
@@ -290,54 +303,54 @@ public class MemberRequestLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.getMemberRequest(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.getReceiverMemberRequest(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.getReceiverMemberRequestCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.getReceiverStatusMemberRequest(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.getReceiverStatusMemberRequestCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName75.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.hasPendingMemberRequest(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.updateMemberRequest(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return MemberRequestLocalServiceUtil.updateMemberRequest((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
@@ -375,12 +388,12 @@ public class MemberRequestLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName61;
-	private String[] _methodParameterTypes61;
+	private String _methodName15;
+	private String[] _methodParameterTypes15;
 	private String _methodName62;
 	private String[] _methodParameterTypes62;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
+	private String _methodName63;
+	private String[] _methodParameterTypes63;
 	private String _methodName68;
 	private String[] _methodParameterTypes68;
 	private String _methodName69;
@@ -401,4 +414,6 @@ public class MemberRequestLocalServiceClpInvoker {
 	private String[] _methodParameterTypes76;
 	private String _methodName77;
 	private String[] _methodParameterTypes77;
+	private String _methodName78;
+	private String[] _methodParameterTypes78;
 }

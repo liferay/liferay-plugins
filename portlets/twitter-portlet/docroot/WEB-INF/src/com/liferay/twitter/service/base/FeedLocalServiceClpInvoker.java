@@ -69,49 +69,56 @@ public class FeedLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchFeed";
+		_methodName9 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
+				"com.liferay.portal.kernel.dao.orm.Projection"
+			};
 
-		_methodName10 = "getFeed";
+		_methodName10 = "fetchFeed";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getPersistedModel";
+		_methodName11 = "getFeed";
 
-		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getFeeds";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "int", "int" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getFeedsCount";
+		_methodName13 = "getFeeds";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "updateFeed";
+		_methodName14 = "getFeedsCount";
 
-		_methodParameterTypes14 = new String[] { "com.liferay.twitter.model.Feed" };
+		_methodParameterTypes14 = new String[] {  };
 
-		_methodName31 = "getBeanIdentifier";
+		_methodName15 = "updateFeed";
 
-		_methodParameterTypes31 = new String[] {  };
+		_methodParameterTypes15 = new String[] { "com.liferay.twitter.model.Feed" };
 
-		_methodName32 = "setBeanIdentifier";
+		_methodName32 = "getBeanIdentifier";
 
-		_methodParameterTypes32 = new String[] { "java.lang.String" };
+		_methodParameterTypes32 = new String[] {  };
 
-		_methodName37 = "updateFeed";
+		_methodName33 = "setBeanIdentifier";
 
-		_methodParameterTypes37 = new String[] { "long" };
+		_methodParameterTypes33 = new String[] { "java.lang.String" };
 
-		_methodName38 = "updateFeeds";
+		_methodName38 = "updateFeed";
 
-		_methodParameterTypes38 = new String[] {  };
+		_methodParameterTypes38 = new String[] { "long" };
 
 		_methodName39 = "updateFeeds";
 
-		_methodParameterTypes39 = new String[] { "long" };
+		_methodParameterTypes39 = new String[] {  };
+
+		_methodName40 = "updateFeeds";
+
+		_methodParameterTypes40 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -168,63 +175,69 @@ public class FeedLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return FeedLocalServiceUtil.fetchFeed(((Long)arguments[0]).longValue());
+			return FeedLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return FeedLocalServiceUtil.getFeed(((Long)arguments[0]).longValue());
+			return FeedLocalServiceUtil.fetchFeed(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return FeedLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return FeedLocalServiceUtil.getFeed(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return FeedLocalServiceUtil.getFeeds(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return FeedLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return FeedLocalServiceUtil.getFeedsCount();
+			return FeedLocalServiceUtil.getFeeds(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return FeedLocalServiceUtil.updateFeed((com.liferay.twitter.model.Feed)arguments[0]);
+			return FeedLocalServiceUtil.getFeedsCount();
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
-			return FeedLocalServiceUtil.getBeanIdentifier();
+		if (_methodName15.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return FeedLocalServiceUtil.updateFeed((com.liferay.twitter.model.Feed)arguments[0]);
 		}
 
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
-			FeedLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+			return FeedLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName37.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
-			FeedLocalServiceUtil.updateFeed(((Long)arguments[0]).longValue());
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+			FeedLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName38.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
-			FeedLocalServiceUtil.updateFeeds();
+			FeedLocalServiceUtil.updateFeed(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
+			FeedLocalServiceUtil.updateFeeds();
+
+			return null;
+		}
+
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			FeedLocalServiceUtil.updateFeeds(((Long)arguments[0]).longValue());
 
 			return null;
@@ -263,14 +276,16 @@ public class FeedLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
+	private String _methodName15;
+	private String[] _methodParameterTypes15;
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
-	private String _methodName37;
-	private String[] _methodParameterTypes37;
+	private String _methodName33;
+	private String[] _methodParameterTypes33;
 	private String _methodName38;
 	private String[] _methodParameterTypes38;
 	private String _methodName39;
 	private String[] _methodParameterTypes39;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
 }

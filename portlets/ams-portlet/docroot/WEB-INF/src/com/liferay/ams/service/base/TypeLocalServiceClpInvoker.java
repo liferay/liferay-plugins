@@ -69,37 +69,44 @@ public class TypeLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchType";
+		_methodName9 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
+				"com.liferay.portal.kernel.dao.orm.Projection"
+			};
 
-		_methodName10 = "getType";
+		_methodName10 = "fetchType";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getPersistedModel";
+		_methodName11 = "getType";
 
-		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getTypes";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "int", "int" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getTypesCount";
+		_methodName13 = "getTypes";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "updateType";
+		_methodName14 = "getTypesCount";
 
-		_methodParameterTypes14 = new String[] { "com.liferay.ams.model.Type" };
+		_methodParameterTypes14 = new String[] {  };
 
-		_methodName43 = "getBeanIdentifier";
+		_methodName15 = "updateType";
 
-		_methodParameterTypes43 = new String[] {  };
+		_methodParameterTypes15 = new String[] { "com.liferay.ams.model.Type" };
 
-		_methodName44 = "setBeanIdentifier";
+		_methodName44 = "getBeanIdentifier";
 
-		_methodParameterTypes44 = new String[] { "java.lang.String" };
+		_methodParameterTypes44 = new String[] {  };
+
+		_methodName45 = "setBeanIdentifier";
+
+		_methodParameterTypes45 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -156,42 +163,48 @@ public class TypeLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return TypeLocalServiceUtil.fetchType(((Long)arguments[0]).longValue());
+			return TypeLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return TypeLocalServiceUtil.getType(((Long)arguments[0]).longValue());
+			return TypeLocalServiceUtil.fetchType(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return TypeLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return TypeLocalServiceUtil.getType(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return TypeLocalServiceUtil.getTypes(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return TypeLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return TypeLocalServiceUtil.getTypesCount();
+			return TypeLocalServiceUtil.getTypes(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return TypeLocalServiceUtil.updateType((com.liferay.ams.model.Type)arguments[0]);
+			return TypeLocalServiceUtil.getTypesCount();
 		}
 
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
-			return TypeLocalServiceUtil.getBeanIdentifier();
+		if (_methodName15.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return TypeLocalServiceUtil.updateType((com.liferay.ams.model.Type)arguments[0]);
 		}
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+			return TypeLocalServiceUtil.getBeanIdentifier();
+		}
+
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			TypeLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -230,8 +243,10 @@ public class TypeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
+	private String _methodName15;
+	private String[] _methodParameterTypes15;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
+	private String _methodName45;
+	private String[] _methodParameterTypes45;
 }

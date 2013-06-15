@@ -74,112 +74,119 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchKaleoInstance";
+		_methodName9 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
+				"com.liferay.portal.kernel.dao.orm.Projection"
+			};
 
-		_methodName10 = "getKaleoInstance";
+		_methodName10 = "fetchKaleoInstance";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getPersistedModel";
+		_methodName11 = "getKaleoInstance";
 
-		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getKaleoInstances";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "int", "int" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getKaleoInstancesCount";
+		_methodName13 = "getKaleoInstances";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "updateKaleoInstance";
+		_methodName14 = "getKaleoInstancesCount";
 
-		_methodParameterTypes14 = new String[] {
+		_methodParameterTypes14 = new String[] {  };
+
+		_methodName15 = "updateKaleoInstance";
+
+		_methodParameterTypes15 = new String[] {
 				"com.liferay.portal.workflow.kaleo.model.KaleoInstance"
 			};
 
-		_methodName15 = "getBeanIdentifier";
+		_methodName16 = "getBeanIdentifier";
 
-		_methodParameterTypes15 = new String[] {  };
+		_methodParameterTypes16 = new String[] {  };
 
-		_methodName16 = "setBeanIdentifier";
+		_methodName17 = "setBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] { "java.lang.String" };
+		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName18 = "addKaleoInstance";
+		_methodName19 = "addKaleoInstance";
 
-		_methodParameterTypes18 = new String[] {
+		_methodParameterTypes19 = new String[] {
 				"long", "java.lang.String", "int", "java.util.Map",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName19 = "completeKaleoInstance";
-
-		_methodParameterTypes19 = new String[] { "long" };
-
-		_methodName20 = "deleteCompanyKaleoInstances";
+		_methodName20 = "completeKaleoInstance";
 
 		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName21 = "deleteKaleoDefinitionKaleoInstances";
+		_methodName21 = "deleteCompanyKaleoInstances";
 
 		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "getKaleoInstances";
+		_methodName22 = "deleteKaleoDefinitionKaleoInstances";
 
-		_methodParameterTypes22 = new String[] {
+		_methodParameterTypes22 = new String[] { "long" };
+
+		_methodName23 = "getKaleoInstances";
+
+		_methodParameterTypes23 = new String[] {
 				"java.lang.Long", "java.lang.String", "java.lang.Long",
 				"java.lang.Boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName23 = "getKaleoInstances";
+		_methodName24 = "getKaleoInstances";
 
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"java.lang.Long", "java.lang.String[][]", "java.lang.Boolean",
 				"int", "int", "com.liferay.portal.kernel.util.OrderByComparator",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName24 = "getKaleoInstances";
+		_methodName25 = "getKaleoInstances";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes25 = new String[] {
 				"java.lang.String", "int", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName25 = "getKaleoInstancesCount";
-
-		_methodParameterTypes25 = new String[] { "long", "boolean" };
-
 		_methodName26 = "getKaleoInstancesCount";
 
-		_methodParameterTypes26 = new String[] {
-				"java.lang.Long", "java.lang.String", "java.lang.Long",
-				"java.lang.Boolean", "com.liferay.portal.service.ServiceContext"
-			};
+		_methodParameterTypes26 = new String[] { "long", "boolean" };
 
 		_methodName27 = "getKaleoInstancesCount";
 
 		_methodParameterTypes27 = new String[] {
-				"java.lang.Long", "java.lang.String[][]", "java.lang.Boolean",
-				"com.liferay.portal.service.ServiceContext"
+				"java.lang.Long", "java.lang.String", "java.lang.Long",
+				"java.lang.Boolean", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName28 = "getKaleoInstancesCount";
 
 		_methodParameterTypes28 = new String[] {
+				"java.lang.Long", "java.lang.String[][]", "java.lang.Boolean",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName29 = "getKaleoInstancesCount";
+
+		_methodParameterTypes29 = new String[] {
 				"java.lang.String", "int", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName29 = "updateKaleoInstance";
+		_methodName30 = "updateKaleoInstance";
 
-		_methodParameterTypes29 = new String[] {
+		_methodParameterTypes30 = new String[] {
 				"long", "java.util.Map",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -466,14 +473,49 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	}
 
 	@Override
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
+					new Object[] {
+						ClpSerializer.translateInput(dynamicQuery),
+						
+					ClpSerializer.translateInput(projection)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
+	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchKaleoInstance(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { kaleoInstanceId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName10,
+					_methodParameterTypes10, new Object[] { kaleoInstanceId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -502,8 +544,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { kaleoInstanceId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName11,
+					_methodParameterTypes11, new Object[] { kaleoInstanceId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -536,8 +578,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -570,8 +612,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -598,8 +640,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -627,8 +669,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
 					new Object[] { ClpSerializer.translateInput(kaleoInstance) });
 		}
 		catch (Throwable t) {
@@ -655,8 +697,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -676,8 +718,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName16,
-				_methodParameterTypes16,
+			_invokableLocalService.invokeMethod(_methodName17,
+				_methodParameterTypes17,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -711,8 +753,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] {
 						kaleoDefinitionId,
 						
@@ -756,8 +798,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { kaleoInstanceId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { kaleoInstanceId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -786,8 +828,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	public void deleteCompanyKaleoInstances(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20, new Object[] { companyId });
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21, new Object[] { companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -810,8 +852,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	public void deleteKaleoDefinitionKaleoInstances(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21, new Object[] { kaleoDefinitionId });
+			_invokableLocalService.invokeMethod(_methodName22,
+				_methodParameterTypes22, new Object[] { kaleoDefinitionId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -841,8 +883,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						ClpSerializer.translateInput(userId),
 						
@@ -890,8 +932,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						ClpSerializer.translateInput(userId),
 						
@@ -937,8 +979,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						ClpSerializer.translateInput(kaleoDefinitionName),
 						
@@ -980,8 +1022,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { kaleoDefinitionId, completed });
 		}
 		catch (Throwable t) {
@@ -1012,8 +1054,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] {
 						ClpSerializer.translateInput(userId),
 						
@@ -1053,8 +1095,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] {
 						ClpSerializer.translateInput(userId),
 						
@@ -1092,8 +1134,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
 						ClpSerializer.translateInput(kaleoDefinitionName),
 						
@@ -1133,8 +1175,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] {
 						kaleoInstanceId,
 						
@@ -1201,8 +1243,8 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
-	private String _methodName18;
-	private String[] _methodParameterTypes18;
+	private String _methodName17;
+	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
@@ -1225,4 +1267,6 @@ public class KaleoInstanceLocalServiceClp implements KaleoInstanceLocalService {
 	private String[] _methodParameterTypes28;
 	private String _methodName29;
 	private String[] _methodParameterTypes29;
+	private String _methodName30;
+	private String[] _methodParameterTypes30;
 }

@@ -73,47 +73,54 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchJIRAChangeItem";
+		_methodName9 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
+				"com.liferay.portal.kernel.dao.orm.Projection"
+			};
 
-		_methodName10 = "getJIRAChangeItem";
+		_methodName10 = "fetchJIRAChangeItem";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getPersistedModel";
+		_methodName11 = "getJIRAChangeItem";
 
-		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getJIRAChangeItems";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "int", "int" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getJIRAChangeItemsCount";
+		_methodName13 = "getJIRAChangeItems";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "updateJIRAChangeItem";
+		_methodName14 = "getJIRAChangeItemsCount";
 
-		_methodParameterTypes14 = new String[] {
+		_methodParameterTypes14 = new String[] {  };
+
+		_methodName15 = "updateJIRAChangeItem";
+
+		_methodParameterTypes15 = new String[] {
 				"com.liferay.socialcoding.model.JIRAChangeItem"
 			};
 
-		_methodName57 = "getBeanIdentifier";
+		_methodName58 = "getBeanIdentifier";
 
-		_methodParameterTypes57 = new String[] {  };
+		_methodParameterTypes58 = new String[] {  };
 
-		_methodName58 = "setBeanIdentifier";
+		_methodName59 = "setBeanIdentifier";
 
-		_methodParameterTypes58 = new String[] { "java.lang.String" };
+		_methodParameterTypes59 = new String[] { "java.lang.String" };
 
-		_methodName63 = "getJIRAChangeItem";
-
-		_methodParameterTypes63 = new String[] { "long" };
-
-		_methodName64 = "getJIRAChangeItems";
+		_methodName64 = "getJIRAChangeItem";
 
 		_methodParameterTypes64 = new String[] { "long" };
+
+		_methodName65 = "getJIRAChangeItems";
+
+		_methodParameterTypes65 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -170,54 +177,60 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.fetchJIRAChangeItem(((Long)arguments[0]).longValue());
+			return JIRAChangeItemLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
+			return JIRAChangeItemLocalServiceUtil.fetchJIRAChangeItem(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItems(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return JIRAChangeItemLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItemsCount();
+			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItems(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem((com.liferay.socialcoding.model.JIRAChangeItem)arguments[0]);
+			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItemsCount();
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getBeanIdentifier();
+		if (_methodName15.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem((com.liferay.socialcoding.model.JIRAChangeItem)arguments[0]);
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+			return JIRAChangeItemLocalServiceUtil.getBeanIdentifier();
+		}
+
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			JIRAChangeItemLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItems(((Long)arguments[0]).longValue());
 		}
 
@@ -254,12 +267,14 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
+	private String _methodName15;
+	private String[] _methodParameterTypes15;
 	private String _methodName58;
 	private String[] _methodParameterTypes58;
-	private String _methodName63;
-	private String[] _methodParameterTypes63;
+	private String _methodName59;
+	private String[] _methodParameterTypes59;
 	private String _methodName64;
 	private String[] _methodParameterTypes64;
+	private String _methodName65;
+	private String[] _methodParameterTypes65;
 }
