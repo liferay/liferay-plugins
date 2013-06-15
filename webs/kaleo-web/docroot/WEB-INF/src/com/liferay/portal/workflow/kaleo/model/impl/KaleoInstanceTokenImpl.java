@@ -36,6 +36,7 @@ public class KaleoInstanceTokenImpl extends KaleoInstanceTokenBaseImpl {
 	public KaleoInstanceTokenImpl() {
 	}
 
+	@Override
 	public List<KaleoInstanceToken> getChildrenKaleoInstanceTokens()
 		throws SystemException {
 
@@ -47,12 +48,14 @@ public class KaleoInstanceTokenImpl extends KaleoInstanceTokenBaseImpl {
 			getKaleoInstanceTokenId(), serviceContext);
 	}
 
+	@Override
 	public KaleoNode getCurrentKaleoNode()
 		throws PortalException, SystemException {
 
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getCurrentKaleoNodeId());
 	}
 
+	@Override
 	public List<KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens()
 		throws SystemException {
 
@@ -64,6 +67,7 @@ public class KaleoInstanceTokenImpl extends KaleoInstanceTokenBaseImpl {
 			getKaleoInstanceTokenId(), null, serviceContext);
 	}
 
+	@Override
 	public KaleoInstance getKaleoInstance()
 		throws PortalException, SystemException {
 
@@ -71,6 +75,7 @@ public class KaleoInstanceTokenImpl extends KaleoInstanceTokenBaseImpl {
 			getKaleoInstanceId());
 	}
 
+	@Override
 	public KaleoInstanceToken getParentKaleoInstanceToken()
 		throws PortalException, SystemException {
 
@@ -78,6 +83,7 @@ public class KaleoInstanceTokenImpl extends KaleoInstanceTokenBaseImpl {
 			getParentKaleoInstanceTokenId());
 	}
 
+	@Override
 	public boolean hasIncompleteChildrenKaleoInstanceToken()
 		throws SystemException {
 
@@ -97,6 +103,7 @@ public class KaleoInstanceTokenImpl extends KaleoInstanceTokenBaseImpl {
 		}
 	}
 
+	@Override
 	public void setCurrentKaleoNode(KaleoNode kaleoNode)
 		throws PortalException, SystemException {
 

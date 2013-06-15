@@ -36,6 +36,7 @@ import java.util.List;
 	rollbackFor = {Exception.class})
 public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 
+	@Override
 	public void follow(
 			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
 			List<PathElement> remainingPathElements,

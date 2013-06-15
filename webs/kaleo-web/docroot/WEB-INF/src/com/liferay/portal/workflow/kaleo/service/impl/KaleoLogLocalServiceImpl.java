@@ -50,6 +50,7 @@ import java.util.Map;
  */
 public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 
+	@Override
 	public KaleoLog addActionExecutionKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken, KaleoAction kaleoAction,
 			long startTime, long endTime, String comment,
@@ -73,6 +74,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog addNodeEntryKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken, KaleoNode sourceKaleoNode,
 			KaleoNode targetKaleoNode, ServiceContext serviceContext)
@@ -99,6 +101,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog addNodeExitKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken, KaleoNode departingKaleoNode,
 			ServiceContext serviceContext)
@@ -132,6 +135,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog addTaskAssignmentKaleoLog(
 			List<KaleoTaskAssignmentInstance>
 			previousKaleoTaskAssignmentInstances,
@@ -190,6 +194,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog addTaskCompletionKaleoLog(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
 			Map<String, Serializable> workflowContext,
@@ -234,6 +239,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog addTaskUpdateKaleoLog(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
 			Map<String, Serializable> workflowContext,
@@ -268,6 +274,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog addWorkflowInstanceEndKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken,
 			ServiceContext serviceContext)
@@ -296,6 +303,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public KaleoLog addWorkflowInstanceStartKaleoLog(
 			KaleoInstanceToken kaleoInstanceToken,
 			ServiceContext serviceContext)
@@ -316,22 +324,26 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		return kaleoLog;
 	}
 
+	@Override
 	public void deleteCompanyKaleoLogs(long companyId) throws SystemException {
 		kaleoLogPersistence.removeByCompanyId(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoLogs(long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoLogPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
+	@Override
 	public void deleteKaleoInstanceKaleoLogs(long kaleoInstanceId)
 		throws SystemException {
 
 		kaleoLogPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}
 
+	@Override
 	public List<KaleoLog> getKaleoInstanceKaleoLogs(
 			long kaleoInstanceId, List<Integer> logTypes, int start, int end,
 			OrderByComparator orderByComparator)
@@ -349,6 +361,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public int getKaleoInstanceKaleoLogsCount(
 			long kaleoInstanceId, List<Integer> logTypes)
 		throws SystemException {
@@ -364,6 +377,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public List<KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
 			long kaleoTaskInstanceTokenId, List<Integer> logTypes, int start,
 			int end, OrderByComparator orderByComparator)
@@ -381,6 +395,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public int getKaleoTaskInstanceTokenKaleoLogsCount(
 			long kaleoTaskInstanceTokenId, List<Integer> logTypes)
 		throws SystemException {

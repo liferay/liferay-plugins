@@ -48,6 +48,7 @@ import java.util.Map;
 public class KaleoInstanceLocalServiceImpl
 	extends KaleoInstanceLocalServiceBaseImpl {
 
+	@Override
 	public KaleoInstance addKaleoInstance(
 			long kaleoDefinitionId, String kaleoDefinitionName,
 			int kaleoDefinitionVersion,
@@ -105,6 +106,7 @@ public class KaleoInstanceLocalServiceImpl
 		return kaleoInstance;
 	}
 
+	@Override
 	public KaleoInstance completeKaleoInstance(long kaleoInstanceId)
 		throws PortalException, SystemException {
 
@@ -119,6 +121,7 @@ public class KaleoInstanceLocalServiceImpl
 		return kaleoInstance;
 	}
 
+	@Override
 	public void deleteCompanyKaleoInstances(long companyId)
 		throws SystemException {
 
@@ -141,6 +144,7 @@ public class KaleoInstanceLocalServiceImpl
 			deleteKaleoDefinitionKaleoTaskInstanceTokens(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoInstances(long kaleoDefinitionId)
 		throws SystemException {
 
@@ -198,6 +202,7 @@ public class KaleoInstanceLocalServiceImpl
 		return kaleoInstance;
 	}
 
+	@Override
 	public List<KaleoInstance> getKaleoInstances(
 			Long userId, String assetClassName, Long assetClassPK,
 			Boolean completed, int start, int end,
@@ -210,6 +215,7 @@ public class KaleoInstanceLocalServiceImpl
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	@Override
 	public List<KaleoInstance> getKaleoInstances(
 			Long userId, String[] assetClassNames, Boolean completed, int start,
 			int end, OrderByComparator orderByComparator,
@@ -222,6 +228,7 @@ public class KaleoInstanceLocalServiceImpl
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	@Override
 	public List<KaleoInstance> getKaleoInstances(
 			String kaleoDefinitionName, int kaleoDefinitionVersion,
 			boolean completed, int start, int end,
@@ -235,6 +242,7 @@ public class KaleoInstanceLocalServiceImpl
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	@Override
 	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed)
 		throws SystemException {
 
@@ -242,6 +250,7 @@ public class KaleoInstanceLocalServiceImpl
 			kaleoDefinitionId, completed);
 	}
 
+	@Override
 	public int getKaleoInstancesCount(
 			Long userId, String assetClassName, Long assetClassPK,
 			Boolean completed, ServiceContext serviceContext)
@@ -253,6 +262,7 @@ public class KaleoInstanceLocalServiceImpl
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public int getKaleoInstancesCount(
 			Long userId, String[] assetClassNames, Boolean completed,
 			ServiceContext serviceContext)
@@ -264,6 +274,7 @@ public class KaleoInstanceLocalServiceImpl
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public int getKaleoInstancesCount(
 			String kaleoDefinitionName, int kaleoDefinitionVersion,
 			boolean completed, ServiceContext serviceContext)
@@ -276,6 +287,7 @@ public class KaleoInstanceLocalServiceImpl
 		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
+	@Override
 	public KaleoInstance updateKaleoInstance(
 			long kaleoInstanceId, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)

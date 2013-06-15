@@ -27,12 +27,14 @@ public class KaleoTransitionImpl extends KaleoTransitionBaseImpl {
 	public KaleoTransitionImpl() {
 	}
 
+	@Override
 	public KaleoNode getSourceKaleoNode()
 		throws PortalException, SystemException {
 
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getSourceKaleoNodeId());
 	}
 
+	@Override
 	public KaleoNode getTargetKaleoNode()
 		throws PortalException, SystemException {
 

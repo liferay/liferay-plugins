@@ -33,6 +33,7 @@ import java.util.List;
 public class DefaultDefinitionBuilder
 	extends BaseKaleoBean implements DefinitionBuilder {
 
+	@Override
 	public Definition buildDefinition(long kaleoDefinitionId)
 		throws PortalException, SystemException {
 
@@ -42,6 +43,7 @@ public class DefaultDefinitionBuilder
 		return doBuildDefinition(kaleoDefinition);
 	}
 
+	@Override
 	public Definition buildDefinition(long companyId, String name, int version)
 		throws PortalException, SystemException {
 

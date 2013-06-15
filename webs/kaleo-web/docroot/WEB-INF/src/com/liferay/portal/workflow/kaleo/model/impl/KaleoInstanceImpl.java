@@ -34,6 +34,7 @@ public class KaleoInstanceImpl extends KaleoInstanceBaseImpl {
 	public KaleoInstanceImpl() {
 	}
 
+	@Override
 	public KaleoDefinition getKaleoDefinition()
 		throws PortalException, SystemException {
 
@@ -41,6 +42,7 @@ public class KaleoInstanceImpl extends KaleoInstanceBaseImpl {
 			getKaleoDefinitionId());
 	}
 
+	@Override
 	public KaleoInstanceToken getRootKaleoInstanceToken(
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
@@ -50,6 +52,7 @@ public class KaleoInstanceImpl extends KaleoInstanceBaseImpl {
 			getKaleoInstanceId(), workflowContext, serviceContext);
 	}
 
+	@Override
 	public KaleoInstanceToken getRootKaleoInstanceToken(
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {

@@ -36,6 +36,7 @@ import java.util.Set;
 public class KaleoNotificationLocalServiceImpl
 	extends KaleoNotificationLocalServiceBaseImpl {
 
+	@Override
 	public KaleoNotification addKaleoNotification(
 			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			String kaleoNodeName, Notification notification,
@@ -102,6 +103,7 @@ public class KaleoNotificationLocalServiceImpl
 		return kaleoNotification;
 	}
 
+	@Override
 	public void deleteCompanyKaleoNotifications(long companyId)
 		throws SystemException {
 
@@ -115,6 +117,7 @@ public class KaleoNotificationLocalServiceImpl
 			deleteCompanyKaleoNotificationRecipients(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoNotifications(long kaleoDefinitionId)
 		throws SystemException {
 
@@ -129,6 +132,7 @@ public class KaleoNotificationLocalServiceImpl
 			deleteKaleoDefinitionKaleoNotificationRecipients(kaleoDefinitionId);
 	}
 
+	@Override
 	public List<KaleoNotification> getKaleoNotifications(
 			String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
@@ -137,6 +141,7 @@ public class KaleoNotificationLocalServiceImpl
 			kaleoClassName, kaleoClassPK);
 	}
 
+	@Override
 	public List<KaleoNotification> getKaleoNotifications(
 			String kaleoClassName, long kaleoClassPK, String executionType)
 		throws SystemException {

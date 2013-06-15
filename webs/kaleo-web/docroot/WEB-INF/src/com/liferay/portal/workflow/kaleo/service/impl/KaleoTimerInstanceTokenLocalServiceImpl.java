@@ -55,6 +55,7 @@ import java.util.Map;
 public class KaleoTimerInstanceTokenLocalServiceImpl
 	extends KaleoTimerInstanceTokenLocalServiceBaseImpl {
 
+	@Override
 	public KaleoTimerInstanceToken addKaleoTimerInstanceToken(
 			long kaleoInstanceTokenId, long kaleoTaskInstanceTokenId,
 			long kaleoTimerId, String kaleoTimerName,
@@ -111,6 +112,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		return kaleoTimerInstanceToken;
 	}
 
+	@Override
 	public List<KaleoTimerInstanceToken> addKaleoTimerInstanceTokens(
 			KaleoInstanceToken kaleoInstanceToken,
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
@@ -142,6 +144,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		return kaleoTimerInstanceTokens;
 	}
 
+	@Override
 	public KaleoTimerInstanceToken completeKaleoTimerInstanceToken(
 			long kaleoTimerInstanceTokenId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -161,6 +164,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		return kaleoTimerInstanceToken;
 	}
 
+	@Override
 	public void completeKaleoTimerInstanceTokens(
 			List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens,
 			ServiceContext serviceContext)
@@ -175,6 +179,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		}
 	}
 
+	@Override
 	public void completeKaleoTimerInstanceTokens(
 			long kaleoInstanceTokenId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -187,6 +192,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			kaleoTimerInstanceTokens, serviceContext);
 	}
 
+	@Override
 	public void deleteKaleoTimerInstanceToken(
 			long kaleoInstanceTokenId, long kaleoTimerId)
 		throws PortalException, SystemException {
@@ -199,6 +205,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		kaleoTimerInstanceTokenPersistence.remove(kaleoTimerInstanceToken);
 	}
 
+	@Override
 	public void deleteKaleoTimerInstanceTokens(long kaleoInstanceId)
 		throws SystemException {
 
@@ -227,6 +234,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		}
 	}
 
+	@Override
 	public KaleoTimerInstanceToken getKaleoTimerInstanceToken(
 			long kaleoInstanceTokenId, long kaleoTimerId)
 		throws PortalException, SystemException {
@@ -235,6 +243,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenId, kaleoTimerId);
 	}
 
+	@Override
 	public List<KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
 			long kaleoInstanceTokenId, boolean completed, boolean blocking,
 			ServiceContext serviceContext)
@@ -244,6 +253,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			kaleoInstanceTokenId, completed, blocking);
 	}
 
+	@Override
 	public int getKaleoTimerInstanceTokensCount(
 			long kaleoInstanceTokenId, boolean completed, boolean blocking,
 			ServiceContext serviceContext)

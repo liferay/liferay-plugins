@@ -32,6 +32,7 @@ import java.util.Set;
 public class ScriptingLanguagesTaskAssignmentSelector
 	extends BaseTaskAssignmentSelector {
 
+	@Override
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext, ClassLoader... classLoaders)

@@ -36,6 +36,7 @@ import java.util.Map;
  */
 public class ScriptingContextBuilderImpl implements ScriptingContextBuilder {
 
+	@Override
 	public Map<String, Object> buildScriptingContext(
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {

@@ -28,6 +28,7 @@ public class Timer implements ActionAware, NotificationAware {
 		_description = description;
 	}
 
+	@Override
 	public Set<Action> getActions() {
 		if (_actions == null) {
 			return Collections.emptySet();
@@ -48,6 +49,7 @@ public class Timer implements ActionAware, NotificationAware {
 		return _name;
 	}
 
+	@Override
 	public Set<Notification> getNotifications() {
 		if (_notifications == null) {
 			return Collections.emptySet();
@@ -72,6 +74,7 @@ public class Timer implements ActionAware, NotificationAware {
 		return _blocking;
 	}
 
+	@Override
 	public void setActions(Set<Action> actions) {
 		_actions = actions;
 	}
@@ -80,6 +83,7 @@ public class Timer implements ActionAware, NotificationAware {
 		_delayDuration = delayDuration;
 	}
 
+	@Override
 	public void setNotifications(Set<Notification> notifications) {
 		_notifications = notifications;
 	}

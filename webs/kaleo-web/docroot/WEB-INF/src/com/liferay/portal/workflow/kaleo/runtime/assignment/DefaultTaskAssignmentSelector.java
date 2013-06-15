@@ -26,6 +26,7 @@ import java.util.List;
  */
 public class DefaultTaskAssignmentSelector implements TaskAssignmentSelector {
 
+	@Override
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 		KaleoTaskAssignment kaleoTaskAssignment,
 		ExecutionContext executionContext, ClassLoader... classLoaders) {

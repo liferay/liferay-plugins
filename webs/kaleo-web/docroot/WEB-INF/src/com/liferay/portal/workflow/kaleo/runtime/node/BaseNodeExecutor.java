@@ -37,6 +37,7 @@ import java.util.List;
 public abstract class BaseNodeExecutor
 	extends BaseKaleoBean implements NodeExecutor {
 
+	@Override
 	public boolean enter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
@@ -68,6 +69,7 @@ public abstract class BaseNodeExecutor
 		return performExecute;
 	}
 
+	@Override
 	public void execute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
@@ -80,6 +82,7 @@ public abstract class BaseNodeExecutor
 		doExecute(currentKaleoNode, executionContext, remainingPathElements);
 	}
 
+	@Override
 	public void executeTimer(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
@@ -108,6 +111,7 @@ public abstract class BaseNodeExecutor
 		}
 	}
 
+	@Override
 	public void exit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)

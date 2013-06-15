@@ -39,6 +39,7 @@ import java.util.Map;
 public class KaleoInstanceTokenLocalServiceImpl
 	extends KaleoInstanceTokenLocalServiceBaseImpl {
 
+	@Override
 	public KaleoInstanceToken addKaleoInstanceToken(
 			long parentKaleoInstanceTokenId,
 			Map<String, Serializable> workflowContext,
@@ -98,6 +99,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 		return kaleoInstanceToken;
 	}
 
+	@Override
 	public KaleoInstanceToken completeKaleoInstanceToken(
 			long kaleoInstanceTokenId)
 		throws PortalException, SystemException {
@@ -114,12 +116,14 @@ public class KaleoInstanceTokenLocalServiceImpl
 		return kaleoInstanceToken;
 	}
 
+	@Override
 	public void deleteCompanyKaleoInstanceTokens(long companyId)
 		throws SystemException {
 
 		kaleoInstanceTokenPersistence.removeByCompanyId(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoInstanceTokens(long kaleoDefinitionId)
 		throws SystemException {
 
@@ -127,12 +131,14 @@ public class KaleoInstanceTokenLocalServiceImpl
 			kaleoDefinitionId);
 	}
 
+	@Override
 	public void deleteKaleoInstanceKaleoInstanceTokens(long kaleoInstanceId)
 		throws SystemException {
 
 		kaleoInstanceTokenPersistence.removeByKaleoInstanceId(kaleoInstanceId);
 	}
 
+	@Override
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
 			long parentKaleoInstanceTokenId, Date completionDate,
 			ServiceContext serviceContext)
@@ -143,6 +149,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			completionDate);
 	}
 
+	@Override
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
 			long parentKaleoInstanceTokenId, ServiceContext serviceContext)
 		throws SystemException {
@@ -151,6 +158,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			serviceContext.getCompanyId(), parentKaleoInstanceTokenId);
 	}
 
+	@Override
 	public int getKaleoInstanceTokensCount(
 			long parentKaleoInstanceTokenId, Date completionDate,
 			ServiceContext serviceContext)
@@ -161,6 +169,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			completionDate);
 	}
 
+	@Override
 	public int getKaleoInstanceTokensCount(
 			long parentKaleoInstanceTokenId, ServiceContext serviceContext)
 		throws SystemException {
@@ -169,6 +178,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 			serviceContext.getCompanyId(), parentKaleoInstanceTokenId);
 	}
 
+	@Override
 	public KaleoInstanceToken getRootKaleoInstanceToken(
 			long kaleoInstanceId, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
@@ -236,6 +246,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 		return kaleoInstanceToken;
 	}
 
+	@Override
 	public KaleoInstanceToken updateKaleoInstanceToken(
 			long kaleoInstanceTokenId, long currentKaleoNodeId)
 		throws PortalException, SystemException {

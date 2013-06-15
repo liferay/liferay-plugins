@@ -53,6 +53,7 @@ import java.util.Map;
 public class DefaultTaskManagerImpl
 	extends BaseKaleoBean implements TaskManager {
 
+	@Override
 	public WorkflowTask assignWorkflowTaskToRole(
 			long workflowTaskInstanceId, long roleId, String comment,
 			Date dueDate, Map<String, Serializable> workflowContext,
@@ -69,6 +70,7 @@ public class DefaultTaskManagerImpl
 		}
 	}
 
+	@Override
 	public WorkflowTask assignWorkflowTaskToUser(
 			long workflowTaskInstanceId, long assigneeUserId, String comment,
 			Date dueDate, Map<String, Serializable> workflowContext,
@@ -85,6 +87,7 @@ public class DefaultTaskManagerImpl
 		}
 	}
 
+	@Override
 	public WorkflowTask completeWorkflowTask(
 			long workflowTaskInstanceId, String transitionName, String comment,
 			Map<String, Serializable> workflowContext,
@@ -101,6 +104,7 @@ public class DefaultTaskManagerImpl
 		}
 	}
 
+	@Override
 	public WorkflowTask updateDueDate(
 			long workflowTaskInstanceId, String comment, Date dueDate,
 			ServiceContext serviceContext)

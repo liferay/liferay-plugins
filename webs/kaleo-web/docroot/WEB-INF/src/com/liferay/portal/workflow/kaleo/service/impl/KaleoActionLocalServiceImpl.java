@@ -31,6 +31,7 @@ import java.util.List;
 public class KaleoActionLocalServiceImpl
 	extends KaleoActionLocalServiceBaseImpl {
 
+	@Override
 	public KaleoAction addKaleoAction(
 			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			String kaleoNodeName, Action action, ServiceContext serviceContext)
@@ -67,18 +68,21 @@ public class KaleoActionLocalServiceImpl
 		return kaleoAction;
 	}
 
+	@Override
 	public void deleteCompanyKaleoActions(long companyId)
 		throws SystemException {
 
 		kaleoActionPersistence.removeByCompanyId(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoActions(long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoActionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
+	@Override
 	public List<KaleoAction> getKaleoActions(
 			String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
@@ -87,6 +91,7 @@ public class KaleoActionLocalServiceImpl
 			kaleoClassName, kaleoClassPK);
 	}
 
+	@Override
 	public List<KaleoAction> getKaleoActions(
 			String kaleoClassName, long kaleoClassPK, String executionType)
 		throws SystemException {

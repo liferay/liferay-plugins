@@ -36,6 +36,7 @@ import java.util.Set;
  */
 public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
+	@Override
 	public KaleoNode addKaleoNode(
 			long kaleoDefinitionId, Node node, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -111,6 +112,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		return kaleoNode;
 	}
 
+	@Override
 	public void deleteCompanyKaleoNodes(long companyId) throws SystemException {
 
 		// Kaleo nodes
@@ -127,6 +129,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 			companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws SystemException {
 
@@ -145,6 +148,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 			kaleoDefinitionId);
 	}
 
+	@Override
 	public List<KaleoNode> getKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws SystemException {
 

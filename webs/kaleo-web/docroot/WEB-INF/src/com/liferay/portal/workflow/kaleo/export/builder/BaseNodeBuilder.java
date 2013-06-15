@@ -61,6 +61,7 @@ import java.util.Set;
 public abstract class BaseNodeBuilder
 	extends BaseKaleoBean implements NodeBuilder {
 
+	@Override
 	public Node buildNode(KaleoNode kaleoNode)
 		throws PortalException, SystemException {
 

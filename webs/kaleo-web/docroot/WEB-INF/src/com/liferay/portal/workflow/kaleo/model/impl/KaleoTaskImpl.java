@@ -32,10 +32,12 @@ public class KaleoTaskImpl extends KaleoTaskBaseImpl {
 	public KaleoTaskImpl() {
 	}
 
+	@Override
 	public KaleoNode getKaleoNode() throws PortalException, SystemException {
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getKaleoNodeId());
 	}
 
+	@Override
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments()
 		throws SystemException {
 

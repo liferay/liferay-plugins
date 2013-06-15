@@ -28,6 +28,7 @@ import java.util.Map;
  */
 public class CompositeTaskAssignmentSelector implements TaskAssignmentSelector {
 
+	@Override
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext, ClassLoader... classLoaders)

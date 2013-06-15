@@ -41,6 +41,7 @@ import java.util.Map;
 public class TemplateNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
+	@Override
 	public String generateMessage(
 			String kaleoClassName, long kaleoClassPK, String notificationName,
 			String notificationTemplateLanguage, String notificationTemplate,

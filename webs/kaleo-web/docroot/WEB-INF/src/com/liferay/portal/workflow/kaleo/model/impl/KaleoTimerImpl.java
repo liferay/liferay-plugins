@@ -30,6 +30,7 @@ public class KaleoTimerImpl extends KaleoTimerBaseImpl {
 	public KaleoTimerImpl() {
 	}
 
+	@Override
 	public List<KaleoTaskAssignment> getKaleoTaskReassignments()
 		throws SystemException {
 
@@ -37,6 +38,7 @@ public class KaleoTimerImpl extends KaleoTimerBaseImpl {
 			KaleoTimer.class.getName(), getKaleoTimerId());
 	}
 
+	@Override
 	public boolean isRecurring() {
 		if (Validator.isNotNull(getRecurrenceScale())) {
 			return true;

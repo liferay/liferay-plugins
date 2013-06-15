@@ -25,12 +25,14 @@ import java.util.List;
  */
 public class KaleoDefinitionServiceImpl extends KaleoDefinitionServiceBaseImpl {
 
+	@Override
 	public List<KaleoDefinition> getKaleoDefinitions(int start, int end)
 		throws SystemException {
 
 		return kaleoDefinitionPersistence.findAll(start, end);
 	}
 
+	@Override
 	public List<KaleoDefinition> getKaleoDefinitions(
 			long companyId, int start, int end)
 		throws SystemException {

@@ -26,6 +26,7 @@ import java.util.Date;
  */
 public class DefaultDueDateCalculator implements DueDateCalculator {
 
+	@Override
 	public Date getDueDate(Date startDate, DelayDuration delayDuration) {
 		Calendar cal = CalendarFactoryUtil.getCalendar();
 

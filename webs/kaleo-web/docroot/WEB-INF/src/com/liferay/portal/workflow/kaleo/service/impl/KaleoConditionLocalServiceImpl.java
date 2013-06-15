@@ -31,6 +31,7 @@ import java.util.Date;
 public class KaleoConditionLocalServiceImpl
 	extends KaleoConditionLocalServiceBaseImpl {
 
+	@Override
 	public KaleoCondition addKaleoCondition(
 			long kaleoDefinitionId, long kaleoNodeId, Condition condition,
 			ServiceContext serviceContext)
@@ -63,18 +64,21 @@ public class KaleoConditionLocalServiceImpl
 		return kaleoCondition;
 	}
 
+	@Override
 	public void deleteCompanyKaleoConditions(long companyId)
 		throws SystemException {
 
 		kaleoConditionPersistence.removeByCompanyId(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoCondition(long kaleoDefinitionId)
 		throws SystemException {
 
 		kaleoConditionPersistence.removeByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
+	@Override
 	public KaleoCondition getKaleoNodeKaleoCondition(long kaleoNodeId)
 		throws PortalException, SystemException {
 

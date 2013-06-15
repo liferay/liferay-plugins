@@ -28,12 +28,14 @@ public class KaleoDefinitionImpl extends KaleoDefinitionBaseImpl {
 	public KaleoDefinitionImpl() {
 	}
 
+	@Override
 	public KaleoNode getKaleoStartNode()
 		throws PortalException, SystemException {
 
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getStartKaleoNodeId());
 	}
 
+	@Override
 	public boolean hasIncompleteKaleoInstances() throws SystemException {
 		int count = KaleoInstanceLocalServiceUtil.getKaleoInstancesCount(
 			getKaleoDefinitionId(), false);

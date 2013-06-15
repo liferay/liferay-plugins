@@ -59,6 +59,7 @@ import java.util.Set;
  */
 public class XMLWorkflowModelParser implements WorkflowModelParser {
 
+	@Override
 	public Definition parse(InputStream inputStream) throws WorkflowException {
 		try {
 			return doParse(inputStream);

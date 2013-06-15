@@ -53,6 +53,7 @@ public class DefaultKaleoSignaler
 		_singleDestinationMessageSender = singleDestinationMessageSender;
 	}
 
+	@Override
 	public void signalEntry(
 			String transitionName, ExecutionContext executionContext)
 		throws PortalException, SystemException {
@@ -68,6 +69,7 @@ public class DefaultKaleoSignaler
 		_singleDestinationMessageSender.send(startPathElement);
 	}
 
+	@Override
 	@Transactional(
 		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRED,
 		rollbackFor = {Exception.class})
@@ -91,6 +93,7 @@ public class DefaultKaleoSignaler
 
 	}
 
+	@Override
 	public void signalExit(
 			String transitionName, ExecutionContext executionContext)
 		throws PortalException, SystemException {

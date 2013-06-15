@@ -38,6 +38,7 @@ import java.util.List;
 public class KaleoNotificationRecipientLocalServiceImpl
 	extends KaleoNotificationRecipientLocalServiceBaseImpl {
 
+	@Override
 	public KaleoNotificationRecipient addKaleoNotificationRecipient(
 			long kaleoDefinitionId, long kaleoNotificationId,
 			Recipient recipient, ServiceContext serviceContext)
@@ -69,12 +70,14 @@ public class KaleoNotificationRecipientLocalServiceImpl
 		return kaleoNotificationRecipient;
 	}
 
+	@Override
 	public void deleteCompanyKaleoNotificationRecipients(long companyId)
 		throws SystemException {
 
 		kaleoNotificationRecipientPersistence.removeByCompanyId(companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoNotificationRecipients(
 			long kaleoDefinitionId)
 		throws SystemException {
@@ -83,6 +86,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			kaleoDefinitionId);
 	}
 
+	@Override
 	public List<KaleoNotificationRecipient> getKaleoNotificationRecipients(
 			long kaleoNotificationId)
 		throws SystemException {

@@ -43,6 +43,7 @@ import java.util.Set;
  */
 public abstract class BaseNodeExporter implements NodeExporter {
 
+	@Override
 	public void exportNode(Node node, Element element, String namespace) {
 		Element nodeElement = createNodeElement(element, namespace);
 

@@ -34,6 +34,7 @@ public class DefaultWorkflowValidator implements WorkflowValidator {
 		_nodeValidatorRegistry = nodeValidatorRegistry;
 	}
 
+	@Override
 	public void validate(Definition definition) throws WorkflowException {
 		State initialState = definition.getInitialState();
 

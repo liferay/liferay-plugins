@@ -63,6 +63,7 @@ public abstract class Node implements ActionAware, NotificationAware {
 		return true;
 	}
 
+	@Override
 	public Set<Action> getActions() {
 		if (_actions == null) {
 			return Collections.emptySet();
@@ -95,6 +96,7 @@ public abstract class Node implements ActionAware, NotificationAware {
 		return _nodeType;
 	}
 
+	@Override
 	public Set<Notification> getNotifications() {
 		if (_notifications == null) {
 			return Collections.emptySet();
@@ -128,6 +130,7 @@ public abstract class Node implements ActionAware, NotificationAware {
 		return _name.hashCode();
 	}
 
+	@Override
 	public void setActions(Set<Action> actions) {
 		_actions = actions;
 	}
@@ -136,6 +139,7 @@ public abstract class Node implements ActionAware, NotificationAware {
 		_metadata = metadata;
 	}
 
+	@Override
 	public void setNotifications(Set<Notification> notifications) {
 		_notifications = notifications;
 	}

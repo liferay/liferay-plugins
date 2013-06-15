@@ -35,6 +35,7 @@ import java.util.Set;
  */
 public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 
+	@Override
 	public KaleoTimer addKaleoTimer(
 			String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
 			Timer timer, ServiceContext serviceContext)
@@ -110,6 +111,7 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 		return kaleoTimer;
 	}
 
+	@Override
 	public List<KaleoTimer> getKaleoTimers(
 			String kaleoClassName, long kaleoClassPK)
 		throws SystemException {
@@ -118,6 +120,7 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 			kaleoClassName, kaleoClassPK);
 	}
 
+	@Override
 	public List<KaleoTimer> getKaleoTimers(
 			String kaleoClassName, long kaleoClassPK, boolean blocking)
 		throws SystemException {

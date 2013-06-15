@@ -45,6 +45,7 @@ import java.util.Map;
  */
 public class DefaultWorkflowDeployer implements WorkflowDeployer {
 
+	@Override
 	public WorkflowDefinition deploy(
 			String title, Definition definition, ServiceContext serviceContext)
 		throws PortalException, SystemException {

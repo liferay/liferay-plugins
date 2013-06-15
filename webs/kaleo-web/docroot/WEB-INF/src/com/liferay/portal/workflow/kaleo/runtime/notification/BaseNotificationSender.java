@@ -40,6 +40,7 @@ import java.util.Set;
  */
 public abstract class BaseNotificationSender implements NotificationSender {
 
+	@Override
 	public void sendNotification(
 			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
 			String defaultSubject, String notificationMessage,

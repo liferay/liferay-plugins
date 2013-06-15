@@ -49,6 +49,7 @@ import java.util.Map;
 public class DefaultPortalKaleoManager
 	extends BaseKaleoBean implements PortalKaleoManager {
 
+	@Override
 	public void deleteKaleoData(Company company) throws Exception {
 		long companyId = company.getCompanyId();
 
@@ -57,6 +58,7 @@ public class DefaultPortalKaleoManager
 		kaleoLogLocalService.deleteCompanyKaleoLogs(companyId);
 	}
 
+	@Override
 	public void deployDefaultDefinitionLink(String assetClassName)
 		throws Exception {
 
@@ -85,6 +87,7 @@ public class DefaultPortalKaleoManager
 		}
 	}
 
+	@Override
 	public void deployDefaultDefinitionLinks() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies(false);
 
@@ -93,6 +96,7 @@ public class DefaultPortalKaleoManager
 		}
 	}
 
+	@Override
 	public void deployDefaultDefinitionLinks(Company company) throws Exception {
 		User defaultUser = UserLocalServiceUtil.getDefaultUser(
 			company.getCompanyId());
@@ -114,6 +118,7 @@ public class DefaultPortalKaleoManager
 		}
 	}
 
+	@Override
 	public void deployDefaultDefinitions() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
@@ -122,6 +127,7 @@ public class DefaultPortalKaleoManager
 		}
 	}
 
+	@Override
 	public void deployDefaultDefinitions(Company company) throws Exception {
 		for (Map.Entry<String, String> entry : _definitionFiles.entrySet()) {
 			String definitionName = entry.getKey();
@@ -162,6 +168,7 @@ public class DefaultPortalKaleoManager
 		}
 	}
 
+	@Override
 	public void deployDefaultRoles() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
@@ -170,6 +177,7 @@ public class DefaultPortalKaleoManager
 		}
 	}
 
+	@Override
 	public void deployDefaultRoles(Company company) throws Exception {
 		User defaultUser = UserLocalServiceUtil.getDefaultUser(
 			company.getCompanyId());
@@ -193,12 +201,14 @@ public class DefaultPortalKaleoManager
 		}
 	}
 
+	@Override
 	public void deployKaleoDefaults() throws Exception {
 		deployDefaultRoles();
 		deployDefaultDefinitions();
 		deployDefaultDefinitionLinks();
 	}
 
+	@Override
 	public void deployKaleoDefaults(Company company) throws Exception {
 		deployDefaultRoles(company);
 		deployDefaultDefinitions(company);

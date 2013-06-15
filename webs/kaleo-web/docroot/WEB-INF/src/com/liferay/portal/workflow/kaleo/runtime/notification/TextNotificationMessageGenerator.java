@@ -22,6 +22,7 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 public class TextNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
+	@Override
 	public String generateMessage(
 		String kaleoClassName, long kaleoClassPK, String notificationName,
 		String notificationTemplateLanguage, String notificationTemplate,

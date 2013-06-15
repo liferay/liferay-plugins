@@ -31,6 +31,7 @@ import java.util.Set;
  */
 public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 
+	@Override
 	public KaleoTask addKaleoTask(
 			long kaleoDefinitionId, long kaleoNodeId, Task task,
 			ServiceContext serviceContext)
@@ -70,6 +71,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 		return kaleoTask;
 	}
 
+	@Override
 	public void deleteCompanyKaleoTasks(long companyId) throws SystemException {
 
 		// Kaleo tasks
@@ -82,6 +84,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 			companyId);
 	}
 
+	@Override
 	public void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId)
 		throws SystemException {
 
@@ -95,6 +98,7 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 			deleteKaleoDefinitionKaleoTaskAssignments(kaleoDefinitionId);
 	}
 
+	@Override
 	public KaleoTask getKaleoNodeKaleoTask(long kaleoNodeId)
 		throws PortalException, SystemException {
 

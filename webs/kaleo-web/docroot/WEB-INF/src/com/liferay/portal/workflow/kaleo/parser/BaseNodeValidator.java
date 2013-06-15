@@ -27,6 +27,7 @@ import java.util.Map;
 public abstract class BaseNodeValidator<T extends Node>
 	implements NodeValidator<T> {
 
+	@Override
 	public void validate(Definition definition, T node)
 		throws WorkflowException {
 

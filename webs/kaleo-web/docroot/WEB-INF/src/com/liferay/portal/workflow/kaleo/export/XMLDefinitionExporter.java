@@ -42,6 +42,7 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 			_version, StringPool.PERIOD, StringPool.UNDERLINE);
 	}
 
+	@Override
 	public String export(long kaleoDefinitionId)
 		throws PortalException, SystemException {
 
@@ -51,6 +52,7 @@ public class XMLDefinitionExporter implements DefinitionExporter {
 		return doExport(definition);
 	}
 
+	@Override
 	public String export(long companyId, String name, int version)
 		throws PortalException, SystemException {
 

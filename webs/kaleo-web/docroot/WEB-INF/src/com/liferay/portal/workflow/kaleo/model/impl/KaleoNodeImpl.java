@@ -29,6 +29,7 @@ public class KaleoNodeImpl extends KaleoNodeBaseImpl {
 	public KaleoNodeImpl() {
 	}
 
+	@Override
 	public KaleoTransition getDefaultKaleoTransition()
 		throws PortalException, SystemException {
 
@@ -36,6 +37,7 @@ public class KaleoNodeImpl extends KaleoNodeBaseImpl {
 			getKaleoNodeId());
 	}
 
+	@Override
 	public KaleoTransition getKaleoTransition(String name)
 		throws PortalException, SystemException {
 
@@ -43,11 +45,13 @@ public class KaleoNodeImpl extends KaleoNodeBaseImpl {
 			getKaleoNodeId(), name);
 	}
 
+	@Override
 	public List<KaleoTransition> getKaleoTransitions() throws SystemException {
 		return KaleoTransitionLocalServiceUtil.getKaleoTransitions(
 			getKaleoNodeId());
 	}
 
+	@Override
 	public boolean hasKaleoTransition() throws SystemException {
 		int count = KaleoTransitionLocalServiceUtil.getKaleoTransitionsCount(
 			getKaleoNodeId());

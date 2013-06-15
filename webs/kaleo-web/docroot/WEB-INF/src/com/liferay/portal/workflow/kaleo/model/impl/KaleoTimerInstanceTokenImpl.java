@@ -32,6 +32,7 @@ public class KaleoTimerInstanceTokenImpl
 	public KaleoTimerInstanceTokenImpl() {
 	}
 
+	@Override
 	public KaleoInstanceToken getKaleoInstanceToken()
 		throws PortalException, SystemException {
 
@@ -39,6 +40,7 @@ public class KaleoTimerInstanceTokenImpl
 			getKaleoInstanceTokenId());
 	}
 
+	@Override
 	public KaleoTaskInstanceToken getKaleoTaskInstanceToken()
 		throws SystemException {
 
@@ -46,6 +48,7 @@ public class KaleoTimerInstanceTokenImpl
 			fetchKaleoTaskInstanceToken(getKaleoTaskInstanceTokenId());
 	}
 
+	@Override
 	public KaleoTimer getKaleoTimer() throws PortalException, SystemException {
 		return KaleoTimerLocalServiceUtil.getKaleoTimer(getKaleoTimerId());
 	}
