@@ -27,7 +27,6 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
-import com.liferay.portal.workflow.kaleo.WorkflowModelConverterUtil;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
@@ -37,6 +36,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowModelUtil;
 
 import java.io.Serializable;
 
@@ -130,7 +130,7 @@ public class DefaultTaskManagerImpl
 				kaleoTaskInstanceToken, comment, workflowContext,
 				serviceContext);
 
-			return WorkflowModelConverterUtil.toWorkflowTask(
+			return WorkflowModelUtil.toWorkflowTask(
 				kaleoTaskInstanceToken, workflowContext);
 		}
 		catch (Exception e) {
@@ -191,7 +191,7 @@ public class DefaultTaskManagerImpl
 			previousTaskAssignmentInstances, kaleoTaskInstanceToken, comment,
 			workflowContext, serviceContext);
 
-		return WorkflowModelConverterUtil.toWorkflowTask(
+		return WorkflowModelUtil.toWorkflowTask(
 			kaleoTaskInstanceToken, workflowContext);
 	}
 
@@ -237,7 +237,7 @@ public class DefaultTaskManagerImpl
 		kaleoLogLocalService.addTaskCompletionKaleoLog(
 			kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
 
-		return WorkflowModelConverterUtil.toWorkflowTask(
+		return WorkflowModelUtil.toWorkflowTask(
 			kaleoTaskInstanceToken, workflowContext);
 	}
 

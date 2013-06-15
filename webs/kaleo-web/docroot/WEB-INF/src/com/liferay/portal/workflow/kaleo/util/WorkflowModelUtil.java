@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo;
+package com.liferay.portal.workflow.kaleo.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -36,9 +36,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
-import com.liferay.portal.workflow.kaleo.util.KaleoLogUtil;
-import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
-import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
 
@@ -48,7 +45,7 @@ import java.util.Map;
 /**
  * @author Shuyang Zhou
  */
-public class WorkflowModelConverterUtil {
+public class WorkflowModelUtil {
 
 	public static WorkflowDefinition toWorkflowDefinition(
 		KaleoDefinition kaleoDefinition) {
@@ -222,7 +219,6 @@ public class WorkflowModelConverterUtil {
 		return defaultWorkflowTask;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		WorkflowModelConverterUtil.class);
+	private static Log _log = LogFactoryUtil.getLog(WorkflowModelUtil.class);
 
 }

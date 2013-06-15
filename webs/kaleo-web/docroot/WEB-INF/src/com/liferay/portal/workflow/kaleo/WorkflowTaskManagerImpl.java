@@ -42,6 +42,7 @@ import com.liferay.portal.workflow.kaleo.runtime.TaskManager;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowModelUtil;
 
 import java.io.Serializable;
 
@@ -108,8 +109,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 		try {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				KaleoTaskInstanceTokenLocalServiceUtil.getKaleoTaskInstanceToken(
-					workflowTask.getWorkflowTaskId());
+				KaleoTaskInstanceTokenLocalServiceUtil.
+					getKaleoTaskInstanceToken(workflowTask.getWorkflowTaskId());
 
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoTaskInstanceToken.getKaleoInstanceToken();
@@ -227,7 +228,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskInstanceTokenLocalServiceUtil.
 					getKaleoTaskInstanceToken(workflowTaskInstanceId);
 
-			return WorkflowModelConverterUtil.toWorkflowTask(
+			return WorkflowModelUtil.toWorkflowTask(
 				kaleoTaskInstanceToken,
 				WorkflowContextUtil.convert(
 					kaleoTaskInstanceToken.getWorkflowContext()));
@@ -679,7 +680,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				kaleoTaskInstanceTokens) {
 
 			workflowTasks.add(
-				WorkflowModelConverterUtil.toWorkflowTask(
+				WorkflowModelUtil.toWorkflowTask(
 					kaleoTaskInstanceToken,
 					WorkflowContextUtil.convert(
 						kaleoTaskInstanceToken.getWorkflowContext())));
