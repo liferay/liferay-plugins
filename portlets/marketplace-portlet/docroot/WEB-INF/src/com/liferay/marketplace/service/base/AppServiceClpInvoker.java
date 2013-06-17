@@ -32,27 +32,21 @@ public class AppServiceClpInvoker {
 
 		_methodParameterTypes23 = new String[] { "java.lang.String" };
 
-		_methodName28 = "addApp";
+		_methodName28 = "deleteApp";
 
-		_methodParameterTypes28 = new String[] {
-				"long", "java.lang.String", "java.io.File"
-			};
+		_methodParameterTypes28 = new String[] { "long" };
 
-		_methodName29 = "deleteApp";
+		_methodName29 = "installApp";
 
 		_methodParameterTypes29 = new String[] { "long" };
 
-		_methodName30 = "installApp";
+		_methodName30 = "uninstallApp";
 
 		_methodParameterTypes30 = new String[] { "long" };
 
-		_methodName31 = "uninstallApp";
+		_methodName31 = "updateApp";
 
-		_methodParameterTypes31 = new String[] { "long" };
-
-		_methodName32 = "updateApp";
-
-		_methodParameterTypes32 = new String[] {
+		_methodParameterTypes31 = new String[] {
 				"long", "java.lang.String", "java.io.File"
 			};
 	}
@@ -73,31 +67,25 @@ public class AppServiceClpInvoker {
 
 		if (_methodName28.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
-			return AppServiceUtil.addApp(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.io.File)arguments[2]);
+			return AppServiceUtil.deleteApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName29.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
-			return AppServiceUtil.deleteApp(((Long)arguments[0]).longValue());
+			AppServiceUtil.installApp(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName30.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
-			AppServiceUtil.installApp(((Long)arguments[0]).longValue());
+			AppServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName31.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
-			AppServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
-
-			return null;
-		}
-
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return AppServiceUtil.updateApp(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.io.File)arguments[2]);
 		}
@@ -117,6 +105,4 @@ public class AppServiceClpInvoker {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
 }

@@ -56,6 +56,9 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("remoteAppId", getRemoteAppId());
+		attributes.put("title", getTitle());
+		attributes.put("description", getDescription());
+		attributes.put("iconURL", getIconURL());
 		attributes.put("version", getVersion());
 
 		return attributes;
@@ -109,6 +112,24 @@ public class AppWrapper implements App, ModelWrapper<App> {
 
 		if (remoteAppId != null) {
 			setRemoteAppId(remoteAppId);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		String iconURL = (String)attributes.get("iconURL");
+
+		if (iconURL != null) {
+			setIconURL(iconURL);
 		}
 
 		String version = (String)attributes.get("version");
@@ -318,6 +339,66 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	@Override
 	public void setRemoteAppId(long remoteAppId) {
 		_app.setRemoteAppId(remoteAppId);
+	}
+
+	/**
+	* Returns the title of this app.
+	*
+	* @return the title of this app
+	*/
+	@Override
+	public java.lang.String getTitle() {
+		return _app.getTitle();
+	}
+
+	/**
+	* Sets the title of this app.
+	*
+	* @param title the title of this app
+	*/
+	@Override
+	public void setTitle(java.lang.String title) {
+		_app.setTitle(title);
+	}
+
+	/**
+	* Returns the description of this app.
+	*
+	* @return the description of this app
+	*/
+	@Override
+	public java.lang.String getDescription() {
+		return _app.getDescription();
+	}
+
+	/**
+	* Sets the description of this app.
+	*
+	* @param description the description of this app
+	*/
+	@Override
+	public void setDescription(java.lang.String description) {
+		_app.setDescription(description);
+	}
+
+	/**
+	* Returns the icon u r l of this app.
+	*
+	* @return the icon u r l of this app
+	*/
+	@Override
+	public java.lang.String getIconURL() {
+		return _app.getIconURL();
+	}
+
+	/**
+	* Sets the icon u r l of this app.
+	*
+	* @param iconURL the icon u r l of this app
+	*/
+	@Override
+	public void setIconURL(java.lang.String iconURL) {
+		_app.setIconURL(iconURL);
 	}
 
 	/**

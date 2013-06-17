@@ -10,6 +10,9 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="remoteAppId" type="long" />
+		<field name="title" type="String" />
+		<field name="description" type="String" />
+		<field name="iconURL" type="String" />
 		<field name="version" type="String" />
 	</model>
 	<model name="com.liferay.marketplace.model.Module">

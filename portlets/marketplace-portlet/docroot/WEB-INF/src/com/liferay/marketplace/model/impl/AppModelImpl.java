@@ -73,9 +73,12 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "remoteAppId", Types.BIGINT },
+			{ "title", Types.VARCHAR },
+			{ "description", Types.VARCHAR },
+			{ "iconURL", Types.VARCHAR },
 			{ "version", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Marketplace_App (uuid_ VARCHAR(75) null,appId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,remoteAppId LONG,version VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Marketplace_App (uuid_ VARCHAR(75) null,appId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,remoteAppId LONG,title VARCHAR(75) null,description VARCHAR(75) null,iconURL VARCHAR(75) null,version VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Marketplace_App";
 	public static final String ORDER_BY_JPQL = " ORDER BY app.appId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Marketplace_App.appId ASC";
@@ -117,6 +120,9 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setRemoteAppId(soapModel.getRemoteAppId());
+		model.setTitle(soapModel.getTitle());
+		model.setDescription(soapModel.getDescription());
+		model.setIconURL(soapModel.getIconURL());
 		model.setVersion(soapModel.getVersion());
 
 		return model;
@@ -190,6 +196,9 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("remoteAppId", getRemoteAppId());
+		attributes.put("title", getTitle());
+		attributes.put("description", getDescription());
+		attributes.put("iconURL", getIconURL());
 		attributes.put("version", getVersion());
 
 		return attributes;
@@ -243,6 +252,24 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 		if (remoteAppId != null) {
 			setRemoteAppId(remoteAppId);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		String iconURL = (String)attributes.get("iconURL");
+
+		if (iconURL != null) {
+			setIconURL(iconURL);
 		}
 
 		String version = (String)attributes.get("version");
@@ -394,6 +421,54 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	@JSON
+	public String getTitle() {
+		if (_title == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _title;
+		}
+	}
+
+	@Override
+	public void setTitle(String title) {
+		_title = title;
+	}
+
+	@Override
+	@JSON
+	public String getDescription() {
+		if (_description == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _description;
+		}
+	}
+
+	@Override
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	@Override
+	@JSON
+	public String getIconURL() {
+		if (_iconURL == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _iconURL;
+		}
+	}
+
+	@Override
+	public void setIconURL(String iconURL) {
+		_iconURL = iconURL;
+	}
+
+	@Override
+	@JSON
 	public String getVersion() {
 		if (_version == null) {
 			return StringPool.BLANK;
@@ -447,6 +522,9 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		appImpl.setCreateDate(getCreateDate());
 		appImpl.setModifiedDate(getModifiedDate());
 		appImpl.setRemoteAppId(getRemoteAppId());
+		appImpl.setTitle(getTitle());
+		appImpl.setDescription(getDescription());
+		appImpl.setIconURL(getIconURL());
 		appImpl.setVersion(getVersion());
 
 		appImpl.resetOriginalValues();
@@ -559,6 +637,30 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 		appCacheModel.remoteAppId = getRemoteAppId();
 
+		appCacheModel.title = getTitle();
+
+		String title = appCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			appCacheModel.title = null;
+		}
+
+		appCacheModel.description = getDescription();
+
+		String description = appCacheModel.description;
+
+		if ((description != null) && (description.length() == 0)) {
+			appCacheModel.description = null;
+		}
+
+		appCacheModel.iconURL = getIconURL();
+
+		String iconURL = appCacheModel.iconURL;
+
+		if ((iconURL != null) && (iconURL.length() == 0)) {
+			appCacheModel.iconURL = null;
+		}
+
 		appCacheModel.version = getVersion();
 
 		String version = appCacheModel.version;
@@ -572,7 +674,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -590,6 +692,12 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		sb.append(getModifiedDate());
 		sb.append(", remoteAppId=");
 		sb.append(getRemoteAppId());
+		sb.append(", title=");
+		sb.append(getTitle());
+		sb.append(", description=");
+		sb.append(getDescription());
+		sb.append(", iconURL=");
+		sb.append(getIconURL());
 		sb.append(", version=");
 		sb.append(getVersion());
 		sb.append("}");
@@ -599,7 +707,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.marketplace.model.App");
@@ -638,6 +746,18 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		sb.append(getRemoteAppId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>title</column-name><column-value><![CDATA[");
+		sb.append(getTitle());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>description</column-name><column-value><![CDATA[");
+		sb.append(getDescription());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>iconURL</column-name><column-value><![CDATA[");
+		sb.append(getIconURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>version</column-name><column-value><![CDATA[");
 		sb.append(getVersion());
 		sb.append("]]></column-value></column>");
@@ -663,6 +783,9 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	private long _remoteAppId;
 	private long _originalRemoteAppId;
 	private boolean _setOriginalRemoteAppId;
+	private String _title;
+	private String _description;
+	private String _iconURL;
 	private String _version;
 	private long _columnBitmask;
 	private App _escapedModel;

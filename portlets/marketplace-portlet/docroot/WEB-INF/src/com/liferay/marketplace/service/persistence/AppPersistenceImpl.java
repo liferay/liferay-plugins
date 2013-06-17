@@ -2223,6 +2223,9 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		appImpl.setCreateDate(app.getCreateDate());
 		appImpl.setModifiedDate(app.getModifiedDate());
 		appImpl.setRemoteAppId(app.getRemoteAppId());
+		appImpl.setTitle(app.getTitle());
+		appImpl.setDescription(app.getDescription());
+		appImpl.setIconURL(app.getIconURL());
 		appImpl.setVersion(app.getVersion());
 
 		return appImpl;

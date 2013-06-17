@@ -271,13 +271,6 @@ public class AppLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.liferay.marketplace.model.App addApp(long userId,
-		long remoteAppId, java.lang.String version, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addApp(userId, remoteAppId, version, file);
-	}
-
 	public static com.liferay.marketplace.model.App fetchRemoteApp(
 		long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -303,11 +296,21 @@ public class AppLocalServiceUtil {
 		getService().uninstallApp(remoteAppId);
 	}
 
-	public static com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.File file)
+	public static com.liferay.marketplace.model.App updateApp(long userId,
+		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateApp(appId, version, file);
+		return getService().updateApp(userId, remoteAppId, version, file);
+	}
+
+	public static com.liferay.marketplace.model.App updateApp(long userId,
+		long remoteAppId, java.lang.String title, java.lang.String description,
+		java.lang.String iconURL, java.lang.String version, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateApp(userId, remoteAppId, title, description, iconURL,
+			version, file);
 	}
 
 	public static void clearService() {

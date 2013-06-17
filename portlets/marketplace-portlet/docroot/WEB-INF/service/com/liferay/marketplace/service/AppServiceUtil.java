@@ -63,13 +63,6 @@ public class AppServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.liferay.marketplace.model.App addApp(long remoteAppId,
-		java.lang.String version, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addApp(remoteAppId, version, file);
-	}
-
 	public static com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -88,11 +81,11 @@ public class AppServiceUtil {
 		getService().uninstallApp(remoteAppId);
 	}
 
-	public static com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.File file)
+	public static com.liferay.marketplace.model.App updateApp(
+		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateApp(appId, version, file);
+		return getService().updateApp(remoteAppId, version, file);
 	}
 
 	public static void clearService() {

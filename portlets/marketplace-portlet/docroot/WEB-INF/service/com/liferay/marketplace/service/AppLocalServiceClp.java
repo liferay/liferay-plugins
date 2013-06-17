@@ -114,32 +114,33 @@ public class AppLocalServiceClp implements AppLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "addApp";
+		_methodName19 = "fetchRemoteApp";
 
-		_methodParameterTypes19 = new String[] {
-				"long", "long", "java.lang.String", "java.io.File"
-			};
+		_methodParameterTypes19 = new String[] { "long" };
 
-		_methodName20 = "fetchRemoteApp";
+		_methodName20 = "installApp";
 
 		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName21 = "installApp";
+		_methodName21 = "processMarketplaceProperties";
 
-		_methodParameterTypes21 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "java.util.Properties" };
 
-		_methodName22 = "processMarketplaceProperties";
+		_methodName22 = "uninstallApp";
 
-		_methodParameterTypes22 = new String[] { "java.util.Properties" };
+		_methodParameterTypes22 = new String[] { "long" };
 
-		_methodName23 = "uninstallApp";
+		_methodName23 = "updateApp";
 
-		_methodParameterTypes23 = new String[] { "long" };
+		_methodParameterTypes23 = new String[] {
+				"long", "long", "java.lang.String", "java.io.File"
+			};
 
 		_methodName24 = "updateApp";
 
 		_methodParameterTypes24 = new String[] {
-				"long", "java.lang.String", "java.io.File"
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.io.File"
 			};
 	}
 
@@ -690,15 +691,131 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	@Override
-	public com.liferay.marketplace.model.App addApp(long userId,
+	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { remoteAppId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public void installApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20, new Object[] { remoteAppId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void processMarketplaceProperties(java.util.Properties properties)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21,
+				new Object[] { ClpSerializer.translateInput(properties) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void uninstallApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName22,
+				_methodParameterTypes22, new Object[] { remoteAppId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public com.liferay.marketplace.model.App updateApp(long userId,
 		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						userId,
 						
@@ -733,124 +850,9 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	@Override
-	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { remoteAppId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public void installApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21, new Object[] { remoteAppId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void processMarketplaceProperties(java.util.Properties properties)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
-				new Object[] { ClpSerializer.translateInput(properties) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void uninstallApp(long remoteAppId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23, new Object[] { remoteAppId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.File file)
+	public com.liferay.marketplace.model.App updateApp(long userId,
+		long remoteAppId, java.lang.String title, java.lang.String description,
+		java.lang.String iconURL, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -859,7 +861,15 @@ public class AppLocalServiceClp implements AppLocalService {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
 					_methodParameterTypes24,
 					new Object[] {
-						appId,
+						userId,
+						
+					remoteAppId,
+						
+					ClpSerializer.translateInput(title),
+						
+					ClpSerializer.translateInput(description),
+						
+					ClpSerializer.translateInput(iconURL),
 						
 					ClpSerializer.translateInput(version),
 						

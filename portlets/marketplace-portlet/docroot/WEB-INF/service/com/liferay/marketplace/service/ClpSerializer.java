@@ -253,6 +253,14 @@ public class ClpSerializer {
 			return new SystemException();
 		}
 
+		if (className.equals("com.liferay.marketplace.AppPropertiesException")) {
+			return new com.liferay.marketplace.AppPropertiesException();
+		}
+
+		if (className.equals("com.liferay.marketplace.AppTitleException")) {
+			return new com.liferay.marketplace.AppTitleException();
+		}
+
 		if (className.equals("com.liferay.marketplace.AppVersionException")) {
 			return new com.liferay.marketplace.AppVersionException();
 		}

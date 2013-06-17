@@ -205,6 +205,51 @@ public interface AppModel extends BaseModel<App>, StagedAuditedModel {
 	public void setRemoteAppId(long remoteAppId);
 
 	/**
+	 * Returns the title of this app.
+	 *
+	 * @return the title of this app
+	 */
+	@AutoEscape
+	public String getTitle();
+
+	/**
+	 * Sets the title of this app.
+	 *
+	 * @param title the title of this app
+	 */
+	public void setTitle(String title);
+
+	/**
+	 * Returns the description of this app.
+	 *
+	 * @return the description of this app
+	 */
+	@AutoEscape
+	public String getDescription();
+
+	/**
+	 * Sets the description of this app.
+	 *
+	 * @param description the description of this app
+	 */
+	public void setDescription(String description);
+
+	/**
+	 * Returns the icon u r l of this app.
+	 *
+	 * @return the icon u r l of this app
+	 */
+	@AutoEscape
+	public String getIconURL();
+
+	/**
+	 * Sets the icon u r l of this app.
+	 *
+	 * @param iconURL the icon u r l of this app
+	 */
+	public void setIconURL(String iconURL);
+
+	/**
 	 * Returns the version of this app.
 	 *
 	 * @return the version of this app
