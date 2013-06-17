@@ -77,17 +77,35 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+			return getBody(
+				activitySet.getClassName(), activitySet.getClassPK(),
+				serviceContext);
+		}
+
+		return super.getBody(activitySet, serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-		sb.append(
-			getPageTitle(
-				activity.getClassName(), activity.getClassPK(),
-				serviceContext));
+		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"blogs-page-content\">");
 
-		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(
-			activity.getClassPK());
+		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(classPK);
 
 		String content = HtmlUtil.extractText(entry.getContent());
 
