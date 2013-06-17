@@ -50,6 +50,12 @@
 	</state>
 	<join>
 		<name>join</name>
+		<transitions>
+			<transition>
+				<name>end</name>
+				<target>end</target>
+			</transition>
+		</transitions>
 	</join>
 	<state>
 		<name>end</name>

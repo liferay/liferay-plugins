@@ -220,17 +220,6 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"No outgoing transition found for initial state start", error);
 	}
 
-	public void testValidateNoOutgoingTransitionJoinNodeDefinition()
-		throws Exception {
-
-		InputStream inputStream = getResource(
-			"/META-INF/definitions/no-outgoing-join.xml");
-
-		String error = assertInvalid(inputStream);
-
-		assertEquals("No outgoing transition found for join join", error);
-	}
-
 	public void testValidateNoOutgoingTransitionStartNodeDefinition()
 		throws Exception {
 
@@ -251,7 +240,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 
 		String error = assertInvalid(inputStream);
 
-		assertEquals("No outgoing transition found for task task", error);
+		assertEquals("Unable to parse definition", error);
 	}
 
 	public void testValidateNoTerminalStatesDefinition() throws Exception {

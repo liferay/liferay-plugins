@@ -19,6 +19,15 @@
 	</state>
 	<task>
 		<name>task</name>
+		<assignments>
+			<user />
+		</assignments>
+		<transitions>
+			<transition>
+				<name>end</name>
+				<target>end</target>
+			</transition>
+		</transitions>
 	</task>
 	<state>
 		<name>end</name>

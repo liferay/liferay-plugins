@@ -23,6 +23,12 @@
 			<![CDATA[]]>
 		</script>
 		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>end</name>
+				<target>end</target>
+			</transition>
+		</transitions>
 	</condition>
 	<state>
 		<name>end</name>
