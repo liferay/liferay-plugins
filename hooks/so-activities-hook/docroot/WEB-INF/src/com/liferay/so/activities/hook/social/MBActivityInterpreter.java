@@ -110,17 +110,21 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-		sb.append(
-			getPageTitle(
-				activity.getClassName(), activity.getClassPK(),
-				serviceContext));
+		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"forum-page-content\">");
 
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
 
 		sb.append(
 			StringUtil.shorten(

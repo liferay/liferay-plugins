@@ -74,13 +74,32 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getType() ==_ACTIVITY_KEY_UPDATE_EVENT) {
+			return getBody(
+				activitySet.getClassName(), activitySet.getClassPK(),
+				serviceContext);
+		}
+
+		return super.getBody(activitySet, serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(15);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-		sb.append(
-			getPageTitle(
-				activity.getClassName(), activity.getClassPK(),
-				serviceContext));
+		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"date\"><strong>");
 		sb.append(serviceContext.translate("date"));
 		sb.append(": </strong>");
@@ -88,8 +107,7 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		Format dateFormatDate = getFormatDateTime(
 			serviceContext.getLocale(), serviceContext.getTimeZone());
 
-		CalEvent event = CalEventLocalServiceUtil.getEvent(
-			activity.getClassPK());
+		CalEvent event = CalEventLocalServiceUtil.getEvent(classPK);
 
 		sb.append(dateFormatDate.format((event.getStartDate())));
 
@@ -101,8 +119,7 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(serviceContext.translate("description"));
 		sb.append(": </strong>");
 
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
 
 		sb.append(
 			StringUtil.shorten(

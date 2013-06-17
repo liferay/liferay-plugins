@@ -82,17 +82,35 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+			return getBody(
+				activitySet.getClassName(), activitySet.getClassPK(),
+				serviceContext);
+		}
+
+		return super.getBody(activitySet, serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-		sb.append(
-			getBookmarkLink(
-				activity.getClassName(), activity.getClassPK(),
-				serviceContext));
+		sb.append(getBookmarkLink(className, classPK, serviceContext));
 		sb.append("</div><div class=\"bookmarks-page-content\">");
 
-		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(
-			activity.getClassPK());
+		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(classPK);
 
 		sb.append(entry.getDescription());
 

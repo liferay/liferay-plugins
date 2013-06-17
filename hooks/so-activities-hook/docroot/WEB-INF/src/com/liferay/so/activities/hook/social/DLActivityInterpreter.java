@@ -78,13 +78,34 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
+			return getBody(
+				activitySet.getClassName(), activitySet.getClassPK(),
+				serviceContext);
+		}
+
+		return super.getBody(activitySet, serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(11);
 
 		sb.append("<div class=\"activity-body document\">");
 		sb.append("<span class=\"document-thumbnail\"><img src=\"");
 
-		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
-			activity.getClassPK());
+		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(classPK);
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
@@ -94,17 +115,13 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(thumbnailSrc);
 		sb.append("\"></span>");
 		sb.append("<div class=\"document-container\"><div class=\"title\">");
-		sb.append(
-			getPageTitle(
-				activity.getClassName(), activity.getClassPK(),
-				serviceContext));
+		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"version\">");
 		sb.append(
 			serviceContext.translate("version-x", fileVersion.getVersion()));
 		sb.append("</div><div class=\"document-content\">");
 
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
 
 		sb.append(
 			StringUtil.shorten(
