@@ -68,7 +68,7 @@ if (user2 != null) {
 	</div>
 </div>
 
-<aui:script use="aui-dialog,aui-dialog-iframe">
+<aui:script position="inline" use="aui-dialog,aui-dialog-iframe">
 	var buttonRow = A.one('#<portlet:namespace />userToolbar');
 
 	var contactsToolbarChildren = [];

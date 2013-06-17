@@ -50,7 +50,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						</div>
 					</div>
 
-					<aui:script use="aui-dialog,aui-io-plugin,aui-toolbar">
+					<aui:script position="inline" use="aui-dialog,aui-io-plugin,aui-toolbar">
 						var buttonRow = A.one('#<portlet:namespace />entryToolbar');
 
 						var contactsToolbarChildren = [];
@@ -145,7 +145,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 							</div>
 						</div>
 
-						<aui:script use="aui-base,liferay-contacts-center">
+						<aui:script position="inline" use="aui-base,liferay-contacts-center">
 							var buttonRow = A.one('#<portlet:namespace />userToolbar');
 
 							var contactsToolbarChildren = [];
