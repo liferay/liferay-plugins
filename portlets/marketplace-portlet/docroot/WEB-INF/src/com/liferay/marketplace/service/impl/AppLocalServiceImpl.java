@@ -14,6 +14,8 @@
 
 package com.liferay.marketplace.service.impl;
 
+import com.liferay.marketplace.AppPropertiesException;
+import com.liferay.marketplace.AppTitleException;
 import com.liferay.marketplace.AppVersionException;
 import com.liferay.marketplace.DuplicateAppException;
 import com.liferay.marketplace.model.App;
@@ -54,44 +56,6 @@ import java.util.zip.ZipFile;
  * @author Ryan Park
  */
 public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
-
-	public App addApp(long userId, long remoteAppId, String version, File file)
-		throws PortalException, SystemException {
-
-		// App
-
-		User user = userPersistence.fetchByPrimaryKey(userId);
-		Date now = new Date();
-
-		validate(remoteAppId, version);
-
-		long appId = counterLocalService.increment();
-
-		App app = appPersistence.create(appId);
-
-		if (user != null) {
-			app.setCompanyId(user.getCompanyId());
-			app.setUserId(user.getUserId());
-			app.setUserName(user.getFullName());
-		}
-
-		app.setCreateDate(now);
-		app.setModifiedDate(now);
-		app.setRemoteAppId(remoteAppId);
-		app.setVersion(version);
-
-		appPersistence.update(app);
-
-		// File
-
-		if (file != null) {
-			DLStoreUtil.addFile(
-				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath(),
-				false, file);
-		}
-
-		return app;
-	}
 
 	@Override
 	public App deleteApp(App app) throws SystemException {
@@ -297,16 +261,57 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
-	public App updateApp(long appId, String version, File file)
+	public App updateApp(
+			long userId, long remoteAppId, String version, File file)
+		throws PortalException, SystemException {
+
+		Properties properties = getMarketplaceProperties(file);
+
+		if (properties == null) {
+			throw new AppPropertiesException(
+				"Unable to read liferay-marketplace.properties");
+		}
+
+		String title = properties.getProperty("title");
+		String description = properties.getProperty("description");
+		String iconURL = properties.getProperty("icon-url");
+
+		return updateApp(
+			userId, remoteAppId, title, description, iconURL, version, file);
+	}
+
+	public App updateApp(
+			long userId, long remoteAppId, String title, String description,
+			String iconURL, String version, File file)
 		throws PortalException, SystemException {
 
 		// App
 
-		validate(0, version);
+		User user = userPersistence.fetchByPrimaryKey(userId);
+		Date now = new Date();
 
-		App app = appPersistence.findByPrimaryKey(appId);
+		validate(remoteAppId, title, version);
 
-		app.setModifiedDate(new Date());
+		App app = appPersistence.fetchByRemoteAppId(remoteAppId);
+
+		if (app == null) {
+			long appId = counterLocalService.increment();
+
+			app = appPersistence.create(appId);
+		}
+
+		if (user != null) {
+			app.setCompanyId(user.getCompanyId());
+			app.setUserId(user.getUserId());
+			app.setUserName(user.getFullName());
+		}
+
+		app.setCreateDate(now);
+		app.setModifiedDate(now);
+		app.setRemoteAppId(remoteAppId);
+		app.setTitle(title);
+		app.setDescription(description);
+		app.setIconURL(iconURL);
 		app.setVersion(version);
 
 		appPersistence.update(app);
@@ -355,6 +360,38 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		return fileName;
 	}
 
+	protected Properties getMarketplaceProperties(File liferayPackageFile) {
+		InputStream inputStream = null;
+		ZipFile zipFile = null;
+
+		try {
+			zipFile = new ZipFile(liferayPackageFile);
+
+			ZipEntry zipEntry = zipFile.getEntry(
+				"liferay-marketplace.properties");
+
+			inputStream = zipFile.getInputStream(zipEntry);
+
+			String propertiesString = StringUtil.read(inputStream);
+
+			return PropertiesUtil.load(propertiesString);
+		}
+		catch (IOException ioe) {
+			return null;
+		}
+		finally {
+			if (zipFile != null) {
+				try {
+					zipFile.close();
+				}
+				catch (IOException ioe) {
+				}
+			}
+
+			StreamUtil.cleanUp(inputStream);
+		}
+	}
+
 	protected boolean hasDependentApp(Module module)
 		throws PortalException, SystemException {
 
@@ -376,8 +413,12 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		return false;
 	}
 
-	protected void validate(long remoteAppId, String version)
+	protected void validate(long remoteAppId, String title, String version)
 		throws PortalException, SystemException {
+
+		if (Validator.isNull(title)) {
+			throw new AppTitleException();
+		}
 
 		if (Validator.isNull(version)) {
 			throw new AppVersionException();

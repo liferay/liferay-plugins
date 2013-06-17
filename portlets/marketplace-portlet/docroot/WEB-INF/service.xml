@@ -21,6 +21,9 @@
 		<!-- Other fields -->
 
 		<column name="remoteAppId" type="long" />
+		<column name="title" type="String" />
+		<column name="description" type="String" />
+		<column name="iconURL" type="String" />
 		<column name="version" type="String" />
 
 		<!-- Finder methods -->
@@ -57,6 +60,8 @@
 		</finder>
 	</entity>
 	<exceptions>
+		<exception>AppProperties</exception>
+		<exception>AppTitle</exception>
 		<exception>AppVersion</exception>
 		<exception>DuplicateApp</exception>
 	</exceptions>

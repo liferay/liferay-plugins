@@ -28,9 +28,15 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 	public Module addModule(long userId, long appId, String contextName)
 		throws SystemException {
 
+		Module module = modulePersistence.fetchByA_C(appId, contextName);
+
+		if (module != null) {
+			return module;
+		}
+
 		long moduleId = counterLocalService.increment();
 
-		Module module = modulePersistence.create(moduleId);
+		module = modulePersistence.create(moduleId);
 
 		module.setModuleId(moduleId);
 		module.setAppId(appId);
