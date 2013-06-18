@@ -162,6 +162,20 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 		return StringPool.BLANK;
 	}
 
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivitySet activitySet) {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
+			return "added-x-new-bookmarks";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+			return "made-x-updates-to-a-bookmark";
+		}
+
+		return StringPool.BLANK;
+	}
+
 	protected boolean ping(String urlString) {
 		urlString = urlString.replaceFirst("https", "http");
 

@@ -208,6 +208,21 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 		return titlePattern;
 	}
 
+	@Override
+	protected String getTitlePattern(
+			String groupName, SocialActivitySet activitySet)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_ADD_MESSAGE) {
+			return "wrote-x-new-forum-posts";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) {
+			return "replied-to-x-forum-posts";
+		}
+
+		return StringPool.BLANK;
+	}
+
 	/**
 	 * {@link
 	 * com.liferay.portlet.messageboards.social.MBActivityKeys#ADD_MESSAGE}
