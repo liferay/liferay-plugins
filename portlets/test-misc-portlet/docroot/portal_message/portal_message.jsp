@@ -17,8 +17,9 @@
 <button class="close" type="button">&times;</button>
 
 <p>
-	This is a message embedded in a JSP file that can be displayed as a Portal Message.
+	This is a message embedded in a JSP file that can be displayed as a portal message.
 </p>
+
 <p>
 	This message will automatically disappear in 10 seconds.
 </p>
