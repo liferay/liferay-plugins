@@ -130,17 +130,6 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getLink(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
-
-		return wrapLink(
-			getLinkURL(
-				activity.getClassName(), activity.getClassPK(), serviceContext),
-			serviceContext.translate("view-blog"));
-	}
-
-	@Override
 	protected String getTitlePattern(
 		String groupName,
 		com.liferay.portlet.social.model.SocialActivity activity) {

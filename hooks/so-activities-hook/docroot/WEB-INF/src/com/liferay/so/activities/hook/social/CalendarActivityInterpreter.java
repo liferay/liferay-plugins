@@ -131,17 +131,6 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getLink(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
-
-		return wrapLink(
-			getLinkURL(
-				activity.getClassName(), activity.getClassPK(), serviceContext),
-			serviceContext.translate("view-calendar"));
-	}
-
-	@Override
 	protected String getTitlePattern(
 		String groupName, SocialActivity activity) {
 

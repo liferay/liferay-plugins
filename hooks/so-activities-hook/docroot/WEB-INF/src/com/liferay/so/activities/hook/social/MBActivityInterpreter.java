@@ -114,17 +114,6 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getLink(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
-
-		return wrapLink(
-			getLinkURL(
-				activity.getClassName(), activity.getClassPK(), serviceContext),
-			serviceContext.translate("view-forum"));
-	}
-
-	@Override
 	protected Object[] getTitleArguments(
 			String groupName, SocialActivity activity, String link,
 			String title, ServiceContext serviceContext)

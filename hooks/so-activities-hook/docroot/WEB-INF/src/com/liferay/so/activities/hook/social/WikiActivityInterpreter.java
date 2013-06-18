@@ -263,32 +263,16 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	protected String getLink(
-			long groupId, String className, long classPK, int type,
-			String sourceVersion, String targetVersion,
-			ServiceContext serviceContext)
+			long groupId, long classPK, String sourceVersion,
+			String targetVersion, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(3);
+		String diffsURL = wrapLink(
+			getDiffsURL(
+				classPK, groupId, sourceVersion, targetVersion, serviceContext),
+			serviceContext.translate("view-changes"));
 
-		sb.append("<span>");
-		sb.append(
-			wrapLink(
-				getLinkURL(className, classPK, serviceContext),
-				serviceContext.translate("view-wiki")));
-		sb.append("</span>");
-
-		if (type == _ACTIVITY_KEY_UPDATE_PAGE) {
-			sb.append("<span>");
-			sb.append(
-				wrapLink(
-					getDiffsURL(
-						classPK, groupId, sourceVersion, targetVersion,
-						serviceContext),
-					serviceContext.translate("view-changes")));
-			sb.append("</span>");
-		}
-
-		return sb.toString();
+		return "<span>" + diffsURL + "</span>";
 	}
 
 	@Override
@@ -296,28 +280,26 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		String sourceVersion = null;
-		String targetVersion = null;
-
-		if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
-			SocialActivity socialActivity =
-				SocialActivityLocalServiceUtil.fetchSocialActivity(
-					activity.getActivityId());
-
-			SocialActivitySet activitySet =
-				SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
-					socialActivity.getActivitySetId());
-
-			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
-				activitySet.getExtraData());
-
-			sourceVersion = extraDataJSONObject.getString("sourceVersion");
-			targetVersion = extraDataJSONObject.getString("targetVersion");
+		if (activity.getType() != _ACTIVITY_KEY_UPDATE_PAGE) {
+			return null;
 		}
 
+		SocialActivity socialActivity =
+			SocialActivityLocalServiceUtil.fetchSocialActivity(
+				activity.getActivityId());
+
+		SocialActivitySet activitySet =
+			SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
+				socialActivity.getActivitySetId());
+
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+			activitySet.getExtraData());
+
+		String sourceVersion = extraDataJSONObject.getString("sourceVersion");
+		String targetVersion = extraDataJSONObject.getString("targetVersion");
+
 		return getLink(
-			activity.getGroupId(), activity.getClassName(),
-			activity.getClassPK(), activity.getType(), sourceVersion,
+			activity.getGroupId(), activity.getClassPK(), sourceVersion,
 			targetVersion, serviceContext);
 	}
 
@@ -326,22 +308,19 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
-			JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
-				activitySet.getExtraData());
-
-			String sourceVersion = extraDataJSONObject.getString(
-				"sourceVersion");
-			String targetVersion = extraDataJSONObject.getString(
-				"targetVersion");
-
-			return getLink(
-				activitySet.getGroupId(), activitySet.getClassName(),
-				activitySet.getClassPK(), activitySet.getType(), sourceVersion,
-				targetVersion, serviceContext);
+		if (activitySet.getType() != _ACTIVITY_KEY_UPDATE_PAGE) {
+			return null;
 		}
 
-		return null;
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+			activitySet.getExtraData());
+
+		String sourceVersion = extraDataJSONObject.getString("sourceVersion");
+		String targetVersion = extraDataJSONObject.getString("targetVersion");
+
+		return getLink(
+			activitySet.getGroupId(), activitySet.getClassPK(), sourceVersion,
+			targetVersion, serviceContext);
 	}
 
 	protected String getNodeTitle(

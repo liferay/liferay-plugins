@@ -119,17 +119,6 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected String getLink(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
-
-		return wrapLink(
-			getLinkURL(
-				activity.getClassName(), activity.getClassPK(), serviceContext),
-			serviceContext.translate("view-bookmarks"));
-	}
-
-	@Override
 	protected String getTitlePattern(
 		String groupName, SocialActivity activity) {
 
