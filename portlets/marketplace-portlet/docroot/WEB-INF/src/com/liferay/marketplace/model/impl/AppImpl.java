@@ -19,6 +19,7 @@ import com.liferay.marketplace.service.ModuleLocalServiceUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
@@ -32,6 +33,37 @@ import java.util.List;
 public class AppImpl extends AppBaseImpl {
 
 	public AppImpl() {
+	}
+
+	public String[] addContextName(String contextName) {
+		if (_contextNames == null) {
+			_contextNames = new String[] {contextName};
+		}
+		else {
+			_contextNames = ArrayUtil.append(_contextNames, contextName);
+		}
+
+		return _contextNames;
+	}
+
+	public String[] getContextNames() throws SystemException {
+		if (_contextNames != null) {
+			return _contextNames;
+		}
+
+		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
+
+		String[] contextNames = new String[modules.size()];
+
+		for (int i = 0; i < modules.size(); i++) {
+			Module module = modules.get(i);
+
+			contextNames[i] = module.getContextName();
+		}
+
+		_contextNames = contextNames;
+
+		return _contextNames;
 	}
 
 	public String getFileDir() {
@@ -53,14 +85,14 @@ public class AppImpl extends AppBaseImpl {
 	}
 
 	public boolean isInstalled() throws SystemException {
-		List<Module> modules = ModuleLocalServiceUtil.getModules(getAppId());
+		String[] contextNames = getContextNames();
 
-		if (modules.isEmpty()) {
+		if (contextNames.length == 0) {
 			return false;
 		}
 
-		for (Module module : modules) {
-			if (!DeployManagerUtil.isDeployed(module.getContextName())) {
+		for (String contextName : contextNames) {
+			if (!DeployManagerUtil.isDeployed(contextName)) {
 				return false;
 			}
 		}
@@ -71,5 +103,7 @@ public class AppImpl extends AppBaseImpl {
 	private static final String _DIR_NAME = "marketplace";
 
 	private static final String _EXTENSION = "lpkg";
+
+	private String[] _contextNames = null;
 
 }

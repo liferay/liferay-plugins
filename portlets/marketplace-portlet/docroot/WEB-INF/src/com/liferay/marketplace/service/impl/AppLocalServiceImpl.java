@@ -27,8 +27,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -44,6 +46,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -57,10 +60,16 @@ import java.util.zip.ZipFile;
  */
 public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
+	public void clearInstalledAppsCache() {
+		_installedApps = null;
+	}
+
 	@Override
 	public App deleteApp(App app) throws SystemException {
 
 		// App
+
+		clearInstalledAppsCache();
 
 		appPersistence.remove(app);
 
@@ -96,6 +105,64 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	public App fetchRemoteApp(long remoteAppId) throws SystemException {
 		return appPersistence.fetchByRemoteAppId(remoteAppId);
+	}
+
+	public List<App> getInstalledApps() throws SystemException {
+		if (_installedApps != null) {
+			return _installedApps;
+		}
+
+		List<App> installedApps = new ArrayList<App>();
+
+		// Core app
+
+		App coreApp = appPersistence.create(0L);
+
+		coreApp.setTitle("Liferay Core");
+		coreApp.setDescription("Plugins bundled with Liferay Portal.");
+		coreApp.setVersion(ReleaseInfo.getVersion());
+
+		coreApp.addContextName(StringPool.BLANK);
+
+		installedApps.add(coreApp);
+
+		// Deployed apps
+
+		List<PluginPackage> pluginPackages =
+			DeployManagerUtil.getInstalledPluginPackages();
+
+		for (PluginPackage pluginPackage : pluginPackages) {
+			int count = modulePersistence.countByContextName(
+				pluginPackage.getContext());
+
+			if (count > 0) {
+				continue;
+			}
+
+			App app = appPersistence.create(0L);
+
+			app.setTitle(pluginPackage.getName());
+			app.setDescription(pluginPackage.getShortDescription());
+			app.setVersion(pluginPackage.getVersion());
+
+			app.addContextName(pluginPackage.getContext());
+
+			installedApps.add(app);
+		}
+
+		// Marketplace apps
+
+		List<App> apps = appPersistence.findAll();
+
+		for (App app : apps) {
+			if (app.isInstalled()) {
+				installedApps.add(app);
+			}
+		}
+
+		_installedApps = installedApps;
+
+		return _installedApps;
 	}
 
 	public void installApp(long remoteAppId)
@@ -219,6 +286,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			}
 
 			StreamUtil.cleanUp(inputStream);
+
+			clearInstalledAppsCache();
 		}
 	}
 
@@ -240,6 +309,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	public void uninstallApp(long remoteAppId)
 		throws PortalException, SystemException {
+
+		clearInstalledAppsCache();
 
 		App app = appPersistence.findByRemoteAppId(remoteAppId);
 
@@ -331,6 +402,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath(),
 				false, file);
 		}
+
+		clearInstalledAppsCache();
 
 		return app;
 	}
@@ -434,5 +507,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AppLocalServiceImpl.class);
+
+	private static List<App> _installedApps = null;
 
 }

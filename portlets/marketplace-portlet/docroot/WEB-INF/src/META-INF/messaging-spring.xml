@@ -10,6 +10,7 @@
 
 	<!-- Listeners -->
 
+	<bean id="messageListener.hot_deploy" class="com.liferay.marketplace.messaging.HotDeployMessageListener" />
 	<bean id="messageListener.marketplace" class="com.liferay.marketplace.messaging.MarketplaceMessageListener" />
 
 	<!-- Configurator -->
@@ -17,6 +18,11 @@
 	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
 		<property name="messageListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="liferay/hot_deploy">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.hot_deploy" />
+					</list>
+				</entry>
 				<entry key="liferay/marketplace">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.marketplace" />
