@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.xml.SAXReaderImpl;
 
+import java.net.URL;
+
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletContextListener;
@@ -54,21 +57,51 @@ public class WebXMLDefinitionLoaderTest {
 	}
 
 	@Test
+	public void testCustomDependencies() throws Exception {
+		Bundle bundle = new EntryLoaderMockBundle();
+
+		testLoadDependencies(
+			bundle, _LISTENER_DEFAULT_CLASS_NAMES.length + 1, 1,
+			_SERVLET_DEFAULT_CLASSE_NAMES.length + 1);
+	}
+
+	@Test
 	public void testLoadDefaultDependencies() throws Exception {
+		Bundle bundle = new CustomClassLoaderMockBundle();
+
+		testLoadDependencies(
+			bundle, _LISTENER_DEFAULT_CLASS_NAMES.length, 0,
+			_SERVLET_DEFAULT_CLASSE_NAMES.length);
+	}
+
+	protected void testLoadDependencies(
+			Bundle bundle, int numfOfListeners, int numOfFilters,
+			int numfOfServlets)
+		throws Exception {
+
 		WebXMLDefinition webXMLDefinition = _webXMLDefinitionLoader.loadWebXML(
-			_bundle);
+			bundle);
 
 		List<ListenerDefinition> listenerDefinitions =
 			webXMLDefinition.getListenerDefinitions();
 
-		Assert.assertEquals(
-			_LISTENER_DEFAULT_CLASS_NAMES.length, listenerDefinitions.size());
+		Assert.assertEquals(numfOfListeners, listenerDefinitions.size());
 
 		for (ListenerDefinition listenerDefinition : listenerDefinitions) {
 			Object listener = listenerDefinition.getListener();
 
 			Assert.assertTrue(listener instanceof ServletContextListener);
 		}
+
+		Map<String, ServletDefinition> servletDefinitions =
+			webXMLDefinition.getServletDefinitions();
+
+		Assert.assertEquals(numfOfServlets, servletDefinitions.size());
+
+		Map<String, FilterDefinition> filterDefinitions =
+			webXMLDefinition.getFilterDefinitions();
+
+		Assert.assertEquals(numOfFilters, filterDefinitions.size());
 	}
 
 	private static final String[] _LISTENER_DEFAULT_CLASS_NAMES = {
@@ -80,8 +113,6 @@ public class WebXMLDefinitionLoaderTest {
 		"com.liferay.httpservice.servlet.ResourceServlet",
 		"org.apache.jasper.servlet.JspServlet"
 	};
-
-	private Bundle _bundle = new CustomClassLoaderMockBundle();
 
 	@Mock
 	private Servlet _servlet;
@@ -108,6 +139,17 @@ public class WebXMLDefinitionLoaderTest {
 			else {
 				return super.loadClass(className);
 			}
+		}
+
+	}
+
+	private class EntryLoaderMockBundle extends CustomClassLoaderMockBundle {
+
+		@Override
+		public URL getEntry(String path) {
+			return getClass().getClassLoader().getResource(
+				"com/liferay/httpservice/internal/definition/dependencies/" +
+					"custom-web.xml");
 		}
 
 	}

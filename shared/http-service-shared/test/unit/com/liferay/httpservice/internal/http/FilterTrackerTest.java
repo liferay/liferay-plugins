@@ -15,12 +15,9 @@
 package com.liferay.httpservice.internal.http;
 
 import com.liferay.httpservice.internal.servlet.BundleServletContext;
+import com.liferay.httpservice.mock.MockFilter;
 
 import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 
 import org.junit.runner.RunWith;
 
@@ -62,24 +59,6 @@ public class FilterTrackerTest extends BaseTrackerTestCase<Filter> {
 			this.bundleServletContext);
 
 		bundleServletContext.unregisterFilter(Mockito.anyString());
-	}
-
-	private class MockFilter implements Filter {
-
-		@Override
-		public void destroy() {
-		}
-
-		@Override
-		public void doFilter(
-			ServletRequest servletRequest, ServletResponse servletResponse,
-			FilterChain filterChain) {
-		}
-
-		@Override
-		public void init(FilterConfig filterConfig) {
-		}
-
 	}
 
 }
