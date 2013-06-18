@@ -15,41 +15,35 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.portlet.announcements.action;
+package com.liferay.so.announcements.portlet;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.announcements.EntryContentException;
 import com.liferay.portlet.announcements.EntryDisplayDateException;
 import com.liferay.portlet.announcements.EntryExpirationDateException;
 import com.liferay.portlet.announcements.EntryTitleException;
 import com.liferay.portlet.announcements.EntryURLException;
-import com.liferay.portlet.announcements.NoSuchEntryException;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryServiceUtil;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.Calendar;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
+import javax.portlet.PortletException;
 
 /**
  * @author Raymond Augé
+ * @author Evan Thibodeau
  */
 public class AnnouncementsPortlet extends MVCPortlet {
 
@@ -241,6 +235,5 @@ public class AnnouncementsPortlet extends MVCPortlet {
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
-
 
 }
