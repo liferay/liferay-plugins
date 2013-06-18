@@ -202,6 +202,26 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivitySet activitySet, String link,
+			String title, ServiceContext serviceContext)
+		throws Exception {
+
+		int activityCount = activitySet.getActivityCount();
+
+		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
+			String folderLink = getFolderLink(
+				activitySet.getClassPK(), serviceContext);
+
+			if (Validator.isNotNull(folderLink)) {
+				return new Object[] {activityCount, folderLink};
+			}
+		}
+
+		return new Object[] {activityCount};
+	}
+
+	@Override
 	protected String getTitlePattern(String groupName, SocialActivity activity)
 		throws Exception {
 
@@ -222,6 +242,33 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 		if (fileEntry.getFolderId() > 0) {
 			titlePattern = titlePattern.concat("-in-the-x-folder");
+		}
+
+		return titlePattern;
+	}
+
+	@Override
+	protected String getTitlePattern(
+			String groupName, SocialActivitySet activitySet)
+		throws Exception {
+
+		String titlePattern = StringPool.BLANK;
+
+		if (activitySet.getType() == _ACTIVITY_KEY_ADD_FILE_ENTRY) {
+			titlePattern = "uploaded-x-new-documents";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
+			titlePattern = "made-x-updates-to-a-document";
+
+			FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
+				activitySet.getClassPK());
+
+			if (fileEntry.getFolderId() > 0) {
+				titlePattern = titlePattern.concat("-in-the-x-folder");
+			}
+		}
+		else {
+			return StringPool.BLANK;
 		}
 
 		return titlePattern;

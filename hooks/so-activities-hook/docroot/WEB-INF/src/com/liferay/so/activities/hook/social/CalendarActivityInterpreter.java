@@ -144,6 +144,20 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		return StringPool.BLANK;
 	}
 
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivitySet activitySet) {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_ADD_EVENT) {
+			return "added-x-new-calendar-events";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
+			return "made-x-updates-to-a-calendar-event";
+		}
+
+		return StringPool.BLANK;
+	}
+
 	/**
 	 * {@link
 	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#ADD_EVENT}

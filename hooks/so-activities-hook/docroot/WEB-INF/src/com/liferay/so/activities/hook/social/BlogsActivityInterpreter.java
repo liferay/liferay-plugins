@@ -134,6 +134,23 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		return StringPool.BLANK;
 	}
 
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivitySet activitySet) {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
+			return "commented-on-x-blog-entries";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
+			return "wrote-x-new-blog-entries";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+			return "made-x-updates-to-a-blog-entry";
+		}
+
+		return StringPool.BLANK;
+	}
+
 	/**
 	 * {@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_COMMENT}
 	 */
