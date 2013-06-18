@@ -14,6 +14,8 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -37,6 +39,37 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
+	}
+
+	public void updateActivitySet(long activityId)
+		throws PortalException, SystemException {
+
+		SocialActivity activity =
+			SocialActivityLocalServiceUtil.fetchSocialActivity(activityId);
+
+		if ((activity == null) || (activity.getActivitySetId() > 0)) {
+			return;
+		}
+
+		long activitySetId = getActivitySetId(activityId);
+
+		if (activitySetId > 0) {
+			SocialActivitySetLocalServiceUtil.incrementActivityCount(
+				activitySetId, activityId);
+		}
+		else {
+			SocialActivitySet activitySet =
+				SocialActivitySetLocalServiceUtil.addActivitySet(activityId);
+
+			if ((activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) &&
+				(activity.getReceiverUserId() > 0)) {
+
+				activitySet.setType(_ACTIVITY_KEY_REPLY_MESSAGE);
+
+				SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
+					activitySet);
+			}
+		}
 	}
 
 	@Override
