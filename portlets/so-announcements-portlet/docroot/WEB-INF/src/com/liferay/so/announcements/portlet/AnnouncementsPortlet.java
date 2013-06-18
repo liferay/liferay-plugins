@@ -51,7 +51,7 @@ import org.apache.struts.action.ActionMapping;
 /**
  * @author Raymond Augé
  */
-public class EditEntryAction extends PortletAction {
+public class AnnouncementsPortlet extends MVCPortlet {
 
 	@Override
 	public void processAction(
