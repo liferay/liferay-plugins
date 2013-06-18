@@ -104,6 +104,6 @@ public class AppImpl extends AppBaseImpl {
 
 	private static final String _EXTENSION = "lpkg";
 
-	private String[] _contextNames = null;
+	private String[] _contextNames;
 
 }

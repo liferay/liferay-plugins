@@ -116,7 +116,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		// Core app
 
-		App coreApp = appPersistence.create(0L);
+		App coreApp = appPersistence.create(0);
 
 		coreApp.setTitle("Liferay Core");
 		coreApp.setDescription("Plugins bundled with Liferay Portal.");
@@ -139,7 +139,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				continue;
 			}
 
-			App app = appPersistence.create(0L);
+			App app = appPersistence.create(0);
 
 			app.setTitle(pluginPackage.getName());
 			app.setDescription(pluginPackage.getShortDescription());
@@ -508,6 +508,6 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	private static Log _log = LogFactoryUtil.getLog(AppLocalServiceImpl.class);
 
-	private static List<App> _installedApps = null;
+	private List<App> _installedApps;
 
 }
