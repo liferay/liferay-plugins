@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
@@ -132,6 +133,31 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		return sb.toString();
 	}
 
+	protected String getFolderLink(long classPK, ServiceContext serviceContext)
+		throws Exception {
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(classPK);
+
+		if (fileEntry.getFolderId() <= 0) {
+			return null;
+		}
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathMain());
+		sb.append("/document_library/find_folder?groupId=");
+		sb.append(fileEntry.getRepositoryId());
+		sb.append("&folderId=");
+		sb.append(fileEntry.getFolderId());
+
+		Folder folder = fileEntry.getFolder();
+
+		String folderName = HtmlUtil.escape(folder.getName());
+
+		return wrapLink(sb.toString(), folderName);
+	}
+
 	@Override
 	protected String getLink(
 			SocialActivity activity, ServiceContext serviceContext)
@@ -165,29 +191,14 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
-			activity.getClassPK());
+		String folderLink = getFolderLink(
+			activity.getClassPK(), serviceContext);
 
-		if (fileEntry.getFolderId() > 0) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append(serviceContext.getPortalURL());
-			sb.append(serviceContext.getPathMain());
-			sb.append("/document_library/find_folder?groupId=");
-			sb.append(fileEntry.getRepositoryId());
-			sb.append("&folderId=");
-			sb.append(fileEntry.getFolderId());
-
-			Folder folder = fileEntry.getFolder();
-
-			String folderName = HtmlUtil.escape(folder.getName());
-
-			String folderURL = wrapLink(sb.toString(), folderName);
-
-			return new Object[] {folderURL};
+		if (Validator.isNull(folderLink)) {
+			return null;
 		}
 
-		return null;
+		return new Object[] {folderLink};
 	}
 
 	@Override
