@@ -188,4 +188,65 @@ public class AnnouncementsPortlet extends MVCPortlet {
 		}
 	}
 
+	protected void saveEntry(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			doSaveEntry(actionRequest, actionResponse);
+
+			long entryId = ParamUtil.getLong(actionRequest, "entryId");
+
+			if (entryId <= 0) {
+				SessionMessages.add(actionRequest, "announcementAdded");
+			}
+			else {
+				SessionMessages.add(actionRequest, "announcementUpdated");
+			}
+
+			jsonObject.put(
+				"redirect", ParamUtil.getString(actionRequest, "redirect"));
+			jsonObject.put("success", true);
+
+			String fromManageEntries = ParamUtil.getString(
+				actionRequest, "fromManageEntries");
+
+			if (Validator.isNotNull(fromManageEntries)) {
+				jsonObject.put("fromManageEntries", fromManageEntries);
+			}
+		}
+		catch (Exception e) {
+			String message = null;
+
+			if (e instanceof EntryContentException) {
+				message = "please-enter-valid-content";
+			}
+			else if (e instanceof EntryDisplayDateException) {
+				message = "please-enter-a-valid-display-date";
+			}
+			else if (e instanceof EntryExpirationDateException) {
+				message = "please-enter-a-valid-expiration-date";
+			}
+			else if (e instanceof EntryTitleException) {
+				message = "please-enter-a-valid-title";
+			}
+			else if (e instanceof EntryURLException) {
+				message = "please-enter-a-valid-url";
+			}
+			else {
+				throw new PortletException(e);
+			}
+
+			SessionErrors.clear(actionRequest);
+
+			jsonObject.put("message", translate(actionRequest, message));
+			jsonObject.put("success", false);
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+
 }
