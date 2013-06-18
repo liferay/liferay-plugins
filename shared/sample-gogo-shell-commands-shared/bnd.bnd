@@ -1,0 +1,10 @@
+Bundle-Name: Sample Gogo Shell commands
+Export-Package:\
+	com.liferay.gogo.commands.user.*
+Import-Package:\
+	com.liferay.gogo.commands.user,\
+	*
+Include-Resource: classes
+Private-Package:\
+	com.liferay.gogo.commands.user.internal.*
+Service-Component: *
