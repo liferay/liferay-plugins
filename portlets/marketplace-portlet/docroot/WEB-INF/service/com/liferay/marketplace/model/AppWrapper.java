@@ -526,6 +526,17 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	}
 
 	@Override
+	public java.lang.String[] addContextName(java.lang.String contextName) {
+		return _app.addContextName(contextName);
+	}
+
+	@Override
+	public java.lang.String[] getContextNames()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _app.getContextNames();
+	}
+
+	@Override
 	public java.lang.String getFileDir() {
 		return _app.getFileDir();
 	}

@@ -281,9 +281,20 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	}
 
 	@Override
+	public void clearInstalledAppsCache() {
+		_appLocalService.clearInstalledAppsCache();
+	}
+
+	@Override
 	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _appLocalService.fetchRemoteApp(remoteAppId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _appLocalService.getInstalledApps();
 	}
 
 	@Override

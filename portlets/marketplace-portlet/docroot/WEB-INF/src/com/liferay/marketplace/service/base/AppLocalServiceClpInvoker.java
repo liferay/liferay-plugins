@@ -114,41 +114,49 @@ public class AppLocalServiceClpInvoker {
 
 		_methodParameterTypes39 = new String[] { "java.lang.String" };
 
-		_methodName44 = "deleteApp";
+		_methodName44 = "clearInstalledAppsCache";
 
-		_methodParameterTypes44 = new String[] {
-				"com.liferay.marketplace.model.App"
-			};
+		_methodParameterTypes44 = new String[] {  };
 
 		_methodName45 = "deleteApp";
 
-		_methodParameterTypes45 = new String[] { "long" };
+		_methodParameterTypes45 = new String[] {
+				"com.liferay.marketplace.model.App"
+			};
 
-		_methodName46 = "fetchRemoteApp";
+		_methodName46 = "deleteApp";
 
 		_methodParameterTypes46 = new String[] { "long" };
 
-		_methodName47 = "installApp";
+		_methodName47 = "fetchRemoteApp";
 
 		_methodParameterTypes47 = new String[] { "long" };
 
-		_methodName48 = "processMarketplaceProperties";
+		_methodName48 = "getInstalledApps";
 
-		_methodParameterTypes48 = new String[] { "java.util.Properties" };
+		_methodParameterTypes48 = new String[] {  };
 
-		_methodName49 = "uninstallApp";
+		_methodName49 = "installApp";
 
 		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName50 = "updateApp";
+		_methodName50 = "processMarketplaceProperties";
 
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes50 = new String[] { "java.util.Properties" };
+
+		_methodName51 = "uninstallApp";
+
+		_methodParameterTypes51 = new String[] { "long" };
+
+		_methodName52 = "updateApp";
+
+		_methodParameterTypes52 = new String[] {
 				"long", "long", "java.lang.String", "java.io.File"
 			};
 
-		_methodName51 = "updateApp";
+		_methodName53 = "updateApp";
 
-		_methodParameterTypes51 = new String[] {
+		_methodParameterTypes53 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.io.File"
 			};
@@ -257,49 +265,61 @@ public class AppLocalServiceClpInvoker {
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-			return AppLocalServiceUtil.deleteApp((com.liferay.marketplace.model.App)arguments[0]);
+			AppLocalServiceUtil.clearInstalledAppsCache();
+
+			return null;
 		}
 
 		if (_methodName45.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
-			return AppLocalServiceUtil.deleteApp(((Long)arguments[0]).longValue());
+			return AppLocalServiceUtil.deleteApp((com.liferay.marketplace.model.App)arguments[0]);
 		}
 
 		if (_methodName46.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			return AppLocalServiceUtil.fetchRemoteApp(((Long)arguments[0]).longValue());
+			return AppLocalServiceUtil.deleteApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
-
-			return null;
+			return AppLocalServiceUtil.fetchRemoteApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
-
-			return null;
+			return AppLocalServiceUtil.getInstalledApps();
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -362,4 +382,8 @@ public class AppLocalServiceClpInvoker {
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
 }
