@@ -187,10 +187,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		for (File file : files) {
 			if (file.isDirectory()) {
-				long folderId = addDLFolder(
-					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, file.getName());
-
-				recurseDLDirectory(folderId, file);
+				addDLFolder(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, file);
 			}
 			else {
 				doAddDLFileEntry(
@@ -199,8 +196,31 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
+	protected long addDLFolder(long parentFolderId, File folder)
+		throws Exception {
+
+		long folderId = addDLFolder(parentFolderId, folder.getName());
+
+		File[] files = folder.listFiles();
+
+		if (Validator.isNull(files)) {
+			return folderId;
+		}
+
+		for (File file : files) {
+			if (file.isDirectory()) {
+				addDLFolder(folderId, file);
+			}
+			else {
+				doAddDLFileEntry(folderId, file);
+			}
+		}
+
+		return folderId;
+	}
+
 	protected long addDLFolder(long parentFolderId, String folderName)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		DLFolder dlFolder = DLFolderLocalServiceUtil.fetchFolder(
 			groupId, parentFolderId, folderName);
@@ -540,18 +560,15 @@ public class FileSystemImporter extends BaseImporter {
 	protected void doAddDLFileEntry(
 			long parentFolderId, String fileName, InputStream inputStream,
 			long length)
-		throws Exception {
-
-		String mimeType = MimeTypesUtil.getContentType(fileName);
-
-		String title = FileUtil.stripExtension(fileName);
+		throws PortalException, SystemException {
 
 		setServiceContext(fileName);
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
-			userId, groupId, parentFolderId, fileName, mimeType, title,
-			StringPool.BLANK, StringPool.BLANK, inputStream, length,
-			serviceContext);
+			userId, groupId, parentFolderId, fileName,
+			MimeTypesUtil.getContentType(fileName),
+			FileUtil.stripExtension(fileName), StringPool.BLANK,
+			StringPool.BLANK, inputStream, length, serviceContext);
 
 		_fileEntries.put(fileName, fileEntry);
 	}
@@ -762,7 +779,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected String processJournalArticleContent(String content)
-		throws Exception {
+		throws PortalException, SystemException {
 
 		content = replaceFileEntryURL(content);
 
@@ -789,28 +806,9 @@ public class FileSystemImporter extends BaseImporter {
 		return sb.toString();
 	}
 
-	protected void recurseDLDirectory(long parentFolderId, File directory)
-		throws Exception {
+	protected String replaceFileEntryURL(String content)
+		throws PortalException, SystemException {
 
-		File[] files = directory.listFiles();
-
-		if (Validator.isNull(files)) {
-			return;
-		}
-
-		for (File file : files) {
-			if (file.isDirectory()) {
-				long folderId = addDLFolder(parentFolderId, file.getName());
-
-				recurseDLDirectory(folderId, file);
-			}
-			else {
-				doAddDLFileEntry(parentFolderId, file);
-			}
-		}
-	}
-
-	protected String replaceFileEntryURL(String content) throws Exception {
 		Matcher matcher = _fileEntryPattern.matcher(content);
 
 		while (matcher.find()) {
@@ -965,7 +963,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void updateLayoutSetThemeId(JSONObject sitemapJSONObject)
-		throws Exception {
+		throws PortalException, SystemException {
 
 		String themeId = sitemapJSONObject.getString("themeId");
 

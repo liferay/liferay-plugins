@@ -14,8 +14,6 @@
 
 package com.liferay.resourcesimporter.util;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
@@ -109,10 +107,8 @@ public class ResourceImporter extends FileSystemImporter {
 
 		for (String resourcePath : resourcePaths) {
 			if (resourcePath.endsWith(StringPool.SLASH)) {
-				long dlFolderId = addDLFolder(
+				addDLFolder(
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, resourcePath);
-
-				recurseDLDirectory(dlFolderId, resourcePath);
 			}
 			else {
 				doAddDLFileEntry(resourcePath);
@@ -122,16 +118,30 @@ public class ResourceImporter extends FileSystemImporter {
 
 	@Override
 	protected long addDLFolder(long parentFolderId, String resourcePath)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		String folderPath = FileUtil.getPath(resourcePath);
 
-		String folderName = folderPath.substring(
-			folderPath.lastIndexOf(StringPool.SLASH) + 1);
-
-		long folderId = super.addDLFolder(parentFolderId, folderName);
+		long folderId = super.addDLFolder(
+			parentFolderId, FileUtil.getShortFileName(folderPath));
 
 		_folderIds.put(resourcePath, folderId);
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			resourcePath);
+
+		if ((resourcePaths == null) || resourcePaths.isEmpty()) {
+			return folderId;
+		}
+
+		for (String curResourcePath : resourcePaths) {
+			if (curResourcePath.endsWith(StringPool.SLASH)) {
+				addDLFolder(folderId, curResourcePath);
+			}
+			else {
+				doAddDLFileEntry(curResourcePath);
+			}
+		}
 
 		return folderId;
 	}
@@ -167,24 +177,22 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	protected void doAddDLFileEntry(String resourcePath) throws Exception {
+		long parentFolderId = 0;
+
 		String folderPath = FileUtil.getPath(
 			resourcePath).concat(StringPool.SLASH);
-
-		long parentFolderId = 0;
 
 		if (_folderIds.containsKey(folderPath)) {
 			parentFolderId = _folderIds.get(folderPath);
 		}
-
-		String name = FileUtil.getShortFileName(resourcePath);
 
 		URL url = servletContext.getResource(resourcePath);
 
 		URLConnection urlConnection = url.openConnection();
 
 		doAddDLFileEntry(
-			parentFolderId, name, urlConnection.getInputStream(),
-			urlConnection.getContentLength());
+			parentFolderId, FileUtil.getShortFileName(resourcePath),
+			urlConnection.getInputStream(), urlConnection.getContentLength());
 	}
 
 	@Override
@@ -198,29 +206,6 @@ public class ResourceImporter extends FileSystemImporter {
 		URLConnection urlConnection = url.openConnection();
 
 		return urlConnection.getInputStream();
-	}
-
-	private void recurseDLDirectory(
-			long parentFolderId, String resourcePathRoot)
-		throws Exception {
-
-		Set<String> resourcePaths = servletContext.getResourcePaths(
-			resourcePathRoot);
-
-		if ((resourcePaths == null) || resourcePaths.isEmpty()) {
-			return;
-		}
-
-		for (String resourcePath : resourcePaths) {
-			if (resourcePath.endsWith(StringPool.SLASH)) {
-				long dlFolderId = addDLFolder(parentFolderId, resourcePath);
-
-				recurseDLDirectory(dlFolderId, resourcePath);
-			}
-			else {
-				doAddDLFileEntry(resourcePath);
-			}
-		}
 	}
 
 	private Map<String, Long> _folderIds = new HashMap<String, Long>();
