@@ -170,7 +170,11 @@ public class ResourceImporter extends FileSystemImporter {
 		String folderPath = FileUtil.getPath(
 			resourcePath).concat(StringPool.SLASH);
 
-		long parentFolderId = _folderIds.get(folderPath);
+		long parentFolderId = 0;
+
+		if (_folderIds.containsKey(folderPath)) {
+			parentFolderId = _folderIds.get(folderPath);
+		}
 
 		String name = FileUtil.getShortFileName(resourcePath);
 
