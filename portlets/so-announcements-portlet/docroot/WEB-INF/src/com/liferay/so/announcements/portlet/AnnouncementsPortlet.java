@@ -55,51 +55,45 @@ public class AnnouncementsPortlet extends MVCPortlet {
 
 	@Override
 	public void processAction(
-		ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-		ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
 
 		try {
-			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
-				updateEntry(actionRequest);
-			}
-			else if (cmd.equals(Constants.DELETE)) {
-				deleteEntry(actionRequest);
-			}
+			String actionName = ParamUtil.getString(
+				actionRequest, ActionRequest.ACTION_NAME);
 
-			String redirect = PortalUtil.escapeRedirect(
-				ParamUtil.getString(actionRequest, "redirect"));
-
-			if (Validator.isNotNull(redirect)) {
-				actionResponse.sendRedirect(redirect);
+			if (actionName.equals("deleteEntry")) {
+				deleteEntry(actionRequest, actionResponse);
+			}
+			else if (actionName.equals("saveEntry")) {
+				saveEntry(actionRequest, actionResponse);
+			}
+			else {
+				super.processAction(actionRequest, actionResponse);
 			}
 		}
 		catch (Exception e) {
-			if (e instanceof EntryContentException ||
-				e instanceof EntryDisplayDateException ||
-				e instanceof EntryExpirationDateException ||
-				e instanceof EntryTitleException ||
-				e instanceof EntryURLException ||
-				e instanceof NoSuchEntryException ||
-				e instanceof PrincipalException) {
-
-				SessionErrors.add(actionRequest, e.getClass());
-			}
-			else {
-				throw e;
-			}
+			throw new PortletException(e);
 		}
 	}
 
-	protected void deleteEntry(ActionRequest actionRequest) throws Exception {
+	protected void deleteEntry(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
 
 		AnnouncementsEntryServiceUtil.deleteEntry(entryId);
+
+		SessionMessages.add(actionRequest, "announcementDeleted");
+
+		sendRedirect(actionRequest, actionResponse);
 	}
 
-	protected void updateEntry(ActionRequest actionRequest) throws Exception {
+	protected void doSaveEntry(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
