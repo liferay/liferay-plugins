@@ -19,29 +19,29 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/view.jsp");
-
-LinkedHashMap<Long, long[]> scopes = AnnouncementsUtil.getAnnouncementScopes(user.getUserId());
-
-scopes.put(new Long(0), new long[] {0});
-
-int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;
-
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-currently-no-unread-entries");
-
-List<AnnouncementsEntry> results = null;
-
-int total = 0;
-%>
-
 <liferay-ui:success key="announcementAdded" message="the-announcement-was-successfully-added" />
 <liferay-ui:success key="announcementDeleted" message="the-announcement-was-successfully-deleted" />
 <liferay-ui:success key="announcementUpdated" message="the-announcement-was-successfully-updated" />
 
 <div class="unread-entries" id="unreadEntries">
+
+	<%
+	LinkedHashMap<Long, long[]> scopes = AnnouncementsUtil.getAnnouncementScopes(user.getUserId());
+
+	scopes.put(new Long(0), new long[] {0});
+
+	int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;
+
+	PortletURL portletURL = renderResponse.createRenderURL();
+
+	portletURL.setParameter("mvcPath", "/view.jsp");
+
+	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-no-unread-entries");
+
+	List<AnnouncementsEntry> results = null;
+	int total = 0;
+	%>
+
 	<%@ include file="/entry_iterator.jspf" %>
 </div>
 
@@ -52,12 +52,12 @@ int total = 0;
 <%
 flagValue = AnnouncementsFlagConstants.HIDDEN;
 
-searchContainer = new SearchContainer(renderRequest, null, null, "cur2", pageDelta, portletURL, null, "there-are-currently-no-read-entries");
+searchContainer = new SearchContainer(renderRequest, null, null, "cur2", pageDelta, portletURL, null, "there-are-no-read-entries");
 
 results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, searchContainer.getStart(), searchContainer.getEnd());
 %>
 
-<c:if test="<%= (themeDisplay.isSignedIn()) && (results.size() != 0) %>">
+<c:if test="<%= themeDisplay.isSignedIn() && !results.isEmpty() %>">
 	<div class="read-entries" id="readEntries">
 		<div class="header">
 			<span><%= LanguageUtil.get(pageContext, "read-entries") %></span>
