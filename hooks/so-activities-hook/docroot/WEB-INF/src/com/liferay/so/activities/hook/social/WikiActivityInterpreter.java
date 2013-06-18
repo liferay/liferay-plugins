@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -356,32 +355,6 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 
 		return wrapLink(nodeURL.toString(), HtmlUtil.escape(node.getName()));
-	}
-
-	protected String getPageTitle(
-			String className, long classPK, ServiceContext serviceContext)
-		throws Exception {
-
-		String linkURL = getLinkURL(className, classPK, serviceContext);
-
-		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
-
-		LiferayPortletRequest liferayPortletRequest =
-			serviceContext.getLiferayPortletRequest();
-
-		if (Validator.isNotNull(
-				assetRenderer.getIconPath(liferayPortletRequest))) {
-
-			return wrapLink(
-				linkURL, assetRenderer.getIconPath(liferayPortletRequest),
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-
-		return wrapLink(
-			linkURL,
-			HtmlUtil.escape(
-				assetRenderer.getTitle(serviceContext.getLocale())));
 	}
 
 	@Override

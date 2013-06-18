@@ -14,14 +14,11 @@
 
 package com.liferay.so.activities.hook.social;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
@@ -83,37 +80,10 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-
-		String pageTitle = StringPool.BLANK;
-
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
-
-		LiferayPortletRequest liferayPortletRequest =
-			serviceContext.getLiferayPortletRequest();
-
-		if (Validator.isNotNull(
-				assetRenderer.getIconPath(liferayPortletRequest))) {
-
-			pageTitle = wrapLink(
-				getLinkURL(
-					activity.getClassName(), activity.getClassPK(),
-					serviceContext),
-				assetRenderer.getIconPath(liferayPortletRequest),
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-		else {
-			pageTitle = wrapLink(
-				getLinkURL(
-					activity.getClassName(), activity.getClassPK(),
-					serviceContext),
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-
-		sb.append(pageTitle);
-
+		sb.append(
+			getPageTitle(
+				activity.getClassName(), activity.getClassPK(),
+				serviceContext));
 		sb.append("</div><div class=\"blogs-page-content\">");
 
 		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(

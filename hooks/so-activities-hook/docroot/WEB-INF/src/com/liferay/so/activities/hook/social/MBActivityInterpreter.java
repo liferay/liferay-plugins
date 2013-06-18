@@ -16,12 +16,10 @@ package com.liferay.so.activities.hook.social;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.messageboards.model.MBMessage;
@@ -115,41 +113,21 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-
-		String pageTitle = StringPool.BLANK;
-
-		String linkURL = getLinkURL(
-			activity.getClassName(), activity.getClassPK(), serviceContext);
+		sb.append(
+			getPageTitle(
+				activity.getClassName(), activity.getClassPK(),
+				serviceContext));
+		sb.append("</div><div class=\"forum-page-content\">");
 
 		AssetRenderer assetRenderer = getAssetRenderer(
 			activity.getClassName(), activity.getClassPK());
 
-		LiferayPortletRequest liferayPortletRequest =
-			serviceContext.getLiferayPortletRequest();
-
-		if (Validator.isNotNull(
-				assetRenderer.getIconPath(liferayPortletRequest))) {
-
-			pageTitle = wrapLink(
-				linkURL, assetRenderer.getIconPath(liferayPortletRequest),
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-		else {
-			pageTitle = wrapLink(
-				linkURL,
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-
-		sb.append(pageTitle);
-
-		sb.append("</div><div class=\"forum-page-content\">");
 		sb.append(
 			StringUtil.shorten(
 				HtmlUtil.extractText(
 					assetRenderer.getSummary(
 						serviceContext.getLocale())), 200));
+
 		sb.append("</div></div>");
 
 		return sb.toString();
