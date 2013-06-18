@@ -23,6 +23,7 @@ import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
+import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
@@ -114,6 +115,24 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("</div></div>");
 
 		return sb.toString();
+	}
+
+	@Override
+	protected SocialActivityFeedEntry getSubfeedEntry(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		String title = getPageTitle(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+
+		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(
+			activity.getClassPK());
+
+		String content = HtmlUtil.extractText(entry.getContent());
+
+		String body = StringUtil.shorten(content, 200);
+
+		return new SocialActivityFeedEntry(title, body);
 	}
 
 	@Override
