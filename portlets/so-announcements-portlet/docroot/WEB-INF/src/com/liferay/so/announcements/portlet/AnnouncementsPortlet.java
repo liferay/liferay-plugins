@@ -93,32 +93,6 @@ public class AnnouncementsPortlet extends MVCPortlet {
 		}
 	}
 
-	@Override
-	public ActionForward render(
-		ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-		RenderRequest renderRequest, RenderResponse renderResponse)
-		throws Exception {
-
-		try {
-			ActionUtil.getEntry(renderRequest);
-		}
-		catch (Exception e) {
-			if (e instanceof NoSuchEntryException ||
-				e instanceof PrincipalException) {
-
-				SessionErrors.add(renderRequest, e.getClass());
-
-				return mapping.findForward("portlet.announcements.error");
-			}
-			else {
-				throw e;
-			}
-		}
-
-		return mapping.findForward(
-			getForward(renderRequest, "portlet.announcements.edit_entry"));
-	}
-
 	protected void deleteEntry(ActionRequest actionRequest) throws Exception {
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
 
