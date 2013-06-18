@@ -195,6 +195,22 @@ public class WSRPConsumerPortletLocalServiceWrapper
 	}
 
 	/**
+	* Returns the w s r p consumer portlet with the matching UUID and company.
+	*
+	* @param uuid the w s r p consumer portlet's UUID
+	* @param companyId the primary key of the company
+	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchWSRPConsumerPortletByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpConsumerPortletLocalService.fetchWSRPConsumerPortletByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	/**
 	* Returns the w s r p consumer portlet with the primary key.
 	*
 	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
@@ -216,6 +232,24 @@ public class WSRPConsumerPortletLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerPortletLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the w s r p consumer portlet with the matching UUID and company.
+	*
+	* @param uuid the w s r p consumer portlet's UUID
+	* @param companyId the primary key of the company
+	* @return the matching w s r p consumer portlet
+	* @throws PortalException if a matching w s r p consumer portlet could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortletByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpConsumerPortletLocalService.getWSRPConsumerPortletByUuidAndCompanyId(uuid,
+			companyId);
 	}
 
 	/**

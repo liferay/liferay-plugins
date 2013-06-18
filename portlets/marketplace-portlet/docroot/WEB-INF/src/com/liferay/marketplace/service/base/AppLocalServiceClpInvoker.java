@@ -84,79 +84,87 @@ public class AppLocalServiceClpInvoker {
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getApp";
+		_methodName11 = "fetchAppByUuidAndCompanyId";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] { "java.lang.String", "long" };
 
-		_methodName12 = "getPersistedModel";
+		_methodName12 = "getApp";
 
-		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes12 = new String[] { "long" };
 
-		_methodName13 = "getApps";
+		_methodName13 = "getPersistedModel";
 
-		_methodParameterTypes13 = new String[] { "int", "int" };
+		_methodParameterTypes13 = new String[] { "java.io.Serializable" };
 
-		_methodName14 = "getAppsCount";
+		_methodName14 = "getAppByUuidAndCompanyId";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes14 = new String[] { "java.lang.String", "long" };
 
-		_methodName15 = "updateApp";
+		_methodName15 = "getApps";
 
-		_methodParameterTypes15 = new String[] {
+		_methodParameterTypes15 = new String[] { "int", "int" };
+
+		_methodName16 = "getAppsCount";
+
+		_methodParameterTypes16 = new String[] {  };
+
+		_methodName17 = "updateApp";
+
+		_methodParameterTypes17 = new String[] {
 				"com.liferay.marketplace.model.App"
 			};
 
-		_methodName38 = "getBeanIdentifier";
+		_methodName40 = "getBeanIdentifier";
 
-		_methodParameterTypes38 = new String[] {  };
+		_methodParameterTypes40 = new String[] {  };
 
-		_methodName39 = "setBeanIdentifier";
+		_methodName41 = "setBeanIdentifier";
 
-		_methodParameterTypes39 = new String[] { "java.lang.String" };
+		_methodParameterTypes41 = new String[] { "java.lang.String" };
 
-		_methodName44 = "clearInstalledAppsCache";
+		_methodName46 = "clearInstalledAppsCache";
 
-		_methodParameterTypes44 = new String[] {  };
+		_methodParameterTypes46 = new String[] {  };
 
-		_methodName45 = "deleteApp";
+		_methodName47 = "deleteApp";
 
-		_methodParameterTypes45 = new String[] {
+		_methodParameterTypes47 = new String[] {
 				"com.liferay.marketplace.model.App"
 			};
 
-		_methodName46 = "deleteApp";
+		_methodName48 = "deleteApp";
 
-		_methodParameterTypes46 = new String[] { "long" };
+		_methodParameterTypes48 = new String[] { "long" };
 
-		_methodName47 = "fetchRemoteApp";
-
-		_methodParameterTypes47 = new String[] { "long" };
-
-		_methodName48 = "getInstalledApps";
-
-		_methodParameterTypes48 = new String[] {  };
-
-		_methodName49 = "installApp";
+		_methodName49 = "fetchRemoteApp";
 
 		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName50 = "processMarketplaceProperties";
+		_methodName50 = "getInstalledApps";
 
-		_methodParameterTypes50 = new String[] { "java.util.Properties" };
+		_methodParameterTypes50 = new String[] {  };
 
-		_methodName51 = "uninstallApp";
+		_methodName51 = "installApp";
 
 		_methodParameterTypes51 = new String[] { "long" };
 
-		_methodName52 = "updateApp";
+		_methodName52 = "processMarketplaceProperties";
 
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes52 = new String[] { "java.util.Properties" };
+
+		_methodName53 = "uninstallApp";
+
+		_methodParameterTypes53 = new String[] { "long" };
+
+		_methodName54 = "updateApp";
+
+		_methodParameterTypes54 = new String[] {
 				"long", "long", "java.lang.String", "java.io.File"
 			};
 
-		_methodName53 = "updateApp";
+		_methodName55 = "updateApp";
 
-		_methodParameterTypes53 = new String[] {
+		_methodParameterTypes55 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.io.File"
 			};
@@ -227,99 +235,111 @@ public class AppLocalServiceClpInvoker {
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return AppLocalServiceUtil.getApp(((Long)arguments[0]).longValue());
+			return AppLocalServiceUtil.fetchAppByUuidAndCompanyId((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return AppLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return AppLocalServiceUtil.getApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return AppLocalServiceUtil.getApps(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return AppLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return AppLocalServiceUtil.getAppsCount();
+			return AppLocalServiceUtil.getAppByUuidAndCompanyId((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return AppLocalServiceUtil.getApps(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
+		}
+
+		if (_methodName16.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
+			return AppLocalServiceUtil.getAppsCount();
+		}
+
+		if (_methodName17.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp((com.liferay.marketplace.model.App)arguments[0]);
 		}
 
-		if (_methodName38.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return AppLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName39.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			AppLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName44.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			AppLocalServiceUtil.clearInstalledAppsCache();
 
 			return null;
 		}
 
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
-			return AppLocalServiceUtil.deleteApp((com.liferay.marketplace.model.App)arguments[0]);
-		}
-
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			return AppLocalServiceUtil.deleteApp(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			return AppLocalServiceUtil.fetchRemoteApp(((Long)arguments[0]).longValue());
+			return AppLocalServiceUtil.deleteApp((com.liferay.marketplace.model.App)arguments[0]);
 		}
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			return AppLocalServiceUtil.getInstalledApps();
+			return AppLocalServiceUtil.deleteApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
-
-			return null;
+			return AppLocalServiceUtil.fetchRemoteApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
-
-			return null;
+			return AppLocalServiceUtil.getInstalledApps();
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -362,14 +382,14 @@ public class AppLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName38;
-	private String[] _methodParameterTypes38;
-	private String _methodName39;
-	private String[] _methodParameterTypes39;
-	private String _methodName44;
-	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
+	private String _methodName16;
+	private String[] _methodParameterTypes16;
+	private String _methodName17;
+	private String[] _methodParameterTypes17;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
 	private String _methodName46;
 	private String[] _methodParameterTypes46;
 	private String _methodName47;
@@ -386,4 +406,8 @@ public class AppLocalServiceClpInvoker {
 	private String[] _methodParameterTypes52;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
 }

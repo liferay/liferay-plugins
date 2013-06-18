@@ -224,6 +224,34 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the k b template with the matching UUID and company.
+	 *
+	 * @param uuid the k b template's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching k b template, or <code>null</code> if a matching k b template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBTemplate fetchKBTemplateByUuidAndCompanyId(String uuid,
+		long companyId) throws SystemException {
+		return kbTemplatePersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
+	 * Returns the k b template matching the UUID and group.
+	 *
+	 * @param uuid the k b template's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching k b template, or <code>null</code> if a matching k b template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBTemplate fetchKBTemplateByUuidAndGroupId(String uuid, long groupId)
+		throws SystemException {
+		return kbTemplatePersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the k b template with the primary key.
 	 *
 	 * @param kbTemplateId the primary key of the k b template
@@ -241,6 +269,21 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kbTemplatePersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the k b template with the matching UUID and company.
+	 *
+	 * @param uuid the k b template's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching k b template
+	 * @throws PortalException if a matching k b template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBTemplate getKBTemplateByUuidAndCompanyId(String uuid,
+		long companyId) throws PortalException, SystemException {
+		return kbTemplatePersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

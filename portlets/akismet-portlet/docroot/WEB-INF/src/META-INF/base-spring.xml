@@ -12,6 +12,11 @@
 		<constructor-arg value="com.liferay.portal.spring.aop.ServiceBeanAutoProxyCreator" />
 		<constructor-arg>
 			<map>
+				<entry key="beanMatcher">
+					<bean class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+						<constructor-arg value="com.liferay.portal.spring.aop.ServiceBeanMatcher" />
+					</bean>
+				</entry>
 				<entry key="methodInterceptor" value-ref="serviceAdvice" />
 			</map>
 		</constructor-arg>

@@ -214,6 +214,20 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the gadget with the matching UUID and company.
+	 *
+	 * @param uuid the gadget's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching gadget, or <code>null</code> if a matching gadget could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Gadget fetchGadgetByUuidAndCompanyId(String uuid, long companyId)
+		throws SystemException {
+		return gadgetPersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
 	 * Returns the gadget with the primary key.
 	 *
 	 * @param gadgetId the primary key of the gadget
@@ -231,6 +245,21 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return gadgetPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the gadget with the matching UUID and company.
+	 *
+	 * @param uuid the gadget's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching gadget
+	 * @throws PortalException if a matching gadget could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Gadget getGadgetByUuidAndCompanyId(String uuid, long companyId)
+		throws PortalException, SystemException {
+		return gadgetPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

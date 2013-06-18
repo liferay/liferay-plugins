@@ -222,6 +222,35 @@ public abstract class PollsQuestionLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the polls question with the matching UUID and company.
+	 *
+	 * @param uuid the polls question's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching polls question, or <code>null</code> if a matching polls question could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public PollsQuestion fetchPollsQuestionByUuidAndCompanyId(String uuid,
+		long companyId) throws SystemException {
+		return pollsQuestionPersistence.fetchByUuid_C_First(uuid, companyId,
+			null);
+	}
+
+	/**
+	 * Returns the polls question matching the UUID and group.
+	 *
+	 * @param uuid the polls question's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching polls question, or <code>null</code> if a matching polls question could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public PollsQuestion fetchPollsQuestionByUuidAndGroupId(String uuid,
+		long groupId) throws SystemException {
+		return pollsQuestionPersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the polls question with the primary key.
 	 *
 	 * @param pollsQuestionId the primary key of the polls question
@@ -239,6 +268,21 @@ public abstract class PollsQuestionLocalServiceBaseImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return pollsQuestionPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the polls question with the matching UUID and company.
+	 *
+	 * @param uuid the polls question's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching polls question
+	 * @throws PortalException if a matching polls question could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public PollsQuestion getPollsQuestionByUuidAndCompanyId(String uuid,
+		long companyId) throws PortalException, SystemException {
+		return pollsQuestionPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

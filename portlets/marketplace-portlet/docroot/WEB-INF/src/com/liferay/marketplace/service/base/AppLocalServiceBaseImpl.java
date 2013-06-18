@@ -212,6 +212,20 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the app with the matching UUID and company.
+	 *
+	 * @param uuid the app's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching app, or <code>null</code> if a matching app could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App fetchAppByUuidAndCompanyId(String uuid, long companyId)
+		throws SystemException {
+		return appPersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
 	 * Returns the app with the primary key.
 	 *
 	 * @param appId the primary key of the app
@@ -228,6 +242,21 @@ public abstract class AppLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return appPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the app with the matching UUID and company.
+	 *
+	 * @param uuid the app's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching app
+	 * @throws PortalException if a matching app could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App getAppByUuidAndCompanyId(String uuid, long companyId)
+		throws PortalException, SystemException {
+		return appPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

@@ -195,6 +195,38 @@ public class CalendarResourceLocalServiceWrapper
 	}
 
 	/**
+	* Returns the calendar resource with the matching UUID and company.
+	*
+	* @param uuid the calendar resource's UUID
+	* @param companyId the primary key of the company
+	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResourceByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.fetchCalendarResourceByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	/**
+	* Returns the calendar resource matching the UUID and group.
+	*
+	* @param uuid the calendar resource's UUID
+	* @param groupId the primary key of the group
+	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResourceByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.fetchCalendarResourceByUuidAndGroupId(uuid,
+			groupId);
+	}
+
+	/**
 	* Returns the calendar resource with the primary key.
 	*
 	* @param calendarResourceId the primary key of the calendar resource
@@ -216,6 +248,24 @@ public class CalendarResourceLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the calendar resource with the matching UUID and company.
+	*
+	* @param uuid the calendar resource's UUID
+	* @param companyId the primary key of the company
+	* @return the matching calendar resource
+	* @throws PortalException if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.calendar.model.CalendarResource getCalendarResourceByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getCalendarResourceByUuidAndCompanyId(uuid,
+			companyId);
 	}
 
 	/**

@@ -223,6 +223,34 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the w s r p producer with the matching UUID and company.
+	 *
+	 * @param uuid the w s r p producer's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WSRPProducer fetchWSRPProducerByUuidAndCompanyId(String uuid,
+		long companyId) throws SystemException {
+		return wsrpProducerPersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
+	 * Returns the w s r p producer matching the UUID and group.
+	 *
+	 * @param uuid the w s r p producer's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WSRPProducer fetchWSRPProducerByUuidAndGroupId(String uuid,
+		long groupId) throws SystemException {
+		return wsrpProducerPersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the w s r p producer with the primary key.
 	 *
 	 * @param wsrpProducerId the primary key of the w s r p producer
@@ -240,6 +268,21 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return wsrpProducerPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the w s r p producer with the matching UUID and company.
+	 *
+	 * @param uuid the w s r p producer's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching w s r p producer
+	 * @throws PortalException if a matching w s r p producer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WSRPProducer getWSRPProducerByUuidAndCompanyId(String uuid,
+		long companyId) throws PortalException, SystemException {
+		return wsrpProducerPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

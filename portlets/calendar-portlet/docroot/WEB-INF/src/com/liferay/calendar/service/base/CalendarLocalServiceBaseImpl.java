@@ -221,6 +221,34 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the calendar with the matching UUID and company.
+	 *
+	 * @param uuid the calendar's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Calendar fetchCalendarByUuidAndCompanyId(String uuid, long companyId)
+		throws SystemException {
+		return calendarPersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
+	 * Returns the calendar matching the UUID and group.
+	 *
+	 * @param uuid the calendar's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Calendar fetchCalendarByUuidAndGroupId(String uuid, long groupId)
+		throws SystemException {
+		return calendarPersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the calendar with the primary key.
 	 *
 	 * @param calendarId the primary key of the calendar
@@ -238,6 +266,21 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return calendarPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the calendar with the matching UUID and company.
+	 *
+	 * @param uuid the calendar's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar
+	 * @throws PortalException if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Calendar getCalendarByUuidAndCompanyId(String uuid, long companyId)
+		throws PortalException, SystemException {
+		return calendarPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

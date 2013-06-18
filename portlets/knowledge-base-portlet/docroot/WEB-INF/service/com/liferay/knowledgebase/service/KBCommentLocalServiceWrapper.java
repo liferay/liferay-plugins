@@ -192,6 +192,38 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	}
 
 	/**
+	* Returns the k b comment with the matching UUID and company.
+	*
+	* @param uuid the k b comment's UUID
+	* @param companyId the primary key of the company
+	* @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.knowledgebase.model.KBComment fetchKBCommentByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.fetchKBCommentByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	/**
+	* Returns the k b comment matching the UUID and group.
+	*
+	* @param uuid the k b comment's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.knowledgebase.model.KBComment fetchKBCommentByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.fetchKBCommentByUuidAndGroupId(uuid,
+			groupId);
+	}
+
+	/**
 	* Returns the k b comment with the primary key.
 	*
 	* @param kbCommentId the primary key of the k b comment
@@ -213,6 +245,24 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kbCommentLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the k b comment with the matching UUID and company.
+	*
+	* @param uuid the k b comment's UUID
+	* @param companyId the primary key of the company
+	* @return the matching k b comment
+	* @throws PortalException if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.knowledgebase.model.KBComment getKBCommentByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbCommentLocalService.getKBCommentByUuidAndCompanyId(uuid,
+			companyId);
 	}
 
 	/**

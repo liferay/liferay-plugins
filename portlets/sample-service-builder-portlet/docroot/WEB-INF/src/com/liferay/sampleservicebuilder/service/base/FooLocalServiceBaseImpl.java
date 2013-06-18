@@ -214,6 +214,34 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the foo with the matching UUID and company.
+	 *
+	 * @param uuid the foo's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching foo, or <code>null</code> if a matching foo could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Foo fetchFooByUuidAndCompanyId(String uuid, long companyId)
+		throws SystemException {
+		return fooPersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
+	 * Returns the foo matching the UUID and group.
+	 *
+	 * @param uuid the foo's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching foo, or <code>null</code> if a matching foo could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Foo fetchFooByUuidAndGroupId(String uuid, long groupId)
+		throws SystemException {
+		return fooPersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the foo with the primary key.
 	 *
 	 * @param fooId the primary key of the foo
@@ -230,6 +258,21 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return fooPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the foo with the matching UUID and company.
+	 *
+	 * @param uuid the foo's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching foo
+	 * @throws PortalException if a matching foo could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Foo getFooByUuidAndCompanyId(String uuid, long companyId)
+		throws PortalException, SystemException {
+		return fooPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

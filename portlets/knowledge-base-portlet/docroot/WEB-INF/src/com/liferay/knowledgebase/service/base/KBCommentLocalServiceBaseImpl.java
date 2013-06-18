@@ -221,6 +221,34 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the k b comment with the matching UUID and company.
+	 *
+	 * @param uuid the k b comment's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBComment fetchKBCommentByUuidAndCompanyId(String uuid,
+		long companyId) throws SystemException {
+		return kbCommentPersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
+	 * Returns the k b comment matching the UUID and group.
+	 *
+	 * @param uuid the k b comment's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBComment fetchKBCommentByUuidAndGroupId(String uuid, long groupId)
+		throws SystemException {
+		return kbCommentPersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the k b comment with the primary key.
 	 *
 	 * @param kbCommentId the primary key of the k b comment
@@ -238,6 +266,21 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kbCommentPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the k b comment with the matching UUID and company.
+	 *
+	 * @param uuid the k b comment's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching k b comment
+	 * @throws PortalException if a matching k b comment could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBComment getKBCommentByUuidAndCompanyId(String uuid, long companyId)
+		throws PortalException, SystemException {
+		return kbCommentPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

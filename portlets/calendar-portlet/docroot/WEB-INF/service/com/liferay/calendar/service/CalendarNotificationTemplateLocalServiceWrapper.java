@@ -193,6 +193,38 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	}
 
 	/**
+	* Returns the calendar notification template with the matching UUID and company.
+	*
+	* @param uuid the calendar notification template's UUID
+	* @param companyId the primary key of the company
+	* @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplateByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	/**
+	* Returns the calendar notification template matching the UUID and group.
+	*
+	* @param uuid the calendar notification template's UUID
+	* @param groupId the primary key of the group
+	* @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplateByUuidAndGroupId(uuid,
+			groupId);
+	}
+
+	/**
 	* Returns the calendar notification template with the primary key.
 	*
 	* @param calendarNotificationTemplateId the primary key of the calendar notification template
@@ -214,6 +246,24 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarNotificationTemplateLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the calendar notification template with the matching UUID and company.
+	*
+	* @param uuid the calendar notification template's UUID
+	* @param companyId the primary key of the company
+	* @return the matching calendar notification template
+	* @throws PortalException if a matching calendar notification template could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplateByUuidAndCompanyId(uuid,
+			companyId);
 	}
 
 	/**

@@ -194,6 +194,38 @@ public class PollsQuestionLocalServiceWrapper
 	}
 
 	/**
+	* Returns the polls question with the matching UUID and company.
+	*
+	* @param uuid the polls question's UUID
+	* @param companyId the primary key of the company
+	* @return the matching polls question, or <code>null</code> if a matching polls question could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.polls.model.PollsQuestion fetchPollsQuestionByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.fetchPollsQuestionByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	/**
+	* Returns the polls question matching the UUID and group.
+	*
+	* @param uuid the polls question's UUID
+	* @param groupId the primary key of the group
+	* @return the matching polls question, or <code>null</code> if a matching polls question could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.polls.model.PollsQuestion fetchPollsQuestionByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.fetchPollsQuestionByUuidAndGroupId(uuid,
+			groupId);
+	}
+
+	/**
 	* Returns the polls question with the primary key.
 	*
 	* @param pollsQuestionId the primary key of the polls question
@@ -215,6 +247,24 @@ public class PollsQuestionLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _pollsQuestionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the polls question with the matching UUID and company.
+	*
+	* @param uuid the polls question's UUID
+	* @param companyId the primary key of the company
+	* @return the matching polls question
+	* @throws PortalException if a matching polls question could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.polls.model.PollsQuestion getPollsQuestionByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pollsQuestionLocalService.getPollsQuestionByUuidAndCompanyId(uuid,
+			companyId);
 	}
 
 	/**

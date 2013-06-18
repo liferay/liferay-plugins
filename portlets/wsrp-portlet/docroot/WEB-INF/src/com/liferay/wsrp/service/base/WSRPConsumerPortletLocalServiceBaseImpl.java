@@ -223,6 +223,21 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the w s r p consumer portlet with the matching UUID and company.
+	 *
+	 * @param uuid the w s r p consumer portlet's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WSRPConsumerPortlet fetchWSRPConsumerPortletByUuidAndCompanyId(
+		String uuid, long companyId) throws SystemException {
+		return wsrpConsumerPortletPersistence.fetchByUuid_C_First(uuid,
+			companyId, null);
+	}
+
+	/**
 	 * Returns the w s r p consumer portlet with the primary key.
 	 *
 	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
@@ -240,6 +255,22 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return wsrpConsumerPortletPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the w s r p consumer portlet with the matching UUID and company.
+	 *
+	 * @param uuid the w s r p consumer portlet's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching w s r p consumer portlet
+	 * @throws PortalException if a matching w s r p consumer portlet could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WSRPConsumerPortlet getWSRPConsumerPortletByUuidAndCompanyId(
+		String uuid, long companyId) throws PortalException, SystemException {
+		return wsrpConsumerPortletPersistence.findByUuid_C_First(uuid,
+			companyId, null);
 	}
 
 	/**

@@ -230,6 +230,34 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the k b article with the matching UUID and company.
+	 *
+	 * @param uuid the k b article's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle fetchKBArticleByUuidAndCompanyId(String uuid,
+		long companyId) throws SystemException {
+		return kbArticlePersistence.fetchByUuid_C_First(uuid, companyId, null);
+	}
+
+	/**
+	 * Returns the k b article matching the UUID and group.
+	 *
+	 * @param uuid the k b article's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle fetchKBArticleByUuidAndGroupId(String uuid, long groupId)
+		throws SystemException {
+		return kbArticlePersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the k b article with the primary key.
 	 *
 	 * @param kbArticleId the primary key of the k b article
@@ -247,6 +275,21 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return kbArticlePersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the k b article with the matching UUID and company.
+	 *
+	 * @param uuid the k b article's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching k b article
+	 * @throws PortalException if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBArticle getKBArticleByUuidAndCompanyId(String uuid, long companyId)
+		throws PortalException, SystemException {
+		return kbArticlePersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
 	/**

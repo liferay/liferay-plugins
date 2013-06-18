@@ -233,6 +233,35 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the calendar booking with the matching UUID and company.
+	 *
+	 * @param uuid the calendar booking's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarBooking fetchCalendarBookingByUuidAndCompanyId(String uuid,
+		long companyId) throws SystemException {
+		return calendarBookingPersistence.fetchByUuid_C_First(uuid, companyId,
+			null);
+	}
+
+	/**
+	 * Returns the calendar booking matching the UUID and group.
+	 *
+	 * @param uuid the calendar booking's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarBooking fetchCalendarBookingByUuidAndGroupId(String uuid,
+		long groupId) throws SystemException {
+		return calendarBookingPersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the calendar booking with the primary key.
 	 *
 	 * @param calendarBookingId the primary key of the calendar booking
@@ -250,6 +279,22 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return calendarBookingPersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the calendar booking with the matching UUID and company.
+	 *
+	 * @param uuid the calendar booking's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar booking
+	 * @throws PortalException if a matching calendar booking could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarBooking getCalendarBookingByUuidAndCompanyId(String uuid,
+		long companyId) throws PortalException, SystemException {
+		return calendarBookingPersistence.findByUuid_C_First(uuid, companyId,
+			null);
 	}
 
 	/**

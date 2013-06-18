@@ -228,6 +228,36 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the calendar notification template with the matching UUID and company.
+	 *
+	 * @param uuid the calendar notification template's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndCompanyId(
+		String uuid, long companyId) throws SystemException {
+		return calendarNotificationTemplatePersistence.fetchByUuid_C_First(uuid,
+			companyId, null);
+	}
+
+	/**
+	 * Returns the calendar notification template matching the UUID and group.
+	 *
+	 * @param uuid the calendar notification template's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndGroupId(
+		String uuid, long groupId) throws SystemException {
+		return calendarNotificationTemplatePersistence.fetchByUUID_G(uuid,
+			groupId);
+	}
+
+	/**
 	 * Returns the calendar notification template with the primary key.
 	 *
 	 * @param calendarNotificationTemplateId the primary key of the calendar notification template
@@ -246,6 +276,22 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return calendarNotificationTemplatePersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the calendar notification template with the matching UUID and company.
+	 *
+	 * @param uuid the calendar notification template's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar notification template
+	 * @throws PortalException if a matching calendar notification template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndCompanyId(
+		String uuid, long companyId) throws PortalException, SystemException {
+		return calendarNotificationTemplatePersistence.findByUuid_C_First(uuid,
+			companyId, null);
 	}
 
 	/**

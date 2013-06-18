@@ -228,6 +228,35 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the calendar resource with the matching UUID and company.
+	 *
+	 * @param uuid the calendar resource's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarResource fetchCalendarResourceByUuidAndCompanyId(
+		String uuid, long companyId) throws SystemException {
+		return calendarResourcePersistence.fetchByUuid_C_First(uuid, companyId,
+			null);
+	}
+
+	/**
+	 * Returns the calendar resource matching the UUID and group.
+	 *
+	 * @param uuid the calendar resource's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarResource fetchCalendarResourceByUuidAndGroupId(String uuid,
+		long groupId) throws SystemException {
+		return calendarResourcePersistence.fetchByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Returns the calendar resource with the primary key.
 	 *
 	 * @param calendarResourceId the primary key of the calendar resource
@@ -245,6 +274,22 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException, SystemException {
 		return calendarResourcePersistence.findByPrimaryKey(primaryKeyObj);
+	}
+
+	/**
+	 * Returns the calendar resource with the matching UUID and company.
+	 *
+	 * @param uuid the calendar resource's UUID
+	 * @param  companyId the primary key of the company
+	 * @return the matching calendar resource
+	 * @throws PortalException if a matching calendar resource could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarResource getCalendarResourceByUuidAndCompanyId(String uuid,
+		long companyId) throws PortalException, SystemException {
+		return calendarResourcePersistence.findByUuid_C_First(uuid, companyId,
+			null);
 	}
 
 	/**

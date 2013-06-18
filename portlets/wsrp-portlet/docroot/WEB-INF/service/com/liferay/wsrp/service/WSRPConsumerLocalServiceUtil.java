@@ -190,6 +190,20 @@ public class WSRPConsumerLocalServiceUtil {
 	}
 
 	/**
+	* Returns the w s r p consumer with the matching UUID and company.
+	*
+	* @param uuid the w s r p consumer's UUID
+	* @param companyId the primary key of the company
+	* @return the matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.wsrp.model.WSRPConsumer fetchWSRPConsumerByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchWSRPConsumerByUuidAndCompanyId(uuid, companyId);
+	}
+
+	/**
 	* Returns the w s r p consumer with the primary key.
 	*
 	* @param wsrpConsumerId the primary key of the w s r p consumer
@@ -209,6 +223,22 @@ public class WSRPConsumerLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the w s r p consumer with the matching UUID and company.
+	*
+	* @param uuid the w s r p consumer's UUID
+	* @param companyId the primary key of the company
+	* @return the matching w s r p consumer
+	* @throws PortalException if a matching w s r p consumer could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumerByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getWSRPConsumerByUuidAndCompanyId(uuid, companyId);
 	}
 
 	/**

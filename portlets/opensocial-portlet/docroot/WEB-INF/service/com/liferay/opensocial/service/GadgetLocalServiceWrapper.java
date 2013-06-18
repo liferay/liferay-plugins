@@ -186,6 +186,21 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	}
 
 	/**
+	* Returns the gadget with the matching UUID and company.
+	*
+	* @param uuid the gadget's UUID
+	* @param companyId the primary key of the company
+	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.opensocial.model.Gadget fetchGadgetByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _gadgetLocalService.fetchGadgetByUuidAndCompanyId(uuid, companyId);
+	}
+
+	/**
 	* Returns the gadget with the primary key.
 	*
 	* @param gadgetId the primary key of the gadget
@@ -206,6 +221,23 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _gadgetLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the gadget with the matching UUID and company.
+	*
+	* @param uuid the gadget's UUID
+	* @param companyId the primary key of the company
+	* @return the matching gadget
+	* @throws PortalException if a matching gadget could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public com.liferay.opensocial.model.Gadget getGadgetByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _gadgetLocalService.getGadgetByUuidAndCompanyId(uuid, companyId);
 	}
 
 	/**
