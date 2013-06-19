@@ -222,7 +222,7 @@ AUI.add(
 
 				var eventRecorder = scheduler.get('eventRecorder');
 
-				eventRecorder.hidePopOver();
+				eventRecorder.hidePopover();
 
 				instance.invokeService(
 					{
@@ -244,7 +244,7 @@ AUI.add(
 				var scheduler = schedulerEvent.get('scheduler');
 				var eventRecorder = scheduler.get('eventRecorder');
 
-				eventRecorder.hidePopOver();
+				eventRecorder.hidePopover();
 
 				instance.invokeService(
 					{
@@ -516,7 +516,7 @@ AUI.add(
 							if (data && !data.exception && scheduler) {
 								var eventRecorder = scheduler.get('eventRecorder');
 
-								eventRecorder.hidePopOver();
+								eventRecorder.hidePopover();
 
 								scheduler.load();
 							}
@@ -1669,8 +1669,10 @@ AUI.add(
 						var templateData = instance.getTemplateData();
 
 						if (A.instanceOf(bodyTemplate, A.Template) && A.instanceOf(headerTemplate, A.Template)) {
-							instance.popover.bodyNode.setContent(bodyTemplate.parse(templateData));
-							instance.popover.headerNode.setContent(headerTemplate.parse(templateData));
+							instance.popover.setStdModContent('body', bodyTemplate.parse(templateData));
+							instance.popover.setStdModContent('header', headerTemplate.parse(templateData));
+
+							instance.popover.addToolbar(instance._getFooterToolbar(), 'footer');
 						}
 						else {
 							SchedulerEventRecorder.superclass.populateForm.apply(instance, arguments);
@@ -1768,7 +1770,7 @@ AUI.add(
 							}
 						);
 
-						instance.hidePopOver();
+						instance.hidePopover();
 					},
 
 					_handleViewEvent: function(event) {
@@ -1802,7 +1804,7 @@ AUI.add(
 							}
 						);
 
-						instance.hidePopOver();
+						instance.hidePopover();
 					},
 
 					_hasAcceptButton: function(permissions, calendar, status) {
@@ -1878,10 +1880,6 @@ AUI.add(
 						if (event.newVal) {
 							instance._syncInvitees();
 						}
-
-						instance.toolbar.set('children', instance._getToolbarChildren());
-
-						var estimatedPopOverWidth = instance.toolbar.get('boundingBox').get('offsetWidth') + 50;
 					},
 
 					_renderPopOver: function() {
@@ -1965,7 +1963,7 @@ AUI.add(
 						messageNode.html(messageHTML);
 					},
 
-					_getToolbarChildren: function() {
+					_getFooterToolbar: function() {
 						var instance = this;
 
 						var popOver = instance.popover;
