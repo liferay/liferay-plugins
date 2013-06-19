@@ -33,4 +33,16 @@
 	</div>
 </c:if>
 
+<c:if test="<%= (_isSpam(wikiPage) || _isPendingApproval(wikiPage)) && !themeDisplay.isSignedIn() %>">
+	<div>
+		<aui:a href="<%= themeDisplay.getURLSignIn() %>" label="please-sign-in-to-view-this-content" />
+	</div>
+
+	<span id="<portlet:namespace />spamContentStart"></span>
+</c:if>
+
 <%@ include file="/html/portlet/wiki/view_page_content.portal.jspf" %>
+
+<c:if test="<%= (_isSpam(wikiPage) || _isPendingApproval(wikiPage)) && !themeDisplay.isSignedIn() %>">
+	<span id="<portlet:namespace />spamContentEnd"></span>
+</c:if>
