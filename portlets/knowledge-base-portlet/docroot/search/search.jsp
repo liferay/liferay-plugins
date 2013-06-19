@@ -57,19 +57,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		for (int i = 0; i < hits.getDocs().length; i++) {
 			Object[] array = new Object[5];
 
-			long userId = GetterUtil.getLong(hits.doc(i).get(Field.USER_ID));
-
-			User hitsUser = UserLocalServiceUtil.fetchUser(userId);
-
 			array[0] = hits.doc(i).get(Field.ENTRY_CLASS_PK);
 			array[1] = hits.doc(i).get(Field.TITLE);
 
-			if (hitsUser == null) {
-				array[2] = hits.doc(i).get(Field.USER_NAME);
-			}
-			else {
-				array[2] = hitsUser.getFullName();
-			}
+			long userId = GetterUtil.getLong(hits.doc(i).get(Field.USER_ID));
+			String userName = hits.doc(i).get(Field.USER_NAME);
+
+			array[2] = PortalUtil.getUserName(userId, userName);
 
 			array[3] = hits.doc(i).getDate(Field.CREATE_DATE);
 			array[4] = hits.doc(i).getDate(Field.MODIFIED_DATE);
