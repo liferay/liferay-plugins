@@ -33,9 +33,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 
 <div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
 
-<script id="<portlet:namespace />eventRecorderTpl" type="text/x-alloy-template">
-	<%@ include file="/event_recorder.jspf" %>
-</script>
+<%@ include file="/event_recorder.jspf" %>
 
 <aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
@@ -88,13 +86,17 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	<c:if test="<%= !readOnly && (userDefaultCalendar != null) %>">
 		window.<portlet:namespace />eventRecorder = new Liferay.SchedulerEventRecorder(
 			{
+				bodyTemplate: new A.Template(A.one('#<portlet:namespace />eventRecorderBodyTpl').text()),
 				calendarId: <%= userDefaultCalendar.getCalendarId() %>,
 				color: '<%= ColorUtil.toHexString(userDefaultCalendar.getColor()) %>',
 				duration: <%= defaultDuration %>,
 				editCalendarBookingURL: '<%= HtmlUtil.escapeJS(editCalendarBookingURL) %>',
+				headerTemplate: new A.Template(A.one('#<portlet:namespace />eventRecorderHeaderTpl').text()),
 				permissionsCalendarBookingURL: '<%= HtmlUtil.escapeJS(permissionsCalendarBookingURL) %>',
+				popover: {
+					width: 515
+				},
 				portletNamespace: '<portlet:namespace />',
-				template: new A.Template(A.one('#<portlet:namespace />eventRecorderTpl').text()),
 				viewCalendarBookingURL: '<%= HtmlUtil.escapeJS(viewCalendarBookingURL) %>'
 			}
 		);

@@ -21,7 +21,7 @@ AUI.add(
 			}
 		);
 
-		var toInt = function (value) {
+		var toInt = function(value) {
 			return Lang.toInt(value, 10, 0);
 		};
 
@@ -222,7 +222,7 @@ AUI.add(
 
 				var eventRecorder = scheduler.get('eventRecorder');
 
-				eventRecorder.hideOverlay();
+				eventRecorder.hidePopOver();
 
 				instance.invokeService(
 					{
@@ -244,7 +244,7 @@ AUI.add(
 				var scheduler = schedulerEvent.get('scheduler');
 				var eventRecorder = scheduler.get('eventRecorder');
 
-				eventRecorder.hideOverlay();
+				eventRecorder.hidePopOver();
 
 				instance.invokeService(
 					{
@@ -516,7 +516,7 @@ AUI.add(
 							if (data && !data.exception && scheduler) {
 								var eventRecorder = scheduler.get('eventRecorder');
 
-								eventRecorder.hideOverlay();
+								eventRecorder.hidePopOver();
 
 								scheduler.load();
 							}
@@ -1662,14 +1662,33 @@ AUI.add(
 					populateForm: function() {
 						var instance = this;
 
-						var template = instance.get('template');
+						var bodyTemplate = instance.get('bodyTemplate');
 
-						if (A.instanceOf(template, A.Template)) {
-							instance.formNode.setContent(template.parse(instance.getTemplateData()));
+						var headerTemplate = instance.get('headerTemplate');
+
+						var templateData = instance.getTemplateData();
+
+						if (A.instanceOf(bodyTemplate, A.Template) && A.instanceOf(headerTemplate, A.Template)) {
+							instance.popover.bodyNode.setContent(bodyTemplate.parse(templateData));
+							instance.popover.headerNode.setContent(headerTemplate.parse(templateData));
 						}
 						else {
 							SchedulerEventRecorder.superclass.populateForm.apply(instance, arguments);
 						}
+
+						instance.popover.addToolbar(
+							[
+								{
+									cssClass: 'close',
+									label: "\u00D7",
+									on: {
+										click: A.bind(instance._handleCancelEvent, instance)
+									},
+									render: true
+								}
+							],
+							'header'
+						);
 					},
 
 					_handleEventAcceptResponse: function(event) {
@@ -1749,47 +1768,7 @@ AUI.add(
 							}
 						);
 
-						instance.hideOverlay();
-					},
-
-					_handlePermissionsEvent: function(event) {
-						var instance = this;
-
-						var scheduler = instance.get('scheduler');
-
-						var permissionsCalendarBookingURL = decodeURIComponent(instance.get('permissionsCalendarBookingURL'));
-
-						var data = instance.serializeForm();
-
-						var schedulerEvent = instance.get('event');
-
-						var calendarId = schedulerEvent.get('calendarId');
-
-						var calendar = CalendarUtil.visibleCalendars[calendarId];
-
-						data.modelResourceDescription = encodeURIComponent(data.content);
-						data.resourceGroupId = calendar.get('resourceGroupId')
-						data.resourcePrimKey = schedulerEvent.get('calendarBookingId');
-
-						Liferay.Util.openWindow(
-							{
-								dialog: {
-									after: {
-										destroy: function(event) {
-											scheduler.load();
-										}
-									},
-									destroyOnClose: true,
-									modal: true,
-									width: 915
-								},
-								refreshWindow: window,
-								title: Liferay.Language.get('permissions'),
-								uri: Lang.sub(permissionsCalendarBookingURL, data)
-							}
-						);
-
-						instance.hideOverlay();
+						instance.hidePopOver();
 					},
 
 					_handleViewEvent: function(event) {
@@ -1823,18 +1802,15 @@ AUI.add(
 							}
 						);
 
-						instance.hideOverlay();
+						instance.hidePopOver();
 					},
 
 					_hasAcceptButton: function(permissions, calendar, status) {
-						return permissions.MANAGE_BOOKINGS
-							&& (status !== CalendarWorkflow.STATUS_APPROVED)
-							&& (status !== CalendarWorkflow.STATUS_DRAFT);
+						return permissions.MANAGE_BOOKINGS && (status !== CalendarWorkflow.STATUS_APPROVED) && (status !== CalendarWorkflow.STATUS_DRAFT);
 					},
 
 					_hasDeclineButton: function(permissions, calendar, status) {
-						return permissions.MANAGE_BOOKINGS
-							&& (status !== CalendarWorkflow.STATUS_DRAFT);
+						return permissions.MANAGE_BOOKINGS && (status !== CalendarWorkflow.STATUS_DRAFT);
 					},
 
 					_hasDeleteButton: function(permissions, calendar, status) {
@@ -1846,23 +1822,21 @@ AUI.add(
 					},
 
 					_hasMaybeButton: function(permissions, calendar, status) {
-						return permissions.MANAGE_BOOKINGS
-							&& (status !== CalendarWorkflow.STATUS_DRAFT)
-							&& (status !== CalendarWorkflow.STATUS_MAYBE);
+						return permissions.MANAGE_BOOKINGS && (status !== CalendarWorkflow.STATUS_DRAFT) && (status !== CalendarWorkflow.STATUS_MAYBE);
 					},
 
 					_hasSaveButton: function(permissions, calendar, status) {
 						return permissions.MANAGE_BOOKINGS;
 					},
 
-					_onOverlayVisibleChange: function(event) {
+					_afterPopoverVisibleChange: function(event) {
 						var instance = this;
 
 						var schedulerEvent = instance.get('event');
 
-						var overlayBB = instance.overlay.get('boundingBox');
+						var popOverBB = instance.popover.get('boundingBox');
 
-						overlayBB.toggleClass('calendar-portlet-event-recorder-editing', !!schedulerEvent);
+						popOverBB.toggleClass('calendar-portlet-event-recorder-editing', !!schedulerEvent);
 
 						var defaultUserCalendar = CalendarUtil.getDefaultUserCalendar();
 
@@ -1891,7 +1865,7 @@ AUI.add(
 							}
 						);
 
-						SchedulerEventRecorder.superclass._onOverlayVisibleChange.apply(this, arguments);
+						SchedulerEventRecorder.superclass._afterPopoverVisibleChange.apply(this, arguments);
 
 						var portletNamespace = instance.get('portletNamespace');
 
@@ -1901,21 +1875,23 @@ AUI.add(
 							eventRecorderCalendar.val(calendarId.toString());
 						}
 
-						instance._syncToolbarButtons(event.newVal);
-
 						if (event.newVal) {
 							instance._syncInvitees();
 						}
+
+						instance.toolbar.set('children', instance._getToolbarChildren());
+
+						var estimatedPopOverWidth = instance.toolbar.get('boundingBox').get('offsetWidth') + 50;
 					},
 
-					_renderOverlay: function() {
+					_renderPopOver: function() {
 						var instance = this;
 
-						var overlayBB = instance.overlay.get('boundingBox');
+						var popOverBB = instance.popover.get('boundingBox');
 
-						SchedulerEventRecorder.superclass._renderOverlay.apply(this, arguments);
+						SchedulerEventRecorder.superclass._renderPopOver.apply(this, arguments);
 
-						overlayBB.delegate(
+						popOverBB.delegate(
 							['change', 'keypress'],
 							function(event) {
 								var schedulerEvent = instance.get('event') || instance;
@@ -1989,46 +1965,31 @@ AUI.add(
 						messageNode.html(messageHTML);
 					},
 
-					_syncToolbarButtons: function(overlayVisible) {
+					_getToolbarChildren: function() {
 						var instance = this;
 
-						var overlay = instance.overlay;
-						var toolbar = instance.toolbar;
+						var popOver = instance.popover;
 
-						if (!overlayVisible) {
-							toolbar.clear();
+						var schedulerEvent = instance.get('event');
+
+						var schedulerEventCreated = false;
+
+						if (schedulerEvent) {
+							schedulerEventCreated = true;
 						}
 						else {
-							var schedulerEvent = instance.get('event');
+							schedulerEvent = instance;
+						}
 
-							var schedulerEventCreated = false;
+						var children = [];
+						var editGroup = [];
+						var respondGroup = [];
 
-							if (schedulerEvent) {
-								schedulerEventCreated = true;
-							}
-							else {
-								schedulerEvent = instance;
-							}
+						var status = schedulerEvent.get('status');
+						var calendar = CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
 
-							var status = schedulerEvent.get('status');
-							var calendar = CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
-
+						if (calendar) {
 							var permissions = calendar.get('permissions');
-
-							var children = [];
-							var cancelGroup = [];
-							var editGroup = [];
-							var respondGroup = []
-
-							cancelGroup.push(
-								{
-									on: {
-										click: A.bind(instance._handleCancelEvent, instance)
-									},
-									id: 'cancelBtn',
-									label: Liferay.Language.get('close')
-								}
-							);
 
 							if (instance._hasSaveButton(permissions, calendar, status)) {
 								editGroup.push(
@@ -2046,7 +2007,7 @@ AUI.add(
 								editGroup.push(
 									{
 										on: {
-										    click: A.bind(instance._handleEditEvent, instance)
+											click: A.bind(instance._handleEditEvent, instance)
 										},
 										id: 'editBtn',
 										label: Liferay.Language.get('edit')
@@ -2058,22 +2019,10 @@ AUI.add(
 								editGroup.push(
 									{
 										on: {
-										    click: A.bind(instance._handleViewEvent, instance)
+											click: A.bind(instance._handleViewEvent, instance)
 										},
 										id: 'viewBtn',
 										label: Liferay.Language.get('view')
-									}
-								);
-							}
-
-							if ((schedulerEventCreated === true) && permissions.PERMISSIONS) {
-								editGroup.push(
-									{
-										on: {
-										    click: A.bind(instance._handlePermissionsEvent, instance)
-										},
-										id: 'permissionsBtn',
-										label: Liferay.Language.get('permissions')
 									}
 								);
 							}
@@ -2082,7 +2031,7 @@ AUI.add(
 								editGroup.push(
 									{
 										on: {
-										    click: A.bind(instance._handleDeleteEvent, instance)
+											click: A.bind(instance._handleDeleteEvent, instance)
 										},
 										id: 'deleteBtn',
 										label: Liferay.Language.get('delete')
@@ -2092,14 +2041,14 @@ AUI.add(
 
 							if (instance._hasAcceptButton(permissions, calendar, status)) {
 								respondGroup.push(
-										{
-											on: {
-											    click: A.bind(instance._handleEventAcceptResponse, instance)
-											},
-											icon: 'circle-check',
-											id: 'acceptBtn',
-											label: Liferay.Language.get('accept')
-										}
+									{
+										on: {
+											click: A.bind(instance._handleEventAcceptResponse, instance)
+										},
+										icon: 'circle-check',
+										id: 'acceptBtn',
+										label: Liferay.Language.get('accept')
+									}
 								);
 							}
 
@@ -2107,7 +2056,7 @@ AUI.add(
 								respondGroup.push(
 									{
 										on: {
-										    click: A.bind(instance._handleEventMaybeResponse, instance)
+											click: A.bind(instance._handleEventMaybeResponse, instance)
 										},
 										icon: 'help',
 										id: 'maybeBtn',
@@ -2120,7 +2069,7 @@ AUI.add(
 								respondGroup.push(
 									{
 										on: {
-										    click: A.bind(instance._handleEventDeclineResponse, instance)
+											click: A.bind(instance._handleEventDeclineResponse, instance)
 										},
 										icon: 'circle-close',
 										id: 'declineBtn',
@@ -2129,8 +2078,6 @@ AUI.add(
 								);
 							}
 
-							children.push(cancelGroup);
-
 							if (editGroup.length) {
 								children.push(editGroup);
 							}
@@ -2138,13 +2085,9 @@ AUI.add(
 							if (respondGroup.length) {
 								children.push(respondGroup);
 							}
-
-							toolbar.add(children);
-
-							var estimatedOverlayWidth = toolbar.get('boundingBox').get('offsetWidth') + 50;
-
-							overlay.set('width', Math.max(300, estimatedOverlayWidth));
 						}
+
+						return children;
 					}
 				}
 			}

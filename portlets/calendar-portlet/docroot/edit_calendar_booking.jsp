@@ -259,6 +259,16 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<aui:button-row>
 		<aui:button type="submit" />
 
+		<liferay-security:permissionsURL
+			modelResource="<%= CalendarBooking.class.getName() %>"
+			modelResourceDescription="<%= calendarBooking.getTitle(locale) %>"
+			resourceGroupId="<%= calendarBooking.getGroupId() %>"
+			resourcePrimKey="<%= String.valueOf(calendarBooking.getCalendarBookingId()) %>"
+			var="permissionsCalendarBookingURL"
+		/>
+
+		<aui:button href="<%= permissionsCalendarBookingURL %>" value="permissions" />
+
 		<aui:button type="cancel" value="close" />
 	</aui:button-row>
 </aui:form>
