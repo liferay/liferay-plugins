@@ -78,4 +78,26 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 
 </c:if>
 
+<c:if test="<%= (_isSpam(wikiPage) || _isPendingApproval(wikiPage)) && !themeDisplay.isSignedIn() %>">
+	<liferay-util:buffer var="spamContentEndHTML">
+		<span id="<portlet:namespace />spamContentEnd"></span>
+	</liferay-util:buffer>
+
+	<liferay-util:buffer var="spamContentStartHTML">
+		<span id="<portlet:namespace />spamContentStart"></span>
+	</liferay-util:buffer>
+
+	<%
+	int x = html.indexOf(spamContentStartHTML.trim());
+	int y = html.indexOf(spamContentEndHTML.trim());
+
+	if ((x > 0) && (y > 0)) {
+		String trimmedSpamContentEndHTML = spamContentEndHTML.trim();
+
+		html = html.substring(0, x).concat(html.substring(y + trimmedSpamContentEndHTML.length()));
+	}
+	%>
+
+</c:if>
+
 <%= html %>
