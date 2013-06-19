@@ -198,28 +198,28 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 				<aui:layout cssClass="calendar-booking-invitations">
 					<aui:column columnWidth="25" first="true">
-						<label class="aui-field-label">
+						<label class="field-label">
 							<liferay-ui:message key="pending" /> (<span id="<portlet:namespace />pendingCounter"><%= pendingCalendarsJSONArray.length() %></span>)
 						</label>
 
 						<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListPending"></div>
 					</aui:column>
 					<aui:column columnWidth="25">
-						<label class="aui-field-label">
+						<label class="field-label">
 							<liferay-ui:message key="accepted" /> (<span id="<portlet:namespace />acceptedCounter"><%= acceptedCalendarsJSONArray.length() %></span>)
 						</label>
 
 						<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListAccepted"></div>
 					</aui:column>
 					<aui:column columnWidth="25" last="true">
-						<label class="aui-field-label">
+						<label class="field-label">
 							<liferay-ui:message key="maybe" /> (<span id="<portlet:namespace />maybeCounter"><%= maybeCalendarsJSONArray.length() %></span>)
 						</label>
 
 						<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListMaybe"></div>
 					</aui:column>
 					<aui:column columnWidth="25" last="true">
-						<label class="aui-field-label">
+						<label class="field-label">
 							<liferay-ui:message key="declined" /> (<span id="<portlet:namespace />declinedCounter"><%= declinedCalendarsJSONArray.length() %></span>)
 						</label>
 
@@ -234,7 +234,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 						</a>
 
 						<div class="calendar-portlet-availability">
-							<div class="aui-toggler-content-collapsed" id="<portlet:namespace />schedulerContainer">
+							<div class="toggler-content-collapsed" id="<portlet:namespace />schedulerContainer">
 								<div id="<portlet:namespace />message"></div>
 
 								<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">

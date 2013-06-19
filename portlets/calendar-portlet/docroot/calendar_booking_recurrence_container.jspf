@@ -155,7 +155,7 @@ if (recurrence != null) {
 					<aui:field-wrapper cssClass="calendar-portlet-field-date" label="">
 						<aui:input checked="<%= onChecked %>" inlineField="<%= true %>" label="on" name="ends" type="radio" value="on" />
 
-						<div class="calendar-portlet-field-datepicker aui-helper-clearfix">
+						<div class="calendar-portlet-field-datepicker helper-clearfix">
 							<liferay-ui:input-date
 								dayParam="untilDateDay"
 								dayValue="<%= untilJCalendar.get(java.util.Calendar.DATE) %>"
@@ -209,11 +209,9 @@ if (recurrence != null) {
 					dialog: {
 						bodyContent: recurrenceContainerNode,
 						centered: true,
+						hideClass: 'helper-hidden',
 						modal: true,
 						render: '#<portlet:namespace />fm',
-						visible: false,
-						width: 600,
-						hideClass: 'helper-hidden',
 						toolbars: {
 							footer: [
 								{
@@ -225,9 +223,11 @@ if (recurrence != null) {
 									label: '<liferay-ui:message key="done" />'
 								}
 							]
-						}
+						},
+						visible: false,
+						width: 600
 					},
-					title: '<liferay-ui:message key="repeat" />',
+					title: '<liferay-ui:message key="repeat" />'
 				}
 			);
 			window.<portlet:namespace/>recurrenceDialog.after(

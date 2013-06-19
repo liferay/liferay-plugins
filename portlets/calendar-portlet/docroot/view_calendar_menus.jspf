@@ -115,7 +115,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 							uri: A.Lang.sub(
 								decodeURIComponent('<%= addCalendarBookingURL %>'),
 								{
-									calendarId: activeCalendar.get('calendarId'),
+									calendarId: activeCalendar.get('calendarId')
 								}
 							)
 						}

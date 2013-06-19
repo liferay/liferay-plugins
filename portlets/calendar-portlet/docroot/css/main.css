@@ -5,11 +5,11 @@
 		display: none;
 	}
 
-	.aui-scheduler-view-agenda-info-container {
-		.aui-scheduler-view-agenda-info {
+	.scheduler-view-agenda-info-container {
+		.scheduler-view-agenda-info {
 			line-height: 1.2;
 
-			.aui-scheduler-view-agenda-info-biggie {
+			.scheduler-view-agenda-info-biggie {
 				line-height: 30px;
 			}
 		}
@@ -24,11 +24,11 @@
 	background: #FFF;
 	font-size: 12px;
 
-	.aui-scheduler-event-all-day .aui-scheduler-event-title {
+	.scheduler-event-all-day .scheduler-event-title {
 		display: none;
 	}
 
-	.aui-scheduler-event-disabled {
+	.scheduler-event-disabled {
 		@include opacity(0.8);
 	}
 }
@@ -286,7 +286,7 @@
 }
 
 .calendar-portlet-recurrence-container {
-	.aui-field-content, .aui-field-wrapper-content {
+	.field-content, .field-wrapper-content {
 		margin: 2px;
 	}
 }
@@ -306,7 +306,7 @@
 		display: inline-block;
 	}
 
-	.aui-field {
+	.field {
 		top: -10px;
 		position: relative;
 	}
@@ -318,26 +318,26 @@
 		width: 420px;
 	}
 
-	.aui-field-input-text {
+	.field-input-text {
 		width: 454px;
 	}
 }
 
 .calendar-portlet-wrapper {
-	.aui-scheduler-event-all-day .aui-scheduler-event-title {
+	.scheduler-event-all-day .scheduler-event-title {
 		display: none;
 	}
 
-	.aui-scheduler-event-disabled {
+	.scheduler-event-disabled {
 		@include opacity(0.8);
 	}
 }
 
-.calendar-booking-invitations .aui-field-label {
+.calendar-booking-invitations .field-label {
 	margin-left: 15px;
 }
 
-.calendar-portlet-time-zone-field .aui-field .aui-field-content {
+.calendar-portlet-time-zone-field .field .field-content {
 	margin: 0;
 }
 
@@ -345,11 +345,11 @@
 	padding: 5px;
 }
 
-.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col {
+.scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col {
 	padding-top: 5px;
 }
 
-.aui-scheduler-view-table-data-event {
+.scheduler-view-table-data-event {
 	padding: 0 3px 0 3px;
 
 	.aui-scheduler-event-content {
@@ -357,12 +357,11 @@
 	}
 }
 
-.aui-scheduler-view-day-content .yui3-widget-hd {
+.scheduler-view-day-content .yui3-widget-hd {
 	padding-top: 4px;
 }
 
-.aui-scheduler-view-day-header-day a {
-	font-size: 12px;
+.scheduler-view-day-header-day a {
 	padding: 2px;
 }
 
@@ -371,7 +370,7 @@
 	border: 1px solid #DDD;
 }
 
-.aui-dialog-iframe-popup .calendar-portlet .aui-fieldset {
+.dialog-iframe-popup .calendar-portlet .fieldset {
 	margin-bottom: 2em;
 }
 

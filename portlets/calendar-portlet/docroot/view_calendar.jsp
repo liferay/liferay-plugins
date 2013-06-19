@@ -69,47 +69,47 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	<aui:row>
 		<aui:col cssClass="calendar-portlet-column-options" span="<%= 3 %>">
 			<div class="calendar-portlet-mini-calendar" id="<portlet:namespace />miniCalendarContainer"></div>
-	
+
 			<div id="<portlet:namespace />calendarListContainer">
 				<c:if test="<%= themeDisplay.isSignedIn() %>">
 					<a class="toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
 						<span class="calendar-portlet-list-arrow"></span>
-	
+
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="my-calendars" /></span>
-	
+
 						<c:if test="<%= userCalendarResource != null %>">
 							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= userCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 						</c:if>
 					</a>
-	
+
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />myCalendarList"></div>
-	
+
 					<a class="calendar-portlet-list-header toggler-header-expanded" href="javascript:void(0);">
 						<span class="calendar-portlet-list-arrow"></span>
-	
+
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="other-calendars" /></span>
 					</a>
-	
+
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />otherCalendarList">
 						<input class="calendar-portlet-add-calendars-input" id="<portlet:namespace />addOtherCalendar" placeholder="<liferay-ui:message key="add-other-calendars" />" type="text" />
 					</div>
 				</c:if>
-	
+
 				<c:if test="<%= groupCalendarResource != null %>">
 					<a class="toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
 						<span class="calendar-portlet-list-arrow"></span>
-	
+
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="current-site-calendars" /></span>
-	
+
 						<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
 							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 						</c:if>
 					</a>
-	
+
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />siteCalendarList"></div>
 				</c:if>
 			</div>
-	
+
 			<div id="<portlet:namespace />message"></div>
 		</aui:col>
 
@@ -124,16 +124,16 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			<portlet:param name="startTime" value="{startTime}" />
 			<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
 		</portlet:renderURL>
-	
+
 		<aui:col cssClass="calendar-portlet-column-grid" span="<%= 9 %>">
 			<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
 				<liferay-util:param name="activeView" value="<%= activeView %>" />
 				<liferay-util:param name="date" value="<%= String.valueOf(date) %>" />
-	
+
 				<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
-	
+
 				<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
-	
+
 				<liferay-security:permissionsURL
 					modelResource="<%= CalendarBooking.class.getName() %>"
 					modelResourceDescription="{modelResourceDescription}"
@@ -142,14 +142,14 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 					var="permissionsCalendarBookingURL"
 					windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 				/>
-	
+
 				<liferay-util:param name="permissionsCalendarBookingURL" value="<%= permissionsCalendarBookingURL %>" />
-	
+
 				<portlet:renderURL var="viewCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/view_calendar_booking.jsp" />
 					<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
 				</portlet:renderURL>
-	
+
 				<liferay-util:param name="viewCalendarBookingURL" value="<%= viewCalendarBookingURL %>" />
 			</liferay-util:include>
 		</aui:col>

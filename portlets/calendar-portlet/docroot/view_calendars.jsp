@@ -117,9 +117,13 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 			if (!<portlet:namespace />importDialog) {
 				var form = A.one('#<portlet:namespace />fm');
+
 				var importCalendarContainer = A.one('#<portlet:namespace />importCalendarContainer');
+
 				var portletErrorMessage = A.one('#<portlet:namespace />portletErrorMessage');
+
 				var portletSuccessMessage = A.one('#<portlet:namespace />portletSuccessMessage');
+
 				var buttons = [
 					{
 						on: {
@@ -155,6 +159,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 						label: Liferay.Language.get('import')
 					}
 				];
+
 				<portlet:namespace />importDialog = Liferay.Util.Window.getWindow(
 					{
 						dialog: {
@@ -176,7 +181,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 								}
 							}
 						},
-						title: Liferay.Language.get('import'),
+						title: Liferay.Language.get('import')
 					}
 				).render();
 			}

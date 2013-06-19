@@ -1050,47 +1050,32 @@
 								on: {
 
 									click: function(event, buttonItem)  {
-
 										confirmationPanel.onlyThisInstanceFn.apply(confirmationPanel, arguments);
-
 									}
-
 								},
 								label: Liferay.Language.get('only-this-instance')
 							},
 							{
 								on: {
-
 									click: function(event, buttonItem)  {
-
 										confirmationPanel.allFollowingFn.apply(confirmationPanel, arguments);
-
 									}
-
 								},
 								label: Liferay.Language.get('all-following')
 							},
 							{
 								on: {
-
 									click: function(event, buttonItem)  {
-
 										confirmationPanel.allEventsInFn.apply(confirmationPanel, arguments);
-
 									}
-
 								},
 								label: Liferay.Language.get('all-events-in-the-series')
 							},
 							{
 								on: {
-
 									click: function(event, buttonItem)  {
-
 										confirmationPanel.cancelFn.apply(confirmationPanel, arguments);
-
 									}
-
 								},
 								label: Liferay.Language.get('cancel-this-change')
 							}
