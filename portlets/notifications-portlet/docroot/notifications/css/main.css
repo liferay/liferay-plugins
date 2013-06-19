@@ -1,8 +1,10 @@
 @import "compass";
 
-.user-notifications {
+.dockbar-user-notifications {
 	margin: 0 -10px;
+}
 
+.dockbar-user-notifications, .notifications-portlet {
 	.user-notifications-count {
 		background-color: #F03D25;
 		border: 1px solid #F83722;
@@ -18,8 +20,45 @@
 		top: 55%;
 	}
 
+	.dropdown-menu {
+		width: 400px;
+	}
+
 	.user-notifications-list {
-		width: 350px;
+		list-style: none;
+		margin: 0;
+
+		.message {
+			padding: 5px;
+			text-align: center;
+
+			&.top {
+				border-bottom: 1px solid #D5D5D5;
+			}
+
+			&.bottom {
+				border-top: 1px solid #D5D5D5;
+			}
+
+			.left-nav {
+				float: left;
+				padding: 0 10px;
+			}
+
+			.right-nav {
+				float: right;
+				padding: 0 10px;
+			}
+
+			a:hover {
+				text-decoration: none;
+			}
+
+			.disabled a {
+				color: #999;
+				cursor: default;
+			}
+		}
 
 		.user-notification {
 			a {
@@ -36,7 +75,8 @@
 				float: left;
 				position: relative;
 
-				.thumbnail {
+				.user-thumbnail {
+					border: 0;
 					height: 45px;
 					overflow: hidden;
 					width: 45px;
@@ -56,7 +96,7 @@
 			.read {
 				color: #999;
 				float: right;
-				font-size: 9px;
+				font-size: 11px;
 			}
 
 			&.unread {
@@ -66,7 +106,7 @@
 			.timestamp {
 				color: #999;
 				display: inline;
-				font-size: 10px;
+				font-size: 11px;
 			}
 
 			a:hover .read {
@@ -84,10 +124,93 @@
 	}
 }
 
+.notifications-portlet {
+	.user-notifications-sidebar {
+		float: left;
+		padding: 0 10px 0 0;
+		width: 18%;
+	}
+
+	.nav {
+		margin-bottom: 10px;
+
+		a {
+			color: #333333;
+			display: block;
+			padding: 5px 10px;
+
+			.title {
+				float: left;
+			}
+
+			.count {
+				float: right;
+			}
+		}
+
+		a:hover {
+			background-color: #0DB5E7;
+			color: #FFF;
+			text-decoration: none;
+		}
+
+		a.selected {
+			background-color: #0DB5E7;
+			color: #FFF;
+		}
+	}
+
+	.user-notifications-list-container {
+		border: 1px solid #D5D5D5;
+		float: left;
+		width: 80%;
+
+		.loading-mask {
+			min-height: 30px;
+		}
+	}
+
+	.user-notifications-list {
+		.user-notification {
+			a {
+				border-bottom: 1px solid #D5D5D5;
+				clear: both;
+				color: #333333;
+				display: block;
+				font-weight: normal;
+				padding: 15px;
+				white-space: nowrap;
+			}
+
+			a:hover {
+				text-decoration: none;
+				color: #FFF;
+				background-color: #0DB5E7;
+			}
+		}
+	}
+}
+
 /* ---------- Extras ---------- */
 
-.user-notifications {
+.dockbar-user-notifications {
 	.user-notifications-count {
 		@include border-radius(2px);
+	}
+}
+
+.notifications-portlet {
+	.nav {
+		a:hover {
+			@include border-radius(4px);
+		}
+
+		a.selected {
+			@include border-radius(4px);
+		}
+	}
+
+	.user-notifications-list-container {
+		@include border-radius(4px);
 	}
 }

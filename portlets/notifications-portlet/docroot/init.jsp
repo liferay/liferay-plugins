@@ -24,12 +24,14 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
+<%@ page import="com.liferay.notifications.util.PortletKeys" %><%@
+page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationFeedEntry" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.model.UserNotificationEvent" %><%@
@@ -49,5 +51,7 @@ page import="com.liferay.portal.util.PortalUtil" %>
 <liferay-theme:defineObjects />
 
 <%
+int delta = 10;
+
 Format simpleDateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("EEEE, MMMMM dd, yyyy 'at' h:mm a", themeDisplay.getLocale(), themeDisplay.getTimeZone());
 %>
