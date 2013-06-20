@@ -17,6 +17,37 @@
 
 package com.liferay.so.hook.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.announcements.model.AnnouncementsEntry;
+import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalService;
+import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceWrapper;
+import com.liferay.portlet.announcements.service.persistence.AnnouncementsEntryFinderUtil;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author Jonathan Lee
  * @author Evan Thibodeau
@@ -62,6 +93,37 @@ public class SOAnnouncementsEntryLocalServiceImpl
 	@Override
 	public void checkEntries() throws PortalException, SystemException {
 		super.checkEntries();
+
+		sendNotificationEvent();
+	}
+
+	protected void sendNotificationEvent()
+		throws PortalException, SystemException {
+
+		Date now = new Date();
+
+		if (_previousCheckDate == null) {
+			_previousCheckDate = new Date(
+			now.getTime() - _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL);
+		}
+
+		List<AnnouncementsEntry> entries =
+			AnnouncementsEntryFinderUtil.findByDisplayDate(
+				now, _previousCheckDate);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Processing " + entries.size() + " entries");
+		}
+
+		for (AnnouncementsEntry entry : entries) {
+			Date displayDate = entry.getDisplayDate();
+
+			if (displayDate.after(entry.getCreateDate())) {
+				sendNotificationEvent(entry);
+			}
+		}
+
+		_previousCheckDate = now;
 	}
 
 	protected void sendNotificationEvent(AnnouncementsEntry announcementEntry)
@@ -120,5 +182,14 @@ public class SOAnnouncementsEntryLocalServiceImpl
 				user.getCompanyId(), user.getUserId(), notificationEvent);
 		}
 	}
+
+	private static final long _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL =
+		GetterUtil.getInteger(PropsUtil.get(
+			PropsKeys.ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL)) * Time.MINUTE;
+
+	private static Log _log = LogFactoryUtil.getLog(
+		SOAnnouncementsEntryLocalServiceImpl.class);
+
+	private Date _previousCheckDate;
 
 }
