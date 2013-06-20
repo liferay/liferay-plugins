@@ -51,10 +51,10 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
+			SocialActivitySet activitySet = null;
+
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
-
-			SocialActivitySet activitySet = null;
 
 			if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
 				activitySet =
