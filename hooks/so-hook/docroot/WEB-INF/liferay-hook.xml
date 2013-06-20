@@ -45,6 +45,10 @@
 		<service-impl>com.liferay.so.hook.service.impl.SOAnnouncementsEntryServiceImpl</service-impl>
 	</service>
 	<service>
+		<service-type>com.liferay.portlet.announcements.service.AnnouncementsEntryLocalService</service-type>
+		<service-impl>com.liferay.so.hook.service.impl.SOAnnouncementsEntryLocalServiceImpl</service-impl>
+	</service>
+	<service>
 		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
 		<service-impl>com.liferay.so.hook.service.impl.SOCompanyLocalServiceImpl</service-impl>
 	</service>
