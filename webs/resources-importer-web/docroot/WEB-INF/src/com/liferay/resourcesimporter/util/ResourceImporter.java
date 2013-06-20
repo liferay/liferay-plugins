@@ -61,7 +61,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddDDMStructures(
+			addDDMStructures(
 				parentStructureId, name, urlConnection.getInputStream());
 		}
 	}
@@ -89,7 +89,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddDDMTemplates(
+			addDDMTemplates(
 				ddmStructureKey, name, urlConnection.getInputStream());
 		}
 	}
@@ -186,7 +186,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddJournalArticles(
+			addJournalArticles(
 				ddmStructureKey, ddmTemplateKey, name,
 				urlConnection.getInputStream());
 		}

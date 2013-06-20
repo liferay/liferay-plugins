@@ -126,7 +126,7 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddDDMStructures(
+				addDDMStructures(
 					parentDDMStructureKey, file.getName(), inputStream);
 			}
 			finally {
@@ -158,7 +158,7 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddDDMTemplates(ddmStructureKey, file.getName(), inputStream);
+				addDDMTemplates(ddmStructureKey, file.getName(), inputStream);
 			}
 			finally {
 				if (inputStream != null) {
@@ -288,7 +288,7 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddJournalArticles(
+				addJournalArticles(
 					ddmStructureKey, ddmTemplateKey, file.getName(),
 					inputStream);
 			}
@@ -501,7 +501,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void doAddDDMStructures(
+	protected void addDDMStructures(
 			String parentDDMStructureKey, String fileName,
 			InputStream inputStream)
 		throws Exception {
@@ -538,7 +538,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void doAddDDMTemplates(
+	protected void addDDMTemplates(
 			String ddmStructureKey, String fileName, InputStream inputStream)
 		throws Exception {
 
@@ -571,7 +571,7 @@ public class FileSystemImporter extends BaseImporter {
 			_JOURNAL_ARTICLES_DIR_NAME + name);
 	}
 
-	protected void doAddJournalArticles(
+	protected void addJournalArticles(
 			String ddmStructureKey, String ddmTemplateKey, String fileName,
 			InputStream inputStream)
 		throws Exception {
