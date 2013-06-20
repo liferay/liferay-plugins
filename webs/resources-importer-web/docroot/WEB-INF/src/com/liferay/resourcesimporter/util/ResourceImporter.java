@@ -116,6 +116,23 @@ public class ResourceImporter extends FileSystemImporter {
 		}
 	}
 
+	protected void addDLFileEntry(String resourcePath) throws Exception {
+		Long parentFolderId = _folderIds.get(
+			FileUtil.getPath(resourcePath + StringPool.SLASH));
+
+		if (parentFolderId == null) {
+			parentFolderId = 0L;
+		}
+
+		URL url = servletContext.getResource(resourcePath);
+
+		URLConnection urlConnection = url.openConnection();
+
+		addDLFileEntry(
+			parentFolderId, FileUtil.getShortFileName(resourcePath),
+			urlConnection.getInputStream(), urlConnection.getContentLength());
+	}
+
 	@Override
 	protected long addDLFolder(long parentFolderId, String resourcePath)
 		throws Exception {
@@ -173,23 +190,6 @@ public class ResourceImporter extends FileSystemImporter {
 				ddmStructureKey, ddmTemplateKey, name,
 				urlConnection.getInputStream());
 		}
-	}
-
-	protected void addDLFileEntry(String resourcePath) throws Exception {
-		Long parentFolderId = _folderIds.get(
-			FileUtil.getPath(resourcePath + StringPool.SLASH));
-			
-		if (parentFolderId == null) {
-			parentFolderId = 0L;
-		}
-		
-		URL url = servletContext.getResource(resourcePath);
-
-		URLConnection urlConnection = url.openConnection();
-
-		addDLFileEntry(
-			parentFolderId, FileUtil.getShortFileName(resourcePath),
-			urlConnection.getInputStream(), urlConnection.getContentLength());
 	}
 
 	@Override

@@ -194,6 +194,40 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
+	protected void addDLFileEntry(long parentFolderId, File file)
+		throws Exception {
+
+		InputStream inputStream = null;
+
+		try {
+			inputStream = new BufferedInputStream(new FileInputStream(file));
+
+			addDLFileEntry(
+				parentFolderId, file.getName(), inputStream, file.length());
+		}
+		finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+	}
+
+	protected void addDLFileEntry(
+			long parentFolderId, String fileName, InputStream inputStream,
+			long length)
+		throws Exception {
+
+		setServiceContext(fileName);
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
+			userId, groupId, parentFolderId, fileName,
+			MimeTypesUtil.getContentType(fileName),
+			FileUtil.stripExtension(fileName), StringPool.BLANK,
+			StringPool.BLANK, inputStream, length, serviceContext);
+
+		_fileEntries.put(fileName, fileEntry);
+	}
+
 	protected long addDLFolder(long parentFolderId, File folder)
 		throws Exception {
 
@@ -535,40 +569,6 @@ public class FileSystemImporter extends BaseImporter {
 		addJournalArticles(
 			ddmStructureKey, ddmTemplate.getTemplateKey(),
 			_JOURNAL_ARTICLES_DIR_NAME + name);
-	}
-
-	protected void addDLFileEntry(long parentFolderId, File file)
-		throws Exception {
-
-		InputStream inputStream = null;
-
-		try {
-			inputStream = new BufferedInputStream(new FileInputStream(file));
-
-			addDLFileEntry(
-				parentFolderId, file.getName(), inputStream, file.length());
-		}
-		finally {
-			if (inputStream != null) {
-				inputStream.close();
-			}
-		}
-	}
-
-	protected void addDLFileEntry(
-			long parentFolderId, String fileName, InputStream inputStream,
-			long length)
-		throws Exception {
-
-		setServiceContext(fileName);
-
-		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
-			userId, groupId, parentFolderId, fileName,
-			MimeTypesUtil.getContentType(fileName),
-			FileUtil.stripExtension(fileName), StringPool.BLANK,
-			StringPool.BLANK, inputStream, length, serviceContext);
-
-		_fileEntries.put(fileName, fileEntry);
 	}
 
 	protected void doAddJournalArticles(
