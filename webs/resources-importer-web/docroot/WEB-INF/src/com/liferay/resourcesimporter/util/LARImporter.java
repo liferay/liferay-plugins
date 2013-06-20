@@ -49,24 +49,25 @@ public class LARImporter extends BaseImporter {
 		}
 	}
 
-	public void setLARFile(File larFile) {
+	public void setLARFile(File file) {
 		try {
-			setLARInputStreams(
-				new BufferedInputStream(new FileInputStream(larFile)), null);
+			setPublicLARInputStream(
+				new BufferedInputStream(new FileInputStream(file)));
 		}
 		catch (FileNotFoundException fnfe) {
 			_log.error(fnfe, fnfe);
 		}
 	}
 
-	public void setLARInputStream(InputStream larInputStream) {
-		setLARInputStreams(larInputStream, null);
+	public void setLARInputStream(InputStream inputStream) {
+		setPublicLARInputStream(inputStream);
 	}
 
-	public void setLARInputStreams(
-		InputStream publicLARInputStream, InputStream privateLARInputStream) {
-
+	public void setPrivateInputStream(InputStream privateLARInputStream) {
 		_privateLARInputStream = privateLARInputStream;
+	}
+
+	public void setPublicInputStream(InputStream publicLARInputStream) {
 		_publicLARInputStream = publicLARInputStream;
 	}
 
