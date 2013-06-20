@@ -17,7 +17,9 @@ package com.liferay.so.activities.hook.social;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -176,6 +178,32 @@ public abstract class SOSocialActivityInterpreter
 		return assetRenderer.getURLViewInContext(
 			serviceContext.getLiferayPortletRequest(),
 			serviceContext.getLiferayPortletResponse(), null);
+	}
+
+	protected String getPageTitle(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
+		String linkURL = getLinkURL(className, classPK, serviceContext);
+
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+
+		LiferayPortletRequest liferayPortletRequest =
+			serviceContext.getLiferayPortletRequest();
+
+		if (Validator.isNotNull(
+				assetRenderer.getIconPath(liferayPortletRequest))) {
+
+			return wrapLink(
+				linkURL, assetRenderer.getIconPath(liferayPortletRequest),
+				HtmlUtil.escape(
+					assetRenderer.getTitle(serviceContext.getLocale())));
+		}
+
+		return wrapLink(
+			linkURL,
+			HtmlUtil.escape(
+				assetRenderer.getTitle(serviceContext.getLocale())));
 	}
 
 	protected SocialActivityFeedEntry getSubfeedEntry(

@@ -94,24 +94,22 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(thumbnailSrc);
 		sb.append("\"></span>");
 		sb.append("<div class=\"document-container\"><div class=\"title\">");
-
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
-
-		String pageTitle = wrapLink(
-			getLinkURL(
-				activity.getClassName(), activity.getClassPK(), serviceContext),
-			HtmlUtil.escape(
-				assetRenderer.getTitle(serviceContext.getLocale())));
-
-		sb.append(pageTitle);
+		sb.append(
+			getPageTitle(
+				activity.getClassName(), activity.getClassPK(),
+				serviceContext));
 		sb.append("</div><div class=\"version\">");
 		sb.append(
 			serviceContext.translate("version-x", fileVersion.getVersion()));
 		sb.append("</div><div class=\"document-content\">");
+
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
+
 		sb.append(
 			StringUtil.shorten(
 				assetRenderer.getSummary(serviceContext.getLocale()), 200));
+
 		sb.append("</div></div></div>");
 
 		return sb.toString();
