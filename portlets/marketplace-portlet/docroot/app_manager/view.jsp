@@ -90,7 +90,7 @@
 
 						<ul>
 							<li>
-								<liferay-ui:message key="this-app-contains" />:
+								<liferay-ui:message key="this-app-contains" />
 							</li>
 
 							<c:if test="<%= !layoutTemplates.isEmpty() %>">
