@@ -186,17 +186,19 @@ public class ResourcesImporterServletContextListener
 					if (privateLARURL != null) {
 						privateLARURLConnection =
 							privateLARURL.openConnection();
+
+						larImporter.setPrivateLARInputStream(
+							privateLARURLConnection.getInputStream());
 					}
 
 					URLConnection publicLARURLConnection = null;
 
 					if (publicLARURL != null) {
 						publicLARURLConnection = publicLARURL.openConnection();
-					}
 
-					larImporter.setLARInputStreams(
-						publicLARURLConnection.getInputStream(),
-						privateLARURLConnection.getInputStream());
+						larImporter.setPublicLARInputStream(
+							publicLARURLConnection.getInputStream());
+					}
 
 					importer = larImporter;
 				}

@@ -224,10 +224,12 @@ private static File _exportLayoutsAsFile(Group group, boolean privateLayout) thr
 
 	List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(group.getGroupId(), privateLayout);
 
-	Long[] layoutIds = new Long[layouts.size()];
+	long[] layoutIds = new long[layouts.size()];
 
-	for (Layout layout : layouts) {
-		ArrayUtil.append(layoutIds, layout.getLayoutId());
+	for (int i = 0; i < layoutIds.length; i++) {
+		Layout layout = layouts.get(i);
+
+		layoutIds[i] = layout.getLayoutId();
 	}
 
 	return LayoutLocalServiceUtil.exportLayoutsAsFile(group.getGroupId(), privateLayout, layoutIds, parameters, null, null);
