@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/sdk4j.jar"/>
 	<classpathentry kind="output" path="bin" />
 </classpath>
