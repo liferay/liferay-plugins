@@ -25,8 +25,8 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
 
 /**
@@ -42,7 +42,7 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 	public void updateActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		SocialActivity activity =
+		com.liferay.so.activities.model.SocialActivity activity =
 			SocialActivityLocalServiceUtil.fetchSocialActivity(activityId);
 
 		if ((activity == null) || (activity.getActivitySetId() > 0)) {
@@ -73,7 +73,7 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
-			SocialActivity activity =
+			com.liferay.so.activities.model.SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
 			int activityType = activity.getType();
