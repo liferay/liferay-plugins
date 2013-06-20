@@ -47,31 +47,7 @@ import javax.portlet.PortletException;
  */
 public class AnnouncementsPortlet extends MVCPortlet {
 
-	@Override
-	public void processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
-
-		try {
-			String actionName = ParamUtil.getString(
-				actionRequest, ActionRequest.ACTION_NAME);
-
-			if (actionName.equals("deleteEntry")) {
-				deleteEntry(actionRequest, actionResponse);
-			}
-			else if (actionName.equals("saveEntry")) {
-				saveEntry(actionRequest, actionResponse);
-			}
-			else {
-				super.processAction(actionRequest, actionResponse);
-			}
-		}
-		catch (Exception e) {
-			throw new PortletException(e);
-		}
-	}
-
-	protected void deleteEntry(
+	public void deleteEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -176,7 +152,7 @@ public class AnnouncementsPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void saveEntry(
+	public void saveEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
