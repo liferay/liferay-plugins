@@ -48,12 +48,73 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			expirationDateDay, expirationDateYear, expirationDateHour,
 			expirationDateMinute, priority, alert);
 
+		if (announcementEntry != null) {
+			sendNotificationEvent(announcementEntry);
+		}
+
 		return announcementEntry;
 	}
 
 	@Override
 	public void checkEntries() throws PortalException, SystemException {
 		super.checkEntries();
+	}
+
+	protected void sendNotificationEvent(AnnouncementsEntry announcementEntry)
+		throws PortalException, SystemException {
+
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSONObject.put("body", announcementEntry.getTitle());
+		notificationEventJSONObject.put(
+			"entryId", announcementEntry.getEntryId());
+		notificationEventJSONObject.put(
+			"groupId", announcementEntry.getClassPK());
+		notificationEventJSONObject.put("portletId", PortletKeys.ANNOUNCEMENTS);
+		notificationEventJSONObject.put("title", "x-sent-a-new-announcement");
+		notificationEventJSONObject.put(
+			"userId", announcementEntry.getUserId());
+
+		List<User> users = Collections.emptyList();
+
+		if (announcementEntry.getClassNameId() == 0) {
+			users = UserLocalServiceUtil.getUsers(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		}
+		else {
+			String className = PortalUtil.getClassName(
+				announcementEntry.getClassNameId());
+
+			if (className.equals(Group.class.getName())) {
+				users = UserLocalServiceUtil.getGroupUsers(
+					announcementEntry.getClassPK());
+			}
+			else if (className.equals(Organization.class.getName())) {
+				users = UserLocalServiceUtil.getOrganizationUsers(
+					announcementEntry.getClassPK());
+			}
+			else if (className.equals(Role.class.getName())) {
+				users = UserLocalServiceUtil.getRoleUsers(
+					announcementEntry.getClassPK());
+			}
+			else if (className.equals(UserGroup.class.getName())) {
+				users = UserLocalServiceUtil.getUserGroupUsers(
+					announcementEntry.getClassPK());
+			}
+		}
+
+		for (User user : users) {
+			NotificationEvent notificationEvent =
+				NotificationEventFactoryUtil.createNotificationEvent(
+					System.currentTimeMillis(), "6_WAR_soportlet",
+					notificationEventJSONObject);
+
+			notificationEvent.setDeliveryRequired(0);
+
+			ChannelHubManagerUtil.sendNotificationEvent(
+				user.getCompanyId(), user.getUserId(), notificationEvent);
+		}
 	}
 
 }
