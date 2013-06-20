@@ -47,7 +47,11 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.NoSuchFolderException;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
+import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
@@ -101,23 +105,96 @@ public class FileSystemImporter extends BaseImporter {
 			return;
 		}
 
-		File[] files = listFiles(dlDocumentsDir);
+		File[] files = dlDocumentsDir.listFiles();
+
+		if (Validator.isNull(files)) {
+			return;
+		}
 
 		for (File file : files) {
-			InputStream inputStream = null;
-
-			try {
-				inputStream = new BufferedInputStream(
-					new FileInputStream(file));
-
-				doAddDLFileEntries(file.getName(), inputStream, file.length());
+			if (file.isDirectory()) {
+				addDLFolder(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, file);
 			}
-			finally {
-				if (inputStream != null) {
-					inputStream.close();
-				}
+			else {
+				addDLFileEntry(
+					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, file);
 			}
 		}
+	}
+
+	protected void addDLFileEntry(long parentFolderId, File file)
+		throws Exception {
+
+		InputStream inputStream = null;
+
+		try {
+			inputStream = new BufferedInputStream(new FileInputStream(file));
+
+			addDLFileEntry(
+				parentFolderId, file.getName(), inputStream, file.length());
+		}
+		finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
+	}
+
+	protected void addDLFileEntry(
+			long parentFolderId, String fileName, InputStream inputStream,
+			long length)
+		throws Exception {
+
+		setServiceContext(fileName);
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
+			userId, groupId, parentFolderId, fileName,
+			MimeTypesUtil.getContentType(fileName),
+			FileUtil.stripExtension(fileName), StringPool.BLANK,
+			StringPool.BLANK, inputStream, length, serviceContext);
+
+		_fileEntries.put(fileName, fileEntry);
+	}
+
+	protected long addDLFolder(long parentFolderId, File folder)
+		throws Exception {
+
+		long folderId = addDLFolder(parentFolderId, folder.getName());
+
+		File[] files = folder.listFiles();
+
+		if (Validator.isNull(files)) {
+			return folderId;
+		}
+
+		for (File file : files) {
+			if (file.isDirectory()) {
+				addDLFolder(folderId, file);
+			}
+			else {
+				addDLFileEntry(folderId, file);
+			}
+		}
+
+		return folderId;
+	}
+
+	protected long addDLFolder(long parentFolderId, String folderName)
+		throws Exception {
+
+		DLFolder dlFolder = null;
+
+		try {
+			dlFolder = DLFolderLocalServiceUtil.getFolder(
+				groupId, parentFolderId, folderName);
+		}
+		catch (NoSuchFolderException nsfe) {
+			dlFolder = DLFolderLocalServiceUtil.addFolder(
+				userId, groupId, groupId, false, parentFolderId, folderName,
+				null, serviceContext);
+		}
+
+		return dlFolder.getFolderId();
 	}
 
 	protected void addJournalArticles(
@@ -142,7 +219,7 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddJournalArticles(
+				addJournalArticles(
 					journalStructureId, journalTemplateId, file.getName(),
 					inputStream);
 			}
@@ -152,6 +229,69 @@ public class FileSystemImporter extends BaseImporter {
 				}
 			}
 		}
+	}
+
+	protected void addJournalArticles(
+			String journalStructureId, String journalTemplateId,
+			String fileName, InputStream inputStream)
+		throws Exception {
+
+		String journalArticleId = getJournalId(fileName);
+
+		String title = FileUtil.stripExtension(fileName);
+
+		Map<Locale, String> titleMap = getMap(title);
+
+		JSONObject assetJSONObject = _assetJSONObjectMap.get(fileName);
+
+		Map<Locale, String> descriptionMap = null;
+
+		if (assetJSONObject != null) {
+			String abstractSummary = assetJSONObject.getString(
+				"abstractSummary");
+
+			descriptionMap = getMap(abstractSummary);
+		}
+
+		String content = StringUtil.read(inputStream);
+
+		content = processJournalArticleContent(content);
+
+		boolean smallImage = false;
+		String smallImageURL = StringPool.BLANK;
+
+		if (assetJSONObject != null) {
+			String smallImageFileName = assetJSONObject.getString("smallImage");
+
+			if (Validator.isNotNull(smallImageFileName)) {
+				smallImage = true;
+
+				FileEntry fileEntry = _fileEntries.get(smallImageFileName);
+
+				if (fileEntry != null) {
+					smallImageURL = DLUtil.getPreviewURL(
+						fileEntry, fileEntry.getFileVersion(), null,
+						StringPool.BLANK);
+				}
+			}
+		}
+
+		setServiceContext(fileName);
+
+		JournalArticle journalArticle =
+			JournalArticleLocalServiceUtil.addArticle(
+				userId, groupId, 0, 0, journalArticleId, false,
+				JournalArticleConstants.VERSION_DEFAULT, titleMap,
+				descriptionMap, content, "general", journalStructureId,
+				journalTemplateId, StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0,
+				0, 0, true, 0, 0, 0, 0, 0, true, true, smallImage,
+				smallImageURL, null, new HashMap<String, byte[]>(),
+				StringPool.BLANK, serviceContext);
+
+		JournalArticleLocalServiceUtil.updateStatus(
+			userId, groupId, journalArticle.getArticleId(),
+			journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
+			StringPool.BLANK, serviceContext);
 	}
 
 	protected void addJournalStructures(
@@ -175,7 +315,7 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddJournalStructures(
+				addJournalStructures(
 					parentStructureId, file.getName(), inputStream);
 			}
 			finally {
@@ -183,6 +323,36 @@ public class FileSystemImporter extends BaseImporter {
 					inputStream.close();
 				}
 			}
+		}
+	}
+
+	protected void addJournalStructures(
+			String parentStructureId, String fileName, InputStream inputStream)
+		throws Exception {
+
+		String journalStructureId = getJournalId(fileName);
+
+		String name = FileUtil.stripExtension(fileName);
+
+		Map<Locale, String> nameMap = getMap(name);
+
+		String xsd = StringUtil.read(inputStream);
+
+		setServiceContext(fileName);
+
+		JournalStructure journalStructure =
+			JournalStructureLocalServiceUtil.addStructure(
+				userId, groupId, journalStructureId, false, parentStructureId,
+				nameMap, null, xsd, serviceContext);
+
+		addJournalTemplates(
+			journalStructure.getStructureId(),
+			_JOURNAL_TEMPLATES_DIR_NAME + name);
+
+		if (Validator.isNull(parentStructureId)) {
+			addJournalStructures(
+				journalStructure.getStructureId(),
+				_JOURNAL_STRUCTURES_DIR_NAME + name);
 		}
 	}
 
@@ -207,7 +377,7 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddJournalTemplates(
+				addJournalTemplates(
 					journalStructureId, file.getName(), inputStream);
 			}
 			finally {
@@ -216,6 +386,33 @@ public class FileSystemImporter extends BaseImporter {
 				}
 			}
 		}
+	}
+
+	protected void addJournalTemplates(
+			String journalStructureId, String fileName, InputStream inputStream)
+		throws Exception {
+
+		String journalTemplateId = getJournalId(fileName);
+
+		String name = FileUtil.stripExtension(fileName);
+
+		Map<Locale, String> nameMap = getMap(name);
+
+		String xsl = StringUtil.read(inputStream);
+
+		xsl = replaceFileEntryURL(xsl);
+
+		setServiceContext(fileName);
+
+		JournalTemplate journalTemplate =
+			JournalTemplateLocalServiceUtil.addTemplate(
+				userId, groupId, journalTemplateId, false, journalStructureId,
+				nameMap, null, xsl, true, JournalTemplateConstants.LANG_TYPE_VM,
+				false, false, StringPool.BLANK, null, serviceContext);
+
+		addJournalArticles(
+			journalStructureId, journalTemplate.getTemplateId(),
+			_JOURNAL_ARTICLES_DIR_NAME + name);
 	}
 
 	protected void addLayout(
@@ -415,143 +612,6 @@ public class FileSystemImporter extends BaseImporter {
 
 			addLayout(privateLayout, parentLayoutId, layoutJSONObject);
 		}
-	}
-
-	protected void doAddDLFileEntries(
-			String fileName, InputStream inputStream, long length)
-		throws Exception {
-
-		String mimeType = MimeTypesUtil.getContentType(fileName);
-
-		String title = FileUtil.stripExtension(fileName);
-
-		setServiceContext(fileName);
-
-		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
-			userId, groupId, 0, fileName, mimeType, title, StringPool.BLANK,
-			StringPool.BLANK, inputStream, length, serviceContext);
-
-		_fileEntries.put(fileName, fileEntry);
-	}
-
-	protected void doAddJournalArticles(
-			String journalStructureId, String journalTemplateId,
-			String fileName, InputStream inputStream)
-		throws Exception {
-
-		String journalArticleId = getJournalId(fileName);
-
-		String title = FileUtil.stripExtension(fileName);
-
-		Map<Locale, String> titleMap = getMap(title);
-
-		JSONObject assetJSONObject = _assetJSONObjectMap.get(fileName);
-
-		Map<Locale, String> descriptionMap = null;
-
-		if (assetJSONObject != null) {
-			String abstractSummary = assetJSONObject.getString(
-				"abstractSummary");
-
-			descriptionMap = getMap(abstractSummary);
-		}
-
-		String content = StringUtil.read(inputStream);
-
-		content = processJournalArticleContent(content);
-
-		boolean smallImage = false;
-		String smallImageURL = StringPool.BLANK;
-
-		if (assetJSONObject != null) {
-			String smallImageFileName = assetJSONObject.getString("smallImage");
-
-			if (Validator.isNotNull(smallImageFileName)) {
-				smallImage = true;
-
-				FileEntry fileEntry = _fileEntries.get(smallImageFileName);
-
-				if (fileEntry != null) {
-					smallImageURL = DLUtil.getPreviewURL(
-						fileEntry, fileEntry.getFileVersion(), null,
-						StringPool.BLANK);
-				}
-			}
-		}
-
-		setServiceContext(fileName);
-
-		JournalArticle journalArticle =
-			JournalArticleLocalServiceUtil.addArticle(
-				userId, groupId, 0, 0, journalArticleId, false,
-				JournalArticleConstants.VERSION_DEFAULT, titleMap,
-				descriptionMap, content, "general", journalStructureId,
-				journalTemplateId, StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0,
-				0, 0, true, 0, 0, 0, 0, 0, true, true, smallImage,
-				smallImageURL, null, new HashMap<String, byte[]>(),
-				StringPool.BLANK, serviceContext);
-
-		JournalArticleLocalServiceUtil.updateStatus(
-			userId, groupId, journalArticle.getArticleId(),
-			journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
-			StringPool.BLANK, serviceContext);
-	}
-
-	protected void doAddJournalStructures(
-			String parentStructureId, String fileName, InputStream inputStream)
-		throws Exception {
-
-		String journalStructureId = getJournalId(fileName);
-
-		String name = FileUtil.stripExtension(fileName);
-
-		Map<Locale, String> nameMap = getMap(name);
-
-		String xsd = StringUtil.read(inputStream);
-
-		setServiceContext(fileName);
-
-		JournalStructure journalStructure =
-			JournalStructureLocalServiceUtil.addStructure(
-				userId, groupId, journalStructureId, false, parentStructureId,
-				nameMap, null, xsd, serviceContext);
-
-		addJournalTemplates(
-			journalStructure.getStructureId(),
-			_JOURNAL_TEMPLATES_DIR_NAME + name);
-
-		if (Validator.isNull(parentStructureId)) {
-			addJournalStructures(
-				journalStructure.getStructureId(),
-				_JOURNAL_STRUCTURES_DIR_NAME + name);
-		}
-	}
-
-	protected void doAddJournalTemplates(
-			String journalStructureId, String fileName, InputStream inputStream)
-		throws Exception {
-
-		String journalTemplateId = getJournalId(fileName);
-
-		String name = FileUtil.stripExtension(fileName);
-
-		Map<Locale, String> nameMap = getMap(name);
-
-		String xsl = StringUtil.read(inputStream);
-
-		xsl = replaceFileEntryURL(xsl);
-
-		setServiceContext(fileName);
-
-		JournalTemplate journalTemplate =
-			JournalTemplateLocalServiceUtil.addTemplate(
-				userId, groupId, journalTemplateId, false, journalStructureId,
-				nameMap, null, xsl, true, JournalTemplateConstants.LANG_TYPE_VM,
-				false, false, StringPool.BLANK, null, serviceContext);
-
-		addJournalArticles(
-			journalStructureId, journalTemplate.getTemplateId(),
-			_JOURNAL_ARTICLES_DIR_NAME + name);
 	}
 
 	protected void doImportResources() throws Exception {

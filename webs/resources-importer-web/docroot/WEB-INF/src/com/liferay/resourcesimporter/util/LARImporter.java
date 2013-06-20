@@ -63,11 +63,11 @@ public class LARImporter extends BaseImporter {
 		setPublicLARInputStream(inputStream);
 	}
 
-	public void setPrivateInputStream(InputStream privateLARInputStream) {
+	public void setPrivateLARInputStream(InputStream privateLARInputStream) {
 		_privateLARInputStream = privateLARInputStream;
 	}
 
-	public void setPublicInputStream(InputStream publicLARInputStream) {
+	public void setPublicLARInputStream(InputStream publicLARInputStream) {
 		_publicLARInputStream = publicLARInputStream;
 	}
 

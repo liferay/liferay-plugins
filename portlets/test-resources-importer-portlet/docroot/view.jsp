@@ -147,6 +147,25 @@ for (String importer : importers) {
 	</p>
 
 	<p>
+
+		<%
+		DLFolder dlFolder = null;
+
+		dlFileEntry = null;
+
+		try {
+			dlFolder = DLFolderLocalServiceUtil.getFolder(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Parent Folder");
+
+			dlFileEntry = DLFileEntryLocalServiceUtil.getFileEntry(groupId, dlFolder.getFolderId(), "child_document");
+		}
+		catch (Exception e) {
+		}
+		%>
+
+		DLFolderLocalServiceUtil#fetchFolder=<%= _assertTrue(dlFolder != null) %><br />
+
+		DLFileEntryLocalServiceUtil#fetchFileEntry=<%= _assertTrue(dlFileEntry != null) %><br />
+
 		DLFileEntryLocalServiceUtil#getFileEntriesCount=<%= _assertEquals(1, DLFileEntryLocalServiceUtil.getFileEntriesCount(groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)) %><br />
 	</p>
 
