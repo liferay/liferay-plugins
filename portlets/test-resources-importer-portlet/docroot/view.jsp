@@ -154,7 +154,6 @@ for (String importer : importers) {
 		dlFileEntry = DLFileEntryLocalServiceUtil.fetchFileEntry(groupId, dlFolder.getFolderId(), "child_document");
 		%>
 
-
 		DLFolderLocalServiceUtil#fetchFolder=<%= _assertTrue(dlFolder != null) %><br />
 
 		DLFileEntryLocalServiceUtil#fetchFileEntry=<%= _assertTrue(dlFileEntry != null) %><br />

@@ -14,8 +14,6 @@
 
 package com.liferay.resourcesimporter.util;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -190,7 +188,7 @@ public class FileSystemImporter extends BaseImporter {
 				addDLFolder(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, file);
 			}
 			else {
-				doAddDLFileEntry(
+				addDLFileEntry(
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, file);
 			}
 		}
@@ -212,7 +210,7 @@ public class FileSystemImporter extends BaseImporter {
 				addDLFolder(folderId, file);
 			}
 			else {
-				doAddDLFileEntry(folderId, file);
+				addDLFileEntry(folderId, file);
 			}
 		}
 
@@ -539,7 +537,7 @@ public class FileSystemImporter extends BaseImporter {
 			_JOURNAL_ARTICLES_DIR_NAME + name);
 	}
 
-	protected void doAddDLFileEntry(long parentFolderId, File file)
+	protected void addDLFileEntry(long parentFolderId, File file)
 		throws Exception {
 
 		InputStream inputStream = null;
@@ -547,7 +545,7 @@ public class FileSystemImporter extends BaseImporter {
 		try {
 			inputStream = new BufferedInputStream(new FileInputStream(file));
 
-			doAddDLFileEntry(
+			addDLFileEntry(
 				parentFolderId, file.getName(), inputStream, file.length());
 		}
 		finally {
@@ -557,10 +555,10 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void doAddDLFileEntry(
+	protected void addDLFileEntry(
 			long parentFolderId, String fileName, InputStream inputStream,
 			long length)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		setServiceContext(fileName);
 
@@ -779,7 +777,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected String processJournalArticleContent(String content)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		content = replaceFileEntryURL(content);
 
@@ -806,9 +804,7 @@ public class FileSystemImporter extends BaseImporter {
 		return sb.toString();
 	}
 
-	protected String replaceFileEntryURL(String content)
-		throws PortalException, SystemException {
-
+	protected String replaceFileEntryURL(String content) throws Exception {
 		Matcher matcher = _fileEntryPattern.matcher(content);
 
 		while (matcher.find()) {
@@ -963,7 +959,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void updateLayoutSetThemeId(JSONObject sitemapJSONObject)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		String themeId = sitemapJSONObject.getString("themeId");
 

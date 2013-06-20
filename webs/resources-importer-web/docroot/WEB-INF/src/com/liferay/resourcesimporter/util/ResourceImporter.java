@@ -111,7 +111,7 @@ public class ResourceImporter extends FileSystemImporter {
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, resourcePath);
 			}
 			else {
-				doAddDLFileEntry(resourcePath);
+				addDLFileEntry(resourcePath);
 			}
 		}
 	}
@@ -120,10 +120,9 @@ public class ResourceImporter extends FileSystemImporter {
 	protected long addDLFolder(long parentFolderId, String resourcePath)
 		throws Exception {
 
-		String folderPath = FileUtil.getPath(resourcePath);
-
 		long folderId = super.addDLFolder(
-			parentFolderId, FileUtil.getShortFileName(folderPath));
+			parentFolderId,
+			FileUtil.getShortFileName(FileUtil.getPath(resourcePath)));
 
 		_folderIds.put(resourcePath, folderId);
 
@@ -139,7 +138,7 @@ public class ResourceImporter extends FileSystemImporter {
 				addDLFolder(folderId, curResourcePath);
 			}
 			else {
-				doAddDLFileEntry(curResourcePath);
+				addDLFileEntry(curResourcePath);
 			}
 		}
 
@@ -176,21 +175,19 @@ public class ResourceImporter extends FileSystemImporter {
 		}
 	}
 
-	protected void doAddDLFileEntry(String resourcePath) throws Exception {
-		long parentFolderId = 0;
-
-		String folderPath = FileUtil.getPath(
-			resourcePath).concat(StringPool.SLASH);
-
-		if (_folderIds.containsKey(folderPath)) {
-			parentFolderId = _folderIds.get(folderPath);
+	protected void addDLFileEntry(String resourcePath) throws Exception {
+		Long parentFolderId = _folderIds.get(
+			FileUtil.getPath(resourcePath + StringPool.SLASH));
+			
+		if (parentFolderId == null) {
+			parentFolderId = 0L;
 		}
-
+		
 		URL url = servletContext.getResource(resourcePath);
 
 		URLConnection urlConnection = url.openConnection();
 
-		doAddDLFileEntry(
+		addDLFileEntry(
 			parentFolderId, FileUtil.getShortFileName(resourcePath),
 			urlConnection.getInputStream(), urlConnection.getContentLength());
 	}
