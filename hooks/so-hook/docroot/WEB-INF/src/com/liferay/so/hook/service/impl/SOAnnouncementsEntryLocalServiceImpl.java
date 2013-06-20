@@ -30,5 +30,30 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		super(announcementsEntryLocalService);
 	}
 
+	@Override
+	public AnnouncementsEntry addEntry(
+		long plid, long classNameId, long classPK, String title,
+		String content, String url, String type, int displayDateMonth,
+		int displayDateDay, int displayDateYear, int displayDateHour,
+		int displayDateMinute, int expirationDateMonth,
+		int expirationDateDay, int expirationDateYear,
+		int expirationDateHour, int expirationDateMinute, int priority,
+		boolean alert)
+		throws PortalException, SystemException {
+
+		AnnouncementsEntry announcementEntry = super.addEntry(
+			plid, classNameId, classPK, title, content, url, type,
+			displayDateMonth, displayDateDay, displayDateYear,
+			displayDateHour, displayDateMinute, expirationDateMonth,
+			expirationDateDay, expirationDateYear, expirationDateHour,
+			expirationDateMinute, priority, alert);
+
+		return announcementEntry;
+	}
+
+	@Override
+	public void checkEntries() throws PortalException, SystemException {
+		super.checkEntries();
+	}
 
 }
