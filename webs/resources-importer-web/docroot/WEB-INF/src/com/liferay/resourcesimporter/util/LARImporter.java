@@ -36,14 +36,23 @@ public class LARImporter extends BaseImporter {
 
 	@Override
 	public void importResources() throws Exception {
-		LayoutLocalServiceUtil.importLayouts(
-			userId, groupId, true, getParameterMap(), _larInputStream);
+		if (_privateLARInputStream != null) {
+			LayoutLocalServiceUtil.importLayouts(
+				userId, groupId, true, getParameterMap(),
+				_privateLARInputStream);
+		}
+
+		if (_publicLARInputStream != null) {
+			LayoutLocalServiceUtil.importLayouts(
+				userId, groupId, false, getParameterMap(),
+				_publicLARInputStream);
+		}
 	}
 
 	public void setLARFile(File larFile) {
 		try {
-			setLARInputStream(
-				new BufferedInputStream(new FileInputStream(larFile)));
+			setLARInputStreams(
+				new BufferedInputStream(new FileInputStream(larFile)), null);
 		}
 		catch (FileNotFoundException fnfe) {
 			_log.error(fnfe, fnfe);
@@ -51,7 +60,14 @@ public class LARImporter extends BaseImporter {
 	}
 
 	public void setLARInputStream(InputStream larInputStream) {
-		_larInputStream = larInputStream;
+		setLARInputStreams(larInputStream, null);
+	}
+
+	public void setLARInputStreams(
+		InputStream publicLARInputStream, InputStream privateLARInputStream) {
+
+		_privateLARInputStream = privateLARInputStream;
+		_publicLARInputStream = publicLARInputStream;
 	}
 
 	protected Map<String, String[]> getParameterMap() {
@@ -120,6 +136,7 @@ public class LARImporter extends BaseImporter {
 
 	private static Log _log = LogFactoryUtil.getLog(LARImporter.class);
 
-	private InputStream _larInputStream;
+	private InputStream _privateLARInputStream;
+	private InputStream _publicLARInputStream;
 
 }
