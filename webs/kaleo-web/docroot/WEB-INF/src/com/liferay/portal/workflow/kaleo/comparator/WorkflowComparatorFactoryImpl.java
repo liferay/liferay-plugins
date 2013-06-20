@@ -16,6 +16,17 @@ package com.liferay.portal.workflow.kaleo.comparator;
 
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactory;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowDefinitionNameComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceEndDateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStartDateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowInstanceStateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowLogCreateDateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowLogUserIdComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowTaskCompletionDateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowTaskCreateDateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowTaskDueDateComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowTaskNameComparator;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowTaskUserIdComparator;
 
 /**
  * @author Michael C. Han
@@ -25,59 +36,91 @@ public class WorkflowComparatorFactoryImpl
 
 	@Override
 	public OrderByComparator getDefinitionNameComparator(boolean ascending) {
-		return new WorkflowDefinitionNameComparator(ascending);
+		return new WorkflowDefinitionNameComparator(
+			ascending, "name ASC, version ASC", "name DESC, version DESC",
+			new String[] {"name", "version"});
 	}
 
 	@Override
 	public OrderByComparator getInstanceEndDateComparator(boolean ascending) {
-		return new WorkflowInstanceEndDateComparator(ascending);
+		return new WorkflowInstanceEndDateComparator(
+			ascending, "endDate ASC, kaleoInstanceId ASC",
+			"endDate DESC, kaleoInstanceId DESC",
+			new String[] {"endDate", "kaleoInstanceId"});
 	}
 
 	@Override
 	public OrderByComparator getInstanceStartDateComparator(boolean ascending) {
-		return new WorkflowInstanceStartDateComparator(ascending);
+		return new WorkflowInstanceStartDateComparator(
+			ascending, "createDate ASC, kaleoInstanceId ASC",
+			"createDate DESC, kaleoInstanceId DESC",
+			new String[] {"createDate", "kaleoInstanceId"});
 	}
 
 	@Override
 	public OrderByComparator getInstanceStateComparator(boolean ascending) {
-		return new WorkflowInstanceStateComparator(ascending);
+		return new WorkflowInstanceStateComparator(
+			ascending, "state ASC, kaleoInstanceId ASC",
+			"state DESC, kaleoInstanceId DESC",
+			new String[] {"state", "kaleoInstanceId"});
 	}
 
 	@Override
 	public OrderByComparator getLogCreateDateComparator(boolean ascending) {
-		return new WorkflowLogCreateDateComparator(ascending);
+		return new WorkflowLogCreateDateComparator(
+			ascending, "createDate ASC, kaleoLogId ASC",
+			"createDate DESC, kaleoLogId DESC",
+			new String[] {"createDate", "kaleoLogId"});
 	}
 
 	@Override
 	public OrderByComparator getLogUserIdComparator(boolean ascending) {
-		return new WorkflowLogUserIdComparator(ascending);
+		return new WorkflowLogUserIdComparator(
+			ascending, "userId ASC, kaleoLogId ASC",
+			"userId DESC, kaleoLogId DESC",
+			new String[] {"userId", "kaleoLogId"});
 	}
 
 	@Override
 	public OrderByComparator getTaskCompletionDateComparator(
 		boolean ascending) {
 
-		return new WorkflowTaskCompletionDateComparator(ascending);
+		return new WorkflowTaskCompletionDateComparator(
+			ascending, "completionDate ASC, kaleoTaskId ASC",
+			"completionDate DESC, kaleoTaskId DESC",
+			new String[] {"completionDate", "kaleoTaskId"});
 	}
 
 	@Override
 	public OrderByComparator getTaskCreateDateComparator(boolean ascending) {
-		return new WorkflowTaskCreateDateComparator(ascending);
+		return new WorkflowTaskCreateDateComparator(
+			ascending, "createDate ASC, kaleoTaskInstanceId ASC",
+			"createDate DESC, kaleoTaskInstanceId DESC",
+			new String[] {"createDate", "kaleoTaskInstanceId"});
 	}
 
 	@Override
 	public OrderByComparator getTaskDueDateComparator(boolean ascending) {
-		return new WorkflowTaskDueDateComparator(ascending);
+		return new WorkflowTaskDueDateComparator(
+			ascending, "dueDate ASC, modifiedDate ASC, kaleoTaskId ASC",
+			"dueDate DESC, modifiedDate DESC, kaleoTaskId DESC",
+			new String[] {"dueDate", "modifiedDate", "kaleoTaskId"});
 	}
 
 	@Override
 	public OrderByComparator getTaskNameComparator(boolean ascending) {
-		return new WorkflowTaskNameComparator(ascending);
+		return new WorkflowTaskNameComparator(
+			ascending, "name ASC, kaleoTaskId ASC",
+			"name DESC, kaleoTaskId DESC",
+			new String[] {"name", "kaleoTaskId"});
 	}
 
 	@Override
 	public OrderByComparator getTaskUserIdComparator(boolean ascending) {
-		return new WorkflowTaskUserIdComparator(ascending);
+		return new WorkflowTaskUserIdComparator(
+			ascending, "userId ASC, kaleoTaskId ASC",
+			"userId DESC, kaleoTaskId DESC",
+			new String[] {"userId", "kaleoTaskId"});
 	}
 
 }

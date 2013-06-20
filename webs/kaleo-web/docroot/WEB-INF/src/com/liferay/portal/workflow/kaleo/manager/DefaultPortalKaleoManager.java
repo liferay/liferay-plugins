@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManager;
+import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.RoleConstants;
@@ -34,7 +35,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
-import com.liferay.portal.workflow.kaleo.comparator.WorkflowDefinitionNameComparator;
 
 import java.io.InputStream;
 
@@ -254,7 +254,8 @@ public class DefaultPortalKaleoManager
 		List<WorkflowDefinition> workflowDefinitions =
 			_workflowDefinitionManager.getActiveWorkflowDefinitions(
 				company.getCompanyId(), workflowDefinitionName, 0, 20,
-				new WorkflowDefinitionNameComparator(false));
+				WorkflowComparatorFactoryUtil.getDefinitionNameComparator(
+					false));
 
 		if (workflowDefinitions.isEmpty()) {
 			if (_log.isWarnEnabled()) {
