@@ -74,7 +74,7 @@
 					</tr>
 				</tpl>
 
-				<tr <tpl if="!values.editing">class="helper-hidden"</tpl> id="<portlet:namespace />eventRecorderUsers">
+				<tr <tpl if="!values.editing">class="hide"</tpl> id="<portlet:namespace />eventRecorderUsers">
 					<td>
 						<liferay-ui:message key="users" />:
 					</td>
@@ -82,7 +82,7 @@
 						<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
 					</td>
 				</tr>
-				<tr <tpl if="!values.editing">class="helper-hidden"</tpl> id="<portlet:namespace />eventRecorderResources">
+				<tr <tpl if="!values.editing">class="hide"</tpl> id="<portlet:namespace />eventRecorderResources">
 					<td>
 						<liferay-ui:message key="resources" />:
 					</td>

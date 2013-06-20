@@ -227,11 +227,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					</aui:column>
 
 					<aui:column columnWidth="100">
-						<a class="toggler-header-collapsed calendar-portlet-list-header" href="javascript:;" id="<portlet:namespace />checkAvailability">
+						<div class="toggler-header-collapsed calendar-portlet-list-header" id="<portlet:namespace />checkAvailability">
 							<span class="calendar-portlet-list-arrow"></span>
 
 							<span class="calendar-portlet-list-text"><liferay-ui:message key="resources-availability" /></span>
-						</a>
+						</div>
 
 						<div class="calendar-portlet-availability">
 							<div class="toggler-content-collapsed" id="<portlet:namespace />schedulerContainer">
@@ -259,15 +259,17 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<aui:button-row>
 		<aui:button type="submit" />
 
-		<liferay-security:permissionsURL
-			modelResource="<%= CalendarBooking.class.getName() %>"
-			modelResourceDescription="<%= calendarBooking.getTitle(locale) %>"
-			resourceGroupId="<%= calendarBooking.getGroupId() %>"
-			resourcePrimKey="<%= String.valueOf(calendarBooking.getCalendarBookingId()) %>"
-			var="permissionsCalendarBookingURL"
-		/>
+		<c:if test="<%= calendarBooking != null %>">
+			<liferay-security:permissionsURL
+				modelResource="<%= CalendarBooking.class.getName() %>"
+				modelResourceDescription="<%= calendarBooking.getTitle(locale) %>"
+				resourceGroupId="<%= calendarBooking.getGroupId() %>"
+				resourcePrimKey="<%= String.valueOf(calendarBooking.getCalendarBookingId()) %>"
+				var="permissionsCalendarBookingURL"
+			/>
 
-		<aui:button href="<%= permissionsCalendarBookingURL %>" value="permissions" />
+			<aui:button href="<%= permissionsCalendarBookingURL %>" value="permissions" />
+		</c:if>
 
 		<aui:button type="cancel" value="close" />
 	</aui:button-row>

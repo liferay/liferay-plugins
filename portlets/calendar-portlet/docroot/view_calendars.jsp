@@ -91,10 +91,10 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
-<div class="helper-hidden calendar-portlet-import-container" id="<portlet:namespace />importCalendarContainer">
-	<div class="helper-hidden portlet-msg-error" id="<portlet:namespace />portletErrorMessage"></div>
+<div class="hide calendar-portlet-import-container" id="<portlet:namespace />importCalendarContainer">
+	<div class="hide portlet-msg-error" id="<portlet:namespace />portletErrorMessage"></div>
 
-	<div class="helper-hidden portlet-msg-success" id="<portlet:namespace />portletSuccessMessage">
+	<div class="hide portlet-msg-success" id="<portlet:namespace />portletSuccessMessage">
 		<liferay-ui:message key="your-request-completed-successfully" />
 	</div>
 
@@ -188,6 +188,6 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 			<portlet:namespace />importDialog.show();
 		},
-		['aui-dialog', 'aui-io', 'liferay-util-window']
+		['aui-io', 'liferay-util-window']
 	);
 </aui:script>

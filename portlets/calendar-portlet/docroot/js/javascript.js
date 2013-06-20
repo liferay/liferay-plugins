@@ -37,13 +37,13 @@ AUI.add(
 
 		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
 
-		var CREATE_EVENT = "createEvent";
+		var CONTROLS_NODE = 'controlsNode';
 
-		var CONTROLS_NODE = "controlsNode";
+		var ICON_CREATE_EVENT_NODE = 'iconCreateEventNode';
 
-		var ICON_CREATE_EVENT_NODE = "iconCreateEventNode";
-
-		var TPL_ICON_CREATE_EVENT_NODE = '<button type="button" class="calendar-create-event-btn btn btn-primary"><i class="icon-plus icon-white"></i> New Event</button>';
+		var TPL_ICON_CREATE_EVENT_NODE = '<button type="button" class="btn btn-primary calendar-create-event-btn">' +
+											'<i class="icon-plus icon-white"></i> ' + Liferay.Language.get('new-event') +
+										 '</button>';
 
 		var COMPANY_GROUP_ID = toInt(themeDisplay.getCompanyGroupId());
 
@@ -1202,14 +1202,14 @@ AUI.add(
 		var Scheduler = A.Component.create(
 			{
 				ATTRS: {
+					filterCalendarBookings: {
+						validator: isFunction
+					},
+
 					iconCreateEventNode: {
 						valueFn: function() {
 							return A.Node.create(TPL_ICON_CREATE_EVENT_NODE);
 						}
-					},
-
-					filterCalendarBookings: {
-						validator: isFunction
 					},
 
 					portletNamespace: {
@@ -1221,6 +1221,11 @@ AUI.add(
 					preventPersistence: {
 						validator: isBoolean,
 						value: false
+					},
+
+					showNewEventBtn: {
+						validator: isBoolean,
+						value: true
 					}
 				},
 
@@ -1232,6 +1237,22 @@ AUI.add(
 					calendarModel: Liferay.SchedulerCalendar,
 					eventModel: Liferay.SchedulerEvent,
 					eventsModel: Liferay.SchedulerEvents,
+
+					renderUI: function() {
+						var instance = this;
+
+						Scheduler.superclass.renderUI.apply(this, arguments);
+
+						var showNewEventBtn = instance.get('showNewEventBtn');
+
+						if (showNewEventBtn) {
+							instance[ICON_CREATE_EVENT_NODE] = instance.get(ICON_CREATE_EVENT_NODE);
+
+							instance[CONTROLS_NODE].prepend(instance[ICON_CREATE_EVENT_NODE]);
+
+							instance[ICON_CREATE_EVENT_NODE].on('click', instance._onClickCreateEvent, instance);
+						}
+					},
 
 					bindUI: function() {
 						var instance = this;
@@ -1314,14 +1335,6 @@ AUI.add(
 						var events = instance._events;
 
 						return events.sync.apply(events, arguments);
-					},
-
-					addCreateEventButton: function() {
-						var instance = this;
-
-						instance[ICON_CREATE_EVENT_NODE] = instance.get(ICON_CREATE_EVENT_NODE);
-						instance[CONTROLS_NODE].prepend(instance[ICON_CREATE_EVENT_NODE]);
-						instance[CONTROLS_NODE].delegate('click', instance._onClickCreateEvent, '.calendar-create-event-btn', instance);
 					},
 
 					_afterActiveViewChange: function(event) {
@@ -1486,6 +1499,10 @@ AUI.add(
 
 						var activeViewName = instance.get('activeView').get('name');
 
+						var defaultUserCalendar = CalendarUtil.getDefaultUserCalendar();
+
+						var calendarId = defaultUserCalendar.get('calendarId');
+
 						var editCalendarBookingURL = decodeURIComponent(recorder.get('editCalendarBookingURL'));
 
 						Liferay.Util.openWindow(
@@ -1493,22 +1510,22 @@ AUI.add(
 								dialog: {
 									after: {
 										destroy: function(event) {
-											scheduler.load();
+											instance.load();
 										}
 									},
-									destroyOnClose: true,
-									modal: true,
-									width: 915
+									destroyOnHide: true,
+									modal: true
 								},
-								refreshWindow: window,
 								title: Liferay.Language.get('add-event'),
-								uri: Lang.sub(editCalendarBookingURL, {
-									activeView: activeViewName
-								})
+								uri: Lang.sub(
+									editCalendarBookingURL,
+									{
+										activeView: activeViewName,
+										calendarId: calendarId
+									}
+								)
 							}
 						);
-
-						instance.load();
 					},
 
 					_onDeleteEvent: function(event) {
@@ -1760,9 +1777,8 @@ AUI.add(
 											scheduler.load();
 										}
 									},
-									destroyOnClose: true,
-									modal: true,
-									width: 915
+									destroyOnHide: true,
+									modal: true
 								},
 								refreshWindow: window,
 								title: Liferay.Language.get('edit'),
@@ -1794,9 +1810,8 @@ AUI.add(
 											scheduler.load();
 										}
 									},
-									destroyOnClose: true,
-									modal: true,
-									width: 915
+									destroyOnHide: true,
+									modal: true
 								},
 								refreshWindow: window,
 								title: Liferay.Language.get('view'),
@@ -1836,9 +1851,9 @@ AUI.add(
 
 						var schedulerEvent = instance.get('event');
 
-						var popOverBB = instance.popover.get('boundingBox');
+						var popoverBB = instance.popover.get('boundingBox');
 
-						popOverBB.toggleClass('calendar-portlet-event-recorder-editing', !!schedulerEvent);
+						popoverBB.toggleClass('calendar-portlet-event-recorder-editing', !!schedulerEvent);
 
 						var defaultUserCalendar = CalendarUtil.getDefaultUserCalendar();
 
@@ -1885,11 +1900,11 @@ AUI.add(
 					_renderPopOver: function() {
 						var instance = this;
 
-						var popOverBB = instance.popover.get('boundingBox');
+						var popoverBB = instance.popover.get('boundingBox');
 
 						SchedulerEventRecorder.superclass._renderPopOver.apply(this, arguments);
 
-						popOverBB.delegate(
+						popoverBB.delegate(
 							['change', 'keypress'],
 							function(event) {
 								var schedulerEvent = instance.get('event') || instance;
@@ -1966,8 +1981,6 @@ AUI.add(
 					_getFooterToolbar: function() {
 						var instance = this;
 
-						var popOver = instance.popover;
-
 						var schedulerEvent = instance.get('event');
 
 						var schedulerEventCreated = false;
@@ -1995,8 +2008,10 @@ AUI.add(
 										on: {
 											click: A.bind(instance._handleSaveEvent, instance)
 										},
+										icon: 'icon-hdd',
 										id: 'saveBtn',
-										label: Liferay.Language.get('save')
+										label: Liferay.Language.get('save'),
+										primary: true
 									}
 								);
 							}
@@ -2007,6 +2022,7 @@ AUI.add(
 										on: {
 											click: A.bind(instance._handleEditEvent, instance)
 										},
+										icon: 'icon-edit',
 										id: 'editBtn',
 										label: Liferay.Language.get('edit')
 									}
@@ -2019,6 +2035,7 @@ AUI.add(
 										on: {
 											click: A.bind(instance._handleViewEvent, instance)
 										},
+										icon: 'icon-eye-open',
 										id: 'viewBtn',
 										label: Liferay.Language.get('view')
 									}
@@ -2031,6 +2048,7 @@ AUI.add(
 										on: {
 											click: A.bind(instance._handleDeleteEvent, instance)
 										},
+										icon: 'icon-trash',
 										id: 'deleteBtn',
 										label: Liferay.Language.get('delete')
 									}
@@ -2043,7 +2061,7 @@ AUI.add(
 										on: {
 											click: A.bind(instance._handleEventAcceptResponse, instance)
 										},
-										icon: 'circle-check',
+										icon: 'icon-ok-sign',
 										id: 'acceptBtn',
 										label: Liferay.Language.get('accept')
 									}
@@ -2056,7 +2074,7 @@ AUI.add(
 										on: {
 											click: A.bind(instance._handleEventMaybeResponse, instance)
 										},
-										icon: 'help',
+										icon: 'icon-question-sign',
 										id: 'maybeBtn',
 										label: Liferay.Language.get('maybe')
 									}
@@ -2069,7 +2087,7 @@ AUI.add(
 										on: {
 											click: A.bind(instance._handleEventDeclineResponse, instance)
 										},
-										icon: 'circle-close',
+										icon: ' icon-remove-sign',
 										id: 'declineBtn',
 										label: Liferay.Language.get('decline')
 									}

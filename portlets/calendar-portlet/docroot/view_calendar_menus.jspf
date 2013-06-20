@@ -15,8 +15,9 @@
 --%>
 
 <%
-String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
 String backURL = PortalUtil.getCurrentURL(request);
+
+String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
 %>
 
 <aui:script use="liferay-calendar-simple-menu,liferay-calendar-simple-color-picker">
@@ -107,8 +108,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 									}
 								},
 								destroyOnClose: true,
-								modal: true,
-								width: 915
+								modal: true
 							},
 							refreshWindow: window,
 							title: Liferay.Language.get('add-event'),

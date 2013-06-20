@@ -388,19 +388,23 @@
 		font-weight: bold;
 	}
 }
-	
+
 .rss-time-interval {
 	margin-top: -1em;
 	margin-left: 2em;
 }
 
 .yui3-skin-sam {
+	.yui3-calendar-day.yui3-calendar-day-selected {
+		background-color: #EFEFEF;
+	}
+
 	.yui3-calendar-day.lfr-busy-day {
 		background: transparent;
 		position: relative;
 
 		&.yui3-calendar-day-selected {
-			background-color: #B3D4FF;
+			background-color: #EFEFEF;
 		}
 
 		&:hover {
@@ -419,6 +423,10 @@
 		right: 0;
 		top: 0;
 		width: 0;
+	}
+
+	.yui3-aclist-list {
+		margin: 0;
 	}
 }
 

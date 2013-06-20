@@ -72,7 +72,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 			<div id="<portlet:namespace />calendarListContainer">
 				<c:if test="<%= themeDisplay.isSignedIn() %>">
-					<a class="toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
+					<div class="toggler-header-expanded calendar-portlet-list-header">
 						<span class="calendar-portlet-list-arrow"></span>
 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="my-calendars" /></span>
@@ -80,15 +80,15 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 						<c:if test="<%= userCalendarResource != null %>">
 							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= userCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 						</c:if>
-					</a>
+					</div>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />myCalendarList"></div>
 
-					<a class="calendar-portlet-list-header toggler-header-expanded" href="javascript:void(0);">
+					<div class="calendar-portlet-list-header toggler-header-expanded">
 						<span class="calendar-portlet-list-arrow"></span>
 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="other-calendars" /></span>
-					</a>
+					</div>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />otherCalendarList">
 						<input class="calendar-portlet-add-calendars-input" id="<portlet:namespace />addOtherCalendar" placeholder="<liferay-ui:message key="add-other-calendars" />" type="text" />
@@ -96,7 +96,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				</c:if>
 
 				<c:if test="<%= groupCalendarResource != null %>">
-					<a class="toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
+					<div class="toggler-header-expanded calendar-portlet-list-header">
 						<span class="calendar-portlet-list-arrow"></span>
 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="current-site-calendars" /></span>
@@ -104,7 +104,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 						<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
 							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 						</c:if>
-					</a>
+					</div>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />siteCalendarList"></div>
 				</c:if>
@@ -113,22 +113,22 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			<div id="<portlet:namespace />message"></div>
 		</aui:col>
 
-		<portlet:renderURL var="editCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
-			<portlet:param name="activeView" value="{activeView}" />
-			<portlet:param name="allDay" value="{allDay}" />
-			<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
-			<portlet:param name="calendarId" value="{calendarId}" />
-			<portlet:param name="date" value="{date}" />
-			<portlet:param name="endTime" value="{endTime}" />
-			<portlet:param name="startTime" value="{startTime}" />
-			<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
-		</portlet:renderURL>
-
 		<aui:col cssClass="calendar-portlet-column-grid" span="<%= 9 %>">
 			<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
 				<liferay-util:param name="activeView" value="<%= activeView %>" />
 				<liferay-util:param name="date" value="<%= String.valueOf(date) %>" />
+
+				<portlet:renderURL var="editCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+					<portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
+					<portlet:param name="activeView" value="{activeView}" />
+					<portlet:param name="allDay" value="{allDay}" />
+					<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
+					<portlet:param name="calendarId" value="{calendarId}" />
+					<portlet:param name="date" value="{date}" />
+					<portlet:param name="endTime" value="{endTime}" />
+					<portlet:param name="startTime" value="{startTime}" />
+					<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
+				</portlet:renderURL>
 
 				<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
 
@@ -150,6 +150,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 					<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
 				</portlet:renderURL>
 
+				<liferay-util:param name="showNewEventBtn" value="<%= Boolean.TRUE.toString() %>" />
 				<liferay-util:param name="viewCalendarBookingURL" value="<%= viewCalendarBookingURL %>" />
 			</liferay-util:include>
 		</aui:col>

@@ -64,7 +64,7 @@ if (recurrence != null) {
 }
 %>
 
-<div class="calendar-portlet-recurrence-container helper-hidden">
+<div class="calendar-portlet-recurrence-container hide">
 	<table id="<portlet:namespace />recurrenceContainer">
 		<aui:input name="exceptionDates" type="hidden" value="<%= exceptionDatesString %>" />
 
@@ -114,7 +114,7 @@ if (recurrence != null) {
 				</td>
 			</tr>
 		</tbody>
-		<tbody class="calendar-portlet-interval-view <%= (frequency == Frequency.WEEKLY) ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />view<%= Frequency.WEEKLY %>">
+		<tbody class="calendar-portlet-interval-view <%= (frequency == Frequency.WEEKLY) ? "" : "hide" %>" id="<portlet:namespace />view<%= Frequency.WEEKLY %>">
 			<tr>
 				<th class="calendar-portlet-recurrence-title">
 					<liferay-ui:message key="repeat-on" />:
@@ -155,7 +155,7 @@ if (recurrence != null) {
 					<aui:field-wrapper cssClass="calendar-portlet-field-date" label="">
 						<aui:input checked="<%= onChecked %>" inlineField="<%= true %>" label="on" name="ends" type="radio" value="on" />
 
-						<div class="calendar-portlet-field-datepicker helper-clearfix">
+						<div class="calendar-portlet-field-datepicker clearfix">
 							<liferay-ui:input-date
 								dayParam="untilDateDay"
 								dayValue="<%= untilJCalendar.get(java.util.Calendar.DATE) %>"
@@ -188,7 +188,7 @@ if (recurrence != null) {
 	</table>
 </div>
 
-<aui:script use="aui-dialog">
+<aui:script use="liferay-util-window">
 	var countNode = A.one('#<portlet:namespace />count');
 	var endsRadioNodes = A.all('[name=<portlet:namespace />ends]');
 	var frequencyNode = A.one('#<portlet:namespace />frequency');
@@ -203,45 +203,42 @@ if (recurrence != null) {
 	window.<portlet:namespace />openRecurrenceDialog = function(visible) {
 		var instance = this;
 
-		if (!window.<portlet:namespace />recurrenceDialog) {
-				window.<portlet:namespace />recurrenceDialog = Liferay.Util.Window.getWindow(
-					{
-					dialog: {
-						bodyContent: recurrenceContainerNode,
-						centered: true,
-						hideClass: 'helper-hidden',
-						modal: true,
-						render: '#<portlet:namespace />fm',
-						toolbars: {
-							footer: [
-								{
-									on: {
-										click: function() {
-											this.hide();
-										}
-									},
-									label: '<liferay-ui:message key="done" />'
-								}
-							]
-						},
-						visible: false,
-						width: 600
-					},
-					title: '<liferay-ui:message key="repeat" />'
-				}
-			);
-			window.<portlet:namespace/>recurrenceDialog.after(
-				'visibleChange',
-				function(event) {
-					if (event.newVal) {
-						recurrenceContainerNode.show();
-					}
+		window.<portlet:namespace />recurrenceDialog = Liferay.Util.Window.getWindow(
+			{
+				dialog: {
+					after:{
+						visibleChange: function(event) {
+							if (event.newVal) {
+								recurrenceContainerNode.show();
+							}
 
-					window.<portlet:namespace />updateSummary(summaryNode);
-					window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
-				}
-			);
-		}
+							window.<portlet:namespace />updateSummary(summaryNode);
+							window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
+						}
+					},
+					bodyContent: recurrenceContainerNode,
+					centered: true,
+					id: '<portlet:namespace />recurrenceDialog',
+					modal: true,
+					render: '#<portlet:namespace />fm',
+					toolbars: {
+						footer: [
+							{
+								on: {
+									click: function() {
+										this.hide();
+									}
+								},
+								label: '<liferay-ui:message key="done" />'
+							}
+						]
+					},
+					visible: false,
+					width: 600
+				},
+				title: '<liferay-ui:message key="repeat" />'
+			}
+		);
 
 		window.<portlet:namespace />recurrenceDialog.set('visible', visible);
 	};

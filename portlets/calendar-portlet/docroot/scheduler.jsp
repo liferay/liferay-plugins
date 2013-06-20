@@ -28,6 +28,7 @@ boolean hideWeekView = ParamUtil.getBoolean(request, "hideWeekView");
 String permissionsCalendarBookingURL = ParamUtil.getString(request, "permissionsCalendarBookingURL");
 boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence");
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
+boolean showNewEventBtn = ParamUtil.getBoolean(request, "showNewEventBtn");
 String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
 %>
 
@@ -94,7 +95,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 				headerTemplate: new A.Template(A.one('#<portlet:namespace />eventRecorderHeaderTpl').text()),
 				permissionsCalendarBookingURL: '<%= HtmlUtil.escapeJS(permissionsCalendarBookingURL) %>',
 				popover: {
-					width: 515
+					width: 600
 				},
 				portletNamespace: '<portlet:namespace />',
 				viewCalendarBookingURL: '<%= HtmlUtil.escapeJS(viewCalendarBookingURL) %>'
@@ -114,6 +115,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			portletNamespace: '<portlet:namespace />',
 			preventPersistence: <%= preventPersistence %>,
 			render: true,
+			showNewEventBtn: <%= showNewEventBtn %>,
 			strings: {
 				agenda: '<liferay-ui:message key="agenda" />',
 				day: '<liferay-ui:message key="day" />',
@@ -141,8 +143,4 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			]
 		}
 	);
-
-	<c:if test="<%= !readOnly && (userDefaultCalendar != null) %>">
-		window.<portlet:namespace />scheduler.addCreateEventButton();
-	</c:if>
 </aui:script>
