@@ -21,6 +21,7 @@ import com.liferay.marketplace.DuplicateAppException;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.AppLocalServiceBaseImpl;
+import com.liferay.marketplace.util.comparator.AppTitleComparator;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -29,6 +30,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StreamUtil;
@@ -39,6 +41,7 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
@@ -122,7 +125,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		coreApp.setDescription("Plugins bundled with Liferay Portal.");
 		coreApp.setVersion(ReleaseInfo.getVersion());
 
-		coreApp.addContextName(StringPool.BLANK);
+		coreApp.addContextName(PortalUtil.getPathContext());
 
 		installedApps.add(coreApp);
 
@@ -142,7 +145,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			App app = appPersistence.create(0);
 
 			app.setTitle(pluginPackage.getName());
-			app.setDescription(pluginPackage.getShortDescription());
+			app.setDescription(pluginPackage.getLongDescription());
 			app.setVersion(pluginPackage.getVersion());
 
 			app.addContextName(pluginPackage.getContext());
@@ -159,6 +162,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				installedApps.add(app);
 			}
 		}
+
+		installedApps = ListUtil.sort(installedApps, new AppTitleComparator());
 
 		_installedApps = installedApps;
 
