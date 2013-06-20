@@ -41,7 +41,9 @@
 					<aui:a href="<%= qqAuthURL %>" label="bind-your-qq-account" />
 				</c:when>
 				<c:otherwise>
-					<liferay-ui:message key="your-have-bound-your-qq-accout" />
+					<portlet:actionURL name="unbindQqAccount" var="unbindQqAccountURL" />
+
+					<liferay-ui:message key="your-have-bound-your-qq-accout" /><aui:a href="<%= unbindQqAccountURL.toString() %>" label="unbind-your-qq-account" />
 				</c:otherwise>
 			</c:choose>
 		</c:when>

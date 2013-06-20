@@ -26,7 +26,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Social Login (Display)</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.liferay.sociallogin.display.portlet.DisplayPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/display/view.jsp</value>
