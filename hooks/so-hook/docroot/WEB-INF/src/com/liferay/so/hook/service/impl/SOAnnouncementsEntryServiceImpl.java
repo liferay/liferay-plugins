@@ -17,24 +17,13 @@
 
 package com.liferay.so.hook.service.impl;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.Organization;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -42,9 +31,6 @@ import com.liferay.portlet.announcements.model.AnnouncementsEntry;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceUtil;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryService;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryServiceWrapper;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @author Jonathan Lee
