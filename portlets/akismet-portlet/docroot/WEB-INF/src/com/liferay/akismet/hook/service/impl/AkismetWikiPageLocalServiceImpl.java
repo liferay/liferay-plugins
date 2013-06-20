@@ -96,8 +96,8 @@ public class AkismetWikiPageLocalServiceImpl
 
 			NotificationThreadLocal.setEnabled(false);
 
-			page.setStatus(WorkflowConstants.STATUS_APPROVED);
 			page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
+			page.setStatus(WorkflowConstants.STATUS_APPROVED);
 
 			page = super.updateWikiPage(page);
 
@@ -163,8 +163,8 @@ public class AkismetWikiPageLocalServiceImpl
 
 			NotificationThreadLocal.setEnabled(false);
 
-			page.setStatus(WorkflowConstants.STATUS_APPROVED);
 			page.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
+			page.setStatus(WorkflowConstants.STATUS_APPROVED);
 
 			page = super.updateWikiPage(page);
 
