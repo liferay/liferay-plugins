@@ -1,4 +1,3 @@
-
 <%--
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
@@ -19,14 +18,12 @@
 
 <%
 String filter = ParamUtil.getString(request, "filter");
-
 boolean fullView = ParamUtil.getBoolean(request, "fullView", true);
-
 int start = ParamUtil.getInteger(request, "start", 0);
 int end = ParamUtil.getInteger(request, "end", (delta - 1));
 
-List<UserNotificationEvent> userNotificationEvents;
-int userNotificationEventsCount;
+List<UserNotificationEvent> userNotificationEvents = null;
+int userNotificationEventsCount = null;
 
 if (filter.equals("unread")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), false, start, end);
