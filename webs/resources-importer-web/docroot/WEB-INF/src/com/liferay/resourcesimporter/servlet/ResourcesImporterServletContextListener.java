@@ -156,8 +156,17 @@ public class ResourcesImporterServletContextListener
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_RESOURCES_DIR);
-		URL larURL = servletContext.getResource(
+
+		URL privateLARURL = null;
+		URL publicLARURL = servletContext.getResource(
 			_RESOURCES_DIR.concat("archive.lar"));
+
+		if (publicLARURL == null) {
+			privateLARURL = servletContext.getResource(
+				_RESOURCES_DIR.concat("private.lar"));
+			publicLARURL = servletContext.getResource(
+				_RESOURCES_DIR.concat("public.lar"));
+		}
 
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
@@ -169,13 +178,25 @@ public class ResourcesImporterServletContextListener
 
 				Importer importer = null;
 
-				if (larURL != null) {
+				if ((privateLARURL != null) || (publicLARURL != null)) {
 					LARImporter larImporter = getLARImporter();
 
-					URLConnection urlConnection = larURL.openConnection();
+					URLConnection privateLARURLConnection = null;
 
-					larImporter.setLARInputStream(
-						urlConnection.getInputStream());
+					if (privateLARURL != null) {
+						privateLARURLConnection =
+							privateLARURL.openConnection();
+					}
+
+					URLConnection publicLARURLConnection = null;
+
+					if (publicLARURL != null) {
+						publicLARURLConnection = publicLARURL.openConnection();
+					}
+
+					larImporter.setLARInputStreams(
+						publicLARURLConnection.getInputStream(),
+						privateLARURLConnection.getInputStream());
 
 					importer = larImporter;
 				}
