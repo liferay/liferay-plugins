@@ -31,7 +31,6 @@ import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityConstants;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.model.WikiPageResource;
@@ -355,23 +354,6 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 
 		return wrapLink(nodeURL.toString(), HtmlUtil.escape(node.getName()));
-	}
-
-	@Override
-	protected SocialActivityFeedEntry getSubfeedEntry(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
-
-		String title = getPageTitle(
-			activity.getClassName(), activity.getClassPK(), serviceContext);
-
-		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
-
-		String body = StringUtil.shorten(
-			assetRenderer.getSummary(serviceContext.getLocale()), 200);
-
-		return new SocialActivityFeedEntry(title, body);
 	}
 
 	@Override

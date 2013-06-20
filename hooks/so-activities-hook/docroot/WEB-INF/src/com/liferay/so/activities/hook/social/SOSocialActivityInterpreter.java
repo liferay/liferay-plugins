@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -210,7 +211,16 @@ public abstract class SOSocialActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		return null;
+		String title = getPageTitle(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
+
+		String body = StringUtil.shorten(
+			assetRenderer.getSummary(serviceContext.getLocale()), 200);
+
+		return new SocialActivityFeedEntry(title, body);
 	}
 
 	protected String getTitle(
