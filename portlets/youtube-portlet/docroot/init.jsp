@@ -42,10 +42,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 int annotations = GetterUtil.getInteger(preferences.getValue("annotations", StringPool.BLANK), 1);
 boolean autoplay = GetterUtil.getBoolean(preferences.getValue("autoplay", "false"));
 String borderColor = preferences.getValue("borderColor", StringPool.BLANK);

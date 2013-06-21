@@ -49,10 +49,6 @@ PortletPreferences preferences = liferayPortletRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 String apiKey = preferences.getValue("apiKey", StringPool.BLANK);
 boolean fahrenheit = GetterUtil.getBoolean(preferences.getValue("fahrenheit", StringPool.BLANK));
 String[] zips = preferences.getValues("zips", new String[0]);

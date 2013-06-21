@@ -52,10 +52,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 String link = preferences.getValue("link", "");
 String title = preferences.getValue("title", "");
 String description = preferences.getValue("description", "");

@@ -77,8 +77,6 @@ if (Validator.isNotNull(portletResource)) {
 	Portlet selPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletResource);
 
 	instanceId = selPortlet.getInstanceId();
-
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
 String domainName = preferences.getValue("domain-name", "Personalized Content ".concat(instanceId));

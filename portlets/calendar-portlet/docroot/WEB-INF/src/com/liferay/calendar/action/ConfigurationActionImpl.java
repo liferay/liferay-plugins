@@ -16,7 +16,6 @@ package com.liferay.calendar.action;
 
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -51,9 +50,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
+		PortletPreferences preferences = actionRequest.getPreferences();
 
 		int defaultDuration = ParamUtil.getInteger(
 			actionRequest, "defaultDuration");

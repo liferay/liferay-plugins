@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -58,9 +57,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
+		PortletPreferences preferences = actionRequest.getPreferences();
 
 		updatePreferences(actionRequest, preferences);
 

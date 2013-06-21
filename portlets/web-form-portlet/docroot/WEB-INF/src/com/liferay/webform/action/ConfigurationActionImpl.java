@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.webform.util.WebFormUtil;
 
@@ -73,9 +72,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
+		PortletPreferences preferences = actionRequest.getPreferences();
 
 		LocalizationUtil.setLocalizedPreferencesValues(
 			actionRequest, preferences, "title");

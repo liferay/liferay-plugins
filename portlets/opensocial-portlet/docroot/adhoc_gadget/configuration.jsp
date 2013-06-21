@@ -23,7 +23,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-PortletPreferences preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String url = PrefsParamUtil.getString(preferences, request, "url", StringPool.BLANK);
 

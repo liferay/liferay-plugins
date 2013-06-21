@@ -123,10 +123,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 CalendarResource groupCalendarResource = CalendarResourceUtil.getGroupCalendarResource(liferayPortletRequest, scopeGroupId);
 
 CalendarResource userCalendarResource = null;

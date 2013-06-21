@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import java.util.Map;
 
@@ -121,9 +120,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			portletRequest, "portletResource");
 
-		PortletPreferences portletPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				portletRequest, portletResource);
+		PortletPreferences preferences = portletRequest.getPreferences();
 
 		return ShindigUtil.getGadget(portletPreferences);
 	}

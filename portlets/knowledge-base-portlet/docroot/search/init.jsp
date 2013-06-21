@@ -21,10 +21,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 boolean showKBArticleAuthorColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleAuthorColumn", null));
 boolean showKBArticleCreateDateColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleCreateDateColumn", null));
 boolean showKBArticleModifiedDateColumn = GetterUtil.getBoolean(preferences.getValue("showKBArticleModifiedDateColumn", null));

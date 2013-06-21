@@ -35,7 +35,7 @@ else {
 
 	String portletResource = ParamUtil.getString(renderRequest, "portletResource");
 
-	PortletPreferences preferences = PortletPreferencesFactoryUtil.getPortletSetup(renderRequest, portletResource);
+	PortletPreferences preferences = renderRequest.getPreferences();
 
 	gadget = ShindigUtil.getGadget(preferences);
 

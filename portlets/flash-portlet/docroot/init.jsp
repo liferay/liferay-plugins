@@ -49,10 +49,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 String movie = preferences.getValue("movie", StringPool.BLANK);
 String flashAttributes = preferences.getValue("flashAttributes", StringPool.BLANK);
 String flashVariables = preferences.getValue("flashVariables", StringPool.BLANK);

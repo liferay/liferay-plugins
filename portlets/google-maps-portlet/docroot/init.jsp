@@ -44,10 +44,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 String directionsAddress = GetterUtil.getString(preferences.getValue("directionsAddress", null));
 boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", null));
 String mapAddress = GetterUtil.getString(preferences.getValue("mapAddress", null));
