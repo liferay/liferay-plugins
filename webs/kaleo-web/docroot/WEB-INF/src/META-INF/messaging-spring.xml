@@ -26,6 +26,9 @@
 		<property name="destinationName" value="liferay/kaleo_graph_walker" />
 		<property name="graphWalker" ref="com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker" />
 	</bean>
+	<bean id="messageListener.workflow_comparator" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
+		<property name="manager" ref="com.liferay.portal.workflow.kaleo.comparator.WorkflowComparatorFactoryImpl" />
+	</bean>
 	<bean id="messageListener.workflow_definition" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
 		<property name="manager" ref="com.liferay.portal.kernel.workflow.WorkflowDefinitionManager" />
 	</bean>
@@ -77,6 +80,11 @@
 				<entry key="liferay/kaleo_graph_walker">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.kaleo_graph_walker" />
+					</list>
+				</entry>
+				<entry key="liferay/workflow_comparator">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.workflow_comparator" />
 					</list>
 				</entry>
 				<entry key="liferay/workflow_definition">

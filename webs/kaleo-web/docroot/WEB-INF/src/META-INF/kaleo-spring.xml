@@ -12,11 +12,7 @@
 
 	<!-- Comparator -->
 
-	<bean id="com.liferay.portal.kernel.workflow.comparator.WorkflowLogComparatorFactoryUtil" class="com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil">
-		<property name="workflowComparatorFactory">
-			<bean class="com.liferay.portal.workflow.kaleo.comparator.WorkflowComparatorFactoryImpl" />
-		</property>
-	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.comparator.WorkflowComparatorFactoryImpl" class="com.liferay.portal.workflow.kaleo.comparator.WorkflowComparatorFactoryImpl" />
 
 	<!-- Deployment -->
 
