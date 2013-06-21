@@ -32,15 +32,15 @@ public class UploadSuccessAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
 			_log.info("render " + request.getParameter("file_name"));
 		}
 
-		return mapping.findForward(
+		return actionMapping.findForward(
 			"portlet.sample_struts_portlet.upload_success");
 	}
 

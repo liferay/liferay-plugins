@@ -33,17 +33,18 @@ public class SubscribeAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		SubscribeForm subscribeForm = (SubscribeForm)form;
+		SubscribeForm subscribeForm = (SubscribeForm)actionForm;
 
 		if (_log.isInfoEnabled()) {
 			_log.info(subscribeForm.toString());
 		}
 
-		return mapping.findForward("/sample_struts_portlet/subscribe_success");
+		return actionMapping.findForward(
+			"/sample_struts_portlet/subscribe_success");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SubscribeAction.class);

@@ -39,7 +39,7 @@ public class SubscribeForm extends ActionForm {
 	}
 
 	@Override
-	public void reset(ActionMapping mapping, HttpServletRequest req) {
+	public void reset(ActionMapping actionMapping, HttpServletRequest req) {
 		_firstName = null;
 		_lastName = null;
 		_emailAddress = null;
@@ -64,7 +64,7 @@ public class SubscribeForm extends ActionForm {
 
 	@Override
 	public ActionErrors validate(
-		ActionMapping mapping, HttpServletRequest req) {
+		ActionMapping actionMapping, HttpServletRequest req) {
 
 		ActionErrors errors = new ActionErrors();
 
