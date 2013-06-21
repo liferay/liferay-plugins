@@ -35,7 +35,7 @@ public class NestedForm extends ActionForm {
 	}
 
 	@Override
-	public void reset(ActionMapping mapping, HttpServletRequest req) {
+	public void reset(ActionMapping actionMapping, HttpServletRequest req) {
 		_books = new ArrayList<Book>();
 
 		_books.add(new Book("1", "Genesis"));
@@ -52,7 +52,7 @@ public class NestedForm extends ActionForm {
 
 	@Override
 	public ActionErrors validate(
-		ActionMapping mapping, HttpServletRequest req) {
+		ActionMapping actionMapping, HttpServletRequest req) {
 
 		ActionErrors errors = new ActionErrors();
 

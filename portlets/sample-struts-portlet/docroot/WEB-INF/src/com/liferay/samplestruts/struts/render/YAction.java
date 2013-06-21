@@ -32,15 +32,15 @@ public class YAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
 			_log.info("render");
 		}
 
-		return mapping.findForward("portlet.sample_struts_portlet.y");
+		return actionMapping.findForward("portlet.sample_struts_portlet.y");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(YAction.class);

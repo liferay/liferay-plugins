@@ -36,11 +36,11 @@ public class NestedAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		NestedForm nestedForm = (NestedForm)form;
+		NestedForm nestedForm = (NestedForm)actionForm;
 
 		Collection<Book> books = nestedForm.getBooks();
 
@@ -52,7 +52,8 @@ public class NestedAction extends Action {
 			}
 		}
 
-		return mapping.findForward("/sample_struts_portlet/nested_success");
+		return actionMapping.findForward(
+			"/sample_struts_portlet/nested_success");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(NestedAction.class);

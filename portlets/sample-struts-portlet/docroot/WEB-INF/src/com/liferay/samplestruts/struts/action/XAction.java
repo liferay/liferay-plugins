@@ -33,8 +33,8 @@ public class XAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
@@ -49,7 +49,7 @@ public class XAction extends Action {
 			throw new SampleException();
 		}
 
-		return mapping.findForward("portlet.sample_struts_portlet.x");
+		return actionMapping.findForward("portlet.sample_struts_portlet.x");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(XAction.class);

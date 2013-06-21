@@ -29,11 +29,12 @@ public class UploadAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		return mapping.findForward("portlet.sample_struts_portlet.upload");
+		return actionMapping.findForward(
+			"portlet.sample_struts_portlet.upload");
 	}
 
 }

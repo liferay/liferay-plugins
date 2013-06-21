@@ -36,8 +36,9 @@ public class SubscribeAction extends PortletAction {
 
 	@Override
 	public void processAction(
-			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-			ActionRequest actionRequest, ActionResponse actionResponse)
+			ActionMapping actionMapping, ActionForm actionForm,
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
 		setForward(
@@ -46,17 +47,18 @@ public class SubscribeAction extends PortletAction {
 
 	@Override
 	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-			RenderRequest renderRequest, RenderResponse renderResponse)
+			ActionMapping actionMapping, ActionForm actionForm,
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
-		SubscribeForm subscribeForm = (SubscribeForm)form;
+		SubscribeForm subscribeForm = (SubscribeForm)actionForm;
 
 		if (_log.isInfoEnabled()) {
 			_log.info(subscribeForm.toString());
 		}
 
-		return mapping.findForward(
+		return actionMapping.findForward(
 			"portlet.sample_struts_liferay_portlet.subscribe");
 	}
 
