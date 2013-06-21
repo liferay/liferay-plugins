@@ -60,6 +60,30 @@ public class AnnouncementsPortlet extends MVCPortlet {
 		sendRedirect(actionRequest, actionResponse);
 	}
 
+	@Override
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
+
+		try {
+			String actionName = ParamUtil.getString(
+				actionRequest, ActionRequest.ACTION_NAME);
+
+			if (actionName.equals("deleteEntry")) {
+				deleteEntry(actionRequest, actionResponse);
+			}
+			else if (actionName.equals("saveEntry")) {
+				saveEntry(actionRequest, actionResponse);
+			}
+			else {
+				super.processAction(actionRequest, actionResponse);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
 	public void saveEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
