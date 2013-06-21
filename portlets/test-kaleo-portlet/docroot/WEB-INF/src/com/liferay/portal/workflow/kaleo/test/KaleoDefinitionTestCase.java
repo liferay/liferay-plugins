@@ -19,11 +19,14 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 
 import java.io.InputStream;
 
+import org.junit.Test;
+
 /**
  * @author Marcellus Tavares
  */
 public class KaleoDefinitionTestCase extends TestCase {
 
+	@Test
 	public void testValidateCategorySpecificDefinition() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/category-specific-definition.xml");
@@ -31,6 +34,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertValid(inputStream);
 	}
 
+	@Test
 	public void testValidateIncomingTransitionInitialStateDefinition()
 		throws Exception {
 
@@ -43,6 +47,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"An incoming transition was found for initial state start", error);
 	}
 
+	@Test
 	public void testValidateIncomingTransitionsJoinNodeDefinition()
 		throws Exception {
 
@@ -79,6 +84,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"Incorrect number of incoming transitions for join join", error);
 	}
 
+	@Test
 	public void testValidateLegalMarketingDefinition() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/legal-marketing-definition.xml");
@@ -86,6 +92,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertValid(inputStream);
 	}
 
+	@Test
 	public void testValidateLessThanTwoOutgoingConditionNodeDefinition()
 		throws Exception {
 
@@ -99,6 +106,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			error);
 	}
 
+	@Test
 	public void testValidateLessThanTwoOutgoingForkNodeDefinition()
 		throws Exception {
 
@@ -111,6 +119,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"Less than 2 outgoing transitions found for fork fork", error);
 	}
 
+	@Test
 	public void testValidateMatchingForkAndJoins() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/matching-fork-and-join-1.xml");
@@ -134,6 +143,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("Fork fork3 and join join6 are not paired", error);
 	}
 
+	@Test
 	public void testValidateMultipleInitialStatesDefinedDefinition()
 		throws Exception {
 
@@ -145,6 +155,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("Multiple initial states start1 and start2", error);
 	}
 
+	@Test
 	public void testValidateNoAssignmentsTaskNodeDefinition() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/no-assignments-task.xml");
@@ -154,6 +165,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("No assignments for task task", error);
 	}
 
+	@Test
 	public void testValidateNoIncomingTransitionConditionNodeDefinition()
 		throws Exception {
 
@@ -166,6 +178,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"No incoming transition found for condition condition", error);
 	}
 
+	@Test
 	public void testValidateNoIncomingTransitionForkNodeDefinition()
 		throws Exception {
 
@@ -177,6 +190,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("No incoming transition found for fork fork", error);
 	}
 
+	@Test
 	public void testValidateNoIncomingTransitionStateNodeDefinition()
 		throws Exception {
 
@@ -188,6 +202,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("No incoming transition found for state state", error);
 	}
 
+	@Test
 	public void testValidateNoIncomingTransitionTaskNodeDefinition()
 		throws Exception {
 
@@ -199,6 +214,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("No incoming transition found for task task", error);
 	}
 
+	@Test
 	public void testValidateNoInitialStateDefinedDefinition() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/no-initial-state.xml");
@@ -208,6 +224,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("No initial state defined", error);
 	}
 
+	@Test
 	public void testValidateNoOutgoingTransitionInitialStateDefinition()
 		throws Exception {
 
@@ -220,6 +237,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"No outgoing transition found for initial state start", error);
 	}
 
+	@Test
 	public void testValidateNoOutgoingTransitionStartNodeDefinition()
 		throws Exception {
 
@@ -232,6 +250,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"No outgoing transition found for initial state start", error);
 	}
 
+	@Test
 	public void testValidateNoOutgoingTransitionTaskNodeDefinition()
 		throws Exception {
 
@@ -243,6 +262,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("Unable to parse definition", error);
 	}
 
+	@Test
 	public void testValidateNoTerminalStatesDefinition() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/no-terminal-states.xml");
@@ -252,6 +272,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("No terminal states defined", error);
 	}
 
+	@Test
 	public void testValidateSingleApproverDefinition() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/single-approver-definition.xml");
@@ -259,6 +280,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertValid(inputStream);
 	}
 
+	@Test
 	public void testValidateSingleApproverScriptedAssignmentDefinition()
 		throws Exception {
 
@@ -269,6 +291,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertValid(inputStream);
 	}
 
+	@Test
 	public void testValidateTransitions() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/invalid-transition.xml");
@@ -278,6 +301,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("Unable to find target node for transition end", error);
 	}
 
+	@Test
 	public void testValidateUnbalancedForkAndJoinNodes() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/unbalanced-fork-and-join.xml");
@@ -287,6 +311,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertEquals("There are unbalanced fork and join nodes", error);
 	}
 
+	@Test
 	public void testValidateValidDefinition() throws Exception {
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/valid-definition.xml");
