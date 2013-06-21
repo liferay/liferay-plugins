@@ -117,10 +117,8 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	protected void addDLFileEntry(String resourcePath) throws Exception {
-		String folderPath = FileUtil.getPath(resourcePath);
-
 		Long parentFolderId = _folderIds.get(
-			folderPath.concat(StringPool.SLASH));
+			FileUtil.getPath(resourcePath) + StringPool.SLASH);
 
 		if (parentFolderId == null) {
 			parentFolderId = 0L;
