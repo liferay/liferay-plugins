@@ -69,10 +69,10 @@ public class FooServiceUtil {
 		return getService().getUser(userId);
 	}
 
-	public static java.util.List<com.liferay.portal.model.Group> getUserSites()
+	public static java.util.List<com.liferay.portal.model.Group> getUserSiteGroups()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getUserSites();
+		return getService().getUserSiteGroups();
 	}
 
 	public static void clearService() {

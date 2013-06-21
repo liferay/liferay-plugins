@@ -36,7 +36,7 @@ public class FooServiceClpInvoker {
 
 		_methodParameterTypes36 = new String[] { "long" };
 
-		_methodName37 = "getUserSites";
+		_methodName37 = "getUserSiteGroups";
 
 		_methodParameterTypes37 = new String[] {  };
 	}
@@ -62,7 +62,7 @@ public class FooServiceClpInvoker {
 
 		if (_methodName37.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
-			return FooServiceUtil.getUserSites();
+			return FooServiceUtil.getUserSiteGroups();
 		}
 
 		throw new UnsupportedOperationException();
