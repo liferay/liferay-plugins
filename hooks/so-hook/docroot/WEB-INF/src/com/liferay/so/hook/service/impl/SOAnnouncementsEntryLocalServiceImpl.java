@@ -63,21 +63,21 @@ public class SOAnnouncementsEntryLocalServiceImpl
 
 	@Override
 	public AnnouncementsEntry addEntry(
-		long plid, long classNameId, long classPK, String title,
-		String content, String url, String type, int displayDateMonth,
-		int displayDateDay, int displayDateYear, int displayDateHour,
-		int displayDateMinute, int expirationDateMonth,
-		int expirationDateDay, int expirationDateYear,
-		int expirationDateHour, int expirationDateMinute, int priority,
-		boolean alert)
+			long plid, long classNameId, long classPK, String title,
+			String content, String url, String type, int displayDateMonth,
+			int displayDateDay, int displayDateYear, int displayDateHour,
+			int displayDateMinute, int expirationDateMonth,
+			int expirationDateDay, int expirationDateYear,
+			int expirationDateHour, int expirationDateMinute, int priority,
+			boolean alert)
 		throws PortalException, SystemException {
 
 		AnnouncementsEntry announcementEntry = super.addEntry(
 			plid, classNameId, classPK, title, content, url, type,
-			displayDateMonth, displayDateDay, displayDateYear,
-			displayDateHour, displayDateMinute, expirationDateMonth,
-			expirationDateDay, expirationDateYear, expirationDateHour,
-			expirationDateMinute, priority, alert);
+			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
+			displayDateMinute, expirationDateMonth, expirationDateDay,
+			expirationDateYear, expirationDateHour, expirationDateMinute,
+			priority, alert);
 
 		if (announcementEntry != null) {
 			Date displayDate = announcementEntry.getDisplayDate();
@@ -104,7 +104,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 
 		if (_previousCheckDate == null) {
 			_previousCheckDate = new Date(
-			now.getTime() - _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL);
+				now.getTime() - _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL);
 		}
 
 		List<AnnouncementsEntry> entries =
@@ -184,8 +184,10 @@ public class SOAnnouncementsEntryLocalServiceImpl
 	}
 
 	private static final long _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL =
-		GetterUtil.getInteger(PropsUtil.get(
-			PropsKeys.ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL)) * Time.MINUTE;
+		GetterUtil.getInteger(
+			PropsUtil.get(
+				PropsKeys.ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL)) *
+		Time.MINUTE;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SOAnnouncementsEntryLocalServiceImpl.class);
