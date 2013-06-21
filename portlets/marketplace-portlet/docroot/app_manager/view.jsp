@@ -31,7 +31,7 @@
 		</div>
 	</div>
 
-	<div class="span9">
+	<div class="apps span9">
 		<h3><liferay-ui:message key="all-apps" /></h3>
 
 		<%
@@ -39,6 +39,32 @@
 
 		for (App app : apps) {
 			String[] contextNames = app.getContextNames();
+
+			List<LayoutTemplate> layoutTemplates = new ArrayList<LayoutTemplate>();
+			List<Portlet> portlets = new ArrayList<Portlet>();
+			List<Theme> themes = new ArrayList<Theme>();
+
+			for (String contextName : contextNames) {
+				ServletContext servletContext = ServletContextPool.get(contextName);
+
+				List<LayoutTemplate> curLayoutTemplates = (List<LayoutTemplate>)servletContext.getAttribute("PLUGIN_LAYOUT_TEMPLATES");
+
+				if (curLayoutTemplates != null) {
+					layoutTemplates.addAll(curLayoutTemplates);
+				}
+
+				List<Portlet> curPortlets = (List<Portlet>)servletContext.getAttribute("PLUGIN_PORTLETS");
+
+				if (curPortlets != null) {
+					portlets.addAll(curPortlets);
+				}
+
+				List<Theme> curThemes = (List<Theme>)servletContext.getAttribute("PLUGIN_THEMES");
+
+				if (curThemes != null) {
+					themes.addAll(curThemes);
+				}
+			}
 		%>
 
 			<div class="app">
@@ -57,60 +83,75 @@
 						<%= app.getDescription() %>
 					</div>
 
-					<div class="meta">
+					<c:if test="<%= !layoutTemplates.isEmpty() || !portlets.isEmpty() || !themes.isEmpty() %>">
+						<div class="plugins well">
+							<div class="tabbable">
+								<ul class="nav nav-tabs">
+									<li class="active">
+										<a data-toggle="tab1" href="javascript:;"><liferay-ui:message key="summary" /></a>
+									</li>
 
-						<%
-						List<LayoutTemplate> layoutTemplates = new ArrayList<LayoutTemplate>();
-						List<Portlet> portlets = new ArrayList<Portlet>();
-						List<Theme> themes = new ArrayList<Theme>();
+									<c:if test="<%= !layoutTemplates.isEmpty() %>">
+										<li>
+											<a data-toggle="tab2" href="javascript:;"><liferay-ui:message key="layout-templates" /></a>
+										</li>
+									</c:if>
 
-						for (String contextName : contextNames) {
-							ServletContext servletContext = ServletContextPool.get(contextName);
+									<c:if test="<%= !portlets.isEmpty() %>">
+										<li>
+											<a data-toggle="tab3" href="javascript:;"><liferay-ui:message key="portlets" /></a>
+										</li>
+									</c:if>
 
-							List<LayoutTemplate> curLayoutTemplates = (List<LayoutTemplate>)servletContext.getAttribute("PLUGIN_LAYOUT_TEMPLATES");
+									<c:if test="<%= !themes.isEmpty() %>">
+										<li>
+											<a data-toggle="tab4" href="javascript:;"><liferay-ui:message key="themes" /></a>
+										</li>
+									</c:if>
+								</ul>
 
-							if (curLayoutTemplates != null) {
-								layoutTemplates.addAll(curLayoutTemplates);
-							}
+								<div class="tab-content">
+									<div class="tab-pane tab1 active">
+										<ul class="summary">
+											<li>
+												<liferay-ui:message key="this-app-contains" />
+											</li>
 
-							List<Portlet> curPortlets = (List<Portlet>)servletContext.getAttribute("PLUGIN_PORTLETS");
+											<c:if test="<%= !layoutTemplates.isEmpty() %>">
+												<li>
+													<%= layoutTemplates.size() %> <liferay-ui:message key='<%= layoutTemplates.size() == 1 ? "layout-template" : "layout-templates" %>' />
+												</li>
+											</c:if>
 
-							if (curPortlets != null) {
-								portlets.addAll(curPortlets);
-							}
+											<c:if test="<%= !portlets.isEmpty() %>">
+												<li>
+													<%= portlets.size() %> <liferay-ui:message key='<%= portlets.size() == 1 ? "portlet" : "portlets" %>' />
+												</li>
+											</c:if>
 
-							List<Theme> curThemes = (List<Theme>)servletContext.getAttribute("PLUGIN_THEMES");
+											<c:if test="<%= !themes.isEmpty() %>">
+												<li>
+													<%= themes.size() %> <liferay-ui:message key='<%= themes.size() == 1 ? "theme" : "themes" %>' />
+												</li>
+											</c:if>
+										</ul>
+									</div>
 
-							if (curThemes != null) {
-								themes.addAll(curThemes);
-							}
-						}
-						%>
+									<div class="tab-pane tab2">
+										<%@ include file="/app_manager/layout_templates.jspf" %>
+									</div>
 
-						<ul>
-							<li>
-								<liferay-ui:message key="this-app-contains" />
-							</li>
+									<div class="tab-pane tab3">
+										<%@ include file="/app_manager/portlets.jspf" %>
+									</div>
 
-							<c:if test="<%= !layoutTemplates.isEmpty() %>">
-								<li>
-									<%= layoutTemplates.size() %> <liferay-ui:message key='<%= layoutTemplates.size() == 1 ? "layout-template" : "layout-templates" %>' />
-								</li>
-							</c:if>
-
-							<c:if test="<%= !portlets.isEmpty() %>">
-								<li>
-									<%= portlets.size() %> <liferay-ui:message key='<%= portlets.size() == 1 ? "portlet" : "portlets" %>' />
-								</li>
-							</c:if>
-
-							<c:if test="<%= !themes.isEmpty() %>">
-								<li>
-									<%= themes.size() %> <liferay-ui:message key='<%= themes.size() == 1 ? "theme" : "themes" %>' />
-								</li>
-							</c:if>
-						</ul>
-					</div>
+									<div class="tab-pane tab4">
+										<%@ include file="/app_manager/themes.jspf" %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
 				</div>
 
 				<c:if test='<%= !ArrayUtil.contains(contextNames, PortalUtil.getPathContext()) && !ArrayUtil.contains(contextNames, "marketplace-portlet") %>'>
@@ -157,3 +198,21 @@
 
 	</div>
 </div>
+
+<aui:script use="aui-base">
+	A.one('.marketplace-portlet .apps').delegate(
+		'click',
+		function(event) {
+			var tab = event.currentTarget;
+
+			tab.ancestor('ul').all('li').removeClass('active');
+			tab.ancestor('li').addClass('active');
+
+			var tabbable = tab.ancestor('.tabbable');
+
+			tabbable.one('.tab-content').all('.tab-pane').removeClass('active');
+			tabbable.one('.tab-content .' + tab.getAttribute('data-toggle')).addClass('active');
+		},
+		'.nav-tabs a'
+	)
+</aui:script>

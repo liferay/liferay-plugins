@@ -5,8 +5,8 @@
 
 	.app {
 		clear: both;
-		min-height: 100px;
-		margin-bottom: 1.5em;
+		min-height: 90px;
+		margin-bottom: 2.5em;
 		position: relative;
 
 		.icon {
@@ -17,7 +17,7 @@
 		}
 
 		.info {
-			margin: 0 132px 0 110px;
+			margin-left: 110px;
 		}
 
 		.actions {
@@ -33,16 +33,39 @@
 			margin-bottom: .2em;
 		}
 
-		.meta {
+		.description {
+			margin-right: 132px;
+		}
+
+		.plugins {
 			margin-top: 1em;
 
 			ul {
-				margin: 0;
+				margin-bottom: 0;
+				margin-top: 0;
 			}
 
-			li {
-				display: inline;
-				margin-right: 1em;
+			.summary {
+				margin: 0;
+
+				li {
+					display: inline;
+					margin-right: 1em;
+				}
+			}
+
+			.table td:last-child {
+				text-align: right;
+			}
+		}
+
+		.tabbable {
+			.nav .active a {
+				background: whitesmoke;
+			}
+
+			.tab-pane {
+				padding: 8px 12px 0;
 			}
 		}
 	}

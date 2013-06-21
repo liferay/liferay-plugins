@@ -68,6 +68,43 @@ public class AppManagerPortlet extends MVCPortlet {
 		SessionMessages.add(actionRequest, "triggeredPortletUndeploy");
 	}
 
+	public void updatePluginSetting(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String pluginId = ParamUtil.getString(actionRequest, "pluginId");
+		String pluginType = ParamUtil.getString(actionRequest, "pluginType");
+
+		String[] roles = StringUtil.split(
+			ParamUtil.getString(actionRequest, "roles"), CharPool.NEW_LINE);
+
+		Arrays.sort(roles);
+
+		boolean active = ParamUtil.getBoolean(actionRequest, "active");
+
+		if (pluginType.equals(Plugin.TYPE_PORTLET)) {
+			PortletServiceUtil.updatePortlet(
+				themeDisplay.getCompanyId(), pluginId, StringPool.BLANK,
+				active);
+		}
+		else {
+			if (roles.length == 0) {
+				PluginSetting pluginSetting =
+					PluginSettingLocalServiceUtil.getPluginSetting(
+						themeDisplay.getCompanyId(), pluginId, pluginType);
+
+				roles = StringUtil.split(pluginSetting.getRoles());
+			}
+
+			PluginSettingServiceUtil.updatePluginSetting(
+				themeDisplay.getCompanyId(), pluginId, pluginType,
+				StringUtil.merge(roles), active);
+		}
+	}
+
 	public void updatePluginSettings(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -129,35 +166,6 @@ public class AppManagerPortlet extends MVCPortlet {
 						Plugin.TYPE_THEME, pluginSetting.getRoles(), active);
 				}
 			}
-		}
-	}
-
-	protected void updatePluginSetting(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String pluginId = ParamUtil.getString(actionRequest, "pluginId");
-		String pluginType = ParamUtil.getString(actionRequest, "pluginType");
-
-		String[] roles = StringUtil.split(
-			ParamUtil.getString(actionRequest, "roles"), CharPool.NEW_LINE);
-
-		Arrays.sort(roles);
-
-		boolean active = ParamUtil.getBoolean(actionRequest, "active");
-
-		if (pluginType.equals(Plugin.TYPE_PORTLET)) {
-			PortletServiceUtil.updatePortlet(
-				themeDisplay.getCompanyId(), pluginId, StringPool.BLANK,
-				active);
-		}
-		else {
-			PluginSettingServiceUtil.updatePluginSetting(
-				themeDisplay.getCompanyId(), pluginId, pluginType,
-				StringUtil.merge(roles), active);
 		}
 	}
 
