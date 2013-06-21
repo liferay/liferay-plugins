@@ -43,7 +43,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class WebXMLDefinitionLoaderTest {
 
 	@BeforeClass
-	public static void setUp() {
+	public static void setUpClass() {
 		SAXReaderUtil saxReaderUtil = new SAXReaderUtil();
 
 		saxReaderUtil.setSAXReader(SAXReaderImpl.getInstance());
