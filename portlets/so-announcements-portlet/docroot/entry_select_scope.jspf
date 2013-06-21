@@ -1,0 +1,128 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%
+boolean hasDistributionScope = false;
+%>
+
+<aui:select changesContext="<%= submitOnChange %>" name="distributionScope" onChange='<%= submitOnChange ? renderResponse.getNamespace() + "selectDistributionScope(this.value);" : "" %>' showEmptyOption="<%= true %>">
+	<c:if test="<%= permissionChecker.isOmniadmin() %>">
+
+		<%
+		hasDistributionScope = true;
+		%>
+
+		<aui:option label="general" selected="<%= (classNameId == 0) && (classPK == 0) %>" value="0,0" />
+	</c:if>
+
+	<%
+	List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true);
+	%>
+
+	<c:if test="<%= !groups.isEmpty() %>">
+		<optgroup label="<liferay-ui:message key="sites" />">
+
+			<%
+			for (Group group : groups) {
+				if ((group.isOrganization() || (group.isRegularSite() && group.isSite())) && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+					hasDistributionScope = true;
+			%>
+
+					<aui:option label="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>" selected="<%= classPK == group.getGroupId() %>" value="<%= PortalUtil.getClassNameId(Group.class) + StringPool.COMMA + group.getGroupId() %>" />
+
+			<%
+				}
+			}
+			%>
+
+		</optgroup>
+	</c:if>
+
+	<%
+	List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizations(user.getUserId());
+	%>
+
+	<c:if test="<%= !organizations.isEmpty() %>">
+		<optgroup label="<liferay-ui:message key="organizations" />">
+
+			<%
+			for (Organization organization : organizations) {
+				if (OrganizationPermissionUtil.contains(permissionChecker, organization.getOrganizationId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+					hasDistributionScope = true;
+			%>
+
+					<aui:option label="<%= HtmlUtil.escape(organization.getName()) %>" selected="<%= classPK == organization.getOrganizationId() %>" value="<%= PortalUtil.getClassNameId(Organization.class) + StringPool.COMMA + organization.getOrganizationId() %>" />
+
+			<%
+				}
+			}
+			%>
+
+		</optgroup>
+	</c:if>
+
+	<%
+	List<Role> roles = RoleLocalServiceUtil.getRoles(themeDisplay.getCompanyId());
+	%>
+
+	<c:if test="<%= !roles.isEmpty() %>">
+		<optgroup label="<liferay-ui:message key="roles" />">
+
+			<%
+			for (Role role : roles) {
+				if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+					hasDistributionScope = true;
+			%>
+
+					<aui:option label="<%= HtmlUtil.escape(role.getTitle(locale)) %>" selected="<%= classPK == role.getRoleId() %>" value="<%= PortalUtil.getClassNameId(Role.class) + StringPool.COMMA + role.getRoleId() %>" />
+
+			<%
+				}
+			}
+			%>
+
+		</optgroup>
+	</c:if>
+
+	<%
+	List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(themeDisplay.getCompanyId());
+	%>
+
+	<c:if test="<%= !userGroups.isEmpty() %>">
+		<optgroup label="<liferay-ui:message key="user-groups" />">
+
+			<%
+			for (UserGroup userGroup : userGroups) {
+				if (UserGroupPermissionUtil.contains(permissionChecker, userGroup.getUserGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+					hasDistributionScope = true;
+			%>
+
+					<aui:option label="<%= HtmlUtil.escape(userGroup.getName()) %>" selected="<%= classPK == userGroup.getUserGroupId() %>" value="<%= PortalUtil.getClassNameId(UserGroup.class) + StringPool.COMMA + userGroup.getUserGroupId() %>" />
+
+			<%
+				}
+			}
+			%>
+
+		</optgroup>
+	</c:if>
+</aui:select>
+
+<aui:script use="aui-base">
+	if (<%= !hasDistributionScope %>) {
+		A.one('#<portlet:namespace />fieldSet').hide();
+	}
+</aui:script>
