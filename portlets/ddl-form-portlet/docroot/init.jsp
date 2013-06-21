@@ -79,10 +79,6 @@ PortletPreferences preferences = liferayPortletRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 long recordSetId = GetterUtil.getLong(preferences.getValue("recordSetId", null));
 
 long detailDDMTemplateId = GetterUtil.getLong(preferences.getValue("detailDDMTemplateId", null));

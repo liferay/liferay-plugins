@@ -21,10 +21,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 int depth = PrefsParamUtil.getInteger(preferences, request, "depth", WikiNavigationConstants.DEPTH_ALL);
 long selNodeId = PrefsParamUtil.getLong(preferences, request, "selNodeId");
 

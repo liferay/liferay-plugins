@@ -23,10 +23,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 boolean showKBArticlesSectionsTitle = GetterUtil.getBoolean(preferences.getValue("showKBArticlesSectionsTitle", null));
 String[] kbArticlesSections = preferences.getValues("kbArticlesSections", new String[0]);
 String kbArticleDisplayStyle = preferences.getValue("kbArticleDisplayStyle", StringPool.BLANK);

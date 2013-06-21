@@ -21,10 +21,6 @@ PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
 long selNodeId = PrefsParamUtil.getLong(preferences, request, "selNodeId");
 String selTitle = PrefsParamUtil.getString(preferences, request, "selTitle");
 
