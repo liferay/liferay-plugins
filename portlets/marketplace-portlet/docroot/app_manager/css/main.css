@@ -7,6 +7,7 @@
 		clear: both;
 		min-height: 100px;
 		margin-bottom: 1.5em;
+		position: relative;
 
 		.icon {
 			background: #FFF url(../images/app.png) no-repeat;
@@ -16,7 +17,13 @@
 		}
 
 		.info {
-			margin-left: 110px;
+			margin: 0 132px 0 110px;
+		}
+
+		.actions {
+			position: absolute;
+			right: 0;
+			top: 0;
 		}
 
 		.title {

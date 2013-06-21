@@ -38,6 +38,7 @@
 		List<App> apps = AppLocalServiceUtil.getInstalledApps();
 
 		for (App app : apps) {
+			String[] contextNames = app.getContextNames();
 		%>
 
 			<div class="app">
@@ -59,8 +60,6 @@
 					<div class="meta">
 
 						<%
-						String[] contextNames = app.getContextNames();
-
 						List<LayoutTemplate> layoutTemplates = new ArrayList<LayoutTemplate>();
 						List<Portlet> portlets = new ArrayList<Portlet>();
 						List<Theme> themes = new ArrayList<Theme>();
@@ -113,6 +112,43 @@
 						</ul>
 					</div>
 				</div>
+
+				<c:if test='<%= !ArrayUtil.contains(contextNames, PortalUtil.getPathContext()) && !ArrayUtil.contains(contextNames, "marketplace-portlet") %>'>
+					<div class="actions">
+						<liferay-ui:icon-menu>
+							<liferay-portlet:actionURL name="updatePluginSettings" var="activateURL">
+								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
+								<portlet:param name="active" value="<%= String.valueOf(true) %>" />
+							</liferay-portlet:actionURL>
+
+							<liferay-ui:icon
+								image="activate"
+								url="<%= activateURL %>"
+							/>
+
+							<liferay-portlet:actionURL name="updatePluginSettings" var="deactivateURL">
+								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
+								<portlet:param name="active" value="<%= String.valueOf(false) %>" />
+							</liferay-portlet:actionURL>
+
+							<liferay-ui:icon
+								image="deactivate"
+								url="<%= deactivateURL %>"
+							/>
+
+							<liferay-portlet:actionURL name="uninstallApp" var="uninstallURL">
+								<portlet:param name="remoteAppId" value="<%= String.valueOf(app.getRemoteAppId()) %>" />
+								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
+								<portlet:param name="activate" value="<%= String.valueOf(false) %>" />
+							</liferay-portlet:actionURL>
+
+							<liferay-ui:icon
+								image="uninstall"
+								url="<%= uninstallURL %>"
+							/>
+						</liferay-ui:icon-menu>
+					</div>
+				</c:if>
 			</div>
 
 		<%

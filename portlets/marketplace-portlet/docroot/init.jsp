@@ -28,13 +28,16 @@ page import="com.liferay.marketplace.service.AppLocalServiceUtil" %><%@
 page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@
 page import="com.liferay.marketplace.util.PortletKeys" %><%@
 page import="com.liferay.portal.kernel.servlet.ServletContextPool" %><%@
+page import="com.liferay.portal.kernel.util.ArrayUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.ServerDetector" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
+page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.LayoutTemplate" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
-page import="com.liferay.portal.model.Theme" %>
+page import="com.liferay.portal.model.Theme" %><%@
+page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.List" %>
