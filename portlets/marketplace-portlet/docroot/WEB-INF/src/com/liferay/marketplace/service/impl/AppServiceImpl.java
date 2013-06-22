@@ -27,12 +27,14 @@ import java.io.File;
  */
 public class AppServiceImpl extends AppServiceBaseImpl {
 
+	@Override
 	public App deleteApp(long appId) throws PortalException, SystemException {
 		MarketplacePermission.check(getPermissionChecker());
 
 		return appLocalService.deleteApp(appId);
 	}
 
+	@Override
 	public void installApp(long remoteAppId)
 		throws PortalException, SystemException {
 
@@ -41,6 +43,7 @@ public class AppServiceImpl extends AppServiceBaseImpl {
 		appLocalService.installApp(remoteAppId);
 	}
 
+	@Override
 	public void uninstallApp(long remoteAppId)
 		throws PortalException, SystemException {
 
@@ -49,6 +52,7 @@ public class AppServiceImpl extends AppServiceBaseImpl {
 		appLocalService.uninstallApp(remoteAppId);
 	}
 
+	@Override
 	public App updateApp(long remoteAppId, String version, File file)
 		throws PortalException, SystemException {
 

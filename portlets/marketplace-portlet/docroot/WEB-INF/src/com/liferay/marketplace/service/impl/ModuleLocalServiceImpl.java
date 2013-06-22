@@ -25,6 +25,7 @@ import java.util.List;
  */
 public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
+	@Override
 	public Module addModule(long userId, long appId, String contextName)
 		throws SystemException {
 
@@ -47,12 +48,14 @@ public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 		return module;
 	}
 
+	@Override
 	public Module fetchModule(long appId, String contextName)
 		throws SystemException {
 
 		return modulePersistence.fetchByA_C(appId, contextName);
 	}
 
+	@Override
 	public List<Module> getModules(long appId) throws SystemException {
 		return modulePersistence.findByAppId(appId);
 	}

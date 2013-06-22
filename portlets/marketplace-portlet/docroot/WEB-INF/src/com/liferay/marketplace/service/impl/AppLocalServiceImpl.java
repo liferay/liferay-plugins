@@ -63,6 +63,7 @@ import java.util.zip.ZipFile;
  */
 public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
+	@Override
 	public void clearInstalledAppsCache() {
 		_installedApps = null;
 	}
@@ -106,10 +107,12 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		return deleteApp(app);
 	}
 
+	@Override
 	public App fetchRemoteApp(long remoteAppId) throws SystemException {
 		return appPersistence.fetchByRemoteAppId(remoteAppId);
 	}
 
+	@Override
 	public List<App> getInstalledApps() throws SystemException {
 		if (_installedApps != null) {
 			return _installedApps;
@@ -170,6 +173,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		return _installedApps;
 	}
 
+	@Override
 	public void installApp(long remoteAppId)
 		throws PortalException, SystemException {
 
@@ -296,6 +300,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public void processMarketplaceProperties(Properties properties)
 		throws PortalException, SystemException {
 
@@ -312,6 +317,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public void uninstallApp(long remoteAppId)
 		throws PortalException, SystemException {
 
@@ -337,6 +343,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public App updateApp(
 			long userId, long remoteAppId, String version, File file)
 		throws PortalException, SystemException {
@@ -356,6 +363,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			userId, remoteAppId, title, description, iconURL, version, file);
 	}
 
+	@Override
 	public App updateApp(
 			long userId, long remoteAppId, String title, String description,
 			String iconURL, String version, File file)

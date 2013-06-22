@@ -35,6 +35,7 @@ public class AppImpl extends AppBaseImpl {
 	public AppImpl() {
 	}
 
+	@Override
 	public String[] addContextName(String contextName) {
 		if (_contextNames == null) {
 			_contextNames = new String[] {contextName};
@@ -46,6 +47,7 @@ public class AppImpl extends AppBaseImpl {
 		return _contextNames;
 	}
 
+	@Override
 	public String[] getContextNames() throws SystemException {
 		if (_contextNames != null) {
 			return _contextNames;
@@ -66,24 +68,29 @@ public class AppImpl extends AppBaseImpl {
 		return _contextNames;
 	}
 
+	@Override
 	public String getFileDir() {
 		return _DIR_NAME;
 	}
 
+	@Override
 	public String getFileName() {
 		return getAppId() + StringPool.PERIOD + _EXTENSION;
 	}
 
+	@Override
 	public String getFilePath() {
 		return getFileDir() + StringPool.SLASH + getFileName();
 	}
 
+	@Override
 	public boolean isDownloaded() throws PortalException, SystemException {
 		return DLStoreUtil.hasFile(
 			getCompanyId(), CompanyConstants.SYSTEM, getFilePath(),
 			Store.VERSION_DEFAULT);
 	}
 
+	@Override
 	public boolean isInstalled() throws SystemException {
 		String[] contextNames = getContextNames();
 
