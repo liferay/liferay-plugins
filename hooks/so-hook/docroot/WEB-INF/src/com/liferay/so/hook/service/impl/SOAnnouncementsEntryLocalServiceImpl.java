@@ -107,19 +107,19 @@ public class SOAnnouncementsEntryLocalServiceImpl
 				now.getTime() - _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL);
 		}
 
-		List<AnnouncementsEntry> entries =
+		List<AnnouncementsEntry> announcementEntries =
 			AnnouncementsEntryFinderUtil.findByDisplayDate(
 				now, _previousCheckDate);
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Processing " + entries.size() + " entries");
+			_log.debug("Processing " + announcementEntries.size() + " entries");
 		}
 
-		for (AnnouncementsEntry entry : entries) {
-			Date displayDate = entry.getDisplayDate();
+		for (AnnouncementsEntry announcementEntry : announcementEntries) {
+			Date displayDate = announcementEntry.getDisplayDate();
 
-			if (displayDate.after(entry.getCreateDate())) {
-				sendNotificationEvent(entry);
+			if (displayDate.after(announcementEntry.getCreateDate())) {
+				sendNotificationEvent(announcementEntry);
 			}
 		}
 
