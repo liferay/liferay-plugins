@@ -18,9 +18,11 @@ import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.Plugin;
 import com.liferay.portal.model.PluginSetting;
@@ -29,7 +31,7 @@ import com.liferay.portal.model.Theme;
 import com.liferay.portal.service.PluginSettingLocalServiceUtil;
 import com.liferay.portal.service.PluginSettingServiceUtil;
 import com.liferay.portal.service.PortletServiceUtil;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.Arrays;
@@ -70,7 +72,8 @@ public class AppManagerPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long companyId = PortalUtil.getCompanyId(actionRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		String[] contextNames = StringUtil.split(
 			ParamUtil.getString(actionRequest, "contextNames"));
@@ -82,45 +85,48 @@ public class AppManagerPortlet extends MVCPortlet {
 
 			List<LayoutTemplate> layoutTemplates =
 				(List<LayoutTemplate>)servletContext.getAttribute(
-					"PLUGIN_LAYOUT_TEMPLATES");
+					WebKeys.PLUGIN_LAYOUT_TEMPLATES);
 
 			if (layoutTemplates != null) {
 				for (LayoutTemplate layoutTemplate : layoutTemplates) {
 					PluginSetting pluginSetting =
 						PluginSettingLocalServiceUtil.getPluginSetting(
-							companyId, layoutTemplate.getLayoutTemplateId(),
+							themeDisplay.getCompanyId(),
+							layoutTemplate.getLayoutTemplateId(),
 							Plugin.TYPE_LAYOUT_TEMPLATE);
 
 					PluginSettingServiceUtil.updatePluginSetting(
-						companyId, layoutTemplate.getLayoutTemplateId(),
+						themeDisplay.getCompanyId(),
+						layoutTemplate.getLayoutTemplateId(),
 						Plugin.TYPE_LAYOUT_TEMPLATE, pluginSetting.getRoles(),
 						active);
 				}
 			}
 
 			List<Portlet> portlets = (List<Portlet>)servletContext.getAttribute(
-				"PLUGIN_PORTLETS");
+				WebKeys.PLUGIN_PORTLETS);
 
 			if (portlets != null) {
 				for (Portlet portlet : portlets) {
 					PortletServiceUtil.updatePortlet(
-						companyId, portlet.getPortletId(), StringPool.BLANK,
-						active);
+						themeDisplay.getCompanyId(), portlet.getPortletId(),
+						StringPool.BLANK, active);
 				}
 			}
 
 			List<Theme> themes = (List<Theme>)servletContext.getAttribute(
-				"PLUGIN_THEMES");
+				WebKeys.PLUGIN_THEMES);
 
 			if (themes != null) {
 				for (Theme theme : themes) {
 					PluginSetting pluginSetting =
 						PluginSettingLocalServiceUtil.getPluginSetting(
-							companyId, theme.getThemeId(), Plugin.TYPE_THEME);
+							themeDisplay.getCompanyId(), theme.getThemeId(),
+							Plugin.TYPE_THEME);
 
 					PluginSettingServiceUtil.updatePluginSetting(
-						companyId, theme.getThemeId(), Plugin.TYPE_THEME,
-						pluginSetting.getRoles(), active);
+						themeDisplay.getCompanyId(), theme.getThemeId(),
+						Plugin.TYPE_THEME, pluginSetting.getRoles(), active);
 				}
 			}
 		}
@@ -130,26 +136,28 @@ public class AppManagerPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long companyId = PortalUtil.getCompanyId(actionRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		String pluginId = ParamUtil.getString(actionRequest, "pluginId");
 		String pluginType = ParamUtil.getString(actionRequest, "pluginType");
 
-		String[] rolesArray = StringUtil.split(
-			ParamUtil.getString(actionRequest, "roles"), '\n');
+		String[] roles = StringUtil.split(
+			ParamUtil.getString(actionRequest, "roles"), CharPool.NEW_LINE);
 
-		Arrays.sort(rolesArray);
-
-		String roles = StringUtil.merge(rolesArray);
+		Arrays.sort(roles);
 
 		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 
 		if (pluginType.equals(Plugin.TYPE_PORTLET)) {
 			PortletServiceUtil.updatePortlet(
-				companyId, pluginId, StringPool.BLANK, active);
+				themeDisplay.getCompanyId(), pluginId, StringPool.BLANK,
+				active);
 		}
 		else {
 			PluginSettingServiceUtil.updatePluginSetting(
-				companyId, pluginId, pluginType, roles, active);
+				themeDisplay.getCompanyId(), pluginId, pluginType,
+				StringUtil.merge(roles), active);
 		}
 	}
 
