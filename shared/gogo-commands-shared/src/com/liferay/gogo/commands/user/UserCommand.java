@@ -17,7 +17,7 @@ package com.liferay.gogo.commands.user;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Reference;
 
-import com.liferay.gogo.commands.user.internal.AbstractUserManagementCommand;
+import com.liferay.gogo.commands.user.internal.AbstractCommand;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
@@ -28,12 +28,19 @@ import com.liferay.portal.service.UserLocalService;
  */
 @Component(
 	properties = {
-		AbstractUserManagementCommand.OSGI_COMMAND_FUNCTION + "=getUserInfo",
-		AbstractUserManagementCommand.OSGI_COMMAND_SCOPE + "=usermanagement"
-	}, provide=Object.class)
-public class GetUserInfoCommand extends AbstractUserManagementCommand {
+		AbstractCommand.OSGI_COMMAND_FUNCTION + "=user",
+		AbstractCommand.OSGI_COMMAND_SCOPE + "=liferay"
+	},
+	provide=Object.class)
+public class UserCommand extends AbstractCommand {
 
-	public void getUserInfo(long companyId, String emailAddress)
+	@Override
+	@Reference
+	public void setUserLocalService(UserLocalService userLocalService) {
+		this.userLocalService = userLocalService;
+	}
+
+	public void user(long companyId, String emailAddress)
 		throws PortalException, SystemException {
 
 		User user = userLocalService.fetchUserByEmailAddress(
@@ -41,21 +48,19 @@ public class GetUserInfoCommand extends AbstractUserManagementCommand {
 
 		if (user == null) {
 			System.out.println(
-				"The user " + emailAddress + " does not belong to the " +
-					"company " + companyId);
+				"There is no user with the company ID " + companyId +
+					" and the email address " + emailAddress + ".");
 
 			return;
 		}
 
-		System.out.println("Details of user " + emailAddress);
-		System.out.println("\tUser id" + user.getUserId());
-		System.out.println("\tLogin info: " + user.getLogin());
-		System.out.println("\tEmail address" + user.getEmailAddress());
-	}
-
-	@Reference
-	public void setUserLocalService(UserLocalService userLocalService) {
-		this.userLocalService = userLocalService;
+		System.out.println("Email address: " + user.getEmailAddress());
+		System.out.println("First name: " + user.getFirstName());
+		System.out.println("Last name: " + user.getLastName());
+		System.out.println("Login: " + user.getLogin());
+		System.out.println("Middle name: " + user.getMiddleName());
+		System.out.println("Screen name: " + user.getScreenName());
+		System.out.println("User ID: " + user.getUserId());
 	}
 
 }

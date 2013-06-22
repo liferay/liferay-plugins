@@ -19,7 +19,7 @@ import com.liferay.portal.service.UserLocalService;
 /**
  * @author Miguel Pastor
  */
-public abstract class AbstractUserManagementCommand {
+public abstract class AbstractCommand {
 
 	public static final String OSGI_COMMAND_FUNCTION = "osgi.command.function";
 
