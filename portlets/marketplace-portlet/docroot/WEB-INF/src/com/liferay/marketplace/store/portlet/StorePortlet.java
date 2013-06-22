@@ -206,7 +206,7 @@ public class StorePortlet extends MVCPortlet {
 
 			FileUtil.write(tempFile, inputStream);
 
-			App app = AppServiceUtil.updateApp(remoteAppId, version, tempFile);
+			AppServiceUtil.updateApp(remoteAppId, version, tempFile);
 
 			AppServiceUtil.installApp(remoteAppId);
 
