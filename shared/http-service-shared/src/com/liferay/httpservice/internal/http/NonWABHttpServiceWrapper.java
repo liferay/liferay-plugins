@@ -55,11 +55,29 @@ public class NonWABHttpServiceWrapper extends HttpServiceWrapper {
 	public void registerListener(
 		Object listener, Map<String, String> initParameters,
 		HttpContext httpContext) {
+
+		if (httpContext == null) {
+			httpContext = createDefaultHttpContext();
+		}
+
+		bundleServletContext.registerListener(
+			listener, initParameters, httpContext);
+
+		_registrations.add(listener);
 	}
 
 	@Override
 	public void registerResources(
-		String alias, String name, HttpContext httpContext) {
+			String alias, String name, HttpContext httpContext)
+		throws NamespaceException {
+
+		if (httpContext == null) {
+			httpContext = createDefaultHttpContext();
+		}
+
+		bundleServletContext.registerResources(alias, name, httpContext);
+
+		_registrations.add(alias);
 	}
 
 	@Override
@@ -103,6 +121,9 @@ public class NonWABHttpServiceWrapper extends HttpServiceWrapper {
 
 	@Override
 	public void unregisterListener(Object listener) {
+		bundleServletContext.unregisterListener(listener);
+
+		removeRegistration(listener);
 	}
 
 	@Override
