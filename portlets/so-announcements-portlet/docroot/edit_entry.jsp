@@ -22,9 +22,9 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-AnnouncementsEntry entry = AnnouncementsEntryLocalServiceUtil.fetchAnnouncementsEntry(entryId);
-
 long entryId = ParamUtil.getLong(request, "entryId");
+
+AnnouncementsEntry entry = AnnouncementsEntryLocalServiceUtil.fetchAnnouncementsEntry(entryId);
 
 String content = BeanParamUtil.getString(entry, request, "content");
 
