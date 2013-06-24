@@ -94,9 +94,9 @@ public class WorkflowComparatorFactoryImpl
 	@Override
 	public OrderByComparator getTaskCreateDateComparator(boolean ascending) {
 		return new WorkflowTaskCreateDateComparator(
-			ascending, "createDate ASC, kaleoTaskInstanceId ASC",
-			"createDate DESC, kaleoTaskInstanceId DESC",
-			new String[] {"createDate", "kaleoTaskInstanceId"});
+			ascending, "createDate ASC, kaleoTaskInstanceTokenId ASC",
+			"createDate DESC, kaleoTaskInstanceTokenId DESC",
+			new String[] {"createDate", "kaleoTaskInstanceTokenId"});
 	}
 
 	@Override
