@@ -22,9 +22,9 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-AnnouncementsEntry entry = (AnnouncementsEntry)request.getAttribute(WebKeys.ANNOUNCEMENTS_ENTRY);
+AnnouncementsEntry entry = AnnouncementsEntryLocalServiceUtil.fetchAnnouncementsEntry(entryId);
 
-long entryId = BeanParamUtil.getLong(entry, request, "entryId");
+long entryId = ParamUtil.getLong(request, "entryId");
 
 String content = BeanParamUtil.getString(entry, request, "content");
 
@@ -35,22 +35,13 @@ if (entry == null) {
 }
 %>
 
-<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
+<div id="<portlet:namespace />errorMessage"></div>
+
+<aui:form method="post" name='<%= renderResponse.getNamespace() + "fm" %>' onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry();" %>' useNamespace="false">
 	<aui:input name="alert" type="hidden" value="<%= portletName.equals(PortletKeys.ALERTS) %>" />
-
-	<liferay-ui:header
-		backURL="<%= redirect %>"
-		title="entry"
-	/>
-
-	<liferay-ui:error exception="<%= EntryContentException.class %>" message="please-enter-valid-content" />
-	<liferay-ui:error exception="<%= EntryDisplayDateException.class %>" message="please-enter-a-valid-display-date" />
-	<liferay-ui:error exception="<%= EntryExpirationDateException.class %>" message="please-enter-a-valid-expiration-date" />
-	<liferay-ui:error exception="<%= EntryTitleException.class %>" message="please-enter-a-valid-title" />
-	<liferay-ui:error exception="<%= EntryURLException.class %>" message="please-enter-a-valid-url" />
+	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (entry == null) ? Constants.ADD : Constants.UPDATE %>" />
 
 	<aui:model-context bean="<%= entry %>" model="<%= AnnouncementsEntry.class %>" />
 
@@ -58,12 +49,9 @@ if (entry == null) {
 		<c:choose>
 			<c:when test="<%= entry != null %>">
 
-				<%
-				boolean showScopeName = true;
-				%>
-
 				<%@ include file="/entry_scope.jspf" %>
 
+				<aui:input name="scope" type="hidden" value="<%= scopeName %>" />
 			</c:when>
 			<c:otherwise>
 
@@ -88,16 +76,6 @@ if (entry == null) {
 			</c:otherwise>
 		</c:choose>
 
-		<aui:input name="title" />
-
-		<aui:input name="url" />
-
-		<aui:field-wrapper label="content">
-			<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" />
-
-			<aui:input name="content" type="hidden" />
-		</aui:field-wrapper>
-
 		<aui:select name="type">
 
 			<%
@@ -117,6 +95,18 @@ if (entry == null) {
 			<aui:option label="important" selected="<%= (entry != null) && (entry.getPriority() == 1) %>" value="1" />
 		</aui:select>
 
+		<aui:input cssClass="title" name="title">
+			<aui:validator name="required" />
+		</aui:input>
+
+		<aui:input cssClass="url" name="url" />
+
+		<aui:field-wrapper label="content">
+			<liferay-ui:input-editor height="150" toolbarSet="Basic" width="100%" />
+
+			<aui:input name="content" type="hidden" />
+		</aui:field-wrapper>
+
 		<aui:input dateTogglerCheckboxLabel="display-immediately" disabled="<%= displayImmediately %>" name="displayDate" />
 
 		<aui:input name="expirationDate" />
@@ -125,31 +115,62 @@ if (entry == null) {
 	<aui:button-row>
 		<aui:button type="submit" />
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button onClick='<%= renderResponse.getNamespace() + "closeEntry();" %>' value="cancel" />
 	</aui:button-row>
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />getContent() {
-		return window.<portlet:namespace />editor.getHTML();
+	function initEditor() {
+		var ckEditor = CKEDITOR.instances["editor"];
+
+		ckEditor.resize("100%", "200");
+
+		return '<%= UnicodeFormatter.toString(content) %>';
 	}
 
-	function <portlet:namespace />initEditor() {
-		return "<%= UnicodeFormatter.toString(content) %>";
+	function <portlet:namespace />closeEntry() {
+		Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
 	}
 
 	function <portlet:namespace />saveEntry() {
-		document.<portlet:namespace />fm.action = '<portlet:actionURL><portlet:param name="struts_action" value="/announcements/edit_entry" /></portlet:actionURL>';
-		document.<portlet:namespace />fm.target = '';
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (entry == null) ? Constants.ADD : Constants.UPDATE %>";
-		document.<portlet:namespace />fm.<portlet:namespace />content.value = <portlet:namespace />getContent();
-		submitForm(document.<portlet:namespace />fm);
-	}
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
-	</c:if>
-</aui:script>
+		var A = AUI();
 
-<%!
-public static final String EDITOR_WYSIWYG_IMPL_KEY = "editor.wysiwyg.portal-web.docroot.html.portlet.announcements.edit_entry.jsp";
-%>
+		var form = document.<portlet:namespace />fm;
+
+		form.content.value = window.editor.getHTML();
+		form.target = '';
+		form.<%= Constants.CMD %>.value = "<%= (entry == null) ? Constants.ADD : Constants.UPDATE %>";
+
+		var uri = '<liferay-portlet:actionURL name="saveEntry"><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>';
+
+		A.io.request(
+			uri,
+			{
+				dataType: 'json',
+				form: {
+					id: form
+				},
+				after: {
+					success: function(event, id, obj) {
+						var responseData = this.get('responseData');
+
+						if (!responseData.success) {
+							var message = A.one('#<portlet:namespace />errorMessage');
+
+							if (message) {
+								message.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+							}
+						}
+						else {
+							Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+
+							var topWindow = Liferay.Util.getTop();
+
+							topWindow.document.location.reload();
+						}
+					}
+				}
+			}
+		);
+	}
+</aui:script>
