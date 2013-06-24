@@ -14,18 +14,18 @@
 
 package com.liferay.localization.zh.util;
 
-import com.liferay.portal.kernel.test.TestCase;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class LocalizationZHUtilTest extends TestCase {
+public class LocalizationZHUtilTest {
 
 	@Test
 	public void testGetSimplifiedText() {
-		assertEquals("test", LocalizationZHUtil.getSimplifiedText("test"));
+		Assert.assertEquals(
+			"test", LocalizationZHUtil.getSimplifiedText("test"));
 	}
 
 }
