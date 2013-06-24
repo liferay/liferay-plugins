@@ -409,6 +409,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 			new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Feed toUnescapedModel() {
 		return this;
 	}

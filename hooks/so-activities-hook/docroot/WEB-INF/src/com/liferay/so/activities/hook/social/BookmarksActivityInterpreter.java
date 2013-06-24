@@ -20,11 +20,13 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
@@ -49,18 +51,26 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
+			SocialActivitySet activitySet = null;
+
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
-				SocialActivitySet activitySet =
+			if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
+				activitySet =
+					SocialActivitySetLocalServiceUtil.getUserActivitySet(
+						activity.getGroupId(), activity.getUserId(),
+						activity.getClassNameId(), activity.getType());
+			}
+			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
+			}
 
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
 			}
 		}
 		catch (Exception e) {
@@ -74,55 +84,87 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+			return getBody(
+				activitySet.getClassName(), activitySet.getClassPK(),
+				serviceContext);
+		}
+
+		return super.getBody(activitySet, serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-
-		String link = StringPool.BLANK;
-
-		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(
-			activity.getClassPK());
-
-		String faviconUrl = HttpUtil.getDomain(entry.getUrl()) + "/favicon.ico";
-
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
-
-		LiferayPortletRequest liferayPortletRequest =
-			serviceContext.getLiferayPortletRequest();
-
-		if (ping(faviconUrl)) {
-			link = wrapLink(entry.getUrl(), faviconUrl, entry.getName());
-		}
-		else if (Validator.isNotNull(
-					assetRenderer.getIconPath(liferayPortletRequest))) {
-
-			link = wrapLink(
-				getLinkURL(activity, serviceContext),
-				assetRenderer.getIconPath(liferayPortletRequest),
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-		else {
-			link = wrapLink(entry.getUrl(), entry.getName());
-		}
-
-		sb.append(link);
-
+		sb.append(getBookmarkLink(className, classPK, serviceContext));
 		sb.append("</div><div class=\"bookmarks-page-content\">");
+
+		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(classPK);
+
 		sb.append(entry.getDescription());
+
 		sb.append("</div></div>");
 
 		return sb.toString();
 	}
 
+	protected String getBookmarkLink(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
+		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(classPK);
+
+		String faviconUrl = HttpUtil.getDomain(entry.getUrl()) + "/favicon.ico";
+
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+
+		LiferayPortletRequest liferayPortletRequest =
+			serviceContext.getLiferayPortletRequest();
+
+		if (ping(faviconUrl)) {
+			return wrapLink(entry.getUrl(), faviconUrl, entry.getName());
+		}
+		else if (Validator.isNotNull(
+					assetRenderer.getIconPath(liferayPortletRequest))) {
+
+			return wrapLink(
+				getLinkURL(className, classPK, serviceContext),
+				assetRenderer.getIconPath(liferayPortletRequest),
+				HtmlUtil.escape(
+					assetRenderer.getTitle(serviceContext.getLocale())));
+		}
+
+		return wrapLink(entry.getUrl(), entry.getName());
+	}
+
 	@Override
-	protected String getLink(
+	protected SocialActivityFeedEntry getSubfeedEntry(
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		return wrapLink(
-			getLinkURL(activity, serviceContext),
-			serviceContext.translate("view-bookmarks"));
+		String title = getBookmarkLink(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+
+		AssetRenderer assetRenderer = getAssetRenderer(
+			activity.getClassName(), activity.getClassPK());
+
+		String body = StringUtil.shorten(
+			assetRenderer.getSummary(serviceContext.getLocale()), 200);
+
+		return new SocialActivityFeedEntry(title, body);
 	}
 
 	@Override
@@ -134,6 +176,20 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
 			return "updated-a-bookmark";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivitySet activitySet) {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
+			return "added-x-new-bookmarks";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+			return "made-x-updates-to-a-bookmark";
 		}
 
 		return StringPool.BLANK;

@@ -409,6 +409,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 			new Class[] { WSRPProducer.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public WSRPProducer toUnescapedModel() {
 		return this;
 	}

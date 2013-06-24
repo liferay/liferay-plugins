@@ -210,6 +210,20 @@ public interface SocialActivitySetModel extends AttachedModel,
 	public void setType(int type);
 
 	/**
+	 * Returns the extra data of this social activity set.
+	 *
+	 * @return the extra data of this social activity set
+	 */
+	public String getExtraData();
+
+	/**
+	 * Sets the extra data of this social activity set.
+	 *
+	 * @param extraData the extra data of this social activity set
+	 */
+	public void setExtraData(String extraData);
+
+	/**
 	 * Returns the activity count of this social activity set.
 	 *
 	 * @return the activity count of this social activity set

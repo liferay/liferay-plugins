@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.search.HitsImpl;
 import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryConfig;
-import com.liferay.portal.kernel.search.QueryTranslatorUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
@@ -421,16 +420,18 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		String queryString = query.toString();
 
-		StringBundler sb = new StringBundler(6);
+		if (companyId > 0) {
+			StringBundler sb = new StringBundler(6);
+			sb.append(queryString);
+			sb.append(StringPool.SPACE);
+			sb.append(StringPool.PLUS);
+			sb.append(Field.COMPANY_ID);
+			sb.append(StringPool.COLON);
+			sb.append(companyId);
+			queryString = sb.toString();
+		}
 
-		sb.append(queryString);
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.PLUS);
-		sb.append(Field.COMPANY_ID);
-		sb.append(StringPool.COLON);
-		sb.append(companyId);
-
-		solrQuery.setQuery(sb.toString());
+		solrQuery.setQuery(queryString);
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
 			solrQuery.setRows(0);
@@ -455,8 +456,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 				ORDER order = ORDER.asc;
 
-				if (Validator.isNull(sortFieldName) ||
-					!sortFieldName.endsWith("sortable")) {
+				if (Validator.isNull(sortFieldName)) {
 
 					sortFieldName = "score";
 

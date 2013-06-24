@@ -429,6 +429,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 			new Class[] { Checkout.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Checkout toUnescapedModel() {
 		return this;
 	}

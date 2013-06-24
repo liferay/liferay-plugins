@@ -34,23 +34,41 @@ import java.util.Map;
  */
 public class LARImporter extends BaseImporter {
 
+	@Override
 	public void importResources() throws Exception {
-		LayoutLocalServiceUtil.importLayouts(
-			userId, groupId, privateLayout, getParameterMap(), _larInputStream);
+		if (_privateLARInputStream != null) {
+			LayoutLocalServiceUtil.importLayouts(
+				userId, groupId, true, getParameterMap(),
+				_privateLARInputStream);
+		}
+
+		if (_publicLARInputStream != null) {
+			LayoutLocalServiceUtil.importLayouts(
+				userId, groupId, false, getParameterMap(),
+				_publicLARInputStream);
+		}
 	}
 
-	public void setLARFile(File larFile) {
+	public void setLARFile(File file) {
 		try {
-			setLARInputStream(
-				new BufferedInputStream(new FileInputStream(larFile)));
+			setPublicLARInputStream(
+				new BufferedInputStream(new FileInputStream(file)));
 		}
 		catch (FileNotFoundException fnfe) {
 			_log.error(fnfe, fnfe);
 		}
 	}
 
-	public void setLARInputStream(InputStream larInputStream) {
-		_larInputStream = larInputStream;
+	public void setLARInputStream(InputStream inputStream) {
+		setPublicLARInputStream(inputStream);
+	}
+
+	public void setPrivateLARInputStream(InputStream privateLARInputStream) {
+		_privateLARInputStream = privateLARInputStream;
+	}
+
+	public void setPublicLARInputStream(InputStream publicLARInputStream) {
+		_publicLARInputStream = publicLARInputStream;
 	}
 
 	protected Map<String, String[]> getParameterMap() {
@@ -119,6 +137,7 @@ public class LARImporter extends BaseImporter {
 
 	private static Log _log = LogFactoryUtil.getLog(LARImporter.class);
 
-	private InputStream _larInputStream;
+	private InputStream _privateLARInputStream;
+	private InputStream _publicLARInputStream;
 
 }

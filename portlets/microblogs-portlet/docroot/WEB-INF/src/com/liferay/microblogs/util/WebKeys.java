@@ -27,4 +27,6 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 	public static final String MICROBLOGS_ENTRIES_URL =
 		"MICROBLOGS_ENTRIES_URL";
 
+	public static final String MICROBLOGS_ENTRY = "MICROBLOGS_ENTRY";
+
 }

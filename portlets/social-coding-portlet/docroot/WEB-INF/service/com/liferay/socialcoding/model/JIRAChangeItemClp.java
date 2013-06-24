@@ -338,6 +338,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public JIRAChangeItem toUnescapedModel() {
 		return this;
 	}

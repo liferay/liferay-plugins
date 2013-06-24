@@ -33,15 +33,17 @@ public class YAction extends PortletAction {
 
 	@Override
 	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-			RenderRequest renderRequest, RenderResponse renderResponse)
+			ActionMapping actionMapping, ActionForm actionForm,
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
 			_log.info("render");
 		}
 
-		return mapping.findForward("portlet.sample_struts_liferay_portlet.y");
+		return actionMapping.findForward(
+			"portlet.sample_struts_liferay_portlet.y");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(YAction.class);

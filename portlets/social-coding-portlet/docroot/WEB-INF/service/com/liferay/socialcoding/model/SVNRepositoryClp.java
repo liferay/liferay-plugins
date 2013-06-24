@@ -259,6 +259,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 			new Class[] { SVNRepository.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public SVNRepository toUnescapedModel() {
 		return this;
 	}

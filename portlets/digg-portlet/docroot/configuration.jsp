@@ -293,16 +293,19 @@
 </aui:form>
 
 <aui:script use="node">
-	allFlds = A.all('div.fld');
+	var allFlds = A.all('div.fld');
 
-	allFlds.on('click', function (e) {
-		var currentTarget = e.currentTarget;
+	allFlds.on(
+		'click',
+		function(e) {
+			var currentTarget = e.currentTarget;
 
-		allFlds.removeClass('selected');
-		currentTarget.addClass('selected');
+			allFlds.removeClass('selected');
+			currentTarget.addClass('selected');
 
-		currentTarget.one('input.r');
+			currentTarget.one('input.r');
 
-		currentTarget.one('span.r input').set('checked', true);
-	});
+			currentTarget.one('span.r input').set('checked', true);
+		}
+	);
 </aui:script>

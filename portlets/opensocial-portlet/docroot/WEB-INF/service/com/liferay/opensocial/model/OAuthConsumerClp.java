@@ -426,6 +426,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 			new Class[] { OAuthConsumer.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public OAuthConsumer toUnescapedModel() {
 		return this;
 	}

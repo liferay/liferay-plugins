@@ -716,6 +716,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 			new Class[] { Message.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Message toUnescapedModel() {
 		return this;
 	}

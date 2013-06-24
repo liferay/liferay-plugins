@@ -646,6 +646,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoTransition toUnescapedModel() {
 		return this;
 	}

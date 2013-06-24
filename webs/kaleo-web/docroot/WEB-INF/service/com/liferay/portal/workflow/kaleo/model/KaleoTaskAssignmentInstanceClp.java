@@ -650,6 +650,7 @@ public class KaleoTaskAssignmentInstanceClp extends BaseModelImpl<KaleoTaskAssig
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoTaskAssignmentInstance toUnescapedModel() {
 		return this;
 	}

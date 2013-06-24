@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<artifactId>${ivy.pom.artifactId}</artifactId>
+	<description>${ivy.pom.description}</description>
+	<developers>
+		<developer>
+			<name>${ivy.pom.developer.name}</name>
+			<organization>${ivy.pom.developer.organization}</organization>
+			<organizationUrl>${ivy.pom.developer.organizationUrl}</organizationUrl>
+		</developer>
+	</developers>
+	<groupId>${ivy.pom.groupId}</groupId>
+	<licenses>
+		<license>
+			<name>${ivy.pom.license.name}</name>
+			<url>${ivy.pom.license.url}</url>
+		</license>
+	</licenses>
+	<modelVersion>4.0.0</modelVersion>
+	<name>${ivy.pom.name}</name>
+	<packaging>${ivy.pom.packaging}</packaging>
+	<scm>
+		<connection>${ivy.pom.scm.connection}</connection>
+		<developerConnection>${ivy.pom.scm.developerConnection}</developerConnection>
+		<url>${ivy.pom.scm.url}</url>
+	</scm>
+	<url>${ivy.pom.url}</url>
+	<version>${ivy.pom.version}</version>
+</project>

@@ -626,6 +626,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 			new Class[] { KaleoAction.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoAction toUnescapedModel() {
 		return this;
 	}

@@ -15,18 +15,18 @@
 package com.liferay.so.activities.hook.social;
 
 import com.liferay.compat.portal.service.ServiceContext;
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
 
 /**
@@ -39,24 +39,64 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 		return _CLASS_NAMES;
 	}
 
+	public void updateActivitySet(long activityId)
+		throws PortalException, SystemException {
+
+		com.liferay.so.activities.model.SocialActivity activity =
+			SocialActivityLocalServiceUtil.fetchSocialActivity(activityId);
+
+		if ((activity == null) || (activity.getActivitySetId() > 0)) {
+			return;
+		}
+
+		long activitySetId = getActivitySetId(activityId);
+
+		if (activitySetId > 0) {
+			SocialActivitySetLocalServiceUtil.incrementActivityCount(
+				activitySetId, activityId);
+		}
+		else {
+			SocialActivitySet activitySet =
+				SocialActivitySetLocalServiceUtil.addActivitySet(activityId);
+
+			if ((activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) &&
+				(activity.getReceiverUserId() > 0)) {
+
+				activitySet.setType(_ACTIVITY_KEY_REPLY_MESSAGE);
+
+				SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
+					activitySet);
+			}
+		}
+	}
+
 	@Override
 	protected long getActivitySetId(long activityId) {
 		try {
-			SocialActivity activity =
+			com.liferay.so.activities.model.SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (((activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) &&
-				 (activity.getReceiverUserId() > 0)) ||
-				(activity.getType() == _ACTIVITY_KEY_REPLY_MESSAGE)) {
+			int activityType = activity.getType();
 
-				SocialActivitySet activitySet =
-					SocialActivitySetLocalServiceUtil.getClassActivitySet(
-						activity.getUserId(), activity.getClassNameId(),
-						activity.getClassPK(), activity.getType());
+			if ((activity.getType() == _ACTIVITY_KEY_ADD_MESSAGE) &&
+				(activity.getReceiverUserId() > 0)) {
 
-				if ((activitySet != null) && !isExpired(activitySet)) {
-					return activitySet.getActivitySetId();
-				}
+				activityType = _ACTIVITY_KEY_REPLY_MESSAGE;
+			}
+
+			SocialActivitySet activitySet = null;
+
+			if ((activityType == _ACTIVITY_KEY_ADD_MESSAGE) ||
+				(activityType == _ACTIVITY_KEY_REPLY_MESSAGE)) {
+
+				activitySet =
+					SocialActivitySetLocalServiceUtil.getUserActivitySet(
+						activity.getGroupId(), activity.getUserId(),
+						activity.getClassNameId(), activityType);
+			}
+
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
 			}
 		}
 		catch (Exception e) {
@@ -70,55 +110,31 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		return getBody(
+			activity.getClassName(), activity.getClassPK(), serviceContext);
+	}
+
+	protected String getBody(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"activity-body\"><div class=\"title\">");
-
-		String pageTitle = StringPool.BLANK;
-
-		String linkURL = getLinkURL(activity, serviceContext);
-
-		AssetRenderer assetRenderer = getAssetRenderer(activity);
-
-		LiferayPortletRequest liferayPortletRequest =
-			serviceContext.getLiferayPortletRequest();
-
-		if (Validator.isNotNull(
-				assetRenderer.getIconPath(liferayPortletRequest))) {
-
-			pageTitle = wrapLink(
-				linkURL, assetRenderer.getIconPath(liferayPortletRequest),
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-		else {
-			pageTitle = wrapLink(
-				linkURL,
-				HtmlUtil.escape(
-					assetRenderer.getTitle(serviceContext.getLocale())));
-		}
-
-		sb.append(pageTitle);
-
+		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"forum-page-content\">");
+
+		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+
 		sb.append(
 			StringUtil.shorten(
 				HtmlUtil.extractText(
 					assetRenderer.getSummary(
 						serviceContext.getLocale())), 200));
+
 		sb.append("</div></div>");
 
 		return sb.toString();
-	}
-
-	@Override
-	protected String getLink(
-			SocialActivity activity, ServiceContext serviceContext)
-		throws Exception {
-
-		return wrapLink(
-			getLinkURL(activity, serviceContext),
-			serviceContext.translate("view-forum"));
 	}
 
 	@Override
@@ -190,6 +206,21 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 
 		return titlePattern;
+	}
+
+	@Override
+	protected String getTitlePattern(
+			String groupName, SocialActivitySet activitySet)
+		throws Exception {
+
+		if (activitySet.getType() == _ACTIVITY_KEY_ADD_MESSAGE) {
+			return "wrote-x-new-forum-posts";
+		}
+		else if (activitySet.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) {
+			return "replied-to-x-forum-posts";
+		}
+
+		return StringPool.BLANK;
 	}
 
 	/**

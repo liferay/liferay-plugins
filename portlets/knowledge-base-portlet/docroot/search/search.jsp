@@ -57,11 +57,18 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		for (int i = 0; i < hits.getDocs().length; i++) {
 			Object[] array = new Object[5];
 
-			array[0] = hits.doc(i).get(Field.ENTRY_CLASS_PK);
-			array[1] = hits.doc(i).get(Field.TITLE);
-			array[2] = hits.doc(i).get(Field.USER_NAME);
-			array[3] = hits.doc(i).getDate(Field.CREATE_DATE);
-			array[4] = hits.doc(i).getDate(Field.MODIFIED_DATE);
+			Document document = hits.doc(i);
+
+			array[0] = document.get(Field.ENTRY_CLASS_PK);
+			array[1] = document.get(Field.TITLE);
+
+			long userId = GetterUtil.getLong(document.get(Field.USER_ID));
+			String userName = document.get(Field.USER_NAME);
+
+			array[2] = PortalUtil.getUserName(userId, userName);
+
+			array[3] = document.getDate(Field.CREATE_DATE);
+			array[4] = document.getDate(Field.MODIFIED_DATE);
 
 			tuples.add(new Tuple(array));
 		}

@@ -631,6 +631,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 			new Class[] { TasksEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public TasksEntry toUnescapedModel() {
 		return this;
 	}

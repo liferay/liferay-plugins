@@ -36,7 +36,7 @@ AUI().use(
 					if (bgColorNode) {
 						defaultColor = bgColorNode.getStyle('backgroundColor');
 
-						while (defaultColor == 'transparent') {
+						while (defaultColor.toLowerCase() == 'transparent') {
 							defaultColor = bgColorNode.getStyle('backgroundColor');
 
 							bgColorNode = bgColorNode.ancestor();
@@ -903,13 +903,15 @@ AUI().use(
 					for (var i in entryCache) {
 						var entry = entryCache[i];
 
-						if (entry.flag) {
+						var incomingEntry = (entry.fromUserId == userId);
+
+						if (entry.flag || !incomingEntry) {
 							chat.update(
 								{
 									cache: true,
 									content: entry.content,
 									createDate: entry.createDate,
-									incoming: (entry.fromUserId == userId)
+									incoming: incomingEntry
 								}
 							);
 						}

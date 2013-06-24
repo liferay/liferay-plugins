@@ -178,7 +178,7 @@ catch (NoSuchRecordSetException nsrse) {
 
 	<aui:fieldset cssClass="aui-helper-hidden">
 		<aui:field-wrapper label="portlet-id">
-			<%= portletResource %>
+			<%= HtmlUtil.escape(portletResource) %>
 		</aui:field-wrapper>
 	</aui:fieldset>
 

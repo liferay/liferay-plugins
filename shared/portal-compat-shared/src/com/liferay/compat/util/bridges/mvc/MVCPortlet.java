@@ -30,6 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 
 /**
  * @author Shinn Lok
@@ -70,11 +71,22 @@ public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 		throws PortletException {
 
 		try {
+			checkPermissions(actionRequest);
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+
+		try {
 			return super.callActionMethod(actionRequest, actionResponse);
 		}
 		catch (PortletException pe) {
 			return _callActionMethod(actionRequest, actionResponse, pe);
 		}
+	}
+
+	protected void checkPermissions(PortletRequest portletRequest)
+		throws Exception {
 	}
 
 	private boolean _callActionMethod(

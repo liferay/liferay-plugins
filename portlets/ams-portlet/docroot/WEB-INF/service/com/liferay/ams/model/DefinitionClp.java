@@ -512,6 +512,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 			new Class[] { Definition.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Definition toUnescapedModel() {
 		return this;
 	}

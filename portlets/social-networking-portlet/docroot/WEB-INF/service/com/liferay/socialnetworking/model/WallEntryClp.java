@@ -372,6 +372,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 			new Class[] { WallEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public WallEntry toUnescapedModel() {
 		return this;
 	}

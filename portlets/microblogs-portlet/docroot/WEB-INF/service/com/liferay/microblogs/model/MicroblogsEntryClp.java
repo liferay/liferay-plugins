@@ -475,6 +475,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public MicroblogsEntry toUnescapedModel() {
 		return this;
 	}

@@ -1,9 +1,17 @@
-<ivy-module version="2.0">
-	<info organisation="com.liferay" module="plugins" />
+<?xml version="1.0"?>
 
-	<dependencies>
+<ivy-module
+	version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="plugins" organisation="com.liferay" />
+
+	<dependencies defaultconf="default">
 		<dependency name="activation" org="javax.activation" rev="1.1" />
 		<dependency name="antelopetasks" org="org.tigris.antelope" rev="3.2.10" />
+		<dependency name="bcpg-jdk16" org="org.bouncycastle" rev="1.46" />
+		<dependency name="bcprov-jdk16" org="org.bouncycastle" rev="1.46" />
 		<dependency name="ccpp" org="javax.ccpp" rev="1.0" />
 		<dependency name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
 		<dependency name="jalopy" org="jalopy" rev="1.5rc3" />
@@ -19,6 +27,7 @@
 		<dependency name="powermock-core" org="org.powermock" rev="1.5" />
 		<dependency name="powermock-module-junit4" org="org.powermock" rev="1.5" />
 		<dependency name="powermock-module-junit4-common" org="org.powermock" rev="1.5" />
+		<dependency name="powermock-reflect" org="org.powermock" rev="1.5" />
 		<dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12.1" />
 		<dependency name="scala-compiler" org="org.scala-lang" rev="2.9.2" />
 		<dependency name="serializer" org="xalan" rev="2.7.1" />

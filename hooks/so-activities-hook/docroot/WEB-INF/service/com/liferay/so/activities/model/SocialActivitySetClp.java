@@ -79,6 +79,7 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("type", getType());
+		attributes.put("extraData", getExtraData());
 		attributes.put("activityCount", getActivityCount());
 
 		return attributes;
@@ -138,6 +139,12 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 
 		if (type != null) {
 			setType(type);
+		}
+
+		String extraData = (String)attributes.get("extraData");
+
+		if (extraData != null) {
+			setExtraData(extraData);
 		}
 
 		Integer activityCount = (Integer)attributes.get("activityCount");
@@ -362,6 +369,27 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 		}
 	}
 
+	public String getExtraData() {
+		return _extraData;
+	}
+
+	public void setExtraData(String extraData) {
+		_extraData = extraData;
+
+		if (_socialActivitySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _socialActivitySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setExtraData", String.class);
+
+				method.invoke(_socialActivitySetRemoteModel, extraData);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public int getActivityCount() {
 		return _activityCount;
 	}
@@ -449,6 +477,7 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public SocialActivitySet toUnescapedModel() {
 		return this;
 	}
@@ -466,6 +495,7 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 		clone.setClassNameId(getClassNameId());
 		clone.setClassPK(getClassPK());
 		clone.setType(getType());
+		clone.setExtraData(getExtraData());
 		clone.setActivityCount(getActivityCount());
 
 		return clone;
@@ -522,7 +552,7 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{activitySetId=");
 		sb.append(getActivitySetId());
@@ -542,6 +572,8 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 		sb.append(getClassPK());
 		sb.append(", type=");
 		sb.append(getType());
+		sb.append(", extraData=");
+		sb.append(getExtraData());
 		sb.append(", activityCount=");
 		sb.append(getActivityCount());
 		sb.append("}");
@@ -550,7 +582,7 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.so.activities.model.SocialActivitySet");
@@ -593,6 +625,10 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 		sb.append(getType());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>extraData</column-name><column-value><![CDATA[");
+		sb.append(getExtraData());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>activityCount</column-name><column-value><![CDATA[");
 		sb.append(getActivityCount());
 		sb.append("]]></column-value></column>");
@@ -612,6 +648,7 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 	private long _classNameId;
 	private long _classPK;
 	private int _type;
+	private String _extraData;
 	private int _activityCount;
 	private BaseModel<?> _socialActivitySetRemoteModel;
 }

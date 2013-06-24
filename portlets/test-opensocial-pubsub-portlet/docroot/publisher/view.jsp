@@ -25,7 +25,7 @@
 <aui:script use="aui-base">
 	A.one('#<portlet:namespace />publish').on(
 		'click',
-		function () {
+		function() {
 			var message = Math.random();
 
 			Liferay.fire('gadget:org.apache.shindig.random-number', message);

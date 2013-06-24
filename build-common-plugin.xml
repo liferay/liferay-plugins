@@ -20,18 +20,28 @@
 	<if>
 		<antelope:endswith string="${plugin.name}" with="-shared" />
 		<then>
-			<property name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
-			<property name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
+			<property name="plugin.packaging" value="jar" />
 		</then>
 		<else>
-			<property name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.war" />
-			<property name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
+			<property name="plugin.packaging" value="war" />
 		</else>
 	</if>
+
+	<var name="plugin.full.version" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
+
+	<var name="plugin.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
+	<var name="plugin.javadoc.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
+	<var name="plugin.pom.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
+	<var name="plugin.sources.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
+	<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
 
 	<if>
 		<available file="src" />
 		<then>
+			<property name="plugin.classes.dir" value="classes" />
+			<property name="plugin.lib.dir" value="lib" />
+			<property name="plugin.source.dir" value="src" />
+
 			<if>
 				<available file="lib" />
 				<then>
@@ -47,22 +57,28 @@
 				</else>
 			</if>
 		</then>
-		<elseif>
-			<available file="tmp" />
-			<then>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-					<pathelement location="tmp/WEB-INF/classes" />
-				</path>
-			</then>
-		</elseif>
 		<else>
-			<path id="plugin-lib.classpath">
-				<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-				<pathelement location="docroot/WEB-INF/classes" />
-			</path>
+			<property name="plugin.classes.dir" value="docroot/WEB-INF/classes" />
+			<property name="plugin.lib.dir" value="docroot/WEB-INF/lib" />
+			<property name="plugin.source.dir" value="docroot/WEB-INF/src" />
+
+			<if>
+				<available file="tmp" />
+				<then>
+					<path id="plugin-lib.classpath">
+						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<fileset dir="tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement location="docroot/WEB-INF/classes" />
+						<pathelement location="tmp/WEB-INF/classes" />
+					</path>
+				</then>
+				<else>
+					<path id="plugin-lib.classpath">
+						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement location="docroot/WEB-INF/classes" />
+					</path>
+				</else>
+			</if>
 		</else>
 	</if>
 
@@ -477,16 +493,23 @@
 				<not>
 					<available file="docroot/WEB-INF/lib/.svn" />
 				</not>
+				<length length="0" when="equal">
+					<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" />
+				</length>
 			</and>
 			<then>
 				<delete dir="docroot/WEB-INF/lib" />
 			</then>
 		</if>
 
+		<delete dir="javadoc" />
 		<delete dir="test-classes" />
 		<delete dir="test-results" />
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
+		<delete file="${plugin.javadoc.file}" />
+		<delete file="${plugin.pom.file}" />
+		<delete file="${plugin.sources.file}" />
 		<delete file="${plugin.src.file}" />
 
 		<delete failonerror="false" includeemptydirs="true">
@@ -542,54 +565,14 @@
 	<target name="compile">
 		<antcall target="merge" />
 
+		<antcall target="compile-import-shared" />
+
 		<mkdir dir="docroot/WEB-INF/classes" />
 		<mkdir dir="docroot/WEB-INF/lib" />
 
 		<copy todir="docroot/WEB-INF/lib">
 			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
 		</copy>
-
-		<if>
-			<isset property="import.shared" />
-			<then>
-				<var name="import.shared" value="portal-compat-shared,${import.shared}" />
-			</then>
-			<else>
-				<var name="import.shared" value="portal-compat-shared" />
-			</else>
-		</if>
-
-		<for list="${import.shared}" param="import.shared.current">
-			<sequential>
-				<if>
-					<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
-					<then>
-						<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
-
-						<for param="import.shared.full.path">
-							<path>
-								<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
-							</path>
-							<sequential>
-								<copy
-									file="@{import.shared.full.path}"
-									tofile="docroot/WEB-INF/lib/@{import.shared.current}.jar"
-								/>
-							</sequential>
-						</for>
-
-						<if>
-							<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
-							<then>
-								<copy todir="docroot/WEB-INF/lib">
-									<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
-								</copy>
-							</then>
-						</if>
-					</then>
-				</if>
-			</sequential>
-		</for>
 
 		<if>
 			<available file="overwrite" />
@@ -695,6 +678,66 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 
 		<antcall target="merge" />
+	</target>
+
+	<target name="compile-import-shared">
+		<if>
+			<not>
+				<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
+			</not>
+			<then>
+				<if>
+					<isset property="import.shared" />
+					<then>
+						<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+					</then>
+					<else>
+						<var name="import.shared" value="portal-compat-shared" />
+					</else>
+				</if>
+			</then>
+		</if>
+
+		<if>
+			<isset property="import.shared" />
+			<then>
+				<var name="import.shared.list" value="${import.shared}" />
+
+				<var name="import.shared" unset="true" />
+
+				<for list="${import.shared.list}" param="import.shared.current">
+					<sequential>
+						<if>
+							<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
+							<then>
+								<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
+
+								<for param="import.shared.full.path">
+									<path>
+										<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.1*.jar" />
+									</path>
+									<sequential>
+										<copy
+											file="@{import.shared.full.path}"
+											tofile="${plugin.lib.dir}/@{import.shared.current}.jar"
+										/>
+									</sequential>
+								</for>
+
+								<if>
+									<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
+									<then>
+										<copy todir="${plugin.lib.dir}">
+											<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
+										</copy>
+									</then>
+								</if>
+							</then>
+						</if>
+					</sequential>
+				</for>
+			</then>
+		</if>
 	</target>
 
 	<target name="compile-test">
@@ -988,6 +1031,28 @@ Please find a solution that does not require portal-impl.jar.
 		</for>
 	</target>
 
+	<target name="jar-javadoc" depends="javadoc">
+		<jar
+			basedir="javadoc"
+			jarfile="${plugin.javadoc.file}"
+		/>
+	</target>
+
+	<target name="jar-source">
+		<jar
+			basedir="src"
+			jarfile="${plugin.sources.file}"
+		/>
+	</target>
+
+	<target name="javadoc">
+		<javadoc
+			classpathref="${javac.classpathref}"
+			destdir="javadoc"
+			sourcepath="${javac.srcdir}"
+		/>
+	</target>
+
 	<target name="merge" if="original.war.file">
 		<if>
 			<not>
@@ -1015,6 +1080,71 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="merge-unzip">
 		<unzip dest="tmp" src="${original.war.file}" />
+	</target>
+
+	<target name="patch">
+		<var name="patched.file.available" value="false" />
+
+		<for param="patched.file">
+			<path>
+				<fileset
+					dir="${plugin.source.dir}"
+					includes="${patch.destination}"
+				/>
+			</path>
+			<sequential>
+				<var name="patched.file.available" value="true" />
+			</sequential>
+		</for>
+
+		<if>
+			<equals arg1="${patched.file.available}" arg2="false" />
+			<then>
+				<get
+					dest="${patch.original.lib.name}-sources.jar"
+					src="${patch.original.lib.url}/${patch.original.lib.name}/${patch.original.lib.version}/${patch.original.lib.name}-${patch.original.lib.version}-sources.jar"
+				/>
+
+				<unjar
+					dest="${plugin.source.dir}"
+					src="${patch.original.lib.name}-sources.jar"
+				>
+					<patternset includes="${patch.destination}" />
+				</unjar>
+
+				<delete file="${patch.original.lib.name}-sources.jar" />
+
+				<patch dir="${plugin.source.dir}" patchfile="${patch.source}" strip="1" />
+			</then>
+		</if>
+
+		<var name="patched.file.available" unset="true" />
+	</target>
+
+	<target name="publish-local-m2-release" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="local-m2" />
+		</antcall>
+	</target>
+
+	<target name="publish-local-m2-snapshot" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="local-m2" />
+			<param name="plugin.release.qualifier" value="-SNAPSHOT" />
+		</antcall>
+	</target>
+
+	<target name="publish-remote-m2-release" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="sonatype-m2-staging" />
+		</antcall>
+	</target>
+
+	<target name="publish-remote-m2-snapshot" depends="jar-javadoc,jar-source,war">
+		<antcall target="build-common-ivy.publish">
+			<param name="ivy.publish.resolver" value="sonatype-m2-snapshot" />
+			<param name="plugin.release.qualifier" value="-SNAPSHOT" />
+		</antcall>
 	</target>
 
 	<target name="shrink-zip-cmd">
@@ -1082,7 +1212,22 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 			</elseif>
 			<else>
-				<var name="test.type" value="" />
+				<if>
+					<not>
+						<isset property="class" />
+					</not>
+					<then>
+						<fail>Missing class argument. Use "ant test-class -Dclass=TestClassName".</fail>
+					</then>
+					<elseif>
+						<not>
+							<isset property="test.type" />
+						</not>
+						<then>
+							<fail>Class ${class} cannot be found.</fail>
+						</then>
+					</elseif>
+				</if>
 			</else>
 		</if>
 
@@ -1180,7 +1325,7 @@ Please find a solution that does not require portal-impl.jar.
 				<zip destfile="${plugin.src.file}">
 					<zipfileset
 						dir="${docroot.dir}"
-						prefix="${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}"
+						prefix="${plugin.name}-src-${plugin.full.version}"
 					/>
 				</zip>
 			</then>

@@ -492,6 +492,7 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 			new Class[] { KaleoTask.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoTask toUnescapedModel() {
 		return this;
 	}

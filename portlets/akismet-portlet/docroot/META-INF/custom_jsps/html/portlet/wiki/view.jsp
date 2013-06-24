@@ -27,10 +27,10 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 <c:if test="<%= (wikiPage != null) && WikiPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_NODE) %>">
 	<liferay-util:buffer var="customHTML">
 		<c:choose>
-			<c:when test="<%= wikiPage.getStatus() == WorkflowConstants.STATUS_DENIED %>">
+			<c:when test="<%= _isSpam(wikiPage) %>">
 				<portlet:actionURL var="notSpamURL">
 					<portlet:param name="struts_action" value="/wiki/edit_page" />
-					<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
+					<portlet:param name="<%= Constants.CMD %>" value="updateSummary" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="pageId" value="<%= String.valueOf(wikiPage.getPageId()) %>" />
 					<portlet:param name="spam" value="<%= String.valueOf(Boolean.FALSE) %>" />
@@ -43,10 +43,10 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 					url="<%= notSpamURL %>"
 				/>
 			</c:when>
-			<c:otherwise>
+			<c:when test="<%= !_isPendingApproval(wikiPage) %>">
 				<portlet:actionURL var="markAsSpamURL">
 					<portlet:param name="struts_action" value="/wiki/edit_page" />
-					<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
+					<portlet:param name="<%= Constants.CMD %>" value="updateSummary" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="pageId" value="<%= String.valueOf(wikiPage.getPageId()) %>" />
 					<portlet:param name="spam" value="<%= String.valueOf(Boolean.TRUE) %>" />
@@ -58,7 +58,7 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 					message="mark-as-spam"
 					url="<%= markAsSpamURL %>"
 				/>
-			</c:otherwise>
+			</c:when>
 		</c:choose>
 	</liferay-util:buffer>
 
@@ -73,6 +73,28 @@ WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 		sb.append(html.substring(x + 38));
 
 		html = sb.toString();
+	}
+	%>
+
+</c:if>
+
+<c:if test="<%= (_isSpam(wikiPage) || _isPendingApproval(wikiPage)) && !themeDisplay.isSignedIn() %>">
+	<liferay-util:buffer var="spamContentEndHTML">
+		<span id="<portlet:namespace />spamContentEnd"></span>
+	</liferay-util:buffer>
+
+	<liferay-util:buffer var="spamContentStartHTML">
+		<span id="<portlet:namespace />spamContentStart"></span>
+	</liferay-util:buffer>
+
+	<%
+	int x = html.indexOf(spamContentStartHTML.trim());
+	int y = html.indexOf(spamContentEndHTML.trim());
+
+	if ((x > 0) && (y > 0)) {
+		String trimmedSpamContentEndHTML = spamContentEndHTML.trim();
+
+		html = html.substring(0, x).concat(html.substring(y + trimmedSpamContentEndHTML.length()));
 	}
 	%>
 

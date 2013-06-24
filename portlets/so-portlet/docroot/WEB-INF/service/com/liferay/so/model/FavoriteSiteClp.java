@@ -259,6 +259,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 			new Class[] { FavoriteSite.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public FavoriteSite toUnescapedModel() {
 		return this;
 	}

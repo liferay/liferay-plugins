@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
@@ -54,21 +53,17 @@ public class UpdateWikiPagesListener extends BaseMessageListener {
 		dynamicQuery.add(
 			summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
 
-		Property statusProperty = PropertyFactoryUtil.forName("status");
-
-		dynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_DENIED));
-
-		Property statusDateProperty = PropertyFactoryUtil.forName("statusDate");
+		Property modifiedDateProperty = PropertyFactoryUtil.forName(
+			"modifiedDate");
 
 		dynamicQuery.add(
-			statusDateProperty.lt(AkismetUtil.getRetainSpamTime()));
+			modifiedDateProperty.lt(AkismetUtil.getRetainSpamTime()));
 
 		List<WikiPage> wikiPages = WikiPageLocalServiceUtil.dynamicQuery(
 			dynamicQuery);
 
 		for (WikiPage wikiPage : wikiPages) {
-			wikiPage.setStatus(WorkflowConstants.STATUS_DENIED);
-			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_SPAM);
+			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_MARKED_AS_SPAM);
 
 			WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 		}

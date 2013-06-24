@@ -437,6 +437,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 			new Class[] { UserThread.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public UserThread toUnescapedModel() {
 		return this;
 	}

@@ -26,6 +26,7 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
@@ -66,16 +67,13 @@ String url = preferences.getValue("url", StringPool.BLANK);
 String width = preferences.getValue("width", "480");
 
 String id = url.replaceAll("^.*?v=([a-zA-Z0-9_-]+).*$", "$1");
-String imageURL = "http://img.youtube.com/vi/" + id + "/0.jpg";
 
 String borderColorHex = "0x" + borderColor.replaceAll("#", "").replaceAll("^(.)(.)(.)$", "$1$1$2$2$3$3").toLowerCase();
 String playerColorHex = "0x" + playerColor.replaceAll("#", "").replaceAll("^(.)(.)(.)$", "$1$1$2$2$3$3").toLowerCase();
 
 String presetSize = width + "x" + height;
-%>
 
-<%!
-private static final String _SWF_URL = "http://www.youtube.com/v/";
-
-private static final String _WATCH_URL = "http://www.youtube.com/watch?v=";
+String imageURL = HttpUtil.getProtocol(request) + "://img.youtube.com/vi/" + id + "/0.jpg";
+String swfURL = HttpUtil.getProtocol(request) + "://www.youtube.com/v/";
+String watchURL = HttpUtil.getProtocol(request) + "://www.youtube.com/watch?v=";
 %>

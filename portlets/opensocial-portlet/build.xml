@@ -243,6 +243,7 @@
 
 		<replace file="tmp/WEB-INF/classes/shindig.properties">
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
+			<replacefilter token="shindig.signing.viewer-access-tokens-enabled=false" value="shindig.signing.viewer-access-tokens-enabled=true" />
 		</replace>
 
 		<!-- Fix canonicaldb.json -->
@@ -323,6 +324,36 @@
 				/>
 			</then>
 		</if>
+
+		<!-- LPS-14616 -->
+
+		<antcall target="patch">
+			<param name="patch.destination" value="org/apache/shindig/social/opensocial/model/MediaItem.java" />
+			<param name="patch.original.lib.name" value="shindig-social-api" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-14616.patch" />
+		</antcall>
+
+		<!-- LPS-15003 -->
+
+		<antcall target="patch">
+			<param name="patch.destination" value="features/rpc/rpc.js" />
+			<param name="patch.original.lib.name" value="shindig-features" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-15003.patch" />
+		</antcall>
+
+		<!-- LPS-21488 -->
+
+		<antcall target="patch">
+			<param name="patch.destination" value="org/apache/shindig/gadgets/oauth/OAuthRequest.java" />
+			<param name="patch.original.lib.name" value="shindig-gadgets" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-21488.patch" />
+		</antcall>
 	</target>
 
 	<target name="merge-backup-file">

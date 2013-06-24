@@ -25,17 +25,7 @@
 	</target>
 
 	<target name="compile">
-		<if>
-			<and>
-				<available file="${sdk.dir}/shared/portal-compat-shared" />
-				<not>
-					<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
-				</not>
-			</and>
-			<then>
-				<ant dir="${sdk.dir}/shared/portal-compat-shared" target="compile" inheritAll="false" />
-			</then>
-		</if>
+		<antcall target="compile-import-shared" />
 
 		<mkdir dir="classes" />
 
@@ -60,6 +50,13 @@
 			basedir="classes"
 			jarfile="${plugin.file}"
 		/>
+	</target>
+
+	<target name="javadoc">
+		<antcall target="build-common-plugin.javadoc">
+			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.srcdir" value="src" />
+		</antcall>
 	</target>
 
 	<target name="war">

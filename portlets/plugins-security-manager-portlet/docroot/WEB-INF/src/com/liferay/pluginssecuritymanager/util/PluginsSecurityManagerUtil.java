@@ -65,7 +65,7 @@ public class PluginsSecurityManagerUtil {
 		}
 
 		for (Map.Entry<ClassLoader, Object> entry : paclPolicies.entrySet()) {
-			Object value = entry.getValue();
+			String value = String.valueOf(entry.getValue());
 
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.serialize(value));
@@ -186,7 +186,6 @@ public class PluginsSecurityManagerUtil {
 
 	private static Map<ClassLoader, Object> _cachedPaclPolicies =
 		new HashMap<ClassLoader, Object>();
-
 	private static Method _paclPolicyIsActiveMethod;
 	private static Method _paclPolicyManagerRegisterMethod;
 	private static Method _paclPolicyManagerUnregisterMethod;

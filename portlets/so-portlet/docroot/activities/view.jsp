@@ -27,64 +27,18 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
-
-List<SocialActivity> activities = null;
-int total = 0;
 %>
 
-<c:choose>
-	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK()) && !layout.isPublicLayout() %>">
-		<liferay-ui:tabs
-			names="connections,following,my-sites,me"
-			url="<%= portletURL.toString() %>"
-			value="<%= tabs1 %>"
-		/>
+<%@ include file="/activities/view_activity_sets.jspf" %>
 
-		<%
-		if (tabs1.equals("connections")) {
-			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
-		}
-		else if (tabs1.equals("following")) {
-			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-		}
-		else if (tabs1.equals("my-sites")) {
-			activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(user.getUserId());
-		}
-		else {
-			activities = SocialActivityLocalServiceUtil.getUserActivities(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(user.getUserId());
-		}
+<aui:script use="aui-base">
+	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
 
-		searchContainer.setTotal(total);
-		%>
-
-		<%@ include file="/activities/view_activities.jspf" %>
-	</c:when>
-	<c:otherwise>
-
-		<%
-		if (group.isUser()) {
-			activities = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
-		}
-		else {
-			activities = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
-		}
-
-		searchContainer.setTotal(total);
-		%>
-
-		<%@ include file="/activities/view_activities.jspf" %>
-	</c:otherwise>
-</c:choose>
-
-<c:if test="<%= (!activities.isEmpty()) %>">
-	<liferay-ui:search-paginator
-		searchContainer="<%= searchContainer %>"
-		type="article"
-	/>
-</c:if>
+	announcementEntries.delegate(
+		'click',
+		function(event) {
+			Liferay.SO.Activities.toggleEntry(event,'<portlet:namespace />');
+		},
+		'.toggle-entry'
+	);
+</aui:script>

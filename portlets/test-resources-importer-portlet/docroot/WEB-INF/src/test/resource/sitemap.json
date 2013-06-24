@@ -1,5 +1,13 @@
 {
-	"layouts": [
+	"layoutTemplateId": "2_columns_ii",
+	"privatePages": [
+		{
+			"friendlyURL": "/private-page",
+			"name": "Private Page",
+			"title": "Private Page"
+		}
+	],
+	"publicPages": [
 		{
 			"columns": [
 				[
@@ -79,7 +87,10 @@
 				]
 			],
 			"friendlyURL": "/home",
-			"name": "Welcome",
+			"nameMap": {
+				"en_US": "Welcome",
+				"es_ES": "Bienvenido"
+			},
 			"title": "Welcome"
 		},
 		{
@@ -117,6 +128,5 @@
 			"title": "Hidden Page",
 			"hidden": "true"
 		}
-	],
-	"layoutTemplateId": "2_columns_ii"
+	]
 }

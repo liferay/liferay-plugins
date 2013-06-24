@@ -37,7 +37,7 @@ public class UnsubscribeForm extends ValidatorForm {
 	}
 
 	@Override
-	public void reset(ActionMapping mapping, HttpServletRequest req) {
+	public void reset(ActionMapping actionMapping, HttpServletRequest req) {
 		_firstName = null;
 		_lastName = null;
 		_emailAddress = null;

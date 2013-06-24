@@ -364,6 +364,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 			new Class[] { JIRAAction.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public JIRAAction toUnescapedModel() {
 		return this;
 	}

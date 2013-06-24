@@ -484,85 +484,25 @@
 />
 
 <p>
-	java.home=
+	JAVA_HOME= (<%= System.getenv("JAVA_HOME") %>)
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				System.getenv("java.home");
+				System.getenv("JAVA_HOME");
 			}
 
 		};
 		%>
 
-	java.io.tmpdir=
+	PATH=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				System.getenv("java.io.tmpdir");
-			}
-
-		};
-		%>
-
-	java.vendor=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vendor");
-			}
-
-		};
-		%>
-
-	java.vendor.url=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vendor.url");
-			}
-
-		};
-		%>
-
-	java.vm.specification.name=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vm.specification.name");
-			}
-
-		};
-		%>
-
-	java.vm.vendor=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vm.vendor");
-			}
-
-		};
-		%>
-
-	java.vm.version=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vm.version");
+				System.getenv("PATH");
 			}
 
 		};
@@ -888,6 +828,36 @@
 
 		protected void test() throws Exception {
 			testReadWithFileUtil("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testReadWithFile(System.getenv("JAVA_HOME"));
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testReadWithFile(System.getenv("JAVA_HOME") + "/bin");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			String javaCommand = "java";
+
+			if (OSDetector.isWindows()) {
+				javaCommand = "java.exe";
+			}
+
+			testReadWithFile(System.getenv("JAVA_HOME") + "/bin/" + javaCommand);
 		}
 
 	};

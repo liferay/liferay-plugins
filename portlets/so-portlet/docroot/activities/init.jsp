@@ -19,22 +19,10 @@
 
 <%@ include file="/init.jsp" %>
 
+<%@ page import="com.liferay.portal.service.ServiceContextFactory" %><%@
+page import="com.liferay.so.activities.model.SocialActivitySet" %><%@
+page import="com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil" %>
+
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
-String defaultTabs1 = preferences.getValue("defaultTabs1", "connections");
-
-String tabs1 = ParamUtil.getString(request, "tabs1", defaultTabs1);
-
-if (!defaultTabs1.equals(tabs1)) {
-	preferences.setValue("defaultTabs1", tabs1);
-
-	preferences.store();
-}
+String tabs1 = ParamUtil.getString(request, "tabs1", "all");
 %>

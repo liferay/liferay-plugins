@@ -399,6 +399,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 			new Class[] { Attachment.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Attachment toUnescapedModel() {
 		return this;
 	}

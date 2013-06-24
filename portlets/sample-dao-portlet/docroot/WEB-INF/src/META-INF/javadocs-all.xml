@@ -7,18 +7,28 @@
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>getFoodItemId</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPoints</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setFoodItemId</name>
 			<param>
 				<name>foodItemId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -26,6 +36,7 @@
 			<param>
 				<name>name</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -33,6 +44,7 @@
 			<param>
 				<name>points</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -54,10 +66,12 @@
 			<param>
 				<name>foodItem</name>
 				<type>FoodItem</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -65,10 +79,12 @@
 			<param>
 				<name>foodItemId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -76,17 +92,26 @@
 			<param>
 				<name>foodItemId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getFoodItems</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -94,10 +119,12 @@
 			<param>
 				<name>foodItem</name>
 				<type>FoodItem</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -128,18 +155,22 @@
 			<param>
 				<name>renderRequest</name>
 				<type>javax.portlet.RenderRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>renderResponse</name>
 				<type>javax.portlet.RenderResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -147,10 +178,12 @@
 			<param>
 				<name>portletConfig</name>
 				<type>javax.portlet.PortletConfig</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -158,18 +191,22 @@
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>actionResponse</name>
 				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
@@ -185,6 +222,7 @@
 			<param>
 				<name>con</name>
 				<type>java.sql.Connection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -192,10 +230,12 @@
 			<param>
 				<name>con</name>
 				<type>java.sql.Connection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>s</name>
 				<type>java.sql.Statement</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -203,14 +243,17 @@
 			<param>
 				<name>con</name>
 				<type>java.sql.Connection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>s</name>
 				<type>java.sql.Statement</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>rs</name>
 				<type>java.sql.ResultSet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -218,17 +261,25 @@
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getConnection</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>getProperties</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>ConnectionPool</name>
@@ -238,6 +289,7 @@
 			<param>
 				<name>con</name>
 				<type>java.sql.Connection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -245,10 +297,12 @@
 			<param>
 				<name>con</name>
 				<type>java.sql.Connection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>s</name>
 				<type>java.sql.Statement</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -256,14 +310,17 @@
 			<param>
 				<name>con</name>
 				<type>java.sql.Connection</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>s</name>
 				<type>java.sql.Statement</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>rs</name>
 				<type>java.sql.ResultSet</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -271,13 +328,18 @@
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
 			<name>_getConnection</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>SQLException</name>
 				<type>java.sql.SQLException</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>

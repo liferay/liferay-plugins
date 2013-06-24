@@ -16,6 +16,11 @@ package com.liferay.akismet.util;
 
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -27,6 +32,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -35,11 +41,14 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
+import com.liferay.portlet.wiki.util.comparator.PageVersionComparator;
 
 import java.io.IOException;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -62,6 +71,54 @@ public class AkismetUtil {
 		return new Date(
 			System.currentTimeMillis() -
 				(PortletPropsValues.AKISMET_RETAIN_SPAM_TIME * Time.DAY));
+	}
+
+	public static WikiPage getWikiPage(
+			long nodeId, String title, double version, boolean previous)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			WikiPage.class);
+
+		Property summaryProperty = PropertyFactoryUtil.forName("summary");
+
+		dynamicQuery.add(
+			summaryProperty.ne(AkismetConstants.WIKI_PAGE_MARKED_AS_SPAM));
+		dynamicQuery.add(
+			summaryProperty.ne(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
+
+		Property nodeIdProperty = PropertyFactoryUtil.forName("nodeId");
+
+		dynamicQuery.add(nodeIdProperty.eq(nodeId));
+
+		Property titleProperty = PropertyFactoryUtil.forName("title");
+
+		dynamicQuery.add(titleProperty.eq(title));
+
+		Property statusProperty = PropertyFactoryUtil.forName("status");
+
+		dynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
+
+		Property versionProperty = PropertyFactoryUtil.forName("version");
+
+		if (previous) {
+			dynamicQuery.add(versionProperty.lt(version));
+		}
+		else {
+			dynamicQuery.add(versionProperty.ge(version));
+		}
+
+		OrderFactoryUtil.addOrderByComparator(
+			dynamicQuery, new PageVersionComparator());
+
+		List<WikiPage> wikiPages = WikiPageLocalServiceUtil.dynamicQuery(
+			dynamicQuery, 0, 1);
+
+		if (wikiPages.isEmpty()) {
+			return null;
+		}
+
+		return wikiPages.get(0);
 	}
 
 	public static boolean hasRequiredInfo(ServiceContext serviceContext) {

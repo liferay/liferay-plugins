@@ -47,7 +47,7 @@ public abstract class BaseSocialActivityInterpreter
 			return doInterpret(activitySet, new ServiceContext(serviceContext));
 		}
 		catch (Exception e) {
-			_log.error("Unable to interpret activity", e);
+			_log.error("Unable to interpret activity set", e);
 		}
 
 		return null;
@@ -75,22 +75,18 @@ public abstract class BaseSocialActivityInterpreter
 	}
 
 	protected SocialActivityFeedEntry doInterpret(
-		SocialActivitySet activitySet, ServiceContext serviceContext) {
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
 
-		try {
-			List<SocialActivity> activities =
-				SocialActivityLocalServiceUtil.getActivitySetActivities(
-					activitySet.getActivitySetId(), 0, 1);
+		List<SocialActivity> activities =
+			SocialActivityLocalServiceUtil.getActivitySetActivities(
+				activitySet.getActivitySetId(), 0, 1);
 
-			if (!activities.isEmpty()) {
-				SocialActivity activity = activities.get(0);
+		if (!activities.isEmpty()) {
+			SocialActivity activity = activities.get(0);
 
-				return doInterpret(
-					activity.getPortalSocialActivity(), serviceContext);
-			}
-		}
-		catch (Exception e) {
-			_log.error("Unable to interpret activity set", e);
+			return doInterpret(
+				activity.getPortalSocialActivity(), serviceContext);
 		}
 
 		return null;

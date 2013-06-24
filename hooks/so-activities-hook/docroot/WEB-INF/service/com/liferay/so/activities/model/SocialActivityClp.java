@@ -412,6 +412,7 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public SocialActivity toUnescapedModel() {
 		return this;
 	}

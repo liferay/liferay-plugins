@@ -458,6 +458,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 			new Class[] { ProjectsEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public ProjectsEntry toUnescapedModel() {
 		return this;
 	}

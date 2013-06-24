@@ -1,0 +1,96 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ *
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
+ */
+--%>
+
+<%@ include file="/entry_scope.jspf" %>
+
+<%
+boolean readEntry = false;
+
+if (flagValue == AnnouncementsFlagConstants.READ) {
+	readEntry = true;
+}
+else {
+	try {
+		AnnouncementsFlagLocalServiceUtil.getFlag(user.getUserId(), entry.getEntryId(), AnnouncementsFlagConstants.READ);
+
+		readEntry = true;
+	}
+	catch (NoSuchFlagException nsfe1) {
+		AnnouncementsFlagLocalServiceUtil.addFlag(user.getUserId(), entry.getEntryId(), AnnouncementsFlagConstants.READ);
+	}
+}
+
+if (readEntry) {
+	className += " read";
+}
+
+if (entry.getPriority() > 0) {
+	className += " important-entry";
+}
+%>
+
+<div class="entry<%= className %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
+	<div class="user-portrait">
+		<span class="avatar">
+
+			<%
+			User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
+			%>
+
+			<a href="<%= entryUser.getDisplayURL(themeDisplay) %>">
+				<img alt="<%= entryUser.getFullName() %>" src="<%= entryUser.getPortraitURL(themeDisplay) %>" />
+			</a>
+		</span>
+	</div>
+
+	<div class="entry-data">
+		<div class="entry-header">
+			<div class="entry-time">
+				<%= Time.getRelativeTimeDescription(entry.getDisplayDate().getTime(), locale, themeDisplay.getTimeZone()) %>
+			</div>
+
+			<div class="entry-action">
+				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + entryUser.getFullName() + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}) %>
+			</div>
+		</div>
+
+		<div class="entry-body">
+			<div class="title">
+				<c:choose>
+					<c:when test="<%= Validator.isNotNull(entry.getUrl()) %>">
+						<a class="entry-url" href="<%= entry.getUrl() %>"><%= HtmlUtil.escape(entry.getTitle()) %></a>
+					</c:when>
+					<c:otherwise>
+						<%= HtmlUtil.escape(entry.getTitle()) %>
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+			<div class="entry-content-container" id="entryContentContainer<%= entry.getEntryId() %>">
+				<div class="entry-content">
+					<%= entry.getContent() %>
+				</div>
+			</div>
+		</div>
+
+		<div class="entry-footer">
+			<%@ include file="/entry_action.jspf" %>
+		</div>
+	</div>
+</div>

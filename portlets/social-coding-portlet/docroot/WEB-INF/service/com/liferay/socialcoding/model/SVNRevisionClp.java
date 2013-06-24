@@ -361,6 +361,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 			new Class[] { SVNRevision.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public SVNRevision toUnescapedModel() {
 		return this;
 	}

@@ -14,7 +14,15 @@
 
 package com.liferay.cdi.portlet.bridge;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import javax.enterprise.inject.spi.BeanManager;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NameNotFoundException;
+import javax.naming.NamingException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -41,11 +49,41 @@ public class CDIContextListener implements ServletContextListener {
 				_ATTRIBUTE_NAME_BEAN_MANAGER);
 		}
 
+		if (beanManager == null) {
+			try {
+				Context context = new InitialContext();
+
+				try {
+					beanManager = (BeanManager)context.lookup(
+						_BEAN_MANAGER_JNDI_NAME_1);
+				}
+				catch (NameNotFoundException nnfe) {
+					beanManager = (BeanManager)context.lookup(
+						_BEAN_MANAGER_JNDI_NAME_2);
+				}
+			}
+			catch (NamingException ne) {
+				_log.error(ne, ne);
+			}
+		}
+
+		if (beanManager == null) {
+			_log.error("Unable to get CDI bean manager");
+		}
+
 		CDIBeanManagerUtil.setBeanManager(beanManager);
 	}
 
 	private static final String _ATTRIBUTE_NAME_BEAN_MANAGER =
 		"org.jboss.weld.environment.servlet.javax.enterprise.inject.spi." +
 			"BeanManager";
+
+	private static final String _BEAN_MANAGER_JNDI_NAME_1 =
+		"java:comp/BeanManager";
+
+	private static final String _BEAN_MANAGER_JNDI_NAME_2 =
+		"java:comp/env/BeanManager";
+
+	private static Log _log = LogFactoryUtil.getLog(CDIContextListener.class);
 
 }

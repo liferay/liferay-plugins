@@ -621,6 +621,7 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 			new Class[] { KaleoNode.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoNode toUnescapedModel() {
 		return this;
 	}

@@ -5,8 +5,6 @@
 	<import file="../build-common-portlet.xml" />
 
 	<path id="plugin-lib.classpath">
-		<pathelement location="${app.server.classes.portal.dir}" />
-		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<pathelement location="docroot/WEB-INF/classes" />
+		<path refid="portal.classpath" />
 	</path>
 </project>

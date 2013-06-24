@@ -33,17 +33,18 @@ public class UnsubscribeAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		UnsubscribeForm unsubscribeForm = (UnsubscribeForm)form;
+		UnsubscribeForm unsubscribeForm = (UnsubscribeForm)actionForm;
 
 		if (_log.isInfoEnabled()) {
 			_log.info(unsubscribeForm.toString());
 		}
 
-		return mapping.findForward("portlet.sample_struts_portlet.unsubscribe");
+		return actionMapping.findForward(
+			"portlet.sample_struts_portlet.unsubscribe");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(UnsubscribeAction.class);

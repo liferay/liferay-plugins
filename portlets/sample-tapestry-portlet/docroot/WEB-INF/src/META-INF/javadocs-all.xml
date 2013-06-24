@@ -10,24 +10,40 @@
 		</method>
 		<method>
 			<name>getAuthor</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getDescription</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getTitle</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getYear</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>isRecommended</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setAuthor</name>
 			<param>
 				<name>author</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -35,6 +51,7 @@
 			<param>
 				<name>description</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -42,6 +59,7 @@
 			<param>
 				<name>recommended</name>
 				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -49,6 +67,7 @@
 			<param>
 				<name>title</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -56,6 +75,7 @@
 			<param>
 				<name>year</name>
 				<type>int</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -86,16 +106,21 @@
 			<param>
 				<name>book</name>
 				<type>Book</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
 			<name>getBooks</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setBooks</name>
 			<param>
 				<name>books</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<field>
@@ -111,32 +136,53 @@
 			<param>
 				<name>cycle</name>
 				<type>org.apache.tapestry.IRequestCycle</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doSubmit</name>
 			<param>
 				<name>cycle</name>
 				<type>org.apache.tapestry.IRequestCycle</type>
+				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getBook</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getBookList</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getPageService</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getView</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>pageBeginRender</name>
 			<param>
 				<name>event</name>
 				<type>org.apache.tapestry.event.PageEvent</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -144,6 +190,7 @@
 			<param>
 				<name>book</name>
 				<type>com.liferay.sampletapestry.bean.Book</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 		<method>
@@ -151,6 +198,7 @@
 			<param>
 				<name>bookList</name>
 				<type>com.liferay.sampletapestry.bean.BookList</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>
@@ -160,12 +208,16 @@
 		<author><![CDATA[Joseph Shum]]></author>
 		<method>
 			<name>getBooks</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>setBooks</name>
 			<param>
 				<name>books</name>
 				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
 	</javadoc>

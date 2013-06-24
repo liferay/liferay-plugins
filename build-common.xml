@@ -39,6 +39,7 @@
 	<propertycopy from="app.server.${app.server.type}.deploy.dir" name="app.server.deploy.dir" />
 	<propertycopy from="app.server.${app.server.type}.lib.global.dir" name="app.server.lib.global.dir" />
 	<propertycopy from="app.server.${app.server.type}.portal.dir" name="app.server.portal.dir" />
+	<propertycopy from="app.server.${app.server.type}.zip.name" name="app.server.zip.name" silent="true" />
 
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
 	<property location="${app.server.portal.dir}/WEB-INF/lib" name="app.server.lib.portal.dir" />
@@ -169,7 +170,7 @@ ECJ was automatically installed. Please rerun your task.
 
 	<target name="format-source">
 		<java
-			classname="com.liferay.portal.tools.SourceFormatter"
+			classname="com.liferay.portal.tools.sourceformatter.SourceFormatter"
 			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"

@@ -42,6 +42,7 @@
 		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
 		<column name="type" type="int" />
+		<column name="extraData" type="String" />
 		<column name="activityCount" type="int" />
 
 		<!-- Order -->
@@ -63,6 +64,12 @@
 		<finder name="C_C_T" return-type="Collection">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
+			<finder-column name="type" />
+		</finder>
+		<finder name="G_U_C_T" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="userId" />
+			<finder-column name="classNameId" />
 			<finder-column name="type" />
 		</finder>
 		<finder name="U_C_C_T" return-type="Collection">

@@ -15,6 +15,7 @@
 package com.liferay.so.activities.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import com.liferay.so.activities.model.SocialActivitySet;
@@ -32,7 +33,7 @@ public class SocialActivitySetCacheModel implements CacheModel<SocialActivitySet
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{activitySetId=");
 		sb.append(activitySetId);
@@ -52,6 +53,8 @@ public class SocialActivitySetCacheModel implements CacheModel<SocialActivitySet
 		sb.append(classPK);
 		sb.append(", type=");
 		sb.append(type);
+		sb.append(", extraData=");
+		sb.append(extraData);
 		sb.append(", activityCount=");
 		sb.append(activityCount);
 		sb.append("}");
@@ -71,6 +74,14 @@ public class SocialActivitySetCacheModel implements CacheModel<SocialActivitySet
 		socialActivitySetImpl.setClassNameId(classNameId);
 		socialActivitySetImpl.setClassPK(classPK);
 		socialActivitySetImpl.setType(type);
+
+		if (extraData == null) {
+			socialActivitySetImpl.setExtraData(StringPool.BLANK);
+		}
+		else {
+			socialActivitySetImpl.setExtraData(extraData);
+		}
+
 		socialActivitySetImpl.setActivityCount(activityCount);
 
 		socialActivitySetImpl.resetOriginalValues();
@@ -87,5 +98,6 @@ public class SocialActivitySetCacheModel implements CacheModel<SocialActivitySet
 	public long classNameId;
 	public long classPK;
 	public int type;
+	public String extraData;
 	public int activityCount;
 }

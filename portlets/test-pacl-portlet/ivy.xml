@@ -1,7 +1,13 @@
-<ivy-module version="2.0">
-	<info organisation="com.liferay" module="test-pacl-portlet" />
+<?xml version="1.0"?>
 
-	<dependencies>
+<ivy-module
+	version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="test-pacl-portlet" organisation="com.liferay" />
+
+	<dependencies defaultconf="default">
 		<dependency name="jackson-core-asl" org="org.codehaus.jackson" rev="1.9.11" />
 		<dependency name="jackson-mapper-asl" org="org.codehaus.jackson" rev="1.9.11" />
 	</dependencies>

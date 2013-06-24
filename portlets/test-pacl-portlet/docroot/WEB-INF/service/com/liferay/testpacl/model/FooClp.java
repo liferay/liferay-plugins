@@ -487,6 +487,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 			new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Foo toUnescapedModel() {
 		return this;
 	}

@@ -186,7 +186,7 @@ public abstract class BaseSocialActivityInterpreter
 		String json, String key, String defaultValue) {
 
 		if (Validator.isNull(json)) {
-			return HtmlUtil.escape(defaultValue);
+			return defaultValue;
 		}
 
 		try {
@@ -196,14 +196,14 @@ public abstract class BaseSocialActivityInterpreter
 			String value = extraDataJSONObject.getString(key);
 
 			if (Validator.isNotNull(value)) {
-				return HtmlUtil.escape(value);
+				return value;
 			}
 		}
 		catch (JSONException jsone) {
 			_log.error("Unable to create a JSON object from " + json);
 		}
 
-		return HtmlUtil.escape(defaultValue);
+		return defaultValue;
 	}
 
 	protected String getLink(

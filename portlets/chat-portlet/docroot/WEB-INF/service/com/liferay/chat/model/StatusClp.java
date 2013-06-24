@@ -383,6 +383,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 			new Class[] { Status.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Status toUnescapedModel() {
 		return this;
 	}

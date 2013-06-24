@@ -141,7 +141,14 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				<portlet:param name="<%= Constants.CMD %>" value="captcha" />
 			</portlet:resourceURL>
 
-			<liferay-ui:captcha url="<%= captchaURL %>" />
+            <div class="captcha-refresh">
+                <a href='<%= "javascript:" + renderResponse.getNamespace() + "updateCaptchaImage();" %>'>
+                    <img src='<%= request.getContextPath() + "/image/refresh.png" %>'
+                         alt='<liferay-ui:message key="refresh" />'
+                         title='<liferay-ui:message key="refresh" />' />
+                </a>
+            </div>
+            <liferay-ui:captcha url="<%= captchaURL %>" />
 		</c:if>
 
 		<aui:button onClick="" type="submit" value="send" />
@@ -149,6 +156,17 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 </aui:form>
 
 <aui:script use="aui-base,selector-css3">
+    Liferay.provide(
+        window,
+        '<portlet:namespace />updateCaptchaImage',
+        function () {
+            var img = AUI().one('img.captcha');
+            var randCount = Math.round(Math.random()*80000000000) + 10000000000;
+            var src = img.attr('src') + "&r=" + randCount;
+            img.attr('src', src);
+        }
+    );
+    
 	var form = A.one('#<portlet:namespace />fm');
 
 	if (form) {
