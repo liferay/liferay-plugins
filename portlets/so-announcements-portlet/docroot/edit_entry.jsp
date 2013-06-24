@@ -140,9 +140,10 @@ if (entry == null) {
 
 		var form = document.<portlet:namespace />fm;
 
+		form.<%= Constants.CMD %>.value = "<%= (entry == null) ? Constants.ADD : Constants.UPDATE %>";
+
 		form.content.value = window.editor.getHTML();
 		form.target = '';
-		form.<%= Constants.CMD %>.value = "<%= (entry == null) ? Constants.ADD : Constants.UPDATE %>";
 
 		var uri = '<liferay-portlet:actionURL name="saveEntry"><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>';
 
