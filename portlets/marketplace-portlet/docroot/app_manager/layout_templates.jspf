@@ -26,19 +26,19 @@
 	</thead>
 
 	<%
-	for (LayoutTemplate curLayoutTemplate : layoutTemplates) {
-		PluginSetting pluginSetting = PluginSettingLocalServiceUtil.getPluginSetting(company.getCompanyId(), curLayoutTemplate.getThemeId(), Plugin.TYPE_LAYOUT_TEMPLATE);
+	for (LayoutTemplate layoutTemplate : layoutTemplates) {
+		PluginSetting pluginSetting = PluginSettingLocalServiceUtil.getPluginSetting(company.getCompanyId(), layoutTemplate.getThemeId(), Plugin.TYPE_LAYOUT_TEMPLATE);
 	%>
 
 		<tr>
 			<td>
-				<%= curLayoutTemplate.getName() %>
+				<%= layoutTemplate.getName() %>
 			</td>
 			<td>
 				<c:choose>
 					<c:when test="<%= pluginSetting.isActive() %>">
 						<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">
-							<portlet:param name="pluginId" value="<%= curLayoutTemplate.getLayoutTemplateId() %>" />
+							<portlet:param name="pluginId" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
 							<portlet:param name="pluginType" value="<%= Plugin.TYPE_LAYOUT_TEMPLATE %>" />
 							<portlet:param name="active" value="<%= String.valueOf(false) %>" />
 						</liferay-portlet:actionURL>
@@ -47,7 +47,7 @@
 					</c:when>
 					<c:otherwise>
 						<liferay-portlet:actionURL name="updatePluginSetting" var="activateURL">
-							<portlet:param name="pluginId" value="<%= curLayoutTemplate.getLayoutTemplateId() %>" />
+							<portlet:param name="pluginId" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
 							<portlet:param name="pluginType" value="<%= Plugin.TYPE_LAYOUT_TEMPLATE %>" />
 							<portlet:param name="active" value="<%= String.valueOf(true) %>" />
 						</liferay-portlet:actionURL>
