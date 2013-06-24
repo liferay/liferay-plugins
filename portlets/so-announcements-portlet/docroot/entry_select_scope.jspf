@@ -17,17 +17,8 @@
  */
 --%>
 
-<%
-boolean hasDistributionScope = false;
-%>
-
 <aui:select changesContext="<%= submitOnChange %>" name="distributionScope" onChange='<%= submitOnChange ? renderResponse.getNamespace() + "selectDistributionScope(this.value);" : "" %>' showEmptyOption="<%= true %>">
 	<c:if test="<%= permissionChecker.isOmniadmin() %>">
-
-		<%
-		hasDistributionScope = true;
-		%>
-
 		<aui:option label="general" selected="<%= (classNameId == 0) && (classPK == 0) %>" value="0,0" />
 	</c:if>
 
@@ -41,7 +32,6 @@ boolean hasDistributionScope = false;
 			<%
 			for (Group group : groups) {
 				if ((group.isOrganization() || (group.isRegularSite() && group.isSite())) && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-					hasDistributionScope = true;
 			%>
 
 					<aui:option label="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>" selected="<%= classPK == group.getGroupId() %>" value="<%= PortalUtil.getClassNameId(Group.class) + StringPool.COMMA + group.getGroupId() %>" />
@@ -64,7 +54,6 @@ boolean hasDistributionScope = false;
 			<%
 			for (Organization organization : organizations) {
 				if (OrganizationPermissionUtil.contains(permissionChecker, organization.getOrganizationId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-					hasDistributionScope = true;
 			%>
 
 					<aui:option label="<%= HtmlUtil.escape(organization.getName()) %>" selected="<%= classPK == organization.getOrganizationId() %>" value="<%= PortalUtil.getClassNameId(Organization.class) + StringPool.COMMA + organization.getOrganizationId() %>" />
@@ -87,7 +76,6 @@ boolean hasDistributionScope = false;
 			<%
 			for (Role role : roles) {
 				if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-					hasDistributionScope = true;
 			%>
 
 					<aui:option label="<%= HtmlUtil.escape(role.getTitle(locale)) %>" selected="<%= classPK == role.getRoleId() %>" value="<%= PortalUtil.getClassNameId(Role.class) + StringPool.COMMA + role.getRoleId() %>" />
@@ -110,7 +98,6 @@ boolean hasDistributionScope = false;
 			<%
 			for (UserGroup userGroup : userGroups) {
 				if (UserGroupPermissionUtil.contains(permissionChecker, userGroup.getUserGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-					hasDistributionScope = true;
 			%>
 
 					<aui:option label="<%= HtmlUtil.escape(userGroup.getName()) %>" selected="<%= classPK == userGroup.getUserGroupId() %>" value="<%= PortalUtil.getClassNameId(UserGroup.class) + StringPool.COMMA + userGroup.getUserGroupId() %>" />
@@ -123,9 +110,3 @@ boolean hasDistributionScope = false;
 		</optgroup>
 	</c:if>
 </aui:select>
-
-<aui:script use="aui-base">
-	if (<%= !hasDistributionScope %>) {
-		A.one('#<portlet:namespace />fieldSet').hide();
-	}
-</aui:script>
