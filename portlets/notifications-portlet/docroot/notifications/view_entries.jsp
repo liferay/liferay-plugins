@@ -23,7 +23,7 @@ int start = ParamUtil.getInteger(request, "start", 0);
 int end = ParamUtil.getInteger(request, "end", (delta - 1));
 
 List<UserNotificationEvent> userNotificationEvents = null;
-int userNotificationEventsCount = null;
+int userNotificationEventsCount = 0;
 
 if (filter.equals("unread")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), false, start, end);
