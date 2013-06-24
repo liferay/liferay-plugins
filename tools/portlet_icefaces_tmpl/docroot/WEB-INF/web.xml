@@ -22,6 +22,12 @@
 		<param-name>org.icefaces.uniqueResourceURLs</param-name>
 		<param-value>false</param-value>
 	</context-param>
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.liferay.faces.bridge.servlet.BridgeSessionListener</listener-class>
+	</listener>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
