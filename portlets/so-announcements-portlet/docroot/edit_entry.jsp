@@ -125,8 +125,6 @@ if (entry == null) {
 	<aui:button-row>
 		<aui:button type="submit" />
 
-		<aui:button onClick='<%= renderResponse.getNamespace() + "previewEntry();" %>' value="preview" />
-
 		<aui:button href="<%= redirect %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
@@ -138,14 +136,6 @@ if (entry == null) {
 
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(content) %>";
-	}
-
-	function <portlet:namespace />previewEntry() {
-		document.<portlet:namespace />fm.action = '<portlet:actionURL><portlet:param name="struts_action" value="/announcements/preview_entry" /></portlet:actionURL>';
-		document.<portlet:namespace />fm.target = '_blank';
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.PREVIEW %>";
-		document.<portlet:namespace />fm.<portlet:namespace />content.value = <portlet:namespace />getContent();
-		document.<portlet:namespace />fm.submit();
 	}
 
 	function <portlet:namespace />saveEntry() {
