@@ -41,7 +41,6 @@ if (entry == null) {
 	<aui:input name="alert" type="hidden" value="<%= portletName.equals(PortletKeys.ALERTS) %>" />
 	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (entry == null) ? Constants.ADD : Constants.UPDATE %>" />
 
 	<aui:model-context bean="<%= entry %>" model="<%= AnnouncementsEntry.class %>" />
 
@@ -129,7 +128,7 @@ if (entry == null) {
 
 		ckEditor.resize("100%", "200");
 
-		return '<%= UnicodeFormatter.toString(content) %>';
+		return "<%= UnicodeFormatter.toString(content) %>";
 	}
 
 	function <portlet:namespace />closeEntry() {
@@ -150,10 +149,6 @@ if (entry == null) {
 		A.io.request(
 			uri,
 			{
-				dataType: 'json',
-				form: {
-					id: form
-				},
 				after: {
 					success: function(event, id, obj) {
 						var responseData = this.get('responseData');
@@ -173,6 +168,10 @@ if (entry == null) {
 							topWindow.document.location.reload();
 						}
 					}
+				},
+				dataType: 'json',
+				form: {
+					id: form
 				}
 			}
 		);
