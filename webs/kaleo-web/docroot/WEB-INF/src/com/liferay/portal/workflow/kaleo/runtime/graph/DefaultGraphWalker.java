@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
-import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutor;
@@ -45,7 +44,7 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 
 		if (sourceKaleoNode != null) {
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
-				NodeType.valueOf(sourceKaleoNode.getType()));
+				sourceKaleoNode.getType());
 
 			nodeExecutor.exit(
 				sourceKaleoNode, executionContext, remainingPathElements);
@@ -57,7 +56,7 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 				targetKaleoNode, executionContext.getServiceContext());
 
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
-				NodeType.valueOf(targetKaleoNode.getType()));
+				targetKaleoNode.getType());
 
 			nodeExecutor.enter(targetKaleoNode, executionContext);
 

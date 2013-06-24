@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -49,8 +49,8 @@ public class ViewChartAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
 		try {
@@ -114,12 +114,12 @@ public class ViewChartAction extends Action {
 
 			ChartUtilities.writeChartAsJPEG(out, chart, 400, 400);
 
-			return mapping.findForward("/common/null.jsp");
+			return actionMapping.findForward("/common/null.jsp");
 		}
 		catch (Exception e) {
 			request.setAttribute(PageContext.EXCEPTION, e);
 
-			return mapping.findForward("/common/error.jsp");
+			return actionMapping.findForward("/common/error.jsp");
 		}
 	}
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -320,18 +320,15 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SVNRevision)) {
 			return false;
 		}
 
-		SVNRevision svnRevision = null;
-
-		try {
-			svnRevision = (SVNRevision)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		SVNRevision svnRevision = (SVNRevision)obj;
 
 		long primaryKey = svnRevision.getPrimaryKey();
 

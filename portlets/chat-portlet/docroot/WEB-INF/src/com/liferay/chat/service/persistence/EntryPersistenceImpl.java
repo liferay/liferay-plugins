@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -174,6 +174,25 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_T = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_T",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_F_T = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
+			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByF_T",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
+			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByF_T",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			EntryModelImpl.FROMUSERID_COLUMN_BITMASK |
+			EntryModelImpl.TOUSERID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_F_T = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
+			EntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByF_T",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_F_T = new FinderPath(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryModelImpl.FINDER_CACHE_ENABLED, EntryImpl.class,
@@ -533,6 +552,27 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			}
 
 			if ((entryModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(entryModelImpl.getOriginalFromUserId()),
+						Long.valueOf(entryModelImpl.getOriginalToUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T,
+					args);
+
+				args = new Object[] {
+						Long.valueOf(entryModelImpl.getFromUserId()),
+						Long.valueOf(entryModelImpl.getToUserId())
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T,
+					args);
+			}
+
+			if ((entryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_F_T.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(entryModelImpl.getOriginalCreateDate()),
@@ -602,6 +642,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		entryImpl.setFromUserId(entry.getFromUserId());
 		entryImpl.setToUserId(entry.getToUserId());
 		entryImpl.setContent(entry.getContent());
+		entryImpl.setFlag(entry.getFlag());
 
 		return entryImpl;
 	}
@@ -2652,6 +2693,413 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	/**
+	 * Returns all the entries where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @return the matching entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Entry> findByF_T(long fromUserId, long toUserId)
+		throws SystemException {
+		return findByF_T(fromUserId, toUserId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the entries where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param start the lower bound of the range of entries
+	 * @param end the upper bound of the range of entries (not inclusive)
+	 * @return the range of matching entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Entry> findByF_T(long fromUserId, long toUserId, int start,
+		int end) throws SystemException {
+		return findByF_T(fromUserId, toUserId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param start the lower bound of the range of entries
+	 * @param end the upper bound of the range of entries (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Entry> findByF_T(long fromUserId, long toUserId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_T;
+			finderArgs = new Object[] { fromUserId, toUserId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_F_T;
+			finderArgs = new Object[] {
+					fromUserId, toUserId,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((fromUserId != entry.getFromUserId()) ||
+						(toUserId != entry.getToUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_F_T_FROMUSERID_2);
+
+			query.append(_FINDER_COLUMN_F_T_TOUSERID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(EntryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				list = (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry
+	 * @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry findByF_T_First(long fromUserId, long toUserId,
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByF_T_First(fromUserId, toUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByF_T_First(long fromUserId, long toUserId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Entry> list = findByF_T(fromUserId, toUserId, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry
+	 * @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry findByF_T_Last(long fromUserId, long toUserId,
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByF_T_Last(fromUserId, toUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByF_T_Last(long fromUserId, long toUserId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByF_T(fromUserId, toUserId);
+
+		List<Entry> list = findByF_T(fromUserId, toUserId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param entryId the primary key of the current entry
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next entry
+	 * @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry[] findByF_T_PrevAndNext(long entryId, long fromUserId,
+		long toUserId, OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		Entry entry = findByPrimaryKey(entryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Entry[] array = new EntryImpl[3];
+
+			array[0] = getByF_T_PrevAndNext(session, entry, fromUserId,
+					toUserId, orderByComparator, true);
+
+			array[1] = entry;
+
+			array[2] = getByF_T_PrevAndNext(session, entry, fromUserId,
+					toUserId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Entry getByF_T_PrevAndNext(Session session, Entry entry,
+		long fromUserId, long toUserId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_F_T_FROMUSERID_2);
+
+		query.append(_FINDER_COLUMN_F_T_TOUSERID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(EntryModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(fromUserId);
+
+		qPos.add(toUserId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(entry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Entry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	 *
 	 * @param createDate the create date
@@ -3724,6 +4172,20 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	/**
+	 * Removes all the entries where fromUserId = &#63; and toUserId = &#63; from the database.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByF_T(long fromUserId, long toUserId)
+		throws SystemException {
+		for (Entry entry : findByF_T(fromUserId, toUserId)) {
+			remove(entry);
+		}
+	}
+
+	/**
 	 * Removes all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63; from the database.
 	 *
 	 * @param createDate the create date
@@ -4042,6 +4504,65 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	}
 
 	/**
+	 * Returns the number of entries where fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @return the number of matching entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByF_T(long fromUserId, long toUserId)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { fromUserId, toUserId };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_F_T,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_F_T_FROMUSERID_2);
+
+			query.append(_FINDER_COLUMN_F_T_TOUSERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fromUserId);
+
+				qPos.add(toUserId);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_T, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
 	 * Returns the number of entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	 *
 	 * @param createDate the create date
@@ -4232,8 +4753,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				List<ModelListener<Entry>> listenersList = new ArrayList<ModelListener<Entry>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Entry>)InstanceFactory.newInstance(
-							listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
@@ -4269,6 +4792,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static final String _FINDER_COLUMN_C_F_FROMUSERID_2 = "entry.fromUserId = ?";
 	private static final String _FINDER_COLUMN_C_T_CREATEDATE_2 = "entry.createDate = ? AND ";
 	private static final String _FINDER_COLUMN_C_T_TOUSERID_2 = "entry.toUserId = ?";
+	private static final String _FINDER_COLUMN_F_T_FROMUSERID_2 = "entry.fromUserId = ? AND ";
+	private static final String _FINDER_COLUMN_F_T_TOUSERID_2 = "entry.toUserId = ?";
 	private static final String _FINDER_COLUMN_C_F_T_CREATEDATE_2 = "entry.createDate = ? AND ";
 	private static final String _FINDER_COLUMN_C_F_T_FROMUSERID_2 = "entry.fromUserId = ? AND ";
 	private static final String _FINDER_COLUMN_C_F_T_TOUSERID_2 = "entry.toUserId = ?";

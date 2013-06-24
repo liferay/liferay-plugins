@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -30,6 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 
 /**
  * @author Shinn Lok
@@ -70,11 +71,22 @@ public class MVCPortlet extends com.liferay.util.bridges.mvc.MVCPortlet {
 		throws PortletException {
 
 		try {
+			checkPermissions(actionRequest);
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+
+		try {
 			return super.callActionMethod(actionRequest, actionResponse);
 		}
 		catch (PortletException pe) {
 			return _callActionMethod(actionRequest, actionResponse, pe);
 		}
+	}
+
+	protected void checkPermissions(PortletRequest portletRequest)
+		throws Exception {
 	}
 
 	private boolean _callActionMethod(

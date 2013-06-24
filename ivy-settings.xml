@@ -1,0 +1,38 @@
+<ivysettings>
+	<settings defaultResolver="default" />
+
+	<credentials host="${sonatype.release.hostname}" realm="${sonatype.release.realm}" passwd="${sonatype.release.password}" username="${sonatype.release.username}" />
+	<credentials host="${sonatype.snapshot.hostname}" realm="${sonatype.snapshot.realm}" passwd="${sonatype.snapshot.password}" username="${sonatype.snapshot.username}" />
+
+	<resolvers>
+		<filesystem m2compatible="true" name="local-m2">
+			<artifact pattern="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+		</filesystem>
+
+		<ibiblio m2compatible="true" name="jboss-nexus" root="https://repository.jboss.org/nexus/content/repositories/releases" />
+		<ibiblio m2compatible="true" name="jboss-thirdparty" root="https://repository.jboss.org/nexus/content/repositories/thirdparty-releases" />
+		<ibiblio m2compatible="true" name="maven2" root="http://repo1.maven.org/maven2" />
+		<ibiblio m2compatible="true" name="ow2-public" root="http://repository.ow2.org/nexus/content/repositories/public" />
+		<ibiblio m2compatible="true" name="primefaces" root="http://repository.primefaces.org" />
+
+		<url m2compatible="true" name="sonatype-m2-release">
+			<artifact pattern="${sonatype.release.url}/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+		</url>
+
+		<url m2compatible="true" name="sonatype-m2-snapshot">
+			<artifact pattern="${sonatype.snapshot.url}/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+		</url>
+
+		<chain dual="true" name="default">
+			<resolver ref="jboss-nexus" />
+			<resolver ref="jboss-thirdparty" />
+			<resolver ref="maven2" />
+			<resolver ref="ow2-public" />
+			<resolver ref="primefaces" />
+		</chain>
+	</resolvers>
+
+	<signers>
+		<pgp keyId="${pgp.keyname}" name="${pgp.generator}" password="${pgp.passphrase}" />
+	</signers>
+</ivysettings>

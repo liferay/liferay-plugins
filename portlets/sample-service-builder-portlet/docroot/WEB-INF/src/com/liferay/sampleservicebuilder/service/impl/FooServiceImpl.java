@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -16,9 +16,13 @@ package com.liferay.sampleservicebuilder.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.sampleservicebuilder.service.base.FooServiceBaseImpl;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -27,6 +31,10 @@ public class FooServiceImpl extends FooServiceBaseImpl {
 
 	public User getUser(long userId) throws PortalException, SystemException {
 		return UserLocalServiceUtil.getUserById(userId);
+	}
+
+	public List<Group> getUserSites() throws PortalException, SystemException {
+		return GroupServiceUtil.getUserSites();
 	}
 
 	/*public List<User> getUsers(long companyId) throws SystemException {

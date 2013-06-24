@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -49,6 +49,7 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 		attributes.put("fromUserId", getFromUserId());
 		attributes.put("toUserId", getToUserId());
 		attributes.put("content", getContent());
+		attributes.put("flag", getFlag());
 
 		return attributes;
 	}
@@ -82,6 +83,12 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 
 		if (content != null) {
 			setContent(content);
+		}
+
+		Integer flag = (Integer)attributes.get("flag");
+
+		if (flag != null) {
+			setFlag(flag);
 		}
 	}
 
@@ -231,6 +238,24 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	*/
 	public void setContent(java.lang.String content) {
 		_entry.setContent(content);
+	}
+
+	/**
+	* Returns the flag of this entry.
+	*
+	* @return the flag of this entry
+	*/
+	public int getFlag() {
+		return _entry.getFlag();
+	}
+
+	/**
+	* Sets the flag of this entry.
+	*
+	* @param flag the flag of this entry
+	*/
+	public void setFlag(int flag) {
+		_entry.setFlag(flag);
 	}
 
 	public boolean isNew() {

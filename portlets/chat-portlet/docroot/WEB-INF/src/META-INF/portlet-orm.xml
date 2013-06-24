@@ -14,6 +14,7 @@
 			<basic name="fromUserId" />
 			<basic name="toUserId" />
 			<basic name="content" />
+			<basic name="flag" />
 			<transient name="fromUserUuid" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
@@ -30,7 +31,7 @@
 				<column name="ONLINE_" />
 			</basic>
 			<basic name="awake" />
-			<basic name="activePanelId" />
+			<basic name="activePanelIds" />
 			<basic name="message" />
 			<basic name="playSound" />
 			<transient name="modelAttributes" />

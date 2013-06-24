@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -65,7 +65,7 @@
 			protected void test() throws Exception {
 				EntityCacheUtil entityCacheUtil = new EntityCacheUtil();
 
-				EntityCache entityCache = entityCacheUtil.getEntityCache();
+				EntityCache entityCache = EntityCacheUtil.getEntityCache();
 
 				entityCacheUtil.setEntityCache(entityCache);
 			}
@@ -81,7 +81,7 @@
 			protected void test() throws Exception {
 				FinderCacheUtil finderCacheUtil = new FinderCacheUtil();
 
-				FinderCache finderCache = finderCacheUtil.getFinderCache();
+				FinderCache finderCache = FinderCacheUtil.getFinderCache();
 
 				finderCacheUtil.setFinderCache(finderCache);
 			}
@@ -97,7 +97,7 @@
 			protected void test() throws Exception {
 				PortalCustomSQLUtil portalCustomSQLUtil = new PortalCustomSQLUtil();
 
-				PortalCustomSQL portalCustomSQL = portalCustomSQLUtil.getPortalCustomSQL();
+				PortalCustomSQL portalCustomSQL = PortalCustomSQLUtil.getPortalCustomSQL();
 
 				portalCustomSQLUtil.setPortalCustomSQL(portalCustomSQL);
 			}
@@ -284,7 +284,7 @@
 	java.lang.ClassLoader#getSystemClassLoader=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
 				ClassLoader.getSystemClassLoader();
@@ -338,7 +338,7 @@
 	java.lang.Thread#getContextClassLoader=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
 				Thread thread = Thread.currentThread();
@@ -484,85 +484,25 @@
 />
 
 <p>
-	java.home=
+	JAVA_HOME= (<%= System.getenv("JAVA_HOME") %>)
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				System.getenv("java.home");
+				System.getenv("JAVA_HOME");
 			}
 
 		};
 		%>
 
-	java.io.tmpdir=
+	PATH=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				System.getenv("java.io.tmpdir");
-			}
-
-		};
-		%>
-
-	java.vendor=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vendor");
-			}
-
-		};
-		%>
-
-	java.vendor.url=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vendor.url");
-			}
-
-		};
-		%>
-
-	java.vm.specification.name=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vm.specification.name");
-			}
-
-		};
-		%>
-
-	java.vm.vendor=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vm.vendor");
-			}
-
-		};
-		%>
-
-	java.vm.version=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				System.getenv("java.vm.version");
+				System.getenv("PATH");
 			}
 
 		};
@@ -735,7 +675,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatUtil.java");
+			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
 		}
 
 	};
@@ -743,7 +683,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatUtil.java");
+			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
 		}
 
 	};
@@ -888,6 +828,36 @@
 
 		protected void test() throws Exception {
 			testReadWithFileUtil("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testReadWithFile(System.getenv("JAVA_HOME"));
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testReadWithFile(System.getenv("JAVA_HOME") + "/bin");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			String javaCommand = "java";
+
+			if (OSDetector.isWindows()) {
+				javaCommand = "java.exe";
+			}
+
+			testReadWithFile(System.getenv("JAVA_HOME") + "/bin/" + javaCommand);
 		}
 
 	};
@@ -1079,6 +1049,7 @@
 			}
 		};
 		%>
+
 </p>
 
 <liferay-ui:header
@@ -1733,13 +1704,13 @@
 </p>
 
 <p>
-	CompanyLocalServiceUtil#getCompany=
+	CompanyLocalServiceUtil#getCompanyByWebId=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				CompanyLocalServiceUtil.getCompany(themeDisplay.getCompanyId());
+				CompanyLocalServiceUtil.getCompanyByWebId("liferay.com");
 			}
 
 		};
@@ -2415,6 +2386,56 @@
 			executeStatement("create table TestPACL_DropSuccess (userId bigint)");
 
 			testStatement("drop table TestPACL_DropSuccess");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Index</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("create index index1 ON TestPACL_CreateFailure (userId)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("create index index1 ON TestPACL_CreateFailure (userId)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_CreateSuccess (userId bigint)");
+
+			testPreparedStatement("create index index1 ON TestPACL_CreateSuccess (userId)");
+
+			executePreparedStatement("drop table TestPACL_CreateSuccess");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_CreateSuccess (userId bigint)");
+
+			testStatement("create index index1 ON TestPACL_CreateSuccess (userId)");
+
+			executePreparedStatement("drop table TestPACL_CreateSuccess");
 		}
 
 	};

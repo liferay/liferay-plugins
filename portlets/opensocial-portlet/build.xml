@@ -161,12 +161,44 @@
 			<replacetoken>"profile" : {</replacetoken>
 			<replacevalue><![CDATA[
 				"home" : {
-			      "isOnlyVisible" : true,
-			      "urlTemplate" : "http://%host%/opensocial-portlet/gadgets/home{var}"
-			    },
+					"isOnlyVisible" : true,
+					"urlTemplate" : "http://%host%/opensocial-portlet/gadgets/home{var}"
+				},
 				"profile" : {]]>
 			</replacevalue>
 		</replace>
+
+		<antcall target="strip-comments">
+			<param name="strip.comments.file" value="tmp/WEB-INF/classes/containers/default/container.js" />
+			<param name="strip.comments.encoding" value="utf-8" />
+		</antcall>
+
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacetoken>"gadgets.uri.iframe.lockedDomainSuffix" :  "-a.example.com:8080",</replacetoken>
+			<replacevalue></replacevalue>
+		</replace>
+
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacetoken>"gadgets.uri.iframe.unlockedDomain" : "www.example.com:8080",</replacetoken>
+			<replacevalue></replacevalue>
+		</replace>
+
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacetoken>"gadgets.uri.js.host" : "http://www.example.com/",</replacetoken>
+			<replacevalue></replacevalue>
+		</replace>
+
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacetoken>"gadgets.uri.js.path" : "/opensocial-portlet/gadgets/js",</replacetoken>
+			<replacevalue></replacevalue>
+		</replace>
+
+		<replaceregexp match="(&quot;gadgets\.uri\.iframe\.basePath&quot; : &quot;.*?&quot;[\s\S]*)&quot;gadgets\.uri\.iframe\.basePath&quot; : &quot;.*?&quot;," replace="\1" flags="g" byline="false">
+			<fileset
+				dir="tmp/WEB-INF/classes/containers/default/"
+				includes="container.js"
+			/>
+		</replaceregexp>
 
 		<!-- Configure oauth.json -->
 
@@ -211,7 +243,33 @@
 
 		<replace file="tmp/WEB-INF/classes/shindig.properties">
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
+			<replacefilter token="shindig.signing.viewer-access-tokens-enabled=false" value="shindig.signing.viewer-access-tokens-enabled=true" />
 		</replace>
+
+		<!-- Fix canonicaldb.json -->
+
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<unjar
+			dest="${tstamp.value}"
+			src="tmp/WEB-INF/lib/shindig-social-api-2.0.2.jar"
+		/>
+
+		<antcall target="strip-comments">
+			<param name="strip.comments.file" value="${tstamp.value}/sampledata/canonicaldb.json" />
+			<param name="strip.comments.encoding" value="utf-8" />
+		</antcall>
+
+		<delete file="tmp/WEB-INF/lib/shindig-social-api-2.0.2.jar" />
+
+		<jar
+			basedir="${tstamp.value}"
+			destfile="tmp/WEB-INF/lib/shindig-social-api-2.0.2.jar"
+		/>
+
+		<delete dir="${tstamp.value}" />
 
 		<!-- Fix shiro.tld -->
 
@@ -266,6 +324,36 @@
 				/>
 			</then>
 		</if>
+
+		<!-- LPS-14616 -->
+
+		<antcall target="patch">
+			<param name="patch.destination" value="org/apache/shindig/social/opensocial/model/MediaItem.java" />
+			<param name="patch.original.lib.name" value="shindig-social-api" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-14616.patch" />
+		</antcall>
+
+		<!-- LPS-15003 -->
+
+		<antcall target="patch">
+			<param name="patch.destination" value="features/rpc/rpc.js" />
+			<param name="patch.original.lib.name" value="shindig-features" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-15003.patch" />
+		</antcall>
+
+		<!-- LPS-21488 -->
+
+		<antcall target="patch">
+			<param name="patch.destination" value="org/apache/shindig/gadgets/oauth/OAuthRequest.java" />
+			<param name="patch.original.lib.name" value="shindig-gadgets" />
+			<param name="patch.original.lib.version" value="2.0.2" />
+			<param name="patch.original.lib.url" value="http://search.maven.org/remotecontent?filepath=org/apache/shindig" />
+			<param name="patch.source" value="patches/LPS-21488.patch" />
+		</antcall>
 	</target>
 
 	<target name="merge-backup-file">
@@ -329,10 +417,25 @@
 			<replacevalue><![CDATA[CodeMirror.defineMode("gadgetxml", function(config, parserConfig) {]]></replacevalue>
 		</replace>
 
-
 		<replace file="tmp/editor/CodeMirror_2.0_52_g68d004c/mode/gadgetxml/gadgetxml.js">
 			<replacetoken><![CDATA[if (stream.eat("[")) {]]></replacetoken>
 			<replacevalue><![CDATA[if (false && stream.eat("[")) {]]></replacevalue>
 		</replace>
+	</target>
+
+	<target name="strip-comments">
+		<replaceregexp file="${strip.comments.file}"
+			encoding="${strip.comments.encoding}"
+			flags="gs"
+			match="\s*/[*].*?[*]/\s*"
+			replace=""
+		/>
+
+		<replaceregexp file="${strip.comments.file}"
+			byline="true"
+			encoding="${strip.comments.encoding}"
+			match="^\s*(//)(.*)$$"
+			replace=""
+		/>
 	</target>
 </project>

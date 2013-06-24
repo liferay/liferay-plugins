@@ -2,8 +2,6 @@
 <!DOCTYPE project>
 
 <project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks">
-	<property name="project.dir" value="." />
-
 	<import file="build-common.xml" />
 
 	<target name="all">
@@ -12,6 +10,7 @@
 	</target>
 
 	<target name="build-service">
+		<ant dir="hooks" target="build-service" inheritAll="false" />
 		<ant dir="portlets" target="build-service" inheritAll="false" />
 		<ant dir="webs" target="build-service" inheritAll="false" />
 	</target>
@@ -24,7 +23,7 @@
 			newenvironment="true"
 		>
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dplugins.dir=${project.dir}" />
+			<jvmarg value="-Dplugins.dir=${sdk.dir}" />
 		</java>
 
 		<java
@@ -34,9 +33,9 @@
 			newenvironment="true"
 		>
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg value="${project.dir}/summary.xml" />
-			<arg value="${project.dir}/summary.xsl" />
-			<arg value="${project.dir}/summary.html" />
+			<arg value="${sdk.dir}/summary.xml" />
+			<arg value="${sdk.dir}/summary.xsl" />
+			<arg value="${sdk.dir}/summary.html" />
 		</java>
 	</target>
 
@@ -44,6 +43,7 @@
 		<ant dir="hooks" target="clean" inheritAll="false" />
 		<ant dir="layouttpl" target="clean" inheritAll="false" />
 		<ant dir="portlets" target="clean" inheritAll="false" />
+		<ant dir="shared" target="clean" inheritAll="false" />
 		<ant dir="themes" target="clean" inheritAll="false" />
 		<ant dir="webs" target="clean" inheritAll="false" />
 	</target>
@@ -52,6 +52,7 @@
 		<ant dir="hooks" target="compile" inheritAll="false" />
 		<ant dir="layouttpl" target="compile" inheritAll="false" />
 		<ant dir="portlets" target="compile" inheritAll="false" />
+		<ant dir="shared" target="compile" inheritAll="false" />
 		<ant dir="themes" target="compile" inheritAll="false" />
 		<ant dir="webs" target="compile" inheritAll="false" />
 	</target>
@@ -60,6 +61,7 @@
 		<ant dir="hooks" target="deploy" inheritAll="false" />
 		<ant dir="layouttpl" target="deploy" inheritAll="false" />
 		<ant dir="portlets" target="deploy" inheritAll="false" />
+		<ant dir="shared" target="deploy" inheritAll="false" />
 		<ant dir="themes" target="deploy" inheritAll="false" />
 		<ant dir="webs" target="deploy" inheritAll="false" />
 	</target>
@@ -78,7 +80,7 @@
 
 		<copy todir="dist" overwrite="yes">
 			<fileset
-				dir="${project.dir}/tools/ear_tmpl"
+				dir="${sdk.dir}/tools/ear_tmpl"
 			/>
 		</copy>
 
@@ -172,15 +174,23 @@
 
 		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
 
+		<ant dir="webs/resources-importer-web" target="clean" inheritAll="false" />
+
 		<zip destfile="dist/liferay-plugins-sdk-${lp.version}.zip">
 			<zipfileset
 				dir="."
-				excludes=".git/**,build.*.properties,dist/**,ext/*-ext/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,shared/*-shared/**,source_formatter_*,summary.*,themes/*-theme/**,webs/*-web/**"
+				excludes="*.iml,.git/**,.ivy/**,build.*.properties,dist/**,ext/*-ext/**,hooks/*-hook/**,lib/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,shared/*-shared/**,source_formatter_*,summary.*,themes/*-theme/**,webs/*-web/**"
 				prefix="liferay-plugins-sdk-${lp.version}"
 			/>
 			<zipfileset
 				dir="."
+				excludes="**/releng/**"
 				includes="webs/resources-importer-web/**"
+				prefix="liferay-plugins-sdk-${lp.version}"
+			/>
+			<zipfileset
+				dir="."
+				includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
 				prefix="liferay-plugins-sdk-${lp.version}"
 			/>
 		</zip>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -19,7 +19,8 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum NotificationType {
 
-	EMAIL("email"), IM("im"), PRIVATE_MESSAGE("private-message");
+	EMAIL("email"), IM("im"), PRIVATE_MESSAGE("private-message"),
+	USER_NOTIFICATION("user-notification");
 
 	public static NotificationType parse(String value) {
 		if (EMAIL.getValue().equals(value)) {
@@ -30,6 +31,9 @@ public enum NotificationType {
 		}
 		else if (PRIVATE_MESSAGE.getValue().equals(value)) {
 			return PRIVATE_MESSAGE;
+		}
+		else if (USER_NOTIFICATION.getValue().equals(value)) {
+			return USER_NOTIFICATION;
 		}
 
 		throw new IllegalArgumentException("Invalid value " + value);

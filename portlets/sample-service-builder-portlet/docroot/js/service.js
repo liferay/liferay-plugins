@@ -3,6 +3,7 @@ Liferay.Service.register("Liferay.Service.SSB", "com.liferay.sampleservicebuilde
 Liferay.Service.registerClass(
 	Liferay.Service.SSB, "Foo",
 	{
-		getUser: true
+		getUser: true,
+		getUserSites: true
 	}
 );

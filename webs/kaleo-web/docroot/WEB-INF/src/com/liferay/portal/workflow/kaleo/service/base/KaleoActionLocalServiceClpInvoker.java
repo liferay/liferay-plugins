@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -130,7 +130,11 @@ public class KaleoActionLocalServiceClpInvoker {
 
 		_methodName109 = "getKaleoActions";
 
-		_methodParameterTypes109 = new String[] {
+		_methodParameterTypes109 = new String[] { "java.lang.String", "long" };
+
+		_methodName110 = "getKaleoActions";
+
+		_methodParameterTypes110 = new String[] {
 				"java.lang.String", "long", "java.lang.String"
 			};
 	}
@@ -263,6 +267,12 @@ public class KaleoActionLocalServiceClpInvoker {
 		if (_methodName109.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			return KaleoActionLocalServiceUtil.getKaleoActions((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName110.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
+			return KaleoActionLocalServiceUtil.getKaleoActions((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
@@ -313,4 +323,6 @@ public class KaleoActionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes108;
 	private String _methodName109;
 	private String[] _methodParameterTypes109;
+	private String _methodName110;
+	private String[] _methodParameterTypes110;
 }

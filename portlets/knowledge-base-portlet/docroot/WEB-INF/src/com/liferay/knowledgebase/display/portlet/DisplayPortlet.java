@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -563,15 +563,16 @@ public class DisplayPortlet extends MVCPortlet {
 			include(path, renderRequest, renderResponse);
 		}
 		else if (SessionErrors.contains(
-				renderRequest, NoSuchArticleException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchCommentException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchSubscriptionException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, NoSuchTemplateException.class.getName()) ||
-			SessionErrors.contains(
-				renderRequest, PrincipalException.class.getName())) {
+					renderRequest, NoSuchArticleException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, NoSuchCommentException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest,
+					 NoSuchSubscriptionException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, NoSuchTemplateException.class.getName()) ||
+				 SessionErrors.contains(
+					 renderRequest, PrincipalException.class.getName())) {
 
 			include(templatePath + "error.jsp", renderRequest, renderResponse);
 		}

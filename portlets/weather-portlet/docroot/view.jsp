@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -18,7 +18,7 @@
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(apiKey) %>">
-		<form name="<portlet:namespace />fm" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/enhancedlocalsearch', false); return false;" target="_blank">
+		<form name="<portlet:namespace />fm" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.worldweatheronline.com/v2/weather.aspx', false); return false;" target="_blank">
 
 		<table class="lfr-table">
 
@@ -31,7 +31,7 @@
 
 				<tr>
 					<td>
-						<a href="http://www.weather.com/search/enhancedlocalsearch?where=<%= HtmlUtil.escapeURL(weather.getZip()) %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= HtmlUtil.escape(weather.getZip()) %></a>
+						<a href="http://www.worldweatheronline.com/v2/weather.aspx?q=<%= HtmlUtil.escapeURL(weather.getZip()) %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= HtmlUtil.escape(weather.getZip()) %></a>
 					</td>
 					<td align="right">
 						<span style="font-size: xx-small;">
@@ -62,7 +62,7 @@
 
 		<liferay-ui:message key="city-or-zip-code" />
 
-		<input name="where" size="23" type="text" />
+		<input name="q" size="23" type="text" />
 
 		<input type="submit" value="<liferay-ui:message key="search" />" />
 
@@ -74,7 +74,7 @@
 
 		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 			<aui:script>
-				Liferay.Util.focusFormField(document.<portlet:namespace />fm.where);
+				Liferay.Util.focusFormField(document.<portlet:namespace />fm.q);
 			</aui:script>
 		</c:if>
 	</c:when>

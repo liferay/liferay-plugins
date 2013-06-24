@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -314,7 +314,8 @@ public class LiferayPersonService implements PersonService {
 		if (fields.contains(Person.Field.GENDER.toString())) {
 			if (user.isFemale()) {
 				person.setGender(Gender.female);
-			} else {
+			}
+			else {
 				person.setGender(Gender.male);
 			}
 		}

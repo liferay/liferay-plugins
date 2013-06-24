@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -45,6 +45,7 @@ import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Zsolt Berentey
  */
 public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
@@ -103,8 +104,8 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			throw new FeedTwitterScreenNameException();
 		}
 
-		Feed feed = feedPersistence.fetchByC_TSN(
-			user.getCompanyId(), twitterScreenName);
+		Feed feed = feedPersistence.fetchByU_TSN(
+			user.getUserId(), twitterScreenName);
 
 		JSONArray jsonArray = null;
 
@@ -126,13 +127,8 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			feed.setTwitterScreenName(twitterScreenName);
 
 			feedPersistence.update(feed, false);
-
-			if (jsonArray == null) {
-				return;
-			}
 		}
-
-		if (jsonArray == null) {
+		else {
 			jsonArray = TimelineProcessorUtil.getUserTimelineJSONArray(
 				twitterScreenName, feed.getLastStatusId());
 		}

@@ -2,8 +2,6 @@
 <!DOCTYPE project>
 
 <project name="build-common-theme">
-	<property name="project.dir" value="../.." />
-
 	<import file="../build-common-plugin.xml" />
 
 	<target name="build-css">
@@ -216,7 +214,7 @@
 			</then>
 		</if>
 
-		<mkdir dir="${project.dir}/dist" />
+		<mkdir dir="${sdk.dir}/dist" />
 
 		<delete file="${plugin.file}" />
 

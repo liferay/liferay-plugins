@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -69,10 +69,10 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 	}
 
 	@Override
-	public Resource getResource(WebDAVRequest webDavRequest)
+	public Resource getResource(WebDAVRequest webDAVRequest)
 		throws WebDAVException {
 
-		Resource resource = super.getResource(webDavRequest);
+		Resource resource = super.getResource(webDAVRequest);
 
 		if (isInstanceOfDLFileEntryResourceImpl(resource)) {
 			return toCompatResource(resource);
@@ -82,10 +82,10 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 	}
 
 	@Override
-	public List<Resource> getResources(WebDAVRequest webDavRequest)
+	public List<Resource> getResources(WebDAVRequest webDAVRequest)
 		throws WebDAVException {
 
-		List<Resource> resources = super.getResources(webDavRequest);
+		List<Resource> resources = super.getResources(webDAVRequest);
 
 		List<Resource> compatResources = new ArrayList<Resource>(
 			resources.size());
@@ -106,10 +106,10 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
 	@Override
 	public Status lockResource(
-			WebDAVRequest webDavRequest, String owner, long timeout)
+			WebDAVRequest webDAVRequest, String owner, long timeout)
 		throws WebDAVException {
 
-		Resource resource = getResource(webDavRequest);
+		Resource resource = getResource(webDAVRequest);
 
 		Lock lock = null;
 		int status = HttpServletResponse.SC_OK;
@@ -119,12 +119,12 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 				status = HttpServletResponse.SC_CREATED;
 
 				HttpServletRequest request =
-					webDavRequest.getHttpServletRequest();
+					webDAVRequest.getHttpServletRequest();
 
-				String[] pathArray = webDavRequest.getPathArray();
+				String[] pathArray = webDAVRequest.getPathArray();
 
-				long companyId = webDavRequest.getCompanyId();
-				long groupId = webDavRequest.getGroupId();
+				long companyId = webDAVRequest.getCompanyId();
+				long groupId = webDAVRequest.getGroupId();
 				long parentFolderId = getParentFolderId(companyId, pathArray);
 				String title = WebDAVUtil.getResourceName(pathArray);
 
@@ -155,11 +155,11 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 					groupId, parentFolderId, title, contentType, title,
 					description, changeLog, file, serviceContext);
 
-				resource = toResource(webDavRequest, fileEntry, false);
+				resource = toResource(webDAVRequest, fileEntry, false);
 			}
 
 			if (isInstanceOfDLFileEntryResourceImpl(
-					super.getResource(webDavRequest))) {
+					super.getResource(webDAVRequest))) {
 
 				FileEntry fileEntry = (FileEntry)resource.getModel();
 
@@ -178,7 +178,7 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 				boolean inheritable = false;
 
 				long depth = WebDAVUtil.getDepth(
-					webDavRequest.getHttpServletRequest());
+					webDAVRequest.getHttpServletRequest());
 
 				if (depth != 0) {
 					inheritable = true;
@@ -206,19 +206,19 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 	}
 
 	@Override
-	public boolean unlockResource(WebDAVRequest webDavRequest, String token)
+	public boolean unlockResource(WebDAVRequest webDAVRequest, String token)
 		throws WebDAVException {
 
-		Resource resource = getResource(webDavRequest);
+		Resource resource = getResource(webDAVRequest);
 
 		try {
 			if (isInstanceOfDLFileEntryResourceImpl(
-					super.getResource(webDavRequest))) {
+					super.getResource(webDAVRequest))) {
 
 				FileEntry fileEntry = (FileEntry)resource.getModel();
 
-				// Do not allow WebDAV to check in a file entry if it requires
-				// a manual check in
+				// Do not allow WebDAV to check in a file entry if it requires a
+				// manual check in
 
 				if (isManualCheckInRequired(fileEntry)) {
 					return false;
@@ -238,7 +238,7 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 					ServiceContextThreadLocal.popServiceContext();
 				}
 
-				if (webDavRequest.isAppleDoubleRequest()) {
+				if (webDAVRequest.isAppleDoubleRequest()) {
 					DLAppServiceUtil.deleteFileEntry(
 						fileEntry.getFileEntryId());
 				}
@@ -359,7 +359,7 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 	}
 
 	protected Resource toResource(
-		WebDAVRequest webDavRequest, FileEntry fileEntry, boolean appendPath) {
+		WebDAVRequest webDAVRequest, FileEntry fileEntry, boolean appendPath) {
 
 		try {
 			WebDAVStorage webDAVStorage = getWrappedWebDAVStorage();
@@ -375,7 +375,7 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 			method.setAccessible(true);
 
 			return (Resource)method.invoke(
-				webDAVStorage, webDavRequest, fileEntry, appendPath);
+				webDAVStorage, webDAVRequest, fileEntry, appendPath);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

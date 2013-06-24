@@ -100,25 +100,25 @@ $theme.include($body_top_include)
 
 								<ul>
 									#foreach ($nav_item in $nav_items)
-										#set ($navItemClass = "item-" + $velocityCount)
+										#set ($nav_item_class = "item-${velocityCount}")
 
 										#set ($selected_attr = "")
 
 										#if ($velocityCount == 1)
-											#set ($navItemClass = $navItemClass + " first")
+											#set ($nav_item_class = "$nav_item_class first")
 										#end
 
 										#if (!$velocityHasNext)
-											#set ($navItemClass = $navItemClass + " last")
+											#set ($nav_item_class = "$nav_item_class last")
 										#end
 
 										#if ($nav_item.isSelected())
-											#set ($navItemClass = $navItemClass + " selected")
+											#set ($nav_item_class = "$nav_item_class selected")
 
 											#set ($selected_attr = "aria-selected=\"true\"")
 										#end
 
-										<li $selected_attr class="$navItemClass">
+										<li $selected_attr class="$nav_item_class">
 											<a href="$nav_item.getURL()" $nav_item.getTarget()>
 												<span>$nav_item.icon() $nav_item.getName()</span>
 											</a>
@@ -144,8 +144,8 @@ $theme.include($body_top_include)
 
 $theme.include($body_bottom_include)
 
-</body>
-
 $theme.include($bottom_include)
+
+</body>
 
 </html>

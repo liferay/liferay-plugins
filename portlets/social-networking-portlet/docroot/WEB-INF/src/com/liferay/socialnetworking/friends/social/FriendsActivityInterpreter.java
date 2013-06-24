@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,18 +14,16 @@
 
 package com.liferay.socialnetworking.friends.social;
 
-import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Zsolt Berentey
  */
 public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 
@@ -34,78 +32,54 @@ public class FriendsActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
-		String receiverUserName = getUserName(
-			activity.getReceiverUserId(), themeDisplay);
+		return getUserName(activity.getReceiverUserId(), serviceContext);
+	}
 
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			activity.getUserId());
-		User receiverUser = UserLocalServiceUtil.getUserById(
-			activity.getReceiverUserId());
+	@Override
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivity activity, String link,
+			String title, ServiceContext serviceContext)
+		throws Exception {
 
 		int activityType = activity.getType();
 
-		// Link
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(themeDisplay.getPortalURL());
-		sb.append(themeDisplay.getPathFriendlyURLPublic());
-		sb.append(StringPool.SLASH);
-		sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-
-		String link = sb.toString();
-
-		// Title
-
-		String title = StringPool.BLANK;
-
-		if (activityType == FriendsActivityKeys.ADD_FRIEND) {
-			sb = new StringBundler(8);
-
-			sb.append("<a href=\"");
-			sb.append(themeDisplay.getPortalURL());
-			sb.append(themeDisplay.getPathFriendlyURLPublic());
-			sb.append(StringPool.SLASH);
-			sb.append(HtmlUtil.escapeURL(creatorUser.getScreenName()));
-			sb.append("/profile\">");
-			sb.append(creatorUserName);
-			sb.append("</a>");
-
-			String creatorUserNameURL = sb.toString();
-
-			sb = new StringBundler(8);
-
-			sb.append("<a href=\"");
-			sb.append(themeDisplay.getPortalURL());
-			sb.append(themeDisplay.getPathFriendlyURLPublic());
-			sb.append(StringPool.SLASH);
-			sb.append(HtmlUtil.escapeURL(receiverUser.getScreenName()));
-			sb.append("/profile\">");
-			sb.append(receiverUserName);
-			sb.append("</a>");
-
-			String receiverUserNameURL = sb.toString();
-
-			title = themeDisplay.translate(
-				"activity-social-networking-summary-add-friend",
-				new Object[] {creatorUserNameURL, receiverUserNameURL});
+		if (activityType != FriendsActivityKeys.ADD_FRIEND) {
+			return new Object[0];
 		}
 
-		// Body
+		String creatorUserName = getUserName(
+			activity.getUserId(), serviceContext);
+		String receiverUserName = getUserName(
+			activity.getReceiverUserId(), serviceContext);
 
-		String body = StringPool.BLANK;
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return new Object[] {creatorUserName, receiverUserName};
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		User.class.getName()
-	};
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
+
+		int activityType = activity.getType();
+
+		if (activityType == FriendsActivityKeys.ADD_FRIEND) {
+			return "activity-social-networking-summary-add-friend";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	protected boolean hasPermissions(
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ServiceContext serviceContext) {
+
+		return true;
+	}
+
+	private static final String[] _CLASS_NAMES = {User.class.getName()};
 
 }

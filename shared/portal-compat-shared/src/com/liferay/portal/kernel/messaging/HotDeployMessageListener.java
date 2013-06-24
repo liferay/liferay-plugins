@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -15,14 +15,27 @@
 package com.liferay.portal.kernel.messaging;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.SetUtil;
+
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class HotDeployMessageListener extends BaseMessageListener {
 
-	public HotDeployMessageListener(String servletContextName) {
-		_servletContextName = servletContextName;
+	public HotDeployMessageListener() {
+		this((String[])null);
+	}
+
+	public HotDeployMessageListener(String... servletContextNames) {
+		if (servletContextNames == null) {
+			_servletContextNames = Collections.emptySet();
+		}
+		else {
+			_servletContextNames = SetUtil.fromArray(servletContextNames);
+		}
 	}
 
 	@Override
@@ -30,26 +43,28 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		String servletContextName = GetterUtil.getString(
 			message.getString("servletContextName"));
 
-		if (!servletContextName.equals(_servletContextName)) {
+		if (!_servletContextNames.isEmpty() &&
+			!_servletContextNames.contains(servletContextName)) {
+
 			return;
 		}
 
 		String command = GetterUtil.getString(message.getString("command"));
 
 		if (command.equals("deploy")) {
-			onDeploy();
+			onDeploy(message);
 		}
 		else if (command.equals("undeploy")) {
-			onUndeploy();
+			onUndeploy(message);
 		}
 	}
 
-	protected void onDeploy() throws Exception {
+	protected void onDeploy(Message message) throws Exception {
 	}
 
-	protected void onUndeploy() throws Exception {
+	protected void onUndeploy(Message message) throws Exception {
 	}
 
-	private String _servletContextName;
+	private Set<String> _servletContextNames;
 
 }

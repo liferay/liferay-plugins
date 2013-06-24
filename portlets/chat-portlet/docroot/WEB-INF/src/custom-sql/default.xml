@@ -25,7 +25,7 @@
 				(
 					(fromUserId = ?) OR (toUserId = ?)
 				) AND
-				(createDate > ?)
+				(flag = ?)
 			ORDER BY
 				createDate DESC
 		]]>
@@ -101,14 +101,14 @@
 				Users_Groups ON
 					(Users_Groups.userId = User_.userId)
 			WHERE
-				(Users_Groups.groupId IN 
+				(Users_Groups.groupId IN
 					(
 						SELECT
-							groupId
+							Users_Groups.groupId
 						FROM
-							Users_Groups
+							Users_Groups [$USERS_GROUPS_JOIN$]
 						WHERE
-							(userId = ?)
+							(userId = ?) [$USERS_GROUPS_WHERE$]
 					)
 				) AND
 				(Chat_Status.modifiedDate > ?) AND

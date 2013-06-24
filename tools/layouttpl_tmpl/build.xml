@@ -4,5 +4,5 @@
 <project name="@layouttpl.name@-layouttpl" basedir="." default="deploy">
 	<property name="plugin.version" value="1" />
 
-	<import file="../build-common-layouttpl.xml" />
+	<import file="@plugin.type.dir@/build-common-layouttpl.xml" />
 </project>

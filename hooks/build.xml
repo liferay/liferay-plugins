@@ -1,54 +1,44 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="hooks" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
-	<property name="project.dir" value=".." />
-
+<project name="hooks" basedir="." default="deploy">
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
 		<if>
 			<or>
 				<not>
-					<isset property="hook.name" />
+					<isset property="hook.display.name" />
 				</not>
 				<not>
-					<isset property="hook.display.name" />
+					<isset property="hook.name" />
 				</not>
 			</or>
 			<then>
-				<echo message="This task must be called by create.bat." />
+				<fail>This task must be called by the create script.</fail>
 			</then>
-			<else>
-				<if>
-					<not>
-						<isset property="hook.parent.dir" />
-					</not>
-					<then>
-						<property name="hook.parent.dir" value="${basedir}" />
-					</then>
-				</if>
-
-				<property name="hook.dir" value="${hook.parent.dir}/${hook.name}-hook" />
-
-				<if>
-					<available file="${hook.dir}" />
-					<then>
-						<fail>${hook.name}-hook already exists.</fail>
-					</then>
-				</if>
-
-				<copy todir="${hook.dir}">
-					<fileset
-						dir="${project.dir}/tools/hook_tmpl"
-					/>
-				</copy>
-
-				<replace dir="${hook.dir}">
-					<replacefilter token="@hook.name@" value="${hook.name}" />
-					<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
-				</replace>
-			</else>
 		</if>
+
+		<property name="hook.parent.dir" value="${user.dir}" />
+		<property name="hook.dir" value="${hook.parent.dir}/${hook.name}-hook" />
+
+		<if>
+			<available file="${hook.dir}" />
+			<then>
+				<fail>${hook.name}-hook already exists.</fail>
+			</then>
+		</if>
+
+		<copy todir="${hook.dir}">
+			<fileset
+				dir="${sdk.dir}/tools/hook_tmpl"
+			/>
+		</copy>
+
+		<replace dir="${hook.dir}">
+			<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
+			<replacefilter token="@hook.name@" value="${hook.name}" />
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
+		</replace>
 	</target>
 </project>

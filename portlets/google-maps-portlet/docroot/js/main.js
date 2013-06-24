@@ -231,10 +231,14 @@ AUI.add(
 					_getMapAddress: function(value) {
 						var instance = this;
 
-						if (!Lang.isValue(value) && instance.get('mapInputEnabled')) {
+						if (instance.get('mapInputEnabled')) {
 							var mapAddressNode = instance.byId(STR_MAP_ADDRESS);
 
-							value = mapAddressNode.val();
+							var mapAddress = mapAddressNode.val();
+
+							if (mapAddress) {
+								value = mapAddress;
+							}
 						}
 
 						return value;

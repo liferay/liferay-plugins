@@ -1,13 +1,13 @@
 #if (($company.getLogoId() == 0) && !$layout.layoutSet.isLogo())
-	#set ($site_logo = $images_folder + "/custom/so_logo.png")
-	#set ($site_logo_height = "64px")
-	#set ($site_logo_width = "186px")
+	#set ($site_logo = "${images_folder}/custom/so_logo.png")
+	#set ($site_logo_height = 64)
+	#set ($site_logo_width = 186)
 #end
 
 #if ($is_signed_in)
 	#set ($user_group = $user.getGroup())
 
-	#set ($nav_css_class = "${nav_css_class} sort-pages modify-pages")
+	#set ($nav_css_class = "$nav_css_class sort-pages modify-pages")
 
 	#set ($user_dashboard_portlet_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
 

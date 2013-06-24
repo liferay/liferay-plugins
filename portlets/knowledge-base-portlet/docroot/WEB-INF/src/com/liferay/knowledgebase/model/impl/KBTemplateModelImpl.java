@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -463,18 +463,15 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBTemplate)) {
 			return false;
 		}
 
-		KBTemplate kbTemplate = null;
-
-		try {
-			kbTemplate = (KBTemplate)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KBTemplate kbTemplate = (KBTemplate)obj;
 
 		long primaryKey = kbTemplate.getPrimaryKey();
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -16,12 +16,15 @@ package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 
 import java.io.InputStream;
 
 import java.net.URL;
 import java.net.URLConnection;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -48,19 +51,59 @@ public class ResourceImporter extends FileSystemImporter {
 
 		for (String resourcePath : resourcePaths) {
 			if (resourcePath.endsWith(StringPool.SLASH)) {
-				continue;
+				addDLFolder(
+					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, resourcePath);
 			}
-
-			String name = FileUtil.getShortFileName(resourcePath);
-
-			URL url = servletContext.getResource(resourcePath);
-
-			URLConnection urlConnection = url.openConnection();
-
-			doAddDLFileEntries(
-				name, urlConnection.getInputStream(),
-				urlConnection.getContentLength());
+			else {
+				addDLFileEntry(resourcePath);
+			}
 		}
+	}
+
+	protected void addDLFileEntry(String resourcePath) throws Exception {
+		Long parentFolderId = _folderIds.get(
+			FileUtil.getPath(resourcePath) + StringPool.SLASH);
+
+		if (parentFolderId == null) {
+			parentFolderId = 0L;
+		}
+
+		URL url = servletContext.getResource(resourcePath);
+
+		URLConnection urlConnection = url.openConnection();
+
+		addDLFileEntry(
+			parentFolderId, FileUtil.getShortFileName(resourcePath),
+			urlConnection.getInputStream(), urlConnection.getContentLength());
+	}
+
+	@Override
+	protected long addDLFolder(long parentFolderId, String resourcePath)
+		throws Exception {
+
+		long folderId = super.addDLFolder(
+			parentFolderId,
+			FileUtil.getShortFileName(FileUtil.getPath(resourcePath)));
+
+		_folderIds.put(resourcePath, folderId);
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			resourcePath);
+
+		if ((resourcePaths == null) || resourcePaths.isEmpty()) {
+			return folderId;
+		}
+
+		for (String curResourcePath : resourcePaths) {
+			if (curResourcePath.endsWith(StringPool.SLASH)) {
+				addDLFolder(folderId, curResourcePath);
+			}
+			else {
+				addDLFileEntry(curResourcePath);
+			}
+		}
+
+		return folderId;
 	}
 
 	@Override
@@ -88,7 +131,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddJournalArticles(
+			addJournalArticles(
 				journalStructureId, journalTemplateId, name,
 				urlConnection.getInputStream());
 		}
@@ -118,7 +161,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddJournalStructures(
+			addJournalStructures(
 				parentStructureId, name, urlConnection.getInputStream());
 		}
 	}
@@ -147,7 +190,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			doAddJournalTemplates(
+			addJournalTemplates(
 				journalStructureId, name, urlConnection.getInputStream());
 		}
 	}
@@ -164,5 +207,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 		return urlConnection.getInputStream();
 	}
+
+	private Map<String, Long> _folderIds = new HashMap<String, Long>();
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -487,7 +487,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		statusImpl.setModifiedDate(status.getModifiedDate());
 		statusImpl.setOnline(status.isOnline());
 		statusImpl.setAwake(status.isAwake());
-		statusImpl.setActivePanelId(status.getActivePanelId());
+		statusImpl.setActivePanelIds(status.getActivePanelIds());
 		statusImpl.setMessage(status.getMessage());
 		statusImpl.setPlaySound(status.isPlaySound());
 
@@ -2318,8 +2318,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				List<ModelListener<Status>> listenersList = new ArrayList<ModelListener<Status>>();
 
 				for (String listenerClassName : listenerClassNames) {
+					Class<?> clazz = getClass();
+
 					listenersList.add((ModelListener<Status>)InstanceFactory.newInstance(
-							listenerClassName));
+							clazz.getClassLoader(), listenerClassName));
 				}
 
 				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);

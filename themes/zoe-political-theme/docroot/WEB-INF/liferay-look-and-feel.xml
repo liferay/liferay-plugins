@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_1_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>6.1.0+</version>
+	</compatibility>
+	<theme id="zoe-political" name="Zoe Political">
+		<settings>
+			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true" />
+			<setting configurable="true" key="display-button" type="checkbox" value="true">
+				<![CDATA[
+					AUI().ready(
+						'aui-base',
+						function(A) {
+							var buttonTitle = A.one('#[@NAMESPACE@]button-title');
+							var buttonUrl = A.one('#[@NAMESPACE@]button-url');
+							var displayButton = A.one('#[@NAMESPACE@]display-buttonCheckbox');
+							var displayButtonInput = A.one('#[@NAMESPACE@]display-button');
+
+							var buttonTitleField = buttonTitle.ancestor('.aui-field');
+							var buttonTitleFieldContent = buttonTitle.ancestor('.aui-field-content');
+							var buttonUrlField = buttonUrl.ancestor('.aui-field');
+							var buttonUrlFieldContent = buttonUrl.ancestor('.aui-field-content');
+
+							var globalCheck = displayButton.attr('checked');
+
+							buttonTitleFieldContent.setStyle('padding-left', '20px');
+							buttonUrlFieldContent.setStyle('padding-left', '20px');
+
+							buttonTitleField.toggle(globalCheck);
+							buttonUrlField.toggle(globalCheck);
+
+							displayButton.on(
+								'click',
+								function(event) {
+									var checked = event.currentTarget.attr('checked');
+
+									buttonTitleField.toggle(checked);
+									buttonUrlField.toggle(checked);
+								}
+							);
+						}
+					);
+				]]>
+			</setting>
+			<setting configurable="true" key="button-title" type="text"  value="Donate" />
+			<setting configurable="true" key="button-url" type="text"  value="//liferay.com" />
+			<setting configurable="true" key="display-header-social" type="checkbox" value="true" />
+		</settings>
+		<color-scheme id="01" name="Democrat">
+			<css-class>democrat</css-class>
+		</color-scheme>
+		<color-scheme id="02" name="Republican">
+			<css-class>republican</css-class>
+		</color-scheme>
+		<color-scheme id="03" name="Independent">
+			<css-class>independent</css-class>
+		</color-scheme>
+	</theme>
+</look-and-feel>

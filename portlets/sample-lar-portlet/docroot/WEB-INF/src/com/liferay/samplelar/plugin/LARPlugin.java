@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -219,16 +219,13 @@ public class LARPlugin extends BasePortletDataHandler {
 
 	private static PortletDataHandlerBoolean _createReadme =
 		new PortletDataHandlerBoolean(_NAMESPACE, "create-readme", true, true);
-
 	private static PortletDataHandlerChoice _dataType =
 		new PortletDataHandlerChoice(
 			_NAMESPACE, "data-type", 1, new String[] {"csv", "xml"});
-
 	private static PortletDataHandlerBoolean _enableExport =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "export-sample-lar-portlet-data", true,
 			new PortletDataHandlerControl[] {_createReadme, _dataType});
-
 	private static PortletDataHandlerBoolean _enableImport =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "import-sample-lar-portlet-data", true, true);

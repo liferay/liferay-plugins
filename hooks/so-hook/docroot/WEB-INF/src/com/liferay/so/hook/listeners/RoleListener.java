@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -18,6 +18,7 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -158,6 +159,15 @@ public class RoleListener extends BaseModelListener<Role> {
 					continue;
 				}
 
+				FinderCacheUtil.clearCache(_MAPPING_TABLE_USERS_ROLES_NAME);
+
+				if (UserLocalServiceUtil.hasRoleUser(
+						user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER,
+						user.getUserId(), true)) {
+
+					continue;
+				}
+
 				LayoutSetPrototypeUtil.removeLayoutSetPrototype(
 					userGroup, false,
 					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
@@ -173,5 +183,11 @@ public class RoleListener extends BaseModelListener<Role> {
 			throw new ModelListenerException(e);
 		}
 	}
+
+	/**
+	 * {@link
+	 * com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}
+	 */
+	private static final String _MAPPING_TABLE_USERS_ROLES_NAME = "Users_Roles";
 
 }

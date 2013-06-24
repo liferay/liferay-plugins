@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -15,6 +15,7 @@
 package com.liferay.mail.model;
 
 import com.liferay.mail.service.AccountLocalServiceUtil;
+import com.liferay.mail.service.ClpSerializer;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -25,6 +26,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -260,6 +263,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setAccountId(long accountId) {
 		_accountId = accountId;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAccountId", long.class);
+
+				method.invoke(_accountRemoteModel, accountId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -268,6 +284,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_accountRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -276,6 +305,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_accountRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -292,6 +334,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_accountRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -300,6 +355,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_accountRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -308,6 +376,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_accountRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getAddress() {
@@ -316,6 +397,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setAddress(String address) {
 		_address = address;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAddress", String.class);
+
+				method.invoke(_accountRemoteModel, address);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getPersonalName() {
@@ -324,6 +418,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setPersonalName(String personalName) {
 		_personalName = personalName;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPersonalName", String.class);
+
+				method.invoke(_accountRemoteModel, personalName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getProtocol() {
@@ -332,6 +439,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setProtocol(String protocol) {
 		_protocol = protocol;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setProtocol", String.class);
+
+				method.invoke(_accountRemoteModel, protocol);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getIncomingHostName() {
@@ -340,6 +460,20 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setIncomingHostName(String incomingHostName) {
 		_incomingHostName = incomingHostName;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setIncomingHostName",
+						String.class);
+
+				method.invoke(_accountRemoteModel, incomingHostName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getIncomingPort() {
@@ -348,6 +482,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setIncomingPort(int incomingPort) {
 		_incomingPort = incomingPort;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setIncomingPort", int.class);
+
+				method.invoke(_accountRemoteModel, incomingPort);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getIncomingSecure() {
@@ -360,6 +507,20 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setIncomingSecure(boolean incomingSecure) {
 		_incomingSecure = incomingSecure;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setIncomingSecure",
+						boolean.class);
+
+				method.invoke(_accountRemoteModel, incomingSecure);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getOutgoingHostName() {
@@ -368,6 +529,20 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setOutgoingHostName(String outgoingHostName) {
 		_outgoingHostName = outgoingHostName;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOutgoingHostName",
+						String.class);
+
+				method.invoke(_accountRemoteModel, outgoingHostName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getOutgoingPort() {
@@ -376,6 +551,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setOutgoingPort(int outgoingPort) {
 		_outgoingPort = outgoingPort;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOutgoingPort", int.class);
+
+				method.invoke(_accountRemoteModel, outgoingPort);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getOutgoingSecure() {
@@ -388,6 +576,20 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setOutgoingSecure(boolean outgoingSecure) {
 		_outgoingSecure = outgoingSecure;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOutgoingSecure",
+						boolean.class);
+
+				method.invoke(_accountRemoteModel, outgoingSecure);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getLogin() {
@@ -396,6 +598,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setLogin(String login) {
 		_login = login;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLogin", String.class);
+
+				method.invoke(_accountRemoteModel, login);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getPassword() {
@@ -404,6 +619,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setPassword(String password) {
 		_password = password;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPassword", String.class);
+
+				method.invoke(_accountRemoteModel, password);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getSavePassword() {
@@ -416,6 +644,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setSavePassword(boolean savePassword) {
 		_savePassword = savePassword;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSavePassword", boolean.class);
+
+				method.invoke(_accountRemoteModel, savePassword);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getSignature() {
@@ -424,6 +665,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setSignature(String signature) {
 		_signature = signature;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSignature", String.class);
+
+				method.invoke(_accountRemoteModel, signature);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getUseSignature() {
@@ -436,6 +690,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setUseSignature(boolean useSignature) {
 		_useSignature = useSignature;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUseSignature", boolean.class);
+
+				method.invoke(_accountRemoteModel, useSignature);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getFolderPrefix() {
@@ -444,6 +711,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setFolderPrefix(String folderPrefix) {
 		_folderPrefix = folderPrefix;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFolderPrefix", String.class);
+
+				method.invoke(_accountRemoteModel, folderPrefix);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getInboxFolderId() {
@@ -452,6 +732,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setInboxFolderId(long inboxFolderId) {
 		_inboxFolderId = inboxFolderId;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setInboxFolderId", long.class);
+
+				method.invoke(_accountRemoteModel, inboxFolderId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getDraftFolderId() {
@@ -460,6 +753,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setDraftFolderId(long draftFolderId) {
 		_draftFolderId = draftFolderId;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDraftFolderId", long.class);
+
+				method.invoke(_accountRemoteModel, draftFolderId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getSentFolderId() {
@@ -468,6 +774,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setSentFolderId(long sentFolderId) {
 		_sentFolderId = sentFolderId;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSentFolderId", long.class);
+
+				method.invoke(_accountRemoteModel, sentFolderId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getTrashFolderId() {
@@ -476,6 +795,19 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setTrashFolderId(long trashFolderId) {
 		_trashFolderId = trashFolderId;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTrashFolderId", long.class);
+
+				method.invoke(_accountRemoteModel, trashFolderId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getDefaultSender() {
@@ -488,14 +820,53 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setDefaultSender(boolean defaultSender) {
 		_defaultSender = defaultSender;
+
+		if (_accountRemoteModel != null) {
+			try {
+				Class<?> clazz = _accountRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDefaultSender",
+						boolean.class);
+
+				method.invoke(_accountRemoteModel, defaultSender);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setPasswordDecrypted(java.lang.String unencryptedPassword) {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "setPasswordDecrypted";
+
+			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
+
+			Object[] parameterValues = new Object[] { unencryptedPassword };
+
+			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getPasswordDecrypted() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getPasswordDecrypted";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getAccountRemoteModel() {
@@ -504,6 +875,47 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	public void setAccountRemoteModel(BaseModel<?> accountRemoteModel) {
 		_accountRemoteModel = accountRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _accountRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_accountRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -521,6 +933,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 			new Class[] { Account.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Account toUnescapedModel() {
 		return this;
 	}
@@ -573,18 +986,15 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AccountClp)) {
 			return false;
 		}
 
-		AccountClp account = null;
-
-		try {
-			account = (AccountClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		AccountClp account = (AccountClp)obj;
 
 		long primaryKey = account.getPrimaryKey();
 

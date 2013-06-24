@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -22,9 +22,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.socialcoding.service.ClpSerializer;
 import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -107,6 +110,20 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeGroupId = jiraChangeGroupId;
+
+		if (_jiraChangeGroupRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeGroupRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraChangeGroupId",
+						long.class);
+
+				method.invoke(_jiraChangeGroupRemoteModel, jiraChangeGroupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getJiraUserId() {
@@ -115,6 +132,19 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	public void setJiraUserId(String jiraUserId) {
 		_jiraUserId = jiraUserId;
+
+		if (_jiraChangeGroupRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeGroupRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraUserId", String.class);
+
+				method.invoke(_jiraChangeGroupRemoteModel, jiraUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -123,6 +153,19 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_jiraChangeGroupRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeGroupRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_jiraChangeGroupRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getJiraIssueId() {
@@ -131,6 +174,19 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssueId = jiraIssueId;
+
+		if (_jiraChangeGroupRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraChangeGroupRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraIssueId", long.class);
+
+				method.invoke(_jiraChangeGroupRemoteModel, jiraIssueId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getJIRAChangeGroupRemoteModel() {
@@ -140,6 +196,47 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	public void setJIRAChangeGroupRemoteModel(
 		BaseModel<?> jiraChangeGroupRemoteModel) {
 		_jiraChangeGroupRemoteModel = jiraChangeGroupRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _jiraChangeGroupRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_jiraChangeGroupRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -158,6 +255,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public JIRAChangeGroup toUnescapedModel() {
 		return this;
 	}
@@ -191,18 +289,15 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAChangeGroupClp)) {
 			return false;
 		}
 
-		JIRAChangeGroupClp jiraChangeGroup = null;
-
-		try {
-			jiraChangeGroup = (JIRAChangeGroupClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		JIRAChangeGroupClp jiraChangeGroup = (JIRAChangeGroupClp)obj;
 
 		long primaryKey = jiraChangeGroup.getPrimaryKey();
 

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:m2="http://ant.apache.org/ivy/maven"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="cdi-portlet-bridge-shared" organisation="com.liferay">
+		<license name="LGPL 2.1" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt" />
+
+		<description homepage="http://www.liferay.com" />
+	</info>
+
+	<configurations>
+		<conf name="provided" />
+	</configurations>
+
+	<publications>
+		<artifact type="jar" />
+		<artifact type="pom" />
+		<artifact ext="jar" m2:classifier="sources" type="sources" />
+		<artifact ext="zip" m2:classifier="javadoc" type="javadoc" />
+	</publications>
+
+	<dependencies defaultconf="default">
+		<dependency conf="provided->default" name="cdi-api" org="javax.enterprise" rev="1.0-SP4" />
+		<dependency conf="provided->default" name="portlet-api" org="javax.portlet" rev="2.0" />
+		<dependency conf="provided->default" name="javax.servlet-api" org="javax.servlet" rev="3.0.1" />
+	</dependencies>
+</ivy-module>

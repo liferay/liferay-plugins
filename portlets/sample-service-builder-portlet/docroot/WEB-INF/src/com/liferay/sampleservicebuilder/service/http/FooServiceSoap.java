@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -71,6 +71,20 @@ public class FooServiceSoap {
 			com.liferay.portal.model.User returnValue = FooServiceUtil.getUser(userId);
 
 			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.portal.model.Group[] getUserSites()
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.model.Group> returnValue = FooServiceUtil.getUserSites();
+
+			return returnValue.toArray(new com.liferay.portal.model.Group[returnValue.size()]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

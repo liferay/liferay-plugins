@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -158,19 +158,19 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setAwake(boolean awake);
 
 	/**
-	 * Returns the active panel ID of this status.
+	 * Returns the active panel IDs of this status.
 	 *
-	 * @return the active panel ID of this status
+	 * @return the active panel IDs of this status
 	 */
 	@AutoEscape
-	public String getActivePanelId();
+	public String getActivePanelIds();
 
 	/**
-	 * Sets the active panel ID of this status.
+	 * Sets the active panel IDs of this status.
 	 *
-	 * @param activePanelId the active panel ID of this status
+	 * @param activePanelIds the active panel IDs of this status
 	 */
-	public void setActivePanelId(String activePanelId);
+	public void setActivePanelIds(String activePanelIds);
 
 	/**
 	 * Returns the message of this status.

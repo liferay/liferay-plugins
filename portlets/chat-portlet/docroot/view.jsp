@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,11 +34,21 @@
 	Status status = StatusLocalServiceUtil.getUserStatus(themeDisplay.getUserId());
 
 	boolean online = status.getOnline();
-	String activePanelId = status.getActivePanelId();
+
+	JSONObject activePanelIdsJSONObject = null;
+
+	String openPanelId = StringPool.BLANK;
+
+	if (Validator.isNotNull(status.getActivePanelIds())) {
+		activePanelIdsJSONObject = JSONFactoryUtil.createJSONObject(status.getActivePanelIds());
+
+		openPanelId = activePanelIdsJSONObject.getString("open");
+	}
+
 	String statusMessage = HtmlUtil.escape(status.getMessage());
 	boolean playSound = status.getPlaySound();
 
-	List<Object[]> buddies = ChatUtil.getBuddies(themeDisplay.getCompanyId(), themeDisplay.getUserId());
+	List<Object[]> buddies = BuddyFinderUtil.getBuddies(themeDisplay.getCompanyId(), themeDisplay.getUserId());
 
 	int buddiesCount = buddies.size();
 	%>
@@ -57,7 +67,7 @@
 
 			<div class="chat-tabs-container">
 				<ul class="chat-tabs">
-					<li class="buddy-list loading <%= activePanelId.equals("buddylist") ? "selected" : "" %>">
+					<li class="buddy-list loading <%= openPanelId.equals("buddylist") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="buddylist">
 							<span class="trigger-name"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></span>
 						</div>
@@ -103,7 +113,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="chat-settings <%= activePanelId.equals("settings") ? "selected" : "" %>">
+					<li class="chat-settings <%= openPanelId.equals("settings") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="settings">
 							<span class="trigger-name"><liferay-ui:message key="settings" /></span>
 						</div>
@@ -141,7 +151,7 @@
 			</div>
 		</div>
 
-		<input id="activePanelId" type="hidden" value="<%= activePanelId %>" />
+		<input id="activePanelIds" type="hidden" value="<%= HtmlUtil.escapeAttribute(status.getActivePanelIds()) %>" />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
 
 		<div class="chat-extensions aui-helper-hidden">

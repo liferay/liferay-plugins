@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.knowledgebase.service.ClpSerializer;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -26,6 +27,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -150,6 +153,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_kbTemplateRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKbTemplateId() {
@@ -158,6 +174,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setKbTemplateId(long kbTemplateId) {
 		_kbTemplateId = kbTemplateId;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKbTemplateId", long.class);
+
+				method.invoke(_kbTemplateRemoteModel, kbTemplateId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -166,6 +195,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_kbTemplateRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -174,6 +216,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_kbTemplateRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -182,6 +237,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_kbTemplateRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -198,6 +266,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_kbTemplateRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -206,6 +287,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_kbTemplateRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -214,6 +308,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_kbTemplateRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getTitle() {
@@ -222,6 +329,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setTitle(String title) {
 		_title = title;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTitle", String.class);
+
+				method.invoke(_kbTemplateRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getContent() {
@@ -230,6 +350,19 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setContent(String content) {
 		_content = content;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setContent", String.class);
+
+				method.invoke(_kbTemplateRemoteModel, content);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getKBTemplateRemoteModel() {
@@ -238,6 +371,47 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	public void setKBTemplateRemoteModel(BaseModel<?> kbTemplateRemoteModel) {
 		_kbTemplateRemoteModel = kbTemplateRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _kbTemplateRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_kbTemplateRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -255,6 +429,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 			new Class[] { KBTemplate.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KBTemplate toUnescapedModel() {
 		return this;
 	}
@@ -294,18 +469,15 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBTemplateClp)) {
 			return false;
 		}
 
-		KBTemplateClp kbTemplate = null;
-
-		try {
-			kbTemplate = (KBTemplateClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KBTemplateClp kbTemplate = (KBTemplateClp)obj;
 
 		long primaryKey = kbTemplate.getPrimaryKey();
 

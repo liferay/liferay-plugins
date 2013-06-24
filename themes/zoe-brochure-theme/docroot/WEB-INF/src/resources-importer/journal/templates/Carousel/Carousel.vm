@@ -1,5 +1,5 @@
 #set ($content_id = $reserved-article-id.getData())
-#set ($content_class = "multiple-items-" + $content_id + "-carousel")
+#set ($content_class = "multiple-items-${content_id}-carousel")
 
 <style type="text/css">
 	#${content_class} {

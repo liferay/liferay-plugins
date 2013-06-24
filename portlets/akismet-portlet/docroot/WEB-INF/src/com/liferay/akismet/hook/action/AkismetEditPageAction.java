@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -16,11 +16,6 @@ package com.liferay.akismet.hook.action;
 
 import com.liferay.akismet.util.AkismetConstants;
 import com.liferay.akismet.util.AkismetUtil;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Property;
-import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -43,9 +38,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
-import com.liferay.portlet.wiki.util.comparator.PageVersionComparator;
-
-import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -69,9 +61,9 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		if (cmd.equals("updateStatus")) {
+		if (cmd.equals("updateSummary")) {
 			try {
-				updateStatus(actionRequest, actionResponse);
+				updateSummary(actionRequest, actionResponse);
 
 				String redirect = PortalUtil.escapeRedirect(
 					ParamUtil.getString(actionRequest, "redirect"));
@@ -125,47 +117,7 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 		}
 	}
 
-	protected WikiPage getWikiPage(WikiPage wikiPage, boolean previous)
-		throws SystemException {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			WikiPage.class);
-
-		Property nodeIdProperty = PropertyFactoryUtil.forName("nodeId");
-
-		dynamicQuery.add(nodeIdProperty.eq(wikiPage.getNodeId()));
-
-		Property titleProperty = PropertyFactoryUtil.forName("title");
-
-		dynamicQuery.add(titleProperty.eq(wikiPage.getTitle()));
-
-		Property statusProperty = PropertyFactoryUtil.forName("status");
-
-		dynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
-
-		Property versionProperty = PropertyFactoryUtil.forName("version");
-
-		if (previous) {
-			dynamicQuery.add(versionProperty.lt(wikiPage.getVersion()));
-		}
-		else {
-			dynamicQuery.add(versionProperty.ge(wikiPage.getVersion()));
-		}
-
-		OrderFactoryUtil.addOrderByComparator(
-			dynamicQuery, new PageVersionComparator());
-
-		List<WikiPage> wikiPages = WikiPageLocalServiceUtil.dynamicQuery(
-			dynamicQuery, 0, 1);
-
-		if (wikiPages.isEmpty()) {
-			return null;
-		}
-
-		return wikiPages.get(0);
-	}
-
-	protected void updateStatus(
+	protected void updateSummary(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException, SystemException {
 
@@ -179,7 +131,9 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 
 		WikiPage wikiPage = WikiPageLocalServiceUtil.getPageByPageId(pageId);
 
-		WikiPage latestVersionWikiPage = getWikiPage(wikiPage, false);
+		WikiPage latestVersionWikiPage = AkismetUtil.getWikiPage(
+			wikiPage.getNodeId(), wikiPage.getTitle(), wikiPage.getVersion(),
+			false);
 
 		String latestContent = null;
 		double latestVersion = -1;
@@ -189,7 +143,9 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 			latestVersion = latestVersionWikiPage.getVersion();
 		}
 
-		WikiPage previousVersionWikiPage = getWikiPage(wikiPage, true);
+		WikiPage previousVersionWikiPage = AkismetUtil.getWikiPage(
+			wikiPage.getNodeId(), wikiPage.getTitle(), wikiPage.getVersion(),
+			true);
 
 		String previousContent = null;
 		double previousVersion = -1;
@@ -205,12 +161,11 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 			actionRequest);
 
 		if (spam) {
+			pattern = "version-x-was-marked-as-spam";
 
 			// Latest version
 
-			if ((wikiPage.getVersion() >= latestVersion) &&
-				 wikiPage.isApproved()) {
-
+			if (wikiPage.getVersion() >= latestVersion) {
 				if (previousVersionWikiPage != null) {
 					WikiPageLocalServiceUtil.revertPage(
 						themeDisplay.getUserId(), wikiPage.getNodeId(),
@@ -228,25 +183,24 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 
 			// Selected version
 
-			wikiPage.setStatus(WorkflowConstants.STATUS_DENIED);
+			wikiPage.setStatus(WorkflowConstants.STATUS_APPROVED);
 			wikiPage.setSummary(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL);
 
 			wikiPage = WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 
 			// Akismet
 
-			pattern = "version-x-was-marked-as-spam";
-
 			if (AkismetUtil.isWikiEnabled(themeDisplay.getCompanyId())) {
 				AkismetUtil.submitSpam(wikiPage);
 			}
 		}
 		else {
+			pattern = "version-x-was-marked-as-not-spam";
 
 			// Latest version
 
 			if ((latestContent != null) && (previousContent != null) &&
-				 latestContent.equals(previousContent)) {
+				latestContent.equals(previousContent)) {
 
 				WikiPageLocalServiceUtil.revertPage(
 					themeDisplay.getUserId(), wikiPage.getNodeId(),
@@ -264,8 +218,6 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 			wikiPage = WikiPageLocalServiceUtil.updateWikiPage(wikiPage);
 
 			// Akismet
-
-			pattern = "version-x-was-marked-as-not-spam";
 
 			if (AkismetUtil.isWikiEnabled(themeDisplay.getCompanyId())) {
 				AkismetUtil.submitHam(wikiPage);

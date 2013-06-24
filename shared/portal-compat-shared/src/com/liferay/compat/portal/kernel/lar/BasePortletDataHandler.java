@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,10 +14,14 @@
 
 package com.liferay.compat.portal.kernel.lar;
 
+import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+
+import java.io.IOException;
 
 /**
  * @author Brian Wing Shun Chan
@@ -61,12 +65,29 @@ public abstract class BasePortletDataHandler
 		return _publishToLiveByDefault;
 	}
 
-	protected Element addExportRootElement() {
+	protected Element addExportDataRootElement(
+		PortletDataContext portletDataContext) {
+
 		Document document = SAXReaderUtil.createDocument();
 
 		Class<?> clazz = getClass();
 
 		return document.addElement(clazz.getSimpleName());
+	}
+
+	protected String getExportDataRootElementString(Element rootElement) {
+		if (rootElement == null) {
+			return StringPool.BLANK;
+		}
+
+		try {
+			Document document = rootElement.getDocument();
+
+			return document.formattedString();
+		}
+		catch (IOException ioe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	protected void setAlwaysExportable(boolean alwaysExportable) {

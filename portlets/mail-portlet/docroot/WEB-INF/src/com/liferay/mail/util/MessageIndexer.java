@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -194,23 +194,6 @@ public class MessageIndexer extends BaseIndexer {
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			new MessageActionableDynamicQuery() {
-
-			@Override
-			protected void addCriteria(DynamicQuery dynamicQuery) {
-				Property displayDateProperty = PropertyFactoryUtil.forName(
-					"displayDate");
-
-				dynamicQuery.add(displayDateProperty.lt(new Date()));
-
-				Property statusProperty = PropertyFactoryUtil.forName("status");
-
-				Integer[] statuses = {
-					WorkflowConstants.STATUS_APPROVED,
-					WorkflowConstants.STATUS_IN_TRASH
-				};
-
-				dynamicQuery.add(statusProperty.in(statuses));
-			}
 
 			@Override
 			protected void performAction(Object object) throws PortalException {

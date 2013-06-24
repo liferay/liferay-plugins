@@ -9,6 +9,7 @@
 		<field name="content" type="String">
 			<hint name="max-length">1000</hint>
 		</field>
+		<field name="flag" type="int" />
 	</model>
 	<model name="com.liferay.chat.model.Status">
 		<field name="statusId" type="long" />
@@ -16,7 +17,9 @@
 		<field name="modifiedDate" type="long" />
 		<field name="online" type="boolean" />
 		<field name="awake" type="boolean" />
-		<field name="activePanelId" type="String" />
+		<field name="activePanelIds" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="message" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>

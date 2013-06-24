@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -69,7 +69,8 @@ page import="com.liferay.tasks.model.TasksEntryConstants" %><%@
 page import="com.liferay.tasks.service.TasksEntryLocalServiceUtil" %><%@
 page import="com.liferay.tasks.service.permission.TasksEntryPermission" %><%@
 page import="com.liferay.tasks.service.permission.TasksPermission" %><%@
-page import="com.liferay.tasks.util.PortletKeys" %>
+page import="com.liferay.tasks.util.PortletKeys" %><%@
+page import="com.liferay.tasks.util.WebKeys" %>
 
 <%@ page import="java.text.Format" %>
 

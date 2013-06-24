@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -127,7 +127,8 @@ public class HttpTimelineProcessor implements TimelineProcessor {
 		"EEE MMM d hh:mm:ss Z yyyy", Locale.US);
 	private Pattern _pattern = Pattern.compile(
 		"data-item-id=\"([0-9]+)\".*?data-user-id=\"([0-9]+)\".*?data-time=\"" +
-		"([0-9]+)\".*?<p class=\"js-tweet-text\">(.*?)</p>", Pattern.DOTALL);
+			"([0-9]+)\".*?<p class=\"js-tweet-text tweet-text\">(.*?)</p>",
+		Pattern.DOTALL);
 	private Random _random = new Random();
 
 }

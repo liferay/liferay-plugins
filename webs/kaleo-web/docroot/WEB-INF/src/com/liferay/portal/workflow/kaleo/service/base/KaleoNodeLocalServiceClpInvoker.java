@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -126,6 +126,10 @@ public class KaleoNodeLocalServiceClpInvoker {
 		_methodName108 = "deleteKaleoDefinitionKaleoNodes";
 
 		_methodParameterTypes108 = new String[] { "long" };
+
+		_methodName109 = "getKaleoDefinitionKaleoNodes";
+
+		_methodParameterTypes109 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -250,6 +254,11 @@ public class KaleoNodeLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName109.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
+			return KaleoNodeLocalServiceUtil.getKaleoDefinitionKaleoNodes(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -295,4 +304,6 @@ public class KaleoNodeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes107;
 	private String _methodName108;
 	private String[] _methodParameterTypes108;
+	private String _methodName109;
+	private String[] _methodParameterTypes109;
 }

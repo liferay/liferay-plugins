@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -84,9 +84,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.twitter.model.Feed"),
 			true);
-	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long TWITTERSCREENNAME_COLUMN_BITMASK = 2L;
-	public static long TWITTERUSERID_COLUMN_BITMASK = 4L;
+	public static long TWITTERSCREENNAME_COLUMN_BITMASK = 1L;
+	public static long USERID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.twitter.model.Feed"));
 
@@ -204,19 +203,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public void setCompanyId(long companyId) {
-		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
-
-		if (!_setOriginalCompanyId) {
-			_setOriginalCompanyId = true;
-
-			_originalCompanyId = _companyId;
-		}
-
 		_companyId = companyId;
-	}
-
-	public long getOriginalCompanyId() {
-		return _originalCompanyId;
 	}
 
 	public long getUserId() {
@@ -224,6 +211,14 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -233,6 +228,10 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	public String getUserName() {
@@ -269,14 +268,6 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public void setTwitterUserId(long twitterUserId) {
-		_columnBitmask |= TWITTERUSERID_COLUMN_BITMASK;
-
-		if (!_setOriginalTwitterUserId) {
-			_setOriginalTwitterUserId = true;
-
-			_originalTwitterUserId = _twitterUserId;
-		}
-
 		_twitterUserId = twitterUserId;
 	}
 
@@ -287,10 +278,6 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	public void setTwitterUserUuid(String twitterUserUuid) {
 		_twitterUserUuid = twitterUserUuid;
-	}
-
-	public long getOriginalTwitterUserId() {
-		return _originalTwitterUserId;
 	}
 
 	public String getTwitterScreenName() {
@@ -390,18 +377,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Feed)) {
 			return false;
 		}
 
-		Feed feed = null;
-
-		try {
-			feed = (Feed)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Feed feed = (Feed)obj;
 
 		long primaryKey = feed.getPrimaryKey();
 
@@ -422,13 +406,9 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public void resetOriginalValues() {
 		FeedModelImpl feedModelImpl = this;
 
-		feedModelImpl._originalCompanyId = feedModelImpl._companyId;
+		feedModelImpl._originalUserId = feedModelImpl._userId;
 
-		feedModelImpl._setOriginalCompanyId = false;
-
-		feedModelImpl._originalTwitterUserId = feedModelImpl._twitterUserId;
-
-		feedModelImpl._setOriginalTwitterUserId = false;
+		feedModelImpl._setOriginalUserId = false;
 
 		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
 
@@ -566,17 +546,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private static Class<?>[] _escapedModelInterfaces = new Class[] { Feed.class };
 	private long _feedId;
 	private long _companyId;
-	private long _originalCompanyId;
-	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _twitterUserId;
 	private String _twitterUserUuid;
-	private long _originalTwitterUserId;
-	private boolean _setOriginalTwitterUserId;
 	private String _twitterScreenName;
 	private String _originalTwitterScreenName;
 	private long _lastStatusId;

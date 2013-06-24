@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -18,8 +18,6 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.PortletPropsValues;
 import com.liferay.chat.util.comparator.BuddyComparator;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -29,13 +27,18 @@ import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jivesoftware.smack.AccountManager;
 import org.jivesoftware.smack.Chat;
@@ -66,6 +69,8 @@ public class JabberImpl implements Jabber {
 		connection.disconnect();
 
 		_connections.remove(userId);
+
+		_onlineUserIds.remove(userId);
 	}
 
 	public String getResource(String jabberId) {
@@ -191,6 +196,7 @@ public class JabberImpl implements Jabber {
 
 				try {
 					importUser(userId, password);
+
 					connect(userId, password);
 				}
 				catch (XMPPException xmppe2) {
@@ -307,9 +313,7 @@ public class JabberImpl implements Jabber {
 		updateStatus(userId, online, null);
 	}
 
-	protected Connection connect()
-		throws PortalException, SystemException, XMPPException {
-
+	protected Connection connect() throws Exception {
 		long userId = -1;
 		String password = null;
 
@@ -317,7 +321,7 @@ public class JabberImpl implements Jabber {
 	}
 
 	protected Connection connect(long userId, String password)
-		throws PortalException, SystemException, XMPPException {
+		throws Exception {
 
 		Connection connection = getConnection(userId);
 
@@ -360,13 +364,23 @@ public class JabberImpl implements Jabber {
 		return _connections.get(userId);
 	}
 
-	protected ConnectionConfiguration getConnectionConfiguration() {
+	protected ConnectionConfiguration getConnectionConfiguration()
+		throws UnknownHostException {
+
 		if (_connectionConfiguration != null) {
 			return _connectionConfiguration;
 		}
 
+		String jabberHost = PortletPropsValues.JABBER_HOST;
+
+		if (!Validator.isIPAddress(jabberHost)) {
+			InetAddress inetAddress = InetAddress.getByName(jabberHost);
+
+			jabberHost = inetAddress.getHostAddress();
+		}
+
 		_connectionConfiguration = new ConnectionConfiguration(
-			PortletPropsValues.JABBER_HOST, PortletPropsValues.JABBER_PORT,
+			jabberHost, PortletPropsValues.JABBER_PORT,
 			PortletPropsValues.JABBER_SERVICE_NAME);
 
 		_connectionConfiguration.setSendPresence(false);
@@ -391,9 +405,7 @@ public class JabberImpl implements Jabber {
 			PortletPropsValues.JABBER_SERVICE_NAME);
 	}
 
-	protected void importUser(long userId, String password)
-		throws PortalException, SystemException, XMPPException {
-
+	protected void importUser(long userId, String password) throws Exception {
 		Connection connection = connect();
 
 		AccountManager accountManager = connection.getAccountManager();
@@ -434,15 +446,19 @@ public class JabberImpl implements Jabber {
 				}
 			}
 
-			if (online == 1) {
+			if ((online == 1) && !_onlineUserIds.contains(userId)) {
 				Presence presence = new Presence(Presence.Type.available);
 
 				connection.sendPacket(presence);
+
+				_onlineUserIds.add(userId);
 			}
-			else if (online == 0) {
+			else if ((online == 0) && _onlineUserIds.contains(userId)) {
 				Presence presence = new Presence(Presence.Type.unavailable);
 
 				connection.sendPacket(presence);
+
+				_onlineUserIds.remove(userId);
 			}
 		}
 		catch (Exception e) {
@@ -452,9 +468,9 @@ public class JabberImpl implements Jabber {
 
 	private static Log _log = LogFactoryUtil.getLog(JabberImpl.class);
 
-	private static Map<Long, Connection> _connections =
-		new HashMap<Long, Connection>();
-
 	private ConnectionConfiguration _connectionConfiguration;
+	private Map<Long, Connection> _connections =
+		new HashMap<Long, Connection>();
+	private Set<Long> _onlineUserIds = new HashSet<Long>();
 
 }

@@ -10,21 +10,19 @@
 >
 	<bean name="com.liferay.portal.kernel.scheduler.config.SchedulingConfigurator" class="com.liferay.portal.kernel.scheduler.config.PluginSchedulingConfigurator" >
 		<property name="schedulerEntries">
-			<map key-type="java.lang.String" value-type="com.liferay.portal.kernel.scheduler.SchedulerEntry">
-				<entry key="liferay/scheduler_dispatch">
-					<bean class="com.liferay.portal.kernel.scheduler.SchedulerEntryImpl">
-						<property name="description" value="" />
-						<property name="eventListenerClass" value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
-						<property name="timeUnit">
-							<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.HOUR" />
-						</property>
-						<property name="triggerType">
-							<util:constant static-field="com.liferay.portal.kernel.scheduler.TriggerType.SIMPLE" />
-						</property>
-						<property name="triggerValue" value="1" />
-					</bean>
-				</entry>
-			</map>
+			<list value-type="com.liferay.portal.kernel.scheduler.SchedulerEntry">
+				<bean class="com.liferay.portal.kernel.scheduler.SchedulerEntryImpl">
+					<property name="description" value="" />
+					<property name="eventListenerClass" value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
+					<property name="timeUnit">
+						<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.HOUR" />
+					</property>
+					<property name="triggerType">
+						<util:constant static-field="com.liferay.portal.kernel.scheduler.TriggerType.SIMPLE" />
+					</property>
+					<property name="triggerValue" value="1" />
+				</bean>
+			</list>
 		</property>
 	</bean>
 </beans>

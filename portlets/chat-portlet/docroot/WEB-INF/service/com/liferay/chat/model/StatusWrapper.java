@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -49,7 +49,7 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("online", getOnline());
 		attributes.put("awake", getAwake());
-		attributes.put("activePanelId", getActivePanelId());
+		attributes.put("activePanelIds", getActivePanelIds());
 		attributes.put("message", getMessage());
 		attributes.put("playSound", getPlaySound());
 
@@ -87,10 +87,10 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 			setAwake(awake);
 		}
 
-		String activePanelId = (String)attributes.get("activePanelId");
+		String activePanelIds = (String)attributes.get("activePanelIds");
 
-		if (activePanelId != null) {
-			setActivePanelId(activePanelId);
+		if (activePanelIds != null) {
+			setActivePanelIds(activePanelIds);
 		}
 
 		String message = (String)attributes.get("message");
@@ -253,21 +253,21 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	}
 
 	/**
-	* Returns the active panel ID of this status.
+	* Returns the active panel IDs of this status.
 	*
-	* @return the active panel ID of this status
+	* @return the active panel IDs of this status
 	*/
-	public java.lang.String getActivePanelId() {
-		return _status.getActivePanelId();
+	public java.lang.String getActivePanelIds() {
+		return _status.getActivePanelIds();
 	}
 
 	/**
-	* Sets the active panel ID of this status.
+	* Sets the active panel IDs of this status.
 	*
-	* @param activePanelId the active panel ID of this status
+	* @param activePanelIds the active panel IDs of this status
 	*/
-	public void setActivePanelId(java.lang.String activePanelId) {
-		_status.setActivePanelId(activePanelId);
+	public void setActivePanelIds(java.lang.String activePanelIds) {
+		_status.setActivePanelIds(activePanelIds);
 	}
 
 	/**

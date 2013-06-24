@@ -5,8 +5,9 @@
 	default-init-method="afterPropertiesSet"
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 >
 
 	<!-- Comparator -->
@@ -20,6 +21,59 @@
 	<!-- Deployment -->
 
 	<bean id="com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer" class="com.liferay.portal.workflow.kaleo.deployment.DefaultWorkflowDeployer" />
+
+	<!-- Export -->
+
+	<bean id="com.liferay.portal.workflow.kaleo.export.DefinitionExporterUtil" class="com.liferay.portal.workflow.kaleo.export.DefinitionExporterUtil">
+		<property name="definitionExporter" ref="com.liferay.portal.workflow.kaleo.export.XMLDefinitionExporter"/>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.export.XMLDefinitionExporter" class="com.liferay.portal.workflow.kaleo.export.XMLDefinitionExporter">
+		<property name="definitionBuilder">
+			<bean class="com.liferay.portal.workflow.kaleo.export.builder.DefaultDefinitionBuilder" />
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.export.builder.NodeBuilderRegistry" class="com.liferay.portal.workflow.kaleo.export.builder.NodeBuilderRegistry">
+		<property name="nodeBuilders">
+			<util:map>
+				<entry key="CONDITION">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.ConditionNodeBuilder" />
+				</entry>
+				<entry key="FORK">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.ForkNodeBuilder" />
+				</entry>
+				<entry key="JOIN">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.JoinNodeBuilder" />
+				</entry>
+				<entry key="STATE">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.StateNodeBuilder" />
+				</entry>
+				<entry key="TASK">
+					<bean class="com.liferay.portal.workflow.kaleo.export.builder.TaskNodeBuilder" />
+				</entry>
+			</util:map>
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.export.NodeExporterRegistry" class="com.liferay.portal.workflow.kaleo.export.NodeExporterRegistry">
+		<property name="nodeExporter">
+			<util:map>
+				<entry key="CONDITION">
+					<bean class="com.liferay.portal.workflow.kaleo.export.ConditionNodeExporter" />
+				</entry>
+				<entry key="FORK">
+					<bean class="com.liferay.portal.workflow.kaleo.export.ForkNodeExporter" />
+				</entry>
+				<entry key="JOIN">
+					<bean class="com.liferay.portal.workflow.kaleo.export.JoinNodeExporter" />
+				</entry>
+				<entry key="STATE">
+					<bean class="com.liferay.portal.workflow.kaleo.export.StateNodeExporter" />
+				</entry>
+				<entry key="TASK">
+					<bean class="com.liferay.portal.workflow.kaleo.export.TaskNodeExporter" />
+				</entry>
+			</util:map>
+		</property>
+	</bean>
 
 	<!-- Manager -->
 
@@ -38,9 +92,9 @@
 	<bean id="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" class="com.liferay.portal.workflow.kaleo.manager.DefaultPortalKaleoManager">
 		<property name="defaultDefinitionName" value="Single Approver" />
 		<property name="definitionFiles">
-			<map>
+			<util:map>
 				<entry key="Single Approver" value="META-INF/definitions/single-approver-definition.xml" />
-			</map>
+			</util:map>
 		</property>
 		<property name="workflowDefinitionManager" ref="com.liferay.portal.kernel.workflow.WorkflowDefinitionManager" />
 	</bean>
@@ -62,7 +116,7 @@
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory">
 		<property name="actionExecutors">
-			<map>
+			<util:map>
 				<entry key="beanshell">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.action.ScriptActionExecutor" />
 				</entry>
@@ -81,12 +135,12 @@
 				<entry key="ruby">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.action.ScriptActionExecutor" />
 				</entry>
-			</map>
+			</util:map>
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" class="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector">
 		<property name="taskAssignmentSelectors">
-			<map>
+			<util:map>
 				<entry key="com.liferay.portal.model.ResourceAction">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ResourceActionTaskAssignmentSelector" />
 				</entry>
@@ -97,12 +151,12 @@
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.DefaultTaskAssignmentSelector" />
 				</entry>
 				<entry key="SCRIPT" value-ref="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector" />
-			</map>
+			</util:map>
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector" class="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector">
 		<property name="taskAssignmentSelectors">
-			<map>
+			<util:map>
 				<entry key="beanshell">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
 				</entry>
@@ -121,7 +175,7 @@
 				<entry key="ruby">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
 				</entry>
-			</map>
+			</util:map>
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil" class="com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil">
@@ -129,7 +183,7 @@
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" class="com.liferay.portal.workflow.kaleo.runtime.condition.MultiLanguageConditionEvaluator">
 		<property name="conditionEvaluators">
-			<map>
+			<util:map>
 				<entry key="beanshell">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.condition.ScriptingConditionEvaluator" />
 				</entry>
@@ -148,13 +202,13 @@
 				<entry key="ruby">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.condition.ScriptingConditionEvaluator" />
 				</entry>
-			</map>
+			</util:map>
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker" class="com.liferay.portal.workflow.kaleo.runtime.graph.DefaultGraphWalker" />
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory">
 		<property name="nodeExectors">
-			<map>
+			<util:map>
 				<entry key="CONDITION">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.node.ConditionNodeExecutor">
 						<property name="conditionEvaluator" ref="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" />
@@ -177,12 +231,12 @@
 						<property name="taskAssignmentSelector" ref="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" />
 					</bean>
 				</entry>
-			</map>
+			</util:map>
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory" class="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationSenderFactory">
 		<property name="notificationSenders">
-			<map>
+			<util:map>
 				<entry key="email">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.EmailNotificationSender">
 						<property name="fromAddress" value="no-reply@liferay.com" />
@@ -195,12 +249,12 @@
 				<entry key="private-message">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.PrivateMessageNotificationSender" />
 				</entry>
-			</map>
+			</util:map>
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory" class="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory">
 		<property name="notificationMessageGenerators">
-			<map>
+			<util:map>
 				<entry key="freemarker">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.FreeMarkerNotificationMessageGenerator" />
 				</entry>
@@ -210,11 +264,13 @@
 				<entry key="velocity">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.VelocityNotificationMessageGenerator" />
 				</entry>
-			</map>
+			</util:map>
 		</property>
 	</bean>
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener" class="com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener">
-		<property name="workflowEngine" ref="com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine" />
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil" class="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil">
+		<property name="scriptingContextBuilder">
+			<bean class="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderImpl" />
+		</property>
 	</bean>
 
 	<!-- Parser -->
@@ -225,5 +281,28 @@
 
 	<!-- Validator -->
 
-	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator" />
+	<bean id="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry" class="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry">
+		<property name="nodeValidators">
+			<util:map>
+				<entry key="CONDITION">
+					<bean class="com.liferay.portal.workflow.kaleo.parser.ConditionNodeValidator" />
+				</entry>
+				<entry key="FORK">
+					<bean class="com.liferay.portal.workflow.kaleo.parser.ForkNodeValidator" />
+				</entry>
+				<entry key="JOIN">
+					<bean class="com.liferay.portal.workflow.kaleo.parser.JoinNodeValidator" />
+				</entry>
+				<entry key="STATE">
+					<bean class="com.liferay.portal.workflow.kaleo.parser.StateNodeValidator" />
+				</entry>
+				<entry key="TASK">
+					<bean class="com.liferay.portal.workflow.kaleo.parser.TaskNodeValidator" />
+				</entry>
+			</util:map>
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator">
+		<property name="nodeValidatorRegistry" ref="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry" />
+	</bean>
 </beans>

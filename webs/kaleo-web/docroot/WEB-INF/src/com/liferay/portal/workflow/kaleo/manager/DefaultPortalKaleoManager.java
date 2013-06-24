@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -27,6 +27,7 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.WorkflowDefinitionLink;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -37,6 +38,9 @@ import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.comparator.WorkflowDefinitionNameComparator;
 
 import java.io.InputStream;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.List;
@@ -232,14 +236,11 @@ public class DefaultPortalKaleoManager
 			String assetClassName, String workflowDefinitionName)
 		throws PortalException, SystemException {
 
-		try {
-			WorkflowDefinitionLinkLocalServiceUtil.
-				getDefaultWorkflowDefinitionLink(
-					company.getCompanyId(), assetClassName, 0, 0);
+		WorkflowDefinitionLink workflowDefinitionLink =
+			getWorkflowDefinitionLink(company.getCompanyId(), assetClassName);
 
+		if (workflowDefinitionLink != null) {
 			return;
-		}
-		catch (NoSuchWorkflowDefinitionLinkException nswdle) {
 		}
 
 		List<WorkflowDefinition> workflowDefinitions =
@@ -263,6 +264,44 @@ public class DefaultPortalKaleoManager
 			defaultUser.getUserId(), company.getCompanyId(),
 			companyGroup.getGroupId(), assetClassName, 0, 0,
 			workflowDefinition.getName(), workflowDefinition.getVersion());
+	}
+
+	protected WorkflowDefinitionLink getWorkflowDefinitionLink(
+			long companyId, String assetClassName)
+		throws PortalException, SystemException {
+
+		try {
+			Method method =
+				WorkflowDefinitionLinkLocalServiceUtil.class.getMethod(
+					"fetchDefaultWorkflowDefinitionLink", long.class,
+					String.class, int.class, int.class);
+
+			return (WorkflowDefinitionLink)method.invoke(
+				null, companyId, assetClassName, 0, 0);
+		}
+		catch (IllegalAccessException iae) {
+		}
+		catch (InvocationTargetException ite) {
+			Throwable throwable = ite.getTargetException();
+
+			if (throwable instanceof PortalException) {
+				throw (PortalException)throwable;
+			}
+			else if (throwable instanceof SystemException) {
+				throw (SystemException)throwable;
+			}
+		}
+		catch (NoSuchMethodException nsme) {
+		}
+
+		try {
+			return WorkflowDefinitionLinkLocalServiceUtil.
+				getDefaultWorkflowDefinitionLink(
+					companyId, assetClassName, 0, 0);
+		}
+		catch (NoSuchWorkflowDefinitionLinkException nswdle) {
+			return null;
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -28,6 +28,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNodeLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -100,6 +101,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		// Kaleo timers
 
 		Set<Timer> timers = node.getTimers();
+
 		for (Timer timer : timers) {
 			kaleoTimerLocalService.addKaleoTimer(
 				KaleoNode.class.getName(), kaleoNodeId, kaleoDefinitionId,
@@ -141,6 +143,12 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 
 		kaleoNotificationLocalService.deleteKaleoDefinitionKaleoNotifications(
 			kaleoDefinitionId);
+	}
+
+	public List<KaleoNode> getKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
+		throws SystemException {
+
+		return kaleoNodePersistence.findByKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 }

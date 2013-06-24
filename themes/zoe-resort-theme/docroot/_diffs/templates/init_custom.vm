@@ -9,7 +9,7 @@
 ## ---------- Header/Footer ---------- ##
 
 #if ($has_navigation && $nav_items.get(0).isSelected())
-	#set ($css_class = $css_class + " home-page")
+	#set ($css_class = "$css_class home-page")
 #end
 
 #set ($show_breadcrumbs = $getterUtil.getBoolean($!theme_display.getThemeSetting('show-breadcrumbs')))

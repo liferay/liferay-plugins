@@ -348,22 +348,25 @@ html body {
 		position: relative;
 	}
 
+	.date, .name {
+		line-height: 11px;
+		padding: 2px 4px 3px;
+	}
+
 	.name {
 		background: #828F95;
 		color: #FFF;
 		display: block;
-		line-height: 11px;
-		padding: 2px 50px 3px 4px;
+		padding-right: 4.8em;
 	}
 
 	.date {
 		color: #EEE;
 		font-size: 10px;
 		font-style: normal;
-		margin-top: -2em;
 		position: absolute;
-		right: 8px;
-		top: 50%;
+		right: 0;
+		top: 0;
 	}
 
 	.incoming {

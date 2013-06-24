@@ -11,17 +11,6 @@
 		background: url(/so-theme/images/common/deactivate.png) no-repeat;
 	}
 
-	.user-notification-event-content {
-		cursor: pointer;
-
-		&:after {
-			clear: both;
-			content: "";
-			display: block;
-			width: 100%;
-		}
-	}
-
 	.user-notification-event-sender {
 		float: left;
 		position: relative;
@@ -53,5 +42,16 @@
 
 	.aui-button-holder, .taglib-search-iterator-page-iterator-bottom {
 		padding: 5px 10px;
+	}
+}
+
+.user-notification-events .user-notification-event-content {
+	cursor: pointer;
+
+	&:after {
+		clear: both;
+		content: "";
+		display: block;
+		width: 100%;
 	}
 }

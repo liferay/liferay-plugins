@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -369,18 +369,15 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAAction)) {
 			return false;
 		}
 
-		JIRAAction jiraAction = null;
-
-		try {
-			jiraAction = (JIRAAction)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		JIRAAction jiraAction = (JIRAAction)obj;
 
 		long primaryKey = jiraAction.getPrimaryKey();
 

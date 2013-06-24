@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element instance-id="24gLsQq7" name="social-links" type="text" index-type="">
+		<dynamic-element instance-id="PiUn7wUE" name="url-location" type="text" index-type="">
+			<dynamic-content><![CDATA[//www.facebook.com/liferay]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Facebook]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="SzRzFU7q" name="social-links" type="text" index-type="">
+		<dynamic-element instance-id="NFWXrxgv" name="url-location" type="text" index-type="">
+			<dynamic-content><![CDATA[//twitter.com/liferay]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Twitter]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="cqxrLLzY" name="social-links" type="text" index-type="">
+		<dynamic-element instance-id="FOpGx7xN" name="url-location" type="text" index-type="">
+			<dynamic-content><![CDATA[//www.linkedin.com/company/liferay-inc.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[LinkedIn]]></dynamic-content>
+	</dynamic-element>
+</root>

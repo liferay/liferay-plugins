@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element instance-id="a0KUbOFU" name="username" type="text" index-type="">
+		<dynamic-content><![CDATA[liferay]]></dynamic-content>
+	</dynamic-element>
+</root>

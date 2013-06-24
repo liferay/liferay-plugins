@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="build-common-ivy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
+	<property name="ivy.home" value="${sdk.dir}/.ivy" />
+
+	<if>
+		<not>
+			<available file="${ivy.home}/ivy-${ivy.version}.jar" />
+		</not>
+		<then>
+			<mkdir dir="${ivy.home}" />
+
+			<get
+				dest="${ivy.home}"
+				src="${ivy.jar.url}"
+			/>
+		</then>
+	</if>
+
+	<path id="ivy.lib.path">
+		<fileset
+			dir="${ivy.home}"
+			includes="ivy-${ivy.version}.jar"
+		/>
+		<fileset
+			dir="${sdk.dir}/lib"
+			includes="bcpg-jdk16.jar,bcprov-jdk16.jar"
+		/>
+	</path>
+
+	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
+
+	<for list="${basedir},${sdk.dir}" param="ivy.xml.dir">
+		<sequential>
+			<if>
+				<available file="@{ivy.xml.dir}/ivy.xml" />
+				<then>
+					<checksum file="@{ivy.xml.dir}/ivy.xml" verifyproperty="ivy.xml.unmodified" />
+
+					<if>
+						<isfalse value="${ivy.xml.unmodified}" />
+						<then>
+							<ivy:settings file="${ivy.settings.file}" />
+
+							<ivy:resolve
+								file="@{ivy.xml.dir}/ivy.xml"
+								log="download-only"
+								transitive="false"
+							/>
+
+							<if>
+								<or>
+									<equals arg1="@{ivy.xml.dir}" arg2="${sdk.dir}" />
+									<antelope:endswith string="${ant.project.name}" with="-shared" />
+								</or>
+								<then>
+									<ivy:retrieve
+										pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
+										type="bundle,jar,orbit"
+									/>
+
+									<ivy:retrieve
+										pattern="@{ivy.xml.dir}/lib/[artifact]-[type]s.[ext]"
+										type="source"
+									/>
+								</then>
+								<else>
+									<ivy:retrieve
+										pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
+										type="bundle,jar,orbit"
+									/>
+
+									<ivy:retrieve
+										pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact]-[type]s.[ext]"
+										type="source"
+									/>
+								</else>
+							</if>
+
+							<checksum file="@{ivy.xml.dir}/ivy.xml" forceoverwrite="true" />
+						</then>
+					</if>
+
+					<var name="ivy.xml.unmodified" unset="true" />
+				</then>
+			</if>
+		</sequential>
+	</for>
+
+	<target name="publish">
+		<ivy:settings file="${sdk.dir}/ivy-settings.xml" />
+
+		<ivy:resolve
+			log="download-only"
+			transitive="false"
+		/>
+
+		<property name="ivy.pom.description" value="${plugin.name}" />
+		<property name="ivy.pom.name" value="${plugin.name}" />
+
+		<property name="plugin.release.qualifier" value="" />
+
+		<property name="ivy.pom.version" value="${plugin.full.version}${plugin.release.qualifier}" />
+
+		<ivy:makepom
+			description="${ivy.pom.description}"
+			ivyfile="ivy.xml"
+			pomfile="${plugin.pom.file}"
+			templatefile="${sdk.dir}/tools/pom_tmpl/template.pom"
+		/>
+
+		<ivy:publish
+			forcedeliver="true"
+			overwrite="true"
+			publishivy="false"
+			pubrevision="${ivy.pom.version}"
+			resolver="${ivy.publish.resolver}"
+		>
+			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.[ext]" />
+			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-[type].[ext]" />
+		</ivy:publish>
+	</target>
+</project>

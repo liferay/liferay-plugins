@@ -1,5 +1,5 @@
 #set ($content_id = $reserved-article-id.data)
-#set ($content_class = "multiple-items-" + $content_id + "-carousel")
+#set ($content_class = "multiple-items-${content_id}-carousel")
 
 <style type="text/css">
 	#${content_class} {
@@ -27,7 +27,7 @@
 	#foreach ($item in $items.siblings)
 		<div class="carousel-item">
 			#if ($item.url-link.data != "")
-				<a href="${item.url-link.data}">
+				<a href="$item.url-link.data">
 			#end
 
 			<img alt="$item.data" src="$item.image.data" title="$item.data" />
@@ -47,9 +47,9 @@
 				{
 					activeIndex: 'rand',
 					contentBox: '#${content_class}',
-					height: ${height.data},
-					intervalTime: ${duration.data},
-					width: ${width.data}
+					height: $height.data,
+					intervalTime: $duration.data,
+					width: $width.data
 				}
 			).render();
 		}

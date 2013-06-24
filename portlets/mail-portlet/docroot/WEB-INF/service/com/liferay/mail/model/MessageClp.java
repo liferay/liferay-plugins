@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.mail.service.ClpSerializer;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -26,6 +27,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -212,6 +215,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setMessageId(long messageId) {
 		_messageId = messageId;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setMessageId", long.class);
+
+				method.invoke(_messageRemoteModel, messageId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -220,6 +236,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_messageRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -228,6 +257,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_messageRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -244,6 +286,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_messageRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -252,6 +307,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_messageRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -260,6 +328,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_messageRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getAccountId() {
@@ -268,6 +349,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setAccountId(long accountId) {
 		_accountId = accountId;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAccountId", long.class);
+
+				method.invoke(_messageRemoteModel, accountId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getFolderId() {
@@ -276,6 +370,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setFolderId(long folderId) {
 		_folderId = folderId;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFolderId", long.class);
+
+				method.invoke(_messageRemoteModel, folderId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getSender() {
@@ -284,6 +391,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setSender(String sender) {
 		_sender = sender;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSender", String.class);
+
+				method.invoke(_messageRemoteModel, sender);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getTo() {
@@ -292,6 +412,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setTo(String to) {
 		_to = to;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTo", String.class);
+
+				method.invoke(_messageRemoteModel, to);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getCc() {
@@ -300,6 +433,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setCc(String cc) {
 		_cc = cc;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCc", String.class);
+
+				method.invoke(_messageRemoteModel, cc);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getBcc() {
@@ -308,6 +454,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setBcc(String bcc) {
 		_bcc = bcc;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setBcc", String.class);
+
+				method.invoke(_messageRemoteModel, bcc);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getSentDate() {
@@ -316,6 +475,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setSentDate(Date sentDate) {
 		_sentDate = sentDate;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSentDate", Date.class);
+
+				method.invoke(_messageRemoteModel, sentDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getSubject() {
@@ -324,6 +496,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setSubject(String subject) {
 		_subject = subject;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSubject", String.class);
+
+				method.invoke(_messageRemoteModel, subject);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getPreview() {
@@ -332,6 +517,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setPreview(String preview) {
 		_preview = preview;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPreview", String.class);
+
+				method.invoke(_messageRemoteModel, preview);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getBody() {
@@ -340,6 +538,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setBody(String body) {
 		_body = body;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setBody", String.class);
+
+				method.invoke(_messageRemoteModel, body);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getFlags() {
@@ -348,6 +559,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setFlags(String flags) {
 		_flags = flags;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFlags", String.class);
+
+				method.invoke(_messageRemoteModel, flags);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getSize() {
@@ -356,6 +580,19 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setSize(long size) {
 		_size = size;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSize", long.class);
+
+				method.invoke(_messageRemoteModel, size);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getRemoteMessageId() {
@@ -364,14 +601,55 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setRemoteMessageId(long remoteMessageId) {
 		_remoteMessageId = remoteMessageId;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRemoteMessageId", long.class);
+
+				method.invoke(_messageRemoteModel, remoteMessageId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean hasFlag(int flag) {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "hasFlag";
+
+			Class<?>[] parameterTypes = new Class<?>[] { int.class };
+
+			Object[] parameterValues = new Object[] { flag };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public long getGroupId() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getGroupId";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getMessageRemoteModel() {
@@ -380,6 +658,47 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	public void setMessageRemoteModel(BaseModel<?> messageRemoteModel) {
 		_messageRemoteModel = messageRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _messageRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_messageRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -397,6 +716,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 			new Class[] { Message.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Message toUnescapedModel() {
 		return this;
 	}
@@ -442,18 +762,15 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MessageClp)) {
 			return false;
 		}
 
-		MessageClp message = null;
-
-		try {
-			message = (MessageClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		MessageClp message = (MessageClp)obj;
 
 		long primaryKey = message.getPrimaryKey();
 

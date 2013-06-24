@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.chat.model;
 
+import com.liferay.chat.service.ClpSerializer;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -25,6 +26,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,6 +72,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		attributes.put("fromUserId", getFromUserId());
 		attributes.put("toUserId", getToUserId());
 		attributes.put("content", getContent());
+		attributes.put("flag", getFlag());
 
 		return attributes;
 	}
@@ -104,6 +108,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		if (content != null) {
 			setContent(content);
 		}
+
+		Integer flag = (Integer)attributes.get("flag");
+
+		if (flag != null) {
+			setFlag(flag);
+		}
 	}
 
 	public long getEntryId() {
@@ -112,6 +122,19 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	public void setEntryId(long entryId) {
 		_entryId = entryId;
+
+		if (_entryRemoteModel != null) {
+			try {
+				Class<?> clazz = _entryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEntryId", long.class);
+
+				method.invoke(_entryRemoteModel, entryId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCreateDate() {
@@ -120,6 +143,19 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	public void setCreateDate(long createDate) {
 		_createDate = createDate;
+
+		if (_entryRemoteModel != null) {
+			try {
+				Class<?> clazz = _entryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", long.class);
+
+				method.invoke(_entryRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getFromUserId() {
@@ -128,6 +164,19 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	public void setFromUserId(long fromUserId) {
 		_fromUserId = fromUserId;
+
+		if (_entryRemoteModel != null) {
+			try {
+				Class<?> clazz = _entryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFromUserId", long.class);
+
+				method.invoke(_entryRemoteModel, fromUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getFromUserUuid() throws SystemException {
@@ -144,6 +193,19 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	public void setToUserId(long toUserId) {
 		_toUserId = toUserId;
+
+		if (_entryRemoteModel != null) {
+			try {
+				Class<?> clazz = _entryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setToUserId", long.class);
+
+				method.invoke(_entryRemoteModel, toUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getToUserUuid() throws SystemException {
@@ -160,6 +222,40 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	public void setContent(String content) {
 		_content = content;
+
+		if (_entryRemoteModel != null) {
+			try {
+				Class<?> clazz = _entryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setContent", String.class);
+
+				method.invoke(_entryRemoteModel, content);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	public int getFlag() {
+		return _flag;
+	}
+
+	public void setFlag(int flag) {
+		_flag = flag;
+
+		if (_entryRemoteModel != null) {
+			try {
+				Class<?> clazz = _entryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFlag", int.class);
+
+				method.invoke(_entryRemoteModel, flag);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getEntryRemoteModel() {
@@ -168,6 +264,47 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	public void setEntryRemoteModel(BaseModel<?> entryRemoteModel) {
 		_entryRemoteModel = entryRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _entryRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_entryRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -185,6 +322,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 			new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Entry toUnescapedModel() {
 		return this;
 	}
@@ -198,6 +336,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		clone.setFromUserId(getFromUserId());
 		clone.setToUserId(getToUserId());
 		clone.setContent(getContent());
+		clone.setFlag(getFlag());
 
 		return clone;
 	}
@@ -226,18 +365,15 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof EntryClp)) {
 			return false;
 		}
 
-		EntryClp entry = null;
-
-		try {
-			entry = (EntryClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		EntryClp entry = (EntryClp)obj;
 
 		long primaryKey = entry.getPrimaryKey();
 
@@ -256,7 +392,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{entryId=");
 		sb.append(getEntryId());
@@ -268,13 +404,15 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		sb.append(getToUserId());
 		sb.append(", content=");
 		sb.append(getContent());
+		sb.append(", flag=");
+		sb.append(getFlag());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.chat.model.Entry");
@@ -300,6 +438,10 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 			"<column><column-name>content</column-name><column-value><![CDATA[");
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>flag</column-name><column-value><![CDATA[");
+		sb.append(getFlag());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -313,5 +455,6 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	private long _toUserId;
 	private String _toUserUuid;
 	private String _content;
+	private int _flag;
 	private BaseModel<?> _entryRemoteModel;
 }

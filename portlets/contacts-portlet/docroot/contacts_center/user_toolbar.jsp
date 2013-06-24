@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -45,7 +45,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 				cssClass="action remove-connection"
 				image="../social/remove_coworker"
 				label="<%= true %>"
-				message="remove-connection"
+				message="disconnect"
 				method="get"
 				url="<%= removeConnectionURL %>"
 			/>
@@ -69,7 +69,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 				cssClass="action add-connection"
 				image="../social/add_coworker"
 				label="<%= true %>"
-				message="add-connection"
+				message="connect"
 				method="get"
 				url="<%= addConnectionURL %>"
 			/>

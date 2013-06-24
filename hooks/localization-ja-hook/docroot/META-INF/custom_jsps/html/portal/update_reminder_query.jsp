@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -47,7 +47,7 @@ if (referer.equals(themeDisplay.getPathMain() + "/portal/update_reminder_query")
 
 		<c:if test="<%= PropsValues.USERS_REMINDER_QUERIES_CUSTOM_QUESTION_ENABLED %>">
 			<div class="aui-helper-hidden" id="customQuestionContainer">
-				<aui:input bean="<%= user %>" fieldParam="reminderQueryCustomQuestion" label="" model="<%= User.class %>" name="reminderQueryQuestion" />
+				<aui:input bean="<%= user %>" fieldParam="reminderQueryCustomQuestion" label="custom-question" model="<%= User.class %>" name="reminderQueryQuestion" />
 			</div>
 		</c:if>
 

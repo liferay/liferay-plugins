@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -135,6 +138,19 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getWsrpConsumerPortletId() {
@@ -143,6 +159,21 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId) {
 		_wsrpConsumerPortletId = wsrpConsumerPortletId;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWsrpConsumerPortletId",
+						long.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel,
+					wsrpConsumerPortletId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -151,6 +182,19 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -159,6 +203,19 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -167,6 +224,19 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getWsrpConsumerId() {
@@ -175,6 +245,19 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setWsrpConsumerId(long wsrpConsumerId) {
 		_wsrpConsumerId = wsrpConsumerId;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWsrpConsumerId", long.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel, wsrpConsumerId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getName() {
@@ -183,6 +266,19 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setName(String name) {
 		_name = name;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setName", String.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel, name);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getPortletHandle() {
@@ -191,6 +287,19 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	public void setPortletHandle(String portletHandle) {
 		_portletHandle = portletHandle;
+
+		if (_wsrpConsumerPortletRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpConsumerPortletRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPortletHandle", String.class);
+
+				method.invoke(_wsrpConsumerPortletRemoteModel, portletHandle);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getWSRPConsumerPortletRemoteModel() {
@@ -200,6 +309,47 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	public void setWSRPConsumerPortletRemoteModel(
 		BaseModel<?> wsrpConsumerPortletRemoteModel) {
 		_wsrpConsumerPortletRemoteModel = wsrpConsumerPortletRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _wsrpConsumerPortletRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_wsrpConsumerPortletRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -218,6 +368,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public WSRPConsumerPortlet toUnescapedModel() {
 		return this;
 	}
@@ -252,18 +403,15 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPConsumerPortletClp)) {
 			return false;
 		}
 
-		WSRPConsumerPortletClp wsrpConsumerPortlet = null;
-
-		try {
-			wsrpConsumerPortlet = (WSRPConsumerPortletClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		WSRPConsumerPortletClp wsrpConsumerPortlet = (WSRPConsumerPortletClp)obj;
 
 		long primaryKey = wsrpConsumerPortlet.getPrimaryKey();
 

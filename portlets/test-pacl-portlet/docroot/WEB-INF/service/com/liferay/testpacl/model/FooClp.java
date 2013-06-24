@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -22,9 +22,12 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.testpacl.service.ClpSerializer;
 import com.liferay.testpacl.service.FooLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -162,6 +165,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setFooId(long fooId) {
 		_fooId = fooId;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFooId", long.class);
+
+				method.invoke(_fooRemoteModel, fooId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -170,6 +186,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_fooRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -178,6 +207,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_fooRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -186,6 +228,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_fooRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -202,6 +257,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_fooRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -210,6 +278,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_fooRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -218,6 +299,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_fooRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getField1() {
@@ -226,6 +320,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setField1(String field1) {
 		_field1 = field1;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setField1", String.class);
+
+				method.invoke(_fooRemoteModel, field1);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getField2() {
@@ -238,6 +345,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setField2(boolean field2) {
 		_field2 = field2;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setField2", boolean.class);
+
+				method.invoke(_fooRemoteModel, field2);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getField3() {
@@ -246,6 +366,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setField3(int field3) {
 		_field3 = field3;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setField3", int.class);
+
+				method.invoke(_fooRemoteModel, field3);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getField4() {
@@ -254,6 +387,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setField4(Date field4) {
 		_field4 = field4;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setField4", Date.class);
+
+				method.invoke(_fooRemoteModel, field4);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getField5() {
@@ -262,6 +408,19 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setField5(String field5) {
 		_field5 = field5;
+
+		if (_fooRemoteModel != null) {
+			try {
+				Class<?> clazz = _fooRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setField5", String.class);
+
+				method.invoke(_fooRemoteModel, field5);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getFooRemoteModel() {
@@ -270,6 +429,47 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	public void setFooRemoteModel(BaseModel<?> fooRemoteModel) {
 		_fooRemoteModel = fooRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _fooRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_fooRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -287,6 +487,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 			new Class[] { Foo.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Foo toUnescapedModel() {
 		return this;
 	}
@@ -325,18 +526,15 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FooClp)) {
 			return false;
 		}
 
-		FooClp foo = null;
-
-		try {
-			foo = (FooClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		FooClp foo = (FooClp)obj;
 
 		long primaryKey = foo.getPrimaryKey();
 

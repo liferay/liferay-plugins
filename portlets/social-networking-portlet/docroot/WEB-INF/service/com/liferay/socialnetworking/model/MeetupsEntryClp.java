@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -23,9 +23,12 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.socialnetworking.service.ClpSerializer;
 import com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -178,6 +181,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setMeetupsEntryId(long meetupsEntryId) {
 		_meetupsEntryId = meetupsEntryId;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setMeetupsEntryId", long.class);
+
+				method.invoke(_meetupsEntryRemoteModel, meetupsEntryId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -186,6 +202,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_meetupsEntryRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -194,6 +223,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_meetupsEntryRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -210,6 +252,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_meetupsEntryRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -218,6 +273,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_meetupsEntryRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -226,6 +294,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_meetupsEntryRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getTitle() {
@@ -234,6 +315,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setTitle(String title) {
 		_title = title;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTitle", String.class);
+
+				method.invoke(_meetupsEntryRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getDescription() {
@@ -242,6 +336,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setDescription(String description) {
 		_description = description;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescription", String.class);
+
+				method.invoke(_meetupsEntryRemoteModel, description);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getStartDate() {
@@ -250,6 +357,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setStartDate(Date startDate) {
 		_startDate = startDate;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStartDate", Date.class);
+
+				method.invoke(_meetupsEntryRemoteModel, startDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getEndDate() {
@@ -258,6 +378,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setEndDate(Date endDate) {
 		_endDate = endDate;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEndDate", Date.class);
+
+				method.invoke(_meetupsEntryRemoteModel, endDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getTotalAttendees() {
@@ -266,6 +399,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setTotalAttendees(int totalAttendees) {
 		_totalAttendees = totalAttendees;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTotalAttendees", int.class);
+
+				method.invoke(_meetupsEntryRemoteModel, totalAttendees);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getMaxAttendees() {
@@ -274,6 +420,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setMaxAttendees(int maxAttendees) {
 		_maxAttendees = maxAttendees;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setMaxAttendees", int.class);
+
+				method.invoke(_meetupsEntryRemoteModel, maxAttendees);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public double getPrice() {
@@ -282,6 +441,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setPrice(double price) {
 		_price = price;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPrice", double.class);
+
+				method.invoke(_meetupsEntryRemoteModel, price);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getThumbnailId() {
@@ -290,6 +462,19 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setThumbnailId(long thumbnailId) {
 		_thumbnailId = thumbnailId;
+
+		if (_meetupsEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _meetupsEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setThumbnailId", long.class);
+
+				method.invoke(_meetupsEntryRemoteModel, thumbnailId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getMeetupsEntryRemoteModel() {
@@ -298,6 +483,47 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setMeetupsEntryRemoteModel(BaseModel<?> meetupsEntryRemoteModel) {
 		_meetupsEntryRemoteModel = meetupsEntryRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _meetupsEntryRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_meetupsEntryRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -315,6 +541,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 			new Class[] { MeetupsEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public MeetupsEntry toUnescapedModel() {
 		return this;
 	}
@@ -357,18 +584,15 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MeetupsEntryClp)) {
 			return false;
 		}
 
-		MeetupsEntryClp meetupsEntry = null;
-
-		try {
-			meetupsEntry = (MeetupsEntryClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		MeetupsEntryClp meetupsEntry = (MeetupsEntryClp)obj;
 
 		long primaryKey = meetupsEntry.getPrimaryKey();
 

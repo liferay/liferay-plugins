@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.workflow.kaleo.service.ClpSerializer;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -221,6 +224,21 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoTimerInstanceTokenId(long kaleoTimerInstanceTokenId) {
 		_kaleoTimerInstanceTokenId = kaleoTimerInstanceTokenId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoTimerInstanceTokenId",
+						long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					kaleoTimerInstanceTokenId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -229,6 +247,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -237,6 +268,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -245,6 +289,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -261,6 +318,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -269,6 +339,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -277,6 +360,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getKaleoClassName() {
@@ -285,6 +381,21 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoClassName(String kaleoClassName) {
 		_kaleoClassName = kaleoClassName;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoClassName",
+						String.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					kaleoClassName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoClassPK() {
@@ -293,6 +404,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoClassPK(long kaleoClassPK) {
 		_kaleoClassPK = kaleoClassPK;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoClassPK", long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, kaleoClassPK);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoDefinitionId() {
@@ -301,6 +425,21 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinitionId = kaleoDefinitionId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoDefinitionId",
+						long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					kaleoDefinitionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoInstanceId() {
@@ -309,6 +448,20 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoInstanceId = kaleoInstanceId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoInstanceId", long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					kaleoInstanceId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoInstanceTokenId() {
@@ -317,6 +470,21 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
 		_kaleoInstanceTokenId = kaleoInstanceTokenId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoInstanceTokenId",
+						long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					kaleoInstanceTokenId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoTaskInstanceTokenId() {
@@ -325,6 +493,21 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
 		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoTaskInstanceTokenId",
+						long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					kaleoTaskInstanceTokenId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKaleoTimerId() {
@@ -333,6 +516,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoTimerId(long kaleoTimerId) {
 		_kaleoTimerId = kaleoTimerId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoTimerId", long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, kaleoTimerId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getKaleoTimerName() {
@@ -341,6 +537,21 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setKaleoTimerName(String kaleoTimerName) {
 		_kaleoTimerName = kaleoTimerName;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKaleoTimerName",
+						String.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					kaleoTimerName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getBlocking() {
@@ -353,6 +564,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setBlocking(boolean blocking) {
 		_blocking = blocking;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setBlocking", boolean.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, blocking);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompletionUserId() {
@@ -361,6 +585,21 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setCompletionUserId(long completionUserId) {
 		_completionUserId = completionUserId;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompletionUserId",
+						long.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					completionUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getCompletionUserUuid() throws SystemException {
@@ -382,6 +621,19 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setCompleted(boolean completed) {
 		_completed = completed;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompleted", boolean.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel, completed);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCompletionDate() {
@@ -390,6 +642,20 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setCompletionDate(Date completionDate) {
 		_completionDate = completionDate;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompletionDate", Date.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					completionDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getWorkflowContext() {
@@ -398,18 +664,77 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	public void setWorkflowContext(String workflowContext) {
 		_workflowContext = workflowContext;
+
+		if (_kaleoTimerInstanceTokenRemoteModel != null) {
+			try {
+				Class<?> clazz = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWorkflowContext",
+						String.class);
+
+				method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+					workflowContext);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getKaleoInstanceToken() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getKaleoInstanceToken";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken returnObj =
+				(com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getKaleoTimer() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getKaleoTimer";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portal.workflow.kaleo.model.KaleoTimer returnObj = (com.liferay.portal.workflow.kaleo.model.KaleoTimer)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getKaleoTaskInstanceToken";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken returnObj =
+				(com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getKaleoTimerInstanceTokenRemoteModel() {
@@ -419,6 +744,47 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 	public void setKaleoTimerInstanceTokenRemoteModel(
 		BaseModel<?> kaleoTimerInstanceTokenRemoteModel) {
 		_kaleoTimerInstanceTokenRemoteModel = kaleoTimerInstanceTokenRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _kaleoTimerInstanceTokenRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_kaleoTimerInstanceTokenRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -437,6 +803,7 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 			new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KaleoTimerInstanceToken toUnescapedModel() {
 		return this;
 	}
@@ -491,18 +858,15 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTimerInstanceTokenClp)) {
 			return false;
 		}
 
-		KaleoTimerInstanceTokenClp kaleoTimerInstanceToken = null;
-
-		try {
-			kaleoTimerInstanceToken = (KaleoTimerInstanceTokenClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTimerInstanceTokenClp kaleoTimerInstanceToken = (KaleoTimerInstanceTokenClp)obj;
 
 		long primaryKey = kaleoTimerInstanceToken.getPrimaryKey();
 

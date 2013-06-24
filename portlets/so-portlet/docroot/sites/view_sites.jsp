@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -196,20 +196,32 @@ else {
 				</c:choose>
 
 				<span class="name">
-					<c:choose>
-						<c:when test="<%= (group.hasPrivateLayouts() && member) || group.hasPublicLayouts() %>">
-							<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="siteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-								<portlet:param name="struts_action" value="/my_sites/view" />
-								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-								<portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
-							</liferay-portlet:actionURL>
+					<c:if test="<%= group.hasPublicLayouts() %>">
+						<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="publicLayoutsURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
+							<portlet:param name="struts_action" value="/my_sites/view" />
+							<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+							<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
+						</liferay-portlet:actionURL>
 
-							<a href="<%= siteURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
-						</c:when>
-						<c:otherwise>
-							<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
-						</c:otherwise>
-					</c:choose>
+						<a href="<%= publicLayoutsURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
+					</c:if>
+
+					<c:if test="<%= group.hasPrivateLayouts() %>">
+						<c:choose>
+							<c:when test="<%= member %>">
+								<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="privateLayoutsURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
+									<portlet:param name="struts_action" value="/my_sites/view" />
+									<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+									<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
+								</liferay-portlet:actionURL>
+
+								<a class="<%= group.hasPublicLayouts() ? "private-pages" : "" %>" href="<%= privateLayoutsURL %>"><%= group.hasPublicLayouts() ? "(" + LanguageUtil.get(locale, "private-pages") + ")" : HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
+							</c:when>
+							<c:otherwise>
+								<%= group.hasPublicLayouts() ? "(" + LanguageUtil.get(locale, "private-pages") + ")" : HtmlUtil.escape(group.getDescriptiveName(locale)) %>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
 				</span>
 
 				<span class="description">
@@ -327,8 +339,15 @@ else {
 
 						var name = result.name;
 
-						if (result.url) {
-							name = '<a href="' + result.url + '">' + name + '</a>';
+						if (result.publicLayoutsURL) {
+							name = '<a href="' + result.publicLayoutsURL + '">' + name + '</a>';
+
+							if (result.privateLayoutsURL) {
+								name += '<a class="private-pages" href="' + result.privateLayoutsURL + '"> (<liferay-ui:message key="private-pages" />)</a>';
+							}
+						}
+						else if (!result.publicLayoutsURL && result.privateLayoutsURL) {
+							name = '<a href="' + result.privateLayoutsURL + '">' + name + '</a>';
 						}
 
 						return A.Lang.sub(

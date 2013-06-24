@@ -3,6 +3,7 @@ create index IX_AD559D93 on Chat_Entry (createDate, fromUserId);
 create index IX_D9E49928 on Chat_Entry (createDate, fromUserId, toUserId);
 create index IX_8BE273A4 on Chat_Entry (createDate, toUserId);
 create index IX_F9966D55 on Chat_Entry (fromUserId);
+create index IX_97FE1E6A on Chat_Entry (fromUserId, toUserId);
 create index IX_2A17A23F on Chat_Entry (fromUserId, toUserId, content);
 create index IX_16384BE6 on Chat_Entry (toUserId);
 

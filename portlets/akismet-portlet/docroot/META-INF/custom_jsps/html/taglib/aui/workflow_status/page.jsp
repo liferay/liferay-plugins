@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -52,25 +52,26 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 			html = sb.toString();
 		}
 	}
-	else if (bean instanceof WikiPage) {
-		WikiPage wikiPage = (WikiPage)bean;
+}
 
-		if (wikiPage.getUserId() == themeDisplay.getUserId()) {
-			displayMessage = true;
+if (bean instanceof WikiPage) {
+	WikiPage wikiPage = (WikiPage)bean;
 
-			String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.toLabel(status));
+	if ((wikiPage.getUserId() == themeDisplay.getUserId()) && (_isSpam(wikiPage) || _isPendingApproval(wikiPage))) {
+		displayMessage = true;
 
-			int pos = html.indexOf(deniedMessage);
+		String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.toLabel(status));
 
-			StringBundler sb = new StringBundler(4);
+		int pos = html.indexOf(deniedMessage);
 
-			sb.append(html.substring(0, pos + deniedMessage.length()));
-			sb.append("<br />");
-			sb.append(LanguageUtil.get(pageContext, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible"));
-			sb.append(html.substring(pos + deniedMessage.length()));
+		StringBundler sb = new StringBundler(4);
 
-			html = sb.toString();
-		}
+		sb.append(html.substring(0, pos + deniedMessage.length()));
+		sb.append("<br />");
+		sb.append(LanguageUtil.get(pageContext, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible"));
+		sb.append(html.substring(pos + deniedMessage.length()));
+
+		html = sb.toString();
 	}
 }
 %>
@@ -84,3 +85,25 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 <c:if test="<%= displayMessage %>">
 	</div>
 </c:if>
+
+<%!
+private static boolean _isPendingApproval(WikiPage wikiPage) {
+	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL)) {
+		return false;
+	}
+
+	return true;
+}
+
+private static boolean _isSpam(WikiPage wikiPage) {
+	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM)) {
+		return false;
+	}
+
+	return true;
+}
+
+private static final String _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM = "Marked as Spam";
+
+private static final String _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL = "Pending Approval";
+%>

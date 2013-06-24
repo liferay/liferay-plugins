@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,15 +14,13 @@
 
 package com.liferay.portal.workflow.kaleo.parser;
 
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.State;
-import com.liferay.portal.workflow.kaleo.definition.Transition;
 
 import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @author Michael C. Han
@@ -30,50 +28,40 @@ import java.util.Map;
  */
 public class DefaultWorkflowValidator implements WorkflowValidator {
 
+	public void setNodeValidatorRegistry(
+		NodeValidatorRegistry nodeValidatorRegistry) {
+
+		_nodeValidatorRegistry = nodeValidatorRegistry;
+	}
+
 	public void validate(Definition definition) throws WorkflowException {
+		State initialState = definition.getInitialState();
+
+		if (initialState == null) {
+			throw new WorkflowException("No initial state defined");
+		}
+
+		List<State> terminalStates = definition.getTerminalStates();
+
+		if (terminalStates.isEmpty()) {
+			throw new WorkflowException("No terminal states defined");
+		}
+
+		if (definition.getForksCount() != definition.getJoinsCount()) {
+			throw new WorkflowException(
+				"There are unbalanced fork and join nodes");
+		}
+
 		Collection<Node> nodes = definition.getNodes();
 
 		for (Node node : nodes) {
-			validateNode(definition, node);
+			NodeValidator<Node> nodeValidator =
+				_nodeValidatorRegistry.getNodeValidator(node.getNodeType());
+
+			nodeValidator.validate(definition, node);
 		}
 	}
 
-	protected void validateNode(Definition definition, Node node)
-		throws WorkflowException {
-
-		if (node instanceof State) {
-			validateState(definition, (State)node);
-		}
-
-		validateTransitions(node.getTransitions());
-	}
-
-	protected void validateState(Definition definition, State state)
-		throws WorkflowException {
-
-		if (state.isInitial() &&
-			!Validator.equals(definition.getInitialState(), state)) {
-
-			throw new WorkflowException(
-				"Multiple initial states defined " + state.getName());
-		}
-		else if (state.isTerminal() &&
-				 !Validator.equals(definition.getTerminalState(), state)) {
-
-			throw new WorkflowException(
-				"Multiple terminal states defined " + state.getName());
-		}
-	}
-
-	protected void validateTransitions(Map<String, Transition> transitions)
-		throws WorkflowException {
-
-		for (Transition transition : transitions.values()) {
-			if (transition.getTargetNode() == null) {
-				throw new WorkflowException(
-					"Unable to find target node " + transition.getName());
-			}
-		}
-	}
+	private NodeValidatorRegistry _nodeValidatorRegistry;
 
 }

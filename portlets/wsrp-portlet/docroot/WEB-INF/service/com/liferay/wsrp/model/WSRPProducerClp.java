@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -141,6 +144,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_wsrpProducerRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getWsrpProducerId() {
@@ -149,6 +165,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setWsrpProducerId(long wsrpProducerId) {
 		_wsrpProducerId = wsrpProducerId;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWsrpProducerId", long.class);
+
+				method.invoke(_wsrpProducerRemoteModel, wsrpProducerId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -157,6 +186,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_wsrpProducerRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -165,6 +207,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_wsrpProducerRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -173,6 +228,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_wsrpProducerRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -181,6 +249,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_wsrpProducerRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getName() {
@@ -189,6 +270,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setName(String name) {
 		_name = name;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setName", String.class);
+
+				method.invoke(_wsrpProducerRemoteModel, name);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getVersion() {
@@ -197,6 +291,19 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setVersion(String version) {
 		_version = version;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setVersion", String.class);
+
+				method.invoke(_wsrpProducerRemoteModel, version);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getPortletIds() {
@@ -205,10 +312,37 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setPortletIds(String portletIds) {
 		_portletIds = portletIds;
+
+		if (_wsrpProducerRemoteModel != null) {
+			try {
+				Class<?> clazz = _wsrpProducerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPortletIds", String.class);
+
+				method.invoke(_wsrpProducerRemoteModel, portletIds);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public java.lang.String getURL(java.lang.String portalURL) {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getURL";
+
+			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
+
+			Object[] parameterValues = new Object[] { portalURL };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getWSRPProducerRemoteModel() {
@@ -217,6 +351,47 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setWSRPProducerRemoteModel(BaseModel<?> wsrpProducerRemoteModel) {
 		_wsrpProducerRemoteModel = wsrpProducerRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _wsrpProducerRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_wsrpProducerRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -234,6 +409,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 			new Class[] { WSRPProducer.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public WSRPProducer toUnescapedModel() {
 		return this;
 	}
@@ -269,18 +445,15 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPProducerClp)) {
 			return false;
 		}
 
-		WSRPProducerClp wsrpProducer = null;
-
-		try {
-			wsrpProducer = (WSRPProducerClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		WSRPProducerClp wsrpProducer = (WSRPProducerClp)obj;
 
 		long primaryKey = wsrpProducer.getPrimaryKey();
 

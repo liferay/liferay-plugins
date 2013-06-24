@@ -1,0 +1,37 @@
+#if ($username.data != "")
+	<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+
+	<script>
+		new TWTR.Widget(
+			{
+				features: {
+					avatars: true,
+					behavior: 'default',
+					hashtags: true,
+					live: true,
+					loop: true,
+					scrollbar: false,
+					timestamp: true
+				},
+				height: 200,
+				interval: 5000,
+				search: '@{$username.data}',
+				subject: '',
+				theme: {
+					shell: {
+						background: 'transparent',
+						color: '#000000'
+					},
+					tweets: {
+						background: 'transparent',
+						color: '#000000',
+						links: '#00446a'
+					}
+				},
+				type: 'search',
+				version: 2,
+				width: 'auto'
+			}
+		).render().start();
+	</script>
+#end

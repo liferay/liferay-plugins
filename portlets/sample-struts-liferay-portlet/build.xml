@@ -4,22 +4,7 @@
 <project name="sample-struts-liferay-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
-	<target name="compile">
-		<mkdir dir="docroot/WEB-INF/classes" />
-
-		<path id="plugin-lib.classpath">
-			<pathelement location="${app.server.classes.portal.dir}" />
-			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
-		</path>
-
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
-			<param name="javac.destdir" value="docroot/WEB-INF/classes" />
-			<param name="javac.srcdir" value="docroot/WEB-INF/src" />
-			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-		</antcall>
-
-		<antcall target="build-common-plugin.compile" />
-	</target>
+	<path id="plugin-lib.classpath">
+		<path refid="portal.classpath" />
+	</path>
 </project>

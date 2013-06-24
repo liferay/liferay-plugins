@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.util;
 
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.util.StringPool;
 
 /**
@@ -22,8 +21,11 @@ import com.liferay.portal.kernel.util.StringPool;
  */
 public class SchedulerUtil {
 
+	public static final String WORKFLOW_TIMER_DESTINATION_NAME =
+		"liferay/workflow_timer";
+
 	public static final String getGroupName(long kaleoTimerInstanceTokenId) {
-		String groupName = DestinationNames.SCHEDULER_DISPATCH.concat(
+		String groupName = WORKFLOW_TIMER_DESTINATION_NAME.concat(
 			StringPool.SLASH).concat(String.valueOf(kaleoTimerInstanceTokenId));
 
 		return groupName;

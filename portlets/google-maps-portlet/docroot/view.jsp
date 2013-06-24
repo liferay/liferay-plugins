@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -56,9 +56,9 @@
 					<c:choose>
 						<c:when test="<%= enableChangingTravelingMode %>">
 							<aui:select inlineField="<%= true %>" label="" name="travelingMode">
-								<aui:option label="<%= GoogleMapsConstants.DRIVING %>" />
-								<aui:option label="<%= GoogleMapsConstants.WALKING %>" />
-								<aui:option label="<%= GoogleMapsConstants.BICYCLING %>" />
+								<aui:option label="driving" value="<%= GoogleMapsConstants.DRIVING %>" />
+								<aui:option label="walking" value="<%= GoogleMapsConstants.WALKING %>" />
+								<aui:option label="bicycling" value="<%= GoogleMapsConstants.BICYCLING %>" />
 							</aui:select>
 						</c:when>
 						<c:otherwise>

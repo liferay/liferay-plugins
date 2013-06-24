@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -23,9 +23,12 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.privatemessaging.service.ClpSerializer;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -150,6 +153,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setUserThreadId(long userThreadId) {
 		_userThreadId = userThreadId;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserThreadId", long.class);
+
+				method.invoke(_userThreadRemoteModel, userThreadId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -158,6 +174,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_userThreadRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -166,6 +195,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_userThreadRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -182,6 +224,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_userThreadRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -190,6 +245,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_userThreadRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -198,6 +266,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_userThreadRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getMbThreadId() {
@@ -206,6 +287,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setMbThreadId(long mbThreadId) {
 		_mbThreadId = mbThreadId;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setMbThreadId", long.class);
+
+				method.invoke(_userThreadRemoteModel, mbThreadId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getTopMBMessageId() {
@@ -214,6 +308,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setTopMBMessageId(long topMBMessageId) {
 		_topMBMessageId = topMBMessageId;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTopMBMessageId", long.class);
+
+				method.invoke(_userThreadRemoteModel, topMBMessageId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getRead() {
@@ -226,6 +333,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setRead(boolean read) {
 		_read = read;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRead", boolean.class);
+
+				method.invoke(_userThreadRemoteModel, read);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getDeleted() {
@@ -238,6 +358,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setDeleted(boolean deleted) {
 		_deleted = deleted;
+
+		if (_userThreadRemoteModel != null) {
+			try {
+				Class<?> clazz = _userThreadRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDeleted", boolean.class);
+
+				method.invoke(_userThreadRemoteModel, deleted);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getUserThreadRemoteModel() {
@@ -246,6 +379,47 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setUserThreadRemoteModel(BaseModel<?> userThreadRemoteModel) {
 		_userThreadRemoteModel = userThreadRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _userThreadRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_userThreadRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -263,6 +437,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 			new Class[] { UserThread.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public UserThread toUnescapedModel() {
 		return this;
 	}
@@ -302,18 +477,15 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof UserThreadClp)) {
 			return false;
 		}
 
-		UserThreadClp userThread = null;
-
-		try {
-			userThread = (UserThreadClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		UserThreadClp userThread = (UserThreadClp)obj;
 
 		long primaryKey = userThread.getPrimaryKey();
 

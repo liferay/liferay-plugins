@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,9 +21,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.socialcoding.service.ClpSerializer;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -120,6 +123,19 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public void setSvnRevisionId(long svnRevisionId) {
 		_svnRevisionId = svnRevisionId;
+
+		if (_svnRevisionRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRevisionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSvnRevisionId", long.class);
+
+				method.invoke(_svnRevisionRemoteModel, svnRevisionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getSvnUserId() {
@@ -128,6 +144,19 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public void setSvnUserId(String svnUserId) {
 		_svnUserId = svnUserId;
+
+		if (_svnRevisionRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRevisionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSvnUserId", String.class);
+
+				method.invoke(_svnRevisionRemoteModel, svnUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -136,6 +165,19 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_svnRevisionRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRevisionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_svnRevisionRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getSvnRepositoryId() {
@@ -144,6 +186,19 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRepositoryId = svnRepositoryId;
+
+		if (_svnRevisionRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRevisionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSvnRepositoryId", long.class);
+
+				method.invoke(_svnRevisionRemoteModel, svnRepositoryId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getRevisionNumber() {
@@ -152,6 +207,19 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public void setRevisionNumber(long revisionNumber) {
 		_revisionNumber = revisionNumber;
+
+		if (_svnRevisionRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRevisionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRevisionNumber", long.class);
+
+				method.invoke(_svnRevisionRemoteModel, revisionNumber);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getComments() {
@@ -160,18 +228,73 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public void setComments(String comments) {
 		_comments = comments;
+
+		if (_svnRevisionRemoteModel != null) {
+			try {
+				Class<?> clazz = _svnRevisionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setComments", String.class);
+
+				method.invoke(_svnRevisionRemoteModel, comments);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public java.lang.Object[] getJIRAIssueAndComments() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getJIRAIssueAndComments";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.Object[] returnObj = (java.lang.Object[])invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getWebRevisionNumberURL() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getWebRevisionNumberURL";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getSVNRepository";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.socialcoding.model.SVNRepository returnObj = (com.liferay.socialcoding.model.SVNRepository)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getSVNRevisionRemoteModel() {
@@ -180,6 +303,47 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	public void setSVNRevisionRemoteModel(BaseModel<?> svnRevisionRemoteModel) {
 		_svnRevisionRemoteModel = svnRevisionRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _svnRevisionRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_svnRevisionRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -197,6 +361,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 			new Class[] { SVNRevision.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public SVNRevision toUnescapedModel() {
 		return this;
 	}
@@ -239,18 +404,15 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SVNRevisionClp)) {
 			return false;
 		}
 
-		SVNRevisionClp svnRevision = null;
-
-		try {
-			svnRevision = (SVNRevisionClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		SVNRevisionClp svnRevision = (SVNRevisionClp)obj;
 
 		long primaryKey = svnRevision.getPrimaryKey();
 

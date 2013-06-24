@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -33,8 +33,8 @@ public class AkismetConstants {
 
 	public static final String URL_REST = "rest.akismet.com/1.1";
 
-	public static final String WIKI_PAGE_PENDING_APPROVAL = "Pending Approval";
+	public static final String WIKI_PAGE_MARKED_AS_SPAM = "Marked as Spam";
 
-	public static final String WIKI_PAGE_SPAM = "Spam";
+	public static final String WIKI_PAGE_PENDING_APPROVAL = "Pending Approval";
 
 }

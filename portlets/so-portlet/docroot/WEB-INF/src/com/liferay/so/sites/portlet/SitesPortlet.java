@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -250,9 +250,7 @@ public class SitesPortlet extends MVCPortlet {
 			boolean member = GroupLocalServiceUtil.hasUserGroup(
 				themeDisplay.getUserId(), group.getGroupId());
 
-			if ((group.hasPrivateLayouts() && member) ||
-				group.hasPublicLayouts()) {
-
+			if (group.hasPrivateLayouts() && member) {
 				PortletURL portletURL = liferayPortletResponse.createActionURL(
 					PortletKeys.SITE_REDIRECTOR);
 
@@ -260,10 +258,24 @@ public class SitesPortlet extends MVCPortlet {
 				portletURL.setParameter(
 					"groupId", String.valueOf(group.getGroupId()));
 				portletURL.setParameter(
-					"privateLayout", String.valueOf(!group.hasPublicLayouts()));
+					"privateLayout", Boolean.TRUE.toString());
 				portletURL.setWindowState(WindowState.NORMAL);
 
-				groupJSONObject.put("url", portletURL.toString());
+				groupJSONObject.put("privateLayoutsURL", portletURL.toString());
+			}
+
+			if (group.hasPublicLayouts()) {
+				PortletURL portletURL = liferayPortletResponse.createActionURL(
+					PortletKeys.SITE_REDIRECTOR);
+
+				portletURL.setParameter("struts_action", "/my_sites/view");
+				portletURL.setParameter(
+					"groupId", String.valueOf(group.getGroupId()));
+				portletURL.setParameter(
+					"privateLayout", Boolean.FALSE.toString());
+				portletURL.setWindowState(WindowState.NORMAL);
+
+				groupJSONObject.put("publicLayoutsURL", portletURL.toString());
 			}
 
 			boolean socialOfficeGroup =

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -36,11 +36,11 @@ public class NestedAction extends Action {
 
 	@Override
 	public ActionForward execute(
-			ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response)
+			ActionMapping actionMapping, ActionForm actionForm,
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		NestedForm nestedForm = (NestedForm)form;
+		NestedForm nestedForm = (NestedForm)actionForm;
 
 		Iterator itr = nestedForm.getBooks().iterator();
 
@@ -54,7 +54,8 @@ public class NestedAction extends Action {
 			}
 		}
 
-		return mapping.findForward("/sample_struts_portlet/nested_success");
+		return actionMapping.findForward(
+			"/sample_struts_portlet/nested_success");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(NestedAction.class);

@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -50,7 +50,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						</div>
 					</div>
 
-					<aui:script use="aui-dialog,aui-io-plugin,aui-toolbar">
+					<aui:script position="inline" use="aui-dialog,aui-io-plugin,aui-toolbar">
 						var buttonRow = A.one('#<portlet:namespace />entryToolbar');
 
 						var contactsToolbarChildren = [];
@@ -86,7 +86,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 														Liferay.ContactsCenter.showMessage(false);
 													},
 													success: function(event, id, obj) {
-														location.href = '<%= redirect %>';
+														location.href = '<%= HtmlUtil.escape(redirect) %>';
 													}
 												},
 												data: {
@@ -145,7 +145,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 							</div>
 						</div>
 
-						<aui:script use="aui-base,liferay-contacts-center">
+						<aui:script position="inline" use="aui-base,liferay-contacts-center">
 							var buttonRow = A.one('#<portlet:namespace />userToolbar');
 
 							var contactsToolbarChildren = [];

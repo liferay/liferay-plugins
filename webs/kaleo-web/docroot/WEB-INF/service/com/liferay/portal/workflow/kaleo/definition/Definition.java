@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,9 +14,11 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,9 +49,12 @@ public class Definition {
 			if (state.isInitial()) {
 				_initialState = state;
 			}
-			else if (state.isTerminal()) {
-				_terminalState = state;
-			}
+		}
+		else if (node instanceof Fork) {
+			_forks.add((Fork)node);
+		}
+		else if (node instanceof Join) {
+			_joins.add((Join)node);
 		}
 	}
 
@@ -61,8 +66,24 @@ public class Definition {
 		return _description;
 	}
 
+	public List<Fork> getForks() {
+		return Collections.unmodifiableList(_forks);
+	}
+
+	public int getForksCount() {
+		return _forks.size();
+	}
+
 	public State getInitialState() {
 		return _initialState;
+	}
+
+	public List<Join> getJoins() {
+		return Collections.unmodifiableList(_joins);
+	}
+
+	public int getJoinsCount() {
+		return _joins.size();
 	}
 
 	public String getName() {
@@ -77,20 +98,40 @@ public class Definition {
 		return Collections.unmodifiableCollection(_nodesMap.values());
 	}
 
-	public State getTerminalState() {
-		return _terminalState;
+	public List<State> getTerminalStates() {
+		if (_terminalStates == null) {
+			_terminalStates = new ArrayList<State>();
+
+			for (Node node : _nodesMap.values()) {
+				if (node instanceof State) {
+					State state = (State)node;
+
+					if (state.isTerminal()) {
+						_terminalStates.add(state);
+					}
+				}
+			}
+		}
+
+		return Collections.unmodifiableList(_terminalStates);
 	}
 
 	public int getVersion() {
 		return _version;
 	}
 
+	public boolean hasNode(String name) {
+		return _nodesMap.containsKey(name);
+	}
+
 	private String _content;
 	private String _description;
+	private List<Fork> _forks = new ArrayList<Fork>();
 	private State _initialState;
+	private List<Join> _joins = new ArrayList<Join>();
 	private String _name;
 	private Map<String, Node> _nodesMap = new HashMap<String, Node>();
-	private State _terminalState;
+	private List<State> _terminalStates;
 	private int _version;
 
 }

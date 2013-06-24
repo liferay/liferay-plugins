@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,12 +14,12 @@
 
 package com.liferay.socialcoding.svn.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.model.SVNRevision;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
@@ -34,55 +34,76 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getBody(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
-
-		int activityType = activity.getType();
-
-		// Link
+		String link = getLink(activity, serviceContext);
 
 		SVNRevision svnRevision = SVNRevisionLocalServiceUtil.getSVNRevision(
 			activity.getClassPK());
 
-		String link = svnRevision.getWebRevisionNumberURL();
+		return wrapLink(link, HtmlUtil.escape(svnRevision.getComments()));
+	}
 
-		// Title
+	@Override
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		SVNRevision svnRevision = SVNRevisionLocalServiceUtil.getSVNRevision(
+			activity.getClassPK());
+
+		return svnRevision.getWebRevisionNumberURL();
+	}
+
+	@Override
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivity activity, String link,
+			String title, ServiceContext serviceContext)
+		throws Exception {
+
+		int activityType = activity.getType();
+
+		if (activityType != SVNActivityKeys.ADD_REVISION) {
+			return new Object[0];
+		}
+
+		String creatorUserName = getUserName(
+			activity.getUserId(), serviceContext);
+
+		SVNRevision svnRevision = SVNRevisionLocalServiceUtil.getSVNRevision(
+			activity.getClassPK());
 
 		SVNRepository svnRepository = svnRevision.getSVNRepository();
 
-		String title = StringPool.BLANK;
-
-		if (activityType == SVNActivityKeys.ADD_REVISION) {
-			title = themeDisplay.translate(
-				"activity-social-coding-svn-add-revision",
-				new Object[] {
-					creatorUserName,
-					String.valueOf(svnRevision.getRevisionNumber()),
-					svnRepository.getShortURL()
-				});
-		}
-
-		// Body
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("<a href=\"");
-		sb.append(link);
-		sb.append("\" target=\"_blank\">");
-		sb.append(HtmlUtil.escape(svnRevision.getComments()));
-		sb.append("</a>");
-
-		String body = sb.toString();
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return new Object[] {
+			creatorUserName, String.valueOf(svnRevision.getRevisionNumber()),
+			svnRepository.getShortURL()
+		};
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		SVNRevision.class.getName()
-	};
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
+
+		int activityType = activity.getType();
+
+		if (activityType == SVNActivityKeys.ADD_REVISION) {
+			return "activity-social-coding-svn-add-revision";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	protected boolean hasPermissions(
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ServiceContext serviceContext) {
+
+		return true;
+	}
+
+	private static final String[] _CLASS_NAMES = {SVNRevision.class.getName()};
 
 }

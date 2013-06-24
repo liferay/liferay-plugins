@@ -1,5 +1,6 @@
 {
-	"layouts": [
+	"layoutTemplateId": "2_columns_ii",
+	"privatePages": [
 		{
 			"columns": [
 				[
@@ -132,6 +133,5 @@
 			"name": "Contact Us",
 			"title": "Contact Us"
 		}
-	],
-	"layoutTemplateId": "2_columns_ii"
+	]
 }

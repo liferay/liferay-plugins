@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="plugins" organisation="com.liferay" />
+
+	<dependencies defaultconf="default">
+		<dependency name="activation" org="javax.activation" rev="1.1" />
+		<dependency name="antelopetasks" org="org.tigris.antelope" rev="3.2.10" />
+		<dependency name="bcpg-jdk16" org="org.bouncycastle" rev="1.46" />
+		<dependency name="bcprov-jdk16" org="org.bouncycastle" rev="1.46" />
+		<dependency name="ccpp" org="javax.ccpp" rev="1.0" />
+		<dependency name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
+		<dependency name="jalopy" org="jalopy" rev="1.5rc3" />
+		<dependency name="jargs" org="net.sf" rev="1.0" />
+		<dependency name="javax.servlet-api" org="javax.servlet" rev="3.0.1" />
+		<dependency name="jsp-api" org="javax.servlet.jsp" rev="2.1" />
+		<dependency name="junit" org="junit" rev="4.11" />
+		<dependency name="log4j" org="log4j" rev="1.2.16" />
+		<dependency name="mail" org="javax.mail" rev="1.4" />
+		<dependency name="mockito-all" org="org.mockito" rev="1.9.5" />
+		<dependency name="powermock-api-mockito" org="org.powermock" rev="1.5" />
+		<dependency name="powermock-api-support" org="org.powermock" rev="1.5" />
+		<dependency name="powermock-core" org="org.powermock" rev="1.5" />
+		<dependency name="powermock-module-junit4" org="org.powermock" rev="1.5" />
+		<dependency name="powermock-module-junit4-common" org="org.powermock" rev="1.5" />
+		<dependency name="powermock-reflect" org="org.powermock" rev="1.5" />
+		<dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12.1" />
+		<dependency name="scala-compiler" org="org.scala-lang" rev="2.9.2" />
+		<dependency name="serializer" org="xalan" rev="2.7.1" />
+		<dependency name="spring-test" org="org.springframework" rev="3.0.7.RELEASE" />
+		<dependency name="xalan" org="xalan" rev="2.7.1" />
+		<dependency name="xercesImpl" org="xerces" rev="2.10.0" />
+		<dependency name="xml-apis" org="xml-apis" rev="1.4.01" />
+	</dependencies>
+</ivy-module>

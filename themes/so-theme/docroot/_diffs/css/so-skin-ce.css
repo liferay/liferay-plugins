@@ -870,20 +870,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		margin: 1em 0 0;
 	}
 
-	.activity-item {
-		border-bottom: 1px solid #E7E7E7;
-		padding: 1em;
-	}
-
-	.activity-body {
-		font-size: .95em;
-	}
-
-	.user-portrait .icon {
-		bottom: -4px;
-		left: -4px;
-	}
-
 	a.group {
 		color: $red;
 	}
@@ -916,12 +902,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		width: 110px;
 	}
 
-	.user-portrait {
-		left: 65px;
-	}
-
-	.activity-data {
-		margin-left: 110px;
+	.activity-item {
+		margin: 0 55px;
 	}
 }
 
@@ -1271,10 +1253,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		.aui-column-content {
 			border-right-width: 0;
 		}
-	}
-
-	.contact-group-filter .contact-group-filter-content {
-		min-height: 30px;
 	}
 
 	.social-relations a {
@@ -1743,12 +1721,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 			border-bottom-width: 0;
 			padding: 1.75em 0 0;
 			position: relative;
-
-			.edit-controls {
-				position: absolute;
-				right: -5px;
-				top: 0;
-			}
 		}
 
 		.results-row {
@@ -1772,6 +1744,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		.thread-bottom {
 			.taglib-flags, .taglib-ratings.thumbs {
 				margin-top: 1.5em;
+			}
+
+			.edit-controls {
+				margin-right: 5px;
 			}
 		}
 	}
@@ -2338,10 +2314,15 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 	}
 
+	.wiki-body:after {
+		clear: both;
+		content: "";
+		display: block;
+		width: 100%;
+	}
+
 	.toc {
-		float: right;
-		margin-left: 1em;
-		max-width: 25%;
+		margin-bottom: 1.5em;
 
 		ol ol {
 			margin: 0 0 0 1em;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -24,15 +24,18 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -61,7 +64,10 @@ public class SODeployListenerMessageListener
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			cleanUpSocialOffice(company.getCompanyId());
+
+			// SOS-1574
+
+			//cleanUpSocialOffice(company.getCompanyId());
 		}
 	}
 
@@ -198,8 +204,47 @@ public class SODeployListenerMessageListener
 	protected void updateLayoutSetPrototype(long groupId, boolean privateLayout)
 		throws PortalException, SystemException {
 
+		// Layout
+
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 			groupId, privateLayout);
+
+		LayoutSetPrototype layoutSetPrototype =
+			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
+				layoutSet.getLayoutSetPrototypeId());
+
+		Group layoutSetPrototypeGroup = layoutSetPrototype.getGroup();
+
+		List<Layout> layoutSetPrototypeLayouts =
+			LayoutLocalServiceUtil.getLayouts(
+				layoutSetPrototypeGroup.getGroupId(), true);
+
+		String[] layoutSetPrototypeLayoutUuids =
+			new String[layoutSetPrototypeLayouts.size()];
+
+		for (int i = 0; i < layoutSetPrototypeLayouts.size(); i++) {
+			Layout layout = layoutSetPrototypeLayouts.get(i);
+
+			layoutSetPrototypeLayoutUuids[i] = layout.getUuid();
+		}
+
+		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+			groupId, privateLayout);
+
+		for (Layout layout : layouts) {
+			if (ArrayUtil.contains(
+					layoutSetPrototypeLayoutUuids,
+					layout.getSourcePrototypeLayoutUuid())) {
+
+				layout.setLayoutPrototypeUuid(StringPool.BLANK);
+				layout.setLayoutPrototypeLinkEnabled(false);
+				layout.setSourcePrototypeLayoutUuid(StringPool.BLANK);
+
+				LayoutLocalServiceUtil.updateLayout(layout);
+			}
+		}
+
+		// Layout set
 
 		UnicodeProperties settingsProperties =
 			layoutSet.getSettingsProperties();

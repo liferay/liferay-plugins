@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.ams.service.ClpSerializer;
 import com.liferay.ams.service.DefinitionLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -25,6 +26,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -170,6 +173,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setDefinitionId(long definitionId) {
 		_definitionId = definitionId;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDefinitionId", long.class);
+
+				method.invoke(_definitionRemoteModel, definitionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -178,6 +194,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_definitionRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -186,6 +215,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_definitionRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -194,6 +236,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_definitionRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -210,6 +265,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_definitionRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -218,6 +286,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_definitionRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -226,6 +307,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_definitionRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getTypeId() {
@@ -234,6 +328,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setTypeId(long typeId) {
 		_typeId = typeId;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTypeId", long.class);
+
+				method.invoke(_definitionRemoteModel, typeId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getManufacturer() {
@@ -242,6 +349,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setManufacturer(String manufacturer) {
 		_manufacturer = manufacturer;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setManufacturer", String.class);
+
+				method.invoke(_definitionRemoteModel, manufacturer);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getModel() {
@@ -250,6 +370,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setModel(String model) {
 		_model = model;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModel", String.class);
+
+				method.invoke(_definitionRemoteModel, model);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getOrderDate() {
@@ -258,6 +391,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setOrderDate(Date orderDate) {
 		_orderDate = orderDate;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOrderDate", Date.class);
+
+				method.invoke(_definitionRemoteModel, orderDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getQuantity() {
@@ -266,6 +412,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setQuantity(int quantity) {
 		_quantity = quantity;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setQuantity", int.class);
+
+				method.invoke(_definitionRemoteModel, quantity);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public double getPrice() {
@@ -274,6 +433,19 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setPrice(double price) {
 		_price = price;
+
+		if (_definitionRemoteModel != null) {
+			try {
+				Class<?> clazz = _definitionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPrice", double.class);
+
+				method.invoke(_definitionRemoteModel, price);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getDefinitionRemoteModel() {
@@ -282,6 +454,47 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	public void setDefinitionRemoteModel(BaseModel<?> definitionRemoteModel) {
 		_definitionRemoteModel = definitionRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _definitionRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_definitionRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -299,6 +512,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 			new Class[] { Definition.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Definition toUnescapedModel() {
 		return this;
 	}
@@ -340,18 +554,15 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof DefinitionClp)) {
 			return false;
 		}
 
-		DefinitionClp definition = null;
-
-		try {
-			definition = (DefinitionClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		DefinitionClp definition = (DefinitionClp)obj;
 
 		long primaryKey = definition.getPrimaryKey();
 

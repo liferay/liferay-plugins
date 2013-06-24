@@ -17,30 +17,22 @@ $toolbar-bg: #DCE3EA;
 		padding: 0;
 	}
 
+	.toolbar-content {
+		.filter-container {
+			float: left;
+		}
+	}
+
 	.contact-group-filter {
-		background-color: $toolbar-bg;
-		border-bottom: 1px solid #C9C9C9;
 		font-size: 14px;
 		min-height: 31px;
 
-		.add-contact {
-			background: url(@theme_image_path@/common/add.png) no-repeat;
-			bottom: 5px;
-			position: absolute;
-			right: 10px;
-
-			a {
-				padding-left: 20px;
-				text-decoration: underline;
-			}
-		}
-
 		.contact-group-filter-select select {
-			width: 170px;
+			width: 223px;
 		}
 
 		.contact-group-filter-content {
-			padding: 5px 0 1px 5px;
+			padding: 5px;
 		}
 
 		select {
@@ -176,7 +168,7 @@ $toolbar-bg: #DCE3EA;
 			overflow-x: hidden;
 			overflow-y: scroll;
 			position: absolute;
-			top: 38px;
+			top: 40px;
 			width: 250px;
 
 			.more-results a {
@@ -265,7 +257,7 @@ $toolbar-bg: #DCE3EA;
 		}
 
 		.aui-column-content {
-			padding: 0 10px;
+			padding: 10px;
 		}
 
 		.aui-column:before {
@@ -291,11 +283,80 @@ $toolbar-bg: #DCE3EA;
 			position: absolute;
 			top: 0;
 			width: 250px;
+
+			.contacts-search {
+				background: $toolbar-bg;
+				border-bottom: 1px solid #C9C9C9;
+				padding: 5px;
+
+				.aui-field-input {
+					width: 208px;
+				}
+			}
 		}
 
 		.contacts-container {
 			float: none;
 			width: 100%;
+
+			.lfr-button-column {
+				background-color: #E9E8E8;
+				overflow: hidden;
+				padding: 4px 6px;
+
+				.edit-toolbar {
+					margin: 0;
+					overflow: visible;
+				}
+
+				.aui-icon-remove-coworker {
+					background-image: url(@theme_image_path@/social/remove_coworker.png);
+				}
+
+				.aui-icon-add-coworker {
+					background-image: url(@theme_image_path@/social/add_coworker.png);
+				}
+
+				.aui-icon-back {
+					background-image: url(@theme_image_path@/common/back.png);
+				}
+
+				.aui-icon-block {
+					background-image: url(@theme_image_path@/social/block.png);
+				}
+
+				.aui-icon-delete {
+					background-image: url(@theme_image_path@/common/delete.png);
+				}
+
+				.aui-icon-edit {
+					background-image: url(@theme_image_path@/common/edit.png);
+				}
+
+				.aui-icon-export {
+					background-image: url(@theme_image_path@/common/export.png);
+				}
+
+				.aui-icon-follow {
+					background-image: url(@theme_image_path@/social/follow.png);
+				}
+
+				.aui-icon-send-message {
+					background-image: url(@theme_image_path@/mail/compose.png);
+				}
+
+				.aui-icon-unblock {
+					background-image: url(@theme_image_path@/social/unblock.png);
+				}
+
+				.aui-icon-unfollow {
+					background-image: url(@theme_image_path@/social/unfollow.png);
+				}
+
+				.aui-icon-user {
+					background-image: url(@theme_image_path@/common/user_icon.png);
+				}
+			}
 		}
 
 		.contacts-profile .lfr-contact-info {
@@ -304,9 +365,6 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.social-relations {
-		background-color: #E9E8E8;
-		min-height: 17px;
-		padding: 4px 8px;
 		width: auto;
 
 		a {
@@ -320,7 +378,12 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.contacts-action-content span {
-		padding-right: 5px;
+		display: inline-block;
+		padding: 3px 4px 0px;
+
+		&:first-child {
+			padding-left: 10px;
+		}
 	}
 
 	.search-column {
@@ -358,69 +421,13 @@ $toolbar-bg: #DCE3EA;
 		background-color: $toolbar-bg;
 		min-height: 31px;
 
-		.button-column {
-			float: left;
-			padding-left: 10px;
-			padding-top: 5px;
-			width: 67%;
+		.add-contact {
+			float: right;
+			margin: 5px;
 
-			.aui-icon-remove-coworker {
-				background-image: url(@theme_image_path@/social/remove_coworker.png);
-			}
-
-			.aui-icon-add-coworker {
-				background-image: url(@theme_image_path@/social/add_coworker.png);
-			}
-
-			.aui-icon-back {
-				background-image: url(@theme_image_path@/common/back.png);
-			}
-
-			.aui-icon-block {
-				background-image: url(@theme_image_path@/social/block.png);
-			}
-
-			.aui-icon-delete {
-				background-image: url(@theme_image_path@/common/delete.png);
-			}
-
-			.aui-icon-edit {
-				background-image: url(@theme_image_path@/common/edit.png);
-			}
-
-			.aui-icon-export {
-				background-image: url(@theme_image_path@/common/export.png);
-			}
-
-			.aui-icon-follow {
-				background-image: url(@theme_image_path@/social/follow.png);
-			}
-
-			.aui-icon-send-message {
-				background-image: url(@theme_image_path@/mail/compose.png);
-			}
-
-			.aui-icon-unblock {
-				background-image: url(@theme_image_path@/social/unblock.png);
-			}
-
-			.aui-icon-unfollow {
-				background-image: url(@theme_image_path@/social/unfollow.png);
-			}
-
-			.aui-icon-user {
-				background-image: url(@theme_image_path@/common/user_icon.png);
-			}
-
-			.edit-toolbar {
-				margin: 0;
-				overflow: visible;
-			}
-		}
-
-		.search-column {
-			.lfr-search-column {
-				padding: 5px 0 5px 5px;
+			input {
+				background: #E9E8E8 url(@theme_image_path@/common/add.png) no-repeat 5px 4px;
+				padding-left: 25px;
 			}
 		}
 	}
@@ -441,10 +448,6 @@ $toolbar-bg: #DCE3EA;
 
 	.property-list li {
 		list-style: none;
-	}
-
-	.lfr-app-column-view .user-information-column-1-content {
-		padding-top: 10px;
 	}
 
 	.user-information-title {
@@ -722,5 +725,4 @@ $toolbar-bg: #DCE3EA;
 	.message-body {
 		width: 90%;
 	}
-
 }

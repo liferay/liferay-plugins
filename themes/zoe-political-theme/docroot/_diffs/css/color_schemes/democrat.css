@@ -1,0 +1,75 @@
+@import "compass";
+
+body.democrat {
+	background-color: #F3F7FA;
+
+	h3 {
+		color: #00446A;
+	}
+
+	#wrapper {
+		a {
+			color: #00446A;
+		}
+
+		#content {
+			background-color: #F3F7FA;
+		}
+
+		.button {
+			background-color: #E62238;
+			color: #FFF;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	#heading {
+		.site-name {
+			border-color: #FFF;
+			color: #FFF;
+		}
+	}
+
+	#navigation {
+		background-color: #9ACCEE;
+
+		ul li{
+			a {
+				color: #FFF;
+			}
+
+			&:hover {
+				a {
+					background-color: #094368;
+				}
+			}
+
+			.call-to-action:hover a {
+				background-color: #E62238;
+			}
+		}
+	}
+
+	#content #main-content {
+		background-color: #FFF;
+	}
+
+	.portlet {
+		background-color: #FFF;
+
+		.portlet-topper {
+			background-color: #9ACCEE;
+
+			.portlet-title {
+				color: #FFF;
+			}
+		}
+	}
+
+	.twtr-widget .twtr-ft {
+		background: #9ACCEE;
+	}
+}

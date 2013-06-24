@@ -25,12 +25,8 @@
 
 		<!-- Finder methods -->
 
-		<finder name="C_TWUI" return-type="Feed">
-			<finder-column name="companyId" />
-			<finder-column name="twitterUserId" />
-		</finder>
-		<finder name="C_TSN" return-type="Feed">
-			<finder-column name="companyId" />
+		<finder name="U_TSN" return-type="Feed">
+			<finder-column name="userId" />
 			<finder-column name="twitterScreenName" />
 		</finder>
 	</entity>

@@ -3,7 +3,8 @@ create table Chat_Entry (
 	createDate LONG,
 	fromUserId LONG,
 	toUserId LONG,
-	content VARCHAR(1000) null
+	content VARCHAR(1000) null,
+	flag INTEGER
 );
 
 create table Chat_Status (
@@ -12,7 +13,7 @@ create table Chat_Status (
 	modifiedDate LONG,
 	online_ BOOLEAN,
 	awake BOOLEAN,
-	activePanelId VARCHAR(75) null,
+	activePanelIds STRING null,
 	message STRING null,
 	playSound BOOLEAN
 );

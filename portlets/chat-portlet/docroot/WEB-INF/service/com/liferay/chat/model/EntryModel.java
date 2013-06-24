@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -158,6 +158,20 @@ public interface EntryModel extends BaseModel<Entry> {
 	 * @param content the content of this entry
 	 */
 	public void setContent(String content);
+
+	/**
+	 * Returns the flag of this entry.
+	 *
+	 * @return the flag of this entry
+	 */
+	public int getFlag();
+
+	/**
+	 * Sets the flag of this entry.
+	 *
+	 * @param flag the flag of this entry
+	 */
+	public void setFlag(int flag);
 
 	public boolean isNew();
 

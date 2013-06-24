@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.admin.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBTemplate;
@@ -28,10 +30,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
  * @author Peter Shin
@@ -44,261 +43,198 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getEntryTitle(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		String title = StringPool.BLANK;
+
+		String className = activity.getClassName();
+
+		if (className.equals(KBArticle.class.getName())) {
+			KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				activity.getClassPK(), WorkflowConstants.STATUS_APPROVED);
+
+			title = kbArticle.getTitle();
+		}
+		else if (className.equals(KBComment.class.getName())) {
+			KBComment kbComment = KBCommentLocalServiceUtil.getKBComment(
+				activity.getClassPK());
+
+			String kbCommentClassName = kbComment.getClassName();
+
+			if (kbCommentClassName.equals(KBArticle.class.getName())) {
+				KBArticle kbArticle =
+					KBArticleLocalServiceUtil.getLatestKBArticle(
+						kbComment.getClassPK(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				title = kbArticle.getTitle();
+			}
+			else if (kbCommentClassName.equals(KBTemplate.class.getName())) {
+				KBTemplate kbTemplate =
+					KBTemplateLocalServiceUtil.getKBTemplate(
+						kbComment.getClassPK());
+
+				title = kbTemplate.getTitle();
+			}
+		}
+		else if (className.equals(KBTemplate.class.getName())) {
+			KBTemplate kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
+				activity.getClassPK());
+
+			title = kbTemplate.getTitle();
+		}
+
+		return getJSONValue(activity.getExtraData(), "title", title);
+	}
+
+	@Override
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		String className = activity.getClassName();
 
 		if (className.equals(KBArticle.class.getName())) {
-			return doInterpretKBArticle(activity, themeDisplay);
+			KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				activity.getClassPK(), WorkflowConstants.STATUS_APPROVED);
+
+			return KnowledgeBaseUtil.getKBArticleURL(
+				serviceContext.getPlid(), kbArticle.getResourcePrimKey(),
+				kbArticle.getStatus(), serviceContext.getPortalURL(), false);
 		}
 		else if (className.equals(KBComment.class.getName())) {
-			return doInterpretKBComment(activity, themeDisplay);
-		}
-		else if (className.equals(KBTemplate.class.getName())) {
-			return doInterpretKBTemplate(activity, themeDisplay);
+			KBComment kbComment = KBCommentLocalServiceUtil.getKBComment(
+				activity.getClassPK());
+
+			String kbCommentClassName = kbComment.getClassName();
+
+			if (kbCommentClassName.equals(KBArticle.class.getName())) {
+				KBArticle kbArticle =
+					KBArticleLocalServiceUtil.getLatestKBArticle(
+						activity.getClassPK(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				return KnowledgeBaseUtil.getKBArticleURL(
+					serviceContext.getPlid(), kbArticle.getResourcePrimKey(),
+					kbArticle.getStatus(), serviceContext.getPortalURL(),
+					false);
+			}
 		}
 
-		return null;
+		return StringPool.BLANK;
 	}
 
-	protected SocialActivityFeedEntry doInterpretKBArticle(
-			SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			activity.getClassPK(), WorkflowConstants.STATUS_APPROVED);
-
-		if (!KBArticlePermission.contains(
-				permissionChecker, kbArticle, ActionKeys.VIEW)) {
-
-			return null;
-		}
-
-		String groupName = StringPool.BLANK;
-
-		if (activity.getGroupId() != themeDisplay.getScopeGroupId()) {
-			groupName = getGroupName(activity.getGroupId(), themeDisplay);
-		}
-
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
-
-		// Link
-
-		String link = KnowledgeBaseUtil.getKBArticleURL(
-			themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
-			kbArticle.getStatus(), themeDisplay.getPortalURL(), false);
-
-		// Title
-
-		String titlePattern = null;
-
-		if (activity.getType() == AdminActivityKeys.ADD_KB_ARTICLE) {
-			if (Validator.isNull(groupName)) {
-				titlePattern = "activity-knowledge-base-admin-add-kb-article";
-			}
-			else {
-				titlePattern =
-					"activity-knowledge-base-admin-add-kb-article-in";
-			}
-		}
-		else if (activity.getType() == AdminActivityKeys.MOVE_KB_ARTICLE) {
-			if (Validator.isNull(groupName)) {
-				titlePattern = "activity-knowledge-base-admin-move-kb-article";
-			}
-			else {
-				titlePattern =
-					"activity-knowledge-base-admin-move-kb-article-in";
-			}
-		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_ARTICLE) {
-			if (Validator.isNull(groupName)) {
-				titlePattern =
-					"activity-knowledge-base-admin-update-kb-article";
-			}
-			else {
-				titlePattern =
-					"activity-knowledge-base-admin-update-kb-article-in";
-			}
-		}
-
-		String articleTitle = getValue(
-			activity.getExtraData(), "title", kbArticle.getTitle());
-
-		Object[] titleArguments = {
-			creatorUserName, wrapLink(link, articleTitle), groupName
-		};
-
-		String title = themeDisplay.translate(titlePattern, titleArguments);
-
-		// Body
-
-		String body = StringPool.BLANK;
-
-		return new SocialActivityFeedEntry(link, title, body);
-	}
-
-	protected SocialActivityFeedEntry doInterpretKBComment(
-			SocialActivity activity, ThemeDisplay themeDisplay)
-		throws Exception {
-
-		KBComment kbComment = KBCommentLocalServiceUtil.getKBComment(
-			activity.getClassPK());
-
-		String groupName = StringPool.BLANK;
-
-		if (activity.getGroupId() != themeDisplay.getScopeGroupId()) {
-			groupName = getGroupName(activity.getGroupId(), themeDisplay);
-		}
-
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
-
-		KBArticle kbArticle = null;
-		KBTemplate kbTemplate = null;
-
-		String className = kbComment.getClassName();
+		String className = activity.getClassName();
 
 		if (className.equals(KBArticle.class.getName())) {
-			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-				kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
+			if (activity.getType() == AdminActivityKeys.ADD_KB_ARTICLE) {
+				if (Validator.isNull(groupName)) {
+					return "activity-knowledge-base-admin-add-kb-article";
+				}
+				else {
+					return "activity-knowledge-base-admin-add-kb-article-in";
+				}
+			}
+			else if (activity.getType() == AdminActivityKeys.MOVE_KB_ARTICLE) {
+				if (Validator.isNull(groupName)) {
+					return "activity-knowledge-base-admin-move-kb-article";
+				}
+				else {
+					return "activity-knowledge-base-admin-move-kb-article-in";
+				}
+			}
+			else if (activity.getType() ==
+						AdminActivityKeys.UPDATE_KB_ARTICLE) {
+
+				if (Validator.isNull(groupName)) {
+					return "activity-knowledge-base-admin-update-kb-article";
+				}
+				else {
+					return "activity-knowledge-base-admin-update-kb-article-in";
+				}
+			}
+		}
+		else if (className.equals(KBComment.class.getName())) {
+			if (activity.getType() == AdminActivityKeys.ADD_KB_COMMENT) {
+				if (Validator.isNull(groupName)) {
+					return "activity-knowledge-base-admin-add-kb-comment";
+				}
+				else {
+					return "activity-knowledge-base-admin-add-kb-comment-in";
+				}
+			}
+			else if (activity.getType() ==
+						AdminActivityKeys.UPDATE_KB_COMMENT) {
+
+				if (Validator.isNull(groupName)) {
+					return "activity-knowledge-base-admin-update-kb-comment";
+				}
+				else {
+					return "activity-knowledge-base-admin-update-kb-comment-in";
+				}
+			}
 		}
 		else if (className.equals(KBTemplate.class.getName())) {
-			kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
-				kbComment.getClassPK());
-		}
-
-		// Link
-
-		String link = StringPool.BLANK;
-
-		if (kbArticle != null) {
-			link = KnowledgeBaseUtil.getKBArticleURL(
-				themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
-				kbArticle.getStatus(), themeDisplay.getPortalURL(), false);
-		}
-
-		// Title
-
-		String titlePattern = null;
-
-		if (activity.getType() == AdminActivityKeys.ADD_KB_COMMENT) {
-			if (Validator.isNull(groupName)) {
-				titlePattern = "activity-knowledge-base-admin-add-kb-comment";
+			if (activity.getType() == AdminActivityKeys.ADD_KB_TEMPLATE) {
+				if (Validator.isNull(groupName)) {
+					return "activity-knowledge-base-admin-add-kb-template";
+				}
+				else {
+					return "activity-knowledge-base-admin-add-kb-template-in";
+				}
 			}
-			else {
-				titlePattern =
-					"activity-knowledge-base-admin-add-kb-comment-in";
-			}
-		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_COMMENT) {
-			if (Validator.isNull(groupName)) {
-				titlePattern =
-					"activity-knowledge-base-admin-update-kb-comment";
-			}
-			else {
-				titlePattern =
-					"activity-knowledge-base-admin-update-kb-comment-in";
+			else if (activity.getType() ==
+						AdminActivityKeys.UPDATE_KB_TEMPLATE) {
+
+				if (Validator.isNull(groupName)) {
+					return "activity-knowledge-base-admin-update-kb-template";
+				}
+				else {
+					return
+						"activity-knowledge-base-admin-update-kb-template-in";
+				}
 			}
 		}
 
-		String entityTitle = null;
-
-		if (kbArticle != null) {
-			entityTitle = getValue(
-				activity.getExtraData(), "title", kbArticle.getTitle());
-		}
-		else if (kbTemplate != null) {
-			entityTitle = getValue(
-				activity.getExtraData(), "title", kbTemplate.getTitle());
-		}
-
-		Object[] titleArguments = {
-			creatorUserName, wrapLink(link, entityTitle), groupName
-		};
-
-		String title = themeDisplay.translate(titlePattern, titleArguments);
-
-		// Body
-
-		String body = StringPool.BLANK;
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return StringPool.BLANK;
 	}
 
-	protected SocialActivityFeedEntry doInterpretKBTemplate(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	@Override
+	protected boolean hasPermissions(
+			PermissionChecker permissionChecker, SocialActivity activity,
+			String actionId, ServiceContext serviceContext)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
+		String className = activity.getClassName();
 
-		KBTemplate kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
-			activity.getClassPK());
+		if (className.equals(KBArticle.class.getName())) {
+			KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				activity.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
-		if (!KBTemplatePermission.contains(
-				permissionChecker, kbTemplate, ActionKeys.VIEW)) {
+			return KBArticlePermission.contains(
+				permissionChecker, kbArticle, ActionKeys.VIEW);
+		}
+		else if (className.equals(KBComment.class.getName())) {
+			return true;
+		}
+		else if (className.equals(KBTemplate.class.getName())) {
+			KBTemplate kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
+				activity.getClassPK());
 
-			return null;
+			return KBTemplatePermission.contains(
+				permissionChecker, kbTemplate, ActionKeys.VIEW);
 		}
 
-		String groupName = StringPool.BLANK;
-
-		if (activity.getGroupId() != themeDisplay.getScopeGroupId()) {
-			groupName = getGroupName(activity.getGroupId(), themeDisplay);
-		}
-
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
-
-		// Link
-
-		String link = StringPool.BLANK;
-
-		// Title
-
-		String titlePattern = null;
-
-		if (activity.getType() == AdminActivityKeys.ADD_KB_TEMPLATE) {
-			if (Validator.isNull(groupName)) {
-				titlePattern = "activity-knowledge-base-admin-add-kb-template";
-			}
-			else {
-				titlePattern =
-					"activity-knowledge-base-admin-add-kb-template-in";
-			}
-		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_TEMPLATE) {
-			if (Validator.isNull(groupName)) {
-				titlePattern =
-					"activity-knowledge-base-admin-update-kb-template";
-			}
-			else {
-				titlePattern =
-					"activity-knowledge-base-admin-update-kb-template-in";
-			}
-		}
-
-		String articleTitle = getValue(
-			activity.getExtraData(), "title", kbTemplate.getTitle());
-
-		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
-
-		String title = themeDisplay.translate(titlePattern, titleArguments);
-
-		// Body
-
-		String body = StringPool.BLANK;
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return false;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
+	private static final String[] _CLASS_NAMES = {
 		KBArticle.class.getName(), KBComment.class.getName(),
 		KBTemplate.class.getName()
 	};

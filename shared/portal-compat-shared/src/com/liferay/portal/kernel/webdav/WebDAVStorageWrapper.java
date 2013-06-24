@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -28,39 +28,39 @@ public class WebDAVStorageWrapper implements WebDAVStorage {
 	}
 
 	public int copyCollectionResource(
-			WebDAVRequest webDavRequest, Resource resource, String destination,
+			WebDAVRequest webDAVRequest, Resource resource, String destination,
 			boolean overwrite, long depth)
 		throws WebDAVException {
 
 		return _webDAVStorage.copyCollectionResource(
-			webDavRequest, resource, destination, overwrite, depth);
+			webDAVRequest, resource, destination, overwrite, depth);
 	}
 
 	public int copySimpleResource(
-			WebDAVRequest webDavRequest, Resource resource, String destination,
+			WebDAVRequest webDAVRequest, Resource resource, String destination,
 			boolean overwrite)
 		throws WebDAVException {
 
 		return _webDAVStorage.copySimpleResource(
-			webDavRequest, resource, destination, overwrite);
+			webDAVRequest, resource, destination, overwrite);
 	}
 
-	public int deleteResource(WebDAVRequest webDavRequest)
+	public int deleteResource(WebDAVRequest webDAVRequest)
 		throws WebDAVException {
 
-		return _webDAVStorage.deleteResource(webDavRequest);
+		return _webDAVStorage.deleteResource(webDAVRequest);
 	}
 
-	public Resource getResource(WebDAVRequest webDavRequest)
+	public Resource getResource(WebDAVRequest webDAVRequest)
 		throws WebDAVException {
 
-		return _webDAVStorage.getResource(webDavRequest);
+		return _webDAVStorage.getResource(webDAVRequest);
 	}
 
-	public List<Resource> getResources(WebDAVRequest webDavRequest)
+	public List<Resource> getResources(WebDAVRequest webDAVRequest)
 		throws WebDAVException {
 
-		return _webDAVStorage.getResources(webDavRequest);
+		return _webDAVStorage.getResources(webDAVRequest);
 	}
 
 	public String getRootPath() {
@@ -75,10 +75,10 @@ public class WebDAVStorageWrapper implements WebDAVStorage {
 		return _webDAVStorage;
 	}
 
-	public boolean isAvailable(WebDAVRequest webDavRequest)
+	public boolean isAvailable(WebDAVRequest webDAVRequest)
 		throws WebDAVException {
 
-		return _webDAVStorage.isAvailable(webDavRequest);
+		return _webDAVStorage.isAvailable(webDAVRequest);
 	}
 
 	public boolean isSupportsClassTwo() {
@@ -86,45 +86,45 @@ public class WebDAVStorageWrapper implements WebDAVStorage {
 	}
 
 	public Status lockResource(
-			WebDAVRequest webDavRequest, String owner, long timeout)
+			WebDAVRequest webDAVRequest, String owner, long timeout)
 		throws WebDAVException {
 
-		return _webDAVStorage.lockResource(webDavRequest, owner, timeout);
+		return _webDAVStorage.lockResource(webDAVRequest, owner, timeout);
 	}
 
-	public Status makeCollection(WebDAVRequest webDavRequest)
+	public Status makeCollection(WebDAVRequest webDAVRequest)
 		throws WebDAVException {
 
-		return _webDAVStorage.makeCollection(webDavRequest);
+		return _webDAVStorage.makeCollection(webDAVRequest);
 	}
 
 	public int moveCollectionResource(
-			WebDAVRequest webDavRequest, Resource resource, String destination,
+			WebDAVRequest webDAVRequest, Resource resource, String destination,
 			boolean overwrite)
 		throws WebDAVException {
 
 		return _webDAVStorage.moveCollectionResource(
-			webDavRequest, resource, destination, overwrite);
+			webDAVRequest, resource, destination, overwrite);
 	}
 
 	public int moveSimpleResource(
-			WebDAVRequest webDavRequest, Resource resource, String destination,
+			WebDAVRequest webDAVRequest, Resource resource, String destination,
 			boolean overwrite)
 		throws WebDAVException {
 
 		return _webDAVStorage.moveSimpleResource(
-			webDavRequest, resource, destination, overwrite);
+			webDAVRequest, resource, destination, overwrite);
 	}
 
-	public int putResource(WebDAVRequest webDavRequest) throws WebDAVException {
-		return _webDAVStorage.putResource(webDavRequest);
+	public int putResource(WebDAVRequest webDAVRequest) throws WebDAVException {
+		return _webDAVStorage.putResource(webDAVRequest);
 	}
 
 	public Lock refreshResourceLock(
-			WebDAVRequest webDavRequest, String uuid, long timeout)
+			WebDAVRequest webDAVRequest, String uuid, long timeout)
 		throws WebDAVException {
 
-		return _webDAVStorage.refreshResourceLock(webDavRequest, uuid, timeout);
+		return _webDAVStorage.refreshResourceLock(webDAVRequest, uuid, timeout);
 	}
 
 	public void setRootPath(String rootPath) {
@@ -135,10 +135,10 @@ public class WebDAVStorageWrapper implements WebDAVStorage {
 		_webDAVStorage.setToken(token);
 	}
 
-	public boolean unlockResource(WebDAVRequest webDavRequest, String token)
+	public boolean unlockResource(WebDAVRequest webDAVRequest, String token)
 		throws WebDAVException {
 
-		return _webDAVStorage.unlockResource(webDavRequest, token);
+		return _webDAVStorage.unlockResource(webDAVRequest, token);
 	}
 
 	private WebDAVStorage _webDAVStorage;

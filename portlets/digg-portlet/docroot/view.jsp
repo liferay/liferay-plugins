@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -19,7 +19,7 @@
 <div id="twitter_widget<portlet:namespace />node"></div>
 
 <aui:script>
-	digg_widget<portlet:namespace />options = (function (newsType) {
+	digg_widget<portlet:namespace />options = (function(newsType) {
 		var options = {
 			fallback: '<%= LanguageUtil.get(pageContext, "no-results") %>',
 			name: 'digg_widget<portlet:namespace />',

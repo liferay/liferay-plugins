@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -95,11 +95,9 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 		}
 
 		for (Node node : nodes) {
-			Collection<Transition> transitions = node.getTransitionsEntries();
-
 			KaleoNode kaleoNode = kaleoNodesMap.get(node.getName());
 
-			for (Transition transition : transitions) {
+			for (Transition transition : node.getOutgoingTransitionsList()) {
 				KaleoNode sourceKaleoNode = kaleoNodesMap.get(
 					transition.getSourceNode().getName());
 

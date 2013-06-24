@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -15,6 +15,8 @@
 package com.liferay.socialnetworking.summary.portlet;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -68,10 +70,17 @@ public class SummaryPortlet extends MVCPortlet {
 
 		User user = UserLocalServiceUtil.getUserById(group.getClassPK());
 
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		String addFriendMessage = ParamUtil.getString(
+			actionRequest, "addFriendMessage");
+
+		extraDataJSONObject.put("addFriendMessage", addFriendMessage);
+
 		SocialRequestLocalServiceUtil.addRequest(
 			themeDisplay.getUserId(), 0, User.class.getName(),
 			themeDisplay.getUserId(), FriendsRequestKeys.ADD_FRIEND,
-			StringPool.BLANK, user.getUserId());
+			extraDataJSONObject.toString(), user.getUserId());
 	}
 
 	public void deleteFriend(

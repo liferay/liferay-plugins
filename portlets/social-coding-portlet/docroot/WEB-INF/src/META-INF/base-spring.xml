@@ -29,14 +29,6 @@
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
 	<bean id="serviceAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
-		<constructor-arg value="com.liferay.portal.security.pacl.PACLAdvice" />
-		<constructor-arg>
-			<map>
-				<entry key="nextMethodInterceptor" value-ref="serviceMonitorAdvice" />
-			</map>
-		</constructor-arg>
-	</bean>
-	<bean id="serviceMonitorAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
 		<constructor-arg value="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice" />
 		<constructor-arg>
 			<map>

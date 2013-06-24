@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -22,9 +22,12 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.so.service.ClpSerializer;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -106,6 +109,19 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	public void setFavoriteSiteId(long favoriteSiteId) {
 		_favoriteSiteId = favoriteSiteId;
+
+		if (_favoriteSiteRemoteModel != null) {
+			try {
+				Class<?> clazz = _favoriteSiteRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFavoriteSiteId", long.class);
+
+				method.invoke(_favoriteSiteRemoteModel, favoriteSiteId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -114,6 +130,19 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_favoriteSiteRemoteModel != null) {
+			try {
+				Class<?> clazz = _favoriteSiteRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_favoriteSiteRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -122,6 +151,19 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_favoriteSiteRemoteModel != null) {
+			try {
+				Class<?> clazz = _favoriteSiteRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_favoriteSiteRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -130,6 +172,19 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_favoriteSiteRemoteModel != null) {
+			try {
+				Class<?> clazz = _favoriteSiteRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_favoriteSiteRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -148,6 +203,47 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		_favoriteSiteRemoteModel = favoriteSiteRemoteModel;
 	}
 
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _favoriteSiteRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_favoriteSiteRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
+	}
+
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FavoriteSiteLocalServiceUtil.addFavoriteSite(this);
@@ -163,6 +259,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 			new Class[] { FavoriteSite.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public FavoriteSite toUnescapedModel() {
 		return this;
 	}
@@ -195,18 +292,15 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FavoriteSiteClp)) {
 			return false;
 		}
 
-		FavoriteSiteClp favoriteSite = null;
-
-		try {
-			favoriteSite = (FavoriteSiteClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		FavoriteSiteClp favoriteSite = (FavoriteSiteClp)obj;
 
 		long primaryKey = favoriteSite.getPrimaryKey();
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -17,6 +17,8 @@
 
 package com.liferay.microblogs.microblogs.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
@@ -26,10 +28,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 
 /**
  * @author Jonathan Lee
@@ -42,35 +41,32 @@ public class MicroblogsActivityInterpreter
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getBody(
+		SocialActivity activity, ServiceContext serviceContext) {
+
+		return getUserName(activity.getUserId(), serviceContext);
+	}
+
+	@Override
+	protected String getLink(
+		SocialActivity activity, ServiceContext serviceContext) {
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	protected String getTitle(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
+		StringBundler sb = new StringBundler(5);
 
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
 				activity.getClassPK());
 
-		if (!MicroblogsEntryPermission.contains(
-				permissionChecker, microblogsEntry, ActionKeys.VIEW)) {
-
-			return null;
-		}
-
-		String creatorUserName = getUserName(
-			activity.getUserId(), themeDisplay);
 		String receiverUserName = getUserName(
-			activity.getReceiverUserId(), themeDisplay);
-
-		// Link
-
-		String link = StringPool.BLANK;
-
-		// Title
-
-		StringBundler sb = new StringBundler(5);
+			activity.getReceiverUserId(), serviceContext);
 
 		if (activity.getReceiverUserId() > 0) {
 			if (microblogsEntry.getType() ==
@@ -83,7 +79,7 @@ public class MicroblogsActivityInterpreter
 			else if (microblogsEntry.getType() ==
 						MicroblogsEntryConstants.TYPE_REPOST) {
 
-				sb.append(themeDisplay.translate("reposted-from"));
+				sb.append(serviceContext.translate("reposted-from"));
 				sb.append(" ");
 				sb.append(receiverUserName);
 				sb.append(": ");
@@ -92,17 +88,24 @@ public class MicroblogsActivityInterpreter
 
 		sb.append(HtmlUtil.escape(microblogsEntry.getContent()));
 
-		String title = sb.toString();
-
-		// Body
-
-		String body = creatorUserName;
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return sb.toString();
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		MicroblogsEntry.class.getName()
-	};
+	@Override
+	protected boolean hasPermissions(
+			PermissionChecker permissionChecker, SocialActivity activity,
+			String actionId, ServiceContext serviceContext)
+		throws Exception {
+
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
+				activity.getClassPK());
+
+		return MicroblogsEntryPermission.contains(
+			permissionChecker, microblogsEntry, ActionKeys.VIEW);
+	}
+
+	private static final String[] _CLASS_NAMES =
+		{MicroblogsEntry.class.getName()};
 
 }

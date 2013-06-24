@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -570,8 +570,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			markupResponse = markupService.getMarkup(getMarkup);
 		}
 
-		// There is a memory leak in Axis that caches the entire response
-		// after each call. See LPS-25067.
+		// There is a memory leak in Axis that caches the entire response after
+		// each call. See LPS-25067.
 
 		Stub stub = (Stub)markupService;
 

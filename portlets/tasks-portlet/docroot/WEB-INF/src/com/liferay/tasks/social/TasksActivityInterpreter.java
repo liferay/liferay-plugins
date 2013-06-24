@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -17,11 +17,11 @@
 
 package com.liferay.tasks.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.compat.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 
@@ -35,80 +35,102 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivity activity, ThemeDisplay themeDisplay)
+	protected String getBody(
+			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
 			activity.getClassPK());
+
+		return getJSONValue(
+			activity.getExtraData(), "title", tasksEntry.getTitle());
+	}
+
+	@Override
+	protected String getLink(
+		SocialActivity activity, ServiceContext serviceContext) {
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	protected Object[] getTitleArguments(
+			String groupName, SocialActivity activity, String link,
+			String title, ServiceContext serviceContext)
+		throws Exception {
 
 		long userId = activity.getUserId();
 		long receiverUserId = activity.getReceiverUserId();
 
 		int activityType = activity.getType();
 
-		// Link
-
-		String link = StringPool.BLANK;
-
-		// Title
-
-		String titlePattern = null;
-
-		if (activityType == TasksActivityKeys.ADD_ENTRY) {
-			if ((userId != receiverUserId) && (receiverUserId != 0)) {
-				titlePattern = "activity-tasks-add-entry-for";
-			}
-			else {
-				titlePattern = "activity-tasks-add-entry";
-			}
-		}
-		else if (activityType == TasksActivityKeys.REOPEN_ENTRY) {
-			if ((userId != receiverUserId) && (receiverUserId != 0)) {
-				titlePattern = "activity-tasks-reopened-entry-for";
-			}
-			else {
-				titlePattern = "activity-tasks-reopened-entry";
-			}
-		}
-		else if (activityType == TasksActivityKeys.RESOLVE_ENTRY) {
-			if ((userId != receiverUserId) && (receiverUserId != 0)) {
-				titlePattern = "activity-tasks-resolved-entry-for";
-			}
-			else {
-				titlePattern = "activity-tasks-resolved-entry";
-			}
+		if (activityType == TasksActivityKeys.RESOLVE_ENTRY) {
+			TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
+				activity.getClassPK());
 
 			userId = tasksEntry.getResolverUserId();
 			receiverUserId = tasksEntry.getUserId();
 		}
-		else if (activityType == TasksActivityKeys.UPDATE_ENTRY) {
+
+		String creatorUserName = getUserName(userId, serviceContext);
+		String receiverUserName = getUserName(receiverUserId, serviceContext);
+
+		return new Object[] {creatorUserName, receiverUserName};
+	}
+
+	@Override
+	protected String getTitlePattern(
+		String groupName, SocialActivity activity) {
+
+		long userId = activity.getUserId();
+		long receiverUserId = activity.getReceiverUserId();
+
+		int activityType = activity.getType();
+
+		if (activityType == TasksActivityKeys.ADD_ENTRY) {
 			if ((userId != receiverUserId) && (receiverUserId != 0)) {
-				titlePattern = "activity-tasks-update-entry-for";
+				return "activity-tasks-add-entry-for";
 			}
 			else {
-				titlePattern = "activity-tasks-update-entry";
+				return "activity-tasks-add-entry";
+			}
+		}
+		else if (activityType == TasksActivityKeys.REOPEN_ENTRY) {
+			if ((userId != receiverUserId) && (receiverUserId != 0)) {
+				return "activity-tasks-reopened-entry-for";
+			}
+			else {
+				return "activity-tasks-reopened-entry";
+			}
+		}
+		else if (activityType == TasksActivityKeys.RESOLVE_ENTRY) {
+			if ((userId != receiverUserId) && (receiverUserId != 0)) {
+				return "activity-tasks-resolved-entry-for";
+			}
+			else {
+				return "activity-tasks-resolved-entry";
+			}
+		}
+		else if (activityType == TasksActivityKeys.UPDATE_ENTRY) {
+			if ((userId != receiverUserId) && (receiverUserId != 0)) {
+				return "activity-tasks-update-entry-for";
+			}
+			else {
+				return "activity-tasks-update-entry";
 			}
 		}
 
-		String creatorUserName = getUserName(userId, themeDisplay);
-		String receiverUserName = getUserName(receiverUserId, themeDisplay);
-
-		Object[] titleArguments =
-			new Object[] {creatorUserName, receiverUserName};
-
-		String title = themeDisplay.translate(titlePattern, titleArguments);
-
-		// Body
-
-		String body = getValue(
-			activity.getExtraData(), "title", tasksEntry.getTitle());
-
-		return new SocialActivityFeedEntry(link, title, body);
+		return StringPool.BLANK;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		TasksEntry.class.getName()
-	};
+	@Override
+	protected boolean hasPermissions(
+		PermissionChecker permissionChecker, SocialActivity activity,
+		String actionId, ServiceContext serviceContext) {
+
+		return true;
+	}
+
+	private static final String[] _CLASS_NAMES = {TasksEntry.class.getName()};
 
 }

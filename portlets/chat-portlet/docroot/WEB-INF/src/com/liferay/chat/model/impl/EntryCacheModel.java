@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -32,7 +32,7 @@ import java.io.Serializable;
 public class EntryCacheModel implements CacheModel<Entry>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{entryId=");
 		sb.append(entryId);
@@ -44,6 +44,8 @@ public class EntryCacheModel implements CacheModel<Entry>, Serializable {
 		sb.append(toUserId);
 		sb.append(", content=");
 		sb.append(content);
+		sb.append(", flag=");
+		sb.append(flag);
 		sb.append("}");
 
 		return sb.toString();
@@ -64,6 +66,8 @@ public class EntryCacheModel implements CacheModel<Entry>, Serializable {
 			entryImpl.setContent(content);
 		}
 
+		entryImpl.setFlag(flag);
+
 		entryImpl.resetOriginalValues();
 
 		return entryImpl;
@@ -74,4 +78,5 @@ public class EntryCacheModel implements CacheModel<Entry>, Serializable {
 	public long fromUserId;
 	public long toUserId;
 	public String content;
+	public int flag;
 }

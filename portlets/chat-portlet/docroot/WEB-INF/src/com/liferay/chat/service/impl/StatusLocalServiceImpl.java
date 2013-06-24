@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -15,12 +15,18 @@
 package com.liferay.chat.service.impl;
 
 import com.liferay.chat.jabber.JabberUtil;
+import com.liferay.chat.model.Entry;
+import com.liferay.chat.model.EntryConstants;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.base.StatusLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 
@@ -74,7 +80,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
 	public Status updateStatus(
 			long userId, long modifiedDate, int online, int awake,
-			String activePanelId, String message, int playSound)
+			String activePanelIds, String message, int playSound)
 		throws SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
@@ -99,8 +105,28 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			status.setAwake((awake == 1) ? true : false);
 		}
 
-		if (activePanelId != null) {
-			status.setActivePanelId(activePanelId);
+		if (Validator.isNotNull(activePanelIds)) {
+			try {
+				JSONObject activePanelIdsJSONObject =
+					JSONFactoryUtil.createJSONObject(activePanelIds);
+
+				long openPanelId = activePanelIdsJSONObject.getLong("open");
+
+				List<Entry> entries = entryPersistence.findByF_T(
+					openPanelId, userId);
+
+				for (Entry entry : entries) {
+					entry.setFlag(EntryConstants.FLAG_READ);
+
+					entryPersistence.update(entry, false);
+				}
+			}
+			catch (JSONException jsone) {
+				_log.error(
+					"Unable to create a JSON object from " + activePanelIds);
+			}
+
+			status.setActivePanelIds(activePanelIds);
 		}
 
 		if (message != null) {

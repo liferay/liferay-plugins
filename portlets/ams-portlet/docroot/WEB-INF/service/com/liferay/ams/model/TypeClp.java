@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.ams.service.ClpSerializer;
 import com.liferay.ams.service.TypeLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -24,6 +25,8 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,6 +100,19 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	public void setTypeId(long typeId) {
 		_typeId = typeId;
+
+		if (_typeRemoteModel != null) {
+			try {
+				Class<?> clazz = _typeRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTypeId", long.class);
+
+				method.invoke(_typeRemoteModel, typeId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -105,6 +121,19 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_typeRemoteModel != null) {
+			try {
+				Class<?> clazz = _typeRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_typeRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getName() {
@@ -113,6 +142,19 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	public void setName(String name) {
 		_name = name;
+
+		if (_typeRemoteModel != null) {
+			try {
+				Class<?> clazz = _typeRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setName", String.class);
+
+				method.invoke(_typeRemoteModel, name);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getTypeRemoteModel() {
@@ -121,6 +163,47 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	public void setTypeRemoteModel(BaseModel<?> typeRemoteModel) {
 		_typeRemoteModel = typeRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _typeRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_typeRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -138,6 +221,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 			new Class[] { Type.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Type toUnescapedModel() {
 		return this;
 	}
@@ -167,18 +251,15 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof TypeClp)) {
 			return false;
 		}
 
-		TypeClp type = null;
-
-		try {
-			type = (TypeClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		TypeClp type = (TypeClp)obj;
 
 		long primaryKey = type.getPrimaryKey();
 

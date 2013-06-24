@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -557,18 +557,15 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTransition)) {
 			return false;
 		}
 
-		KaleoTransition kaleoTransition = null;
-
-		try {
-			kaleoTransition = (KaleoTransition)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KaleoTransition kaleoTransition = (KaleoTransition)obj;
 
 		long primaryKey = kaleoTransition.getPrimaryKey();
 

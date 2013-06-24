@@ -46,8 +46,8 @@ $theme.include($body_top_include)
 
 $theme.include($body_bottom_include)
 
-</body>
-
 $theme.include($bottom_include)
+
+</body>
 
 </html>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -22,9 +22,12 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
+import com.liferay.socialcoding.service.ClpSerializer;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -135,6 +138,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setJiraActionId(long jiraActionId) {
 		_jiraActionId = jiraActionId;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraActionId", long.class);
+
+				method.invoke(_jiraActionRemoteModel, jiraActionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getJiraUserId() {
@@ -143,6 +159,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setJiraUserId(String jiraUserId) {
 		_jiraUserId = jiraUserId;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraUserId", String.class);
+
+				method.invoke(_jiraActionRemoteModel, jiraUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -151,6 +180,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_jiraActionRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -159,6 +201,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_jiraActionRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getJiraIssueId() {
@@ -167,6 +222,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssueId = jiraIssueId;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraIssueId", long.class);
+
+				method.invoke(_jiraActionRemoteModel, jiraIssueId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getType() {
@@ -175,6 +243,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setType(String type) {
 		_type = type;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setType", String.class);
+
+				method.invoke(_jiraActionRemoteModel, type);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getBody() {
@@ -183,6 +264,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setBody(String body) {
 		_body = body;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setBody", String.class);
+
+				method.invoke(_jiraActionRemoteModel, body);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getJiraGroupName() {
@@ -191,6 +285,19 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setJiraGroupName(String jiraGroupName) {
 		_jiraGroupName = jiraGroupName;
+
+		if (_jiraActionRemoteModel != null) {
+			try {
+				Class<?> clazz = _jiraActionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setJiraGroupName", String.class);
+
+				method.invoke(_jiraActionRemoteModel, jiraGroupName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getJIRAActionRemoteModel() {
@@ -199,6 +306,47 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	public void setJIRAActionRemoteModel(BaseModel<?> jiraActionRemoteModel) {
 		_jiraActionRemoteModel = jiraActionRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _jiraActionRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_jiraActionRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -216,6 +364,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 			new Class[] { JIRAAction.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public JIRAAction toUnescapedModel() {
 		return this;
 	}
@@ -253,18 +402,15 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAActionClp)) {
 			return false;
 		}
 
-		JIRAActionClp jiraAction = null;
-
-		try {
-			jiraAction = (JIRAActionClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		JIRAActionClp jiraAction = (JIRAActionClp)obj;
 
 		long primaryKey = jiraAction.getPrimaryKey();
 

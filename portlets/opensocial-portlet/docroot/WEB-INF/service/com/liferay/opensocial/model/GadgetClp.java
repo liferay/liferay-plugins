@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -24,6 +25,8 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -134,6 +137,19 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_gadgetRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGadgetId() {
@@ -142,6 +158,19 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setGadgetId(long gadgetId) {
 		_gadgetId = gadgetId;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGadgetId", long.class);
+
+				method.invoke(_gadgetRemoteModel, gadgetId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -150,6 +179,19 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_gadgetRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -158,6 +200,19 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_gadgetRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -166,6 +221,19 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_gadgetRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getName() {
@@ -174,6 +242,19 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setName(String name) {
 		_name = name;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setName", String.class);
+
+				method.invoke(_gadgetRemoteModel, name);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUrl() {
@@ -182,6 +263,19 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setUrl(String url) {
 		_url = url;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUrl", String.class);
+
+				method.invoke(_gadgetRemoteModel, url);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getPortletCategoryNames() {
@@ -190,6 +284,20 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setPortletCategoryNames(String portletCategoryNames) {
 		_portletCategoryNames = portletCategoryNames;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPortletCategoryNames",
+						String.class);
+
+				method.invoke(_gadgetRemoteModel, portletCategoryNames);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public BaseModel<?> getGadgetRemoteModel() {
@@ -198,6 +306,47 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setGadgetRemoteModel(BaseModel<?> gadgetRemoteModel) {
 		_gadgetRemoteModel = gadgetRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _gadgetRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_gadgetRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -215,6 +364,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 			new Class[] { Gadget.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public Gadget toUnescapedModel() {
 		return this;
 	}
@@ -249,18 +399,15 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof GadgetClp)) {
 			return false;
 		}
 
-		GadgetClp gadget = null;
-
-		try {
-			gadget = (GadgetClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		GadgetClp gadget = (GadgetClp)obj;
 
 		long primaryKey = gadget.getPrimaryKey();
 

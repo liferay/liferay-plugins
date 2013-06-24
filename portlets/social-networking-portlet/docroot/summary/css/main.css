@@ -1,5 +1,7 @@
 .social-networking-portlet-summary {
-	.summary-container{
+	.summary-container {
+		position: relative;
+
 		&:after {
 			clear: both;
 			content: ".";
@@ -31,6 +33,10 @@
 			text-transform: uppercase;
 		}
 
+		.actions-container, .user-container {
+			float: left;
+		}
+
 		.user-profile-image {
 			max-width: 180px;
 		}
@@ -40,8 +46,22 @@
 			padding-left: 18px;
 		}
 
-		.add-as-friend.pending {
-			background-image: url(@theme_image_path@/common/time.png);
+		.actions-container {
+			margin: 5px 0 5px 10px;
+		}
+
+		.add-as-friend {
+			.aui-field-input {
+				width: 100%;
+			}
+
+			.aui-button-input-submit {
+				margin-top: 5px;
+			}
+
+			&.pending {
+				background-image: url(@theme_image_path@/common/time.png);
+			}
 		}
 
 		.friend-requests.pending {
@@ -56,7 +76,7 @@
 			background-image: url(@theme_image_path@/common/time.png);
 		}
 
-		.add-as-friend, .join-organization, .join-site, .remove-friend, .remove-organization, .remove-site {
+		.join-organization, .join-site, .remove-friend, .remove-organization, .remove-site {
 			margin: 0.7em auto 1em;
 		}
 
@@ -70,6 +90,10 @@
 
 		.comma {
 			display: none;
+		}
+
+		.edit-profile {
+			clear: left;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -135,17 +135,21 @@ public class KaleoTransitionLocalServiceClpInvoker {
 
 		_methodParameterTypes109 = new String[] { "long" };
 
-		_methodName110 = "getKaleoTransition";
+		_methodName110 = "getKaleoDefinitionKaleoTransitions";
 
-		_methodParameterTypes110 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes110 = new String[] { "long" };
 
-		_methodName111 = "getKaleoTransitions";
+		_methodName111 = "getKaleoTransition";
 
-		_methodParameterTypes111 = new String[] { "long" };
+		_methodParameterTypes111 = new String[] { "long", "java.lang.String" };
 
-		_methodName112 = "getKaleoTransitionsCount";
+		_methodName112 = "getKaleoTransitions";
 
 		_methodParameterTypes112 = new String[] { "long" };
+
+		_methodName113 = "getKaleoTransitionsCount";
+
+		_methodParameterTypes113 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -280,17 +284,22 @@ public class KaleoTransitionLocalServiceClpInvoker {
 
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
-			return KaleoTransitionLocalServiceUtil.getKaleoTransition(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			return KaleoTransitionLocalServiceUtil.getKaleoDefinitionKaleoTransitions(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName111.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
-			return KaleoTransitionLocalServiceUtil.getKaleoTransitions(((Long)arguments[0]).longValue());
+			return KaleoTransitionLocalServiceUtil.getKaleoTransition(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName112.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
+			return KaleoTransitionLocalServiceUtil.getKaleoTransitions(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName113.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getKaleoTransitionsCount(((Long)arguments[0]).longValue());
 		}
 
@@ -347,4 +356,6 @@ public class KaleoTransitionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes111;
 	private String _methodName112;
 	private String[] _methodParameterTypes112;
+	private String _methodName113;
+	private String[] _methodParameterTypes113;
 }

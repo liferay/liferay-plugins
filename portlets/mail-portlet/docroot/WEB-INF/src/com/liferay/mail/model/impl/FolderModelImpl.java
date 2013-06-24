@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -392,18 +392,15 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Folder)) {
 			return false;
 		}
 
-		Folder folder = null;
-
-		try {
-			folder = (Folder)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Folder folder = (Folder)obj;
 
 		long primaryKey = folder.getPrimaryKey();
 

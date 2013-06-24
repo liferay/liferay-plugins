@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,7 +17,7 @@ package com.liferay.portal.workflow.kaleo.runtime.action;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilder;
+import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil;
 
 import java.util.Map;
 
@@ -43,7 +43,7 @@ public class ScriptActionExecutor implements ActionExecutor {
 		throws Exception {
 
 		Map<String, Object> inputObjects =
-			ScriptingContextBuilder.buildScriptingContext(executionContext);
+			ScriptingContextBuilderUtil.buildScriptingContext(executionContext);
 
 		ScriptingUtil.exec(
 			null, inputObjects, kaleoAction.getScriptLanguage(),

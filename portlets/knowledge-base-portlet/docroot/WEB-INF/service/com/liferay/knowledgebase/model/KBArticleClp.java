@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.knowledgebase.service.ClpSerializer;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -27,6 +28,8 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -249,6 +252,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_kbArticleRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getKbArticleId() {
@@ -257,6 +273,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setKbArticleId(long kbArticleId) {
 		_kbArticleId = kbArticleId;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKbArticleId", long.class);
+
+				method.invoke(_kbArticleRemoteModel, kbArticleId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getResourcePrimKey() {
@@ -265,6 +294,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setResourcePrimKey(long resourcePrimKey) {
 		_resourcePrimKey = resourcePrimKey;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setResourcePrimKey", long.class);
+
+				method.invoke(_kbArticleRemoteModel, resourcePrimKey);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean isResourceMain() {
@@ -281,6 +323,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_kbArticleRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -289,6 +344,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_kbArticleRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -297,6 +365,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_kbArticleRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -313,6 +394,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_kbArticleRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -321,6 +415,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_kbArticleRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -329,6 +436,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_kbArticleRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getRootResourcePrimKey() {
@@ -337,6 +457,20 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setRootResourcePrimKey(long rootResourcePrimKey) {
 		_rootResourcePrimKey = rootResourcePrimKey;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRootResourcePrimKey",
+						long.class);
+
+				method.invoke(_kbArticleRemoteModel, rootResourcePrimKey);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getParentResourcePrimKey() {
@@ -345,6 +479,20 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setParentResourcePrimKey(long parentResourcePrimKey) {
 		_parentResourcePrimKey = parentResourcePrimKey;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setParentResourcePrimKey",
+						long.class);
+
+				method.invoke(_kbArticleRemoteModel, parentResourcePrimKey);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getVersion() {
@@ -353,6 +501,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setVersion(int version) {
 		_version = version;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setVersion", int.class);
+
+				method.invoke(_kbArticleRemoteModel, version);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getTitle() {
@@ -361,6 +522,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setTitle(String title) {
 		_title = title;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTitle", String.class);
+
+				method.invoke(_kbArticleRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getContent() {
@@ -369,6 +543,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setContent(String content) {
 		_content = content;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setContent", String.class);
+
+				method.invoke(_kbArticleRemoteModel, content);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getDescription() {
@@ -377,6 +564,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setDescription(String description) {
 		_description = description;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescription", String.class);
+
+				method.invoke(_kbArticleRemoteModel, description);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public double getPriority() {
@@ -385,6 +585,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setPriority(double priority) {
 		_priority = priority;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPriority", double.class);
+
+				method.invoke(_kbArticleRemoteModel, priority);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getSections() {
@@ -393,6 +606,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setSections(String sections) {
 		_sections = sections;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSections", String.class);
+
+				method.invoke(_kbArticleRemoteModel, sections);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getViewCount() {
@@ -401,6 +627,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setViewCount(int viewCount) {
 		_viewCount = viewCount;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setViewCount", int.class);
+
+				method.invoke(_kbArticleRemoteModel, viewCount);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getLatest() {
@@ -413,6 +652,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setLatest(boolean latest) {
 		_latest = latest;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLatest", boolean.class);
+
+				method.invoke(_kbArticleRemoteModel, latest);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean getMain() {
@@ -425,6 +677,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setMain(boolean main) {
 		_main = main;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setMain", boolean.class);
+
+				method.invoke(_kbArticleRemoteModel, main);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getStatus() {
@@ -433,6 +698,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setStatus(int status) {
 		_status = status;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_kbArticleRemoteModel, status);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getStatusByUserId() {
@@ -441,6 +719,19 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setStatusByUserId(long statusByUserId) {
 		_statusByUserId = statusByUserId;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatusByUserId", long.class);
+
+				method.invoke(_kbArticleRemoteModel, statusByUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getStatusByUserUuid() throws SystemException {
@@ -458,6 +749,20 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setStatusByUserName(String statusByUserName) {
 		_statusByUserName = statusByUserName;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatusByUserName",
+						String.class);
+
+				method.invoke(_kbArticleRemoteModel, statusByUserName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getStatusDate() {
@@ -466,26 +771,109 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setStatusDate(Date statusDate) {
 		_statusDate = statusDate;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatusDate", Date.class);
+
+				method.invoke(_kbArticleRemoteModel, statusDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public boolean isFirstVersion() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "isFirstVersion";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getAttachmentsDirName() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getAttachmentsDirName";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public long getClassPK() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getClassPK";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public boolean isRoot() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "isRoot";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String[] getAttachmentsFileNames() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getAttachmentsFileNames";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String[] returnObj = (java.lang.String[])invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	/**
@@ -575,6 +963,47 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		_kbArticleRemoteModel = kbArticleRemoteModel;
 	}
 
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _kbArticleRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_kbArticleRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
+	}
+
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KBArticleLocalServiceUtil.addKBArticle(this);
@@ -590,6 +1019,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 			new Class[] { KBArticle.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public KBArticle toUnescapedModel() {
 		return this;
 	}
@@ -643,18 +1073,15 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBArticleClp)) {
 			return false;
 		}
 
-		KBArticleClp kbArticle = null;
-
-		try {
-			kbArticle = (KBArticleClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		KBArticleClp kbArticle = (KBArticleClp)obj;
 
 		long primaryKey = kbArticle.getPrimaryKey();
 

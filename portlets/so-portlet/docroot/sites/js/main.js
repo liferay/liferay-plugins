@@ -280,8 +280,15 @@ AUI().use(
 
 								var name = result.name;
 
-								if (result.url) {
-									name = '<a href="' + result.url + '">' + name + '</a>';
+								if (result.publicLayoutsURL) {
+									name = '<a href="' + result.publicLayoutsURL + '">' + name + '</a>';
+
+									if (result.privateLayoutsURL) {
+										name += '<a class="private-pages" href="' + result.privateLayoutsURL + '"> (' + Liferay.Language.get("private-pages") + ')</a>';
+									}
+								}
+								else if (!result.publicLayoutsURL && result.privateLayoutsURL) {
+									name = '<a href="' + result.privateLayoutsURL + '">' + name + '</a>';
 								}
 
 								return A.Lang.sub(

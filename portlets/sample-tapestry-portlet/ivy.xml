@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="sample-tapestry-portlet" organisation="com.liferay" />
+
+	<dependencies defaultconf="default">
+		<dependency name="hivemind" org="hivemind" rev="1.1" />
+		<dependency name="hivemind-lib" org="hivemind" rev="1.1" />
+		<dependency name="javassist" org="javassist" rev="3.0" />
+		<dependency name="ognl" org="ognl" rev="2.6.7" />
+		<dependency name="tapestry-annotations" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-contrib" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-framework" org="org.apache.tapestry" rev="4.1" />
+		<dependency name="tapestry-portlet" org="org.apache.tapestry" rev="4.1" />
+	</dependencies>
+</ivy-module>

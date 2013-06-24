@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -24,6 +25,8 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -141,6 +144,19 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setOAuthConsumerId(long oAuthConsumerId) {
 		_oAuthConsumerId = oAuthConsumerId;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOAuthConsumerId", long.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, oAuthConsumerId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -149,6 +165,19 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -157,6 +186,19 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -165,6 +207,19 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getGadgetKey() {
@@ -173,6 +228,19 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setGadgetKey(String gadgetKey) {
 		_gadgetKey = gadgetKey;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGadgetKey", String.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, gadgetKey);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getServiceName() {
@@ -181,6 +249,19 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setServiceName(String serviceName) {
 		_serviceName = serviceName;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setServiceName", String.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, serviceName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getConsumerKey() {
@@ -189,6 +270,19 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setConsumerKey(String consumerKey) {
 		_consumerKey = consumerKey;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setConsumerKey", String.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, consumerKey);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getConsumerSecret() {
@@ -197,6 +291,20 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setConsumerSecret(String consumerSecret) {
 		_consumerSecret = consumerSecret;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setConsumerSecret",
+						String.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, consumerSecret);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getKeyType() {
@@ -205,14 +313,52 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setKeyType(String keyType) {
 		_keyType = keyType;
+
+		if (_oAuthConsumerRemoteModel != null) {
+			try {
+				Class<?> clazz = _oAuthConsumerRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setKeyType", String.class);
+
+				method.invoke(_oAuthConsumerRemoteModel, keyType);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public void setKeyName(java.lang.String keyName) {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "setKeyName";
+
+			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
+
+			Object[] parameterValues = new Object[] { keyName };
+
+			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getKeyName() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getKeyName";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getOAuthConsumerRemoteModel() {
@@ -222,6 +368,47 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	public void setOAuthConsumerRemoteModel(
 		BaseModel<?> oAuthConsumerRemoteModel) {
 		_oAuthConsumerRemoteModel = oAuthConsumerRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _oAuthConsumerRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_oAuthConsumerRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -239,6 +426,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 			new Class[] { OAuthConsumer.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public OAuthConsumer toUnescapedModel() {
 		return this;
 	}
@@ -274,18 +462,15 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof OAuthConsumerClp)) {
 			return false;
 		}
 
-		OAuthConsumerClp oAuthConsumer = null;
-
-		try {
-			oAuthConsumer = (OAuthConsumerClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		OAuthConsumerClp oAuthConsumer = (OAuthConsumerClp)obj;
 
 		long primaryKey = oAuthConsumer.getPrimaryKey();
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -130,7 +130,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
 			jsonObject.put("redirect", redirect);
-			jsonObject.put("success", true);
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
 			ThemeDisplay themeDisplay =
@@ -140,7 +140,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 				themeDisplay.getLocale(), "your-request-failed-to-complete");
 
 			jsonObject.put("message", message);
-			jsonObject.put("success", false);
+			jsonObject.put("success", Boolean.FALSE);
 		}
 
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(

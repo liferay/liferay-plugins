@@ -1,5 +1,6 @@
 {
-	"layouts": [
+	"layoutTemplateId": "1_column",
+	"publicPages": [
 		{
 			"columns": [
 				[
@@ -14,6 +15,5 @@
 			"show_page_title": "false",
 			"title": "Welcome"
 		}
-	],
-	"layoutTemplateId": "1_column"
+	]
 }

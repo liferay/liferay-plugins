@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="@portlet.name@-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
+	<import file="@plugin.type.dir@/build-common-portlet.xml" />
 
 	<target name="compile">
 		<antcall target="build-common-plugin.compile" />
@@ -55,9 +55,8 @@
 	</target>
 
 	<target name="init-scala">
-		<taskdef resource="scala/tools/ant/antlib.xml">
+		<taskdef classpathref="lib.classpath" resource="scala/tools/ant/antlib.xml">
 			<classpath>
-				<pathelement location="${project.dir}/lib/scala-compiler.jar" />
 				<pathelement location="docroot/WEB-INF/lib/scala-library.jar" />
 			</classpath>
 		</taskdef>

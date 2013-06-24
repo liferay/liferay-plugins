@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -63,9 +63,10 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			{ "createDate", Types.BIGINT },
 			{ "fromUserId", Types.BIGINT },
 			{ "toUserId", Types.BIGINT },
-			{ "content", Types.VARCHAR }
+			{ "content", Types.VARCHAR },
+			{ "flag", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(1000) null)";
+	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(1000) null,flag INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Entry";
 	public static final String ORDER_BY_JPQL = " ORDER BY entry.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Chat_Entry.createDate DESC";
@@ -124,6 +125,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		attributes.put("fromUserId", getFromUserId());
 		attributes.put("toUserId", getToUserId());
 		attributes.put("content", getContent());
+		attributes.put("flag", getFlag());
 
 		return attributes;
 	}
@@ -158,6 +160,12 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 		if (content != null) {
 			setContent(content);
+		}
+
+		Integer flag = (Integer)attributes.get("flag");
+
+		if (flag != null) {
+			setFlag(flag);
 		}
 	}
 
@@ -268,6 +276,14 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		return GetterUtil.getString(_originalContent);
 	}
 
+	public int getFlag() {
+		return _flag;
+	}
+
+	public void setFlag(int flag) {
+		_flag = flag;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -308,6 +324,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		entryImpl.setFromUserId(getFromUserId());
 		entryImpl.setToUserId(getToUserId());
 		entryImpl.setContent(getContent());
+		entryImpl.setFlag(getFlag());
 
 		entryImpl.resetOriginalValues();
 
@@ -338,18 +355,15 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Entry)) {
 			return false;
 		}
 
-		Entry entry = null;
-
-		try {
-			entry = (Entry)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Entry entry = (Entry)obj;
 
 		long primaryKey = entry.getPrimaryKey();
 
@@ -407,12 +421,14 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			entryCacheModel.content = null;
 		}
 
+		entryCacheModel.flag = getFlag();
+
 		return entryCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{entryId=");
 		sb.append(getEntryId());
@@ -424,13 +440,15 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		sb.append(getToUserId());
 		sb.append(", content=");
 		sb.append(getContent());
+		sb.append(", flag=");
+		sb.append(getFlag());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.chat.model.Entry");
@@ -456,6 +474,10 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			"<column><column-name>content</column-name><column-value><![CDATA[");
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>flag</column-name><column-value><![CDATA[");
+		sb.append(getFlag());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -478,6 +500,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	private boolean _setOriginalToUserId;
 	private String _content;
 	private String _originalContent;
+	private int _flag;
 	private long _columnBitmask;
 	private Entry _escapedModel;
 }

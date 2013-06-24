@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -282,18 +282,15 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Module)) {
 			return false;
 		}
 
-		Module module = null;
-
-		try {
-			module = (Module)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		Module module = (Module)obj;
 
 		long primaryKey = module.getPrimaryKey();
 

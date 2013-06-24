@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="hooks" basedir="." default="deploy">
-	<property name="project.dir" value=".." />
-
+<project name="shared" basedir="." default="deploy">
 	<import file="../build-common-plugins.xml" />
 </project>

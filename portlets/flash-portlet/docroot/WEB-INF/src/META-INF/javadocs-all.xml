@@ -7,12 +7,16 @@
 		<author><![CDATA[Julio Camarero]]></author>
 		<method>
 			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 	</javadoc>
@@ -22,6 +26,9 @@
 		<author><![CDATA[Julio Camarero]]></author>
 		<method>
 			<name>getPortletIds</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 </javadocs>

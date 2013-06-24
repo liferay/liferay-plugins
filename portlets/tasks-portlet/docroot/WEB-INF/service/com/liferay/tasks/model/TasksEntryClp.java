@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -23,9 +23,12 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
+import com.liferay.tasks.service.ClpSerializer;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -178,6 +181,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setTasksEntryId(long tasksEntryId) {
 		_tasksEntryId = tasksEntryId;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTasksEntryId", long.class);
+
+				method.invoke(_tasksEntryRemoteModel, tasksEntryId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getGroupId() {
@@ -186,6 +202,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGroupId", long.class);
+
+				method.invoke(_tasksEntryRemoteModel, groupId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getCompanyId() {
@@ -194,6 +223,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCompanyId", long.class);
+
+				method.invoke(_tasksEntryRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getUserId() {
@@ -202,6 +244,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_tasksEntryRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -218,6 +273,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setUserName(String userName) {
 		_userName = userName;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_tasksEntryRemoteModel, userName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getCreateDate() {
@@ -226,6 +294,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setCreateDate(Date createDate) {
 		_createDate = createDate;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreateDate", Date.class);
+
+				method.invoke(_tasksEntryRemoteModel, createDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getModifiedDate() {
@@ -234,6 +315,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_tasksEntryRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getTitle() {
@@ -242,6 +336,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setTitle(String title) {
 		_title = title;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTitle", String.class);
+
+				method.invoke(_tasksEntryRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getPriority() {
@@ -250,6 +357,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setPriority(int priority) {
 		_priority = priority;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPriority", int.class);
+
+				method.invoke(_tasksEntryRemoteModel, priority);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public long getAssigneeUserId() {
@@ -258,6 +378,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setAssigneeUserId(long assigneeUserId) {
 		_assigneeUserId = assigneeUserId;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAssigneeUserId", long.class);
+
+				method.invoke(_tasksEntryRemoteModel, assigneeUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getAssigneeUserUuid() throws SystemException {
@@ -275,6 +408,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setResolverUserId(long resolverUserId) {
 		_resolverUserId = resolverUserId;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setResolverUserId", long.class);
+
+				method.invoke(_tasksEntryRemoteModel, resolverUserId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public String getResolverUserUuid() throws SystemException {
@@ -292,6 +438,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setDueDate(Date dueDate) {
 		_dueDate = dueDate;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDueDate", Date.class);
+
+				method.invoke(_tasksEntryRemoteModel, dueDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public Date getFinishDate() {
@@ -300,6 +459,19 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setFinishDate(Date finishDate) {
 		_finishDate = finishDate;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFinishDate", Date.class);
+
+				method.invoke(_tasksEntryRemoteModel, finishDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public int getStatus() {
@@ -308,22 +480,91 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setStatus(int status) {
 		_status = status;
+
+		if (_tasksEntryRemoteModel != null) {
+			try {
+				Class<?> clazz = _tasksEntryRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_tasksEntryRemoteModel, status);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
 	}
 
 	public java.lang.String getReporterFullName() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getReporterFullName";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getPriorityLabel() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getPriorityLabel";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getStatusLabel() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getStatusLabel";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public java.lang.String getAssigneeFullName() {
-		throw new UnsupportedOperationException();
+		try {
+			String methodName = "getAssigneeFullName";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	public BaseModel<?> getTasksEntryRemoteModel() {
@@ -332,6 +573,47 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setTasksEntryRemoteModel(BaseModel<?> tasksEntryRemoteModel) {
 		_tasksEntryRemoteModel = tasksEntryRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _tasksEntryRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_tasksEntryRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
 	}
 
 	public void persist() throws SystemException {
@@ -349,6 +631,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 			new Class[] { TasksEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
+	@Override
 	public TasksEntry toUnescapedModel() {
 		return this;
 	}
@@ -409,18 +692,15 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof TasksEntryClp)) {
 			return false;
 		}
 
-		TasksEntryClp tasksEntry = null;
-
-		try {
-			tasksEntry = (TasksEntryClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+		TasksEntryClp tasksEntry = (TasksEntryClp)obj;
 
 		long primaryKey = tasksEntry.getPrimaryKey();
 
