@@ -76,7 +76,7 @@ if (entry == null) {
 			</c:otherwise>
 		</c:choose>
 
-		<aui:select name="type">
+		<aui:select cssClass="type" name="type">
 
 			<%
 			for (String curType : AnnouncementsEntryConstants.TYPES) {
@@ -90,16 +90,18 @@ if (entry == null) {
 
 		</aui:select>
 
-		<aui:select name="priority">
+		<aui:select cssClass="priority" name="priority">
 			<aui:option label="normal" selected="<%= (entry != null) && (entry.getPriority() == 0) %>" value="0" />
 			<aui:option label="important" selected="<%= (entry != null) && (entry.getPriority() == 1) %>" value="1" />
 		</aui:select>
 
-		<aui:input cssClass="title" name="title">
-			<aui:validator name="required" />
-		</aui:input>
+		<div class="title-container">
+			<aui:input cssClass="title" name="title">
+				<aui:validator name="required" />
+			</aui:input>
 
-		<aui:input cssClass="url" name="url" />
+			<aui:input cssClass="url" name="url" />
+		</div>
 
 		<aui:field-wrapper label="content">
 			<liferay-ui:input-editor height="150" toolbarSet="Basic" width="100%" />
@@ -107,9 +109,11 @@ if (entry == null) {
 			<aui:input name="content" type="hidden" />
 		</aui:field-wrapper>
 
-		<aui:input dateTogglerCheckboxLabel="display-immediately" disabled="<%= displayImmediately %>" name="displayDate" />
+		<div class="date-container">
+			<aui:input cssClass="display-date" dateTogglerCheckboxLabel="display-immediately" disabled="<%= displayImmediately %>" name="displayDate" />
 
-		<aui:input name="expirationDate" />
+			<aui:input cssClass="expiration-date" name="expirationDate" />
+		</div>
 	</aui:fieldset>
 
 	<aui:button-row>

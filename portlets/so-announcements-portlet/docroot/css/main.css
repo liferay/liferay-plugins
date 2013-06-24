@@ -1,6 +1,10 @@
 @import "compass";
 
 .so-announcements-portlet {
+	.admin-actions {
+		margin-bottom: 1em;
+	}
+
 	.entry-item {
 		border-bottom: 1px solid #C8C9CA;
 		min-height: 45px;
@@ -133,8 +137,45 @@
 	}
 }
 
+.aui-dialog-iframe-popup {
+	select {
+		margin: 0;
+	}
+
+	.display-date, .distribution-scope, .expiration-date, .priority, .type, .title, .url {
+		.aui-field-content {
+			display: inline-block;
+		}
+	}
+
+	.display-date, .distribution-scope, .title, .type {
+		.aui-field-content {
+			margin-right: 1em;
+		}
+	}
+
+	.title, .url {
+		.aui-field-input-text {
+			width: 350px;
+		}
+	}
+
+	.distribution-scope-container {
+		display: inline;
+	}
+
+	#_1_WAR_soannouncementsportlet_ocerSearchContainerSearchContainer td.last {
+		white-space: nowrap;
+	}
+
+	.entry {
+		margin: 0;
+		padding: 0;
+	}
+}
+
 /* ---------- Extras ---------- */
 
-.so-announcements-portlet .entry-footer-toolbar {
-	@include box-shadow(0 0 9px 0 #999);
+.so-announcements-portlet .announcement-collapsed .entry-footer-toolbar {
+	@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, .8));
 }
