@@ -26,6 +26,7 @@
 <c:if test="<%= permissionChecker.isGroupAdmin(layout.getGroupId()) || permissionChecker.isGroupOwner(layout.getGroupId()) %>">
 	<div class="admin-actions">
 		<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
+		<aui:button onClick='<%= renderResponse.getNamespace() + "manageEntries()" %>' value="manage-entries" />
 	</div>
 </c:if>
 
@@ -110,6 +111,12 @@ results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes
 				}
 			}
 		}
+	}
+
+	function <portlet:namespace />manageEntries() {
+		<portlet:renderURL var="manageEntriesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/manage_entries.jsp" /></portlet:renderURL>
+
+		<portlet:namespace />openWindow('<%= manageEntriesURL %>', '<%= LanguageUtil.get(pageContext, "manage-entries") %>', true, 800);
 	}
 
 	function <portlet:namespace />markEntry(entryId) {
