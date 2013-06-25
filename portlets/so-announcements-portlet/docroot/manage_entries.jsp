@@ -48,16 +48,7 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 
 	</aui:fieldset>
 
-	<c:choose>
-		<c:when test="<%= distributionScopeArray.length > 0 %>">
-			<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
-		</c:when>
-		<c:otherwise>
-			<div class="alert alert-info">
-				<liferay-ui:message key="please-select-a-distribution-scope" />
-			</div>
-		</c:otherwise>
-	</c:choose>
+	<aui:button onClick='<%= renderResponse.getNamespace() + "manageAddEntry();" %>' value="add-entry" />
 
 	<c:if test="<%= Validator.isNotNull(distributionScope) %>">
 		<div class="separator"><!-- --></div>
@@ -135,9 +126,23 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 	</c:if>
 </aui:form>
 
+<%
+PortletURL addEntryURL = renderResponse.createRenderURL();
+
+addEntryURL.setParameter("mvcPath", "/edit_entry.jsp");
+addEntryURL.setParameter("redirect", currentURL);
+addEntryURL.setWindowState(LiferayWindowState.POP_UP);
+%>
+
 <aui:script>
-	function <portlet:namespace />addEntry() {
-		location.href = '<portlet:renderURL><portlet:param name="struts_action" value="/announcements/edit_entry" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="distributionScope" value="<%= distributionScope %>" /></portlet:renderURL>';
+	function <portlet:namespace />manageAddEntry() {
+		var A = AUI();
+
+		var optValue = A.one('select[name="<portlet:namespace />distributionScope"]').get('value');
+
+		var addEntryURL = "<%= addEntryURL.toString() %>&distributionScope=" + optValue;
+
+		window.location = addEntryURL;
 	}
 
 	function <portlet:namespace />selectDistributionScope(distributionScope) {
