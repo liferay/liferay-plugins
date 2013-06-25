@@ -77,6 +77,87 @@ import org.apache.commons.httpclient.methods.GetMethod;
  */
 public class AppManagerPortlet extends MVCPortlet {
 
+	public void installLocalApp(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		String fileName = null;
+
+		String deploymentContext = ParamUtil.getString(
+			actionRequest, "deploymentContext");
+
+		if (Validator.isNotNull(deploymentContext)) {
+			fileName =
+				BaseDeployer.DEPLOY_TO_PREFIX + deploymentContext + ".war";
+		}
+		else {
+			fileName = GetterUtil.getString(
+				uploadPortletRequest.getFileName("file"));
+
+			int pos = fileName.lastIndexOf(CharPool.PERIOD);
+
+			if (pos != -1) {
+				deploymentContext = fileName.substring(0, pos);
+			}
+		}
+
+		File file = uploadPortletRequest.getFile("file");
+
+		byte[] bytes = FileUtil.getBytes(file);
+
+		if ((bytes == null) || (bytes.length == 0)) {
+			SessionErrors.add(actionRequest, UploadException.class.getName());
+
+			return;
+		}
+
+		try {
+			PluginPackageUtil.registerPluginPackageInstallation(
+				deploymentContext);
+
+			String source = file.toString();
+
+			String deployDir = PrefsPropsUtil.getString(
+				PropsKeys.AUTO_DEPLOY_DEPLOY_DIR,
+				PropsValues.AUTO_DEPLOY_DEPLOY_DIR);
+
+			String destination = deployDir + StringPool.SLASH + fileName;
+
+			FileUtil.copyFile(source, destination);
+
+			SessionMessages.add(actionRequest, "pluginUploaded");
+		}
+		finally {
+			PluginPackageUtil.endPluginPackageInstallation(deploymentContext);
+		}
+	}
+
+	public void installRemoteApp(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		try {
+			String url = ParamUtil.getString(actionRequest, "url");
+
+			URL urlObj = new URL(url);
+
+			String host = urlObj.getHost();
+
+			if (host.endsWith(".sf.net") || host.endsWith(".sourceforge.net")) {
+				installRemoteAppSourceForge(urlObj.getPath(), actionRequest);
+			}
+			else {
+				installRemoteApp(url, urlObj, actionRequest, true);
+			}
+		}
+		catch (MalformedURLException murle) {
+			SessionErrors.add(actionRequest, "invalidUrl", murle);
+		}
+	}
+
 	public void uninstallApp(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -199,82 +280,7 @@ public class AppManagerPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void localDeploy(ActionRequest actionRequest) throws Exception {
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(actionRequest);
-
-		String fileName = null;
-
-		String deploymentContext = ParamUtil.getString(
-			actionRequest, "deploymentContext");
-
-		if (Validator.isNotNull(deploymentContext)) {
-			fileName =
-				BaseDeployer.DEPLOY_TO_PREFIX + deploymentContext + ".war";
-		}
-		else {
-			fileName = GetterUtil.getString(
-				uploadPortletRequest.getFileName("file"));
-
-			int pos = fileName.lastIndexOf(CharPool.PERIOD);
-
-			if (pos != -1) {
-				deploymentContext = fileName.substring(0, pos);
-			}
-		}
-
-		File file = uploadPortletRequest.getFile("file");
-
-		byte[] bytes = FileUtil.getBytes(file);
-
-		if ((bytes == null) || (bytes.length == 0)) {
-			SessionErrors.add(actionRequest, UploadException.class.getName());
-
-			return;
-		}
-
-		try {
-			PluginPackageUtil.registerPluginPackageInstallation(
-				deploymentContext);
-
-			String source = file.toString();
-
-			String deployDir = PrefsPropsUtil.getString(
-				PropsKeys.AUTO_DEPLOY_DEPLOY_DIR,
-				PropsValues.AUTO_DEPLOY_DEPLOY_DIR);
-
-			String destination = deployDir + StringPool.SLASH + fileName;
-
-			FileUtil.copyFile(source, destination);
-
-			SessionMessages.add(actionRequest, "pluginUploaded");
-		}
-		finally {
-			PluginPackageUtil.endPluginPackageInstallation(deploymentContext);
-		}
-	}
-
-	protected void remoteDeploy(ActionRequest actionRequest) throws Exception {
-		try {
-			String url = ParamUtil.getString(actionRequest, "url");
-
-			URL urlObj = new URL(url);
-
-			String host = urlObj.getHost();
-
-			if (host.endsWith(".sf.net") || host.endsWith(".sourceforge.net")) {
-				remoteDeploySourceForge(urlObj.getPath(), actionRequest);
-			}
-			else {
-				remoteDeploy(url, urlObj, actionRequest, true);
-			}
-		}
-		catch (MalformedURLException murle) {
-			SessionErrors.add(actionRequest, "invalidUrl", murle);
-		}
-	}
-
-	protected int remoteDeploy(
+	protected int installRemoteApp(
 			String url, URL urlObj, ActionRequest actionRequest,
 			boolean failOnError)
 		throws Exception {
@@ -420,7 +426,7 @@ public class AppManagerPortlet extends MVCPortlet {
 		return responseCode;
 	}
 
-	protected void remoteDeploySourceForge(
+	protected void installRemoteAppSourceForge(
 			String path, ActionRequest actionRequest)
 		throws Exception {
 
@@ -442,7 +448,7 @@ public class AppManagerPortlet extends MVCPortlet {
 					failOnError = true;
 				}
 
-				int responseCode = remoteDeploy(
+				int responseCode = installRemoteApp(
 					url, urlObj, actionRequest, failOnError);
 
 				if (responseCode == HttpServletResponse.SC_OK) {
