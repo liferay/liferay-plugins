@@ -61,6 +61,7 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 		List<String> headerNames = new ArrayList<String>();
 
 		headerNames.add("title");
+		headerNames.add("author");
 		headerNames.add("type");
 		headerNames.add("modified-date");
 		headerNames.add("display-date");
@@ -96,21 +97,27 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 
 			row.addText(entry.getTitle(), rowURL);
 
+			// Author
+
+			User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
+
+			row.addText(entryUser.getFullName());
+
 			// Type
 
-			row.addText(LanguageUtil.get(pageContext, entry.getType()), rowURL);
+			row.addText(LanguageUtil.get(pageContext, entry.getType()));
 
 			// Modified date
 
-			row.addText(dateFormatDate.format(entry.getModifiedDate()), rowURL);
+			row.addText(dateFormatDate.format(entry.getModifiedDate()));
 
 			// Display date
 
-			row.addText(dateFormatDate.format(entry.getDisplayDate()), rowURL);
+			row.addText(dateFormatDate.format(entry.getDisplayDate()));
 
 			// Expiration date
 
-			row.addText(dateFormatDate.format(entry.getExpirationDate()), rowURL);
+			row.addText(dateFormatDate.format(entry.getExpirationDate()));
 
 			// Action
 
