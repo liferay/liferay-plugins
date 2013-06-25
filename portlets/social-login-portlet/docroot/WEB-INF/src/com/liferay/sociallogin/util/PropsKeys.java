@@ -17,21 +17,19 @@ package com.liferay.sociallogin.util;
 /**
  * @author Terry Jia
  */
-public class PropsKeys implements com.liferay.portal.kernel.util.PropsKeys {
+public class PropsKeys {
 
-	public static final String SOCIAL_LOGIN_QQ_CONNECT_APP_ID =
-		"social.login.qq.connect.app.id";
+	public static final String QQ_CONNECT_APP_ID = "qq.connect.app.id";
 
-	public static final String SOCIAL_LOGIN_QQ_CONNECT_APP_KEY =
-		"social.login.qq.connect.app.key";
+	public static final String QQ_CONNECT_APP_KEY = "qq.connect.app.key";
 
-	public static final String SOCIAL_LOGIN_QQ_CONNECT_AUTH_ENABLED =
-		"social.login.qq.connect.auth.enabled";
+	public static final String QQ_CONNECT_AUTH_ENABLED =
+		"qq.connect.auth.enabled";
 
-	public static final String SOCIAL_LOGIN_QQ_CONNECT_REDIRECT_URI =
-		"social.login.qq.connect.redirect.uri";
+	public static final String QQ_CONNECT_OAUTH_REDIRECT_URI =
+		"qq.connect.oauth.redirect.uri";
 
-	public static final String SOCIAL_LOGIN_QQ_CONNECT_SCOPE =
-		"social.login.qq.connect.scope";
+	public static final String QQ_CONNECT_OAUTH_SCOPE =
+		"qq.connect.oauth.scope";
 
 }

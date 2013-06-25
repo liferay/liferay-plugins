@@ -12,19 +12,19 @@
  * details.
  */
 
-package com.liferay.sociallogin.util.tencent.qq;
-
-import com.liferay.sociallogin.util.Constants;
+package com.liferay.sociallogin.util;
 
 /**
  * @author Terry Jia
  */
-public class QqConstants extends Constants {
+public class Constants {
 
-	public static final String APP_ID = "app_ID";
+	public static final String CLIENT_ID = "client_id";
 
-	public static final String APP_KEY = "app_KEY";
+	public static final String REDIRECT_URI = "redirect_uri";
 
-	public static final String QQ_OPEN_ID = "qqOpenId";
+	public static final String RESPONSE_TYPE = "response_type";
+
+	public static final String SCOPE = "scope";
 
 }

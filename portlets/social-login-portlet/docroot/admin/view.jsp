@@ -28,15 +28,15 @@ String qqConnectScope = QqConnectUtil.getScope(company.getCompanyId());
 
 <aui:form action="<%= updateQqAuthSettingURL %>" method="post" name="fm">
 	<aui:fieldset>
-		<aui:input label="enabled" name='<%= "settings--" + PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_AUTH_ENABLED + "--" %>' type="checkbox" value="<%= qqConnectAuthEnabled %>" />
+		<aui:input label="enabled" name='<%= "settings--" + PropsKeys.QQ_CONNECT_AUTH_ENABLED + "--" %>' type="checkbox" value="<%= qqConnectAuthEnabled %>" />
 
-		<aui:input label="qq-app-id" name='<%= "settings--" + PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_APP_ID + "--" %>' type="text" value="<%= qqConnectAppId %>" />
+		<aui:input label="qq-app-id" name='<%= "settings--" + PropsKeys.QQ_CONNECT_APP_ID + "--" %>' type="text" value="<%= qqConnectAppId %>" />
 
-		<aui:input label="qq-app-key" name='<%= "settings--" + PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_APP_KEY + "--" %>' type="text" value="<%= qqConnectAppKey %>" />
+		<aui:input label="qq-app-key" name='<%= "settings--" + PropsKeys.QQ_CONNECT_APP_KEY + "--" %>' type="text" value="<%= qqConnectAppKey %>" />
 
-		<aui:input label="qq-redirect-uri" name='<%= "settings--" + PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_REDIRECT_URI + "--" %>' type="text" value="<%= qqConnectRedirectURI %>" />
+		<aui:input label="qq-redirect-uri" name='<%= "settings--" + PropsKeys.QQ_CONNECT_OAUTH_REDIRECT_URI + "--" %>' type="text" value="<%= qqConnectRedirectURI %>" />
 
-		<aui:input label="qq-scope" name='<%= "settings--" + PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_SCOPE + "--" %>' type="text" value="<%= qqConnectScope %>" />
+		<aui:input label="qq-scope" name='<%= "settings--" + PropsKeys.QQ_CONNECT_OAUTH_SCOPE + "--" %>' type="text" value="<%= qqConnectScope %>" />
 	</aui:fieldset>
 
 	<aui:button-row>

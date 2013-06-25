@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sociallogin.util.BaseConnect;
 import com.liferay.sociallogin.util.PropsKeys;
+import com.liferay.sociallogin.util.PropsValues;
 
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.OpenID;
@@ -58,12 +59,14 @@ public class QqConnectImpl extends BaseConnect implements QqConnect {
 
 	public String getClientId(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_APP_ID);
+			companyId, PropsKeys.QQ_CONNECT_APP_ID,
+			PropsValues.QQ_CONNECT_APP_ID);
 	}
 
 	public String getClientSecret(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_APP_KEY);
+			companyId, PropsKeys.QQ_CONNECT_APP_KEY,
+			PropsValues.QQ_CONNECT_APP_KEY);
 	}
 
 	public String getOpenId(String accessToken) {
@@ -80,17 +83,20 @@ public class QqConnectImpl extends BaseConnect implements QqConnect {
 
 	public String getRedirectURI(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_REDIRECT_URI);
+			companyId, PropsKeys.QQ_CONNECT_OAUTH_REDIRECT_URI,
+			PropsValues.QQ_CONNECT_OAUTH_REDIRECT_URI);
 	}
 
 	public String getScope(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_SCOPE);
+			companyId, PropsKeys.QQ_CONNECT_OAUTH_SCOPE,
+			PropsValues.QQ_CONNECT_OAUTH_SCOPE);
 	}
 
 	public boolean isEnabled(long companyId) throws SystemException {
 		return PrefsPropsUtil.getBoolean(
-			companyId, PropsKeys.SOCIAL_LOGIN_QQ_CONNECT_AUTH_ENABLED);
+			companyId, PropsKeys.QQ_CONNECT_AUTH_ENABLED,
+			PropsValues.QQ_CONNECT_AUTH_ENABLED);
 	}
 
 	public void updateConnectConfigProperties(
