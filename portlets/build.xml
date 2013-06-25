@@ -115,9 +115,9 @@ speed-filters-enabled=false
 				</if>
 
 				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
-					<replacetoken><![CDATA[</instanceable>]]></replacetoken>
-					<replacevalue><![CDATA[</instanceable>
-<ajaxable>false</ajaxable>]]></replacevalue>
+					<replacetoken><![CDATA[</icon>]]></replacetoken>
+					<replacevalue><![CDATA[</icon>
+		<ajaxable>false</ajaxable>]]></replacevalue>
 				</replace>
 
 				<replaceregexp match="&lt;/header-portlet-css&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/header-portlet-css&gt;" flags="s">
@@ -168,7 +168,7 @@ portal-dependency-jars=scala-library.jar</echo>
 					<replacevalue><![CDATA[<portlet-class>@portlet.java.package.name@.@portlet.java.class.name@Portlet</portlet-class>]]></replacevalue>
 				</replace>
 
-				<replaceregexp match="&lt;/instanceable&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/instanceable&gt;" flags="s">
+				<replaceregexp match="&lt;/icon&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/icon&gt;" flags="s">
 					<fileset
 						dir="${portlet.dir}/docroot/WEB-INF"
 						includes="liferay-portlet.xml"
@@ -176,9 +176,9 @@ portal-dependency-jars=scala-library.jar</echo>
 				</replaceregexp>
 
 				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
-					<replacetoken><![CDATA[</instanceable>]]></replacetoken>
-					<replacevalue><![CDATA[</instanceable>
-<ajaxable>false</ajaxable>]]></replacevalue>
+					<replacetoken><![CDATA[</icon>]]></replacetoken>
+					<replacevalue><![CDATA[</icon>
+		<ajaxable>false</ajaxable>]]></replacevalue>
 				</replace>
 			</then>
 		</if>
@@ -210,7 +210,7 @@ portal-dependency-jars=vaadin.jar</echo>
 					<replacevalue><![CDATA[<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>]]></replacevalue>
 				</replace>
 
-				<replaceregexp match="&lt;/instanceable&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/instanceable&gt;" flags="s">
+				<replaceregexp match="&lt;/icon&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/icon&gt;" flags="s">
 					<fileset
 						dir="${portlet.dir}/docroot/WEB-INF"
 						includes="liferay-portlet.xml"
@@ -218,9 +218,9 @@ portal-dependency-jars=vaadin.jar</echo>
 				</replaceregexp>
 
 				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
-					<replacetoken><![CDATA[</instanceable>]]></replacetoken>
-					<replacevalue><![CDATA[</instanceable>
-<ajaxable>false</ajaxable>]]></replacevalue>
+					<replacetoken><![CDATA[</icon>]]></replacetoken>
+					<replacevalue><![CDATA[</icon>
+		<ajaxable>false</ajaxable>]]></replacevalue>
 				</replace>
 
 				<delete includeemptydirs="true">
