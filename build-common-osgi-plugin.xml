@@ -57,6 +57,8 @@
 	</target>
 
 	<target name="compile">
+		<antcall target="compile-import-shared" />
+
 		<mkdir dir="${osgi.plugin.classes.dir}" />
 
 		<copy todir="${osgi.plugin.classes.dir}">
