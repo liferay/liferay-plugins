@@ -13,8 +13,9 @@ if [ -z "$1" ]; then
 	echo only needed because there is a space in the display name.
 	echo
 	echo A third value can be passed to specify the portlet framework to use. Valid
-	echo values are "mvc", "jsf", or "vaadin". The default value is "mvc". The quotation
-	echo marks are not needed.
+	echo values are \"jsf\", \"icefaces\", \"liferay_faces_alloy\", \"mvc\", \"primefaces\",
+	echo \"richfaces\", or \"vaadin\". The default value is \"mvc\". The quotation marks are
+	echo not needed.
 
 	exit 127
 fi
