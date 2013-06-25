@@ -23,13 +23,13 @@ public class WorkflowTaskCreateDateComparator
 	extends BaseWorkflowTaskCreateDateComparator {
 
 	public static final String ORDER_BY_ASC =
-		"createDate ASC, kaleoTaskInstanceId ASC";
+		"createDate ASC, kaleoTaskInstanceTokenId ASC";
 
 	public static final String ORDER_BY_DESC =
-		"createDate DESC, kaleoTaskInstanceId DESC";
+		"createDate DESC, kaleoTaskInstanceTokenId DESC";
 
 	public static final String[] ORDER_BY_FIELDS =
-		{"createDate", "kaleoTaskInstanceId"};
+		{"createDate", "kaleoTaskInstanceTokenId"};
 
 	public WorkflowTaskCreateDateComparator() {
 		super();
