@@ -17,6 +17,8 @@
  */
 --%>
 
+<%@ include file="/init.jsp" %>
+
 <%
 String distributionScope = ParamUtil.getString(request, "distributionScope");
 
@@ -42,7 +44,7 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 		boolean submitOnChange = true;
 		%>
 
-		<%@ include file="/html/portlet/announcements/entry_select_scope.jspf" %>
+		<%@ include file="/entry_select_scope.jspf" %>
 
 	</aui:fieldset>
 
@@ -121,7 +123,7 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 
 			// Action
 
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/announcements/view_manage_entries_entry_action.jsp");
+			row.addJSP("/manage_entries_entry_action.jsp", application, request, response);
 
 			// Add result row
 
