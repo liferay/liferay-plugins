@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -189,9 +190,6 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			displayDateHour += 12;
 		}
 
-		boolean displayImmediately = ParamUtil.getBoolean(
-			actionRequest, "displayImmediately");
-
 		int expirationDateMonth = ParamUtil.getInteger(
 			actionRequest, "expirationDateMonth");
 		int expirationDateDay = ParamUtil.getInteger(
@@ -209,6 +207,19 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			expirationDateHour += 12;
 		}
 
+		boolean displayImmediately = ParamUtil.getBoolean(
+			actionRequest, "displayImmediately");
+
+		if (displayImmediately) {
+			Calendar calendar = CalendarFactoryUtil.getCalendar();
+
+			displayDateMonth = calendar.get(Calendar.MONTH);
+			displayDateDay = calendar.get(Calendar.DAY_OF_MONTH);
+			displayDateYear = calendar.get(Calendar.YEAR);
+			displayDateHour = calendar.get(Calendar.HOUR_OF_DAY);
+			displayDateMinute = calendar.get(Calendar.MINUTE);
+		}
+
 		int priority = ParamUtil.getInteger(actionRequest, "priority");
 		boolean alert = ParamUtil.getBoolean(actionRequest, "alert");
 
@@ -219,9 +230,9 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			AnnouncementsEntryServiceUtil.addEntry(
 				themeDisplay.getPlid(), classNameId, classPK, title, content,
 				url, type, displayDateMonth, displayDateDay, displayDateYear,
-				displayDateHour, displayDateMinute, displayImmediately,
-				expirationDateMonth, expirationDateDay, expirationDateYear,
-				expirationDateHour, expirationDateMinute, priority, alert);
+				displayDateHour, displayDateMinute, expirationDateMonth,
+				expirationDateDay, expirationDateYear, expirationDateHour,
+				expirationDateMinute, priority, alert);
 		}
 		else {
 

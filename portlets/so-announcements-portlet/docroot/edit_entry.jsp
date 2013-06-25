@@ -109,7 +109,16 @@ if (entry == null) {
 		</aui:field-wrapper>
 
 		<div class="date-container">
-			<aui:input cssClass="display-date" dateTogglerCheckboxLabel="display-immediately" disabled="<%= displayImmediately %>" name="displayDate" />
+			<aui:input disabled="<%= displayImmediately %>" name="displayDate" />
+
+			<c:if test="<%= displayImmediately %>">
+
+				<%
+				String taglibDispLayImmediatelyOnClick = renderResponse.getNamespace() + "toggleDisplayDate('displayDate', this.checked);";
+				%>
+
+				<aui:input label="display-immediately" name="displayImmediately" onClick="<%= taglibDispLayImmediatelyOnClick %>" type="checkbox" value="<%= displayImmediately %>" />
+			</c:if>
 
 			<aui:input cssClass="expiration-date" name="expirationDate" />
 		</div>
@@ -177,4 +186,23 @@ if (entry == null) {
 			}
 		);
 	}
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />toggleDisplayDate',
+		function(date, checked) {
+			var A = AUI();
+
+			document.<portlet:namespace />fm[date + "Hour"].disabled = checked;
+			document.<portlet:namespace />fm[date + "Minute"].disabled = checked;
+			document.<portlet:namespace />fm[date + "AmPm"].disabled = checked;
+
+			var calendarWidget = A.Widget.getByNode(document.<portlet:namespace />fm[date + "Month"]);
+
+			if (calendarWidget) {
+				calendarWidget.set('disabled', checked);
+			}
+		},
+		['aui-base']
+	);
 </aui:script>
