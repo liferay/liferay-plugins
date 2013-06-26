@@ -36,6 +36,20 @@
 			</span>
 		</c:if>
 
+		<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.DELETE) %>">
+			<span class="action delete-entry">
+				<liferay-portlet:actionURL name="deleteEntry" var="deleteURL">
+					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+				</liferay-portlet:actionURL>
+
+				<liferay-ui:icon-delete
+					label="<%= true %>"
+					url="<%= deleteURL %>"
+				/>
+			</span>
+		</c:if>
+
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<span class="action control-entry">
 				<a href="javascript:<%= renderResponse.getNamespace() %>handleEntry(<%= entry.getEntryId() %>);">
