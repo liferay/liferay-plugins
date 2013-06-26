@@ -48,7 +48,7 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 	<liferay-ui:success key="announcementDeleted" message="the-announcement-was-successfully-deleted" />
 	<liferay-ui:success key="announcementUpdated" message="the-announcement-was-successfully-updated" />
 
-	<aui:fieldset id="fieldSet">
+	<aui:fieldset cssClass="distribution-scope-container">
 
 		<%
 		boolean submitOnChange = true;
