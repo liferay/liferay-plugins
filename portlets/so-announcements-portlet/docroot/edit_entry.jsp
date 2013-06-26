@@ -128,6 +128,41 @@ if (entry == null) {
 	</aui:button-row>
 </aui:form>
 
+<div class="entry aui-helper-hidden" id="<%= renderResponse.getNamespace() + "preview" %>">
+	<div class="user-portrait">
+		<span class="avatar">
+
+			<%
+			User currentUser = UserLocalServiceUtil.getUserById(themeDisplay.getUserId());
+			%>
+
+			<a href="<%= currentUser.getDisplayURL(themeDisplay) %>">
+				<img alt="<%= currentUser.getFullName() %>" src="<%= currentUser.getPortraitURL(themeDisplay) %>" />
+			</a>
+		</span>
+	</div>
+
+	<div class="entry-data">
+		<div class="entry-header">
+			<div class="entry-time">
+				<%= LanguageUtil.get(pageContext, "about-a-minute-ago") %>
+			</div>
+
+			<div class="entry-action">
+				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + currentUser.getDisplayURL(themeDisplay) + "\">" + currentUser.getFullName() + "</a>", "<span class=\"scope\" id=\"" + renderResponse.getNamespace() + "scope\"></span>"}) %>
+			</div>
+		</div>
+
+		<div class="entry-body">
+			<div class="title" id="<%= renderResponse.getNamespace() + "title" %>"></div>
+
+			<div class="entry-content-container" id="<%= renderResponse.getNamespace() + "entryContentContainer" %>">
+				<div class="entry-content" id="<%= renderResponse.getNamespace() + "entryContent" %>"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <aui:script>
 	function initEditor() {
 		var ckEditor = CKEDITOR.instances["editor"];
