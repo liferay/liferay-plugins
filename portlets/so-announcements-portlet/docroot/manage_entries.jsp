@@ -103,6 +103,7 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 			editURL.setParameter("mvcPath", "/edit_entry.jsp");
 			editURL.setParameter("redirect", currentURL);
 			editURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
+			editURL.setParameter("fromManageEntries", "true");
 			editURL.setWindowState(LiferayWindowState.POP_UP);
 
 			// Title
@@ -150,6 +151,7 @@ PortletURL addEntryURL = renderResponse.createRenderURL();
 
 addEntryURL.setParameter("mvcPath", "/edit_entry.jsp");
 addEntryURL.setParameter("redirect", currentURL);
+addEntryURL.setParameter("fromManageEntries", "true");
 addEntryURL.setWindowState(LiferayWindowState.POP_UP);
 %>
 

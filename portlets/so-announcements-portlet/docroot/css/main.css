@@ -1,6 +1,11 @@
 @import "compass";
 
 .so-announcements-portlet {
+	.back-link {
+		float: right;
+		font-weight: bold;
+	}
+
 	.admin-actions {
 		margin-bottom: 1em;
 	}
