@@ -902,6 +902,20 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticle.getDescription(), null, null, null, 0, 0, null, false);
 	}
 
+	public void updateKBArticlePriority(KBArticle kbArticle, double priority)
+		throws PortalException, SystemException {
+
+		List<KBArticle> kbArticleVersions = getKBArticleVersions(
+			kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (KBArticle kbArticleVersion : kbArticleVersions) {
+			kbArticle.setPriority(priority);
+
+			kbArticlePersistence.update(kbArticleVersion);
+		}
+	}
+
 	public void updateKBArticleResources(
 			KBArticle kbArticle, String[] groupPermissions,
 			String[] guestPermissions)
@@ -932,21 +946,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				kbArticle.getResourcePrimKey());
 
 			updateKBArticlePriority(kbArticle, priority);
-		}
-	}
-
-	public void updateKBArticlePriority(
-			KBArticle kbArticle, double priority)
-		throws PortalException, SystemException {
-
-		List<KBArticle> kbArticleVersions = getKBArticleVersions(
-			kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-		for (KBArticle kbArticleVersion : kbArticleVersions) {
-			kbArticle.setPriority(priority);
-
-			kbArticlePersistence.update(kbArticleVersion);
 		}
 	}
 
