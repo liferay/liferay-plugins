@@ -43,6 +43,11 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 %>
 
 <aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
+
+	<liferay-ui:success key="announcementAdded" message="the-announcement-was-successfully-added" />
+	<liferay-ui:success key="announcementDeleted" message="the-announcement-was-successfully-deleted" />
+	<liferay-ui:success key="announcementUpdated" message="the-announcement-was-successfully-updated" />
+
 	<aui:fieldset id="fieldSet">
 
 		<%
