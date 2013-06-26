@@ -82,8 +82,9 @@ public class WeatherWebCacheItem implements WebCacheItem {
 
 		Attribute iconAttribute = weatherElement.attribute("icon");
 
-		String iconURL = "http://openweathermap.org/img/w/" +
-			iconAttribute.getText() + ".png";
+		String iconURL =
+			"http://openweathermap.org/img/w/" + iconAttribute.getText() +
+				".png";
 
 		return new Weather(_zip, cityId, iconURL, temperature);
 	}
