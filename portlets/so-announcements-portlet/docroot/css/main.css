@@ -203,6 +203,32 @@
 	}
 }
 
+.portlet-configuration {
+	.modified-notice {
+		color: #090;
+		font-weight: bold;
+	}
+
+	#soAnnouncementsDisplaySettingsPanel .aui-field-label {
+		display: inline;
+		margin-right: 1em;
+	}
+
+	#soAnnouncementsDisplayPanel {
+		.customize-announcements-displayed {
+			display: block;
+			margin-bottom: 1em;
+
+			.aui-choice-label {
+				font-weight: bold;
+			}
+		}
+		.aui-tabview-list {
+			margin-top: 1em;
+		}
+	}
+}
+
 /* ---------- Internet Explorer ---------- */
 
 .ie6, .ie7 {
