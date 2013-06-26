@@ -62,8 +62,20 @@
 
 		.user-notification {
 			a {
+				clear: both;
+				color: #333333;
+				display: block;
+				font-weight: normal;
+				padding: 5px;
 				white-space: normal;
 			}
+
+			a:hover {
+				background-color: #0DB5E7;
+				color: #FFF;
+				text-decoration: none;
+			}
+
 
 			.icon-remove-circle {
 				left: 330px;
@@ -174,18 +186,7 @@
 		.user-notification {
 			a {
 				border-bottom: 1px solid #D5D5D5;
-				clear: both;
-				color: #333333;
-				display: block;
-				font-weight: normal;
 				padding: 15px;
-				white-space: nowrap;
-			}
-
-			a:hover {
-				text-decoration: none;
-				color: #FFF;
-				background-color: #0DB5E7;
 			}
 		}
 	}
