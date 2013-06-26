@@ -135,6 +135,20 @@
 			cursor: pointer;
 			padding: .2em .5em;
 		}
+
+		.aui-toggler-header-collapsed {
+			background: url(@theme_image_path@/portlet/maximize.png) no-repeat 99% 50%;
+		}
+
+		.aui-toggler-header-expanded {
+			background: url(@theme_image_path@/portlet/minimize.png) no-repeat 99% 50%;
+		}
+
+		.aui-toggler-content-collapsed {
+			display: block;
+			height: 0;
+			overflow: hidden;
+		}
 	}
 
 	.entry {
