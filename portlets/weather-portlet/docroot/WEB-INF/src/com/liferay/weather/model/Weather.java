@@ -91,6 +91,10 @@ public class Weather implements Serializable {
 		_barometerDirection = barometerDirection;
 	}
 
+	public void setCityId(String cityId) {
+		_cityId = cityId;
+	}
+
 	public void setConditions(String conditions) {
 		_conditions = conditions;
 	}
@@ -109,10 +113,6 @@ public class Weather implements Serializable {
 
 	public void setZip(String zip) {
 		_zip = zip;
-	}
-
-	public void String(String cityId) {
-		_cityId = cityId;
 	}
 
 	private float _barometer;

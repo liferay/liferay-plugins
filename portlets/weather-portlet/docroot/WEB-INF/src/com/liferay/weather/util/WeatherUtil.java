@@ -14,7 +14,6 @@
 
 package com.liferay.weather.util;
 
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
 import com.liferay.portal.kernel.webcache.WebCachePoolUtil;
@@ -26,13 +25,7 @@ import com.liferay.weather.model.Weather;
 public class WeatherUtil {
 
 	public static Weather getWeather(String zip) {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(WeatherUtil.class.getName());
-		sb.append(StringPool.PERIOD);
-		sb.append(zip);
-
-		String key = sb.toString();
+		String key = WeatherUtil.class.getName() + StringPool.PERIOD + zip;
 
 		WebCacheItem wci = new WeatherWebCacheItem(zip);
 

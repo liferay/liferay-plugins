@@ -17,7 +17,6 @@ package com.liferay.weather.util;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
 import com.liferay.portal.kernel.xml.Attribute;
@@ -59,13 +58,9 @@ public class WeatherWebCacheItem implements WebCacheItem {
 	}
 
 	protected Weather doConvert() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("http://api.openweathermap.org/data/2.5/weather?q=");
-		sb.append(HttpUtil.encodeURL(_zip));
-		sb.append("&units=imperial&mode=xml");
-
-		String xml = HttpUtil.URLtoString(sb.toString());
+		String xml = HttpUtil.URLtoString(
+			"http://api.openweathermap.org/data/2.5/weather?q=" +
+				HttpUtil.encodeURL(_zip) + "&units=imperial&mode=xml");
 
 		Document document = SAXReaderUtil.read(xml);
 
