@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.section.action;
 
-import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
+import com.liferay.compat.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
