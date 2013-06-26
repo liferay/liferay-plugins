@@ -25,7 +25,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 %>
 
-<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
+<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.UPDATE) %>">
 	<span class="action edit-entry">
 		<portlet:renderURL var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="mvcPath" value="/edit_entry.jsp" />
@@ -43,7 +43,7 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 	</span>
 </c:if>
 
-<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
+<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.DELETE) %>">
 	<span class="action delete-entry">
 		<liferay-portlet:actionURL name="deleteEntry" var="deleteURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
