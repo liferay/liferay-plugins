@@ -39,10 +39,15 @@
 	Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(preferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
 
 	long[] selectedScopeGroups = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()))));
+	long[] selectedScopeOrganizations = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeOrganizations", "")));
 
 	if (customizeAnnouncementsDisplayed) {
 		if (selectedScopeGroups.length != 0) {
 			scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroups);
+		}
+
+		if (selectedScopeOrganizations.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizations);
 		}
 	}
 	else {

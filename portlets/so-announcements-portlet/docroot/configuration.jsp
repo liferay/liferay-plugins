@@ -23,6 +23,7 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true);
+List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizations(user.getUserId());
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -114,6 +115,53 @@ List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true)
 						</div>
 					</aui:fieldset>
 				</c:if>
+
+				<c:if test="<%= !organizations.isEmpty() %>">
+					<aui:fieldset cssClass="scope-section-holder">
+
+						<%
+						String selectedScopeOrganizations;
+						try {
+							selectedScopeOrganizations = GetterUtil.getString(PrefsParamUtil.getString(preferences, request, "selectedScopeOrganizations", ""));
+						} catch (Exception e) {
+							selectedScopeOrganizations = "";
+						}
+
+						// Left list
+						List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+						for (Organization organization : organizations) {
+							if (selectedScopeOrganizations.contains(String.valueOf(organization.getOrganizationId()))) {
+								leftList.add(new KeyValuePair(String.valueOf(organization.getOrganizationId()), organization.getName()));
+							}
+						}
+
+						// Right list
+						List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+
+						for (Organization organization : organizations) {
+
+							KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(organization.getOrganizationId()), organization.getName());
+							if (!leftList.contains(tempKeyValuePair)) {
+								rightList.add(tempKeyValuePair);
+							}
+						}
+						%>
+
+						<aui:input name="preferences--selectedScopeOrganizations--" type="hidden" />
+
+						<div id="<portlet:namespace />scopeOrganizationsBoxes">
+							<liferay-ui:input-move-boxes
+								leftBoxName="currentScopeOrganizations"
+								leftList="<%= leftList %>"
+								leftReorder="true"
+								leftTitle="displaying"
+								rightBoxName="availableScopeOrganizations"
+								rightList="<%= rightList %>"
+								rightTitle="available"
+							/>
+						</div>
+					</aui:fieldset>
+				</c:if>
 			</div>
 		</liferay-ui:panel>
 	</liferay-ui:panel-container>
@@ -130,6 +178,10 @@ List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true)
 		function() {
 			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups) {
 				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeGroups);
+			}
+
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizations) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizations.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeOrganizations);
 			}
 
 			submitForm(document.<portlet:namespace />fm);
