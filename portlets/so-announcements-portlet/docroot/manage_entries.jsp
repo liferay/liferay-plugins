@@ -20,6 +20,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("mvcPath", "/manage_entries.jsp");
+portletURL.setWindowState(LiferayWindowState.POP_UP);
+
 String distributionScope = ParamUtil.getString(request, "distributionScope");
 
 long classNameId = -1;
@@ -54,8 +59,9 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 		<div class="separator"><!-- --></div>
 
 		<%
-		PortletURL iteratorURL = PortletURLUtil.clone(portletURL, renderResponse);
+		PortletURL iteratorURL = renderResponse.createRenderURL();
 
+		iteratorURL.setParameter("mvcPath", "/manage_entries.jsp");
 		iteratorURL.setParameter("distributionScope", distributionScope);
 
 		List<String> headerNames = new ArrayList<String>();
