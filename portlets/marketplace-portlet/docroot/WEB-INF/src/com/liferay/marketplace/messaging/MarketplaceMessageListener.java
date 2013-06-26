@@ -50,13 +50,14 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 			return;
 		}
 
-		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
+		String title = properties.getProperty("title");
+		String description = properties.getProperty("description");
+		String category = properties.getProperty("category");
+		String iconURL = properties.getProperty("iconURL");
 
-		if (app != null) {
-			return;
-		}
-
-		app = AppLocalServiceUtil.updateApp(0, remoteAppId, version, null);
+		App app = AppLocalServiceUtil.updateApp(
+			0, remoteAppId, title, description, category, iconURL, version,
+			null);
 
 		String[] contextNames = StringUtil.split(
 			properties.getProperty("context-names"));

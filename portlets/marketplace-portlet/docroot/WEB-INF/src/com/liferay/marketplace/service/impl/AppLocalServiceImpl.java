@@ -113,6 +113,11 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
+	public List<App> getApps(String category) throws SystemException {
+		return appPersistence.findByCategory(category);
+	}
+
+	@Override
 	public List<App> getInstalledApps() throws SystemException {
 		if (_installedApps != null) {
 			return _installedApps;
@@ -357,16 +362,18 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		String title = properties.getProperty("title");
 		String description = properties.getProperty("description");
+		String category = properties.getProperty("category");
 		String iconURL = properties.getProperty("icon-url");
 
 		return updateApp(
-			userId, remoteAppId, title, description, iconURL, version, file);
+			userId, remoteAppId, title, description, category, iconURL, version,
+			file);
 	}
 
 	@Override
 	public App updateApp(
 			long userId, long remoteAppId, String title, String description,
-			String iconURL, String version, File file)
+			String category, String iconURL, String version, File file)
 		throws PortalException, SystemException {
 
 		// App
@@ -395,6 +402,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		app.setRemoteAppId(remoteAppId);
 		app.setTitle(title);
 		app.setDescription(description);
+		app.setCategory(category);
 		app.setIconURL(iconURL);
 		app.setVersion(version);
 
