@@ -550,6 +550,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	padding: 0;
 }
 
+.aui-inputmoveboxes .aui-field-select {
+	display: inline-block;
+}
+
 .lfr-label {
 	color: #999;
 	font-size: 11px;
@@ -828,6 +832,16 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 /* ---------- Portlet ---------- */
 
+.so-announcements-portlet, .so-portlet-activities {
+	.portlet-title {
+		color: $red;
+		font-size: 1.55em;
+		font-weight: normal;
+		margin-top: .5em;
+		padding: 0 .25em .70em;
+	}
+}
+
 /* Dockbar */
 
 .dockbar {
@@ -857,14 +871,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 /*  Activities Portlet  */
 
 .so-portlet-activities {
-	.portlet-title {
-		color: $red;
-		font-size: 1.55em;
-		font-weight: normal;
-		margin-top: .5em;
-		padding: 0 .25em .70em;
-	}
-
 	h3 {
 		font-weight: normal;
 		margin: 1em 0 0;
@@ -904,6 +910,42 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 	.activity-item {
 		margin: 0 55px;
+	}
+}
+
+/* Announcements */
+
+.so-announcements-portlet {
+	.entry-header .scope {
+		color: #8D071F;
+	}
+
+	.entry-body, .entry-footer {
+			border-color: #F4A425;
+	}
+
+	.entry .title {
+		background: #F4A425;
+		color: #FFF;
+
+		a {
+			color: #FFF;
+			text-decoration: underline;
+		}
+	}
+
+	.entry-footer-toolbar {
+		background: #E7E7E7;
+	}
+
+	.important-entry {
+		.entry-body, .entry-footer {
+			border-color: #B20000;
+		}
+
+		.title {
+			background: #B20000;
+		}
 	}
 }
 
