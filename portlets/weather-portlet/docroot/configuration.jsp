@@ -52,13 +52,7 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 
 	</liferay-ui:error>
 
-	<div class="portlet-msg-info">
-		<a href="http://www.worldweatheronline.com/free-weather-feed.aspx" target="_blank"><liferay-ui:message key="you-can-get-an-api-key-directly-from-world-weather-online" /></a>
-	</div>
-
 	<aui:fieldset>
-		<aui:input cssClass="lfr-input-text-container" label="world-weather-online-api-key" name="preferences--apiKey--" value="<%= apiKey %>" />
-
 		<aui:input cssClass="lfr-textarea-container" label="enter-one-city-or-zip-code-per-line" name="preferences--zips--" type="textarea" value="<%= zipsString %>" />
 
 		<aui:select label="temperature-format" name="preferences--fahrenheit--">

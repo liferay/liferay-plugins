@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
+import com.liferay.portal.kernel.xml.Attribute;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
@@ -28,12 +29,11 @@ import com.liferay.weather.model.Weather;
 /**
  * @author Brian Wing Shun Chan
  * @author Samuel Kong
+ * @author Preston Crary
  */
 public class WeatherWebCacheItem implements WebCacheItem {
 
-	public WeatherWebCacheItem(String apiKey, String zip) {
-		_apiKey = apiKey;
-
+	public WeatherWebCacheItem(String zip) {
 		_zip = zip;
 
 		if (_zip.equals("Frankfurt/Main")) {
@@ -46,7 +46,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		Weather weather = null;
 
 		try {
-			weather = doConvert(key);
+			weather = doConvert();
 		}
 		catch (Exception e) {
 			throw new WebCacheException(_zip);
@@ -60,15 +60,12 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		return _REFRESH_TIME;
 	}
 
-	protected Weather doConvert(String key) throws Exception {
-		StringBundler sb = new StringBundler(5);
+	protected Weather doConvert() throws Exception {
+		StringBundler sb = new StringBundler(3);
 
-		sb.append(
-			"http://api.worldweatheronline.com/free/v1/weather.ashx?key=");
-		sb.append(_apiKey);
-		sb.append("&q=");
+		sb.append("http://api.openweathermap.org/data/2.5/weather?q=");
 		sb.append(HttpUtil.encodeURL(_zip));
-		sb.append("&format=xml");
+		sb.append("&units=imperial&mode=xml");
 
 		String xml = HttpUtil.URLtoString(sb.toString());
 
@@ -76,23 +73,30 @@ public class WeatherWebCacheItem implements WebCacheItem {
 
 		Element rootElement = document.getRootElement();
 
-		Element currentConditionElement = rootElement.element(
-			"current_condition");
+		Element cityElement = rootElement.element("city");
 
-		Element temperatureElement = currentConditionElement.element("temp_F");
+		Attribute cityIdAttribute = cityElement.attribute("id");
 
-		float temperature = GetterUtil.getFloat(temperatureElement.getData());
+		String cityId = cityIdAttribute.getText();
 
-		Element iconElement = currentConditionElement.element("weatherIconUrl");
+		Element temperatureElement = rootElement.element("temperature");
 
-		String iconURL = iconElement.getText();
+		Attribute temperatureAttribute = temperatureElement.attribute("value");
 
-		return new Weather(_zip, iconURL, temperature);
+		float temperature = GetterUtil.getFloat(temperatureAttribute.getData());
+
+		Element weatherElement = rootElement.element("weather");
+
+		Attribute iconAttribute = weatherElement.attribute("icon");
+
+		String iconURL = "http://openweathermap.org/img/w/" +
+			iconAttribute.getText() + ".png";
+
+		return new Weather(_zip, cityId, iconURL, temperature);
 	}
 
 	private static final long _REFRESH_TIME = Time.MINUTE * 60;
 
-	private String _apiKey;
 	private String _zip;
 
 }
