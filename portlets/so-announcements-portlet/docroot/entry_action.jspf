@@ -63,5 +63,29 @@
 				</a>
 			</span>
 		</c:if>
+
+		<span class="toggle action aui-helper-hidden">
+			<a class="toggle-entry" data-entryId="<%= entry.getEntryId() %>" href="javascript:;">
+				<span><liferay-ui:message key="view-more" /></span>
+			</a>
+		</span>
 	</div>
 </div>
+
+<aui:script use="aui-base">
+	var entry = A.one('#<portlet:namespace /><%= entry.getEntryId() %>');
+
+	var content = entry.one('.entry-content');
+
+	if (content.height() > 75) {
+		var toggle = entry.one('.toggle');
+
+		toggle.removeClass('aui-helper-hidden');
+		entry.addClass('announcement-collapsed')
+	}
+	else {
+		var contentContainer = entry.one('.entry-content-container');
+
+		contentContainer.setStyle('height', 'auto');
+	}
+</aui:script>
