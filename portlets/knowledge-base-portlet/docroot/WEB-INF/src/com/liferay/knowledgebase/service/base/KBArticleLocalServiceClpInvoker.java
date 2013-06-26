@@ -335,16 +335,20 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodParameterTypes142 = new String[] { "java.util.Map" };
 
-		_methodName143 = "updateStatus";
+		_methodName143 = "updatePriority";
 
-		_methodParameterTypes143 = new String[] {
+		_methodParameterTypes143 = new String[] { "long", "double" };
+
+		_methodName144 = "updateStatus";
+
+		_methodParameterTypes144 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName144 = "updateViewCount";
+		_methodName145 = "updateViewCount";
 
-		_methodParameterTypes144 = new String[] { "long", "long", "int" };
+		_methodParameterTypes145 = new String[] { "long", "long", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -773,14 +777,22 @@ public class KBArticleLocalServiceClpInvoker {
 
 		if (_methodName143.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes143, parameterTypes)) {
+			KBArticleLocalServiceUtil.updatePriority(((Long)arguments[0]).longValue(),
+				((Double)arguments[1]).doubleValue());
+
+			return null;
+		}
+
+		if (_methodName144.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes144, parameterTypes)) {
 			return KBArticleLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName144.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes144, parameterTypes)) {
+		if (_methodName145.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes145, parameterTypes)) {
 			KBArticleLocalServiceUtil.updateViewCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
@@ -913,4 +925,6 @@ public class KBArticleLocalServiceClpInvoker {
 	private String[] _methodParameterTypes143;
 	private String _methodName144;
 	private String[] _methodParameterTypes144;
+	private String _methodName145;
+	private String[] _methodParameterTypes145;
 }
