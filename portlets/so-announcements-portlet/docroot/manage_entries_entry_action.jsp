@@ -25,8 +25,8 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 %>
 
-<liferay-ui:icon-menu>
-	<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
+<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
+	<span class="action edit-entry">
 		<portlet:renderURL var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="mvcPath" value="/edit_entry.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -40,18 +40,19 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 				label="<%= true %>"
 			/>
 		</a>
-	</c:if>
+	</span>
+</c:if>
 
-	<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
-		<portlet:actionURL var="deleteURL">
-			<portlet:param name="struts_action" value="/announcements/edit_entry" />
-			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
+	<span class="action delete-entry">
+		<liferay-portlet:actionURL name="deleteEntry" var="deleteURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-		</portlet:actionURL>
+		</liferay-portlet:actionURL>
 
 		<liferay-ui:icon-delete
+			label="<%= true %>"
 			url="<%= deleteURL %>"
 		/>
-	</c:if>
-</liferay-ui:icon-menu>
+	</span>
+</c:if>
