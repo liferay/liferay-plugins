@@ -87,15 +87,16 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 
 			ResultRow row = new ResultRow(entry, entry.getEntryId(), i);
 
-			PortletURL rowURL = renderResponse.createRenderURL();
+			PortletURL editURL = renderResponse.createRenderURL();
 
-			rowURL.setParameter("struts_action", "/announcements/edit_entry");
-			rowURL.setParameter("redirect", currentURL);
-			rowURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
+			editURL.setParameter("mvcPath", "/edit_entry.jsp");
+			editURL.setParameter("redirect", currentURL);
+			editURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
+			editURL.setWindowState(LiferayWindowState.POP_UP);
 
 			// Title
 
-			row.addText(entry.getTitle(), rowURL);
+			row.addText(entry.getTitle(), editURL);
 
 			// Author
 

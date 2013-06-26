@@ -27,16 +27,18 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 
 <liferay-ui:icon-menu>
 	<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
-		<portlet:renderURL var="editURL">
-			<portlet:param name="struts_action" value="/announcements/edit_entry" />
+		<portlet:renderURL var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+			<portlet:param name="mvcPath" value="/edit_entry.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
 		</portlet:renderURL>
 
-		<liferay-ui:icon
-			image="edit"
-			url="<%= editURL %>"
-		/>
+		<a href="<%= editURL %>">
+			<liferay-ui:icon
+				image="edit"
+				label="<%= true %>"
+			/>
+		</a>
 	</c:if>
 
 	<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
