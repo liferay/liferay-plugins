@@ -124,6 +124,8 @@ if (entry == null) {
 	<aui:button-row>
 		<aui:button type="submit" />
 
+		<aui:button onClick='<%= renderResponse.getNamespace() + "previewEntry();" %>' value="preview" />
+
 		<aui:button onClick='<%= renderResponse.getNamespace() + "closeEntry();" %>' value="cancel" />
 	</aui:button-row>
 </aui:form>
@@ -174,6 +176,46 @@ if (entry == null) {
 
 	function <portlet:namespace />closeEntry() {
 		Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+	}
+
+	function <portlet:namespace />previewEntry() {
+		var A = AUI();
+
+		var preview = A.one('#<portlet:namespace />preview');
+
+		if (preview.hasClass('aui-helper-hidden')) {
+			preview.removeClass('aui-helper-hidden');
+		}
+
+		var priority = A.one('#priority')._node.selectedIndex;
+
+		if (priority == 1) {
+			preview.addClass('important-entry');
+		}
+		else {
+			preview.removeClass('important-entry');
+		}
+
+		if (<%= entry != null %>) {
+			var scope = A.one('#scope').get('value');;
+		}
+		else {
+			var optValue = A.one('select[name="distributionScope"]').get('value');
+			var scope = A.one('option[value=' + optValue + ']').get('text');
+		}
+
+		A.one('#<portlet:namespace />scope').html(scope);
+
+		var url = A.one('#url').get('value');
+
+		if (url.length != 0) {
+			var title = '<a href="' + url + '">' + A.one('#title').get('value') + '</a>';
+		}
+		else {
+			var title = A.one('#title').get('value');
+		}
+
+		A.one('#<portlet:namespace />title').html(title);
 	}
 
 	function <portlet:namespace />saveEntry() {
