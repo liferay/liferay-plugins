@@ -34,7 +34,20 @@
 <div class="unread-entries" id="unreadEntries">
 
 	<%
-	LinkedHashMap<Long, long[]> scopes = AnnouncementsUtil.getAnnouncementScopes(user.getUserId());
+	LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
+
+	Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(preferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
+
+	long[] selectedScopeGroups = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()))));
+
+	if (customizeAnnouncementsDisplayed) {
+		if (selectedScopeGroups.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroups);
+		}
+	}
+	else {
+		scopes = AnnouncementsUtil.getAnnouncementScopes(user.getUserId());
+	}
 
 	scopes.put(new Long(0), new long[] {0});
 
