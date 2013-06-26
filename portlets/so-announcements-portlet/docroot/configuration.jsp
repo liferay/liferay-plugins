@@ -25,6 +25,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true);
 List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizations(user.getUserId());
 List<Role> roles = RoleLocalServiceUtil.getRoles(PortalUtil.getCompanyId(renderRequest));
+List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(themeDisplay.getCompanyId());
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -164,6 +165,53 @@ List<Role> roles = RoleLocalServiceUtil.getRoles(PortalUtil.getCompanyId(renderR
 					</aui:fieldset>
 				</c:if>
 
+				<c:if test="<%= !userGroups.isEmpty() %>">
+					<aui:fieldset cssClass="scope-section-holder">
+
+						<%
+						String selectedScopeUserGroups;
+						try {
+							selectedScopeUserGroups = GetterUtil.getString(PrefsParamUtil.getString(preferences, request, "selectedScopeUserGroups", ""));
+						} catch (Exception e) {
+							selectedScopeUserGroups = "";
+						}
+
+						// Left list
+						List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+						for (UserGroup userGroup : userGroups) {
+							if (selectedScopeUserGroups.contains(String.valueOf(userGroup.getUserGroupId()))) {
+								leftList.add(new KeyValuePair(String.valueOf(userGroup.getUserGroupId()), userGroup.getName()));
+							}
+						}
+
+						// Right list
+						List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+
+						for (UserGroup userGroup : userGroups) {
+
+							KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(userGroup.getUserGroupId()), userGroup.getName());
+							if (!leftList.contains(tempKeyValuePair)) {
+								rightList.add(tempKeyValuePair);
+							}
+						}
+						%>
+
+						<aui:input name="preferences--selectedScopeUserGroups--" type="hidden" />
+
+						<div id="<portlet:namespace />scopeUserGroupsBoxes">
+							<liferay-ui:input-move-boxes
+								leftBoxName="currentScopeUserGroups"
+								leftList="<%= leftList %>"
+								leftReorder="true"
+								leftTitle="displaying"
+								rightBoxName="availableScopeUserGroups"
+								rightList="<%= rightList %>"
+								rightTitle="available"
+							/>
+						</div>
+					</aui:fieldset>
+				</c:if>
+
 				<c:if test="<%= !roles.isEmpty() %>">
 					<aui:fieldset cssClass="scope-section-holder">
 
@@ -234,6 +282,10 @@ List<Role> roles = RoleLocalServiceUtil.getRoles(PortalUtil.getCompanyId(renderR
 
 			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoles) {
 				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoles.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeRoles);
+			}
+
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeUserGroups) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeUserGroups.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeUserGroups);
 			}
 
 			submitForm(document.<portlet:namespace />fm);
