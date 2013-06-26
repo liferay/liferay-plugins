@@ -54,6 +54,7 @@
 
 	.entry-body {
 		border: 1px solid #C8C9CA;
+		border-bottom-width: 0;
 
 		.icon {
 			height: 16px;
@@ -81,6 +82,8 @@
 	}
 
 	.entry-content-container {
+		max-height: 75px;
+		overflow: hidden;
 		padding: .5em .9em;
 	}
 
@@ -92,17 +95,20 @@
 		}
 	}
 
-	.entry-footer-toolbar {
-		background: #DDD;
+	.entry-footer {
 		border: 1px solid #C8C9CA;
 		border-top-width: 0;
-		margin-top: -1px;
-		padding: .4em 1em .5em;
+	}
+
+	.entry-footer-toolbar {
+		background: #DDD;
+		padding: 0 1em;
 
 		.action {
 			border-left: 1px solid #2571AD;
 			display: inline-block;
 			height: 16px;
+			margin: .5em 0;
 			padding: 0 .6em 0 .5em;
 			vertical-align: middle;
 
@@ -140,6 +146,10 @@
 		color: #555;
 		display: block;
 	}
+
+	.announcement-collapsed .entry-footer-toolbar {
+		border-top: 1px solid #EFEFEF;
+	}
 }
 
 .aui-dialog-iframe-popup {
@@ -176,6 +186,14 @@
 	.entry {
 		margin: 0;
 		padding: 0;
+	}
+}
+
+/* ---------- Internet Explorer ---------- */
+
+.ie6, .ie7 {
+	.so-announcements-portlet .entry-content-container {
+		height: 75px;
 	}
 }
 
