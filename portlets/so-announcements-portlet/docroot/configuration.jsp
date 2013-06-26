@@ -51,7 +51,7 @@ if (!roles.isEmpty()) {
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
 
-<aui:form action="<%= configurationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
+<aui:form action="<%= configurationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfigurations();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
@@ -308,7 +308,7 @@ if (!roles.isEmpty()) {
 <aui:script use="aui-base, event">
 	Liferay.provide(
 		window,
-		'<portlet:namespace />saveConfiguration',
+		'<portlet:namespace />saveConfigurations',
 		function() {
 			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups) {
 				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeGroups);

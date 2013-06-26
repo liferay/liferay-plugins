@@ -165,6 +165,7 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 	function <portlet:namespace />selectDistributionScope(distributionScope) {
 		var url = "<%= portletURL.toString() %>&<portlet:namespace />distributionScope=" + distributionScope;
+
 		submitForm(document.<portlet:namespace />fm, url);
 	}
 </aui:script>

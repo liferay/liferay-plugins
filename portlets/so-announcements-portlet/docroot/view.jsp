@@ -75,6 +75,7 @@
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", pageDelta, portletURL, null, "there-are-no-unread-entries");
 
 	List<AnnouncementsEntry> results = null;
+
 	int total = 0;
 	%>
 
