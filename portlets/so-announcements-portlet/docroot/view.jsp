@@ -40,6 +40,7 @@
 
 	long[] selectedScopeGroups = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()))));
 	long[] selectedScopeOrganizations = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeOrganizations", "")));
+	long[] selectedScopeRoles = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeRoles", "")));
 
 	if (customizeAnnouncementsDisplayed) {
 		if (selectedScopeGroups.length != 0) {
@@ -48,6 +49,10 @@
 
 		if (selectedScopeOrganizations.length != 0) {
 			scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizations);
+		}
+
+		if (selectedScopeRoles.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Role.class.getName()), selectedScopeRoles);
 		}
 	}
 	else {
