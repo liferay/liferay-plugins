@@ -249,7 +249,7 @@ public abstract class SOSocialActivityInterpreter
 
 		String userName = getUserName(userId, serviceContext);
 
-		if (groupId != serviceContext.getScopeGroupId()) {
+		if ((groupId != serviceContext.getScopeGroupId()) && (groupId > 0)) {
 			String groupName = getGroupName(groupId, serviceContext);
 
 			Object[] userArguments = new Object[] {userName, groupName};
