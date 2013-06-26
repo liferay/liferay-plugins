@@ -24,6 +24,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true);
 List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizations(user.getUserId());
+List<Role> roles = RoleLocalServiceUtil.getRoles(PortalUtil.getCompanyId(renderRequest));
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -162,6 +163,53 @@ List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizat
 						</div>
 					</aui:fieldset>
 				</c:if>
+
+				<c:if test="<%= !roles.isEmpty() %>">
+					<aui:fieldset cssClass="scope-section-holder">
+
+						<%
+						String selectedScopeRoles;
+						try {
+							selectedScopeRoles = GetterUtil.getString(PrefsParamUtil.getString(preferences, request, "selectedScopeRoles", ""));
+						} catch (Exception e) {
+							selectedScopeRoles = "";
+						}
+
+						// Left list
+						List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+						for (Role role : roles) {
+							if (selectedScopeRoles.contains(String.valueOf(role.getRoleId()))) {
+								leftList.add(new KeyValuePair(String.valueOf(role.getRoleId()), role.getTitle(locale)));
+							}
+						}
+
+						// Right list
+						List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+
+						for (Role role : roles) {
+
+							KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(role.getRoleId()), role.getTitle(locale));
+							if (!leftList.contains(tempKeyValuePair)) {
+								rightList.add(tempKeyValuePair);
+							}
+						}
+						%>
+
+						<aui:input name="preferences--selectedScopeRoles--" type="hidden" />
+
+						<div id="<portlet:namespace />scopeRolesBoxes">
+							<liferay-ui:input-move-boxes
+								leftBoxName="currentScopeRoles"
+								leftList="<%= leftList %>"
+								leftReorder="true"
+								leftTitle="displaying"
+								rightBoxName="availableScopeRoles"
+								rightList="<%= rightList %>"
+								rightTitle="available"
+							/>
+						</div>
+					</aui:fieldset>
+				</c:if>
 			</div>
 		</liferay-ui:panel>
 	</liferay-ui:panel-container>
@@ -182,6 +230,10 @@ List<Organization> organizations = OrganizationLocalServiceUtil.getUserOrganizat
 
 			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizations) {
 				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizations.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeOrganizations);
+			}
+
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoles) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoles.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeRoles);
 			}
 
 			submitForm(document.<portlet:namespace />fm);
