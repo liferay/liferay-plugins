@@ -82,14 +82,11 @@ public class AppManagerPortlet extends MVCPortlet {
 			return;
 		}
 
-		String source = file.toString();
-
 		String deployDir = PrefsPropsUtil.getString(
 			PropsKeys.AUTO_DEPLOY_DEPLOY_DIR);
 
-		String destination = deployDir + StringPool.SLASH + fileName;
-
-		FileUtil.copyFile(source, destination);
+		FileUtil.copyFile(
+			file.toString(), deployDir + StringPool.SLASH + fileName);
 
 		SessionMessages.add(actionRequest, "pluginUploaded");
 	}
