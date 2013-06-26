@@ -71,7 +71,7 @@ results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes
 			<span><%= LanguageUtil.get(pageContext, "read-entries") %></span>
 		</div>
 
-		<div class="content">
+		<div class="content aui-toggler-content aui-toggler-content-collapsed">
 			<%@ include file="/entry_iterator.jspf" %>
 
 			<c:if test="<%= total > 0 %>">
@@ -79,6 +79,27 @@ results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes
 			</c:if>
 		</div>
 	</div>
+
+	<aui:script>
+		AUI().ready(
+			'aui-toggler',
+			function(A) {
+				new A.Toggler(
+					{
+						animated: true,
+						container: '#readEntries',
+						content: '.content',
+						expanded: false,
+						header: '.header',
+						transition: {
+							duration: 0.5,
+							easing: 'ease-in-out'
+						}
+					}
+				);
+			}
+		);
+	</aui:script>
 </c:if>
 
 <aui:script use="aui-base">
