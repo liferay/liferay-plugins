@@ -931,15 +931,22 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			double priority = resourcePrimKeyToPriorityMap.get(
 				kbArticle1.getResourcePrimKey());
 
-			List<KBArticle> kbArticles2 = getKBArticleVersions(
-				kbArticle1.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			updateKBArticlePriority(kbArticle1, priority);
+		}
+	}
 
-			for (KBArticle kbArticle2 : kbArticles2) {
-				kbArticle2.setPriority(priority);
+	public void updateKBArticlePriority(
+			KBArticle kbArticle, double priority)
+		throws PortalException, SystemException {
 
-				kbArticlePersistence.update(kbArticle2);
-			}
+		List<KBArticle> kbArticles = getKBArticleVersions(
+			kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (KBArticle kbArticle1 : kbArticles) {
+			kbArticle1.setPriority(priority);
+
+			kbArticlePersistence.update(kbArticle1);
 		}
 	}
 
