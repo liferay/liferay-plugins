@@ -58,6 +58,11 @@ if (!roles.isEmpty()) {
 	<liferay-ui:panel-container extended="<%= true %>" id="soAnnouncementsConfigurationsPanelContainer" persistState="<%= true %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="soAnnouncementsDisplaySettingsPanel" persistState="<%= true %>" title="display-settings">
 			<aui:fieldset>
+
+				<%
+				String modifiedPageDelta = renderResponse.getNamespace() + "modifiedPageDelta();";
+				%>
+
 				<aui:select label="entries-to-display-per-page" name="preferences--pageDelta--" onChange="<%= modifiedPageDelta %>">
 
 					<%
@@ -299,7 +304,7 @@ if (!roles.isEmpty()) {
 	</aui:button-row>
 </aui:form>
 
-<aui:script>
+<aui:script use="aui-base, event">
 	Liferay.provide(
 		window,
 		'<portlet:namespace />saveConfiguration',
@@ -327,8 +332,22 @@ if (!roles.isEmpty()) {
 
 	Liferay.provide(
 		window,
+		'<portlet:namespace />modifiedPageDelta',
+		function() {
+			var settingsPanel = A.one('#soAnnouncementsDisplaySettingsPanel');
+
+			<portlet:namespace />modified(settingsPanel);
+		}
+	);
+
+	var displayPanel = A.one('#soAnnouncementsDisplayPanel');
+
+	Liferay.provide(
+		window,
 		'<portlet:namespace />toggleCustomizeAnnouncementsDisplayed',
 		function() {
+			<portlet:namespace />modified(displayPanel);
+
 			var customizeAnnouncementsDisplayed = A.one('#<portlet:namespace />customizeAnnouncementsDisplayed');
 
 			if (customizeAnnouncementsDisplayed) {
@@ -336,4 +355,37 @@ if (!roles.isEmpty()) {
 			}
 		}
 	);
+
+	var selects = displayPanel.all('.left-selector-column-content select');
+	var initSelectsHTML = "";
+
+	for (var i = selects._nodes.length - 1; i >= 0; --i) {
+		initSelectsHTML = initSelectsHTML.concat(selects._nodes[i].innerHTML);
+	}
+
+	Liferay.on('inputmoveboxes:moveItem', function(event) {
+		<portlet:namespace />afterMoveClick();
+	})
+
+	function <portlet:namespace />afterMoveClick() {
+		var currSelectsHTML = "";
+
+		for (var i = selects._nodes.length - 1; i >= 0; --i) {
+			currSelectsHTML = currSelectsHTML.concat(selects._nodes[i].innerHTML);
+		}
+
+		if (initSelectsHTML != currSelectsHTML) {
+			<portlet:namespace />modified(displayPanel);
+		}
+	}
+
+	function <portlet:namespace />modified(panel) {
+		var modifiedNotice = panel.one('.lfr-panel-title .modified-notice');
+
+		if (modifiedNotice == null) {
+			var displayTitle = panel.one('.lfr-panel-title');
+
+			displayTitle.append('<span class="modified-notice"> (<liferay-ui:message key="modified" />) </span>');
+		}
+	}
 </aui:script>
