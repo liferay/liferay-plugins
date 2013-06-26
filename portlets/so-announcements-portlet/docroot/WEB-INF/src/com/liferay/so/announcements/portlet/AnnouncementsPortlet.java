@@ -190,6 +190,19 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			displayDateHour += 12;
 		}
 
+		boolean displayImmediately = ParamUtil.getBoolean(
+			actionRequest, "displayImmediately");
+
+		if (displayImmediately) {
+			Calendar calendar = CalendarFactoryUtil.getCalendar();
+
+			displayDateMonth = calendar.get(Calendar.MONTH);
+			displayDateDay = calendar.get(Calendar.DAY_OF_MONTH);
+			displayDateYear = calendar.get(Calendar.YEAR);
+			displayDateHour = calendar.get(Calendar.HOUR_OF_DAY);
+			displayDateMinute = calendar.get(Calendar.MINUTE);
+		}
+
 		int expirationDateMonth = ParamUtil.getInteger(
 			actionRequest, "expirationDateMonth");
 		int expirationDateDay = ParamUtil.getInteger(
@@ -205,19 +218,6 @@ public class AnnouncementsPortlet extends MVCPortlet {
 
 		if (expirationDateAmPm == Calendar.PM) {
 			expirationDateHour += 12;
-		}
-
-		boolean displayImmediately = ParamUtil.getBoolean(
-			actionRequest, "displayImmediately");
-
-		if (displayImmediately) {
-			Calendar calendar = CalendarFactoryUtil.getCalendar();
-
-			displayDateMonth = calendar.get(Calendar.MONTH);
-			displayDateDay = calendar.get(Calendar.DAY_OF_MONTH);
-			displayDateYear = calendar.get(Calendar.YEAR);
-			displayDateHour = calendar.get(Calendar.HOUR_OF_DAY);
-			displayDateMinute = calendar.get(Calendar.MINUTE);
 		}
 
 		int priority = ParamUtil.getInteger(actionRequest, "priority");
