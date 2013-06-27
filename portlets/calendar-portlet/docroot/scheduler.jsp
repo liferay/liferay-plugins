@@ -95,7 +95,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 				headerTemplate: new A.Template(A.one('#<portlet:namespace />eventRecorderHeaderTpl').text()),
 				permissionsCalendarBookingURL: '<%= HtmlUtil.escapeJS(permissionsCalendarBookingURL) %>',
 				popover: {
-					width: 600
+					width: 550
 				},
 				portletNamespace: '<portlet:namespace />',
 				viewCalendarBookingURL: '<%= HtmlUtil.escapeJS(viewCalendarBookingURL) %>'

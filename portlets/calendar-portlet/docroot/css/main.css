@@ -52,7 +52,7 @@
 	border: 1px solid #C4C4C4;
 	outline-width: 0;
 	padding: 7px;
-	width: 445px;
+	width: 482px;
 }
 
 .scheduler-event-recorder-header .scheduler-event-recorder-content:hover {
@@ -433,6 +433,23 @@
 .ie6, .ie7 {
 	.yui3-skin-sam .yui3-calendar-day.lfr-busy-day {
 		background: transparent url(../images/lfr-busy-day-arrow.png) right top no-repeat;
+	}
+}
+
+.yui3-skin-sam .calendar-portlet .yui3-calendar-day {
+	font-weight: normal;
+}
+
+.calendar-portlet {
+	.scheduler-event-content, .scheduler-event-title {
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		padding: 2px 4px;
+	}
+
+	.scheduler-event-recorder-popover {
+		max-width: none;
 	}
 }
 
