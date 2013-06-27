@@ -910,7 +910,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		for (KBArticle kbArticleVersion : kbArticleVersions) {
-			kbArticle.setPriority(priority);
+			kbArticleVersion.setPriority(priority);
 
 			kbArticlePersistence.update(kbArticleVersion);
 		}
