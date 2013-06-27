@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -922,6 +923,25 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	@Override
 	public long getResourceGroupId() {
 		return _calendar.getResourceGroupId();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CalendarWrapper)) {
+			return false;
+		}
+
+		CalendarWrapper calendarWrapper = (CalendarWrapper)obj;
+
+		if (Validator.equals(_calendar, calendarWrapper._calendar)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

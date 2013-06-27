@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -558,6 +559,25 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	public void setRegistrationProperties(
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties) {
 		_wsrpConsumer.setRegistrationProperties(registrationProperties);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPConsumerWrapper)) {
+			return false;
+		}
+
+		WSRPConsumerWrapper wsrpConsumerWrapper = (WSRPConsumerWrapper)obj;
+
+		if (Validator.equals(_wsrpConsumer, wsrpConsumerWrapper._wsrpConsumer)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

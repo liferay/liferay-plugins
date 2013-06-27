@@ -14,6 +14,7 @@
 
 package com.liferay.microblogs.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -523,6 +524,26 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_microblogsEntry.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MicroblogsEntryWrapper)) {
+			return false;
+		}
+
+		MicroblogsEntryWrapper microblogsEntryWrapper = (MicroblogsEntryWrapper)obj;
+
+		if (Validator.equals(_microblogsEntry,
+					microblogsEntryWrapper._microblogsEntry)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

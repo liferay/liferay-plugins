@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -432,6 +433,25 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	@Override
 	public void setKeyName(java.lang.String keyName) {
 		_oAuthConsumer.setKeyName(keyName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof OAuthConsumerWrapper)) {
+			return false;
+		}
+
+		OAuthConsumerWrapper oAuthConsumerWrapper = (OAuthConsumerWrapper)obj;
+
+		if (Validator.equals(_oAuthConsumer, oAuthConsumerWrapper._oAuthConsumer)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

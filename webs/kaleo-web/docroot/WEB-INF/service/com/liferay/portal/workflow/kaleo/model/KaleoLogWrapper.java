@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -1031,6 +1032,25 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoLog.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoLogWrapper)) {
+			return false;
+		}
+
+		KaleoLogWrapper kaleoLogWrapper = (KaleoLogWrapper)obj;
+
+		if (Validator.equals(_kaleoLog, kaleoLogWrapper._kaleoLog)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

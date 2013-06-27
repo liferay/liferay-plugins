@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -1034,6 +1035,25 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	@Override
 	public boolean isRoot() {
 		return _kbArticle.isRoot();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBArticleWrapper)) {
+			return false;
+		}
+
+		KBArticleWrapper kbArticleWrapper = (KBArticleWrapper)obj;
+
+		if (Validator.equals(_kbArticle, kbArticleWrapper._kbArticle)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -14,6 +14,7 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -469,6 +470,25 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_checkout.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CheckoutWrapper)) {
+			return false;
+		}
+
+		CheckoutWrapper checkoutWrapper = (CheckoutWrapper)obj;
+
+		if (Validator.equals(_checkout, checkoutWrapper._checkout)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

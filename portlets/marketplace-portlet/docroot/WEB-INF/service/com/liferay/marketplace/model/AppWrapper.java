@@ -14,6 +14,7 @@
 
 package com.liferay.marketplace.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -562,6 +563,25 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	public boolean isInstalled()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _app.isInstalled();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AppWrapper)) {
+			return false;
+		}
+
+		AppWrapper appWrapper = (AppWrapper)obj;
+
+		if (Validator.equals(_app, appWrapper._app)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -14,6 +14,7 @@
 
 package com.liferay.marketplace.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.HashMap;
@@ -284,6 +285,25 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_module.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof ModuleWrapper)) {
+			return false;
+		}
+
+		ModuleWrapper moduleWrapper = (ModuleWrapper)obj;
+
+		if (Validator.equals(_module, moduleWrapper._module)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -14,6 +14,7 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -724,6 +725,25 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	@Override
 	public boolean hasFlag(int flag) {
 		return _message.hasFlag(flag);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MessageWrapper)) {
+			return false;
+		}
+
+		MessageWrapper messageWrapper = (MessageWrapper)obj;
+
+		if (Validator.equals(_message, messageWrapper._message)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

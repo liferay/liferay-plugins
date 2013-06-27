@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -394,6 +395,25 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_gadget.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof GadgetWrapper)) {
+			return false;
+		}
+
+		GadgetWrapper gadgetWrapper = (GadgetWrapper)obj;
+
+		if (Validator.equals(_gadget, gadgetWrapper._gadget)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

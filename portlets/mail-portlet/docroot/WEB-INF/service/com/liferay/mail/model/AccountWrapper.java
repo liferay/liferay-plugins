@@ -14,6 +14,7 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -961,6 +962,25 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	@Override
 	public void setPasswordDecrypted(java.lang.String unencryptedPassword) {
 		_account.setPasswordDecrypted(unencryptedPassword);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AccountWrapper)) {
+			return false;
+		}
+
+		AccountWrapper accountWrapper = (AccountWrapper)obj;
+
+		if (Validator.equals(_account, accountWrapper._account)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -14,6 +14,7 @@
 
 package com.liferay.testtransaction.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.HashMap;
@@ -230,6 +231,25 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_bar.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof BarWrapper)) {
+			return false;
+		}
+
+		BarWrapper barWrapper = (BarWrapper)obj;
+
+		if (Validator.equals(_bar, barWrapper._bar)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

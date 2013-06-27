@@ -14,6 +14,7 @@
 
 package com.liferay.so.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -546,6 +547,25 @@ public class MemberRequestWrapper implements MemberRequest,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_memberRequest.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MemberRequestWrapper)) {
+			return false;
+		}
+
+		MemberRequestWrapper memberRequestWrapper = (MemberRequestWrapper)obj;
+
+		if (Validator.equals(_memberRequest, memberRequestWrapper._memberRequest)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

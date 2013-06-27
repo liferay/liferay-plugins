@@ -14,6 +14,7 @@
 
 package com.liferay.socialnetworking.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -579,6 +580,25 @@ public class MeetupsEntryWrapper implements MeetupsEntry,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_meetupsEntry.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MeetupsEntryWrapper)) {
+			return false;
+		}
+
+		MeetupsEntryWrapper meetupsEntryWrapper = (MeetupsEntryWrapper)obj;
+
+		if (Validator.equals(_meetupsEntry, meetupsEntryWrapper._meetupsEntry)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

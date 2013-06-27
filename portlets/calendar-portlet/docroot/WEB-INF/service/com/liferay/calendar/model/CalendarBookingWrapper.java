@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -1374,6 +1375,26 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	@Override
 	public boolean isRecurring() {
 		return _calendarBooking.isRecurring();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CalendarBookingWrapper)) {
+			return false;
+		}
+
+		CalendarBookingWrapper calendarBookingWrapper = (CalendarBookingWrapper)obj;
+
+		if (Validator.equals(_calendarBooking,
+					calendarBookingWrapper._calendarBooking)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -396,6 +397,26 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_wsrpConsumerPortlet.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPConsumerPortletWrapper)) {
+			return false;
+		}
+
+		WSRPConsumerPortletWrapper wsrpConsumerPortletWrapper = (WSRPConsumerPortletWrapper)obj;
+
+		if (Validator.equals(_wsrpConsumerPortlet,
+					wsrpConsumerPortletWrapper._wsrpConsumerPortlet)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
