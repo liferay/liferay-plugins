@@ -46,7 +46,6 @@ import com.liferay.calendar.util.CalendarDataHandlerFactory;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
-import com.liferay.calendar.util.PortletKeys;
 import com.liferay.calendar.util.RSSUtil;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
@@ -69,7 +68,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -88,7 +86,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.comparator.UserFirstNameComparator;
-import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -110,7 +107,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -280,19 +276,6 @@ public class CalendarPortlet extends MVCPortlet {
 		CalendarBooking calendarBooking = null;
 
 		if (calendarBookingId <= 0) {
-			ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
-			PortletURL bookingURL = PortletURLFactoryUtil.create(
-				actionRequest, PortletKeys.CALENDAR, themeDisplay.getPlid(),
-				ActionRequest.RENDER_PHASE);
-
-			bookingURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
-			bookingURL.setParameter("calendarBookingId", "");
-
-			serviceContext.setAttribute(
-					"portletNamespace", actionResponse.getNamespace());
-			serviceContext.setAttribute("bookingURL", bookingURL.toString());
-
 			calendarBooking = CalendarBookingServiceUtil.addCalendarBooking(
 				calendarId, childCalendarIds,
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,

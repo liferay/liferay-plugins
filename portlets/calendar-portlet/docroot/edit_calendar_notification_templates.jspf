@@ -14,7 +14,6 @@
  */
 --%>
 
-<%@page import="com.liferay.calendar.notification.NotificationTemplateType"%>
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "invite-email");
 
@@ -95,6 +94,12 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 			<dd>
 				<liferay-ui:message key="the-booking-start-date" />
 			</dd>
+			<dt>
+				[$BOOKING_TITLE$]
+			</dt>
+			<dd>
+				<liferay-ui:message key="the-booking-title" />
+			</dd>
 			<c:if test="<%= notificationTemplateType == NotificationTemplateType.INVITE %>">
 				<dt>
 					[$BOOKING_URL$]
@@ -103,12 +108,6 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 					<liferay-ui:message key="the-booking-url" />
 				</dd>
 			</c:if>
-			<dt>
-				[$BOOKING_TITLE$]
-			</dt>
-			<dd>
-				<liferay-ui:message key="the-booking-title" />
-			</dd>
 			<dt>
 				[$FROM_ADDRESS$]
 			</dt>

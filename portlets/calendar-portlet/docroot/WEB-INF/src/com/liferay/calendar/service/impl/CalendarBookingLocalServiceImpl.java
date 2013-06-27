@@ -23,7 +23,6 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
-import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
 import com.liferay.calendar.social.CalendarActivityKeys;
 import com.liferay.calendar.util.JCalendarUtil;
@@ -780,11 +779,12 @@ public class CalendarBookingLocalServiceImpl
 					PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
 				NotificationUtil.notifyCalendarBookingInvites(
-					childCalendarBooking, notificationType,
-					serviceContext);
+					childCalendarBooking, notificationType, serviceContext);
 			}
 			catch (Exception e) {
-				_log.error(e);
+				if (_log.isWarnEnabled()) {
+					_log.warn(e, e);
+				}
 			}
 		}
 	}
@@ -846,6 +846,7 @@ public class CalendarBookingLocalServiceImpl
 	@BeanReference(type = CalendarBookingApprovalWorkflow.class)
 	protected CalendarBookingApprovalWorkflow calendarBookingApprovalWorkflow;
 
-	protected static final Log _log = LogFactoryUtil.getLog(CalendarBookingLocalService.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		CalendarBookingLocalServiceImpl.class);
 
 }
