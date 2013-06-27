@@ -74,7 +74,7 @@ page import="javax.portlet.WindowState" %>
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-PortletPreferences preferences = liferayPortletRequest.getPreferences();
+PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
