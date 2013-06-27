@@ -14,6 +14,7 @@
 
 package com.liferay.socialnetworking.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -364,6 +365,25 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_wallEntry.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WallEntryWrapper)) {
+			return false;
+		}
+
+		WallEntryWrapper wallEntryWrapper = (WallEntryWrapper)obj;
+
+		if (Validator.equals(_wallEntry, wallEntryWrapper._wallEntry)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

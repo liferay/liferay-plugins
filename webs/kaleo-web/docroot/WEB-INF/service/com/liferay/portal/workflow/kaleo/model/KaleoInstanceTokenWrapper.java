@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -618,6 +619,26 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kaleoInstanceToken.setCurrentKaleoNode(kaleoNode);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoInstanceTokenWrapper)) {
+			return false;
+		}
+
+		KaleoInstanceTokenWrapper kaleoInstanceTokenWrapper = (KaleoInstanceTokenWrapper)obj;
+
+		if (Validator.equals(_kaleoInstanceToken,
+					kaleoInstanceTokenWrapper._kaleoInstanceToken)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

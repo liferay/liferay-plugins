@@ -14,6 +14,7 @@
 
 package com.liferay.mail.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.HashMap;
@@ -388,6 +389,25 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_attachment.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AttachmentWrapper)) {
+			return false;
+		}
+
+		AttachmentWrapper attachmentWrapper = (AttachmentWrapper)obj;
+
+		if (Validator.equals(_attachment, attachmentWrapper._attachment)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

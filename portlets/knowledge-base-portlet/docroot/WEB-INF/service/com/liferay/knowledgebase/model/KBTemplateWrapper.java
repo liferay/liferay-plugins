@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -414,6 +415,25 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kbTemplate.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KBTemplateWrapper)) {
+			return false;
+		}
+
+		KBTemplateWrapper kbTemplateWrapper = (KBTemplateWrapper)obj;
+
+		if (Validator.equals(_kbTemplate, kbTemplateWrapper._kbTemplate)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

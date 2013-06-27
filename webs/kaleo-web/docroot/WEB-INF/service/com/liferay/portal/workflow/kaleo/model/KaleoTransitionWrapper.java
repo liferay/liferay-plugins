@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -589,6 +590,26 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTransition.getTargetKaleoNode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTransitionWrapper)) {
+			return false;
+		}
+
+		KaleoTransitionWrapper kaleoTransitionWrapper = (KaleoTransitionWrapper)obj;
+
+		if (Validator.equals(_kaleoTransition,
+					kaleoTransitionWrapper._kaleoTransition)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

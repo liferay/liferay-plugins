@@ -14,6 +14,7 @@
 
 package com.liferay.tasks.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -570,6 +571,25 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 
 	public java.lang.String getStatusLabel() {
 		return _tasksEntry.getStatusLabel();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof TasksEntryWrapper)) {
+			return false;
+		}
+
+		TasksEntryWrapper tasksEntryWrapper = (TasksEntryWrapper)obj;
+
+		if (Validator.equals(_tasksEntry, tasksEntryWrapper._tasksEntry)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

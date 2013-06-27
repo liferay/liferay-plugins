@@ -14,6 +14,7 @@
 
 package com.liferay.privatemessaging.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -433,6 +434,25 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_userThread.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof UserThreadWrapper)) {
+			return false;
+		}
+
+		UserThreadWrapper userThreadWrapper = (UserThreadWrapper)obj;
+
+		if (Validator.equals(_userThread, userThreadWrapper._userThread)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

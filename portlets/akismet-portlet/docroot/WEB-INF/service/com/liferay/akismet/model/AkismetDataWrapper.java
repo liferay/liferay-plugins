@@ -14,6 +14,7 @@
 
 package com.liferay.akismet.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -408,6 +409,25 @@ public class AkismetDataWrapper implements AkismetData,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_akismetData.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AkismetDataWrapper)) {
+			return false;
+		}
+
+		AkismetDataWrapper akismetDataWrapper = (AkismetDataWrapper)obj;
+
+		if (Validator.equals(_akismetData, akismetDataWrapper._akismetData)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

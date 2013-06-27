@@ -14,6 +14,7 @@
 
 package com.liferay.so.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.HashMap;
@@ -264,6 +265,25 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_favoriteSite.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FavoriteSiteWrapper)) {
+			return false;
+		}
+
+		FavoriteSiteWrapper favoriteSiteWrapper = (FavoriteSiteWrapper)obj;
+
+		if (Validator.equals(_favoriteSite, favoriteSiteWrapper._favoriteSite)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

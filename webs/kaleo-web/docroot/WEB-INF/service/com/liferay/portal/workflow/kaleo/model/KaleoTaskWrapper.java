@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -451,6 +452,25 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTask.getKaleoTaskAssignments();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoTaskWrapper)) {
+			return false;
+		}
+
+		KaleoTaskWrapper kaleoTaskWrapper = (KaleoTaskWrapper)obj;
+
+		if (Validator.equals(_kaleoTask, kaleoTaskWrapper._kaleoTask)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

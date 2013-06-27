@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -591,6 +592,26 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoNotification.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoNotificationWrapper)) {
+			return false;
+		}
+
+		KaleoNotificationWrapper kaleoNotificationWrapper = (KaleoNotificationWrapper)obj;
+
+		if (Validator.equals(_kaleoNotification,
+					kaleoNotificationWrapper._kaleoNotification)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -14,6 +14,7 @@
 
 package com.liferay.socialcoding.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.HashMap;
@@ -228,6 +229,25 @@ public class SVNRepositoryWrapper implements SVNRepository,
 
 	public java.lang.String getShortURL() {
 		return _svnRepository.getShortURL();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SVNRepositoryWrapper)) {
+			return false;
+		}
+
+		SVNRepositoryWrapper svnRepositoryWrapper = (SVNRepositoryWrapper)obj;
+
+		if (Validator.equals(_svnRepository, svnRepositoryWrapper._svnRepository)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

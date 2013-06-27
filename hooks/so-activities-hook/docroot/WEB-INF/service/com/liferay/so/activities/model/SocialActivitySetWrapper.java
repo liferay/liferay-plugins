@@ -14,6 +14,7 @@
 
 package com.liferay.so.activities.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.HashMap;
@@ -453,6 +454,26 @@ public class SocialActivitySetWrapper implements SocialActivitySet,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_socialActivitySet.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SocialActivitySetWrapper)) {
+			return false;
+		}
+
+		SocialActivitySetWrapper socialActivitySetWrapper = (SocialActivitySetWrapper)obj;
+
+		if (Validator.equals(_socialActivitySet,
+					socialActivitySetWrapper._socialActivitySet)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

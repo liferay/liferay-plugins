@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -650,6 +651,26 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	public boolean hasIncompleteKaleoInstances()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoDefinition.hasIncompleteKaleoInstances();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof KaleoDefinitionWrapper)) {
+			return false;
+		}
+
+		KaleoDefinitionWrapper kaleoDefinitionWrapper = (KaleoDefinitionWrapper)obj;
+
+		if (Validator.equals(_kaleoDefinition,
+					kaleoDefinitionWrapper._kaleoDefinition)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

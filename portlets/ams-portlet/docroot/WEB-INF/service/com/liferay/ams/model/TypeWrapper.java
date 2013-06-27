@@ -14,6 +14,7 @@
 
 package com.liferay.ams.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.HashMap;
@@ -218,6 +219,25 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_type.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof TypeWrapper)) {
+			return false;
+		}
+
+		TypeWrapper typeWrapper = (TypeWrapper)obj;
+
+		if (Validator.equals(_type, typeWrapper._type)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

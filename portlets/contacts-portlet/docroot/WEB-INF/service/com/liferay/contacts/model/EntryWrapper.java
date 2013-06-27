@@ -14,6 +14,7 @@
 
 package com.liferay.contacts.model;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
 import java.util.Date;
@@ -414,6 +415,25 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_entry.persist();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof EntryWrapper)) {
+			return false;
+		}
+
+		EntryWrapper entryWrapper = (EntryWrapper)obj;
+
+		if (Validator.equals(_entry, entryWrapper._entry)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
