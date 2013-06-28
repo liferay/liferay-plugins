@@ -25,7 +25,7 @@ int total = 0;
 <c:choose>
 	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK()) && !layout.isPublicLayout() %>">
 		<liferay-ui:tabs
-			names="all,connections,following,my-sites"
+			names="all,connections,following,my-sites,me"
 			url="<%= portletURL.toString() %>"
 			value="<%= tabs1 %>"
 		/>
@@ -42,6 +42,10 @@ int total = 0;
 		else if (tabs1.equals("my-sites")) {
 			results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 			total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(themeDisplay.getUserId());
+		}
+		else if (tabs1.equals("me")) {
+			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(themeDisplay.getUserId());
 		}
 		else {
 			results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
