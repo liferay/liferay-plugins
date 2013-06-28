@@ -18,6 +18,7 @@
 		<property name="remoteAppId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="category" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="iconURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>

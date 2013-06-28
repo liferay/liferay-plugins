@@ -9,6 +9,7 @@ create table Marketplace_App (
 	remoteAppId LONG,
 	title VARCHAR(75) null,
 	description VARCHAR(75) null,
+	category VARCHAR(75) null,
 	iconURL VARCHAR(75) null,
 	version VARCHAR(75) null
 );

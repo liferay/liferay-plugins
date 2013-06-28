@@ -235,6 +235,21 @@ public interface AppModel extends BaseModel<App>, StagedAuditedModel {
 	public void setDescription(String description);
 
 	/**
+	 * Returns the category of this app.
+	 *
+	 * @return the category of this app
+	 */
+	@AutoEscape
+	public String getCategory();
+
+	/**
+	 * Sets the category of this app.
+	 *
+	 * @param category the category of this app
+	 */
+	public void setCategory(String category);
+
+	/**
 	 * Returns the icon u r l of this app.
 	 *
 	 * @return the icon u r l of this app

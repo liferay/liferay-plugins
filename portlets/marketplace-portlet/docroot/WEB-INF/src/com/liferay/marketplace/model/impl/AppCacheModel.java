@@ -37,7 +37,7 @@ import java.util.Date;
 public class AppCacheModel implements CacheModel<App>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -59,6 +59,8 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 		sb.append(title);
 		sb.append(", description=");
 		sb.append(description);
+		sb.append(", category=");
+		sb.append(category);
 		sb.append(", iconURL=");
 		sb.append(iconURL);
 		sb.append(", version=");
@@ -120,6 +122,13 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 			appImpl.setDescription(description);
 		}
 
+		if (category == null) {
+			appImpl.setCategory(StringPool.BLANK);
+		}
+		else {
+			appImpl.setCategory(category);
+		}
+
 		if (iconURL == null) {
 			appImpl.setIconURL(StringPool.BLANK);
 		}
@@ -151,6 +160,7 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 		remoteAppId = objectInput.readLong();
 		title = objectInput.readUTF();
 		description = objectInput.readUTF();
+		category = objectInput.readUTF();
 		iconURL = objectInput.readUTF();
 		version = objectInput.readUTF();
 	}
@@ -194,6 +204,13 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 			objectOutput.writeUTF(description);
 		}
 
+		if (category == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(category);
+		}
+
 		if (iconURL == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
@@ -219,6 +236,7 @@ public class AppCacheModel implements CacheModel<App>, Externalizable {
 	public long remoteAppId;
 	public String title;
 	public String description;
+	public String category;
 	public String iconURL;
 	public String version;
 }

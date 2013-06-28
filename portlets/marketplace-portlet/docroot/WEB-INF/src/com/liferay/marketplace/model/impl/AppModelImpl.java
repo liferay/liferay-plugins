@@ -75,10 +75,11 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			{ "remoteAppId", Types.BIGINT },
 			{ "title", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
+			{ "category", Types.VARCHAR },
 			{ "iconURL", Types.VARCHAR },
 			{ "version", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Marketplace_App (uuid_ VARCHAR(75) null,appId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,remoteAppId LONG,title VARCHAR(75) null,description VARCHAR(75) null,iconURL VARCHAR(75) null,version VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Marketplace_App (uuid_ VARCHAR(75) null,appId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,remoteAppId LONG,title VARCHAR(75) null,description VARCHAR(75) null,category VARCHAR(75) null,iconURL VARCHAR(75) null,version VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Marketplace_App";
 	public static final String ORDER_BY_JPQL = " ORDER BY app.appId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Marketplace_App.appId ASC";
@@ -94,10 +95,11 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.marketplace.model.App"),
 			true);
-	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long REMOTEAPPID_COLUMN_BITMASK = 2L;
-	public static long UUID_COLUMN_BITMASK = 4L;
-	public static long APPID_COLUMN_BITMASK = 8L;
+	public static long CATEGORY_COLUMN_BITMASK = 1L;
+	public static long COMPANYID_COLUMN_BITMASK = 2L;
+	public static long REMOTEAPPID_COLUMN_BITMASK = 4L;
+	public static long UUID_COLUMN_BITMASK = 8L;
+	public static long APPID_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -122,6 +124,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		model.setRemoteAppId(soapModel.getRemoteAppId());
 		model.setTitle(soapModel.getTitle());
 		model.setDescription(soapModel.getDescription());
+		model.setCategory(soapModel.getCategory());
 		model.setIconURL(soapModel.getIconURL());
 		model.setVersion(soapModel.getVersion());
 
@@ -198,6 +201,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		attributes.put("remoteAppId", getRemoteAppId());
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
+		attributes.put("category", getCategory());
 		attributes.put("iconURL", getIconURL());
 		attributes.put("version", getVersion());
 
@@ -264,6 +268,12 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 		if (description != null) {
 			setDescription(description);
+		}
+
+		String category = (String)attributes.get("category");
+
+		if (category != null) {
+			setCategory(category);
 		}
 
 		String iconURL = (String)attributes.get("iconURL");
@@ -453,6 +463,32 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	@JSON
+	public String getCategory() {
+		if (_category == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _category;
+		}
+	}
+
+	@Override
+	public void setCategory(String category) {
+		_columnBitmask |= CATEGORY_COLUMN_BITMASK;
+
+		if (_originalCategory == null) {
+			_originalCategory = _category;
+		}
+
+		_category = category;
+	}
+
+	public String getOriginalCategory() {
+		return GetterUtil.getString(_originalCategory);
+	}
+
+	@Override
+	@JSON
 	public String getIconURL() {
 		if (_iconURL == null) {
 			return StringPool.BLANK;
@@ -524,6 +560,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		appImpl.setRemoteAppId(getRemoteAppId());
 		appImpl.setTitle(getTitle());
 		appImpl.setDescription(getDescription());
+		appImpl.setCategory(getCategory());
 		appImpl.setIconURL(getIconURL());
 		appImpl.setVersion(getVersion());
 
@@ -587,6 +624,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		appModelImpl._originalRemoteAppId = appModelImpl._remoteAppId;
 
 		appModelImpl._setOriginalRemoteAppId = false;
+
+		appModelImpl._originalCategory = appModelImpl._category;
 
 		appModelImpl._columnBitmask = 0;
 	}
@@ -653,6 +692,14 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 			appCacheModel.description = null;
 		}
 
+		appCacheModel.category = getCategory();
+
+		String category = appCacheModel.category;
+
+		if ((category != null) && (category.length() == 0)) {
+			appCacheModel.category = null;
+		}
+
 		appCacheModel.iconURL = getIconURL();
 
 		String iconURL = appCacheModel.iconURL;
@@ -674,7 +721,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -696,6 +743,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		sb.append(getTitle());
 		sb.append(", description=");
 		sb.append(getDescription());
+		sb.append(", category=");
+		sb.append(getCategory());
 		sb.append(", iconURL=");
 		sb.append(getIconURL());
 		sb.append(", version=");
@@ -707,7 +756,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.marketplace.model.App");
@@ -754,6 +803,10 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>category</column-name><column-value><![CDATA[");
+		sb.append(getCategory());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>iconURL</column-name><column-value><![CDATA[");
 		sb.append(getIconURL());
 		sb.append("]]></column-value></column>");
@@ -785,6 +838,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	private boolean _setOriginalRemoteAppId;
 	private String _title;
 	private String _description;
+	private String _category;
+	private String _originalCategory;
 	private String _iconURL;
 	private String _version;
 	private long _columnBitmask;

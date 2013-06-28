@@ -311,6 +311,12 @@ public class AppLocalServiceUtil {
 		return getService().fetchRemoteApp(remoteAppId);
 	}
 
+	public static java.util.List<com.liferay.marketplace.model.App> getApps(
+		java.lang.String category)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getApps(category);
+	}
+
 	public static java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getInstalledApps();
@@ -344,12 +350,13 @@ public class AppLocalServiceUtil {
 
 	public static com.liferay.marketplace.model.App updateApp(long userId,
 		long remoteAppId, java.lang.String title, java.lang.String description,
-		java.lang.String iconURL, java.lang.String version, java.io.File file)
+		java.lang.String category, java.lang.String iconURL,
+		java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateApp(userId, remoteAppId, title, description, iconURL,
-			version, file);
+				   .updateApp(userId, remoteAppId, title, description,
+			category, iconURL, version, file);
 	}
 
 	public static void clearService() {

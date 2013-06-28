@@ -1869,6 +1869,531 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	}
 
 	private static final String _FINDER_COLUMN_REMOTEAPPID_REMOTEAPPID_2 = "app.remoteAppId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CATEGORY = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCategory",
+			new String[] {
+				String.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CATEGORY =
+		new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+			AppModelImpl.FINDER_CACHE_ENABLED, AppImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCategory",
+			new String[] { String.class.getName() },
+			AppModelImpl.CATEGORY_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_CATEGORY = new FinderPath(AppModelImpl.ENTITY_CACHE_ENABLED,
+			AppModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCategory",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns all the apps where category = &#63;.
+	 *
+	 * @param category the category
+	 * @return the matching apps
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<App> findByCategory(String category) throws SystemException {
+		return findByCategory(category, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Returns a range of all the apps where category = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param category the category
+	 * @param start the lower bound of the range of apps
+	 * @param end the upper bound of the range of apps (not inclusive)
+	 * @return the range of matching apps
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<App> findByCategory(String category, int start, int end)
+		throws SystemException {
+		return findByCategory(category, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the apps where category = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param category the category
+	 * @param start the lower bound of the range of apps
+	 * @param end the upper bound of the range of apps (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching apps
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<App> findByCategory(String category, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CATEGORY;
+			finderArgs = new Object[] { category };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CATEGORY;
+			finderArgs = new Object[] { category, start, end, orderByComparator };
+		}
+
+		List<App> list = (List<App>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (App app : list) {
+				if (!Validator.equals(category, app.getCategory())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_APP_WHERE);
+
+			boolean bindCategory = false;
+
+			if (category == null) {
+				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_1);
+			}
+			else if (category.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_3);
+			}
+			else {
+				bindCategory = true;
+
+				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_2);
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(AppModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindCategory) {
+					qPos.add(category);
+				}
+
+				if (!pagination) {
+					list = (List<App>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<App>(list);
+				}
+				else {
+					list = (List<App>)QueryUtil.list(q, getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first app in the ordered set where category = &#63;.
+	 *
+	 * @param category the category
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching app
+	 * @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App findByCategory_First(String category,
+		OrderByComparator orderByComparator)
+		throws NoSuchAppException, SystemException {
+		App app = fetchByCategory_First(category, orderByComparator);
+
+		if (app != null) {
+			return app;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("category=");
+		msg.append(category);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAppException(msg.toString());
+	}
+
+	/**
+	 * Returns the first app in the ordered set where category = &#63;.
+	 *
+	 * @param category the category
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching app, or <code>null</code> if a matching app could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App fetchByCategory_First(String category,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<App> list = findByCategory(category, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last app in the ordered set where category = &#63;.
+	 *
+	 * @param category the category
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching app
+	 * @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App findByCategory_Last(String category,
+		OrderByComparator orderByComparator)
+		throws NoSuchAppException, SystemException {
+		App app = fetchByCategory_Last(category, orderByComparator);
+
+		if (app != null) {
+			return app;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("category=");
+		msg.append(category);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAppException(msg.toString());
+	}
+
+	/**
+	 * Returns the last app in the ordered set where category = &#63;.
+	 *
+	 * @param category the category
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching app, or <code>null</code> if a matching app could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App fetchByCategory_Last(String category,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByCategory(category);
+
+		List<App> list = findByCategory(category, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the apps before and after the current app in the ordered set where category = &#63;.
+	 *
+	 * @param appId the primary key of the current app
+	 * @param category the category
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next app
+	 * @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App[] findByCategory_PrevAndNext(long appId, String category,
+		OrderByComparator orderByComparator)
+		throws NoSuchAppException, SystemException {
+		App app = findByPrimaryKey(appId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			App[] array = new AppImpl[3];
+
+			array[0] = getByCategory_PrevAndNext(session, app, category,
+					orderByComparator, true);
+
+			array[1] = app;
+
+			array[2] = getByCategory_PrevAndNext(session, app, category,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected App getByCategory_PrevAndNext(Session session, App app,
+		String category, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_APP_WHERE);
+
+		boolean bindCategory = false;
+
+		if (category == null) {
+			query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_1);
+		}
+		else if (category.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_3);
+		}
+		else {
+			bindCategory = true;
+
+			query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(AppModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (bindCategory) {
+			qPos.add(category);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(app);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<App> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the apps where category = &#63; from the database.
+	 *
+	 * @param category the category
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByCategory(String category) throws SystemException {
+		for (App app : findByCategory(category, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(app);
+		}
+	}
+
+	/**
+	 * Returns the number of apps where category = &#63;.
+	 *
+	 * @param category the category
+	 * @return the number of matching apps
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByCategory(String category) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CATEGORY;
+
+		Object[] finderArgs = new Object[] { category };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_APP_WHERE);
+
+			boolean bindCategory = false;
+
+			if (category == null) {
+				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_1);
+			}
+			else if (category.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_3);
+			}
+			else {
+				bindCategory = true;
+
+				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindCategory) {
+					qPos.add(category);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_CATEGORY_CATEGORY_1 = "app.category IS NULL";
+	private static final String _FINDER_COLUMN_CATEGORY_CATEGORY_2 = "app.category = ?";
+	private static final String _FINDER_COLUMN_CATEGORY_CATEGORY_3 = "(app.category IS NULL OR app.category = '')";
 
 	/**
 	 * Caches the app in the entity cache if it is enabled.
@@ -2194,6 +2719,21 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 			}
+
+			if ((appModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CATEGORY.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { appModelImpl.getOriginalCategory() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CATEGORY, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CATEGORY,
+					args);
+
+				args = new Object[] { appModelImpl.getCategory() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CATEGORY, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CATEGORY,
+					args);
+			}
 		}
 
 		EntityCacheUtil.putResult(AppModelImpl.ENTITY_CACHE_ENABLED,
@@ -2225,6 +2765,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		appImpl.setRemoteAppId(app.getRemoteAppId());
 		appImpl.setTitle(app.getTitle());
 		appImpl.setDescription(app.getDescription());
+		appImpl.setCategory(app.getCategory());
 		appImpl.setIconURL(app.getIconURL());
 		appImpl.setVersion(app.getVersion());
 

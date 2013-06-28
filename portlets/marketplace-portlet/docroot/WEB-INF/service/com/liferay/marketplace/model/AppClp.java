@@ -84,6 +84,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		attributes.put("remoteAppId", getRemoteAppId());
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
+		attributes.put("category", getCategory());
 		attributes.put("iconURL", getIconURL());
 		attributes.put("version", getVersion());
 
@@ -150,6 +151,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 
 		if (description != null) {
 			setDescription(description);
+		}
+
+		String category = (String)attributes.get("category");
+
+		if (category != null) {
+			setCategory(category);
 		}
 
 		String iconURL = (String)attributes.get("iconURL");
@@ -398,6 +405,29 @@ public class AppClp extends BaseModelImpl<App> implements App {
 				Method method = clazz.getMethod("setDescription", String.class);
 
 				method.invoke(_appRemoteModel, description);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getCategory() {
+		return _category;
+	}
+
+	@Override
+	public void setCategory(String category) {
+		_category = category;
+
+		if (_appRemoteModel != null) {
+			try {
+				Class<?> clazz = _appRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCategory", String.class);
+
+				method.invoke(_appRemoteModel, category);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -663,6 +693,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		clone.setRemoteAppId(getRemoteAppId());
 		clone.setTitle(getTitle());
 		clone.setDescription(getDescription());
+		clone.setCategory(getCategory());
 		clone.setIconURL(getIconURL());
 		clone.setVersion(getVersion());
 
@@ -713,7 +744,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -735,6 +766,8 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		sb.append(getTitle());
 		sb.append(", description=");
 		sb.append(getDescription());
+		sb.append(", category=");
+		sb.append(getCategory());
 		sb.append(", iconURL=");
 		sb.append(getIconURL());
 		sb.append(", version=");
@@ -746,7 +779,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.marketplace.model.App");
@@ -793,6 +826,10 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>category</column-name><column-value><![CDATA[");
+		sb.append(getCategory());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>iconURL</column-name><column-value><![CDATA[");
 		sb.append(getIconURL());
 		sb.append("]]></column-value></column>");
@@ -817,6 +854,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	private long _remoteAppId;
 	private String _title;
 	private String _description;
+	private String _category;
 	private String _iconURL;
 	private String _version;
 	private BaseModel<?> _appRemoteModel;

@@ -140,33 +140,38 @@ public class AppLocalServiceClpInvoker {
 
 		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName50 = "getInstalledApps";
+		_methodName50 = "getApps";
 
-		_methodParameterTypes50 = new String[] {  };
+		_methodParameterTypes50 = new String[] { "java.lang.String" };
 
-		_methodName51 = "installApp";
+		_methodName51 = "getInstalledApps";
 
-		_methodParameterTypes51 = new String[] { "long" };
+		_methodParameterTypes51 = new String[] {  };
 
-		_methodName52 = "processMarketplaceProperties";
+		_methodName52 = "installApp";
 
-		_methodParameterTypes52 = new String[] { "java.util.Properties" };
+		_methodParameterTypes52 = new String[] { "long" };
 
-		_methodName53 = "uninstallApp";
+		_methodName53 = "processMarketplaceProperties";
 
-		_methodParameterTypes53 = new String[] { "long" };
+		_methodParameterTypes53 = new String[] { "java.util.Properties" };
 
-		_methodName54 = "updateApp";
+		_methodName54 = "uninstallApp";
 
-		_methodParameterTypes54 = new String[] {
-				"long", "long", "java.lang.String", "java.io.File"
-			};
+		_methodParameterTypes54 = new String[] { "long" };
 
 		_methodName55 = "updateApp";
 
 		_methodParameterTypes55 = new String[] {
+				"long", "long", "java.lang.String", "java.io.File"
+			};
+
+		_methodName56 = "updateApp";
+
+		_methodParameterTypes56 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.io.File"
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.io.File"
 			};
 	}
 
@@ -307,44 +312,49 @@ public class AppLocalServiceClpInvoker {
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			return AppLocalServiceUtil.getInstalledApps();
+			return AppLocalServiceUtil.getApps((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
-
-			return null;
+			return AppLocalServiceUtil.getInstalledApps();
 		}
 
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
+			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
+			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
+		}
+
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
-				(java.io.File)arguments[6]);
+				(java.lang.String)arguments[6], (java.io.File)arguments[7]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -410,4 +420,6 @@ public class AppLocalServiceClpInvoker {
 	private String[] _methodParameterTypes54;
 	private String _methodName55;
 	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
 }

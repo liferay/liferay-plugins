@@ -41,6 +41,7 @@ public class AppSoap implements Serializable {
 		soapModel.setRemoteAppId(model.getRemoteAppId());
 		soapModel.setTitle(model.getTitle());
 		soapModel.setDescription(model.getDescription());
+		soapModel.setCategory(model.getCategory());
 		soapModel.setIconURL(model.getIconURL());
 		soapModel.setVersion(model.getVersion());
 
@@ -175,6 +176,14 @@ public class AppSoap implements Serializable {
 		_description = description;
 	}
 
+	public String getCategory() {
+		return _category;
+	}
+
+	public void setCategory(String category) {
+		_category = category;
+	}
+
 	public String getIconURL() {
 		return _iconURL;
 	}
@@ -201,6 +210,7 @@ public class AppSoap implements Serializable {
 	private long _remoteAppId;
 	private String _title;
 	private String _description;
+	private String _category;
 	private String _iconURL;
 	private String _version;
 }

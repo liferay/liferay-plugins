@@ -59,6 +59,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 		attributes.put("remoteAppId", getRemoteAppId());
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
+		attributes.put("category", getCategory());
 		attributes.put("iconURL", getIconURL());
 		attributes.put("version", getVersion());
 
@@ -125,6 +126,12 @@ public class AppWrapper implements App, ModelWrapper<App> {
 
 		if (description != null) {
 			setDescription(description);
+		}
+
+		String category = (String)attributes.get("category");
+
+		if (category != null) {
+			setCategory(category);
 		}
 
 		String iconURL = (String)attributes.get("iconURL");
@@ -380,6 +387,26 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	@Override
 	public void setDescription(java.lang.String description) {
 		_app.setDescription(description);
+	}
+
+	/**
+	* Returns the category of this app.
+	*
+	* @return the category of this app
+	*/
+	@Override
+	public java.lang.String getCategory() {
+		return _app.getCategory();
+	}
+
+	/**
+	* Sets the category of this app.
+	*
+	* @param category the category of this app
+	*/
+	@Override
+	public void setCategory(java.lang.String category) {
+		_app.setCategory(category);
 	}
 
 	/**
