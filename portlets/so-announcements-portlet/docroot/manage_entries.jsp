@@ -146,20 +146,20 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 	</c:if>
 </aui:form>
 
-<%
-PortletURL addEntryURL = renderResponse.createRenderURL();
-
-addEntryURL.setParameter("mvcPath", "/edit_entry.jsp");
-addEntryURL.setParameter("redirect", currentURL);
-addEntryURL.setParameter("fromManageEntries", "true");
-addEntryURL.setWindowState(LiferayWindowState.POP_UP);
-%>
-
 <aui:script>
 	function <portlet:namespace />manageAddEntry() {
 		var A = AUI();
 
 		var optValue = A.one('select[name="<portlet:namespace />distributionScope"]').get('value');
+
+		<%
+		PortletURL addEntryURL = renderResponse.createRenderURL();
+
+		addEntryURL.setParameter("mvcPath", "/edit_entry.jsp");
+		addEntryURL.setParameter("redirect", currentURL);
+		addEntryURL.setParameter("fromManageEntries", "true");
+		addEntryURL.setWindowState(LiferayWindowState.POP_UP);
+		%>
 
 		var addEntryURL = "<%= addEntryURL.toString() %>&distributionScope=" + optValue;
 
