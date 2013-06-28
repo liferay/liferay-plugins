@@ -66,10 +66,10 @@ user name.
 	Note, to determine your user name, execute `echo %USERNAME%` on Windows or
 	`whoami` on Unix/Linux.
 
-4. In your `build.${username}.properties` file, specify the `appserver.dir`
-property set to the path of your app server.
+4. In your `build.${username}.properties` file, specify the `app.server.parent.dir`
+property set to the parent path of your app server.
 
-    	app.server.dir=/home/joe/liferay-portal-6.1.1-ga2/tomcat-7.0.27
+    	app.server.parent.dir=/home/joe/liferay-portal-6.1.1-ga2
 
 	Use your `build.${username}.properties` file to specify any additional
 	properties you wish to override from the base `build.properties` file; do
