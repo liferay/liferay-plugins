@@ -13,9 +13,9 @@
 		<dependency name="jboss-el" org="org.jboss.el" rev="2.0.1.GA" />
 		<dependency name="jsf-api" org="com.sun.faces" rev="2.1.21" />
 		<dependency name="jsf-impl" org="com.sun.faces" rev="2.1.21" />
-		<dependency name="liferay-faces-bridge-api" org="com.liferay.faces" rev="3.1.2-ga3" />
-		<dependency name="liferay-faces-bridge-impl" org="com.liferay.faces" rev="3.1.2-ga3" />
-		<dependency name="liferay-faces-portal" org="com.liferay.faces" rev="3.1.2-ga3" />
-		<dependency name="liferay-faces-util" org="com.liferay.faces" rev="3.1.2-ga3" />
+		<dependency name="liferay-faces-bridge-api" org="com.liferay.faces" rev="3.1.3-ga4" />
+		<dependency name="liferay-faces-bridge-impl" org="com.liferay.faces" rev="3.1.3-ga4" />
+		<dependency name="liferay-faces-portal" org="com.liferay.faces" rev="3.1.3-ga4" />
+		<dependency name="liferay-faces-util" org="com.liferay.faces" rev="3.1.3-ga4" />
 	</dependencies>
 </ivy-module>
