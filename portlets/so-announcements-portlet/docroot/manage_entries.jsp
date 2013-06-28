@@ -102,7 +102,6 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 			rowURL.setParameter("mvcPath", "/edit_entry.jsp");
 			rowURL.setParameter("redirect", currentURL);
 			rowURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
-			rowURL.setParameter("fromManageEntries", "true");
 			rowURL.setWindowState(LiferayWindowState.POP_UP);
 
 			// Title
@@ -156,7 +155,6 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		addEntryURL.setParameter("mvcPath", "/edit_entry.jsp");
 		addEntryURL.setParameter("redirect", currentURL);
-		addEntryURL.setParameter("fromManageEntries", "true");
 		addEntryURL.setWindowState(LiferayWindowState.POP_UP);
 		%>
 

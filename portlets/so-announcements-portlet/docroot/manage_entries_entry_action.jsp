@@ -31,7 +31,6 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 			<portlet:param name="mvcPath" value="/edit_entry.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-			<portlet:param name="fromManageEntries" value="true" />
 		</portlet:renderURL>
 
 		<a href="<%= editURL %>">
