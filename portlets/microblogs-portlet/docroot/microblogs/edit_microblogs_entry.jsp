@@ -172,7 +172,7 @@ if (comment) {
 			<%
 			int socialRelationType = 0;
 
-			if(microblogsEntry != null) {
+			if (microblogsEntry != null) {
 				socialRelationType = microblogsEntry.getSocialRelationType();
 			}
 			%>

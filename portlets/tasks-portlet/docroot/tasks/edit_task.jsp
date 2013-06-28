@@ -188,7 +188,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 			var checkbox = A.one('#<portlet:namespace />addDueDate');
 
-			if(checkbox) {
+			if (checkbox) {
 				var checkboxValue = checkbox.get('value');
 				var dueDateToggle = A.one('#toggleDueDate');
 

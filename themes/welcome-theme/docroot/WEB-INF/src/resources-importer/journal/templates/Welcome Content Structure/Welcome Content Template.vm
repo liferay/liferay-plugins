@@ -9,7 +9,7 @@
 		<nav>
 			<ul id="contentNav">
 				#foreach($link in $links.siblings)
-					#if($velocityCount == 1)
+					#if ($velocityCount == 1)
 						<li aria-selected="true" class="selected"><a href="#pageId$velocityCount">$link.data</a></li>
 					#else
 						<li><a href="#pageId$velocityCount">$link.data</a></li>
@@ -21,7 +21,7 @@
 
 	<div class="content-area-wrapper">
 		#foreach($link in $links.siblings)
-			#if($velocityCount == 1)
+			#if ($velocityCount == 1)
 				<style type="text/css">
 					.content-area {
 						background: url($link.bg-image.data) 100% 0 no-repeat;
