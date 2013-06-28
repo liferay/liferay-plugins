@@ -20,11 +20,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("mvcPath", "/manage_entries.jsp");
-portletURL.setWindowState(LiferayWindowState.POP_UP);
-
 String distributionScope = ParamUtil.getString(request, "distributionScope");
 
 long classNameId = -1;
@@ -40,6 +35,11 @@ if (distributionScopeArray.length == 2) {
 if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 	throw new PrincipalException();
 }
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("mvcPath", "/manage_entries.jsp");
+portletURL.setWindowState(LiferayWindowState.POP_UP);
 %>
 
 <aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
