@@ -42,13 +42,13 @@ page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.Theme" %><%@
 page import="com.liferay.portal.service.PluginSettingLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
-page import="javax.portlet.PortletURL" %><%@
 page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.List" %>
 
-<%@ page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.PortletURL" %><%@
+page import="javax.portlet.WindowState" %>
 
 <%@ page import="javax.servlet.ServletContext" %>
 
