@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.admin.portlet;
 
+import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.knowledgebase.KBArticleContentException;
@@ -35,7 +36,6 @@ import com.liferay.knowledgebase.service.KBTemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
-import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
