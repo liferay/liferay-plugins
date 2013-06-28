@@ -14,6 +14,7 @@
 
 package com.liferay.servermanager.servlet;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -28,7 +29,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.servermanager.executor.Executor;
 import com.liferay.servermanager.executor.RootExecutor;
 import com.liferay.servermanager.util.JSONKeys;

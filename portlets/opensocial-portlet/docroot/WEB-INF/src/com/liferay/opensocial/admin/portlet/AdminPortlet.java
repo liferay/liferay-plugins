@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.admin.portlet;
 
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.GadgetServiceUtil;
@@ -28,7 +29,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.List;
 

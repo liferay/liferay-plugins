@@ -17,6 +17,7 @@
 
 package com.liferay.so.sites.portlet;
 
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.DuplicateGroupException;
 import com.liferay.portal.GroupNameException;
 import com.liferay.portal.kernel.dao.search.DAOParamUtil;
@@ -60,7 +61,6 @@ import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.GroupConstants;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.ArrayList;
 import java.util.List;

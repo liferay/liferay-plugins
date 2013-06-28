@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.editor.portlet;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.opensocial.admin.portlet.AdminPortlet;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
@@ -35,7 +36,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelNameComparator;
 

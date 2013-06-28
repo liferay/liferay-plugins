@@ -14,11 +14,11 @@
 
 package com.liferay.pluginssecuritymanager.portlet;
 
+import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.pluginssecuritymanager.util.PluginsSecurityManagerUtil;
 import com.liferay.pluginssecuritymanager.util.PortletPropsKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

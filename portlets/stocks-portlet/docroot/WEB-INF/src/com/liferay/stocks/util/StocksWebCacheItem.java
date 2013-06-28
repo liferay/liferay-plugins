@@ -14,10 +14,10 @@
 
 package com.liferay.stocks.util;
 
+import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
 import com.liferay.stocks.model.Stocks;

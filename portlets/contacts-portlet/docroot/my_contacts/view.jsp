@@ -36,7 +36,7 @@ Group group = themeDisplay.getScopeGroup();
 
 			portletURL = PortletURLFactoryUtil.create(request, PortletKeys.CONTACTS_CENTER, contactsPlid, PortletRequest.RENDER_PHASE);
 		}
-		catch (Exception e){
+		catch (Exception e) {
 			portletURL = renderResponse.createRenderURL();
 
 			portletURL.setWindowState(WindowState.MAXIMIZED);

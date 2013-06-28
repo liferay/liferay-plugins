@@ -14,6 +14,7 @@
 
 package com.liferay.mail.mailbox;
 
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.mail.MailException;
 import com.liferay.mail.NoSuchFolderException;
 import com.liferay.mail.NoSuchMessageException;
@@ -38,7 +39,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;

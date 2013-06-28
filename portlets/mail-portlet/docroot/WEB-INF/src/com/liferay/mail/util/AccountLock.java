@@ -14,11 +14,11 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Time;
 
 import java.util.concurrent.ConcurrentHashMap;
 

@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleAttachmentsUtil;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleLatestUpgradeColumnImpl;
 import com.liferay.knowledgebase.hook.upgrade.v1_1_0.util.KBArticleMainUpgradeColumnImpl;
@@ -29,7 +30,6 @@ import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Peter Shin

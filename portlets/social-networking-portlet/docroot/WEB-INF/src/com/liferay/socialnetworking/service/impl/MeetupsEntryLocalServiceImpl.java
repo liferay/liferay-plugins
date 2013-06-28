@@ -14,11 +14,11 @@
 
 package com.liferay.socialnetworking.service.impl;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ImageLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.socialnetworking.MeetupsEntryEndDateException;
 import com.liferay.socialnetworking.MeetupsEntryStartDateException;
 import com.liferay.socialnetworking.model.MeetupsEntry;

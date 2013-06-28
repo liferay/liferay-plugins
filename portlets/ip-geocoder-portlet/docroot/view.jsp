@@ -18,9 +18,9 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.compat.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.ipgeocoder.model.IPInfo" %>
 <%@ page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%
 HttpServletRequest originalRequest = PortalUtil.getOriginalServletRequest(request);

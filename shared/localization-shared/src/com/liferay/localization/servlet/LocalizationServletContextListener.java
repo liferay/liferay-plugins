@@ -14,6 +14,7 @@
 
 package com.liferay.localization.servlet;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.localization.util.InstanceUtil;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portal.util.PortalUtil;
 
 import java.io.InputStream;
 

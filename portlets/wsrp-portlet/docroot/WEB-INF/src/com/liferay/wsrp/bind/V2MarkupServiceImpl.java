@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.bind;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.dao.shard.ShardUtil;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,7 +36,6 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.Encryptor;
 import com.liferay.util.axis.ServletUtil;

@@ -14,11 +14,11 @@
 
 package com.liferay.randombibleverse.portlet;
 
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 

@@ -17,6 +17,7 @@
 
 package com.liferay.so.hook.upgrade.v2_0_0;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -24,7 +25,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.TeamLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.util.PortletPropsValues;
 
 import java.util.List;

@@ -14,8 +14,8 @@
 
 package com.liferay.testhook.util;
 
+import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.SystemProperties;
-import com.liferay.portal.kernel.util.Time;
 
 import java.io.File;
 

@@ -17,6 +17,7 @@
 
 package com.liferay.so.hook.upgrade.v1_5_1;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -34,7 +35,6 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.PortletPropsKeys;

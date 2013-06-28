@@ -14,7 +14,7 @@
 
 package com.liferay.samplelar.plugin;
 
-import com.liferay.portal.kernel.lar.BasePortletDataHandler;
+import com.liferay.compat.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;

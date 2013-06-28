@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.bind;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -24,7 +25,6 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.NoSuchProducerException;
 import com.liferay.wsrp.model.WSRPProducer;

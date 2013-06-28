@@ -96,7 +96,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 			assetTagName = taggedUser.getScreenName();
 		}
-		catch (NoSuchUserException nsue){
+		catch (NoSuchUserException nsue) {
 		}
 
 		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());

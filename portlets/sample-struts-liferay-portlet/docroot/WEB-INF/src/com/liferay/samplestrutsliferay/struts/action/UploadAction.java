@@ -14,12 +14,12 @@
 
 package com.liferay.samplestrutsliferay.struts.action;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.struts.PortletAction;
-import com.liferay.portal.util.PortalUtil;
 
 import java.io.File;
 

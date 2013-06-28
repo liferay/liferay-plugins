@@ -14,9 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo;
 
+import com.liferay.compat.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.DefaultWorkflowDefinition;
 import com.liferay.portal.workflow.kaleo.export.DefinitionExporterUtil;

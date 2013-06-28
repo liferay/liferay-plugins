@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.service.impl;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.opensocial.DuplicateGadgetURLException;
 import com.liferay.opensocial.GadgetPortletCategoryNamesException;
 import com.liferay.opensocial.GadgetURLException;
@@ -38,7 +39,6 @@ import com.liferay.portal.model.PortletApp;
 import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.InvokerPortlet;
 import com.liferay.portlet.PortletInstanceFactoryUtil;
 

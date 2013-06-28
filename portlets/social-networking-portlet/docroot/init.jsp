@@ -24,7 +24,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.ipgeocoder.model.IPInfo" %><%@
+<%@ page import="com.liferay.compat.portal.util.PortalUtil" %><%@
+page import="com.liferay.ipgeocoder.model.IPInfo" %><%@
 page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %><%@
 page import="com.liferay.portal.NoSuchUserException" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
@@ -57,7 +58,6 @@ page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.permission.UserPermissionUtil" %><%@
-page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %><%@
 page import="com.liferay.portal.webserver.WebServerServletTokenUtil" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@

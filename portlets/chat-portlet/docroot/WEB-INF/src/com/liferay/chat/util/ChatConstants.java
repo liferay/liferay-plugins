@@ -14,7 +14,7 @@
 
 package com.liferay.chat.util;
 
-import com.liferay.portal.kernel.util.Time;
+import com.liferay.compat.portal.kernel.util.Time;
 
 /**
  * @author Brian Wing Shun Chan

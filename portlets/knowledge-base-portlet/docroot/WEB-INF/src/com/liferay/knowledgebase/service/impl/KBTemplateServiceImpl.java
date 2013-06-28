@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.model.KBTemplateSearchDisplay;
 import com.liferay.knowledgebase.model.impl.KBTemplateSearchDisplayImpl;
@@ -26,7 +27,6 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 

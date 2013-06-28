@@ -14,6 +14,7 @@
 
 package com.liferay.localization.util;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -33,7 +34,6 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.UserActionableDynamicQuery;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.portlet.expando.model.ExpandoBridge;

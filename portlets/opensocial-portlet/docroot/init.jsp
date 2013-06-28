@@ -25,7 +25,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.opensocial.DuplicateGadgetURLException" %><%@
+<%@ page import="com.liferay.compat.portal.util.PortalUtil" %><%@
+page import="com.liferay.opensocial.DuplicateGadgetURLException" %><%@
 page import="com.liferay.opensocial.GadgetPortletCategoryNamesException" %><%@
 page import="com.liferay.opensocial.GadgetURLException" %><%@
 page import="com.liferay.opensocial.NoSuchGadgetException" %><%@
@@ -55,7 +56,6 @@ page import="com.liferay.portal.kernel.util.TreeView" %><%@
 page import="com.liferay.portal.kernel.util.UnicodeFormatter" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.Layout" %><%@
-page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletLister" %><%@
 page import="com.liferay.portal.util.PortletListerFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@

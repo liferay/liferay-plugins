@@ -17,6 +17,7 @@ package com.liferay.akismet.moderation.portlet;
 import com.liferay.akismet.util.AkismetConstants;
 import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -44,7 +45,6 @@ import com.liferay.portlet.wiki.NoSuchPageException;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,7 +158,7 @@ public class ModerationPortlet extends MVCPortlet {
 			// Latest version
 
 			if ((latestContent != null) && ((previousContent == null) ||
-				latestContent.equals(previousContent))) {
+				 latestContent.equals(previousContent))) {
 
 				ServiceContext serviceContext =
 					ServiceContextFactory.getInstance(actionRequest);
