@@ -44,8 +44,8 @@ int total = 0;
 			total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(themeDisplay.getUserId());
 		}
 		else {
-			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(themeDisplay.getUserId());
+			results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(themeDisplay.getUserId());
 		}
 		%>
 
