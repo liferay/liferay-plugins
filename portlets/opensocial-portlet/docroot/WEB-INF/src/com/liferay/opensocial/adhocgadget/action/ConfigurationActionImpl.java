@@ -122,7 +122,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		PortletPreferences portletPreferences = portletRequest.getPreferences();
 
-		return ShindigUtil.getGadget(portletPreferences);
+		return ShindigUtil.getGadget(preferences);
 	}
 
 }
