@@ -26,6 +26,7 @@
 <c:if test="<%= permissionChecker.isGroupAdmin(layout.getGroupId()) || permissionChecker.isGroupOwner(layout.getGroupId()) %>">
 	<div class="admin-actions">
 		<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
+
 		<aui:button onClick='<%= renderResponse.getNamespace() + "manageEntries()" %>' value="manage-entries" />
 	</div>
 </c:if>
