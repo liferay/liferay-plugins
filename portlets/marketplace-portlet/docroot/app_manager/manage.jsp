@@ -14,14 +14,16 @@
  */
 --%>
 
+<%
+String category = ParamUtil.getString(request, "category");
+
+portletURL.setParameter("category", category);
+%>
+
 <div class="row">
 	<div class="span3">
-		<div class="well">
-			<ul class="nav nav-list">
-				<li class="active">
-					<a href="#"><liferay-ui:message key="all-apps" /></a>
-				</li>
-			</ul>
+		<div class="category-nav well">
+			<%@ include file="/app_manager/categories.jspf" %>
 		</div>
 	</div>
 
@@ -29,7 +31,14 @@
 		<h3><liferay-ui:message key="all-apps" /></h3>
 
 		<%
-		List<App> apps = AppLocalServiceUtil.getInstalledApps();
+		List<App> apps = null;
+
+		if (Validator.isNotNull(category)) {
+			apps = AppLocalServiceUtil.getApps(category);
+		}
+		else {
+			apps = AppLocalServiceUtil.getInstalledApps();
+		}
 
 		for (App app : apps) {
 			String[] contextNames = app.getContextNames();
@@ -80,7 +89,7 @@
 					<c:if test="<%= !layoutTemplates.isEmpty() || !portlets.isEmpty() || !themes.isEmpty() %>">
 						<div class="plugins well">
 							<div class="tabbable">
-								<ul class="nav nav-tabs">
+								<ul class="nav nav-pills">
 									<li class="active">
 										<a data-toggle="tab1" href="javascript:;"><liferay-ui:message key="summary" /></a>
 									</li>
@@ -207,6 +216,6 @@
 			tabbable.one('.tab-content').all('.tab-pane').removeClass('active');
 			tabbable.one('.tab-content .' + tab.getAttribute('data-toggle')).addClass('active');
 		},
-		'.nav-tabs a'
+		'.nav-pills a'
 	)
 </aui:script>

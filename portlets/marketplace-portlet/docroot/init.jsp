@@ -27,6 +27,7 @@
 page import="com.liferay.marketplace.service.AppLocalServiceUtil" %><%@
 page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@
 page import="com.liferay.marketplace.util.PortletKeys" %><%@
+page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.servlet.ServletContextPool" %><%@
 page import="com.liferay.portal.kernel.util.ArrayUtil" %><%@
 page import="com.liferay.portal.kernel.util.ListUtil" %><%@

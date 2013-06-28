@@ -3,6 +3,11 @@
 		margin-left: 0;
 	}
 
+	.category-nav {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
 	.app {
 		clear: both;
 		min-height: 90px;
@@ -59,14 +64,8 @@
 			}
 		}
 
-		.tabbable {
-			.nav .active a {
-				background: whitesmoke;
-			}
-
-			.tab-pane {
-				padding: 8px 12px 0;
-			}
+		.tabbable .tab-pane {
+			padding: 8px 0 0;
 		}
 	}
 }
