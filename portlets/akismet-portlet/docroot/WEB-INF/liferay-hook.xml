@@ -21,4 +21,12 @@
 		<struts-action-path>/wiki/edit_page</struts-action-path>
 		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditPageAction</struts-action-impl>
 	</struts-action>
+	<struts-action>
+		<struts-action-path>/wiki_admin/edit_page</struts-action-path>
+		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditPageAction</struts-action-impl>
+	</struts-action>
+	<struts-action>
+		<struts-action-path>/wiki_display/edit_page</struts-action-path>
+		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditPageAction</struts-action-impl>
+	</struts-action>
 </hook>
