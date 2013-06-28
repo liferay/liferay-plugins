@@ -557,6 +557,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		_kbArticleLocalService.updateKBArticlesPriorities(resourcePrimKeyToPriorityMap);
 	}
 
+	public void updatePriority(long resourcePrimKey, double priority)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleLocalService.updatePriority(resourcePrimKey, priority);
+	}
+
 	public com.liferay.knowledgebase.model.KBArticle updateStatus(long userId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
