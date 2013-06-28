@@ -66,8 +66,8 @@ user name.
 	Note, to determine your user name, execute `echo %USERNAME%` on Windows or
 	`whoami` on Unix/Linux.
 
-4. In your `build.${username}.properties` file, specify the `app.server.parent.dir`
-property set to the parent path of your app server.
+4. In your `build.${username}.properties` file, specify the
+`app.server.parent.dir` property set to the parent path of your app server.
 
     	app.server.parent.dir=/home/joe/liferay-portal-6.1.1-ga2
 
