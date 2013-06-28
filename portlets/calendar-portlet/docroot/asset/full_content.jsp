@@ -14,7 +14,6 @@
  */
 --%>
 
-
 <%@ include file="/init.jsp" %>
 
 <div>

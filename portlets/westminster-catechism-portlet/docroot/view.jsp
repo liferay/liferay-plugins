@@ -135,7 +135,6 @@ portletURL.setParameter("tabs1", tabs1);
 							}
 						%>
 
-
 							<br />
 
 						<%
@@ -248,7 +247,6 @@ portletURL.setParameter("tabs1", tabs1);
 						<%
 							}
 						%>
-
 
 							<br />
 

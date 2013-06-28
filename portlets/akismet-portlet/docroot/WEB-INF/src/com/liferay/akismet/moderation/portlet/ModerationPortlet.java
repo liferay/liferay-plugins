@@ -158,7 +158,7 @@ public class ModerationPortlet extends MVCPortlet {
 			// Latest version
 
 			if ((latestContent != null) && ((previousContent == null) ||
-				latestContent.equals(previousContent))) {
+				 latestContent.equals(previousContent))) {
 
 				ServiceContext serviceContext =
 					ServiceContextFactory.getInstance(actionRequest);
