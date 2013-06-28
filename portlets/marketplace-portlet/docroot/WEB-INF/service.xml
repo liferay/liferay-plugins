@@ -29,14 +29,14 @@
 
 		<!-- Finder methods -->
 
-		<finder name="Category" return-type="Collection">
-			<finder-column name="category" />
-		</finder>
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
 		<finder name="RemoteAppId" return-type="App">
 			<finder-column name="remoteAppId" />
+		</finder>
+		<finder name="Category" return-type="Collection">
+			<finder-column name="category" />
 		</finder>
 	</entity>
 	<entity name="Module" uuid="true" local-service="true" remote-service="false">

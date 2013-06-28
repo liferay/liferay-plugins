@@ -17,9 +17,7 @@
 <%
 List<App> allApps = AppLocalServiceUtil.getApps(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-String[] categoriesArray = StringUtil.split(ListUtil.toString(allApps, "category"));
-
-List<String> categories = ListUtil.fromArray(categoriesArray);
+List<String> categories = ListUtil.fromArray(StringUtil.split(ListUtil.toString(allApps, "category")));
 
 ListUtil.distinct(categories);
 ListUtil.sort(categories);
