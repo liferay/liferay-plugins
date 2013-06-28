@@ -120,7 +120,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			portletRequest, "portletResource");
 
-		PortletPreferences preferences = portletRequest.getPreferences();
+		PortletPreferences portletPreferences = portletRequest.getPreferences();
 
 		return ShindigUtil.getGadget(portletPreferences);
 	}
