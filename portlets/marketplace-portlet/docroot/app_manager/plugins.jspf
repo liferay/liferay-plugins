@@ -29,7 +29,7 @@
 	</thead>
 
 	<%
-	for (Object plugin : plugins) {
+	for (Plugin plugin : plugins) {
 	%>
 
 		<c:choose>
