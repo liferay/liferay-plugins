@@ -54,12 +54,35 @@ portletURL.setParameter("category", category);
 
 				if (curLayoutTemplates != null) {
 					layoutTemplates.addAll(curLayoutTemplates);
+
+					Iterator<LayoutTemplate> itr = layoutTemplates.iterator();
+
+					while (itr.hasNext()) {
+						LayoutTemplate layoutTemplate = itr.next();
+
+						if (layoutTemplate.isStandard()) {
+							itr.remove();
+						}
+					}
 				}
 
 				List<Portlet> curPortlets = (List<Portlet>)servletContext.getAttribute("PLUGIN_PORTLETS");
 
 				if (curPortlets != null) {
 					portlets.addAll(curPortlets);
+
+					Iterator<Portlet> itr = portlets.iterator();
+
+					while (itr.hasNext()) {
+						Portlet portlet = itr.next();
+
+						if (portlet.getPortletId().equals(PortletKeys.PORTAL)) {
+							itr.remove();
+						}
+						else if (portlet.isSystem()) {
+							itr.remove();
+						}
+					}
 				}
 
 				List<Theme> curThemes = (List<Theme>)servletContext.getAttribute("PLUGIN_THEMES");
@@ -68,6 +91,14 @@ portletURL.setParameter("category", category);
 					themes.addAll(curThemes);
 				}
 			}
+
+			List plugins = new ArrayList(layoutTemplates.size() + portlets.size() + themes.size());
+
+			plugins.addAll(layoutTemplates);
+			plugins.addAll(portlets);
+			plugins.addAll(themes);
+
+			plugins = ListUtil.sort(plugins, new PluginComparator(application, locale));
 		%>
 
 			<div class="app">
@@ -86,75 +117,42 @@ portletURL.setParameter("category", category);
 						<%= app.getDescription() %>
 					</div>
 
-					<c:if test="<%= !layoutTemplates.isEmpty() || !portlets.isEmpty() || !themes.isEmpty() %>">
-						<div class="plugins well">
-							<div class="tabbable">
-								<ul class="nav nav-pills">
-									<li class="active">
-										<a data-toggle="tab1" href="javascript:;"><liferay-ui:message key="summary" /></a>
+					<div class="plugins well">
+						<c:choose>
+							<c:when test="<%= !plugins.isEmpty() %>">
+								<ul class="summary">
+									<li>
+										<liferay-ui:message key="this-app-contains" />
 									</li>
 
 									<c:if test="<%= !layoutTemplates.isEmpty() %>">
 										<li>
-											<a data-toggle="tab2" href="javascript:;"><liferay-ui:message key="layout-templates" /></a>
+											<%= layoutTemplates.size() %> <liferay-ui:message key='<%= layoutTemplates.size() == 1 ? "layout-template" : "layout-templates" %>' />
 										</li>
 									</c:if>
 
 									<c:if test="<%= !portlets.isEmpty() %>">
 										<li>
-											<a data-toggle="tab3" href="javascript:;"><liferay-ui:message key="portlets" /></a>
+											<%= portlets.size() %> <liferay-ui:message key='<%= portlets.size() == 1 ? "portlet" : "portlets" %>' />
 										</li>
 									</c:if>
 
 									<c:if test="<%= !themes.isEmpty() %>">
 										<li>
-											<a data-toggle="tab4" href="javascript:;"><liferay-ui:message key="themes" /></a>
+											<%= themes.size() %> <liferay-ui:message key='<%= themes.size() == 1 ? "theme" : "themes" %>' />
 										</li>
 									</c:if>
 								</ul>
 
-								<div class="tab-content">
-									<div class="tab-pane tab1 active">
-										<ul class="summary">
-											<li>
-												<liferay-ui:message key="this-app-contains" />
-											</li>
-
-											<c:if test="<%= !layoutTemplates.isEmpty() %>">
-												<li>
-													<%= layoutTemplates.size() %> <liferay-ui:message key='<%= layoutTemplates.size() == 1 ? "layout-template" : "layout-templates" %>' />
-												</li>
-											</c:if>
-
-											<c:if test="<%= !portlets.isEmpty() %>">
-												<li>
-													<%= portlets.size() %> <liferay-ui:message key='<%= portlets.size() == 1 ? "portlet" : "portlets" %>' />
-												</li>
-											</c:if>
-
-											<c:if test="<%= !themes.isEmpty() %>">
-												<li>
-													<%= themes.size() %> <liferay-ui:message key='<%= themes.size() == 1 ? "theme" : "themes" %>' />
-												</li>
-											</c:if>
-										</ul>
-									</div>
-
-									<div class="tab-pane tab2">
-										<%@ include file="/app_manager/layout_templates.jspf" %>
-									</div>
-
-									<div class="tab-pane tab3">
-										<%@ include file="/app_manager/portlets.jspf" %>
-									</div>
-
-									<div class="tab-pane tab4">
-										<%@ include file="/app_manager/themes.jspf" %>
-									</div>
+								<div class="plugin-list">
+									<%@ include file="/app_manager/plugins.jspf" %>
 								</div>
-							</div>
-						</div>
-					</c:if>
+							</c:when>
+							<c:otherwise>
+								<liferay-ui:message key="there-are-no-configurable-plugins-for-this-app" />
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 
 				<c:if test='<%= !ArrayUtil.contains(contextNames, PortalUtil.getPathContext()) && !ArrayUtil.contains(contextNames, "marketplace-portlet") %>'>

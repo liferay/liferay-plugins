@@ -38,6 +38,11 @@
 			margin-bottom: .2em;
 		}
 
+		.sub-title {
+			color: #999;
+			font-size: .8em;
+		}
+
 		.description {
 			margin-right: 132px;
 		}
@@ -59,13 +64,15 @@
 				}
 			}
 
-			.table td:last-child {
-				text-align: right;
-			}
-		}
+			.table {
+				td {
+					vertical-align: middle;
+				}
 
-		.tabbable .tab-pane {
-			padding: 8px 0 0;
+				td:last-child {
+					text-align: right;
+				}
+			}
 		}
 	}
 }

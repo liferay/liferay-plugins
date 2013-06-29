@@ -1,0 +1,75 @@
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.marketplace.util.comparator;
+
+import com.liferay.portal.kernel.servlet.ServletContextPool;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.LayoutTemplate;
+import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.Theme;
+import com.liferay.portal.util.PortalUtil;
+
+import java.io.Serializable;
+
+import java.util.Comparator;
+import java.util.Locale;
+
+import javax.servlet.ServletContext;
+
+/**
+ * @author Ryan Park
+ */
+public class PluginComparator implements Comparator, Serializable {
+
+	public PluginComparator() {
+		_locale = LocaleUtil.getDefault();
+		_servletContext = ServletContextPool.get(PortalUtil.getPathContext());
+	}
+
+	public PluginComparator(ServletContext servletContext, Locale locale) {
+		_locale = locale;
+		_servletContext = servletContext;
+	}
+
+	@Override
+	public int compare(Object obj1, Object obj2) {
+		String name1 = _getName(obj1);
+		String name2 = _getName(obj2);
+
+		return name1.compareTo(name2);
+	}
+
+	private String _getName(Object obj) {
+		String name = StringPool.BLANK;
+
+		if (obj instanceof LayoutTemplate) {
+			name = ((LayoutTemplate)obj).getName();
+		}
+		else if (obj instanceof Portlet) {
+			name = PortalUtil.getPortletTitle(
+				(Portlet)obj, _servletContext, _locale);
+		}
+		else if (obj instanceof Theme) {
+			name = ((Theme)obj).getName();
+		}
+
+		return name.toLowerCase();
+	}
+
+	private Locale _locale;
+	private ServletContext _servletContext;
+
+}
