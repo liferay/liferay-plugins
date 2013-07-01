@@ -37,6 +37,7 @@ page import="com.liferay.portal.kernel.util.ServerDetector" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
+page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.model.LayoutTemplate" %><%@
 page import="com.liferay.portal.model.Plugin" %><%@
 page import="com.liferay.portal.model.PluginSetting" %><%@
