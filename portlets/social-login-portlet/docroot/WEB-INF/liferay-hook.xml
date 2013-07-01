@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
+
+<hook>
+	<portal-properties>portal.properties</portal-properties>
+	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<service>
+		<service-type>com.liferay.portal.service.UserLocalService</service-type>
+		<service-impl>com.liferay.sociallogin.hook.service.impl.SocialLoginUserLocalServiceImpl</service-impl>
+	</service>
+	<struts-action>
+		<struts-action-path>/login/qq_connect_oauth</struts-action-path>
+		<struts-action-impl>com.liferay.sociallogin.hook.action.QqConnectAction</struts-action-impl>
+	</struts-action>
+</hook>
