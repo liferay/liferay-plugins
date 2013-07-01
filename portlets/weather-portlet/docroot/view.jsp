@@ -68,7 +68,7 @@ for (String zip : zips) {
 
 <br />
 
-<liferay-ui:message key="powered-by" /> <a href="http://www.openweathermap.org/" target="_blank">Open Weather Map</a>
+<liferay-ui:message key="powered-by" /> <a href="http://www.openweathermap.org" target="_blank">Open Weather Map</a>
 
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 	<aui:script>
