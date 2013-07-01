@@ -141,6 +141,13 @@ public class CalendarPortlet extends MVCPortlet {
 		CalendarResourceServiceUtil.deleteCalendarResource(calendarResourceId);
 	}
 
+	@Override
+	public void init() throws PortletException {
+		super.init();
+
+		NotificationTemplateContextFactory.setPortletConfig(getPortletConfig());
+	}
+
 	public void moveCalendarBookingToTrash(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -150,13 +157,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		CalendarBookingServiceUtil.moveCalendarBookingToTrash(
 			calendarBookingId);
-	}
-
-	@Override
-	public void init() throws PortletException {
-		super.init();
-
-		NotificationTemplateContextFactory.setPortletConfig(getPortletConfig());
 	}
 
 	@Override

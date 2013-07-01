@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.calendar.trash;
 
 import com.liferay.calendar.model.CalendarBooking;
@@ -30,9 +44,24 @@ public class CalendarBookingTrashHandler extends BaseTrashHandler {
 	public boolean isInTrash(long classPK)
 		throws PortalException, SystemException {
 
-		CalendarBooking calendarBooking = getCalendarBooking(classPK);
+		CalendarBooking calendarBooking =
+			CalendarBookingLocalServiceUtil.getCalendarBooking(classPK);
 
 		return calendarBooking.isInTrash();
+	}
+
+	@Override
+	public boolean isRestorable(long classPK)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			CalendarBookingLocalServiceUtil.getCalendarBooking(classPK);
+
+		if (calendarBooking.isMasterBooking()) {
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
@@ -44,31 +73,12 @@ public class CalendarBookingTrashHandler extends BaseTrashHandler {
 	}
 
 	@Override
-	public boolean isRestorable(long classPK)
-		throws PortalException, SystemException {
-
-		CalendarBooking calendarBooking = getCalendarBooking(classPK);
-
-		if (calendarBooking.isMasterBooking()) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	protected CalendarBooking getCalendarBooking(long classPK)
-		throws PortalException, SystemException {
-
-		return CalendarBookingLocalServiceUtil.getCalendarBooking(classPK);
-	}
-
-	@Override
 	protected boolean hasPermission(
 			PermissionChecker permissionChecker, long classPK, String actionId)
 		throws PortalException, SystemException {
 
-		CalendarBooking calendarBooking = getCalendarBooking(classPK);
+		CalendarBooking calendarBooking =
+			CalendarBookingLocalServiceUtil.getCalendarBooking(classPK);
 
 		return CalendarPermission.contains(
 			permissionChecker, calendarBooking.getCalendar(),

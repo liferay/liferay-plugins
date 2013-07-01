@@ -166,6 +166,10 @@ public class NotificationTemplateContextFactory {
 
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
+		if (themeDisplay == null) {
+			return StringPool.BLANK;
+		}
+
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			serviceContext.getRequest(), PortletKeys.CALENDAR,
 			themeDisplay.getPlid(), ActionRequest.RENDER_PHASE);

@@ -23,14 +23,14 @@ public enum NotificationTemplateType {
 	INVITE("invite"), MOVED_TO_TRASH("moved-to-trash"), REMINDER("reminder");
 
 	public static NotificationTemplateType parse(String value) {
-		if (REMINDER.getValue().equals(value)) {
-			return REMINDER;
-		}
-		else if (INVITE.getValue().equals(value)) {
+		if (INVITE.getValue().equals(value)) {
 			return INVITE;
 		}
 		else if (MOVED_TO_TRASH.getValue().equals(value)) {
 			return MOVED_TO_TRASH;
+		}
+		else if (REMINDER.getValue().equals(value)) {
+			return REMINDER;
 		}
 
 		throw new IllegalArgumentException("Invalid value " + value);
