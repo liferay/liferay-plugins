@@ -15,50 +15,71 @@
 package com.liferay.sociallogin.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Terry Jia
  */
 public abstract class BaseConnect implements Connect {
 
-	public String getAccessToken(HttpServletRequest request) {
-		return StringPool.BLANK;
+	public String getAccessToken(long companyId, String code)
+		throws SystemException {
+
+		String url = getAccessTokenURL(companyId);
+
+		url = HttpUtil.addParameter(
+			url, Constants.GRANT_TYPE, Constants.DEFAULT_GRANT_TYPE);
+		url = HttpUtil.addParameter(
+			url, Constants.CLIENT_ID, getClientId(companyId));
+		url = HttpUtil.addParameter(
+			url, Constants.CLIENT_SECRET, getClientSecret(companyId));
+		url = HttpUtil.addParameter(url, Constants.CODE, code);
+		url = HttpUtil.addParameter(
+			url, Constants.REDIRECT_URI, getRedirectURI(companyId));
+
+		Http.Options options = new Http.Options();
+
+		options.setLocation(url);
+		options.setPost(false);
+
+		String content = StringPool.BLANK;
+
+		try {
+			content = HttpUtil.URLtoString(options);
+		}
+		catch (Exception e) {
+			throw new SystemException("Unable to retrieve access token", e);
+		}
+
+		return getAccessToken(content);
 	}
 
-	public String getAuthURL(HttpServletRequest request) {
-		return StringPool.BLANK;
-	}
+	public String getFullAuthURL(long companyId, HttpServletRequest request)
+		throws SystemException {
 
-	public String getClientId(long companyId) throws SystemException {
-		return StringPool.BLANK;
-	}
+		String state = RandomStatusGenerator.getRandomState();
 
-	public String getClientSecret(long companyId) throws SystemException {
-		return StringPool.BLANK;
-	}
+		HttpSession session = request.getSession();
 
-	public String getOpenId(String accessToken) {
-		return StringPool.BLANK;
-	}
+		session.setAttribute(getConnectState(), state);
 
-	public String getRedirectURI(long companyId) throws SystemException {
-		return StringPool.BLANK;
-	}
+		String url = getAuthURL(companyId);
 
-	public String getScope(long companyId) throws SystemException {
-		return StringPool.BLANK;
-	}
+		url = HttpUtil.addParameter(
+			url, Constants.CLIENT_ID, getClientId(companyId));
+		url = HttpUtil.addParameter(
+			url, Constants.RESPONSE_TYPE, Constants.DEFAULT_RESPONSE_TYPE);
+		url = HttpUtil.addParameter(
+			url, Constants.REDIRECT_URI, getRedirectURI(companyId));
+		url = HttpUtil.addParameter(url, Constants.STATE, state);
+		url = HttpUtil.addParameter(url, Constants.SCOPE, getScope(companyId));
 
-	public boolean isEnabled(long companyId) throws SystemException {
-		return false;
-	}
-
-	public void updateConnectConfigProperties(
-		String clientId, String clientSecret, String redirectURI,
-		String scope) {
+		return url;
 	}
 
 }

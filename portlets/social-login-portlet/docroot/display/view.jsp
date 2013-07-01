@@ -19,7 +19,7 @@
 <c:if test="<%= QqConnectUtil.isEnabled(company.getCompanyId()) %>">
 
 	<%
-	String qqAuthURL = QqConnectUtil.getAuthURL(request);
+	String qqAuthURL = QqConnectUtil.getFullAuthURL(company.getCompanyId(), request);
 	%>
 
 	<c:choose>

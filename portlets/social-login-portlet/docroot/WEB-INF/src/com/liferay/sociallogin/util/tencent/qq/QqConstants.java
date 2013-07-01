@@ -21,10 +21,6 @@ import com.liferay.sociallogin.util.Constants;
  */
 public class QqConstants extends Constants {
 
-	public static final String APP_ID = "app_ID";
-
-	public static final String APP_KEY = "app_KEY";
-
 	public static final String QQ_OPEN_ID = "qqOpenId";
 
 }

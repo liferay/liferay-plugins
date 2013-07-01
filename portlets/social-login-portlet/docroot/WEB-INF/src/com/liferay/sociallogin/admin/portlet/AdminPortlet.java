@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.sociallogin.util.tencent.qq.QqConnectUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
@@ -43,12 +42,6 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "settings--");
 
 		CompanyLocalServiceUtil.updatePreferences(companyId, properties);
-
-		QqConnectUtil.updateConnectConfigProperties(
-			QqConnectUtil.getClientId(companyId),
-			QqConnectUtil.getClientSecret(companyId),
-			QqConnectUtil.getRedirectURI(companyId),
-			QqConnectUtil.getScope(companyId));
 	}
 
 }

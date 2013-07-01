@@ -23,12 +23,20 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class QqConnectUtil {
 
-	public static String getAccessToken(HttpServletRequest request) {
-		return _qqConnect.getAccessToken(request);
+	public static String getAccessToken(long companyId, String code)
+		throws SystemException {
+
+		return _qqConnect.getAccessToken(companyId, code);
 	}
 
-	public static String getAuthURL(HttpServletRequest request) {
-		return _qqConnect.getAuthURL(request);
+	public static String getAccessTokenURL(long companyId)
+		throws SystemException {
+
+		return _qqConnect.getAccessTokenURL(companyId);
+	}
+
+	public static String getAuthURL(long companyId) throws SystemException {
+		return _qqConnect.getAuthURL(companyId);
 	}
 
 	public static String getClientId(long companyId) throws SystemException {
@@ -41,8 +49,15 @@ public class QqConnectUtil {
 		return _qqConnect.getClientSecret(companyId);
 	}
 
-	public static String getOpenId(String accessToken) {
-		return _qqConnect.getOpenId(accessToken);
+	public static String getConnectState() {
+		return _qqConnect.getConnectState();
+	}
+
+	public static String getFullAuthURL(
+			long companyId, HttpServletRequest request)
+		throws SystemException {
+
+		return _qqConnect.getFullAuthURL(companyId, request);
 	}
 
 	public static String getRedirectURI(long companyId) throws SystemException {
@@ -53,15 +68,20 @@ public class QqConnectUtil {
 		return _qqConnect.getScope(companyId);
 	}
 
-	public static boolean isEnabled(long companyId) throws SystemException {
-		return _qqConnect.isEnabled(companyId);
+	public static String getSocialAccountId(long companyId, String accessToken)
+		throws SystemException {
+
+		return _qqConnect.getSocialAccountId(companyId, accessToken);
 	}
 
-	public static void updateConnectConfigProperties(
-		String appId, String appKey, String redirectURI, String scope) {
+	public static String getSocialAccountIdURL(long companyId)
+		throws SystemException {
 
-		_qqConnect.updateConnectConfigProperties(
-			appId, appKey, redirectURI, scope);
+		return _qqConnect.getSocialAccountIdURL(companyId);
+	}
+
+	public static boolean isEnabled(long companyId) throws SystemException {
+		return _qqConnect.isEnabled(companyId);
 	}
 
 	public void setQqConnect(QqConnect qqConnect) {

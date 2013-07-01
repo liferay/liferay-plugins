@@ -15,98 +15,121 @@
 package com.liferay.sociallogin.util.tencent.qq;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sociallogin.util.BaseConnect;
-import com.liferay.sociallogin.util.PropsKeys;
-import com.liferay.sociallogin.util.PropsValues;
+import com.liferay.sociallogin.util.PortletPropsKeys;
+import com.liferay.sociallogin.util.PortletPropsValues;
 
-import com.qq.connect.QQConnectException;
-import com.qq.connect.api.OpenID;
-import com.qq.connect.javabeans.AccessToken;
-import com.qq.connect.oauth.Oauth;
-import com.qq.connect.utils.QQConnectConfig;
+import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Terry Jia
  */
 public class QqConnectImpl extends BaseConnect implements QqConnect {
 
-	public String getAccessToken(HttpServletRequest request) {
-		try {
-			AccessToken accessToken = new Oauth().getAccessTokenByRequest(
-				request);
+	public String getAccessToken(String content) {
+		int x = content.indexOf("access_token=");
 
-			return accessToken.getAccessToken();
-		}
-		catch (QQConnectException qqce) {
+		if (x >= 0) {
+			int y = content.indexOf(CharPool.AMPERSAND, x);
+
+			if (y < x) {
+				y = content.length();
+			}
+
+			return content.substring(x + 13, y);
 		}
 
 		return StringPool.BLANK;
 	}
 
-	public String getAuthURL(HttpServletRequest request) {
-		try {
-			return new Oauth().getAuthorizeURL(request);
-		}
-		catch (QQConnectException qqce) {
-		}
+	public String getAccessTokenURL(long companyId) throws SystemException {
+		return PrefsPropsUtil.getString(
+			companyId, PortletPropsKeys.QQ_CONNECT_OAUTH_TOKEN_URL,
+			PortletPropsValues.QQ_CONNECT_OAUTH_TOKEN_URL);
+	}
 
-		return StringPool.BLANK;
+	public String getAuthURL(long companyId) throws SystemException {
+		return PrefsPropsUtil.getString(
+			companyId, PortletPropsKeys.QQ_CONNECT_OAUTH_AUTH_URL,
+			PortletPropsValues.QQ_CONNECT_OAUTH_AUTH_URL);
 	}
 
 	public String getClientId(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.QQ_CONNECT_APP_ID,
-			PropsValues.QQ_CONNECT_APP_ID);
+			companyId, PortletPropsKeys.QQ_CONNECT_APP_ID,
+			PortletPropsValues.QQ_CONNECT_APP_ID);
 	}
 
 	public String getClientSecret(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.QQ_CONNECT_APP_KEY,
-			PropsValues.QQ_CONNECT_APP_KEY);
+			companyId, PortletPropsKeys.QQ_CONNECT_APP_KEY,
+			PortletPropsValues.QQ_CONNECT_APP_KEY);
 	}
 
-	public String getOpenId(String accessToken) {
-		OpenID openId = new OpenID(accessToken);
-
-		try {
-			return openId.getUserOpenID();
-		}
-		catch (QQConnectException qqce) {
-		}
-
-		return StringPool.BLANK;
+	public String getConnectState() {
+		return _QQ_CONNECT_STATE;
 	}
 
 	public String getRedirectURI(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.QQ_CONNECT_OAUTH_REDIRECT_URI,
-			PropsValues.QQ_CONNECT_OAUTH_REDIRECT_URI);
+			companyId, PortletPropsKeys.QQ_CONNECT_OAUTH_REDIRECT_URI,
+			PortletPropsValues.QQ_CONNECT_OAUTH_REDIRECT_URI);
 	}
 
 	public String getScope(long companyId) throws SystemException {
 		return PrefsPropsUtil.getString(
-			companyId, PropsKeys.QQ_CONNECT_OAUTH_SCOPE,
-			PropsValues.QQ_CONNECT_OAUTH_SCOPE);
+			companyId, PortletPropsKeys.QQ_CONNECT_OAUTH_SCOPE,
+			PortletPropsValues.QQ_CONNECT_OAUTH_SCOPE);
+	}
+
+	public String getSocialAccountId(long companyId, String accessToken)
+		throws SystemException {
+
+		String url = HttpUtil.addParameter(
+			getSocialAccountIdURL(companyId), "access_token", accessToken);
+
+		Http.Options options = new Http.Options();
+
+		options.setLocation(url);
+		options.setPost(false);
+
+		String socialAccountId = StringPool.BLANK;
+
+		try {
+			Matcher matcher =
+				Pattern.compile("\"openid\"\\s*:\\s*\"(\\w+)\"").matcher(
+					HttpUtil.URLtoString(options));
+
+			if (matcher.find()) {
+				socialAccountId = matcher.group(1);
+			}
+		}
+		catch (IOException ioe) {
+		}
+
+		return socialAccountId;
+	}
+
+	public String getSocialAccountIdURL(long companyId) throws SystemException {
+		return PrefsPropsUtil.getString(
+			companyId, PortletPropsKeys.QQ_CONNECT_OAUTH_SOCIAL_ACCOUNT_ID_URL,
+			PortletPropsValues.QQ_CONNECT_OAUTH_SOCIAL_ACCOUNT_ID_URL);
 	}
 
 	public boolean isEnabled(long companyId) throws SystemException {
 		return PrefsPropsUtil.getBoolean(
-			companyId, PropsKeys.QQ_CONNECT_AUTH_ENABLED,
-			PropsValues.QQ_CONNECT_AUTH_ENABLED);
+			companyId, PortletPropsKeys.QQ_CONNECT_AUTH_ENABLED,
+			PortletPropsValues.QQ_CONNECT_AUTH_ENABLED);
 	}
 
-	public void updateConnectConfigProperties(
-		String clientId, String clientSecret, String redirectURI,
-		String scope) {
-
-		QQConnectConfig.updateProperties(QqConstants.APP_KEY, clientSecret);
-		QQConnectConfig.updateProperties(QqConstants.APP_ID, clientId);
-		QQConnectConfig.updateProperties(QqConstants.REDIRECT_URI, redirectURI);
-		QQConnectConfig.updateProperties(QqConstants.SCOPE, scope);
-	}
+	private static final String _QQ_CONNECT_STATE = "QQ_CONNECT_STATE";
 
 }

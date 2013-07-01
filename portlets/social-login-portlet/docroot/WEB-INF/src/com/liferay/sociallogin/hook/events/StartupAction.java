@@ -30,7 +30,6 @@ import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.sociallogin.util.tencent.qq.QqConnectUtil;
 import com.liferay.sociallogin.util.tencent.qq.QqConstants;
 
 /**
@@ -80,12 +79,6 @@ public class StartupAction extends SimpleAction {
 		}
 		catch (Exception e) {
 		}
-
-		QqConnectUtil.updateConnectConfigProperties(
-			QqConnectUtil.getClientId(companyId),
-			QqConnectUtil.getClientSecret(companyId),
-			QqConnectUtil.getRedirectURI(companyId),
-			QqConnectUtil.getScope(companyId));
 	}
 
 }

@@ -17,6 +17,7 @@ package com.liferay.sociallogin.hook.action;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -56,14 +57,27 @@ public class QqConnectAction extends BaseStrutsAction {
 
 		HttpSession session = request.getSession();
 
+		String returnState = ParamUtil.getString(request, "state");
+
+		String state = (String)session.getAttribute(
+			QqConnectUtil.getConnectState());
+
+		if (Validator.isNull(state) && !state.equals(returnState)) {
+			throw new PrincipalException();
+		}
+
+		session.removeAttribute(QqConnectUtil.getConnectState());
+
 		String redirect = PortalUtil.getHomeURL(request);
+
+		String code = ParamUtil.getString(request, "code");
 
 		long userId = GetterUtil.getLong(
 			session.getAttribute(WebKeys.SOCIAL_LOGIN_USER_ID));
 
-		String accessToken = QqConnectUtil.getAccessToken(request);
+		String token = QqConnectUtil.getAccessToken(companyId, code);
 
-		String openId = QqConnectUtil.getOpenId(accessToken);
+		String openId = QqConnectUtil.getSocialAccountId(companyId, token);
 
 		if (Validator.isNotNull(openId)) {
 			session.setAttribute(WebKeys.SOCIAL_LOGIN_QQ_OPEN_ID, openId);

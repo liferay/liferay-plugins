@@ -23,23 +23,33 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface Connect {
 
-	public String getAccessToken(HttpServletRequest request);
+	public String getAccessToken(long companyId, String code)
+		throws SystemException;
 
-	public String getAuthURL(HttpServletRequest request);
+	public String getAccessToken(String content);
+
+	public String getAccessTokenURL(long companyId) throws SystemException;
+
+	public String getAuthURL(long companyId) throws SystemException;
 
 	public String getClientId(long companyId) throws SystemException;
 
 	public String getClientSecret(long companyId) throws SystemException;
 
-	public String getOpenId(String accessToken);
+	public String getConnectState();
+
+	public String getFullAuthURL(long companyId, HttpServletRequest request)
+		throws SystemException;
 
 	public String getRedirectURI(long companyId) throws SystemException;
 
 	public String getScope(long companyId) throws SystemException;
 
-	public boolean isEnabled(long companyId) throws SystemException;
+	public String getSocialAccountId(long companyId, String accessToken)
+		throws SystemException;
 
-	public void updateConnectConfigProperties(
-		String clientId, String clientSecret, String redirectURI, String scope);
+	public String getSocialAccountIdURL(long companyId) throws SystemException;
+
+	public boolean isEnabled(long companyId) throws SystemException;
 
 }
