@@ -17,7 +17,7 @@ package com.liferay.sociallogin.util;
 /**
  * @author Terry Jia
  */
-public class PropsKeys {
+public class PortletPropsKeys {
 
 	public static final String QQ_CONNECT_APP_ID = "qq.connect.app.id";
 
@@ -26,10 +26,19 @@ public class PropsKeys {
 	public static final String QQ_CONNECT_AUTH_ENABLED =
 		"qq.connect.auth.enabled";
 
+	public static final String QQ_CONNECT_OAUTH_AUTH_URL =
+		"qq.connect.oauth.auth.url";
+
 	public static final String QQ_CONNECT_OAUTH_REDIRECT_URI =
 		"qq.connect.oauth.redirect.uri";
 
 	public static final String QQ_CONNECT_OAUTH_SCOPE =
 		"qq.connect.oauth.scope";
+
+	public static final String QQ_CONNECT_OAUTH_SOCIAL_ACCOUNT_ID_URL =
+		"qq.connect.oauth.social.account.id.url";
+
+	public static final String QQ_CONNECT_OAUTH_TOKEN_URL =
+		"qq.connect.oauth.token.url";
 
 }
