@@ -62,11 +62,11 @@ public class JoinXorNodeExecutor extends BaseNodeExecutor {
 		List<KaleoInstanceToken> childrenKaleoInstanceTokens =
 			parentKaleoInstanceToken.getChildrenKaleoInstanceTokens();
 
-		for (KaleoInstanceToken childKaleoInstanceTokens :
+		for (KaleoInstanceToken childrenKaleoInstanceToken :
 				childrenKaleoInstanceTokens) {
 
 			kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
-				childKaleoInstanceTokens.getKaleoInstanceTokenId());
+				childrenKaleoInstanceToken.getKaleoInstanceTokenId());
 		}
 
 		return true;
