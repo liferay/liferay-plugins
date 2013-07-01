@@ -944,9 +944,11 @@ AUI.add(
 						var instance = this;
 
 						instance._uiSetLoading(instance.get('loading'));
+						instance._uiSetStartDate(instance.get('startDate'));
 						instance._uiSetStatus(instance.get('status'));
 
 						instance.on('loadingChange', instance._onLoadingChange);
+						instance.on('startDateChange', instance._onStartDateChange);
 						instance.on('statusChange', instance._onStatusChange);
 					},
 
@@ -992,16 +994,40 @@ AUI.add(
 						instance._uiSetLoading(event.newVal);
 					},
 
+					_onStartDateChange: function() {
+						var instance = this;
+
+						instance._uiSetStartDate(event.newVal);
+					},
+
 					_onStatusChange: function(event) {
 						var instance = this;
 
 						instance._uiSetStatus(event.newVal);
 					},
 
+					_uiSetEndDate: function(val) {
+						var instance = this;
+
+						Liferay.SchedulerEvent.superclass._uiSetEndDate.apply(instance, arguments);
+
+						var node = instance.get('node');
+
+						node.attr('data-endDate', instance._formatDate(val, '%d-%m-%y %H:%M'));
+					},
+
 					_uiSetLoading: function(val) {
 						var instance = this;
 
 						instance.get('node').toggleClass('calendar-portlet-event-loading', val);
+					},
+
+					_uiSetStartDate: function(val) {
+						var instance = this;
+
+						var node = instance.get('node');
+
+						node.attr('data-startDate', instance._formatDate(val, '%d-%m-%y %H:%M'));
 					},
 
 					_uiSetStatus: function(val) {
