@@ -14,6 +14,7 @@
 
 package com.liferay.httpservice.internal.servlet;
 
+import com.liferay.httpservice.mock.MockFilter;
 import com.liferay.httpservice.servlet.ResourceServlet;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
@@ -121,17 +122,17 @@ public class BundleServletContextTest extends PowerMockito {
 		mockBundleWiring();
 
 		List<LogRecord> logRecords = JDKLoggerTestUtil.configureJDKLogger(
-			MockFilter.class.getName(), Level.INFO);
+			MockLoggingFilter.class.getName(), Level.INFO);
 
 		String cssFilterName = "CSS Filter";
 
 		registerFilter(
-			cssFilterName, new MockFilter(cssFilterName), null, "/css/*");
+			cssFilterName, new MockLoggingFilter(cssFilterName), null, "/css/*");
 
 		String jsFilterName = "JS Filter";
 
 		registerFilter(
-			jsFilterName, new MockFilter(jsFilterName), null, "/js/*");
+			jsFilterName, new MockLoggingFilter(jsFilterName), null, "/js/*");
 
 		FilterChain filterChain = _bundleServletContext.getFilterChain(
 			"/js/main.js");
@@ -591,16 +592,12 @@ public class BundleServletContextTest extends PowerMockito {
 	@Mock
 	private ServletRequestListener _servletRequestListener;
 
-	private class MockFilter implements Filter {
+	private class MockLoggingFilter extends MockFilter {
 
-		public MockFilter(String message) {
+		public MockLoggingFilter(String message) {
 			_message = message;
 
 			_logger.setLevel(Level.INFO);
-		}
-
-		@Override
-		public void destroy() {
 		}
 
 		@Override
@@ -611,11 +608,8 @@ public class BundleServletContextTest extends PowerMockito {
 			_logger.info(_message);
 		}
 
-		@Override
-		public void init(FilterConfig filterConfig) {
-		}
-
-		private Logger _logger = Logger.getLogger(MockFilter.class.getName());
+		private Logger _logger = Logger.getLogger(
+			MockLoggingFilter.class.getName());
 
 		private String _message;
 
