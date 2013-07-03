@@ -22,6 +22,7 @@ import java.util.Map;
 
 import javax.servlet.Servlet;
 
+import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpContext;
 
@@ -45,6 +46,12 @@ public class ServletTracker
 
 		String servletName = GetterUtil.getString(
 			serviceReference.getProperty("servletName"));
+
+		if (Validator.isNull(servletName)) {
+			servletName = String.valueOf(
+				serviceReference.getProperty(Constants.SERVICE_ID));
+		}
+
 		String urlPattern = GetterUtil.getString(
 			serviceReference.getProperty("urlPattern"));
 
@@ -63,6 +70,11 @@ public class ServletTracker
 
 		String servletName = GetterUtil.getString(
 			serviceReference.getProperty("servletName"));
+
+		if (Validator.isNull(servletName)) {
+			servletName = String.valueOf(
+				serviceReference.getProperty(Constants.SERVICE_ID));
+		}
 
 		bundleServletContext.unregisterServlet(servletName);
 	}
