@@ -39,7 +39,6 @@ page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
 page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.security.auth.PrincipalException" %><%@
@@ -47,7 +46,6 @@ page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.service.permission.PortletPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.documentlibrary.FileSizeException" %><%@
 page import="com.liferay.portlet.dynamicdatalists.NoSuchRecordSetException" %><%@
 page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordSet" %><%@
@@ -57,7 +55,9 @@ page import="com.liferay.portlet.dynamicdatamapping.StorageFieldRequiredExceptio
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMStructure" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplate" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" %><%@
-page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil" %>
+page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil" %><%@
+page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplay" %><%@
+page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplayRegistryUtil" %>
 
 <%@ page import="java.text.Format" %>
 
@@ -84,7 +84,7 @@ long formDDMTemplateId = GetterUtil.getLong(preferences.getValue("formDDMTemplat
 
 boolean multipleSubmissions = GetterUtil.getBoolean(preferences.getValue("multipleSubmissions", null));
 
-String ddmResource = portletConfig.getInitParameter("ddm-resource");
+DDMDisplay ddmDisplay = DDMDisplayRegistryUtil.getDDMDisplay(PortletKeys.DYNAMIC_DATA_LISTS);
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
