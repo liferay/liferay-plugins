@@ -92,6 +92,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 						<c:if test="<%= !userPublicPage %>">
 							<aui:select cssClass="contact-group-filter-select" inlineField="true" label="" name="filterBy">
 								<aui:option label="all" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) %>" value="<%= ContactsConstants.FILTER_BY_DEFAULT %>" />
+
+								<c:if test="<%= showOnlySiteMembers %>">
+									<aui:option label="admins" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_ADMINS) %>" value="<%= ContactsConstants.FILTER_BY_ADMINS %>" />
+								</c:if>
+
 								<aui:option label="connections" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION) %>" value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>" />
 								<aui:option label="following" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER) %>" value="<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>" />
 
@@ -523,24 +528,37 @@ portletURL.setWindowState(WindowState.NORMAL);
 			<c:if test="<%= !userPublicPage %>">
 				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
 
-				<c:if test="<%= !showOnlySiteMembers %>">
-					A.one('.contacts-portlet .add-contact input').on(
-						'click',
-						function(event) {
-							contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
-						}
-					);
+				<c:choose>
+					<c:when test="<%= showOnlySiteMembers %>">
+						contactsCenterHome.one('.admins').on(
+							'click',
+							function(event) {
+								contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_ADMINS %>');
 
-					contactsCenterHome.one('.contacts').on(
-						'click',
-						function(event) {
-							contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>');
+								contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+							},
+							'a'
+						);
+					</c:when>
+					<c:otherwise>
+						A.one('.contacts-portlet .add-contact input').on(
+							'click',
+							function(event) {
+								contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
+							}
+						);
 
-							contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-						},
-						'a'
-					);
-				</c:if>
+						contactsCenterHome.one('.contacts').on(
+							'click',
+							function(event) {
+								contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>');
+
+								contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+							},
+							'a'
+						);
+					</c:otherwise>
+				</c:choose>
 
 				contactsCenterHome.one('.connections').on(
 					'click',

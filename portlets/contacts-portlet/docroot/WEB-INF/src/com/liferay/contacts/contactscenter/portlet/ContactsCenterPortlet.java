@@ -45,6 +45,7 @@ import com.liferay.portal.UserScreenNameException;
 import com.liferay.portal.UserSmsException;
 import com.liferay.portal.WebsiteURLException;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -55,9 +56,12 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Address;
@@ -67,10 +71,13 @@ import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.Phone;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.model.Website;
 import com.liferay.portal.service.EmailAddressServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -787,16 +794,55 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				params.put("usersGroups", ContactsUtil.getGroupId(filterBy));
 			}
 
-			int usersCount = UserLocalServiceUtil.searchCount(
-				themeDisplay.getCompanyId(), keywords,
-				WorkflowConstants.STATUS_APPROVED, params);
+			List<User> users = new UniqueList<User>();
 
-			jsonObject.put("count", usersCount);
+			if (filterBy.equals(ContactsConstants.FILTER_BY_ADMINS)) {
+				Role role = RoleLocalServiceUtil.getRole(
+					group.getCompanyId(), RoleConstants.SITE_OWNER);
 
-			List<User> users = UserLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), keywords,
-				WorkflowConstants.STATUS_APPROVED, params, start, end,
-				new UserLastNameComparator(true));
+				params.put(
+					"userGroupRole",
+					new Long[] {
+						new Long(group.getGroupId()),
+						new Long(role.getRoleId())});
+
+				users.addAll(
+					UserLocalServiceUtil.search(
+						themeDisplay.getCompanyId(), keywords,
+						WorkflowConstants.STATUS_APPROVED, params,
+						QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+						(OrderByComparator)null));
+
+				role = RoleLocalServiceUtil.getRole(
+					group.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
+
+				params.put(
+					"userGroupRole",
+					new Long[] {
+						new Long(group.getGroupId()),
+						new Long(role.getRoleId())});
+
+				users.addAll(
+					UserLocalServiceUtil.search(
+						themeDisplay.getCompanyId(), keywords,
+						WorkflowConstants.STATUS_APPROVED, params,
+						QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+						(OrderByComparator)null));
+
+				ListUtil.sort(users, new UserLastNameComparator(true));
+			}
+			else {
+				int usersCount = UserLocalServiceUtil.searchCount(
+					themeDisplay.getCompanyId(), keywords,
+					WorkflowConstants.STATUS_APPROVED, params);
+
+				jsonObject.put("count", usersCount);
+
+				users = UserLocalServiceUtil.search(
+					themeDisplay.getCompanyId(), keywords,
+					WorkflowConstants.STATUS_APPROVED, params, start, end,
+					new UserLastNameComparator(true));
+			}
 
 			for (User user : users) {
 				JSONObject userJSONObject = getUserJSONObject(

@@ -34,6 +34,8 @@ public class ContactsConstants {
 
 	public static final String DISPLAY_STYLE_FULL_LABEL = "full";
 
+	public static final String FILTER_BY_ADMINS = "admins";
+
 	public static final String FILTER_BY_DEFAULT = "default";
 
 	public static final String FILTER_BY_GROUP = "group_";
