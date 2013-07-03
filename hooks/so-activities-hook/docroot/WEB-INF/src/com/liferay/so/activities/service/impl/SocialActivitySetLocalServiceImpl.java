@@ -166,6 +166,19 @@ public class SocialActivitySetLocalServiceImpl
 		return socialActivitySetFinder.findByUser(userId, start, end);
 	}
 
+	@Override
+	public List<SocialActivitySet> getUserActivitySets(
+			long userId, int start, int end)
+		throws SystemException {
+
+		return socialActivitySetPersistence.findByUserId(userId, start, end);
+	}
+
+	@Override
+	public int getUserActivitySetsCount(long userId) throws SystemException {
+		return socialActivitySetPersistence.countByUserId(userId);
+	}
+
 	public int getUserViewableActivitySetsCount(long userId)
 		throws SystemException {
 
