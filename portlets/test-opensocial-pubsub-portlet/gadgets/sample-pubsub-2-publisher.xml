@@ -4,7 +4,7 @@
 	<ModulePrefs height="250" title="Sample PubSub Publisher">
 		<Require feature="pubsub-2">
 			<Param name="topics">
-				<![CDATA[ 
+				<![CDATA[
 					<Topic
 						description="Publishes a random number."
 						name="org.apache.shindig.random-number"
@@ -21,7 +21,7 @@
 			<script>
 				function publish() {
 					var message = Math.random();
-	
+
 					gadgets.Hub.publish('org.apache.shindig.random-number', message);
 
 					document.getElementById('output').innerHTML = message;

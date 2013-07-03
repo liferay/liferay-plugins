@@ -28,5 +28,5 @@
 			</map>
 		</property>
 	</bean>
-	<bean id="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow" class="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflowImpl" />	
+	<bean id="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow" class="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflowImpl" />
 </beans>
