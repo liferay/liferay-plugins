@@ -178,9 +178,17 @@ public class SocialActivitySetLocalServiceClp
 
 		_methodParameterTypes34 = new String[] { "long" };
 
-		_methodName35 = "incrementActivityCount";
+		_methodName35 = "getUserViewableActivitySets";
 
-		_methodParameterTypes35 = new String[] { "long", "long" };
+		_methodParameterTypes35 = new String[] { "long", "int", "int" };
+
+		_methodName36 = "getUserViewableActivitySetsCount";
+
+		_methodParameterTypes36 = new String[] { "long" };
+
+		_methodName37 = "incrementActivityCount";
+
+		_methodParameterTypes37 = new String[] { "long", "long" };
 	}
 
 	public com.liferay.so.activities.model.SocialActivitySet addSocialActivitySet(
@@ -1171,12 +1179,67 @@ public class SocialActivitySetLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
+	public java.util.List<com.liferay.so.activities.model.SocialActivitySet> getUserViewableActivitySets(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName35,
+					_methodParameterTypes35, new Object[] { userId, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.so.activities.model.SocialActivitySet>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getUserViewableActivitySetsCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName36,
+					_methodParameterTypes36, new Object[] { userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
 	public void incrementActivityCount(long activitySetId, long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName35,
-				_methodParameterTypes35,
+			_invokableLocalService.invokeMethod(_methodName37,
+				_methodParameterTypes37,
 				new Object[] { activitySetId, activityId });
 		}
 		catch (Throwable t) {
@@ -1271,4 +1334,8 @@ public class SocialActivitySetLocalServiceClp
 	private String[] _methodParameterTypes34;
 	private String _methodName35;
 	private String[] _methodParameterTypes35;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 }

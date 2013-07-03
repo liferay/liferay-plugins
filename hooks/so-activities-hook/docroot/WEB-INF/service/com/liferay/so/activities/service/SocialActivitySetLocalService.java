@@ -322,6 +322,15 @@ public interface SocialActivitySetLocalService extends BaseLocalService,
 	public int getUserGroupsActivitySetsCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.so.activities.model.SocialActivitySet> getUserViewableActivitySets(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getUserViewableActivitySetsCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void incrementActivityCount(long activitySetId, long activityId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

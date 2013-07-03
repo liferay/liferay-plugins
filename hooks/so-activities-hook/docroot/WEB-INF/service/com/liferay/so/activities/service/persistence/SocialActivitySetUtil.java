@@ -332,6 +332,143 @@ public class SocialActivitySetUtil {
 	}
 
 	/**
+	* Returns all the social activity sets where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the matching social activity sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUserId(userId);
+	}
+
+	/**
+	* Returns a range of all the social activity sets where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of social activity sets
+	* @param end the upper bound of the range of social activity sets (not inclusive)
+	* @return the range of matching social activity sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> findByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUserId(userId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the social activity sets where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of social activity sets
+	* @param end the upper bound of the range of social activity sets (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching social activity sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.so.activities.model.SocialActivitySet> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByUserId(userId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first social activity set in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching social activity set
+	* @throws com.liferay.so.activities.NoSuchActivitySetException if a matching social activity set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.activities.model.SocialActivitySet findByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.activities.NoSuchActivitySetException {
+		return getPersistence().findByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the first social activity set in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching social activity set, or <code>null</code> if a matching social activity set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.activities.model.SocialActivitySet fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last social activity set in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching social activity set
+	* @throws com.liferay.so.activities.NoSuchActivitySetException if a matching social activity set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.activities.model.SocialActivitySet findByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.activities.NoSuchActivitySetException {
+		return getPersistence().findByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last social activity set in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching social activity set, or <code>null</code> if a matching social activity set could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.activities.model.SocialActivitySet fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the social activity sets before and after the current social activity set in the ordered set where userId = &#63;.
+	*
+	* @param activitySetId the primary key of the current social activity set
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next social activity set
+	* @throws com.liferay.so.activities.NoSuchActivitySetException if a social activity set with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.activities.model.SocialActivitySet[] findByUserId_PrevAndNext(
+		long activitySetId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.so.activities.NoSuchActivitySetException {
+		return getPersistence()
+				   .findByUserId_PrevAndNext(activitySetId, userId,
+			orderByComparator);
+	}
+
+	/**
 	* Returns all the social activity sets where groupId = &#63; and userId = &#63; and type = &#63;.
 	*
 	* @param groupId the group ID
@@ -1063,6 +1200,17 @@ public class SocialActivitySetUtil {
 	}
 
 	/**
+	* Removes all the social activity sets where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
 	* Removes all the social activity sets where groupId = &#63; and userId = &#63; and type = &#63; from the database.
 	*
 	* @param groupId the group ID
@@ -1138,6 +1286,18 @@ public class SocialActivitySetUtil {
 	public static int countByGroupId(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByGroupId(groupId);
+	}
+
+	/**
+	* Returns the number of social activity sets where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching social activity sets
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
 	}
 
 	/**
