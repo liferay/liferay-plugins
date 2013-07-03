@@ -159,14 +159,16 @@ public class SocialActivitySetLocalServiceImpl
 			new SocialActivitySetModifiedDateComparator());
 	}
 
-	public List<SocialActivitySet> getUserActivitySets(
+	public List<SocialActivitySet> getUserViewableActivitySets(
 			long userId, int start, int end)
 		throws SystemException {
 
 		return socialActivitySetFinder.findByUser(userId, start, end);
 	}
 
-	public int getUserActivitySetsCount(long userId) throws SystemException {
+	public int getUserViewableActivitySetsCount(long userId)
+		throws SystemException {
+
 		return socialActivitySetFinder.countByUser(userId);
 	}
 
