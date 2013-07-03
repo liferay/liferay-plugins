@@ -4,7 +4,7 @@
 	<ModulePrefs height="250" title="Sample PubSub Subscriber">
 		<Require feature="pubsub-2">
 			<Param name="topics">
-				<![CDATA[ 
+				<![CDATA[
 					<Topic
 						description="Subscribes to random number generator."
 						name="org.apache.shindig.random-number"
@@ -37,7 +37,7 @@
 
 				function unsubscribe() {
 					gadgets.Hub.unsubscribe(subId);
-				
+
 					document.getElementById('output').innerHTML = '';
 				}
 			</script>
