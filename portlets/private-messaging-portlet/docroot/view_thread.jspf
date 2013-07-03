@@ -25,7 +25,6 @@ boolean hasExistingRecipients = false;
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
-
 <aui:nav-bar>
 	<aui:nav cssClass="controls">
 		<liferay-portlet:actionURL name="markMessagesAsUnread" var="markAsUnreadURL">
