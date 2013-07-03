@@ -325,7 +325,7 @@ AUI.add(
 
 						redirectURL.setWindowState('NORMAL');
 
-						var portletURL = new Liferay.PortletURL.createResourceURL();
+						var portletURL = new Liferay.PortletURL.createRenderURL();
 
 						portletURL.setPortletId(instance.get('portletId'));
 						portletURL.setWindowState('EXCLUSIVE');
@@ -343,7 +343,8 @@ AUI.add(
 								height: 600,
 								modal: true,
 								plugins: [Liferay.WidgetZIndex],
-								width: 600
+								width: 600,
+								zIndex: 2
 							}
 						).plug(
 							APluginIO,
