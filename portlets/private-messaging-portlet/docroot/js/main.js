@@ -382,6 +382,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-modal', 'aui-io-deprecated', 'liferay-node', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-widget-zindex']
+		requires: ['aui-base', 'aui-io-deprecated', 'aui-modal', 'liferay-node', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-widget-zindex']
 	}
 );
