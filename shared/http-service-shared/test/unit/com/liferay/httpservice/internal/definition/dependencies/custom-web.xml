@@ -16,7 +16,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>Mock Filter</filter-name>
-		<url-pattern>/filtermock</url-pattern>
+		<url-pattern>/mock_filter</url-pattern>
 	</filter-mapping>
 	<servlet>
 		<servlet-name>Mock Servlet</servlet-name>
@@ -25,6 +25,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Mock Servlet</servlet-name>
-		<url-pattern>/servletmock</url-pattern>
+		<url-pattern>/mock_servlet</url-pattern>
 	</servlet-mapping>
 </web-app>
