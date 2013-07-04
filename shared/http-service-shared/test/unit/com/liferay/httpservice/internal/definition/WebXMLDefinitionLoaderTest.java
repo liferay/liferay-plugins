@@ -57,7 +57,7 @@ public class WebXMLDefinitionLoaderTest {
 	}
 
 	@Test
-	public void testCustomDependencies() throws Exception {
+	public void testLoadCustomDependencies() throws Exception {
 		Bundle bundle = new EntryLoaderMockBundle();
 
 		testLoadDependencies(
