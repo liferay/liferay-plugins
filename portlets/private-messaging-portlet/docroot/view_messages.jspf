@@ -35,10 +35,6 @@
 	</aui:nav>
 </aui:nav-bar>
 
-<%
-int idIndex = 0;
-%>
-
 <liferay-ui:search-container
 	delta="10"
 	emptyResultsMessage="no-messages-found"
@@ -67,7 +63,7 @@ int idIndex = 0;
 		%>
 
 		<liferay-ui:search-container-column-text align="center">
-			<aui:input data-mbThreadId="<%= userThread.getMbThreadId() %>" id='<%= "mbThread" + idIndex++ %>' label="" name="mbThread" type="checkbox" />
+			<aui:input data-mbThreadId="<%= userThread.getMbThreadId() %>" id='<%= "mbThread" + index++ %>' label="" name="mbThread" type="checkbox" />
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text valign="top">
