@@ -50,10 +50,10 @@ portletURL.setParameter("category", category);
 			for (String contextName : contextNames) {
 				ServletContext servletContext = ServletContextPool.get(contextName);
 
-				List<LayoutTemplate> curLayoutTemplates = (List<LayoutTemplate>)servletContext.getAttribute(WebKeys.PLUGIN_LAYOUT_TEMPLATES);
+				List<LayoutTemplate> servletContextLayoutTemplates = (List<LayoutTemplate>)servletContext.getAttribute(WebKeys.PLUGIN_LAYOUT_TEMPLATES);
 
-				if (curLayoutTemplates != null) {
-					layoutTemplates.addAll(curLayoutTemplates);
+				if (servletContextLayoutTemplates != null) {
+					layoutTemplates.addAll(servletContextLayoutTemplates);
 
 					Iterator<LayoutTemplate> itr = layoutTemplates.iterator();
 
@@ -66,19 +66,19 @@ portletURL.setParameter("category", category);
 					}
 				}
 
-				List<Portlet> curPortlets = (List<Portlet>)servletContext.getAttribute(WebKeys.PLUGIN_PORTLETS);
+				List<Portlet> servletContextPortlets = (List<Portlet>)servletContext.getAttribute(WebKeys.PLUGIN_PORTLETS);
 
-				if (curPortlets != null) {
-					portlets.addAll(curPortlets);
+				if (servletContextPortlets != null) {
+					portlets.addAll(servletContextPortlets);
 
 					Iterator<Portlet> itr = portlets.iterator();
 
 					while (itr.hasNext()) {
 						Portlet portlet = itr.next();
 
-						String curPortletId = portlet.getPortletId();
+						String portletId = portlet.getPortletId();
 
-						if (curPortletId.equals(PortletKeys.PORTAL)) {
+						if (portletId.equals(PortletKeys.PORTAL)) {
 							itr.remove();
 						}
 						else if (portlet.isSystem()) {
@@ -87,10 +87,10 @@ portletURL.setParameter("category", category);
 					}
 				}
 
-				List<Theme> curThemes = (List<Theme>)servletContext.getAttribute(WebKeys.PLUGIN_THEMES);
+				List<Theme> servletContextThemes = (List<Theme>)servletContext.getAttribute(WebKeys.PLUGIN_THEMES);
 
-				if (curThemes != null) {
-					themes.addAll(curThemes);
+				if (servletContextThemes != null) {
+					themes.addAll(servletContextThemes);
 				}
 			}
 
