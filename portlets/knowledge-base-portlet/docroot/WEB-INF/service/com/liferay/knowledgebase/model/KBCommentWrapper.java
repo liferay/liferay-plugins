@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -568,6 +569,11 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		}
 
 		return false;
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return _kbComment.getStagedModelType();
 	}
 
 	/**

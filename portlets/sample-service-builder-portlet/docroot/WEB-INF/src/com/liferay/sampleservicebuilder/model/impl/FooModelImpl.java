@@ -17,6 +17,7 @@ package com.liferay.sampleservicebuilder.model.impl;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -511,6 +512,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	@Override
 	public void setField5(String field5) {
 		_field5 = field5;
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(PortalUtil.getClassNameId(
+				Foo.class.getName()));
 	}
 
 	public long getColumnBitmask() {

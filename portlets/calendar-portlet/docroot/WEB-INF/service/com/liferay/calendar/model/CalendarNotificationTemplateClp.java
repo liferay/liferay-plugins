@@ -19,6 +19,7 @@ import com.liferay.calendar.service.ClpSerializer;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -567,6 +568,12 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		catch (Exception e) {
 			throw new UnsupportedOperationException(e);
 		}
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(PortalUtil.getClassNameId(
+				CalendarNotificationTemplate.class.getName()));
 	}
 
 	public BaseModel<?> getCalendarNotificationTemplateRemoteModel() {

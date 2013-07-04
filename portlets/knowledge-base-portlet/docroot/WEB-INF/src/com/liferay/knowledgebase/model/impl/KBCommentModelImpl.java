@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.model.KBCommentSoap;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -535,6 +536,12 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	@Override
 	public void setHelpful(boolean helpful) {
 		_helpful = helpful;
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(PortalUtil.getClassNameId(
+				KBComment.class.getName()), getClassNameId());
 	}
 
 	public long getColumnBitmask() {

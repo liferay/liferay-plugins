@@ -21,6 +21,7 @@ import com.liferay.calendar.model.CalendarNotificationTemplateSoap;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -569,6 +570,12 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 	@Override
 	public void setBody(String body) {
 		_body = body;
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(PortalUtil.getClassNameId(
+				CalendarNotificationTemplate.class.getName()));
 	}
 
 	public long getColumnBitmask() {

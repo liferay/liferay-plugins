@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.model;
 
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -1054,6 +1055,11 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		}
 
 		return false;
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return _kbArticle.getStagedModelType();
 	}
 
 	/**

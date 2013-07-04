@@ -16,22 +16,21 @@ package com.liferay.knowledgebase.service.persistence;
 
 import com.liferay.knowledgebase.model.KBArticle;
 
-import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
 import com.liferay.portal.kernel.lar.ManifestSummary;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandler;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerRegistryUtil;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
-import com.liferay.portal.model.SystemEventConstants;
-import com.liferay.portal.service.persistence.SystemEventActionableDynamicQuery;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.util.PortalUtil;
-
-import java.util.Date;
 
 /**
  * @author Brian Wing Shun Chan
@@ -43,6 +42,8 @@ public class KBArticleExportActionableDynamicQuery
 		PortletDataContext portletDataContext) throws SystemException {
 		_portletDataContext = portletDataContext;
 
+		setCompanyId(_portletDataContext.getCompanyId());
+
 		setGroupId(_portletDataContext.getScopeGroupId());
 	}
 
@@ -50,14 +51,17 @@ public class KBArticleExportActionableDynamicQuery
 	public long performCount() throws PortalException, SystemException {
 		ManifestSummary manifestSummary = _portletDataContext.getManifestSummary();
 
+		StagedModelType stagedModelType = getStagedModelType();
+
 		long modelAdditionCount = super.performCount();
 
-		manifestSummary.addModelAdditionCount(getManifestSummaryKey(),
+		manifestSummary.addModelAdditionCount(stagedModelType.toString(),
 			modelAdditionCount);
 
-		long modelDeletionCount = getModelDeletionCount();
+		long modelDeletionCount = ExportImportHelperUtil.getModelDeletionCount(_portletDataContext,
+				stagedModelType);
 
-		manifestSummary.addModelDeletionCount(getManifestSummaryKey(),
+		manifestSummary.addModelDeletionCount(stagedModelType.toString(),
 			modelDeletionCount);
 
 		return modelAdditionCount;
@@ -66,58 +70,23 @@ public class KBArticleExportActionableDynamicQuery
 	@Override
 	protected void addCriteria(DynamicQuery dynamicQuery) {
 		_portletDataContext.addDateRangeCriteria(dynamicQuery, "modifiedDate");
-	}
 
-	protected long getModelDeletionCount()
-		throws PortalException, SystemException {
-		ActionableDynamicQuery actionableDynamicQuery = new SystemEventActionableDynamicQuery() {
-				@Override
-				protected void addCriteria(DynamicQuery dynamicQuery) {
-					Property classNameIdProperty = PropertyFactoryUtil.forName(
-							"classNameId");
-
-					dynamicQuery.add(classNameIdProperty.eq(
-							PortalUtil.getClassNameId(KBArticle.class.getName())));
-
-					Property typeProperty = PropertyFactoryUtil.forName("type");
-
-					dynamicQuery.add(typeProperty.eq(
-							SystemEventConstants.TYPE_DELETE));
-
-					_addCreateDateProperty(dynamicQuery);
-				}
-
-				@Override
-				protected void performAction(Object object) {
-				}
-
-				private void _addCreateDateProperty(DynamicQuery dynamicQuery) {
-					if (!_portletDataContext.hasDateRange()) {
-						return;
-					}
-
-					Property createDateProperty = PropertyFactoryUtil.forName(
-							"createDate");
-
-					Date startDate = _portletDataContext.getStartDate();
-
-					dynamicQuery.add(createDateProperty.ge(startDate));
-
-					Date endDate = _portletDataContext.getEndDate();
-
-					dynamicQuery.add(createDateProperty.le(endDate));
-				}
-			};
-
-		actionableDynamicQuery.setGroupId(_portletDataContext.getScopeGroupId());
-
-		return actionableDynamicQuery.performCount();
-	}
-
-	protected String getManifestSummaryKey() {
 		StagedModelDataHandler<?> stagedModelDataHandler = StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(KBArticle.class.getName());
 
-		return stagedModelDataHandler.getManifestSummaryKey(null);
+		Property workflowStatusProperty = PropertyFactoryUtil.forName("status");
+
+		dynamicQuery.add(workflowStatusProperty.in(
+				stagedModelDataHandler.getExportableStatuses()));
+	}
+
+	@Override
+	protected Projection getCountProjection() {
+		return ProjectionFactoryUtil.countDistinct("resourcePrimKey");
+	}
+
+	protected StagedModelType getStagedModelType() {
+		return new StagedModelType(PortalUtil.getClassNameId(
+				KBArticle.class.getName()));
 	}
 
 	@Override

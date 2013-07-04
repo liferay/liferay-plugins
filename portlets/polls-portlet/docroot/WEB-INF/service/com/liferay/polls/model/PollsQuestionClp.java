@@ -20,6 +20,7 @@ import com.liferay.polls.service.PollsQuestionLocalServiceUtil;
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -742,6 +743,12 @@ public class PollsQuestionClp extends BaseModelImpl<PollsQuestion>
 		catch (Exception e) {
 			throw new UnsupportedOperationException(e);
 		}
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(PortalUtil.getClassNameId(
+				PollsQuestion.class.getName()));
 	}
 
 	public BaseModel<?> getPollsQuestionRemoteModel() {
