@@ -109,9 +109,11 @@ public abstract class BaseImporter implements Importer {
 				else {
 					group = GroupLocalServiceUtil.addGroup(
 						userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
-						StringPool.BLANK, 0,
+						StringPool.BLANK,
+						GroupConstants.DEFAULT_PARENT_GROUP_ID,
 						GroupConstants.DEFAULT_LIVE_GROUP_ID, targetValue,
-						StringPool.BLANK, GroupConstants.TYPE_SITE_OPEN, null,
+						StringPool.BLANK, GroupConstants.TYPE_SITE_OPEN, true,
+						GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null,
 						true, true, new ServiceContext());
 				}
 			}
