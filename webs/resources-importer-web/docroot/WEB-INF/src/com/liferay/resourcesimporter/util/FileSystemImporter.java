@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -240,8 +242,6 @@ public class FileSystemImporter extends BaseImporter {
 
 		String title = FileUtil.stripExtension(fileName);
 
-		Map<Locale, String> titleMap = getMap(title);
-
 		JSONObject assetJSONObject = _assetJSONObjectMap.get(fileName);
 
 		Map<Locale, String> descriptionMap = null;
@@ -256,6 +256,11 @@ public class FileSystemImporter extends BaseImporter {
 		String content = StringUtil.read(inputStream);
 
 		content = processJournalArticleContent(content);
+
+		Locale articleDefaultLocale = LocaleUtil.fromLanguageId(
+			LocalizationUtil.getDefaultLocale(content));
+
+		Map<Locale, String> titleMap = getMap(articleDefaultLocale, title);
 
 		boolean smallImage = false;
 		String smallImageURL = StringPool.BLANK;
@@ -701,11 +706,17 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected Map<Locale, String> getMap(String value) {
-		Map<Locale, String> map = new HashMap<Locale, String>();
+		Locale locale = LocaleUtil.getDefault();
 
-		map.put(LocaleUtil.getDefault(), value);
+		return getMap(locale, value);
+	}
 
-		return map;
+	protected Map<Locale, String> getMap(Locale locale, String value) {
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+		nameMap.put(locale, value);
+
+		return nameMap;
 	}
 
 	protected File[] listFiles(File dir) {
