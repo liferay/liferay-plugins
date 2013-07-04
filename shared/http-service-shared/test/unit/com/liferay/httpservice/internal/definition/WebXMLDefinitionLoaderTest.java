@@ -150,7 +150,7 @@ public class WebXMLDefinitionLoaderTest {
 			Class<?> clazz = getClass();
 
 			ClassLoader classLoader = clazz.getClassLoader();
-			
+
 			return classLoader.getResource(
 				"com/liferay/httpservice/internal/definition/dependencies/" +
 					"custom-web.xml");

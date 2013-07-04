@@ -126,7 +126,8 @@ public class BundleServletContextTest extends PowerMockito {
 		String cssFilterName = "CSS Filter";
 
 		registerFilter(
-			cssFilterName, new MockLoggingFilter(cssFilterName), null, "/css/*");
+			cssFilterName, new MockLoggingFilter(cssFilterName), null,
+			"/css/*");
 
 		String jsFilterName = "JS Filter";
 
