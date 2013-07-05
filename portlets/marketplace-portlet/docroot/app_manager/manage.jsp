@@ -209,7 +209,7 @@ portletURL.setParameter("category", category);
 	</div>
 </div>
 
-<aui:script use="anim,aui-base,aui-io">
+<aui:script use="anim,aui-base,aui-io,aui-url">
 	var marketplacePortlet = A.one('.marketplace-portlet');
 
 	marketplacePortlet.delegate(
@@ -274,8 +274,17 @@ portletURL.setParameter("category", category);
 
 			actionButton.addClass('disabled');
 
+			var url = new A.Url(actionButton.getAttribute('href'));
+
+			if (actionButton.hasClass('activate')) {
+				url.setParameter('<portlet:namespace />active', true);
+			}
+			else if (actionButton.hasClass('deactivate')) {
+				url.setParameter('<portlet:namespace />active', false);
+			}
+
 			A.io.request(
-				actionButton.getAttribute('href'),
+				url.toString(),
 				{
 					after: {
 						complete: function(event, id, obj) {

@@ -38,7 +38,7 @@
 				<%
 				LayoutTemplate layoutTemplate = (LayoutTemplate)plugin;
 
-				PluginSetting pluginSetting = PluginSettingLocalServiceUtil.getPluginSetting(company.getCompanyId(), layoutTemplate.getThemeId(), Plugin.TYPE_LAYOUT_TEMPLATE);
+				PluginSetting pluginSetting = PluginSettingLocalServiceUtil.getPluginSetting(company.getCompanyId(), layoutTemplate.getLayoutTemplateId(), Plugin.TYPE_LAYOUT_TEMPLATE);
 				%>
 
 				<tr>
