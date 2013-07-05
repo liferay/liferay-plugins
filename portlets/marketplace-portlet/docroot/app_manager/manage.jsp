@@ -22,6 +22,8 @@ portletURL.setParameter("category", category);
 
 <div class="row">
 	<div class="span3">
+		<div class="alert-container"></div>
+
 		<div class="category-nav well">
 			<%@ include file="/app_manager/categories.jspf" %>
 		</div>
@@ -162,7 +164,7 @@ portletURL.setParameter("category", category);
 				</div>
 
 				<c:if test='<%= !ArrayUtil.contains(contextNames, PortalUtil.getPathContext()) && !ArrayUtil.contains(contextNames, "marketplace-portlet") %>'>
-					<div class="actions">
+					<div class="app-actions">
 						<liferay-ui:icon-menu>
 							<liferay-portlet:actionURL name="updatePluginSettings" var="activateURL">
 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
@@ -190,8 +192,9 @@ portletURL.setParameter("category", category);
 								<portlet:param name="activate" value="<%= String.valueOf(false) %>" />
 							</liferay-portlet:actionURL>
 
-							<liferay-ui:icon
-								image="uninstall"
+							<liferay-ui:icon-delete
+								confirmation="are-you-sure-you-want-to-uninstall-this"
+								message="uninstall"
 								url="<%= uninstallURL %>"
 							/>
 						</liferay-ui:icon-menu>
@@ -206,8 +209,10 @@ portletURL.setParameter("category", category);
 	</div>
 </div>
 
-<aui:script use="aui-base">
-	A.one('.marketplace-portlet .apps').delegate(
+<aui:script use="anim,aui-base,aui-io">
+	var marketplacePortlet = A.one('.marketplace-portlet');
+
+	marketplacePortlet.delegate(
 		'click',
 		function(event) {
 			var targetNode = event.currentTarget;
@@ -231,13 +236,87 @@ portletURL.setParameter("category", category);
 		'ul.summary'
 	);
 
-	A.one('.marketplace-portlet .apps').delegate(
+	var showMessage = function(message) {
+		marketplacePortlet.one('.alert-container').prepend(message);
+
+		setTimeout(
+			function() {
+				new A.Anim(
+					{
+						node: message,
+						on: {
+							end: function() {
+								var node = this.get('node');
+
+								node.get('parentNode').removeChild(node);
+							}
+						},
+						to: {
+							opacity: 0
+						}
+					}
+				).run();
+			},
+			2000
+		);
+	};
+
+	marketplacePortlet.delegate(
 		'click',
 		function(event) {
 			event.preventDefault();
 
-			submitForm(document.hrefFm, event.currentTarget.getAttribute('href'));
+			var actionButton = event.currentTarget;
+
+			if (actionButton.hasClass('disabled')) {
+				return;
+			}
+
+			actionButton.addClass('disabled');
+
+			A.io.request(
+				actionButton.getAttribute('href'),
+				{
+					after: {
+						complete: function(event, id, obj) {
+							actionButton.removeClass('disabled');
+						}
+					},
+					method: 'post',
+					on: {
+						failure: function(event, id, obj) {
+							showMessage(
+								A.Node.create(
+									'<div class="alert alert-error">' +
+										'<i class="icon-minus-sign"></i> <liferay-ui:message key="an-unexpected-error-occurred" />' +
+									'</div>'
+								)
+							);
+						},
+						success: function(event, id, obj) {
+							if (actionButton.hasClass('activate')) {
+								actionButton.setAttribute('class', 'btn btn-mini btn-success deactivate');
+
+								actionButton.html('<liferay-ui:message key="active" />');
+							}
+							else if (actionButton.hasClass('deactivate')) {
+								actionButton.setAttribute('class', 'btn btn-mini btn-danger activate');
+
+								actionButton.html('<liferay-ui:message key="inactive" />');
+							}
+
+							showMessage(
+								A.Node.create(
+									'<div class="alert alert-success">' +
+										'<i class="icon-ok"></i> <liferay-ui:message key="your-request-completed-successfully" />' +
+									'</div>'
+								)
+							);
+						}
+					}
+				}
+			);
 		},
-		'.reindex'
+		'.plugin-actions .btn'
 	);
 </aui:script>
