@@ -25,9 +25,11 @@ import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupGroupRole;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -194,13 +196,28 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				if ((role.getType() == RoleConstants.TYPE_SITE) ||
 					(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
+					long groupId = kaleoTaskInstanceToken.getGroupId();
+
 					List<UserGroupRole> userGroupRoles =
-						UserGroupRoleLocalServiceUtil.
-							getUserGroupRolesByGroupAndRole(
-								kaleoTaskInstanceToken.getGroupId(), roleId);
+						UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
+							groupId, roleId);
 
 					for (UserGroupRole userGroupRole : userGroupRoles) {
 						pooledActors.add(userGroupRole.getUserId());
+					}
+
+					List<UserGroupGroupRole> userGroupGroupRoles =
+						UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRolesByGroupAndRole(
+							groupId, roleId);
+
+					for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+						long userGroupId = userGroupGroupRole.getUserGroupId();
+						List<User> users =
+							UserLocalServiceUtil.getUserGroupUsers(userGroupId);
+
+						for (User user : users) {
+							pooledActors.add(user.getUserId());
+						}
 					}
 				}
 				else {
