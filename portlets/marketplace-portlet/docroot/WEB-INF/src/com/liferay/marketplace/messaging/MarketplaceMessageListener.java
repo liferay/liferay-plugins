@@ -53,7 +53,7 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 		String title = properties.getProperty("title");
 		String description = properties.getProperty("description");
 		String category = properties.getProperty("category");
-		String iconURL = properties.getProperty("iconURL");
+		String iconURL = properties.getProperty("icon-url");
 
 		App app = AppLocalServiceUtil.updateApp(
 			0, remoteAppId, title, description, category, iconURL, version,
