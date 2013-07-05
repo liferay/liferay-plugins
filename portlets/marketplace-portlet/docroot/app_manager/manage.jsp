@@ -76,9 +76,9 @@ portletURL.setParameter("category", category);
 					while (itr.hasNext()) {
 						Portlet portlet = itr.next();
 
-						String portletId = portlet.getPortletId();
+						String curPortletId = portlet.getPortletId();
 
-						if (portletId.equals(PortletKeys.PORTAL)) {
+						if (curPortletId.equals(PortletKeys.PORTAL)) {
 							itr.remove();
 						}
 						else if (portlet.isSystem()) {
