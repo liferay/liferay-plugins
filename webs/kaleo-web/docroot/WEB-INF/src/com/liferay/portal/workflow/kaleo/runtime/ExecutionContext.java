@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public class ExecutionContext {
+public class ExecutionContext implements Serializable {
 
 	public ExecutionContext(
 		KaleoInstanceToken kaleoInstanceToken,
