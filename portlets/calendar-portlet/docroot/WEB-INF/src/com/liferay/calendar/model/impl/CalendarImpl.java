@@ -31,6 +31,7 @@ public class CalendarImpl extends CalendarBaseImpl {
 	public CalendarImpl() {
 	}
 
+	@Override
 	public CalendarResource getCalendarResource()
 		throws PortalException, SystemException {
 
@@ -38,6 +39,7 @@ public class CalendarImpl extends CalendarBaseImpl {
 			getCalendarResourceId());
 	}
 
+	@Override
 	public long getResourceGroupId() {
 		try {
 			CalendarResource calendarResource = getCalendarResource();

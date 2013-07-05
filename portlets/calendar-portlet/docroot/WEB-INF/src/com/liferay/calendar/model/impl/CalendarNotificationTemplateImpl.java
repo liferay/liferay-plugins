@@ -39,6 +39,7 @@ public class CalendarNotificationTemplateImpl
 		}
 	}
 
+	@Override
 	public UnicodeProperties getNotificationTypeSettingsProperties() {
 		if (_notificationTypeSettingsProperties == null) {
 			_notificationTypeSettingsProperties = new UnicodeProperties(true);
@@ -62,6 +63,7 @@ public class CalendarNotificationTemplateImpl
 		super.setNotificationTypeSettings(notificationTypeSettings);
 	}
 
+	@Override
 	public void setTypeSettingsProperties(
 		UnicodeProperties notificationTypeSettingsProperties) {
 

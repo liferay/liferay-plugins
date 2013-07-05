@@ -30,6 +30,7 @@ import javax.mail.internet.InternetAddress;
  */
 public class EmailNotificationSender implements NotificationSender {
 
+	@Override
 	public void sendNotification(
 			NotificationRecipient notificationRecipient,
 			NotificationTemplateContext notificationTemplateContext)
@@ -64,6 +65,7 @@ public class EmailNotificationSender implements NotificationSender {
 		}
 	}
 
+	@Override
 	public void sendNotification(
 			String fromAddress, String fromName,
 			NotificationRecipient notificationRecipient, String subject,

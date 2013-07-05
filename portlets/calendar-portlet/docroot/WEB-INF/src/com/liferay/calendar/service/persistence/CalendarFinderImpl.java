@@ -48,6 +48,7 @@ public class CalendarFinderImpl
 	public static final String FIND_BY_C_G_C_N_D =
 		CalendarFinder.class.getName() + ".findByC_G_C_N_D";
 
+	@Override
 	public int countByKeywords(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String keywords)
@@ -70,6 +71,7 @@ public class CalendarFinderImpl
 			andOperator);
 	}
 
+	@Override
 	public int countByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String name, String description, boolean andOperator)
@@ -83,6 +85,7 @@ public class CalendarFinderImpl
 			andOperator);
 	}
 
+	@Override
 	public int countByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String[] names, String[] descriptions, boolean andOperator)
@@ -93,6 +96,7 @@ public class CalendarFinderImpl
 			andOperator, false);
 	}
 
+	@Override
 	public int filterCountByKeywords(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String keywords)
@@ -115,6 +119,7 @@ public class CalendarFinderImpl
 			andOperator);
 	}
 
+	@Override
 	public int filterCountByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String name, String description, boolean andOperator)
@@ -128,6 +133,7 @@ public class CalendarFinderImpl
 			andOperator);
 	}
 
+	@Override
 	public int filterCountByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String[] names, String[] descriptions, boolean andOperator)
@@ -138,6 +144,7 @@ public class CalendarFinderImpl
 			andOperator, false);
 	}
 
+	@Override
 	public List<Calendar> filterFindByKeywords(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String keywords, int start, int end,
@@ -161,6 +168,7 @@ public class CalendarFinderImpl
 			andOperator, start, end, orderByComparator);
 	}
 
+	@Override
 	public List<Calendar> filterFindByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String name, String description, boolean andOperator, int start,
@@ -175,6 +183,7 @@ public class CalendarFinderImpl
 			andOperator, start, end, orderByComparator);
 	}
 
+	@Override
 	public List<Calendar> filterFindByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String[] names, String[] descriptions, boolean andOperator,
@@ -186,6 +195,7 @@ public class CalendarFinderImpl
 			andOperator, start, end, orderByComparator, true);
 	}
 
+	@Override
 	public List<Calendar> findByKeywords(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String keywords, int start, int end,
@@ -209,6 +219,7 @@ public class CalendarFinderImpl
 			andOperator, start, end, orderByComparator);
 	}
 
+	@Override
 	public List<Calendar> findByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String name, String description, boolean andOperator, int start,
@@ -223,6 +234,7 @@ public class CalendarFinderImpl
 			andOperator, start, end, orderByComparator);
 	}
 
+	@Override
 	public List<Calendar> findByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String[] names, String[] descriptions, boolean andOperator,

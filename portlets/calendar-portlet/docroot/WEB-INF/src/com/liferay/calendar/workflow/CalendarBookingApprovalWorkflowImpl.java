@@ -36,6 +36,7 @@ import java.util.Map;
 public class CalendarBookingApprovalWorkflowImpl
 	implements CalendarBookingApprovalWorkflow {
 
+	@Override
 	public Map<Long, List<String>> getActionNames(
 			PermissionChecker permissionChecker, long[] calendarBookingIds)
 		throws PortalException, SystemException {
@@ -69,6 +70,7 @@ public class CalendarBookingApprovalWorkflowImpl
 		return actionNames;
 	}
 
+	@Override
 	public void invokeTransition(
 			long userId, long calendarBookingId, String transitionName,
 			ServiceContext serviceContext)
@@ -100,6 +102,7 @@ public class CalendarBookingApprovalWorkflowImpl
 		}
 	}
 
+	@Override
 	public void startWorkflow(
 			long userId, long calendarBookingId, ServiceContext serviceContext)
 		throws PortalException, SystemException {

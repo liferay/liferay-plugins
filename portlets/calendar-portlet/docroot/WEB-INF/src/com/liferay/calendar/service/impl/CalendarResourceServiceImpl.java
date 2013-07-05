@@ -36,6 +36,7 @@ import java.util.Map;
 public class CalendarResourceServiceImpl
 	extends CalendarResourceServiceBaseImpl {
 
+	@Override
 	public CalendarResource addCalendarResource(
 			long groupId, String className, long classPK, String classUuid,
 			String code, Map<Locale, String> nameMap,
@@ -51,6 +52,7 @@ public class CalendarResourceServiceImpl
 			descriptionMap, active, serviceContext);
 	}
 
+	@Override
 	public CalendarResource deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
@@ -61,6 +63,7 @@ public class CalendarResourceServiceImpl
 			calendarResourceId);
 	}
 
+	@Override
 	public CalendarResource fetchCalendarResource(
 			long classNameId, long classPK)
 		throws PortalException, SystemException {
@@ -78,6 +81,7 @@ public class CalendarResourceServiceImpl
 		return calendarResource;
 	}
 
+	@Override
 	public CalendarResource getCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
@@ -87,6 +91,7 @@ public class CalendarResourceServiceImpl
 		return calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 	}
 
+	@Override
 	public List<CalendarResource> search(
 			long companyId, long[] groupIds, long[] classNameIds,
 			String keywords, boolean active, boolean andOperator, int start,
@@ -98,6 +103,7 @@ public class CalendarResourceServiceImpl
 			orderByComparator);
 	}
 
+	@Override
 	public List<CalendarResource> search(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
 			String name, String description, boolean active,
@@ -110,6 +116,7 @@ public class CalendarResourceServiceImpl
 			andOperator, start, end, orderByComparator);
 	}
 
+	@Override
 	public int searchCount(
 			long companyId, long[] groupIds, long[] classNameIds,
 			String keywords, boolean active)
@@ -119,6 +126,7 @@ public class CalendarResourceServiceImpl
 			companyId, groupIds, classNameIds, keywords, active);
 	}
 
+	@Override
 	public int searchCount(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
 			String name, String description, boolean active,
@@ -130,6 +138,7 @@ public class CalendarResourceServiceImpl
 			andOperator);
 	}
 
+	@Override
 	public CalendarResource updateCalendarResource(
 			long calendarResourceId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, boolean active,

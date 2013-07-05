@@ -30,6 +30,7 @@ import java.util.List;
  */
 public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 
+	@Override
 	public List<Calendar> getCalendars() throws SystemException {
 		List<Calendar> calendars =
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
@@ -38,6 +39,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 		return calendars;
 	}
 
+	@Override
 	public Calendar getDefaultCalendar() throws SystemException {
 		List<Calendar> calendars =
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
@@ -50,6 +52,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 		return null;
 	}
 
+	@Override
 	public long getDefaultCalendarId() throws SystemException {
 		Calendar calendar = getDefaultCalendar();
 
@@ -60,6 +63,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 		return 0;
 	}
 
+	@Override
 	public boolean isGlobal() {
 		long calendarResourceClassNameId = PortalUtil.getClassNameId(
 			CalendarResource.class);
@@ -71,6 +75,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 		return true;
 	}
 
+	@Override
 	public boolean isGroup() {
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
@@ -81,6 +86,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 		return false;
 	}
 
+	@Override
 	public boolean isUser() {
 		long userClassNameId = PortalUtil.getClassNameId(User.class);
 

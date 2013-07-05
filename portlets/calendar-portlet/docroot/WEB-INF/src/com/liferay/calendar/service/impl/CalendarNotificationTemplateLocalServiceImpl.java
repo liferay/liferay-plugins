@@ -33,6 +33,7 @@ import java.util.Date;
 public class CalendarNotificationTemplateLocalServiceImpl
 	extends CalendarNotificationTemplateLocalServiceBaseImpl {
 
+	@Override
 	public CalendarNotificationTemplate addCalendarNotificationTemplate(
 			long userId, long calendarId, NotificationType notificationType,
 			String notificationTypeSettings,
@@ -73,6 +74,7 @@ public class CalendarNotificationTemplateLocalServiceImpl
 			calendarNotificationTemplate);
 	}
 
+	@Override
 	public CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 			long calendarId, NotificationType notificationType,
 			NotificationTemplateType notificationTemplateType)
@@ -83,6 +85,7 @@ public class CalendarNotificationTemplateLocalServiceImpl
 			notificationTemplateType.getValue());
 	}
 
+	@Override
 	public CalendarNotificationTemplate updateCalendarNotificationTemplate(
 			long calendarNotificationTemplateId,
 			String notificationTypeSettings, String subject, String body,

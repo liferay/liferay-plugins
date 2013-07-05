@@ -69,6 +69,7 @@ import java.util.Map;
 public class CalendarImporterLocalServiceImpl
 	extends CalendarImporterLocalServiceBaseImpl {
 
+	@Override
 	public void importCalEvent(CalEvent calEvent)
 		throws PortalException, SystemException {
 
@@ -137,6 +138,7 @@ public class CalendarImporterLocalServiceImpl
 			calendarBookingId);
 	}
 
+	@Override
 	public void importCalEvents() throws PortalException, SystemException {
 		ActionableDynamicQuery actionableDynamicQuery =
 			new CalEventActionableDynamicQuery() {

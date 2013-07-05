@@ -30,6 +30,7 @@ import com.liferay.portal.service.ServiceContext;
 public class CalendarNotificationTemplateServiceImpl
 	extends CalendarNotificationTemplateServiceBaseImpl {
 
+	@Override
 	public CalendarNotificationTemplate addCalendarNotificationTemplate(
 			long calendarId, NotificationType notificationType,
 			String notificationTypeSettings,
@@ -47,6 +48,7 @@ public class CalendarNotificationTemplateServiceImpl
 				body, serviceContext);
 	}
 
+	@Override
 	public CalendarNotificationTemplate updateCalendarNotificationTemplate(
 			long calendarNotificationTemplateId,
 			String notificationTypeSettings, String subject, String body,

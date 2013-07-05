@@ -53,6 +53,7 @@ public class CalendarBookingFinderImpl
 		CalendarBookingFinder.class.getName() +
 			".findByC_G_C_C_P_T_D_L_S_E_S";
 
+	@Override
 	public int countByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -79,6 +80,7 @@ public class CalendarBookingFinderImpl
 			endTime, statuses, andOperator);
 	}
 
+	@Override
 	public int countByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -96,6 +98,7 @@ public class CalendarBookingFinderImpl
 			endTime, statuses, andOperator);
 	}
 
+	@Override
 	public int countByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -109,6 +112,7 @@ public class CalendarBookingFinderImpl
 			endTime, statuses, andOperator, false);
 	}
 
+	@Override
 	public int filterCountByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -135,6 +139,7 @@ public class CalendarBookingFinderImpl
 			endTime, statuses, andOperator);
 	}
 
+	@Override
 	public int filterCountByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -152,6 +157,7 @@ public class CalendarBookingFinderImpl
 			endTime, statuses, andOperator);
 	}
 
+	@Override
 	public int filterCountByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -165,6 +171,7 @@ public class CalendarBookingFinderImpl
 			endTime, statuses, andOperator, true);
 	}
 
+	@Override
 	public List<CalendarBooking> filterFindByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -194,6 +201,7 @@ public class CalendarBookingFinderImpl
 			orderByComparator);
 	}
 
+	@Override
 	public List<CalendarBooking> filterFindByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -214,6 +222,7 @@ public class CalendarBookingFinderImpl
 			orderByComparator);
 	}
 
+	@Override
 	public List<CalendarBooking> filterFindByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -230,6 +239,7 @@ public class CalendarBookingFinderImpl
 			orderByComparator, true);
 	}
 
+	@Override
 	public List<CalendarBooking> findByFutureReminders(long startTime)
 		throws SystemException {
 
@@ -258,6 +268,7 @@ public class CalendarBookingFinderImpl
 		}
 	}
 
+	@Override
 	public List<CalendarBooking> findByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -287,6 +298,7 @@ public class CalendarBookingFinderImpl
 			orderByComparator);
 	}
 
+	@Override
 	public List<CalendarBooking> findByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -307,6 +319,7 @@ public class CalendarBookingFinderImpl
 			orderByComparator);
 	}
 
+	@Override
 	public List<CalendarBooking> findByC_G_C_C_P_T_D_L_S_E_S(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,

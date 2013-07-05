@@ -89,6 +89,7 @@ import net.fortuna.ical4j.model.property.Version;
  */
 public class CalendarICalDataHandler implements CalendarDataHandler {
 
+	@Override
 	public String exportCalendar(long calendarId) throws Exception {
 		List<CalendarBooking> calendarBookings =
 			CalendarBookingLocalServiceUtil.getCalendarBookings(calendarId);
@@ -99,6 +100,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		return toString(iCalCalendar);
 	}
 
+	@Override
 	public String exportCalendarBooking(long calendarBookingId)
 		throws Exception {
 
@@ -117,6 +119,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		return toString(iCalCalendar);
 	}
 
+	@Override
 	public void importCalendar(long calendarId, String data) throws Exception {
 		CalendarBuilder calendarBuilder = new CalendarBuilder();
 

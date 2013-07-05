@@ -37,10 +37,12 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 	public CalendarBookingImpl() {
 	}
 
+	@Override
 	public Calendar getCalendar() throws PortalException, SystemException {
 		return CalendarLocalServiceUtil.getCalendar(getCalendarId());
 	}
 
+	@Override
 	public CalendarResource getCalendarResource()
 		throws PortalException, SystemException {
 
@@ -48,6 +50,7 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 			getCalendarResourceId());
 	}
 
+	@Override
 	public List<CalendarBooking> getChildCalendarBookings()
 		throws SystemException {
 
@@ -55,14 +58,17 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 			getCalendarBookingId());
 	}
 
+	@Override
 	public long getDuration() {
 		return getEndTime() - getStartTime();
 	}
 
+	@Override
 	public NotificationType getFirstReminderNotificationType() {
 		return NotificationType.parse(getFirstReminderType());
 	}
 
+	@Override
 	public CalendarBooking getParentCalendarBooking()
 		throws PortalException, SystemException {
 
@@ -70,6 +76,7 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 			getParentCalendarBookingId());
 	}
 
+	@Override
 	public Recurrence getRecurrenceObj() {
 		if ((_recurrenceObj == null) && isRecurring()) {
 			_recurrenceObj = RecurrenceSerializer.deserialize(getRecurrence());
@@ -78,16 +85,19 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 		return _recurrenceObj;
 	}
 
+	@Override
 	public long getResourceGroupId() throws PortalException, SystemException {
 		Calendar calendar = getCalendar();
 
 		return calendar.getResourceGroupId();
 	}
 
+	@Override
 	public NotificationType getSecondReminderNotificationType() {
 		return NotificationType.parse(getSecondReminderType());
 	}
 
+	@Override
 	public boolean isMasterBooking() {
 		if (getParentCalendarBookingId() == getCalendarBookingId()) {
 			return true;
@@ -96,6 +106,7 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 		return false;
 	}
 
+	@Override
 	public boolean isRecurring() {
 		if (Validator.isNotNull(getRecurrence())) {
 			return true;
