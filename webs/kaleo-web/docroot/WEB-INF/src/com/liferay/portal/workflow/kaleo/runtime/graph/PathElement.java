@@ -17,10 +17,12 @@ package com.liferay.portal.workflow.kaleo.runtime.graph;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
+import java.io.Serializable;
+
 /**
  * @author Michael C. Han
  */
-public class PathElement {
+public class PathElement implements Serializable {
 
 	public PathElement(
 		KaleoNode startKaleoNode, KaleoNode targetKaleoNode,
