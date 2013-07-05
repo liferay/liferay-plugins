@@ -229,5 +229,15 @@ portletURL.setParameter("category", category);
 			}
 		},
 		'ul.summary'
-	)
+	);
+
+	A.one('.marketplace-portlet .apps').delegate(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			submitForm(document.hrefFm, event.currentTarget.getAttribute('href'));
+		},
+		'.reindex'
+	);
 </aui:script>
