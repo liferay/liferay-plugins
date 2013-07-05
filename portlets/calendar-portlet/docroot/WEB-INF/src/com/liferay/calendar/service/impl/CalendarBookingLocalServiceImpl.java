@@ -440,14 +440,10 @@ public class CalendarBookingLocalServiceImpl
 			return;
 		}
 
-		// Entry
-
 		updateStatus(
 			userId, calendarBooking.getCalendarBookingId(),
 			CalendarBookingWorkflowConstants.STATUS_IN_TRASH,
 			new ServiceContext());
-
-		// Social
 
 		socialActivityCounterLocalService.disableActivityCounters(
 			CalendarBooking.class.getName(),
@@ -479,16 +475,12 @@ public class CalendarBookingLocalServiceImpl
 			return;
 		}
 
-		// Entry
-
 		TrashEntry trashEntry = trashEntryLocalService.getEntry(
 			CalendarBooking.class.getName(), calendarBookingId);
 
 		updateStatus(
 			userId, calendarBookingId, trashEntry.getStatus(),
 			new ServiceContext());
-
-		// Social
 
 		socialActivityCounterLocalService.enableActivityCounters(
 			CalendarBooking.class.getName(), calendarBookingId);
@@ -773,6 +765,8 @@ public class CalendarBookingLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Calendar booking
+
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
 
@@ -990,7 +984,7 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	protected String getExtraDataJSON(
-			CalendarBooking calendarBooking, ServiceContext serviceContext) {
+		CalendarBooking calendarBooking, ServiceContext serviceContext) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
