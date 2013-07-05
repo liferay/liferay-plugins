@@ -11,9 +11,13 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="remoteAppId" type="long" />
 		<field name="title" type="String" />
-		<field name="description" type="String" />
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="category" type="String" />
-		<field name="iconURL" type="String" />
+		<field name="iconURL" type="String">
+			<hint-collection name="URL" />
+		</field>
 		<field name="version" type="String" />
 	</model>
 	<model name="com.liferay.marketplace.model.Module">
