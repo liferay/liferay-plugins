@@ -26,7 +26,7 @@
 	int messagePos = 0;
 
 	while ((messagePos = html.indexOf("<div class=\"message-container", messagePos)) > -1) {
-		int x = html.indexOf("<ul class=\"edit-controls lfr-component\">", messagePos);
+		int x = html.indexOf("<ul class=\"edit-controls", messagePos);
 		int y = html.indexOf("</ul>", x);
 
 		int messageIdPos = html.indexOf("_19_messageId=", x);
