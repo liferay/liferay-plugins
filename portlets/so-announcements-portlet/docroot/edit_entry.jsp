@@ -47,7 +47,6 @@ if (entry == null) {
 	<aui:model-context bean="<%= entry %>" model="<%= AnnouncementsEntry.class %>" />
 
 	<aui:fieldset>
-
 		<c:if test='<%= redirectMvcPath.equals("/manage_entries.jsp") %>'>
 			<span class="back-link"><a href="<%= HtmlUtil.escape(redirect) %>">&laquo; Back</a></span>
 		</c:if>
