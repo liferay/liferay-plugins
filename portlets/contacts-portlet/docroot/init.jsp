@@ -79,7 +79,6 @@ page import="com.liferay.portal.service.permission.UserPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.comparator.UserLastNameComparator" %><%@
 page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.asset.model.AssetTag" %><%@
 page import="com.liferay.portlet.asset.service.AssetTagLocalServiceUtil" %><%@
