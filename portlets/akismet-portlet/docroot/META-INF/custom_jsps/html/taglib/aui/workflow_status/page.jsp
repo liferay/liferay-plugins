@@ -38,7 +38,7 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 		if (message.getUserId() == themeDisplay.getUserId()) {
 			displayMessage = true;
 
-			String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.toLabel(status));
+			String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(status));
 
 			int pos = html.indexOf(deniedMessage);
 
@@ -60,7 +60,7 @@ if (bean instanceof WikiPage) {
 	if ((wikiPage.getUserId() == themeDisplay.getUserId()) && (_isSpam(wikiPage) || _isPendingApproval(wikiPage))) {
 		displayMessage = true;
 
-		String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.toLabel(status));
+		String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(status));
 
 		int pos = html.indexOf(deniedMessage);
 

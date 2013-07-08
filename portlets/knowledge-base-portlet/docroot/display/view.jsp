@@ -92,7 +92,7 @@
 				href="<%= rowURL %>"
 				name="status"
 				orderable="<%= true %>"
-				value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(kbArticle.getStatus())) + ")" %>'
+				value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
 			/>
 		</c:if>
 
