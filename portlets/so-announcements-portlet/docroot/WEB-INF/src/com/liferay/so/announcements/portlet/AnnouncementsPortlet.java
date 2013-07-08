@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.announcements.EntryContentException;
@@ -105,13 +104,6 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			jsonObject.put(
 				"redirect", ParamUtil.getString(actionRequest, "redirect"));
 			jsonObject.put("success", true);
-
-			String fromManageEntries = ParamUtil.getString(
-				actionRequest, "fromManageEntries");
-
-			if (Validator.isNotNull(fromManageEntries)) {
-				jsonObject.put("fromManageEntries", fromManageEntries);
-			}
 		}
 		catch (Exception e) {
 			String message = null;
