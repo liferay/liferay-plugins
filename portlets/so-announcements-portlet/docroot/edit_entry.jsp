@@ -22,6 +22,8 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
+String redirectMvcPath = HttpUtil.getParameter(HttpUtil.decodeURL(redirect), renderResponse.getNamespace() + "mvcPath", false);
+
 long entryId = ParamUtil.getLong(request, "entryId");
 
 AnnouncementsEntry entry = AnnouncementsEntryLocalServiceUtil.fetchAnnouncementsEntry(entryId);
@@ -45,6 +47,11 @@ if (entry == null) {
 	<aui:model-context bean="<%= entry %>" model="<%= AnnouncementsEntry.class %>" />
 
 	<aui:fieldset>
+
+		<c:if test='<%= redirectMvcPath.equals("/manage_entries.jsp") %>'>
+			<span class="back-link"><a href="<%= HtmlUtil.escape(redirect) %>">&laquo; Back</a></span>
+		</c:if>
+
 		<c:choose>
 			<c:when test="<%= entry != null %>">
 
@@ -171,11 +178,16 @@ if (entry == null) {
 							}
 						}
 						else {
-							Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+							if (<%= redirectMvcPath.equals("/manage_entries.jsp") %>) {
+								window.location.href = '<%= HtmlUtil.escape(redirect) %>';
+							}
+							else {
+								Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
 
-							var topWindow = Liferay.Util.getTop();
+								var topWindow = Liferay.Util.getTop();
 
-							topWindow.document.location.reload();
+								topWindow.document.location.reload();
+							}
 						}
 					}
 				},
