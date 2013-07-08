@@ -797,14 +797,15 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			List<User> users = new UniqueList<User>();
 
 			if (filterBy.equals(ContactsConstants.FILTER_BY_ADMINS)) {
-				Role role = RoleLocalServiceUtil.getRole(
-					group.getCompanyId(), RoleConstants.SITE_OWNER);
+				Role siteAdministratorRole = RoleLocalServiceUtil.getRole(
+					group.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
 
 				params.put(
 					"userGroupRole",
 					new Long[] {
 						new Long(group.getGroupId()),
-						new Long(role.getRoleId())});
+						new Long(siteAdministratorRole.getRoleId())
+					});
 
 				users.addAll(
 					UserLocalServiceUtil.search(
@@ -813,14 +814,15 @@ public class ContactsCenterPortlet extends MVCPortlet {
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 						(OrderByComparator)null));
 
-				role = RoleLocalServiceUtil.getRole(
-					group.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
+				Role siteOwnerRole = RoleLocalServiceUtil.getRole(
+					group.getCompanyId(), RoleConstants.SITE_OWNER);
 
 				params.put(
 					"userGroupRole",
 					new Long[] {
 						new Long(group.getGroupId()),
-						new Long(role.getRoleId())});
+						new Long(siteOwnerRole.getRoleId())
+					});
 
 				users.addAll(
 					UserLocalServiceUtil.search(
