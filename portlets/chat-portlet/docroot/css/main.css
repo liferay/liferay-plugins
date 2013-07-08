@@ -135,14 +135,8 @@ html body {
 /* ---------- Online Users ---------- */
 
 .buddy-list {
-	.search-buddies .aui-field-content {
-		padding: 2px;
-	}
-
-	.search-buddies-field {
-		background: url(@theme_image_path@/common/search.png) no-repeat 5px 50%;
-		padding-left: 25px;
-		width: 100%;
+	.field.search-buddies {
+		padding-right: 2px;
 	}
 
 	&.loading.selected {
@@ -265,7 +259,7 @@ html body {
 .panel-window {
 	background: #FFF;
 	border: 1px solid #262626;
-	font: 11px Tahoma, Geneva, sans-serif;
+	font: 12px Tahoma, Geneva, sans-serif;
 	min-width: 226px;
 	position: relative;
 }
@@ -392,22 +386,28 @@ html body {
 	height: 19px;
 	position: relative;
 
-	textarea {
+	textarea.message-input {
 		background: none;
 		border-width: 0;
 		bottom: 0;
 		display: block;
 		float: left;
 		height: 14px;
+		margin: 0;
 		overflow: hidden;
-		padding: 2px;
+		padding: 2px 0 2px 0;
 		position: absolute;
-		width: 222px;
+		width: 100%;
 	}
 }
 
+pre.chat-height-monitor {
+	margin: 0;
+	padding: 0;
+}
+
 .chat-height-monitor, .panel-input textarea {
-	font: 11px/14px Tahoma, Geneva, sans-serif;
+	font: 14px/16px Tahoma, Geneva, sans-serif;
 }
 
 .panel-input textarea.focus {

@@ -2,7 +2,7 @@ AUI().use(
 	'anim-color',
 	'anim-easing',
 	'aui-base',
-	'aui-live-search',
+	'aui-live-search-deprecated',
 	'liferay-poller',
 	'stylesheet',
 	'swfobject',
@@ -57,7 +57,7 @@ AUI().use(
 				var waitingColor = instance._waitingColor;
 
 				if (!waitingColor) {
-					var waitingColorNode = A.Node.create('<span class="aui-helper-hidden message-waiting" />').appendTo(DOC.body);
+					var waitingColorNode = A.Node.create('<span class="hide message-waiting" />').appendTo(DOC.body);
 
 					waitingColor = waitingColorNode.getStyle('backgroundColor');
 
@@ -276,7 +276,7 @@ AUI().use(
 							'<div class="panel-window">' +
 								'<div class="panel-button minimize"></div>' +
 								'<div class="panel-title"></div>' +
-								'<div class="search-buddies"><input class="search-buddies-field" type="text" /></div>' +
+								'<div class="search-buddies"><input class="search-buddies" type="text" /></div>' +
 								'<div class="panel-content"></div>' +
 							'</div>' +
 						'</div>' +
@@ -597,7 +597,7 @@ AUI().use(
 											'<div class="panel-profile">...</div>' +
 											'<div class="panel-output"></div>' +
 											'<div class="panel-input">' +
-												'<textarea></textarea>' +
+												'<textarea class="message-input"></textarea>' +
 											'</div>' +
 										'</div>' +
 									'</div>' +
@@ -829,7 +829,7 @@ AUI().use(
 
 				var buddyList = buddyListNode.one('.online-users');
 
-				var searchBuddiesField = buddyListNode.one('.search-buddies-field');
+				var searchBuddiesField = buddyListNode.one('.search-buddies');
 
 				var liveSearch = new A.LiveSearch(
 					{
