@@ -343,8 +343,7 @@ AUI.add(
 								height: 600,
 								modal: true,
 								plugins: [Liferay.WidgetZIndex],
-								width: 600,
-								zIndex: 2
+								width: 600
 							}
 						).plug(
 							APluginIO,
