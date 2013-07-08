@@ -14,17 +14,17 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.portlet.social.model.SocialActivitySet;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 
 import java.util.List;
 
@@ -42,14 +42,16 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		List<SocialActivity> activities =
+		List<com.liferay.so.activities.model.SocialActivity> activities =
 			SocialActivityLocalServiceUtil.getActivitySetActivities(
 				activitySet.getActivitySetId(), 0, 1);
 
 		if (!activities.isEmpty()) {
-			SocialActivity activity = activities.get(0);
+			com.liferay.so.activities.model.SocialActivity activity =
+				activities.get(0);
 
-			return doInterpret(activity, serviceContext);
+			return doInterpret(
+				activity.getPortalSocialActivity(), serviceContext);
 		}
 
 		return null;

@@ -14,16 +14,16 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.so.activities.model.SocialActivitySet;
+import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
 
 /**
