@@ -36,7 +36,7 @@
 		<field name="parentCalendarBookingId" type="long" />
 		<field name="title" type="String" localized="true" />
 		<field name="description" type="String" localized="true">
-			<hint-collection name="TEXTAREA" />
+			<hint-collection name="EDITOR" />
 		</field>
 		<field name="location" type="String">
 			<hint-collection name="TEXTAREA" />
