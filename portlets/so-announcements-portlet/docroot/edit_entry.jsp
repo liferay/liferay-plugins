@@ -223,8 +223,6 @@ if (entry == null) {
 
 		var form = document.<portlet:namespace />fm;
 
-		form.<%= Constants.CMD %>.value = "<%= (entry == null) ? Constants.ADD : Constants.UPDATE %>";
-
 		form.content.value = window.editor.getHTML();
 		form.target = '';
 
