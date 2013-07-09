@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
@@ -46,9 +47,10 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 	public AdminPortletDataHandler() {
 		setDataLevel(DataLevel.SITE);
-		setDeletionSystemEventClassNames(
-			WSRPConsumer.class.getName(), WSRPConsumerPortlet.class.getName(),
-			WSRPProducer.class.getName());
+		setDeletionSystemEventStagedModelTypes(
+			new StagedModelType(WSRPConsumer.class),
+			new StagedModelType(WSRPConsumerPortlet.class),
+			new StagedModelType(WSRPProducer.class));
 		setExportControls(
 			new PortletDataHandlerBoolean(NAMESPACE, "wsrp-producers", false),
 			new PortletDataHandlerBoolean(
