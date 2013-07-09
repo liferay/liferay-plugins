@@ -193,23 +193,27 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					long groupId = kaleoTaskInstanceToken.getGroupId();
 
 					List<UserGroupRole> userGroupRoles =
-						UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-							groupId, roleId);
+						UserGroupRoleLocalServiceUtil.
+							getUserGroupRolesByGroupAndRole(groupId, roleId);
 
 					for (UserGroupRole userGroupRole : userGroupRoles) {
 						pooledActors.add(userGroupRole.getUserId());
 					}
 
 					List<UserGroupGroupRole> userGroupGroupRoles =
-						UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRolesByGroupAndRole(
-							groupId, roleId);
+						UserGroupGroupRoleLocalServiceUtil.
+							getUserGroupGroupRolesByGroupAndRole(
+								groupId, roleId);
 
-					for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+					for (UserGroupGroupRole userGroupGroupRole :
+							userGroupGroupRoles) {
+
 						long userGroupId = userGroupGroupRole.getUserGroupId();
-						List<User> users =
+
+						List<User> userGroupUsers =
 							UserLocalServiceUtil.getUserGroupUsers(userGroupId);
 
-						for (User user : users) {
+						for (User user : userGroupUsers) {
 							pooledActors.add(user.getUserId());
 						}
 					}
