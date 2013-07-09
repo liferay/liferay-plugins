@@ -17,6 +17,10 @@ AUI.add(
 					baseActionURL: {
 						validator: Lang.isString
 					},
+					
+					baseRenderURL: {
+						validator: Lang.isString
+					},
 
 					portletId: {
 						validator: Lang.isString
@@ -321,11 +325,11 @@ AUI.add(
 					_newMessage: function(mbThreadId) {
 						var instance = this;
 
-						var redirectURL = new Liferay.PortletURL.createRenderURL();
+						var redirectURL = new Liferay.PortletURL.createURL(instance.get('baseRenderURL'));
 
 						redirectURL.setWindowState('NORMAL');
 
-						var portletURL = new Liferay.PortletURL.createRenderURL();
+						var portletURL =  new Liferay.PortletURL.createURL(instance.get('baseRenderURL'));
 
 						portletURL.setPortletId(instance.get('portletId'));
 						portletURL.setWindowState('EXCLUSIVE');

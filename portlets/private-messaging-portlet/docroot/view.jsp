@@ -45,6 +45,7 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 	new Liferay.PrivateMessaging(
 		{
 			baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 			namespace: '<portlet:namespace />',
 			portletId: '<%= portletDisplay.getId() %>'
 		}
