@@ -32,6 +32,9 @@ AUI.add(
 				ATTRS: {
 					additionalParams: {},
 					appId: {},
+					baseRenderURL: {
+						validator: Lang.isString
+					},
 					checksum: {},
 					content: {},
 					country: {
@@ -835,7 +838,7 @@ AUI.add(
 			function(view, viewParams) {
 				var gadget = Gadget.get(this.f);
 
-				var portletURL = Liferay.PortletURL.createRenderURL();
+				var portletURL = new Liferay.PortletURL.createURL(gadget.get('baseRenderURL'));
 
 				portletURL.setPortletId(gadget.get('portletId'));
 				portletURL.setParameter('returnToFullPageURL', document.location.href);

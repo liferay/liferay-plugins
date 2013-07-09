@@ -55,6 +55,7 @@ JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDispla
 	new Liferay.OpenSocial.Gadget(
 		{
 			appId: '<%= gadget.getUrl() %>',
+			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 			checksum: '<%= gadgetSpec.getChecksum() %>',
 			country: '<%= locale.getCountry() %>',
 			debug: <%= PortletPropsValues.SHINDIG_JS_DEBUG %>,

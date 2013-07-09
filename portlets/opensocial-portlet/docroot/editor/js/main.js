@@ -128,6 +128,9 @@ AUI.add(
 				NAME: 'gadget-editor',
 
 				ATTRS: {
+					baseRenderURL: {
+						validator: Lang.isString
+					},
 					editorGadgetURL: {},
 					gadgetPortletId: {},
 					gadgetServerBase: {},
@@ -952,6 +955,7 @@ AUI.add(
 								new Liferay.OpenSocial.Gadget(
 									{
 										appId: fileEntryURL,
+										baseRenderURL: instance.get('baseRenderURL'),
 										debug: 1,
 										height: data.height,
 										moduleId: data.moduleId,

@@ -32,6 +32,7 @@ Folder rootFolder = ShindigUtil.getGadgetEditorRootFolder(repositoryId);
 <aui:script use="opensocial-editor">
 	new Liferay.OpenSocial.Editor(
 		{
+			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 			editorGadgetURL: '<%= editorGadgetURL %>',
 			gadgetPortletId: '<%= portletDisplay.getId() %>',
 			gadgetServerBase: '<%= renderRequest.getContextPath() %>/gadgets/',
