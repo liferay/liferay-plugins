@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
@@ -38,7 +39,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 	public AdminPortletDataHandler() {
 		setDataLevel(DataLevel.SITE);
-		setDeletionSystemEventClassNames(Gadget.class.getName());
+		setDeletionSystemEventStagedModelTypes(
+			new StagedModelType(Gadget.class));
 		setPublishToLiveByDefault(true);
 	}
 
