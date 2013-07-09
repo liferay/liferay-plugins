@@ -22,13 +22,18 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.Plugin;
@@ -44,7 +49,6 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -56,6 +60,7 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
@@ -95,48 +100,22 @@ public class AppManagerPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String url = ParamUtil.getString(actionRequest, "url");
-
-		File tempFile = null;
-
 		try {
+			String url = ParamUtil.getString(actionRequest, "url");
+
 			URL urlObj = new URL(url);
 
-			InputStream inputStream = urlObj.openStream();
+			String host = urlObj.getHost();
 
-			tempFile = FileUtil.createTempFile();
-
-			FileUtil.write(tempFile, inputStream);
-
-			String deployDir = PrefsPropsUtil.getString(
-				PropsKeys.AUTO_DEPLOY_DEPLOY_DIR);
-
-			String fileName = url.substring(
-				url.lastIndexOf(CharPool.SLASH) + 1);
-
-			String destination = deployDir + StringPool.SLASH + fileName;
-
-			File destinationFile = new File(destination);
-
-			boolean moved = FileUtil.move(tempFile, destinationFile);
-
-			if (!moved) {
-				FileUtil.copyFile(tempFile, destinationFile);
-				FileUtil.delete(tempFile);
+			if (host.endsWith("sf.net") || host.endsWith("sourceforge.net")) {
+				doInstallSourceForgeApp(urlObj.getPath(), actionRequest);
 			}
-
-			SessionMessages.add(actionRequest, "pluginDownloaded");
+			else {
+				doInstallRemoteApp(url, actionRequest, true);
+			}
 		}
 		catch (MalformedURLException murle) {
 			SessionErrors.add(actionRequest, "invalidUrl", murle);
-		}
-		catch (IOException ioe) {
-			SessionErrors.add(actionRequest, "errorConnectingToUrl", ioe);
-		}
-		finally {
-			if (tempFile != null) {
-				tempFile.delete();
-			}
 		}
 	}
 
@@ -261,5 +240,113 @@ public class AppManagerPortlet extends MVCPortlet {
 			}
 		}
 	}
+
+	protected int doInstallRemoteApp(
+			String url, ActionRequest actionRequest, boolean failOnError)
+		throws Exception {
+
+		int responseCode = HttpServletResponse.SC_OK;
+
+		String deploymentContext = ParamUtil.getString(
+			actionRequest, "deploymentContext");
+
+		try {
+			String fileName = null;
+
+			if (Validator.isNotNull(deploymentContext)) {
+				fileName = DEPLOY_TO_PREFIX + deploymentContext + ".war";
+			}
+			else {
+				fileName = url.substring(url.lastIndexOf(CharPool.SLASH) + 1);
+
+				int pos = fileName.lastIndexOf(CharPool.PERIOD);
+
+				if (pos != -1) {
+					deploymentContext = fileName.substring(0, pos);
+				}
+			}
+
+			Http.Options options = new Http.Options();
+
+			options.setFollowRedirects(false);
+			options.setLocation(url);
+			options.setPortletRequest(actionRequest);
+			options.setPost(false);
+
+			String progressId = ParamUtil.getString(
+				actionRequest, Constants.PROGRESS_ID);
+
+			options.setProgressId(progressId);
+
+			byte[] bytes = HttpUtil.URLtoByteArray(options);
+
+			Http.Response response = options.getResponse();
+
+			responseCode = response.getResponseCode();
+
+			if ((responseCode == HttpServletResponse.SC_OK) &&
+				(bytes.length > 0)) {
+
+				String deployDir = PrefsPropsUtil.getString(
+					PropsKeys.AUTO_DEPLOY_DEPLOY_DIR);
+
+				String destination = deployDir + StringPool.SLASH + fileName;
+
+				File destinationFile = new File(destination);
+
+				FileUtil.write(destinationFile, bytes);
+
+				SessionMessages.add(actionRequest, "pluginDownloaded");
+			}
+			else {
+				if (failOnError) {
+					SessionErrors.add(
+						actionRequest, UploadException.class.getName());
+				}
+
+				responseCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+			}
+		}
+		catch (MalformedURLException murle) {
+			SessionErrors.add(actionRequest, "invalidUrl", murle);
+		}
+		catch (IOException ioe) {
+			SessionErrors.add(actionRequest, "errorConnectingToUrl", ioe);
+		}
+
+		return responseCode;
+	}
+
+	protected void doInstallSourceForgeApp(
+			String path, ActionRequest actionRequest)
+		throws Exception {
+
+		String[] sourceForgeMirrors = PropsUtil.getArray(
+			PropsKeys.SOURCE_FORGE_MIRRORS);
+
+		for (int i = 0; i < sourceForgeMirrors.length; i++) {
+			try {
+				String url = sourceForgeMirrors[i] + path;
+
+				boolean failOnError = false;
+
+				if ((i + 1) == sourceForgeMirrors.length) {
+					failOnError = true;
+				}
+
+				int responseCode = doInstallRemoteApp(
+					url, actionRequest, failOnError);
+
+				if (responseCode == HttpServletResponse.SC_OK) {
+					return;
+				}
+			}
+			catch (MalformedURLException murle) {
+				SessionErrors.add(actionRequest, "invalidUrl", murle);
+			}
+		}
+	}
+
+	private final String DEPLOY_TO_PREFIX = "DEPLOY_TO__";
 
 }
