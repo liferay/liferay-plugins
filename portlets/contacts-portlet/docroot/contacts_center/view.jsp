@@ -373,6 +373,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 			var contactsCenter = new Liferay.ContactsCenter(
 				{
+					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 					contactsResult: '.contacts-portlet .contacts-result-content',
 					contactsResultContainer: '.contacts-portlet .contacts-result',
 					contactsResultURL: '<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:resourceURL>',

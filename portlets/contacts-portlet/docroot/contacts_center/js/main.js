@@ -515,11 +515,13 @@ AUI.add(
 
 					_deleteEntry: function(contact) {
 						var instance = this;
+						
+						var config = instance._config;
 
 						var confirmMessageText = Lang.sub(Liferay.Language.get('are-you-sure-you-want-to-delete-x-from-your-contacts'), [contact.fullName]);
 
 						if (confirm(confirmMessageText)) {
-							var actionURL = new Liferay.PortletURL.createActionURL();
+							var actionURL = new Liferay.PortletURL.createURL(config.baseActionURL);
 
 							actionURL.setParameter('javax.portlet.action', 'deleteEntry');
 							actionURL.setPortletId('1_WAR_contactsportlet');
@@ -546,8 +548,10 @@ AUI.add(
 
 					_editEntry: function(contact) {
 						var instance = this;
+						
+						var config = instance._config;
 
-						var portletURL = new Liferay.PortletURL.createRenderURL();
+						var portletURL = new Liferay.PortletURL.createURL(config.baseRenderURL);
 
 						portletURL.setParameter('mvcPath', '/contacts_center/edit_entry.jsp');
 						portletURL.setParameter('redirect', contact.redirect);
