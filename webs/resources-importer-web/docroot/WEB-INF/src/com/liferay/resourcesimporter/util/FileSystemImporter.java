@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
-import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -455,6 +454,12 @@ public class FileSystemImporter extends BaseImporter {
 		if (nameMapJSONObject != null) {
 			nameMap = (Map<Locale, String>)LocalizationUtil.deserialize(
 				nameMapJSONObject);
+
+			if (!nameMap.containsKey(LocaleUtil.getDefault())) {
+				Iterator itr = nameMap.values().iterator();
+
+				nameMap.put(LocaleUtil.getDefault(), (String)itr.next());
+			}
 		}
 		else {
 			String name = layoutJSONObject.getString("name");
@@ -465,7 +470,7 @@ public class FileSystemImporter extends BaseImporter {
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
 		JSONObject titleMapJSONObject = layoutJSONObject.getJSONObject(
-			"nameMap");
+			"titleMap");
 
 		if (titleMapJSONObject != null) {
 			titleMap = (Map<Locale, String>)LocalizationUtil.deserialize(
@@ -739,18 +744,16 @@ public class FileSystemImporter extends BaseImporter {
 		return JSONFactoryUtil.createJSONObject(json);
 	}
 
-	protected Map<Locale, String> getMap(String value) {
-		Locale locale = LocaleUtil.getDefault();
+	protected Map<Locale, String> getMap(Locale locale, String value) {
+		Map<Locale, String> map = new HashMap<Locale, String>();
 
-		return getMap(locale, value);
+		map.put(locale, value);
+
+		return map;
 	}
 
-	protected Map<Locale, String> getMap(Locale locale, String value) {
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-		nameMap.put(locale, value);
-
-		return nameMap;
+	protected Map<Locale, String> getMap(String value) {
+		return getMap(LocaleUtil.getDefault(), value);
 	}
 
 	protected boolean isJournalStructureXSD(String xsd) throws Exception {
