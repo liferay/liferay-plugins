@@ -10,6 +10,10 @@
 			<value>/WEB-INF/groovy/action.groovy</value>
 		</init-param>
 		<init-param>
+			<name>file-path</name>
+			<value>/WEB-INF/groovy/</value>
+		</init-param>
+		<init-param>
 			<name>global-files</name>
 			<value>/WEB-INF/groovy/global/LiferayPortlet.groovy,/WEB-INF/groovy/global/Custom.groovy</value>
 		</init-param>
