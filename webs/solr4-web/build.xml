@@ -11,7 +11,7 @@
 			dest="tmp/WEB-INF/lib"
 			src="${original.war.file}"
 		>
-		<patternset includes="apache-solr-4.0.0/dist/apache-solr-core-*.jar,apache-solr-4.0.0/dist/apache-solr-solrj-*.jar,apache-solr-4.0.0/dist/solrj-lib/log4j-over-slf4j*.jar,apache-solr-4.0.0/dist/solrj-lib/httpmime*.jar;apache-solr-4.0.0/dist/solrj-lib/wstx-asl*.jar,apache-solr-4.0.0/dist/solrj-lib/zookeeper*.jar" />
+		<patternset includes="apache-solr-4.0.0/dist/apache-solr-core-*.jar,apache-solr-4.0.0/dist/apache-solr-solrj-*.jar,apache-solr-4.0.0/dist/solrj-lib/log4j-over-slf4j*.jar,apache-solr-4.0.0/dist/solrj-lib/httpmime*.jar,apache-solr-4.0.0/dist/solrj-lib/wstx-asl*.jar,apache-solr-4.0.0/dist/solrj-lib/zookeeper*.jar" />
 			<mapper type="flatten" />
 		</unzip>
 	</target>
