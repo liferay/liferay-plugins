@@ -83,17 +83,20 @@ public class AppManagerPortlet extends MVCPortlet {
 
 		if ((bytes == null) || (bytes.length == 0)) {
 			SessionErrors.add(actionRequest, UploadException.class.getName());
+		}
+		else {
+			String deployDir = PrefsPropsUtil.getString(
+				PropsKeys.AUTO_DEPLOY_DEPLOY_DIR);
 
-			return;
+			FileUtil.copyFile(
+				file.toString(), deployDir + StringPool.SLASH + fileName);
+
+			SessionMessages.add(actionRequest, "pluginUploaded");
 		}
 
-		String deployDir = PrefsPropsUtil.getString(
-			PropsKeys.AUTO_DEPLOY_DEPLOY_DIR);
+		String redirect = ParamUtil.getString(uploadPortletRequest, "redirect");
 
-		FileUtil.copyFile(
-			file.toString(), deployDir + StringPool.SLASH + fileName);
-
-		SessionMessages.add(actionRequest, "pluginUploaded");
+		actionResponse.sendRedirect(redirect);
 	}
 
 	public void installRemoteApp(
@@ -117,6 +120,8 @@ public class AppManagerPortlet extends MVCPortlet {
 		catch (MalformedURLException murle) {
 			SessionErrors.add(actionRequest, "invalidUrl", murle);
 		}
+
+		sendRedirect(actionRequest, actionResponse);
 	}
 
 	public void uninstallApp(

@@ -17,22 +17,38 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "manage");
+String toolbarItem = ParamUtil.getString(request, "toolbarItem", "manage");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcPath", "/app_manager/view.jsp");
-portletURL.setParameter("tabs1", tabs1);
+portletURL.setParameter("toolbarItem", toolbarItem);
 %>
 
-<liferay-ui:tabs
-	names="manage,install-apps-and-plugins"
-	param="tabs1"
-	url="<%= portletURL.toString() %>"
-/>
+<aui:nav-bar>
+	<aui:nav>
+
+		<%
+		portletURL.setParameter("toolbarItem", "manage");
+		%>
+
+		<aui:nav-item href="<%= portletURL.toString() %>" label="manage" selected='<%= toolbarItem.equals("manage") %>' />
+
+		<%
+		portletURL.setParameter("toolbarItem", "install-apps-and-plugins");
+		%>
+
+		<aui:nav-item href="<%= portletURL.toString() %>" label="install-apps-and-plugins" selected='<%= toolbarItem.equals("install-apps-and-plugins") %>' />
+
+		<%
+		portletURL.setParameter("toolbarItem", toolbarItem);
+		%>
+
+	</aui:nav>
+</aui:nav-bar>
 
 <c:choose>
-	<c:when test='<%= tabs1.equals("install-apps-and-plugins") %>'>
+	<c:when test='<%= toolbarItem.equals("install-apps-and-plugins") %>'>
 		<%@ include file="/app_manager/install_apps.jsp" %>
 	</c:when>
 	<c:otherwise>

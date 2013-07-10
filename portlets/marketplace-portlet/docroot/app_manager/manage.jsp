@@ -30,7 +30,16 @@ portletURL.setParameter("category", category);
 	</div>
 
 	<div class="apps span9">
-		<h3><liferay-ui:message key="all-apps" /></h3>
+		<h3>
+			<c:choose>
+				<c:when test="<%= Validator.isNull(category) %>">
+					<liferay-ui:message key="all-apps" />
+				</c:when>
+				<c:otherwise>
+					<%= category %>
+				</c:otherwise>
+			</c:choose>
+		</h3>
 
 		<%
 		List<App> apps = null;
