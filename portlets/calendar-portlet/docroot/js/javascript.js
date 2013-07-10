@@ -994,7 +994,7 @@ AUI.add(
 						instance._uiSetLoading(event.newVal);
 					},
 
-					_onStartDateChange: function() {
+					_onStartDateChange: function(event) {
 						var instance = this;
 
 						instance._uiSetStartDate(event.newVal);
