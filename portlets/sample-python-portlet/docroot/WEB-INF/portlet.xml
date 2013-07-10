@@ -10,6 +10,10 @@
 			<value>/WEB-INF/python/action.py</value>
 		</init-param>
 		<init-param>
+			<name>file-path</name>
+			<value>/WEB-INF/python/</value>
+		</init-param>
+		<init-param>
 			<name>global-files</name>
 			<value>/WEB-INF/python/common/LiferayPortlet.py,/WEB-INF/python/common/Custom.py</value>
 		</init-param>
