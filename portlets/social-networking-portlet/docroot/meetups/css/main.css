@@ -1,4 +1,12 @@
 .social-networking-portlet-meetups {
+	.meetup-description {
+		margin-bottom: 10px;
+	}
+
+	.meetup-form {
+		clear: both;
+	}
+
 	.response {
 		float: left;
 		margin-right: 15px;

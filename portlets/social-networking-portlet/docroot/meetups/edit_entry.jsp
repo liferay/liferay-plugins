@@ -51,91 +51,34 @@ if (meetupsEntry != null) {
 }
 %>
 
-<form action="<portlet:actionURL name="updateMeetupsEntry" />" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateMeetupsEntry(); return false;">
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
-<input name="<portlet:namespace />meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
+<portlet:actionURL name="updateMeetupsEntry" var="updateMeetupsEntryURL" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="title" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="title" model="<%= MeetupsEntry.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="description" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="description" model="<%= MeetupsEntry.class %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="start-date" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= meetupsEntry %>" defaultValue="<%= startDate %>" field="startDate" model="<%= MeetupsEntry.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="end-date" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= meetupsEntry %>" defaultValue="<%= endDate %>" field="endDate" model="<%= MeetupsEntry.class %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="max-attendees" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="maxAttendees" model="<%= MeetupsEntry.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="price" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="price" model="<%= MeetupsEntry.class %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="thumbnail" />
-	</td>
-	<td>
-		<input name="<portlet:namespace />fileName" size="50" type="file" />
-	</td>
-</tr>
-</table>
+<aui:form action="<%= updateMeetupsEntryURL %>" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= renderResponse.getNamespace() + "updateMeetupsEntry(); return false;" %>'>
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
 
-<br />
+	<aui:model-context bean="<%= meetupsEntry %>" model="<%= MeetupsEntry.class %>" />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
+	<aui:input name="title" />
 
-<input onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
+	<aui:input name="description" />
 
-</form>
+	<aui:input name="startDate" />
+
+	<aui:input name="endDate" />
+
+	<aui:input name="maxAttendees" />
+
+	<aui:input name="price" />
+
+	<aui:input label="thumbnail" name="fileName" type="file" />
+
+	<aui:button-row>
+		<aui:button type="submit" />
+
+		<aui:button href="<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>" value="cancel" />
+	</aui:button-row>
+</aui:form>
 
 <aui:script>
 	function <portlet:namespace />updateMeetupsEntry() {

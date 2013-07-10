@@ -17,12 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
-%>
-
-<link href="<%= request.getContextPath() %>/meetups/css.jsp?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= portlet.getTimestamp() %>" rel="stylesheet" type="text/css" />
-
-<%
 String tabs1 = ParamUtil.getString(request, "tabs1", "attending");
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -37,7 +31,7 @@ try {
 catch (NoSuchMeetupsEntryException nsmee) {
 %>
 
-	<span class="portlet-msg-error">
+	<span class="alert alert-error">
 		<liferay-ui:message key="the-meetup-could-not-be-found" />
 	</span>
 
@@ -76,19 +70,17 @@ else {
 }
 %>
 
-<img alt="" src="<%= thumbnailURL %>" style="float: left; margin-right: 10px;" />
+<div class="meetup-description">
+	<img alt="" src="<%= thumbnailURL %>" style="float: left; margin-right: 10px;" />
 
-<h4>
-	<%= meetupsEntry.getTitle() %>
-</h4>
+	<h4>
+		<%= meetupsEntry.getTitle() %>
+	</h4>
 
-<br />
-
-<div>
-	<%= meetupsEntry.getDescription() %>
+	<p>
+		<%= meetupsEntry.getDescription() %>
+	</p>
 </div>
-
-<br />
 
 <%
 int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(meetupsEntryId, MeetupsConstants.STATUS_YES);
@@ -104,27 +96,28 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 
 <c:choose>
 	<c:when test="<%= themeDisplay.isSignedIn() %>">
-		<form action="<portlet:actionURL name="updateMeetupsRegistration" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />updateMeetupsRegistration(); return false;">
-		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
-		<input name="<portlet:namespace />meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
+		<portlet:actionURL name="updateMeetupsRegistration" var="updateMeetupsRegistrationURL" />
 
-		<liferay-ui:message key="will-you-attend" />
+		<aui:form action="<%= updateMeetupsRegistrationURL %>" cssClass="meetup-form" method="post" name="fm" onSubmit='<%= renderResponse.getNamespace() + "updateMeetupsRegistration(); return false;" %>'>
+			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+			<aui:input name="meetupsEntryId" type="hidden" value="<%= meetupsEntryId %>" />
 
-		<input <%= (status == MeetupsConstants.STATUS_YES) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_YES %>" /> <liferay-ui:message key="yes" />
+			<aui:field-wrapper label="will-you-attend">
+				<aui:input checked="<%= status == MeetupsConstants.STATUS_YES %>" inlineField="<%= true %>" label="yes" name="status" type="radio" value="<%= MeetupsConstants.STATUS_YES %>" />
 
-		<input <%= (status == MeetupsConstants.STATUS_NO) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_NO %>" /> <liferay-ui:message key="no" />
+				<aui:input checked="<%= status == MeetupsConstants.STATUS_NO %>" inlineField="<%= true %>" label="no" name="status" type="radio" value="<%= MeetupsConstants.STATUS_NO %>" />
 
-		<input <%= (status == MeetupsConstants.STATUS_MAYBE) ? "checked" : "" %> name="<portlet:namespace />status" type="radio" value="<%= MeetupsConstants.STATUS_MAYBE %>" /> <liferay-ui:message key="maybe" />
+				<aui:input checked="<%= status == MeetupsConstants.STATUS_MAYBE %>" inlineField="<%= true %>" label="maybe" name="status" type="radio" value="<%= MeetupsConstants.STATUS_MAYBE %>" />
+			</aui:field-wrapper>
 
-		<br /><br />
+			<aui:model-context bean="<%= meetupsRegistration %>" model="<%= MeetupsRegistration.class %>" />
 
-		<liferay-ui:input-field bean="<%= meetupsRegistration %>" field="comments" model="<%= MeetupsRegistration.class %>" />
+			<aui:input name="comments" />
 
-		<br /><br />
-
-		<input type="submit" value="<liferay-ui:message key="register" />" />
-
-		</form>
+			<aui:button-row>
+				<aui:button type="submit" value="register" />
+			</aui:button-row>
+		</aui:form>
 
 		<br />
 

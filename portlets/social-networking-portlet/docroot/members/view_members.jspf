@@ -69,31 +69,36 @@ for (int i = 0; i < results.size(); i++) {
 	<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchMembers">
 		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="article" />
 	</div>
+
+	<aui:script use="aui-io-plugin-deprecated">
+		var searchMembers = A.one('#<portlet:namespace />searchMembers');
+
+		if (searchMembers) {
+			var parent = searchMembers.get('parentNode');
+
+			parent.plug(
+				A.Plugin.IO,
+				{
+					autoLoad: false
+				}
+			);
+
+			searchMembers.delegate(
+				'click',
+				function(event) {
+					var anchor = event.currentTarget;
+
+					if (!anchor.get('parentNode').hasClass('disabled')) {
+						var uri = anchor.get('href').replace(/p_p_state=normal/i, 'p_p_state=exclusive');
+
+						parent.io.set('uri', uri);
+						parent.io.start();
+					}
+
+					event.preventDefault();
+				},
+				'a'
+			);
+		}
+	</aui:script>
 </c:if>
-
-<aui:script use="aui-io-plugin">
-	var searchMembers = A.one('#<portlet:namespace />searchMembers');
-
-	if (searchMembers) {
-		var parent = searchMembers.get('parentNode');
-
-		parent.plug(
-			A.Plugin.IO,
-			{
-				autoLoad: false
-			}
-		);
-
-		searchMembers.all('a').on(
-			'click',
-			function(event) {
-				var uri = event.currentTarget.get('href').replace(/p_p_state=normal/i, 'p_p_state=exclusive');
-
-				parent.io.set('uri', uri);
-				parent.io.start();
-
-				event.preventDefault();
-			}
-		);
-	}
-</aui:script>

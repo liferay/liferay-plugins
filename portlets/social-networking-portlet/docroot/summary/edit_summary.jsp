@@ -22,36 +22,24 @@ String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class
 
 <portlet:renderURL var="redirectURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
-<form action="<portlet:actionURL name="updateSummary" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirectURL %>" />
+<portlet:actionURL name="updateSummary" var="updateSummaryURL" />
 
-<div class="portlet-msg-info">
-	<liferay-ui:message arguments="<%= new Object[] {themeDisplay.getURLMyAccount()} %>" key="use-my-account-to-change-regular-account-settings" />
-</div>
+<aui:form action="<%= updateSummaryURL %>" method="post" name="<portlet:namespace />fm">
+	<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="job-title" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= user2.getContact() %>" field="jobTitle" model="<%= Contact.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="about-me" />
-	</td>
-	<td>
-		<liferay-ui:input-textarea defaultValue="<%= aboutMe %>" param="aboutMe" />
-	</td>
-</tr>
-</table>
+	<aui:model-context bean="<%= user2.getContact() %>" model="<%= Contact.class %>" />
 
-<br />
+	<div class="alert alert-info">
+		<liferay-ui:message arguments="<%= new Object[] {themeDisplay.getURLMyAccount()} %>" key="use-my-account-to-change-regular-account-settings" />
+	</div>
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
+	<aui:input name="jobTitle" />
 
-<input onClick="location.href = '<%= redirectURL %>';" type="button" value="<liferay-ui:message key="cancel" />" />
+	<aui:input label="about-me" name="aboutMe" type="textarea" value="<%= aboutMe %>" />
 
-</form>
+	<aui:button-row>
+		<aui:button type="submit" />
+
+		<aui:button href="<%= redirectURL %>" value="cancel" />
+	</aui:button-row>
+</aui:form>

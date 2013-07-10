@@ -22,7 +22,9 @@
 	<c:if test="<%= themeDisplay.isSignedIn() %>">
 		<c:choose>
 			<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), Group.class.getName(), group.getGroupId(), MembersRequestKeys.ADD_MEMBER, SocialRequestConstants.STATUS_PENDING) %>">
-				<div class="portlet-msg-info join-site pending">
+				<div class="alert alert-info join-site pending">
+					<aui:icon image="time" />
+
 					<liferay-ui:message key="membership-requested" />
 				</div>
 			</c:when>
