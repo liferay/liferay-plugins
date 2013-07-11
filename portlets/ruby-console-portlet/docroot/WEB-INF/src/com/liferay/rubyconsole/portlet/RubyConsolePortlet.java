@@ -28,6 +28,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import javax.portlet.MimeResponse;
+import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.ResourceRequest;
@@ -41,7 +42,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException {
+		throws IOException, PortletException {
 
 		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
