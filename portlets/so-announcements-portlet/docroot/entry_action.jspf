@@ -27,7 +27,7 @@
 					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
 				</portlet:renderURL>
 
-				<a href="<%= "javascript:" + renderResponse.getNamespace() + "editEntry('" + editURL.toString() + "');" %>">
+				<a href="javascript:<portlet:namespace />editEntry('<%= editURL.toString() %>');">
 					<liferay-ui:icon
 						image="edit"
 						label="<%= true %>"
@@ -52,7 +52,7 @@
 
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<span class="action control-entry">
-				<a href="javascript:<%= renderResponse.getNamespace() %>handleEntry(<%= entry.getEntryId() %>);">
+				<a href="javascript:<portlet:namespace />handleEntry(<%= entry.getEntryId() %>);">
 					<liferay-ui:icon
 						image='<%= (flagValue == AnnouncementsFlagConstants.HIDDEN) ? "checked" : "unchecked" %>'
 						label="<%= false %>"
