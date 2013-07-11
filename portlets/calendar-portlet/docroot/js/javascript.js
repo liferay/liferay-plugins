@@ -2049,7 +2049,7 @@ AUI.add(
 										},
 										icon: 'icon-eye-open',
 										id: 'viewBtn',
-										label: Liferay.Language.get('view')
+										label: Liferay.Language.get('view-details')
 									}
 								);
 							}
