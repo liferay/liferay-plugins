@@ -53,7 +53,6 @@
 		border: 1px solid #E7E7E7;
 
 		span {
-			display: inline-block;
 			line-height: 1em;
 			padding-right: 10px;
 			vertical-align: middle;
@@ -130,12 +129,21 @@
 		.activity-subentry {
 			border-bottom: 1px solid #E7E7E7;
 			height: 2.5em;
-			line-height: 2.5em;
 			overflow: hidden;
 			padding: 0 .9em;
 
 			&:last-child {
 				border-bottom-width: 0;
+			}
+
+			&.tasks {
+				height: auto;
+				padding: 0;
+
+				.activity-body {
+					border-width: 0;
+					margin: 0;
+				}
 			}
 		}
 
@@ -146,21 +154,28 @@
 		}
 	}
 
-	.tasks {
-		&.low {
-			border-left: 6px solid #E7E7E7;
+	.tasks-portlet-activity {
+		.activity-body-container {
+			&.high {
+				border-left: 6px solid #B20000;
+			}
+
+			&.low {
+				border-left: 6px solid #E7E7E7;
+			}
+
+			&.normal {
+				border-left: 6px solid #008C00;
+			}
+
+			.activity-body {
+				border-left-width: 0;
+				padding: .3em .9em;
+			}
 		}
 
-		&.normal {
-			border-left: 6px solid #008C00;
-		}
-
-		&.high {
-			border-left: 6px solid #B20000;
-		}
-
-		.activity-body {
-			border-left-width: 0;
+		.grouped-activity-body-container {
+			max-height: 149px;
 		}
 	}
 
@@ -170,6 +185,7 @@
 
 		span {
 			border-left: 1px solid #2571AD;
+			display: inline-block;
 			line-height: 2.5em;
 			padding: 0 .5em 0 .6em;
 
@@ -192,9 +208,20 @@
 
 /* ---------- Internet Explorer ---------- */
 
-.ie7 .so-portlet-activities .grouped-activity-body-container .activity-subentry-title {
-	float: left;
-	margin: 7px 0;
+.ie7 {
+	.so-portlet-activities .grouped-activity-body-container {
+		height: 93px;
+		max-height: none;
+
+		.activity-subentry-title {
+			float: left;
+			margin: 7px 0;
+		}
+	}
+
+	.tasks-portlet-activity .grouped-activity-body-container {
+		height: 126px;
+	}
 }
 
 /* ---------- Extras ---------- */
