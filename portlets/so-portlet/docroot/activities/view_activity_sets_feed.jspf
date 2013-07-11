@@ -26,9 +26,11 @@
 		if (activityFeedEntry == null) {
 			continue;
 		}
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(activityFeedEntry.getPortletId());
 	%>
 
-		<div class="activity-item" id="<portlet:namespace /><%= activitySet.getActivitySetId() %>">
+		<div class="activity-item <%= portlet.getCssClassWrapper() %>-activity" id="<portlet:namespace /><%= activitySet.getActivitySetId() %>">
 
 			<%
 			User activitySetUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());
