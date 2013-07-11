@@ -1,9 +1,5 @@
 @import "compass";
 
-.dockbar-user-notifications {
-	margin: 0 -10px;
-}
-
 .dockbar-user-notifications, .notifications-portlet {
 	.user-notifications-count {
 		background-color: #F03D25;
@@ -29,15 +25,14 @@
 		margin: 0;
 
 		.message {
-			padding: 5px;
 			text-align: center;
 
 			&.top {
-				border-bottom: 1px solid #D5D5D5;
+				border-bottom: 1px solid #FFF;
 			}
 
 			&.bottom {
-				border-top: 1px solid #D5D5D5;
+				border-top: 1px solid #FFF;
 			}
 
 			.left-nav {
@@ -55,7 +50,7 @@
 			}
 
 			.disabled a {
-				color: #999;
+				color: #FFF;
 				cursor: default;
 			}
 		}
@@ -63,7 +58,6 @@
 		.user-notification {
 			a {
 				clear: both;
-				color: #333333;
 				display: block;
 				font-weight: normal;
 				padding: 5px;
@@ -71,7 +65,6 @@
 			}
 
 			a:hover {
-				background-color: #0DB5E7;
 				color: #FFF;
 				text-decoration: none;
 			}
@@ -105,27 +98,13 @@
 			}
 
 			.read {
-				color: #999;
 				float: right;
 				font-size: 11px;
 			}
 
-			&.unread {
-				background: #EFF1F7
-			}
-
 			.timestamp {
-				color: #999;
 				display: inline;
 				font-size: 11px;
-			}
-
-			a:hover .read {
-				color: #FFF;
-			}
-
-			a:hover .timestamp {
-				color: #FFF;
 			}
 
 			.content {
@@ -160,13 +139,13 @@
 		}
 
 		a:hover {
-			background-color: #0DB5E7;
+			background-color: #0A85E4;
 			color: #FFF;
 			text-decoration: none;
 		}
 
 		a.selected {
-			background-color: #0DB5E7;
+			background-color: #0A85E4;
 			color: #FFF;
 		}
 	}
@@ -186,6 +165,22 @@
 			a {
 				border-bottom: 1px solid #D5D5D5;
 				padding: 15px;
+			}
+
+			a:hover {
+				background-color: #0A85E4;
+				color: #FFF;
+				text-decoration: none;
+			}
+
+			&.unread {
+				background-color: #EFF1F7
+			}
+		}
+
+		.message {
+			&.top {
+				border-bottom: 1px solid #D5D5D5;
 			}
 		}
 	}
@@ -213,4 +208,13 @@
 	.user-notifications-list-container {
 		@include border-radius(4px);
 	}
+}
+
+.aui li.user-notification {
+	line-height: 20px;
+}
+
+.aui .dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
+	left: auto;
+	right: 0;
 }
