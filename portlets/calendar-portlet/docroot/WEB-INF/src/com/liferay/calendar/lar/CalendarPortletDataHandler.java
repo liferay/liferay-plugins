@@ -156,8 +156,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			}
 
 			Element calendarsElement =
-				portletDataContext.getImportDataGroupElement(
-					Calendar.class);
+				portletDataContext.getImportDataGroupElement(Calendar.class);
 
 			List<Element> calendarElements = calendarsElement.elements();
 

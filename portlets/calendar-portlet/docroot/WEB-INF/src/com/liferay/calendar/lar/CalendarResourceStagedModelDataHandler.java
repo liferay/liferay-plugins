@@ -87,9 +87,8 @@ public class CalendarResourceStagedModelDataHandler
 
 				importedCalendarResource =
 					CalendarResourceLocalServiceUtil.addCalendarResource(
-						userId, portletDataContext.getScopeGroupId(),
-						className, classPK, classUuid,
-						calendarResource.getCode(),
+						userId, portletDataContext.getScopeGroupId(), className,
+						classPK, classUuid, calendarResource.getCode(),
 						calendarResource.getNameMap(),
 						calendarResource.getDescriptionMap(),
 						calendarResource.isActive(), serviceContext);
@@ -106,8 +105,8 @@ public class CalendarResourceStagedModelDataHandler
 		else {
 			importedCalendarResource =
 				CalendarResourceLocalServiceUtil.addCalendarResource(
-					userId, portletDataContext.getScopeGroupId(),
-					className, classPK, classUuid, calendarResource.getCode(),
+					userId, portletDataContext.getScopeGroupId(), className,
+					classPK, classUuid, calendarResource.getCode(),
 					calendarResource.getNameMap(),
 					calendarResource.getDescriptionMap(),
 					calendarResource.isActive(), serviceContext);
