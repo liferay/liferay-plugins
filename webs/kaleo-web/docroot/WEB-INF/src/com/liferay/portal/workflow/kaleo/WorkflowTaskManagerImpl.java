@@ -183,18 +183,17 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			for (KaleoTaskAssignment kaleoTaskAssignment :
 					kaleoTaskAssignments) {
 
-				long roleId = kaleoTaskAssignment.getAssigneeClassPK();
-
-				Role role = RoleLocalServiceUtil.getRole(roleId);
+				Role role = RoleLocalServiceUtil.getRole(
+					kaleoTaskAssignment.getAssigneeClassPK());
 
 				if ((role.getType() == RoleConstants.TYPE_SITE) ||
 					(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
-					long groupId = kaleoTaskInstanceToken.getGroupId();
-
 					List<UserGroupRole> userGroupRoles =
 						UserGroupRoleLocalServiceUtil.
-							getUserGroupRolesByGroupAndRole(groupId, roleId);
+							getUserGroupRolesByGroupAndRole(
+								kaleoTaskInstanceToken.getGroupId(),
+								kaleoTaskAssignment.getAssigneeClassPK());
 
 					for (UserGroupRole userGroupRole : userGroupRoles) {
 						pooledActors.add(userGroupRole.getUserId());
@@ -203,15 +202,15 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					List<UserGroupGroupRole> userGroupGroupRoles =
 						UserGroupGroupRoleLocalServiceUtil.
 							getUserGroupGroupRolesByGroupAndRole(
-								groupId, roleId);
+								kaleoTaskInstanceToken.getGroupId(),
+								kaleoTaskAssignment.getAssigneeClassPK());
 
 					for (UserGroupGroupRole userGroupGroupRole :
 							userGroupGroupRoles) {
 
-						long userGroupId = userGroupGroupRole.getUserGroupId();
-
 						List<User> userGroupUsers =
-							UserLocalServiceUtil.getUserGroupUsers(userGroupId);
+							UserLocalServiceUtil.getUserGroupUsers(
+								userGroupGroupRole.getUserGroupId());
 
 						for (User user : userGroupUsers) {
 							pooledActors.add(user.getUserId());
@@ -220,7 +219,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				}
 				else {
 					long[] userIds = UserLocalServiceUtil.getRoleUserIds(
-						roleId);
+						kaleoTaskAssignment.getAssigneeClassPK());
 
 					pooledActors.addAll(userIds);
 				}
