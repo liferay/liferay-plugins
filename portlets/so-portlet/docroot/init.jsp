@@ -77,7 +77,6 @@ page import="com.liferay.portal.service.permission.PortalPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.comparator.RoleNameComparator" %><%@
 page import="com.liferay.portal.util.comparator.UserFirstNameComparator" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.expando.model.ExpandoBridge" %><%@
 page import="com.liferay.portlet.social.model.SocialActivityFeedEntry" %><%@
