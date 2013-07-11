@@ -77,6 +77,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -456,9 +457,11 @@ public class FileSystemImporter extends BaseImporter {
 				nameMapJSONObject);
 
 			if (!nameMap.containsKey(LocaleUtil.getDefault())) {
-				Iterator itr = nameMap.values().iterator();
+				Collection<String> values = nameMap.values();
 
-				nameMap.put(LocaleUtil.getDefault(), (String)itr.next());
+				Iterator iterator = values.iterator();
+
+				nameMap.put(LocaleUtil.getDefault(), (String)iterator.next());
 			}
 		}
 		else {
