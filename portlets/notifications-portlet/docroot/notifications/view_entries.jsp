@@ -38,13 +38,13 @@ else {
 <ul class="user-notifications-list">
 	<c:choose>
 		<c:when test="<%= userNotificationEvents.isEmpty() %>">
-			<li class="message">
+			<li class="message user-notification">
 				<c:choose>
 					<c:when test='<%= filter.equals("unread") %>'>
-						<liferay-ui:message key="you-do-not-have-any-unread-notifications" />
+						<a><liferay-ui:message key="you-do-not-have-any-unread-notifications" /></a>
 					</c:when>
 					<c:otherwise>
-						<liferay-ui:message key="you-do-not-have-any-notifications" />
+						<a><liferay-ui:message key="you-do-not-have-any-notifications" /></a>
 					</c:otherwise>
 				</c:choose>
 			</li>
@@ -60,7 +60,7 @@ else {
 
 	<%
 	for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
-		UserNotificationFeedEntry userNotificationFeedEntry = UserNotificationInterpreterLocalServiceUtil.interpret(StringPool.BLANK, userNotificationEvent, ServiceContextFactory.getInstance(request));
+		UserNotificationFeedEntry userNotificationFeedEntry = UserNotificationManagerUtil.interpret(StringPool.BLANK, userNotificationEvent, ServiceContextFactory.getInstance(request));
 
 		JSONObject userNotificationEventJSONObject = JSONFactoryUtil.createJSONObject(userNotificationEvent.getPayload());
 
@@ -82,12 +82,12 @@ else {
 		<li class="user-notification<%= read ? "" : " unread" %>">
 			<c:choose>
 				<c:when test="<%= read %>">
-					<a class="clearfix" href="<%= userNotificationFeedEntry.getLink() %>">
+					<a class="clearfix user-notification-link" href="<%= userNotificationFeedEntry.getLink() %>">
 				</c:when>
 				<c:otherwise>
 					<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
 
-					<a class="clearfix" data-markAsReadURL="<%= markAsReadURL %>" href="<%= userNotificationFeedEntry.getLink() %>">
+					<a class="clearfix user-notification-link" data-markAsReadURL="<%= markAsReadURL %>" href="<%= userNotificationFeedEntry.getLink() %>">
 				</c:otherwise>
 			</c:choose>
 
@@ -132,7 +132,7 @@ else {
 	</c:if>
 
 	<c:if test="<%= !fullView %>">
-		<li class="message bottom">
+		<li class="bottom message user-notification">
 			<liferay-portlet:renderURL portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 				<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 			</liferay-portlet:renderURL>
@@ -198,7 +198,7 @@ else {
 				);
 			}
 		},
-		'.user-notification a'
+		'.user-notification .user-notification-link'
 	);
 
 	userNotificationsList.delegate(
