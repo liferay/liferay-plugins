@@ -130,7 +130,7 @@ if (entry == null) {
 	</aui:button-row>
 </aui:form>
 
-<div class="entry aui-helper-hidden" id="<%= renderResponse.getNamespace() + "preview" %>">
+<div class="entry aui-helper-hidden" id="<portlet:namespace />preview">
 	<div class="user-portrait">
 		<span class="avatar">
 
@@ -156,10 +156,10 @@ if (entry == null) {
 		</div>
 
 		<div class="entry-body">
-			<div class="title" id="<%= renderResponse.getNamespace() + "title" %>"></div>
+			<div class="title" id="<portlet:namespace />title"></div>
 
-			<div class="entry-content-container" id="<%= renderResponse.getNamespace() + "entryContentContainer" %>">
-				<div class="entry-content" id="<%= renderResponse.getNamespace() + "entryContent" %>"></div>
+			<div class="entry-content-container" id="<portlet:namespace />entryContentContainer">
+				<div class="entry-content" id="<portlet:namespace />entryContent"></div>
 			</div>
 		</div>
 	</div>
