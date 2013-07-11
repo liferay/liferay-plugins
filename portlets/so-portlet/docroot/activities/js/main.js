@@ -23,7 +23,7 @@ AUI().use(
 					entry.removeClass('toggler-content-collapsed');
 
 					bodyContainer.setStyle('height', minHeight);
-					bodyContainer.setStyle('max-height', 'none');
+					bodyContainer.setStyle('maxHeight', 'none');
 
 					bodyHeight = body.height() + 'px';
 
