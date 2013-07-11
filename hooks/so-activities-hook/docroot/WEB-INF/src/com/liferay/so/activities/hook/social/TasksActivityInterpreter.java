@@ -14,17 +14,28 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.asset.model.AssetRenderer;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
+import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
+
+import java.text.Format;
+
+import java.util.List;
 
 /**
  * @author Matthew Kong
@@ -89,26 +100,108 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 				serviceContext);
 		}
 
-		return super.getBody(activitySet, serviceContext);
+		StringBundler sb = new StringBundler();
+
+		sb.append("<div class=\"grouped-activity-body-container\">");
+		sb.append("<div class=\"grouped-activity-body\">");
+
+		int viewableActivities = 0;
+
+		List<com.liferay.so.activities.model.SocialActivity> activities =
+			com.liferay.so.activities.service.SocialActivityLocalServiceUtil.
+					getActivitySetActivities(
+				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
+
+		for (com.liferay.so.activities.model.SocialActivity
+			activity : activities) {
+
+			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+			PermissionChecker permissionChecker =
+				themeDisplay.getPermissionChecker();
+
+			if (!hasPermissions(
+					permissionChecker, activity.getPortalSocialActivity(),
+				ActionKeys.VIEW, serviceContext)) {
+
+				continue;
+			}
+
+			SocialActivityFeedEntry subfeedEntry = getSubfeedEntry(
+				activity.getPortalSocialActivity(), serviceContext);
+
+			if (subfeedEntry == null) {
+				continue;
+			}
+
+			sb.append("<div class=\"activity-subentry tasks\">");
+			sb.append(
+				getBody(
+					activity.getClassName(), activity.getClassPK(),
+					serviceContext));
+			sb.append("</div>");
+
+			viewableActivities++;
+		}
+
+		if (viewableActivities == 0) {
+			return null;
+		}
+
+		sb.append("</div></div>");
+
+		return sb.toString();
 	}
 
 	protected String getBody(
 			String className, long classPK, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(14);
 
-		sb.append("<div class=\"activity-body\"><div class=\"title\">");
+		sb.append("<div class=\"activity-body-container ");
+
+		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
+			classPK);
+
+		sb.append(tasksEntry.getPriorityLabel());
+		sb.append("\"><div class=\"activity-body\"><div class=\"title\">");
 		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"tasks-entry-content\">");
+		sb.append("<span class=\"tasks-entry-status\"><strong>");
+		sb.append(serviceContext.translate("assigned-to"));
+		sb.append(": </strong>");
 
-		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+		User assigneeUserDisplay = UserLocalServiceUtil.fetchUser(
+			tasksEntry.getAssigneeUserId());
 
-		sb.append(
-			StringUtil.shorten(
-				assetRenderer.getSummary(serviceContext.getLocale()), 200));
+		String assigneeDisplayURL = assigneeUserDisplay.getDisplayURL(
+			serviceContext.getThemeDisplay());
 
-		sb.append("</div></div>");
+		String assigneeUserLink = wrapLink(
+			assigneeDisplayURL,
+			HtmlUtil.escape(tasksEntry.getAssigneeFullName()));
+
+		sb.append(assigneeUserLink);
+		sb.append("</span><span class=\"tasks-entry-due-date\"><strong>");
+		sb.append(serviceContext.translate("due-date"));
+		sb.append(": </strong>");
+
+		String dueDate;
+
+		if (tasksEntry.getDueDate() != null) {
+			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
+				serviceContext.getLocale(), serviceContext.getTimeZone());
+
+			dueDate = dateFormatDateTime.format(tasksEntry.getDueDate());
+		}
+		else {
+			dueDate = serviceContext.translate("none");
+		}
+
+		sb.append(dueDate);
+		sb.append("</span></div></div></div>");
 
 		return sb.toString();
 	}
