@@ -234,7 +234,7 @@ public class SocialActivityInterpreterLocalServiceImpl
 	public void updateActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		if (!_SOCIAL_ACTIVITY_SETS_GROUPING_ENABLED) {
+		if (!_SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED) {
 			socialActivitySetLocalService.addActivitySet(activityId);
 
 			return;
@@ -261,9 +261,9 @@ public class SocialActivityInterpreterLocalServiceImpl
 		}
 	}
 
-	private static final boolean _SOCIAL_ACTIVITY_SETS_GROUPING_ENABLED =
+	private static final boolean _SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED =
 		GetterUtil.getBoolean(
-			PropsUtil.get("social.activity.sets.grouping.enabled"));
+			PropsUtil.get("social.activity.sets.bundling.enabled"));
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SocialActivityInterpreterLocalServiceImpl.class);
