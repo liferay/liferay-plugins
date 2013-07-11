@@ -141,7 +141,7 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 					assetRenderer.getIconPath(liferayPortletRequest))) {
 
 			return wrapLink(
-				getLinkURL(className, classPK, serviceContext),
+				entry.getUrl(),
 				assetRenderer.getIconPath(liferayPortletRequest),
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
