@@ -34,10 +34,10 @@ String redirect = ParamUtil.getString(request, "redirect");
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
 	<aui:fieldset>
-		<aui:select label="maximum-items-to-display" name="preferences--pageDelta--">
+		<aui:select label="entries-to-display-per-page" name="preferences--pageDelta--" onChange="<%= modifiedPageDelta %>">
 
 			<%
-			for (int pageDeltaValue : PropsValues.ANNOUNCEMENTS_ENTRY_PAGE_DELTA_VALUES) {
+			for (int pageDeltaValue : GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES))) {
 			%>
 
 				<aui:option label="<%= pageDeltaValue %>" selected="<%= pageDelta == pageDeltaValue %>" />
