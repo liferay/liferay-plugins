@@ -24,6 +24,7 @@ import com.liferay.calendar.service.base.CalendarResourceLocalServiceBaseImpl;
 import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -44,6 +45,7 @@ import java.util.Map;
  * @author Fabio Pezzutto
  * @author Bruno Basto
  * @author Marcellus Tavares
+ * @author Andrea Di Giorgi
  */
 public class CalendarResourceLocalServiceImpl
 	extends CalendarResourceLocalServiceBaseImpl {
@@ -107,13 +109,15 @@ public class CalendarResourceLocalServiceImpl
 
 		// Calendar
 
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
+		if (!ExportImportThreadLocal.isImportInProcess()) {
+			serviceContext.setAddGroupPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
 
-		calendarLocalService.addCalendar(
+			calendarLocalService.addCalendar(
 			userId, calendarResource.getGroupId(), calendarResourceId, nameMap,
 			descriptionMap, PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
 			false, false, serviceContext);
+		}
 
 		// Asset
 
