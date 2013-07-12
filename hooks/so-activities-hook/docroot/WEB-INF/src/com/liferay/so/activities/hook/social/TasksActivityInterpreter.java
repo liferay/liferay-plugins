@@ -107,29 +107,26 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 
 		int viewableActivities = 0;
 
-		List<com.liferay.so.activities.model.SocialActivity> activities =
-			com.liferay.so.activities.service.SocialActivityLocalServiceUtil.
-					getActivitySetActivities(
+		List<SocialActivity> activities =
+			SocialActivityLocalServiceUtil.getActivitySetActivities(
 				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		for (com.liferay.so.activities.model.SocialActivity
-			activity : activities) {
-
+		for (SocialActivity activity : activities) {
 			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
 			PermissionChecker permissionChecker =
 				themeDisplay.getPermissionChecker();
 
 			if (!hasPermissions(
-					permissionChecker, activity.getPortalSocialActivity(),
-				ActionKeys.VIEW, serviceContext)) {
+					permissionChecker, activity, ActionKeys.VIEW,
+					serviceContext)) {
 
 				continue;
 			}
 
 			SocialActivityFeedEntry subfeedEntry = getSubfeedEntry(
-				activity.getPortalSocialActivity(), serviceContext);
+				activity, serviceContext);
 
 			if (subfeedEntry == null) {
 				continue;
