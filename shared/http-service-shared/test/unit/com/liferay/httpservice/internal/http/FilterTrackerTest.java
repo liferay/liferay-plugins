@@ -22,6 +22,7 @@ import javax.servlet.Filter;
 import org.junit.runner.RunWith;
 
 import org.mockito.Mockito;
+import org.mockito.verification.VerificationMode;
 
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
@@ -44,9 +45,12 @@ public class FilterTrackerTest extends BaseTrackerTestCase<Filter> {
 	}
 
 	@Override
-	protected void verifyRegisterServiceAction() throws Exception {
+	protected void verifyRegisterServiceAction(
+			VerificationMode verificationMode)
+		throws Exception {
+
 		BundleServletContext bundleServletContext = Mockito.verify(
-			this.bundleServletContext);
+			this.bundleServletContext, verificationMode);
 
 		bundleServletContext.registerFilter(
 			Mockito.anyString(), Mockito.anyString(), Mockito.eq(service),

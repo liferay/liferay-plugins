@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.verification.VerificationMode;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -48,7 +49,7 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 
 		_tracker.addingService(_serviceReference);
 
-		verifyAddingService();
+		verifyAddingService(Mockito.never());
 	}
 
 	@Test
@@ -57,7 +58,7 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 
 		_tracker.addingService(_serviceReference);
 
-		verifyAddingService();
+		verifyAddingService(Mockito.never());
 	}
 
 	@Test
@@ -121,7 +122,9 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 		mockAction(null);
 	}
 
-	protected void verifyAddingService() throws Exception {
+	protected void verifyAddingService(VerificationMode verificationMode)
+		throws Exception {
+
 		BundleContext bundleContext = Mockito.verify(this.bundleContext);
 
 		bundleContext.getService(_serviceReference);
@@ -132,11 +135,13 @@ public abstract class BaseTrackerTestCase<S> extends PowerMockito {
 		httpSupport.getBundleServletContext(bundle);
 		httpSupport.getHttpContext(Mockito.anyString());
 
-		verifyRegisterServiceAction();
+		verifyRegisterServiceAction(verificationMode);
 		verifyServiceReference();
 	}
 
-	protected abstract void verifyRegisterServiceAction() throws Exception;
+	protected abstract void verifyRegisterServiceAction(
+			VerificationMode verificationMode)
+		throws Exception;
 
 	protected void verifyRemovedService() throws Exception {
 		verifyServiceReference();
