@@ -170,10 +170,10 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(serviceContext.translate("assigned-to"));
 		sb.append(": </strong>");
 
-		User assigneeUserDisplay = UserLocalServiceUtil.fetchUser(
+		User assigneeUser = UserLocalServiceUtil.fetchUser(
 			tasksEntry.getAssigneeUserId());
 
-		String assigneeDisplayURL = assigneeUserDisplay.getDisplayURL(
+		String assigneeDisplayURL = assigneeUser.getDisplayURL(
 			serviceContext.getThemeDisplay());
 
 		String assigneeUserLink = wrapLink(
@@ -185,19 +185,16 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(serviceContext.translate("due-date"));
 		sb.append(": </strong>");
 
-		String dueDate;
-
 		if (tasksEntry.getDueDate() != null) {
 			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
 				serviceContext.getLocale(), serviceContext.getTimeZone());
 
-			dueDate = dateFormatDateTime.format(tasksEntry.getDueDate());
+			sb.append(dateFormatDateTime.format(tasksEntry.getDueDate()));
 		}
 		else {
-			dueDate = serviceContext.translate("none");
+			sb.append(serviceContext.translate("none"));
 		}
 
-		sb.append(dueDate);
 		sb.append("</span></div></div></div>");
 
 		return sb.toString();
