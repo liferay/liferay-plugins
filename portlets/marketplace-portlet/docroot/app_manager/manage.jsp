@@ -218,7 +218,7 @@ portletURL.setParameter("category", category);
 	</div>
 </div>
 
-<aui:script use="anim,aui-base,aui-io,aui-url">
+<aui:script use="anim,aui-base,aui-io,aui-url,aui-tooltip">
 	var marketplacePortlet = A.one('.marketplace-portlet');
 
 	marketplacePortlet.delegate(
@@ -336,5 +336,16 @@ portletURL.setParameter("category", category);
 			);
 		},
 		'.plugin-actions .btn'
+	);
+
+	new A.TooltipDelegate(
+		{
+			formatter: function() {
+				return '<liferay-ui:message key="this-portlet-is-available-in-the-control-panel" />';
+			},
+			position: 'top',
+			trigger: '.marketplace-portlet .apps i.icon-wrench',
+			zIndex: 100
+		}
 	);
 </aui:script>

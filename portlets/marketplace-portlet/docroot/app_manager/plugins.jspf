@@ -94,6 +94,10 @@
 					</td>
 					<td>
 						<liferay-ui:message key="portlet" />
+
+						<c:if test="<%= Validator.isNotNull(portlet.getControlPanelEntryCategory()) %>">
+							<i class="icon-wrench"></i>
+						</c:if>
 					</td>
 					<td class="plugin-actions">
 						<c:if test="<%= !indexerClasses.isEmpty() %>">
