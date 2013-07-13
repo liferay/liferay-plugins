@@ -184,7 +184,7 @@ for (int i = 0; i < choices.size(); i++) {
 
 			// Vote date
 
-			row.addText(dateFormatDateTime.format(vote.getVoteDate()));
+			row.addDate(vote.getVoteDate());
 
 			// Add result row
 

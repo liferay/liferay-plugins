@@ -52,6 +52,4 @@ page import="com.liferay.portlet.asset.model.AssetRenderer" %>
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
-
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

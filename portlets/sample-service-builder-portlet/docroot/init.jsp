@@ -43,6 +43,4 @@ page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparato
 PortletURL portletURL = renderResponse.createRenderURL();
 
 String currentURL = portletURL.toString();
-
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

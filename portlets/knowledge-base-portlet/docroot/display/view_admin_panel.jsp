@@ -106,20 +106,20 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 					property="userName"
 				/>
 
-				<liferay-ui:search-container-column-text
+				<liferay-ui:search-container-column-date
 					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="create-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
+					value="<%= kbArticle.getCreateDate() %>"
 				/>
 
-				<liferay-ui:search-container-column-text
+				<liferay-ui:search-container-column-date
 					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="modified-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
+					value="<%= kbArticle.getModifiedDate() %>"
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -191,20 +191,20 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 						property="userName"
 					/>
 
-					<liferay-ui:search-container-column-text
+					<liferay-ui:search-container-column-date
 						cssClass="kb-column-no-wrap"
 						href="<%= rowURL %>"
 						name="create-date"
 						orderable="<%= true %>"
-						value='<%= dateFormatDate.format(kbTemplate.getCreateDate()) + "<br />" + dateFormatTime.format(kbTemplate.getCreateDate()) %>'
+						value="<%= kbTemplate.getCreateDate() %>"
 					/>
 
-					<liferay-ui:search-container-column-text
+					<liferay-ui:search-container-column-date
 						cssClass="kb-column-no-wrap"
 						href="<%= rowURL %>"
 						name="modified-date"
 						orderable="<%= true %>"
-						value='<%= dateFormatDate.format(kbTemplate.getModifiedDate()) + "<br />" + dateFormatTime.format(kbTemplate.getModifiedDate()) %>'
+						value="<%= kbTemplate.getModifiedDate() %>"
 					/>
 
 					<liferay-ui:search-container-column-jsp

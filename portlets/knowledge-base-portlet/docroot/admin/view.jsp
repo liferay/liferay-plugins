@@ -103,20 +103,20 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					property="userName"
 				/>
 
-				<liferay-ui:search-container-column-text
+				<liferay-ui:search-container-column-date
 					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="create-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(kbArticle.getCreateDate()) + "<br />" + dateFormatTime.format(kbArticle.getCreateDate()) %>'
+					value="<%= kbArticle.getCreateDate() %>"
 				/>
 
-				<liferay-ui:search-container-column-text
+				<liferay-ui:search-container-column-date
 					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="modified-date"
 					orderable="<%= true %>"
-					value='<%= dateFormatDate.format(kbArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(kbArticle.getModifiedDate()) %>'
+					value="<%= kbArticle.getModifiedDate() %>"
 				/>
 
 				<liferay-ui:search-container-column-text

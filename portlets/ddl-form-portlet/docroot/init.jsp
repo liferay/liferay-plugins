@@ -85,6 +85,4 @@ long formDDMTemplateId = GetterUtil.getLong(preferences.getValue("formDDMTemplat
 boolean multipleSubmissions = GetterUtil.getBoolean(preferences.getValue("multipleSubmissions", null));
 
 DDMDisplay ddmDisplay = DDMDisplayRegistryUtil.getDDMDisplay(PortletKeys.DYNAMIC_DATA_LISTS);
-
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

@@ -113,13 +113,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					property="userName"
 				/>
 
-				<liferay-ui:search-container-column-text
+				<liferay-ui:search-container-column-date
 					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="date"
 					orderable="<%= true %>"
 					orderableProperty="modified-date"
-					value='<%= dateFormatDate.format(curKBArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(curKBArticle.getModifiedDate()) %>'
+					value="<%= curKBArticle.getModifiedDate() %>"
 				/>
 
 				<c:if test="<%= (status == WorkflowConstants.STATUS_ANY) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">

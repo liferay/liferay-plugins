@@ -89,10 +89,10 @@
 					value="<%= ResourceActionsUtil.getModelResource(locale, subscription.getClassName()) %>"
 				/>
 
-				<liferay-ui:search-container-column-text
+				<liferay-ui:search-container-column-date
 					href="<%= rowURL %>"
 					name="create-date"
-					value="<%= dateFormatDateTime.format(subscription.getCreateDate()) %>"
+					value="<%= subscription.getCreateDate() %>"
 				/>
 
 				<liferay-ui:search-container-column-jsp

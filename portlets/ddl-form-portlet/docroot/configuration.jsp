@@ -149,18 +149,12 @@ catch (NoSuchRecordSetException nsrse) {
 
 				</liferay-ui:search-container-column-text>
 
-				<liferay-ui:search-container-column-text
-					buffer="buffer"
+				<liferay-ui:search-container-column-date
 					href="<%= rowURL %>"
 					name="modified-date"
 					orderable="<%= false %>"
-				>
-
-					<%
-					buffer.append(dateFormatDateTime.format(curRecordSet.getModifiedDate()));
-					%>
-
-				</liferay-ui:search-container-column-text>
+					value="<%= curRecordSet.getModifiedDate() %>"
+				/>
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator />

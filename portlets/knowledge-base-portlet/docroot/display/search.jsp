@@ -104,22 +104,22 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		</c:if>
 
 		<c:if test="<%= showKBArticleCreateDateColumn %>">
-			<liferay-ui:search-container-column-text
+			<liferay-ui:search-container-column-date
 				cssClass="kb-column-no-wrap"
 				href="<%= rowURL %>"
 				name="create-date"
 				orderable="<%= true %>"
-				value='<%= dateFormatDate.format(tuple.getObject(3)) + "<br />" + dateFormatTime.format(tuple.getObject(3)) %>'
+				value="<%= (Date)tuple.getObject(3) %>"
 			/>
 		</c:if>
 
 		<c:if test="<%= showKBArticleModifiedDateColumn %>">
-			<liferay-ui:search-container-column-text
+			<liferay-ui:search-container-column-date
 				cssClass="kb-column-no-wrap"
 				href="<%= rowURL %>"
 				name="modified-date"
 				orderable="<%= true %>"
-				value='<%= dateFormatDate.format(tuple.getObject(4)) + "<br />" + dateFormatTime.format(tuple.getObject(4)) %>'
+				value="<%= (Date)tuple.getObject(4) %>"
 			/>
 		</c:if>
 

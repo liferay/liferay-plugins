@@ -78,10 +78,10 @@
 			valign="top"
 		/>
 
-		<liferay-ui:search-container-column-text
+		<liferay-ui:search-container-column-date
 			name="field4"
 			valign="top"
-			value="<%= dateFormatDateTime.format(foo.getField4()) %>"
+			value="<%= foo.getField4() %>"
 		/>
 
 		<liferay-ui:search-container-column-text
