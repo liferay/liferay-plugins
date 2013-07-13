@@ -218,7 +218,7 @@ portletURL.setParameter("category", category);
 	</div>
 </div>
 
-<aui:script use="anim,aui-base,aui-io,aui-url,aui-tooltip">
+<aui:script use="anim,aui-base,aui-io,aui-tooltip,aui-url">
 	var marketplacePortlet = A.one('.marketplace-portlet');
 
 	marketplacePortlet.delegate(
