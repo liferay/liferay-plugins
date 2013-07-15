@@ -8,14 +8,14 @@ AUI().use(
 	'swfobject',
 	function(A) {
 		var Lang = A.Lang;
+		var Notification = A.config.win.Notification;
 
 		var now = Lang.now;
 
 		var DOC = A.config.doc;
 
-		var NOTIFICATION = A.config.win.Notification;
+		var NOTIFICATIONS_PERMISSION_DEFAULT = 'default';
 
-		var NOTIFICATIONS_PERMISSION_DEFAULT = 'default'
 		var NOTIFICATIONS_PERMISSION_GRANTED = 'granted';
 
 		var NOTIFICATIONS_LIST = [];
@@ -24,7 +24,7 @@ AUI().use(
 
 		Liferay.namespace('Chat');
 
-		A.one(DOC.documentElement).toggleClass('desktop-notifications', !!NOTIFICATION);
+		A.one(DOC.documentElement).toggleClass('desktop-notifications', !!Notification);
 
 		Liferay.Chat.Util = {
 			getDefaultColor: function() {
@@ -696,7 +696,7 @@ AUI().use(
 				var instance = this;
 
 				if (instance._notifyPermission === NOTIFICATIONS_PERMISSION_GRANTED) {
-					var notification = new NOTIFICATION(
+					var notification = new Notification(
 						title,
 						{
 							icon: iconUrl,
@@ -985,7 +985,7 @@ AUI().use(
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
 
-				if (NOTIFICATION) {
+				if (Notification) {
 					var showNotificationsObj = instance._showNotificationsObj;
 
 					var notifyPermission = instance._notifyPermission;
@@ -1007,21 +1007,21 @@ AUI().use(
 			_getNotifyPermission: function() {
 				var notifyPermission;
 
-				if (NOTIFICATION) {
-					if (NOTIFICATION.permissionLevel) {
-						notifyPermission = NOTIFICATION.permissionLevel();
+				if (Notification) {
+					if (Notification.permissionLevel) {
+						notifyPermission = Notification.permissionLevel();
 					}
-					else if (NOTIFICATION.permission) {
-						notifyPermission = NOTIFICATION.permission;
+					else if (Notification.permission) {
+						notifyPermission = Notification.permission;
 					}
 					else if (A.config.win.webkitNotifications) {
 						var webkitNotifyPermission = A.config.win.webkitNotifications.checkPermission();
 
 						if (webkitNotifyPermission === 0) {
-							notifyPermission =  NOTIFICATIONS_PERMISSION_GRANTED;
+							notifyPermission = NOTIFICATIONS_PERMISSION_GRANTED;
 						}
 						else if (webkitNotifyPermission === 1) {
-							notifyPermission =  NOTIFICATIONS_PERMISSION_DEFAULT;
+							notifyPermission = NOTIFICATIONS_PERMISSION_DEFAULT;
 						}
 					}
 				}
@@ -1386,11 +1386,11 @@ AUI().use(
 				var showNotificationsObj = instance._showNotificationsObj;
 
 				if (showNotificationsObj.attr('checked') && instance._notifyPermission === NOTIFICATIONS_PERMISSION_DEFAULT) {
-					var notification = A.config.win.webkitNotifications || NOTIFICATION;
+					var notification = A.config.win.webkitNotifications || Notification;
 
 					notification.requestPermission(
 						function(notifyPermission) {
-							var allowed = notifyPermission == NOTIFICATIONS_PERMISSION_GRANTED;
+							var allowed = (notifyPermission == NOTIFICATIONS_PERMISSION_GRANTED);
 
 							showNotificationsObj.attr(
 								{
