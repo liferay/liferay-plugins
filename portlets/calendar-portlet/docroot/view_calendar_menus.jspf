@@ -183,7 +183,7 @@ String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookin
 					window.location.href = A.Lang.sub(
 						decodeURIComponent('<%= permissionsURL %>'),
 						{
-							resourceGroupId: activeCalendar.get('resourceGroupId'),
+							resourceGroupId: activeCalendar.get('groupId'),
 							resourcePrimKey: activeCalendar.get('calendarId'),
 							modelResourceDescription: activeCalendar.get('name')
 						}

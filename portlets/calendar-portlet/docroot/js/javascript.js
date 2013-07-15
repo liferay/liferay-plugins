@@ -45,11 +45,7 @@ AUI.add(
 											'<i class="icon-plus icon-white"></i> ' + Liferay.Language.get('new-event') +
 										 '</button>';
 
-		var COMPANY_GROUP_ID = toInt(themeDisplay.getCompanyGroupId());
-
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
-
-		var GROUP_ID = toInt(themeDisplay.getScopeGroupId());
 
 		var USER_ID = toInt(themeDisplay.getUserId());
 
@@ -403,7 +399,7 @@ AUI.add(
 							companyId: COMPANY_ID,
 							end: -1,
 							endTime: endDate.getTime(),
-							groupIds: [0, COMPANY_GROUP_ID, GROUP_ID].join(','),
+							groupIds: [],
 							keywords: null,
 							orderByComparator: null,
 							parentCalendarBookingId: -1,
@@ -1079,11 +1075,6 @@ AUI.add(
 						value: false
 					},
 
-					global: {
-						setter: A.DataType.Boolean.parse,
-						value: false
-					},
-
 					groupId: {
 						value: 0,
 						setter: toInt
@@ -1100,11 +1091,6 @@ AUI.add(
 						},
 						value: {},
 						validator: isObject
-					},
-
-					resourceGroupId: {
-						setter: toInt,
-						value: 0
 					}
 				},
 
