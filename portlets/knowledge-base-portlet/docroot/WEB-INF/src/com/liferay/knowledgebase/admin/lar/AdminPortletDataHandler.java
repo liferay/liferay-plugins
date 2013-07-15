@@ -463,7 +463,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 				KBArticle.class.getName(), kbArticle.getClassPK(),
 				PortletKeys.KNOWLEDGE_BASE_ADMIN,
 				kbArticle.getAttachmentsFolderId(), inputStream, fileName,
-				mimeType);
+				mimeType, true);
 		}
 
 		dirNames.put(resourcePrimKey, dirName);
