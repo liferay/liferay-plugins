@@ -1819,6 +1819,24 @@ AUI.add(
 								dialog: {
 									after: {
 										destroy: function(event) {
+											var calendarBookingId = schedulerEvent.get('calendarBookingId');
+
+											instance.set('event', schedulerEvent, {silent: true});
+
+											scheduler.once(
+												{
+													'*:load': function() {
+														var reloadedSchedulerEvent = scheduler.getEvents(function(e) {
+															return e.get('calendarBookingId') == calendarBookingId;
+														})[0];
+
+														var node = reloadedSchedulerEvent.get('node');
+
+														instance.showPopover(node);
+													}
+												}
+											);
+
 											scheduler.load();
 										}
 									},
