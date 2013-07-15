@@ -270,8 +270,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 			<aui:button href="<%= permissionsCalendarBookingURL %>" value="permissions" />
 		</c:if>
-
-		<aui:button type="cancel" value="close" />
 	</aui:button-row>
 </aui:form>
 
