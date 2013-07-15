@@ -56,14 +56,9 @@ public class CalendarUtil {
 
 		List<CalendarBooking> calendarBookings =
 			CalendarBookingLocalServiceUtil.search(
-				themeDisplay.getCompanyId(),
-				new long[] {
-					0, themeDisplay.getCompanyGroupId(),
-					themeDisplay.getScopeGroupId()
-				},
-				calendarIds, new long[0], -1, null, startTime, endTime, true,
-				statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				(OrderByComparator)null);
+				themeDisplay.getCompanyId(), null, calendarIds, new long[0], -1,
+				null, startTime, endTime, true, statuses, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null);
 
 		Map<Integer, Map<Integer, List<Integer>>> rulesMap =
 			new HashMap<Integer, Map<Integer, List<Integer>>>();
@@ -237,14 +232,12 @@ public class CalendarUtil {
 		jsonObject.put("defaultCalendar", calendar.isDefaultCalendar());
 		jsonObject.put("classNameId", calendarResource.getClassNameId());
 		jsonObject.put("classPK", calendarResource.getClassPK());
-		jsonObject.put("global", calendarResource.isGlobal());
 		jsonObject.put("groupId", calendar.getGroupId());
 		jsonObject.put("name", calendar.getName(themeDisplay.getLocale()));
 		jsonObject.put(
 			"permissions",
 			_getPermissionsJSONObject(
 				themeDisplay.getPermissionChecker(), calendar));
-		jsonObject.put("resourceGroupId", calendar.getResourceGroupId());
 		jsonObject.put("userId", calendar.getUserId());
 
 		return jsonObject;

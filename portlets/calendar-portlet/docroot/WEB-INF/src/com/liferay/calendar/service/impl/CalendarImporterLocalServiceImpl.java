@@ -693,8 +693,7 @@ public class CalendarImporterLocalServiceImpl
 			CalendarBooking.class.getName());
 
 		resourceBlockLocalService.updateIndividualScopePermissions(
-			calendarBooking.getCompanyId(),
-			calendarBooking.getResourceGroupId(),
+			calendarBooking.getCompanyId(), calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(), calendarBooking,
 			resourcePermission.getRoleId(), actionIds,
 			ResourceBlockConstants.OPERATOR_SET);

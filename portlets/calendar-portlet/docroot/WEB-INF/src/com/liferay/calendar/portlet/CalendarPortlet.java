@@ -395,7 +395,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 		if (calendarResourceId <= 0) {
 			CalendarResourceServiceUtil.addCalendarResource(
-				serviceContext.getScopeGroupId(), null, 0,
+				serviceContext.getScopeGroupId(),
+				PortalUtil.getClassNameId(CalendarResource.class), 0,
 				PortalUUIDUtil.generate(), code, nameMap, descriptionMap,
 				active, serviceContext);
 		}

@@ -176,7 +176,7 @@ public class CalendarBookingLocalServiceImpl
 		// Social
 
 		socialActivityLocalService.addActivity(
-			userId, calendar.getResourceGroupId(),
+			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(), calendarBookingId,
 			CalendarActivityKeys.ADD_CALENDAR_BOOKING,
 			getExtraDataJSON(calendarBooking, serviceContext), 0);
@@ -464,7 +464,7 @@ public class CalendarBookingLocalServiceImpl
 			calendarBooking.getCalendarBookingId());
 
 		socialActivityLocalService.addActivity(
-			userId, calendarBooking.getResourceGroupId(),
+			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(),
 			calendarBooking.getCalendarBookingId(),
 			SocialActivityConstants.TYPE_MOVE_TO_TRASH, StringPool.BLANK, 0);
@@ -502,7 +502,7 @@ public class CalendarBookingLocalServiceImpl
 			CalendarBooking.class.getName(), calendarBookingId);
 
 		socialActivityLocalService.addActivity(
-			userId, calendarBooking.getResourceGroupId(),
+			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(), calendarBookingId,
 			SocialActivityConstants.TYPE_RESTORE_FROM_TRASH, StringPool.BLANK,
 			0);
@@ -599,7 +599,7 @@ public class CalendarBookingLocalServiceImpl
 			StringUtil.shorten(calendarBooking.getDescription(), 500));
 
 		AssetEntry assetEntry = assetEntryLocalService.updateEntry(
-			userId, calendarBooking.getResourceGroupId(),
+			userId, calendarBooking.getGroupId(),
 			calendarBooking.getCreateDate(), calendarBooking.getModifiedDate(),
 			CalendarBooking.class.getName(),
 			calendarBooking.getCalendarBookingId(), calendarBooking.getUuid(),
@@ -685,7 +685,7 @@ public class CalendarBookingLocalServiceImpl
 		// Social
 
 		socialActivityLocalService.addActivity(
-			userId, calendar.getResourceGroupId(),
+			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(), calendarBookingId,
 			CalendarActivityKeys.UPDATE_CALENDAR_BOOKING,
 			getExtraDataJSON(calendarBooking, serviceContext), 0);
@@ -901,14 +901,14 @@ public class CalendarBookingLocalServiceImpl
 		if (status == CalendarBookingWorkflowConstants.STATUS_IN_TRASH) {
 			if (calendarBooking.isMasterBooking()) {
 				trashEntryLocalService.addTrashEntry(
-					userId, calendarBooking.getResourceGroupId(),
+					userId, calendarBooking.getGroupId(),
 					CalendarBooking.class.getName(),
 					calendarBooking.getCalendarBookingId(), oldStatus, null,
 					null);
 			}
 			else {
 				trashEntryLocalService.addTrashEntry(
-					userId, calendarBooking.getResourceGroupId(),
+					userId, calendarBooking.getGroupId(),
 					CalendarBooking.class.getName(),
 					calendarBooking.getCalendarBookingId(),
 					CalendarBookingWorkflowConstants.STATUS_PENDING, null,

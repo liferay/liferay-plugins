@@ -59,7 +59,7 @@ public class CalendarPermission {
 		}
 
 		return permissionChecker.hasPermission(
-			calendar.getResourceGroupId(), Calendar.class.getName(),
+			calendar.getGroupId(), Calendar.class.getName(),
 			calendar.getCalendarId(), actionId);
 	}
 
