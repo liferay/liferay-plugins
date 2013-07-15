@@ -127,7 +127,6 @@ iteratorURL.setParameter("mbThreadId", Long.toString(mbThreadId));
 	emptyResultsMessage="no-messages-found"
 	iteratorURL="<%= iteratorURL %>"
 >
-
 	<liferay-ui:search-container-results>
 
 		<%
