@@ -340,9 +340,6 @@ portletURL.setParameter("category", category);
 
 	new A.TooltipDelegate(
 		{
-			formatter: function() {
-				return '<liferay-ui:message key="this-portlet-is-available-in-the-control-panel" />';
-			},
 			position: 'top',
 			trigger: '.marketplace-portlet .apps i.icon-wrench',
 			zIndex: 100

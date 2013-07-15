@@ -81,6 +81,8 @@
 
 				String title = PortalUtil.getPortletTitle(portlet, application, locale);
 
+				String controlPanelEntryCategory = portlet.getControlPanelEntryCategory();
+
 				List<String> indexerClasses = portlet.getIndexerClasses();
 				%>
 
@@ -95,8 +97,23 @@
 					<td>
 						<liferay-ui:message key="portlet" />
 
-						<c:if test="<%= Validator.isNotNull(portlet.getControlPanelEntryCategory()) %>">
-							<i class="icon-wrench"></i>
+						<c:if test="<%= Validator.isNotNull(controlPanelEntryCategory) %>">
+
+							<%
+							String tooltipTitle = StringPool.BLANK;
+
+							if (controlPanelEntryCategory.startsWith(PortletCategoryKeys.SITE_ADMINISTRATION)) {
+								tooltipTitle = "this-portlet-is-available-in-site-administration";
+							}
+							else if (controlPanelEntryCategory.equals(PortletCategoryKeys.MY)) {
+								tooltipTitle = "this-portlet-is-available-in-my-account";
+							}
+							else {
+								tooltipTitle = "this-portlet-is-available-in-the-control-panel";
+							}
+							%>
+
+							<i class="icon-wrench" data-title="<liferay-ui:message key="<%= tooltipTitle %>" />"></i>
 						</c:if>
 					</td>
 					<td class="plugin-actions">

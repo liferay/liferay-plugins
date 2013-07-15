@@ -49,6 +49,7 @@ page import="com.liferay.portal.model.Theme" %><%@
 page import="com.liferay.portal.service.PluginSettingLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.portal.util.PortletCategoryKeys" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
