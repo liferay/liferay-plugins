@@ -193,13 +193,13 @@ public class CalendarBookingLocalServiceClp
 
 		_methodName36 = "moveCalendarBookingToTrash";
 
-		_methodParameterTypes36 = new String[] { "long", "long" };
+		_methodParameterTypes36 = new String[] {
+				"long", "com.liferay.calendar.model.CalendarBooking"
+			};
 
 		_methodName37 = "moveCalendarBookingToTrash";
 
-		_methodParameterTypes37 = new String[] {
-				"long", "com.liferay.calendar.model.CalendarBooking"
-			};
+		_methodParameterTypes37 = new String[] { "long", "long" };
 
 		_methodName38 = "restoreCalendarBookingFromTrash";
 
@@ -1423,13 +1423,18 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
+	public void moveCalendarBookingToTrash(long userId,
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName36,
 				_methodParameterTypes36,
-				new Object[] { userId, calendarBookingId });
+				new Object[] {
+					userId,
+					
+				ClpSerializer.translateInput(calendarBooking)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1453,18 +1458,13 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId,
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
+	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName37,
 				_methodParameterTypes37,
-				new Object[] {
-					userId,
-					
-				ClpSerializer.translateInput(calendarBooking)
-				});
+				new Object[] { userId, calendarBookingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -205,13 +205,13 @@ public class CalendarBookingLocalServiceClpInvoker {
 
 		_methodName126 = "moveCalendarBookingToTrash";
 
-		_methodParameterTypes126 = new String[] { "long", "long" };
+		_methodParameterTypes126 = new String[] {
+				"long", "com.liferay.calendar.model.CalendarBooking"
+			};
 
 		_methodName127 = "moveCalendarBookingToTrash";
 
-		_methodParameterTypes127 = new String[] {
-				"long", "com.liferay.calendar.model.CalendarBooking"
-			};
+		_methodParameterTypes127 = new String[] { "long", "long" };
 
 		_methodName128 = "restoreCalendarBookingFromTrash";
 
@@ -547,7 +547,7 @@ public class CalendarBookingLocalServiceClpInvoker {
 		if (_methodName126.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes126, parameterTypes)) {
 			CalendarBookingLocalServiceUtil.moveCalendarBookingToTrash(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+				(com.liferay.calendar.model.CalendarBooking)arguments[1]);
 
 			return null;
 		}
@@ -555,7 +555,7 @@ public class CalendarBookingLocalServiceClpInvoker {
 		if (_methodName127.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes127, parameterTypes)) {
 			CalendarBookingLocalServiceUtil.moveCalendarBookingToTrash(((Long)arguments[0]).longValue(),
-				(com.liferay.calendar.model.CalendarBooking)arguments[1]);
+				((Long)arguments[1]).longValue());
 
 			return null;
 		}

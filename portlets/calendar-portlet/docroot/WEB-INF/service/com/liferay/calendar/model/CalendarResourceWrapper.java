@@ -930,11 +930,6 @@ public class CalendarResourceWrapper implements CalendarResource,
 	}
 
 	@Override
-	public boolean isGlobal() {
-		return _calendarResource.isGlobal();
-	}
-
-	@Override
 	public boolean isGroup() {
 		return _calendarResource.isGroup();
 	}

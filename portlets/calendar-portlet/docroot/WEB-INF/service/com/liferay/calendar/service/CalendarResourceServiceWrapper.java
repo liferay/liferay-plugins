@@ -60,16 +60,16 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 
 	@Override
 	public com.liferay.calendar.model.CalendarResource addCalendarResource(
-		long groupId, java.lang.String className, long classPK,
+		long groupId, long classNameId, long classPK,
 		java.lang.String classUuid, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		boolean active, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarResourceService.addCalendarResource(groupId, className,
-			classPK, classUuid, code, nameMap, descriptionMap, active,
-			serviceContext);
+		return _calendarResourceService.addCalendarResource(groupId,
+			classNameId, classPK, classUuid, code, nameMap, descriptionMap,
+			active, serviceContext);
 	}
 
 	@Override

@@ -35,8 +35,8 @@ public class CalendarResourceServiceClpInvoker {
 		_methodName56 = "addCalendarResource";
 
 		_methodParameterTypes56 = new String[] {
-				"long", "java.lang.String", "long", "java.lang.String",
-				"java.lang.String", "java.util.Map", "java.util.Map", "boolean",
+				"long", "long", "long", "java.lang.String", "java.lang.String",
+				"java.util.Map", "java.util.Map", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -106,7 +106,7 @@ public class CalendarResourceServiceClpInvoker {
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return CalendarResourceServiceUtil.addCalendarResource(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1],
+				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[5],

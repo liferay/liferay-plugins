@@ -475,20 +475,20 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingLocalService.moveCalendarBookingToTrash(userId,
-			calendarBookingId);
-	}
-
-	@Override
 	public void moveCalendarBookingToTrash(long userId,
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarBookingLocalService.moveCalendarBookingToTrash(userId,
 			calendarBooking);
+	}
+
+	@Override
+	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarBookingLocalService.moveCalendarBookingToTrash(userId,
+			calendarBookingId);
 	}
 
 	@Override

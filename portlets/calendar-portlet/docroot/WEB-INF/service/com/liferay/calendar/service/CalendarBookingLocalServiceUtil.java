@@ -443,17 +443,17 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	public static void moveCalendarBookingToTrash(long userId,
-		long calendarBookingId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().moveCalendarBookingToTrash(userId, calendarBookingId);
-	}
-
-	public static void moveCalendarBookingToTrash(long userId,
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().moveCalendarBookingToTrash(userId, calendarBooking);
+	}
+
+	public static void moveCalendarBookingToTrash(long userId,
+		long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().moveCalendarBookingToTrash(userId, calendarBookingId);
 	}
 
 	public static void restoreCalendarBookingFromTrash(long userId,

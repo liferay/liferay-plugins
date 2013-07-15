@@ -1357,13 +1357,6 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	@Override
-	public long getResourceGroupId()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarBooking.getResourceGroupId();
-	}
-
-	@Override
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType() {
 		return _calendarBooking.getSecondReminderNotificationType();
 	}

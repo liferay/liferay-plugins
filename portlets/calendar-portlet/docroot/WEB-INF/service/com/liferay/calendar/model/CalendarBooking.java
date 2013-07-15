@@ -52,10 +52,6 @@ public interface CalendarBooking extends CalendarBookingModel, PermissionedModel
 
 	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj();
 
-	public long getResourceGroupId()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType();
 
 	public boolean isMasterBooking();

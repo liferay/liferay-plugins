@@ -135,7 +135,7 @@ public class CalendarResourceLocalServiceClp
 		_methodName23 = "addCalendarResource";
 
 		_methodParameterTypes23 = new String[] {
-				"long", "long", "java.lang.String", "long", "java.lang.String",
+				"long", "long", "long", "long", "java.lang.String",
 				"java.lang.String", "java.util.Map", "java.util.Map", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -886,7 +886,7 @@ public class CalendarResourceLocalServiceClp
 
 	@Override
 	public com.liferay.calendar.model.CalendarResource addCalendarResource(
-		long userId, long groupId, java.lang.String className, long classPK,
+		long userId, long groupId, long classNameId, long classPK,
 		java.lang.String classUuid, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -903,7 +903,7 @@ public class CalendarResourceLocalServiceClp
 						
 					groupId,
 						
-					ClpSerializer.translateInput(className),
+					classNameId,
 						
 					classPK,
 						

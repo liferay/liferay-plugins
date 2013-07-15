@@ -41,8 +41,6 @@ public interface CalendarResource extends CalendarResourceModel,
 	public long getDefaultCalendarId()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public boolean isGlobal();
-
 	public boolean isGroup();
 
 	public boolean isUser();
