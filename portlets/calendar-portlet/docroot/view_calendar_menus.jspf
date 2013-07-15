@@ -282,6 +282,10 @@ String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookin
 						hiddenItems.push('delete');
 					}
 
+					if (permissions.MANAGE_BOOKINGS === false) {
+						hiddenItems.push('addEvent');
+					}
+
 					if (permissions.PERMISSIONS === false) {
 						hiddenItems.push('permissions');
 					}
