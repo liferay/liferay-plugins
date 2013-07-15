@@ -20,6 +20,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.ClassLoaderUtil;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import java.net.URLDecoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -59,6 +62,13 @@ public class BundleRequestDispatcher implements RequestDispatcher {
 			(_requestURI.length() > _servletPath.length())) {
 
 			_pathInfo = _requestURI.substring(_servletPath.length());
+
+			try {
+				_pathInfo = URLDecoder.decode(_pathInfo, StringPool.UTF8);
+			}
+			catch (UnsupportedEncodingException uee) {
+				throw new RuntimeException(uee);
+			}
 		}
 	}
 
