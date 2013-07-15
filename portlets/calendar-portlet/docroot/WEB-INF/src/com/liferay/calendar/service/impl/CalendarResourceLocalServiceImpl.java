@@ -29,10 +29,8 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
@@ -52,7 +50,7 @@ public class CalendarResourceLocalServiceImpl
 
 	@Override
 	public CalendarResource addCalendarResource(
-			long userId, long groupId, String className, long classPK,
+			long userId, long groupId, long classNameId, long classPK,
 			String classUuid, String code, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, boolean active,
 			ServiceContext serviceContext)
@@ -60,22 +58,13 @@ public class CalendarResourceLocalServiceImpl
 
 		// Calendar resource
 
+		User user = userPersistence.findByPrimaryKey(userId);
+
 		long calendarResourceId = counterLocalService.increment();
 
-		if (Validator.isNull(className)) {
-			className = CalendarResource.class.getName();
+		if (classNameId == PortalUtil.getClassNameId(CalendarResource.class)) {
 			classPK = calendarResourceId;
 		}
-
-		long classNameId = PortalUtil.getClassNameId(className);
-
-		if (isGlobalResource(classNameId)) {
-			userId = getGlobalResourceUserId(classNameId, classPK);
-
-			groupId = getGlobalResourceGroupId(serviceContext.getCompanyId());
-		}
-
-		User user = userPersistence.findByPrimaryKey(userId);
 
 		if (PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE ||
 			Validator.isNull(code)) {
@@ -102,14 +91,7 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setCreateDate(serviceContext.getCreateDate(now));
 		calendarResource.setModifiedDate(serviceContext.getModifiedDate(now));
 		calendarResource.setClassNameId(classNameId);
-
-		if (className.equals(CalendarResource.class.getName())) {
-			calendarResource.setClassPK(calendarResourceId);
-		}
-		else {
-			calendarResource.setClassPK(classPK);
-		}
-
+		calendarResource.setClassPK(classPK);
 		calendarResource.setClassUuid(classUuid);
 		calendarResource.setCode(code);
 		calendarResource.setNameMap(nameMap);
@@ -129,9 +111,9 @@ public class CalendarResourceLocalServiceImpl
 		serviceContext.setAddGuestPermissions(true);
 
 		calendarLocalService.addCalendar(
-			userId, groupId, calendarResourceId, nameMap, descriptionMap,
-			PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, false, false,
-			serviceContext);
+			userId, calendarResource.getGroupId(), calendarResourceId, nameMap,
+			descriptionMap, PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
+			false, false, serviceContext);
 
 		// Asset
 
@@ -318,50 +300,6 @@ public class CalendarResourceLocalServiceImpl
 			serviceContext.getAssetTagNames());
 
 		return calendarResource;
-	}
-
-	protected long getGlobalResourceGroupId(long companyId)
-		throws PortalException, SystemException {
-
-		Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(companyId);
-
-		return companyGroup.getGroupId();
-	}
-
-	protected long getGlobalResourceUserId(long classNameId, long classPK)
-		throws PortalException, SystemException {
-
-		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
-
-		if (classNameId == groupClassNameId) {
-			Group group = GroupLocalServiceUtil.getGroup(classPK);
-
-			return group.getCreatorUserId();
-		}
-
-		long userClassNameId = PortalUtil.getClassNameId(User.class);
-
-		if (classNameId == userClassNameId) {
-			return classPK;
-		}
-
-		return 0;
-	}
-
-	protected boolean isGlobalResource(long classNameId) {
-		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
-
-		if (classNameId == groupClassNameId) {
-			return true;
-		}
-
-		long userClassNameId = PortalUtil.getClassNameId(User.class);
-
-		if (classNameId == userClassNameId) {
-			return true;
-		}
-
-		return false;
 	}
 
 	protected void validate(

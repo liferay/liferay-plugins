@@ -38,7 +38,7 @@ public class CalendarResourceServiceImpl
 
 	@Override
 	public CalendarResource addCalendarResource(
-			long groupId, String className, long classPK, String classUuid,
+			long groupId, long classNameId, long classPK, String classUuid,
 			String code, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, boolean active,
 			ServiceContext serviceContext)
@@ -48,8 +48,8 @@ public class CalendarResourceServiceImpl
 			getPermissionChecker(), groupId, ActionKeys.ADD_RESOURCE);
 
 		return calendarResourceLocalService.addCalendarResource(
-			getUserId(), groupId, className, classPK, classUuid, code, nameMap,
-			descriptionMap, active, serviceContext);
+			getUserId(), groupId, classNameId, classPK, classUuid, code,
+			nameMap, descriptionMap, active, serviceContext);
 	}
 
 	@Override

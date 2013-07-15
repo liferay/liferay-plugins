@@ -86,13 +86,6 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 	}
 
 	@Override
-	public long getResourceGroupId() throws PortalException, SystemException {
-		Calendar calendar = getCalendar();
-
-		return calendar.getResourceGroupId();
-	}
-
-	@Override
 	public NotificationType getSecondReminderNotificationType() {
 		return NotificationType.parse(getSecondReminderType());
 	}
