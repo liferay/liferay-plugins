@@ -67,7 +67,7 @@
 		}
 	}
 
-	.private-messaging-container .results-header, .taglib-user-display.display-style-2 .user-details, .taglib-user-display.display-style-2 .user-name, .thread .taglib-search-iterator-page-iterator-bottom {
+	.private-messaging-container .results-header, .taglib-user-display.display-style-2 .user-details, .taglib-user-display.display-style-2 .user-name {
 		display: none;
 	}
 
