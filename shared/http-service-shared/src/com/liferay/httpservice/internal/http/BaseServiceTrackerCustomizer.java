@@ -43,21 +43,23 @@ public abstract class BaseServiceTrackerCustomizer<S, T>
 	public T addingService(ServiceReference<S> serviceReference) {
 		BundleContext bundleContext = httpSupport.getBundleContext();
 
-		T t = (T)bundleContext.getService(serviceReference);
+		T service = (T)bundleContext.getService(serviceReference);
 
-		return doAction(serviceReference, t, ACTION_ADDING);
+		return doAction(serviceReference, service, ACTION_ADDING);
 	}
 
 	@Override
 	public void modifiedService(
-		ServiceReference<S> serviceReference, T filter) {
+		ServiceReference<S> serviceReference, T service) {
 
-		doAction(serviceReference, filter, ACTION_MODIFIED);
+		doAction(serviceReference, service, ACTION_MODIFIED);
 	}
 
 	@Override
-	public void removedService(ServiceReference<S> serviceReference, T filter) {
-		doAction(serviceReference, filter, ACTION_REMOVED);
+	public void removedService(
+		ServiceReference<S> serviceReference, T service) {
+
+		doAction(serviceReference, service, ACTION_REMOVED);
 	}
 
 	protected T doAction(
