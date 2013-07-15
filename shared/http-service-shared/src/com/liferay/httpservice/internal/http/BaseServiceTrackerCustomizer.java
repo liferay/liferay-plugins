@@ -24,6 +24,7 @@ import java.util.Map;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpContext;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
@@ -78,10 +79,10 @@ public abstract class BaseServiceTrackerCustomizer<S, T>
 			}
 
 			int serviceRanking = GetterUtil.getInteger(
-				serviceReference.getProperty("service.ranking"));
+				serviceReference.getProperty(Constants.SERVICE_RANKING));
 
 			initParameters.put(
-				"service.ranking", String.valueOf(serviceRanking));
+				Constants.SERVICE_RANKING, String.valueOf(serviceRanking));
 		}
 
 		Bundle bundle = serviceReference.getBundle();
