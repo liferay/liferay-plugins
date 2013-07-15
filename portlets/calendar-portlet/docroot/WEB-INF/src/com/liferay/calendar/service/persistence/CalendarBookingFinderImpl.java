@@ -510,7 +510,10 @@ public class CalendarBookingFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(companyId);
-			qPos.add(groupIds);
+
+			if ((groupIds != null) && (groupIds.length > 0)) {
+				qPos.add(groupIds);
+			}
 
 			if ((calendarIds != null) && (calendarIds.length > 0)) {
 				qPos.add(calendarIds);
@@ -603,7 +606,7 @@ public class CalendarBookingFinderImpl
 	}
 
 	protected String getGroupIds(long[] groupIds) {
-		if (groupIds.length == 0) {
+		if ((groupIds == null) || (groupIds.length == 0)) {
 			return StringPool.BLANK;
 		}
 
