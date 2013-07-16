@@ -143,10 +143,10 @@ public class CalendarResourceUtil {
 			return calendarResource;
 		}
 
+		User user = UserLocalServiceUtil.getUser(userId);
+
 		Group userGroup = GroupLocalServiceUtil.getUserGroup(
 			serviceContext.getCompanyId(), userId);
-
-		User user = UserLocalServiceUtil.getUser(userId);
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
