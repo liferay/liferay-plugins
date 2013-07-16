@@ -1121,7 +1121,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 					KBArticle.class.getName(), kbArticle.getClassPK(),
 					PortletKeys.KNOWLEDGE_BASE_ARTICLE,
 					kbArticle.getAttachmentsFolderId(), inputStream,
-					shortFileName, mimeType);
+					shortFileName, mimeType, true);
 			}
 			finally {
 				StreamUtil.cleanUp(inputStream);
