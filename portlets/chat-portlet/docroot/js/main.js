@@ -1385,7 +1385,7 @@ AUI().use(
 
 				var showNotificationsObj = instance._showNotificationsObj;
 
-				if (showNotificationsObj.attr('checked') && instance._notifyPermission === NOTIFICATIONS_PERMISSION_DEFAULT) {
+				if (showNotificationsObj.attr('checked') && (instance._notifyPermission === NOTIFICATIONS_PERMISSION_DEFAULT)) {
 					var notification = A.config.win.webkitNotifications || Notification;
 
 					notification.requestPermission(
