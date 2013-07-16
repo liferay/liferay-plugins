@@ -14,25 +14,14 @@
 
 package com.liferay.servermanager.executor;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * @author Jonathan Potter
- * @author Brian Wing Shun Chan
  * @author Cindy Li
  */
-public class ServerExecutor extends BaseExecutor {
+public class FreeMarkerDebugPortExecutor extends DebugPortExecutor {
 
 	@Override
-	protected Map<String, Executor> initNextExecutors() {
-		Map<String, Executor> executors = new HashMap<String, Executor>();
-
-		executors.put("debug-port", new DebugPortExecutor());
-		executors.put("freemarker", new FreeMarkerExecutor());
-		executors.put("log", new LogExecutor());
-
-		return executors;
+	protected String getDebugPort() {
+		return System.getProperty("freemarker.debug.port");
 	}
 
 }
