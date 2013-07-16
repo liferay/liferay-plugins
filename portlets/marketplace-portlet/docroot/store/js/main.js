@@ -91,3 +91,31 @@ AUI.add(
 		requires: ['aui-messaging']
 	}
 );
+
+AUI.add(
+	'liferay-marketplace-util',
+	function(A) {
+		var MarketplaceUtil = {
+			namespaceObject: function(namespace, object) {
+				var returnObject = {};
+
+				var keys = A.Object.keys(object);
+
+				A.Array.each(
+					keys,
+					function(key) {
+						returnObject[namespace + key] = object[key];
+					}
+				);
+
+				return returnObject;
+			}
+		};
+
+		Liferay.MarketplaceUtil = MarketplaceUtil;
+	},
+	'',
+	{
+		requires: ['aui-base']
+	}
+);

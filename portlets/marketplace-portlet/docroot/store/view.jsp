@@ -29,7 +29,7 @@
 	<liferay-ui:message key="could-not-connect-to-the-liferay-marketplace" />
 </div>
 
-<aui:script use="aui-base,aui-io,liferay-marketplace-messenger">
+<aui:script use="aui-base,aui-io,liferay-marketplace-messenger,liferay-marketplace-util">
 	var frame = A.one('#<portlet:namespace />frame');
 
 	var timeout = setTimeout(
@@ -104,10 +104,12 @@
 				}
 			}
 			else {
+				var data = Liferay.MarketplaceUtil.namespaceObject('<portlet:namespace />', response);
+
 				A.io.request(
 					'<portlet:actionURL />',
 					{
-						data: response,
+						data: data,
 						dataType: 'JSON',
 						method: 'POST',
 						on: {
