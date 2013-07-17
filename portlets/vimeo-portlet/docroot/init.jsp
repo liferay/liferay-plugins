@@ -25,6 +25,7 @@
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
@@ -60,11 +61,7 @@ String showTitleBinary = showTitle ? "1" : "0";
 %>
 
 <%!
-private static final String _SWF_URL = "http://vimeo.com/moogaloop.swf";
+private static final String _SWF_URL = "://vimeo.com/moogaloop.swf";
 
-private static final String _WATCH_URL = "http://vimeo.com/";
-
-private static final String _SECURE_SWF_URL = "https://vimeo.com/moogaloop.swf";
-
-private static final String _SECURE_WATCH_URL = "https://vimeo.com/";
+private static final String _WATCH_URL = "://vimeo.com/";
 %>
