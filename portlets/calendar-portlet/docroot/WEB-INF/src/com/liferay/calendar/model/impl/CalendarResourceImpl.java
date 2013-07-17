@@ -15,8 +15,10 @@
 package com.liferay.calendar.model.impl;
 
 import com.liferay.calendar.model.Calendar;
+import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
@@ -60,6 +62,12 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 		}
 
 		return 0;
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(
+			PortalUtil.getClassNameId(CalendarResource.class.getName()));
 	}
 
 	@Override

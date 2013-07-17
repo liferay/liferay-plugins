@@ -71,6 +71,19 @@ public class CalendarResourceStagedModelDataHandler
 	}
 
 	@Override
+	protected boolean countStagedModel(
+		PortletDataContext portletDataContext,
+		CalendarResource calendarResource) {
+
+		if (calendarResource.getClassNameId() ==
+				PortalUtil.getClassNameId(CalendarResource.class)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	protected void doExportStagedModel(
 			PortletDataContext portletDataContext,
 			CalendarResource calendarResource)
