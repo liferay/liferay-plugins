@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -53,6 +54,7 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.asset.model.AssetEntry;
@@ -221,6 +223,9 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(
+		action = SystemEventConstants.ACTION_SKIP, send = false,
+		type = SystemEventConstants.TYPE_DELETE)
 	public CalendarBooking deleteCalendarBooking(
 			CalendarBooking calendarBooking)
 		throws PortalException, SystemException {
@@ -235,7 +240,8 @@ public class CalendarBookingLocalServiceImpl
 			calendarBooking.getCalendarBookingId());
 
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
-			deleteCalendarBooking(childCalendarBooking);
+			calendarBookingLocalService.deleteCalendarBooking(
+				childCalendarBooking);
 		}
 
 		// Resources
@@ -283,7 +289,7 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		deleteCalendarBooking(calendarBooking);
+		calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 
 		return calendarBooking;
 	}
@@ -301,7 +307,8 @@ public class CalendarBookingLocalServiceImpl
 
 		if (allFollowing) {
 			if (startTime == calendarBooking.getStartTime()) {
-				deleteCalendarBooking(calendarBooking);
+				calendarBookingLocalService.deleteCalendarBooking(
+					calendarBooking);
 
 				return;
 			}
@@ -343,7 +350,7 @@ public class CalendarBookingLocalServiceImpl
 			calendarBookingPersistence.findByCalendarId(calendarId);
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
-			deleteCalendarBooking(calendarBooking);
+			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 		}
 	}
 

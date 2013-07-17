@@ -17,6 +17,8 @@ package com.liferay.calendar.lar;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -35,6 +37,20 @@ public class CalendarStagedModelDataHandler
 	extends BaseStagedModelDataHandler<Calendar> {
 
 	public static final String[] CLASS_NAMES = {Calendar.class.getName()};
+
+	@Override
+	public void deleteStagedModel(
+			String uuid, long groupId, String className, String extraData)
+		throws PortalException, SystemException {
+
+		Calendar calendar =
+			CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
+				uuid, groupId);
+
+		if (calendar != null) {
+			CalendarLocalServiceUtil.deleteCalendar(calendar);
+		}
+	}
 
 	@Override
 	public String[] getClassNames() {

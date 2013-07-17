@@ -18,6 +18,8 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -37,6 +39,21 @@ public class CalendarBookingStagedModelDataHandler
 
 	public static final String[] CLASS_NAMES = {
 		CalendarBooking.class.getName()};
+
+	@Override
+	public void deleteStagedModel(
+			String uuid, long groupId, String className, String extraData)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			CalendarBookingLocalServiceUtil.
+				fetchCalendarBookingByUuidAndGroupId(uuid, groupId);
+
+		if (calendarBooking != null) {
+			CalendarBookingLocalServiceUtil.deleteCalendarBooking(
+				calendarBooking);
+		}
+	}
 
 	@Override
 	public String[] getClassNames() {

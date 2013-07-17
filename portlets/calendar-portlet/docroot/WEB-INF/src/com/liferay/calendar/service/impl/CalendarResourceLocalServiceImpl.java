@@ -25,12 +25,14 @@ import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -130,6 +132,9 @@ public class CalendarResourceLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(
+		action = SystemEventConstants.ACTION_SKIP,
+		type = SystemEventConstants.TYPE_DELETE)
 	public CalendarResource deleteCalendarResource(
 			CalendarResource calendarResource)
 		throws PortalException, SystemException {
@@ -176,7 +181,8 @@ public class CalendarResourceLocalServiceImpl
 		CalendarResource calendarResource =
 			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 
-		return deleteCalendarResource(calendarResource);
+		return calendarResourceLocalService.deleteCalendarResource(
+			calendarResource);
 	}
 
 	@Override
@@ -187,7 +193,8 @@ public class CalendarResourceLocalServiceImpl
 			calendarResourcePersistence.findByGroupId(groupId);
 
 		for (CalendarResource calendarResource : calendarResources) {
-			deleteCalendarResource(calendarResource);
+			calendarResourceLocalService.deleteCalendarResource(
+				calendarResource);
 		}
 	}
 
