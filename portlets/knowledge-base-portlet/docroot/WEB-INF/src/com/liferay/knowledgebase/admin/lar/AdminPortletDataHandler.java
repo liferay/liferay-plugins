@@ -106,8 +106,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		portletDataContext.addPermissions(
-			"com.liferay.knowledgebase.admin",
-			portletDataContext.getScopeGroupId());
+			RESOURCE_NAME, portletDataContext.getScopeGroupId());
 
 		Element rootElement = addExportDataRootElement(portletDataContext);
 
@@ -128,8 +127,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		portletDataContext.importPermissions(
-			"com.liferay.knowledgebase.admin",
-			portletDataContext.getSourceGroupId(),
+			RESOURCE_NAME, portletDataContext.getSourceGroupId(),
 			portletDataContext.getScopeGroupId());
 
 		Element rootElement = portletDataContext.getImportDataRootElement();
@@ -670,5 +668,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			importKBTemplate(portletDataContext, kbTemplateElement, kbTemplate);
 		}
 	}
+
+	protected static final String RESOURCE_NAME =
+		"com.liferay.knowledgebase.admin";
 
 }

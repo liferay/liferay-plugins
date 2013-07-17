@@ -19,7 +19,6 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
-import com.liferay.calendar.service.permission.CalendarPortletPermission;
 import com.liferay.calendar.service.persistence.CalendarBookingExportActionableDynamicQuery;
 import com.liferay.calendar.service.persistence.CalendarExportActionableDynamicQuery;
 import com.liferay.calendar.service.persistence.CalendarNotificationTemplateExportActionableDynamicQuery;
@@ -93,8 +92,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		portletDataContext.addPermissions(
-			CalendarPortletPermission.RESOURCE_NAME,
-			portletDataContext.getScopeGroupId());
+			RESOURCE_NAME, portletDataContext.getScopeGroupId());
 
 		Element rootElement = addExportDataRootElement(portletDataContext);
 
@@ -139,8 +137,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		portletDataContext.importPermissions(
-			CalendarPortletPermission.RESOURCE_NAME,
-			portletDataContext.getSourceGroupId(),
+			RESOURCE_NAME, portletDataContext.getSourceGroupId(),
 			portletDataContext.getScopeGroupId());
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "calendars")) {
@@ -223,4 +220,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 		notificationTemplateActionableDynamicQuery.performCount();
 	}
 
+
+	protected static final String RESOURCE_NAME =
+		"com.liferay.portlet.calendar";
 }
