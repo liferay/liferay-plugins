@@ -111,7 +111,7 @@ String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookin
 								modal: true
 							},
 							refreshWindow: window,
-							title: Liferay.Language.get('add-event'),
+							title: Liferay.Language.get('new-calendar-booking'),
 							uri: A.Lang.sub(
 								decodeURIComponent('<%= addCalendarBookingURL %>'),
 								{

@@ -42,7 +42,7 @@ AUI.add(
 		var ICON_CREATE_EVENT_NODE = 'iconCreateEventNode';
 
 		var TPL_ICON_CREATE_EVENT_NODE = '<button type="button" class="btn btn-primary calendar-create-event-btn">' +
-											'<i class="icon-plus icon-white"></i> ' + Liferay.Language.get('new-event') +
+											'<i class="icon-plus icon-white"></i> ' + Liferay.Language.get('new-calendar-booking') +
 										 '</button>';
 
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
@@ -1528,7 +1528,7 @@ AUI.add(
 									destroyOnHide: true,
 									modal: true
 								},
-								title: Liferay.Language.get('add-event'),
+								title: Liferay.Language.get('new-calendar-booking'),
 								uri: Lang.sub(
 									editCalendarBookingURL,
 									{
@@ -1793,7 +1793,7 @@ AUI.add(
 									modal: true
 								},
 								refreshWindow: window,
-								title: Liferay.Language.get('edit'),
+								title: Liferay.Language.get('edit-calendar-booking'),
 								uri: Lang.sub(editCalendarBookingURL, data)
 							}
 						);
@@ -1826,7 +1826,7 @@ AUI.add(
 									modal: true
 								},
 								refreshWindow: window,
-								title: Liferay.Language.get('view'),
+								title: Liferay.Language.get('view-calendar-booking-details'),
 								uri: Lang.sub(viewCalendarBookingURL, data)
 							}
 						);

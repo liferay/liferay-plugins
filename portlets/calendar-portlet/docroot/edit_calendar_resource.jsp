@@ -36,7 +36,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= (calendarResource != null) ? calendarResource.getName(locale) : "new-calendar-resource" %>'
+	title='<%= (calendarResource == null) ? "new-calendar-resource" : calendarResource.getName(locale) %>'
 />
 
 <liferay-portlet:actionURL name="updateCalendarResource" var="updateCalendarResourceURL" />

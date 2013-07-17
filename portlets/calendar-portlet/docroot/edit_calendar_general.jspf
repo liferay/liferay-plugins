@@ -16,7 +16,7 @@
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= (calendar != null) ? calendar.getName(locale) : LanguageUtil.format(pageContext, "add-new-calendar-for-x", calendarResource.getName(locale)) %>'
+	title='<%= (calendar == null) ? LanguageUtil.format(pageContext, "new-calendar-for-x", calendarResource.getName(locale)) : calendar.getName(locale) %>'
 />
 
 <liferay-portlet:actionURL name="updateCalendar" var="updateCalendarURL" />
