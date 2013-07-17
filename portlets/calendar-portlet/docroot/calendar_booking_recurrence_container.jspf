@@ -196,7 +196,7 @@ if (recurrence != null) {
 	var repeatCheckboxNode = A.one('#<portlet:namespace />repeatCheckbox');
 	var summaryNode = A.one('#<portlet:namespace />summary');
 
-	var untilDateDatePicker = Liferay.component('<portlet:namespace />untilDatedatePicker');
+	var untilDateDatePicker = Liferay.component('<portlet:namespace />untilDateDatePicker');
 
 	window.<portlet:namespace />recurrenceDialog;
 
