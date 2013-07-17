@@ -173,7 +173,6 @@ if (Validator.isNotNull(editorGadgetURL)) {
 	PortletLister portletLister = PortletListerFactoryUtil.getPortletLister();
 
 	portletLister.setIteratePortlets(false);
-	portletLister.setThemeDisplay(themeDisplay);
 	portletLister.setUser(user);
 
 	TreeView treeView = portletLister.getTreeView();
