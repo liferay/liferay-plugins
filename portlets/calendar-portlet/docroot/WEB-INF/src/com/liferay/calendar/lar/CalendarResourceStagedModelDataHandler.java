@@ -16,11 +16,16 @@ package com.liferay.calendar.lar;
 
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -28,6 +33,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Andrea Di Giorgi
@@ -153,6 +159,9 @@ public class CalendarResourceStagedModelDataHandler
 					calendarResource.isActive(), serviceContext);
 		}
 
+		updateCalendarDependencies(
+			portletDataContext, calendarResource, importedCalendarResource);
+
 		portletDataContext.importClassedModel(
 			calendarResource, importedCalendarResource,
 			CalendarPortletDataHandler.NAMESPACE);
@@ -176,6 +185,36 @@ public class CalendarResourceStagedModelDataHandler
 		}
 
 		return classPK;
+	}
+
+	protected void updateCalendarDependencies(
+			PortletDataContext portletDataContext,
+			CalendarResource calendarResource,
+			CalendarResource importedCalendarResource)
+		throws PortalException, SystemException {
+
+		Map<Long, Long> calendarIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				Calendar.class);
+
+		List<Element> referenceElements =
+			portletDataContext.getReferenceElements(
+				calendarResource, Calendar.class);
+
+		for (Element referenceElement : referenceElements) {
+			long calendarId = GetterUtil.getLong(
+				referenceElement.attributeValue("class-pk"));
+
+			Calendar calendar = CalendarLocalServiceUtil.fetchCalendar(
+				MapUtil.getLong(calendarIds, calendarId));
+
+			if (calendar != null) {
+				calendar.setCalendarResourceId(
+					importedCalendarResource.getCalendarResourceId());
+
+				CalendarLocalServiceUtil.updateCalendar(calendar);
+			}
+		}
 	}
 
 }
