@@ -69,7 +69,6 @@ page import="java.util.Map" %>
 page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletURL" %>
 
-
 <%@ page import="org.apache.shindig.gadgets.spec.Feature" %><%@
 page import="org.apache.shindig.gadgets.spec.GadgetSpec" %><%@
 page import="org.apache.shindig.gadgets.spec.ModulePrefs" %><%@

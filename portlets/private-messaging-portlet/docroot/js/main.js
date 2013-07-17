@@ -17,7 +17,7 @@ AUI.add(
 					baseActionURL: {
 						validator: Lang.isString
 					},
-					
+
 					baseRenderURL: {
 						validator: Lang.isString
 					},

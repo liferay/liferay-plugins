@@ -515,7 +515,7 @@ AUI.add(
 
 					_deleteEntry: function(contact) {
 						var instance = this;
-						
+
 						var config = instance._config;
 
 						var confirmMessageText = Lang.sub(Liferay.Language.get('are-you-sure-you-want-to-delete-x-from-your-contacts'), [contact.fullName]);
@@ -548,7 +548,7 @@ AUI.add(
 
 					_editEntry: function(contact) {
 						var instance = this;
-						
+
 						var config = instance._config;
 
 						var portletURL = new Liferay.PortletURL.createURL(config.baseRenderURL);
