@@ -33,19 +33,13 @@
 		sb.append("&amp;show_byline=" + showBylineBinary);
 		sb.append("&amp;show_portrait=" + showPortraitBinary);
 		sb.append("&amp;show_title=" + showTitleBinary);
-
-		String movie = _SWF_URL;
-
-		if (request.isSecure()) {
-			movie = _SECURE_SWF_URL;
-		}
 		%>
 
 		<liferay-ui:flash
 			allowFullScreen="true"
 			allowScriptAccess="true"
 			height="<%= height %>"
-			movie='<%= movie + "?" + sb.toString() %>'
+			movie='<%= HttpUtil.getProtocol(request) + _SWF_URL + "?" + sb.toString() %>'
 			width="<%= width %>"
 			wmode="opaque"
 		/>
