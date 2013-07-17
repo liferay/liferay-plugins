@@ -146,7 +146,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 
 			if (groupNames.length > 0) {
-				qPos.add(StringUtil.merge(groupNames));
+				qPos.add(groupNames);
 			}
 
 			qPos.add(modifiedDate);
@@ -179,7 +179,7 @@ public class StatusFinderImpl
 			new String[] {"[$USERS_GROUPS_JOIN$]", "[$USERS_GROUPS_WHERE$]"},
 			new String[] {
 				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId",
-				"AND Group_.name NOT IN (?)"
+				"AND Group_.name NOT IN (" + getNames(groupNames) + ")"
 			});
 	}
 
