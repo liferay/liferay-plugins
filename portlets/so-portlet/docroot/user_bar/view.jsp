@@ -105,6 +105,9 @@ catch (NoSuchRoleException nsre) {
 
 					<ul class="child-menu">
 						<li>
+							<a href="<%= mySite.getPathFriendlyURL(false,themeDisplay) + "/" + user.getScreenName() %>"><liferay-ui:message key="my-profile" /></a>
+						</li>
+						<li>
 							<a href="<%= themeDisplay.getURLMyAccount().toString() %>"><liferay-ui:message key="my-account" /></a>
 						</li>
 						<c:if test="<%= themeDisplay.isShowSignOutIcon() %>">
