@@ -47,7 +47,8 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 </c:if>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="mvcPath" value="/view_calendar_resources.jsp" />
+	<portlet:param name="mvcPath" value="/view.jsp" />
+	<portlet:param name="tabs1" value="resources" />
 </liferay-portlet:renderURL>
 
 <c:choose>

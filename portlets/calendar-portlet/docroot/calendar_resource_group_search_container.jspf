@@ -14,10 +14,6 @@
  */
 --%>
 
-<liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="mvcPath" value="/view_calendar_resources.jsp" />
-</liferay-portlet:renderURL>
-
 <liferay-ui:search-container id="sites" searchContainer='<%= new CalendarResourceSearch(renderRequest, CalendarResourceSearch.DEFAULT_CUR_PARAM + "Groups", iteratorURL) %>'>
 	<liferay-ui:search-container-results>
 
