@@ -81,8 +81,13 @@
 </aui:form>
 
 <aui:script use="aui-color-picker,aui-datatype,aui-swf">
-	var swfURL = '<%= _SWF_URL %>';
-	var watchURL = '<%= _WATCH_URL %>';
+
+		<%
+		boolean isRequestSecure = request.isSecure();
+		%>
+
+		var swfURL = '<%= isRequestSecure? _SECURE_SWF_URL : _SWF_URL %>';
+		var watchURL = '<%= isRequestSecure? _SECURE_WATCH_URL : _WATCH_URL %>';
 
 	var allInputsNode = A.all('#<portlet:namespace />fm input');
 
