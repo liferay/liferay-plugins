@@ -29,6 +29,7 @@ import java.util.Map;
 
 /**
  * @author Andrea Di Giorgi
+ * @author Daniel Kocsis
  */
 public class CalendarStagedModelDataHandler
 	extends BaseStagedModelDataHandler<Calendar> {
@@ -50,10 +51,8 @@ public class CalendarStagedModelDataHandler
 			PortletDataContext portletDataContext, Calendar calendar)
 		throws Exception {
 
-		CalendarResource calendarResource = calendar.getCalendarResource();
-
 		StagedModelDataHandlerUtil.exportStagedModel(
-			portletDataContext, calendarResource);
+			portletDataContext, calendar.getCalendarResource());
 
 		Element calendarElement = portletDataContext.getExportDataElement(
 			calendar);
@@ -70,9 +69,10 @@ public class CalendarStagedModelDataHandler
 
 		long userId = portletDataContext.getUserId(calendar.getUserUuid());
 
-		String calendarResourcePath = ExportImportPathUtil.getModelPath(
-			calendar.getGroupId(), CalendarResource.class.getName(),
-			calendar.getCalendarResourceId());
+		String calendarResourcePath =
+			ExportImportPathUtil.getModelPath(
+				portletDataContext, CalendarResource.class.getName(),
+				calendar.getCalendarResourceId());
 
 		CalendarResource calendarResource =
 			(CalendarResource)portletDataContext.getZipEntryAsObject(

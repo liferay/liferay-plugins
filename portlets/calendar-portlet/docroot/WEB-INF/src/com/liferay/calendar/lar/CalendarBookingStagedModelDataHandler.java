@@ -16,12 +16,12 @@ package com.liferay.calendar.lar;
 
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
+import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
@@ -30,6 +30,7 @@ import java.util.Map;
 
 /**
  * @author Andrea Di Giorgi
+ * @author Daniel Kocsis
  */
 public class CalendarBookingStagedModelDataHandler
 	extends BaseStagedModelDataHandler<CalendarBooking> {
@@ -56,32 +57,13 @@ public class CalendarBookingStagedModelDataHandler
 		StagedModelDataHandlerUtil.exportStagedModel(
 			portletDataContext, calendarBooking.getCalendar());
 
+		if (!calendarBooking.isMasterBooking()) {
+			StagedModelDataHandlerUtil.exportStagedModel(
+				portletDataContext, calendarBooking.getParentCalendarBooking());
+		}
+
 		Element calendarBookingElement =
 			portletDataContext.getExportDataElement(calendarBooking);
-
-		if (!calendarBooking.isMasterBooking()) {
-			CalendarBooking parentCalendarBooking =
-				calendarBooking.getParentCalendarBooking();
-
-			boolean parentCalendarBookingInGlobalScope = false;
-
-			if (parentCalendarBooking.getGroupId() ==
-					portletDataContext.getCompanyGroupId()) {
-
-				parentCalendarBookingInGlobalScope = true;
-			}
-
-			calendarBookingElement.addAttribute(
-				"parent-calendar-booking-uuid",
-				parentCalendarBooking.getUuid());
-			calendarBookingElement.addAttribute(
-				"parent-calendar-booking-in-global-scope",
-				String.valueOf(parentCalendarBookingInGlobalScope));
-
-			portletDataContext.addReferenceElement(
-				calendarBooking, calendarBookingElement, parentCalendarBooking,
-				PortletDataContext.REFERENCE_TYPE_PARENT, true);
-		}
 
 		portletDataContext.addClassedModel(
 			calendarBookingElement,
@@ -97,64 +79,6 @@ public class CalendarBookingStagedModelDataHandler
 
 		long userId = portletDataContext.getUserId(
 			calendarBooking.getUserUuid());
-
-		long[] childCalendarIds = new long[0];
-		long parentCalendarBookingId = 0;
-
-		if (!calendarBooking.isMasterBooking()) {
-			Element calendarBookingElement =
-				portletDataContext.getImportDataStagedModelElement(
-					calendarBooking);
-
-			Element parentCalendarBookingElement =
-				portletDataContext.getReferenceDataElement(
-					calendarBookingElement, CalendarBooking.class, 0,
-					calendarBooking.getParentCalendarBookingId());
-
-			if (parentCalendarBookingElement != null) {
-				StagedModelDataHandlerUtil.importStagedModel(
-					portletDataContext, parentCalendarBookingElement);
-
-				Map<Long, Long> calendarBookingIds =
-					(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-						CalendarBooking.class);
-
-				parentCalendarBookingId = MapUtil.getLong(
-					calendarBookingIds,
-					calendarBooking.getParentCalendarBookingId());
-			}
-			else {
-				String parentCalendarBookingUuid =
-					calendarBookingElement.attributeValue(
-						"parent-calendar-booking-uuid");
-				boolean parentCalendarBookingInGlobalScope =
-					GetterUtil.getBoolean(
-						calendarBookingElement.attributeValue(
-							"parent-calendar-booking-in-global-scope"));
-
-				long parentCalendarBookingGroupId;
-
-				if (parentCalendarBookingInGlobalScope) {
-					parentCalendarBookingGroupId =
-						portletDataContext.getCompanyGroupId();
-				}
-				else {
-					parentCalendarBookingGroupId =
-						portletDataContext.getScopeGroupId();
-				}
-
-				CalendarBooking parentCalendarBooking =
-					CalendarBookingLocalServiceUtil.
-						fetchCalendarBookingByUuidAndGroupId(
-							parentCalendarBookingUuid,
-							parentCalendarBookingGroupId);
-
-				if (parentCalendarBooking != null) {
-					parentCalendarBookingId =
-						parentCalendarBooking.getCalendarBookingId();
-				}
-			}
-		}
 
 		String calendarPath = ExportImportPathUtil.getModelPath(
 			portletDataContext, Calendar.class.getName(),
@@ -174,6 +98,32 @@ public class CalendarBookingStagedModelDataHandler
 			calendarIds, calendarBooking.getCalendarId(),
 			calendarBooking.getCalendarId());
 
+		long parentCalendarBookingId =
+			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT;
+
+		if (!calendarBooking.isMasterBooking()) {
+			String parentCalendarBookingPath =
+				ExportImportPathUtil.getModelPath(
+					portletDataContext, CalendarBooking.class.getName(),
+					calendarBooking.getParentCalendarBookingId());
+
+			CalendarBooking parentCalendarBooking =
+				(CalendarBooking)portletDataContext.getZipEntryAsObject(
+					parentCalendarBookingPath);
+
+			StagedModelDataHandlerUtil.importStagedModel(
+				portletDataContext, parentCalendarBooking);
+
+			Map<Long, Long> calendarBookingIds =
+				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+					CalendarBooking.class);
+
+			parentCalendarBookingId = MapUtil.getLong(
+				calendarBookingIds,
+				calendarBooking.getParentCalendarBookingId(),
+				calendarBooking.getParentCalendarBookingId());
+		}
+
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			calendarBooking, CalendarPortletDataHandler.NAMESPACE);
 
@@ -191,7 +141,7 @@ public class CalendarBookingStagedModelDataHandler
 
 				importedCalendarBooking =
 					CalendarBookingLocalServiceUtil.addCalendarBooking(
-						userId, calendarId, childCalendarIds,
+						userId, calendarId, new long[0],
 						parentCalendarBookingId, calendarBooking.getTitleMap(),
 						calendarBooking.getDescriptionMap(),
 						calendarBooking.getLocation(),
@@ -226,8 +176,8 @@ public class CalendarBookingStagedModelDataHandler
 		else {
 			importedCalendarBooking =
 				CalendarBookingLocalServiceUtil.addCalendarBooking(
-					userId, calendarId, childCalendarIds,
-					parentCalendarBookingId, calendarBooking.getTitleMap(),
+					userId, calendarId, new long[0], parentCalendarBookingId,
+					calendarBooking.getTitleMap(),
 					calendarBooking.getDescriptionMap(),
 					calendarBooking.getLocation(),
 					calendarBooking.getStartTime(),

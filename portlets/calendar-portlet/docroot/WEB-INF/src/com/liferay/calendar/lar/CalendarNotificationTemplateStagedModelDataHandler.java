@@ -33,6 +33,7 @@ import java.util.Map;
 
 /**
  * @author Andrea Di Giorgi
+ * @author Daniel Kocsis
  */
 public class CalendarNotificationTemplateStagedModelDataHandler
 	extends BaseStagedModelDataHandler<CalendarNotificationTemplate> {
@@ -85,14 +86,8 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		long userId = portletDataContext.getUserId(
 			calendarNotificationTemplate.getUserUuid());
 
-		NotificationType notificationType = NotificationType.parse(
-			calendarNotificationTemplate.getNotificationType());
-		NotificationTemplateType notificationTemplateType =
-			NotificationTemplateType.parse(
-				calendarNotificationTemplate.getNotificationTemplateType());
-
 		String calendarPath = ExportImportPathUtil.getModelPath(
-			calendarNotificationTemplate.getGroupId(), Calendar.class.getName(),
+			portletDataContext, Calendar.class.getName(),
 			calendarNotificationTemplate.getCalendarId());
 
 		Calendar calendar = (Calendar)portletDataContext.getZipEntryAsObject(
@@ -108,6 +103,12 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		long calendarId = MapUtil.getLong(
 			calendarIds, calendarNotificationTemplate.getCalendarId(),
 			calendarNotificationTemplate.getCalendarId());
+
+		NotificationType notificationType = NotificationType.parse(
+			calendarNotificationTemplate.getNotificationType());
+		NotificationTemplateType notificationTemplateType =
+			NotificationTemplateType.parse(
+				calendarNotificationTemplate.getNotificationTemplateType());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			calendarNotificationTemplate, CalendarPortletDataHandler.NAMESPACE);
