@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -12,215 +12,173 @@
  * details.
  */
 
-package com.liferay.portlet.portletconfiguration.action;
+package com.liferay.compat.hook.action;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.ConfigurationAction;
-import com.liferay.portal.kernel.portlet.ResourceServingConfigurationAction;
-import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
+import com.liferay.portal.kernel.struts.StrutsPortletAction;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portal.service.permission.PortletPermissionUtil;
-import com.liferay.portal.struts.PortletAction;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portlet.portletconfiguration.util.PortletConfigurationUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.filter.ActionRequestWrapper;
+import javax.portlet.filter.RenderRequestWrapper;
+import javax.portlet.filter.ResourceRequestWrapper;
 
-import javax.servlet.ServletContext;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
+import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author Brian Wing Shun Chan
- * @author Raymond Augé
+ * @author Shinn Lok
  */
-public class EditConfigurationAction extends PortletAction {
+public class CompatEditConfigurationAction extends BaseStrutsPortletAction {
 
 	@Override
 	public void processAction(
-			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-			ActionRequest actionRequest, ActionResponse actionResponse)
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
-		Portlet portlet = null;
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			actionRequest);
 
-		try {
-			portlet = getPortlet(actionRequest);
-		}
-		catch (PrincipalException pe) {
-			SessionErrors.add(
-				actionRequest, PrincipalException.class.getName());
+		PortletPreferences portletPreferences = getPortletPreferences(
+			request, actionRequest.getPreferences());
 
-			setForward(actionRequest, "portlet.portlet_configuration.error");
+		actionRequest = new ConfigurationActionRequest(
+			actionRequest, portletPreferences);
 
-			return;
-		}
-
-		ConfigurationAction configurationAction = getConfigurationAction(
-			portlet);
-
-		if (configurationAction != null) {
-			configurationAction.processAction(
-				portletConfig, actionRequest, actionResponse);
-		}
+		originalStrutsPortletAction.processAction(
+			portletConfig, actionRequest, actionResponse);
 	}
 
 	@Override
-	public ActionForward render(
-			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-			RenderRequest renderRequest, RenderResponse renderResponse)
+	public String render(
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
-		Portlet portlet = null;
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			renderRequest);
 
-		try {
-			portlet = getPortlet(renderRequest);
-		}
-		catch (PrincipalException pe) {
-			SessionErrors.add(
-				renderRequest, PrincipalException.class.getName());
+		PortletPreferences portletPreferences = getPortletPreferences(
+			request, renderRequest.getPreferences());
 
-			return mapping.findForward("portlet.portlet_configuration.error");
-		}
+		renderRequest = new ConfigurationRenderRequest(
+			renderRequest, portletPreferences);
 
-		renderResponse.setTitle(getTitle(portlet, renderRequest));
+		request.setAttribute(
+			JavaConstants.JAVAX_PORTLET_REQUEST, renderRequest);
 
-		ConfigurationAction configurationAction = getConfigurationAction(
-			portlet);
-
-		if (configurationAction != null) {
-			String path = configurationAction.render(
-				portletConfig, renderRequest, renderResponse);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Configuration action returned render path " + path);
-			}
-
-			if (Validator.isNotNull(path)) {
-				renderRequest.setAttribute(
-					WebKeys.CONFIGURATION_ACTION_PATH, path);
-			}
-			else {
-				_log.error("Configuration action returned a null path");
-			}
-		}
-
-		return mapping.findForward(getForward(
-			renderRequest, "portlet.portlet_configuration.edit_configuration"));
+		return originalStrutsPortletAction.render(
+			portletConfig, renderRequest, renderResponse);
 	}
 
 	@Override
 	public void serveResource(
-			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse)
 		throws Exception {
 
-		Portlet portlet = null;
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			resourceRequest);
 
-		try {
-			portlet = getPortlet(resourceRequest);
-		}
-		catch (PrincipalException pe) {
-			return;
-		}
+		PortletPreferences portletPreferences = getPortletPreferences(
+			request, resourceRequest.getPreferences());
 
-		ResourceServingConfigurationAction resourceServingConfigurationAction =
-			(ResourceServingConfigurationAction)getConfigurationAction(portlet);
+		resourceRequest = new ConfigurationResourceRequest(
+			resourceRequest, portletPreferences);
 
-		if (resourceServingConfigurationAction != null) {
-			resourceServingConfigurationAction.serveResource(
-				portletConfig, resourceRequest, resourceResponse);
-		}
+		originalStrutsPortletAction.serveResource(
+			portletConfig, resourceRequest, resourceResponse);
 	}
 
-	protected ConfigurationAction getConfigurationAction(Portlet portlet)
-		throws Exception {
+	protected PortletPreferences getPortletPreferences(
+			HttpServletRequest request, PortletPreferences portletPreferences)
+		throws PortalException, SystemException {
 
-		if (portlet == null) {
-			return null;
+		String portletResource = ParamUtil.getString(
+			request, "portletResource");
+
+		if (Validator.isNull(portletResource)) {
+			return portletPreferences;
 		}
 
-		ConfigurationAction configurationAction =
-			portlet.getConfigurationActionInstance();
-
-		if (configurationAction == null) {
-			_log.error(
-				"Configuration action for portlet " + portlet.getPortletId() +
-					" is null");
-		}
-
-		return configurationAction;
+		return PortletPreferencesFactoryUtil.getPortletSetup(
+			request, portletResource);
 	}
 
-	protected Portlet getPortlet(PortletRequest portletRequest)
-		throws Exception {
+	private class ConfigurationActionRequest extends ActionRequestWrapper {
 
-		long companyId = PortalUtil.getCompanyId(portletRequest);
+		public ConfigurationActionRequest(
+			ActionRequest actionRequest,
+			PortletPreferences portletPreferences) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+			super(actionRequest);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		String portletId = ParamUtil.getString(
-			portletRequest, "portletResource");
-
-		if (!PortletPermissionUtil.contains(
-				permissionChecker, themeDisplay.getLayout(), portletId,
-				ActionKeys.CONFIGURATION)) {
-
-			throw new PrincipalException();
+			_portletPreferences = portletPreferences;
 		}
 
-		return PortletLocalServiceUtil.getPortletById(companyId, portletId);
-	}
-
-	protected String getTitle(Portlet portlet, RenderRequest renderRequest)
-		throws Exception {
-
-		ServletContext servletContext =
-			(ServletContext)renderRequest.getAttribute(WebKeys.CTX);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				renderRequest, portlet.getPortletId());
-
-		String title = PortletConfigurationUtil.getPortletTitle(
-			portletSetup, themeDisplay.getLanguageId());
-
-		if (Validator.isNull(title)) {
-			title = PortalUtil.getPortletTitle(
-				portlet, servletContext, themeDisplay.getLocale());
+		@Override
+		public PortletPreferences getPreferences() {
+			return _portletPreferences;
 		}
 
-		return title;
+		private PortletPreferences _portletPreferences;
+
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		EditConfigurationAction.class);
+	private class ConfigurationRenderRequest extends RenderRequestWrapper {
+
+		public ConfigurationRenderRequest(
+			RenderRequest renderRequest,
+			PortletPreferences portletPreferences) {
+
+			super(renderRequest);
+
+			_portletPreferences = portletPreferences;
+		}
+
+		@Override
+		public PortletPreferences getPreferences() {
+			return _portletPreferences;
+		}
+
+		private PortletPreferences _portletPreferences;
+
+	}
+
+	private class ConfigurationResourceRequest extends ResourceRequestWrapper {
+
+		public ConfigurationResourceRequest(
+			ResourceRequest resourceRequest,
+			PortletPreferences portletPreferences) {
+
+			super(resourceRequest);
+
+			_portletPreferences = portletPreferences;
+		}
+
+		@Override
+		public PortletPreferences getPreferences() {
+			return _portletPreferences;
+		}
+
+		private PortletPreferences _portletPreferences;
+
+	}
 
 }

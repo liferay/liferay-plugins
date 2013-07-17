@@ -29,4 +29,8 @@
 		<struts-action-path>/portal/update_password</struts-action-path>
 		<struts-action-impl>com.liferay.compat.hook.action.CompatUpdatePasswordAction</struts-action-impl>
 	</struts-action>
+	<struts-action>
+		<struts-action-path>/portlet_configuration/edit_configuration</struts-action-path>
+		<struts-action-impl>com.liferay.compat.hook.action.CompatEditConfigurationAction</struts-action-impl>
+	</struts-action>
 </hook>
