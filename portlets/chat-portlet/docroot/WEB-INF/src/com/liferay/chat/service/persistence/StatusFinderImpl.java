@@ -165,7 +165,7 @@ public class StatusFinderImpl
 		String sql = CustomSQLUtil.get(FIND_BY_USERS_GROUPS);
 
 		if (groupNames.length == 0) {
-			sql = StringUtil.replace(
+			return StringUtil.replace(
 				sql,
 				new String[] {
 					"[$USERS_GROUPS_JOIN$]", "[$USERS_GROUPS_WHERE$]"
