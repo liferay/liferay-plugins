@@ -52,9 +52,9 @@ public class RSSUtil extends com.liferay.util.RSSUtil {
 			content = StringUtil.replace(
 				content,
 				new String[] {
-					"[$BOOKING_DESCRIPTION$]", "[$BOOKING_END_DATE$]",
-					"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
-					"[$BOOKING_TITLE$]"
+					"[$EVENT_DESCRIPTION$]", "[$EVENT_END_DATE$]",
+					"[$EVENT_LOCATION$]", "[$EVENT_START_DATE$]",
+					"[$EVENT_TITLE$]"
 				},
 				new String[] {
 					calendarBooking.getDescription(themeDisplay.getLocale()),

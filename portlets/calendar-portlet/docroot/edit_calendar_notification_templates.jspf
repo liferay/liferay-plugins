@@ -83,30 +83,30 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 
 		<dl>
 			<dt>
-				[$BOOKING_LOCATION$]
+				[$EVENT_LOCATION$]
 			</dt>
 			<dd>
-				<liferay-ui:message key="the-booking-location" />
+				<liferay-ui:message key="the-calendar-booking-location" />
 			</dd>
 			<dt>
-				[$BOOKING_START_DATE$]
+				[$EVENT_START_DATE$]
 			</dt>
 			<dd>
-				<liferay-ui:message key="the-booking-start-date" />
+				<liferay-ui:message key="the-calendar-booking-start-date" />
 			</dd>
 			<dt>
-				[$BOOKING_TITLE$]
+				[$EVENT_TITLE$]
 			</dt>
 			<dd>
-				<liferay-ui:message key="the-booking-title" />
+				<liferay-ui:message key="the-calendar-booking-title" />
 			</dd>
 
 			<c:if test="<%= notificationTemplateType == NotificationTemplateType.INVITE %>">
 				<dt>
-					[$BOOKING_URL$]
+					[$EVENT_URL$]
 				</dt>
 				<dd>
-					<liferay-ui:message key="the-booking-url" />
+					<liferay-ui:message key="the-calendar-booking-url" />
 				</dd>
 			</c:if>
 
