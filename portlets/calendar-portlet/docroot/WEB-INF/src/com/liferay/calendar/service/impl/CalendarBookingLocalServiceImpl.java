@@ -179,7 +179,7 @@ public class CalendarBookingLocalServiceImpl
 			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(), calendarBookingId,
 			CalendarActivityKeys.ADD_CALENDAR_BOOKING,
-			getExtraDataJSON(calendarBooking, serviceContext), 0);
+			getExtraDataJSON(calendarBooking), 0);
 
 		// Workflow
 
@@ -467,7 +467,8 @@ public class CalendarBookingLocalServiceImpl
 			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(),
 			calendarBooking.getCalendarBookingId(),
-			SocialActivityConstants.TYPE_MOVE_TO_TRASH, StringPool.BLANK, 0);
+			SocialActivityConstants.TYPE_MOVE_TO_TRASH,
+			getExtraDataJSON(calendarBooking), 0);
 	}
 
 	@Override
@@ -504,8 +505,8 @@ public class CalendarBookingLocalServiceImpl
 		socialActivityLocalService.addActivity(
 			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(), calendarBookingId,
-			SocialActivityConstants.TYPE_RESTORE_FROM_TRASH, StringPool.BLANK,
-			0);
+			SocialActivityConstants.TYPE_RESTORE_FROM_TRASH,
+			getExtraDataJSON(calendarBooking), 0);
 	}
 
 	@Override
@@ -629,7 +630,6 @@ public class CalendarBookingLocalServiceImpl
 		User user = userPersistence.findByPrimaryKey(userId);
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
-		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTime);
@@ -688,7 +688,7 @@ public class CalendarBookingLocalServiceImpl
 			userId, calendarBooking.getGroupId(),
 			CalendarBooking.class.getName(), calendarBookingId,
 			CalendarActivityKeys.UPDATE_CALENDAR_BOOKING,
-			getExtraDataJSON(calendarBooking, serviceContext), 0);
+			getExtraDataJSON(calendarBooking), 0);
 
 		// Workflow
 
@@ -1009,13 +1009,11 @@ public class CalendarBookingLocalServiceImpl
 		return childCalendarIds;
 	}
 
-	protected String getExtraDataJSON(
-		CalendarBooking calendarBooking, ServiceContext serviceContext) {
+	protected String getExtraDataJSON(CalendarBooking calendarBooking) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put(
-			"title", calendarBooking.getTitle(serviceContext.getLocale()));
+		jsonObject.put("title", calendarBooking.getTitle());
 
 		return jsonObject.toString();
 	}
