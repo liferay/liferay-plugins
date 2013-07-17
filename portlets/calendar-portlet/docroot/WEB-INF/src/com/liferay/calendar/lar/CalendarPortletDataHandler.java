@@ -220,7 +220,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 		notificationTemplateActionableDynamicQuery.performCount();
 	}
 
-
 	protected static final String RESOURCE_NAME =
 		"com.liferay.portlet.calendar";
+
 }

@@ -116,9 +116,10 @@ public class CalendarResourceLocalServiceImpl
 			serviceContext.setAddGuestPermissions(true);
 
 			calendarLocalService.addCalendar(
-			userId, calendarResource.getGroupId(), calendarResourceId, nameMap,
-			descriptionMap, PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
-			false, false, serviceContext);
+				userId, calendarResource.getGroupId(), calendarResourceId,
+				nameMap, descriptionMap,
+				PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, false, false,
+				serviceContext);
 		}
 
 		// Asset
