@@ -174,31 +174,23 @@ public class StatusFinderImpl
 				new String[] {StringPool.BLANK, StringPool.BLANK});
 		}
 
+		StringBundler sb = new StringBundler(groupNames.length * 2 - 1);
+
+		for (int i = 0; i < groupNames.length; i++) {
+			sb.append(StringPool.QUESTION);
+
+			if ((i + 1) < groupNames.length) {
+				sb.append(StringPool.COMMA);
+			}
+		}
+
 		return StringUtil.replace(
 			sql,
 			new String[] {"[$USERS_GROUPS_JOIN$]", "[$USERS_GROUPS_WHERE$]"},
 			new String[] {
 				"INNER JOIN Group_ ON Group_.groupId = Users_Groups.groupId",
-				"AND Group_.name NOT IN (" + getNames(groupNames) + ")"
+				"AND Group_.name NOT IN (" + sb.toString() + ")"
 			});
-	}
-
-	protected String getNames(String[] names) {
-		if (names.length == 0) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler(names.length * 2 - 1);
-
-		for (int i = 0; i < names.length; i++) {
-			sb.append(StringPool.QUESTION);
-
-			if ((i + 1) < names.length) {
-				sb.append(StringPool.COMMA);
-			}
-		}
-
-		return sb.toString();
 	}
 
 }
