@@ -119,11 +119,10 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 <%
 PortletURL iteratorURL = renderResponse.createRenderURL();
 
-iteratorURL.setParameter("mbThreadId", Long.toString(mbThreadId));
+iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 %>
 
 <liferay-ui:search-container
-	delta="<%= SEARCH_CONTAINER_PAGE_DEFAULT_DELTA %>"
 	emptyResultsMessage="no-messages-found"
 	iteratorURL="<%= iteratorURL %>"
 >
