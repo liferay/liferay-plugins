@@ -85,7 +85,7 @@ String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookin
 	window.<portlet:namespace />calendarsMenu = {
 		items: [
 			{
-				caption: '<liferay-ui:message key="add-event" />',
+				caption: '<liferay-ui:message key="add-calendar-booking" />',
 				fn: function(event) {
 					var instance = this;
 
