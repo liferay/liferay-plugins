@@ -105,7 +105,7 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("<div class=\"grouped-activity-body-container\">");
 		sb.append("<div class=\"grouped-activity-body\">");
 
-		int viewableActivities = 0;
+		boolean hasViewableActivities = false;
 
 		List<SocialActivity> activities =
 			SocialActivityLocalServiceUtil.getActivitySetActivities(
@@ -139,10 +139,10 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 					serviceContext));
 			sb.append("</div>");
 
-			viewableActivities++;
+			hasViewableActivities = true;
 		}
 
-		if (viewableActivities == 0) {
+		if (!hasViewableActivities) {
 			return null;
 		}
 
@@ -163,6 +163,7 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 			classPK);
 
 		sb.append(tasksEntry.getPriorityLabel());
+
 		sb.append("\"><div class=\"activity-body\"><div class=\"title\">");
 		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"tasks-entry-content\">");
