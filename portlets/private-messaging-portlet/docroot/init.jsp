@@ -60,7 +60,9 @@ page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
 
 <%@ page import="java.util.List" %>
 
-<%@ page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.PortletURL" %><%@
+page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
@@ -72,4 +74,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMMM
 
 <%!
 public static final boolean LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED));
+
+public static final int SEARCH_CONTAINER_PAGE_DEFAULT_DELTA = GetterUtil.getInteger(PropsUtil.get(PropsKeys.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA));
 %>
