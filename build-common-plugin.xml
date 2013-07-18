@@ -264,7 +264,7 @@
 			classpathref="service.classpath"
 			fork="true"
 			newenvironment="true"
-			outputproperty="service.test.output"
+			outputproperty="service.output"
 		>
 			<jvmarg value="-Xms512m" />
 			<jvmarg value="-Xmx1024m" />
@@ -305,10 +305,10 @@
 			</then>
 		</if>
 
-		<echo>${service.test.output}</echo>
+		<echo>${service.output}</echo>
 
 		<if>
-			<contains string="${service.test.output}" substring="Error" />
+			<contains string="${service.output}" substring="Error" />
 			<then>
 				<fail>Service Builder generated exceptions.</fail>
 			</then>
