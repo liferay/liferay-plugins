@@ -112,7 +112,7 @@ html > body.lfr-dockbar-pinned {
 		@include transition-duration(.5s);
 	}
 
-	li.selected a, a:hover, li:hover a, .hover a {
+	li.selected a, a:hover, .hover a {
 		background-color: rgba(0,0,0, .48);
 		text-decoration: none;
 
@@ -158,11 +158,10 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.child-menu {
+			display: none;
 			height: 0;
 			left: auto;
-			margin-top: -100px;
 			min-width: 150px;
-			opacity: 0;
 			position: absolute;
 			right: 0;
 			top: 100%;
@@ -200,11 +199,10 @@ html > body.lfr-dockbar-pinned {
 		}
 	}
 
-	.user-notification-events a, .user-notification-events a:hover, li:hover .user-notification-events a {
+	.user-notification-events a, .user-notification-events a:hover {
 		background: transparent;
 		box-shadow: none;
 		color: $blue;
-		display: inline;
 		font-weight: normal;
 		padding: 0;
 		text-shadow: none;
@@ -219,15 +217,19 @@ html > body.lfr-dockbar-pinned {
 		@include clear-both;
 
 		.aui-menu-content {
+			background-image: none;
+
 			@include menu-mix;
 		}
 
 		.user-notification-event-content {
 			border-bottom: 1px solid $default-border-color;
+			cursor: pointer;
 		}
 
 		.user-notification-event-sender {
 			float: left;
+			padding: .75em;
 			position: relative;
 		}
 
@@ -244,18 +246,29 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.icon {
-			bottom: 0;
-			left: 0;
+			bottom: .25em;
 			position: absolute;
+			right: .5em;
 		}
 
 		.notification-entry {
 			color: $default-text-color;
-			margin-left: 45px;
-			padding: 0.125em 0.5em;
+			margin-left: 50px;
+			padding: .5em .65em;
+
+			.title a {
+				display: inline;
+				font-weight: bold;
+			}
+
+			.datetime {
+				font-size: .85em;
+			}
 		}
 
-		div.request, div.user-notification-event-footer {
+		.request {
+			text-align: right;
+
 			a {
 				display: inline-block;
 
@@ -263,8 +276,17 @@ html > body.lfr-dockbar-pinned {
 			}
 		}
 
-		.request {
-			text-align: right;
+		.user-notification-event-footer a {
+			&, &:hover {
+				display: block;
+				padding: .5em;
+			}
+
+			@include border-radius(0);
+		}
+
+		.dismiss-notifications {
+			border-bottom: 1px solid $default-border-color;
 		}
 	}
 
@@ -309,7 +331,7 @@ html > body.lfr-dockbar-pinned {
 			border-width: 0;
 		}
 
-		.portlet-topper {
+		.portlet-topper, .favorite-msg-info {
 			display: none;
 		}
 
@@ -411,16 +433,15 @@ html > body.lfr-dockbar-pinned {
 				}
 			}
 
-			.social-office-enabled a {
-			}
+			span.action {
+				position: relative;
+				z-index: 1;
 
-			span.action a {
-				font-size: 0;
-				margin-top: 8px;
-				text-indent: -9999em;
-			}
-
-			span.favorite a {
+				a {
+					font-size: 0;
+					margin-top: 8px;
+					text-indent: -9999em;
+				}
 			}
 
 			ul.site-list, li {
@@ -468,9 +489,8 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.child-menu {
-			margin-top: 0;
+			display: block;
 			height: auto;
-			opacity: 1;
 		}
 	}
 }

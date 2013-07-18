@@ -110,6 +110,11 @@ catch (NoSuchRoleException nsre) {
 						<li>
 							<a href="<%= themeDisplay.getURLMyAccount().toString() %>"><liferay-ui:message key="my-account" /></a>
 						</li>
+						<c:if test="<%= themeDisplay.isShowControlPanelIcon() %>">
+						<li>
+							<a href="<%= themeDisplay.getURLControlPanel().toString() %>"><liferay-ui:message key="control-panel" /></a>
+						</li>
+						</c:if>
 						<c:if test="<%= themeDisplay.isShowSignOutIcon() %>">
 						<li>
 							<a href="<%= themeDisplay.getURLSignOut().toString() %>"><liferay-ui:message key="sign-out" /></a>
@@ -117,19 +122,8 @@ catch (NoSuchRoleException nsre) {
 						</c:if>
 					</ul>
 				</li>
-				<li class="config-item has-submenu">
-					<a class="config-icon" href="javascript:;"><img alt="Configuration Icon" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" height="15" width="15" /><span class="aui-helper-hidden">Configuration</span></a>
-
-					<ul class="child-menu">
-						<li>
-							<a href="javascript:;" id="toggleDockbar">Toggle Dockbar</a>
-						</li>
-						<c:if test="<%= themeDisplay.isShowControlPanelIcon() %>">
-						<li>
-							<a href="<%= themeDisplay.getURLControlPanel().toString() %>"><liferay-ui:message key="control-panel" /></a>
-						</li>
-						</c:if>
-					</ul>
+				<li class="config-item">
+					<a class="config-icon" href="javascript:;" id="toggleDockbar"><img alt="Configuration Icon" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" height="15" width="15" /><span class="aui-helper-hidden"><liferay-ui:message key="toggle" /> <liferay-ui:message key="javax.portlet.title.145" /></span></a>
 				</li>
 			</ul>
 		</nav>
@@ -272,10 +266,6 @@ catch (NoSuchRoleException nsre) {
 		});
 
 		new toggleUserBarMenus({
-			node: userBar.one('.config-item')
-		});
-
-		new toggleUserBarMenus({
 			intent: 'close',
 			node: html
 		});
@@ -311,7 +301,6 @@ catch (NoSuchRoleException nsre) {
 				'click',
 				function (event) {
 					event.preventDefault();
-					event.stopPropagation();
 
 					body.toggleClass('show-dockbar');
 				}
