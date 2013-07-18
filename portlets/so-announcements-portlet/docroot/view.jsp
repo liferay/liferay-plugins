@@ -36,28 +36,26 @@
 	<%
 	LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
 
-	Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(preferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
-
-	long[] selectedScopeGroups = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()))));
-	long[] selectedScopeOrganizations = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeOrganizations", "")));
-	long[] selectedScopeRoles = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeRoles", "")));
-	long[] selectedScopeUserGroups = GetterUtil.getLongValues(StringUtil.split(PrefsParamUtil.getString(preferences, request, "selectedScopeUserGroups", "")));
-
 	if (customizeAnnouncementsDisplayed) {
-		if (selectedScopeGroups.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroups);
+		long[] selectedScopeGroupsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
+		long[] selectedScopeOrganizationsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
+		long[] selectedScopeRolesArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
+		long[] selectedScopeUserGroupsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
+
+		if (selectedScopeGroupsArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroupsArray);
 		}
 
-		if (selectedScopeOrganizations.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizations);
+		if (selectedScopeOrganizationsArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizationsArray);
 		}
 
-		if (selectedScopeRoles.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Role.class.getName()), selectedScopeRoles);
+		if (selectedScopeRolesArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Role.class.getName()), selectedScopeRolesArray);
 		}
 
-		if (selectedScopeUserGroups.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(UserGroup.class.getName()), selectedScopeUserGroups);
+		if (selectedScopeUserGroupsArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(UserGroup.class.getName()), selectedScopeUserGroupsArray);
 		}
 	}
 	else {
@@ -75,7 +73,6 @@
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", pageDelta, portletURL, null, "there-are-no-unread-entries");
 
 	List<AnnouncementsEntry> results = null;
-
 	int total = 0;
 	%>
 

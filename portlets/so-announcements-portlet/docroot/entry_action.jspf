@@ -64,7 +64,7 @@
 			</span>
 		</c:if>
 
-		<span class="toggle action aui-helper-hidden">
+		<span class="toggle action hide">
 			<a class="toggle-entry" data-entryId="<%= entry.getEntryId() %>" href="javascript:;">
 				<span><liferay-ui:message key="view-more" /></span>
 			</a>
@@ -80,7 +80,8 @@
 	if (content.height() > 75) {
 		var toggle = entry.one('.toggle');
 
-		toggle.removeClass('aui-helper-hidden');
+		toggle.removeClass('hide');
+
 		entry.addClass('announcement-collapsed')
 	}
 	else {

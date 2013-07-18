@@ -130,7 +130,7 @@ if (entry == null) {
 	</aui:button-row>
 </aui:form>
 
-<div class="entry aui-helper-hidden" id="<portlet:namespace />preview">
+<div class="entry hide" id="<portlet:namespace />preview">
 	<div class="user-portrait">
 		<span class="avatar">
 
@@ -163,10 +163,10 @@ if (entry == null) {
 			</div>
 		</div>
 
-		<div class="entry-footer" id="<%= renderResponse.getNamespace() + "entryFooter" %>">
+		<div class="entry-footer" id="<portlet:namespace />entryFooter">
 			<div class="entry-footer-toolbar">
 				<div class="edit-actions">
-					<span class="toggle action aui-helper-hidden">
+					<span class="toggle action hide">
 						<a class="toggle-entry" data-entryId="preview" href="javascript:;">
 							<span><liferay-ui:message key="view-more" /></span>
 						</a>
@@ -195,8 +195,8 @@ if (entry == null) {
 
 		var preview = A.one('#<portlet:namespace />preview');
 
-		if (preview.hasClass('aui-helper-hidden')) {
-			preview.removeClass('aui-helper-hidden');
+		if (preview.hasClass('hide')) {
+			preview.removeClass('hide');
 		}
 
 		var priority = A.one('#priority')._node.selectedIndex;
@@ -240,7 +240,8 @@ if (entry == null) {
 		if (previewContent.height() > 75) {
 			var toggle = preview.one('.toggle');
 
-			toggle.removeClass('aui-helper-hidden');
+			toggle.removeClass('hide');
+
 			preview.addClass('announcement-collapsed')
 		}
 		else {

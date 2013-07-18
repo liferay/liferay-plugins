@@ -56,14 +56,9 @@ if (!roles.isEmpty()) {
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
 	<liferay-ui:panel-container extended="<%= true %>" id="soAnnouncementsConfigurationsPanelContainer" persistState="<%= true %>">
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="soAnnouncementsDisplaySettingsPanel" persistState="<%= true %>" title="display-settings">
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="displaySettingsPanel" persistState="<%= true %>" title="display-settings">
 			<aui:fieldset>
-
-				<%
-				String modifiedPageDelta = renderResponse.getNamespace() + "modifiedPageDelta();";
-				%>
-
-				<aui:select label="entries-to-display-per-page" name="preferences--pageDelta--" onChange="<%= modifiedPageDelta %>">
+				<aui:select label="entries-to-display-per-page" name="preferences--pageDelta--">
 
 					<%
 					for (int pageDeltaValue : GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES))) {
@@ -79,16 +74,10 @@ if (!roles.isEmpty()) {
 			</aui:fieldset>
 		</liferay-ui:panel>
 
-		<%
-		Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(preferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="announcementsDisplayedPanel" persistState="<%= true %>" title="announcements-displayed">
+			<aui:input cssClass="customize-announcements-displayed" id="customizeAnnouncementsDisplayed" name="preferences--customizeAnnouncementsDisplayed--" title="customize-announcements-displayed" type="checkbox" value="<%= customizeAnnouncementsDisplayed %>" />
 
-		String toggleCustomizeAnnouncementsDisplayed = renderResponse.getNamespace() + "toggleCustomizeAnnouncementsDisplayed();";
-		%>
-
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="soAnnouncementsDisplayPanel" persistState="<%= true %>" title="announcements-displayed">
-			<aui:input cssClass="customize-announcements-displayed" id="customizeAnnouncementsDisplayedInput" name="preferences--customizeAnnouncementsDisplayed--" onChange="<%= toggleCustomizeAnnouncementsDisplayed %>" title="customize-announcements-displayed" type="checkbox" value="<%= customizeAnnouncementsDisplayed %>" />
-
-			<div class="<%= customizeAnnouncementsDisplayed ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />customizeAnnouncementsDisplayed">
+			<div class="<%= customizeAnnouncementsDisplayed ? "" : "hide" %>" id="<portlet:namespace />announcementsDisplayed">
 				<div class="portlet-msg-info">
 					<liferay-ui:message key="general-annnouncements-will-always-be-shown-select-any-other-distribution-scopes-you-would-like-to-display" />
 				</div>
@@ -98,203 +87,170 @@ if (!roles.isEmpty()) {
 					param="tabs1"
 					refresh="<%= false %>"
 				>
+					<c:if test="<%= !groups.isEmpty() %>">
+						<liferay-ui:section>
+							<aui:fieldset cssClass="scope-section-holder">
 
-				<c:if test="<%= !groups.isEmpty() %>">
-					<liferay-ui:section>
-						<aui:fieldset cssClass="scope-section-holder">
+								<%
+								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
-							<%
-							String selectedScopeGroups;
-							try {
-								selectedScopeGroups = PrefsParamUtil.getString(preferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()));
-							} catch (Exception e) {
-								selectedScopeGroups = "";
-							}
-
-							// Left list
-							List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
-							for (Group group : groups) {
-								if (selectedScopeGroups.contains(String.valueOf(group.getGroupId()))) {
-									leftList.add(new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale)));
+								for (Group group : groups) {
+									if (selectedScopeGroups.contains(String.valueOf(group.getGroupId()))) {
+										leftList.add(new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale)));
+									}
 								}
-							}
 
-							// Right list
-							List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+								List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-							for (Group group : groups) {
+								for (Group group : groups) {
+									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale));
 
-								KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale));
-								if (!leftList.contains(tempKeyValuePair)) {
-									rightList.add(tempKeyValuePair);
+									if (!leftList.contains(tempKeyValuePair)) {
+										rightList.add(tempKeyValuePair);
+									}
 								}
-							}
-							%>
+								%>
 
-							<aui:input name="preferences--selectedScopeGroups--" type="hidden" />
+								<aui:input name="preferences--selectedScopeGroups--" type="hidden" />
 
-							<div id="<portlet:namespace />scopeGroupsBoxes">
-								<liferay-ui:input-move-boxes
-									leftBoxName="currentScopeGroups"
-									leftList="<%= leftList %>"
-									leftReorder="true"
-									leftTitle="displaying"
-									rightBoxName="availableScopeGroups"
-									rightList="<%= rightList %>"
-									rightTitle="available"
-								/>
-							</div>
-						</aui:fieldset>
-					</liferay-ui:section>
-				</c:if>
+								<div id="<portlet:namespace />scopeGroupsBoxes">
+									<liferay-ui:input-move-boxes
+										leftBoxName="currentScopeGroups"
+										leftList="<%= leftList %>"
+										leftReorder="true"
+										leftTitle="displaying"
+										rightBoxName="availableScopeGroups"
+										rightList="<%= rightList %>"
+										rightTitle="available"
+									/>
+								</div>
+							</aui:fieldset>
+						</liferay-ui:section>
+					</c:if>
 
-				<c:if test="<%= !organizations.isEmpty() %>">
-					<liferay-ui:section>
-						<aui:fieldset cssClass="scope-section-holder">
+					<c:if test="<%= !organizations.isEmpty() %>">
+						<liferay-ui:section>
+							<aui:fieldset cssClass="scope-section-holder">
 
-							<%
-							String selectedScopeOrganizations;
-							try {
-								selectedScopeOrganizations = GetterUtil.getString(PrefsParamUtil.getString(preferences, request, "selectedScopeOrganizations", ""));
-							} catch (Exception e) {
-								selectedScopeOrganizations = "";
-							}
+								<%
+								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
-							// Left list
-							List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
-							for (Organization organization : organizations) {
-								if (selectedScopeOrganizations.contains(String.valueOf(organization.getOrganizationId()))) {
-									leftList.add(new KeyValuePair(String.valueOf(organization.getOrganizationId()), organization.getName()));
+								for (Organization organization : organizations) {
+									if (selectedScopeOrganizations.contains(String.valueOf(organization.getOrganizationId()))) {
+										leftList.add(new KeyValuePair(String.valueOf(organization.getOrganizationId()), organization.getName()));
+									}
 								}
-							}
 
-							// Right list
-							List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+								List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-							for (Organization organization : organizations) {
+								for (Organization organization : organizations) {
+									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(organization.getOrganizationId()), organization.getName());
 
-								KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(organization.getOrganizationId()), organization.getName());
-								if (!leftList.contains(tempKeyValuePair)) {
-									rightList.add(tempKeyValuePair);
+									if (!leftList.contains(tempKeyValuePair)) {
+										rightList.add(tempKeyValuePair);
+									}
 								}
-							}
-							%>
+								%>
 
-							<aui:input name="preferences--selectedScopeOrganizations--" type="hidden" />
+								<aui:input name="preferences--selectedScopeOrganizations--" type="hidden" />
 
-							<div id="<portlet:namespace />scopeOrganizationsBoxes">
-								<liferay-ui:input-move-boxes
-									leftBoxName="currentScopeOrganizations"
-									leftList="<%= leftList %>"
-									leftReorder="true"
-									leftTitle="displaying"
-									rightBoxName="availableScopeOrganizations"
-									rightList="<%= rightList %>"
-									rightTitle="available"
-								/>
-							</div>
-						</aui:fieldset>
-					</liferay-ui:section>
-				</c:if>
+								<div id="<portlet:namespace />scopeOrganizationsBoxes">
+									<liferay-ui:input-move-boxes
+										leftBoxName="currentScopeOrganizations"
+										leftList="<%= leftList %>"
+										leftReorder="true"
+										leftTitle="displaying"
+										rightBoxName="availableScopeOrganizations"
+										rightList="<%= rightList %>"
+										rightTitle="available"
+									/>
+								</div>
+							</aui:fieldset>
+						</liferay-ui:section>
+					</c:if>
 
-				<c:if test="<%= !userGroups.isEmpty() %>">
-					<liferay-ui:section>
-						<aui:fieldset cssClass="scope-section-holder">
+					<c:if test="<%= !userGroups.isEmpty() %>">
+						<liferay-ui:section>
+							<aui:fieldset cssClass="scope-section-holder">
 
-							<%
-							String selectedScopeUserGroups;
-							try {
-								selectedScopeUserGroups = GetterUtil.getString(PrefsParamUtil.getString(preferences, request, "selectedScopeUserGroups", ""));
-							} catch (Exception e) {
-								selectedScopeUserGroups = "";
-							}
+								<%
+								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
-							// Left list
-							List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
-							for (UserGroup userGroup : userGroups) {
-								if (selectedScopeUserGroups.contains(String.valueOf(userGroup.getUserGroupId()))) {
-									leftList.add(new KeyValuePair(String.valueOf(userGroup.getUserGroupId()), userGroup.getName()));
+								for (UserGroup userGroup : userGroups) {
+									if (selectedScopeUserGroups.contains(String.valueOf(userGroup.getUserGroupId()))) {
+										leftList.add(new KeyValuePair(String.valueOf(userGroup.getUserGroupId()), userGroup.getName()));
+									}
 								}
-							}
 
-							// Right list
-							List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+								List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-							for (UserGroup userGroup : userGroups) {
+								for (UserGroup userGroup : userGroups) {
+									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(userGroup.getUserGroupId()), userGroup.getName());
 
-								KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(userGroup.getUserGroupId()), userGroup.getName());
-								if (!leftList.contains(tempKeyValuePair)) {
-									rightList.add(tempKeyValuePair);
+									if (!leftList.contains(tempKeyValuePair)) {
+										rightList.add(tempKeyValuePair);
+									}
 								}
-							}
-							%>
+								%>
 
-							<aui:input name="preferences--selectedScopeUserGroups--" type="hidden" />
+								<aui:input name="preferences--selectedScopeUserGroups--" type="hidden" />
 
-							<div id="<portlet:namespace />scopeUserGroupsBoxes">
-								<liferay-ui:input-move-boxes
-									leftBoxName="currentScopeUserGroups"
-									leftList="<%= leftList %>"
-									leftReorder="true"
-									leftTitle="displaying"
-									rightBoxName="availableScopeUserGroups"
-									rightList="<%= rightList %>"
-									rightTitle="available"
-								/>
-							</div>
-						</aui:fieldset>
-					</liferay-ui:section>
-				</c:if>
+								<div id="<portlet:namespace />scopeUserGroupsBoxes">
+									<liferay-ui:input-move-boxes
+										leftBoxName="currentScopeUserGroups"
+										leftList="<%= leftList %>"
+										leftReorder="true"
+										leftTitle="displaying"
+										rightBoxName="availableScopeUserGroups"
+										rightList="<%= rightList %>"
+										rightTitle="available"
+									/>
+								</div>
+							</aui:fieldset>
+						</liferay-ui:section>
+					</c:if>
 
-				<c:if test="<%= !roles.isEmpty() %>">
-					<liferay-ui:section>
-						<aui:fieldset cssClass="scope-section-holder">
+					<c:if test="<%= !roles.isEmpty() %>">
+						<liferay-ui:section>
+							<aui:fieldset cssClass="scope-section-holder">
 
-							<%
-							String selectedScopeRoles;
-							try {
-								selectedScopeRoles = GetterUtil.getString(PrefsParamUtil.getString(preferences, request, "selectedScopeRoles", ""));
-							} catch (Exception e) {
-								selectedScopeRoles = "";
-							}
+								<%
+								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
-							// Left list
-							List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
-							for (Role role : roles) {
-								if (selectedScopeRoles.contains(String.valueOf(role.getRoleId()))) {
-									leftList.add(new KeyValuePair(String.valueOf(role.getRoleId()), role.getTitle(locale)));
+								for (Role role : roles) {
+									if (selectedScopeRoles.contains(String.valueOf(role.getRoleId()))) {
+										leftList.add(new KeyValuePair(String.valueOf(role.getRoleId()), role.getTitle(locale)));
+									}
 								}
-							}
 
-							// Right list
-							List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+								List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-							for (Role role : roles) {
+								for (Role role : roles) {
+									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(role.getRoleId()), role.getTitle(locale));
 
-								KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(role.getRoleId()), role.getTitle(locale));
-								if (!leftList.contains(tempKeyValuePair)) {
-									rightList.add(tempKeyValuePair);
+									if (!leftList.contains(tempKeyValuePair)) {
+										rightList.add(tempKeyValuePair);
+									}
 								}
-							}
-							%>
+								%>
 
-							<aui:input name="preferences--selectedScopeRoles--" type="hidden" />
+								<aui:input name="preferences--selectedScopeRoles--" type="hidden" />
 
-							<div id="<portlet:namespace />scopeRolesBoxes">
-								<liferay-ui:input-move-boxes
-									leftBoxName="currentScopeRoles"
-									leftList="<%= leftList %>"
-									leftReorder="true"
-									leftTitle="displaying"
-									rightBoxName="availableScopeRoles"
-									rightList="<%= rightList %>"
-									rightTitle="available"
-								/>
-							</div>
-						</aui:fieldset>
-					</liferay-ui:section>
-				</c:if>
-			</liferay-ui:tabs>
+								<div id="<portlet:namespace />scopeRolesBoxes">
+									<liferay-ui:input-move-boxes
+										leftBoxName="currentScopeRoles"
+										leftList="<%= leftList %>"
+										leftReorder="true"
+										leftTitle="displaying"
+										rightBoxName="availableScopeRoles"
+										rightList="<%= rightList %>"
+										rightTitle="available"
+									/>
+								</div>
+							</aui:fieldset>
+						</liferay-ui:section>
+					</c:if>
+				</liferay-ui:tabs>
 			</div>
 		</liferay-ui:panel>
 	</liferay-ui:panel-container>
@@ -305,7 +261,70 @@ if (!roles.isEmpty()) {
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-base, event">
+<aui:script use="aui-base">
+	var form = A.one('#<portlet:namespace />fm');
+
+	var modified = function(panel) {
+		var modifiedNotice = panel.one('.accordion-toggle .modified-notice');
+
+		if (modifiedNotice == null) {
+			var displayTitle = panel.one('.accordion-toggle');
+
+			displayTitle.append('<span class="modified-notice"> (<liferay-ui:message key="modified" />) </span>');
+		}
+	}
+
+	var customizeAnnouncementsDisplayedCheckbox = form.one('input[name=<portlet:namespace />preferences--customizeAnnouncementsDisplayed--Checkbox]');
+
+	customizeAnnouncementsDisplayedCheckbox.on(
+		'change',
+		function() {
+			var announcementsdisplayedPanel = A.one('#announcementsDisplayedPanel');
+
+			modified(A.one('#announcementsDisplayedPanel'));
+
+			var announcementsDisplayed = form.one('#<portlet:namespace />announcementsDisplayed');
+
+			if (announcementsDisplayed) {
+				announcementsDisplayed.toggleClass('hide');
+			}
+		}
+	);
+
+	var selected = form.all('.left-selector-column-content select');
+
+	var selectedHTML = "";
+
+	for (var i = selected._nodes.length - 1; i >= 0; --i) {
+		selectedHTML = selectedHTML.concat(selected._nodes[i].innerHTML);
+	}
+
+	Liferay.on(
+		'inputmoveboxes:moveItem',
+		function(event) {
+			var currSelectedHTML = "";
+
+			for (var i = selected._nodes.length - 1; i >= 0; --i) {
+				currSelectedHTML = currSelectedHTML.concat(selected._nodes[i].innerHTML);
+			}
+
+			if (selectedHTML != currSelectedHTML) {
+				modified(A.one('#announcementsDisplayedPanel'));
+			}
+		}
+	);
+
+	var pageDeltaInput = form.one('select[name=<portlet:namespace />preferences--pageDelta--]');
+
+	pageDeltaInput.on(
+		'change',
+		function(event) {
+			modified(A.one('#displaySettingsPanel'));
+		}
+	);
+</aui:script>
+
+<aui:script>
 	Liferay.provide(
 		window,
 		'<portlet:namespace />saveConfigurations',
@@ -330,63 +349,4 @@ if (!roles.isEmpty()) {
 		},
 		['liferay-util-list-fields']
 	);
-
-	Liferay.provide(
-		window,
-		'<portlet:namespace />modifiedPageDelta',
-		function() {
-			var settingsPanel = A.one('#soAnnouncementsDisplaySettingsPanel');
-
-			<portlet:namespace />modified(settingsPanel);
-		}
-	);
-
-	var displayPanel = A.one('#soAnnouncementsDisplayPanel');
-
-	Liferay.provide(
-		window,
-		'<portlet:namespace />toggleCustomizeAnnouncementsDisplayed',
-		function() {
-			<portlet:namespace />modified(displayPanel);
-
-			var customizeAnnouncementsDisplayed = A.one('#<portlet:namespace />customizeAnnouncementsDisplayed');
-
-			if (customizeAnnouncementsDisplayed) {
-				customizeAnnouncementsDisplayed.toggleClass('aui-helper-hidden');
-			}
-		}
-	);
-
-	var selects = displayPanel.all('.left-selector-column-content select');
-	var initSelectsHTML = "";
-
-	for (var i = selects._nodes.length - 1; i >= 0; --i) {
-		initSelectsHTML = initSelectsHTML.concat(selects._nodes[i].innerHTML);
-	}
-
-	Liferay.on('inputmoveboxes:moveItem', function(event) {
-		<portlet:namespace />afterMoveClick();
-	})
-
-	function <portlet:namespace />afterMoveClick() {
-		var currSelectsHTML = "";
-
-		for (var i = selects._nodes.length - 1; i >= 0; --i) {
-			currSelectsHTML = currSelectsHTML.concat(selects._nodes[i].innerHTML);
-		}
-
-		if (initSelectsHTML != currSelectsHTML) {
-			<portlet:namespace />modified(displayPanel);
-		}
-	}
-
-	function <portlet:namespace />modified(panel) {
-		var modifiedNotice = panel.one('.lfr-panel-title .modified-notice');
-
-		if (modifiedNotice == null) {
-			var displayTitle = panel.one('.lfr-panel-title');
-
-			displayTitle.append('<span class="modified-notice"> (<liferay-ui:message key="modified" />) </span>');
-		}
-	}
 </aui:script>
