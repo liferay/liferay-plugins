@@ -483,6 +483,13 @@
 	@include transition(border-color 0s);
 }
 
-.scheduler-base-controls .calendar-create-event-btn {
-	margin-right: 3px;
+.calendar-booking-reminders .reminder-type {
+	display: inline-block;
+	margin-bottom: 11px;
+	padding: 4px 6px;
+}
+
+.calendar-create-event-btn-row {
+	margin: 0 0 1em 0;
+	text-align: center;
 }
