@@ -34,7 +34,6 @@
 </aui:layout>
 
 <liferay-ui:search-container
-	delta="<%= SEARCH_CONTAINER_PAGE_DEFAULT_DELTA %>"
 	emptyResultsMessage="no-messages-found"
 >
 	<liferay-ui:search-container-results>
