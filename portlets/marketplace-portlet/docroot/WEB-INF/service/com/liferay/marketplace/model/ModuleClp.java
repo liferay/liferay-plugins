@@ -38,10 +38,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	public ModuleClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Module.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Module.class.getName();
 	}
@@ -54,10 +56,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		setModuleId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_moduleId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -324,6 +328,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(16);
 

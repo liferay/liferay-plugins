@@ -26,10 +26,12 @@ public class SolrTermCollector implements TermCollector {
 		_frequency = frequency;
 	}
 
+	@Override
 	public int getFrequency() {
 		return _frequency;
 	}
 
+	@Override
 	public String getTerm() {
 		return _term;
 	}

@@ -112,12 +112,14 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	/**
-	 * {@link com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#REPLY_ENTRY}
+	 * {@link
+	 * com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#REPLY_ENTRY}
 	 */
 	private static final int _ACTIVITY_KEY_REPLY_ENTRY = 3;
 
 	/**
-	 * {@link com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#REPOST_ENTRY}
+	 * {@link
+	 * com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#REPOST_ENTRY}
 	 */
 	private static final int _ACTIVITY_KEY_REPOST_ENTRY = 2;
 

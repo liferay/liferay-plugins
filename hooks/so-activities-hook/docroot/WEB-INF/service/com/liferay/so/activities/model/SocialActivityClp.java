@@ -39,10 +39,12 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 	public SocialActivityClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return SocialActivity.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return SocialActivity.class.getName();
 	}
@@ -55,10 +57,12 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		setActivityId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_activityId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -481,6 +485,7 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(10);
 

@@ -38,10 +38,12 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	public TypeClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Type.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Type.class.getName();
 	}
@@ -54,10 +56,12 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		setTypeId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_typeId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -291,6 +295,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(13);
 

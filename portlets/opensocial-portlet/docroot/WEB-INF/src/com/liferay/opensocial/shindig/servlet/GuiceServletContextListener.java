@@ -26,10 +26,12 @@ import javax.servlet.ServletContextListener;
 public class GuiceServletContextListener extends BasePortalLifecycle
 	implements ServletContextListener {
 
+	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		_guiceServletContextListener.contextDestroyed(servletContextEvent);
 	}
 
+	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		_initializedServletContextEvent = servletContextEvent;
 

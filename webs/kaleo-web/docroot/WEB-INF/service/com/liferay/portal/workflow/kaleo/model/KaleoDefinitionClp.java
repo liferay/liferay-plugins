@@ -47,10 +47,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	public KaleoDefinitionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoDefinition.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoDefinition.class.getName();
 	}
@@ -63,10 +65,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		setKaleoDefinitionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoDefinitionId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -802,6 +806,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

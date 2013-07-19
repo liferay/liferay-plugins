@@ -38,10 +38,12 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	public BarClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Bar.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Bar.class.getName();
 	}
@@ -54,10 +56,12 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		setBarId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_barId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -260,6 +264,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(10);
 

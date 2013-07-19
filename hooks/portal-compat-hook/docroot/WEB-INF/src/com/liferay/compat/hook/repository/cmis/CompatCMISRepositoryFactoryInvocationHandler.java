@@ -39,6 +39,7 @@ public class CompatCMISRepositoryFactoryInvocationHandler
 		return _repositoryFactory;
 	}
 
+	@Override
 	public Object invoke(Object proxy, Method method, Object[] arguments)
 		throws Throwable {
 

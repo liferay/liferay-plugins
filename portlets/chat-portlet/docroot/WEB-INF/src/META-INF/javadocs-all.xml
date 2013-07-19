@@ -1829,32 +1829,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>ChatUtil</name>
-		<type>com.liferay.chat.util.ChatUtil</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>getBuddies</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-			</param>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-			</param>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-		<field>
-			<name>MAX_POLL_LATENCY</name>
-		</field>
-		<field>
-			<name>ONLINE_DELTA</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>DefaultBuddyFinderImpl</name>
 		<type>com.liferay.chat.util.DefaultBuddyFinderImpl</type>
 		<author><![CDATA[Ankit Srivastava]]></author>

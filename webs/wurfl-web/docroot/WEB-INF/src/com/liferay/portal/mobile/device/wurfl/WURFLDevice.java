@@ -48,22 +48,27 @@ public class WURFLDevice extends AbstractDevice {
 		}
 	}
 
+	@Override
 	public String getBrand() {
 		return getValue(WURFLConstants.BRAND_NAME);
 	}
 
+	@Override
 	public String getBrowser() {
 		return getValue(WURFLConstants.MOBILE_BROWSER);
 	}
 
+	@Override
 	public String getBrowserVersion() {
 		return getValue(WURFLConstants.MOBILE_BROWSER_VERSION);
 	}
 
+	@Override
 	public Map<String, Capability> getCapabilities() {
 		return _capabilities;
 	}
 
+	@Override
 	public String getCapability(String name) {
 		Capability capability = _capabilities.get(name);
 
@@ -74,22 +79,27 @@ public class WURFLDevice extends AbstractDevice {
 		return capability.getValue();
 	}
 
+	@Override
 	public String getModel() {
 		return getValue(WURFLConstants.MODEL_NAME);
 	}
 
+	@Override
 	public String getOS() {
 		return getValue(WURFLConstants.DEVICE_OS);
 	}
 
+	@Override
 	public String getOSVersion() {
 		return getValue(WURFLConstants.DEVICE_OS_VERSION);
 	}
 
+	@Override
 	public String getPointingMethod() {
 		return getValue(WURFLConstants.POINTING_METHOD);
 	}
 
+	@Override
 	public Dimensions getScreenSize() {
 		Capability heightCapability = _capabilities.get(
 			WURFLConstants.RESOLUTION_HEIGHT);
@@ -106,6 +116,7 @@ public class WURFLDevice extends AbstractDevice {
 		return new Dimensions(height, width);
 	}
 
+	@Override
 	public boolean hasQwertyKeyboard() {
 		Capability capability = _capabilities.get(
 			WURFLConstants.HAS_QWERTY_KEYBOARD);
@@ -117,6 +128,7 @@ public class WURFLDevice extends AbstractDevice {
 		return GetterUtil.getBoolean(capability.getValue(), false);
 	}
 
+	@Override
 	public boolean isTablet() {
 		Capability capability = _capabilities.get(WURFLConstants.IS_TABLET);
 

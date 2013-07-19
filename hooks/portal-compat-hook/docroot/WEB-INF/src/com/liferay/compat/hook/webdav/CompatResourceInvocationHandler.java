@@ -50,6 +50,7 @@ public class CompatResourceInvocationHandler implements InvocationHandler {
 		}
 	}
 
+	@Override
 	public Object invoke(Object proxy, Method method, Object[] arguments)
 		throws Throwable {
 

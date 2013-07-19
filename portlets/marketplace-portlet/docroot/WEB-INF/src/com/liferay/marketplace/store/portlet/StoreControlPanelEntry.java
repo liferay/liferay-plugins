@@ -24,6 +24,7 @@ import com.liferay.portlet.BaseControlPanelEntry;
  */
 public class StoreControlPanelEntry extends BaseControlPanelEntry {
 
+	@Override
 	public boolean isVisible(
 			PermissionChecker permissionChecker, Portlet portlet)
 		throws Exception {

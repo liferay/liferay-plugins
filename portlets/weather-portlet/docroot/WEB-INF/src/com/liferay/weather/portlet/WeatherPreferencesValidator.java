@@ -29,6 +29,7 @@ import javax.portlet.ValidatorException;
  */
 public class WeatherPreferencesValidator implements PreferencesValidator {
 
+	@Override
 	public void validate(PortletPreferences preferences)
 		throws ValidatorException {
 

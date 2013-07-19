@@ -40,10 +40,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	public OAuthConsumerClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return OAuthConsumer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return OAuthConsumer.class.getName();
 	}
@@ -56,10 +58,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		setOAuthConsumerId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_oAuthConsumerId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -514,6 +518,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

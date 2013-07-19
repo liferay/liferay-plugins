@@ -47,6 +47,7 @@ public class LiveServerChecker implements Runnable {
 		SolrServletContextListener.registerLiveServerChecker(this);
 	}
 
+	@Override
 	public void run() {
 		Collection<SolrServerWrapper> solrServerWrappers =
 			_solrServerFactory.getDeadServers();

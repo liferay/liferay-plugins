@@ -232,36 +232,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>BlogsEntryLocalServiceImpl</name>
-		<type>com.liferay.testpacl.hook.service.impl.BlogsEntryLocalServiceImpl</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>BlogsEntryLocalServiceImpl</name>
-			<param>
-				<name>blogsEntryLocalService</name>
-				<type>com.liferay.portlet.blogs.service.BlogsEntryLocalService</type>
-			</param>
-		</method>
-		<method>
-			<name>getBlogsEntriesCount</name>
-		</method>
-	</javadoc>
-	<javadoc>
-		<name>BlogsStatsUserLocalServiceImpl</name>
-		<type>com.liferay.testpacl.hook.service.impl.BlogsStatsUserLocalServiceImpl</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>BlogsStatsUserLocalServiceImpl</name>
-			<param>
-				<name>blogsStatsUserLocalService</name>
-				<type>com.liferay.portlet.blogs.service.BlogsStatsUserLocalService</type>
-			</param>
-		</method>
-		<method>
-			<name>getBlogsStatsUsersCount</name>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>TestPACLBlogsEntryLocalServiceImpl</name>
 		<type>com.liferay.testpacl.hook.service.impl.TestPACLBlogsEntryLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>

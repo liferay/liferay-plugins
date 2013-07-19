@@ -29,31 +29,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>TestSchedulerMessageListener</name>
-		<type>com.liferay.testmisc.messaging.TestSchedulerMessageListener</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>isReceived</name>
-		</method>
-		<method>
-			<name>doReceive</name>
-			<param>
-				<name>message</name>
-				<type>com.liferay.portal.kernel.messaging.Message</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<field>
-			<name>_log</name>
-		</field>
-		<field>
-			<name>_received</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>TestSpringConfigMessageListener</name>
 		<type>com.liferay.testmisc.messaging.TestSpringConfigMessageListener</type>
 		<author><![CDATA[Tina Tian]]></author>
@@ -341,35 +316,6 @@
 		</field>
 		<field>
 			<name>_unsyncStringWriter</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>TestSchedulerBean</name>
-		<type>com.liferay.testmisc.scheduler.TestSchedulerBean</type>
-		<author><![CDATA[Shuyang Zhou]]></author>
-		<method>
-			<name>afterPropertiesSet</name>
-		</method>
-		<field>
-			<name>_log</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>TestSchedulerUtil</name>
-		<type>com.liferay.testmisc.scheduler.TestSchedulerUtil</type>
-		<author><![CDATA[Shuyang Zhou]]></author>
-		<method>
-			<name>isReceivedBeforeSpringInitialzed</name>
-		</method>
-		<method>
-			<name>setReceivedBeforeSpringInitialzed</name>
-			<param>
-				<name>receivedBeforeSpringInitialzed</name>
-				<type>boolean</type>
-			</param>
-		</method>
-		<field>
-			<name>_receivedBeforeSpringInitialzed</name>
 		</field>
 	</javadoc>
 	<javadoc>

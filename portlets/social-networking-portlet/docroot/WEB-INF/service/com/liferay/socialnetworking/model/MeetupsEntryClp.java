@@ -42,10 +42,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	public MeetupsEntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MeetupsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MeetupsEntry.class.getName();
 	}
@@ -58,10 +60,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		setMeetupsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_meetupsEntryId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -646,6 +650,7 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

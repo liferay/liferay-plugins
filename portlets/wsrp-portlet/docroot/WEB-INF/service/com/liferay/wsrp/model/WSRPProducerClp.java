@@ -40,10 +40,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	public WSRPProducerClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return WSRPProducer.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return WSRPProducer.class.getName();
 	}
@@ -56,10 +58,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		setWsrpProducerId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_wsrpProducerId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -497,6 +501,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

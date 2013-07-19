@@ -40,10 +40,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	public KaleoNotificationClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoNotification.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoNotification.class.getName();
 	}
@@ -56,10 +58,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		setKaleoNotificationId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoNotificationId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -750,6 +754,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(55);
 

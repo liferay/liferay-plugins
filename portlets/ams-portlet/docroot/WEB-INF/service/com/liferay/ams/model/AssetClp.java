@@ -40,10 +40,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	public AssetClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Asset.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Asset.class.getName();
 	}
@@ -56,10 +58,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		setAssetId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_assetId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -524,6 +528,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

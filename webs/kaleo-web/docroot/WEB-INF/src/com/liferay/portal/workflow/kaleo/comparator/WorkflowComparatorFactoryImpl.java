@@ -23,48 +23,59 @@ import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactory;
 public class WorkflowComparatorFactoryImpl
 	implements WorkflowComparatorFactory {
 
+	@Override
 	public OrderByComparator getDefinitionNameComparator(boolean ascending) {
 		return new WorkflowDefinitionNameComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getInstanceEndDateComparator(boolean ascending) {
 		return new WorkflowInstanceEndDateComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getInstanceStartDateComparator(boolean ascending) {
 		return new WorkflowInstanceStartDateComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getInstanceStateComparator(boolean ascending) {
 		return new WorkflowInstanceStateComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getLogCreateDateComparator(boolean ascending) {
 		return new WorkflowLogCreateDateComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getLogUserIdComparator(boolean ascending) {
 		return new WorkflowLogUserIdComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getTaskCompletionDateComparator(
 		boolean ascending) {
 
 		return new WorkflowTaskCompletionDateComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getTaskCreateDateComparator(boolean ascending) {
 		return new WorkflowTaskCreateDateComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getTaskDueDateComparator(boolean ascending) {
 		return new WorkflowTaskDueDateComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getTaskNameComparator(boolean ascending) {
 		return new WorkflowTaskNameComparator(ascending);
 	}
 
+	@Override
 	public OrderByComparator getTaskUserIdComparator(boolean ascending) {
 		return new WorkflowTaskUserIdComparator(ascending);
 	}

@@ -39,10 +39,12 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	public StatusClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Status.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Status.class.getName();
 	}
@@ -55,10 +57,12 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		setStatusId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_statusId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -470,6 +474,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(28);
 

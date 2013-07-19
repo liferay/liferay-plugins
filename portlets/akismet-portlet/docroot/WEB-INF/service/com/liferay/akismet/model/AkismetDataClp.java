@@ -43,10 +43,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 	public AkismetDataClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return AkismetData.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return AkismetData.class.getName();
 	}
@@ -59,10 +61,12 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		setAkismetDataId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_akismetDataId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -533,6 +537,7 @@ public class AkismetDataClp extends BaseModelImpl<AkismetData>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

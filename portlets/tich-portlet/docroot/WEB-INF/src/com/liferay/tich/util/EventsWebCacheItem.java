@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class EventsWebCacheItem implements WebCacheItem {
 
+	@Override
 	public Object convert(String key) throws WebCacheException {
 		List<Event> events = new ArrayList<Event>();
 
@@ -75,6 +76,7 @@ public class EventsWebCacheItem implements WebCacheItem {
 		return events;
 	}
 
+	@Override
 	public long getRefreshTime() {
 		return _REFRESH_TIME;
 	}

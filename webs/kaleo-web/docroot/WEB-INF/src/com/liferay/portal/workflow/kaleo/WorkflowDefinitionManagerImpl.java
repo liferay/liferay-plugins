@@ -36,6 +36,7 @@ import java.util.List;
 public class WorkflowDefinitionManagerImpl
 	implements WorkflowDefinitionManager {
 
+	@Override
 	public WorkflowDefinition deployWorkflowDefinition(
 			long companyId, long userId, String title, InputStream inputStream)
 		throws WorkflowException {
@@ -49,6 +50,7 @@ public class WorkflowDefinitionManagerImpl
 			title, inputStream, serviceContext);
 	}
 
+	@Override
 	public int getActiveWorkflowDefinitionCount(long companyId)
 		throws WorkflowException {
 
@@ -65,6 +67,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public int getActiveWorkflowDefinitionCount(long companyId, String name)
 		throws WorkflowException {
 
@@ -81,6 +84,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
 			long companyId, int start, int end,
 			OrderByComparator orderByComparator)
@@ -108,6 +112,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public List<WorkflowDefinition> getActiveWorkflowDefinitions(
 			long companyId, String name, int start, int end,
 			OrderByComparator orderByComparator)
@@ -129,6 +134,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public WorkflowDefinition getLatestKaleoDefinition(
 			long companyId, String name)
 		throws WorkflowException {
@@ -149,6 +155,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public WorkflowDefinition getWorkflowDefinition(
 			long companyId, String name, int version)
 		throws WorkflowException {
@@ -169,6 +176,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public int getWorkflowDefinitionCount(long companyId)
 		throws WorkflowException {
 
@@ -185,6 +193,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public int getWorkflowDefinitionCount(long companyId, String name)
 		throws WorkflowException {
 
@@ -201,6 +210,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public List<WorkflowDefinition> getWorkflowDefinitions(
 			long companyId, int start, int end,
 			OrderByComparator orderByComparator)
@@ -222,6 +232,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public List<WorkflowDefinition> getWorkflowDefinitions(
 			long companyId, String name, int start, int end,
 			OrderByComparator orderByComparator)
@@ -247,6 +258,7 @@ public class WorkflowDefinitionManagerImpl
 		_workflowEngine = workflowEngine;
 	}
 
+	@Override
 	public void undeployWorkflowDefinition(
 			long companyId, long userId, String name, int version)
 		throws WorkflowException {
@@ -265,6 +277,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public WorkflowDefinition updateActive(
 			long companyId, long userId, String name, int version,
 			boolean active)
@@ -292,6 +305,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public WorkflowDefinition updateTitle(
 			long companyId, long userId, String name, int version, String title)
 		throws WorkflowException {
@@ -313,6 +327,7 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	@Override
 	public void validateWorkflowDefinition(InputStream inputStream)
 		throws WorkflowException {
 

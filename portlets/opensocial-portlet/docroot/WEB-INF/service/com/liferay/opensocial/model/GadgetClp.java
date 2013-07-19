@@ -39,10 +39,12 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	public GadgetClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Gadget.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Gadget.class.getName();
 	}
@@ -55,10 +57,12 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		setGadgetId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_gadgetId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -449,6 +453,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(28);
 

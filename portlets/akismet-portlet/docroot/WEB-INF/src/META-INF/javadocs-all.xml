@@ -300,28 +300,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>getWikiPage</name>
-			<param>
-				<name>wikiPage</name>
-				<type>com.liferay.portlet.wiki.model.WikiPage</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>previous</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>updateStatus</name>
+			<name>updateSummary</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
@@ -1298,27 +1277,6 @@
 			</throws>
 		</method>
 		<method>
-			<name>getWikiPage</name>
-			<param>
-				<name>wikiPage</name>
-				<type>com.liferay.portlet.wiki.model.WikiPage</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>previous</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
 			<name>isSessionErrorException</name>
 			<param>
 				<name>cause</name>
@@ -1636,10 +1594,10 @@
 			<name>URL_REST</name>
 		</field>
 		<field>
-			<name>WIKI_PAGE_PENDING_APPROVAL</name>
+			<name>WIKI_PAGE_MARKED_AS_SPAM</name>
 		</field>
 		<field>
-			<name>WIKI_PAGE_SPAM</name>
+			<name>WIKI_PAGE_PENDING_APPROVAL</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1668,6 +1626,37 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>getWikiPage</name>
+			<param>
+				<name>nodeId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>previous</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>hasRequiredInfo</name>

@@ -1203,23 +1203,4 @@
 			<name>_liveServerCheckers</name>
 		</field>
 	</javadoc>
-	<javadoc>
-		<name>PortletPropsKeys</name>
-		<type>com.liferay.portal.search.solr.util.PortletPropsKeys</type>
-		<author><![CDATA[Matthew Kong]]></author>
-		<field>
-			<name>SOLR_COPY_FIELDS</name>
-		</field>
-		<field>
-			<name>SOLR_SORTABLE_TEXT_FIELDS</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>PortletPropsValues</name>
-		<type>com.liferay.portal.search.solr.util.PortletPropsValues</type>
-		<author><![CDATA[Matthew Kong]]></author>
-		<field>
-			<name>SOLR_SORTABLE_TEXT_FIELDS</name>
-		</field>
-	</javadoc>
 </javadocs>

@@ -79,7 +79,7 @@
 			<name>_log</name>
 		</field>
 		<field>
-			<name>_hotDeployMessageListener</name>
+			<name>_messageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>

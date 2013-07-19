@@ -36,6 +36,7 @@ import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
  */
 public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 
+	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
 	}

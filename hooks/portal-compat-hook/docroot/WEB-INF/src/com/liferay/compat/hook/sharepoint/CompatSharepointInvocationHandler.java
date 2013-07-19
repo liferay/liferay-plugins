@@ -33,6 +33,7 @@ public class CompatSharepointInvocationHandler implements InvocationHandler {
 		return _sharepointMethod;
 	}
 
+	@Override
 	public Object invoke(Object proxy, Method method, Object[] arguments)
 		throws Throwable {
 

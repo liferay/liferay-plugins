@@ -72,6 +72,7 @@ import org.apache.solr.common.params.FacetParams;
  */
 public class SolrIndexSearcherImpl implements IndexSearcher {
 
+	@Override
 	public Hits search(SearchContext searchContext, Query query)
 		throws SearchException {
 
@@ -85,6 +86,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 	}
 
+	@Override
 	public Hits search(
 			String searchEngineId, long companyId, Query query, Sort[] sorts,
 			int start, int end)

@@ -40,10 +40,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 	public SVNRevisionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return SVNRevision.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return SVNRevision.class.getName();
 	}
@@ -56,10 +58,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		setSvnRevisionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_svnRevisionId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -450,6 +454,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(22);
 

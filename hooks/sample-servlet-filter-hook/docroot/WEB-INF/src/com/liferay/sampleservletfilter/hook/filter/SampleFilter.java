@@ -30,10 +30,12 @@ import javax.servlet.ServletResponse;
  */
 public class SampleFilter implements Filter {
 
+	@Override
 	public void destroy() {
 		System.out.println("Called SampleFilter.destroy()");
 	}
 
+	@Override
 	public void doFilter(
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain filterChain)
@@ -49,6 +51,7 @@ public class SampleFilter implements Filter {
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
+	@Override
 	public void init(FilterConfig filterConfig) {
 		System.out.println(
 			"Called SampleFilter.init(" + filterConfig + ") where hello=" +

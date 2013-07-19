@@ -40,10 +40,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	public FooClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Foo.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Foo.class.getName();
 	}
@@ -56,10 +58,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		setFooId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_fooId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -584,6 +588,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(40);
 

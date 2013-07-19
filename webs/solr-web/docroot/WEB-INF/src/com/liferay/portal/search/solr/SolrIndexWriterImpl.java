@@ -41,6 +41,7 @@ import org.apache.solr.common.SolrInputDocument;
  */
 public class SolrIndexWriterImpl implements IndexWriter {
 
+	@Override
 	public void addDocument(SearchContext searchContext, Document document)
 		throws SearchException {
 
@@ -58,6 +59,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
+	@Override
 	public void addDocuments(
 			SearchContext searchContext, Collection<Document> documents)
 		throws SearchException {
@@ -83,6 +85,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
+	@Override
 	public void deleteDocument(SearchContext searchContext, String uid)
 		throws SearchException {
 
@@ -100,6 +103,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
+	@Override
 	public void deleteDocuments(
 			SearchContext searchContext, Collection<String> uids)
 		throws SearchException {
@@ -109,6 +113,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		}
 	}
 
+	@Override
 	public void deletePortletDocuments(
 			SearchContext searchContext, String portletId)
 		throws SearchException {
@@ -158,6 +163,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		_solrServer = solrServer;
 	}
 
+	@Override
 	public void updateDocument(SearchContext searchContext, Document document)
 		throws SearchException {
 
@@ -166,6 +172,7 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		addDocument(searchContext, document);
 	}
 
+	@Override
 	public void updateDocuments(
 			SearchContext searchContext, Collection<Document> documents)
 		throws SearchException {

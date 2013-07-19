@@ -42,10 +42,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	public ProjectsEntryClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return ProjectsEntry.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return ProjectsEntry.class.getName();
 	}
@@ -58,10 +60,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		setProjectsEntryId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_projectsEntryId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -552,6 +556,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

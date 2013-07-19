@@ -32,9 +32,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CompatWebDAVFilter implements Filter {
 
+	@Override
 	public void destroy() {
 	}
 
+	@Override
 	public void doFilter(
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain filterChain)
@@ -66,6 +68,7 @@ public class CompatWebDAVFilter implements Filter {
 		}
 	}
 
+	@Override
 	public void init(FilterConfig filterConfig) {
 	}
 

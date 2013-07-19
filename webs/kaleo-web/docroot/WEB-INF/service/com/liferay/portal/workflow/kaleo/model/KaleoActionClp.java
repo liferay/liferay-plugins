@@ -40,10 +40,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	public KaleoActionClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoAction.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoAction.class.getName();
 	}
@@ -56,10 +58,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		setKaleoActionId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoActionId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -746,6 +750,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(55);
 

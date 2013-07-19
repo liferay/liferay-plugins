@@ -4053,41 +4053,6 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>CompanyLocalServiceImpl</name>
-		<type>com.liferay.portal.workflow.kaleo.hook.service.impl.CompanyLocalServiceImpl</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>CompanyLocalServiceImpl</name>
-			<param>
-				<name>companyLocalService</name>
-				<type>com.liferay.portal.service.CompanyLocalService</type>
-			</param>
-		</method>
-		<method>
-			<name>checkCompany</name>
-			<param>
-				<name>webId</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>mx</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>shardName</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>KaleoCompanyLocalServiceImpl</name>
 		<type>com.liferay.portal.workflow.kaleo.hook.service.impl.KaleoCompanyLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -4203,39 +4168,6 @@
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_kaleoInstanceTokenIds</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>UpgradeTaskInstanceToken</name>
-		<type>com.liferay.portal.workflow.kaleo.hook.upgrade.v1_0_0.UpgradeTaskInstanceToken</type>
-		<author><![CDATA[Marcellus Tavares]]></author>
-		<method>
-			<name>deleteKaleoInstanceTokens</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>doUpgrade</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>getKaleoInstanceTokenId</name>
-			<param>
-				<name>kaleoInstanceTokenId</name>
-				<type>long</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
 			</throws>
 		</method>
 		<field>
@@ -4482,6 +4414,32 @@
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getWorkflowDefinitionLink</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>assetClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>

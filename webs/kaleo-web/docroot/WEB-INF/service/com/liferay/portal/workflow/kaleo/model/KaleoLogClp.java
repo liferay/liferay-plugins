@@ -39,10 +39,12 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	public KaleoLogClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KaleoLog.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KaleoLog.class.getName();
 	}
@@ -55,10 +57,12 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		setKaleoLogId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoLogId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -1171,6 +1175,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(94);
 

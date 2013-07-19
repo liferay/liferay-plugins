@@ -38,6 +38,7 @@ import org.apache.commons.lang.time.StopWatch;
  */
 public class WURFLKnownDevices implements KnownDevices {
 
+	@Override
 	public Set<VersionableName> getBrands() {
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
@@ -48,6 +49,7 @@ public class WURFLKnownDevices implements KnownDevices {
 		return _brands;
 	}
 
+	@Override
 	public Set<VersionableName> getBrowsers() {
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
@@ -58,10 +60,12 @@ public class WURFLKnownDevices implements KnownDevices {
 		return _browsers;
 	}
 
+	@Override
 	public Map<Capability, Set<String>> getDeviceIds() {
 		return _devicesIds;
 	}
 
+	@Override
 	public Set<VersionableName> getOperatingSystems() {
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
@@ -72,6 +76,7 @@ public class WURFLKnownDevices implements KnownDevices {
 		return _operatingSystems;
 	}
 
+	@Override
 	public Set<String> getPointingMethods() {
 		if (!_initialized) {
 			NoKnownDevices noKnownDevices = NoKnownDevices.getInstance();
@@ -86,6 +91,7 @@ public class WURFLKnownDevices implements KnownDevices {
 		loadWURFLDevices();
 	}
 
+	@Override
 	public synchronized void reload() {
 		_initialized = false;
 

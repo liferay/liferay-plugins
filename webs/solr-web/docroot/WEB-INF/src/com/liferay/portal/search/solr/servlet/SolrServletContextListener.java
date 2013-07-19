@@ -35,10 +35,12 @@ public class SolrServletContextListener
 		_liveServerCheckers.add(liveServerChecker);
 	}
 
+	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		portalDestroy();
 	}
 
+	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		registerPortalLifecycle();
 	}

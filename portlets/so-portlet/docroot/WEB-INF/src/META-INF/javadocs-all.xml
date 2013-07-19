@@ -2537,54 +2537,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>GroupConstants</name>
-		<type>com.liferay.so.util.GroupConstants</type>
-		<author><![CDATA[Jonathan Lee]]></author>
-		<method>
-			<name>getTypeLabel</name>
-			<param>
-				<name>type</name>
-				<type>int</type>
-			</param>
-		</method>
-		<field>
-			<name>TYPE_SITE_PRIVATE_RESTRICTED</name>
-		</field>
-		<field>
-			<name>TYPE_SITE_PRIVATE_RESTRICTED_LABEL</name>
-		</field>
-		<field>
-			<name>TYPE_SITE_PUBLIC_RESTRICTED</name>
-		</field>
-		<field>
-			<name>TYPE_SITE_PUBLIC_RESTRICTED_LABEL</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>LayoutSetPrototypeUtil</name>
-		<type>com.liferay.so.util.LayoutSetPrototypeUtil</type>
-		<author><![CDATA[Eudaldo Alonso]]></author>
-		<method>
-			<name>fetchLayoutSetPrototype</name>
-			<param>
-				<name>user</name>
-				<type>com.liferay.portal.model.User</type>
-			</param>
-			<param>
-				<name>privateLayoutSetPrototype</name>
-				<type>boolean</type>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>PortletKeys</name>
 		<type>com.liferay.so.util.PortletKeys</type>
 		<author><![CDATA[Ryan Park]]></author>
@@ -2621,40 +2573,6 @@
 		<author><![CDATA[Eduardo Garcia]]></author>
 		<field>
 			<name>NOTIFICATIONS_DOCKBAR_MAX_ELEMENTS</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>RoleConstants</name>
-		<type>com.liferay.so.util.RoleConstants</type>
-		<author><![CDATA[Jonathan Lee]]></author>
-		<author><![CDATA[Eudaldo Alonso]]></author>
-		<field>
-			<name>SOCIAL_OFFICE_USER</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>SocialOfficeConstants</name>
-		<type>com.liferay.so.util.SocialOfficeConstants</type>
-		<author><![CDATA[Eudaldo Alonso]]></author>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY</name>
-		</field>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY_SITE</name>
-		</field>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE</name>
-		</field>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>WebKeys</name>
-		<type>com.liferay.so.util.WebKeys</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<field>
-			<name>MEMBER_REQEUST_KEY</name>
 		</field>
 	</javadoc>
 </javadocs>

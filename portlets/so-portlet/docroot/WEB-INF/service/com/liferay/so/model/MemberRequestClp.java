@@ -42,10 +42,12 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	public MemberRequestClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return MemberRequest.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return MemberRequest.class.getName();
 	}
@@ -58,10 +60,12 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		setMemberRequestId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_memberRequestId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -595,6 +599,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(40);
 

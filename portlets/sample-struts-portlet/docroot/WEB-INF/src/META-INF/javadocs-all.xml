@@ -140,12 +140,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -179,12 +179,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -218,12 +218,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -257,12 +257,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -296,12 +296,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -335,12 +335,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -401,12 +401,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -446,7 +446,7 @@
 		<method>
 			<name>reset</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -465,7 +465,7 @@
 		<method>
 			<name>validate</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -507,7 +507,7 @@
 		<method>
 			<name>reset</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -550,7 +550,7 @@
 		<method>
 			<name>validate</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -598,7 +598,7 @@
 		<method>
 			<name>reset</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -677,12 +677,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -716,12 +716,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -755,12 +755,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -794,12 +794,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -830,12 +830,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -869,12 +869,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -908,12 +908,12 @@
 		<method>
 			<name>execute</name>
 			<param>
-				<name>mapping</name>
+				<name>actionMapping</name>
 				<type>org.apache.struts.action.ActionMapping</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>form</name>
+				<name>actionForm</name>
 				<type>org.apache.struts.action.ActionForm</type>
 				<comment><![CDATA[]]></comment>
 			</param>

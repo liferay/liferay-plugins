@@ -42,10 +42,12 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	public KBTemplateClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KBTemplate.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KBTemplate.class.getName();
 	}
@@ -58,10 +60,12 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		setKbTemplateId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kbTemplateId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -523,6 +527,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

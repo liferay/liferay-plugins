@@ -33,6 +33,7 @@ public class StocksWebCacheItem implements WebCacheItem {
 		_symbol = symbol;
 	}
 
+	@Override
 	public Object convert(String key) throws WebCacheException {
 		String symbol = _symbol;
 		double lastTrade = 0.0;
@@ -132,6 +133,7 @@ public class StocksWebCacheItem implements WebCacheItem {
 		return stocks;
 	}
 
+	@Override
 	public long getRefreshTime() {
 		return _REFRESH_TIME;
 	}

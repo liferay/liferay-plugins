@@ -27,6 +27,7 @@ import javax.servlet.http.HttpSessionListener;
  */
 public class TestPortletSessionListener implements HttpSessionListener {
 
+	@Override
 	public void sessionCreated(HttpSessionEvent event) {
 		HttpSession ses = event.getSession();
 
@@ -35,6 +36,7 @@ public class TestPortletSessionListener implements HttpSessionListener {
 		}
 	}
 
+	@Override
 	public void sessionDestroyed(HttpSessionEvent event) {
 		HttpSession ses = event.getSession();
 

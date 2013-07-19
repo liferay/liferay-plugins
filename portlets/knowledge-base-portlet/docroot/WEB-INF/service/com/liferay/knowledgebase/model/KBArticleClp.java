@@ -42,10 +42,12 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	public KBArticleClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return KBArticle.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return KBArticle.class.getName();
 	}
@@ -58,10 +60,12 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		setKbArticleId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kbArticleId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -1155,6 +1159,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(76);
 

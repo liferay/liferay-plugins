@@ -36,6 +36,7 @@ public class TasksEntryAssetRendererFactory extends BaseAssetRendererFactory {
 
 	public static final String TYPE = "tasks";
 
+	@Override
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
 
@@ -45,10 +46,12 @@ public class TasksEntryAssetRendererFactory extends BaseAssetRendererFactory {
 		return new TasksEntryAssetRenderer(tasksEntry);
 	}
 
+	@Override
 	public String getClassName() {
 		return CLASS_NAME;
 	}
 
+	@Override
 	public String getType() {
 		return TYPE;
 	}

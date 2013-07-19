@@ -40,10 +40,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 	public AccountClp() {
 	}
 
+	@Override
 	public Class<?> getModelClass() {
 		return Account.class;
 	}
 
+	@Override
 	public String getModelClassName() {
 		return Account.class.getName();
 	}
@@ -56,10 +58,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		setAccountId(primaryKey);
 	}
 
+	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_accountId);
 	}
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -1072,6 +1076,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		return sb.toString();
 	}
 
+	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(82);
 

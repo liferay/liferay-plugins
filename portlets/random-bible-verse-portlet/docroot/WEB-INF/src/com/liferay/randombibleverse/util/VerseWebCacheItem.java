@@ -36,6 +36,7 @@ public class VerseWebCacheItem implements WebCacheItem {
 		_language = language;
 	}
 
+	@Override
 	public Object convert(String key) throws WebCacheException {
 		try {
 			Verse verse = null;
@@ -55,6 +56,7 @@ public class VerseWebCacheItem implements WebCacheItem {
 		}
 	}
 
+	@Override
 	public long getRefreshTime() {
 		return _REFRESH_TIME;
 	}

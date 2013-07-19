@@ -22,6 +22,11 @@
 				<type>java.io.IOException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+			<throws>
+				<name>PortletException</name>
+				<type>javax.portlet.PortletException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>includeConsoleInput</name>
