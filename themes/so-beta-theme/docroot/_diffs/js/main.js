@@ -1,47 +1,34 @@
 AUI().ready(
-
-	/*
-	This function gets loaded when all the HTML, not including the portlets, is
-	loaded.
-	*/
 	'aui-base',
 	'aui-io-request',
 	'event',
-
 	function(A) {
-		var body = A.getBody();
 		var messageBoard = A.one('.portlet-message-boards');
 
 		if (messageBoard) {
-			var toggleEditControls = function (node) {
-				node.each(
-					function(n) {
-						n.on(
-							['mouseenter', 'mouseleave']
-							, function(event) {
-									var t = 10000;
+			messageBoard.delegate(
+				['mouseenter', 'mouseleave'],
+				function(event) {
+					var target = event.currentTarget;
 
-								if (event.type == 'mouseenter') {
-									n.addClass('controls-visible');
+					if (event.type == 'mouseenter') {
+						target.addClass('controls-visible');
 
-									setTimeout(
-										function() {
-											if (n.hasClass('controls-visible')) {
-												n.removeClass('controls-visible');
-											}
-									}, t);
-								} else if (event.type == 'mouseleave') {
-									n.removeClass('controls-visible');
+						setTimeout(
+							function() {
+								if (target.hasClass('controls-visible')) {
+									target.removeClass('controls-visible');
 								}
-							}
+							},
+							10000
 						);
 					}
-				);
-			};
-
-			var threads = messageBoard.all('.message-container');
-
-			toggleEditControls(threads);
+					else if (event.type == 'mouseleave') {
+						target.removeClass('controls-visible');
+					}
+				},
+				'.message-container'
+			);
 		}
 
 		var memberButton = A.one('#memberButton');
@@ -66,30 +53,5 @@ AUI().ready(
 				}
 			);
 		}
-	}
-);
-
-Liferay.Portlet.ready(
-
-	/*
-	This function gets loaded after each and every portlet on the page.
-
-	portletId: the current portlet's id
-	node: the Alloy Node object of the current portlet
-	*/
-
-	function(portletId, node) {
-	}
-);
-
-Liferay.on(
-	'allPortletsReady',
-
-	/*
-	This function gets loaded when everything, including the portlets, is on
-	the page.
-	*/
-
-	function() {
 	}
 );

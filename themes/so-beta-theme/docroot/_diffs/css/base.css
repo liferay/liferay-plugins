@@ -49,12 +49,6 @@ body.html-editor {
 
 /* ---------- Text formatting ---------- */
 
-/*
-
-This is being done in the _normalize.scss
-
-*/
-
 .important {
 	font-weight: bold;
 }

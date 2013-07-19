@@ -1,16 +1,16 @@
 @import "compass";
 
-$btn-default-text: #0D0D0D;
-$btn-border-default: rgba(0,0,0, .1);
 $btn-background-default: rgb(228,228,228);
+$btn-border-default: rgba(0,0,0, .1);
+$btn-default-text: #0D0D0D;
 
 $default-border-color: #C9C9C9;
 $default-text-color: #202020;
 
+$blue: #0E50A9;
 $control-bg-color: #EEE9E9;
 $navigation-bg-color: #CBD0D3;
 $red: #8F0920;
-$blue: #0E50A9;
 
 @mixin clear-both {
 	&:after {
