@@ -2,15 +2,15 @@
 
 $blue-link: #2571AD;
 $button-text-color: #34404F;
+$default-border-color: #D9D8D8;
 $fixed-width: 980px;
 $gray: #CECECE;
 $gray-dark: #C7D0DA;
 $gray-light: #F4F4F4;
 $gray-medium: #EEE;
+$link-color: #2571AD;
 $navigation-width: 200px;
 $red: #8F0920;
-$default-border-color: #D9D8D8;
-$link-color: #2571AD;
 
 @mixin remove-gradients {
 	background-image: none;

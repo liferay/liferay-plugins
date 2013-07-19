@@ -24,8 +24,7 @@ body.so-classic {
 		padding: 0;
 	}
 
-	.top-links .top-links-navigation a, .portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a,
-	a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+	.top-links .top-links-navigation a, .portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
 		@include button-default;
 
 		&:hover, &:focus {

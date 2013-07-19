@@ -9,7 +9,7 @@
 
 	$theme.include($top_head_include)
 
-	<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
+	<meta content="user-scalable=yes, initial-scale=1.0, width=device-width" name="viewport" />
 </head>
 
 <body class="so-beta-theme $css_class">
@@ -62,7 +62,7 @@ $theme.include($body_top_include)
 							$join_url.setParameter("addUserIds", "$user_id")
 
 							<a class="aui-button button action request member-button" href="$join_url" id="memberButton">
-								<span class="aui-button-content" ><span class="aui-button-label">#language("join-site")</span></span>
+								<span class="aui-button-content"><span class="aui-button-label">#language("join-site")</span></span>
 							</a>
 						#elseif (($page_group.getType() == 2) && !$membership_request)
 							#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
@@ -77,7 +77,7 @@ $theme.include($body_top_include)
 							$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
 
 							<a class="aui-button button action request member-button" href="$membership_request_url" id="memberButton">
-								<span class="aui-button-content" ><span class="aui-button-label">#language ("request-membership")</span></span>
+								<span class="aui-button-content"><span class="aui-button-label">#language ("request-membership")</span></span>
 							</a>
 						#elseif ($membership_request)
 							<a class="aui-button button action requested member-button" id="memberButton">
@@ -148,46 +148,47 @@ $theme.include($body_top_include)
 $theme.include($body_bottom_include)
 
 </body>
+
 #if ($show_edit_profile_button)
-<script type="text/javascript">
-	AUI().use(
-		'liferay-logo-selector',
-		'aui-base',
-		function(A) {
-			editPortrait = new Liferay.LogoSelector(
-				{
-					boundingBox: '#_SO_THEME_taglibLogoSelector',
-					contentBox: '#_SO_THEME_taglibLogoSelectorContent',
-					defaultLogoURL: '$current_user_profile_portrait_url',
-					editLogoURL: '$current_user_edit_profile_portrait_url',
-					logoDisplaySelector: '#_SO_THEME_avatar',
-					portletNamespace: '',
-					randomNamespace: '_SO_THEME_'
-				}
-			);
+	<script type="text/javascript">
+		AUI().use(
+			'liferay-logo-selector',
+			'aui-base',
+			function(A) {
+				editPortrait = new Liferay.LogoSelector(
+					{
+						boundingBox: '#_SO_THEME_taglibLogoSelector',
+						contentBox: '#_SO_THEME_taglibLogoSelectorContent',
+						defaultLogoURL: '$current_user_profile_portrait_url',
+						editLogoURL: '$current_user_edit_profile_portrait_url',
+						logoDisplaySelector: '#_SO_THEME_avatar',
+						portletNamespace: '',
+						randomNamespace: '_SO_THEME_'
+					}
+				);
 
-			window['_2_changeLogo'] = function (logoURL) {
-				var avatarDialog = A.one('#_SO_THEME_avatar');
+				window['_2_changeLogo'] = function(logoURL) {
+					var avatarDialog = A.one('#_SO_THEME_avatar');
 
-				if (avatarDialog) {
-					avatarDialog.attr('src', logoURL);
-				}
+					if (avatarDialog) {
+						avatarDialog.attr('src', logoURL);
+					}
 
-				var avatarContext = A.all('#content .avatar img');
+					var avatarContext = A.all('#content .avatar img');
 
-				if (avatarContext) {
-					avatarContext.attr('src', logoURL);
-				}
+					if (avatarContext) {
+						avatarContext.attr('src', logoURL);
+					}
 
-				var avatarDockbar = A.one('.user-fullname.user-portrait img');
+					var avatarDockbar = A.one('.user-fullname.user-portrait img');
 
-				if (avatarDockbar) {
-					avatarDockbar.attr('src', logoURL);
+					if (avatarDockbar) {
+						avatarDockbar.attr('src', logoURL);
+					}
 				}
 			}
-		}
-	);
-</script>
+		);
+	</script>
 #end
 
 $theme.include($bottom_include)
