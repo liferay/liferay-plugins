@@ -1010,7 +1010,6 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	protected String getExtraDataJSON(CalendarBooking calendarBooking) {
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("title", calendarBooking.getTitle());
