@@ -27,21 +27,21 @@
 		</else>
 	</if>
 
-	<property name="init.plugin.full.version" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
+	<property name="plugin.full.version.default" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
 
-	<property name="init.plugin.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
-	<property name="init.plugin.javadoc.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
-	<property name="init.plugin.pom.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
-	<property name="init.plugin.sources.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
-	<property name="init.plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
+	<property name="plugin.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
+	<property name="plugin.javadoc.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
+	<property name="plugin.pom.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
+	<property name="plugin.sources.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
+	<property name="plugin.src.file.default" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
 
-	<var name="plugin.full.version" value="${init.plugin.full.version}" />
+	<var name="plugin.full.version" value="${plugin.full.version.default}" />
 
-	<var name="plugin.file" value="${init.plugin.file}" />
-	<var name="plugin.javadoc.file" value="${init.plugin.javadoc.file}" />
-	<var name="plugin.pom.file" value="${init.plugin.pom.file}" />
-	<var name="plugin.sources.file" value="${init.plugin.sources.file}" />
-	<var name="plugin.src.file" value="${init.plugin.src.file}" />
+	<var name="plugin.file" value="${plugin.file.default}" />
+	<var name="plugin.javadoc.file" value="${plugin.javadoc.file.default}" />
+	<var name="plugin.pom.file" value="${plugin.pom.file.default}" />
+	<var name="plugin.sources.file" value="${plugin.sources.file.default}" />
+	<var name="plugin.src.file" value="${plugin.src.file.default}" />
 
 	<if>
 		<available file="src" />
