@@ -140,6 +140,12 @@ public class CalendarResourceStagedModelDataHandler
 						portletDataContext.getScopeGroupId());
 
 			if (existingCalendarResource == null) {
+				existingCalendarResource =
+					CalendarResourceLocalServiceUtil.fetchCalendarResource(
+						calendarResource.getClassNameId(), classPK);
+			}
+
+			if (existingCalendarResource == null) {
 				serviceContext.setUuid(calendarResource.getUuid());
 
 				importedCalendarResource =
