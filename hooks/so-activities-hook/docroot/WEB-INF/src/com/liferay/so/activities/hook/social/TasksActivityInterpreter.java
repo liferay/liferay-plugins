@@ -14,6 +14,7 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -22,12 +23,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
@@ -106,7 +105,7 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("<div class=\"grouped-activity-body-container\">");
 		sb.append("<div class=\"grouped-activity-body\">");
 
-		int viewableActivities = 0;
+		boolean hasViewableActivities = false;
 
 		List<com.liferay.so.activities.model.SocialActivity> activities =
 			com.liferay.so.activities.service.SocialActivityLocalServiceUtil.
@@ -143,10 +142,10 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 					serviceContext));
 			sb.append("</div>");
 
-			viewableActivities++;
+			hasViewableActivities = true;
 		}
 
-		if (viewableActivities == 0) {
+		if (!hasViewableActivities) {
 			return null;
 		}
 
@@ -167,6 +166,7 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 			classPK);
 
 		sb.append(tasksEntry.getPriorityLabel());
+
 		sb.append("\"><div class=\"activity-body\"><div class=\"title\">");
 		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"tasks-entry-content\">");
