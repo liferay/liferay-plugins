@@ -126,14 +126,6 @@
 			</throws>
 		</method>
 		<method>
-			<name>testValidateNoOutgoingTransitionJoinNodeDefinition</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
 			<name>testValidateNoOutgoingTransitionStartNodeDefinition</name>
 			<throws>
 				<name>Exception</name>

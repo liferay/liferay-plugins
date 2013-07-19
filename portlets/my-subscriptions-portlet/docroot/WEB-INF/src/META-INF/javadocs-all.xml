@@ -2,26 +2,6 @@
 
 <javadocs>
 	<javadoc>
-		<name>MySubscriptionsControlPanelEntry</name>
-		<type>com.liferay.mysubscriptions.portlet.MySubscriptionsControlPanelEntry</type>
-		<author><![CDATA[Peter Shin]]></author>
-		<method>
-			<name>isVisible</name>
-			<param>
-				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
-			</param>
-			<param>
-				<name>portlet</name>
-				<type>com.liferay.portal.model.Portlet</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>MySubscriptionsPortlet</name>
 		<type>com.liferay.mysubscriptions.portlet.MySubscriptionsPortlet</type>
 		<author><![CDATA[Peter Shin]]></author>

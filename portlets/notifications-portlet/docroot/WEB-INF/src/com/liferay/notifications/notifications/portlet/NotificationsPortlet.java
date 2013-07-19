@@ -62,6 +62,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
+	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {

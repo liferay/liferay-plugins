@@ -315,6 +315,184 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>SOAnnouncementsEntryLocalServiceImpl</name>
+		<type>com.liferay.so.hook.service.impl.SOAnnouncementsEntryLocalServiceImpl</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<author><![CDATA[Evan Thibodeau]]></author>
+		<method>
+			<name>SOAnnouncementsEntryLocalServiceImpl</name>
+			<param>
+				<name>announcementsEntryLocalService</name>
+				<type>com.liferay.portlet.announcements.service.AnnouncementsEntryLocalService</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>addEntry</name>
+			<param>
+				<name>plid</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>content</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>url</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>type</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>displayDateMonth</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>displayDateDay</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>displayDateYear</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>displayDateHour</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>displayDateMinute</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>expirationDateMonth</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>expirationDateDay</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>expirationDateYear</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>expirationDateHour</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>expirationDateMinute</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>priority</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>alert</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>checkEntries</name>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>sendNotificationEvent</name>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>sendNotificationEvent</name>
+			<param>
+				<name>announcementEntry</name>
+				<type>com.liferay.portlet.announcements.model.AnnouncementsEntry</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL</name>
+		</field>
+		<field>
+			<name>_log</name>
+		</field>
+		<field>
+			<name>_previousCheckDate</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>SOAnnouncementsEntryServiceImpl</name>
 		<type>com.liferay.so.hook.service.impl.SOAnnouncementsEntryServiceImpl</type>
 		<author><![CDATA[Jonathan Lee]]></author>
@@ -437,24 +615,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<method>
-			<name>sendNotificationEvent</name>
-			<param>
-				<name>announcementEntry</name>
-				<type>com.liferay.portlet.announcements.model.AnnouncementsEntry</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
 	</javadoc>
 	<javadoc>
 		<name>SOCompanyLocalServiceImpl</name>
@@ -525,21 +685,6 @@
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-	</javadoc>
-	<javadoc>
-		<name>UpgradeProcess_2_0_1</name>
-		<type>com.liferay.so.hook.upgrade.UpgradeProcess_2_0_1</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<method>
-			<name>getThreshold</name>
-		</method>
-		<method>
-			<name>doUpgrade</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
 			</throws>
 		</method>
 	</javadoc>
@@ -708,18 +853,6 @@
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-	</javadoc>
-	<javadoc>
-		<name>UpgradeCompany</name>
-		<type>com.liferay.so.hook.upgrade.v2_0_1.UpgradeCompany</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<method>
-			<name>doUpgrade</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
 			</throws>
 		</method>
 	</javadoc>
@@ -1152,76 +1285,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>LayoutSetPrototypeUtil</name>
-		<type>com.liferay.so.util.LayoutSetPrototypeUtil</type>
-		<author><![CDATA[Eudaldo Alonso]]></author>
-		<author><![CDATA[Jonathan Lee]]></author>
-		<method>
-			<name>fetchLayoutSetPrototype</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-			</param>
-			<param>
-				<name>layoutSetPrototypeKey</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-		<method>
-			<name>removeLayoutSetPrototype</name>
-			<param>
-				<name>group</name>
-				<type>com.liferay.portal.model.Group</type>
-			</param>
-			<param>
-				<name>privateLayout</name>
-				<type>boolean</type>
-			</param>
-			<param>
-				<name>layoutSetPrototypeKey</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-		<method>
-			<name>updateLayoutSetPrototype</name>
-			<param>
-				<name>group</name>
-				<type>com.liferay.portal.model.Group</type>
-			</param>
-			<param>
-				<name>privateLayout</name>
-				<type>boolean</type>
-			</param>
-			<param>
-				<name>layoutSetPrototypeKey</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<field>
-			<name>_mergeLayoutSetProtypeLayoutsMethodKey</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>LayoutUtil</name>
 		<type>com.liferay.so.util.LayoutUtil</type>
 		<author><![CDATA[Jonathan Lee]]></author>
@@ -1520,31 +1583,6 @@
 		</field>
 		<field>
 			<name>SITE_PROTOTYPE_LAYOUT_TEMPLATE</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>RoleConstants</name>
-		<type>com.liferay.so.util.RoleConstants</type>
-		<author><![CDATA[Jonathan Lee]]></author>
-		<field>
-			<name>SOCIAL_OFFICE_USER</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>SocialOfficeConstants</name>
-		<type>com.liferay.so.util.SocialOfficeConstants</type>
-		<author><![CDATA[Eudaldo Alonso]]></author>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY</name>
-		</field>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY_SITE</name>
-		</field>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE</name>
-		</field>
-		<field>
-			<name>LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC</name>
 		</field>
 	</javadoc>
 	<javadoc>

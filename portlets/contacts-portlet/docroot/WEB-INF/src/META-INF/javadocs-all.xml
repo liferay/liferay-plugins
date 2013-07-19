@@ -590,244 +590,12 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>HotDeployMessageListener</name>
-		<type>com.liferay.contacts.messaging.HotDeployMessageListener</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<method>
-			<name>deploy</name>
-			<param>
-				<name>message</name>
-				<type>com.liferay.portal.kernel.messaging.Message</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>doReceive</name>
-			<param>
-				<name>message</name>
-				<type>com.liferay.portal.kernel.messaging.Message</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>registerChatExtension</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>undeploy</name>
-			<param>
-				<name>message</name>
-				<type>com.liferay.portal.kernel.messaging.Message</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<field>
-			<name>_registerMethodKey</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>EntryImpl</name>
 		<type>com.liferay.contacts.model.impl.EntryImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>EntryImpl</name>
 		</method>
-	</javadoc>
-	<javadoc>
-		<name>EntryLocalServiceClpInvoker</name>
-		<type>com.liferay.contacts.service.base.EntryLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>EntryLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName33</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes33</name>
-		</field>
-		<field>
-			<name>_methodName34</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes34</name>
-		</field>
-		<field>
-			<name>_methodName39</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes39</name>
-		</field>
-		<field>
-			<name>_methodName40</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes40</name>
-		</field>
-		<field>
-			<name>_methodName41</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes41</name>
-		</field>
-		<field>
-			<name>_methodName42</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes42</name>
-		</field>
-		<field>
-			<name>_methodName43</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes43</name>
-		</field>
-		<field>
-			<name>_methodName44</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes44</name>
-		</field>
-		<field>
-			<name>_methodName45</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes45</name>
-		</field>
-		<field>
-			<name>_methodName46</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes46</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>EntryLocalServiceImpl</name>
@@ -1443,7 +1211,7 @@
 			</throws>
 		</method>
 		<field>
-			<name>_hotDeployMessageListener</name>
+			<name>_messageListener</name>
 		</field>
 		<field>
 			<name>_registerMethodKey</name>
@@ -1481,6 +1249,9 @@
 		</field>
 		<field>
 			<name>DISPLAY_STYLE_FULL_LABEL</name>
+		</field>
+		<field>
+			<name>FILTER_BY_ADMINS</name>
 		</field>
 		<field>
 			<name>FILTER_BY_DEFAULT</name>

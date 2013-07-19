@@ -289,6 +289,51 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>FreeMarkerDebugPasswordExecutor</name>
+		<type>com.liferay.servermanager.executor.FreeMarkerDebugPasswordExecutor</type>
+		<author><![CDATA[Cindy Li]]></author>
+		<method>
+			<name>executeRead</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>responseJSONObject</name>
+				<type>com.liferay.portal.kernel.json.JSONObject</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>arguments</name>
+				<type>java.util.Queue</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>FreeMarkerDebugPortExecutor</name>
+		<type>com.liferay.servermanager.executor.FreeMarkerDebugPortExecutor</type>
+		<author><![CDATA[Cindy Li]]></author>
+		<method>
+			<name>getDebugPort</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>FreeMarkerExecutor</name>
+		<type>com.liferay.servermanager.executor.FreeMarkerExecutor</type>
+		<author><![CDATA[Cindy Li]]></author>
+		<method>
+			<name>initNextExecutors</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>LogExecutor</name>
 		<type>com.liferay.servermanager.executor.LogExecutor</type>
 		<author><![CDATA[Jonathan Potter]]></author>
@@ -556,6 +601,7 @@
 		<type>com.liferay.servermanager.executor.ServerExecutor</type>
 		<author><![CDATA[Jonathan Potter]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<author><![CDATA[Cindy Li]]></author>
 		<method>
 			<name>initNextExecutors</name>
 			<return>

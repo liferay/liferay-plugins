@@ -16,6 +16,9 @@
 			<name>DEVICE_OS_VERSION</name>
 		</field>
 		<field>
+			<name>DUAL_ORIENTATION</name>
+		</field>
+		<field>
 			<name>HAS_QWERTY_KEYBOARD</name>
 		</field>
 		<field>
@@ -41,6 +44,12 @@
 		</field>
 		<field>
 			<name>RESOLUTION_WIDTH</name>
+		</field>
+		<field>
+			<name>SCREEN_PHYSICAL_HEIGHT</name>
+		</field>
+		<field>
+			<name>SCREEN_PHYSICAL_WIDTH</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -121,7 +130,13 @@
 			</return>
 		</method>
 		<method>
-			<name>getScreenSize</name>
+			<name>getScreenPhysicalSize</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getScreenResolution</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
@@ -134,6 +149,22 @@
 		</method>
 		<method>
 			<name>isTablet</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getDimensions</name>
+			<param>
+				<name>heightCapabilityName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>widthCapabilityName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>

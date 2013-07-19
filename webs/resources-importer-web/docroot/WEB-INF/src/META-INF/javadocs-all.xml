@@ -2,45 +2,6 @@
 
 <javadocs>
 	<javadoc>
-		<name>HotDeployMessageListener</name>
-		<type>com.liferay.resourcesimporter.messaging.HotDeployMessageListener</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<author><![CDATA[Raymond Augé]]></author>
-		<method>
-			<name>doReceive</name>
-			<param>
-				<name>message</name>
-				<type>com.liferay.portal.kernel.messaging.Message</type>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-			</throws>
-		</method>
-		<method>
-			<name>getFileSystemImporter</name>
-		</method>
-		<method>
-			<name>getLARImporter</name>
-		</method>
-		<method>
-			<name>getPluginProperties</name>
-			<param>
-				<name>servletContext</name>
-				<type>javax.servlet.ServletContext</type>
-			</param>
-		</method>
-		<method>
-			<name>getResourceImporter</name>
-		</method>
-		<field>
-			<name>_RESOURCES_DIR</name>
-		</field>
-		<field>
-			<name>_log</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>ResourcesImporterServletContextListener</name>
 		<type>com.liferay.resourcesimporter.servlet.ResourcesImporterServletContextListener</type>
 		<author><![CDATA[Ryan Park]]></author>
@@ -121,7 +82,7 @@
 			<name>_log</name>
 		</field>
 		<field>
-			<name>_hotDeployMessageListener</name>
+			<name>_messageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -240,9 +201,6 @@
 			<name>groupId</name>
 		</field>
 		<field>
-			<name>privateLayout</name>
-		</field>
-		<field>
 			<name>resourcesDir</name>
 		</field>
 		<field>
@@ -296,6 +254,29 @@
 			</throws>
 		</method>
 		<method>
+			<name>addDDMStructures</name>
+			<param>
+				<name>parentDDMStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addDDMTemplates</name>
 			<param>
 				<name>ddmStructureKey</name>
@@ -314,12 +295,123 @@
 			</throws>
 		</method>
 		<method>
+			<name>addDDMTemplates</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addDLFileEntries</name>
 			<param>
 				<name>fileEntriesDirName</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDLFileEntry</name>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>file</name>
+				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDLFileEntry</name>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>length</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDLFolder</name>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>folder</name>
+				<type>java.io.File</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDLFolder</name>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>folderName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -350,7 +442,40 @@
 			</throws>
 		</method>
 		<method>
+			<name>addJournalArticles</name>
+			<param>
+				<name>ddmStructureKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>ddmTemplateKey</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addLayout</name>
+			<param>
+				<name>privateLayout</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>parentLayoutId</name>
 				<type>long</type>
@@ -439,6 +564,11 @@
 		<method>
 			<name>addLayouts</name>
 			<param>
+				<name>privateLayout</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>parentLayoutId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
@@ -446,103 +576,6 @@
 			<param>
 				<name>layoutsJSONArray</name>
 				<type>com.liferay.portal.kernel.json.JSONArray</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doAddDDMStructures</name>
-			<param>
-				<name>parentDDMStructureKey</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>fileName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doAddDDMTemplates</name>
-			<param>
-				<name>ddmStructureKey</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>fileName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doAddDLFileEntries</name>
-			<param>
-				<name>fileName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>length</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doAddJournalArticles</name>
-			<param>
-				<name>ddmStructureKey</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>ddmTemplateKey</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>fileName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -639,6 +672,22 @@
 				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getMap</name>
+			<param>
+				<name>locale</name>
+				<type>java.util.Locale</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>value</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>getMap</name>
@@ -950,7 +999,7 @@
 		<method>
 			<name>setLARFile</name>
 			<param>
-				<name>larFile</name>
+				<name>file</name>
 				<type>java.io.File</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -958,7 +1007,23 @@
 		<method>
 			<name>setLARInputStream</name>
 			<param>
-				<name>larInputStream</name>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setPrivateLARInputStream</name>
+			<param>
+				<name>privateLARInputStream</name>
+				<type>java.io.InputStream</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>setPublicLARInputStream</name>
+			<param>
+				<name>publicLARInputStream</name>
 				<type>java.io.InputStream</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -973,7 +1038,10 @@
 			<name>_log</name>
 		</field>
 		<field>
-			<name>_larInputStream</name>
+			<name>_privateLARInputStream</name>
+		</field>
+		<field>
+			<name>_publicLARInputStream</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1039,6 +1107,40 @@
 			</throws>
 		</method>
 		<method>
+			<name>addDLFileEntry</name>
+			<param>
+				<name>resourcePath</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>addDLFolder</name>
+			<param>
+				<name>parentFolderId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>resourcePath</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>addJournalArticles</name>
 			<param>
 				<name>ddmStructureKey</name>
@@ -1077,5 +1179,8 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>_folderIds</name>
+		</field>
 	</javadoc>
 </javadocs>

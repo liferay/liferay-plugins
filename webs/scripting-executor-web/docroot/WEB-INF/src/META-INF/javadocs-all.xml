@@ -2,11 +2,6 @@
 
 <javadocs>
 	<javadoc>
-		<name>com.liferay.scriptingexecutor.messaging.ScriptingExecutorMessageListener</name>
-		<type>com.liferay.scriptingexecutor.messaging.ScriptingExecutorMessageListener</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-	</javadoc>
-	<javadoc>
 		<name>ScriptingExecutorServletContextListener</name>
 		<type>com.liferay.scriptingexecutor.servlet.ScriptingExecutorServletContextListener</type>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -84,7 +79,7 @@
 			<name>_log</name>
 		</field>
 		<field>
-			<name>_hotDeployMessageListener</name>
+			<name>_messageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>

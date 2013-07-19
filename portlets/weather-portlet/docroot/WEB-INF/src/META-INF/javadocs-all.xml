@@ -57,6 +57,11 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>cityId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>iconURL</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
@@ -71,6 +76,11 @@
 			<name>Weather</name>
 			<param>
 				<name>zip</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>cityId</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -113,6 +123,12 @@
 		</method>
 		<method>
 			<name>getBarometerDirection</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getCityId</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
@@ -164,6 +180,14 @@
 			</param>
 		</method>
 		<method>
+			<name>setCityId</name>
+			<param>
+				<name>cityId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
 			<name>setConditions</name>
 			<param>
 				<name>conditions</name>
@@ -210,6 +234,9 @@
 			<name>_barometerDirection</name>
 		</field>
 		<field>
+			<name>_cityId</name>
+		</field>
+		<field>
 			<name>_conditions</name>
 		</field>
 		<field>
@@ -224,49 +251,6 @@
 		<field>
 			<name>_zip</name>
 		</field>
-	</javadoc>
-	<javadoc>
-		<name>WeatherPortlet</name>
-		<type>com.liferay.weather.portlet.WeatherPortlet</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>processAction</name>
-			<param>
-				<name>actionRequest</name>
-				<type>javax.portlet.ActionRequest</type>
-			</param>
-			<param>
-				<name>actionResponse</name>
-				<type>javax.portlet.ActionResponse</type>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-			</throws>
-			<throws>
-				<name>PortletException</name>
-				<type>javax.portlet.PortletException</type>
-			</throws>
-		</method>
-		<method>
-			<name>updatePreferences</name>
-			<param>
-				<name>actionRequest</name>
-				<type>javax.portlet.ActionRequest</type>
-			</param>
-			<param>
-				<name>actionResponse</name>
-				<type>javax.portlet.ActionResponse</type>
-			</param>
-			<throws>
-				<name>IOException</name>
-				<type>java.io.IOException</type>
-			</throws>
-			<throws>
-				<name>PortletException</name>
-				<type>javax.portlet.PortletException</type>
-			</throws>
-		</method>
 	</javadoc>
 	<javadoc>
 		<name>WeatherPreferencesValidator</name>
@@ -293,11 +277,6 @@
 		<method>
 			<name>getWeather</name>
 			<param>
-				<name>apiKey</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
 				<name>zip</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
@@ -312,13 +291,9 @@
 		<type>com.liferay.weather.util.WeatherWebCacheItem</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<author><![CDATA[Samuel Kong]]></author>
+		<author><![CDATA[Preston Crary]]></author>
 		<method>
 			<name>WeatherWebCacheItem</name>
-			<param>
-				<name>apiKey</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<param>
 				<name>zip</name>
 				<type>java.lang.String</type>
@@ -349,11 +324,6 @@
 		</method>
 		<method>
 			<name>doConvert</name>
-			<param>
-				<name>key</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
@@ -365,9 +335,6 @@
 		</method>
 		<field>
 			<name>_REFRESH_TIME</name>
-		</field>
-		<field>
-			<name>_apiKey</name>
 		</field>
 		<field>
 			<name>_zip</name>
