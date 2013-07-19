@@ -12,7 +12,7 @@
 	<meta content="user-scalable=yes, initial-scale=1.0, width=device-width" name="viewport" />
 </head>
 
-<body class="so-beta-theme $css_class">
+<body class="so-strata-theme $css_class">
 
 $theme.include($body_top_include)
 
