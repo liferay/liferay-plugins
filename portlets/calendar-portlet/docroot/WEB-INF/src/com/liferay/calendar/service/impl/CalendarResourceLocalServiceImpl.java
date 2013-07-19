@@ -146,7 +146,10 @@ public class CalendarResourceLocalServiceImpl
 			calendarResource.getCalendarResourceId());
 
 		for (Calendar calendar : calendars) {
-			calendarLocalService.deleteCalendar(calendar);
+			calendarPersistence.remove(calendar);
+
+			resourceLocalService.deleteResource(
+				calendar, ResourceConstants.SCOPE_INDIVIDUAL);
 		}
 
 		// Calendar bookings
