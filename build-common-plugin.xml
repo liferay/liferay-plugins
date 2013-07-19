@@ -264,7 +264,7 @@
 			classpathref="service.classpath"
 			fork="true"
 			newenvironment="true"
-			outputproperty="service.output"
+			outputproperty="build-service.output"
 		>
 			<jvmarg value="-Xms512m" />
 			<jvmarg value="-Xmx1024m" />
@@ -305,16 +305,16 @@
 			</then>
 		</if>
 
-		<echo>${service.output}</echo>
+		<delete file="ServiceBuilder.temp" />
+
+		<echo>${build-service.output}</echo>
 
 		<if>
-			<contains string="${service.output}" substring="Error" />
+			<contains string="${build-service.output}" substring="Error" />
 			<then>
 				<fail>Service Builder generated exceptions.</fail>
 			</then>
 		</if>
-
-		<delete file="ServiceBuilder.temp" />
 
 		<mkdir dir="docroot/WEB-INF/service-classes" />
 
@@ -363,6 +363,7 @@
 			fork="true"
 			maxmemory="256m"
 			newenvironment="true"
+			outputproperty="build-wsdd.output"
 		>
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
@@ -376,6 +377,15 @@
 			<os family="windows" />
 			<then>
 				<delete file="build-wsdd-classpath.jar" />
+			</then>
+		</if>
+
+		<echo>${build-wsdd.output}</echo>
+
+		<if>
+			<contains string="${build-wsdd.output}" substring="IOException" />
+			<then>
+				<fail>WSDD Builder generated exceptions.</fail>
 			</then>
 		</if>
 	</target>
