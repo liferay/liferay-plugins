@@ -18,8 +18,15 @@
 <%@ page import="com.liferay.client.soap.portal.service.http.OrganizationServiceSoap" %>
 <%@ page import="com.liferay.client.soap.portal.service.http.OrganizationServiceSoapServiceLocator" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
+<%@ page import="com.liferay.portal.model.Company" %>
+<%@ page import="com.liferay.portal.model.CompanyConstants" %>
+<%@ page import="com.liferay.portal.model.User" %>
+<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.net.URL" %>
+
+<%@ page import="javax.xml.rpc.Stub" %>
 
 You belong to the following organizations:
 
@@ -32,12 +39,13 @@ long userId = GetterUtil.getLong(remoteUser);
 
 OrganizationServiceSoapServiceLocator locator = new OrganizationServiceSoapServiceLocator();
 
-OrganizationServiceSoap soap = locator.getPortal_OrganizationService(_getURL(remoteUser, "Portal_OrganizationService"));
+OrganizationServiceSoap soap = locator.getPortal_OrganizationService(new URL("http://localhost:8080/api/axis/Portal_OrganizationService"));
+
+_setCredentials(request, (Stub) soap, userId);
 
 OrganizationSoap[] organizations = soap.getUserOrganizations(userId);
 
-for (int i = 0; i < organizations.length; i++) {
-	OrganizationSoap organization = organizations[i];
+for (OrganizationSoap organization : organizations) {
 %>
 
 	<%= organization.getName() %><br />
@@ -47,20 +55,26 @@ for (int i = 0; i < organizations.length; i++) {
 %>
 
 <%!
-private URL _getURL(String remoteUser, String serviceName) throws Exception {
+private void _setCredentials(HttpServletRequest request, Stub stub, long userId) throws Exception {
+	Company company = PortalUtil.getCompany(request);
 
-	// Unathenticated url
+	String authType = company.getAuthType();
 
-	String url = "http://localhost:8080/api/axis/" + serviceName;
+	User user = UserLocalServiceUtil.getUserById(userId);
 
-	// Authenticated url
+	String userName;
 
-	if (false) {
-		String password = "test";
-
-		url = "http://" + remoteUser + ":" + password + "@localhost:8080/api/axis/" + serviceName;
+	if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
+		userName = user.getEmailAddress();
+	}
+	else if (authType.equals(CompanyConstants.AUTH_TYPE_SN)) {
+		userName = user.getScreenName();
+	}
+	else {
+		userName = Long.toString(userId);
 	}
 
-	return new URL(url);
+	stub._setProperty(Stub.USERNAME_PROPERTY, userName);
+	stub._setProperty(Stub.PASSWORD_PROPERTY, "test");
 }
 %>
