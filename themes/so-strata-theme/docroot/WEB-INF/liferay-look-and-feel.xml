@@ -6,11 +6,11 @@
 		<version>6.2.0+</version>
 		<version>6.1.0+</version>
 	</compatibility>
-	<theme id="sobetatheme" name="Social Office Beta Theme">
-		<color-scheme id="soClassic" name="Social Office Classic">
+	<theme id="so-strata" name="Social Office Strata Theme - Beta">
+		<color-scheme id="classic" name="Social Office Classic">
 			<css-class>so-classic</css-class>
 		</color-scheme>
-		<color-scheme id="normal" name="Social Office Beta">
+		<color-scheme id="strata" name="Social Office Strata">
 			<default-cs>true</default-cs>
 			<css-class>normal</css-class>
 		</color-scheme>
