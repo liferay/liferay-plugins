@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.util.List;
@@ -99,6 +100,17 @@ public class CalendarResourceStagedModelDataHandler
 			portletDataContext.addReferenceElement(
 				calendarResource, calendarResourceElement, calendar,
 				PortletDataContext.REFERENCE_TYPE_STRONG, false);
+		}
+
+		if (calendarResource.getClassNameId() ==
+				PortalUtil.getClassNameId(User.class)) {
+
+			User user = UserLocalServiceUtil.getUser(
+				calendarResource.getClassPK());
+
+			portletDataContext.addReferenceElement(
+				calendarResource, calendarResourceElement, user, User.class,
+				PortletDataContext.REFERENCE_TYPE_DEPENDENCY_DISPOSABLE, true);
 		}
 
 		portletDataContext.addClassedModel(
