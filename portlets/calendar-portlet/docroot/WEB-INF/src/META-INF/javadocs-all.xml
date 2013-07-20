@@ -3559,11 +3559,6 @@
 				<type>com.liferay.calendar.model.CalendarBooking</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>serviceContext</name>
-				<type>com.liferay.portal.service.ServiceContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
@@ -11350,27 +11345,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-		</method>
-		<method>
-			<name>getEntryTitle</name>
-			<param>
-				<name>activity</name>
-				<type>com.liferay.portlet.social.model.SocialActivity</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>serviceContext</name>
-				<type>com.liferay.portal.service.ServiceContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getPath</name>
