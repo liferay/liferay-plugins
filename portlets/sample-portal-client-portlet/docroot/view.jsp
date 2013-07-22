@@ -33,7 +33,7 @@ You belong to the following organizations:
 <br /><br />
 
 <%
-OrganizationServiceSoap organizationServiceSoap = getOrganizationServiceSoap();
+OrganizationServiceSoap organizationServiceSoap = _getOrganizationServiceSoap(request);
 
 OrganizationSoap[] organizationSoaps = organizationServiceSoap.getUserOrganizations(_getUserId(request));
 
@@ -47,7 +47,7 @@ for (OrganizationSoap organizationSoap : organizationSoaps) {
 %>
 
 <%!
-private OrganizationServiceSoap getOrganizationServiceSoap() {
+private OrganizationServiceSoap _getOrganizationServiceSoap(HttpServletRequest request) throws Exception {
 	OrganizationServiceSoapServiceLocator organizationServiceSoapServiceLocator = new OrganizationServiceSoapServiceLocator();
 
 	OrganizationServiceSoap organizationServiceSoap = organizationServiceSoapServiceLocator.getPortal_OrganizationService(new URL("http://localhost:8080/api/axis/Portal_OrganizationService"));
