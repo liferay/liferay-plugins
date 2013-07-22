@@ -41,7 +41,7 @@ OrganizationServiceSoapServiceLocator locator = new OrganizationServiceSoapServi
 
 OrganizationServiceSoap soap = locator.getPortal_OrganizationService(new URL("http://localhost:8080/api/axis/Portal_OrganizationService"));
 
-_setCredentials(request, (Stub) soap, userId);
+_setCredentials(request, (Stub)soap, userId);
 
 OrganizationSoap[] organizations = soap.getUserOrganizations(userId);
 
@@ -62,7 +62,7 @@ private void _setCredentials(HttpServletRequest request, Stub stub, long userId)
 
 	User user = UserLocalServiceUtil.getUserById(userId);
 
-	String userName;
+	String userName = null;
 
 	if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
 		userName = user.getEmailAddress();
