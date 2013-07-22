@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.oauthlogin">
+	<author>Andy Yang</author>
+	<namespace>OAuthLogin</namespace>
+	<entity name="OAuthService" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="oAuthServiceId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="enabled" type="boolean" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="oAuthVersion" type="int" />
+		<column name="key" type="String" />
+		<column name="secret" type="String" />
+		<column name="scope" type="String" />
+		<column name="graphURL" type="String" />
+		<column name="authorizeURL" type="String" />
+		<column name="accessTokenURL" type="String" />
+		<column name="requestTokenURL" type="String" />
+		<column name="redirectURL" type="String" />
+		<column name="accessTokenVerb" type="int" />
+		<column name="requestTokenVerb" type="int" />
+		<column name="extratorType" type="int" />
+		<column name="extratorScript" type="String" />
+		<column name="iconId" type="long" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!--  Finder methods -->
+
+		<finder name="Enabled" return-type="Collection">
+			<finder-column name="enabled" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Image" />
+	</entity>
+</service-builder>
