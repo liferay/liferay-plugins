@@ -33,48 +33,56 @@ You belong to the following organizations:
 <br /><br />
 
 <%
-String remoteUser = request.getRemoteUser();
+OrganizationServiceSoap organizationServiceSoap = getOrganizationServiceSoap();
 
-long userId = GetterUtil.getLong(remoteUser);
+OrganizationSoap[] organizationSoaps = organizationServiceSoap.getUserOrganizations(_getUserId(request));
 
-OrganizationServiceSoapServiceLocator locator = new OrganizationServiceSoapServiceLocator();
-
-OrganizationServiceSoap soap = locator.getPortal_OrganizationService(new URL("http://localhost:8080/api/axis/Portal_OrganizationService"));
-
-_setCredentials(request, (Stub)soap, userId);
-
-OrganizationSoap[] organizations = soap.getUserOrganizations(userId);
-
-for (OrganizationSoap organization : organizations) {
+for (OrganizationSoap organizationSoap : organizationSoaps) {
 %>
 
-	<%= organization.getName() %><br />
+	<%= organizationSoap.getName() %><br />
 
 <%
 }
 %>
 
 <%!
-private void _setCredentials(HttpServletRequest request, Stub stub, long userId) throws Exception {
+private OrganizationServiceSoap getOrganizationServiceSoap() {
+	OrganizationServiceSoapServiceLocator organizationServiceSoapServiceLocator = new OrganizationServiceSoapServiceLocator();
+
+	OrganizationServiceSoap organizationServiceSoap = organizationServiceSoapServiceLocator.getPortal_OrganizationService(new URL("http://localhost:8080/api/axis/Portal_OrganizationService"));
+
+	Stub stub = (Stub)organizationServiceSoap;
+
+	stub._setProperty(Stub.PASSWORD_PROPERTY, "test");
+	stub._setProperty(Stub.USERNAME_PROPERTY, _getUserName(request));
+
+	return organizationServiceSoap;
+}
+
+private long _getUserId(HttpServletRequest request) throws Exception {
+	String remoteUser = request.getRemoteUser();
+
+	return GetterUtil.getLong(remoteUser);
+}
+
+private String _getUserName(HttpServletRequest request) throws Exception {
+	long userId = _getUserId(request);
+
+	User user = UserLocalServiceUtil.getUserById(userId);
+
 	Company company = PortalUtil.getCompany(request);
 
 	String authType = company.getAuthType();
 
-	User user = UserLocalServiceUtil.getUserById(userId);
-
-	String userName = null;
-
 	if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
-		userName = user.getEmailAddress();
+		return user.getEmailAddress();
 	}
 	else if (authType.equals(CompanyConstants.AUTH_TYPE_SN)) {
-		userName = user.getScreenName();
+		return user.getScreenName();
 	}
 	else {
-		userName = Long.toString(userId);
+		return String.valueOf(userId);
 	}
-
-	stub._setProperty(Stub.USERNAME_PROPERTY, userName);
-	stub._setProperty(Stub.PASSWORD_PROPERTY, "test");
 }
 %>
