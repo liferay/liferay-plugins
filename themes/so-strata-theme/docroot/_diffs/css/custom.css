@@ -387,18 +387,6 @@ div#navigation {
 	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, .6));
 }
 
-.user-dashboard {
-	#content {
-		padding: 0;
-		border: 0;
-	}
-
-	#main-content {
-		float: none;
-		width: auto;
-	}
-}
-
 .aui-tabview-list {
 	padding: 0 .45em;
 
