@@ -717,7 +717,7 @@ Please find a solution that does not require portal-impl.jar.
 
 								<for param="import.shared.full.path">
 									<path>
-										<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}*.jar" />
+										<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.*.jar" />
 									</path>
 									<sequential>
 										<copy
