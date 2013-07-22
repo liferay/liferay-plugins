@@ -74,135 +74,7 @@ pageContext.setAttribute("portletURL", portletURL);
 </div>
 
 <div class="site-list-container">
-
-	<%
-	boolean hideNotice = GetterUtil.getBoolean(portletPreferences.getValue("hide-notice", StringPool.BLANK), false);
-	%>
-
-	<c:if test="<%= !hideNotice %>">
-		<div class="portlet-msg-info favorite-msg-info <%= hideNotice %>">
-			<liferay-ui:message key="favorite-some-sites-to-customize-this-list" />
-
-			<span class="hide-notice">
-				<liferay-portlet:actionURL name="hideNotice" var="hideNoticeURL">
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</liferay-portlet:actionURL>
-
-				<a href="<%= hideNoticeURL %>"><liferay-ui:message key="hide" /></a>
-			</span>
-		</div>
-	</c:if>
-
 	<ul class="site-list">
-		<c:choose>
-			<c:when test="<%= !groups.isEmpty() %>">
-
-				<%
-				boolean alternate = false;
-
-				for (Group group : groups) {
-					String className = StringPool.BLANK;
-
-					ExpandoBridge expandoBridge = group.getExpandoBridge();
-
-					if (SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId())) {
-						className += "social-office-enabled ";
-					}
-
-					boolean member = GroupLocalServiceUtil.hasUserGroup(themeDisplay.getUserId(), group.getGroupId());
-
-					if (member) {
-						className += "member ";
-					}
-
-					if (alternate) {
-						className += "alt";
-					}
-				%>
-
-					<li class="<%= className %>">
-						<c:choose>
-							<c:when test="<%= !FavoriteSiteLocalServiceUtil.isFavoriteSite(themeDisplay.getUserId(), group.getGroupId()) %>">
-								<span class="action favorite">
-									<liferay-portlet:actionURL name="updateFavorites" var="favoriteURL">
-										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
-										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-									</liferay-portlet:actionURL>
-
-									<a href="<%= favoriteURL %>"><liferay-ui:message key="favorite" /></a>
-								</span>
-							</c:when>
-							<c:otherwise>
-								<span class="action unfavorite">
-									<liferay-portlet:actionURL name="updateFavorites" var="unfavoriteURL">
-										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-									</liferay-portlet:actionURL>
-
-									<a href="<%= unfavoriteURL %>"><liferay-ui:message key="unfavorite" /></a>
-								</span>
-							</c:otherwise>
-						</c:choose>
-
-						<span class="name">
-							<c:if test="<%= group.hasPublicLayouts() %>">
-								<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="publicLayoutsURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-									<portlet:param name="struts_action" value="/my_sites/view" />
-									<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-									<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-								</liferay-portlet:actionURL>
-
-								<a href="<%= publicLayoutsURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
-							</c:if>
-
-							<c:if test="<%= group.hasPrivateLayouts() %>">
-								<c:choose>
-									<c:when test="<%= member %>">
-										<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="privateLayoutsURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-											<portlet:param name="struts_action" value="/my_sites/view" />
-											<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-											<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
-										</liferay-portlet:actionURL>
-
-										<a class="<%= group.hasPublicLayouts() ? "private-pages" : "" %>" href="<%= privateLayoutsURL %>"><%= group.hasPublicLayouts() ? "(" + LanguageUtil.get(locale, "private-pages") + ")" : HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
-									</c:when>
-									<c:otherwise>
-										<%= group.hasPublicLayouts() ? "(" + LanguageUtil.get(locale, "private-pages") + ")" : HtmlUtil.escape(group.getDescriptiveName(locale)) %>
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-						</span>
-					</li>
-
-				<%
-					alternate = !alternate;
-				}
-				%>
-
-				<c:if test="<%= groupsCount > maxResultSize %>">
-					<li class="more">
-						<a href="javascript:;"><liferay-ui:message key="view-all" /> (<%= groupsCount %>)</a>
-					</li>
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<li class="empty">
-					<c:choose>
-						<c:when test='<%= tabs1.equals("my-sites") %>'>
-							<liferay-ui:message key="you-are-not-a-member-of-any-sites.-search-or-open-the-directory-to-get-started" />
-						</c:when>
-						<c:when test='<%= tabs1.equals("my-favorites") %>'>
-							<liferay-ui:message key="you-do-not-have-a-favorite-site" />
-						</c:when>
-						<c:otherwise>
-							<liferay-ui:message key="there-are-no-results" />
-						</c:otherwise>
-					</c:choose>
-				</li>
-			</c:otherwise>
-		</c:choose>
 	</ul>
 </div>
 
@@ -221,6 +93,8 @@ pageContext.setAttribute("portletURL", portletURL);
 			siteSearchInput: '#<portlet:namespace />name'
 		}
 	);
+
+	Liferay.SO.Sites.updateSites();
 
 	var controlContainer = A.one('.so-portlet-sites .control-container');
 
@@ -322,26 +196,4 @@ pageContext.setAttribute("portletURL", portletURL);
 		},
 		'.action a'
 	);
-
-	<c:if test="<%= groups.isEmpty() && !hideNotice %>">
-		A.one('.so-portlet-sites .favorite-msg-info .hide-notice a').on(
-			'click',
-			function(event) {
-				event.preventDefault();
-
-				var link = event.currentTarget;
-
-				A.io.request(
-					link.get('href'),
-					{
-						after: {
-							success: function(event, id, obj) {
-								link.ancestor('.favorite-msg-info').hide();
-							}
-						}
-					}
-				);
-			}
-		);
-	</c:if>
 </aui:script>
