@@ -305,7 +305,7 @@ public class ScriptingPortlet extends GenericPortlet {
 			return false;
 		}
 
-		if (path.contains(StringPool.NULL_CHAR)) {
+		if (path.contains(_NULL_CHAR)) {
 			return false;
 		}
 
@@ -383,6 +383,8 @@ public class ScriptingPortlet extends GenericPortlet {
 	protected String viewFile;
 
 	private static final String _ERROR = ScriptingPortlet.class + ".ERROR";
+
+	private static final String _NULL_CHAR = "\u0000";
 
 	private static Log _log = LogFactoryUtil.getLog(ScriptingPortlet.class);
 
