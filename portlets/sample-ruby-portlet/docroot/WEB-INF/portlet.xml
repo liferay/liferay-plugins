@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Ruby</display-name>
-		<portlet-class>com.liferay.util.bridges.ruby.RubyPortlet</portlet-class>
+		<portlet-class>com.liferay.compat.util.bridges.ruby.RubyPortlet</portlet-class>
 		<init-param>
 			<name>action-file</name>
 			<value>/WEB-INF/ruby/action.rb</value>

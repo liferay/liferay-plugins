@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Groovy</display-name>
-		<portlet-class>com.liferay.util.bridges.groovy.GroovyPortlet</portlet-class>
+		<portlet-class>com.liferay.compat.util.bridges.groovy.GroovyPortlet</portlet-class>
 		<init-param>
 			<name>action-file</name>
 			<value>/WEB-INF/groovy/action.groovy</value>

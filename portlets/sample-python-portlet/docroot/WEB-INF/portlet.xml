@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Python</display-name>
-		<portlet-class>com.liferay.util.bridges.python.PythonPortlet</portlet-class>
+		<portlet-class>com.liferay.compat.util.bridges.python.PythonPortlet</portlet-class>
 		<init-param>
 			<name>action-file</name>
 			<value>/WEB-INF/python/action.py</value>
