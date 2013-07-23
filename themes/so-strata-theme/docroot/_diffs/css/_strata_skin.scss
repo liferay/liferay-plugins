@@ -1,15 +1,15 @@
 @import "compass";
 
-$btn-background-default: rgb(228,228,228);
-$btn-border-default: rgba(0,0,0, .1);
-$btn-default-text: #0D0D0D;
+$btnBackgroundDefault: rgb(228,228,228);
+$btnBorderDefault: rgba(0,0,0, .1);
+$btnDefaultText: #0D0D0D;
 
-$default-border-color: #C9C9C9;
-$default-text-color: #202020;
+$defaultBorderColor: #C9C9C9;
+$defaultTextColor: #202020;
 
 $blue: #0E50A9;
-$control-bg-color: #EEE9E9;
-$navigation-bg-color: #CBD0D3;
+$controlBgColor: #EEE9E9;
+$navigationBgColor: #CBD0D3;
 $red: #8F0920;
 
 @mixin clear-both {
@@ -28,11 +28,11 @@ $red: #8F0920;
 }
 
 @mixin default-border {
-	border: 1px solid $default-border-color;
+	border: 1px solid $defaultBorderColor;
 }
 
 @mixin header {
-	background: $control-bg-color;
+	background: $controlBgColor;
 
 	@include default-border;
 }
@@ -44,7 +44,7 @@ $red: #8F0920;
 }
 
 @mixin normal-gradient {
-	background: $btn-background-default url(../images/custom/normal_gradient_bg.png) repeat-x;
+	background: $btnBackgroundDefault url(../images/custom/normal_gradient_bg.png) repeat-x;
 
 	@include background-image(linear-gradient(bottom, rgb(228,228,228) 0%, rgb(247,247,247) 100%));
 	@include transition-duration(.2s);
@@ -73,7 +73,7 @@ $red: #8F0920;
 }
 
 @mixin button-default {
-	color: $btn-default-text;
+	color: $btnDefaultText;
 	cursor: pointer;
 	font-weight: normal;
 	padding: 0.35em 0.70em 0.38em;
@@ -88,7 +88,7 @@ $red: #8F0920;
 }
 
 @mixin button-disabled {
-	color: $default-border-color;
+	color: $defaultBorderColor;
 	opacity: 0.5;
 
 	@include normal-gradient;

@@ -1,15 +1,12 @@
 @import "compass";
 
-$blue-link: #2571AD;
-$button-text-color: #34404F;
-$default-border-color: #D9D8D8;
-$fixed-width: 980px;
+$buttonTextColor: #34404F;
+$defaultBorderColor: #D9D8D8;
 $gray: #CECECE;
-$gray-dark: #C7D0DA;
-$gray-light: #F4F4F4;
-$gray-medium: #EEE;
-$link-color: #2571AD;
-$navigation-width: 200px;
+$grayDark: #C7D0DA;
+$grayLight: #F4F4F4;
+$grayMedium: #EEE;
+$linkColor: #2571AD;
 $red: #8F0920;
 
 @mixin remove-gradients {
@@ -18,12 +15,12 @@ $red: #8F0920;
 }
 
 @mixin default-border {
-	border: 1px solid $default-border-color;
+	border: 1px solid $defaultBorderColor;
 }
 
 @mixin input-field-default {
 	background: #FFF;
-	border: 1px solid $gray-dark;
+	border: 1px solid $grayDark;
 	vertical-align: middle;
 
 	&:active, &:focus, &:hover, &.focus {
@@ -40,7 +37,7 @@ $red: #8F0920;
 
 @mixin input-field-focus {
 	background-color: #FFFFF6;
-	border-color: $blue-link;
+	border-color: $linkColor;
 }
 
 @mixin button-default {
@@ -51,7 +48,7 @@ $red: #8F0920;
 }
 
 @mixin button-hover {
-	background: $gray-medium;
+	background: $grayMedium;
 	border-color: #AAA;
 	color: #5A5A5A;
 }
