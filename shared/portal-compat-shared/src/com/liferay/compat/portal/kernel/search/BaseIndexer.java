@@ -18,7 +18,10 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
@@ -31,7 +34,11 @@ import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -54,6 +61,55 @@ public abstract class BaseIndexer
 		}
 
 		return sortField;
+	}
+
+	protected void doAddSearchAssetCategoryTitles(
+		Document document, String field, List<AssetCategory> assetCategories) {
+
+		Map<Locale, List<String>> assetCategoryTitles =
+			new HashMap<Locale, List<String>>();
+
+		Locale defaultLocale = LocaleUtil.getDefault();
+
+		for (AssetCategory assetCategory : assetCategories) {
+			Map<Locale, String> titleMap = assetCategory.getTitleMap();
+
+			for (Map.Entry<Locale, String> entry : titleMap.entrySet()) {
+				Locale locale = entry.getKey();
+				String title = entry.getValue();
+
+				if (Validator.isNull(title)) {
+					continue;
+				}
+
+				List<String> titles = assetCategoryTitles.get(locale);
+
+				if (titles == null) {
+					titles = new ArrayList<String>();
+
+					assetCategoryTitles.put(locale, titles);
+				}
+
+				titles.add(title);
+			}
+		}
+
+		for (Map.Entry<Locale, List<String>> entry :
+				assetCategoryTitles.entrySet()) {
+
+			Locale locale = entry.getKey();
+			List<String> titles = entry.getValue();
+
+			String[] titlesArray = titles.toArray(new String[0]);
+
+			if (locale.equals(defaultLocale)) {
+				document.addKeyword(field, titlesArray);
+			}
+
+			document.addKeyword(
+				field.concat(StringPool.UNDERLINE).concat(locale.toString()),
+				titlesArray);
+		}
 	}
 
 	@Override
@@ -90,8 +146,8 @@ public abstract class BaseIndexer
 
 		document.addKeyword(Field.ASSET_CATEGORY_IDS, assetCategoryIds);
 
-		addSearchAssetCategoryTitles(
-			document, Field.ASSET_CATEGORY_TITLES, assetCategories);
+		doAddSearchAssetCategoryTitles(
+			document, _ASSET_CATEGORY_TITLES, assetCategories);
 
 		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
 			className, classPK);
@@ -157,6 +213,8 @@ public abstract class BaseIndexer
 	protected void setSortableTextFields(String[] sortableTextFields) {
 		_documentImpl.setSortableTextFields(sortableTextFields);
 	}
+
+	private static final String _ASSET_CATEGORY_TITLES = "assetCategoryTitles";
 
 	private DocumentImpl _documentImpl;
 
