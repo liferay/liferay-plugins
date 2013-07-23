@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.util.bridges.scripting;
+package com.liferay.compat.util.bridges.scripting;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.scripting.ScriptingException;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -175,7 +176,7 @@ public class ScriptingPortlet extends GenericPortlet {
 	protected void checkPath(String path) throws PortletException {
 		if (Validator.isNotNull(path) &&
 			(!path.startsWith(filePath) ||
-			 !Validator.isFilePath(path, false))) {
+			 !isFilePath(path, false))) {
 
 			throw new PortletException(
 				"Path " + path + " is not accessible by this portlet");
@@ -297,6 +298,48 @@ public class ScriptingPortlet extends GenericPortlet {
 		finally {
 			is.close();
 		}
+	}
+
+	protected boolean isFilePath(String path, boolean isParentDirAllowed) {
+		if (Validator.isNull(path)) {
+			return false;
+		}
+
+		if (path.contains(StringPool.NULL_CHAR)) {
+			return false;
+		}
+
+		if (isParentDirAllowed) {
+			return true;
+		}
+
+		if (path.equals(StringPool.DOUBLE_PERIOD)) {
+			return false;
+		}
+
+		String normalizedPath = path.replace(
+			CharPool.BACK_SLASH, CharPool.SLASH);
+
+		if (normalizedPath.startsWith(
+				StringPool.DOUBLE_PERIOD.concat(StringPool.SLASH))) {
+
+			return false;
+		}
+
+		if (normalizedPath.endsWith(
+				StringPool.SLASH.concat(StringPool.DOUBLE_PERIOD))) {
+
+			return false;
+		}
+
+		if (normalizedPath.contains(
+				StringPool.SLASH.concat(
+					StringPool.DOUBLE_PERIOD).concat(StringPool.SLASH))) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	protected void writeErrorMessage(

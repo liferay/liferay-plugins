@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.util.bridges.python;
+package com.liferay.compat.util.bridges.python;
 
-import com.liferay.util.bridges.scripting.ScriptingPortlet;
+import com.liferay.compat.util.bridges.scripting.ScriptingPortlet;
 
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
