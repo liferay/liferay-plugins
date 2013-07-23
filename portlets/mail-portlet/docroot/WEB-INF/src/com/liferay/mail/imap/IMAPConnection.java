@@ -122,7 +122,6 @@ public class IMAPConnection {
 					store = session.getStore("imap");
 				}
 
-				store.addConnectionListener(new ConnectionListener(storeKey));
 				store.connect(
 					_incomingHostName, _incomingPort, _login, _password);
 
@@ -154,9 +153,6 @@ public class IMAPConnection {
 
 			String transportKey = _login.concat(_TRANSPORT).concat(
 				_incomingHostName);
-
-			transport.addConnectionListener(
-				new ConnectionListener(transportKey));
 
 			transport.connect(
 				_outgoingHostName, _outgoingPort, _login, _password);
