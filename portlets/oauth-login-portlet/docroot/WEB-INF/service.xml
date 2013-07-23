@@ -4,17 +4,16 @@
 <service-builder package-path="com.liferay.oauthlogin">
 	<author>Andy Yang</author>
 	<namespace>OAuthLogin</namespace>
-	<entity name="OAuthService" local-service="true" remote-service="false">
+	<entity name="OAuthConnection" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="oAuthServiceId" type="long" primary="true" />
+		<column name="oAuthConnectionId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
 		<column name="userId" type="long" />
-		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
 
@@ -23,20 +22,23 @@
 		<column name="enabled" type="boolean" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
+		<column name="iconId" type="long" />
 		<column name="oAuthVersion" type="int" />
 		<column name="key" type="String" />
 		<column name="secret" type="String" />
 		<column name="scope" type="String" />
-		<column name="graphURL" type="String" />
 		<column name="authorizeURL" type="String" />
 		<column name="accessTokenURL" type="String" />
-		<column name="requestTokenURL" type="String" />
-		<column name="redirectURL" type="String" />
 		<column name="accessTokenVerb" type="int" />
+		<column name="accessTokenExtractorType" type="int" />
+		<column name="requestTokenURL" type="String" />
 		<column name="requestTokenVerb" type="int" />
-		<column name="extratorType" type="int" />
-		<column name="extratorScript" type="String" />
-		<column name="iconId" type="long" />
+		<column name="redirectURL" type="String" />
+		<column name="socialAccountIdURL" type="String" />
+		<column name="socialAccountIdURLVerb" type="int" />
+		<column name="socialAccountIdField" type="String" />
+		<column name="socialAccountIdType" type="int" />
+		<column name="socialAccountIdScript" type="String" />
 
 		<!-- Order -->
 
@@ -54,4 +56,12 @@
 
 		<reference package-path="com.liferay.portal" entity="Image" />
 	</entity>
+	<exceptions>
+		<exception>AccessTokenURL</exception>
+		<exception>AuthorizeURL</exception>
+		<exception>RedirectURL</exception>
+		<exception>RequestTokenURL</exception>
+		<exception>OAuthConnectionName</exception>
+		<exception>SocialAccountIdURL</exception>
+	</exceptions>
 </service-builder>
