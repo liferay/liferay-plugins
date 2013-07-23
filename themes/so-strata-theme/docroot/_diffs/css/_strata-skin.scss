@@ -101,9 +101,7 @@ $red: #8F0920;
 }
 
 @mixin button-focus {
-	background-position: 0 -.8em;
-
-	@include box-shadow(0 1px 0 rgba(255,255,255, .25) inset, 0 1px 0px rgba(0,0,0, .14) inset, 0 1px 4px rgba(0,0,0, .1) inset);
+	@include button-hover;
 }
 
 @mixin button-active {

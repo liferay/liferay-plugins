@@ -454,9 +454,20 @@ div#navigation {
 	padding: 1em;
 }
 
-@import "portlet-styling";
 @import "classic-scheme";
-@import "ie";
+@import "portlet-styling";
+
+.ie8, .ie9 {
+	#user-bar .user-menu .avatar img {
+		visibility: visible;
+		width: 24px;
+	}
+
+	#navigation .avatar img {
+		visibility: visible;
+		width: 155px;
+	}
+}
 
 @media (max-width:860px) {
 	#content, #navigation, #navigation ul {
