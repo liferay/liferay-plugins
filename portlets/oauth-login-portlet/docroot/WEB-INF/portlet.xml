@@ -22,4 +22,31 @@
 			<role-name>administrator</role-name>
 		</security-role-ref>
 	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<display-name>OAuth Login (Display)</display-name>
+		<portlet-class>com.liferay.oauthlogin.display.portlet.DisplayPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/display/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>OAuth Login (Display)</title>
+			<short-title>OAuth Login (Display)</short-title>
+			<keywords>OAuth Login (Display)</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
 </portlet-app>

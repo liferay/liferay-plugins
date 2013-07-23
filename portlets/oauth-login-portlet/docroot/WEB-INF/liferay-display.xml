@@ -4,5 +4,6 @@
 <display>
 	<category name="category.oauth">
 		<portlet id="1" />
+		<portlet id="2" />
 	</category>
 </display>

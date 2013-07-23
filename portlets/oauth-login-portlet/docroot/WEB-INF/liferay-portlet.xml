@@ -7,6 +7,11 @@
 		<instanceable>false</instanceable>
 		<css-class-wrapper>oauth-login-portlet oauth-login-portlet-admin</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<instanceable>true</instanceable>
+		<css-class-wrapper>oauth-login-portlet oauth-login-portlet-display</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
