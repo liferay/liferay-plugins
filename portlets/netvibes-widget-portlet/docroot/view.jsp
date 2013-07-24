@@ -22,7 +22,7 @@
 		<%
 			StringBundler iframeURL = new StringBundler(5);
 
-			iframeURL.append(NetvibesPropsValues.UWA_WIDGET_FRAME_URL);
+			iframeURL.append(PortletPropsValues.UWA_WIDGET_FRAME_URL);
 			iframeURL.append("?uwaUrl=");
 			iframeURL.append(HttpUtil.encodeURL(link));
 			iframeURL.append("&id=");
