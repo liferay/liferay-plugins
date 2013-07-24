@@ -14,14 +14,11 @@
 
 package com.liferay.netvibeswidget.util;
 
-import com.liferay.util.portlet.PortletProps;
-
 /**
  * @author Vilmos Papp
  */
-public interface NetvibesPropsValues {
+public class PortletPropsKeys {
 
-	public static final String UWA_WIDGET_FRAME_URL = PortletProps.get(
-		NetvibesPropsKeys.UWA_WIDGET_FRAME_URL);
+	public static final String UWA_WIDGET_FRAME_URL = "uwa.widget.frame.url";
 
 }
