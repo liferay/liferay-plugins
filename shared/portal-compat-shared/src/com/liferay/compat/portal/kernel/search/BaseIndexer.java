@@ -63,7 +63,7 @@ public abstract class BaseIndexer
 		return sortField;
 	}
 
-	protected void doAddSearchAssetCategoryTitles(
+	protected void addSearchAssetCategoryTitles(
 		Document document, String field, List<AssetCategory> assetCategories) {
 
 		Map<Locale, List<String>> assetCategoryTitles =
@@ -146,7 +146,7 @@ public abstract class BaseIndexer
 
 		document.addKeyword(Field.ASSET_CATEGORY_IDS, assetCategoryIds);
 
-		doAddSearchAssetCategoryTitles(
+		addSearchAssetCategoryTitles(
 			document, _ASSET_CATEGORY_TITLES, assetCategories);
 
 		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
