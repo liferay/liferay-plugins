@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -31,6 +29,7 @@ import com.liferay.so.activities.model.SocialActivityInterpreter;
 import com.liferay.so.activities.model.SocialActivitySet;
 import com.liferay.so.activities.model.impl.SocialActivityInterpreterImpl;
 import com.liferay.so.activities.service.base.SocialActivityInterpreterLocalServiceBaseImpl;
+import com.liferay.so.activities.util.PortletPropsValues;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -262,8 +261,7 @@ public class SocialActivityInterpreterLocalServiceImpl
 	}
 
 	private static final boolean _SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED =
-		GetterUtil.getBoolean(
-			PropsUtil.get("social.activity.sets.bundling.enabled"));
+		PortletPropsValues.SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SocialActivityInterpreterLocalServiceImpl.class);
