@@ -467,7 +467,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 					"MMMMM d 'at' h:mm a", recipient.getLocale(),
 					recipient.getTimeZone());
 
-			body = StringUtil.replace(
+			String userThreadBody = StringUtil.replace(
 				body,
 				new String[] {
 					"[$SENT_DATE$]", "[$THREAD_URL$]"
@@ -479,7 +479,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			);
 
 			MailMessage mailMessage = new MailMessage(
-				from, to, subject, body, true);
+				from, to, subject, userThreadBody, true);
 
 			MailServiceUtil.sendEmail(mailMessage);
 		}
