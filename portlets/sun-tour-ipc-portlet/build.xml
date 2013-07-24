@@ -10,4 +10,15 @@
 	-->
 
 	<property name="original.war.file" value="touripcportlet.war" />
+
+	<target name="merge">
+		<antcall target="build-common-plugin.merge" />
+
+				<replace file="tmp/WEB-INF/portlet.xml">
+						<replacefilter
+								token="/opt/SUNWportal/dtd/portlet.xsd"
+								value="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+						/>
+				</replace>
+	</target>
 </project>
