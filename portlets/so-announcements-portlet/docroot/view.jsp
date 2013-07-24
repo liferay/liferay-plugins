@@ -37,25 +37,25 @@
 	LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
 
 	if (customizeAnnouncementsDisplayed) {
-		long[] selectedScopeGroupsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
-		long[] selectedScopeOrganizationsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
-		long[] selectedScopeRolesArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
-		long[] selectedScopeUserGroupsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroups));
+		long[] selectedScopeGroupIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
+		long[] selectedScopeOrganizationIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
+		long[] selectedScopeRoleIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
+		long[] selectedScopeUserGroupIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
 
-		if (selectedScopeGroupsArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroupsArray);
+		if (selectedScopeGroupIdsArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroupIdsArray);
 		}
 
-		if (selectedScopeOrganizationsArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizationsArray);
+		if (selectedScopeOrganizationIdsArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizationIdsArray);
 		}
 
-		if (selectedScopeRolesArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Role.class.getName()), selectedScopeRolesArray);
+		if (selectedScopeRoleIdsArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(Role.class.getName()), selectedScopeRoleIdsArray);
 		}
 
-		if (selectedScopeUserGroupsArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(UserGroup.class.getName()), selectedScopeUserGroupsArray);
+		if (selectedScopeUserGroupIdsArray.length != 0) {
+			scopes.put(PortalUtil.getClassNameId(UserGroup.class.getName()), selectedScopeUserGroupIdsArray);
 		}
 	}
 	else {
