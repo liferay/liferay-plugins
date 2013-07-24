@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="baidu-maps-portlet" basedir="." default="deploy">
+	<import file="D:\liferay-source\git\liferay-plugins\plugins\portlets/build-common-portlet.xml" />
+</project>
