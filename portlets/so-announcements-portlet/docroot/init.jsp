@@ -95,20 +95,12 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-}
-
-Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(preferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
-int pageDelta = GetterUtil.getInteger(preferences.getValue("pageDelta", String.valueOf(SearchContainer.DEFAULT_DELTA)));
-String selectedScopeGroups = PrefsParamUtil.getString(preferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()));
-String selectedScopeOrganizations = PrefsParamUtil.getString(preferences, request, "selectedScopeOrganizations", "");
-String selectedScopeRoles = PrefsParamUtil.getString(preferences, request, "selectedScopeRoles", "");
-String selectedScopeUserGroups = PrefsParamUtil.getString(preferences, request, "selectedScopeUserGroups", "");
+Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(portletPreferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
+int pageDelta = GetterUtil.getInteger(portletPreferences.getValue("pageDelta", String.valueOf(SearchContainer.DEFAULT_DELTA)));
+String selectedScopeGroups = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()));
+String selectedScopeOrganizations = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeOrganizations", "");
+String selectedScopeRoles = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeRoles", "");
+String selectedScopeUserGroups = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeUserGroups", "");
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getSimpleDateFormat("MMM d, yyyy", locale, timeZone);
 %>
