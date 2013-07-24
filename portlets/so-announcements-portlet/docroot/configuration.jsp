@@ -54,8 +54,16 @@ List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true)
 			</aui:fieldset>
 		</liferay-ui:panel>
 
+		<%
+		Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(preferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
+
+		String toggleCustomizeAnnouncementsDisplayed = renderResponse.getNamespace() + "toggleCustomizeAnnouncementsDisplayed();";
+		%>
+
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="soAnnouncementsDisplayPanel" persistState="<%= true %>" title="announcements-displayed">
-			<div id="<portlet:namespace />customizeAnnouncementsDisplayed">
+			<aui:input cssClass="customize-announcements-displayed" id="customizeAnnouncementsDisplayedInput" name="preferences--customizeAnnouncementsDisplayed--" onChange="<%= toggleCustomizeAnnouncementsDisplayed %>" title="customize-announcements-displayed" type="checkbox" value="<%= customizeAnnouncementsDisplayed %>" />
+
+			<div class="<%= customizeAnnouncementsDisplayed ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />customizeAnnouncementsDisplayed">
 				<div class="portlet-msg-info">
 					<liferay-ui:message key="general-annnouncements-will-always-be-shown-select-any-other-distribution-scopes-you-would-like-to-display" />
 				</div>
@@ -127,5 +135,17 @@ List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true)
 			submitForm(document.<portlet:namespace />fm);
 		},
 		['liferay-util-list-fields']
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />toggleCustomizeAnnouncementsDisplayed',
+		function() {
+			var customizeAnnouncementsDisplayed = A.one('#<portlet:namespace />customizeAnnouncementsDisplayed');
+
+			if (customizeAnnouncementsDisplayed) {
+				customizeAnnouncementsDisplayed.toggleClass('aui-helper-hidden');
+			}
+		}
 	);
 </aui:script>
