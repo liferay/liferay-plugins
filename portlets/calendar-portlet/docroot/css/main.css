@@ -1,84 +1,33 @@
 @import "compass";
 
-.calendar-portlet {
-	.allday-class-active .lfr-input-time {
-		display: none;
+.calendar-booking-invitations {
+	min-height: 110px;
+
+	.calendar-list-empty-message {
+		margin: 4px 0 0 4px;
 	}
-
-	.scheduler-view-agenda-info-container {
-		.scheduler-view-agenda-info {
-			line-height: 1.2;
-
-			.scheduler-view-agenda-info-biggie {
-				line-height: 30px;
-			}
-		}
+	
+	.field-label {
+		margin-left: 15px;
 	}
 }
 
-.calendar-portlet-availability {
-	margin: 0 30px;
-}
+.calendar-booking-reminders {
+	min-height: 52px;
 
-.calendar-portlet-wrapper {
-	background: #FFF;
-
-	.scheduler-event-all-day .scheduler-event-title {
-		display: none;
+	.reminder-duration {
+		width: 7em;
 	}
 
-	.scheduler-event-disabled {
-		@include opacity(0.8);
+	.reminder-type {
+		display: inline-block;
+		margin-bottom: 11px;
+		padding: 4px 6px;
 	}
-}
 
-.calendar-portlet-event-recorder {
-	table td {
-		padding: 5px;
+	.reminder-value {
+		width: 3em;
 	}
-}
-
-.scheduler-event-recorder-body select {
-	max-width: 340px;
-	width: 100%;
-}
-
-.scheduler-event-recorder-popover .popover-title .close {
-	margin-top: 5px;
-}
-
-.scheduler-event-recorder-header .scheduler-event-recorder-content {
-	background: #FAFAFA;
-	border: 1px solid #C4C4C4;
-	outline-width: 0;
-	padding: 7px;
-	width: 482px;
-}
-
-.scheduler-event-recorder-header .scheduler-event-recorder-content:hover {
-	background: #FFC;
-	border-color: #FC0;
-}
-
-.scheduler-event-past {
-	opacity: 0.4;
-}
-
-.calendar-portlet-event-loading {
-	@include opacity(0.5);
-}
-
-.calendar-portlet-event-maybe, .calendar-portlet-event-pending {
-	@include opacity(0.8);
-}
-
-.calendar-portlet-invite-resources-input {
-	margin: 2px 0;
-	width: 350px;
-}
-
-.calendar-booking-invitations .calendar-list-empty-message {
-	margin: 4px 0 0 4px;
 }
 
 .calendar-list-empty-message {
@@ -143,6 +92,117 @@
 	color: #555;
 }
 
+.calendar-portlet {
+	.allday-class-active .lfr-input-time {
+		display: none;
+	}
+
+	.scheduler-event-content, .scheduler-event-title {
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		padding: 2px 4px;
+	}
+
+	.scheduler-event-recorder-popover {
+		max-width: none;
+	}
+
+	.scheduler-view-agenda-info-container {
+		.scheduler-view-agenda-info {
+			line-height: 1.2;
+
+			.scheduler-view-agenda-info-biggie {
+				line-height: 30px;
+			}
+		}
+	}
+}
+
+.calendar-portlet-availability {
+	margin: 0 30px;
+}
+
+.calendar-portlet-calendar-list {
+	margin-left: 11px;
+
+	.calendar-portlet-add-calendars-input {
+		margin: 2px 0 5px;
+		padding: 5px 4px;
+		width: 200px;
+	}
+}
+
+.calendar-portlet-colors {
+	width: 240px;
+}
+
+.calendar-portlet-color-box {
+	display: inline-block;
+	height: 80%;
+	vertical-align: middle;
+	width: 80%;
+}
+
+.calendar-portlet-column-grid .scheduler-base-views {
+	position: absolute;
+}
+
+.calendar-portlet-confirmation-text {
+	padding: 5px;
+}
+
+.calendar-portlet-event-loading {
+	@include opacity(0.5);
+}
+
+.calendar-portlet-event-maybe, .calendar-portlet-event-pending {
+	@include opacity(0.8);
+}
+
+.calendar-portlet-event-recorder {
+	table td {
+		padding: 5px;
+	}
+}
+
+.calendar-portlet-field-date {
+	white-space: nowrap;
+
+	.calendar-portlet-field-datepicker {
+		display: inline-block;
+	}
+
+	.field {
+		top: -10px;
+		position: relative;
+	}
+}
+
+.calendar-portlet-import-container {
+	.portlet-msg-error, .portlet-msg-help, .portlet-msg-success {
+		margin: 10px 0;
+		width: 420px;
+	}
+
+	.field-input-text {
+		width: 454px;
+	}
+}
+
+.calendar-portlet-invite-resources-input {
+	margin: 2px 0;
+	width: 350px;
+}
+
+.calendar-portlet-list-arrow {
+	background: url(@theme_image_path@/aui/icon_sprite.png) -34px -18px;
+	display: inline-block;
+	height: 13px;
+	vertical-align: middle;
+	width: 12px;
+}
+
 .calendar-portlet-list-header {
 	color: #222;
 	cursor: pointer;
@@ -165,34 +225,122 @@
 	}
 }
 
-.calendar-portlet-calendar-list {
-	margin-left: 11px;
-
-	.calendar-portlet-add-calendars-input {
-		margin: 2px 0 5px;
-		padding: 5px 4px;
-		width: 200px;
-	}
-}
-
 .calendar-portlet-list-text {
 	vertical-align: middle;
 }
 
-.calendar-portlet-list-arrow {
-	background: url(@theme_image_path@/aui/icon_sprite.png) -34px -18px;
-	display: inline-block;
-	height: 13px;
-	vertical-align: middle;
-	width: 12px;
+.calendar-portlet-recurrence-container {
+	.field-content, .field-wrapper-content {
+		margin: 2px;
+	}
+}
+
+.calendar-portlet-recurrence-summary {
+	font-weight: bold;
+	text-transform: capitalize;
+
+	span {
+		text-transform: none;
+	}
+}
+
+.calendar-portlet-recurrence-title {
+	font-weight: bold;
+	margin-right: 10px;
+	padding: 4px 10px;
+	text-align: right;
+	vertical-align: top;
 }
 
 .calendar-portlet-reminder-section {
 	padding: 1px;
 }
 
-.toggler-header-expanded .calendar-portlet-list-arrow {
-	background-position: -66px -18px;
+.calendar-portlet-time-zone-field .field .field-content {
+	margin: 0;
+}
+
+.calendar-portlet-wrapper {
+	background: #FFF;
+
+	.scheduler-event-all-day .scheduler-event-title {
+		display: none;
+	}
+
+	.scheduler-event-disabled {
+		@include opacity(0.8);
+	}
+}
+
+.calendar-subscribe-link {
+	background: url(@theme_image_path@/common/rss.png) 8px center no-repeat;
+}
+
+.dialog-iframe-popup .calendar-portlet .fieldset {
+	margin-bottom: 2em;
+}
+
+.ie6, .ie7 {
+	.yui3-skin-sam .yui3-calendar-day.lfr-busy-day {
+		background: transparent url(../images/lfr-busy-day-arrow.png) right top no-repeat;
+	}
+}
+
+.property-list {
+	margin-left: 0;
+	margin-top: 0;
+	padding: 0;
+
+	dt {
+		font-weight: bold;
+	}
+}
+
+.rss-time-interval {
+	margin-top: -1em;
+	margin-left: 2em;
+}
+
+.scheduler-event-past {
+	opacity: 0.4;
+}
+
+.scheduler-event-recorder-body select {
+	max-width: 340px;
+	width: 100%;
+}
+
+.scheduler-event-recorder-header .scheduler-event-recorder-content {
+	background: #FAFAFA;
+	border: 1px solid #C4C4C4;
+	outline-width: 0;
+	padding: 7px;
+	width: 482px;
+}
+
+.scheduler-event-recorder-header .scheduler-event-recorder-content:hover {
+	background: #FFC;
+	border-color: #FC0;
+}
+
+.scheduler-event-recorder-popover .popover-title .close {
+	margin-top: 5px;
+}
+
+.scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col {
+	padding-top: 5px;
+}
+
+.scheduler-view-day-content .yui3-widget-hd {
+	padding-top: 4px;
+}
+
+.scheduler-view-day-header-day a {
+	padding: 2px;
+}
+
+.scheduler-view-table-data-event {
+	padding: 0 3px 0 3px;
 }
 
 .simple-menu {
@@ -257,155 +405,13 @@
 	border-color: #000 !important;
 }
 
-.calendar-portlet-colors {
-	width: 240px;
-}
-
-.calendar-portlet-color-box {
-	display: inline-block;
-	height: 80%;
-	vertical-align: middle;
-	width: 80%;
-}
-
-.calendar-portlet-column-grid .scheduler-base-views {
-	position: absolute;
-}
-
-.calendar-portlet-recurrence-summary {
-	font-weight: bold;
-	text-transform: capitalize;
-
-	span {
-		text-transform: none;
-	}
-}
-
-.calendar-portlet-recurrence-container {
-	.field-content, .field-wrapper-content {
-		margin: 2px;
-	}
-}
-
-.calendar-portlet-recurrence-title {
-	font-weight: bold;
-	margin-right: 10px;
-	padding: 4px 10px;
-	text-align: right;
-	vertical-align: top;
-}
-
-.calendar-portlet-field-date {
-	white-space: nowrap;
-
-	.calendar-portlet-field-datepicker {
-		display: inline-block;
-	}
-
-	.field {
-		top: -10px;
-		position: relative;
-	}
-}
-
-.calendar-portlet-import-container {
-	.portlet-msg-error, .portlet-msg-help, .portlet-msg-success {
-		margin: 10px 0;
-		width: 420px;
-	}
-
-	.field-input-text {
-		width: 454px;
-	}
-}
-
-.calendar-portlet-wrapper {
-	.scheduler-event-all-day .scheduler-event-title {
-		display: none;
-	}
-
-	.scheduler-event-disabled {
-		@include opacity(0.8);
-	}
-}
-
-.calendar-booking-invitations .field-label {
-	margin-left: 15px;
-}
-
-.calendar-portlet-time-zone-field .field .field-content {
-	margin: 0;
-}
-
-.calendar-portlet-confirmation-text {
-	padding: 5px;
-}
-
-.scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col {
-	padding-top: 5px;
-}
-
-.scheduler-view-table-data-event {
-	padding: 0 3px 0 3px;
-}
-
-.scheduler-view-day-content .yui3-widget-hd {
-	padding-top: 4px;
-}
-
-.scheduler-view-day-header-day a {
-	padding: 2px;
+.toggler-header-expanded .calendar-portlet-list-arrow {
+	background-position: -66px -18px;
 }
 
 .yui3-skin-sam .calendar-portlet-mini-calendar .yui3-calendar-content {
 	background: #ffffff !important;
 	border: 1px solid #DDD;
-}
-
-.dialog-iframe-popup .calendar-portlet .fieldset {
-	margin-bottom: 2em;
-}
-
-.calendar-booking-invitations {
-	min-height: 110px;
-}
-
-.calendar-booking-reminders {
-	min-height: 52px;
-
-	.reminder-type {
-		display: inline-block;
-		margin-bottom: 11px;
-		padding: 4px 6px;
-	}
-
-	.reminder-value {
-		width: 3em;
-	}
-
-	.reminder-duration {
-		width: 7em;
-	}
-
-}
-
-.calendar-subscribe-link {
-	background: url(@theme_image_path@/common/rss.png) 8px center no-repeat;
-}
-
-.property-list {
-	margin-left: 0;
-	margin-top: 0;
-	padding: 0;
-
-	dt {
-		font-weight: bold;
-	}
-}
-
-.rss-time-interval {
-	margin-top: -1em;
-	margin-left: 2em;
 }
 
 .yui3-skin-sam {
@@ -444,27 +450,8 @@
 	}
 }
 
-.ie6, .ie7 {
-	.yui3-skin-sam .yui3-calendar-day.lfr-busy-day {
-		background: transparent url(../images/lfr-busy-day-arrow.png) right top no-repeat;
-	}
-}
-
 .yui3-skin-sam .calendar-portlet .yui3-calendar-day {
 	font-weight: normal;
-}
-
-.calendar-portlet {
-	.scheduler-event-content, .scheduler-event-title {
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
-		padding: 2px 4px;
-	}
-
-	.scheduler-event-recorder-popover {
-		max-width: none;
-	}
 }
 
 /* --- Extras --- */
