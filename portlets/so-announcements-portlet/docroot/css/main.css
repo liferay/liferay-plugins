@@ -209,12 +209,12 @@
 		font-weight: bold;
 	}
 
-	#soAnnouncementsDisplaySettingsPanel .aui-field-label {
+	#displaySettingsPanel .aui-field-label {
 		display: inline;
 		margin-right: 1em;
 	}
 
-	#soAnnouncementsDisplayPanel {
+	#announcementsDisplayedPanel {
 		.customize-announcements-displayed {
 			display: block;
 			margin-bottom: 1em;
@@ -223,6 +223,7 @@
 				font-weight: bold;
 			}
 		}
+
 		.aui-tabview-list {
 			margin-top: 1em;
 		}

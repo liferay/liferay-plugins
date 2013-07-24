@@ -172,7 +172,7 @@ if (entry == null) {
 			</div>
 		</div>
 
-		<div class="entry-footer" id="<%= renderResponse.getNamespace() + "entryFooter" %>">
+		<div class="entry-footer" id="<portlet:namespace />entryFooter">
 			<div class="entry-footer-toolbar">
 				<div class="edit-actions">
 					<span class="toggle action aui-helper-hidden">
@@ -250,6 +250,7 @@ if (entry == null) {
 			var toggle = preview.one('.toggle');
 
 			toggle.removeClass('aui-helper-hidden');
+
 			preview.addClass('announcement-collapsed')
 		}
 		else {

@@ -81,6 +81,7 @@
 		var toggle = entry.one('.toggle');
 
 		toggle.removeClass('aui-helper-hidden');
+
 		entry.addClass('announcement-collapsed')
 	}
 	else {
