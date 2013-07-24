@@ -20,10 +20,12 @@ import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portlet.social.model.SocialActivityInterpreter;
 import com.liferay.portlet.social.model.impl.SocialActivityInterpreterImpl;
 import com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil;
+import com.liferay.so.activities.util.PortletPropsKeys;
+import com.liferay.so.activities.util.PortletPropsValues;
+import com.liferay.util.portlet.PortletProps;
 
 /**
  * @author Brian Wing Shun Chan
@@ -46,14 +48,14 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void initSocialActivityInterpreters() {
-		String[] portletIds = PropsUtil.getArray(
-			"social.activity.interpreter.portlet.ids");
+		String[] portletIds =
+			PortletPropsValues.SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS;
 
 		for (String portletId : portletIds) {
 			Filter filter = new Filter(portletId);
 
-			String activityInterpreterClassName = PropsUtil.get(
-				"social.activity.interpreter", filter);
+			String activityInterpreterClassName = PortletProps.get(
+				PortletPropsKeys.SOCIAL_ACTIVITY_INTERPRETER, filter);
 
 			try {
 				SocialActivityInterpreter activityInterpreter =
