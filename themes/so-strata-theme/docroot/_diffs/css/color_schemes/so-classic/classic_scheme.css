@@ -1,0 +1,386 @@
+@import "compass";
+@import url(../normal/_strata_skin.scss);
+
+$buttonTextColor: #34404F;
+$defaultBorderColor: #D9D8D8;
+$gray: #CECECE;
+$grayDark: #C7D0DA;
+$grayLight: #F4F4F4;
+$grayMedium: #EEE;
+$linkColor: #2571AD;
+$red: #8F0920;
+
+@mixin remove-gradients {
+	background-image: none;
+	background-color: transparent;
+}
+
+@mixin default-border {
+	border: 1px solid $defaultBorderColor;
+}
+
+@mixin input-field-default {
+	background: #FFF;
+	border: 1px solid $grayDark;
+	vertical-align: middle;
+
+	&:active, &:focus, &:hover, &.focus {
+		@include input-field-focus;
+	}
+
+	input[type=text] {
+		background: transparent;
+		border-width: 0;
+	}
+
+	@include default-border;
+}
+
+@mixin input-field-focus {
+	background-color: #FFFFF6;
+	border-color: $linkColor;
+}
+
+@mixin button-default {
+	background-color: #E9E8E8;
+	background-image: none;
+	border: 1px solid $gray;
+	text-shadow: none;
+}
+
+@mixin button-hover {
+	background: $grayMedium;
+	border-color: #AAA;
+	color: #5A5A5A;
+}
+
+body.so-classic {
+	a {
+		color: $linkColor;
+	}
+
+	#dockbar a {
+		color: $buttonTextColor;
+	}
+
+	#banner {
+		background-color: transparent;
+		border-color: $defaultBorderColor;
+		padding: 1.5em 2em;
+
+		.site-title a {
+			color: $red;
+			font-weight: 800;
+		}
+	}
+
+	#navigation {
+		background: #FFF;
+
+		&, ul, a {
+			border-color: $defaultBorderColor;
+		}
+
+		a {
+			border: 1px solid transparent;
+			border-width: 1px 0;
+			color: $linkColor;
+
+			&, &:active, &:focus, &:hover {
+				text-shadow: none;
+
+				@include remove-gradients;
+			}
+
+			&:active, &:focus, &:hover {
+				background: #F4F4F4;
+				border-bottom-color: $defaultBorderColor;
+			}
+		}
+
+		li.selected {
+			border-left: 4px solid $red;
+			border-top-color: transparent;
+
+			a {
+				background: #F4F4F4;
+				color: $red;
+
+				@include box-shadow(none);
+			}
+		}
+	}
+
+	#content {
+		background: transparent;
+		border-width: 0;
+	}
+
+	#main-content {
+		background: transparent;
+
+		@include box-shadow(none);
+	}
+
+	.portlet-topper {
+		color: #929292;
+
+		.portlet-title {
+			font-size: 1em;
+			font-weight: bold;
+		}
+	}
+
+	.top-links-container {
+		.top-links {
+			background-color: $grayMedium;
+		}
+	}
+
+	.aui-toolbar {
+		.aui-toolbar-item {
+			border-width: 1px 0 1px 1px;
+		}
+
+		.aui-toolbar-last {
+			border-right-width: 1px;
+		}
+	}
+
+	.aui-tabview-list {
+		padding: 0 3px 0;
+
+		@include button-default;
+
+		.aui-tab:first-child, .first, .first .aui-tab-content {
+			border-left-width: 0;
+		}
+
+		.aui-tab-content {
+			border: 1px solid $defaultBorderColor;
+			border-width: 1px 1px 1px 0;
+			margin: -1px 0;
+		}
+
+		.aui-tab-label, .aui-tab-label a {
+			&:active, &:hover, &:normal, &:visited {
+				text-decoration: none;
+			}
+		}
+
+		.aui-tab-label, .aui-tab-content .aui-tab-label, .aui-tab-content:hover .aui-tab-label {
+			color: #5A5A5A;
+			font-weight: bold;
+			padding: 3px 12px 2px;
+			text-shadow: none;
+
+			@include button-default;
+			@include box-shadow(none);
+		}
+
+		.aui-tab-active {
+			.aui-tab-label, .aui-tab-content:hover {
+				background: #FFF;
+				border-color: $gray $gray #FFF;
+
+				.aui-tab-label {
+					color: #5A5A5A;
+					text-shadow: none;
+				}
+			 }
+		}
+	}
+
+	.aui-panel-hd, .lfr-panel.lfr-extended .lfr-panel-titlebar {
+		@include normal-gradient;
+		@include default-border;
+	}
+
+	.invite-members, .social-relations a, .aui-buttonitem-content, .aui-tabview-list .aui-tab-label {
+		@include button-default;
+
+		background-image: none;
+	}
+
+	.invite-members, .social-relations a {
+		@include border-radius(4px);
+
+		&:hover, &:focus {
+			text-decoration: none;
+
+			@include button-hover;
+		}
+
+		&:active {
+			@include button-active;
+		}
+	}
+
+	.aui-dialog-content .aui-dialog-hd {
+		border: 1px solid $defaultBorderColor;
+	}
+
+	.aui-tooltip-content {
+		@include box-shadow(0 2px 10px -4px rgba(0, 0, 0, 1));
+	}
+
+	.aui-overlaycontextpanel-arrow-bl {
+		.aui-overlaycontextpanel-pointer {
+			border-right: 12px dashed transparent;
+			padding: 0;
+		}
+
+		.aui-overlaycontextpanel-pointer-inner {
+			left: 1px;
+		}
+	}
+
+	.hidden-accessible, #navigation h1 {
+		@include hidden-accessible;
+	}
+
+	/*  Layout  */
+
+	.portlet-column-content {
+		border: 1px solid $defaultBorderColor;
+		border-width: 0 1px;
+		margin: 0 0 0 -1px;
+		padding: 0;
+	}
+
+	.portlet-column-content-only, .ltr .portlet-column-content-last, .rtl .portlet-column-content-first {
+		border-right-width: 0;
+	}
+
+	.portlet-column-last .portlet-column-content {
+		border-left-width: 0;
+	}
+
+/* ---------- Forms ---------- */
+
+	.aui-legend {
+		border-bottom: 1px solid $defaultBorderColor;
+	}
+
+	input {
+		background: #FFF;
+	}
+
+	input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
+		@include input-field-default;
+	}
+
+	select {
+		padding: 1px;
+	}
+
+	input[type="image"] {
+		background: transparent none;
+		border: none;
+		padding: 0;
+	}
+
+	.top-links .top-links-navigation a, .portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+		@include button-default;
+
+		&:hover, &:focus {
+			@include button-hover;
+		}
+
+		&:active, &.active {
+			@include button-active;
+		}
+	}
+
+	input, textarea {
+		&.focus {
+			@include input-field-focus;
+		}
+	}
+
+	.lfr-actions.lfr-extended {
+		&, ul {
+			@include button-default;
+		}
+
+		&:focus {
+			&, ul {
+				@include button-focus;
+			}
+		}
+
+		&.disabled, &.disabled:hover {
+			&, ul {
+				@include button-disabled;
+			}
+		}
+
+		&:hover {
+			&, ul {
+				@include button-hover;
+			}
+		}
+	}
+
+	.lfr-actions.disabled .taglib-text {
+		color: #A9A9A9;
+	}
+
+	.aui-button-disabled {
+		input[type], button {
+			&, &:hover, &:focus {
+				@include button-disabled;
+			}
+		}
+	}
+
+	.aui-buttonitem-disabled {
+		@include button-disabled;
+	}
+
+	input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
+		border-color: $red;
+		border-style: dotted;
+	}
+
+	/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+	.ie {
+		fieldset {
+			padding-top: 0;
+		}
+
+		.aui-button-disabled input {
+			-ms-filter: alpha(opacity=50);
+			filter: alpha(opacity=50);
+		}
+	}
+
+	.ie7 {
+		.aui-fieldset {
+			zoom: 1;
+		}
+	}
+
+	.ie6 {
+		input.text, input.password, input.submit, input.file, input.button, button {
+			@include input-field-default;
+		}
+
+		input.submit, input.button, button, .aui-button-disabled input.submit, .aui-button-disabled input.button, .aui-button-disabled button {
+			@include button-default;
+		}
+
+		.aui-button-disabled {
+			input.submit, input.button, button {
+				color: #555;
+			}
+		}
+
+		input, textarea {
+			&.focus {
+				@include input-field-focus;
+			}
+		}
+	}
+}

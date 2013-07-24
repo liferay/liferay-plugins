@@ -1,5 +1,5 @@
 @import "compass";
-@import "strata_skin";
+@import url(./color_schemes/normal/_strata_skin.scss);
 
 fieldset {
 	@include default-border;

@@ -1,4 +1,5 @@
-@import "strata_skin";
+@import "compass";
+@import url(./color_schemes/normal/_strata_skin.scss);
 
 /* ---------- Main ---------- */
 
