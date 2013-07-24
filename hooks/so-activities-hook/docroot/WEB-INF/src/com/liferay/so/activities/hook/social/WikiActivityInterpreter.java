@@ -92,9 +92,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 						"sourceVersion", wikiPage.getVersion());
 				}
 				else {
-					extraDataJSONObject =
-						JSONFactoryUtil.createJSONObject(
-							activitySet.getExtraData());
+					extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+						activitySet.getExtraData());
 				}
 
 				extraDataJSONObject.put(

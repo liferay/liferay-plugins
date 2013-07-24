@@ -233,7 +233,7 @@ public class SocialActivityInterpreterLocalServiceImpl
 	public void updateActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		if (!_SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED) {
+		if (!PortletPropsValues.SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED) {
 			socialActivitySetLocalService.addActivitySet(activityId);
 
 			return;
@@ -259,9 +259,6 @@ public class SocialActivityInterpreterLocalServiceImpl
 			}
 		}
 	}
-
-	private static final boolean _SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED =
-		PortletPropsValues.SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SocialActivityInterpreterLocalServiceImpl.class);
