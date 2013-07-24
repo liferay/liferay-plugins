@@ -95,7 +95,7 @@ if (!roles.isEmpty()) {
 								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
 								for (Group group : groups) {
-									if (selectedScopeGroups.contains(String.valueOf(group.getGroupId()))) {
+									if (selectedScopeGroupIds.contains(String.valueOf(group.getGroupId()))) {
 										leftList.add(new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale)));
 									}
 								}
@@ -111,15 +111,15 @@ if (!roles.isEmpty()) {
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeGroups--" type="hidden" />
+								<aui:input name="preferences--selectedScopeGroupIds--" type="hidden" />
 
-								<div id="<portlet:namespace />scopeGroupsBoxes">
+								<div id="<portlet:namespace />scopeGroupIdsBoxes">
 									<liferay-ui:input-move-boxes
-										leftBoxName="currentScopeGroups"
+										leftBoxName="currentScopeGroupIds"
 										leftList="<%= leftList %>"
 										leftReorder="true"
 										leftTitle="displaying"
-										rightBoxName="availableScopeGroups"
+										rightBoxName="availableScopeGroupIds"
 										rightList="<%= rightList %>"
 										rightTitle="available"
 									/>
@@ -136,7 +136,7 @@ if (!roles.isEmpty()) {
 								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
 								for (Organization organization : organizations) {
-									if (selectedScopeOrganizations.contains(String.valueOf(organization.getOrganizationId()))) {
+									if (selectedScopeOrganizationIds.contains(String.valueOf(organization.getOrganizationId()))) {
 										leftList.add(new KeyValuePair(String.valueOf(organization.getOrganizationId()), organization.getName()));
 									}
 								}
@@ -152,15 +152,15 @@ if (!roles.isEmpty()) {
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeOrganizations--" type="hidden" />
+								<aui:input name="preferences--selectedScopeOrganizationIds--" type="hidden" />
 
-								<div id="<portlet:namespace />scopeOrganizationsBoxes">
+								<div id="<portlet:namespace />scopeOrganizationIdsBoxes">
 									<liferay-ui:input-move-boxes
-										leftBoxName="currentScopeOrganizations"
+										leftBoxName="currentScopeOrganizationIds"
 										leftList="<%= leftList %>"
 										leftReorder="true"
 										leftTitle="displaying"
-										rightBoxName="availableScopeOrganizations"
+										rightBoxName="availableScopeOrganizationIds"
 										rightList="<%= rightList %>"
 										rightTitle="available"
 									/>
@@ -177,7 +177,7 @@ if (!roles.isEmpty()) {
 								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
 								for (UserGroup userGroup : userGroups) {
-									if (selectedScopeUserGroups.contains(String.valueOf(userGroup.getUserGroupId()))) {
+									if (selectedScopeUserGroupIds.contains(String.valueOf(userGroup.getUserGroupId()))) {
 										leftList.add(new KeyValuePair(String.valueOf(userGroup.getUserGroupId()), userGroup.getName()));
 									}
 								}
@@ -193,15 +193,15 @@ if (!roles.isEmpty()) {
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeUserGroups--" type="hidden" />
+								<aui:input name="preferences--selectedScopeUserGroupIds--" type="hidden" />
 
-								<div id="<portlet:namespace />scopeUserGroupsBoxes">
+								<div id="<portlet:namespace />scopeUserGroupIdsBoxes">
 									<liferay-ui:input-move-boxes
-										leftBoxName="currentScopeUserGroups"
+										leftBoxName="currentScopeUserGroupIds"
 										leftList="<%= leftList %>"
 										leftReorder="true"
 										leftTitle="displaying"
-										rightBoxName="availableScopeUserGroups"
+										rightBoxName="availableScopeUserGroupIds"
 										rightList="<%= rightList %>"
 										rightTitle="available"
 									/>
@@ -218,7 +218,7 @@ if (!roles.isEmpty()) {
 								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
 								for (Role role : roles) {
-									if (selectedScopeRoles.contains(String.valueOf(role.getRoleId()))) {
+									if (selectedScopeRoleIds.contains(String.valueOf(role.getRoleId()))) {
 										leftList.add(new KeyValuePair(String.valueOf(role.getRoleId()), role.getTitle(locale)));
 									}
 								}
@@ -234,15 +234,15 @@ if (!roles.isEmpty()) {
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeRoles--" type="hidden" />
+								<aui:input name="preferences--selectedScopeRoleIds--" type="hidden" />
 
-								<div id="<portlet:namespace />scopeRolesBoxes">
+								<div id="<portlet:namespace />scopeRoleIdsBoxes">
 									<liferay-ui:input-move-boxes
-										leftBoxName="currentScopeRoles"
+										leftBoxName="currentScopeRoleIds"
 										leftList="<%= leftList %>"
 										leftReorder="true"
 										leftTitle="displaying"
-										rightBoxName="availableScopeRoles"
+										rightBoxName="availableScopeRoleIds"
 										rightList="<%= rightList %>"
 										rightTitle="available"
 									/>
@@ -257,6 +257,7 @@ if (!roles.isEmpty()) {
 
 	<aui:button-row>
 		<aui:button type="submit" />
+
 		<aui:button type="cancel" />
 	</aui:button-row>
 </aui:form>
@@ -329,20 +330,20 @@ if (!roles.isEmpty()) {
 		window,
 		'<portlet:namespace />saveConfigurations',
 		function() {
-			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups) {
-				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeGroups);
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroupIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroupIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeGroupIds);
 			}
 
-			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizations) {
-				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizations.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeOrganizations);
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizationIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeOrganizationIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeOrganizationIds);
 			}
 
-			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoles) {
-				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoles.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeRoles);
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoleIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeRoleIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeRoleIds);
 			}
 
-			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeUserGroups) {
-				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeUserGroups.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeUserGroups);
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeUserGroupIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeUserGroupIds.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeUserGroupIds);
 			}
 
 			submitForm(document.<portlet:namespace />fm);

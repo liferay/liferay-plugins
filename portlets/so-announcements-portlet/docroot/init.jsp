@@ -60,7 +60,6 @@ page import="com.liferay.portal.service.permission.OrganizationPermissionUtil" %
 page import="com.liferay.portal.service.permission.RolePermissionUtil" %><%@
 page import="com.liferay.portal.service.permission.UserGroupPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.announcements.NoSuchFlagException" %><%@
 page import="com.liferay.portlet.announcements.model.AnnouncementsEntry" %><%@
 page import="com.liferay.portlet.announcements.model.AnnouncementsEntryConstants" %><%@
@@ -75,8 +74,7 @@ page import="com.liferay.portlet.announcements.util.AnnouncementsUtil" %>
 page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.PortletURL" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -95,12 +93,14 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-Boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(portletPreferences, request, "customizeAnnouncementsDisplayed", layout.getGroup().isUser() ? false : true);
+Group group = layout.getGroup();
+
+boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(portletPreferences, request, "customizeAnnouncementsDisplayed", group.isUser() ? false : true);
 int pageDelta = GetterUtil.getInteger(portletPreferences.getValue("pageDelta", String.valueOf(SearchContainer.DEFAULT_DELTA)));
-String selectedScopeGroups = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()));
-String selectedScopeOrganizations = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeOrganizations", "");
-String selectedScopeRoles = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeRoles", "");
-String selectedScopeUserGroups = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeUserGroups", "");
+String selectedScopeGroupIds = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeGroupIds", String.valueOf(layout.getGroupId()));
+String selectedScopeOrganizationIds = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeOrganizationIds", "");
+String selectedScopeRoleIds = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeRoleIds", "");
+String selectedScopeUserGroupIds = PrefsParamUtil.getString(portletPreferences, request, "selectedScopeUserGroupIds", "");
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getSimpleDateFormat("MMM d, yyyy", locale, timeZone);
 %>
