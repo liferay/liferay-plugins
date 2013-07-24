@@ -233,14 +233,12 @@ if (recurrence != null) {
 							}
 						]
 					},
-					visible: false,
+					visible: true,
 					width: 600
 				},
 				title: '<liferay-ui:message key="repeat" />'
 			}
 		);
-
-		window.<portlet:namespace />recurrenceDialog.set('visible', visible);
 	};
 
 	recurrenceContainerNode.delegate(
