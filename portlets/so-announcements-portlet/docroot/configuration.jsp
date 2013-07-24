@@ -21,6 +21,8 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
+List<Group> groups = GroupLocalServiceUtil.getUserGroups(user.getUserId(), true);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -51,6 +53,61 @@ String redirect = ParamUtil.getString(request, "redirect");
 				</aui:select>
 			</aui:fieldset>
 		</liferay-ui:panel>
+
+		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="soAnnouncementsDisplayPanel" persistState="<%= true %>" title="announcements-displayed">
+			<div id="<portlet:namespace />customizeAnnouncementsDisplayed">
+				<div class="portlet-msg-info">
+					<liferay-ui:message key="general-annnouncements-will-always-be-shown-select-any-other-distribution-scopes-you-would-like-to-display" />
+				</div>
+
+				<c:if test="<%= !groups.isEmpty() %>">
+					<aui:fieldset cssClass="scope-section-holder">
+
+						<%
+						String selectedScopeGroups;
+						try {
+							selectedScopeGroups = PrefsParamUtil.getString(preferences, request, "selectedScopeGroups", String.valueOf(layout.getGroupId()));
+						} catch (Exception e) {
+							selectedScopeGroups = "";
+						}
+
+						// Left list
+						List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+						for (Group group : groups) {
+							if (selectedScopeGroups.contains(String.valueOf(group.getGroupId()))) {
+								leftList.add(new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale)));
+							}
+						}
+
+						// Right list
+						List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+
+						for (Group group : groups) {
+
+							KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale));
+							if (!leftList.contains(tempKeyValuePair)) {
+								rightList.add(tempKeyValuePair);
+							}
+						}
+						%>
+
+						<aui:input name="preferences--selectedScopeGroups--" type="hidden" />
+
+						<div id="<portlet:namespace />scopeGroupsBoxes">
+							<liferay-ui:input-move-boxes
+								leftBoxName="currentScopeGroups"
+								leftList="<%= leftList %>"
+								leftReorder="true"
+								leftTitle="displaying"
+								rightBoxName="availableScopeGroups"
+								rightList="<%= rightList %>"
+								rightTitle="available"
+							/>
+						</div>
+					</aui:fieldset>
+				</c:if>
+			</div>
+		</liferay-ui:panel>
 	</liferay-ui:panel-container>
 
 	<aui:button-row>
@@ -63,6 +120,10 @@ String redirect = ParamUtil.getString(request, "redirect");
 		window,
 		'<portlet:namespace />saveConfiguration',
 		function() {
+			if (document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups) {
+				document.<portlet:namespace />fm.<portlet:namespace />selectedScopeGroups.value = Liferay.Util.listSelect(document.<portlet:namespace />fm.<portlet:namespace />currentScopeGroups);
+			}
+
 			submitForm(document.<portlet:namespace />fm);
 		},
 		['liferay-util-list-fields']
