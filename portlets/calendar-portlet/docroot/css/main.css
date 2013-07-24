@@ -372,6 +372,21 @@
 
 .calendar-booking-reminders {
 	min-height: 52px;
+
+	.reminder-type {
+		display: inline-block;
+		margin-bottom: 11px;
+		padding: 4px 6px;
+	}
+
+	.reminder-value {
+		width: 3em;
+	}
+
+	.reminder-duration {
+		width: 7em;
+	}
+
 }
 
 .calendar-subscribe-link {
@@ -491,12 +506,6 @@
 
 .simple-color-picker-item:hover, .simple-color-picker-item-selected {
 	@include transition(border-color 0s);
-}
-
-.calendar-booking-reminders .reminder-type {
-	display: inline-block;
-	margin-bottom: 11px;
-	padding: 4px 6px;
 }
 
 .scheduler-base-controls .calendar-create-event-btn {
