@@ -1,11 +1,11 @@
 @import "compass/css3";
 
 $blue: #0E50A9;
-$default-border-color: #C9C9C9;
-$default-text-color: #202020;
+$defaultBorderColor: #C9C9C9;
+$defaultTextColor: #202020;
 
 @mixin default-border {
-	border: 1px solid $default-border-color;
+	border: 1px solid $defaultBorderColor;
 }
 
 @mixin clear-both {
@@ -32,8 +32,8 @@ $default-text-color: #202020;
 	opacity: 0;
 	position: relative;
 
-	@include transition-property(all);
 	@include transition-duration(.5s);
+	@include transition-property(all);
 
 	.user-toolbar {
 		display: none;
@@ -114,8 +114,8 @@ html > body.lfr-dockbar-pinned {
 
 		@include border-radius(4px);
 		@include box-shadow(none);
-		@include transition-property(background-color);
 		@include transition-duration(.5s);
+		@include transition-property(background-color);
 	}
 	
 	li.selected a, a:hover, .hover a {
@@ -183,7 +183,7 @@ html > body.lfr-dockbar-pinned {
 
 			a {
 				background-color: transparent;
-				color: $default-text-color;
+				color: $defaultTextColor;
 				display: block;
 
 				@include box-shadow(none);
@@ -219,7 +219,7 @@ html > body.lfr-dockbar-pinned {
 	}
 
 	.user-notification-events {
-		color: $default-text-color;
+		color: $defaultTextColor;
 		font-size: 1em;
 		right: 0;
 		top: 120%;
@@ -234,7 +234,7 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.user-notification-event-content {
-			border-bottom: 1px solid $default-border-color;
+			border-bottom: 1px solid $defaultBorderColor;
 			border-width: 0 0 1px;
 			cursor: pointer;
 		}
@@ -253,9 +253,9 @@ html > body.lfr-dockbar-pinned {
 
 		.thumbnail {
 			display: block;
+			height: 45px;
 			overflow: hidden;
 			width: 45px;
-			height: 45px;
 
 			img {
 				max-width: 45px;
@@ -264,7 +264,7 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.notification-entry {
-			color: $default-text-color;
+			color: $defaultTextColor;
 			margin-left: 60px;
 			padding: .5em .65em;
 
@@ -299,8 +299,8 @@ html > body.lfr-dockbar-pinned {
 			a {
 				display: block;
 				float: none;
-				width: auto;
 				text-align: left;
+				width: auto;
 
 				&, &:hover {
 					display: block;
@@ -317,7 +317,7 @@ html > body.lfr-dockbar-pinned {
 			}
 
 			.dismiss-notifications a {
-				border-bottom: 1px solid $default-border-color;
+				border-bottom: 1px solid $defaultBorderColor;
 			}
 		}
 	}
@@ -379,7 +379,7 @@ html > body.lfr-dockbar-pinned {
 
 			a, a:hover, li.has-menu:hover a {
 				background-color: transparent;
-				color: $default-text-color;
+				color: $defaultTextColor;
 				font-weight: normal;
 				text-shadow: none;
 
@@ -409,8 +409,8 @@ html > body.lfr-dockbar-pinned {
 				display: block;
 				float: right;
 				text-align: left;
-				text-shadow: 0 1px 2px rgba(0,0,0, .75);
 				text-indent: .5em;
+				text-shadow: 0 1px 2px rgba(0,0,0, .75);
 				width: 20%;
 
 				@include border-radius(4px);
@@ -446,7 +446,7 @@ html > body.lfr-dockbar-pinned {
 				a {
 					background-position: 8px center;
 					background-repeat: no-repeat;
-					border-top: 1px solid $default-border-color;
+					border-top: 1px solid $defaultBorderColor;
 					display: block;
 					padding: 0.55em 2.5em;
 
@@ -500,8 +500,8 @@ html > body.lfr-dockbar-pinned {
 
 			.search-input {
 				background: #FFF;
-				border: 1px solid $default-border-color;
-				color: $default-text-color;
+				border: 1px solid $defaultBorderColor;
+				color: $defaultTextColor;
 				cursor: text;
 				text-shadow: none;
 				width: 97%;

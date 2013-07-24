@@ -26,7 +26,9 @@ try {
 	socialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
 }
 catch (NoSuchRoleException nsre) {
+	
 	// This exception should never be thrown except while SO is being uninstalled
+
 }
 %>
 
@@ -44,14 +46,12 @@ catch (NoSuchRoleException nsre) {
 		<div id="so-portlet-user-bar">
 
 			<%
-			Group group = themeDisplay.getScopeGroup();
-
-			Group mySite = user.getGroup();
+			Group group = user.getGroup();
 			%>
 
 			<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="dashboardURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 				<portlet:param name="struts_action" value="/my_sites/view" />
-				<portlet:param name="groupId" value="<%= String.valueOf(mySite.getGroupId()) %>" />
+				<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 				<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
 			</liferay-portlet:actionURL>
 
@@ -63,18 +63,20 @@ catch (NoSuchRoleException nsre) {
 				<ul id="dashboardNav">
 
 					<%
-					List<Layout> mylayouts = LayoutLocalServiceUtil.getLayouts(mySite.getGroupId(), true);
+					List<Layout> mylayouts = LayoutLocalServiceUtil.getLayouts(group.getGroupId(), true);
 
 					for (Layout childLayout : mylayouts) {
 						if (childLayout.isRootLayout() && !childLayout.isHidden()) {
 							String selected = "";
 
 							if (childLayout.getPlid() == layout.getPlid()) {
-								selected = " class='selected'";
+								selected = "class=\"selected\"";
 							}
 					%>
 
-							<li<%= selected %>><a href="<%= HtmlUtil.escapeHREF(PortalUtil.getLayoutURL(childLayout, themeDisplay)) %>"><%= HtmlUtil.escape(childLayout.getName(themeDisplay.getLocale())) %></a></li>
+							<li <%= selected %>>
+								<a href="<%= HtmlUtil.escapeHREF(PortalUtil.getLayoutURL(childLayout, themeDisplay)) %>"><%= HtmlUtil.escape(childLayout.getName(themeDisplay.getLocale())) %></a>
+							</li>
 
 					<%
 						}
@@ -92,8 +94,9 @@ catch (NoSuchRoleException nsre) {
 					<liferay-util:include page="/dockbar_notifications/view.jsp" servletContext="<%= application %>" />
 				</li>
 				<li class="user-menu has-submenu">
-					<a class="user-info" href="<%= mySite.getPathFriendlyURL(false,themeDisplay) + "/" + user.getScreenName() %>">
+					<a class="user-info" href="<%= group.getPathFriendlyURL(false,themeDisplay) + "/" + user.getScreenName() %>">
 						<span class="avatar"><img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" alt="<%= user.getFullName() %>"></span>
+						
 						<span class="full-name"><%= user.getFullName() %></span>
 					</a>
 
@@ -101,13 +104,12 @@ catch (NoSuchRoleException nsre) {
 						<li>
 							<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="profileURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 								<portlet:param name="struts_action" value="/my_sites/view" />
-								<portlet:param name="groupId" value="<%= String.valueOf(mySite.getGroupId()) %>" />
+								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 								<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 							</liferay-portlet:actionURL>
 
 							<a href="<%= profileURL %>"><liferay-ui:message key="my-profile" /></a>
 						</li>
-
 						<li>
 							<a href="<%= themeDisplay.getURLMyAccount().toString() %>"><liferay-ui:message key="my-account" /></a>
 						</li>
@@ -127,7 +129,8 @@ catch (NoSuchRoleException nsre) {
 				</li>
 				<li class="config-item">
 					<a class="config-icon" href="javascript:;" id="toggleDockbar">
-						<img alt="Configuration Icon" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
+						<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
+						
 						<span class="aui-helper-hidden">
 							<liferay-ui:message key="toggle" /> <liferay-ui:message key="javax.portlet.title.145" />
 						</span>
@@ -142,7 +145,9 @@ catch (NoSuchRoleException nsre) {
 
 		var searchInput = userBar.one('.search input');
 
-		searchInput.set('value', '<liferay-ui:message key="go-to" /> ' + '\u25BE');
+		var goToString = '<liferay-ui:message key="go-to" /> ' + '\u25BE';
+
+		searchInput.set('value', goToString);
 
 		searchInput.on(
 			'click',
@@ -157,7 +162,7 @@ catch (NoSuchRoleException nsre) {
 				var sitesPortlet = userBar.one('.so-portlet-sites .portlet-body');
 
 				if (!sitesPortlet.hasClass('search-focus')) {
-					searchInput.set('value', '<liferay-ui:message key="go-to" /> ' + '\u25BE');
+					searchInput.set('value', goToString);
 				}
 			}
 		);
@@ -167,15 +172,17 @@ catch (NoSuchRoleException nsre) {
 		toggleDockbar.on(
 			'click',
 			function(event) {
-				A.one('body').toggleClass('show-dockbar');
+				var body = A.one('body');
+
+				body.toggleClass('show-dockbar');
 			}
 		)
 
 		new Liferay.SO.UserMenu(
 			{
-				showOn: 'focus',
 				node: '#so-portlet-user-bar .go-to',
 				showClass: 'search-focus',
+				showOn: 'focus',
 				target: '#so-portlet-user-bar .so-portlet-sites .portlet-body',
 				trigger: '#so-portlet-user-bar .go-to .search input'
 			}
