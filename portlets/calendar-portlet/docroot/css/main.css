@@ -6,27 +6,19 @@
 	.calendar-list-empty-message {
 		margin: 4px 0 0 4px;
 	}
-	
+
 	.field-label {
 		margin-left: 15px;
 	}
 }
 
-.calendar-booking-reminders {
-	min-height: 52px;
-
+.calendar-booking-reminders .calendar-portlet-reminder-section {
 	.reminder-duration {
-		width: 7em;
+		margin-bottom: 7px;
 	}
 
 	.reminder-type {
-		display: inline-block;
-		margin-bottom: 11px;
-		padding: 4px 6px;
-	}
-
-	.reminder-value {
-		width: 3em;
+		margin-right: 6px;
 	}
 }
 
@@ -250,10 +242,6 @@
 	padding: 4px 10px;
 	text-align: right;
 	vertical-align: top;
-}
-
-.calendar-portlet-reminder-section {
-	padding: 1px;
 }
 
 .calendar-portlet-time-zone-field .field .field-content {
