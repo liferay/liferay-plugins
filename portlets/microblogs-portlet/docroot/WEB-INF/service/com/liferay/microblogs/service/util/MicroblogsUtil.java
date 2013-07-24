@@ -17,19 +17,32 @@
 
 package com.liferay.microblogs.service.util;
 
+import com.liferay.compat.portal.service.ServiceContext;
+import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
+import javax.portlet.PortletURL;
+import javax.portlet.RenderResponse;
+import javax.portlet.WindowStateException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Jonathan Lee
@@ -66,6 +79,61 @@ public class MicroblogsUtil {
 		}
 
 		return jsonArray;
+	}
+
+	public static String getTaggedContent(
+			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		String content = HtmlUtil.escape(microblogsEntry.getContent());
+
+		Pattern pattern = Pattern.compile("\\#\\S*");
+
+		Matcher matcher = pattern.matcher(microblogsEntry.getContent());
+
+		while (matcher.find()) {
+			String result = matcher.group();
+
+			String assetTagName = result.substring(1);
+
+			PortletURL viewURL = renderResponse.createRenderURL();
+
+			try {
+				viewURL.setWindowState(LiferayWindowState.NORMAL);
+			}
+			catch (WindowStateException wse){
+			}
+
+			viewURL.setParameter("mvcPath", "/microblogs/view.jsp");
+			viewURL.setParameter("tabs1", assetTagName);
+			viewURL.setParameter("assetTagName", assetTagName);
+
+			content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
+		}
+
+		pattern = Pattern.compile("\\[\\@\\S*\\]");
+
+		matcher = pattern.matcher(content);
+
+		while (matcher.find()) {
+			String result = matcher.group();
+
+			String assetTagName = result.replace("[@", StringPool.BLANK);
+
+			assetTagName = assetTagName.replace("]", StringPool.BLANK);
+
+			try {
+				User taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
+
+				assetTagName = PortalUtil.getUserName(taggedUser.getUserId(), assetTagName);
+
+				content = StringUtil.replace(content, result, "<a href=\"" + taggedUser.getDisplayURL(themeDisplay) + "\">" + assetTagName + "</a>");
+			}
+			catch (NoSuchUserException nsue) {
+			}
+		}
+
+		return content;
 	}
 
 }
