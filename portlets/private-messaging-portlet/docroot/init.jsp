@@ -62,7 +62,8 @@ page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
 
 <%@ page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletURL" %><%@
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
