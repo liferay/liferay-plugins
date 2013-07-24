@@ -119,7 +119,22 @@ String htmlAttributes =
 				<aui:input cssClass="lfr-textarea-container lfr-textarea" name="preferences--htmlAttributes--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= htmlAttributes %>" wrap="soft" />
 			</aui:fieldset>
 
-			<aui:button onClick="<portlet:namespace />updateWidget('<%= link %>','<%= UnicodeFormatter.toString(title) %>','<%= UnicodeFormatter.toString(description) %>','<%= UnicodeFormatter.toString(thumbnail) %>');" type="submit" />
+			<%
+				StringBundler saveURL = new StringBundler(10);
+
+				saveURL.append(renderResponse.getNamespace());
+				saveURL.append("updateWidget('");
+				saveURL.append(link);
+				saveURL.append("','");
+				saveURL.append(UnicodeFormatter.toString(title));
+				saveURL.append("','");
+				saveURL.append(UnicodeFormatter.toString(description));
+				saveURL.append("','");
+				saveURL.append(UnicodeFormatter.toString(thumbnail));
+				saveURL.append("');");
+			%>
+
+			<aui:button onClick="<%= saveURL.toString() %>" type="submit" />
 
 			<div class="separator"><!-- --></div>
 		</c:if>
