@@ -151,9 +151,6 @@ public class IMAPConnection {
 				transport = session.getTransport("smtp");
 			}
 
-			String transportKey = _login.concat(_TRANSPORT).concat(
-				_incomingHostName);
-
 			transport.connect(
 				_outgoingHostName, _outgoingPort, _login, _password);
 
