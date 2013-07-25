@@ -437,7 +437,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					calendarList.activeItem.set('visible', true);
 
-					<portlet:namespace />toggler.toggle();
+					<portlet:namespace />toggler.expand();
 
 					instance.hide();
 
