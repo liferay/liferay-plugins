@@ -108,7 +108,17 @@ public class MicroblogsUtil {
 			viewURL.setParameter("tabs1", assetTagName);
 			viewURL.setParameter("assetTagName", assetTagName);
 
-			content = StringUtil.replace(content, result, "<a href=\"" + viewURL + "\">" + assetTagName + "</a>");
+			StringBuilder sb = new StringBuilder(5);
+
+			sb.append("<a href=\"");
+			sb.append(viewURL);
+			sb.append("\">");
+			sb.append(assetTagName);
+			sb.append("</a>");
+
+			String tagLink = sb.toString();
+
+			content = StringUtil.replace(content, result, tagLink);
 		}
 
 		pattern = Pattern.compile("\\[\\@\\S*\\]");
@@ -123,11 +133,23 @@ public class MicroblogsUtil {
 			assetTagName = assetTagName.replace("]", StringPool.BLANK);
 
 			try {
-				User taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
+				User taggedUser = UserLocalServiceUtil.getUserByScreenName(
+					microblogsEntry.getCompanyId(), assetTagName);
 
-				assetTagName = PortalUtil.getUserName(taggedUser.getUserId(), assetTagName);
+				assetTagName = PortalUtil.getUserName(
+					taggedUser.getUserId(), assetTagName);
 
-				content = StringUtil.replace(content, result, "<a href=\"" + taggedUser.getDisplayURL(themeDisplay) + "\">" + assetTagName + "</a>");
+				StringBuilder sb = new StringBuilder(5);
+
+				sb.append("<a href=\"");
+				sb.append(taggedUser.getDisplayURL(themeDisplay));
+				sb.append("\">");
+				sb.append(assetTagName);
+				sb.append("</a>");
+
+				String userLink = sb.toString();
+
+				content = StringUtil.replace(content, result, userLink);
 			}
 			catch (NoSuchUserException nsue) {
 			}
