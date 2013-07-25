@@ -286,7 +286,7 @@ if (entry == null) {
 						}
 						else {
 							if (<%= redirectMvcPath.equals("/manage_entries.jsp") %>) {
-								window.location.href = '<%= redirect %>';
+								window.location.href = '<%= HtmlUtil.escapeHREF(redirect) %>';
 							}
 							else {
 								Liferay.Util.getWindow('<portlet:namespace />Dialog').close();

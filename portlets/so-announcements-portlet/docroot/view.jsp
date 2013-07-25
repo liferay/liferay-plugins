@@ -114,9 +114,9 @@ results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes
 					{
 						animated: true,
 						container: '#readEntries',
-						content: '.content',
+						content: '#readEntries .content',
 						expanded: false,
-						header: '.header',
+						header: '#readEntries .header',
 						transition: {
 							duration: 0.5,
 							easing: 'ease-in-out'
