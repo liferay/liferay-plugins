@@ -120,21 +120,21 @@ String htmlAttributes =
 			</aui:fieldset>
 
 			<%
-			StringBundler saveURL = new StringBundler(10);
+			StringBundler taglibUpdateWidgetSB = new StringBundler(10);
 
-			saveURL.append(renderResponse.getNamespace());
-			saveURL.append("updateWidget('");
-			saveURL.append(link);
-			saveURL.append("','");
-			saveURL.append(UnicodeFormatter.toString(title));
-			saveURL.append("','");
-			saveURL.append(UnicodeFormatter.toString(description));
-			saveURL.append("','");
-			saveURL.append(UnicodeFormatter.toString(thumbnail));
-			saveURL.append("');");
+			taglibUpdateWidgetSB.append(renderResponse.getNamespace());
+			taglibUpdateWidgetSB.append("updateWidget('");
+			taglibUpdateWidgetSB.append(link);
+			taglibUpdateWidgetSB.append("', '");
+			taglibUpdateWidgetSB.append(UnicodeFormatter.toString(title));
+			taglibUpdateWidgetSB.append("', '");
+			taglibUpdateWidgetSB.append(UnicodeFormatter.toString(description));
+			taglibUpdateWidgetSB.append("', '");
+			taglibUpdateWidgetSB.append(UnicodeFormatter.toString(thumbnail));
+			taglibUpdateWidgetSB.append("');");
 			%>
 
-			<aui:button onClick="<%= saveURL.toString() %>" type="submit" />
+			<aui:button onClick="<%= taglibUpdateWidgetSB.toString() %>" type="submit" />
 
 			<div class="separator"><!-- --></div>
 		</c:if>
