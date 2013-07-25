@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.article.util;
 
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.portal.NoSuchRepositoryException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -38,27 +37,13 @@ public class KBArticleAttachmentsUtil {
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
-		Repository repository = null;
-		Folder folder = null;
+		Repository repository = PortletFileRepositoryUtil.getPortletRepository(
+			groupId, PortletKeys.KNOWLEDGE_BASE_ARTICLE);
 
-		try {
-			repository = PortletFileRepositoryUtil.getPortletRepository(
-				groupId, PortletKeys.KNOWLEDGE_BASE_ARTICLE);
-
-			folder = PortletFileRepositoryUtil.getPortletFolder(
-				userId, repository.getRepositoryId(),
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-				String.valueOf(resourcePrimKey), serviceContext);
-		}
-		catch (NoSuchRepositoryException nsre) {
-			repository = PortletFileRepositoryUtil.addPortletRepository(
-				groupId, PortletKeys.KNOWLEDGE_BASE_ARTICLE, serviceContext);
-
-			folder = PortletFileRepositoryUtil.addPortletFolder(
-				userId, repository.getRepositoryId(),
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-				String.valueOf(resourcePrimKey), serviceContext);
-		}
+		Folder folder = PortletFileRepositoryUtil.getPortletFolder(
+			userId, repository.getRepositoryId(),
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			String.valueOf(resourcePrimKey), serviceContext);
 
 		return folder.getFolderId();
 	}
