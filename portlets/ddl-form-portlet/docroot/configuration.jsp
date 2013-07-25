@@ -40,12 +40,12 @@ catch (NoSuchRecordSetException nsrse) {
 <aui:form action="<%= configurationURL %>" method="post" name="fm1">
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
-	<div class="portlet-msg-info">
-		<span class="displaying-help-message-holder <%= (recordSet == null) ? StringPool.BLANK : "aui-helper-hidden" %>">
+	<div class="alert alert-info">
+		<span class="displaying-help-message-holder <%= (recordSet == null) ? StringPool.BLANK : "hide" %>">
 			<liferay-ui:message key="please-select-a-list-entry-from-the-list-below" />
 		</span>
 
-		<span class="displaying-record-set-id-holder <%= (recordSet == null) ? "aui-helper-hidden" : StringPool.BLANK %>">
+		<span class="displaying-record-set-id-holder <%= (recordSet == null) ? "hide" : StringPool.BLANK %>">
 			<liferay-ui:message key="displaying-list" />: <span class="displaying-record-set-id"><%= (recordSet != null) ? HtmlUtil.escape(recordSet.getName(locale)) : StringPool.BLANK %></span>
 		</span>
 	</div>
@@ -82,19 +82,18 @@ catch (NoSuchRecordSetException nsrse) {
 	</c:if>
 
 	<aui:fieldset label="lists">
-		<br />
-
 		<liferay-ui:search-container
 			emptyResultsMessage="no-entries-were-found"
 			iteratorURL="<%= portletURL %>"
 		>
-			<div>
-				<aui:input id="keywords" inlineField="<%= true %>" label="" name="keywords" size="30" title="search-lists" type="text" />
 
-				<aui:button type="submit" value="search" />
+			<div class="form-search">
+				<div class="input-append">
+					<aui:input autoFocus="<%= true %>" cssClass="search-query" id="keywords" inlineField="<%= true %>" label="" name="keywords" size="30" title="search-lists" type="text" />
+
+					<aui:button primary="<%= false %>" type="submit" value="search" />
+				</div>
 			</div>
-
-			<br />
 
 			<liferay-ui:search-container-results
 				results="<%= DDLRecordSetLocalServiceUtil.search(company.getCompanyId(), scopeGroupId, keywords, DDLRecordSetConstants.SCOPE_DYNAMIC_DATA_LISTS, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
@@ -157,12 +156,12 @@ catch (NoSuchRecordSetException nsrse) {
 				/>
 			</liferay-ui:search-container-row>
 
+			<div class="separator"><!-- --></div>
+
 			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
 	</aui:fieldset>
 </aui:form>
-
-<br />
 
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
@@ -170,12 +169,6 @@ catch (NoSuchRecordSetException nsrse) {
 	<aui:input name="preferences--recordSetId--" type="hidden" value="<%= recordSetId %>" />
 	<aui:input name="preferences--formDDMTemplateId--" type="hidden" value="<%= formDDMTemplateId %>" />
 	<aui:input name="preferences--multipleSubmissions--" type="hidden" value="<%= multipleSubmissions %>" />
-
-	<aui:fieldset cssClass="aui-helper-hidden">
-		<aui:field-wrapper label="portlet-id">
-			<%= HtmlUtil.escape(portletResource) %>
-		</aui:field-wrapper>
-	</aui:fieldset>
 
 	<aui:button-row>
 		<aui:button type="submit" />
