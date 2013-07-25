@@ -20,16 +20,10 @@
 	<c:when test="<%= Validator.isNotNull(link) %>">
 
 		<%
-		StringBundler iframeURL = new StringBundler(5);
-
-		iframeURL.append(PortletPropsValues.UWA_WIDGET_FRAME_URL);
-		iframeURL.append("?uwaUrl=");
-		iframeURL.append(HttpUtil.encodeURL(link));
-		iframeURL.append("&id=");
-		iframeURL.append(HttpUtil.encodeURL(PortalUtil.getPortletId(renderRequest)));
+		String iframeURL = "http://uwa.netvibes.com/widget/frame?uwaUrl=" + HttpUtil.encodeURL(link) + "&id=" + HttpUtil.encodeURL(PortalUtil.getPortletId(renderRequest));
 		%>
 
-		<iframe alt="<%= alt %>" height="<%= windowState.equals(WindowState.MAXIMIZED) ? heightMaximized : heightNormal %>" id="<portlet:namespace />iframe" name="<portlet:namespace />iframe" src="<%= iframeURL.toString() %>" width="<%= width %>"></iframe>
+		<iframe alt="<%= alt %>" height="<%= windowState.equals(WindowState.MAXIMIZED) ? heightMaximized : heightNormal %>" id="<portlet:namespace />iframe" name="<portlet:namespace />iframe" src="<%= iframeURL %>" width="<%= width %>"></iframe>
 	</c:when>
 	<c:otherwise>
 
