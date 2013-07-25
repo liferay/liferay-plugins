@@ -30,11 +30,11 @@
 		<optgroup label="<liferay-ui:message key="sites" />">
 
 			<%
-			for (Group group : groups) {
-				if ((group.isOrganization() || (group.isRegularSite() && group.isSite())) && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+			for (Group curGroup : groups) {
+				if ((curGroup.isOrganization() || (curGroup.isRegularSite() && curGroup.isSite())) && GroupPermissionUtil.contains(permissionChecker, curGroup.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 			%>
 
-					<aui:option label="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>" selected="<%= classPK == group.getGroupId() %>" value="<%= PortalUtil.getClassNameId(Group.class) + StringPool.COMMA + group.getGroupId() %>" />
+					<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected="<%= classPK == curGroup.getGroupId() %>" value="<%= PortalUtil.getClassNameId(Group.class) + StringPool.COMMA + curGroup.getGroupId() %>" />
 
 			<%
 				}
