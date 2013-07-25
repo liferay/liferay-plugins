@@ -93,7 +93,7 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-Group group = layout.getGroup();
+Group group = themeDisplay.getScopeGroup;
 
 boolean customizeAnnouncementsDisplayed = PrefsParamUtil.getBoolean(portletPreferences, request, "customizeAnnouncementsDisplayed", group.isUser() ? false : true);
 int pageDelta = GetterUtil.getInteger(portletPreferences.getValue("pageDelta", String.valueOf(SearchContainer.DEFAULT_DELTA)));
