@@ -120,18 +120,18 @@ String htmlAttributes =
 			</aui:fieldset>
 
 			<%
-				StringBundler saveURL = new StringBundler(10);
+			StringBundler saveURL = new StringBundler(10);
 
-				saveURL.append(renderResponse.getNamespace());
-				saveURL.append("updateWidget('");
-				saveURL.append(link);
-				saveURL.append("','");
-				saveURL.append(UnicodeFormatter.toString(title));
-				saveURL.append("','");
-				saveURL.append(UnicodeFormatter.toString(description));
-				saveURL.append("','");
-				saveURL.append(UnicodeFormatter.toString(thumbnail));
-				saveURL.append("');");
+			saveURL.append(renderResponse.getNamespace());
+			saveURL.append("updateWidget('");
+			saveURL.append(link);
+			saveURL.append("','");
+			saveURL.append(UnicodeFormatter.toString(title));
+			saveURL.append("','");
+			saveURL.append(UnicodeFormatter.toString(description));
+			saveURL.append("','");
+			saveURL.append(UnicodeFormatter.toString(thumbnail));
+			saveURL.append("');");
 			%>
 
 			<aui:button onClick="<%= saveURL.toString() %>" type="submit" />
