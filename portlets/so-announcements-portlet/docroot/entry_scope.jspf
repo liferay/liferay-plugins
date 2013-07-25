@@ -24,9 +24,9 @@ long entryClassPK = entry.getClassPK();
 String scopeName = StringPool.BLANK;
 
 if (entryClassName.equals(Group.class.getName())) {
-	Group curGroup = GroupLocalServiceUtil.getGroup(entryClassPK);
+	Group entryGroup = GroupLocalServiceUtil.getGroup(entryClassPK);
 
-	scopeName = curGroup.getDescriptiveName(locale);
+	scopeName = entryGroup.getDescriptiveName(locale);
 }
 else if (entryClassName.equals(Organization.class.getName())) {
 	Organization organization = OrganizationLocalServiceUtil.getOrganization(entryClassPK);
