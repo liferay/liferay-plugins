@@ -90,7 +90,9 @@ if (microblogsEntries != null) {
 				<div class="content">
 
 					<%
-					String content = MicroblogsUtil.getTaggedContent(microblogsEntry, renderResponse, themeDisplay);
+					com.liferay.portal.service.ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
+
+					String content = MicroblogsUtil.getTaggedContent(microblogsEntry, new ServiceContext(serviceContext));
 					%>
 
 					<span>

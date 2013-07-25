@@ -18,6 +18,7 @@ import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
+import com.liferay.microblogs.service.util.MicroblogsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -91,7 +92,8 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			}
 		}
 
-		sb.append(microblogsEntry.getContent());
+		sb.append(
+			MicroblogsUtil.getTaggedContent(microblogsEntry, serviceContext));
 		sb.append("</div>");
 
 		return sb.toString();

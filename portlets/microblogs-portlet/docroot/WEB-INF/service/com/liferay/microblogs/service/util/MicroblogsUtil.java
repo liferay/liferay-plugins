@@ -27,22 +27,28 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.comparator.UserFirstNameComparator;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
-import javax.portlet.PortletURL;
-import javax.portlet.RenderResponse;
-import javax.portlet.WindowStateException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
+import javax.portlet.WindowStateException;
 
 /**
  * @author Jonathan Lee
@@ -87,6 +93,8 @@ public class MicroblogsUtil {
 
 		String content = HtmlUtil.escape(microblogsEntry.getContent());
 
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
 		Pattern pattern = Pattern.compile("\\#\\S*");
 
 		Matcher matcher = pattern.matcher(microblogsEntry.getContent());
@@ -96,12 +104,40 @@ public class MicroblogsUtil {
 
 			String assetTagName = result.substring(1);
 
-			PortletURL viewURL = renderResponse.createRenderURL();
+			PortletURL viewURL = null;
 
-			try {
-				viewURL.setWindowState(LiferayWindowState.NORMAL);
+			long userId = themeDisplay.getUserId();
+
+			Group group = GroupLocalServiceUtil.getUserGroup(
+				themeDisplay.getCompanyId(), userId);
+
+			long portletPlid = PortalUtil.getPlidFromPortletId(
+				group.getGroupId(), true, "1_WAR_microblogsportlet");
+
+			if (portletPlid != 0) {
+				viewURL = PortletURLFactoryUtil.create(
+					serviceContext.getLiferayPortletRequest(),
+					"1_WAR_microblogsportlet", portletPlid,
+					PortletRequest.RENDER_PHASE);
+
+				try {
+					viewURL.setWindowState(LiferayWindowState.NORMAL);
+				}
+				catch (WindowStateException wse) {
+				}
 			}
-			catch (WindowStateException wse){
+			else {
+				LiferayPortletResponse liferayPortletResponse =
+					serviceContext.getLiferayPortletResponse();
+
+				viewURL = liferayPortletResponse.createRenderURL(
+					"1_WAR_microblogsportlet");
+
+				try {
+					viewURL.setWindowState(WindowState.MAXIMIZED);
+				}
+				catch (WindowStateException wse) {
+				}
 			}
 
 			viewURL.setParameter("mvcPath", "/microblogs/view.jsp");
