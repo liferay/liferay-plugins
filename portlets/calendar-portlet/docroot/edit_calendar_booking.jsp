@@ -383,10 +383,12 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		Liferay.CalendarUtil.syncCalendarsMap(
 			[
 				window.<portlet:namespace />calendarListAccepted,
+
 				<c:if test="<%= calendarBooking != null %>">
 					window.<portlet:namespace />calendarListDeclined,
 					window.<portlet:namespace />calendarListMaybe,
 				</c:if>
+
 				window.<portlet:namespace />calendarListPending
 			]
 		);
@@ -631,11 +633,15 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				var calendarJSON = Liferay.CalendarUtil.manageableCalendars[calendarId];
 
 				A.Array.each(
-					[<portlet:namespace />calendarListAccepted,
-					 <c:if test="<%= calendarBooking != null %>">
-					 	<portlet:namespace />calendarListDeclined, <portlet:namespace />calendarListMaybe,
-				 	 </c:if>
-				 	 <portlet:namespace />calendarListPending],
+					[
+						<portlet:namespace />calendarListAccepted,
+
+						 <c:if test="<%= calendarBooking != null %>">
+							<portlet:namespace />calendarListDeclined, <portlet:namespace />calendarListMaybe,
+						 </c:if>
+
+						 <portlet:namespace />calendarListPending
+					],
 					function(calendarList) {
 						calendarList.remove(calendarList.getCalendar(calendarId));
 						calendarList.remove(calendarList.getCalendar(defaultCalendarId));
