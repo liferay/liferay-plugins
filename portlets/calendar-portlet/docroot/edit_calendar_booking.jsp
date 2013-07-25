@@ -180,20 +180,21 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				</c:if>
 
 				<aui:layout cssClass="calendar-booking-invitations">
-					<aui:column columnWidth="25" first="true">
+					<aui:column columnWidth="<%= (calendarBooking != null) ? 25 : 50 %>" first="true">
 						<label class="field-label">
 							<liferay-ui:message key="pending" /> (<span id="<portlet:namespace />pendingCounter"><%= pendingCalendarsJSONArray.length() %></span>)
 						</label>
 
 						<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListPending"></div>
 					</aui:column>
-					<aui:column columnWidth="25">
+					<aui:column columnWidth="<%= (calendarBooking != null) ? 25 : 50 %>">
 						<label class="field-label">
 							<liferay-ui:message key="accepted" /> (<span id="<portlet:namespace />acceptedCounter"><%= acceptedCalendarsJSONArray.length() %></span>)
 						</label>
 
 						<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListAccepted"></div>
 					</aui:column>
+
 					<c:if test="<%= calendarBooking != null %>">
 						<aui:column columnWidth="25" last="true">
 							<label class="field-label">
