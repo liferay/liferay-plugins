@@ -1,0 +1,13 @@
+.baidu-maps-portlet {
+	.locations,
+	.direction-steps {
+		height: 100%;
+		overflow-y: scroll;
+	}
+
+	.map-canvas {
+		float: left;
+		width: 67%;
+		height: 100%;
+	}
+}
