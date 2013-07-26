@@ -86,7 +86,6 @@ catch (NoSuchRecordSetException nsrse) {
 			emptyResultsMessage="no-entries-were-found"
 			iteratorURL="<%= portletURL %>"
 		>
-
 			<div class="form-search">
 				<div class="input-append">
 					<aui:input autoFocus="<%= true %>" cssClass="search-query" id="keywords" inlineField="<%= true %>" label="" name="keywords" size="30" title="search-lists" type="text" />
