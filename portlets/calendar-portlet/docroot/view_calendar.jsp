@@ -83,16 +83,6 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 					</div>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />myCalendarList"></div>
-
-					<div class="calendar-portlet-list-header toggler-header-expanded">
-						<span class="calendar-portlet-list-arrow"></span>
-
-						<span class="calendar-portlet-list-text"><liferay-ui:message key="other-calendars" /></span>
-					</div>
-
-					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />otherCalendarList">
-						<input class="calendar-portlet-add-calendars-input" id="<portlet:namespace />addOtherCalendar" placeholder="<liferay-ui:message key="add-other-calendars" />" type="text" />
-					</div>
 				</c:if>
 
 				<c:if test="<%= groupCalendarResource != null %>">
@@ -107,6 +97,18 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 					</div>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />siteCalendarList"></div>
+				</c:if>
+
+				<c:if test="<%= themeDisplay.isSignedIn() %>">
+					<div class="calendar-portlet-list-header toggler-header-expanded">
+						<span class="calendar-portlet-list-arrow"></span>
+
+						<span class="calendar-portlet-list-text"><liferay-ui:message key="other-calendars" /></span>
+					</div>
+
+					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />otherCalendarList">
+						<input class="calendar-portlet-add-calendars-input" id="<portlet:namespace />addOtherCalendar" placeholder="<liferay-ui:message key="add-other-calendars" />" type="text" />
+					</div>
 				</c:if>
 			</div>
 
