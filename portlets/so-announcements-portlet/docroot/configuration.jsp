@@ -77,7 +77,7 @@ if (!roles.isEmpty()) {
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="announcementsDisplayedPanel" persistState="<%= true %>" title="announcements-displayed">
 			<aui:input cssClass="customize-announcements-displayed" id="customizeAnnouncementsDisplayed" name="preferences--customizeAnnouncementsDisplayed--" title="customize-announcements-displayed" type="checkbox" value="<%= customizeAnnouncementsDisplayed %>" />
 
-			<div class="<%= customizeAnnouncementsDisplayed ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />customizeAnnouncementsDisplayed">
+			<div class="<%= customizeAnnouncementsDisplayed ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />announcementsDisplayed">
 				<div class="portlet-msg-info">
 					<liferay-ui:message key="general-annnouncements-will-always-be-shown-select-any-other-distribution-scopes-you-would-like-to-display" />
 				</div>
@@ -94,16 +94,16 @@ if (!roles.isEmpty()) {
 								<%
 								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
-								for (Group group : groups) {
-									if (selectedScopeGroupIds.contains(String.valueOf(group.getGroupId()))) {
-										leftList.add(new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale)));
+								for (Group curGroup : groups) {
+									if (selectedScopeGroupIds.contains(String.valueOf(curGroup.getGroupId()))) {
+										leftList.add(new KeyValuePair(String.valueOf(curGroup.getGroupId()), curGroup.getDescriptiveName(locale)));
 									}
 								}
 
 								List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-								for (Group group : groups) {
-									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale));
+								for (Group curGroup : groups) {
+									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(curGroup.getGroupId()), curGroup.getDescriptiveName(locale));
 
 									if (!leftList.contains(tempKeyValuePair)) {
 										rightList.add(tempKeyValuePair);
@@ -266,10 +266,10 @@ if (!roles.isEmpty()) {
 	var form = A.one('#<portlet:namespace />fm');
 
 	var modified = function(panel) {
-		var modifiedNotice = panel.one('.accordion-toggle .modified-notice');
+		var modifiedNotice = panel.one('.lfr-panel-title .modified-notice');
 
 		if (modifiedNotice == null) {
-			var displayTitle = panel.one('.accordion-toggle');
+			var displayTitle = panel.one('.lfr-panel-title');
 
 			displayTitle.append('<span class="modified-notice"> (<liferay-ui:message key="modified" />) </span>');
 		}
@@ -287,7 +287,7 @@ if (!roles.isEmpty()) {
 			var announcementsDisplayed = form.one('#<portlet:namespace />announcementsDisplayed');
 
 			if (announcementsDisplayed) {
-				announcementsDisplayed.toggleClass('hide');
+				announcementsDisplayed.toggleClass('aui-helper-hidden');
 			}
 		}
 	);
