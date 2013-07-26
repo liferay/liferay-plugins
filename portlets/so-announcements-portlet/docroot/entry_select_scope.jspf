@@ -75,6 +75,14 @@
 
 			<%
 			for (Role role : roles) {
+				if (role.isTeam()) {
+					Team team = TeamLocalServiceUtil.getTeam(role.getClassPK());
+
+					if (!GroupPermissionUtil.contains(permissionChecker, team.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+						continue;
+					}
+				}
+
 				if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 			%>
 
