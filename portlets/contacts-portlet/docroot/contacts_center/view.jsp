@@ -94,7 +94,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								<aui:option label="all" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) %>" value="<%= ContactsConstants.FILTER_BY_DEFAULT %>" />
 
 								<c:if test="<%= showOnlySiteMembers %>">
-									<aui:option label="admins" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_ADMINS) %>" value="<%= ContactsConstants.FILTER_BY_ADMINS %>" />
+									<aui:option label="administrators" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_ADMINS) %>" value="<%= ContactsConstants.FILTER_BY_ADMINS %>" />
 								</c:if>
 
 								<aui:option label="connections" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION) %>" value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>" />
