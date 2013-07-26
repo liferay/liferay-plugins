@@ -20,8 +20,6 @@
 <%@ include file="/sites/init.jsp" %>
 
 <%
-String searchName = DAOParamUtil.getLike(request, "name");
-
 List<Group> groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), null, 0, 8);
 
 if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PANEL)) {

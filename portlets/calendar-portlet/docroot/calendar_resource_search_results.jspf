@@ -15,7 +15,7 @@
 --%>
 
 <%
-CalendarResourceSearchTerms searchTerms = (CalendarResourceSearchTerms)searchContainer.getSearchTerms();
+CalendarResourceDisplayTerms searchTerms = (CalendarResourceDisplayTerms)searchContainer.getSearchTerms();
 
 long[] groupIds = {themeDisplay.getScopeGroupId()};
 long[] classNameIds = {PortalUtil.getClassNameId(CalendarResource.class)};

@@ -43,7 +43,6 @@ page import="com.liferay.calendar.recurrence.Recurrence" %><%@
 page import="com.liferay.calendar.recurrence.Weekday" %><%@
 page import="com.liferay.calendar.search.CalendarResourceDisplayTerms" %><%@
 page import="com.liferay.calendar.search.CalendarResourceSearch" %><%@
-page import="com.liferay.calendar.search.CalendarResourceSearchTerms" %><%@
 page import="com.liferay.calendar.service.CalendarBookingLocalServiceUtil" %><%@
 page import="com.liferay.calendar.service.CalendarBookingServiceUtil" %><%@
 page import="com.liferay.calendar.service.CalendarLocalServiceUtil" %><%@

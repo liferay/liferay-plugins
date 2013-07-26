@@ -28,7 +28,6 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
-page import="com.liferay.portal.kernel.dao.search.DAOParamUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.RowChecker" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@

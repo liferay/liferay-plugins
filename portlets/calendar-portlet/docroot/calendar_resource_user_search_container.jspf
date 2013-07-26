@@ -18,7 +18,7 @@
 	<liferay-ui:search-container-results>
 
 		<%
-		CalendarResourceSearchTerms searchTerms = (CalendarResourceSearchTerms)searchContainer.getSearchTerms();
+		CalendarResourceDisplayTerms searchTerms = (CalendarResourceDisplayTerms)searchContainer.getSearchTerms();
 
 		if (searchTerms.isAdvancedSearch()) {
 			results = UserLocalServiceUtil.search(themeDisplay.getCompanyId(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.getDescription(), searchTerms.getCode(), null, WorkflowConstants.STATUS_ANY, null, searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), new UserScreenNameComparator());

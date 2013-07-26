@@ -23,29 +23,28 @@
 String tabs1 = ParamUtil.getString(request, "tabs1");
 
 String keywords = ParamUtil.getString(request, "keywords");
-String searchKeywords = DAOParamUtil.getLike(request, "keywords");
 
 List<Group> groups = null;
 int groupsCount = 0;
 
 if (tabs1.equals("my-sites")) {
-	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, true, 0, maxResultSize);
-	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, true);
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords, true, 0, maxResultSize);
+	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords, true);
 
 	if (groupsCount == 0) {
 		tabs1 = "all-sites";
 
-		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false, 0, maxResultSize);
-		groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false);
+		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords, false, 0, maxResultSize);
+		groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords, false);
 	}
 }
 else if (tabs1.equals("my-favorites")) {
-	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), searchKeywords, 0, maxResultSize);
-	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), searchKeywords);
+	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), keywords, 0, maxResultSize);
+	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), keywords);
 }
 else {
-	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false, 0, maxResultSize);
-	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false);
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords, false, 0, maxResultSize);
+	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords, false);
 }
 %>
 

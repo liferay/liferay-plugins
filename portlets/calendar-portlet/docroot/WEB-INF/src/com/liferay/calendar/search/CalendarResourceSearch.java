@@ -62,7 +62,7 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 
 		super(
 			portletRequest, new CalendarResourceDisplayTerms(portletRequest),
-			new CalendarResourceSearchTerms(portletRequest), curParam,
+			new CalendarResourceDisplayTerms(portletRequest), curParam,
 			DEFAULT_DELTA, iteratorURL, null, EMPTY_RESULTS_MESSAGE);
 
 		CalendarResourceDisplayTerms displayTerms =

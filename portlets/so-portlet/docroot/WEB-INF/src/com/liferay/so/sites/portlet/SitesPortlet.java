@@ -19,7 +19,6 @@ package com.liferay.so.sites.portlet;
 
 import com.liferay.portal.DuplicateGroupException;
 import com.liferay.portal.GroupNameException;
-import com.liferay.portal.kernel.dao.search.DAOParamUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -187,7 +186,7 @@ public class SitesPortlet extends MVCPortlet {
 
 		boolean directory = ParamUtil.getBoolean(resourceRequest, "directory");
 		int end = ParamUtil.getInteger(resourceRequest, "end", 10);
-		String keywords = DAOParamUtil.getLike(resourceRequest, "keywords");
+		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 		int maxResultSize = ParamUtil.getInteger(
 			resourceRequest, "maxResultSize", 10);
 		String searchTab = ParamUtil.getString(resourceRequest, "searchTab");
