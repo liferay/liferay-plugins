@@ -149,11 +149,23 @@
 			height: 0;
 			overflow: hidden;
 		}
+
+		.entry {
+			margin-top: 1.2em;
+
+			&.last {
+				margin-bottom: 0;
+			}
+		}
 	}
 
 	.entry {
-		margin: 1.2em 0;
+		margin-bottom: 1.2em;
 		padding-bottom: 0.5em;
+
+		&.last {
+			padding-bottom: 0;
+		}
 	}
 
 	.entry-scope {
