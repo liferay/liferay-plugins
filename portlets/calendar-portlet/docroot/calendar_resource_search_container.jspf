@@ -21,15 +21,13 @@
 		long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
 		long[] classNameIds = new long[] {PortalUtil.getClassNameId(CalendarResource.class.getName())};
 
-		CalendarResourceDisplayTerms searchTerms = (CalendarResourceDisplayTerms)searchContainer.getSearchTerms();
-
-		if (searchTerms.isAdvancedSearch()) {
-			results = CalendarResourceServiceUtil.search(themeDisplay.getCompanyId(), groupIds, classNameIds, searchTerms.getCode(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.isActive(), searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-			total = CalendarResourceServiceUtil.searchCount(themeDisplay.getCompanyId(), groupIds, classNameIds, searchTerms.getCode(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.isActive(), searchTerms.isAndOperator());
+		if (displayTerms.isAdvancedSearch()) {
+			results = CalendarResourceServiceUtil.search(themeDisplay.getCompanyId(), groupIds, classNameIds, displayTerms.getCode(), displayTerms.getName(), displayTerms.getDescription(), displayTerms.isActive(), displayTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+			total = CalendarResourceServiceUtil.searchCount(themeDisplay.getCompanyId(), groupIds, classNameIds, displayTerms.getCode(), displayTerms.getName(), displayTerms.getDescription(), displayTerms.isActive(), displayTerms.isAndOperator());
 		}
 		else {
-			results = CalendarResourceServiceUtil.search(themeDisplay.getCompanyId(), groupIds, classNameIds, searchTerms.getKeywords(), true, searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-			total = CalendarResourceServiceUtil.searchCount(themeDisplay.getCompanyId(), groupIds, classNameIds, searchTerms.getKeywords(), true);
+			results = CalendarResourceServiceUtil.search(themeDisplay.getCompanyId(), groupIds, classNameIds, displayTerms.getKeywords(), true, displayTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+			total = CalendarResourceServiceUtil.searchCount(themeDisplay.getCompanyId(), groupIds, classNameIds, displayTerms.getKeywords(), true);
 		}
 
 		pageContext.setAttribute("results", results);

@@ -18,15 +18,13 @@
 	<liferay-ui:search-container-results>
 
 		<%
-		CalendarResourceDisplayTerms searchTerms = (CalendarResourceDisplayTerms)searchContainer.getSearchTerms();
-
-		if (searchTerms.isAdvancedSearch()) {
-			results = UserLocalServiceUtil.search(themeDisplay.getCompanyId(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.getDescription(), searchTerms.getCode(), null, WorkflowConstants.STATUS_ANY, null, searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), new UserScreenNameComparator());
-			total = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.getDescription(), searchTerms.getCode(), null, WorkflowConstants.STATUS_ANY, null, searchTerms.isAndOperator());
+		if (displayTerms.isAdvancedSearch()) {
+			results = UserLocalServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), displayTerms.getDescription(), displayTerms.getCode(), null, WorkflowConstants.STATUS_ANY, null, displayTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), new UserScreenNameComparator());
+			total = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), displayTerms.getDescription(), displayTerms.getCode(), null, WorkflowConstants.STATUS_ANY, null, displayTerms.isAndOperator());
 		}
 		else {
-			results = UserLocalServiceUtil.search(themeDisplay.getCompanyId(), searchTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null, searchContainer.getStart(), searchContainer.getEnd(), new UserScreenNameComparator());
-			total = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), searchTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null);
+			results = UserLocalServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null, searchContainer.getStart(), searchContainer.getEnd(), new UserScreenNameComparator());
+			total = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getKeywords(), WorkflowConstants.STATUS_ANY, null);
 		}
 
 		pageContext.setAttribute("results", results);
