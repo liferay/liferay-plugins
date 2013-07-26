@@ -94,16 +94,16 @@ if (!roles.isEmpty()) {
 								<%
 								List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
-								for (Group group : groups) {
-									if (selectedScopeGroupIds.contains(String.valueOf(group.getGroupId()))) {
-										leftList.add(new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale)));
+								for (Group curGroup : groups) {
+									if (selectedScopeGroupIds.contains(String.valueOf(curGroup.getGroupId()))) {
+										leftList.add(new KeyValuePair(String.valueOf(curGroup.getGroupId()), curGroup.getDescriptiveName(locale)));
 									}
 								}
 
 								List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-								for (Group group : groups) {
-									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(group.getGroupId()), group.getDescriptiveName(locale));
+								for (Group curGroup : groups) {
+									KeyValuePair tempKeyValuePair = new KeyValuePair(String.valueOf(curGroup.getGroupId()), curGroup.getDescriptiveName(locale));
 
 									if (!leftList.contains(tempKeyValuePair)) {
 										rightList.add(tempKeyValuePair);
@@ -266,10 +266,10 @@ if (!roles.isEmpty()) {
 	var form = A.one('#<portlet:namespace />fm');
 
 	var modified = function(panel) {
-		var modifiedNotice = panel.one('.accordion-toggle .modified-notice');
+		var modifiedNotice = panel.one('.lfr-panel-title .modified-notice');
 
 		if (modifiedNotice == null) {
-			var displayTitle = panel.one('.accordion-toggle');
+			var displayTitle = panel.one('.lfr-panel-title');
 
 			displayTitle.append('<span class="modified-notice"> (<liferay-ui:message key="modified" />) </span>');
 		}
