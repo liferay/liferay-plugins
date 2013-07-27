@@ -166,8 +166,8 @@
 	}
 
 	.field {
-		top: -10px;
 		position: relative;
+		top: -10px;
 	}
 }
 
@@ -285,12 +285,12 @@
 }
 
 .rss-time-interval {
-	margin-top: -1em;
 	margin-left: 2em;
+	margin-top: -1em;
 }
 
 .scheduler-event-past {
-	opacity: 0.4;
+	@include opacity(0.4);
 }
 
 .scheduler-event-recorder-body select {
