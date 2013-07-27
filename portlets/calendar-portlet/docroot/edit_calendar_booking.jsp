@@ -41,6 +41,10 @@ long endTime = BeanParamUtil.getLong(calendarBooking, request, "endTime", defaul
 
 java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(endTime, userTimeZone);
 
+if (com.liferay.portal.kernel.util.CalendarUtil.equalsByDay(startTimeJCalendar.getTime(), endTimeJCalendar.getTime())) {
+	activeView = "day";
+}
+
 boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
 
 long firstReminder = BeanParamUtil.getLong(calendarBooking, request, "firstReminder");
@@ -86,10 +90,6 @@ else if (calendar != null) {
 	else {
 		pendingCalendarsJSONArray.put(calendarJSONObject);
 	}
-}
-
-if (com.liferay.portal.kernel.util.CalendarUtil.equalsByDay(startTimeJCalendar.getTime(), endTimeJCalendar.getTime())) {
-	activeView = "day";
 }
 
 List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, null, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new CalendarNameComparator(true), ActionKeys.MANAGE_BOOKINGS);
