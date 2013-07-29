@@ -32,10 +32,11 @@ a {
 	@include clear-both;
 }
 
-/*  Forms Custom  */
+/* ---------- Forms Custom ---------- */
 
 .aui-panel-hd, .lfr-panel.lfr-extended .lfr-panel-titlebar {
 	@include normal-gradient;
+
 	@include default-border;
 }
 
@@ -47,9 +48,9 @@ a {
 	@include border-radius(4px);
 
 	&:hover, &:focus {
-		text-decoration: none;
-
 		@include button-hover;
+
+		text-decoration: none;
 	}
 
 	&:active {
@@ -123,10 +124,10 @@ a {
 	@include hidden-accessible;
 }
 
-/*  Layout  */
+/* ---------- Layout ---------- */
 
 .portlet-column-content {
-	border: 1px solid $defaultBorderColor;
+	border: solid $defaultBorderColor;
 	border-width: 0 1px;
 	margin: 0 0 0 -1px;
 	padding: 0;
@@ -140,10 +141,10 @@ a {
 	border-left-width: 0;
 }
 
-/*  Breadcrumbs  */
+/* ---------- Breadcrumbs ---------- */
 
 .breadcrumbs-horizontal {
-	border: 1px solid $defaultBorderColor;
+	border: solid $defaultBorderColor;
 	border-width: 1px 0;
 	margin: -1px 0;
 
@@ -188,20 +189,20 @@ a {
 	}
 }
 
-/*  Site Breadcrumbs  */
+/* ---------- Site Breadcrumbs ---------- */
 
 .site-breadcrumbs .breadcrumbs-horizontal {
 	border-top: 1px solid $defaultBorderColor;
 	margin: 0 0 -1px;
 }
 
-/*  Banner  */
+/* ---------- Banner ---------- */
 
 #banner {
-	padding: 1em 1.5em;
 	@include header;
 
 	border-width: 1px 0;
+	padding: 1em 1.5em;
 
 	h1, h2 {
 		font-size: 1.8em;
@@ -264,23 +265,27 @@ a {
 	}
 
 	input[type="text"]:focus, &.focus input[type="text"] {
-			color: $defaultTextColor;
-		}
+		color: $defaultTextColor;
+	}
+
 	input[type="image"], select {
 		display: none;
 	}
 
 	.search-controls {
 		background: #FFF;
+
+		@include border-radius(4px);
+
 		display: none;
 		left: 0;
+
+		@include menu-style;
+
 		padding: 0.4em;
 		right: 0;
 		top: 100%;
 		z-index: 1;
-
-		@include border-radius(4px);
-		@include menu-style;
 
 		input[type="image"], select {
 			display: inline-block;
@@ -309,9 +314,9 @@ div#navigation {
 		width: 155px;
 
 		img {
-			width: 155px;
 			height: auto;
 			min-height: 155px;
+			width: 155px;
 		}
 
 		.edit-portrait {
@@ -388,9 +393,10 @@ div#navigation {
 }
 
 .aui-tabview-list {
+	@include default-border;
+
 	padding: 0 .45em;
 
-	@include default-border;
 	@include normal-gradient;
 
 	.aui-tab, .aui-tab:first-child, .last, .first, .aui-tab-content {
@@ -408,9 +414,9 @@ div#navigation {
 		margin-bottom: -1px;
 
 		&:hover, &:focus {
-			text-shadow: none;
-
 			@include button-hover;
+
+			text-shadow: none;
 		}
 	}
 
@@ -455,6 +461,8 @@ div#navigation {
 }
 
 .controls-hidden {
+	@include border-radius(4px);
+
 	.delete-tab {
 		display: none;
 	}
@@ -462,15 +470,13 @@ div#navigation {
 	.portlet-blogs .lfr-meta-actions {
 		display: block;
 	}
-
-	@include border-radius(4px);
 }
 
 .controls-visible .portlet .portlet-topper .portlet-topper-toolbar {
 	display: block;
 }
 
-/*  Top Links Component  */
+/* ---------- Top Links Component ---------- */
 
 .top-links {
 	background: $controlBgColor;
@@ -488,22 +494,21 @@ div#navigation {
 		}
 
 		a {
-			border: 1px solid transparent;
+			@include button-default;
+			@include border-radius(4px);
+
 			display: inline-block;
 			font-weight: bold;
 			line-height: 1em;
 			padding: 6px 4px;
 			text-decoration: none;
 
-			@include button-default;
-			@include border-radius(4px);
+			&:active {
+				@include button-active;
+			}
 
 			&:hover, &:focus {
 				@include button-hover;
-			}
-
-			&:active {
-				@include button-active;
 			}
 
 			img.icon {
@@ -519,8 +524,8 @@ div#navigation {
 	}
 
 	&:after {
-		content: "";
 		clear: both;
+		content: "";
 		display: block;
 		width: 100%;
 	}
@@ -542,7 +547,7 @@ div#navigation {
 	padding: 0 0.2em;
 }
 
-/*  LFR Header Row  */
+/* ---------- LFR Header Row ---------- */
 
 .lfr-header-row {
 	.lfr-actions {
@@ -550,7 +555,7 @@ div#navigation {
 			@include button-default;
 
 			margin-right: 0.125em;
-			padding: .125em .60em .15em;
+			padding: 0.125em 0.60em 0.15em;
 		}
 
 		&:hover {
@@ -575,7 +580,7 @@ div#navigation {
 	}
 }
 
-/*  Document Library  */
+/* ---------- Document Library ---------- */
 
 .portlet-document-library {
 	.lfr-app-column-view {
@@ -629,16 +634,17 @@ div#navigation {
 		}
 
 		.aui-field-input-text {
-			padding: 4px 4px 5px;
-
 			@include border-radius(4px 0 0 4px);
+
+			padding: 4px 4px 5px;
 		}
 
 		.aui-button-input {
 			border-left-width: 0;
-			padding: 4px .4em;
 
 			@include border-radius(0 4px 4px 0);
+
+			padding: 4px .4em;
 		}
 	}
 
@@ -646,7 +652,7 @@ div#navigation {
 		@include default-border;
 
 		.aui-field-element {
-			border: none;
+			border-width: 0;
 			padding: 6px;
 		}
 	}
@@ -733,7 +739,7 @@ div#navigation {
 	}
 
 	.taglib-header {
-		border-bottom: none;
+		border-bottom-width: 0;
 		margin-bottom: 0;
 		position: relative;
 	}
@@ -772,7 +778,7 @@ div#navigation {
 
 	.view {
 		.aui-column-content {
-			border: 1px solid $defaultBorderColor;
+			border: solid $defaultBorderColor;
 			border-width: 0 1px;
 			margin-left: -1px;
 		}
@@ -829,11 +835,11 @@ div#navigation {
 	}
 
 	.aui-column-content-first {
-		border-right: 0 solid transparent;
+		border-right-width: 0;
 	}
 }
 
-/*  Microblogs Portlet  */
+/* ---------- Microblogs Portlet ---------- */
 
 .microblogs-portlet {
 	.aui-tabview-list {
@@ -853,7 +859,7 @@ div#navigation {
 	}
 
 	.microblogs-countdown {
-		font-size: .9em;
+		font-size: 0.9em;
 	}
 
 	.microblogs-button-input-disabled .microblogs-button-input, .microblogs-button-input-disabled:hover .microblogs-button-input {
@@ -895,7 +901,7 @@ div#navigation {
 	top: 0;
 }
 
-/*  Activities Portlet  */
+/* ---------- Activities Portlet ---------- */
 
 .so-portlet-activities {
 	h3 {
@@ -910,7 +916,7 @@ div#navigation {
 	}
 
 	.activity-body {
-		font-size: .95em;
+		font-size: 0.95em;
 	}
 
 	.user {
@@ -944,13 +950,13 @@ div#navigation {
 		color: $defaultTextColor;
 		font-size: 1.5em;
 		font-weight: normal;
-		margin-top: .25em;
+		margin-top: 0.25em;
 		width: 115px;
 	}
 
 	.portrait-social-activities h3 {
 		font-size: 1em;
-		margin: .5em 0 1em;
+		margin: 0.5em 0 1em;
 		width: 110px;
 	}
 
@@ -963,7 +969,7 @@ div#navigation {
 	}
 }
 
-/*  Blogs  */
+/* ---------- Blogs ---------- */
 
 .portlet-blogs {
 	.portlet-borderless-container .portlet-body {
@@ -1017,7 +1023,7 @@ div#navigation {
 	}
 
 	.entry-date, .entry-title h2 {
-		margin: 0 0 .5em;
+		margin: 0 0 0.5em;
 	}
 
 	#_33_fm .aui-fieldset {
@@ -1115,7 +1121,7 @@ div#navigation {
 	}
 }
 
-/*  Blogs Aggregator  */
+/* ---------- Blogs Aggregator ---------- */
 
 .portlet-blogs-aggregator {
 	.entry-author, .entry-date {
@@ -1131,7 +1137,7 @@ div#navigation {
 
 	.comments {
 		display: inline;
-		margin: .5em 0;
+		margin: 0.5em 0;
 	}
 
 	.comments a {
@@ -1139,7 +1145,7 @@ div#navigation {
 	}
 }
 
-/* Bookmarks */
+/* ---------- Bookmarks ---------- */
 
 .portlet-bookmarks {
 	.control-wrapper {
@@ -1157,7 +1163,7 @@ div#navigation {
 	}
 }
 
-/* Calendar */
+/* ---------- Calendar ---------- */
 
 .portlet-calendar {
 	.calendar-container, .calendar-container .taglib-calendar, .calendar-day {
@@ -1252,7 +1258,7 @@ div#navigation {
 	padding: 10px;
 }
 
-/*  Contacts Portlet  */
+/* ---------- Contacts Portlet ---------- */
 
 .contacts-portlet {
 	.contacts-profile {
@@ -1279,7 +1285,7 @@ div#navigation {
 		}
 
 		.taglib-header, .contacts-profile {
-			border-bottom: 0;
+			border-bottom-width: 0;
 		}
 
 		.aui-column:before {
@@ -1395,14 +1401,15 @@ div#navigation {
 	border-bottom-width: 1px;
 }
 
-/*  Private Messaging  */
+/* ---------- Private Messaging ---------- */
 
 .private-messaging-portlet {
 	.controls {
 		background-color: $controlBgColor;
-		border-width: 0 0 1px;
 
 		@include border-radius(0);
+
+		border-width: 0 0 1px;
 	}
 
 	.thread-content .controls {
@@ -1450,7 +1457,7 @@ div#navigation {
 	}
 }
 
-/*  Message Boards  */
+/* ---------- Message Boards ---------- */
 
 .portlet-message-boards {
 	.category-current {
@@ -1587,10 +1594,11 @@ div#navigation {
 
 	.thread-controls {
 		background: $controlBgColor;
-		padding: 5px 6px;
 
 		@include border-radius(4px);
 		@include default-border;
+
+		padding: 5px 6px;
 	}
 
 	.thread-navigation {
@@ -1600,11 +1608,12 @@ div#navigation {
 	.edit-controls {
 		opacity: 0;
 		position: relative;
-		top: -.5em;
-		z-index: 2;
+		top: -0.5em;
 
-		@include transition-property(opacity);
 		@include transition-duration(.2s);
+		@include transition-property(opacity);
+
+		z-index: 2;
 
 		li {
 			margin: 0 5px;
@@ -1656,7 +1665,7 @@ div#navigation {
 			display: block;
 			font-size: 190%;
 			min-width: 50px;
-			padding-top: .3em;
+			padding-top: 0.3em;
 		}
 
 		.summary {
@@ -1703,7 +1712,7 @@ div#navigation {
 
 		.header-title {
 			font-weight: normal;
-			margin: .5em 0;
+			margin: 0.5em 0;
 		}
 	}
 
@@ -1751,21 +1760,21 @@ div#navigation {
 }
 
 .portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, .portlet-wiki .page-actions a, .portlet-wiki .toc a.toc-trigger {
-	display: inline-block;
-
 	@include button-default;
 	@include border-radius(4px);
+
+	display: inline-block;
 
 	&, .taglib-text {
 		text-decoration: none;
 	}
 
-	&:hover, &:focus {
-		@include button-focus;
-	}
-
 	&:active {
 		@include button-active;
+	}
+
+	&:hover, &:focus {
+		@include button-focus;
 	}
 
 	img.icon {
@@ -1773,7 +1782,7 @@ div#navigation {
 	}
 }
 
-/*  Tasks Portlet  */
+/* ---------- Tasks Portlet ---------- */
 
 .tasks-portlet {
 	.aui-tabview-list, .control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
@@ -1798,7 +1807,7 @@ div#navigation {
 	}
 }
 
-/*  Invite Members  */
+/* ---------- Invite Members ---------- */
 
 .so-portlet-invite-members {
 	.invite-members {
@@ -1806,7 +1815,7 @@ div#navigation {
 	}
 }
 
-/*  SO Portlet Sites  */
+/* ---------- SO Portlet Sites ---------- */
 
 .aui-dialog-bd .so-sites-directory {
 	.taglib-header {
@@ -1814,7 +1823,7 @@ div#navigation {
 	}
 }
 
-/* Wiki Portlet */
+/* ---------- Wiki Portlet ---------- */
 
 .portlet-wiki {
 	.page-actions {
@@ -1849,7 +1858,7 @@ div#navigation {
 	}
 }
 
-/* Portlet Typography */
+/* ---------- Portlet Typography ---------- */
 
 .portlet-message-boards .thread-body, .portlet-wiki .wiki-body, .portlet-blogs .entry-body {
 	line-height: 1.5em;
@@ -1865,7 +1874,7 @@ div#navigation {
 	h2 {
 		border-color: $defaultBorderColor;
 		font-size: 1.75em;
-		margin: 1em 0 .5em;
+		margin: 1em 0 0.5em;
 	}
 
 	h3 {
@@ -1905,8 +1914,13 @@ div#navigation {
 	}
 
 	div#navigation {
+		@include clear-both;
+
 		float: none;
 		margin-left: 0;
+
+		@include subtle-gradient;
+
 		width: 100%;
 
 		li {
@@ -1916,12 +1930,9 @@ div#navigation {
 				@include background-image(linear, 50% 100%, 50% 0%, color-stop(0%, #252d31), color-stop(100%, #32363a));
 
 				display: block;
-				padding: .75em 1em;
+				padding: 0.75em 1em;
 			}
 		}
-
-		@include subtle-gradient;
-		@include clear-both;
 
 		.avatar {
 			float: left;

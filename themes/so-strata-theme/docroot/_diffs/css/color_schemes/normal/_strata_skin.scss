@@ -12,19 +12,60 @@ $controlBgColor: #EEE9E9;
 $navigationBgColor: #CBD0D3;
 $red: #8F0920;
 
-@mixin clear-both {
-	&:after {
-		content: "";
-		clear: both;
-		display: block;
-	}
+@mixin button-active {
+	background-position: 0 -1.5em;
+
+	@include box-shadow(0 1px 8px rgba(0,0,0, .14) inset, 0 1px 3px rgba(0,0,0, .75) inset);
 }
 
-@mixin hidden-accessible {
-	clip: rect(0, 0, 0, 0);
-	position: absolute;
-	font-size: 0;
-	text-indent: -9999em;
+@mixin button-default {
+	color: $btnDefaultText;
+	cursor: pointer;
+	font-weight: normal;
+	padding: 0.35em 0.70em 0.38em;
+	overflow: visible;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 #FFF;
+	width: auto;
+
+	@include box-shadow(0 1px 0 rgba(255,255,255, .35) inset, 0 -1px 0 rgba(0,0,0, .15) inset);
+	@include default-border;
+	@include normal-gradient;
+}
+
+@mixin button-disabled {
+	color: $defaultBorderColor;
+	opacity: 0.5;
+
+	@include normal-gradient;
+}
+
+@mixin button-hover {
+	background-position: 0 -.8em;
+
+	@include box-shadow(0 1px 0 rgba(255,255,255, .25) inset, 0 1px 0px rgba(0,0,0, .14) inset, 0 1px 4px rgba(0,0,0, .1) inset);
+}
+
+@mixin button-focus {
+	@include button-hover;
+}
+
+@mixin button-primary-gradient {
+	background: #0E50A9 url(../../images/custom/button_primary_bg.png) repeat-x;
+
+	&, &:hover {
+		color: #FFF;
+		text-shadow: 0 -1px #003C8D;
+	}
+
+	@include background-image(linear-gradient(bottom, #0E50A9 0, #1D87EB 100%));
+}
+@mixin clear-both {
+	&:after {
+		clear: both;
+		content: "";
+		display: block;
+	}
 }
 
 @mixin default-border {
@@ -35,6 +76,26 @@ $red: #8F0920;
 	background: $controlBgColor;
 
 	@include default-border;
+}
+
+@mixin hidden-accessible {
+	clip: rect(0, 0, 0, 0);
+	font-size: 0;
+	position: absolute;
+	text-indent: -9999em;
+}
+
+@mixin input-field-default {
+	padding: .4em 0;
+	vertical-align: middle;
+
+	@include default-border;
+	@include border-radius(4px);
+}
+
+@mixin input-field-focus {
+	background: #E9F5FF;
+	border-color: #2571AD;
 }
 
 @mixin menu-style {
@@ -57,66 +118,4 @@ $red: #8F0920;
 	@include background-image(linear-gradient(bottom, #E4E4E4 0, #F7F7F7 100%));
 	@include transition-duration(.2s);
 	@include transition-property(background-position);
-}
-
-@mixin input-field-default {
-	padding: .4em 0;
-	vertical-align: middle;
-
-	@include default-border;
-	@include border-radius(4px);
-}
-
-@mixin input-field-focus {
-	background: #E9F5FF;
-	border-color: #2571AD;
-}
-
-@mixin button-default {
-	color: $btnDefaultText;
-	cursor: pointer;
-	font-weight: normal;
-	padding: 0.35em 0.70em 0.38em;
-	overflow: visible;
-	text-decoration: none;
-	text-shadow: 0 -1px 0 #FFF;
-	width: auto;
-
-	@include box-shadow(0 1px 0 rgba(255,255,255, .35) inset, 0 -1px 0 rgba(0,0,0, .15) inset);
-	@include normal-gradient;
-	@include default-border;
-}
-
-@mixin button-disabled {
-	color: $defaultBorderColor;
-	opacity: 0.5;
-
-	@include normal-gradient;
-}
-
-@mixin button-hover {
-	background-position: 0 -.8em;
-
-	@include box-shadow(0 1px 0 rgba(255,255,255, .25) inset, 0 1px 0px rgba(0,0,0, .14) inset, 0 1px 4px rgba(0,0,0, .1) inset);
-}
-
-@mixin button-focus {
-	@include button-hover;
-}
-
-@mixin button-active {
-	background-position: 0 -1.5em;
-
-	@include box-shadow(0 1px 8px rgba(0,0,0, .14) inset, 0 1px 3px rgba(0,0,0, .75) inset);
-}
-
-@mixin button-primary-gradient {
-	background: #0E50A9 url(../../images/custom/button_primary_bg.png) repeat-x;
-
-	&, &:hover {
-		color: #FFF;
-		text-shadow: 0 -1px #003C8D;
-	}
-
-	@include background-image(linear-gradient(bottom, #0E50A9 0, #1D87EB 100%));
 }
