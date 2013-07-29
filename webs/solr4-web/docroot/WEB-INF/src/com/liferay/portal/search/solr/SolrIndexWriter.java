@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -193,6 +194,10 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			String name = field.getName();
 			float boost = field.getBoost();
 
+			if (ArrayUtil.contains(Field.UNSCORED_FIELD_NAMES, name)) {
+				boost = _UNSCORED_FIELDS_BOOST;
+			}
+
 			if (!field.isLocalized()) {
 				for (String value : field.getValues()) {
 					if (Validator.isNull(value)) {
@@ -253,6 +258,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 
 		return solrInputDocuments;
 	}
+
+	private static final float _UNSCORED_FIELDS_BOOST = 1;
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriter.class);
 
