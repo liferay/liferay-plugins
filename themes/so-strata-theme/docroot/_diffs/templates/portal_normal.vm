@@ -77,11 +77,15 @@ $theme.include($body_top_include)
 							$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
 
 							<a class="aui-button button action request member-button" href="$membership_request_url" id="memberButton">
-								<span class="aui-button-content"><span class="aui-button-label">#language ("request-membership")</span></span>
+								<span class="aui-button-content">
+									<span class="aui-button-label">#language ("request-membership")</span>
+								</span>
 							</a>
 						#elseif ($membership_request)
 							<a class="aui-button button action requested member-button" id="memberButton">
-								<span class="aui-button-content"><span class="aui-button-label">#language ("membership-requested")</span></span>
+								<span class="aui-button-content">
+									<span class="aui-button-label">#language ("membership-requested")</span>
+								</span>
 							</a>
 						#end
 					#end
@@ -101,7 +105,9 @@ $theme.include($body_top_include)
 			#if ($is_user_dashboard)
 				<h2 class="page-title">
 					#if ($the_title == "Dashboard")
-						<a class="avatar" href="$current_user_profile_url" style="background-image: url($user.getPortraitURL($themeDisplay))"><img src="$user.getPortraitURL($themeDisplay)" alt="$user.getFullName()"></a>
+						<a class="avatar" href="$current_user_profile_url" style="background-image: url($user.getPortraitURL($themeDisplay))">
+							<img src="$user.getPortraitURL($themeDisplay)" alt="$user.getFullName()">
+						</a>
 
 						<span>$current_user.getFullName()'s</span>
 					#end
@@ -113,19 +119,19 @@ $theme.include($body_top_include)
 	</header>
 
 	<div id="content">
-	#if ($has_navigation || $is_signed_in)
-		#parse ("$full_templates_path/navigation.vm")
-	#end
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
 
-	#if ($selectable)
-		$theme.include($content_include)
-	#else
-		$portletDisplay.recycle()
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
 
-		$portletDisplay.setTitle($the_title)
+			$portletDisplay.setTitle($the_title)
 
-		$theme.wrapPortlet("portlet.vm", $content_include)
-	#end
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
 	</div>
 
 	#if (!$page_group.isUser())
@@ -155,7 +161,7 @@ $theme.include($body_bottom_include)
 			'liferay-logo-selector',
 			'aui-base',
 			function(A) {
-				editPortrait = new Liferay.LogoSelector(
+				window.editPortrait = new Liferay.LogoSelector(
 					{
 						boundingBox: '#_SO_THEME_taglibLogoSelector',
 						contentBox: '#_SO_THEME_taglibLogoSelectorContent',
@@ -167,24 +173,8 @@ $theme.include($body_bottom_include)
 					}
 				);
 
-				window['_2_changeLogo'] = function(logoURL) {
-					var avatarDialog = A.one('#_SO_THEME_avatar');
-
-					if (avatarDialog) {
-						avatarDialog.attr('src', logoURL);
-					}
-
-					var avatarContext = A.all('#content .avatar img');
-
-					if (avatarContext) {
-						avatarContext.attr('src', logoURL);
-					}
-
-					var avatarDockbar = A.one('.user-fullname.user-portrait img');
-
-					if (avatarDockbar) {
-						avatarDockbar.attr('src', logoURL);
-					}
+				window._2_changeLogo = function(logoURL) {
+					A.all('#_SO_THEME_avatar, #content .avatar img, .user-fullname.user-portrait img').attr('src', logoURL);
 				}
 			}
 		);

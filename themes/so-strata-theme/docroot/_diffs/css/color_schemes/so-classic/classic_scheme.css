@@ -10,9 +10,17 @@ $grayMedium: #EEE;
 $linkColor: #2571AD;
 $red: #8F0920;
 
-@mixin remove-gradients {
+@mixin button-default {
+	background-color: #E9E8E8;
 	background-image: none;
-	background-color: transparent;
+	border: 1px solid $gray;
+	text-shadow: none;
+}
+
+@mixin button-hover {
+	background: $grayMedium;
+	border-color: #AAA;
+	color: #5A5A5A;
 }
 
 @mixin default-border {
@@ -41,17 +49,9 @@ $red: #8F0920;
 	border-color: $linkColor;
 }
 
-@mixin button-default {
-	background-color: #E9E8E8;
+@mixin remove-gradients {
 	background-image: none;
-	border: 1px solid $gray;
-	text-shadow: none;
-}
-
-@mixin button-hover {
-	background: $grayMedium;
-	border-color: #AAA;
-	color: #5A5A5A;
+	background-color: transparent;
 }
 
 body.so-classic {
@@ -82,7 +82,7 @@ body.so-classic {
 		}
 
 		a {
-			border: 1px solid transparent;
+			border: solid transparent;
 			border-width: 1px 0;
 			color: $linkColor;
 
@@ -187,7 +187,7 @@ body.so-classic {
 					color: #5A5A5A;
 					text-shadow: none;
 				}
-			 }
+			}
 		}
 	}
 
@@ -239,7 +239,7 @@ body.so-classic {
 		@include hidden-accessible;
 	}
 
-	/*  Layout  */
+	/* ---------- Layout ---------- */
 
 	.portlet-column-content {
 		border: 1px solid $defaultBorderColor;

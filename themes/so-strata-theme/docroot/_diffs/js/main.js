@@ -16,9 +16,7 @@ AUI().ready(
 
 						setTimeout(
 							function() {
-								if (target.hasClass('controls-visible')) {
-									target.removeClass('controls-visible');
-								}
+								target.removeClass('controls-visible');
 							},
 							10000
 						);
@@ -40,12 +38,11 @@ AUI().ready(
 					event.preventDefault();
 
 					A.io.request(
-						event.target.get('href'),
+						event.currentTarget.attr('href'),
 						{
-							method: 'POST',
 							on: {
 								success: function(event, id, obj) {
-									window.location = '';
+									window.location.reload();
 								}
 							}
 						}

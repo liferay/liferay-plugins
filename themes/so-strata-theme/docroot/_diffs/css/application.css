@@ -90,7 +90,7 @@
 		}
 	}
 
- 	&.selected td, &.selected.hover td {
+	&.selected td, &.selected.hover td {
 		background-color: #00A2EA;
 		border-color: #00A2EA #00A2EA #D7D7D7;
 		color: #FFF;
