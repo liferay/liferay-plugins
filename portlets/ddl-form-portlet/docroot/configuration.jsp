@@ -28,6 +28,10 @@ DDLRecordSet recordSet = null;
 try {
 	if (recordSetId > 0) {
 		recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(recordSetId);
+
+		if (recordSet.getGroupId() != scopeGroupId) {
+			recordSet = null;
+		}
 	}
 }
 catch (NoSuchRecordSetException nsrse) {
