@@ -102,14 +102,14 @@ public class MicroblogsUtil {
 		while (matcher.find()) {
 			String result = matcher.group();
 
-			String assetTagName = result.substring(1);
+			StringBuilder sb = new StringBuilder(5);
+
+			sb.append("<a href=\"");
 
 			PortletURL portletURL = null;
 
-			long userId = themeDisplay.getUserId();
-
 			Group group = GroupLocalServiceUtil.getUserGroup(
-				themeDisplay.getCompanyId(), userId);
+				themeDisplay.getCompanyId(), themeDisplay.getUserId());
 
 			long portletPlid = PortalUtil.getPlidFromPortletId(
 				group.getGroupId(), true, "1_WAR_microblogsportlet");
@@ -141,13 +141,14 @@ public class MicroblogsUtil {
 			}
 
 			portletURL.setParameter("mvcPath", "/microblogs/view.jsp");
+
+			String assetTagName = result.substring(1);
+
 			portletURL.setParameter("tabs1", assetTagName);
 			portletURL.setParameter("assetTagName", assetTagName);
 
-			StringBuilder sb = new StringBuilder(5);
-
-			sb.append("<a href=\"");
 			sb.append(portletURL);
+
 			sb.append("\">");
 			sb.append(assetTagName);
 			sb.append("</a>");
@@ -164,23 +165,29 @@ public class MicroblogsUtil {
 		while (matcher.find()) {
 			String result = matcher.group();
 
-			String assetTagName = result.replace("[@", StringPool.BLANK);
-
-			assetTagName = assetTagName.replace("]", StringPool.BLANK);
-
 			try {
-				User taggedUser = UserLocalServiceUtil.getUserByScreenName(
-					microblogsEntry.getCompanyId(), assetTagName);
-
-				assetTagName = PortalUtil.getUserName(
-					taggedUser.getUserId(), assetTagName);
-
 				StringBuilder sb = new StringBuilder(5);
 
 				sb.append("<a href=\"");
-				sb.append(taggedUser.getDisplayURL(themeDisplay));
+
+				String assetTagScreenName = result.replace(
+					"[@", StringPool.BLANK);
+
+				assetTagScreenName = assetTagScreenName.replace(
+					"]", StringPool.BLANK);
+
+				User assetTagUser = UserLocalServiceUtil.getUserByScreenName(
+					microblogsEntry.getCompanyId(), assetTagScreenName);
+
+				sb.append(assetTagUser.getDisplayURL(themeDisplay));
+
 				sb.append("\">");
-				sb.append(assetTagName);
+
+				String assetTagUserName = PortalUtil.getUserName(
+					assetTagUser.getUserId(), assetTagScreenName);
+
+				sb.append(assetTagUserName);
+
 				sb.append("</a>");
 
 				String userLink = sb.toString();
