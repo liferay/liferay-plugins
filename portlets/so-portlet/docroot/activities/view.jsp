@@ -57,6 +57,150 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 		'.view-comments a'
 	);
 
+	activities.delegate(
+		'click',
+		function(event) {
+			if (confirm(Liferay.Language.get('are-you-sure-you-want-to-delete-the-selected-entry'))) {
+				var node = event.currentTarget;
+
+				var messageId = node.getAttribute('data-messageId');
+				var commentsContainer = node.ancestor('.comments-container');
+
+				var form = commentsContainer.one('form');
+
+				var cmdNode = form.one('#<portlet:namespace /><%= Constants.CMD %>');
+
+				cmdNode.val('<%= Constants.DELETE %>');
+
+				var messageIdNode = form.one('#<portlet:namespace />messageId');
+
+				messageIdNode.val(messageId);
+
+				A.io.request(
+					form.attr('action'),
+					{
+						after: {
+							failure: function(event, id, obj) {
+							},
+							success: function(event, id, obj) {
+								var responseData = this.get('responseData');
+
+								if (responseData.success) {
+									var activityFooterToolbar = node.ancestor('.activity-footer-toolbar');
+
+									var viewCommentsNode = activityFooterToolbar.one('.view-comments a');
+
+									var messagesCountString = viewCommentsNode.getContent();
+
+									var messagesCount = parseInt(messagesCountString) - 1;
+
+									viewCommentsNode.html((messagesCount > 0 ? messagesCount : '') + ' ' + Liferay.Language.get(messagesCount > 1 ? 'comments' : 'comment'));
+
+									node.ancestor('.comment-entry').remove();
+								}
+							}
+						},
+						dataType: 'json',
+						form: {
+							id: form
+						}
+					}
+				);
+			}
+		},
+		'.comment-entry .delete-comment a'
+	);
+
+	activities.delegate(
+		'click',
+		function(event) {
+			var node = event.currentTarget;
+
+			var messageId = node.getAttribute('data-messageId');
+			var ancestor = node.ancestor('.comments-container');
+
+			var editForm = A.one('#<portlet:namespace />fm1' + messageId);
+
+			var commentEntryNode = node.ancestor('.comment-entry')
+
+			var commentBodyNode = commentEntryNode.one('.comment-body');
+
+			var messageNode = commentBodyNode.one('.message');
+
+			if (editForm) {
+				editForm.toggleClass('aui-helper-hidden');
+				messageNode.toggleClass('aui-helper-hidden');
+
+				var message = messageNode.get('innerHTML');
+
+				editForm.one('#<portlet:namespace />body').html(message);
+			}
+			else {
+				editForm = ancestor.one('form').cloneNode(true);
+
+				editForm.removeClass('aui-helper-hidden');
+				editForm.set('id','<portlet:namespace />fm1' + messageId);
+				editForm.set('name','<portlet:namespace />fm1' + messageId);
+
+				var cmdNode = editForm.one('#<portlet:namespace /><%= Constants.CMD %>');
+
+				cmdNode.val('<%= Constants.EDIT %>');
+
+				var messageIdNode = editForm.one('#<portlet:namespace />messageId');
+
+				messageIdNode.val(messageId);
+
+				var message = messageNode.get('innerHTML');
+
+				var body = editForm.one('#<portlet:namespace />body');
+
+				body.val(message);
+
+				messageNode.toggleClass('aui-helper-hidden');
+
+				commentBodyNode.append(editForm);
+
+				editForm.on(
+					'submit',
+					function(event) {
+						event.halt();
+
+						A.io.request(
+							editForm.attr('action'),
+							{
+								after: {
+									failure: function(event, id, obj) {
+									},
+									success: function(event, id, obj) {
+										var responseData = this.get('responseData');
+
+										if (responseData.success) {
+											var message = commentEntryNode.one('.comment-body .message');
+
+											message.html(responseData.body);
+
+											var postDate = commentEntryNode.one('.comment-info .post-date');
+
+											postDate.html(responseData.modifiedDate);
+
+											editForm.toggleClass('aui-helper-hidden');
+											messageNode.toggleClass('aui-helper-hidden');
+										}
+									}
+								},
+								dataType: 'json',
+								form: {
+									id: editForm
+								}
+							}
+						);
+					}
+				);
+			}
+		},
+		'.comment-entry .edit-comment a'
+	);
+
 	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
 
 	announcementEntries.delegate(
