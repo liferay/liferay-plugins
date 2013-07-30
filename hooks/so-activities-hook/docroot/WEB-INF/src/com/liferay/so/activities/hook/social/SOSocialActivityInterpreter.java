@@ -215,7 +215,9 @@ public abstract class SOSocialActivityInterpreter
 			activity.getClassName(), activity.getClassPK());
 
 		String body = StringUtil.shorten(
-			assetRenderer.getSummary(serviceContext.getLocale()), 200);
+			HtmlUtil.escape(
+				assetRenderer.getSearchSummary(
+					serviceContext.getLocale())), 200);
 
 		return new SocialActivityFeedEntry(title, body);
 	}

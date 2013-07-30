@@ -128,8 +128,8 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 
 		sb.append(
 			StringUtil.shorten(
-				HtmlUtil.extractText(
-					assetRenderer.getSummary(
+				HtmlUtil.escape(
+					assetRenderer.getSearchSummary(
 						serviceContext.getLocale())), 200));
 
 		sb.append("</div></div>");
