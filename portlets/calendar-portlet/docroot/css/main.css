@@ -121,6 +121,10 @@
 	}
 }
 
+.calendar-event-answer {
+	font-weight: bold;
+}
+
 .calendar-portlet-availability {
 	margin: 0 30px;
 }
