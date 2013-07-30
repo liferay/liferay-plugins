@@ -17,7 +17,7 @@ package com.liferay.so.activities.hook.social;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
-import com.liferay.microblogs.service.util.MicroblogsUtil;
+import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
