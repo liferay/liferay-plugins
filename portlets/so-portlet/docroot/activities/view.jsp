@@ -32,6 +32,24 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 <%@ include file="/activities/view_activity_sets.jspf" %>
 
 <aui:script use="aui-base">
+	var activities = A.one('#p_p_id<portlet:namespace />');
+
+	activities.delegate(
+		'click',
+		function(event) {
+			var node = event.currentTarget;
+
+			var ancestor = node.ancestor();
+
+			var commentsContainer = ancestor.siblings('.comments-container');
+
+			var commentsList = commentsContainer.one('.comments-list');
+
+			commentsList.toggleClass('aui-helper-hidden');
+		},
+		'.view-comments a'
+	);
+
 	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
 
 	announcementEntries.delegate(
