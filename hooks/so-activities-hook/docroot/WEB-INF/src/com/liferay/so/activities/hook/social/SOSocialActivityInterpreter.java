@@ -223,7 +223,7 @@ public abstract class SOSocialActivityInterpreter
 	}
 
 	protected String getTitle(
-			long groupId, long userId, long createDate,
+			long groupId, long userId, long displayDate,
 			ServiceContext serviceContext)
 		throws Exception {
 
@@ -235,14 +235,14 @@ public abstract class SOSocialActivityInterpreter
 		Format dateFormatDate = getFormatDateTime(
 			serviceContext.getLocale(), serviceContext.getTimeZone());
 
-		Date activityDate = new Date(createDate);
+		Date activityDate = new Date(displayDate);
 
 		sb.append(dateFormatDate.format(activityDate));
 
 		sb.append("\">");
 
 		String relativeTimeDescription = Time.getRelativeTimeDescription(
-			createDate, serviceContext.getLocale(),
+			displayDate, serviceContext.getLocale(),
 			serviceContext.getTimeZone());
 
 		sb.append(relativeTimeDescription);
@@ -301,7 +301,7 @@ public abstract class SOSocialActivityInterpreter
 		sb.append(
 			getTitle(
 				activitySet.getGroupId(), activitySet.getUserId(),
-				activitySet.getCreateDate(), serviceContext));
+				activitySet.getModifiedDate(), serviceContext));
 		sb.append("<div class=\"activity-action\">");
 
 		String titlePattern = getTitlePattern(null, activitySet);
