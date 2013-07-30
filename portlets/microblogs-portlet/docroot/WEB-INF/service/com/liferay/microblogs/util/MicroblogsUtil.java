@@ -15,7 +15,7 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.microblogs.service.util;
+package com.liferay.microblogs.util;
 
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.compat.portal.util.PortalUtil;
