@@ -42,12 +42,10 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	public MicroblogsEntryClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return MicroblogsEntry.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return MicroblogsEntry.class.getName();
 	}
@@ -60,12 +58,10 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		setMicroblogsEntryId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_microblogsEntryId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -479,7 +475,6 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public MicroblogsEntry toUnescapedModel() {
 		return this;
 	}
@@ -576,7 +571,6 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 
