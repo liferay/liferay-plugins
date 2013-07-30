@@ -25,4 +25,7 @@ public interface PortletPropsKeys {
 	public static final String SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS =
 		"social.activity.interpreter.portlet.ids";
 
+	public static final String SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW =
+		"social.activity.sets.bundling.time.window";
+
 }

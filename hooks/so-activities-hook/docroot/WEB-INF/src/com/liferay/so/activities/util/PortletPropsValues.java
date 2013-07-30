@@ -14,6 +14,7 @@
 
 package com.liferay.so.activities.util;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
@@ -24,5 +25,10 @@ public class PortletPropsValues {
 	public static final String[] SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS =
 		PortletProps.getArray(
 			PortletPropsKeys.SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS);
+
+	public static final int SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW =
+		GetterUtil.getInteger(
+			PortletProps.get(
+				PortletPropsKeys.SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW));
 
 }

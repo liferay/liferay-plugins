@@ -35,6 +35,7 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.so.activities.util.PortletPropsValues;
 
 import java.text.Format;
 
@@ -354,7 +355,11 @@ public abstract class SOSocialActivityInterpreter
 	protected boolean isExpired(SocialActivitySet activitySet) {
 		long age = System.currentTimeMillis() - activitySet.getCreateDate();
 
-		if (age > (Time.HOUR * 8)) {
+		long timeWindow =
+			Time.MINUTE *
+				PortletPropsValues.SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW;
+
+		if (age > timeWindow) {
 			return true;
 		}
 
