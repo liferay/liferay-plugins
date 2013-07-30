@@ -53,7 +53,6 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
-page import="com.liferay.portal.service.ServiceContext" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
