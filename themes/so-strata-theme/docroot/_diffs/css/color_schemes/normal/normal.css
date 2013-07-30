@@ -124,6 +124,101 @@ a {
 	@include hidden-accessible;
 }
 
+// Forms
+
+fieldset {
+	@include default-border;
+
+	padding: 8px;
+}
+.aui-legend {
+	border-bottom-color: $defaultBorderColor;
+}
+
+input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
+	@include input-field-default;
+}
+
+a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+	@include button-default;
+
+	&:hover, &:focus {
+		@include button-hover;
+	}
+
+	&:active, &.active {
+		@include button-active;
+	}
+}
+
+input, textarea {
+	&.focus {
+		@include input-field-focus;
+	}
+}
+
+.lfr-actions.lfr-extended {
+	&, ul {
+		@include button-default;
+	}
+
+	&:focus {
+		&, ul {
+			@include button-focus;
+		}
+	}
+
+	&.disabled, &.disabled:hover {
+		&, ul {
+			@include button-disabled;
+		}
+	}
+
+	&:hover {
+		&, ul {
+			@include button-hover;
+		}
+	}
+}
+
+.aui-button-disabled {
+	input[type], button {
+		&, &:hover, &:focus {
+			@include button-disabled;
+		}
+	}
+}
+
+.aui-buttonitem-disabled {
+	@include button-disabled;
+}
+
+input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
+	border-color: $red;
+}
+
+.ie6 {
+	input.text, input.password, input.submit, input.file, input.button, button {
+		@include input-field-default;
+	}
+
+	input.submit, input.button, button, .aui-button-disabled input.submit, .aui-button-disabled input.button, .aui-button-disabled button {
+		@include button-default;
+	}
+
+	.aui-button-disabled {
+		input.submit, input.button, button {
+			color: #555;
+		}
+	}
+
+	input, textarea {
+		&.focus {
+			@include input-field-focus;
+		}
+	}
+}
+
 /* ---------- Layout ---------- */
 
 .portlet-column-content {
@@ -425,6 +520,144 @@ div#navigation {
 	}
 }
 
+/* application css */
+
+/* ---------- Main ---------- */
+
+.aui-state-default {
+	@include button-default;
+}
+
+.aui-state-hover {
+	@include button-hover;
+}
+
+.aui-state-active {
+	@include button-focus;
+}
+
+
+
+.results-row {
+	td {
+		background: none;
+		border: 1px solid;
+		border-color: #D7D7D7 #E7E7E7;
+		padding: 5px 10px;
+
+		&.sort-column {
+			background: #E6ECEF;
+		}
+	}
+
+	&.selected td, &.selected.hover td {
+		background-color: #00A2EA;
+		border-color: #00A2EA #00A2EA #D7D7D7;
+		color: #FFF;
+
+		& a {
+			color: #FFF;
+		}
+	}
+
+	&.alt.selected td, &.alt.selected.hover td {
+		background-color: #00A2EA;
+	}
+
+	&.alt td {
+		background: #F5F8FB;
+	}
+
+	&.hover td {
+		background: #D3E8F1;
+		border-bottom-color: #D7D7D7;
+		border-left-color: transparent;
+		border-right-color: transparent;
+	}
+}
+
+.taglib-search-iterator .results-row {
+	td, th {
+		&.first {
+			border-left-width: 0;
+		}
+
+		&.last {
+			border-right-width: 0;
+		}
+	}
+}
+
+/* ---------- Dragging/sorting indicators ---------- */
+
+.aui-proxy {
+	cursor: move;
+	opacity: 0.65;
+	position: absolute;
+
+	&.generic-portlet {
+		height: 200px;
+		width: 300px;
+
+		.portlet-title {
+			padding: 10px;
+		}
+	}
+
+	&.not-intersecting .forbidden-action {
+		background: url(../images/application/forbidden_action.png) no-repeat;
+		display: block;
+		height: 32px;
+		position: absolute;
+		right: -15px;
+		top: -15px;
+		width: 32px;
+	}
+}
+
+.aui-resizable-proxy {
+	border: 1px dashed #828F95;
+	position: absolute;
+	visibility: hidden;
+}
+
+.aui-sortable-proxy {
+	background: #727C81;
+	margin-top: 1px;
+}
+
+.lfr-freeform-layout-drag-indicator {
+	visibility: hidden;
+}
+
+.aui-portal-layout-drag-target-indicator {
+	margin: 2px 0;
+}
+
+/* ---------- Portal tool tips ---------- */
+
+.aui-tooltip {
+	max-width: 200px;
+}
+
+/* ---------- Tags ---------- */
+
+.aui-tagselector-content .aui-textboxlistentry-holder {
+	background: #FFF;
+	border-width: 0;
+
+	@include input-field-default;
+
+	margin-bottom: 5px;
+	padding: 0;
+}
+
+.aui-tagselector-focused .aui-textboxlistentry-holder {
+	@include input-field-focus;
+}
+
+// Portlet
+
 .portlet {
 	border-bottom: 1px solid $defaultBorderColor;
 	margin-bottom: -1px;
@@ -498,7 +731,6 @@ div#navigation {
 			@include border-radius(4px);
 
 			display: inline-block;
-			font-weight: bold;
 			line-height: 1em;
 			padding: 6px 4px;
 			text-decoration: none;
