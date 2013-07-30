@@ -29,6 +29,10 @@ public class SocialActivityListener extends BaseModelListener<SocialActivity> {
 		throws ModelListenerException {
 
 		try {
+			if (activity.getMirrorActivityId() > 0) {
+				return;
+			}
+
 			SocialActivityLocalServiceUtil.addActivity(
 				activity.getActivityId());
 		}
