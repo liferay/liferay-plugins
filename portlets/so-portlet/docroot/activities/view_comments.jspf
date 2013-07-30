@@ -131,3 +131,87 @@ int messagesCount = messages.size() - 1;
 		</div>
 	</aui:form>
 </div>
+
+<aui:script use="aui-base">
+	var form = A.one('#<portlet:namespace /><%= formName %>');
+
+	form.on(
+		'submit',
+		function(event) {
+			event.halt();
+
+			var node = event.currentTarget;
+
+			var commentsContainer = node.ancestor('.comments-container');
+
+			var form = commentsContainer.one('form');
+
+			var cmdNode = form.one('#<portlet:namespace /><%= Constants.CMD %>');
+
+			cmdNode.val('<%= Constants.ADD %>');
+
+			A.io.request(
+				form.attr('action'),
+				{
+					after: {
+						failure: function(event, id, obj) {
+						},
+						success: function(event, id, obj) {
+							var responseData = this.get('responseData');
+
+							if (responseData.success) {
+								commentsContainer.removeClass('.aui-helper-hidden');
+
+								var commentEntry = commentsContainer.one('.comment-entry').cloneNode(true);
+
+								commentEntry.removeClass('aui-helper-hidden');
+
+								commentEntry.one('.comment-body .message').html(responseData.body);
+
+								var commentInfo = commentEntry.one('.comment-info');
+
+								var editNotice = commentInfo.one('.edit-notice');
+
+								if (editNotice) {
+									editNotice.remove();
+								}
+
+								var userName = commentInfo.one('.user-name a');
+
+								if (responseData.userDisplayURL) {
+									userName.setAttribute('href', responseData.userDisplayURL);
+								}
+
+								userName.set('innerHTML', responseData.userName);
+
+								commentInfo.one('.post-date').html(responseData.modifiedDate);
+								commentInfo.one('.edit-comment a').setAttribute('data-messageId', responseData.messageId);
+								commentInfo.one('.delete-comment a').setAttribute('data-messageId', responseData.messageId);
+
+								commentsContainer.one('.comments-list').append(commentEntry);
+
+								var activityFooterToolbar = node.ancestor('.activity-footer-toolbar');
+
+								var viewCommentsNode = activityFooterToolbar.one('.view-comments a');
+
+								var messagesCountString = viewCommentsNode.getContent();
+
+								var messagesCount = parseInt(messagesCountString) + 1;
+
+								if (isNaN(messagesCount)) {
+									messagesCount = 1;
+								}
+
+								viewCommentsNode.html(messagesCount + ' ' + Liferay.Language.get(messagesCount > 1 ? 'comments' : 'comment'));
+							}
+						}
+					},
+					dataType: 'json',
+					form: {
+						id: form
+					}
+				}
+			);
+		}
+	);
+</aui:script>
