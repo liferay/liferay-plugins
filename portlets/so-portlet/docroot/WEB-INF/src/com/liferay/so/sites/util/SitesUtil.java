@@ -24,6 +24,7 @@ import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -101,6 +102,8 @@ public class SitesUtil {
 			int start, int end)
 		throws Exception {
 
+		keywords = CustomSQLUtil.keywords(keywords)[0];
+
 		if (usersSites) {
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
@@ -140,6 +143,8 @@ public class SitesUtil {
 	protected static int doGetVisibleSitesCount(
 			long companyId, long userId, String keywords, boolean usersSites)
 		throws Exception {
+
+		keywords = CustomSQLUtil.keywords(keywords)[0];
 
 		if (usersSites) {
 			LinkedHashMap<String, Object> params =
