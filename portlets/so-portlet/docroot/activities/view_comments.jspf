@@ -18,6 +18,18 @@
 --%>
 
 <%
+String className = null;
+long classPK = 0;
+
+if (activitySet.getActivityCount() == 1) {
+	className = activitySet.getClassName();
+	classPK = activitySet.getClassPK();
+}
+else {
+	className = SocialActivitySet.class.getName();
+	classPK = activitySet.getActivitySetId();
+}
+
 MBMessageDisplay messageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(user.getUserId(), themeDisplay.getScopeGroupId(), className, classPK, WorkflowConstants.STATUS_APPROVED);
 
 MBThread thread = messageDisplay.getThread();
@@ -96,7 +108,7 @@ int messagesCount = messages.size() - 1;
 
 	</div>
 
-	<portlet:actionURL name="updateComment" var="updateCommentURL"/>
+	<portlet:actionURL name="updateComment" var="updateCommentURL" />
 
 	<%
 	String formName = "fm" + activitySet.getActivitySetId();
@@ -115,7 +127,7 @@ int messagesCount = messages.size() - 1;
 		<div>
 			<aui:input cssClass="comment-form" label="" name="body" />
 
-			<aui:input name="submit" type="hidden" value="post"/>
+			<aui:input name="submit" type="hidden" value="post" />
 		</div>
 	</aui:form>
 </div>
