@@ -2,13 +2,30 @@ AUI.add(
 	'liferay-so-user-menu',
 	function(A) {
 		var UserMenu = function(config) {
-			var node = A.one(config.node);
-
 			var hideClass = config.hideClass;
 			var hideOn = config.hideOn || 'mouseleave';
 			var showClass = config.showClass;
 			var showOn = config.showOn || 'click';
+
+			var node = A.one(config.node);
+
 			var target = A.one(config.target) || node;
+
+			target.on(
+				hideOn,
+				function(event) {
+					if (hideClass && !target.hasClass(hideClass)) {
+						target.addClass(hideClass);
+					}
+
+					if (showClass && target.hasClass(showClass)) {
+						target.removeClass(showClass);
+					}
+
+					trigger.blur();
+				}
+			);
+
 			var trigger = A.one(config.trigger) || node;
 
 			trigger.on(
@@ -25,21 +42,6 @@ AUI.add(
 					}
 				}
 			);
-
-			target.on(
-				hideOn,
-				function(event) {
-					if (hideClass && !target.hasClass(hideClass)) {
-						target.addClass(hideClass);
-					}
-
-					if (showClass && target.hasClass(showClass)) {
-						target.removeClass(showClass);
-					}
-
-					trigger.blur();
-				}
-			)
 		}
 
 		Liferay.namespace('SO');

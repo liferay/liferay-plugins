@@ -26,7 +26,7 @@ try {
 	socialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
 }
 catch (NoSuchRoleException nsre) {
-	
+
 	// This exception should never be thrown except while SO is being uninstalled
 
 }
@@ -65,17 +65,17 @@ catch (NoSuchRoleException nsre) {
 					<%
 					List<Layout> mylayouts = LayoutLocalServiceUtil.getLayouts(group.getGroupId(), true);
 
-					for (Layout childLayout : mylayouts) {
-						if (childLayout.isRootLayout() && !childLayout.isHidden()) {
+					for (Layout myLayout : mylayouts) {
+						if (myLayout.isRootLayout() && !myLayout.isHidden()) {
 							String selected = "";
 
-							if (childLayout.getPlid() == layout.getPlid()) {
+							if (myLayout.getPlid() == layout.getPlid()) {
 								selected = "class=\"selected\"";
 							}
 					%>
 
 							<li <%= selected %>>
-								<a href="<%= HtmlUtil.escapeHREF(PortalUtil.getLayoutURL(childLayout, themeDisplay)) %>"><%= HtmlUtil.escape(childLayout.getName(themeDisplay.getLocale())) %></a>
+								<a href="<%= HtmlUtil.escapeHREF(PortalUtil.getLayoutURL(myLayout, themeDisplay)) %>"><%= HtmlUtil.escape(myLayout.getName(themeDisplay.getLocale())) %></a>
 							</li>
 
 					<%
@@ -94,9 +94,9 @@ catch (NoSuchRoleException nsre) {
 					<liferay-util:include page="/dockbar_notifications/view.jsp" servletContext="<%= application %>" />
 				</li>
 				<li class="user-menu has-submenu">
-					<a class="user-info" href="<%= group.getPathFriendlyURL(false,themeDisplay) + "/" + user.getScreenName() %>">
+					<a class="user-info" href="<%= group.getPathFriendlyURL(false, themeDisplay) + "/" + user.getScreenName() %>">
 						<span class="avatar"><img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" alt="<%= user.getFullName() %>"></span>
-						
+
 						<span class="full-name"><%= user.getFullName() %></span>
 					</a>
 
@@ -130,7 +130,7 @@ catch (NoSuchRoleException nsre) {
 				<li class="config-item">
 					<a class="config-icon" href="javascript:;" id="toggleDockbar">
 						<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
-						
+
 						<span class="aui-helper-hidden">
 							<liferay-ui:message key="toggle" /> <liferay-ui:message key="javax.portlet.title.145" />
 						</span>
