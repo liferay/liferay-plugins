@@ -93,7 +93,9 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	}
 
 	@Override
-	protected boolean hasPermission(Subscription subscription, User user)
+	protected boolean hasPermission(
+			Subscription subscription, String inferredClassName,
+			long inferredClassPK, User user)
 		throws Exception {
 
 		String name = PrincipalThreadLocal.getName();
