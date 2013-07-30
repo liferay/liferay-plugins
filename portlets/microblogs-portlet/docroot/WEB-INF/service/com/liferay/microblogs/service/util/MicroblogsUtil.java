@@ -104,7 +104,7 @@ public class MicroblogsUtil {
 
 			String assetTagName = result.substring(1);
 
-			PortletURL viewURL = null;
+			PortletURL portletURL = null;
 
 			long userId = themeDisplay.getUserId();
 
@@ -115,13 +115,13 @@ public class MicroblogsUtil {
 				group.getGroupId(), true, "1_WAR_microblogsportlet");
 
 			if (portletPlid != 0) {
-				viewURL = PortletURLFactoryUtil.create(
+				portletURL = PortletURLFactoryUtil.create(
 					serviceContext.getLiferayPortletRequest(),
 					"1_WAR_microblogsportlet", portletPlid,
 					PortletRequest.RENDER_PHASE);
 
 				try {
-					viewURL.setWindowState(LiferayWindowState.NORMAL);
+					portletURL.setWindowState(LiferayWindowState.NORMAL);
 				}
 				catch (WindowStateException wse) {
 				}
@@ -130,24 +130,24 @@ public class MicroblogsUtil {
 				LiferayPortletResponse liferayPortletResponse =
 					serviceContext.getLiferayPortletResponse();
 
-				viewURL = liferayPortletResponse.createRenderURL(
+				portletURL = liferayPortletResponse.createRenderURL(
 					"1_WAR_microblogsportlet");
 
 				try {
-					viewURL.setWindowState(WindowState.MAXIMIZED);
+					portletURL.setWindowState(WindowState.MAXIMIZED);
 				}
 				catch (WindowStateException wse) {
 				}
 			}
 
-			viewURL.setParameter("mvcPath", "/microblogs/view.jsp");
-			viewURL.setParameter("tabs1", assetTagName);
-			viewURL.setParameter("assetTagName", assetTagName);
+			portletURL.setParameter("mvcPath", "/microblogs/view.jsp");
+			portletURL.setParameter("tabs1", assetTagName);
+			portletURL.setParameter("assetTagName", assetTagName);
 
 			StringBuilder sb = new StringBuilder(5);
 
 			sb.append("<a href=\"");
-			sb.append(viewURL);
+			sb.append(portletURL);
 			sb.append("\">");
 			sb.append(assetTagName);
 			sb.append("</a>");
