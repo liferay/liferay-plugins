@@ -71,6 +71,8 @@
 								<span><liferay-ui:message key="view-more" /></span>
 							</a>
 						</span>
+
+						<%@ include file="/activities/view_comments.jspf" %>
 					</div>
 				</div>
 			</div>

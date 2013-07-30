@@ -1,0 +1,121 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ *
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
+ */
+--%>
+
+<%
+MBMessageDisplay messageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(user.getUserId(), themeDisplay.getScopeGroupId(), className, classPK, WorkflowConstants.STATUS_APPROVED);
+
+MBThread thread = messageDisplay.getThread();
+MBTreeWalker treeWalker = messageDisplay.getTreeWalker();
+
+MBMessage rootMessage = treeWalker.getRoot();
+List<MBMessage> messages = treeWalker.getMessages();
+
+messages = ListUtil.sort(messages, new MessageCreateDateComparator(true));
+
+int messagesCount = messages.size() - 1;
+%>
+
+<span class="view-comments">
+	<a href="javascript:;"><%= messagesCount > 0 ? messagesCount : StringPool.BLANK %> <liferay-ui:message key='<%= messagesCount > 1 ? "comments" : "comment" %>' /></a>
+</span>
+
+<div class="comments-container">
+	<div class="aui-helper-hidden comments-list">
+
+		<%
+		for (int i = 0; i < messages.size(); i++) {
+			MBMessage message = (MBMessage)messages.get(i);
+		%>
+
+			<c:choose>
+				<c:when test="<%= i == 0 %>">
+					<div class="aui-helper-hidden comment-entry">
+				</c:when>
+				<c:otherwise>
+					<div class="comment-entry">
+				</c:otherwise>
+			</c:choose>
+
+				<div class="comment-body">
+					<span class="message"><%= HtmlUtil.escape(message.getBody()) %></span>
+				</div>
+
+				<div class="comment-info">
+
+					<%
+					User messageUser = UserLocalServiceUtil.getUser(message.getUserId());
+					%>
+
+					<c:choose>
+						<c:when test="<%= Validator.isNotNull(messageUser.getDisplayURL(themeDisplay)) %>">
+							<span class="user-name"><a href="<%= messageUser.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(message.getUserName()) %></a></span>
+						</c:when>
+						<c:otherwise>
+							<span class="user-name"><%= HtmlUtil.escape(message.getUserName()) %></span>
+						</c:otherwise>
+					</c:choose>
+
+					<span class="post-date"><%= dateFormatDateTime.format(message.getModifiedDate()) %></span>
+
+					<c:if test="<%= DateUtil.compareTo(message.getCreateDate(), message.getModifiedDate()) != 0 %>">
+						<span class="edit-notice"><liferay-ui:message key="modified" /></span>
+					</c:if>
+
+					<c:if test="<%= message.getUserId() == user.getUserId() %>">
+						<c:if test="<%= message.getUserId() == user.getUserId() %>">
+							<span class="edit-comment">
+								<a data-messageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="edit" /></a>
+							</span>
+							<span class="delete-comment">
+								<a data-messageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="delete" /></a>
+							</span>
+						</c:if>
+					</c:if>
+				</div>
+			</div>
+
+		<%
+		}
+		%>
+
+	</div>
+
+	<portlet:actionURL name="updateComment" var="updateCommentURL"/>
+
+	<%
+	String formName = "fm" + activitySet.getActivitySetId();
+	%>
+
+	<aui:form action="<%= updateCommentURL %>" method="post" name="<%= formName %>">
+		<aui:input name="mvcPath" type="hidden" value="/activities/view.jsp" />
+		<aui:input name="redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
+		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
+		<aui:input name="className" type="hidden" value="<%= className %>" />
+		<aui:input name="classPK" type="hidden" value="<%= classPK %>" />
+		<aui:input name="messageId" type="hidden" value="" />
+		<aui:input name="threadId" type="hidden" value="<%= thread.getThreadId() %>" />
+		<aui:input name="parentMessageId" type="hidden" value="<%= rootMessage.getMessageId() %>" />
+
+		<div>
+			<aui:input cssClass="comment-form" label="" name="body" />
+
+			<aui:input name="submit" type="hidden" value="post"/>
+		</div>
+	</aui:form>
+</div>
