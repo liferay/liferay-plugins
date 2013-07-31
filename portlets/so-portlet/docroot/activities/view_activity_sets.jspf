@@ -57,8 +57,14 @@ int total = 0;
 	<c:otherwise>
 
 		<%
-		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-		total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
+		if (group.isUser() &&  layout.isPublicLayout()) {
+			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
+		}
+		else {
+			results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
+		}
 		%>
 
 	</c:otherwise>
