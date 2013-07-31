@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <config>
-	<luceneMatchVersion>LUCENE_40</luceneMatchVersion>
+	<luceneMatchVersion>LUCENE_43</luceneMatchVersion>
 	<lib dir="../lib" regex=".*\.jar" />
 	<lib dir="/total/crap/dir/ignored" />
 	<dataDir>${solr.data.dir:}</dataDir>

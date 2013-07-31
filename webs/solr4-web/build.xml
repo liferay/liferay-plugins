@@ -5,16 +5,8 @@
 	<import file="../build-common-web.xml" />
 
 	<property name="original.war.file" value="solr-4.3.1.zip" />
-	<property name="original.lucene.zip.file" value="lucene-4.3.1.zip" />
 
 	<target name="merge-unzip">
-		<unzip
-			dest="tmp/WEB-INF/lib"
-			src="${original.lucene.zip.file}"
-		>
-			<patternset includes="lucene-4.3.1/core/lucene-core*.jar,lucene-4.3.1/suggest/lucene-suggest*.jar" />
-				<mapper type="flatten" />
-		</unzip>
 		<unzip
 			dest="tmp/WEB-INF/lib"
 			src="${original.war.file}"
@@ -25,10 +17,6 @@
 	</target>
 
 	<target name="shrink-zip">
-		<antcall target="shrink-zip-cmd">
-			<param name="zip.file.name" value="${original.lucene.zip.file}" />
-			<param name="zip.includes" value="lucene-4.3.1/core/lucene-core*.jar,lucene-4.3.1/suggest/lucene-suggest*.jar" />
-		</antcall>
 		<antcall target="shrink-zip-cmd">
 			<param name="zip.file.name" value="${original.war.file}" />
 			<param name="zip.includes" value=",solr-4.3.1/dist/solr-core-*.jar,solr-4.3.1/dist/solr-solrj-*.jar,solr-4.3.1/dist/solrj-lib/commons-io*.jar,solr-4.3.1/dist/solrj-lib/httpclient*.jar,solr-4.3.1/dist/solrj-lib/httpcore*.jar,solr-4.3.1/dist/solrj-lib/httpmime*.jar,solr-4.3.1/dist/solrj-lib/noggit*.jar,solr-4.3.1/dist/solrj-lib/slf4j-api*.jar,solr-4.3.1/dist/solrj-lib/slf4j-log4j12*.jar,solr-4.3.1/dist/solrj-lib/wstx-asl*.jar,solr-4.3.1/dist/solrj-lib/zookeeper*.jar" />
