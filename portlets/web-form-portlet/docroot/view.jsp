@@ -17,10 +17,10 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String title = LocalizationUtil.getPreferencesValue(preferences, "title", themeDisplay.getLanguageId());
-String description = LocalizationUtil.getPreferencesValue(preferences, "description", themeDisplay.getLanguageId());
-boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
-String successURL = preferences.getValue("successURL", StringPool.BLANK);
+String title = LocalizationUtil.getPreferencesValue(portletPreferences, "title", themeDisplay.getLanguageId());
+String description = LocalizationUtil.getPreferencesValue(portletPreferences, "description", themeDisplay.getLanguageId());
+boolean requireCaptcha = GetterUtil.getBoolean(portletPreferences.getValue("requireCaptcha", StringPool.BLANK));
+String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 %>
 
 <portlet:actionURL var="saveDataURL">
@@ -49,15 +49,15 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 		int i = 1;
 
 		String fieldName = "field" + i;
-		String fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, themeDisplay.getLanguageId());
-		boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
+		String fieldLabel = LocalizationUtil.getPreferencesValue(portletPreferences, "fieldLabel" + i, themeDisplay.getLanguageId());
+		boolean fieldOptional = PrefsParamUtil.getBoolean(portletPreferences, request, "fieldOptional" + i, false);
 		String fieldValue = ParamUtil.getString(request, fieldName);
 
 		while ((i == 1) || Validator.isNotNull(fieldLabel)) {
-			String fieldType = preferences.getValue("fieldType" + i, "text");
-			String fieldOptions = LocalizationUtil.getPreferencesValue(preferences, "fieldOptions" + i, themeDisplay.getLanguageId());
-			String fieldValidationScript = preferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
-			String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
+			String fieldType = portletPreferences.getValue("fieldType" + i, "text");
+			String fieldOptions = LocalizationUtil.getPreferencesValue(portletPreferences, "fieldOptions" + i, themeDisplay.getLanguageId());
+			String fieldValidationScript = portletPreferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
+			String fieldValidationErrorMessage = portletPreferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 		%>
 
 			<c:if test="<%= PortletPropsValues.VALIDATION_SCRIPT_ENABLED %>">
@@ -130,8 +130,8 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			i++;
 
 			fieldName = "field" + i;
-			fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, themeDisplay.getLanguageId());
-			fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
+			fieldLabel = LocalizationUtil.getPreferencesValue(portletPreferences, "fieldLabel" + i, themeDisplay.getLanguageId());
+			fieldOptional = PrefsParamUtil.getBoolean(portletPreferences, request, "fieldOptional" + i, false);
 			fieldValue = ParamUtil.getString(request, fieldName);
 		}
 		%>
@@ -167,13 +167,13 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				int i = 1;
 
 				String fieldName = "field" + i;
-				String fieldLabel = preferences.getValue("fieldLabel" + i, StringPool.BLANK);
+				String fieldLabel = portletPreferences.getValue("fieldLabel" + i, StringPool.BLANK);
 
 				while ((i == 1) || Validator.isNotNull(fieldLabel)) {
-					boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
-					String fieldType = preferences.getValue("fieldType" + i, "text");
-					String fieldValidationScript = preferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
-					String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
+					boolean fieldOptional = PrefsParamUtil.getBoolean(portletPreferences, request, "fieldOptional" + i, false);
+					String fieldType = portletPreferences.getValue("fieldType" + i, "text");
+					String fieldValidationScript = portletPreferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
+					String fieldValidationErrorMessage = portletPreferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 				%>
 
 					var key = "<%= fieldName %>";
@@ -218,7 +218,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 					i++;
 
 					fieldName = "field" + i;
-					fieldLabel = preferences.getValue("fieldLabel" + i, "");
+					fieldLabel = portletPreferences.getValue("fieldLabel" + i, "");
 				}
 				%>
 

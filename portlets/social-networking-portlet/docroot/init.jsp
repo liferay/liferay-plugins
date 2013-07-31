@@ -60,7 +60,6 @@ page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.permission.UserPermissionUtil" %><%@
 page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %><%@
 page import="com.liferay.portal.webserver.WebServerServletTokenUtil" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.blogs.service.BlogsStatsUserLocalServiceUtil" %><%@
 page import="com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil" %><%@
 page import="com.liferay.portlet.messageboards.service.MBStatsUserLocalServiceUtil" %><%@
@@ -94,7 +93,6 @@ page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.ActionRequest" %><%@
-page import="javax.portlet.PortletPreferences" %><%@
 page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.ResourceURL" %><%@
 page import="javax.portlet.WindowState" %>
@@ -125,4 +123,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 NumberFormat percentFormat = NumberFormat.getPercentInstance(locale);
+
+int max = GetterUtil.getInteger(portletPreferences.getValue("max", "10"));
 %>

@@ -17,9 +17,5 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-int max = GetterUtil.getInteger(preferences.getValue("max", "10"));
+int max = GetterUtil.getInteger(portletPreferences.getValue("max", "10"));
 %>

@@ -20,16 +20,16 @@
 String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 
-String emailFromName = ParamUtil.getString(request, "emailFromName", AdminUtil.getEmailFromName(preferences, company.getCompanyId()));
-String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", AdminUtil.getEmailFromAddress(preferences, company.getCompanyId()));
+String emailFromName = ParamUtil.getString(request, "emailFromName", AdminUtil.getEmailFromName(portletPreferences, company.getCompanyId()));
+String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", AdminUtil.getEmailFromAddress(portletPreferences, company.getCompanyId()));
 
-boolean emailKBArticleAddedEnabled = ParamUtil.getBoolean(request, "emailKBArticleAddedEnabled", AdminUtil.getEmailKBArticleAddedEnabled(preferences));
-String emailKBArticleAddedSubject = ParamUtil.getString(request, "emailKBArticleAddedSubject", AdminUtil.getEmailKBArticleAddedSubject(preferences));
-String emailKBArticleAddedBody = ParamUtil.getString(request, "emailKBArticleAddedBody", AdminUtil.getEmailKBArticleAddedBody(preferences));
+boolean emailKBArticleAddedEnabled = ParamUtil.getBoolean(request, "emailKBArticleAddedEnabled", AdminUtil.getEmailKBArticleAddedEnabled(portletPreferences));
+String emailKBArticleAddedSubject = ParamUtil.getString(request, "emailKBArticleAddedSubject", AdminUtil.getEmailKBArticleAddedSubject(portletPreferences));
+String emailKBArticleAddedBody = ParamUtil.getString(request, "emailKBArticleAddedBody", AdminUtil.getEmailKBArticleAddedBody(portletPreferences));
 
-boolean emailKBArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailKBArticleUpdatedEnabled", AdminUtil.getEmailKBArticleUpdatedEnabled(preferences));
-String emailKBArticleUpdatedSubject = ParamUtil.getString(request, "emailKBArticleUpdatedSubject", AdminUtil.getEmailKBArticleUpdatedSubject(preferences));
-String emailKBArticleUpdatedBody = ParamUtil.getString(request, "emailKBArticleUpdatedBody", AdminUtil.getEmailKBArticleUpdatedBody(preferences));
+boolean emailKBArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailKBArticleUpdatedEnabled", AdminUtil.getEmailKBArticleUpdatedEnabled(portletPreferences));
+String emailKBArticleUpdatedSubject = ParamUtil.getString(request, "emailKBArticleUpdatedSubject", AdminUtil.getEmailKBArticleUpdatedSubject(portletPreferences));
+String emailKBArticleUpdatedBody = ParamUtil.getString(request, "emailKBArticleUpdatedBody", AdminUtil.getEmailKBArticleUpdatedBody(portletPreferences));
 
 String editorParam = StringPool.BLANK;
 String editorBody = StringPool.BLANK;

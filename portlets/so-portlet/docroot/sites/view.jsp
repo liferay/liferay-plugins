@@ -77,7 +77,7 @@ pageContext.setAttribute("portletURL", portletURL);
 <div class="site-list-container">
 
 	<%
-	boolean hideNotice = GetterUtil.getBoolean(preferences.getValue("hide-notice", StringPool.BLANK), false);
+	boolean hideNotice = GetterUtil.getBoolean(portletPreferences.getValue("hide-notice", StringPool.BLANK), false);
 	%>
 
 	<c:if test="<%= !hideNotice %>">

@@ -47,9 +47,7 @@ page import="javax.portlet.WindowState" %>
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String[] symbols = preferences.getValues("symbols", new String[0]);
+String[] symbols = portletPreferences.getValues("symbols", new String[0]);
 
 NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 

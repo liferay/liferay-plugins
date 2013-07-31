@@ -26,31 +26,21 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.kernel.util.StringPool" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.WindowState" %>
+page import="com.liferay.portal.kernel.util.StringPool" %>
 
 <portlet:defineObjects />
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
+String adClient = portletPreferences.getValue("adClient", StringPool.BLANK);
+String adChannel = portletPreferences.getValue("adChannel", StringPool.BLANK);
+int adFormat = GetterUtil.getInteger(portletPreferences.getValue("adFormat", StringPool.BLANK));
+int adType = GetterUtil.getInteger(portletPreferences.getValue("adType", StringPool.BLANK));
 
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-String adClient = preferences.getValue("adClient", StringPool.BLANK);
-String adChannel = preferences.getValue("adChannel", StringPool.BLANK);
-int adFormat = GetterUtil.getInteger(preferences.getValue("adFormat", StringPool.BLANK));
-int adType = GetterUtil.getInteger(preferences.getValue("adType", StringPool.BLANK));
-
-String colorBorder = preferences.getValue("colorBorder", StringPool.BLANK);
-String colorBg = preferences.getValue("colorBg", StringPool.BLANK);
-String colorLink = preferences.getValue("colorLink", StringPool.BLANK);
-String colorText = preferences.getValue("colorText", StringPool.BLANK);
-String colorUrl = preferences.getValue("colorUrl", StringPool.BLANK);
+String colorBorder = portletPreferences.getValue("colorBorder", StringPool.BLANK);
+String colorBg = portletPreferences.getValue("colorBg", StringPool.BLANK);
+String colorLink = portletPreferences.getValue("colorLink", StringPool.BLANK);
+String colorText = portletPreferences.getValue("colorText", StringPool.BLANK);
+String colorUrl = portletPreferences.getValue("colorUrl", StringPool.BLANK);
 
 String[][] adFormats = {
 	{"0", "0", "0", "(0 x 0) - " + LanguageUtil.get(pageContext, "no-banner")},

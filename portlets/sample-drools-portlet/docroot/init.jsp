@@ -47,7 +47,6 @@ page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil" %><%@
 page import="com.liferay.portlet.asset.model.AssetEntry" %><%@
 page import="com.liferay.portlet.asset.model.AssetRenderer" %><%@
@@ -67,8 +66,6 @@ page import="java.util.Map" %>
 <%
 String instanceId = portletDisplay.getInstanceId();
 
-PortletPreferences preferences = renderRequest.getPreferences();
-
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
@@ -77,8 +74,8 @@ if (Validator.isNotNull(portletResource)) {
 	instanceId = selPortlet.getInstanceId();
 }
 
-String domainName = preferences.getValue("domain-name", "Personalized Content ".concat(instanceId));
-String rules = preferences.getValue("rules", StringUtil.read(getClass().getClassLoader(), PortletProps.get("sample.drools.rules.personalized.content")));
-String userCustomAttributeNames = preferences.getValue("user-custom-attribute-names", StringPool.BLANK);
-long[] classNameIds = GetterUtil.getLongValues(preferences.getValues("class-name-ids", null), AssetRendererFactoryRegistryUtil.getClassNameIds());
+String domainName = portletPreferences.getValue("domain-name", "Personalized Content ".concat(instanceId));
+String rules = portletPreferences.getValue("rules", StringUtil.read(getClass().getClassLoader(), PortletProps.get("sample.drools.rules.personalized.content")));
+String userCustomAttributeNames = portletPreferences.getValue("user-custom-attribute-names", StringPool.BLANK);
+long[] classNameIds = GetterUtil.getLongValues(portletPreferences.getValues("class-name-ids", null), AssetRendererFactoryRegistryUtil.getClassNameIds());
 %>

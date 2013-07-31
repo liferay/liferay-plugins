@@ -40,13 +40,11 @@ page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.expando.DuplicateColumnNameException" %><%@
 page import="com.liferay.webform.util.PortletPropsValues" %><%@
 page import="com.liferay.webform.util.WebFormUtil" %>
 
-<%@ page import="javax.portlet.ActionRequest" %><%@
-page import="javax.portlet.PortletPreferences" %>
+<%@ page import="javax.portlet.ActionRequest" %>
 
 <portlet:defineObjects />
 
@@ -54,8 +52,6 @@ page import="javax.portlet.PortletPreferences" %>
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
-
-PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 %>

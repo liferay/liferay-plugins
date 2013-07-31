@@ -23,9 +23,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String url = PrefsParamUtil.getString(preferences, request, "url", StringPool.BLANK);
+String url = PrefsParamUtil.getString(portletPreferences, request, "url", StringPool.BLANK);
 
 Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttribute(WebKeys.USER_PREFS);
 

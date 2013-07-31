@@ -28,34 +28,26 @@
 page import="com.liferay.googlemaps.portlet.GoogleMapsConstants" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-
-<%@ page import="javax.portlet.PortletPreferences" %>
+page import="com.liferay.portal.kernel.util.Validator" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-String directionsAddress = GetterUtil.getString(preferences.getValue("directionsAddress", null));
-boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", null));
-String mapAddress = GetterUtil.getString(preferences.getValue("mapAddress", null));
-boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEnabled", null));
+String directionsAddress = GetterUtil.getString(portletPreferences.getValue("directionsAddress", null));
+boolean directionsInputEnabled = GetterUtil.getBoolean(portletPreferences.getValue("directionsInputEnabled", null));
+String mapAddress = GetterUtil.getString(portletPreferences.getValue("mapAddress", null));
+boolean mapInputEnabled = GetterUtil.getBoolean(portletPreferences.getValue("mapInputEnabled", null));
 
 boolean enableChangingTravelingMode = false;
 
 if (directionsInputEnabled) {
-	enableChangingTravelingMode = GetterUtil.getBoolean(preferences.getValue("enableChangingTravelingMode", null));
+	enableChangingTravelingMode = GetterUtil.getBoolean(portletPreferences.getValue("enableChangingTravelingMode", null));
 }
 
-int height = GetterUtil.getInteger(preferences.getValue("height", null), 400);
-boolean showDirectionSteps = GetterUtil.getBoolean(preferences.getValue("showDirectionSteps", null));
-boolean showGoogleMapsLink = GetterUtil.getBoolean(preferences.getValue("showGoogleMapsLink", null));
+int height = GetterUtil.getInteger(portletPreferences.getValue("height", null), 400);
+boolean showDirectionSteps = GetterUtil.getBoolean(portletPreferences.getValue("showDirectionSteps", null));
+boolean showGoogleMapsLink = GetterUtil.getBoolean(portletPreferences.getValue("showGoogleMapsLink", null));
 %>

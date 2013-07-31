@@ -37,20 +37,17 @@ page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.ListUtil" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.GroupConstants" %><%@
 page import="com.liferay.portal.model.LayoutConstants" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.calendar.model.CalEvent" %><%@
 page import="com.liferay.portlet.calendar.service.CalEventServiceUtil" %>
@@ -68,7 +65,6 @@ page import="java.util.Locale" %><%@
 page import="java.util.TimeZone" %>
 
 <%@ page import="javax.portlet.PortletMode" %><%@
-page import="javax.portlet.PortletPreferences" %><%@
 page import="javax.portlet.PortletRequest" %>
 
 <portlet:defineObjects />
@@ -76,12 +72,8 @@ page import="javax.portlet.PortletRequest" %>
 <liferay-theme:defineObjects />
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-int eventsPerPage = PrefsParamUtil.getInteger(preferences, request, "eventsPerPage", 10);
-int maxDaysDisplayed = PrefsParamUtil.getInteger(preferences, request, "maxDaysDisplayed", 1);
+int eventsPerPage = PrefsParamUtil.getInteger(portletPreferences, request, "eventsPerPage", 10);
+int maxDaysDisplayed = PrefsParamUtil.getInteger(portletPreferences, request, "maxDaysDisplayed", 1);
 
 Calendar cal = CalendarFactoryUtil.getCalendar(timeZone, locale);
 

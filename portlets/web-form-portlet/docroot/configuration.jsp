@@ -19,22 +19,22 @@
 <%
 String redirect = ParamUtil.getString(renderRequest, "redirect");
 
-String titleXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "title");
-String descriptionXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "description");
-boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
-String successURL = preferences.getValue("successURL", StringPool.BLANK);
+String titleXml = LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "title");
+String descriptionXml = LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "description");
+boolean requireCaptcha = GetterUtil.getBoolean(portletPreferences.getValue("requireCaptcha", StringPool.BLANK));
+String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 
-boolean sendAsEmail = GetterUtil.getBoolean(preferences.getValue("sendAsEmail", StringPool.BLANK));
-String emailFromName = WebFormUtil.getEmailFromName(preferences, company.getCompanyId());
-String emailFromAddress = WebFormUtil.getEmailFromAddress(preferences, company.getCompanyId());
-String emailAddress = preferences.getValue("emailAddress", StringPool.BLANK);
-String subject = preferences.getValue("subject", StringPool.BLANK);
+boolean sendAsEmail = GetterUtil.getBoolean(portletPreferences.getValue("sendAsEmail", StringPool.BLANK));
+String emailFromName = WebFormUtil.getEmailFromName(portletPreferences, company.getCompanyId());
+String emailFromAddress = WebFormUtil.getEmailFromAddress(portletPreferences, company.getCompanyId());
+String emailAddress = portletPreferences.getValue("emailAddress", StringPool.BLANK);
+String subject = portletPreferences.getValue("subject", StringPool.BLANK);
 
-boolean saveToDatabase = GetterUtil.getBoolean(preferences.getValue("saveToDatabase", StringPool.BLANK));
-String databaseTableName = preferences.getValue("databaseTableName", StringPool.BLANK);
+boolean saveToDatabase = GetterUtil.getBoolean(portletPreferences.getValue("saveToDatabase", StringPool.BLANK));
+String databaseTableName = portletPreferences.getValue("databaseTableName", StringPool.BLANK);
 
-boolean saveToFile = GetterUtil.getBoolean(preferences.getValue("saveToFile", StringPool.BLANK));
-String fileName = preferences.getValue("fileName", StringPool.BLANK);
+boolean saveToFile = GetterUtil.getBoolean(portletPreferences.getValue("saveToFile", StringPool.BLANK));
+String fileName = portletPreferences.getValue("fileName", StringPool.BLANK);
 
 boolean fieldsEditingDisabled = false;
 
@@ -150,7 +150,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					formFieldsIndexes = new int[0];
 
 					for (int i = 1; true; i++) {
-						String fieldLabel = PrefsParamUtil.getString(preferences, request, "fieldLabel" + i);
+						String fieldLabel = PrefsParamUtil.getString(portletPreferences, request, "fieldLabel" + i);
 
 						if (Validator.isNull(fieldLabel)) {
 							break;

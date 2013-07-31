@@ -25,21 +25,12 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.kernel.util.StringPool" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
-
-<%@ page import="javax.portlet.PortletPreferences" %>
+page import="com.liferay.portal.kernel.util.StringPool" %>
 
 <portlet:defineObjects />
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-String newsType = preferences.getValue("newsType", "domain");
+String newsType = portletPreferences.getValue("newsType", "domain");
 
 boolean domain = newsType.equals("domain");
 boolean friends = newsType.equals("friends");
@@ -48,26 +39,26 @@ boolean search = newsType.equals("search");
 boolean top = newsType.equals("top");
 boolean user = newsType.equals("user");
 
-boolean polling = GetterUtil.getBoolean(preferences.getValue("polling", "true"));
-boolean showDesc = GetterUtil.getBoolean(preferences.getValue("showDesc", "false"));
-boolean showDiggs = GetterUtil.getBoolean(preferences.getValue("showDiggs", "true"));
-boolean showThumbs = GetterUtil.getBoolean(preferences.getValue("showThumbs", "false"));
-boolean targetBlank = GetterUtil.getBoolean(preferences.getValue("targetBlank", "true"));
+boolean polling = GetterUtil.getBoolean(portletPreferences.getValue("polling", "true"));
+boolean showDesc = GetterUtil.getBoolean(portletPreferences.getValue("showDesc", "false"));
+boolean showDiggs = GetterUtil.getBoolean(portletPreferences.getValue("showDiggs", "true"));
+boolean showThumbs = GetterUtil.getBoolean(portletPreferences.getValue("showThumbs", "false"));
+boolean targetBlank = GetterUtil.getBoolean(portletPreferences.getValue("targetBlank", "true"));
 
-int storyCount = GetterUtil.getInteger(preferences.getValue("storyCount", StringPool.BLANK), 5);
+int storyCount = GetterUtil.getInteger(portletPreferences.getValue("storyCount", StringPool.BLANK), 5);
 
-String apiSearch = preferences.getValue("apiSearch", StringPool.BLANK);
-String friendsUsername = preferences.getValue("friendsUsername", StringPool.BLANK);
-String minDate = preferences.getValue("minDate", StringPool.BLANK);
-String newsFriends = preferences.getValue("newsFriends", "dugg");
-String newsFront = preferences.getValue("newsFront", StringPool.BLANK);
-String newsTop = preferences.getValue("newsTop", StringPool.BLANK);
-String newsUser = preferences.getValue("newsUser", "dugg");
-String pollingRate = preferences.getValue("pollingRate", "60");
-String searchSort = preferences.getValue("searchSort", StringPool.BLANK);
-String sourcePopOrUp = preferences.getValue("sourcePopOrUp", "popular");
-String searchTopics = preferences.getValue("searchTopics", StringPool.BLANK);
-String url = preferences.getValue("url", StringPool.BLANK);
-String urlSort = preferences.getValue("urlSort", "promote_date-desc");
-String userUsername = preferences.getValue("userUsername", StringPool.BLANK);
+String apiSearch = portletPreferences.getValue("apiSearch", StringPool.BLANK);
+String friendsUsername = portletPreferences.getValue("friendsUsername", StringPool.BLANK);
+String minDate = portletPreferences.getValue("minDate", StringPool.BLANK);
+String newsFriends = portletPreferences.getValue("newsFriends", "dugg");
+String newsFront = portletPreferences.getValue("newsFront", StringPool.BLANK);
+String newsTop = portletPreferences.getValue("newsTop", StringPool.BLANK);
+String newsUser = portletPreferences.getValue("newsUser", "dugg");
+String pollingRate = portletPreferences.getValue("pollingRate", "60");
+String searchSort = portletPreferences.getValue("searchSort", StringPool.BLANK);
+String sourcePopOrUp = portletPreferences.getValue("sourcePopOrUp", "popular");
+String searchTopics = portletPreferences.getValue("searchTopics", StringPool.BLANK);
+String url = portletPreferences.getValue("url", StringPool.BLANK);
+String urlSort = portletPreferences.getValue("urlSort", "promote_date-desc");
+String userUsername = portletPreferences.getValue("userUsername", StringPool.BLANK);
 %>
