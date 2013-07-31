@@ -43,7 +43,7 @@ catch (NoSuchRoleException nsre) {
 	</liferay-util:html-top>
 
 	<liferay-util:body-top>
-		<div id="so-portlet-user-bar">
+		<div class="so-portlet-user-bar" id="<portlet:namespace/>userBar">
 
 			<%
 			Group group = user.getGroup();
@@ -55,19 +55,19 @@ catch (NoSuchRoleException nsre) {
 				<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
 			</liferay-portlet:actionURL>
 
-			<a href="<%= dashboardURL %>" id="so_logo">
-				<img alt="Social Office Logo" height="32" src="<%= request.getContextPath() + "/user_bar/images/so_logo.png" %>" width="32" />
+			<a class="so-logo" href="<%= dashboardURL %>">
+				<img alt="<liferay-ui:message key="social-office" /> <liferay-ui:message key="logo" />" height="32" src="<%= request.getContextPath() + "/user_bar/images/so_logo.png" %>" width="32" />
 			</a>
 
 			<nav>
-				<ul id="dashboardNav">
+				<ul class="dashboard-nav" id="<portlet:namespace/>dashboardNav">
 
 					<%
 					List<Layout> mylayouts = LayoutLocalServiceUtil.getLayouts(group.getGroupId(), true);
 
 					for (Layout myLayout : mylayouts) {
 						if (myLayout.isRootLayout() && !myLayout.isHidden()) {
-							String selected = "";
+							String selected = StringPool.BLANK;
 
 							if (myLayout.getPlid() == layout.getPlid()) {
 								selected = "class=\"selected\"";
@@ -90,12 +90,14 @@ catch (NoSuchRoleException nsre) {
 				<li class="go-to">
 					<liferay-portlet:runtime portletName="5_WAR_soportlet" />
 				</li>
-				<li class="notifications-menu" id="notificationsMenu">
+				<li class="notifications-menu" id="<portlet:namespace/>notificationsMenu">
 					<liferay-util:include page="/dockbar_notifications/view.jsp" servletContext="<%= application %>" />
 				</li>
 				<li class="user-menu has-submenu">
 					<a class="user-info" href="<%= group.getPathFriendlyURL(false, themeDisplay) + "/" + user.getScreenName() %>">
-						<span class="avatar"><img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" alt="<%= user.getFullName() %>"></span>
+						<span class="avatar">
+							<img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" alt="<%= user.getFullName() %>">
+						</span>
 
 						<span class="full-name"><%= user.getFullName() %></span>
 					</a>
@@ -128,7 +130,7 @@ catch (NoSuchRoleException nsre) {
 					</ul>
 				</li>
 				<li class="config-item">
-					<a class="config-icon" href="javascript:;" id="toggleDockbar">
+					<a class="config-icon" href="javascript:;" id="<portlet:namespace/>toggleDockbar">
 						<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
 
 						<span class="aui-helper-hidden">
@@ -141,7 +143,7 @@ catch (NoSuchRoleException nsre) {
 	</liferay-util:body-top>
 
 	<aui:script use="aui-base,liferay-so-user-menu">
-		var userBar = A.one('#so-portlet-user-bar');
+		var userBar = A.one('#<portlet:namespace/>userBar');
 
 		var searchInput = userBar.one('.search input');
 
@@ -167,7 +169,7 @@ catch (NoSuchRoleException nsre) {
 			}
 		);
 
-		var toggleDockbar = userBar.one('#toggleDockbar');
+		var toggleDockbar = userBar.one('#<portlet:namespace/>toggleDockbar');
 
 		toggleDockbar.on(
 			'click',
@@ -180,28 +182,28 @@ catch (NoSuchRoleException nsre) {
 
 		new Liferay.SO.UserMenu(
 			{
-				node: '#so-portlet-user-bar .go-to',
+				node: '#<portlet:namespace/>userBar .go-to',
 				showClass: 'search-focus',
 				showOn: 'focus',
-				target: '#so-portlet-user-bar .so-portlet-sites .portlet-body',
-				trigger: '#so-portlet-user-bar .go-to .search input'
+				target: '#<portlet:namespace/>userBar .so-portlet-sites .portlet-body',
+				trigger: '#<portlet:namespace/>userBar .go-to .search input'
 			}
 		);
 
 		new Liferay.SO.UserMenu(
 			{
 				hideClass: 'aui-overlaycontext-hidden',
-				node: '#so-portlet-user-bar .notifications-menu',
-				target: '#so-portlet-user-bar .notifications-menu .user-notification-events',
-				trigger: '#so-portlet-user-bar .user-notification-events-icon'
+				node: '#<portlet:namespace/>userBar .notifications-menu',
+				target: '#<portlet:namespace/>userBar .notifications-menu .user-notification-events',
+				trigger: '#<portlet:namespace/>userBar .user-notification-events-icon'
 			}
 		);
 
 		new Liferay.SO.UserMenu(
 			{
-				node: '#so-portlet-user-bar .user-menu',
+				node: '#<portlet:namespace/>userBar .user-menu',
 				showClass: 'menu-active',
-				trigger: '#so-portlet-user-bar .user-info'
+				trigger: '#<portlet:namespace/>userBar .user-info'
 			}
 		);
 	</aui:script>
