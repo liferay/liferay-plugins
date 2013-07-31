@@ -14,7 +14,6 @@
 
 package com.liferay.portal.search.solr;
 
-import com.liferay.compat.portal.kernel.search.DocumentImpl;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -23,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
