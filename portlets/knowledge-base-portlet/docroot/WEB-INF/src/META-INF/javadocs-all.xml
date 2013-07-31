@@ -2307,6 +2307,16 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>inferredClassName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>inferredClassPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>user</name>
 				<type>com.liferay.portal.model.User</type>
 				<comment><![CDATA[]]></comment>

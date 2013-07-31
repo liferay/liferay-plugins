@@ -2213,20 +2213,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>CalendarResourceSearchTerms</name>
-		<type>com.liferay.calendar.search.CalendarResourceSearchTerms</type>
-		<author><![CDATA[Eduardo Lundgren]]></author>
-		<author><![CDATA[Fabio Pezzutto]]></author>
-		<method>
-			<name>CalendarResourceSearchTerms</name>
-			<param>
-				<name>portletRequest</name>
-				<type>javax.portlet.PortletRequest</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>CalendarBookingLocalServiceImpl</name>
 		<type>com.liferay.calendar.service.impl.CalendarBookingLocalServiceImpl</type>
 		<author><![CDATA[Eduardo Lundgren]]></author>

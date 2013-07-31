@@ -1476,37 +1476,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>MicroblogsUtil</name>
-		<type>com.liferay.microblogs.util.MicroblogsUtil</type>
-		<author><![CDATA[Jonathan Lee]]></author>
-		<method>
-			<name>getJSONRecipients</name>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>themeDisplay</name>
-				<type>com.liferay.portal.theme.ThemeDisplay</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>WebKeys</name>
 		<type>com.liferay.microblogs.util.WebKeys</type>
 		<author><![CDATA[Jonathan Lee]]></author>

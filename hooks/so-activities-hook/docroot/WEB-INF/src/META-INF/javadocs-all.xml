@@ -1247,7 +1247,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>createDate</name>
+				<name>displayDate</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -2062,6 +2062,25 @@
 		</field>
 		<field>
 			<name>_CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.so.activities.util.PortletPropsKeys</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<field>
+			<name>SOCIAL_ACTIVITY_INTERPRETER</name>
+		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.so.activities.util.PortletPropsValues</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<field>
+			<name>SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS</name>
 		</field>
 	</javadoc>
 </javadocs>
