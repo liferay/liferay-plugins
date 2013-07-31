@@ -118,7 +118,7 @@ catch (Exception e) {
 		<div id="<portlet:namespace />licenseExpired" style="display: none;">
 			<div id="licenseExpiredContent">
 				<div class="header">
-					<img alt="Social Office Logo" src="<%= themeDisplay.getPathThemeImages() %>/custom/so_logo.png" />
+					<img alt="<liferay-ui:message key="social-office" /> <liferay-ui:message key="logo" />" src="<%= themeDisplay.getPathThemeImages() %>/custom/so_logo.png" />
 
 					<span class="company-title">
 						<%= HtmlUtil.escape(company.getName()) %>
@@ -195,7 +195,7 @@ catch (Exception e) {
 				}
 			).render();
 
-			var userBar = A.one('#so-portlet-user-bar');
+			var userBar = A.one('.so-portlet-user-bar');
 
 			userBar.setStyle('z-index', '1001');
 		</aui:script>
