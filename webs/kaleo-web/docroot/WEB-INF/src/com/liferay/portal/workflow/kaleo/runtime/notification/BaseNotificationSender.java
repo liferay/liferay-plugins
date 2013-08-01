@@ -19,8 +19,10 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupGroupRole;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.definition.RecipientType;
@@ -126,9 +128,11 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
+			long groupId = kaleoInstanceToken.getGroupId();
+
 			List<UserGroupRole> userGroupRoles =
 				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-					kaleoInstanceToken.getGroupId(), roleId);
+					groupId, roleId);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				User user = userGroupRole.getUser();
@@ -138,6 +142,25 @@ public abstract class BaseNotificationSender implements NotificationSender {
 						new NotificationRecipient(user);
 
 					notificationRecipients.add(notificationRecipient);
+				}
+			}
+
+			List<UserGroupGroupRole> userGroupGroupRoles =
+				UserGroupGroupRoleLocalServiceUtil.
+					getUserGroupGroupRolesByGroupAndRole(groupId, roleId);
+
+			for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+				long userGroupId = userGroupGroupRole.getUserGroupId();
+				List<User> users = UserLocalServiceUtil.getUserGroupUsers(
+					userGroupId);
+
+				for (User user : users) {
+					if (user.isActive()) {
+						NotificationRecipient notificationRecipient =
+							new NotificationRecipient(user);
+
+						notificationRecipients.add(notificationRecipient);
+					}
 				}
 			}
 		}
