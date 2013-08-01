@@ -15,10 +15,12 @@
 package com.liferay.so.activities.hook.social;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -32,6 +34,7 @@ import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
+import com.liferay.tasks.service.permission.TasksEntryPermission;
 
 import java.text.Format;
 
@@ -272,10 +275,19 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 
 	@Override
 	protected boolean hasPermissions(
-		PermissionChecker permissionChecker, SocialActivity activity,
-		String actionId, ServiceContext serviceContext) {
+			PermissionChecker permissionChecker, SocialActivity activity,
+			String actionId, ServiceContext serviceContext)
+		throws SystemException {
 
-		return true;
+		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(
+			activity.getClassPK());
+
+		if (Validator.isNull(tasksEntry)) {
+			return false;
+		}
+
+		return TasksEntryPermission.contains(
+			permissionChecker, tasksEntry, ActionKeys.VIEW);
 	}
 
 	/**
