@@ -96,7 +96,7 @@ catch (NoSuchRoleException nsre) {
 				<li class="user-menu has-submenu">
 					<a class="user-info" href="<%= group.getPathFriendlyURL(false, themeDisplay) + "/" + user.getScreenName() %>">
 						<span class="avatar">
-							<img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" alt="<%= user.getFullName() %>">
+							<img alt="<%= user.getFullName() %>" src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>">
 						</span>
 
 						<span class="full-name"><%= user.getFullName() %></span>
