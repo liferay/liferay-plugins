@@ -17,14 +17,12 @@
 
 package com.liferay.so.activities.portlet;
 
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -42,6 +40,10 @@ import java.text.Format;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+
+/**
+ * @author Matthew Kong
+ */
 public class ActivitiesPortlet extends MVCPortlet {
 
 	@Override
@@ -52,20 +54,16 @@ public class ActivitiesPortlet extends MVCPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (actionName.equals("updateComment")) {
-			try {
+		try {
+			if (actionName.equals("updateComment")) {
 				updateComment(actionRequest, actionResponse);
 			}
-			catch (Exception e) {
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-				jsonObject.put("success", Boolean.FALSE);
-
-				writeJSON(actionRequest, actionResponse, jsonObject);
+			else {
+				super.processAction(actionRequest, actionResponse);
 			}
 		}
-		else {
-			super.processAction(actionRequest, actionResponse);
+		catch (Exception e) {
+			throw new PortletException(e);
 		}
 	}
 
@@ -76,67 +74,74 @@ public class ActivitiesPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long groupId = PortalUtil.getScopeGroupId(actionRequest);
+		String body = ParamUtil.getString(actionRequest, "body");
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 		long messageId = ParamUtil.getLong(actionRequest, "messageId");
-		long threadId = ParamUtil.getLong(actionRequest, "threadId");
 		long parentMessageId = ParamUtil.getLong(
 			actionRequest, "parentMessageId");
+		long threadId = ParamUtil.getLong(actionRequest, "threadId");
 		String subject = ParamUtil.getString(actionRequest, "subject");
-		String body = ParamUtil.getString(actionRequest, "body");
-
-		MBMessage mbMessage = null;
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			MBMessage.class.getName(), actionRequest);
-
-		if (cmd.equals(Constants.DELETE)) {
-			MBMessageServiceUtil.deleteDiscussionMessage(
-				groupId, className, classPK, className, classPK,
-				themeDisplay.getUserId(), messageId);
-		}
-		else if (cmd.equals(Constants.EDIT) && (messageId > 0)) {
-			mbMessage = MBMessageServiceUtil.updateDiscussionMessage(
-				className, classPK, className, classPK,
-				themeDisplay.getUserId(), messageId, subject, body,
-				serviceContext);
-		}
-		else {
-			mbMessage = MBMessageServiceUtil.addDiscussionMessage(
-				groupId, className, classPK, className, classPK,
-				themeDisplay.getUserId(), threadId, parentMessageId, subject,
-				body, serviceContext);
-		}
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		if (mbMessage != null) {
-			jsonObject.put("body", HtmlUtil.escape(mbMessage.getBody()));
-			jsonObject.put("messageId", mbMessage.getMessageId());
+		try {
+			MBMessage mbMessage = null;
 
-			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
-				themeDisplay.getLocale(), themeDisplay.getTimeZone());
+			long groupId = themeDisplay.getScopeGroupId();
 
-			jsonObject.put(
-				"modifiedDate",
-				dateFormatDateTime.format(mbMessage.getModifiedDate()));
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				MBMessage.class.getName(), actionRequest);
 
-			User user = UserLocalServiceUtil.getUser(mbMessage.getUserId());
-
-			String userDisplayURL = user.getDisplayURL(themeDisplay);
-
-			if (Validator.isNotNull(userDisplayURL)) {
-				jsonObject.put("userDisplayURL", userDisplayURL);
+			if (cmd.equals(Constants.DELETE)) {
+				MBMessageServiceUtil.deleteDiscussionMessage(
+					groupId, className, classPK, className, classPK,
+					themeDisplay.getUserId(), messageId);
+			}
+			else if (cmd.equals(Constants.EDIT) && (messageId > 0)) {
+				mbMessage = MBMessageServiceUtil.updateDiscussionMessage(
+					className, classPK, className, classPK,
+					themeDisplay.getUserId(), messageId, subject, body,
+					serviceContext);
+			}
+			else {
+				mbMessage = MBMessageServiceUtil.addDiscussionMessage(
+					groupId, className, classPK, className, classPK,
+					themeDisplay.getUserId(), threadId, parentMessageId,
+					subject, body, serviceContext);
 			}
 
-			jsonObject.put(
-				"userName", HtmlUtil.escape(mbMessage.getUserName()));
-		}
+			if (mbMessage != null) {
+				jsonObject.put("body", HtmlUtil.escape(mbMessage.getBody()));
+				jsonObject.put("messageId", mbMessage.getMessageId());
 
-		jsonObject.put("success", Boolean.TRUE);
+				Format dateFormatDateTime =
+					FastDateFormatFactoryUtil.getDateTime(
+						themeDisplay.getLocale(), themeDisplay.getTimeZone());
+
+				jsonObject.put(
+					"modifiedDate",
+					dateFormatDateTime.format(mbMessage.getModifiedDate()));
+
+				User user = UserLocalServiceUtil.fetchUser(
+					mbMessage.getUserId());
+
+				if (user != null) {
+					String userDisplayURL = user.getDisplayURL(themeDisplay);
+
+					jsonObject.put("userDisplayURL", userDisplayURL);
+				}
+
+				jsonObject.put(
+					"userName", HtmlUtil.escape(mbMessage.getUserName()));
+			}
+
+			jsonObject.put("success", Boolean.TRUE);
+		}
+		catch (Exception e) {
+			jsonObject.put("success", Boolean.FALSE);
+		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
