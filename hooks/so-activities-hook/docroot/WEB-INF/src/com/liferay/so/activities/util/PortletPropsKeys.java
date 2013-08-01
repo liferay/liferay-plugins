@@ -28,4 +28,7 @@ public interface PortletPropsKeys {
 	public static final String SOCIAL_ACTIVITY_SETS_BUNDLING_ENABLED =
 		"social.activity.sets.bundling.enabled";
 
+	public static final String SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW =
+		"social.activity.sets.bundling.time.window";
+
 }
