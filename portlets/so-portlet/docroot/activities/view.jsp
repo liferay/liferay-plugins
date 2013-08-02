@@ -44,11 +44,11 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 	activities.delegate(
 		'click',
 		function(event) {
-			var node = event.currentTarget;
+			var currentTarget = event.currentTarget;
 
-			var ancestor = node.ancestor();
+			var viewComments = currentTarget.ancestor();
 
-			var commentsContainer = ancestor.siblings('.comments-container');
+			var commentsContainer = viewComments.siblings('.comments-container');
 
 			var commentsList = commentsContainer.one('.comments-list');
 
@@ -60,43 +60,45 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 	activities.delegate(
 		'click',
 		function(event) {
-			if (confirm(Liferay.Language.get('are-you-sure-you-want-to-delete-the-selected-entry'))) {
-				var node = event.currentTarget;
+			if (confirm('<%= UnicodeLanguageUtil.get(pageContext,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+				var currentTarget = event.currentTarget;
 
-				var messageId = node.getAttribute('data-messageId');
-				var commentsContainer = node.ancestor('.comments-container');
+				var activityFooterToolbar = currentTarget.ancestor('.activity-footer-toolbar');
+				var commentEntry = currentTarget.ancestor('.comment-entry')
+				var commentsContainer = currentTarget.ancestor('.comments-container');
 
 				var form = commentsContainer.one('form');
 
-				var cmdNode = form.one('#<portlet:namespace /><%= Constants.CMD %>');
+				var cmdInput = form.one('#<portlet:namespace /><%= Constants.CMD %>');
 
-				cmdNode.val('<%= Constants.DELETE %>');
+				cmdInput.val('<%= Constants.DELETE %>');
 
-				var messageIdNode = form.one('#<portlet:namespace />messageId');
+				var messageId = currentTarget.getAttribute('data-messageId');
 
-				messageIdNode.val(messageId);
+				var messageIdInput = form.one('#<portlet:namespace />messageId');
+
+				messageIdInput.val(messageId);
 
 				A.io.request(
 					form.attr('action'),
 					{
 						after: {
-							failure: function(event, id, obj) {
-							},
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
 
 								if (responseData.success) {
-									var activityFooterToolbar = node.ancestor('.activity-footer-toolbar');
+									commentEntry.remove();
 
-									var viewCommentsNode = activityFooterToolbar.one('.view-comments a');
+									var viewComments = activityFooterToolbar.one('.view-comments a');
 
-									var messagesCountString = viewCommentsNode.getContent();
+									var viewCommentsHtml = viewComments.get('innerHTML');
 
-									var messagesCount = parseInt(messagesCountString) - 1;
+									var messagesCount = parseInt(viewCommentsHtml) - 1;
 
-									viewCommentsNode.html((messagesCount > 0 ? messagesCount : '') + ' ' + Liferay.Language.get(messagesCount > 1 ? 'comments' : 'comment'));
-
-									node.ancestor('.comment-entry').remove();
+									viewComments.html(
+										(messagesCount > 0 ? messagesCount : '') +
+										(messagesCount > 1 ? ' <%= UnicodeLanguageUtil.get(pageContext, "comments") %>' : ' <%= UnicodeLanguageUtil.get(pageContext, "comment") %>')
+									);
 								}
 							}
 						},
@@ -114,51 +116,42 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 	activities.delegate(
 		'click',
 		function(event) {
-			var node = event.currentTarget;
+			var currentTarget = event.currentTarget;
 
-			var messageId = node.getAttribute('data-messageId');
-			var ancestor = node.ancestor('.comments-container');
+			var messageId = currentTarget.getAttribute('data-messageId');
 
 			var editForm = A.one('#<portlet:namespace />fm1' + messageId);
 
-			var commentEntryNode = node.ancestor('.comment-entry')
+			var commentEntry = currentTarget.ancestor('.comment-entry');
 
-			var commentBodyNode = commentEntryNode.one('.comment-body');
+			var message = commentEntry.one('.comment-body .message');
 
-			var messageNode = commentBodyNode.one('.message');
+			message.toggleClass('aui-helper-hidden');
 
 			if (editForm) {
 				editForm.toggleClass('aui-helper-hidden');
-				messageNode.toggleClass('aui-helper-hidden');
-
-				var message = messageNode.get('innerHTML');
-
-				editForm.one('#<portlet:namespace />body').html(message);
 			}
 			else {
-				editForm = ancestor.one('form').cloneNode(true);
+				var commentsContainer = currentTarget.ancestor('.comments-container');
+
+				editForm = commentsContainer.one('form').cloneNode(true);
 
 				editForm.removeClass('aui-helper-hidden');
+
 				editForm.set('id','<portlet:namespace />fm1' + messageId);
 				editForm.set('name','<portlet:namespace />fm1' + messageId);
 
-				var cmdNode = editForm.one('#<portlet:namespace /><%= Constants.CMD %>');
+				var cmdInput = editForm.one('#<portlet:namespace /><%= Constants.CMD %>');
 
-				cmdNode.val('<%= Constants.EDIT %>');
+				cmdInput.val('<%= Constants.EDIT %>');
 
-				var messageIdNode = editForm.one('#<portlet:namespace />messageId');
+				var messageIdInput = editForm.one('#<portlet:namespace />messageId');
 
-				messageIdNode.val(messageId);
+				messageIdInput.val(messageId);
 
-				var message = messageNode.get('innerHTML');
+				var commentBody = commentEntry.one('.comment-body');
 
-				var body = editForm.one('#<portlet:namespace />body');
-
-				body.val(message);
-
-				messageNode.toggleClass('aui-helper-hidden');
-
-				commentBodyNode.append(editForm);
+				commentBody.append(editForm);
 
 				editForm.on(
 					'submit',
@@ -169,22 +162,19 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 							editForm.attr('action'),
 							{
 								after: {
-									failure: function(event, id, obj) {
-									},
 									success: function(event, id, obj) {
 										var responseData = this.get('responseData');
 
 										if (responseData.success) {
-											var message = commentEntryNode.one('.comment-body .message');
-
 											message.html(responseData.body);
 
-											var postDate = commentEntryNode.one('.comment-info .post-date');
+											var postDate = commentEntry.one('.comment-info .post-date');
 
 											postDate.html(responseData.modifiedDate);
 
 											editForm.toggleClass('aui-helper-hidden');
-											messageNode.toggleClass('aui-helper-hidden');
+
+											message.toggleClass('aui-helper-hidden');
 										}
 									}
 								},
@@ -197,13 +187,17 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 					}
 				);
 			}
+
+			var messageHtml = message.get('innerHTML');
+
+			var bodyInput = editForm.one('#<portlet:namespace />body');
+
+			bodyInput.val(messageHtml);
 		},
 		'.comment-entry .edit-comment a'
 	);
 
-	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
-
-	announcementEntries.delegate(
+	activities.delegate(
 		'click',
 		function(event) {
 			Liferay.SO.Activities.toggleEntry(event,'<portlet:namespace />');
