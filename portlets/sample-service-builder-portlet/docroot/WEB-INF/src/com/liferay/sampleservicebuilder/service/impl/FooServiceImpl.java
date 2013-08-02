@@ -33,10 +33,10 @@ public class FooServiceImpl extends FooServiceBaseImpl {
 		return UserLocalServiceUtil.getUserById(userId);
 	}
 
-	public List<Group> getUserPlacesGroups()
+	public List<Group> getUserSitesGroups()
 		throws PortalException, SystemException {
 
-		return GroupServiceUtil.getUserPlacesGroups();
+		return GroupServiceUtil.getUserSitesGroups();
 	}
 
 	/*public List<User> getUsers(long companyId) throws SystemException {
