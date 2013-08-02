@@ -1,5 +1,5 @@
 @import "compass";
-@import url(../normal/_strata_skin.scss);
+@import "color_schemes/normal/strata_skin";
 
 $buttonTextColor: #34404F;
 $defaultBorderColor: #D9D8D8;

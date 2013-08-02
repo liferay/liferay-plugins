@@ -176,6 +176,7 @@ $theme.include($body_bottom_include)
 
 				if (editPortraitButton) {
 					editPortraitButton.on(
+						'click',
 						function(event) {
 							if (!editPortrait) {
 								editPortrait = new Liferay.LogoSelector(
