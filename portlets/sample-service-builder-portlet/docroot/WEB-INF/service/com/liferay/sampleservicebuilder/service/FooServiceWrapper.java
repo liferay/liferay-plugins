@@ -64,10 +64,10 @@ public class FooServiceWrapper implements FooService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.model.Group> getUserPlacesGroups()
+	public java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _fooService.getUserPlacesGroups();
+		return _fooService.getUserSitesGroups();
 	}
 
 	/**

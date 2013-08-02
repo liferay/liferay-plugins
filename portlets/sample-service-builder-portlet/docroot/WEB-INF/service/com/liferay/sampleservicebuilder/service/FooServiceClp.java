@@ -36,7 +36,7 @@ public class FooServiceClp implements FooService {
 
 		_methodParameterTypes3 = new String[] { "long" };
 
-		_methodName4 = "getUserPlacesGroups";
+		_methodName4 = "getUserSitesGroups";
 
 		_methodParameterTypes4 = new String[] {  };
 	}
@@ -125,7 +125,7 @@ public class FooServiceClp implements FooService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.model.Group> getUserPlacesGroups()
+	public java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

@@ -76,10 +76,10 @@ public class FooServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.model.GroupSoap[] getUserPlacesGroups()
+	public static com.liferay.portal.model.GroupSoap[] getUserSitesGroups()
 		throws RemoteException {
 		try {
-			java.util.List<com.liferay.portal.model.Group> returnValue = FooServiceUtil.getUserPlacesGroups();
+			java.util.List<com.liferay.portal.model.Group> returnValue = FooServiceUtil.getUserSitesGroups();
 
 			return com.liferay.portal.model.GroupSoap.toSoapModels(returnValue);
 		}
