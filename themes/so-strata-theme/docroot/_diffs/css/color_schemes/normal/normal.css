@@ -83,11 +83,9 @@ a {
 	padding: 0 1em 1em;
 }
 
-.aui-buttonitem-icon-only {
-	padding: 4px 5px 5px;
-}
-
 .aui-button-holder {
+	overflow: visible;
+
 	.aui-toolbar-item {
 		margin: 0 -1px;
 	}
@@ -105,6 +103,10 @@ a {
 	}
 }
 
+.aui-textboxlist-content {
+	overflow: hidden;
+}
+
 .aui-tooltip-content {
 	@include box-shadow(0 2px 10px -4px rgba(0, 0, 0, 1));
 }
@@ -120,17 +122,38 @@ a {
 	}
 }
 
+/* --------- Calendar --------- */
+
+.aui-calendar-content .aui-calendar-day {
+	&, &.aui-state-default {
+		background: transparent none;
+		border-width: 0;
+		padding: 0;
+		width: 13.2%;
+
+		@include box-shadow(none);
+		@include border-radius(0);
+	}
+
+	&:hover, &.aui-state-active, &.aui-state-hover {
+		background: $btnBackgroundDefault;
+		padding: 0;
+		text-decoration: none;
+	}
+}
+
 .hidden-accessible, #navigation h1 {
 	@include hidden-accessible;
 }
 
-// Forms
+/* --------- Forms --------- */
 
 fieldset {
 	@include default-border;
 
 	padding: 8px;
 }
+
 .aui-legend {
 	border-bottom-color: $defaultBorderColor;
 }
@@ -140,14 +163,16 @@ input[type="text"], input[type="password"], input[type="file"], input[type="subm
 }
 
 a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
-	@include button-default;
-
-	&:hover, &:focus {
-		@include button-hover;
+	&, &:active, &.active, &:hover, &:focus {
+		@include button-default;
 	}
 
 	&:active, &.active {
 		@include button-active;
+	}
+
+	&:hover, &:focus {
+		@include button-hover;
 	}
 }
 
@@ -157,9 +182,15 @@ input, textarea {
 	}
 }
 
-.lfr-actions.lfr-extended {
-	&, ul {
+.aui-buttonitem-content.aui-buttonitem-icon-only {
+	padding: 4px;
+}
+
+.lfr-actions {
+	&, &.lfr-extended, ul {
 		@include button-default;
+
+		padding: 0;
 	}
 
 	&:focus {
@@ -174,11 +205,24 @@ input, textarea {
 		}
 	}
 
-	&:hover {
+	&:hover, &.lfr-extended:hover {
 		&, ul {
 			@include button-hover;
 		}
 	}
+}
+
+.aui-menu-content, .lfr-menu-list ul {
+	@include menu-style;
+
+	li {
+		border-top-width: 0;
+		border-bottom-color: $defaultBorderColor;
+	}
+}
+
+.aui-menu-content li a.aui-focus, .lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
+	background-color: #1D87EB;
 }
 
 .aui-button-disabled {
@@ -323,7 +367,7 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 		img {
 			display: inline;
 			height: 32px;
-			margin: -.25em 0 -.25em -.45em;
+			margin: -0.25em 0 -0.25em -0.45em;
 			position: relative;
 			top: -0.125em;
 			vertical-align: middle;
@@ -462,12 +506,29 @@ div#navigation {
 		}
 	}
 
-	.selected a {
+	.selected a, .aui-combobox {
 		border-bottom: none;
 		border-top: 1px solid #0E50A9;
 
 		@include box-shadow(0 1px 0 #7FBBF4 inset);
 		@include button-primary-gradient;
+	}
+
+	.aui-combobox {
+		padding: 0.45em 0.5em 0.4em;
+		position: relative;
+		z-index: 1;
+
+		input[type="text"] {
+			width: 8.6em;
+			margin-right: 0.1em;
+		}
+	}
+}
+
+.lfr-page-templates {
+	input[type="radio"] {
+		margin-left: 10px;
 	}
 }
 
@@ -484,13 +545,13 @@ div#navigation {
 	position: relative;
 	width: 100%;
 
-	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, .6));
+	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
 }
 
 .aui-tabview-list {
 	@include default-border;
 
-	padding: 0 .45em;
+	padding: 0 0.45em;
 
 	@include normal-gradient;
 
@@ -649,14 +710,13 @@ div#navigation {
 	@include input-field-default;
 
 	margin-bottom: 5px;
-	padding: 0;
 }
 
 .aui-tagselector-focused .aui-textboxlistentry-holder {
 	@include input-field-focus;
 }
 
-// Portlet
+/* ---------- Portlets ---------- */
 
 .portlet {
 	border-bottom: 1px solid $defaultBorderColor;
@@ -860,6 +920,8 @@ div#navigation {
 	}
 
 	.lfr-search-combobox {
+		margin: 0 0 0 4px;
+
 		.aui-w30, .aui-w70 {
 			padding: 2px 0;
 			width: auto;
@@ -876,7 +938,7 @@ div#navigation {
 
 			@include border-radius(0 4px 4px 0);
 
-			padding: 4px .4em;
+			padding: 4px 0.4em;
 		}
 	}
 
@@ -1842,7 +1904,7 @@ div#navigation {
 		position: relative;
 		top: -0.5em;
 
-		@include transition-duration(.2s);
+		@include transition-duration(0.2s);
 		@include transition-property(opacity);
 
 		z-index: 2;
