@@ -160,6 +160,9 @@ public class CalendarResourceLocalServiceImpl
 
 			resourceLocalService.deleteResource(
 				calendar, ResourceConstants.SCOPE_INDIVIDUAL);
+
+			calendarNotificationTemplateLocalService.
+				deleteCalendarNotificationTemplates(calendar.getCalendarId());
 		}
 
 		// Calendar bookings

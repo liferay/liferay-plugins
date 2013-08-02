@@ -191,6 +191,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="CalendarId" return-type="Collection">
+			<finder-column name="calendarId" />
+		</finder>
 		<finder name="C_NT_NTT" return-type="CalendarNotificationTemplate">
 			<finder-column name="calendarId" />
 			<finder-column name="notificationType" />

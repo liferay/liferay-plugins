@@ -119,6 +119,11 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendarBookingLocalService.deleteCalendarBookings(
 			calendar.getCalendarId());
 
+		// Calendar notification templates
+
+		calendarNotificationTemplateLocalService.
+			deleteCalendarNotificationTemplates(calendar.getCalendarId());
+
 		return calendar;
 	}
 

@@ -25,6 +25,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Adam Brandizzi
@@ -72,6 +73,23 @@ public class CalendarNotificationTemplateLocalServiceImpl
 
 		return calendarNotificationTemplatePersistence.update(
 			calendarNotificationTemplate);
+	}
+
+	@Override
+	public void deleteCalendarNotificationTemplates(long calendarId)
+		throws PortalException, SystemException {
+
+		List<CalendarNotificationTemplate> calendarNotificationTemplates =
+			calendarNotificationTemplatePersistence.findByCalendarId(
+				calendarId);
+
+		for (CalendarNotificationTemplate calendarNotificationTemplate :
+				calendarNotificationTemplates) {
+
+			calendarNotificationTemplateLocalService.
+				deleteCalendarNotificationTemplate(
+					calendarNotificationTemplate);
+		}
 	}
 
 	@Override
