@@ -1,5 +1,5 @@
 @import "compass";
-@import url(./_strata_skin.scss);
+@import "color_schemes/normal/strata_skin";
 
 body {
 	background: #FFF;
@@ -290,8 +290,8 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 	li {
 		background: transparent url(../images/custom/so_breadcrumbs.png) right 50% no-repeat;
 		border-bottom: 1px solid $defaultBorderColor;
-		max-width: 33.333%;
 		margin-bottom: -1px;
+		max-width: 33.333%;
 
 		span {
 			display: block;
@@ -348,7 +348,7 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 		font-weight: 200;
 		line-height: 1em;
 		margin: 0;
-		text-shadow: 0 1px 0px #FFF;
+		text-shadow: 0 1px 0 #FFF;
 	}
 
 	.site-title {
@@ -376,7 +376,7 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 	}
 
 	.avatar {
-		background: transparent none 50% 50% no-repeat;
+		background: none 50% 50% no-repeat;
 		background-size: cover;
 		display: inline-block;
 		margin: -0.62em 0.5em -0.55em -0.86em;
@@ -581,7 +581,7 @@ div#navigation {
 	}
 }
 
-/* application css */
+/* ---------- Application CSS ---------- */
 
 /* ---------- Main ---------- */
 
@@ -877,7 +877,7 @@ div#navigation {
 .portlet-document-library {
 	.lfr-app-column-view {
 		.results-row td {
-			background: transparent;
+			background: none;
 		}
 
 		.results-row.selected td {
@@ -1520,7 +1520,7 @@ div#navigation {
 		}
 
 		.half-hour, .night-hour {
-			background: transparent;
+			background: none;
 		}
 
 		.event-box {
@@ -1832,7 +1832,7 @@ div#navigation {
 			}
 
 			td, &.alt td {
-				background: transparent;
+				background: none;
 				border-width: 0;
 				padding-top: 10px;
 			}
@@ -2221,7 +2221,7 @@ div#navigation {
 			float: left;
 
 			a {
-				@include background-image(linear, 50% 100%, 50% 0%, color-stop(0%, #252d31), color-stop(100%, #32363a));
+				@include background-image(linear, 50% 100%, 50% 0, color-stop(0, #252d31), color-stop(100%, #32363a));
 
 				display: block;
 				padding: 0.75em 1em;

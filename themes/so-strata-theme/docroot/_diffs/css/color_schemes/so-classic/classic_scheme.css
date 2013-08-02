@@ -37,7 +37,7 @@ $red: #8F0920;
 	}
 
 	input[type=text] {
-		background: transparent;
+		background: none;
 		border-width: 0;
 	}
 
@@ -112,12 +112,12 @@ body.so-classic {
 	}
 
 	#content {
-		background: transparent;
+		background: none;
 		border-width: 0;
 	}
 
 	#main-content {
-		background: transparent;
+		background: none;
 
 		@include box-shadow(none);
 	}

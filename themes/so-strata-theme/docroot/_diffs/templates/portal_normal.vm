@@ -157,24 +157,43 @@ $theme.include($body_bottom_include)
 
 #if ($show_edit_profile_button)
 	<script type="text/javascript">
+		Liferay.provide(
+			window,
+			'_2_changeLogo',
+			function(logoURL) {
+				A.all('#_SO_THEME_avatar, #content .avatar img, .user-fullname.user-portrait img').attr('src', logoURL);
+			},
+			['aui-base']
+		);
+
 		AUI().use(
 			'liferay-logo-selector',
 			'aui-base',
 			function(A) {
-				window.editPortrait = new Liferay.LogoSelector(
-					{
-						boundingBox: '#_SO_THEME_taglibLogoSelector',
-						contentBox: '#_SO_THEME_taglibLogoSelectorContent',
-						defaultLogoURL: '$current_user_profile_portrait_url',
-						editLogoURL: '$current_user_edit_profile_portrait_url',
-						logoDisplaySelector: '#_SO_THEME_avatar',
-						portletNamespace: '',
-						randomNamespace: '_SO_THEME_'
-					}
-				);
+				var editPortraitButton = A.one('#_SO_THEME_editPortraitButton');
 
-				window._2_changeLogo = function(logoURL) {
-					A.all('#_SO_THEME_avatar, #content .avatar img, .user-fullname.user-portrait img').attr('src', logoURL);
+				var editPortrait = null;
+
+				if (editPortraitButton) {
+					editPortraitButton.on(
+						function(event) {
+							if (!editPortrait) {
+								editPortrait = new Liferay.LogoSelector(
+									{
+										boundingBox: '#_SO_THEME_taglibLogoSelector',
+										contentBox: '#_SO_THEME_taglibLogoSelectorContent',
+										defaultLogoURL: '$current_user_profile_portrait_url',
+										editLogoURL: '$current_user_edit_profile_portrait_url',
+										logoDisplaySelector: '#_SO_THEME_avatar',
+										portletNamespace: '',
+										randomNamespace: '_SO_THEME_'
+									}
+								);
+							}
+
+							editPortrait._openEditLogoWindow();
+						}
+					);
 				}
 			}
 		);
