@@ -33,6 +33,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -112,56 +113,43 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			int roleType, ExecutionContext executionContext)
 		throws Exception {
 
+		List<User> users = null;
+
 		if (roleType == RoleConstants.TYPE_REGULAR) {
-			List<User> users = UserLocalServiceUtil.getRoleUsers(roleId);
-
-			for (User user : users) {
-				if (user.isActive()) {
-					NotificationRecipient notificationRecipient =
-						new NotificationRecipient(user);
-
-					notificationRecipients.add(notificationRecipient);
-				}
-			}
+			users = UserLocalServiceUtil.getRoleUsers(roleId);
 		}
 		else {
+			users = new ArrayList<User>();
+
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
-			long groupId = kaleoInstanceToken.getGroupId();
-
 			List<UserGroupRole> userGroupRoles =
 				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-					groupId, roleId);
+					kaleoInstanceToken.getGroupId(), roleId);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
-				User user = userGroupRole.getUser();
-
-				if (user.isActive()) {
-					NotificationRecipient notificationRecipient =
-						new NotificationRecipient(user);
-
-					notificationRecipients.add(notificationRecipient);
-				}
+				users.add(userGroupRole.getUser());
 			}
 
 			List<UserGroupGroupRole> userGroupGroupRoles =
 				UserGroupGroupRoleLocalServiceUtil.
-					getUserGroupGroupRolesByGroupAndRole(groupId, roleId);
+					getUserGroupGroupRolesByGroupAndRole(
+						kaleoInstanceToken.getGroupId(), roleId);
 
 			for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
-				long userGroupId = userGroupGroupRole.getUserGroupId();
-				List<User> users = UserLocalServiceUtil.getUserGroupUsers(
-					userGroupId);
+				users.addAll(
+					UserLocalServiceUtil.getUserGroupUsers(
+						userGroupGroupRole.getUserGroupId()));
+			}
+		}
 
-				for (User user : users) {
-					if (user.isActive()) {
-						NotificationRecipient notificationRecipient =
-							new NotificationRecipient(user);
+		for (User user : users) {
+			if (user.isActive()) {
+				NotificationRecipient notificationRecipient =
+					new NotificationRecipient(user);
 
-						notificationRecipients.add(notificationRecipient);
-					}
-				}
+				notificationRecipients.add(notificationRecipient);
 			}
 		}
 	}
