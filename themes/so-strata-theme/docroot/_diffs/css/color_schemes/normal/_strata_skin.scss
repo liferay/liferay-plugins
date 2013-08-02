@@ -47,7 +47,7 @@ $red: #8F0920;
 @mixin button-hover {
 	background-position: 0 -0.8em;
 
-	@include box-shadow(0 1px 0 rgba(255,255,255, 0.25) inset, 0 1px 0px rgba(0,0,0, .14) inset, 0 1px 4px rgba(0,0,0, 0.1) inset);
+	@include box-shadow(0 1px 0 rgba(255,255,255, 0.25) inset, 0 1px 0 rgba(0,0,0, 0.14) inset, 0 1px 4px rgba(0,0,0, 0.1) inset);
 	@include normal-gradient;
 }
 
@@ -92,12 +92,12 @@ $red: #8F0920;
 }
 
 @mixin input-field-default {
-	background: #FFF none;
+	background: #FFF;
 
 	@include border-radius(4px);
 	@include default-border;
 
-	padding: .4em 0;
+	padding: 0.4em 0;
 	vertical-align: middle;
 }
 
@@ -107,7 +107,7 @@ $red: #8F0920;
 }
 
 @mixin menu-style {
-	background: #FFF none;
+	background: #FFF;
 
 	@include border-radius(4px);
 
@@ -121,7 +121,7 @@ $red: #8F0920;
 @mixin normal-gradient {
 	background: $btnBackgroundDefault url(../../../images/custom/normal_gradient_bg.png) 0 0 repeat-x;
 
-	@include background-image(linear-gradient(bottom, rgb(228,228,228) 0%, rgb(247,247,247) 100%));
+	@include background-image(linear-gradient(bottom, rgb(228,228,228) 0, rgb(247,247,247) 100%));
 	@include transition-duration(0.2s);
 	@include transition-property(background-position);
 }

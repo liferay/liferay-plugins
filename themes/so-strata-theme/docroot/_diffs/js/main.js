@@ -11,12 +11,7 @@ AUI().ready(
 				function(event) {
 					var target = event.currentTarget;
 
-					if (event.type == 'mouseenter') {
-						target.addClass('controls-visible');
-					}
-					else if (event.type == 'mouseleave') {
-						target.removeClass('controls-visible');
-					}
+					target.toggleClass('controls-visible', event.type == 'mouseenter');
 				},
 				'.message-container'
 			);

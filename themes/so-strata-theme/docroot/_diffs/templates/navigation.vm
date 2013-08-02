@@ -6,8 +6,8 @@
 			</div>
 
 			#if ($show_edit_profile_button)
-				<span class="aui-button edit-portrait">
-					<button class="aui-button-content" onClick="editPortrait._openEditLogoWindow();">
+				<span class="aui-button edit-portrait" id="_SO_THEME_editPortraitButton">
+					<button class="aui-button-content">
 						<span class="aui-buttonitem-label">$languageUtil.get($locale, "edit-profile-picture")</span>
 					</button>
 				</span>
