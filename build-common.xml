@@ -62,7 +62,7 @@
 
 	<path id="test.classpath">
 		<path refid="plugin.classpath" />
-		<fileset dir="${app.server.lib.portal.dir}" includes="aspectj-weaver.jar,commons-io.jar,spring-*.jar" />
+		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" excludes="ant.jar" />
 		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
 		<pathelement location="test-classes/integration" />
 		<pathelement location="test-classes/unit" />
