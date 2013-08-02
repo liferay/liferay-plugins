@@ -24,14 +24,11 @@
 
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
-page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.sampleservicebuilder.model.Foo" %><%@
 page import="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" %><%@
 page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparator" %>
-
-<%@ page import="java.text.Format" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 

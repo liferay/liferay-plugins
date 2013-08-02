@@ -64,8 +64,7 @@ page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %>
 <%@ page import="java.util.Locale" %><%@
 page import="java.util.Map" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.PortletRequest" %><%@
+<%@ page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletURL" %>
 
 <%@ page import="org.apache.shindig.gadgets.spec.Feature" %><%@

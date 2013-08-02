@@ -18,15 +18,11 @@
 
 <%@ page import="java.util.Date" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %>
-
 <portlet:defineObjects />
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-long exportDate = Long.parseLong(preferences.getValue("last-export-date", "0"));
-long importDate = Long.parseLong(preferences.getValue("last-import-date", "0"));
+long exportDate = Long.parseLong(portletPreferences.getValue("last-export-date", "0"));
+long importDate = Long.parseLong(portletPreferences.getValue("last-import-date", "0"));
 %>
 
 This is the <strong>Sample LAR Portlet</strong>. This was made to demonstrate the portlet

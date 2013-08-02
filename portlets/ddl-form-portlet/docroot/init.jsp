@@ -61,7 +61,6 @@ page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplayRegistryUtil"
 <%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.ActionRequest" %><%@
-page import="javax.portlet.PortletPreferences" %><%@
 page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
@@ -71,15 +70,11 @@ page import="javax.portlet.WindowState" %>
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
 
-PortletPreferences preferences = renderRequest.getPreferences();
+long recordSetId = GetterUtil.getLong(portletPreferences.getValue("recordSetId", null));
 
-String portletResource = ParamUtil.getString(request, "portletResource");
+long formDDMTemplateId = GetterUtil.getLong(portletPreferences.getValue("formDDMTemplateId", null));
 
-long recordSetId = GetterUtil.getLong(preferences.getValue("recordSetId", null));
-
-long formDDMTemplateId = GetterUtil.getLong(preferences.getValue("formDDMTemplateId", null));
-
-boolean multipleSubmissions = GetterUtil.getBoolean(preferences.getValue("multipleSubmissions", null));
+boolean multipleSubmissions = GetterUtil.getBoolean(portletPreferences.getValue("multipleSubmissions", null));
 
 DDMDisplay ddmDisplay = DDMDisplayRegistryUtil.getDDMDisplay(PortletKeys.DYNAMIC_DATA_LISTS);
 %>

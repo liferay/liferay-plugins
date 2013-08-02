@@ -30,13 +30,11 @@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropertiesUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+page import="com.liferay.portal.kernel.util.Validator" %>
 
 <%@ page import="java.util.Properties" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
@@ -45,11 +43,7 @@ page import="javax.portlet.WindowState" %>
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-String movie = preferences.getValue("movie", StringPool.BLANK);
-String flashAttributes = preferences.getValue("flashAttributes", StringPool.BLANK);
-String flashVariables = preferences.getValue("flashVariables", StringPool.BLANK);
+String movie = portletPreferences.getValue("movie", StringPool.BLANK);
+String flashAttributes = portletPreferences.getValue("flashAttributes", StringPool.BLANK);
+String flashVariables = portletPreferences.getValue("flashVariables", StringPool.BLANK);
 %>

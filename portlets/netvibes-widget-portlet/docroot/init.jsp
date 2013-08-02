@@ -37,8 +37,7 @@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
 
@@ -47,17 +46,13 @@ page import="javax.portlet.WindowState" %>
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-PortletPreferences preferences = renderRequest.getPreferences();
+String link = portletPreferences.getValue("link", "");
+String title = portletPreferences.getValue("title", "");
+String description = portletPreferences.getValue("description", "");
+String thumbnail = portletPreferences.getValue("thumbnail", "");
 
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-String link = preferences.getValue("link", "");
-String title = preferences.getValue("title", "");
-String description = preferences.getValue("description", "");
-String thumbnail = preferences.getValue("thumbnail", "");
-
-String alt = preferences.getValue("alt", "Netvibes Widget");
-String heightMaximized = preferences.getValue("height-maximized", "600");
-String heightNormal = preferences.getValue("height-normal", "300");
-String width = preferences.getValue("width", "100%");
+String alt = portletPreferences.getValue("alt", "Netvibes Widget");
+String heightMaximized = portletPreferences.getValue("height-maximized", "600");
+String heightNormal = portletPreferences.getValue("height-normal", "300");
+String width = portletPreferences.getValue("width", "100%");
 %>

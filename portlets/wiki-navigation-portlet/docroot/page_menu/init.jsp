@@ -17,12 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-long selNodeId = PrefsParamUtil.getLong(preferences, request, "selNodeId");
-String selTitle = PrefsParamUtil.getString(preferences, request, "selTitle");
+long selNodeId = PrefsParamUtil.getLong(portletPreferences, request, "selNodeId");
+String selTitle = PrefsParamUtil.getString(portletPreferences, request, "selTitle");
 
 WikiPage wikiPage = null;
 

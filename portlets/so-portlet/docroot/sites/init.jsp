@@ -25,8 +25,6 @@ page import="com.liferay.so.service.FavoriteSiteLocalServiceUtil" %><%@
 page import="com.liferay.so.util.SocialOfficeConstants" %>
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 int maxResultSize = GetterUtil.getInteger(preferences.getValue("maxResultSize", null), 10);

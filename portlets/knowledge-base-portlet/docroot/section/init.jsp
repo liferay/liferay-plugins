@@ -19,28 +19,24 @@
 <%@ page import="com.liferay.knowledgebase.section.search.KBArticleSearch" %>
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
+boolean showKBArticlesSectionsTitle = GetterUtil.getBoolean(portletPreferences.getValue("showKBArticlesSectionsTitle", null));
+String[] kbArticlesSections = portletPreferences.getValues("kbArticlesSections", new String[0]);
+String kbArticleDisplayStyle = portletPreferences.getValue("kbArticleDisplayStyle", StringPool.BLANK);
+String kbArticleWindowState = portletPreferences.getValue("kbArticleWindowState", StringPool.BLANK);
+String kbArticlesOrderByCol = portletPreferences.getValue("kbArticlesOrderByCol", StringPool.BLANK);
+String kbArticlesOrderByType = portletPreferences.getValue("kbArticlesOrderByType", StringPool.BLANK);
+int kbArticlesDelta = GetterUtil.getInteger(portletPreferences.getValue("kbArticlesDelta", null));
+boolean showKBArticlesPagination = GetterUtil.getBoolean(portletPreferences.getValue("showKBArticlesPagination", null));
 
-String portletResource = ParamUtil.getString(request, "portletResource");
+boolean enableKBArticleDescription = GetterUtil.getBoolean(portletPreferences.getValue("enableKBArticleDescription", null));
+boolean enableKBArticleRatings = GetterUtil.getBoolean(portletPreferences.getValue("enableKBArticleRatings", null));
+boolean showKBArticleAssetEntries = GetterUtil.getBoolean(portletPreferences.getValue("showKBArticleAssetEntries", null));
+boolean enableKBArticleKBComments = GetterUtil.getBoolean(portletPreferences.getValue("enableKBArticleKBComments", null));
+boolean showKBArticleKBComments = GetterUtil.getBoolean(portletPreferences.getValue("showKBArticleKBComments", null));
+boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(portletPreferences.getValue("enableKBArticleViewCountIncrement", null));
 
-boolean showKBArticlesSectionsTitle = GetterUtil.getBoolean(preferences.getValue("showKBArticlesSectionsTitle", null));
-String[] kbArticlesSections = preferences.getValues("kbArticlesSections", new String[0]);
-String kbArticleDisplayStyle = preferences.getValue("kbArticleDisplayStyle", StringPool.BLANK);
-String kbArticleWindowState = preferences.getValue("kbArticleWindowState", StringPool.BLANK);
-String kbArticlesOrderByCol = preferences.getValue("kbArticlesOrderByCol", StringPool.BLANK);
-String kbArticlesOrderByType = preferences.getValue("kbArticlesOrderByType", StringPool.BLANK);
-int kbArticlesDelta = GetterUtil.getInteger(preferences.getValue("kbArticlesDelta", null));
-boolean showKBArticlesPagination = GetterUtil.getBoolean(preferences.getValue("showKBArticlesPagination", null));
-
-boolean enableKBArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableKBArticleDescription", null));
-boolean enableKBArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableKBArticleRatings", null));
-boolean showKBArticleAssetEntries = GetterUtil.getBoolean(preferences.getValue("showKBArticleAssetEntries", null));
-boolean enableKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("enableKBArticleKBComments", null));
-boolean showKBArticleKBComments = GetterUtil.getBoolean(preferences.getValue("showKBArticleKBComments", null));
-boolean enableKBArticleViewCountIncrement = GetterUtil.getBoolean(preferences.getValue("enableKBArticleViewCountIncrement", null));
-
-boolean enableRSS = !PortalUtil.isRSSFeedsEnabled() ? false : GetterUtil.getBoolean(preferences.getValue("enableRss", null), true);
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
-String rssFeedType = preferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
+boolean enableRSS = !PortalUtil.isRSSFeedsEnabled() ? false : GetterUtil.getBoolean(portletPreferences.getValue("enableRss", null), true);
+int rssDelta = GetterUtil.getInteger(portletPreferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = portletPreferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
+String rssFeedType = portletPreferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
 %>

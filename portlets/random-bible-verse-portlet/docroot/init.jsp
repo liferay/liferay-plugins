@@ -32,14 +32,10 @@ page import="com.liferay.randombibleverse.util.RBVUtil" %>
 <%@ page import="java.util.Iterator" %><%@
 page import="java.util.Map" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %>
-
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String language = preferences.getValue("language", StringPool.BLANK);
+String language = portletPreferences.getValue("language", StringPool.BLANK);
 %>

@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Verse verse = RBVUtil.getVerse(preferences, locale);
+Verse verse = RBVUtil.getVerse(portletPreferences, locale);
 %>
 
 <c:choose>

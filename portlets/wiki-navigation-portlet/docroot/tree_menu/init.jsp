@@ -17,12 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletPreferences preferences = renderRequest.getPreferences();
-
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-int depth = PrefsParamUtil.getInteger(preferences, request, "depth", WikiNavigationConstants.DEPTH_ALL);
-long selNodeId = PrefsParamUtil.getLong(preferences, request, "selNodeId");
+int depth = PrefsParamUtil.getInteger(portletPreferences, request, "depth", WikiNavigationConstants.DEPTH_ALL);
+long selNodeId = PrefsParamUtil.getLong(portletPreferences, request, "selNodeId");
 
 if (selNodeId <= 0) {
 	String wikiName = PropsUtil.get("wiki.initial.node.name");
