@@ -13,13 +13,6 @@ AUI().ready(
 
 					if (event.type == 'mouseenter') {
 						target.addClass('controls-visible');
-
-						setTimeout(
-							function() {
-								target.removeClass('controls-visible');
-							},
-							10000
-						);
 					}
 					else if (event.type == 'mouseleave') {
 						target.removeClass('controls-visible');
