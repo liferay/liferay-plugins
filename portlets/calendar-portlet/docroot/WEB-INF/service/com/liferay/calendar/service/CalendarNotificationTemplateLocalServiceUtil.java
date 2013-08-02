@@ -365,6 +365,12 @@ public class CalendarNotificationTemplateLocalServiceUtil {
 			notificationTemplateType, subject, body, serviceContext);
 	}
 
+	public static void deleteCalendarNotificationTemplates(long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteCalendarNotificationTemplates(calendarId);
+	}
+
 	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 		long calendarId,
 		com.liferay.calendar.notification.NotificationType notificationType,

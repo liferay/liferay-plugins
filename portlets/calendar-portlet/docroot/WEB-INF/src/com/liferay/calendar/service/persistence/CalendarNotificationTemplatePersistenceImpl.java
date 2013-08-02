@@ -1471,6 +1471,503 @@ public class CalendarNotificationTemplatePersistenceImpl
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "calendarNotificationTemplate.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(calendarNotificationTemplate.uuid IS NULL OR calendarNotificationTemplate.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "calendarNotificationTemplate.companyId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CALENDARID =
+		new FinderPath(CalendarNotificationTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarNotificationTemplateModelImpl.FINDER_CACHE_ENABLED,
+			CalendarNotificationTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCalendarId",
+			new String[] {
+				Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDARID =
+		new FinderPath(CalendarNotificationTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarNotificationTemplateModelImpl.FINDER_CACHE_ENABLED,
+			CalendarNotificationTemplateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCalendarId",
+			new String[] { Long.class.getName() },
+			CalendarNotificationTemplateModelImpl.CALENDARID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_CALENDARID = new FinderPath(CalendarNotificationTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarNotificationTemplateModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByCalendarId", new String[] { Long.class.getName() });
+
+	/**
+	 * Returns all the calendar notification templates where calendarId = &#63;.
+	 *
+	 * @param calendarId the calendar ID
+	 * @return the matching calendar notification templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<CalendarNotificationTemplate> findByCalendarId(long calendarId)
+		throws SystemException {
+		return findByCalendarId(calendarId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the calendar notification templates where calendarId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.calendar.model.impl.CalendarNotificationTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param calendarId the calendar ID
+	 * @param start the lower bound of the range of calendar notification templates
+	 * @param end the upper bound of the range of calendar notification templates (not inclusive)
+	 * @return the range of matching calendar notification templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<CalendarNotificationTemplate> findByCalendarId(
+		long calendarId, int start, int end) throws SystemException {
+		return findByCalendarId(calendarId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the calendar notification templates where calendarId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.calendar.model.impl.CalendarNotificationTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param calendarId the calendar ID
+	 * @param start the lower bound of the range of calendar notification templates
+	 * @param end the upper bound of the range of calendar notification templates (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching calendar notification templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<CalendarNotificationTemplate> findByCalendarId(
+		long calendarId, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDARID;
+			finderArgs = new Object[] { calendarId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CALENDARID;
+			finderArgs = new Object[] { calendarId, start, end, orderByComparator };
+		}
+
+		List<CalendarNotificationTemplate> list = (List<CalendarNotificationTemplate>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarNotificationTemplate calendarNotificationTemplate : list) {
+				if ((calendarId != calendarNotificationTemplate.getCalendarId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_CALENDARNOTIFICATIONTEMPLATE_WHERE);
+
+			query.append(_FINDER_COLUMN_CALENDARID_CALENDARID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(CalendarNotificationTemplateModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(calendarId);
+
+				if (!pagination) {
+					list = (List<CalendarNotificationTemplate>)QueryUtil.list(q,
+							getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<CalendarNotificationTemplate>(list);
+				}
+				else {
+					list = (List<CalendarNotificationTemplate>)QueryUtil.list(q,
+							getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first calendar notification template in the ordered set where calendarId = &#63;.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching calendar notification template
+	 * @throws com.liferay.calendar.NoSuchNotificationTemplateException if a matching calendar notification template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate findByCalendarId_First(
+		long calendarId, OrderByComparator orderByComparator)
+		throws NoSuchNotificationTemplateException, SystemException {
+		CalendarNotificationTemplate calendarNotificationTemplate = fetchByCalendarId_First(calendarId,
+				orderByComparator);
+
+		if (calendarNotificationTemplate != null) {
+			return calendarNotificationTemplate;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("calendarId=");
+		msg.append(calendarId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationTemplateException(msg.toString());
+	}
+
+	/**
+	 * Returns the first calendar notification template in the ordered set where calendarId = &#63;.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate fetchByCalendarId_First(
+		long calendarId, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<CalendarNotificationTemplate> list = findByCalendarId(calendarId,
+				0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last calendar notification template in the ordered set where calendarId = &#63;.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching calendar notification template
+	 * @throws com.liferay.calendar.NoSuchNotificationTemplateException if a matching calendar notification template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate findByCalendarId_Last(long calendarId,
+		OrderByComparator orderByComparator)
+		throws NoSuchNotificationTemplateException, SystemException {
+		CalendarNotificationTemplate calendarNotificationTemplate = fetchByCalendarId_Last(calendarId,
+				orderByComparator);
+
+		if (calendarNotificationTemplate != null) {
+			return calendarNotificationTemplate;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("calendarId=");
+		msg.append(calendarId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationTemplateException(msg.toString());
+	}
+
+	/**
+	 * Returns the last calendar notification template in the ordered set where calendarId = &#63;.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate fetchByCalendarId_Last(
+		long calendarId, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByCalendarId(calendarId);
+
+		List<CalendarNotificationTemplate> list = findByCalendarId(calendarId,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the calendar notification templates before and after the current calendar notification template in the ordered set where calendarId = &#63;.
+	 *
+	 * @param calendarNotificationTemplateId the primary key of the current calendar notification template
+	 * @param calendarId the calendar ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next calendar notification template
+	 * @throws com.liferay.calendar.NoSuchNotificationTemplateException if a calendar notification template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarNotificationTemplate[] findByCalendarId_PrevAndNext(
+		long calendarNotificationTemplateId, long calendarId,
+		OrderByComparator orderByComparator)
+		throws NoSuchNotificationTemplateException, SystemException {
+		CalendarNotificationTemplate calendarNotificationTemplate = findByPrimaryKey(calendarNotificationTemplateId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			CalendarNotificationTemplate[] array = new CalendarNotificationTemplateImpl[3];
+
+			array[0] = getByCalendarId_PrevAndNext(session,
+					calendarNotificationTemplate, calendarId,
+					orderByComparator, true);
+
+			array[1] = calendarNotificationTemplate;
+
+			array[2] = getByCalendarId_PrevAndNext(session,
+					calendarNotificationTemplate, calendarId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected CalendarNotificationTemplate getByCalendarId_PrevAndNext(
+		Session session,
+		CalendarNotificationTemplate calendarNotificationTemplate,
+		long calendarId, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_CALENDARNOTIFICATIONTEMPLATE_WHERE);
+
+		query.append(_FINDER_COLUMN_CALENDARID_CALENDARID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(CalendarNotificationTemplateModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(calendarId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(calendarNotificationTemplate);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<CalendarNotificationTemplate> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the calendar notification templates where calendarId = &#63; from the database.
+	 *
+	 * @param calendarId the calendar ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByCalendarId(long calendarId) throws SystemException {
+		for (CalendarNotificationTemplate calendarNotificationTemplate : findByCalendarId(
+				calendarId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(calendarNotificationTemplate);
+		}
+	}
+
+	/**
+	 * Returns the number of calendar notification templates where calendarId = &#63;.
+	 *
+	 * @param calendarId the calendar ID
+	 * @return the number of matching calendar notification templates
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByCalendarId(long calendarId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CALENDARID;
+
+		Object[] finderArgs = new Object[] { calendarId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_CALENDARNOTIFICATIONTEMPLATE_WHERE);
+
+			query.append(_FINDER_COLUMN_CALENDARID_CALENDARID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(calendarId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_CALENDARID_CALENDARID_2 = "calendarNotificationTemplate.calendarId = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_NT_NTT = new FinderPath(CalendarNotificationTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarNotificationTemplateModelImpl.FINDER_CACHE_ENABLED,
 			CalendarNotificationTemplateImpl.class, FINDER_CLASS_NAME_ENTITY,
@@ -2221,6 +2718,27 @@ public class CalendarNotificationTemplatePersistenceImpl
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+					args);
+			}
+
+			if ((calendarNotificationTemplateModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDARID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						calendarNotificationTemplateModelImpl.getOriginalCalendarId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CALENDARID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDARID,
+					args);
+
+				args = new Object[] {
+						calendarNotificationTemplateModelImpl.getCalendarId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CALENDARID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CALENDARID,
 					args);
 			}
 		}

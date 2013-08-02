@@ -143,16 +143,20 @@ public class CalendarNotificationTemplateLocalServiceClp
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName24 = "fetchCalendarNotificationTemplate";
+		_methodName24 = "deleteCalendarNotificationTemplates";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes24 = new String[] { "long" };
+
+		_methodName25 = "fetchCalendarNotificationTemplate";
+
+		_methodParameterTypes25 = new String[] {
 				"long", "com.liferay.calendar.notification.NotificationType",
 				"com.liferay.calendar.notification.NotificationTemplateType"
 			};
 
-		_methodName25 = "updateCalendarNotificationTemplate";
+		_methodName26 = "updateCalendarNotificationTemplate";
 
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes26 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -908,6 +912,35 @@ public class CalendarNotificationTemplateLocalServiceClp
 	}
 
 	@Override
+	public void deleteCalendarNotificationTemplates(long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName24,
+				_methodParameterTypes24, new Object[] { calendarId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
 		long calendarId,
 		com.liferay.calendar.notification.NotificationType notificationType,
@@ -916,8 +949,8 @@ public class CalendarNotificationTemplateLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						calendarId,
 						
@@ -956,8 +989,8 @@ public class CalendarNotificationTemplateLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						calendarNotificationTemplateId,
 						
@@ -1044,4 +1077,6 @@ public class CalendarNotificationTemplateLocalServiceClp
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 }

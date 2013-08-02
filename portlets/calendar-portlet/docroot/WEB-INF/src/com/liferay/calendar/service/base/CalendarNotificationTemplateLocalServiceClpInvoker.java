@@ -141,16 +141,20 @@ public class CalendarNotificationTemplateLocalServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName71 = "fetchCalendarNotificationTemplate";
+		_methodName71 = "deleteCalendarNotificationTemplates";
 
-		_methodParameterTypes71 = new String[] {
+		_methodParameterTypes71 = new String[] { "long" };
+
+		_methodName72 = "fetchCalendarNotificationTemplate";
+
+		_methodParameterTypes72 = new String[] {
 				"long", "com.liferay.calendar.notification.NotificationType",
 				"com.liferay.calendar.notification.NotificationTemplateType"
 			};
 
-		_methodName72 = "updateCalendarNotificationTemplate";
+		_methodName73 = "updateCalendarNotificationTemplate";
 
-		_methodParameterTypes72 = new String[] {
+		_methodParameterTypes73 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -294,13 +298,20 @@ public class CalendarNotificationTemplateLocalServiceClpInvoker {
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+			CalendarNotificationTemplateLocalServiceUtil.deleteCalendarNotificationTemplates(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return CalendarNotificationTemplateLocalServiceUtil.fetchCalendarNotificationTemplate(((Long)arguments[0]).longValue(),
 				(com.liferay.calendar.notification.NotificationType)arguments[1],
 				(com.liferay.calendar.notification.NotificationTemplateType)arguments[2]);
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			return CalendarNotificationTemplateLocalServiceUtil.updateCalendarNotificationTemplate(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3],
@@ -360,4 +371,6 @@ public class CalendarNotificationTemplateLocalServiceClpInvoker {
 	private String[] _methodParameterTypes71;
 	private String _methodName72;
 	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
 }

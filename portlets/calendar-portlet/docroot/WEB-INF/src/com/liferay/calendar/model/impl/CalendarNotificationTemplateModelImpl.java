@@ -308,8 +308,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		}
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -332,8 +332,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return GetterUtil.getString(_originalUuid);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getCalendarNotificationTemplateId() {
 		return _calendarNotificationTemplateId;
 	}
@@ -344,8 +344,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		_calendarNotificationTemplateId = calendarNotificationTemplateId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -367,8 +367,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return _originalGroupId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -390,8 +390,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return _originalCompanyId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
@@ -411,8 +411,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		_userUuid = userUuid;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -427,8 +427,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		_userName = userName;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -438,8 +438,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		_createDate = createDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -449,8 +449,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		_modifiedDate = modifiedDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getCalendarId() {
 		return _calendarId;
 	}
@@ -472,8 +472,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return _originalCalendarId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getNotificationType() {
 		if (_notificationType == null) {
 			return StringPool.BLANK;
@@ -498,8 +498,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return GetterUtil.getString(_originalNotificationType);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getNotificationTypeSettings() {
 		if (_notificationTypeSettings == null) {
 			return StringPool.BLANK;
@@ -514,8 +514,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		_notificationTypeSettings = notificationTypeSettings;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getNotificationTemplateType() {
 		if (_notificationTemplateType == null) {
 			return StringPool.BLANK;
@@ -540,8 +540,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return GetterUtil.getString(_originalNotificationTemplateType);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getSubject() {
 		if (_subject == null) {
 			return StringPool.BLANK;
@@ -556,8 +556,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		_subject = subject;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getBody() {
 		if (_body == null) {
 			return StringPool.BLANK;
