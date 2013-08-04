@@ -47,10 +47,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
-		PortletPreferences preferences = actionRequest.getPreferences();
+		PortletPreferences portletPreferences = actionRequest.getPreferences();
 
 		int defaultDuration = ParamUtil.getInteger(
 			actionRequest, "defaultDuration");
@@ -62,16 +59,18 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			actionRequest, "usePortalTimeZone");
 		int weekStartsOn = ParamUtil.getInteger(actionRequest, "weekStartsOn");
 
-		preferences.setValue(
+		portletPreferences.setValue(
 			"defaultDuration", String.valueOf(defaultDuration));
-		preferences.setValue("defaultView", defaultView);
-		preferences.setValue("isoTimeFormat", String.valueOf(isoTimeFormat));
-		preferences.setValue("timeZoneId", timeZoneId);
-		preferences.setValue(
+		portletPreferences.setValue("defaultView", defaultView);
+		portletPreferences.setValue(
+			"isoTimeFormat", String.valueOf(isoTimeFormat));
+		portletPreferences.setValue("timeZoneId", timeZoneId);
+		portletPreferences.setValue(
 			"usePortalTimeZone", String.valueOf(usePortalTimeZone));
-		preferences.setValue("weekStartsOn", String.valueOf(weekStartsOn));
+		portletPreferences.setValue(
+			"weekStartsOn", String.valueOf(weekStartsOn));
 
-		preferences.store();
+		portletPreferences.store();
 	}
 
 }
