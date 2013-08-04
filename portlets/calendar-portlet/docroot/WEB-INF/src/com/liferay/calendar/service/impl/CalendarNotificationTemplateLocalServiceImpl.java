@@ -77,7 +77,7 @@ public class CalendarNotificationTemplateLocalServiceImpl
 
 	@Override
 	public void deleteCalendarNotificationTemplates(long calendarId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		List<CalendarNotificationTemplate> calendarNotificationTemplates =
 			calendarNotificationTemplatePersistence.findByCalendarId(
